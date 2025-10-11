@@ -1,0 +1,85 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  db:
+    image: postgres:15-alpine
+    container_name: b3-erp-db
+    environment:
+      POSTGRES_DB: b3_erp
+      POSTGRES_USER: b3_user
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-b3_password}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - b3-network
+
+  # Redis
+  redis:
+    image: redis:7-alpine
+    container_name: b3-erp-redis
+    ports:
+      - "6379:6379"
+    networks:
+      - b3-network
+
+  # Backend API
+  backend:
+    build:
+      context: ./backend
+      dockerfile: ../docker/backend/Dockerfile
+    container_name: b3-erp-backend
+    command: npm run start:dev
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+      - redis
+    environment:
+      NODE_ENV: development
+      PORT: 8000
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USERNAME: b3_user
+      DB_PASSWORD: ${DB_PASSWORD:-b3_password}
+      DB_DATABASE: b3_erp
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      BULL_REDIS_HOST: redis
+      BULL_REDIS_PORT: 6379
+      FRONTEND_URL: http://localhost:3000
+    networks:
+      - b3-network
+
+  # Frontend
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: ../docker/frontend/Dockerfile
+    container_name: b3-erp-frontend
+    command: npm run dev
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+      - /app/.next
+    ports:
+      - "3000:3000"
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:8000/api/v1
+      NEXTAUTH_URL: http://localhost:3000
+    depends_on:
+      - backend
+    networks:
+      - b3-network
+
+volumes:
+  postgres_data:
+
+networks:
+  b3-network:
+    driver: bridge
