@@ -1,5 +1,6 @@
 # Dependencies
 node_modules/
+**/node_modules/
 /.pnp
 .pnp.js
 
@@ -9,7 +10,7 @@ node_modules/
 # Production
 /build
 /dist
-/.next/
+.next/
 /out/
 
 # Misc
@@ -49,13 +50,17 @@ logs/
 # Uploads
 uploads/
 
-# Backend specific
-backend/dist/
-backend/.env
-
 # Frontend specific
 frontend/.next/
 frontend/.env.local
+**/frontend/.next/
+**/frontend/node_modules/
+
+# Backend specific
+backend/dist/
+backend/.env
+**/backend/dist/
+**/backend/node_modules/
 
 # Package manager files
 package-lock.json
