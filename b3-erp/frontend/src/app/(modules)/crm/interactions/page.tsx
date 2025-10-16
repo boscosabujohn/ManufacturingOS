@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Plus, Search, Eye, Edit, Trash2, Phone, Mail, MessageSquare, MapPin, Headphones, AlertCircle, ThumbsUp, Calendar, User, Clock, ChevronLeft, ChevronRight } from 'lucide-react';
+import { usePageVisitLogger } from '@/hooks/usePageVisitLogger';
 
 interface Interaction {
   id: string;
@@ -142,6 +143,9 @@ export default function InteractionsPage() {
   const [dateFilter, setDateFilter] = useState<string>('all');
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
+
+  // Automatically log page visits
+  usePageVisitLogger('/crm/interactions', true);
 
   const filteredInteractions = interactions.filter((interaction) => {
     const matchesSearch =
