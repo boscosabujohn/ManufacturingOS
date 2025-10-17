@@ -1,306 +1,301 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { usePageVisitLogger } from '@/hooks/usePageVisitLogger';
-import { RFPService } from '@/services/rfp.service';
-import { RFP, RFPStatus, RFPPriority, RFPType } from '@/types/rfp';
+import { useState } from 'react';
 import {
-  Plus,
   Search,
   Filter,
-  FileText,
-  Calendar,
-  TrendingUp,
-  AlertCircle,
-  CheckCircle,
-  Clock,
-  Eye,
-  Edit,
-  Trash2,
   Download,
-  Upload,
-  Users,
-  DollarSign,
-  BarChart3,
+  Eye,
+  Edit2,
+  Send,
+  TrendingUp,
+  FileText,
+  CheckCircle,
+  Award,
 } from 'lucide-react';
 
+interface RFP {
+  id: string;
+  rfpNumber: string;
+  clientName: string;
+  projectTitle: string;
+  industry: 'manufacturing' | 'construction' | 'automotive' | 'pharma' | 'energy' | 'electronics';
+  submissionDate: string;
+  closingDate: string;
+  estimatedValue: number;
+  status: 'draft' | 'submitted' | 'under_review' | 'shortlisted' | 'won' | 'lost';
+  salesOwner: string;
+  requirementDetails: string;
+  technicalSpecs: string;
+  commercialTerms: string;
+  competitorInfo: string;
+  winProbability: number;
+}
+
+const mockRFPs: RFP[] = [
+  {
+    id: '1',
+    rfpNumber: 'RFP-2025-001',
+    clientName: 'Tata Steel Limited',
+    projectTitle: 'Manufacturing Process Automation System',
+    industry: 'manufacturing',
+    submissionDate: '2025-01-15',
+    closingDate: '2025-02-28',
+    estimatedValue: 8500000,
+    status: 'submitted',
+    salesOwner: 'Rajesh Kumar',
+    requirementDetails: 'Complete automation solution for steel rolling mill',
+    technicalSpecs: 'PLC-based control system with SCADA integration',
+    commercialTerms: 'Payment in 3 milestones, 90 days credit',
+    competitorInfo: 'Siemens, ABB competing',
+    winProbability: 75,
+  },
+  {
+    id: '2',
+    rfpNumber: 'RFP-2025-002',
+    clientName: 'Larsen & Toubro Construction',
+    projectTitle: 'Smart Building Management System',
+    industry: 'construction',
+    submissionDate: '2025-01-20',
+    closingDate: '2025-03-15',
+    estimatedValue: 6200000,
+    status: 'under_review',
+    salesOwner: 'Priya Sharma',
+    requirementDetails: 'Integrated BMS for commercial complex',
+    technicalSpecs: 'IoT-enabled sensors with cloud monitoring',
+    commercialTerms: 'BOT model with 5-year AMC',
+    competitorInfo: 'Honeywell, Johnson Controls',
+    winProbability: 60,
+  },
+  {
+    id: '3',
+    rfpNumber: 'RFP-2025-003',
+    clientName: 'Mahindra & Mahindra Auto',
+    projectTitle: 'Assembly Line Robotics Integration',
+    industry: 'automotive',
+    submissionDate: '2025-01-10',
+    closingDate: '2025-02-20',
+    estimatedValue: 12500000,
+    status: 'shortlisted',
+    salesOwner: 'Amit Patel',
+    requirementDetails: 'Robotic welding and painting systems',
+    technicalSpecs: '6-axis industrial robots with vision systems',
+    commercialTerms: 'Turnkey project with training included',
+    competitorInfo: 'Fanuc, KUKA in competition',
+    winProbability: 85,
+  },
+  {
+    id: '4',
+    rfpNumber: 'RFP-2025-004',
+    clientName: 'Sun Pharma Industries',
+    projectTitle: 'Pharmaceutical Manufacturing Equipment',
+    industry: 'pharma',
+    submissionDate: '2025-02-01',
+    closingDate: '2025-03-30',
+    estimatedValue: 15000000,
+    status: 'draft',
+    salesOwner: 'Sneha Reddy',
+    requirementDetails: 'Clean room equipment and packaging line',
+    technicalSpecs: 'FDA compliant systems with validation',
+    commercialTerms: 'Fixed price with performance guarantee',
+    competitorInfo: 'GEA, Bosch Packaging',
+    winProbability: 50,
+  },
+  {
+    id: '5',
+    rfpNumber: 'RFP-2025-005',
+    clientName: 'Reliance Energy Limited',
+    projectTitle: 'Power Plant Control & Monitoring System',
+    industry: 'energy',
+    submissionDate: '2024-12-15',
+    closingDate: '2025-01-31',
+    estimatedValue: 22000000,
+    status: 'won',
+    salesOwner: 'Vikram Singh',
+    requirementDetails: 'DCS and safety systems for thermal plant',
+    technicalSpecs: 'Redundant architecture with cybersecurity',
+    commercialTerms: '4 milestone payments, 2-year warranty',
+    competitorInfo: 'Beat Schneider Electric and Emerson',
+    winProbability: 100,
+  },
+  {
+    id: '6',
+    rfpNumber: 'RFP-2024-089',
+    clientName: 'Bharat Electronics Limited',
+    projectTitle: 'PCB Manufacturing Line Upgrade',
+    industry: 'electronics',
+    submissionDate: '2024-11-20',
+    closingDate: '2024-12-31',
+    estimatedValue: 4500000,
+    status: 'lost',
+    salesOwner: 'Anita Desai',
+    requirementDetails: 'SMT line with optical inspection',
+    technicalSpecs: 'High-speed pick and place machines',
+    commercialTerms: 'Competitive pricing with training',
+    competitorInfo: 'Lost to Juki Corporation on price',
+    winProbability: 0,
+  },
+];
+
+const statusColors = {
+  draft: 'bg-gray-100 text-gray-700 border-gray-300',
+  submitted: 'bg-blue-100 text-blue-700 border-blue-300',
+  under_review: 'bg-yellow-100 text-yellow-700 border-yellow-300',
+  shortlisted: 'bg-purple-100 text-purple-700 border-purple-300',
+  won: 'bg-green-100 text-green-700 border-green-300',
+  lost: 'bg-red-100 text-red-700 border-red-300',
+};
+
+const industryOptions = [
+  { value: '', label: 'All Industries' },
+  { value: 'manufacturing', label: 'Manufacturing' },
+  { value: 'construction', label: 'Construction' },
+  { value: 'automotive', label: 'Automotive' },
+  { value: 'pharma', label: 'Pharmaceutical' },
+  { value: 'energy', label: 'Energy' },
+  { value: 'electronics', label: 'Electronics' },
+];
+
+const statusOptions = [
+  { value: '', label: 'All Status' },
+  { value: 'draft', label: 'Draft' },
+  { value: 'submitted', label: 'Submitted' },
+  { value: 'under_review', label: 'Under Review' },
+  { value: 'shortlisted', label: 'Shortlisted' },
+  { value: 'won', label: 'Won' },
+  { value: 'lost', label: 'Lost' },
+];
+
 export default function RFPPage() {
-  usePageVisitLogger('/sales/rfp', true);
-
-  const [rfps, setRFPs] = useState<RFP[]>([]);
-  const [filteredRFPs, setFilteredRFPs] = useState<RFP[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [selectedRFP, setSelectedRFP] = useState<RFP | null>(null);
-  const [showModal, setShowModal] = useState(false);
-  const [showForm, setShowForm] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
-  const [statusFilter, setStatusFilter] = useState<string>('all');
-  const [priorityFilter, setPriorityFilter] = useState<string>('all');
-  const [view, setView] = useState<'grid' | 'list'>('grid');
+  const [statusFilter, setStatusFilter] = useState('');
+  const [industryFilter, setIndustryFilter] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
 
-  // Statistics
-  const [stats, setStats] = useState({
-    total: 0,
-    draft: 0,
-    submitted: 0,
-    inProgress: 0,
-    approved: 0,
-    rejected: 0,
-    totalValue: 0,
-    avgWinProb: 0,
+  const filteredRFPs = mockRFPs.filter((rfp) => {
+    const matchesSearch =
+      rfp.rfpNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      rfp.clientName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      rfp.projectTitle.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesStatus = !statusFilter || rfp.status === statusFilter;
+    const matchesIndustry = !industryFilter || rfp.industry === industryFilter;
+    return matchesSearch && matchesStatus && matchesIndustry;
   });
 
-  useEffect(() => {
-    loadRFPs();
-  }, []);
+  const totalPages = Math.ceil(filteredRFPs.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const paginatedRFPs = filteredRFPs.slice(startIndex, startIndex + itemsPerPage);
 
-  useEffect(() => {
-    filterRFPs();
-  }, [rfps, searchTerm, statusFilter, priorityFilter]);
-
-  const loadRFPs = async () => {
-    try {
-      setLoading(true);
-      console.log('[RFP Page] Loading RFPs...');
-      console.log('[RFP Page] API URL:', process.env.NEXT_PUBLIC_API_URL);
-      const data = await RFPService.getAllRFPs();
-      console.log('[RFP Page] Loaded RFPs:', data?.length, 'records');
-      setRFPs(data);
-      calculateStats(data);
-    } catch (error) {
-      console.error('[RFP Page] Error loading RFPs:', error);
-      // Set empty array on error to avoid showing "No RFPs" when it's actually a connection issue
-      alert('Failed to load RFPs. Please check if the backend is running on http://localhost:8000');
-    } finally {
-      setLoading(false);
-    }
+  const stats = {
+    activeRFPs: mockRFPs.filter((r) => ['submitted', 'under_review', 'shortlisted'].includes(r.status)).length,
+    underReview: mockRFPs.filter((r) => r.status === 'under_review').length,
+    won: mockRFPs.filter((r) => r.status === 'won').length,
+    winRate: Math.round(
+      (mockRFPs.filter((r) => r.status === 'won').length /
+        mockRFPs.filter((r) => ['won', 'lost'].includes(r.status)).length) *
+        100
+    ),
   };
 
-  const calculateStats = (data: RFP[]) => {
-    const totalValue = data.reduce(
-      (sum, rfp) => sum + (rfp.estimatedBudget || 0),
-      0
-    );
-    const avgWinProb =
-      data.filter((r) => r.winProbability).length > 0
-        ? data.reduce((sum, rfp) => sum + (rfp.winProbability || 0), 0) /
-          data.filter((r) => r.winProbability).length
-        : 0;
-
-    setStats({
-      total: data.length,
-      draft: data.filter((r) => r.status === RFPStatus.DRAFT).length,
-      submitted: data.filter((r) => r.status === RFPStatus.SUBMITTED).length,
-      inProgress: data.filter((r) => r.status === RFPStatus.IN_PROGRESS).length,
-      approved: data.filter((r) => r.status === RFPStatus.APPROVED).length,
-      rejected: data.filter((r) => r.status === RFPStatus.REJECTED).length,
-      totalValue,
-      avgWinProb,
-    });
+  const handleExport = () => {
+    console.log('Exporting RFP report...');
   };
 
-  const filterRFPs = () => {
-    let filtered = [...rfps];
-
-    if (searchTerm) {
-      const term = searchTerm.toLowerCase();
-      filtered = filtered.filter(
-        (rfp) =>
-          rfp.title.toLowerCase().includes(term) ||
-          rfp.rfpNumber.toLowerCase().includes(term) ||
-          rfp.customerName.toLowerCase().includes(term) ||
-          rfp.description.toLowerCase().includes(term)
-      );
-    }
-
-    if (statusFilter !== 'all') {
-      filtered = filtered.filter((rfp) => rfp.status === statusFilter);
-    }
-
-    if (priorityFilter !== 'all') {
-      filtered = filtered.filter((rfp) => rfp.priority === priorityFilter);
-    }
-
-    setFilteredRFPs(filtered);
+  const handleView = (id: string) => {
+    console.log('Viewing RFP:', id);
   };
 
-  const handleDelete = async (id: string) => {
-    if (confirm('Are you sure you want to delete this RFP?')) {
-      try {
-        await RFPService.deleteRFP(id);
-        loadRFPs();
-      } catch (error) {
-        console.error('Error deleting RFP:', error);
-      }
-    }
+  const handleEdit = (id: string) => {
+    console.log('Editing RFP:', id);
   };
 
-  const getStatusColor = (status: RFPStatus) => {
-    const colors = {
-      [RFPStatus.DRAFT]: 'bg-gray-100 text-gray-800',
-      [RFPStatus.SUBMITTED]: 'bg-blue-100 text-blue-800',
-      [RFPStatus.UNDER_REVIEW]: 'bg-yellow-100 text-yellow-800',
-      [RFPStatus.IN_PROGRESS]: 'bg-purple-100 text-purple-800',
-      [RFPStatus.AWAITING_APPROVAL]: 'bg-orange-100 text-orange-800',
-      [RFPStatus.APPROVED]: 'bg-green-100 text-green-800',
-      [RFPStatus.REJECTED]: 'bg-red-100 text-red-800',
-      [RFPStatus.EXPIRED]: 'bg-gray-100 text-gray-600',
-      [RFPStatus.WITHDRAWN]: 'bg-gray-100 text-gray-600',
-    };
-    return colors[status] || 'bg-gray-100 text-gray-800';
+  const handleSubmit = (id: string) => {
+    console.log('Submitting RFP:', id);
   };
-
-  const getPriorityColor = (priority: RFPPriority) => {
-    const colors = {
-      [RFPPriority.LOW]: 'text-green-600',
-      [RFPPriority.MEDIUM]: 'text-yellow-600',
-      [RFPPriority.HIGH]: 'text-orange-600',
-      [RFPPriority.URGENT]: 'text-red-600',
-    };
-    return colors[priority] || 'text-gray-600';
-  };
-
-  const getDaysUntilDeadline = (deadline: string) => {
-    const now = new Date();
-    const deadlineDate = new Date(deadline);
-    const diffTime = deadlineDate.getTime() - now.getTime();
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    return diffDays;
-  };
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-gray-50 p-6">
-        <div className="flex items-center justify-center h-64">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-        </div>
-      </div>
-    );
-  }
 
   return (
-    <div className="h-screen overflow-y-auto bg-gray-50 p-6">
-      {/* Header */}
-      <div className="mb-6">
-        <div className="flex justify-between items-start mb-4">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-6">
+      <div className="max-w-[1600px] mx-auto space-y-6">
+        {/* Header */}
+        <div className="flex justify-between items-center">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-2">
-              <FileText className="w-8 h-8 text-blue-600" />
-              Request for Proposals (RFP)
-            </h1>
-            <p className="text-gray-600 mt-1">
-              Manage and track RFPs, proposals, and submissions
-            </p>
+            <h1 className="text-3xl font-bold text-gray-800">Request for Proposal (RFP)</h1>
+            <p className="text-gray-600 mt-1">Manage and track all sales RFP submissions</p>
           </div>
           <button
-            onClick={() => setShowForm(true)}
-            className="flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors shadow-sm"
+            onClick={handleExport}
+            className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all shadow-md"
           >
-            <Plus className="w-5 h-5" />
-            New RFP
+            <Download className="w-4 h-4" />
+            Export Report
           </button>
         </div>
 
-        {/* Statistics Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-8 gap-4 mb-6">
-          <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+        {/* Stats Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-6 text-white shadow-lg">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600">Total RFPs</p>
-                <p className="text-2xl font-bold text-gray-900">{stats.total}</p>
+                <p className="text-blue-100 text-sm font-medium">Active RFPs</p>
+                <p className="text-3xl font-bold mt-2">{stats.activeRFPs}</p>
+                <p className="text-blue-100 text-xs mt-1">In pipeline</p>
               </div>
-              <FileText className="w-8 h-8 text-blue-600" />
+              <div className="bg-white/20 p-3 rounded-lg">
+                <FileText className="w-8 h-8" />
+              </div>
             </div>
           </div>
 
-          <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+          <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-xl p-6 text-white shadow-lg">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600">Draft</p>
-                <p className="text-2xl font-bold text-gray-900">{stats.draft}</p>
+                <p className="text-yellow-100 text-sm font-medium">Under Review</p>
+                <p className="text-3xl font-bold mt-2">{stats.underReview}</p>
+                <p className="text-yellow-100 text-xs mt-1">Client evaluation</p>
               </div>
-              <Edit className="w-8 h-8 text-gray-600" />
+              <div className="bg-white/20 p-3 rounded-lg">
+                <Filter className="w-8 h-8" />
+              </div>
             </div>
           </div>
 
-          <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-6 text-white shadow-lg">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600">Submitted</p>
-                <p className="text-2xl font-bold text-blue-900">{stats.submitted}</p>
+                <p className="text-green-100 text-sm font-medium">Won RFPs</p>
+                <p className="text-3xl font-bold mt-2">{stats.won}</p>
+                <p className="text-green-100 text-xs mt-1">Successful bids</p>
               </div>
-              <Upload className="w-8 h-8 text-blue-600" />
+              <div className="bg-white/20 p-3 rounded-lg">
+                <CheckCircle className="w-8 h-8" />
+              </div>
             </div>
           </div>
 
-          <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl p-6 text-white shadow-lg">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600">In Progress</p>
-                <p className="text-2xl font-bold text-purple-900">
-                  {stats.inProgress}
-                </p>
+                <p className="text-purple-100 text-sm font-medium">Win Rate</p>
+                <p className="text-3xl font-bold mt-2">{stats.winRate}%</p>
+                <p className="text-purple-100 text-xs mt-1">Success ratio</p>
               </div>
-              <Clock className="w-8 h-8 text-purple-600" />
-            </div>
-          </div>
-
-          <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-gray-600">Approved</p>
-                <p className="text-2xl font-bold text-green-900">
-                  {stats.approved}
-                </p>
+              <div className="bg-white/20 p-3 rounded-lg">
+                <Award className="w-8 h-8" />
               </div>
-              <CheckCircle className="w-8 h-8 text-green-600" />
-            </div>
-          </div>
-
-          <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-gray-600">Rejected</p>
-                <p className="text-2xl font-bold text-red-900">{stats.rejected}</p>
-              </div>
-              <AlertCircle className="w-8 h-8 text-red-600" />
-            </div>
-          </div>
-
-          <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-gray-600">Total Value</p>
-                <p className="text-xl font-bold text-gray-900">
-                  ${(stats.totalValue / 1000000).toFixed(1)}M
-                </p>
-              </div>
-              <DollarSign className="w-8 h-8 text-green-600" />
-            </div>
-          </div>
-
-          <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-gray-600">Avg Win %</p>
-                <p className="text-2xl font-bold text-gray-900">
-                  {stats.avgWinProb.toFixed(0)}%
-                </p>
-              </div>
-              <TrendingUp className="w-8 h-8 text-green-600" />
             </div>
           </div>
         </div>
 
-        {/* Filters and Search */}
-        <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
-          <div className="flex flex-wrap gap-4">
-            <div className="flex-1 min-w-[200px]">
+        {/* Filters */}
+        <div className="bg-white rounded-xl shadow-md p-6">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div className="md:col-span-2">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                 <input
                   type="text"
-                  placeholder="Search RFPs..."
+                  placeholder="Search by RFP number, client, or project..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
@@ -308,520 +303,191 @@ export default function RFPPage() {
               </div>
             </div>
 
-            <select
-              value={statusFilter}
-              onChange={(e) => setStatusFilter(e.target.value)}
-              className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            >
-              <option value="all">All Status</option>
-              <option value={RFPStatus.DRAFT}>Draft</option>
-              <option value={RFPStatus.SUBMITTED}>Submitted</option>
-              <option value={RFPStatus.UNDER_REVIEW}>Under Review</option>
-              <option value={RFPStatus.IN_PROGRESS}>In Progress</option>
-              <option value={RFPStatus.AWAITING_APPROVAL}>Awaiting Approval</option>
-              <option value={RFPStatus.APPROVED}>Approved</option>
-              <option value={RFPStatus.REJECTED}>Rejected</option>
-            </select>
-
-            <select
-              value={priorityFilter}
-              onChange={(e) => setPriorityFilter(e.target.value)}
-              className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            >
-              <option value="all">All Priority</option>
-              <option value={RFPPriority.LOW}>Low</option>
-              <option value={RFPPriority.MEDIUM}>Medium</option>
-              <option value={RFPPriority.HIGH}>High</option>
-              <option value={RFPPriority.URGENT}>Urgent</option>
-            </select>
-
-            <div className="flex gap-2">
-              <button
-                onClick={() => setView('grid')}
-                className={`px-4 py-2 rounded-lg transition-colors ${
-                  view === 'grid'
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                }`}
+            <div>
+              <select
+                value={statusFilter}
+                onChange={(e) => setStatusFilter(e.target.value)}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               >
-                Grid
-              </button>
-              <button
-                onClick={() => setView('list')}
-                className={`px-4 py-2 rounded-lg transition-colors ${
-                  view === 'list'
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                }`}
+                {statusOptions.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div>
+              <select
+                value={industryFilter}
+                onChange={(e) => setIndustryFilter(e.target.value)}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               >
-                List
-              </button>
+                {industryOptions.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
         </div>
-      </div>
 
-      {/* RFP Grid/List */}
-      {filteredRFPs.length === 0 ? (
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-12 text-center">
-          <FileText className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-          <h3 className="text-xl font-semibold text-gray-900 mb-2">
-            No RFPs Found
-          </h3>
-          <p className="text-gray-600 mb-6">
-            {searchTerm || statusFilter !== 'all' || priorityFilter !== 'all'
-              ? 'Try adjusting your filters'
-              : 'Get started by creating your first RFP'}
-          </p>
-          {!searchTerm && statusFilter === 'all' && priorityFilter === 'all' && (
-            <button
-              onClick={() => setShowForm(true)}
-              className="inline-flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
-            >
-              <Plus className="w-5 h-5" />
-              Create First RFP
-            </button>
-          )}
-        </div>
-      ) : view === 'grid' ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredRFPs.map((rfp) => {
-            const daysUntilDeadline = getDaysUntilDeadline(rfp.submissionDeadline);
-            const isOverdue = daysUntilDeadline < 0;
-            const isUrgent = daysUntilDeadline <= 7 && daysUntilDeadline >= 0;
-
-            return (
-              <div
-                key={rfp.id}
-                className="bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-shadow"
-              >
-                <div className="p-6">
-                  {/* Header */}
-                  <div className="flex justify-between items-start mb-4">
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-1">
-                        {rfp.title}
-                      </h3>
-                      <p className="text-sm text-gray-600">{rfp.rfpNumber}</p>
-                    </div>
-                    <span
-                      className={`px-2 py-1 rounded text-xs font-medium ${getStatusColor(
-                        rfp.status
-                      )}`}
-                    >
-                      {rfp.status.replace('_', ' ').toUpperCase()}
-                    </span>
-                  </div>
-
-                  {/* Customer */}
-                  <div className="mb-4">
-                    <p className="text-sm text-gray-600">Customer</p>
-                    <p className="font-medium text-gray-900">{rfp.customerName}</p>
-                  </div>
-
-                  {/* Details */}
-                  <div className="space-y-2 mb-4">
-                    <div className="flex items-center justify-between text-sm">
-                      <span className="text-gray-600">Priority:</span>
-                      <span
-                        className={`font-medium ${getPriorityColor(rfp.priority)}`}
-                      >
-                        {rfp.priority.toUpperCase()}
-                      </span>
-                    </div>
-                    <div className="flex items-center justify-between text-sm">
-                      <span className="text-gray-600">Type:</span>
-                      <span className="font-medium text-gray-900">
-                        {rfp.type.replace('_', ' ')}
-                      </span>
-                    </div>
-                    {rfp.estimatedBudget && (
-                      <div className="flex items-center justify-between text-sm">
-                        <span className="text-gray-600">Budget:</span>
-                        <span className="font-medium text-gray-900">
-                          ${rfp.estimatedBudget.toLocaleString()}
-                        </span>
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Deadline */}
-                  <div
-                    className={`flex items-center gap-2 p-3 rounded-lg mb-4 ${
-                      isOverdue
-                        ? 'bg-red-50 text-red-700'
-                        : isUrgent
-                        ? 'bg-yellow-50 text-yellow-700'
-                        : 'bg-gray-50 text-gray-700'
-                    }`}
-                  >
-                    <Calendar className="w-4 h-4" />
-                    <div className="flex-1">
-                      <p className="text-xs font-medium">Deadline</p>
-                      <p className="text-sm">
-                        {new Date(rfp.submissionDeadline).toLocaleDateString()}
-                      </p>
-                    </div>
-                    {isOverdue ? (
-                      <span className="text-xs font-bold">OVERDUE</span>
-                    ) : (
-                      <span className="text-xs font-medium">
-                        {daysUntilDeadline}d left
-                      </span>
-                    )}
-                  </div>
-
-                  {/* Win Probability */}
-                  {rfp.winProbability !== undefined && (
-                    <div className="mb-4">
-                      <div className="flex justify-between text-sm mb-1">
-                        <span className="text-gray-600">Win Probability</span>
-                        <span className="font-medium text-gray-900">
-                          {rfp.winProbability}%
-                        </span>
-                      </div>
-                      <div className="w-full bg-gray-200 rounded-full h-2">
-                        <div
-                          className="bg-green-600 h-2 rounded-full transition-all"
-                          style={{ width: `${rfp.winProbability}%` }}
-                        ></div>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Actions */}
-                  <div className="flex gap-2 pt-4 border-t border-gray-200">
-                    <button
-                      onClick={() => {
-                        setSelectedRFP(rfp);
-                        setShowModal(true);
-                      }}
-                      className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm"
-                    >
-                      <Eye className="w-4 h-4" />
-                      View
-                    </button>
-                    <button
-                      onClick={() => {
-                        setSelectedRFP(rfp);
-                        setShowForm(true);
-                      }}
-                      className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors"
-                    >
-                      <Edit className="w-4 h-4" />
-                    </button>
-                    <button
-                      onClick={() => handleDelete(rfp.id)}
-                      className="px-4 py-2 bg-red-100 text-red-700 rounded-lg hover:bg-red-200 transition-colors"
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      ) : (
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200">
+        {/* Table */}
+        <div className="bg-white rounded-xl shadow-md overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full">
-              <thead className="bg-gray-50 border-b border-gray-200">
+              <thead className="bg-gradient-to-r from-gray-50 to-gray-100 border-b border-gray-200">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
                     RFP Number
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Title
+                  <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                    Client Name
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Customer
+                  <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                    Project Title
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                    Industry
+                  </th>
+                  <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                    Submission Date
+                  </th>
+                  <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                    Closing Date
+                  </th>
+                  <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                    Estimated Value
+                  </th>
+                  <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
                     Status
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Priority
+                  <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                    Sales Owner
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Deadline
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Budget
-                  </th>
-                  <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
                     Actions
                   </th>
                 </tr>
               </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
-                {filteredRFPs.map((rfp) => {
-                  const daysUntilDeadline = getDaysUntilDeadline(
-                    rfp.submissionDeadline
-                  );
-                  const isOverdue = daysUntilDeadline < 0;
-
-                  return (
-                    <tr
-                      key={rfp.id}
-                      className="hover:bg-gray-50 transition-colors"
-                    >
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                        {rfp.rfpNumber}
-                      </td>
-                      <td className="px-6 py-4 text-sm text-gray-900">
-                        {rfp.title}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                        {rfp.customerName}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <span
-                          className={`px-2 py-1 rounded text-xs font-medium ${getStatusColor(
-                            rfp.status
-                          )}`}
+              <tbody className="divide-y divide-gray-200">
+                {paginatedRFPs.map((rfp) => (
+                  <tr key={rfp.id} className="hover:bg-gray-50 transition-colors">
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <span className="text-sm font-medium text-gray-900">{rfp.rfpNumber}</span>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <span className="text-sm text-gray-900">{rfp.clientName}</span>
+                    </td>
+                    <td className="px-6 py-4">
+                      <span className="text-sm text-gray-900">{rfp.projectTitle}</span>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <span className="text-sm text-gray-600 capitalize">{rfp.industry}</span>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <span className="text-sm text-gray-600">
+                        {new Date(rfp.submissionDate).toLocaleDateString('en-IN')}
+                      </span>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <span className="text-sm text-gray-600">
+                        {new Date(rfp.closingDate).toLocaleDateString('en-IN')}
+                      </span>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <span className="text-sm font-medium text-gray-900">
+                        ₹{(rfp.estimatedValue / 100000).toFixed(2)}L
+                      </span>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <span
+                        className={`px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full border ${
+                          statusColors[rfp.status]
+                        }`}
+                      >
+                        {rfp.status.replace('_', ' ').toUpperCase()}
+                      </span>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <span className="text-sm text-gray-900">{rfp.salesOwner}</span>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="flex items-center gap-2">
+                        <button
+                          onClick={() => handleView(rfp.id)}
+                          className="p-1 text-blue-600 hover:bg-blue-50 rounded transition-colors"
+                          title="View"
                         >
-                          {rfp.status.replace('_', ' ').toUpperCase()}
-                        </span>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <span
-                          className={`text-sm font-medium ${getPriorityColor(
-                            rfp.priority
-                          )}`}
+                          <Eye className="w-4 h-4" />
+                        </button>
+                        <button
+                          onClick={() => handleEdit(rfp.id)}
+                          className="p-1 text-yellow-600 hover:bg-yellow-50 rounded transition-colors"
+                          title="Edit"
                         >
-                          {rfp.priority.toUpperCase()}
-                        </span>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm">
-                        <div
-                          className={
-                            isOverdue ? 'text-red-600 font-medium' : 'text-gray-900'
-                          }
-                        >
-                          {new Date(rfp.submissionDeadline).toLocaleDateString()}
-                          {isOverdue && (
-                            <span className="ml-2 text-xs">(OVERDUE)</span>
-                          )}
-                        </div>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                        {rfp.estimatedBudget
-                          ? `$${rfp.estimatedBudget.toLocaleString()}`
-                          : '-'}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <div className="flex justify-end gap-2">
+                          <Edit2 className="w-4 h-4" />
+                        </button>
+                        {rfp.status === 'draft' && (
                           <button
-                            onClick={() => {
-                              setSelectedRFP(rfp);
-                              setShowModal(true);
-                            }}
-                            className="text-blue-600 hover:text-blue-900"
+                            onClick={() => handleSubmit(rfp.id)}
+                            className="p-1 text-green-600 hover:bg-green-50 rounded transition-colors"
+                            title="Submit"
                           >
-                            <Eye className="w-4 h-4" />
+                            <Send className="w-4 h-4" />
                           </button>
-                          <button
-                            onClick={() => {
-                              setSelectedRFP(rfp);
-                              setShowForm(true);
-                            }}
-                            className="text-gray-600 hover:text-gray-900"
-                          >
-                            <Edit className="w-4 h-4" />
-                          </button>
-                          <button
-                            onClick={() => handleDelete(rfp.id)}
-                            className="text-red-600 hover:text-red-900"
-                          >
-                            <Trash2 className="w-4 h-4" />
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  );
-                })}
+                        )}
+                      </div>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
-        </div>
-      )}
 
-      {/* Detail Modal */}
-      {showModal && selectedRFP && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="p-6">
-              <div className="flex justify-between items-start mb-6">
-                <div>
-                  <h2 className="text-2xl font-bold text-gray-900">
-                    {selectedRFP.title}
-                  </h2>
-                  <p className="text-gray-600">{selectedRFP.rfpNumber}</p>
-                </div>
+          {/* Pagination */}
+          <div className="bg-gray-50 px-6 py-4 border-t border-gray-200">
+            <div className="flex items-center justify-between">
+              <div className="text-sm text-gray-600">
+                Showing {startIndex + 1} to {Math.min(startIndex + itemsPerPage, filteredRFPs.length)} of{' '}
+                {filteredRFPs.length} results
+              </div>
+              <div className="flex items-center gap-2">
                 <button
-                  onClick={() => setShowModal(false)}
-                  className="text-gray-400 hover:text-gray-600"
+                  onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+                  disabled={currentPage === 1}
+                  className="px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                 >
-                  <span className="text-2xl">&times;</span>
+                  Previous
                 </button>
-              </div>
-
-              <div className="grid grid-cols-2 gap-6">
-                <div>
-                  <h3 className="font-semibold text-gray-900 mb-2">
-                    Customer Information
-                  </h3>
-                  <dl className="space-y-2 text-sm">
-                    <div>
-                      <dt className="text-gray-600">Customer:</dt>
-                      <dd className="font-medium">{selectedRFP.customerName}</dd>
-                    </div>
-                    {selectedRFP.contactPerson && (
-                      <div>
-                        <dt className="text-gray-600">Contact:</dt>
-                        <dd className="font-medium">
-                          {selectedRFP.contactPerson}
-                        </dd>
-                      </div>
-                    )}
-                    {selectedRFP.contactEmail && (
-                      <div>
-                        <dt className="text-gray-600">Email:</dt>
-                        <dd className="font-medium">{selectedRFP.contactEmail}</dd>
-                      </div>
-                    )}
-                  </dl>
+                <div className="flex items-center gap-1">
+                  {[...Array(totalPages)].map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setCurrentPage(i + 1)}
+                      className={`px-3 py-1 rounded-lg text-sm font-medium transition-colors ${
+                        currentPage === i + 1
+                          ? 'bg-blue-600 text-white'
+                          : 'text-gray-700 hover:bg-gray-100'
+                      }`}
+                    >
+                      {i + 1}
+                    </button>
+                  ))}
                 </div>
-
-                <div>
-                  <h3 className="font-semibold text-gray-900 mb-2">RFP Details</h3>
-                  <dl className="space-y-2 text-sm">
-                    <div>
-                      <dt className="text-gray-600">Status:</dt>
-                      <dd>
-                        <span
-                          className={`px-2 py-1 rounded text-xs font-medium ${getStatusColor(
-                            selectedRFP.status
-                          )}`}
-                        >
-                          {selectedRFP.status.replace('_', ' ').toUpperCase()}
-                        </span>
-                      </dd>
-                    </div>
-                    <div>
-                      <dt className="text-gray-600">Priority:</dt>
-                      <dd
-                        className={`font-medium ${getPriorityColor(
-                          selectedRFP.priority
-                        )}`}
-                      >
-                        {selectedRFP.priority.toUpperCase()}
-                      </dd>
-                    </div>
-                    <div>
-                      <dt className="text-gray-600">Type:</dt>
-                      <dd className="font-medium">
-                        {selectedRFP.type.replace('_', ' ')}
-                      </dd>
-                    </div>
-                  </dl>
-                </div>
-              </div>
-
-              <div className="mt-6">
-                <h3 className="font-semibold text-gray-900 mb-2">Description</h3>
-                <p className="text-sm text-gray-700">{selectedRFP.description}</p>
-              </div>
-
-              <div className="mt-6">
-                <h3 className="font-semibold text-gray-900 mb-2">Project Scope</h3>
-                <p className="text-sm text-gray-700">{selectedRFP.projectScope}</p>
-              </div>
-
-              {selectedRFP.items && selectedRFP.items.length > 0 && (
-                <div className="mt-6">
-                  <h3 className="font-semibold text-gray-900 mb-2">Items</h3>
-                  <div className="bg-gray-50 rounded-lg p-4">
-                    {selectedRFP.items.map((item, index) => (
-                      <div
-                        key={item.id}
-                        className="mb-3 pb-3 border-b border-gray-200 last:border-0 last:mb-0 last:pb-0"
-                      >
-                        <div className="font-medium text-gray-900">
-                          {item.itemName}
-                        </div>
-                        <div className="text-sm text-gray-600">
-                          {item.description}
-                        </div>
-                        <div className="text-sm text-gray-700 mt-1">
-                          Quantity: {item.quantity} {item.unit}
-                          {item.estimatedCost && (
-                            <span className="ml-4">
-                              Est. Cost: ${item.estimatedCost.toLocaleString()}
-                            </span>
-                          )}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              <div className="mt-6 flex gap-4">
                 <button
-                  onClick={() => {
-                    setShowModal(false);
-                    setShowForm(true);
-                  }}
-                  className="flex-1 bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+                  onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+                  disabled={currentPage === totalPages}
+                  className="px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                 >
-                  Edit RFP
-                </button>
-                <button
-                  onClick={() => setShowModal(false)}
-                  className="flex-1 bg-gray-100 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-200 transition-colors"
-                >
-                  Close
+                  Next
                 </button>
               </div>
             </div>
           </div>
         </div>
-      )}
-
-      {/* Form Modal - Placeholder */}
-      {showForm && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="p-6">
-              <div className="flex justify-between items-start mb-6">
-                <h2 className="text-2xl font-bold text-gray-900">
-                  {selectedRFP ? 'Edit RFP' : 'Create New RFP'}
-                </h2>
-                <button
-                  onClick={() => {
-                    setShowForm(false);
-                    setSelectedRFP(null);
-                  }}
-                  className="text-gray-400 hover:text-gray-600"
-                >
-                  <span className="text-2xl">&times;</span>
-                </button>
-              </div>
-              <div className="text-center py-12">
-                <FileText className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                <p className="text-gray-600">
-                  RFP Form Component - To be implemented
-                </p>
-                <p className="text-sm text-gray-500 mt-2">
-                  This will include all fields for creating/editing RFPs
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      </div>
     </div>
   );
 }

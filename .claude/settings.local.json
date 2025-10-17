@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(findstr:*)",
+      "Bash(curl:*)",
+      "Bash(test:*)",
+      "Bash(psql:*)",
+      "Bash(redis-cli:*)",
+      "Bash(find:*)",
+      "Bash(wc:*)",
+      "Bash(ls:*)",
+      "Bash(for:*)",
+      "Bash(do test -f \"$file\")",
+      "Bash(echo \"exists: $file\")",
+      "Bash(echo \"new: $file\")",
+      "Bash(done)",
+      "Bash(echo:*)",
+      "Bash(head:*)",
+      "Bash(tail:*)",
+      "Bash(dir:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
