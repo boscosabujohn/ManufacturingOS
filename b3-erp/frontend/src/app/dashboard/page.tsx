@@ -21,6 +21,7 @@ import {
   User,
   Menu,
   ChevronDown,
+  Wrench,
 } from 'lucide-react';
 import Sidebar from '@/components/Sidebar';
 import MegaMenu from '@/components/MegaMenu';
@@ -125,6 +126,15 @@ const modules = [
     href: '/logistics',
     color: 'bg-lime-500',
     stats: { total: 312, new: 18 },
+  },
+  {
+    id: 'after-sales-service',
+    name: 'After Sales Service',
+    description: 'Service Contracts & Field Support',
+    icon: Wrench,
+    href: '/after-sales-service/dashboard',
+    color: 'bg-emerald-500',
+    stats: { total: 287, new: 24 },
   },
   {
     id: 'support',

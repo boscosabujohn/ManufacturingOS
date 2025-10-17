@@ -25,6 +25,8 @@ import {
   Wrench,
   FolderKanban,
   LucideIcon,
+  Shield,
+  AlertCircle,
 } from 'lucide-react';
 
 interface SubMenuItem {
@@ -193,6 +195,21 @@ const menuItems: MenuItem[] = [
       { id: 'shipping', name: 'Shipping', href: '/logistics/shipping', description: 'Shipment management' },
       { id: 'tracking', name: 'Tracking', href: '/logistics/tracking', description: 'Track shipments' },
       { id: 'carriers', name: 'Carriers', href: '/logistics/carriers', description: 'Carrier management' },
+    ],
+  },
+  {
+    id: 'after-sales-service',
+    name: 'After Sales Service',
+    icon: Wrench,
+    color: 'text-emerald-600',
+    subItems: [
+      { id: 'ass-dashboard', name: 'Service Dashboard', href: '/after-sales-service/dashboard', description: 'Main overview' },
+      { id: 'service-contracts', name: 'Service Contracts', href: '/after-sales-service/service-contracts', description: 'AMC management' },
+      { id: 'warranties', name: 'Warranties', href: '/after-sales-service/warranties', description: 'Warranty tracking' },
+      { id: 'service-requests', name: 'Service Requests', href: '/after-sales-service/service-requests', description: 'Ticket management' },
+      { id: 'installations', name: 'Installations', href: '/after-sales-service/installations', description: 'Installation jobs' },
+      { id: 'field-service', name: 'Field Service', href: '/after-sales-service/field-service/dispatch', description: 'Field operations' },
+      { id: 'billing', name: 'Service Billing', href: '/after-sales-service/billing', description: 'Invoice management' },
     ],
   },
   {

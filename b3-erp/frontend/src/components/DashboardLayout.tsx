@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Search, Bell, User, Menu, ChevronDown } from 'lucide-react';
 import Sidebar from '@/components/Sidebar';
 import MegaMenu from '@/components/MegaMenu';
+import Breadcrumbs from '@/components/Breadcrumbs';
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
@@ -110,6 +111,9 @@ export default function DashboardLayout({ children, pageTitle }: DashboardLayout
 
         {/* Main Content - Scrollable */}
         <main className="flex-1 overflow-y-auto">
+          <div className="px-6 pt-4">
+            <Breadcrumbs />
+          </div>
           {children}
         </main>
 
