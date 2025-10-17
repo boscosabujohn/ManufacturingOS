@@ -688,17 +688,11 @@ export default function CustomReportsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6">
       <div className="max-w-7xl mx-auto space-y-6">
         {/* Header */}
         <div className="bg-white rounded-lg shadow-sm p-6">
-          <div className="flex justify-between items-start mb-4">
-            <div>
-              <h1 className="text-3xl font-bold text-gray-900">Custom Reports</h1>
-              <p className="text-gray-600 mt-2">
-                Create, manage, and run custom reports tailored to your needs
-              </p>
-            </div>
+          <div className="flex justify-end items-start gap-2 mb-4">
             <button
               onClick={handleCreateReport}
               className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2"

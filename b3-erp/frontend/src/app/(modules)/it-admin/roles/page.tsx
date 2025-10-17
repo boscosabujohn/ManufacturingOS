@@ -195,71 +195,63 @@ export default function RolesPage() {
   };
 
   return (
-    <div className="p-6 space-y-6">
-      {/* Header */}
-      <div className="flex justify-between items-center">
-        <div>
-          <h1 className="text-3xl font-bold text-gray-900">Role Management</h1>
-          <p className="text-gray-600 mt-1">Manage system roles and permissions</p>
-        </div>
-      </div>
-
+    <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6 space-y-6">
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-xl shadow-lg p-6 text-white">
+        <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 border border-indigo-200 rounded-xl shadow-sm p-4 text-indigo-700">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-indigo-100 text-sm font-medium">Total Roles</p>
-              <p className="text-3xl font-bold mt-2">{totalRoles}</p>
-              <p className="text-indigo-100 text-xs mt-2">All defined roles</p>
+              <p className="text-indigo-600 text-sm font-medium">Total Roles</p>
+              <p className="text-3xl font-bold text-indigo-700 mt-2">{totalRoles}</p>
+              <p className="text-indigo-600 text-xs mt-2">All defined roles</p>
             </div>
-            <div className="bg-white/20 rounded-full p-3">
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="bg-indigo-100 rounded-full p-3">
+              <svg className="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
               </svg>
             </div>
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl shadow-lg p-6 text-white">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 border border-green-200 rounded-xl shadow-sm p-4 text-green-700">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-green-100 text-sm font-medium">Active Roles</p>
-              <p className="text-3xl font-bold mt-2">{activeRoles}</p>
-              <p className="text-green-100 text-xs mt-2">{((activeRoles / totalRoles) * 100).toFixed(1)}% of total</p>
+              <p className="text-green-600 text-sm font-medium">Active Roles</p>
+              <p className="text-3xl font-bold text-green-700 mt-2">{activeRoles}</p>
+              <p className="text-green-600 text-xs mt-2">{((activeRoles / totalRoles) * 100).toFixed(1)}% of total</p>
             </div>
-            <div className="bg-white/20 rounded-full p-3">
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="bg-green-100 rounded-full p-3">
+              <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl shadow-lg p-6 text-white">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 border border-purple-200 rounded-xl shadow-sm p-4 text-purple-700">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-purple-100 text-sm font-medium">Custom Roles</p>
-              <p className="text-3xl font-bold mt-2">{customRoles}</p>
-              <p className="text-purple-100 text-xs mt-2">User-defined roles</p>
+              <p className="text-purple-600 text-sm font-medium">Custom Roles</p>
+              <p className="text-3xl font-bold text-purple-700 mt-2">{customRoles}</p>
+              <p className="text-purple-600 text-xs mt-2">User-defined roles</p>
             </div>
-            <div className="bg-white/20 rounded-full p-3">
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="bg-purple-100 rounded-full p-3">
+              <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
               </svg>
             </div>
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl shadow-lg p-6 text-white">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 border border-orange-200 rounded-xl shadow-sm p-4 text-orange-700">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-orange-100 text-sm font-medium">Avg Permissions</p>
-              <p className="text-3xl font-bold mt-2">{avgPermissions}</p>
-              <p className="text-orange-100 text-xs mt-2">Per role average</p>
+              <p className="text-orange-600 text-sm font-medium">Avg Permissions</p>
+              <p className="text-3xl font-bold text-orange-700 mt-2">{avgPermissions}</p>
+              <p className="text-orange-600 text-xs mt-2">Per role average</p>
             </div>
-            <div className="bg-white/20 rounded-full p-3">
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="bg-orange-100 rounded-full p-3">
+              <svg className="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
               </svg>
             </div>

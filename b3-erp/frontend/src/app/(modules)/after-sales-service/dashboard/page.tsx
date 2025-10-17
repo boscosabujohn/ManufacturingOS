@@ -72,13 +72,8 @@ export default function AfterSalesDashboard() {
   };
 
   return (
-    <div className="p-6 max-w-[1600px] mx-auto">
-      {/* Header */}
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">After Sales Service Dashboard</h1>
-        <p className="text-gray-600">Overview of service operations and performance metrics</p>
-      </div>
-
+    <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6">
+      <div className="max-w-[1600px] mx-auto">
       {/* Key Metrics Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         {/* Contracts */}
@@ -357,6 +352,7 @@ export default function AfterSalesDashboard() {
             ))}
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

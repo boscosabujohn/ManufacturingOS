@@ -210,69 +210,47 @@ export default function ProcurementRFQPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-indigo-50 p-8">
-      <div className="max-w-[1600px] mx-auto space-y-8">
-        {/* Header */}
-        <div className="flex justify-between items-center">
-          <div>
-            <h1 className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
-              Request for Quotation (RFQ)
-            </h1>
-            <p className="text-gray-600 mt-2">Manage vendor quotations and procurement requests</p>
-          </div>
-        </div>
-
+    <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6">
+      <div className="max-w-[1600px] mx-auto space-y-6">
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div className="bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-blue-100 text-sm font-medium">Open RFQs</p>
-                <h3 className="text-3xl font-bold mt-2">{stats.openRFQs}</h3>
-                <p className="text-blue-100 text-xs mt-2">Currently issued</p>
+                <p className="text-sm font-medium text-blue-600">Open RFQs</p>
+                <p className="text-2xl font-bold text-blue-900 mt-1">{stats.openRFQs}</p>
               </div>
-              <div className="bg-white/20 p-4 rounded-xl backdrop-blur-sm">
-                <FileText className="w-8 h-8" />
-              </div>
+              <FileText className="h-8 w-8 text-blue-600" />
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-yellow-500 to-orange-600 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300">
+          <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-yellow-100 text-sm font-medium">Quotes Received</p>
-                <h3 className="text-3xl font-bold mt-2">{stats.quotesReceived}</h3>
-                <p className="text-yellow-100 text-xs mt-2">Total responses</p>
+                <p className="text-sm font-medium text-yellow-600">Quotes Received</p>
+                <p className="text-2xl font-bold text-yellow-900 mt-1">{stats.quotesReceived}</p>
               </div>
-              <div className="bg-white/20 p-4 rounded-xl backdrop-blur-sm">
-                <Users className="w-8 h-8" />
-              </div>
+              <Users className="h-8 w-8 text-yellow-600" />
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300">
+          <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-green-100 text-sm font-medium">Awarded</p>
-                <h3 className="text-3xl font-bold mt-2">{stats.awarded}</h3>
-                <p className="text-green-100 text-xs mt-2">Successful RFQs</p>
+                <p className="text-sm font-medium text-green-600">Awarded</p>
+                <p className="text-2xl font-bold text-green-900 mt-1">{stats.awarded}</p>
               </div>
-              <div className="bg-white/20 p-4 rounded-xl backdrop-blur-sm">
-                <CheckCircle className="w-8 h-8" />
-              </div>
+              <CheckCircle className="h-8 w-8 text-green-600" />
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300">
+          <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-purple-100 text-sm font-medium">Avg Response Time</p>
-                <h3 className="text-3xl font-bold mt-2">{stats.avgResponseTime} days</h3>
-                <p className="text-purple-100 text-xs mt-2">Vendor turnaround</p>
+                <p className="text-sm font-medium text-purple-600">Avg Response Time</p>
+                <p className="text-2xl font-bold text-purple-900 mt-1">{stats.avgResponseTime} days</p>
               </div>
-              <div className="bg-white/20 p-4 rounded-xl backdrop-blur-sm">
-                <Clock className="w-8 h-8" />
-              </div>
+              <Clock className="h-8 w-8 text-purple-600" />
             </div>
           </div>
         </div>
@@ -340,7 +318,7 @@ export default function ProcurementRFQPage() {
 
         {/* RFQ Table */}
         <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto overflow-y-auto max-h-[calc(100vh-24rem)]">
             <table className="w-full">
               <thead>
                 <tr className="bg-gradient-to-r from-gray-50 to-gray-100 border-b border-gray-200">

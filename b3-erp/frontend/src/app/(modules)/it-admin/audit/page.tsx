@@ -207,71 +207,63 @@ export default function AuditPage() {
   };
 
   return (
-    <div className="p-6 space-y-6">
-      {/* Header */}
-      <div className="flex justify-between items-center">
-        <div>
-          <h1 className="text-3xl font-bold text-gray-900">Audit Logs</h1>
-          <p className="text-gray-600 mt-1">Monitor system activities and security events</p>
-        </div>
-      </div>
-
+    <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6 space-y-6">
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl shadow-lg p-6 text-white">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl shadow-sm p-4 text-blue-700">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-blue-100 text-sm font-medium">Total Logs</p>
-              <p className="text-3xl font-bold mt-2">{totalLogs}</p>
-              <p className="text-blue-100 text-xs mt-2">All recorded events</p>
+              <p className="text-blue-600 text-sm font-medium">Total Logs</p>
+              <p className="text-3xl font-bold text-blue-700 mt-2">{totalLogs}</p>
+              <p className="text-blue-600 text-xs mt-2">All recorded events</p>
             </div>
-            <div className="bg-white/20 rounded-full p-3">
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="bg-blue-100 rounded-full p-3">
+              <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
             </div>
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-xl shadow-lg p-6 text-white">
+        <div className="bg-gradient-to-br from-red-50 to-red-100 border border-red-200 rounded-xl shadow-sm p-4 text-red-700">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-red-100 text-sm font-medium">Critical Events</p>
-              <p className="text-3xl font-bold mt-2">{criticalEvents}</p>
-              <p className="text-red-100 text-xs mt-2">High priority alerts</p>
+              <p className="text-red-600 text-sm font-medium">Critical Events</p>
+              <p className="text-3xl font-bold text-red-700 mt-2">{criticalEvents}</p>
+              <p className="text-red-600 text-xs mt-2">High priority alerts</p>
             </div>
-            <div className="bg-white/20 rounded-full p-3">
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="bg-red-100 rounded-full p-3">
+              <svg className="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
               </svg>
             </div>
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl shadow-lg p-6 text-white">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 border border-orange-200 rounded-xl shadow-sm p-4 text-orange-700">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-orange-100 text-sm font-medium">Failed Logins</p>
-              <p className="text-3xl font-bold mt-2">{failedLogins}</p>
-              <p className="text-orange-100 text-xs mt-2">Security attempts</p>
+              <p className="text-orange-600 text-sm font-medium">Failed Logins</p>
+              <p className="text-3xl font-bold text-orange-700 mt-2">{failedLogins}</p>
+              <p className="text-orange-600 text-xs mt-2">Security attempts</p>
             </div>
-            <div className="bg-white/20 rounded-full p-3">
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="bg-orange-100 rounded-full p-3">
+              <svg className="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
               </svg>
             </div>
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl shadow-lg p-6 text-white">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 border border-green-200 rounded-xl shadow-sm p-4 text-green-700">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-green-100 text-sm font-medium">Changes Today</p>
-              <p className="text-3xl font-bold mt-2">{changesToday}</p>
-              <p className="text-green-100 text-xs mt-2">Create/Update/Delete</p>
+              <p className="text-green-600 text-sm font-medium">Changes Today</p>
+              <p className="text-3xl font-bold text-green-700 mt-2">{changesToday}</p>
+              <p className="text-green-600 text-xs mt-2">Create/Update/Delete</p>
             </div>
-            <div className="bg-white/20 rounded-full p-3">
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="bg-green-100 rounded-full p-3">
+              <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
               </svg>
             </div>

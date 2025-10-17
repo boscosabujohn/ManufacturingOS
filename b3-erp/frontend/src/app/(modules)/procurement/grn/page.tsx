@@ -227,69 +227,47 @@ export default function ProcurementGRNPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-green-50 to-emerald-50 p-8">
-      <div className="max-w-[1600px] mx-auto space-y-8">
-        {/* Header */}
-        <div className="flex justify-between items-center">
-          <div>
-            <h1 className="text-4xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
-              Goods Receipt Note (GRN)
-            </h1>
-            <p className="text-gray-600 mt-2">Track material receipts and quality inspections</p>
-          </div>
-        </div>
-
+    <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6">
+      <div className="max-w-[1600px] mx-auto space-y-6">
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div className="bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-blue-100 text-sm font-medium">Pending Inspection</p>
-                <h3 className="text-3xl font-bold mt-2">{stats.pendingInspection}</h3>
-                <p className="text-blue-100 text-xs mt-2">Under review</p>
+                <p className="text-sm font-medium text-blue-600">Pending Inspection</p>
+                <p className="text-2xl font-bold text-blue-900 mt-1">{stats.pendingInspection}</p>
               </div>
-              <div className="bg-white/20 p-4 rounded-xl backdrop-blur-sm">
-                <FileText className="w-8 h-8" />
-              </div>
+              <FileText className="h-8 w-8 text-blue-600" />
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300">
+          <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-green-100 text-sm font-medium">Approved Today</p>
-                <h3 className="text-3xl font-bold mt-2">{stats.approvedToday}</h3>
-                <p className="text-green-100 text-xs mt-2">Quality passed</p>
+                <p className="text-sm font-medium text-green-600">Approved Today</p>
+                <p className="text-2xl font-bold text-green-900 mt-1">{stats.approvedToday}</p>
               </div>
-              <div className="bg-white/20 p-4 rounded-xl backdrop-blur-sm">
-                <CheckCircle className="w-8 h-8" />
-              </div>
+              <CheckCircle className="h-8 w-8 text-green-600" />
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-red-500 to-pink-600 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300">
+          <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-4 border border-red-200">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-red-100 text-sm font-medium">Rejected</p>
-                <h3 className="text-3xl font-bold mt-2">{stats.rejected}</h3>
-                <p className="text-red-100 text-xs mt-2">Failed inspection</p>
+                <p className="text-sm font-medium text-red-600">Rejected</p>
+                <p className="text-2xl font-bold text-red-900 mt-1">{stats.rejected}</p>
               </div>
-              <div className="bg-white/20 p-4 rounded-xl backdrop-blur-sm">
-                <AlertCircle className="w-8 h-8" />
-              </div>
+              <AlertCircle className="h-8 w-8 text-red-600" />
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-500 to-indigo-600 rounded-2xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300">
+          <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-purple-100 text-sm font-medium">Total Value Received</p>
-                <h3 className="text-3xl font-bold mt-2">{formatCurrency(stats.totalValueReceived)}</h3>
-                <p className="text-purple-100 text-xs mt-2">Accepted goods</p>
+                <p className="text-sm font-medium text-purple-600">Total Value Received</p>
+                <p className="text-2xl font-bold text-purple-900 mt-1">{formatCurrency(stats.totalValueReceived)}</p>
               </div>
-              <div className="bg-white/20 p-4 rounded-xl backdrop-blur-sm">
-                <DollarSign className="w-8 h-8" />
-              </div>
+              <DollarSign className="h-8 w-8 text-purple-600" />
             </div>
           </div>
         </div>
@@ -354,7 +332,7 @@ export default function ProcurementGRNPage() {
 
         {/* GRN Table */}
         <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto overflow-y-auto max-h-[calc(100vh-24rem)]">
             <table className="w-full">
               <thead>
                 <tr className="bg-gradient-to-r from-gray-50 to-gray-100 border-b border-gray-200">

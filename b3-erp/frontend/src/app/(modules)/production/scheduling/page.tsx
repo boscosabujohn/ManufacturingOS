@@ -204,70 +204,48 @@ const ProductionSchedulingPage = () => {
   }
 
   return (
-    <div className="p-8">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Production Scheduling</h1>
-        <p className="text-gray-600">Manage and monitor production schedules across all work centers</p>
-      </div>
+    <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6">
+      {/* Stats Cards */}
+      <div className="mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-blue-600">Scheduled Today</p>
+                <p className="text-2xl font-bold text-blue-900 mt-1">{scheduledToday}</p>
+              </div>
+              <Calendar className="h-8 w-8 text-blue-600" />
+            </div>
+          </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg shadow-lg p-6 text-white">
-          <div className="flex items-center justify-between mb-4">
-            <div>
-              <p className="text-blue-100 text-sm font-medium">Scheduled Today</p>
-              <h3 className="text-3xl font-bold mt-2">{scheduledToday}</h3>
-            </div>
-            <div className="bg-white/20 p-3 rounded-lg">
-              <Calendar className="w-8 h-8" />
+          <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-yellow-600">In Progress</p>
+                <p className="text-2xl font-bold text-yellow-900 mt-1">{inProgress}</p>
+              </div>
+              <Clock className="h-8 w-8 text-yellow-600" />
             </div>
           </div>
-          <div className="flex items-center text-sm">
-            <span className="text-blue-100">Ready to start</span>
-          </div>
-        </div>
 
-        <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-lg shadow-lg p-6 text-white">
-          <div className="flex items-center justify-between mb-4">
-            <div>
-              <p className="text-yellow-100 text-sm font-medium">In Progress</p>
-              <h3 className="text-3xl font-bold mt-2">{inProgress}</h3>
-            </div>
-            <div className="bg-white/20 p-3 rounded-lg">
-              <Clock className="w-8 h-8" />
+          <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-green-600">Completed</p>
+                <p className="text-2xl font-bold text-green-900 mt-1">{completed}</p>
+              </div>
+              <CheckCircle className="h-8 w-8 text-green-600" />
             </div>
           </div>
-          <div className="flex items-center text-sm">
-            <span className="text-yellow-100">Currently running</span>
-          </div>
-        </div>
 
-        <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg shadow-lg p-6 text-white">
-          <div className="flex items-center justify-between mb-4">
-            <div>
-              <p className="text-green-100 text-sm font-medium">Completed</p>
-              <h3 className="text-3xl font-bold mt-2">{completed}</h3>
+          <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-4 border border-red-200">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-red-600">Delayed</p>
+                <p className="text-2xl font-bold text-red-900 mt-1">{delayed}</p>
+              </div>
+              <AlertCircle className="h-8 w-8 text-red-600" />
             </div>
-            <div className="bg-white/20 p-3 rounded-lg">
-              <CheckCircle className="w-8 h-8" />
-            </div>
-          </div>
-          <div className="flex items-center text-sm">
-            <span className="text-green-100">Finished today</span>
-          </div>
-        </div>
-
-        <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-lg shadow-lg p-6 text-white">
-          <div className="flex items-center justify-between mb-4">
-            <div>
-              <p className="text-red-100 text-sm font-medium">Delayed</p>
-              <h3 className="text-3xl font-bold mt-2">{delayed}</h3>
-            </div>
-            <div className="bg-white/20 p-3 rounded-lg">
-              <AlertCircle className="w-8 h-8" />
-            </div>
-          </div>
-          <div className="flex items-center text-sm">
-            <span className="text-red-100">Behind schedule</span>
           </div>
         </div>
       </div>
@@ -333,7 +311,7 @@ const ProductionSchedulingPage = () => {
           </div>
         </div>
 
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto overflow-y-auto max-h-[calc(100vh-24rem)]">
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>

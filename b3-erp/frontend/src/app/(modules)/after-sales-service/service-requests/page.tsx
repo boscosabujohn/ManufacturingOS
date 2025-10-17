@@ -221,7 +221,7 @@ export default function ServiceRequestsPage() {
   const router = useRouter();
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
-  const [priorityFilter, setStatusFilter] = useState<string>('all');
+  const [priorityFilter, setPriorityFilter] = useState<string>('all');
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
@@ -265,13 +265,8 @@ export default function ServiceRequestsPage() {
   };
 
   return (
-    <div className="p-6 max-w-[1600px] mx-auto">
-      {/* Header */}
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Service Requests</h1>
-        <p className="text-gray-600">Track and manage customer service tickets with SLA monitoring</p>
-      </div>
-
+    <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6">
+      <div className="max-w-[1600px] mx-auto">
       {/* Statistics Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-6">
         <div className="bg-white rounded-lg border border-gray-200 p-4">
@@ -537,6 +532,7 @@ export default function ServiceRequestsPage() {
             </div>
           </div>
         )}
+      </div>
       </div>
     </div>
   );

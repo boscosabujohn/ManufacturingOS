@@ -329,23 +329,6 @@ export default function WorkflowAutomationPage() {
 
   return (
     <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      {/* Header */}
-      <div className="mb-6">
-        <div className="flex items-center justify-between mb-2">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900">Workflow Automation</h1>
-            <p className="text-gray-600 mt-1">Automate business processes and tasks</p>
-          </div>
-          <button
-            onClick={() => router.push('/workflow/automation/new')}
-            className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-          >
-            <Plus className="h-5 w-5" />
-            <span>New Automation</span>
-          </button>
-        </div>
-      </div>
-
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-6 gap-4 mb-6">
         <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
@@ -398,7 +381,7 @@ export default function WorkflowAutomationPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-4 border border-indigo-200">
+                <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-4 border border-indigo-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-indigo-600">Success Rate</p>
@@ -407,6 +390,24 @@ export default function WorkflowAutomationPage() {
             <TrendingUp className="h-8 w-8 text-indigo-600" />
           </div>
         </div>
+      </div>
+
+      <div className="flex justify-end mb-6">
+        <button
+          onClick={() => router.push('/workflow/automation/new')}
+          className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+        >
+          <Plus className="h-5 w-5" />
+          <span>New Automation</span>
+        </button>
+      </div>
+
+      {/* Filters and Search */}
+      <div className="bg-white rounded-lg border border-gray-200 p-4 mb-6">
+        <div className="flex items-center space-x-4 mb-4">
+          <div className="flex-1 relative">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+            <input
       </div>
 
       {/* Filters and Search */}

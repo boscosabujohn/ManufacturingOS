@@ -239,80 +239,62 @@ export default function HandoverPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-6">
-      <div className="max-w-[1600px] mx-auto space-y-6">
-        {/* Header */}
-        <div className="flex justify-between items-center">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-800">Project Handover Management</h1>
-            <p className="text-gray-600 mt-1">Track sales to operations handover process</p>
-          </div>
-          <button
-            onClick={handleExport}
-            className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all shadow-md"
-          >
-            <Download className="w-4 h-4" />
-            Export Report
-          </button>
-        </div>
-
-        {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-xl p-6 text-white shadow-lg">
+    <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6">
+      {/* Stats with Export Button */}
+      <div className="mb-6 flex items-start gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 flex-1">
+          <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-yellow-100 text-sm font-medium">Pending Handovers</p>
-                <p className="text-3xl font-bold mt-2">{stats.pendingHandovers}</p>
-                <p className="text-yellow-100 text-xs mt-1">Awaiting acceptance</p>
+                <p className="text-sm font-medium text-yellow-600">Pending Handovers</p>
+                <p className="text-2xl font-bold text-yellow-900 mt-1">{stats.pendingHandovers}</p>
               </div>
-              <div className="bg-white/20 p-3 rounded-lg">
-                <Clock className="w-8 h-8" />
-              </div>
+              <Clock className="h-8 w-8 text-yellow-600" />
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-green-100 text-sm font-medium">Completed This Month</p>
-                <p className="text-3xl font-bold mt-2">{stats.completedThisMonth}</p>
-                <p className="text-green-100 text-xs mt-1">Successful handovers</p>
+                <p className="text-sm font-medium text-green-600">Completed This Month</p>
+                <p className="text-2xl font-bold text-green-900 mt-1">{stats.completedThisMonth}</p>
               </div>
-              <div className="bg-white/20 p-3 rounded-lg">
-                <CheckCircle className="w-8 h-8" />
-              </div>
+              <CheckCircle className="h-8 w-8 text-green-600" />
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-blue-100 text-sm font-medium">In Progress</p>
-                <p className="text-3xl font-bold mt-2">{stats.inProgress}</p>
-                <p className="text-blue-100 text-xs mt-1">Active handovers</p>
+                <p className="text-sm font-medium text-blue-600">In Progress</p>
+                <p className="text-2xl font-bold text-blue-900 mt-1">{stats.inProgress}</p>
               </div>
-              <div className="bg-white/20 p-3 rounded-lg">
-                <TrendingUp className="w-8 h-8" />
-              </div>
+              <TrendingUp className="h-8 w-8 text-blue-600" />
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-purple-100 text-sm font-medium">Acceptance Rate</p>
-                <p className="text-3xl font-bold mt-2">{stats.acceptanceRate}%</p>
-                <p className="text-purple-100 text-xs mt-1">Overall performance</p>
+                <p className="text-sm font-medium text-purple-600">Acceptance Rate</p>
+                <p className="text-2xl font-bold text-purple-900 mt-1">{stats.acceptanceRate}%</p>
               </div>
-              <div className="bg-white/20 p-3 rounded-lg">
-                <FileCheck className="w-8 h-8" />
-              </div>
+              <FileCheck className="h-8 w-8 text-purple-600" />
             </div>
           </div>
         </div>
 
-        {/* Filters */}
-        <div className="bg-white rounded-xl shadow-md p-6">
+        <button
+          onClick={handleExport}
+          className="flex items-center space-x-2 px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors h-fit flex-shrink-0"
+        >
+          <Download className="w-4 h-4" />
+          <span>Export</span>
+        </button>
+      </div>
+
+      {/* Filters */}
+      <div className="bg-white rounded-xl shadow-md p-6">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             <div className="md:col-span-2">
               <div className="relative">
@@ -359,7 +341,7 @@ export default function HandoverPage() {
 
         {/* Table */}
         <div className="bg-white rounded-xl shadow-md overflow-hidden">
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto overflow-y-auto max-h-[calc(100vh-24rem)]">
             <table className="w-full">
               <thead className="bg-gradient-to-r from-gray-50 to-gray-100 border-b border-gray-200">
                 <tr>
@@ -539,7 +521,6 @@ export default function HandoverPage() {
             </div>
           </div>
         </div>
-      </div>
     </div>
   );
 }

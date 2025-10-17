@@ -375,28 +375,6 @@ export default function ApprovalsPage() {
 
   return (
     <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      {/* Header */}
-      <div className="mb-6">
-        <div className="flex items-center justify-between mb-2">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900">Approval Workflows</h1>
-            <p className="text-gray-600 mt-1">Manage and process approval requests</p>
-          </div>
-          <div className="flex items-center space-x-3">
-            <button
-              onClick={() => setViewMode(viewMode === 'pending' ? 'all' : 'pending')}
-              className={`px-4 py-2 rounded-lg transition-colors ${
-                viewMode === 'pending'
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-              }`}
-            >
-              {viewMode === 'pending' ? 'Show All' : 'Show Pending Only'}
-            </button>
-          </div>
-        </div>
-      </div>
-
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-6 gap-4 mb-6">
         <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
@@ -458,6 +436,19 @@ export default function ApprovalsPage() {
             <DollarSign className="h-8 w-8 text-purple-600" />
           </div>
         </div>
+      </div>
+
+      <div className="flex justify-end mb-6">
+        <button
+          onClick={() => setViewMode(viewMode === 'pending' ? 'all' : 'pending')}
+          className={`px-4 py-2 rounded-lg transition-colors ${
+            viewMode === 'pending'
+              ? 'bg-blue-600 text-white'
+              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+          }`}
+        >
+          {viewMode === 'pending' ? 'Show All' : 'Show Pending Only'}
+        </button>
       </div>
 
       {/* Filters and Search */}
