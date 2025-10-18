@@ -307,20 +307,17 @@ export default function ProjectCostingPage() {
   };
 
   return (
-    <div className="p-6 space-y-6">
-      {/* Header */}
-      <div className="flex justify-between items-center">
-        <div>
-          <h1 className="text-3xl font-bold text-gray-900">Project Costing (Actual vs Budget)</h1>
-          <p className="text-gray-600 mt-1">Comprehensive cost tracking and variance analysis</p>
+    <div className="w-full h-screen overflow-y-auto overflow-x-hidden">
+      <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+        {/* Header Actions */}
+        <div className="flex justify-end mb-4">
+          <button className="flex items-center space-x-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">
+            <Download className="h-5 w-5" />
+            <span>Export Report</span>
+          </button>
         </div>
-        <button className="flex items-center space-x-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">
-          <Download className="h-5 w-5" />
-          <span>Export Report</span>
-        </button>
-      </div>
 
-      {/* Statistics Cards */}
+        {/* Statistics Cards */}
       <div className="grid grid-cols-1 md:grid-cols-7 gap-4">
         <div className="bg-white p-4 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between">
@@ -684,6 +681,7 @@ export default function ProjectCostingPage() {
           </div>
         </div>
       )}
+      </div>
     </div>
   );
 }

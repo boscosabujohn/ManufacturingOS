@@ -17,7 +17,8 @@
       "Bash(echo:*)",
       "Bash(head:*)",
       "Bash(tail:*)",
-      "Bash(dir:*)"
+      "Bash(dir:*)",
+      "Bash(mkdir:*)"
     ],
     "deny": [],
     "ask": []

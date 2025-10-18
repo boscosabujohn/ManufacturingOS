@@ -15,6 +15,7 @@ import {
   FileText,
   Users,
   AlertCircle,
+  TrendingUp,
 } from 'lucide-react';
 
 interface MilestoneTemplate {
@@ -1116,25 +1117,23 @@ export default function MilestoneTemplatesPage() {
   });
 
   return (
-    <div className="p-6 max-w-[1600px] mx-auto">
-      {/* Header */}
-      <div className="mb-6">
-        <div className="flex items-center justify-between mb-4">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900">Milestone Templates</h1>
-            <p className="text-gray-600 mt-1">Predefined milestone sets for different project types</p>
-          </div>
-          <button
-            onClick={() => setShowCreateModal(true)}
-            className="flex items-center gap-2 px-4 py-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700"
-          >
-            <Plus className="w-4 h-4" />
-            Create Template
-          </button>
-        </div>
+    <div className="h-screen flex flex-col overflow-hidden">
+      <div className="flex-1 overflow-y-auto overflow-x-hidden">
+        <div className="px-4 sm:px-6 lg:px-8 py-6 max-w-[1600px] mx-auto">
+          {/* Action Bar */}
+          <div className="mb-6">
+            <div className="flex items-center justify-end mb-4">
+              <button
+                onClick={() => setShowCreateModal(true)}
+                className="flex items-center gap-2 px-4 py-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700"
+              >
+                <Plus className="w-4 h-4" />
+                Create Template
+              </button>
+            </div>
 
-        {/* Quick Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+            {/* Quick Stats */}
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
           <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
@@ -1458,6 +1457,8 @@ export default function MilestoneTemplatesPage() {
           </div>
         </div>
       )}
+        </div>
+      </div>
     </div>
   );
 }

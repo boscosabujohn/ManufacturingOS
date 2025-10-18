@@ -22,9 +22,10 @@ import {
   Menu,
   ChevronDown,
   Wrench,
+  FolderKanban,
 } from 'lucide-react';
-import Sidebar from '@/components/Sidebar';
 import MegaMenu from '@/components/MegaMenu';
+import Sidebar from '@/components/Sidebar';
 
 // Module definitions
 const modules = [
@@ -166,9 +167,9 @@ const modules = [
 ];
 
 export default function DashboardPage() {
+  const [sidebarOpen, setSidebarOpen] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
-  const [sidebarOpen, setSidebarOpen] = useState(true);
   const [activeMegaMenu, setActiveMegaMenu] = useState<string | null>(null);
 
   const filteredModules = modules.filter((module) => {
@@ -193,22 +194,20 @@ export default function DashboardPage() {
 
   return (
     <div className="h-screen flex flex-col bg-white overflow-hidden">
-      {/* Sidebar */}
       <Sidebar isOpen={sidebarOpen} onToggle={() => setSidebarOpen(!sidebarOpen)} />
-
-      {/* Main Content Area */}
-      <div className={`flex-1 flex flex-col transition-all duration-300 ${sidebarOpen ? 'lg:ml-72' : 'lg:ml-20'}`}>
+      
+      <div className={`flex-1 flex flex-col overflow-hidden transition-all duration-300 ${sidebarOpen ? 'lg:ml-72' : 'lg:ml-20'}`}>
         {/* Header */}
         <header className="bg-white/95 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-40 shadow-sm flex-shrink-0">
           <div className="w-full px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-16">
-              {/* Logo and Menu Toggle */}
+              {/* Logo and Mobile Menu Toggle */}
               <div className="flex items-center space-x-4">
                 <button
                   onClick={() => setSidebarOpen(!sidebarOpen)}
-                  className="lg:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+                  className="lg:hidden p-2 rounded-lg text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors"
                 >
-                  <Menu className="h-6 w-6 text-gray-600" />
+                  <Menu className="h-6 w-6" />
                 </button>
                 <div className="flex-shrink-0">
                   <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">B3 MACBIS</h1>
@@ -273,81 +272,59 @@ export default function DashboardPage() {
         </div>
 
         {/* Main Content - Scrollable */}
-        <main className="flex-1 overflow-y-auto">
-          <div className="w-full px-4 sm:px-6 lg:px-8 py-8">
-            {/* Welcome Section */}
-            <div className="mb-8 bg-blue-50 rounded-xl p-8 border border-blue-100">
-              <h2 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mb-3">
-                Welcome to B3 MACBIS ERP
-              </h2>
-              <p className="text-lg text-gray-700">
-                Your comprehensive manufacturing operations platform. Access powerful modules to streamline production, manage inventory, track finances, and drive operational excellence—all from a unified dashboard.
-              </p>
-            </div>
-
+        <main className="flex-1 overflow-y-auto overflow-x-hidden">
+          <div className="w-full px-4 sm:px-6 lg:px-8 py-6 max-w-[1920px] mx-auto">
             {/* Quick Stats */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <div className="bg-white rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300 p-6 border border-gray-100">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+          <div className="bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-lg p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600 mb-1">Total Orders</p>
-                <p className="text-3xl font-bold text-gray-900">1,234</p>
+                <p className="text-sm font-medium text-blue-600 mb-1">Total Orders</p>
+                <p className="text-2xl font-bold text-blue-700">1,234</p>
+                <span className="text-xs font-semibold text-green-600">↑ 12%</span>
               </div>
-              <div className="h-14 w-14 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
-                <ShoppingCart className="h-7 w-7 text-white" />
+              <div className="h-12 w-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                <ShoppingCart className="h-6 w-6 text-blue-600" />
               </div>
-            </div>
-            <div className="mt-4 flex items-center">
-              <span className="text-sm font-semibold text-green-600">↑ 12%</span>
-              <span className="text-xs text-gray-500 ml-2">vs last month</span>
             </div>
           </div>
 
-          <div className="bg-white rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300 p-6 border border-gray-100">
+          <div className="bg-gradient-to-br from-green-50 to-green-100 border border-green-200 rounded-lg p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600 mb-1">Revenue</p>
-                <p className="text-3xl font-bold text-gray-900">₹45.2L</p>
+                <p className="text-sm font-medium text-green-600 mb-1">Revenue</p>
+                <p className="text-2xl font-bold text-green-700">₹45.2L</p>
+                <span className="text-xs font-semibold text-green-600">↑ 8%</span>
               </div>
-              <div className="h-14 w-14 bg-gradient-to-br from-green-400 to-green-600 rounded-xl flex items-center justify-center shadow-lg">
-                <DollarSign className="h-7 w-7 text-white" />
+              <div className="h-12 w-12 bg-green-100 rounded-lg flex items-center justify-center">
+                <DollarSign className="h-6 w-6 text-green-600" />
               </div>
-            </div>
-            <div className="mt-4 flex items-center">
-              <span className="text-sm font-semibold text-green-600">↑ 8%</span>
-              <span className="text-xs text-gray-500 ml-2">vs last month</span>
             </div>
           </div>
 
-          <div className="bg-white rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300 p-6 border border-gray-100">
+          <div className="bg-gradient-to-br from-orange-50 to-orange-100 border border-orange-200 rounded-lg p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600 mb-1">Production</p>
-                <p className="text-3xl font-bold text-gray-900">234</p>
+                <p className="text-sm font-medium text-orange-600 mb-1">Production</p>
+                <p className="text-2xl font-bold text-orange-700">234</p>
+                <span className="text-xs font-semibold text-green-600">↑ 15%</span>
               </div>
-              <div className="h-14 w-14 bg-gradient-to-br from-orange-400 to-orange-600 rounded-xl flex items-center justify-center shadow-lg">
-                <Factory className="h-7 w-7 text-white" />
+              <div className="h-12 w-12 bg-orange-100 rounded-lg flex items-center justify-center">
+                <Factory className="h-6 w-6 text-orange-600" />
               </div>
-            </div>
-            <div className="mt-4 flex items-center">
-              <span className="text-sm font-semibold text-green-600">↑ 15%</span>
-              <span className="text-xs text-gray-500 ml-2">vs last month</span>
             </div>
           </div>
 
-          <div className="bg-white rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300 p-6 border border-gray-100">
+          <div className="bg-gradient-to-br from-purple-50 to-purple-100 border border-purple-200 rounded-lg p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-600 mb-1">Inventory Items</p>
-                <p className="text-3xl font-bold text-gray-900">3,421</p>
+                <p className="text-sm font-medium text-purple-600 mb-1">Inventory Items</p>
+                <p className="text-2xl font-bold text-purple-700">3,421</p>
+                <span className="text-xs font-semibold text-red-600">↓ 3%</span>
               </div>
-              <div className="h-14 w-14 bg-gradient-to-br from-purple-400 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
-                <Package className="h-7 w-7 text-white" />
+              <div className="h-12 w-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                <Package className="h-6 w-6 text-purple-600" />
               </div>
-            </div>
-            <div className="mt-4 flex items-center">
-              <span className="text-sm font-semibold text-red-600">↓ 3%</span>
-              <span className="text-xs text-gray-500 ml-2">vs last month</span>
             </div>
           </div>
             </div>

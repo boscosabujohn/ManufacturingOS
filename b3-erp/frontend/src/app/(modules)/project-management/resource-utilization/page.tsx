@@ -561,35 +561,29 @@ export default function ResourceUtilizationPage() {
   };
 
   return (
-    <div className="p-6 max-w-[1600px] mx-auto">
-      {/* Header */}
-      <div className="mb-6">
-        <div className="flex items-center justify-between mb-4">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900">Resource Utilization Dashboard</h1>
-            <p className="text-gray-600 mt-1">Monitor team allocation and performance metrics</p>
-          </div>
-          <div className="flex gap-3">
-            <select
-              value={selectedPeriod}
-              onChange={(e) => setSelectedPeriod(e.target.value)}
-              className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
-            >
-              <option value="current-month">Current Month</option>
-              <option value="last-month">Last Month</option>
-              <option value="current-quarter">Current Quarter</option>
-              <option value="last-quarter">Last Quarter</option>
-              <option value="ytd">Year to Date</option>
-            </select>
-            <button className="flex items-center gap-2 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200">
-              <RefreshCw className="w-4 h-4" />
-              Refresh
-            </button>
-            <button className="flex items-center gap-2 px-4 py-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700">
-              <Download className="w-4 h-4" />
-              Export Report
-            </button>
-          </div>
+    <div className="w-full h-screen overflow-y-auto overflow-x-hidden">
+      <div className="px-4 sm:px-6 lg:px-8 py-6 max-w-[1600px] mx-auto">
+        {/* Header Actions */}
+        <div className="flex justify-end gap-3 mb-4">
+          <select
+            value={selectedPeriod}
+            onChange={(e) => setSelectedPeriod(e.target.value)}
+            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
+          >
+            <option value="current-month">Current Month</option>
+            <option value="last-month">Last Month</option>
+            <option value="current-quarter">Current Quarter</option>
+            <option value="last-quarter">Last Quarter</option>
+            <option value="ytd">Year to Date</option>
+          </select>
+          <button className="flex items-center gap-2 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200">
+            <RefreshCw className="w-4 h-4" />
+            Refresh
+          </button>
+          <button className="flex items-center gap-2 px-4 py-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700">
+            <Download className="w-4 h-4" />
+            Export Report
+          </button>
         </div>
 
         {/* Overall Metrics Cards */}
@@ -702,10 +696,9 @@ export default function ResourceUtilizationPage() {
             </table>
           </div>
         </div>
-      </div>
 
-      {/* Filters */}
-      <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200 mb-6">
+        {/* Filters */}
+        <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200 mb-6">
         <div className="flex flex-col md:flex-row gap-4">
           <div className="flex-1">
             <input
@@ -762,9 +755,9 @@ export default function ResourceUtilizationPage() {
         </div>
       </div>
 
-      {/* Resources List - Table View */}
-      {viewMode === 'table' && (
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+        {/* Resources List - Table View */}
+        {viewMode === 'table' && (
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
           <div className="overflow-x-auto">
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
@@ -857,11 +850,11 @@ export default function ResourceUtilizationPage() {
             </table>
           </div>
         </div>
-      )}
+        )}
 
-      {/* Resources List - Cards View */}
-      {viewMode === 'cards' && (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Resources List - Cards View */}
+        {viewMode === 'cards' && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredResources.map((resource) => (
             <div key={resource.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
               <div className="flex items-start justify-between mb-4">
@@ -939,16 +932,17 @@ export default function ResourceUtilizationPage() {
             </div>
           ))}
         </div>
-      )}
+        )}
 
-      {/* Empty State */}
-      {filteredResources.length === 0 && (
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-12 text-center">
-          <AlertCircle className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-          <h3 className="text-lg font-medium text-gray-900 mb-2">No resources found</h3>
-          <p className="text-gray-600">Try adjusting your search or filter criteria</p>
-        </div>
-      )}
+        {/* Empty State */}
+        {filteredResources.length === 0 && (
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-12 text-center">
+            <AlertCircle className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+            <h3 className="text-lg font-medium text-gray-900 mb-2">No resources found</h3>
+            <p className="text-gray-600">Try adjusting your search or filter criteria</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

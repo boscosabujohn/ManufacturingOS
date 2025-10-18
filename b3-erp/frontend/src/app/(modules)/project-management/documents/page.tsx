@@ -402,23 +402,20 @@ export default function DocumentsPage() {
   };
 
   return (
-    <div className="p-6 space-y-6">
-      {/* Header */}
-      <div className="flex justify-between items-center">
-        <div>
-          <h1 className="text-3xl font-bold text-gray-900">Document Management</h1>
-          <p className="text-gray-600 mt-1">Centralized repository for all project documents</p>
+    <div className="w-full h-screen overflow-y-auto overflow-x-hidden">
+      <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+        {/* Header Actions */}
+        <div className="flex justify-end mb-4">
+          <button
+            onClick={() => setShowUploadModal(true)}
+            className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          >
+            <Upload className="h-5 w-5" />
+            <span>Upload Document</span>
+          </button>
         </div>
-        <button
-          onClick={() => setShowUploadModal(true)}
-          className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-        >
-          <Upload className="h-5 w-5" />
-          <span>Upload Document</span>
-        </button>
-      </div>
 
-      {/* Statistics Cards */}
+        {/* Statistics Cards */}
       <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
         <div className="bg-white p-4 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between">
@@ -887,6 +884,7 @@ export default function DocumentsPage() {
           </div>
         </div>
       )}
+      </div>
     </div>
   );
 }
