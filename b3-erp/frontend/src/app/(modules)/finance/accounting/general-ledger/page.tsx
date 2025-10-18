@@ -270,28 +270,26 @@ export default function GeneralLedgerPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 p-6">
-      <div className="max-w-7xl mx-auto space-y-6">
-        {/* Header */}
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold text-white mb-2">General Ledger</h1>
-            <p className="text-gray-400">Detailed transaction history for all accounts</p>
-          </div>
-          <div className="flex gap-3">
-            <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors">
-              <Download className="w-4 h-4" />
-              Export
-            </button>
-            <button className="flex items-center gap-2 px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded-lg transition-colors">
-              <FileText className="w-4 h-4" />
-              Print Ledger
-            </button>
-          </div>
-        </div>
+    <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900">
+      <div className="flex-1 overflow-y-auto overflow-x-hidden">
+        <div className="px-4 sm:px-6 lg:px-8 py-6">
+          <div className="max-w-7xl mx-auto space-y-6">
+            {/* Action Bar */}
+            <div className="flex items-center justify-end">
+              <div className="flex gap-3">
+                <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors">
+                  <Download className="w-4 h-4" />
+                  Export
+                </button>
+                <button className="flex items-center gap-2 px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded-lg transition-colors">
+                  <FileText className="w-4 h-4" />
+                  Print Ledger
+                </button>
+              </div>
+            </div>
 
-        {/* Account Selection */}
-        <div className="bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-xl p-6 text-white shadow-lg">
+            {/* Account Selection */}
+            <div className="bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-xl p-6 text-white shadow-lg">
           <div className="flex items-center justify-between">
             <div>
               <div className="flex items-center gap-3 mb-2">
@@ -639,6 +637,8 @@ export default function GeneralLedgerPage() {
                 <span className="text-white font-bold">{formatCurrency(ledgerData.closingBalance)}</span>
               </div>
             </div>
+          </div>
+        </div>
           </div>
         </div>
       </div>

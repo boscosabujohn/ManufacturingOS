@@ -229,22 +229,20 @@ export default function BankAccountsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 p-6">
-      <div className="max-w-7xl mx-auto space-y-6">
-        {/* Header */}
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold text-white mb-2">Bank Accounts</h1>
-            <p className="text-gray-400">Manage and monitor all bank accounts</p>
-          </div>
-          <button className="flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors shadow-lg">
-            <Plus className="w-5 h-5" />
-            Add Bank Account
-          </button>
-        </div>
+    <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900">
+      <div className="flex-1 overflow-y-auto overflow-x-hidden">
+        <div className="px-4 sm:px-6 lg:px-8 py-6">
+          <div className="max-w-7xl mx-auto space-y-6">
+            {/* Action Bar */}
+            <div className="flex items-center justify-end">
+              <button className="flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors shadow-lg">
+                <Plus className="w-5 h-5" />
+                Add Bank Account
+              </button>
+            </div>
 
-        {/* Statistics Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+            {/* Statistics Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-6 text-white shadow-lg">
             <div className="flex items-center justify-between mb-2">
               <Building2 className="w-8 h-8 opacity-80" />
@@ -493,6 +491,8 @@ export default function BankAccountsPage() {
             </div>
           </div>
         )}
+          </div>
+        </div>
       </div>
     </div>
   );

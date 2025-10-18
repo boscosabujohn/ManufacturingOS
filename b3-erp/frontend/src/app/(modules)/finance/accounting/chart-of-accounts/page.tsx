@@ -297,28 +297,23 @@ export default function ChartOfAccountsPage() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      {/* Header */}
-      <div className="mb-6">
-        <div className="flex items-start justify-between mb-4">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900 flex items-center space-x-3">
-              <BarChart3 className="h-8 w-8 text-blue-600" />
-              <span>Chart of Accounts</span>
-            </h1>
-            <p className="text-gray-600 mt-1">Hierarchical structure of all accounts - Indian Accounting Standards</p>
-          </div>
-          <button
-            onClick={() => alert('Add New Account functionality')}
-            className="flex items-center space-x-2 px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-          >
-            <Plus className="h-5 w-5" />
-            <span>Add New Account</span>
-          </button>
-        </div>
+    <div className="h-screen flex flex-col overflow-hidden">
+      <div className="flex-1 overflow-y-auto overflow-x-hidden">
+        <div className="px-4 sm:px-6 lg:px-8 py-6">
+          {/* Action Bar */}
+          <div className="mb-6">
+            <div className="flex items-center justify-end mb-4">
+              <button
+                onClick={() => alert('Add New Account functionality')}
+                className="flex items-center space-x-2 px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              >
+                <Plus className="h-5 w-5" />
+                <span>Add New Account</span>
+              </button>
+            </div>
 
-        {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            {/* Stats */}
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
             <div className="flex items-center justify-between">
               <div>
@@ -470,6 +465,8 @@ export default function ChartOfAccountsPage() {
             <p className="text-gray-600">Try adjusting your filters or search query</p>
           </div>
         )}
+          </div>
+        </div>
       </div>
     </div>
   );

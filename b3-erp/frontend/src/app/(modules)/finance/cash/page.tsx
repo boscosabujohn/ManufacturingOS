@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import {
   Wallet,
   TrendingUp,
@@ -13,7 +14,9 @@ import {
   CreditCard,
   PiggyBank,
   BarChart3,
-  ArrowUpRight
+  ArrowUpRight,
+  ArrowDownRight,
+  GitCompare
 } from 'lucide-react'
 
 interface CashStats {
@@ -184,19 +187,62 @@ export default function CashManagementDashboard() {
   }
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-emerald-50 to-teal-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="max-w-7xl mx-auto space-y-6">
-        {/* Header */}
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900">Cash Management</h1>
-            <p className="text-gray-600 mt-1">Monitor cash flow, bank balances, and cash forecasting</p>
-          </div>
-          <button className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-lg hover:from-emerald-700 hover:to-teal-700 transition-all shadow-md">
-            <Wallet className="h-5 w-5" />
-            Cash Transaction
-          </button>
-        </div>
+    <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-slate-50 via-emerald-50 to-teal-50">
+      <div className="flex-1 overflow-y-auto overflow-x-hidden">
+        <div className="px-4 sm:px-6 lg:px-8 py-6">
+          <div className="max-w-7xl mx-auto space-y-6">
+            {/* Header Action */}
+            <div className="flex items-center justify-end">
+              <button className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-lg hover:from-emerald-700 hover:to-teal-700 transition-all shadow-md">
+                <Wallet className="h-5 w-5" />
+                Cash Transaction
+              </button>
+            </div>
+
+            {/* Quick Access Menu */}
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
+                <Link
+                  href="/finance/cash/bank-accounts"
+                  className="flex items-center gap-2 p-3 rounded-lg border border-gray-200 hover:border-emerald-500 hover:bg-emerald-50 transition-all group"
+                >
+                  <Building2 className="h-5 w-5 text-gray-600 group-hover:text-emerald-600" />
+                  <span className="text-sm font-medium text-gray-700 group-hover:text-emerald-700">Bank Accounts</span>
+                </Link>
+                
+                <Link
+                  href="/finance/cash/bank-reconciliation"
+                  className="flex items-center gap-2 p-3 rounded-lg border border-gray-200 hover:border-emerald-500 hover:bg-emerald-50 transition-all group"
+                >
+                  <GitCompare className="h-5 w-5 text-gray-600 group-hover:text-emerald-600" />
+                  <span className="text-sm font-medium text-gray-700 group-hover:text-emerald-700">Reconciliation</span>
+                </Link>
+                
+                <Link
+                  href="/finance/cash/cash-flow-forecast"
+                  className="flex items-center gap-2 p-3 rounded-lg border border-gray-200 hover:border-emerald-500 hover:bg-emerald-50 transition-all group"
+                >
+                  <TrendingUp className="h-5 w-5 text-gray-600 group-hover:text-emerald-600" />
+                  <span className="text-sm font-medium text-gray-700 group-hover:text-emerald-700">Cash Forecast</span>
+                </Link>
+                
+                <Link
+                  href="/finance/cash/anticipated-receipts"
+                  className="flex items-center gap-2 p-3 rounded-lg border border-gray-200 hover:border-emerald-500 hover:bg-emerald-50 transition-all group"
+                >
+                  <ArrowDownCircle className="h-5 w-5 text-gray-600 group-hover:text-emerald-600" />
+                  <span className="text-sm font-medium text-gray-700 group-hover:text-emerald-700">Anticipated Receipts</span>
+                </Link>
+                
+                <Link
+                  href="/finance/cash/anticipated-payments"
+                  className="flex items-center gap-2 p-3 rounded-lg border border-gray-200 hover:border-emerald-500 hover:bg-emerald-50 transition-all group"
+                >
+                  <ArrowUpCircle className="h-5 w-5 text-gray-600 group-hover:text-emerald-600" />
+                  <span className="text-sm font-medium text-gray-700 group-hover:text-emerald-700">Anticipated Payments</span>
+                </Link>
+              </div>
+            </div>
 
         {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -410,6 +456,8 @@ export default function CashManagementDashboard() {
             </div>
             <p className="text-2xl font-bold text-gray-900">45 days</p>
             <p className="text-xs text-green-600 mt-1">Based on avg daily burn</p>
+          </div>
+        </div>
           </div>
         </div>
       </div>
