@@ -1,941 +1,673 @@
-'use client';
+'use client'
 
-import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import React, { useState, useEffect } from 'react'
 import {
-  TrendingUp,
-  TrendingDown,
-  DollarSign,
-  ShoppingCart,
-  Package,
-  FileText,
-  Calendar,
-  BarChart3,
-  PieChart,
-  Activity,
-  Download,
-  Upload,
-  Filter,
-  RefreshCw,
-  Target,
-  Zap,
-  AlertCircle,
-  CheckCircle,
-  XCircle,
-  Clock,
-  Award,
-  Percent,
-  ArrowUpRight,
-  ArrowDownRight,
-  Users,
-  Building2,
-  Truck,
-  Timer,
-  AlertTriangle,
-  ThumbsUp,
-  ThumbsDown,
-  ChevronDown,
-  ChevronUp,
-  Mail,
-  Printer,
-  Share2,
-  Settings,
-  Eye,
-  Layers,
-  Box,
-  GitBranch,
-  Gauge,
-  TrendingDownIcon,
-  LineChart,
-  AreaChart
-} from 'lucide-react';
+  LineChart, Line, BarChart, Bar, PieChart, Pie, AreaChart, Area,
+  RadarChart, Radar, PolarGrid, PolarAngleAxis, PolarRadiusAxis,
+  ComposedChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer, Cell
+} from 'recharts'
+import {
+  TrendingUp, TrendingDown, Activity, DollarSign, Package, Users, Calendar, FileText,
+  Download, Filter, ChevronDown, ChevronUp, Clock, AlertTriangle, CheckCircle,
+  RefreshCw, Printer, Mail, Share2, Settings, Info, ArrowUp, ArrowDown
+} from 'lucide-react'
 
-// TypeScript Interfaces
-interface ProcurementMetrics {
-  total_pos_month: number;
-  total_spend_month: number;
-  avg_po_value: number;
-  pending_approvals: number;
-  pos_vs_last_month: number;
-  spend_vs_last_month: number;
-  avg_processing_time: number;
-  approval_cycle_time: number;
-}
+export default function ProcurementAnalytics() {
+  const [selectedPeriod, setSelectedPeriod] = useState('month')
+  const [selectedCategory, setSelectedCategory] = useState('all')
+  const [selectedDepartment, setSelectedDepartment] = useState('all')
+  const [expandedSections, setExpandedSections] = useState<string[]>(['spend', 'performance', 'savings'])
+  const [refreshing, setRefreshing] = useState(false)
 
-interface SpendData {
-  month: string;
-  amount: number;
-  budget: number;
-  variance: number;
-}
+  // Spend Trend Data
+  const spendTrendData = [
+    { month: 'Jan', actual: 245000, budget: 250000, forecast: 248000, lastYear: 235000 },
+    { month: 'Feb', actual: 235000, budget: 250000, forecast: 240000, lastYear: 225000 },
+    { month: 'Mar', actual: 265000, budget: 270000, forecast: 268000, lastYear: 255000 },
+    { month: 'Apr', actual: 275000, budget: 280000, forecast: 278000, lastYear: 265000 },
+    { month: 'May', actual: 285000, budget: 290000, forecast: 288000, lastYear: 275000 },
+    { month: 'Jun', actual: 295000, budget: 300000, forecast: 298000, lastYear: 285000 },
+  ]
 
-interface CategorySpend {
-  category: string;
-  amount: number;
-  percentage: number;
-  po_count: number;
-}
+  // Category Spend Distribution
+  const categorySpendData = [
+    { category: 'Raw Materials', value: 450000, percentage: 35, growth: 12 },
+    { category: 'Equipment', value: 320000, percentage: 25, growth: -5 },
+    { category: 'Services', value: 256000, percentage: 20, growth: 8 },
+    { category: 'IT & Software', value: 128000, percentage: 10, growth: 15 },
+    { category: 'Office Supplies', value: 64000, percentage: 5, growth: 3 },
+    { category: 'Other', value: 64000, percentage: 5, growth: 0 },
+  ]
 
-interface VendorSpend {
-  vendor_name: string;
-  amount: number;
-  percentage: number;
-  po_count: number;
-}
+  // Vendor Performance Metrics
+  const vendorPerformanceData = [
+    { metric: 'On-time Delivery', value: 92, target: 95, status: 'warning' },
+    { metric: 'Quality Score', value: 96, target: 90, status: 'success' },
+    { metric: 'Cost Savings', value: 8.5, target: 10, status: 'warning' },
+    { metric: 'Contract Compliance', value: 94, target: 95, status: 'warning' },
+    { metric: 'Response Time', value: 98, target: 95, status: 'success' },
+  ]
 
-interface DepartmentSpend {
-  department: string;
-  amount: number;
-  percentage: number;
-  budget: number;
-  variance: number;
-}
+  // Department Spend Analysis
+  const departmentSpendData = [
+    { department: 'Production', budget: 500000, spent: 485000, remaining: 15000, utilization: 97 },
+    { department: 'IT', budget: 200000, spent: 178000, remaining: 22000, utilization: 89 },
+    { department: 'Facilities', budget: 150000, spent: 145000, remaining: 5000, utilization: 97 },
+    { department: 'HR', budget: 100000, spent: 65000, remaining: 35000, utilization: 65 },
+    { department: 'Marketing', budget: 80000, spent: 72000, remaining: 8000, utilization: 90 },
+    { department: 'R&D', budget: 120000, spent: 105000, remaining: 15000, utilization: 88 },
+  ]
 
-interface POStatusData {
-  status: string;
-  count: number;
-  percentage: number;
-  value: number;
-}
+  // Savings Opportunities
+  const savingsData = [
+    { opportunity: 'Bulk Purchase Discounts', potential: 45000, realized: 32000, percentage: 71 },
+    { opportunity: 'Early Payment Terms', potential: 28000, realized: 25000, percentage: 89 },
+    { opportunity: 'Contract Renegotiation', potential: 65000, realized: 45000, percentage: 69 },
+    { opportunity: 'Supplier Consolidation', potential: 38000, realized: 28000, percentage: 74 },
+    { opportunity: 'Process Automation', potential: 52000, realized: 35000, percentage: 67 },
+  ]
 
-interface DeliveryPerformance {
-  vendor_name: string;
-  on_time: number;
-  late: number;
-  avg_delay_days: number;
-  on_time_percentage: number;
-}
+  // Purchase Order Analytics
+  const poAnalyticsData = [
+    { status: 'Completed', count: 245, value: 1250000 },
+    { status: 'In Progress', count: 82, value: 450000 },
+    { status: 'Pending Approval', count: 35, value: 180000 },
+    { status: 'Draft', count: 12, value: 65000 },
+    { status: 'Cancelled', count: 8, value: 42000 },
+  ]
 
-interface CostSavings {
-  type: string;
-  description: string;
-  amount: number;
-  percentage: number;
-}
+  // Supplier Diversity Metrics
+  const diversityData = [
+    { type: 'Small Business', count: 45, percentage: 35, spend: 280000 },
+    { type: 'Women-Owned', count: 28, percentage: 22, spend: 176000 },
+    { type: 'Minority-Owned', count: 32, percentage: 25, spend: 200000 },
+    { type: 'Veteran-Owned', count: 15, percentage: 12, spend: 96000 },
+    { type: 'Other', count: 8, percentage: 6, spend: 48000 },
+  ]
 
-interface QualityMetrics {
-  vendor_name: string;
-  total_received: number;
-  accepted: number;
-  rejected: number;
-  rejection_rate: number;
-}
+  // Lead Time Analysis
+  const leadTimeData = [
+    { category: 'Raw Materials', avgDays: 15, minDays: 10, maxDays: 25 },
+    { category: 'Equipment', avgDays: 45, minDays: 30, maxDays: 60 },
+    { category: 'Services', avgDays: 7, minDays: 3, maxDays: 14 },
+    { category: 'IT & Software', avgDays: 21, minDays: 14, maxDays: 30 },
+    { category: 'Office Supplies', avgDays: 3, minDays: 1, maxDays: 7 },
+  ]
 
-interface ReportTemplate {
-  id: string;
-  name: string;
-  description: string;
-  last_generated?: string;
-}
+  const colors = ['#3B82F6', '#10B981', '#F59E0B', '#EF4444', '#8B5CF6', '#EC4899', '#6366F1', '#14B8A6']
 
-const ProcurementAnalyticsDashboard = () => {
-  const router = useRouter();
-
-  const [loading, setLoading] = useState(true);
-  const [dateRange, setDateRange] = useState<'7d' | '1m' | '3m' | '6m' | '1y'>('1m');
-  const [vendorFilter, setVendorFilter] = useState('all');
-  const [categoryFilter, setCategoryFilter] = useState('all');
-  const [departmentFilter, setDepartmentFilter] = useState('all');
-  const [selectedChart, setSelectedChart] = useState<'spend' | 'category' | 'vendor' | 'delivery'>('spend');
-  const [selectedReport, setSelectedReport] = useState('');
-
-  const [metrics, setMetrics] = useState<ProcurementMetrics>({
-    total_pos_month: 0,
-    total_spend_month: 0,
-    avg_po_value: 0,
-    pending_approvals: 0,
-    pos_vs_last_month: 0,
-    spend_vs_last_month: 0,
-    avg_processing_time: 0,
-    approval_cycle_time: 0
-  });
-
-  const [spendTrend, setSpendTrend] = useState<SpendData[]>([]);
-  const [categorySpend, setCategorySpend] = useState<CategorySpend[]>([]);
-  const [vendorSpend, setVendorSpend] = useState<VendorSpend[]>([]);
-  const [departmentSpend, setDepartmentSpend] = useState<DepartmentSpend[]>([]);
-  const [poStatus, setPOStatus] = useState<POStatusData[]>([]);
-  const [deliveryPerformance, setDeliveryPerformance] = useState<DeliveryPerformance[]>([]);
-  const [costSavings, setCostSavings] = useState<CostSavings[]>([]);
-  const [qualityMetrics, setQualityMetrics] = useState<QualityMetrics[]>([]);
-
-  const reportTemplates: ReportTemplate[] = [
-    {
-      id: 'spend_analysis',
-      name: 'Spend Analysis Report',
-      description: 'Detailed spend analysis by category, vendor, and department',
-      last_generated: '2025-01-15'
-    },
-    {
-      id: 'vendor_performance',
-      name: 'Vendor Performance Report',
-      description: 'Comprehensive vendor performance metrics and ratings',
-      last_generated: '2025-01-14'
-    },
-    {
-      id: 'po_status',
-      name: 'PO Status Report',
-      description: 'Status overview of all purchase orders',
-      last_generated: '2025-01-15'
-    },
-    {
-      id: 'grn_report',
-      name: 'GRN Report',
-      description: 'Goods receipt notes with quality inspection details',
-      last_generated: '2025-01-13'
-    },
-    {
-      id: 'rejection_analysis',
-      name: 'Rejection Analysis',
-      description: 'Material rejection trends and vendor-wise analysis',
-      last_generated: '2025-01-12'
-    },
-    {
-      id: 'budget_variance',
-      name: 'Budget vs Actual',
-      description: 'Budget variance analysis by department and category',
-      last_generated: '2025-01-10'
-    }
-  ];
-
-  // Load data
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-
-      // Simulate API call
-      setTimeout(() => {
-        // Mock Metrics
-        setMetrics({
-          total_pos_month: 89,
-          total_spend_month: 12750000,
-          avg_po_value: 143258,
-          pending_approvals: 12,
-          pos_vs_last_month: 15.3,
-          spend_vs_last_month: 8.7,
-          avg_processing_time: 2.5,
-          approval_cycle_time: 1.8
-        });
-
-        // Mock Spend Trend
-        setSpendTrend([
-          { month: 'Aug 2024', amount: 9850000, budget: 10000000, variance: -150000 },
-          { month: 'Sep 2024', amount: 10250000, budget: 10000000, variance: 250000 },
-          { month: 'Oct 2024', amount: 11200000, budget: 11000000, variance: 200000 },
-          { month: 'Nov 2024', amount: 10900000, budget: 11000000, variance: -100000 },
-          { month: 'Dec 2024', amount: 11750000, budget: 12000000, variance: -250000 },
-          { month: 'Jan 2025', amount: 12750000, budget: 12500000, variance: 250000 }
-        ]);
-
-        // Mock Category Spend
-        setCategorySpend([
-          { category: 'Raw Materials', amount: 4850000, percentage: 38.0, po_count: 34 },
-          { category: 'Components', amount: 2950000, percentage: 23.1, po_count: 28 },
-          { category: 'Packaging', amount: 1560000, percentage: 12.2, po_count: 15 },
-          { category: 'MRO Supplies', amount: 1240000, percentage: 9.7, po_count: 18 },
-          { category: 'Logistics', amount: 980000, percentage: 7.7, po_count: 22 },
-          { category: 'Chemicals', amount: 670000, percentage: 5.3, po_count: 9 },
-          { category: 'Services', amount: 500000, percentage: 4.0, po_count: 7 }
-        ]);
-
-        // Mock Vendor Spend (Top 10)
-        setVendorSpend([
-          { vendor_name: 'Tata Steel Limited', amount: 3820000, percentage: 29.9, po_count: 15 },
-          { vendor_name: 'JSW Steel', amount: 2890000, percentage: 22.7, po_count: 12 },
-          { vendor_name: 'Bosch India', amount: 1980000, percentage: 15.5, po_count: 18 },
-          { vendor_name: 'L&T Construction', amount: 1450000, percentage: 11.4, po_count: 3 },
-          { vendor_name: 'SKF Bearings', amount: 1340000, percentage: 10.5, po_count: 11 },
-          { vendor_name: 'Essar Steel', amount: 890000, percentage: 7.0, po_count: 8 },
-          { vendor_name: 'Reliance Industries', amount: 760000, percentage: 6.0, po_count: 7 },
-          { vendor_name: 'Mahindra Logistics', amount: 560000, percentage: 4.4, po_count: 14 },
-          { vendor_name: 'ABC Chemicals Ltd', amount: 380000, percentage: 3.0, po_count: 5 },
-          { vendor_name: 'XYZ Trading Co', amount: 290000, percentage: 2.3, po_count: 9 }
-        ]);
-
-        // Mock Department Spend
-        setDepartmentSpend([
-          { department: 'Production', amount: 6750000, percentage: 52.9, budget: 6500000, variance: 250000 },
-          { department: 'Maintenance', amount: 2340000, percentage: 18.4, budget: 2500000, variance: -160000 },
-          { department: 'Quality Control', amount: 1560000, percentage: 12.2, budget: 1500000, variance: 60000 },
-          { department: 'R&D', amount: 980000, percentage: 7.7, budget: 1000000, variance: -20000 },
-          { department: 'Logistics', amount: 720000, percentage: 5.6, budget: 750000, variance: -30000 },
-          { department: 'Administration', amount: 400000, percentage: 3.1, budget: 500000, variance: -100000 }
-        ]);
-
-        // Mock PO Status
-        setPOStatus([
-          { status: 'Approved', count: 48, percentage: 53.9, value: 6870000 },
-          { status: 'Pending Approval', count: 12, percentage: 13.5, value: 1720000 },
-          { status: 'Partially Received', count: 18, percentage: 20.2, value: 2590000 },
-          { status: 'Closed', count: 9, percentage: 10.1, value: 1290000 },
-          { status: 'Draft', count: 2, percentage: 2.2, value: 280000 }
-        ]);
-
-        // Mock Delivery Performance
-        setDeliveryPerformance([
-          { vendor_name: 'Bosch India', on_time: 18, late: 0, avg_delay_days: 0, on_time_percentage: 100 },
-          { vendor_name: 'Tata Steel Limited', on_time: 14, late: 1, avg_delay_days: 2, on_time_percentage: 93.3 },
-          { vendor_name: 'SKF Bearings', on_time: 10, late: 1, avg_delay_days: 1, on_time_percentage: 90.9 },
-          { vendor_name: 'JSW Steel', on_time: 10, late: 2, avg_delay_days: 3, on_time_percentage: 83.3 },
-          { vendor_name: 'L&T Construction', on_time: 2, late: 1, avg_delay_days: 5, on_time_percentage: 66.7 },
-          { vendor_name: 'Essar Steel', on_time: 5, late: 3, avg_delay_days: 6, on_time_percentage: 62.5 },
-          { vendor_name: 'ABC Chemicals Ltd', on_time: 2, late: 3, avg_delay_days: 8, on_time_percentage: 40.0 }
-        ]);
-
-        // Mock Cost Savings
-        setCostSavings([
-          { type: 'Negotiated Savings', description: 'Price negotiation with vendors', amount: 560000, percentage: 4.4 },
-          { type: 'Volume Discounts', description: 'Bulk purchase discounts', amount: 320000, percentage: 2.5 },
-          { type: 'Early Payment Discounts', description: '2% discount on early payments', amount: 180000, percentage: 1.4 },
-          { type: 'Vendor Consolidation', description: 'Reduced vendor base', amount: 120000, percentage: 0.9 }
-        ]);
-
-        // Mock Quality Metrics
-        setQualityMetrics([
-          { vendor_name: 'Bosch India', total_received: 5000, accepted: 4990, rejected: 10, rejection_rate: 0.2 },
-          { vendor_name: 'SKF Bearings', total_received: 3200, accepted: 3150, rejected: 50, rejection_rate: 1.6 },
-          { vendor_name: 'Tata Steel Limited', total_received: 8850, accepted: 8700, rejected: 150, rejection_rate: 1.7 },
-          { vendor_name: 'JSW Steel', total_received: 5600, accepted: 5480, rejected: 120, rejection_rate: 2.1 },
-          { vendor_name: 'Reliance Industries', total_received: 2400, accepted: 2330, rejected: 70, rejection_rate: 2.9 },
-          { vendor_name: 'Essar Steel', total_received: 4850, accepted: 4420, rejected: 430, rejection_rate: 8.9 },
-          { vendor_name: 'ABC Chemicals Ltd', total_received: 1200, accepted: 1050, rejected: 150, rejection_rate: 12.5 }
-        ]);
-
-        setLoading(false);
-      }, 1200);
-    };
-
-    fetchData();
-  }, [dateRange, vendorFilter, categoryFilter, departmentFilter]);
-
-  const handleExportReport = (format: 'excel' | 'pdf') => {
-    alert(`Exporting report as ${format.toUpperCase()}...`);
-  };
-
-  const handleScheduleReport = () => {
-    alert('Schedule report functionality will be implemented');
-  };
-
-  const handleGenerateReport = (templateId: string) => {
-    alert(`Generating ${reportTemplates.find(t => t.id === templateId)?.name}...`);
-  };
-
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center h-screen bg-gray-50">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading procurement analytics...</p>
-        </div>
-      </div>
-    );
+  const toggleSection = (section: string) => {
+    setExpandedSections(prev =>
+      prev.includes(section)
+        ? prev.filter(s => s !== section)
+        : [...prev, section]
+    )
   }
+
+  const handleRefresh = () => {
+    setRefreshing(true)
+    setTimeout(() => setRefreshing(false), 1500)
+  }
+
+  const exportReport = (format: string) => {
+    console.log(`Exporting report as ${format}`)
+  }
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      console.log('Auto-refreshing analytics data...')
+    }, 60000)
+    return () => clearInterval(interval)
+  }, [])
 
   return (
     <div className="min-h-screen bg-gray-50 p-6">
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="mb-6">
+      {/* Header */}
+      <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
+        <div className="flex justify-between items-center mb-6">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900">Procurement Analytics</h1>
+            <p className="text-gray-600 mt-1">Comprehensive insights and performance metrics</p>
+          </div>
+          <div className="flex gap-3">
+            <button
+              onClick={handleRefresh}
+              className={`p-2 border rounded-lg hover:bg-gray-50 ${refreshing ? 'animate-spin' : ''}`}
+            >
+              <RefreshCw className="h-5 w-5" />
+            </button>
+            <button className="p-2 border rounded-lg hover:bg-gray-50">
+              <Printer className="h-5 w-5" />
+            </button>
+            <button className="p-2 border rounded-lg hover:bg-gray-50">
+              <Mail className="h-5 w-5" />
+            </button>
+            <button className="p-2 border rounded-lg hover:bg-gray-50">
+              <Share2 className="h-5 w-5" />
+            </button>
+          </div>
+        </div>
+
+        {/* Filters */}
+        <div className="flex flex-wrap gap-4">
+          <select
+            value={selectedPeriod}
+            onChange={(e) => setSelectedPeriod(e.target.value)}
+            className="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+          >
+            <option value="week">This Week</option>
+            <option value="month">This Month</option>
+            <option value="quarter">This Quarter</option>
+            <option value="year">This Year</option>
+            <option value="custom">Custom Range</option>
+          </select>
+
+          <select
+            value={selectedCategory}
+            onChange={(e) => setSelectedCategory(e.target.value)}
+            className="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+          >
+            <option value="all">All Categories</option>
+            <option value="raw-materials">Raw Materials</option>
+            <option value="equipment">Equipment</option>
+            <option value="services">Services</option>
+            <option value="it">IT & Software</option>
+          </select>
+
+          <select
+            value={selectedDepartment}
+            onChange={(e) => setSelectedDepartment(e.target.value)}
+            className="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+          >
+            <option value="all">All Departments</option>
+            <option value="production">Production</option>
+            <option value="it">IT</option>
+            <option value="facilities">Facilities</option>
+            <option value="hr">HR</option>
+          </select>
+
+          <div className="ml-auto flex gap-2">
+            <button
+              onClick={() => exportReport('pdf')}
+              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2"
+            >
+              <Download className="h-4 w-4" />
+              Export PDF
+            </button>
+            <button
+              onClick={() => exportReport('excel')}
+              className="px-4 py-2 border rounded-lg hover:bg-gray-50 flex items-center gap-2"
+            >
+              <Download className="h-4 w-4" />
+              Export Excel
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Key Metrics Summary */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+        <div className="bg-white p-6 rounded-lg shadow-sm">
           <div className="flex items-center justify-between mb-4">
-            <div>
-              <h1 className="text-3xl font-bold text-gray-900">Procurement Analytics & Reports</h1>
-              <p className="text-sm text-gray-600 mt-1">Comprehensive procurement insights and performance metrics</p>
+            <div className="p-3 bg-blue-100 rounded-lg">
+              <DollarSign className="h-6 w-6 text-blue-600" />
             </div>
+            <span className="flex items-center text-green-600 text-sm">
+              <ArrowUp className="h-4 w-4 mr-1" />
+              12.5%
+            </span>
+          </div>
+          <div className="text-2xl font-bold text-gray-900">$1,542,000</div>
+          <div className="text-sm text-gray-600 mt-1">Total Spend YTD</div>
+          <div className="mt-3 text-xs text-gray-500">Budget: $1,800,000 (86% utilized)</div>
+        </div>
+
+        <div className="bg-white p-6 rounded-lg shadow-sm">
+          <div className="flex items-center justify-between mb-4">
+            <div className="p-3 bg-green-100 rounded-lg">
+              <TrendingUp className="h-6 w-6 text-green-600" />
+            </div>
+            <span className="flex items-center text-green-600 text-sm">
+              <ArrowUp className="h-4 w-4 mr-1" />
+              8.3%
+            </span>
+          </div>
+          <div className="text-2xl font-bold text-gray-900">$165,000</div>
+          <div className="text-sm text-gray-600 mt-1">Cost Savings Achieved</div>
+          <div className="mt-3 text-xs text-gray-500">Target: $200,000 (82.5% achieved)</div>
+        </div>
+
+        <div className="bg-white p-6 rounded-lg shadow-sm">
+          <div className="flex items-center justify-between mb-4">
+            <div className="p-3 bg-purple-100 rounded-lg">
+              <Users className="h-6 w-6 text-purple-600" />
+            </div>
+            <span className="flex items-center text-red-600 text-sm">
+              <ArrowDown className="h-4 w-4 mr-1" />
+              2.1%
+            </span>
+          </div>
+          <div className="text-2xl font-bold text-gray-900">128</div>
+          <div className="text-sm text-gray-600 mt-1">Active Suppliers</div>
+          <div className="mt-3 text-xs text-gray-500">New this month: 5</div>
+        </div>
+
+        <div className="bg-white p-6 rounded-lg shadow-sm">
+          <div className="flex items-center justify-between mb-4">
+            <div className="p-3 bg-amber-100 rounded-lg">
+              <Activity className="h-6 w-6 text-amber-600" />
+            </div>
+            <span className="flex items-center text-green-600 text-sm">
+              <ArrowUp className="h-4 w-4 mr-1" />
+              5.7%
+            </span>
+          </div>
+          <div className="text-2xl font-bold text-gray-900">94.2%</div>
+          <div className="text-sm text-gray-600 mt-1">On-Time Delivery Rate</div>
+          <div className="mt-3 text-xs text-gray-500">Last month: 89.1%</div>
+        </div>
+      </div>
+
+      {/* Spend Analysis Section */}
+      <div className="bg-white rounded-lg shadow-sm mb-6">
+        <div
+          className="p-6 border-b cursor-pointer hover:bg-gray-50"
+          onClick={() => toggleSection('spend')}
+        >
+          <div className="flex justify-between items-center">
             <div className="flex items-center gap-3">
-              <button
-                onClick={handleScheduleReport}
-                className="flex items-center gap-2 px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"
-              >
-                <Mail className="w-4 h-4" />
-                Schedule
-              </button>
-              <button
-                onClick={() => handleExportReport('excel')}
-                className="flex items-center gap-2 px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"
-              >
-                <Download className="w-4 h-4" />
-                Export Excel
-              </button>
-              <button
-                onClick={() => handleExportReport('pdf')}
-                className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-              >
-                <Printer className="w-4 h-4" />
-                Export PDF
-              </button>
+              <DollarSign className="h-6 w-6 text-blue-600" />
+              <h2 className="text-xl font-semibold">Spend Analysis</h2>
             </div>
-          </div>
-
-          {/* Filters */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
-            <div className="grid grid-cols-5 gap-4">
-              <div>
-                <label className="block text-xs font-medium text-gray-700 mb-1">Date Range</label>
-                <select
-                  value={dateRange}
-                  onChange={(e) => setDateRange(e.target.value as any)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500"
-                >
-                  <option value="7d">Last 7 Days</option>
-                  <option value="1m">Last Month</option>
-                  <option value="3m">Last 3 Months</option>
-                  <option value="6m">Last 6 Months</option>
-                  <option value="1y">Last Year</option>
-                </select>
-              </div>
-              <div>
-                <label className="block text-xs font-medium text-gray-700 mb-1">Vendor</label>
-                <select
-                  value={vendorFilter}
-                  onChange={(e) => setVendorFilter(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500"
-                >
-                  <option value="all">All Vendors</option>
-                  <option value="V001">Tata Steel Limited</option>
-                  <option value="V002">JSW Steel</option>
-                  <option value="V004">Bosch India</option>
-                </select>
-              </div>
-              <div>
-                <label className="block text-xs font-medium text-gray-700 mb-1">Category</label>
-                <select
-                  value={categoryFilter}
-                  onChange={(e) => setCategoryFilter(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500"
-                >
-                  <option value="all">All Categories</option>
-                  <option value="raw_materials">Raw Materials</option>
-                  <option value="components">Components</option>
-                  <option value="packaging">Packaging</option>
-                </select>
-              </div>
-              <div>
-                <label className="block text-xs font-medium text-gray-700 mb-1">Department</label>
-                <select
-                  value={departmentFilter}
-                  onChange={(e) => setDepartmentFilter(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500"
-                >
-                  <option value="all">All Departments</option>
-                  <option value="production">Production</option>
-                  <option value="maintenance">Maintenance</option>
-                  <option value="quality">Quality Control</option>
-                </select>
-              </div>
-              <div className="flex items-end">
-                <button
-                  onClick={() => {
-                    setVendorFilter('all');
-                    setCategoryFilter('all');
-                    setDepartmentFilter('all');
-                  }}
-                  className="flex items-center gap-2 w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"
-                >
-                  <RefreshCw className="w-4 h-4" />
-                  Reset
-                </button>
-              </div>
-            </div>
+            {expandedSections.includes('spend') ?
+              <ChevronUp className="h-5 w-5" /> :
+              <ChevronDown className="h-5 w-5" />
+            }
           </div>
         </div>
 
-        {/* Quick Stats Cards */}
-        <div className="grid grid-cols-4 gap-6 mb-6">
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex items-center justify-between mb-3">
-              <div className="p-3 bg-blue-100 rounded-lg">
-                <ShoppingCart className="w-6 h-6 text-blue-600" />
+        {expandedSections.includes('spend') && (
+          <div className="p-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {/* Spend Trend Chart */}
+              <div>
+                <h3 className="text-lg font-medium mb-4">Spend Trend Analysis</h3>
+                <ResponsiveContainer width="100%" height={300}>
+                  <ComposedChart data={spendTrendData}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="month" />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Area type="monotone" dataKey="budget" fill="#E5E7EB" stroke="#9CA3AF" />
+                    <Bar dataKey="actual" fill="#3B82F6" />
+                    <Line type="monotone" dataKey="forecast" stroke="#10B981" strokeDasharray="5 5" />
+                    <Line type="monotone" dataKey="lastYear" stroke="#F59E0B" />
+                  </ComposedChart>
+                </ResponsiveContainer>
               </div>
-              <span className={`text-xs font-medium flex items-center gap-1 ${
-                metrics.pos_vs_last_month >= 0 ? 'text-green-600' : 'text-red-600'
-              }`}>
-                {metrics.pos_vs_last_month >= 0 ? <ArrowUpRight className="w-3 h-3" /> : <ArrowDownRight className="w-3 h-3" />}
-                {Math.abs(metrics.pos_vs_last_month)}%
-              </span>
-            </div>
-            <h3 className="text-2xl font-bold text-gray-900">{metrics.total_pos_month}</h3>
-            <p className="text-sm text-gray-600 mt-1">Total POs (Month)</p>
-            <p className="text-xs text-gray-500 mt-2">vs last month</p>
-          </div>
 
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex items-center justify-between mb-3">
-              <div className="p-3 bg-green-100 rounded-lg">
-                <DollarSign className="w-6 h-6 text-green-600" />
+              {/* Category Distribution */}
+              <div>
+                <h3 className="text-lg font-medium mb-4">Category Spend Distribution</h3>
+                <ResponsiveContainer width="100%" height={300}>
+                  <PieChart>
+                    <Pie
+                      data={categorySpendData}
+                      cx="50%"
+                      cy="50%"
+                      labelLine={false}
+                      label={({category, percentage}) => `${category} ${percentage}%`}
+                      outerRadius={100}
+                      fill="#8884d8"
+                      dataKey="value"
+                    >
+                      {categorySpendData.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
+                      ))}
+                    </Pie>
+                    <Tooltip />
+                  </PieChart>
+                </ResponsiveContainer>
               </div>
-              <span className={`text-xs font-medium flex items-center gap-1 ${
-                metrics.spend_vs_last_month >= 0 ? 'text-green-600' : 'text-red-600'
-              }`}>
-                {metrics.spend_vs_last_month >= 0 ? <ArrowUpRight className="w-3 h-3" /> : <ArrowDownRight className="w-3 h-3" />}
-                {Math.abs(metrics.spend_vs_last_month)}%
-              </span>
             </div>
-            <h3 className="text-2xl font-bold text-gray-900">
-              {(metrics.total_spend_month / 1000000).toFixed(1)}M
-            </h3>
-            <p className="text-sm text-gray-600 mt-1">Total Spend</p>
-            <p className="text-xs text-gray-500 mt-2">vs last month</p>
-          </div>
 
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex items-center justify-between mb-3">
-              <div className="p-3 bg-purple-100 rounded-lg">
-                <BarChart3 className="w-6 h-6 text-purple-600" />
+            {/* Category Spend Table */}
+            <div className="mt-6">
+              <h3 className="text-lg font-medium mb-4">Category Spend Details</h3>
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead>
+                    <tr className="border-b">
+                      <th className="text-left py-3 px-4">Category</th>
+                      <th className="text-right py-3 px-4">Spend Amount</th>
+                      <th className="text-right py-3 px-4">% of Total</th>
+                      <th className="text-right py-3 px-4">YoY Growth</th>
+                      <th className="text-center py-3 px-4">Trend</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {categorySpendData.map((cat, idx) => (
+                      <tr key={idx} className="border-b hover:bg-gray-50">
+                        <td className="py-3 px-4">{cat.category}</td>
+                        <td className="text-right py-3 px-4">${cat.value.toLocaleString()}</td>
+                        <td className="text-right py-3 px-4">{cat.percentage}%</td>
+                        <td className="text-right py-3 px-4">
+                          <span className={`flex items-center justify-end ${cat.growth >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                            {cat.growth >= 0 ? <ArrowUp className="h-4 w-4 mr-1" /> : <ArrowDown className="h-4 w-4 mr-1" />}
+                            {Math.abs(cat.growth)}%
+                          </span>
+                        </td>
+                        <td className="text-center py-3 px-4">
+                          <div className="flex justify-center">
+                            <div className="w-16 h-6">
+                              <ResponsiveContainer width="100%" height="100%">
+                                <LineChart data={[
+                                  {value: Math.random() * 100},
+                                  {value: Math.random() * 100},
+                                  {value: Math.random() * 100},
+                                  {value: Math.random() * 100},
+                                ]}>
+                                  <Line type="monotone" dataKey="value" stroke={cat.growth >= 0 ? '#10B981' : '#EF4444'} strokeWidth={2} dot={false} />
+                                </LineChart>
+                              </ResponsiveContainer>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
-              <span className="text-xs font-medium text-blue-600 flex items-center gap-1">
-                <TrendingUp className="w-3 h-3" />
-                Avg
-              </span>
             </div>
-            <h3 className="text-2xl font-bold text-gray-900">
-              {(metrics.avg_po_value / 1000).toFixed(0)}K
-            </h3>
-            <p className="text-sm text-gray-600 mt-1">Avg PO Value</p>
-            <p className="text-xs text-gray-500 mt-2">Per purchase order</p>
           </div>
+        )}
+      </div>
 
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <div className="flex items-center justify-between mb-3">
-              <div className="p-3 bg-orange-100 rounded-lg">
-                <Clock className="w-6 h-6 text-orange-600" />
-              </div>
-              <span className="text-xs font-medium text-orange-600 flex items-center gap-1">
-                <AlertCircle className="w-3 h-3" />
-                Pending
-              </span>
+      {/* Performance Metrics Section */}
+      <div className="bg-white rounded-lg shadow-sm mb-6">
+        <div
+          className="p-6 border-b cursor-pointer hover:bg-gray-50"
+          onClick={() => toggleSection('performance')}
+        >
+          <div className="flex justify-between items-center">
+            <div className="flex items-center gap-3">
+              <Activity className="h-6 w-6 text-green-600" />
+              <h2 className="text-xl font-semibold">Performance Metrics</h2>
             </div>
-            <h3 className="text-2xl font-bold text-gray-900">{metrics.pending_approvals}</h3>
-            <p className="text-sm text-gray-600 mt-1">Pending Approvals</p>
-            <p className="text-xs text-gray-500 mt-2">Awaiting action</p>
+            {expandedSections.includes('performance') ?
+              <ChevronUp className="h-5 w-5" /> :
+              <ChevronDown className="h-5 w-5" />
+            }
           </div>
         </div>
 
-        {/* Spend Analysis Section */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-            <TrendingUp className="w-5 h-5 text-blue-600" />
-            Month-wise Spend Trend
-          </h3>
-          <div className="space-y-3">
-            {spendTrend.map((data, index) => {
-              const maxAmount = Math.max(...spendTrend.map(d => d.amount));
-              const percentage = (data.amount / maxAmount) * 100;
-              const budgetPercentage = (data.budget / maxAmount) * 100;
-              return (
-                <div key={index}>
-                  <div className="flex items-center justify-between mb-1">
-                    <span className="text-sm font-medium text-gray-900">{data.month}</span>
-                    <div className="flex items-center gap-3">
-                      <span className="text-sm text-gray-600">
-                        Actual: <span className="font-bold text-gray-900">{(data.amount / 1000000).toFixed(1)}M</span>
-                      </span>
-                      <span className="text-sm text-gray-600">
-                        Budget: <span className="font-medium text-gray-700">{(data.budget / 1000000).toFixed(1)}M</span>
-                      </span>
-                      <span className={`text-sm font-medium ${data.variance >= 0 ? 'text-green-600' : 'text-red-600'}`}>
-                        {data.variance >= 0 ? '+' : ''}{(data.variance / 1000).toFixed(0)}K
-                      </span>
-                    </div>
-                  </div>
-                  <div className="relative h-8 bg-gray-200 rounded-full overflow-hidden">
-                    <div
-                      className="absolute h-full bg-blue-200 rounded-full transition-all"
-                      style={{ width: `${budgetPercentage}%` }}
-                    ></div>
-                    <div
-                      className="absolute h-full bg-gradient-to-r from-blue-500 to-blue-600 rounded-full transition-all"
-                      style={{ width: `${percentage}%` }}
-                    ></div>
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="text-xs font-medium text-white drop-shadow">
-                        {((data.amount / data.budget) * 100).toFixed(0)}% of budget
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
+        {expandedSections.includes('performance') && (
+          <div className="p-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {/* Vendor Performance Radar */}
+              <div>
+                <h3 className="text-lg font-medium mb-4">Vendor Performance Overview</h3>
+                <ResponsiveContainer width="100%" height={300}>
+                  <RadarChart data={vendorPerformanceData}>
+                    <PolarGrid />
+                    <PolarAngleAxis dataKey="metric" />
+                    <PolarRadiusAxis angle={90} domain={[0, 100]} />
+                    <Radar name="Current" dataKey="value" stroke="#3B82F6" fill="#3B82F6" fillOpacity={0.6} />
+                    <Radar name="Target" dataKey="target" stroke="#10B981" fill="#10B981" fillOpacity={0.3} />
+                    <Legend />
+                    <Tooltip />
+                  </RadarChart>
+                </ResponsiveContainer>
+              </div>
 
-        {/* Category & Vendor Spend */}
-        <div className="grid grid-cols-2 gap-6 mb-6">
-          {/* Category-wise Spend */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-              <PieChart className="w-5 h-5 text-green-600" />
-              Category-wise Spend
-            </h3>
-            <div className="space-y-3">
-              {categorySpend.map((cat, index) => (
-                <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg border border-gray-200">
-                  <div className="flex-1">
-                    <div className="flex items-center justify-between mb-1">
-                      <span className="text-sm font-medium text-gray-900">{cat.category}</span>
-                      <span className="text-sm font-bold text-gray-900">
-                        {(cat.amount / 1000000).toFixed(1)}M
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div className="flex-1 bg-gray-200 rounded-full h-2">
-                        <div
-                          className="bg-gradient-to-r from-green-500 to-green-600 h-2 rounded-full"
-                          style={{ width: `${cat.percentage}%` }}
-                        ></div>
+              {/* Department Budget Utilization */}
+              <div>
+                <h3 className="text-lg font-medium mb-4">Department Budget Utilization</h3>
+                <ResponsiveContainer width="100%" height={300}>
+                  <BarChart data={departmentSpendData} layout="horizontal">
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis type="number" />
+                    <YAxis dataKey="department" type="category" />
+                    <Tooltip />
+                    <Legend />
+                    <Bar dataKey="spent" fill="#3B82F6" name="Spent" />
+                    <Bar dataKey="remaining" fill="#10B981" name="Remaining" />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
+
+            {/* KPI Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+              {vendorPerformanceData.map((kpi, idx) => (
+                <div key={idx} className="border rounded-lg p-4">
+                  <div className="flex justify-between items-start mb-3">
+                    <div>
+                      <div className="text-sm text-gray-600">{kpi.metric}</div>
+                      <div className="text-2xl font-bold mt-1">
+                        {kpi.value}{kpi.metric.includes('Cost') ? '%' : ''}
                       </div>
-                      <span className="text-xs text-gray-600 w-12">{cat.percentage}%</span>
                     </div>
-                    <p className="text-xs text-gray-500 mt-1">{cat.po_count} POs</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Vendor-wise Spend */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-              <Building2 className="w-5 h-5 text-purple-600" />
-              Top 10 Vendors by Spend
-            </h3>
-            <div className="space-y-2">
-              {vendorSpend.map((vendor, index) => (
-                <div key={index} className="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg transition-colors">
-                  <span className="text-xs font-medium text-gray-500 w-6">#{index + 1}</span>
-                  <div className="flex-1">
-                    <div className="flex items-center justify-between mb-1">
-                      <span className="text-sm font-medium text-gray-900 truncate">{vendor.vendor_name}</span>
-                      <span className="text-sm font-bold text-gray-900">
-                        {(vendor.amount / 1000000).toFixed(1)}M
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div className="flex-1 bg-gray-200 rounded-full h-1.5">
-                        <div
-                          className="bg-gradient-to-r from-purple-500 to-purple-600 h-1.5 rounded-full"
-                          style={{ width: `${vendor.percentage}%` }}
-                        ></div>
-                      </div>
-                      <span className="text-xs text-gray-500">{vendor.po_count} POs</span>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Department Spend & PO Status */}
-        <div className="grid grid-cols-2 gap-6 mb-6">
-          {/* Department-wise Spend */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-              <Layers className="w-5 h-5 text-indigo-600" />
-              Department-wise Spend
-            </h3>
-            <div className="space-y-3">
-              {departmentSpend.map((dept, index) => (
-                <div key={index} className="p-3 bg-gray-50 rounded-lg border border-gray-200">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-sm font-semibold text-gray-900">{dept.department}</span>
-                    <span className="text-sm font-bold text-gray-900">
-                      {(dept.amount / 1000000).toFixed(1)}M
-                    </span>
-                  </div>
-                  <div className="grid grid-cols-3 gap-2 text-xs">
-                    <div>
-                      <span className="text-gray-500">Budget:</span>
-                      <span className="ml-1 font-medium text-gray-700">
-                        {(dept.budget / 1000000).toFixed(1)}M
-                      </span>
-                    </div>
-                    <div>
-                      <span className="text-gray-500">Variance:</span>
-                      <span className={`ml-1 font-bold ${dept.variance >= 0 ? 'text-green-600' : 'text-red-600'}`}>
-                        {dept.variance >= 0 ? '+' : ''}{(dept.variance / 1000).toFixed(0)}K
-                      </span>
-                    </div>
-                    <div>
-                      <span className="text-gray-500">% of Total:</span>
-                      <span className="ml-1 font-medium text-gray-700">{dept.percentage}%</span>
-                    </div>
-                  </div>
-                  <div className="mt-2 bg-gray-200 rounded-full h-2">
-                    <div
-                      className={`h-2 rounded-full ${
-                        dept.variance >= 0 ? 'bg-gradient-to-r from-green-500 to-green-600' : 'bg-gradient-to-r from-red-500 to-red-600'
-                      }`}
-                      style={{ width: `${(dept.amount / dept.budget) * 100}%` }}
-                    ></div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* PO Status Distribution */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-              <FileText className="w-5 h-5 text-blue-600" />
-              PO Status Distribution
-            </h3>
-            <div className="space-y-4">
-              {poStatus.map((status, index) => (
-                <div key={index} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg border border-gray-200">
-                  <div className="flex items-center gap-3">
-                    <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
-                      status.status === 'Approved' ? 'bg-green-100' :
-                      status.status === 'Pending Approval' ? 'bg-yellow-100' :
-                      status.status === 'Partially Received' ? 'bg-blue-100' :
-                      status.status === 'Closed' ? 'bg-gray-100' :
-                      'bg-orange-100'
+                    <div className={`p-2 rounded-lg ${
+                      kpi.status === 'success' ? 'bg-green-100' : 'bg-amber-100'
                     }`}>
-                      {status.status === 'Approved' && <CheckCircle className="w-5 h-5 text-green-600" />}
-                      {status.status === 'Pending Approval' && <Clock className="w-5 h-5 text-yellow-600" />}
-                      {status.status === 'Partially Received' && <Package className="w-5 h-5 text-blue-600" />}
-                      {status.status === 'Closed' && <XCircle className="w-5 h-5 text-gray-600" />}
-                      {status.status === 'Draft' && <FileText className="w-5 h-5 text-orange-600" />}
-                    </div>
-                    <div>
-                      <p className="text-sm font-semibold text-gray-900">{status.status}</p>
-                      <p className="text-xs text-gray-500">{status.count} POs</p>
+                      {kpi.status === 'success' ?
+                        <CheckCircle className="h-5 w-5 text-green-600" /> :
+                        <AlertTriangle className="h-5 w-5 text-amber-600" />
+                      }
                     </div>
                   </div>
-                  <div className="text-right">
-                    <p className="text-lg font-bold text-gray-900">{status.percentage}%</p>
-                    <p className="text-xs text-gray-500">{(status.value / 1000000).toFixed(1)}M</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Delivery Performance */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-            <Truck className="w-5 h-5 text-orange-600" />
-            Delivery Performance by Vendor
-          </h3>
-          <div className="overflow-x-auto">
-            <table className="w-full border-collapse">
-              <thead>
-                <tr className="bg-gray-100">
-                  <th className="text-left text-xs font-semibold text-gray-700 p-3 border-b">Vendor</th>
-                  <th className="text-center text-xs font-semibold text-gray-700 p-3 border-b">On-Time</th>
-                  <th className="text-center text-xs font-semibold text-gray-700 p-3 border-b">Late</th>
-                  <th className="text-center text-xs font-semibold text-gray-700 p-3 border-b">Avg Delay (Days)</th>
-                  <th className="text-center text-xs font-semibold text-gray-700 p-3 border-b">OTD %</th>
-                  <th className="text-center text-xs font-semibold text-gray-700 p-3 border-b">Performance</th>
-                </tr>
-              </thead>
-              <tbody>
-                {deliveryPerformance.map((vendor, index) => (
-                  <tr key={index} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
-                    <td className="p-3 border-b text-sm font-medium text-gray-900">{vendor.vendor_name}</td>
-                    <td className="p-3 border-b text-center">
-                      <span className="inline-flex items-center gap-1 px-2 py-1 bg-green-100 text-green-700 rounded-full text-sm font-medium">
-                        <CheckCircle className="w-3 h-3" />
-                        {vendor.on_time}
-                      </span>
-                    </td>
-                    <td className="p-3 border-b text-center">
-                      <span className="inline-flex items-center gap-1 px-2 py-1 bg-red-100 text-red-700 rounded-full text-sm font-medium">
-                        <XCircle className="w-3 h-3" />
-                        {vendor.late}
-                      </span>
-                    </td>
-                    <td className="p-3 border-b text-center text-sm font-medium text-gray-900">
-                      {vendor.avg_delay_days}
-                    </td>
-                    <td className="p-3 border-b text-center">
-                      <span className={`text-sm font-bold ${
-                        vendor.on_time_percentage >= 90 ? 'text-green-600' :
-                        vendor.on_time_percentage >= 75 ? 'text-yellow-600' :
-                        'text-red-600'
-                      }`}>
-                        {vendor.on_time_percentage}%
-                      </span>
-                    </td>
-                    <td className="p-3 border-b text-center">
-                      {vendor.on_time_percentage >= 90 ? (
-                        <ThumbsUp className="w-5 h-5 text-green-600 mx-auto" />
-                      ) : vendor.on_time_percentage < 75 ? (
-                        <ThumbsDown className="w-5 h-5 text-red-600 mx-auto" />
-                      ) : (
-                        <div className="w-5 h-5 bg-yellow-400 rounded-full mx-auto"></div>
-                      )}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        {/* Cost Savings & Quality Metrics */}
-        <div className="grid grid-cols-2 gap-6 mb-6">
-          {/* Cost Savings Analysis */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-              <Award className="w-5 h-5 text-green-600" />
-              Cost Savings Analysis
-            </h3>
-            <div className="space-y-3">
-              {costSavings.map((saving, index) => (
-                <div key={index} className="p-4 bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg border border-green-200">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-sm font-semibold text-gray-900">{saving.type}</span>
-                    <span className="text-lg font-bold text-green-600">
-                      {(saving.amount / 1000).toFixed(0)}K
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-gray-500">Target: {kpi.target}{kpi.metric.includes('Cost') ? '%' : ''}</span>
+                    <span className={`${kpi.value >= kpi.target ? 'text-green-600' : 'text-amber-600'}`}>
+                      {kpi.value >= kpi.target ? 'On Track' : 'Below Target'}
                     </span>
                   </div>
-                  <p className="text-xs text-gray-600 mb-2">{saving.description}</p>
-                  <div className="flex items-center gap-2">
-                    <div className="flex-1 bg-green-200 rounded-full h-2">
+                  <div className="mt-3">
+                    <div className="w-full bg-gray-200 rounded-full h-2">
                       <div
-                        className="bg-gradient-to-r from-green-500 to-green-600 h-2 rounded-full"
-                        style={{ width: `${(saving.percentage / 5) * 100}%` }}
-                      ></div>
+                        className={`h-2 rounded-full ${
+                          kpi.value >= kpi.target ? 'bg-green-500' : 'bg-amber-500'
+                        }`}
+                        style={{ width: `${Math.min(100, (kpi.value / kpi.target) * 100)}%` }}
+                      />
                     </div>
-                    <span className="text-xs font-medium text-green-700">{saving.percentage}%</span>
                   </div>
                 </div>
               ))}
-              <div className="mt-4 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border border-blue-200">
-                <div className="flex items-center justify-between">
-                  <span className="text-sm font-bold text-gray-900">Total Savings</span>
-                  <span className="text-2xl font-bold text-blue-600">
-                    {(costSavings.reduce((sum, s) => sum + s.amount, 0) / 1000).toFixed(0)}K
-                  </span>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Savings & Opportunities Section */}
+      <div className="bg-white rounded-lg shadow-sm mb-6">
+        <div
+          className="p-6 border-b cursor-pointer hover:bg-gray-50"
+          onClick={() => toggleSection('savings')}
+        >
+          <div className="flex justify-between items-center">
+            <div className="flex items-center gap-3">
+              <TrendingUp className="h-6 w-6 text-purple-600" />
+              <h2 className="text-xl font-semibold">Savings & Opportunities</h2>
+            </div>
+            {expandedSections.includes('savings') ?
+              <ChevronUp className="h-5 w-5" /> :
+              <ChevronDown className="h-5 w-5" />
+            }
+          </div>
+        </div>
+
+        {expandedSections.includes('savings') && (
+          <div className="p-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {/* Savings Realization */}
+              <div>
+                <h3 className="text-lg font-medium mb-4">Savings Realization</h3>
+                <div className="space-y-4">
+                  {savingsData.map((saving, idx) => (
+                    <div key={idx} className="border rounded-lg p-4">
+                      <div className="flex justify-between items-start mb-2">
+                        <div className="font-medium">{saving.opportunity}</div>
+                        <span className="text-sm text-gray-500">{saving.percentage}%</span>
+                      </div>
+                      <div className="flex items-center gap-4 text-sm text-gray-600 mb-2">
+                        <span>Potential: ${saving.potential.toLocaleString()}</span>
+                        <span>Realized: ${saving.realized.toLocaleString()}</span>
+                      </div>
+                      <div className="w-full bg-gray-200 rounded-full h-2">
+                        <div
+                          className="h-2 rounded-full bg-gradient-to-r from-purple-500 to-purple-600"
+                          style={{ width: `${saving.percentage}%` }}
+                        />
+                      </div>
+                    </div>
+                  ))}
                 </div>
-                <p className="text-xs text-gray-600 mt-1">
-                  {costSavings.reduce((sum, s) => sum + s.percentage, 0).toFixed(1)}% of total spend
-                </p>
+                <div className="mt-4 p-4 bg-purple-50 rounded-lg">
+                  <div className="flex justify-between items-center">
+                    <div>
+                      <div className="text-sm text-purple-600">Total Savings Opportunity</div>
+                      <div className="text-2xl font-bold text-purple-900">$228,000</div>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-sm text-purple-600">Realized to Date</div>
+                      <div className="text-2xl font-bold text-purple-900">$165,000</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Lead Time Analysis */}
+              <div>
+                <h3 className="text-lg font-medium mb-4">Lead Time Analysis</h3>
+                <ResponsiveContainer width="100%" height={300}>
+                  <BarChart data={leadTimeData}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="category" />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Bar dataKey="minDays" fill="#10B981" name="Min Days" />
+                    <Bar dataKey="avgDays" fill="#3B82F6" name="Avg Days" />
+                    <Bar dataKey="maxDays" fill="#F59E0B" name="Max Days" />
+                  </BarChart>
+                </ResponsiveContainer>
+                <div className="mt-4 grid grid-cols-2 gap-4">
+                  <div className="p-3 bg-blue-50 rounded-lg">
+                    <div className="text-sm text-blue-600">Average Lead Time</div>
+                    <div className="text-xl font-bold text-blue-900">18.2 Days</div>
+                  </div>
+                  <div className="p-3 bg-green-50 rounded-lg">
+                    <div className="text-sm text-green-600">Lead Time Improvement</div>
+                    <div className="text-xl font-bold text-green-900">-12.5%</div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
+        )}
+      </div>
 
-          {/* Quality Metrics */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-              <Target className="w-5 h-5 text-red-600" />
-              Rejection Rate by Vendor
-            </h3>
-            <div className="space-y-2">
-              {qualityMetrics.map((metric, index) => (
-                <div key={index} className="p-3 bg-gray-50 rounded-lg border border-gray-200">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-sm font-medium text-gray-900">{metric.vendor_name}</span>
-                    <span className={`text-lg font-bold ${
-                      metric.rejection_rate <= 2 ? 'text-green-600' :
-                      metric.rejection_rate <= 5 ? 'text-yellow-600' :
-                      'text-red-600'
-                    }`}>
-                      {metric.rejection_rate}%
-                    </span>
-                  </div>
-                  <div className="grid grid-cols-3 gap-2 text-xs mb-2">
-                    <div>
-                      <span className="text-gray-500">Received:</span>
-                      <span className="ml-1 font-medium text-gray-700">{metric.total_received.toLocaleString()}</span>
-                    </div>
-                    <div>
-                      <span className="text-gray-500">Accepted:</span>
-                      <span className="ml-1 font-medium text-green-600">{metric.accepted.toLocaleString()}</span>
-                    </div>
-                    <div>
-                      <span className="text-gray-500">Rejected:</span>
-                      <span className="ml-1 font-medium text-red-600">{metric.rejected.toLocaleString()}</span>
-                    </div>
-                  </div>
-                  <div className="bg-gray-200 rounded-full h-2">
-                    <div
-                      className={`h-2 rounded-full ${
-                        metric.rejection_rate <= 2 ? 'bg-gradient-to-r from-green-500 to-green-600' :
-                        metric.rejection_rate <= 5 ? 'bg-gradient-to-r from-yellow-500 to-yellow-600' :
-                        'bg-gradient-to-r from-red-500 to-red-600'
-                      }`}
-                      style={{ width: `${Math.min(metric.rejection_rate * 5, 100)}%` }}
-                    ></div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Process Metrics */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-            <Timer className="w-5 h-5 text-purple-600" />
-            Process Efficiency Metrics
+      {/* Additional Analytics */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Purchase Order Status */}
+        <div className="bg-white rounded-lg shadow-sm p-6">
+          <h3 className="text-lg font-medium mb-4 flex items-center gap-2">
+            <FileText className="h-5 w-5 text-indigo-600" />
+            Purchase Order Analytics
           </h3>
-          <div className="grid grid-cols-4 gap-4">
-            <div className="p-4 bg-purple-50 rounded-lg border border-purple-200">
-              <p className="text-xs font-medium text-purple-700 mb-2">Avg PO Processing Time</p>
-              <p className="text-3xl font-bold text-purple-900">{metrics.avg_processing_time}</p>
-              <p className="text-xs text-purple-600 mt-1">days</p>
-            </div>
-            <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
-              <p className="text-xs font-medium text-blue-700 mb-2">Approval Cycle Time</p>
-              <p className="text-3xl font-bold text-blue-900">{metrics.approval_cycle_time}</p>
-              <p className="text-xs text-blue-600 mt-1">days</p>
-            </div>
-            <div className="p-4 bg-green-50 rounded-lg border border-green-200">
-              <p className="text-xs font-medium text-green-700 mb-2">PO Approval Rate</p>
-              <p className="text-3xl font-bold text-green-900">94.2</p>
-              <p className="text-xs text-green-600 mt-1">%</p>
-            </div>
-            <div className="p-4 bg-orange-50 rounded-lg border border-orange-200">
-              <p className="text-xs font-medium text-orange-700 mb-2">Avg Delivery Time</p>
-              <p className="text-3xl font-bold text-orange-900">6.5</p>
-              <p className="text-xs text-orange-600 mt-1">days</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Report Templates */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-            <FileText className="w-5 h-5 text-indigo-600" />
-            Report Templates
-          </h3>
-          <div className="grid grid-cols-3 gap-4">
-            {reportTemplates.map((template) => (
-              <div
-                key={template.id}
-                className="p-4 border border-gray-200 rounded-lg hover:border-blue-300 hover:shadow-md transition-all cursor-pointer"
+          <ResponsiveContainer width="100%" height={250}>
+            <PieChart>
+              <Pie
+                data={poAnalyticsData}
+                cx="50%"
+                cy="50%"
+                innerRadius={60}
+                outerRadius={90}
+                fill="#8884d8"
+                paddingAngle={5}
+                dataKey="count"
               >
-                <div className="flex items-start justify-between mb-2">
-                  <div className="p-2 bg-blue-100 rounded-lg">
-                    <FileCheck className="w-5 h-5 text-blue-600" />
-                  </div>
-                  <button
-                    onClick={() => handleGenerateReport(template.id)}
-                    className="p-1 text-blue-600 hover:bg-blue-50 rounded"
-                  >
-                    <Eye className="w-4 h-4" />
-                  </button>
+                {poAnalyticsData.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
+                ))}
+              </Pie>
+              <Tooltip />
+            </PieChart>
+          </ResponsiveContainer>
+          <div className="mt-4 space-y-2">
+            {poAnalyticsData.map((po, idx) => (
+              <div key={idx} className="flex justify-between items-center">
+                <div className="flex items-center gap-2">
+                  <div className={`w-3 h-3 rounded-full`} style={{ backgroundColor: colors[idx % colors.length] }} />
+                  <span className="text-sm">{po.status}</span>
                 </div>
-                <h4 className="text-sm font-semibold text-gray-900 mb-1">{template.name}</h4>
-                <p className="text-xs text-gray-600 mb-3">{template.description}</p>
-                {template.last_generated && (
-                  <p className="text-xs text-gray-500">Last generated: {template.last_generated}</p>
-                )}
-                <button
-                  onClick={() => handleGenerateReport(template.id)}
-                  className="mt-3 w-full px-3 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700"
-                >
-                  Generate Report
-                </button>
+                <div className="text-sm text-gray-600">
+                  {po.count} orders (${(po.value / 1000).toFixed(0)}K)
+                </div>
               </div>
             ))}
           </div>
         </div>
+
+        {/* Supplier Diversity */}
+        <div className="bg-white rounded-lg shadow-sm p-6">
+          <h3 className="text-lg font-medium mb-4 flex items-center gap-2">
+            <Users className="h-5 w-5 text-teal-600" />
+            Supplier Diversity Metrics
+          </h3>
+          <ResponsiveContainer width="100%" height={250}>
+            <BarChart data={diversityData}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="type" angle={-45} textAnchor="end" height={80} />
+              <YAxis />
+              <Tooltip />
+              <Bar dataKey="percentage" fill="#14B8A6" />
+            </BarChart>
+          </ResponsiveContainer>
+          <div className="mt-4 grid grid-cols-2 gap-4">
+            <div className="p-3 bg-teal-50 rounded-lg">
+              <div className="text-sm text-teal-600">Diverse Suppliers</div>
+              <div className="text-xl font-bold text-teal-900">120 / 128</div>
+              <div className="text-xs text-teal-700 mt-1">93.75% of total</div>
+            </div>
+            <div className="p-3 bg-teal-50 rounded-lg">
+              <div className="text-sm text-teal-600">Diverse Spend</div>
+              <div className="text-xl font-bold text-teal-900">$752K</div>
+              <div className="text-xs text-teal-700 mt-1">48.8% of total</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Report Generation Modal */}
+      <div className="mt-6 bg-white rounded-lg shadow-sm p-6">
+        <h3 className="text-lg font-medium mb-4">Quick Actions</h3>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <button className="p-4 border rounded-lg hover:bg-gray-50 text-left">
+            <Calendar className="h-6 w-6 text-blue-600 mb-2" />
+            <div className="font-medium">Schedule Report</div>
+            <div className="text-xs text-gray-500 mt-1">Set up automated reports</div>
+          </button>
+          <button className="p-4 border rounded-lg hover:bg-gray-50 text-left">
+            <Settings className="h-6 w-6 text-gray-600 mb-2" />
+            <div className="font-medium">Customize Dashboard</div>
+            <div className="text-xs text-gray-500 mt-1">Configure metrics & layout</div>
+          </button>
+          <button className="p-4 border rounded-lg hover:bg-gray-50 text-left">
+            <Info className="h-6 w-6 text-purple-600 mb-2" />
+            <div className="font-medium">Data Sources</div>
+            <div className="text-xs text-gray-500 mt-1">View data connections</div>
+          </button>
+          <button className="p-4 border rounded-lg hover:bg-gray-50 text-left">
+            <AlertTriangle className="h-6 w-6 text-amber-600 mb-2" />
+            <div className="font-medium">Set Alerts</div>
+            <div className="text-xs text-gray-500 mt-1">Configure thresholds</div>
+          </button>
+        </div>
       </div>
     </div>
-  );
-};
-
-export default ProcurementAnalyticsDashboard;
+  )
+}

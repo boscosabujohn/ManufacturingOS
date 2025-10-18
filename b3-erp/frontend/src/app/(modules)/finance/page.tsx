@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import {
   DollarSign,
@@ -26,10 +26,59 @@ import {
   BookOpen,
   Settings,
   ArrowRight,
+  Zap,
+  Target,
+  Activity,
+  Award,
+  Bell,
+  Download,
+  Filter,
+  RefreshCw,
+  Eye,
+  ChevronDown,
+  ChevronUp,
+  Plus,
+  Minus,
+  Star,
+  MapPin,
+  Globe,
+  LineChart,
+  Monitor,
+  Smartphone,
+  Tablet
 } from 'lucide-react';
+import {
+  LineChart as RechartsLineChart,
+  AreaChart,
+  BarChart,
+  ComposedChart,
+  PieChart as RechartsPieChart,
+  Cell,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+  Area,
+  Bar,
+  Line
+} from 'recharts';
 
 export default function FinanceDashboard() {
-  // Mock data - will be replaced with API calls
+  const [isLoading, setIsLoading] = useState(false);
+  const [selectedPeriod, setSelectedPeriod] = useState('current-month');
+  const [selectedView, setSelectedView] = useState('overview');
+  const [lastUpdated, setLastUpdated] = useState(new Date());
+  const [alerts, setAlerts] = useState([]);
+  const [expandedSections, setExpandedSections] = useState({
+    cashFlow: true,
+    receivables: true,
+    payables: true,
+    profitability: true
+  });
+
+  // Enhanced mock data with time series and analytics
   const dashboardData = {
     cashPosition: {
       totalCash: 12500000,

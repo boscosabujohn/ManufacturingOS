@@ -1,0 +1,598 @@
+/* ============= Dark Mode Styles for Procurement Module ============= */
+
+/* Base dark mode setup */
+.dark {
+  color-scheme: dark;
+}
+
+/* ============= Component-specific Dark Mode Styles ============= */
+
+/* Cards and Containers */
+.dark .procurement-card {
+  @apply bg-gray-800 border-gray-700;
+}
+
+.dark .procurement-card-header {
+  @apply bg-gray-750 border-gray-700;
+}
+
+.dark .procurement-sidebar {
+  @apply bg-gray-900 border-gray-700;
+}
+
+.dark .procurement-sidebar-item {
+  @apply text-gray-300 hover:text-white hover:bg-gray-800;
+}
+
+.dark .procurement-sidebar-item.active {
+  @apply text-white bg-gray-700;
+}
+
+/* Forms and Inputs */
+.dark .procurement-input {
+  @apply bg-gray-800 border-gray-600 text-white placeholder-gray-400;
+  @apply focus:border-blue-400 focus:ring-blue-400;
+}
+
+.dark .procurement-select {
+  @apply bg-gray-800 border-gray-600 text-white;
+}
+
+.dark .procurement-textarea {
+  @apply bg-gray-800 border-gray-600 text-white placeholder-gray-400;
+}
+
+.dark .procurement-checkbox {
+  @apply bg-gray-800 border-gray-600 text-blue-400;
+}
+
+.dark .procurement-radio {
+  @apply bg-gray-800 border-gray-600 text-blue-400;
+}
+
+/* Buttons */
+.dark .procurement-btn-primary {
+  @apply bg-blue-600 hover:bg-blue-700 focus:ring-blue-500;
+}
+
+.dark .procurement-btn-secondary {
+  @apply bg-gray-700 text-gray-200 hover:bg-gray-600 border-gray-600;
+}
+
+.dark .procurement-btn-danger {
+  @apply bg-red-600 hover:bg-red-700 focus:ring-red-500;
+}
+
+.dark .procurement-btn-success {
+  @apply bg-green-600 hover:bg-green-700 focus:ring-green-500;
+}
+
+.dark .procurement-btn-ghost {
+  @apply text-gray-300 hover:text-white hover:bg-gray-800;
+}
+
+/* Tables */
+.dark .procurement-table {
+  @apply bg-gray-800 border-gray-700;
+}
+
+.dark .procurement-table thead {
+  @apply bg-gray-750;
+}
+
+.dark .procurement-table th {
+  @apply text-gray-300 border-gray-700;
+}
+
+.dark .procurement-table td {
+  @apply text-gray-200 border-gray-700;
+}
+
+.dark .procurement-table tbody tr:hover {
+  @apply bg-gray-750;
+}
+
+.dark .procurement-table tbody tr:nth-child(even) {
+  @apply bg-gray-800;
+}
+
+.dark .procurement-table tbody tr:nth-child(odd) {
+  @apply bg-gray-825;
+}
+
+/* Data Table Specific */
+.dark .data-table-container {
+  @apply bg-gray-800 border-gray-700;
+}
+
+.dark .data-table-header {
+  @apply bg-gray-750 border-gray-700;
+}
+
+.dark .data-table-search {
+  @apply bg-gray-800 border-gray-600 text-white placeholder-gray-400;
+}
+
+.dark .data-table-pagination {
+  @apply bg-gray-800 border-gray-700;
+}
+
+.dark .data-table-pagination button {
+  @apply bg-gray-700 border-gray-600 text-gray-300 hover:bg-gray-600;
+}
+
+.dark .data-table-pagination button:disabled {
+  @apply bg-gray-800 text-gray-600 cursor-not-allowed;
+}
+
+/* Modals and Overlays */
+.dark .procurement-modal {
+  @apply bg-gray-800 border-gray-700;
+}
+
+.dark .procurement-modal-header {
+  @apply border-gray-700;
+}
+
+.dark .procurement-modal-footer {
+  @apply border-gray-700 bg-gray-750;
+}
+
+.dark .procurement-overlay {
+  @apply bg-black bg-opacity-60;
+}
+
+.dark .procurement-dropdown {
+  @apply bg-gray-800 border-gray-700 shadow-2xl;
+}
+
+.dark .procurement-dropdown-item {
+  @apply text-gray-300 hover:text-white hover:bg-gray-700;
+}
+
+/* Badges and Status Indicators */
+.dark .procurement-badge-default {
+  @apply bg-gray-700 text-gray-300;
+}
+
+.dark .procurement-badge-primary {
+  @apply bg-blue-900 text-blue-200;
+}
+
+.dark .procurement-badge-success {
+  @apply bg-green-900 text-green-200;
+}
+
+.dark .procurement-badge-warning {
+  @apply bg-yellow-900 text-yellow-200;
+}
+
+.dark .procurement-badge-danger {
+  @apply bg-red-900 text-red-200;
+}
+
+/* Progress Bars */
+.dark .procurement-progress-bg {
+  @apply bg-gray-700;
+}
+
+.dark .procurement-progress-fill {
+  @apply bg-blue-500;
+}
+
+/* Alerts and Notifications */
+.dark .procurement-alert-info {
+  @apply bg-blue-900 border-blue-700 text-blue-200;
+}
+
+.dark .procurement-alert-success {
+  @apply bg-green-900 border-green-700 text-green-200;
+}
+
+.dark .procurement-alert-warning {
+  @apply bg-yellow-900 border-yellow-700 text-yellow-200;
+}
+
+.dark .procurement-alert-error {
+  @apply bg-red-900 border-red-700 text-red-200;
+}
+
+/* Charts and Data Visualization */
+.dark .procurement-chart-container {
+  @apply bg-gray-800;
+}
+
+.dark .procurement-chart-grid {
+  stroke: #374151;
+}
+
+.dark .procurement-chart-text {
+  fill: #d1d5db;
+}
+
+.dark .procurement-chart-axis {
+  stroke: #6b7280;
+}
+
+/* KPI Cards */
+.dark .procurement-kpi-card {
+  @apply bg-gray-800 border-gray-700;
+}
+
+.dark .procurement-kpi-value {
+  @apply text-white;
+}
+
+.dark .procurement-kpi-label {
+  @apply text-gray-400;
+}
+
+.dark .procurement-kpi-trend-positive {
+  @apply text-green-400;
+}
+
+.dark .procurement-kpi-trend-negative {
+  @apply text-red-400;
+}
+
+/* Tabs */
+.dark .procurement-tab-list {
+  @apply border-gray-700;
+}
+
+.dark .procurement-tab {
+  @apply text-gray-400 hover:text-gray-300 border-transparent;
+}
+
+.dark .procurement-tab.active {
+  @apply text-white border-blue-500;
+}
+
+.dark .procurement-tab-content {
+  @apply bg-gray-800;
+}
+
+/* File Upload */
+.dark .procurement-upload-zone {
+  @apply bg-gray-800 border-gray-600 border-dashed;
+}
+
+.dark .procurement-upload-zone:hover {
+  @apply border-gray-500 bg-gray-750;
+}
+
+.dark .procurement-upload-zone.dragover {
+  @apply border-blue-500 bg-blue-900 bg-opacity-20;
+}
+
+.dark .procurement-file-item {
+  @apply bg-gray-800 border-gray-700;
+}
+
+.dark .procurement-file-item.error {
+  @apply bg-red-900 bg-opacity-20 border-red-700;
+}
+
+.dark .procurement-file-item.success {
+  @apply bg-green-900 bg-opacity-20 border-green-700;
+}
+
+/* Calendar */
+.dark .procurement-calendar {
+  @apply bg-gray-800 border-gray-700;
+}
+
+.dark .procurement-calendar-header {
+  @apply bg-gray-750 border-gray-700;
+}
+
+.dark .procurement-calendar-day {
+  @apply text-gray-300 border-gray-700;
+}
+
+.dark .procurement-calendar-day.today {
+  @apply bg-blue-900 text-blue-200;
+}
+
+.dark .procurement-calendar-day.selected {
+  @apply bg-blue-600 text-white;
+}
+
+.dark .procurement-calendar-day.other-month {
+  @apply text-gray-600;
+}
+
+.dark .procurement-calendar-event {
+  @apply bg-blue-700 text-blue-100;
+}
+
+/* Workflow Steps */
+.dark .procurement-workflow-step {
+  @apply bg-gray-800 border-gray-700;
+}
+
+.dark .procurement-workflow-step.completed {
+  @apply bg-green-900 border-green-700;
+}
+
+.dark .procurement-workflow-step.active {
+  @apply bg-blue-900 border-blue-600;
+}
+
+.dark .procurement-workflow-step.pending {
+  @apply bg-gray-700 border-gray-600;
+}
+
+.dark .procurement-workflow-connector {
+  @apply bg-gray-600;
+}
+
+.dark .procurement-workflow-connector.completed {
+  @apply bg-green-600;
+}
+
+/* Tooltips */
+.dark .procurement-tooltip {
+  @apply bg-gray-900 text-white border-gray-700 shadow-2xl;
+}
+
+.dark .procurement-tooltip-arrow {
+  @apply border-gray-900;
+}
+
+/* Help Panel */
+.dark .procurement-help-panel {
+  @apply bg-gray-800 border-gray-700;
+}
+
+.dark .procurement-help-sidebar {
+  @apply bg-gray-750 border-gray-700;
+}
+
+.dark .procurement-help-topic {
+  @apply text-gray-300 hover:text-white hover:bg-gray-700;
+}
+
+.dark .procurement-help-topic.active {
+  @apply text-white bg-gray-700;
+}
+
+.dark .procurement-help-content {
+  @apply text-gray-200;
+}
+
+/* Loading States */
+.dark .procurement-skeleton {
+  @apply bg-gray-700 animate-pulse;
+}
+
+.dark .procurement-loading-spinner {
+  @apply text-blue-400;
+}
+
+/* Print Styles */
+@media print {
+  .dark {
+    color-scheme: light;
+  }
+
+  .dark * {
+    background-color: white !important;
+    color: black !important;
+    border-color: #e5e7eb !important;
+  }
+}
+
+/* ============= Color Scheme Specific Styles ============= */
+
+/* Blue Theme (Default) */
+.dark.theme-blue .procurement-primary {
+  @apply text-blue-400;
+}
+
+.dark.theme-blue .procurement-primary-bg {
+  @apply bg-blue-600;
+}
+
+/* Green Theme */
+.dark.theme-green .procurement-primary {
+  @apply text-green-400;
+}
+
+.dark.theme-green .procurement-primary-bg {
+  @apply bg-green-600;
+}
+
+.dark.theme-green .procurement-btn-primary {
+  @apply bg-green-600 hover:bg-green-700 focus:ring-green-500;
+}
+
+/* Purple Theme */
+.dark.theme-purple .procurement-primary {
+  @apply text-purple-400;
+}
+
+.dark.theme-purple .procurement-primary-bg {
+  @apply bg-purple-600;
+}
+
+.dark.theme-purple .procurement-btn-primary {
+  @apply bg-purple-600 hover:bg-purple-700 focus:ring-purple-500;
+}
+
+/* Orange Theme */
+.dark.theme-orange .procurement-primary {
+  @apply text-orange-400;
+}
+
+.dark.theme-orange .procurement-primary-bg {
+  @apply bg-orange-600;
+}
+
+.dark.theme-orange .procurement-btn-primary {
+  @apply bg-orange-600 hover:bg-orange-700 focus:ring-orange-500;
+}
+
+/* Red Theme */
+.dark.theme-red .procurement-primary {
+  @apply text-red-400;
+}
+
+.dark.theme-red .procurement-primary-bg {
+  @apply bg-red-600;
+}
+
+.dark.theme-red .procurement-btn-primary {
+  @apply bg-red-600 hover:bg-red-700 focus:ring-red-500;
+}
+
+/* ============= High Contrast Mode ============= */
+
+.dark.high-contrast {
+  --tw-bg-gray-900: #000000;
+  --tw-bg-gray-800: #1a1a1a;
+  --tw-bg-gray-700: #2d2d2d;
+  --tw-text-white: #ffffff;
+  --tw-text-gray-100: #ffffff;
+  --tw-text-gray-200: #e5e5e5;
+  --tw-border-gray-700: #ffffff;
+  --tw-border-gray-600: #ffffff;
+}
+
+.dark.high-contrast * {
+  border-color: #ffffff !important;
+}
+
+.dark.high-contrast .procurement-input,
+.dark.high-contrast .procurement-select,
+.dark.high-contrast .procurement-textarea {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border: 2px solid #ffffff !important;
+}
+
+.dark.high-contrast .procurement-btn-primary {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border: 2px solid #ffffff !important;
+}
+
+.dark.high-contrast .procurement-btn-primary:hover {
+  background-color: #333333 !important;
+}
+
+/* ============= Reduced Motion ============= */
+
+.dark.reduced-motion * {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* ============= Custom Gray Shades for Dark Mode ============= */
+
+.dark .bg-gray-750 {
+  background-color: #2d3748;
+}
+
+.dark .bg-gray-825 {
+  background-color: #252d3a;
+}
+
+.dark .bg-gray-850 {
+  background-color: #1f2633;
+}
+
+.dark .bg-gray-875 {
+  background-color: #1a202c;
+}
+
+.dark .border-gray-750 {
+  border-color: #2d3748;
+}
+
+/* ============= Focus Styles for Dark Mode ============= */
+
+.dark *:focus {
+  outline: 2px solid #60a5fa !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.2) !important;
+}
+
+.dark.high-contrast *:focus {
+  outline: 3px solid #ffff00 !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 4px rgba(255, 255, 0, 0.3) !important;
+}
+
+/* ============= Selection Styles ============= */
+
+.dark ::selection {
+  background-color: #3b82f6;
+  color: #ffffff;
+}
+
+.dark ::-moz-selection {
+  background-color: #3b82f6;
+  color: #ffffff;
+}
+
+/* ============= Scrollbar Styles ============= */
+
+.dark ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #374151;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #6b7280;
+  border-radius: 4px;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+/* ============= Responsive Dark Mode Adjustments ============= */
+
+@media (max-width: 768px) {
+  .dark .procurement-sidebar {
+    @apply bg-gray-900 border-t-gray-700;
+  }
+
+  .dark .procurement-modal {
+    @apply m-2;
+  }
+
+  .dark .procurement-table {
+    font-size: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dark * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============= Dark Mode Utilities ============= */
+
+.dark-mode-transition {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.dark .dark-mode-transition {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.reduced-motion .dark-mode-transition {
+  transition: none !important;
+}

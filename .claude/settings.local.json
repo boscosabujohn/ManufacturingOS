@@ -18,7 +18,9 @@
       "Bash(head:*)",
       "Bash(tail:*)",
       "Bash(dir:*)",
-      "Bash(mkdir:*)"
+      "Bash(mkdir:*)",
+      "Bash(npm run type-check:*)",
+      "Bash(npm run dev:*)"
     ],
     "deny": [],
     "ask": []

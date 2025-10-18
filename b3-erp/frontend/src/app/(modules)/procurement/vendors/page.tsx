@@ -2,7 +2,27 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Plus, Search, Eye, Edit, Trash2, Building2, Star, Phone, Mail, MapPin, TrendingUp, DollarSign, Package, ChevronLeft, ChevronRight, Download } from 'lucide-react';
+import {
+  Plus,
+  Download,
+  Upload,
+  Grid3x3,
+  List,
+  SlidersHorizontal,
+  FileText,
+  Users,
+  TrendingUp,
+  DollarSign,
+  Building2,
+  Star,
+  ChevronLeft,
+  ChevronRight,
+  BarChart3,
+  PlusCircle,
+  FileSpreadsheet
+} from 'lucide-react';
+import VendorFilters from '@/components/procurement/VendorFilters';
+import VendorCard from '@/components/procurement/VendorCard';
 
 interface Vendor {
   id: string;
@@ -24,6 +44,10 @@ interface Vendor {
   country: string;
   registeredDate: string;
   lastOrderDate: string;
+  tags?: string[];
+  certifications?: string[];
+  responseTime?: number;
+  disputeRate?: number;
 }
 
 const mockVendors: Vendor[] = [
@@ -47,6 +71,10 @@ const mockVendors: Vendor[] = [
     country: 'USA',
     registeredDate: '2023-01-15',
     lastOrderDate: '2025-10-10',
+    tags: ['Premium', 'ISO 9001', 'Preferred'],
+    certifications: ['ISO 9001', 'ISO 14001'],
+    responseTime: 2.5,
+    disputeRate: 0.5
   },
   {
     id: 'V-002',
@@ -68,6 +96,10 @@ const mockVendors: Vendor[] = [
     country: 'USA',
     registeredDate: '2023-03-20',
     lastOrderDate: '2025-10-08',
+    tags: ['Reliable', 'Tech Leader'],
+    certifications: ['ISO 9001'],
+    responseTime: 1.8,
+    disputeRate: 1.2
   },
   {
     id: 'V-003',
@@ -89,6 +121,10 @@ const mockVendors: Vendor[] = [
     country: 'USA',
     registeredDate: '2022-11-10',
     lastOrderDate: '2025-10-12',
+    tags: ['Volume Discount', 'Eco-Friendly'],
+    certifications: ['ISO 14001'],
+    responseTime: 2.1,
+    disputeRate: 0.8
   },
   {
     id: 'V-004',
@@ -110,6 +146,10 @@ const mockVendors: Vendor[] = [
     country: 'USA',
     registeredDate: '2023-05-15',
     lastOrderDate: '2025-09-28',
+    tags: ['Premium', 'Strategic Partner', 'Innovation'],
+    certifications: ['ISO 9001', 'CE', 'ASME'],
+    responseTime: 1.2,
+    disputeRate: 0.2
   },
   {
     id: 'V-005',
@@ -131,6 +171,10 @@ const mockVendors: Vendor[] = [
     country: 'USA',
     registeredDate: '2023-02-08',
     lastOrderDate: '2025-08-15',
+    tags: ['Under Review'],
+    certifications: ['REACH'],
+    responseTime: 3.5,
+    disputeRate: 2.1
   },
   {
     id: 'V-006',
@@ -152,6 +196,10 @@ const mockVendors: Vendor[] = [
     country: 'USA',
     registeredDate: '2022-09-22',
     lastOrderDate: '2025-10-14',
+    tags: ['Fast Delivery', 'Global Network'],
+    certifications: ['ISO 9001', 'C-TPAT'],
+    responseTime: 1.5,
+    disputeRate: 0.6
   },
 ];
 
@@ -179,22 +227,98 @@ const getRatingColor = (rating: number) => {
 export default function VendorsPage() {
   const router = useRouter();
   const [vendors, setVendors] = useState<Vendor[]>(mockVendors);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [statusFilter, setStatusFilter] = useState<string>('all');
-  const [categoryFilter, setCategoryFilter] = useState<string>('all');
+  const [filteredVendors, setFilteredVendors] = useState<Vendor[]>(mockVendors);
+  const [viewMode, setViewMode] = useState<'grid' | 'list'>('list');
+  const [selectedVendors, setSelectedVendors] = useState<string[]>([]);
+  const [showBulkActions, setShowBulkActions] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10;
+  const [itemsPerPage, setItemsPerPage] = useState(10);
+  const [sortBy, setSortBy] = useState<string>('name');
+  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
 
-  const filteredVendors = vendors.filter((vendor) => {
-    const matchesSearch =
-      vendor.vendorName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      vendor.vendorCode.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      vendor.contactPerson.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      vendor.email.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesStatus = statusFilter === 'all' || vendor.status === statusFilter;
-    const matchesCategory = categoryFilter === 'all' || vendor.category === categoryFilter;
-    return matchesSearch && matchesStatus && matchesCategory;
-  });
+  const handleFiltersChange = (filters: any) => {
+    let filtered = [...vendors];
+
+    // Apply all filters
+    Object.keys(filters).forEach(key => {
+      if (filters[key] !== 'all') {
+        switch(key) {
+          case 'status':
+            filtered = filtered.filter(v => v.status === filters[key]);
+            break;
+          case 'category':
+            filtered = filtered.filter(v => v.category === filters[key]);
+            break;
+          case 'rating':
+            if (filters[key] === 'top') filtered = filtered.filter(v => v.rating >= 4.5);
+            else if (filters[key] === 'good') filtered = filtered.filter(v => v.rating >= 4.0);
+            else if (filters[key] === 'average') filtered = filtered.filter(v => v.rating >= 3.5);
+            else if (filters[key] === 'below') filtered = filtered.filter(v => v.rating < 3.5);
+            break;
+          case 'performance':
+            const perf = (v: Vendor) => (v.onTimeDelivery + v.qualityScore) / 2;
+            if (filters[key] === 'excellent') filtered = filtered.filter(v => perf(v) >= 90);
+            else if (filters[key] === 'good') filtered = filtered.filter(v => perf(v) >= 80);
+            else if (filters[key] === 'average') filtered = filtered.filter(v => perf(v) >= 70);
+            else if (filters[key] === 'poor') filtered = filtered.filter(v => perf(v) < 70);
+            break;
+          case 'country':
+            filtered = filtered.filter(v => v.country === filters[key]);
+            break;
+          case 'paymentTerms':
+            const termMap: any = { net15: 'Net 15', net30: 'Net 30', net45: 'Net 45', net60: 'Net 60' };
+            filtered = filtered.filter(v => v.paymentTerms === termMap[filters[key]]);
+            break;
+          case 'spendRange':
+            if (filters[key] === 'high') filtered = filtered.filter(v => v.totalSpend >= 1000000);
+            else if (filters[key] === 'medium') filtered = filtered.filter(v => v.totalSpend >= 100000 && v.totalSpend < 1000000);
+            else if (filters[key] === 'low') filtered = filtered.filter(v => v.totalSpend >= 10000 && v.totalSpend < 100000);
+            else if (filters[key] === 'minimal') filtered = filtered.filter(v => v.totalSpend < 10000);
+            break;
+        }
+      }
+    });
+
+    // Apply sorting
+    filtered.sort((a, b) => {
+      let compareValue = 0;
+      switch(sortBy) {
+        case 'name':
+          compareValue = a.vendorName.localeCompare(b.vendorName);
+          break;
+        case 'rating':
+          compareValue = b.rating - a.rating;
+          break;
+        case 'orders':
+          compareValue = b.totalOrders - a.totalOrders;
+          break;
+        case 'spend':
+          compareValue = b.totalSpend - a.totalSpend;
+          break;
+        case 'performance':
+          const perfA = (a.onTimeDelivery + a.qualityScore) / 2;
+          const perfB = (b.onTimeDelivery + b.qualityScore) / 2;
+          compareValue = perfB - perfA;
+          break;
+      }
+      return sortOrder === 'asc' ? compareValue : -compareValue;
+    });
+
+    setFilteredVendors(filtered);
+    setCurrentPage(1);
+  };
+
+  const handleSearchChange = (search: string) => {
+    const filtered = vendors.filter((vendor) => {
+      return vendor.vendorName.toLowerCase().includes(search.toLowerCase()) ||
+             vendor.vendorCode.toLowerCase().includes(search.toLowerCase()) ||
+             vendor.contactPerson.toLowerCase().includes(search.toLowerCase()) ||
+             vendor.email.toLowerCase().includes(search.toLowerCase()) ||
+             vendor.city.toLowerCase().includes(search.toLowerCase());
+    });
+    setFilteredVendors(filtered);
+    setCurrentPage(1);
+  };
 
   const totalPages = Math.ceil(filteredVendors.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -208,17 +332,88 @@ export default function VendorsPage() {
   };
 
   const categories = Array.from(new Set(vendors.map((v) => v.category)));
+  const countries = Array.from(new Set(vendors.map((v) => v.country)));
+
+  const handleVendorSelect = (id: string) => {
+    if (selectedVendors.includes(id)) {
+      setSelectedVendors(selectedVendors.filter(v => v !== id));
+    } else {
+      setSelectedVendors([...selectedVendors, id]);
+    }
+    setShowBulkActions(selectedVendors.length > 0 || (!selectedVendors.includes(id) && selectedVendors.length === 0));
+  };
+
+  const handleSelectAll = () => {
+    if (selectedVendors.length === paginatedVendors.length) {
+      setSelectedVendors([]);
+      setShowBulkActions(false);
+    } else {
+      setSelectedVendors(paginatedVendors.map(v => v.id));
+      setShowBulkActions(true);
+    }
+  };
+
+  const handleBulkExport = () => {
+    console.log('Exporting selected vendors:', selectedVendors);
+  };
+
+  const handleBulkDelete = () => {
+    if (confirm(`Are you sure you want to delete ${selectedVendors.length} vendors?`)) {
+      setVendors(vendors.filter(v => !selectedVendors.includes(v.id)));
+      setFilteredVendors(filteredVendors.filter(v => !selectedVendors.includes(v.id)));
+      setSelectedVendors([]);
+      setShowBulkActions(false);
+    }
+  };
+
+  const handleCompare = (id: string) => {
+    console.log('Comparing vendor:', id);
+  };
 
   const handleDelete = (id: string) => {
     if (confirm('Are you sure you want to delete this vendor?')) {
       setVendors(vendors.filter((v) => v.id !== id));
+      setFilteredVendors(filteredVendors.filter((v) => v.id !== id));
     }
   };
 
+  const handleView = (id: string) => {
+    router.push(`/procurement/vendors/view/${id}`);
+  };
+
+  const handleEdit = (id: string) => {
+    router.push(`/procurement/vendors/edit/${id}`);
+  };
+
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      {/* Stats */}
-      <div className="mb-6 flex items-start gap-4">
+    <div className="w-full min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
+      {/* Header */}
+      <div className="mb-6">
+        <div className="flex items-center justify-between mb-4">
+          <div>
+            <h1 className="text-2xl font-bold text-gray-900">Vendor Management</h1>
+            <p className="text-gray-600 mt-1">Manage your suppliers and track performance</p>
+          </div>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => router.push('/procurement/vendors/import')}
+              className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+            >
+              <Upload className="h-4 w-4" />
+              Import
+            </button>
+            <button
+              onClick={() => router.push('/procurement/vendors/add')}
+              className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all shadow-md"
+            >
+              <PlusCircle className="h-4 w-4" />
+              Add Vendor
+            </button>
+          </div>
+        </div>
+
+        {/* Stats */}
+        <div className="flex items-start gap-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 flex-1">
           <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
             <div className="flex items-center justify-between">
@@ -263,60 +458,169 @@ export default function VendorsPage() {
           </div>
         </div>
 
-        <button
-          onClick={() => router.push('/procurement/vendors/add')}
-          className="flex items-center space-x-2 px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors h-fit flex-shrink-0"
-        >
-          <Plus className="h-5 w-5" />
-          <span>Add Vendor</span>
-        </button>
+      </div>
       </div>
 
       {/* Filters */}
-      <div className="flex gap-4 mb-6">
-        <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-          <input
-            type="text"
-            placeholder="Search vendors by name, code, contact person..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
+      <VendorFilters
+        onFiltersChange={handleFiltersChange}
+        onSearchChange={handleSearchChange}
+        categories={categories}
+        countries={countries}
+        totalCount={filteredVendors.length}
+      />
+
+      {/* Bulk Actions Bar */}
+      {showBulkActions && selectedVendors.length > 0 && (
+        <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <span className="text-sm font-medium text-blue-900">
+              {selectedVendors.length} vendor{selectedVendors.length > 1 ? 's' : ''} selected
+            </span>
+            <button
+              onClick={handleSelectAll}
+              className="text-sm text-blue-600 hover:text-blue-700 underline"
+            >
+              {selectedVendors.length === paginatedVendors.length ? 'Deselect all' : 'Select all'}
+            </button>
+          </div>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={handleBulkExport}
+              className="px-3 py-1.5 bg-white border border-blue-300 text-blue-700 rounded-lg hover:bg-blue-100 text-sm font-medium"
+            >
+              Export Selected
+            </button>
+            <button
+              onClick={handleBulkDelete}
+              className="px-3 py-1.5 bg-red-600 text-white rounded-lg hover:bg-red-700 text-sm font-medium"
+            >
+              Delete Selected
+            </button>
+          </div>
         </div>
-        <select
-          value={categoryFilter}
-          onChange={(e) => setCategoryFilter(e.target.value)}
-          className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-        >
-          <option value="all">All Categories</option>
-          {categories.map((cat) => (
-            <option key={cat} value={cat}>
-              {cat}
-            </option>
-          ))}
-        </select>
-        <select
-          value={statusFilter}
-          onChange={(e) => setStatusFilter(e.target.value)}
-          className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-        >
-          <option value="all">All Status</option>
-          <option value="active">Active</option>
-          <option value="inactive">Inactive</option>
-          <option value="blacklisted">Blacklisted</option>
-          <option value="pending_approval">Pending Approval</option>
-        </select>
-        <button className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
-          <Download className="h-4 w-4" />
-          <span>Export</span>
-        </button>
+      )}
+
+      {/* View Controls */}
+      <div className="mb-4 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          {/* View Mode Toggle */}
+          <div className="flex items-center bg-white border border-gray-300 rounded-lg">
+            <button
+              onClick={() => setViewMode('list')}
+              className={`p-2 ${viewMode === 'list' ? 'bg-blue-600 text-white' : 'text-gray-600 hover:bg-gray-100'} rounded-l-lg transition-colors`}
+            >
+              <List className="h-4 w-4" />
+            </button>
+            <button
+              onClick={() => setViewMode('grid')}
+              className={`p-2 ${viewMode === 'grid' ? 'bg-blue-600 text-white' : 'text-gray-600 hover:bg-gray-100'} rounded-r-lg transition-colors`}
+            >
+              <Grid3x3 className="h-4 w-4" />
+            </button>
+          </div>
+
+          {/* Sort Options */}
+          <select
+            value={sortBy}
+            onChange={(e) => setSortBy(e.target.value)}
+            className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-sm"
+          >
+            <option value="name">Sort by Name</option>
+            <option value="rating">Sort by Rating</option>
+            <option value="orders">Sort by Orders</option>
+            <option value="spend">Sort by Spend</option>
+            <option value="performance">Sort by Performance</option>
+          </select>
+
+          <button
+            onClick={() => setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')}
+            className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50"
+          >
+            <SlidersHorizontal className="h-4 w-4" />
+          </button>
+
+          {/* Items per page */}
+          <select
+            value={itemsPerPage}
+            onChange={(e) => setItemsPerPage(Number(e.target.value))}
+            className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-sm"
+          >
+            <option value={10}>10 per page</option>
+            <option value={20}>20 per page</option>
+            <option value={50}>50 per page</option>
+            <option value={100}>100 per page</option>
+          </select>
+        </div>
+
+        {/* Action Buttons */}
+        <div className="flex items-center gap-2">
+          <button className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+            <BarChart3 className="h-4 w-4" />
+            Analytics
+          </button>
+          <button className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+            <FileSpreadsheet className="h-4 w-4" />
+            Export All
+          </button>
+        </div>
       </div>
 
-      {/* Table */}
-      <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
-        <div className="overflow-x-auto">
-          <table className="w-full">
+      {/* Vendors Display */}
+      {viewMode === 'grid' ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          {paginatedVendors.map((vendor) => (
+            <VendorCard
+              key={vendor.id}
+              vendor={vendor}
+              viewMode="grid"
+              onView={handleView}
+              onEdit={handleEdit}
+              onDelete={handleDelete}
+              onCompare={handleCompare}
+              isSelected={selectedVendors.includes(vendor.id)}
+              onSelect={handleVendorSelect}
+            />
+          ))}
+        </div>
+      ) : (
+        <div className="space-y-3">
+          {/* Select All Checkbox for List View */}
+          {viewMode === 'list' && (
+            <div className="bg-white rounded-lg border border-gray-200 p-4">
+              <div className="flex items-center gap-4">
+                <input
+                  type="checkbox"
+                  checked={selectedVendors.length === paginatedVendors.length && paginatedVendors.length > 0}
+                  onChange={handleSelectAll}
+                  className="h-5 w-5 text-blue-600 rounded border-gray-300 focus:ring-blue-500"
+                />
+                <span className="text-sm font-medium text-gray-700">Select All</span>
+              </div>
+            </div>
+          )}
+
+          {paginatedVendors.map((vendor) => (
+            <VendorCard
+              key={vendor.id}
+              vendor={vendor}
+              viewMode="list"
+              onView={handleView}
+              onEdit={handleEdit}
+              onDelete={handleDelete}
+              onCompare={handleCompare}
+              isSelected={selectedVendors.includes(vendor.id)}
+              onSelect={handleVendorSelect}
+            />
+          ))}
+        </div>
+      )}
+
+      {/* Old Table Code - Removing */}
+      {false && (
+        <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+          <div className="overflow-x-auto">
+            <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Vendor</th>

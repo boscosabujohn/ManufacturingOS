@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import {
   ShoppingCart,
   TrendingUp,
@@ -11,8 +11,37 @@ import {
   Users,
   FileText,
   ArrowUpRight,
-  Package
+  Package,
+  BarChart3,
+  PieChart,
+  Activity,
+  Calendar,
+  Filter,
+  Download,
+  RefreshCw
 } from 'lucide-react'
+import {
+  AreaChart,
+  Area,
+  BarChart,
+  Bar,
+  PieChart as RePieChart,
+  Pie,
+  Cell,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+  LineChart,
+  Line,
+  RadarChart,
+  PolarGrid,
+  PolarAngleAxis,
+  PolarRadiusAxis,
+  Radar
+} from 'recharts'
 
 interface ProcurementStats {
   totalPOs: number
@@ -49,8 +78,36 @@ interface VendorPerformance {
   activeOrders: number
 }
 
+// Chart data
+interface SpendTrend {
+  month: string
+  spent: number
+  budget: number
+  savings: number
+}
+
+interface CategorySpend {
+  category: string
+  value: number
+  percentage: number
+}
+
+interface VendorMetrics {
+  vendor: string
+  onTime: number
+  quality: number
+  cost: number
+  response: number
+}
+
+interface POStatusData {
+  status: string
+  count: number
+  value: number
+}
+
 export default function ProcurementDashboard() {
-  const [stats] = useState<ProcurementStats>({
+  const [stats, setStats] = useState<ProcurementStats>({
     totalPOs: 234,
     pendingApprovals: 12,
     activePOs: 45,
@@ -62,6 +119,10 @@ export default function ProcurementDashboard() {
     savingsThisMonth: 456000,
     requisitionsOpen: 18
   })
+
+  const [isRefreshing, setIsRefreshing] = useState(false)
+  const [selectedPeriod, setSelectedPeriod] = useState('month')
+  const [selectedCategory, setSelectedCategory] = useState('all')
 
   const [recentPOs] = useState<PurchaseOrder[]>([
     {
@@ -104,6 +165,46 @@ export default function ProcurementDashboard() {
       expectedDelivery: '2025-10-26',
       priority: 'low'
     }
+  ])
+
+  // Monthly spending trend data
+  const [spendTrend] = useState<SpendTrend[]>([
+    { month: 'Jan', spent: 2850000, budget: 3000000, savings: 150000 },
+    { month: 'Feb', spent: 3200000, budget: 3500000, savings: 300000 },
+    { month: 'Mar', spent: 2950000, budget: 3200000, savings: 250000 },
+    { month: 'Apr', spent: 3450000, budget: 3800000, savings: 350000 },
+    { month: 'May', spent: 3100000, budget: 3400000, savings: 300000 },
+    { month: 'Jun', spent: 3680000, budget: 4000000, savings: 320000 },
+    { month: 'Jul', spent: 3320000, budget: 3600000, savings: 280000 },
+    { month: 'Aug', spent: 3890000, budget: 4200000, savings: 310000 },
+    { month: 'Sep', spent: 3560000, budget: 3800000, savings: 240000 },
+    { month: 'Oct', spent: 3568000, budget: 4000000, savings: 432000 }
+  ])
+
+  // Category-wise spending
+  const [categorySpend] = useState<CategorySpend[]>([
+    { category: 'Raw Materials', value: 12500000, percentage: 35 },
+    { category: 'Components', value: 8900000, percentage: 25 },
+    { category: 'Equipment', value: 7100000, percentage: 20 },
+    { category: 'Services', value: 3560000, percentage: 10 },
+    { category: 'Consumables', value: 2140000, percentage: 6 },
+    { category: 'Others', value: 1480000, percentage: 4 }
+  ])
+
+  // PO Status Distribution
+  const [poStatusData] = useState<POStatusData[]>([
+    { status: 'Draft', count: 8, value: 450000 },
+    { status: 'Pending Approval', count: 12, value: 1850000 },
+    { status: 'Approved', count: 15, value: 2340000 },
+    { status: 'Sent to Vendor', count: 25, value: 8900000 },
+    { status: 'Partially Received', count: 18, value: 6700000 },
+    { status: 'Completed', count: 156, value: 15440000 }
+  ])
+
+  // Vendor performance metrics for radar chart
+  const [vendorMetrics] = useState<VendorMetrics[]>([
+    { vendor: 'Top Vendors', onTime: 95, quality: 92, cost: 88, response: 90 },
+    { vendor: 'Average', onTime: 85, quality: 80, cost: 75, response: 78 }
   ])
 
   const [topVendors] = useState<VendorPerformance[]>([
@@ -149,6 +250,44 @@ export default function ProcurementDashboard() {
     }
   ])
 
+  // Chart colors
+  const COLORS = ['#3B82F6', '#10B981', '#F59E0B', '#EF4444', '#8B5CF6', '#EC4899']
+  const CHART_COLORS = {
+    primary: '#3B82F6',
+    success: '#10B981',
+    warning: '#F59E0B',
+    danger: '#EF4444',
+    purple: '#8B5CF6',
+    pink: '#EC4899'
+  }
+
+  // Auto-refresh simulation
+  useEffect(() => {
+    const interval = setInterval(() => {
+      // Simulate real-time updates
+      setStats(prev => ({
+        ...prev,
+        totalSpend: prev.totalSpend + Math.floor(Math.random() * 10000),
+        activePOs: prev.activePOs + Math.floor(Math.random() * 3) - 1
+      }))
+    }, 30000) // Update every 30 seconds
+
+    return () => clearInterval(interval)
+  }, [])
+
+  const handleRefresh = () => {
+    setIsRefreshing(true)
+    setTimeout(() => {
+      setIsRefreshing(false)
+      // Simulate data refresh
+      setStats(prev => ({
+        ...prev,
+        pendingApprovals: Math.floor(Math.random() * 20) + 5,
+        pendingGRNs: Math.floor(Math.random() * 15) + 3
+      }))
+    }, 1000)
+  }
+
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'draft':
@@ -181,19 +320,57 @@ export default function ProcurementDashboard() {
     }
   }
 
+  // Custom tooltip for charts
+  const CustomTooltip = ({ active, payload, label }: any) => {
+    if (active && payload && payload.length) {
+      return (
+        <div className="bg-white p-3 rounded-lg shadow-lg border border-gray-200">
+          <p className="text-sm font-semibold text-gray-900">{label}</p>
+          {payload.map((entry: any, index: number) => (
+            <p key={index} className="text-sm" style={{ color: entry.color }}>
+              {entry.name}: ₹{(entry.value / 100000).toFixed(1)}L
+            </p>
+          ))}
+        </div>
+      )
+    }
+    return null
+  }
+
   return (
     <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-green-50 to-emerald-50 px-4 sm:px-6 lg:px-8 py-6">
       <div className="max-w-7xl mx-auto space-y-6">
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Procurement Management</h1>
-            <p className="text-gray-600 mt-1">Purchase orders, vendor management, and procurement analytics</p>
+            <h1 className="text-3xl font-bold text-gray-900">Procurement Dashboard</h1>
+            <p className="text-gray-600 mt-1">Real-time insights and analytics for procurement operations</p>
           </div>
-          <button className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-lg hover:from-green-700 hover:to-emerald-700 transition-all shadow-md">
-            <ShoppingCart className="h-5 w-5" />
-            New Purchase Order
-          </button>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={handleRefresh}
+              className={`flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-all ${
+                isRefreshing ? 'animate-pulse' : ''
+              }`}
+            >
+              <RefreshCw className={`h-4 w-4 ${isRefreshing ? 'animate-spin' : ''}`} />
+              Refresh
+            </button>
+            <select
+              value={selectedPeriod}
+              onChange={(e) => setSelectedPeriod(e.target.value)}
+              className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+            >
+              <option value="week">This Week</option>
+              <option value="month">This Month</option>
+              <option value="quarter">This Quarter</option>
+              <option value="year">This Year</option>
+            </select>
+            <button className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-lg hover:from-green-700 hover:to-emerald-700 transition-all shadow-md">
+              <ShoppingCart className="h-5 w-5" />
+              New Purchase Order
+            </button>
+          </div>
         </div>
 
         {/* Stats Grid */}
@@ -239,6 +416,196 @@ export default function ProcurementDashboard() {
                 <p className="text-xs text-orange-700 mt-1">{stats.pendingGRNs} pending GRNs</p>
               </div>
               <Clock className="h-10 w-10 text-orange-600" />
+            </div>
+          </div>
+        </div>
+
+        {/* Charts Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+          {/* Spending Trend Chart */}
+          <div className="lg:col-span-2 bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+            <div className="flex items-center justify-between mb-4">
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900">Spending Trend Analysis</h3>
+                <p className="text-sm text-gray-500 mt-1">Budget vs Actual Spending</p>
+              </div>
+              <div className="flex items-center gap-2">
+                <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+                  <Filter className="h-4 w-4 text-gray-500" />
+                </button>
+                <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+                  <Download className="h-4 w-4 text-gray-500" />
+                </button>
+              </div>
+            </div>
+            <ResponsiveContainer width="100%" height={300}>
+              <AreaChart data={spendTrend}>
+                <defs>
+                  <linearGradient id="colorSpent" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor={CHART_COLORS.primary} stopOpacity={0.8}/>
+                    <stop offset="95%" stopColor={CHART_COLORS.primary} stopOpacity={0.1}/>
+                  </linearGradient>
+                  <linearGradient id="colorBudget" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor={CHART_COLORS.success} stopOpacity={0.8}/>
+                    <stop offset="95%" stopColor={CHART_COLORS.success} stopOpacity={0.1}/>
+                  </linearGradient>
+                </defs>
+                <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+                <XAxis dataKey="month" stroke="#888" fontSize={12} />
+                <YAxis stroke="#888" fontSize={12} tickFormatter={(value) => `₹${(value / 1000000).toFixed(0)}M`} />
+                <Tooltip content={<CustomTooltip />} />
+                <Legend />
+                <Area
+                  type="monotone"
+                  dataKey="budget"
+                  stroke={CHART_COLORS.success}
+                  fillOpacity={1}
+                  fill="url(#colorBudget)"
+                  strokeWidth={2}
+                  name="Budget"
+                />
+                <Area
+                  type="monotone"
+                  dataKey="spent"
+                  stroke={CHART_COLORS.primary}
+                  fillOpacity={1}
+                  fill="url(#colorSpent)"
+                  strokeWidth={2}
+                  name="Spent"
+                />
+                <Line
+                  type="monotone"
+                  dataKey="savings"
+                  stroke={CHART_COLORS.warning}
+                  strokeWidth={2}
+                  dot={{ fill: CHART_COLORS.warning }}
+                  name="Savings"
+                />
+              </AreaChart>
+            </ResponsiveContainer>
+          </div>
+
+          {/* Category Spend Pie Chart */}
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-semibold text-gray-900">Category Spend</h3>
+              <PieChart className="h-5 w-5 text-gray-500" />
+            </div>
+            <ResponsiveContainer width="100%" height={250}>
+              <RePieChart>
+                <Pie
+                  data={categorySpend}
+                  cx="50%"
+                  cy="50%"
+                  labelLine={false}
+                  label={(entry) => `${entry.percentage}%`}
+                  outerRadius={80}
+                  fill="#8884d8"
+                  dataKey="value"
+                >
+                  {categorySpend.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                  ))}
+                </Pie>
+                <Tooltip formatter={(value: number) => `₹${(value / 100000).toFixed(1)}L`} />
+              </RePieChart>
+            </ResponsiveContainer>
+            <div className="mt-4 space-y-2">
+              {categorySpend.slice(0, 3).map((cat, index) => (
+                <div key={cat.category} className="flex items-center justify-between text-sm">
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded-full" style={{ backgroundColor: COLORS[index] }} />
+                    <span className="text-gray-600">{cat.category}</span>
+                  </div>
+                  <span className="font-semibold text-gray-900">₹{(cat.value / 100000).toFixed(0)}L</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Second Row of Charts */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* PO Status Distribution */}
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-semibold text-gray-900">PO Status Distribution</h3>
+              <BarChart3 className="h-5 w-5 text-gray-500" />
+            </div>
+            <ResponsiveContainer width="100%" height={250}>
+              <BarChart data={poStatusData} layout="vertical">
+                <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+                <XAxis type="number" stroke="#888" fontSize={12} />
+                <YAxis dataKey="status" type="category" stroke="#888" fontSize={11} width={100} />
+                <Tooltip formatter={(value: number) => value} />
+                <Bar dataKey="count" fill={CHART_COLORS.primary} radius={[0, 4, 4, 0]} />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+
+          {/* Vendor Performance Radar */}
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-semibold text-gray-900">Vendor Performance</h3>
+              <Activity className="h-5 w-5 text-gray-500" />
+            </div>
+            <ResponsiveContainer width="100%" height={250}>
+              <RadarChart data={[
+                { metric: 'On-Time', top: 95, avg: 85 },
+                { metric: 'Quality', top: 92, avg: 80 },
+                { metric: 'Cost', top: 88, avg: 75 },
+                { metric: 'Response', top: 90, avg: 78 },
+                { metric: 'Flexibility', top: 86, avg: 72 }
+              ]}>
+                <PolarGrid stroke="#e0e0e0" />
+                <PolarAngleAxis dataKey="metric" fontSize={12} />
+                <PolarRadiusAxis angle={90} domain={[0, 100]} fontSize={10} />
+                <Radar name="Top Vendors" dataKey="top" stroke={CHART_COLORS.success} fill={CHART_COLORS.success} fillOpacity={0.6} />
+                <Radar name="Average" dataKey="avg" stroke={CHART_COLORS.warning} fill={CHART_COLORS.warning} fillOpacity={0.6} />
+                <Legend />
+              </RadarChart>
+            </ResponsiveContainer>
+          </div>
+
+          {/* Quick Metrics */}
+          <div className="space-y-4">
+            <div className="bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl p-4 text-white">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-blue-100 text-sm">Avg Processing Time</p>
+                  <p className="text-2xl font-bold mt-1">2.3 days</p>
+                  <p className="text-xs text-blue-100 mt-1 flex items-center gap-1">
+                    <TrendingDown className="h-3 w-3" />
+                    12% faster than last month
+                  </p>
+                </div>
+                <Clock className="h-10 w-10 text-blue-200" />
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-r from-green-500 to-emerald-600 rounded-xl p-4 text-white">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-green-100 text-sm">Cost Savings Rate</p>
+                  <p className="text-2xl font-bold mt-1">8.2%</p>
+                  <p className="text-xs text-green-100 mt-1 flex items-center gap-1">
+                    <TrendingUp className="h-3 w-3" />
+                    ₹{(stats.savingsThisMonth / 100000).toFixed(1)}L this month
+                  </p>
+                </div>
+                <TrendingUp className="h-10 w-10 text-green-200" />
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-r from-purple-500 to-purple-600 rounded-xl p-4 text-white">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-purple-100 text-sm">Compliance Rate</p>
+                  <p className="text-2xl font-bold mt-1">94.5%</p>
+                  <p className="text-xs text-purple-100 mt-1">Policy adherence</p>
+                </div>
+                <CheckCircle className="h-10 w-10 text-purple-200" />
+              </div>
             </div>
           </div>
         </div>
