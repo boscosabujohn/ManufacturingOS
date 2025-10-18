@@ -120,23 +120,18 @@ export default function ScheduleGanttPage() {
   const todayPosition = `${(todayOffset / totalDays) * 100}%`;
 
   return (
-    <div className="p-6 space-y-6">
-      {/* Header */}
-      <div className="flex justify-between items-center">
-        <div>
-          <h1 className="text-3xl font-bold text-gray-900">Project Schedule - Gantt Chart</h1>
-          <p className="text-gray-600 mt-1">Taj Hotel Commercial Kitchen Installation</p>
-        </div>
-        <div className="flex gap-3">
+    <div className="w-full h-screen overflow-y-auto overflow-x-hidden">
+      <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+        {/* Header Actions */}
+        <div className="flex justify-end mb-4">
           <button className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
             <Download className="w-5 h-5" />
             Export
           </button>
         </div>
-      </div>
 
-      {/* Controls */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+        {/* Controls */}
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
             {/* View Mode Toggle */}
@@ -349,6 +344,7 @@ export default function ScheduleGanttPage() {
             {Math.round(mockTasks.reduce((sum, t) => sum + t.progress, 0) / mockTasks.length)}%
           </p>
         </div>
+      </div>
       </div>
     </div>
   );

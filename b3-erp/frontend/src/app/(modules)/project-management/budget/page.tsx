@@ -153,12 +153,17 @@ export default function BudgetPlanningPage() {
   const [showAddModal, setShowAddModal] = useState(false);
 
   // Calculate totals
+  const estimatedCost = budgetItems.reduce((sum, item) => sum + item.estimatedCost, 0);
+  const actualCost = budgetItems.reduce((sum, item) => sum + item.actualCost, 0);
+  const variance = estimatedCost - actualCost;
+  const variancePercent = (variance / estimatedCost) * 100;
+  
   const totals = {
-    estimatedCost: budgetItems.reduce((sum, item) => sum + item.estimatedCost, 0),
-    actualCost: budgetItems.reduce((sum, item) => sum + item.actualCost, 0),
+    estimatedCost,
+    actualCost,
+    variance,
+    variancePercent,
   };
-  totals.variance = totals.estimatedCost - totals.actualCost;
-  totals.variancePercent = (totals.variance / totals.estimatedCost) * 100;
 
   // Group by category
   const categories = Array.from(new Set(budgetItems.map(item => item.category)));
@@ -194,14 +199,10 @@ export default function BudgetPlanningPage() {
   };
 
   return (
-    <div className="p-6 space-y-6">
-      {/* Header */}
-      <div className="flex justify-between items-center">
-        <div>
-          <h1 className="text-3xl font-bold text-gray-900">Budget Planning & Tracking</h1>
-          <p className="text-gray-600 mt-1">Taj Hotel Commercial Kitchen Project</p>
-        </div>
-        <div className="flex gap-3">
+    <div className="w-full h-screen overflow-y-auto overflow-x-hidden">
+      <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+        {/* Header Actions */}
+        <div className="flex justify-end gap-3 mb-4">
           <button
             onClick={() => setShowAddModal(true)}
             className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
@@ -214,9 +215,8 @@ export default function BudgetPlanningPage() {
             Save Budget
           </button>
         </div>
-      </div>
 
-      {/* Summary Cards */}
+        {/* Summary Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
           <div className="flex items-center justify-between mb-2">
@@ -451,6 +451,7 @@ export default function BudgetPlanningPage() {
             </div>
           ))}
         </div>
+      </div>
       </div>
     </div>
   );

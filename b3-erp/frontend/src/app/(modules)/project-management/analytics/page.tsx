@@ -105,24 +105,20 @@ export default function ProjectAnalyticsPage() {
   const maxValue = getMaxValue();
 
   return (
-    <div className="p-6 space-y-6">
-      {/* Header */}
-      <div className="flex justify-between items-center">
-        <div>
-          <h1 className="text-3xl font-bold text-gray-900">Project Analytics</h1>
-          <p className="text-gray-600 mt-1">Comprehensive project performance insights and metrics</p>
-        </div>
-        <div className="flex space-x-2">
-          <button
-            onClick={() => setTimeRange('month')}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-              timeRange === 'month'
-                ? 'bg-blue-600 text-white'
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-            }`}
-          >
-            Month
-          </button>
+    <div className="w-full h-screen overflow-y-auto overflow-x-hidden">
+      <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+      {/* Time Range Filter */}
+      <div className="flex justify-end space-x-2 mb-4">
+        <button
+          onClick={() => setTimeRange('month')}
+          className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+            timeRange === 'month'
+              ? 'bg-blue-600 text-white'
+              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+          }`}
+        >
+          Month
+        </button>
           <button
             onClick={() => setTimeRange('quarter')}
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${

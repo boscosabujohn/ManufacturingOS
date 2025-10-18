@@ -60,37 +60,35 @@ export default function ProjectSettingsPage() {
   };
 
   return (
-    <div className="p-6 max-w-[1400px] mx-auto">
-      {/* Header */}
-      <div className="mb-6">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900">Project Management Settings</h1>
-            <p className="text-gray-600 mt-1">Configure project workflows, approvals, and system preferences</p>
-          </div>
-          {hasChanges && (
-            <div className="flex gap-3">
-              <button
-                onClick={handleReset}
-                className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
-              >
-                <RefreshCw className="w-4 h-4" />
-                Reset
-              </button>
-              <button
-                onClick={handleSave}
-                className="flex items-center gap-2 px-4 py-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700"
-              >
-                <Save className="w-4 h-4" />
-                Save Changes
-              </button>
+    <div className="h-screen flex flex-col overflow-hidden">
+      <div className="flex-1 overflow-y-auto overflow-x-hidden">
+        <div className="px-4 sm:px-6 lg:px-8 py-6 max-w-[1400px] mx-auto">
+          {/* Action Bar */}
+          <div className="mb-6">
+            <div className="flex items-center justify-end">
+              {hasChanges && (
+                <div className="flex gap-3">
+                  <button
+                    onClick={handleReset}
+                    className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
+                  >
+                    <RefreshCw className="w-4 h-4" />
+                    Reset
+                  </button>
+                  <button
+                    onClick={handleSave}
+                    className="flex items-center gap-2 px-4 py-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700"
+                  >
+                    <Save className="w-4 h-4" />
+                    Save Changes
+                  </button>
+                </div>
+              )}
             </div>
-          )}
-        </div>
-      </div>
+          </div>
 
-      {/* Tabs */}
-      <div className="flex border-b border-gray-200 mb-6 overflow-x-auto">
+          {/* Tabs */}
+          <div className="flex border-b border-gray-200 mb-6 overflow-x-auto">
         <button
           onClick={() => setActiveTab('general')}
           className={`px-6 py-3 font-medium whitespace-nowrap ${
@@ -898,6 +896,8 @@ export default function ProjectSettingsPage() {
           </button>
         </div>
       )}
+        </div>
+      </div>
     </div>
   );
 }

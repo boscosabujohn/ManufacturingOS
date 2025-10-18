@@ -32,7 +32,7 @@ interface CustomerAcceptance {
   deliverables: string[];
   acceptanceCriteria: AcceptanceCriteria[];
   totalCriteria: number;
-  criteriaM et: number;
+  criteriaMet: number;
   criteriaPending: number;
   documentation: Documentation[];
   totalDocuments: number;
@@ -86,7 +86,7 @@ export default function CustomerAcceptancePage() {
         { id: 'CR-005', criterion: 'Documentation handover', status: 'Met', remarks: 'All manuals, warranties, and certificates provided' },
       ],
       totalCriteria: 5,
-      criteriaM et: 5,
+      criteriaMet: 5,
       criteriaPending: 0,
       documentation: [
         { id: 'DOC-001', documentName: 'Operation Manuals', status: 'Approved', submittedDate: '2025-01-18' },
@@ -135,7 +135,7 @@ export default function CustomerAcceptancePage() {
         { id: 'CR-010', criterion: 'Alarm and monitoring system', status: 'Met', remarks: 'SMS and email alerts working' },
       ],
       totalCriteria: 5,
-      criteriaM et: 4,
+      criteriaMet: 4,
       criteriaPending: 1,
       documentation: [
         { id: 'DOC-006', documentName: 'Commissioning Report', status: 'Approved', submittedDate: '2025-01-20' },
@@ -183,7 +183,7 @@ export default function CustomerAcceptancePage() {
         { id: 'CR-015', criterion: 'Electrical points functional', status: 'Met', remarks: 'All power points working' },
       ],
       totalCriteria: 5,
-      criteriaM et: 5,
+      criteriaMet: 5,
       criteriaPending: 0,
       documentation: [
         { id: 'DOC-010', documentName: 'Installation Certificate', status: 'Approved', submittedDate: '2025-01-22' },
@@ -230,7 +230,7 @@ export default function CustomerAcceptancePage() {
         { id: 'CR-020', criterion: 'Fire suppression system', status: 'Not Met', remarks: 'Installation pending - Phase 2' },
       ],
       totalCriteria: 5,
-      criteriaM et: 3,
+      criteriaMet: 3,
       criteriaPending: 2,
       documentation: [
         { id: 'DOC-013', documentName: 'Phase 1 Completion Report', status: 'Approved', submittedDate: '2025-01-23' },
@@ -278,7 +278,7 @@ export default function CustomerAcceptancePage() {
         { id: 'CR-025', criterion: 'Health department approval', status: 'Not Met', remarks: 'Inspection scheduled next week' },
       ],
       totalCriteria: 5,
-      criteriaM et: 3,
+      criteriaMet: 3,
       criteriaPending: 2,
       documentation: [
         { id: 'DOC-017', documentName: 'Completion Certificate', status: 'Pending', submittedDate: '' },
@@ -326,7 +326,7 @@ export default function CustomerAcceptancePage() {
         { id: 'CR-030', criterion: 'Safety interlocks functional', status: 'Met', remarks: 'All safety systems tested' },
       ],
       totalCriteria: 5,
-      criteriaM et: 3,
+      criteriaMet: 3,
       criteriaPending: 2,
       documentation: [
         { id: 'DOC-021', documentName: 'Installation Drawings', status: 'Approved', submittedDate: '2025-01-20' },
@@ -374,7 +374,7 @@ export default function CustomerAcceptancePage() {
         { id: 'CR-035', criterion: 'Backup power system', status: 'Not Met', remarks: 'DG commissioning pending' },
       ],
       totalCriteria: 5,
-      criteriaM et: 0,
+      criteriaMet: 0,
       criteriaPending: 5,
       documentation: [
         { id: 'DOC-025', documentName: 'Design Approval', status: 'Approved', submittedDate: '2025-01-10' },
@@ -421,7 +421,7 @@ export default function CustomerAcceptancePage() {
         { id: 'CR-040', criterion: 'Phase 1 deliverables complete', status: 'Partially Met', remarks: 'One refrigeration unit pending delivery' },
       ],
       totalCriteria: 5,
-      criteriaM et: 4,
+      criteriaMet: 4,
       criteriaPending: 1,
       documentation: [
         { id: 'DOC-028', documentName: 'Phase 1 Report', status: 'Submitted', submittedDate: '2025-01-23' },
@@ -519,24 +519,22 @@ export default function CustomerAcceptancePage() {
   };
 
   return (
-    <div className="p-6 space-y-6">
-      {/* Header */}
-      <div className="flex justify-between items-center">
-        <div>
-          <h1 className="text-3xl font-bold text-gray-900">Customer Acceptance & Sign-off</h1>
-          <p className="text-gray-600 mt-1">Project deliverables acceptance and formal handover</p>
-        </div>
-        <button
-          onClick={() => setShowAddModal(true)}
-          className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-        >
-          <Plus className="h-5 w-5" />
-          <span>New Acceptance</span>
-        </button>
-      </div>
+    <div className="h-screen flex flex-col overflow-hidden">
+      <div className="flex-1 overflow-y-auto overflow-x-hidden">
+        <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+          {/* Action Bar */}
+          <div className="flex justify-end items-center">
+            <button
+              onClick={() => setShowAddModal(true)}
+              className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+            >
+              <Plus className="h-5 w-5" />
+              <span>New Acceptance</span>
+            </button>
+          </div>
 
-      {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-7 gap-4">
+          {/* Statistics Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-7 gap-4">
         <div className="bg-white p-4 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
@@ -684,11 +682,11 @@ export default function CustomerAcceptancePage() {
                   <div className="flex-1 bg-gray-200 rounded-full h-2">
                     <div
                       className="bg-green-600 h-2 rounded-full"
-                      style={{ width: `${(acceptance.criteriaM et / acceptance.totalCriteria) * 100}%` }}
+                      style={{ width: `${(acceptance.criteriaMet / acceptance.totalCriteria) * 100}%` }}
                     ></div>
                   </div>
                   <span className="text-sm font-semibold text-gray-900">
-                    {acceptance.criteriaM et}/{acceptance.totalCriteria}
+                    {acceptance.criteriaMet}/{acceptance.totalCriteria}
                   </span>
                 </div>
               </div>
@@ -990,6 +988,8 @@ export default function CustomerAcceptancePage() {
           </div>
         </div>
       )}
+        </div>
+      </div>
     </div>
   );
 }

@@ -117,15 +117,76 @@ const megaMenuData: Record<string, MegaMenuSection[]> = {
   ],
   projects: [
     {
-      id: 'project-mgmt',
-      name: 'Project Management',
+      id: 'project-overview',
+      name: 'Overview & Planning',
       icon: FolderKanban,
       color: 'text-cyan-600 bg-cyan-50',
       items: [
-        { id: 'planning', name: 'Project Planning', href: '/projects/planning', description: 'Create project plans' },
-        { id: 'commissioning', name: 'Commissioning', href: '/projects/commissioning', description: 'Site commissioning activities' },
-        { id: 'tracking', name: 'Progress Tracking', href: '/projects/tracking', description: 'Monitor project progress' },
-        { id: 'resources', name: 'Resource Allocation', href: '/projects/resources', description: 'Allocate team resources' },
+        { id: 'pm-dashboard', name: 'Dashboard', href: '/project-management/dashboard', description: 'Overview & analytics' },
+        { id: 'all-projects', name: 'All Projects', href: '/project-management', description: 'Project list' },
+        { id: 'create-project', name: 'Create Project', href: '/project-management/create', description: 'New project' },
+        { id: 'analytics', name: 'Analytics', href: '/project-management/analytics', description: 'Project analytics' },
+        { id: 'templates', name: 'Templates', href: '/project-management/templates', description: 'Project templates' },
+        { id: 'project-types', name: 'Project Types', href: '/project-management/project-types', description: 'Type management' },
+      ],
+    },
+    {
+      id: 'project-execution',
+      name: 'Execution & Tracking',
+      icon: FolderKanban,
+      color: 'text-blue-600 bg-blue-50',
+      items: [
+        { id: 'deliverables', name: 'Deliverables', href: '/project-management/deliverables', description: 'Track deliverables' },
+        { id: 'tasks', name: 'Tasks', href: '/project-management/tasks', description: 'Task management' },
+        { id: 'schedule', name: 'Schedule', href: '/project-management/schedule', description: 'Gantt chart' },
+        { id: 'timeline', name: 'Timeline', href: '/project-management/timeline', description: 'Project timeline' },
+        { id: 'progress', name: 'Progress Tracking', href: '/project-management/progress', description: 'Track progress' },
+        { id: 'wbs', name: 'WBS', href: '/project-management/wbs', description: 'Work breakdown structure' },
+        { id: 'milestone-templates', name: 'Milestone Templates', href: '/project-management/milestone-templates', description: 'Milestone templates' },
+      ],
+    },
+    {
+      id: 'project-resources',
+      name: 'Resources & Costs',
+      icon: FolderKanban,
+      color: 'text-green-600 bg-green-50',
+      items: [
+        { id: 'resources', name: 'Resources', href: '/project-management/resources', description: 'Resource list' },
+        { id: 'resource-allocation', name: 'Resource Allocation', href: '/project-management/resource-allocation', description: 'Allocate resources' },
+        { id: 'resource-utilization', name: 'Resource Utilization', href: '/project-management/resource-utilization', description: 'Track utilization' },
+        { id: 'budget', name: 'Budget', href: '/project-management/budget', description: 'Budget management' },
+        { id: 'project-costing', name: 'Project Costing', href: '/project-management/project-costing', description: 'Cost tracking' },
+        { id: 'profitability', name: 'Profitability', href: '/project-management/profitability', description: 'Profit analysis' },
+        { id: 'labor-tracking', name: 'Labor Tracking', href: '/project-management/labor-tracking', description: 'Track labor costs' },
+        { id: 'material-consumption', name: 'Material Consumption', href: '/project-management/material-consumption', description: 'Material usage' },
+        { id: 'mrp', name: 'MRP', href: '/project-management/mrp', description: 'Material planning' },
+      ],
+    },
+    {
+      id: 'project-operations',
+      name: 'Site & Operations',
+      icon: FolderKanban,
+      color: 'text-orange-600 bg-orange-50',
+      items: [
+        { id: 'site-survey', name: 'Site Survey', href: '/project-management/site-survey', description: 'Site surveys' },
+        { id: 'site-issues', name: 'Site Issues', href: '/project-management/site-issues', description: 'Site problems' },
+        { id: 'installation-tracking', name: 'Installation Tracking', href: '/project-management/installation-tracking', description: 'Track installations' },
+        { id: 'commissioning', name: 'Commissioning', href: '/project-management/commissioning', description: 'Commissioning tasks' },
+        { id: 'quality-inspection', name: 'Quality Inspection', href: '/project-management/quality-inspection', description: 'Quality checks' },
+        { id: 'customer-acceptance', name: 'Customer Acceptance', href: '/project-management/customer-acceptance', description: 'Acceptance tracking' },
+      ],
+    },
+    {
+      id: 'project-admin',
+      name: 'Issues & Admin',
+      icon: FolderKanban,
+      color: 'text-purple-600 bg-purple-50',
+      items: [
+        { id: 'issues', name: 'Issues', href: '/project-management/issues', description: 'Issue tracking' },
+        { id: 'change-orders', name: 'Change Orders', href: '/project-management/change-orders', description: 'Change requests' },
+        { id: 'documents', name: 'Documents', href: '/project-management/documents', description: 'Document management' },
+        { id: 'reports', name: 'Reports', href: '/project-management/reports', description: 'Project reports' },
+        { id: 'settings', name: 'Settings', href: '/project-management/settings', description: 'PM settings' },
       ],
     },
     {
@@ -203,37 +264,37 @@ export default function MegaMenu({ activeMenu, onClose }: MegaMenuProps) {
       />
 
       {/* Mega Menu Panel */}
-      <div className="absolute top-full left-0 right-0 bg-white border-t border-gray-200 shadow-2xl z-50 animate-slideDown">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="absolute top-full left-0 right-0 bg-white border-t border-gray-200 shadow-2xl z-50 animate-slideDown max-h-[80vh] overflow-y-auto">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {sections.map((section) => {
               const Icon = section.icon;
               return (
-                <div key={section.id} className="space-y-4">
+                <div key={section.id} className="space-y-3">
                   {/* Section Header */}
-                  <div className="flex items-center space-x-3 pb-3 border-b border-gray-200">
-                    <div className={`p-2 rounded-lg ${section.color}`}>
-                      <Icon className="h-5 w-5" />
+                  <div className="flex items-center space-x-2 pb-2 border-b border-gray-200">
+                    <div className={`p-1.5 rounded-lg ${section.color}`}>
+                      <Icon className="h-4 w-4" />
                     </div>
-                    <h3 className="text-lg font-bold text-gray-900">{section.name}</h3>
+                    <h3 className="text-base font-bold text-gray-900">{section.name}</h3>
                   </div>
 
                   {/* Section Items */}
-                  <div className="space-y-2">
+                  <div className="space-y-1">
                     {section.items.map((item) => (
                       <Link
                         key={item.id}
                         href={item.href}
                         onClick={onClose}
-                        className="block p-3 rounded-lg hover:bg-blue-50 transition-colors group"
+                        className="block p-2 rounded-lg hover:bg-blue-50 transition-colors group"
                       >
                         <div className="flex items-start justify-between">
                           <div className="flex-1">
-                            <h4 className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors flex items-center">
+                            <h4 className="text-sm font-semibold text-gray-900 group-hover:text-blue-600 transition-colors flex items-center">
                               {item.name}
-                              <ArrowRight className="h-4 w-4 ml-2 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                              <ArrowRight className="h-3 w-3 ml-1.5 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
                             </h4>
-                            <p className="text-sm text-gray-600 mt-1">{item.description}</p>
+                            <p className="text-xs text-gray-600 mt-0.5">{item.description}</p>
                           </div>
                         </div>
                       </Link>
@@ -245,10 +306,10 @@ export default function MegaMenu({ activeMenu, onClose }: MegaMenuProps) {
           </div>
 
           {/* Quick Actions Footer */}
-          <div className="mt-8 pt-6 border-t border-gray-200">
+          <div className="mt-6 pt-4 border-t border-gray-200">
             <div className="flex items-center justify-between">
               <div>
-                <h4 className="text-sm font-semibold text-gray-900 mb-1">Need help navigating?</h4>
+                <h4 className="text-sm font-semibold text-gray-900 mb-0.5">Need help navigating?</h4>
                 <p className="text-xs text-gray-600">Check our documentation or contact support</p>
               </div>
               <div className="flex space-x-4">

@@ -360,13 +360,9 @@ export default function ResourcesListPage() {
   const roles = Array.from(new Set(resources.map(r => r.role)));
 
   return (
-    <div className="p-6 space-y-6">
-      {/* Header */}
-      <div className="flex justify-between items-center">
-        <div>
-          <h1 className="text-3xl font-bold text-gray-900">Project Resources</h1>
-          <p className="text-gray-600 mt-1">Manage and allocate project team members</p>
-        </div>
+    <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+      {/* Header Actions */}
+      <div className="flex justify-end mb-4">
         <Link
           href="/project-management/resources/add"
           className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
