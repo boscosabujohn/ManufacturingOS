@@ -221,30 +221,25 @@ export default function FinancialPeriodsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-purple-50 p-6">
-      {/* Header */}
-      <div className="mb-6">
-        <div className="flex items-center justify-between mb-4">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
-              <Calendar className="w-8 h-8 text-purple-600" />
-              Financial Periods
-            </h1>
-            <p className="text-gray-600 mt-1">Manage financial years and accounting periods</p>
-          </div>
-          <div className="flex items-center gap-3">
-            <Link
-              href="/finance/accounting/periods/create"
-              className="flex items-center gap-2 bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg shadow-lg transition-all hover:shadow-xl"
-            >
-              <Plus className="w-5 h-5" />
-              <span className="font-semibold">New Financial Year</span>
-            </Link>
-          </div>
-        </div>
+    <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 to-purple-50">
+      <div className="flex-1 overflow-y-auto overflow-x-hidden">
+        <div className="px-4 sm:px-6 lg:px-8 py-6">
+          {/* Action Bar */}
+          <div className="mb-6">
+            <div className="flex items-center justify-end mb-4">
+              <div className="flex items-center gap-3">
+                <Link
+                  href="/finance/accounting/periods/create"
+                  className="flex items-center gap-2 bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg shadow-lg transition-all hover:shadow-xl"
+                >
+                  <Plus className="w-5 h-5" />
+                  <span className="font-semibold">New Financial Year</span>
+                </Link>
+              </div>
+            </div>
 
-        {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+            {/* Stats */}
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
           <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl shadow-lg p-6 text-white">
             <div className="flex items-center justify-between mb-2">
               <p className="text-purple-100 text-sm">Active Financial Years</p>
@@ -511,6 +506,8 @@ export default function FinancialPeriodsPage() {
           </div>
         </div>
       )}
+        </div>
+      </div>
     </div>
   );
 }

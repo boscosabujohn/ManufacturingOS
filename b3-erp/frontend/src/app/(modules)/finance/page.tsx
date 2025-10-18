@@ -163,18 +163,11 @@ export default function FinanceDashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 p-6">
-      {/* Header */}
-      <div className="mb-8">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-4xl font-bold text-gray-900 flex items-center gap-3">
-              <DollarSign className="w-10 h-10 text-blue-600" />
-              Finance Dashboard
-            </h1>
-            <p className="text-gray-600 mt-2 text-lg">Comprehensive financial overview and analytics</p>
-          </div>
-          <div className="flex items-center gap-3">
+    <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 to-blue-50">
+      <div className="flex-1 overflow-y-auto overflow-x-hidden">
+        <div className="px-4 sm:px-6 lg:px-8 py-6">
+          {/* Header Actions */}
+          <div className="mb-6 flex items-center justify-end gap-3">
             <div className="bg-white rounded-lg shadow-sm border border-gray-200 px-4 py-2">
               <div className="flex items-center gap-2 text-sm text-gray-600">
                 <Calendar className="w-4 h-4" />
@@ -189,8 +182,6 @@ export default function FinanceDashboard() {
               <span>Settings</span>
             </Link>
           </div>
-        </div>
-      </div>
 
       {/* Key Metrics - Top Row */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
@@ -500,6 +491,8 @@ export default function FinanceDashboard() {
             </Link>
           </div>
         </div>
+        </div>
+      </div>
       </div>
     </div>
   );

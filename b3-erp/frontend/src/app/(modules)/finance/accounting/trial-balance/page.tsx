@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import {
   Calendar, Download, Printer, Filter, ChevronDown, ChevronRight,
@@ -260,50 +260,45 @@ export default function TrialBalancePage() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      {/* Header */}
-      <div className="mb-6">
-        <div className="flex items-start justify-between mb-4">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900 flex items-center space-x-3">
-              <BarChart3 className="h-8 w-8 text-blue-600" />
-              <span>Trial Balance</span>
-            </h1>
-            <p className="text-gray-600 mt-1">Verify accounting entries with debit/credit balance</p>
-          </div>
-          <div className="flex items-center space-x-2">
-            <button
-              onClick={handlePrint}
-              className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-            >
-              <Printer className="h-4 w-4" />
-              <span>Print</span>
-            </button>
-            <div className="relative group">
-              <button className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
-                <Download className="h-4 w-4" />
-                <span>Export</span>
-              </button>
-              <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-10">
+    <div className="h-screen flex flex-col overflow-hidden">
+      <div className="flex-1 overflow-y-auto overflow-x-hidden">
+        <div className="px-4 sm:px-6 lg:px-8 py-6">
+          {/* Action Bar */}
+          <div className="mb-6">
+            <div className="flex items-center justify-end mb-4">
+              <div className="flex items-center space-x-2">
                 <button
-                  onClick={() => handleExport('excel')}
-                  className="w-full px-4 py-2 text-left hover:bg-gray-50 rounded-t-lg"
+                  onClick={handlePrint}
+                  className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
                 >
-                  Export as Excel
+                  <Printer className="h-4 w-4" />
+                  <span>Print</span>
                 </button>
-                <button
-                  onClick={() => handleExport('pdf')}
-                  className="w-full px-4 py-2 text-left hover:bg-gray-50 rounded-b-lg"
-                >
-                  Export as PDF
-                </button>
+                <div className="relative group">
+                  <button className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+                    <Download className="h-4 w-4" />
+                    <span>Export</span>
+                  </button>
+                  <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-10">
+                    <button
+                      onClick={() => handleExport('excel')}
+                      className="w-full px-4 py-2 text-left hover:bg-gray-50 rounded-t-lg"
+                    >
+                      Export as Excel
+                    </button>
+                    <button
+                      onClick={() => handleExport('pdf')}
+                      className="w-full px-4 py-2 text-left hover:bg-gray-50 rounded-b-lg"
+                    >
+                      Export as PDF
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
 
-        {/* Balance Status */}
-        {isBalanced ? (
+            {/* Balance Status */}
+            {isBalanced ? (
           <div className="bg-green-50 border border-green-200 rounded-lg p-4 flex items-start space-x-3">
             <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
             <div className="flex-1">
@@ -532,6 +527,8 @@ export default function TrialBalancePage() {
               </tr>
             </tfoot>
           </table>
+        </div>
+          </div>
         </div>
       </div>
     </div>
