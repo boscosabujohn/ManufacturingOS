@@ -127,15 +127,17 @@ const menuItems: MenuItem[] = [
     ],
   },
   {
-    id: 'projects',
-    name: 'Projects',
+    id: 'project-management',
+    name: 'Project Management',
     icon: FolderKanban,
     color: 'text-cyan-600',
     subItems: [
-      { id: 'planning', name: 'Project Planning', href: '/projects/planning', description: 'Plan projects' },
-      { id: 'commissioning', name: 'Commissioning', href: '/projects/commissioning', description: 'Site commissioning' },
-      { id: 'tracking', name: 'Progress Tracking', href: '/projects/tracking', description: 'Track progress' },
-      { id: 'resources', name: 'Resource Allocation', href: '/projects/resources', description: 'Allocate resources' },
+      { id: 'pm-dashboard', name: 'Project Dashboard', href: '/project-management/dashboard', description: 'Overview & analytics' },
+      { id: 'projects', name: 'All Projects', href: '/project-management', description: 'Project list' },
+      { id: 'deliverables', name: 'Deliverables', href: '/project-management/deliverables', description: 'Track deliverables' },
+      { id: 'tasks', name: 'Tasks', href: '/project-management/tasks', description: 'Task management' },
+      { id: 'resources', name: 'Resources', href: '/project-management/resources', description: 'Resource allocation' },
+      { id: 'timeline', name: 'Timeline', href: '/project-management/timeline', description: 'Gantt & scheduling' },
     ],
   },
   {
@@ -145,6 +147,7 @@ const menuItems: MenuItem[] = [
     color: 'text-yellow-600',
     subItems: [
       { id: 'accounting', name: 'Accounting', href: '/finance/accounting', description: 'General ledger' },
+      { id: 'costing', name: 'Job Costing', href: '/finance/costing', description: 'Cost management' },
       { id: 'invoices', name: 'Invoices', href: '/finance/invoices', description: 'Invoice management' },
       { id: 'payments', name: 'Payments', href: '/finance/payments', description: 'Payment processing' },
       { id: 'receivables', name: 'Receivables', href: '/finance/receivables', description: 'AR management' },

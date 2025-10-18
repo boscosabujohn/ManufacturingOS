@@ -83,6 +83,15 @@ const modules = [
     stats: { total: 567, new: 28 },
   },
   {
+    id: 'project-management',
+    name: 'Project Management',
+    description: 'Manufacturing Project Execution',
+    icon: FolderKanban,
+    href: '/project-management/dashboard',
+    color: 'bg-cyan-500',
+    stats: { total: 10, new: 2 },
+  },
+  {
     id: 'finance',
     name: 'Finance',
     description: 'Financial Accounting',
