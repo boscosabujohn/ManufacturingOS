@@ -204,71 +204,63 @@ export default function SystemPage() {
   };
 
   return (
-    <div className="p-6 space-y-6">
-      {/* Header */}
-      <div className="flex justify-between items-center">
-        <div>
-          <h1 className="text-3xl font-bold text-gray-900">System Configuration</h1>
-          <p className="text-gray-600 mt-1">Manage system settings and parameters</p>
-        </div>
-      </div>
-
+    <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6 space-y-6">
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl shadow-lg p-6 text-white">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 border border-green-200 rounded-xl shadow-sm p-4 text-green-700">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-green-100 text-sm font-medium">System Health</p>
-              <p className="text-3xl font-bold mt-2">{systemHealth}%</p>
-              <p className="text-green-100 text-xs mt-2">All systems operational</p>
+              <p className="text-green-600 text-sm font-medium">System Health</p>
+              <p className="text-3xl font-bold text-green-700 mt-2">{systemHealth}%</p>
+              <p className="text-green-600 text-xs mt-2">All systems operational</p>
             </div>
-            <div className="bg-white/20 rounded-full p-3">
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="bg-green-100 rounded-full p-3">
+              <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl shadow-lg p-6 text-white">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl shadow-sm p-4 text-blue-700">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-blue-100 text-sm font-medium">Uptime</p>
-              <p className="text-3xl font-bold mt-2">{uptime}%</p>
-              <p className="text-blue-100 text-xs mt-2">Last 30 days average</p>
+              <p className="text-blue-600 text-sm font-medium">Uptime</p>
+              <p className="text-3xl font-bold text-blue-700 mt-2">{uptime}%</p>
+              <p className="text-blue-600 text-xs mt-2">Last 30 days average</p>
             </div>
-            <div className="bg-white/20 rounded-full p-3">
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="bg-blue-100 rounded-full p-3">
+              <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl shadow-lg p-6 text-white">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 border border-orange-200 rounded-xl shadow-sm p-4 text-orange-700">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-orange-100 text-sm font-medium">Storage Used</p>
-              <p className="text-3xl font-bold mt-2">{storageUsed}%</p>
-              <p className="text-orange-100 text-xs mt-2">340 GB of 500 GB</p>
+              <p className="text-orange-600 text-sm font-medium">Storage Used</p>
+              <p className="text-3xl font-bold text-orange-700 mt-2">{storageUsed}%</p>
+              <p className="text-orange-600 text-xs mt-2">340 GB of 500 GB</p>
             </div>
-            <div className="bg-white/20 rounded-full p-3">
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="bg-orange-100 rounded-full p-3">
+              <svg className="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
               </svg>
             </div>
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl shadow-lg p-6 text-white">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 border border-purple-200 rounded-xl shadow-sm p-4 text-purple-700">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-purple-100 text-sm font-medium">Active Sessions</p>
-              <p className="text-3xl font-bold mt-2">{activeSessions}</p>
-              <p className="text-purple-100 text-xs mt-2">Current user sessions</p>
+              <p className="text-purple-600 text-sm font-medium">Active Sessions</p>
+              <p className="text-3xl font-bold text-purple-700 mt-2">{activeSessions}</p>
+              <p className="text-purple-600 text-xs mt-2">Current user sessions</p>
             </div>
-            <div className="bg-white/20 rounded-full p-3">
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="bg-purple-100 rounded-full p-3">
+              <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
               </svg>
             </div>

@@ -193,59 +193,46 @@ export default function PayrollPage() {
   }
 
   return (
-    <div className="p-6 space-y-6">
-      <div className="flex justify-between items-center">
-        <div>
-          <h1 className="text-3xl font-bold text-gray-900">Payroll Management</h1>
-          <p className="text-gray-500 mt-1">Manage employee payroll and salary disbursements</p>
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-6 text-white">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-blue-100 text-sm font-medium">Total Payroll</p>
-              <h3 className="text-2xl font-bold mt-2">₹{totalPayroll.toLocaleString()}</h3>
-            </div>
-            <div className="bg-blue-400 bg-opacity-30 rounded-full p-3">
-              <DollarSign className="h-8 w-8" />
+    <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6">
+      <div className="space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-blue-600">Total Payroll</p>
+                <p className="text-2xl font-bold text-blue-900 mt-1">₹{totalPayroll.toLocaleString()}</p>
+              </div>
+              <DollarSign className="h-8 w-8 text-blue-600" />
             </div>
           </div>
-        </div>
 
-        <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-6 text-white">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-green-100 text-sm font-medium">Paid This Month</p>
-              <h3 className="text-2xl font-bold mt-2">₹{paidThisMonth.toLocaleString()}</h3>
-            </div>
-            <div className="bg-green-400 bg-opacity-30 rounded-full p-3">
-              <CheckCircle className="h-8 w-8" />
+          <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-green-600">Paid This Month</p>
+                <p className="text-2xl font-bold text-green-900 mt-1">₹{paidThisMonth.toLocaleString()}</p>
+              </div>
+              <CheckCircle className="h-8 w-8 text-green-600" />
             </div>
           </div>
-        </div>
 
-        <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg p-6 text-white">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-orange-100 text-sm font-medium">Pending Payments</p>
-              <h3 className="text-2xl font-bold mt-2">₹{pendingPayments.toLocaleString()}</h3>
-            </div>
-            <div className="bg-orange-400 bg-opacity-30 rounded-full p-3">
-              <AlertCircle className="h-8 w-8" />
+          <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-orange-600">Pending Payments</p>
+                <p className="text-2xl font-bold text-orange-900 mt-1">₹{pendingPayments.toLocaleString()}</p>
+              </div>
+              <AlertCircle className="h-8 w-8 text-orange-600" />
             </div>
           </div>
-        </div>
 
-        <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-6 text-white">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-purple-100 text-sm font-medium">Avg Salary</p>
-              <h3 className="text-2xl font-bold mt-2">₹{Math.round(avgSalary).toLocaleString()}</h3>
-            </div>
-            <div className="bg-purple-400 bg-opacity-30 rounded-full p-3">
-              <TrendingUp className="h-8 w-8" />
+          <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-purple-600">Avg Salary</p>
+                <p className="text-2xl font-bold text-purple-900 mt-1">₹{Math.round(avgSalary).toLocaleString()}</p>
+              </div>
+              <TrendingUp className="h-8 w-8 text-purple-600" />
             </div>
           </div>
         </div>
@@ -303,7 +290,7 @@ export default function PayrollPage() {
           </div>
         </div>
 
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto overflow-y-auto max-h-[calc(100vh-24rem)]">
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>

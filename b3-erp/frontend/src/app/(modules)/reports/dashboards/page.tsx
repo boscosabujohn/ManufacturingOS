@@ -559,35 +559,27 @@ export default function DashboardsPage() {
   };
 
   return (
-    <div className={`min-h-screen bg-gray-50 ${isFullscreen ? 'p-0' : 'p-6'}`}>
+    <div className={`w-full min-h-screen ${isFullscreen ? 'p-0' : 'px-4 sm:px-6 lg:px-8 py-6'}`}>
       <div className={`mx-auto space-y-6 ${isFullscreen ? 'max-w-full' : 'max-w-7xl'}`}>
         {!isFullscreen && (
           <>
             {/* Header */}
             <div className="bg-white rounded-lg shadow-sm p-6">
-              <div className="flex justify-between items-start mb-4">
-                <div>
-                  <h1 className="text-3xl font-bold text-gray-900">Dashboards</h1>
-                  <p className="text-gray-600 mt-2">
-                    Create and manage custom dashboards with real-time data visualization
-                  </p>
-                </div>
-                <div className="flex gap-2">
-                  <button
-                    onClick={handleRefreshDashboard}
-                    className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors flex items-center gap-2"
-                  >
-                    <RefreshCw className="w-4 h-4" />
-                    Refresh
-                  </button>
-                  <button
-                    onClick={handleCreateDashboard}
-                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2"
-                  >
-                    <Plus className="w-5 h-5" />
-                    Create Dashboard
-                  </button>
-                </div>
+              <div className="flex justify-end items-start gap-2 mb-4">
+                <button
+                  onClick={handleRefreshDashboard}
+                  className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors flex items-center gap-2"
+                >
+                  <RefreshCw className="w-4 h-4" />
+                  Refresh
+                </button>
+                <button
+                  onClick={handleCreateDashboard}
+                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2"
+                >
+                  <Plus className="w-5 h-5" />
+                  Create Dashboard
+                </button>
               </div>
 
               {/* Search and Filters */}

@@ -200,34 +200,54 @@ export default function AttendancePage() {
   const departments = ['all', 'Production', 'Quality Control', 'Engineering', 'Finance', 'HR', 'Procurement'];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-6">
+    <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6">
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Attendance System</h1>
-          <p className="text-gray-600">Time and attendance tracking for all employees</p>
-        </div>
-
         {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          {stats.map((stat, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow"
-            >
-              <div className={`h-2 bg-gradient-to-r ${stat.gradient}`} />
-              <div className="p-6">
-                <div className="flex items-center justify-between mb-4">
-                  <div className={`p-3 bg-gradient-to-r ${stat.gradient} rounded-lg`}>
-                    <stat.icon className="w-6 h-6 text-white" />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+          {stats.map((stat, index) => {
+            const gradientMap: { [key: string]: string } = {
+              'from-green-500 to-emerald-600': 'from-green-50 to-green-100',
+              'from-yellow-500 to-orange-600': 'from-yellow-50 to-yellow-100',
+              'from-purple-500 to-pink-600': 'from-purple-50 to-purple-100',
+              'from-red-500 to-rose-600': 'from-red-50 to-red-100',
+              'from-blue-500 to-cyan-600': 'from-blue-50 to-blue-100'
+            }
+            const borderMap: { [key: string]: string } = {
+              'from-green-500 to-emerald-600': 'border-green-200',
+              'from-yellow-500 to-orange-600': 'border-yellow-200',
+              'from-purple-500 to-pink-600': 'border-purple-200',
+              'from-red-500 to-rose-600': 'border-red-200',
+              'from-blue-500 to-cyan-600': 'border-blue-200'
+            }
+            const textMap: { [key: string]: { title: string; value: string } } = {
+              'from-green-500 to-emerald-600': { title: 'text-green-600', value: 'text-green-900' },
+              'from-yellow-500 to-orange-600': { title: 'text-yellow-600', value: 'text-yellow-900' },
+              'from-purple-500 to-pink-600': { title: 'text-purple-600', value: 'text-purple-900' },
+              'from-red-500 to-rose-600': { title: 'text-red-600', value: 'text-red-900' },
+              'from-blue-500 to-cyan-600': { title: 'text-blue-600', value: 'text-blue-900' }
+            }
+            const iconMap: { [key: string]: string } = {
+              'from-green-500 to-emerald-600': 'text-green-600',
+              'from-yellow-500 to-orange-600': 'text-yellow-600',
+              'from-purple-500 to-pink-600': 'text-purple-600',
+              'from-red-500 to-rose-600': 'text-red-600',
+              'from-blue-500 to-cyan-600': 'text-blue-600'
+            }
+            return (
+              <div
+                key={index}
+                className={`bg-gradient-to-br ${gradientMap[stat.gradient]} rounded-lg p-4 border ${borderMap[stat.gradient]}`}
+              >
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className={`text-sm font-medium ${textMap[stat.gradient].title}`}>{stat.title}</p>
+                    <p className={`text-2xl font-bold mt-1 ${textMap[stat.gradient].value}`}>{stat.value}</p>
                   </div>
+                  <stat.icon className={`h-8 w-8 ${iconMap[stat.gradient]}`} />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-1">{stat.value}</h3>
-                <p className="text-sm font-medium text-gray-600 mb-1">{stat.title}</p>
-                <p className="text-xs text-gray-500">{stat.change}</p>
               </div>
-            </div>
-          ))}
+            )
+          })}
         </div>
 
         {/* Filters and Search */}
@@ -290,7 +310,7 @@ export default function AttendancePage() {
 
         {/* Attendance Table */}
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto overflow-y-auto max-h-[calc(100vh-24rem)]">
             <table className="w-full">
               <thead className="bg-gradient-to-r from-gray-50 to-gray-100 border-b border-gray-200">
                 <tr>

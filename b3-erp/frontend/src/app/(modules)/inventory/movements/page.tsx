@@ -227,14 +227,51 @@ const InventoryMovementsPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6">
       <div className="max-w-[1600px] mx-auto space-y-6">
-        {/* Header */}
-        <div className="flex justify-between items-center">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900">Inventory Movements</h1>
-            <p className="text-gray-600 mt-1">Track and manage all inventory movements</p>
-          </div>
+        {/* Stats Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          {stats.map((stat, index) => {
+            const gradientMap: { [key: string]: string } = {
+              'from-blue-500 to-blue-600': 'from-blue-50 to-blue-100',
+              'from-green-500 to-green-600': 'from-green-50 to-green-100',
+              'from-purple-500 to-purple-600': 'from-purple-50 to-purple-100',
+              'from-orange-500 to-orange-600': 'from-orange-50 to-orange-100'
+            }
+            const borderMap: { [key: string]: string } = {
+              'from-blue-500 to-blue-600': 'border-blue-200',
+              'from-green-500 to-green-600': 'border-green-200',
+              'from-purple-500 to-purple-600': 'border-purple-200',
+              'from-orange-500 to-orange-600': 'border-orange-200'
+            }
+            const textMap: { [key: string]: { title: string; value: string } } = {
+              'from-blue-500 to-blue-600': { title: 'text-blue-600', value: 'text-blue-900' },
+              'from-green-500 to-green-600': { title: 'text-green-600', value: 'text-green-900' },
+              'from-purple-500 to-purple-600': { title: 'text-purple-600', value: 'text-purple-900' },
+              'from-orange-500 to-orange-600': { title: 'text-orange-600', value: 'text-orange-900' }
+            }
+            const Icon = stat.trend === 'up' ? TrendingUp : TrendingDown
+            const iconColor = gradientMap[stat.gradient].includes('blue') ? 'text-blue-600' :
+                            gradientMap[stat.gradient].includes('green') ? 'text-green-600' :
+                            gradientMap[stat.gradient].includes('purple') ? 'text-purple-600' : 'text-orange-600'
+            return (
+              <div
+                key={index}
+                className={`bg-gradient-to-br ${gradientMap[stat.gradient]} rounded-lg p-4 border ${borderMap[stat.gradient]}`}
+              >
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className={`text-sm font-medium ${textMap[stat.gradient].title}`}>{stat.title}</p>
+                    <p className={`text-2xl font-bold mt-1 ${textMap[stat.gradient].value}`}>{stat.value}</p>
+                  </div>
+                  <Icon className={`h-8 w-8 ${iconColor}`} />
+                </div>
+              </div>
+            )
+          })}
+        </div>
+
+        <div className="flex justify-end">
           <button
             onClick={handleExport}
             className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
@@ -242,36 +279,6 @@ const InventoryMovementsPage = () => {
             <Download className="w-4 h-4" />
             Export Report
           </button>
-        </div>
-
-        {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {stats.map((stat, index) => (
-            <div
-              key={index}
-              className={`bg-gradient-to-r ${stat.gradient} rounded-xl p-6 text-white shadow-lg`}
-            >
-              <div className="flex justify-between items-start">
-                <div>
-                  <p className="text-white/80 text-sm font-medium">{stat.title}</p>
-                  <p className="text-3xl font-bold mt-2">{stat.value}</p>
-                </div>
-                <div className={`p-2 rounded-lg ${stat.trend === 'up' ? 'bg-white/20' : 'bg-white/20'}`}>
-                  {stat.trend === 'up' ? (
-                    <TrendingUp className="w-6 h-6" />
-                  ) : (
-                    <TrendingDown className="w-6 h-6" />
-                  )}
-                </div>
-              </div>
-              <div className="flex items-center gap-1 mt-4">
-                <span className={`text-sm font-semibold ${stat.trend === 'up' ? 'text-white' : 'text-white'}`}>
-                  {stat.change}
-                </span>
-                <span className="text-white/80 text-sm">vs last month</span>
-              </div>
-            </div>
-          ))}
         </div>
 
         {/* Filters and Search */}
@@ -316,7 +323,7 @@ const InventoryMovementsPage = () => {
 
         {/* Table */}
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto overflow-y-auto max-h-[calc(100vh-24rem)]">
             <table className="w-full">
               <thead className="bg-gray-50 border-b border-gray-200">
                 <tr>
