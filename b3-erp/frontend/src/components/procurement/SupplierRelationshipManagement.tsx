@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import React, { useState } from 'react'
 import {
@@ -570,7 +570,7 @@ export default function SupplierRelationshipManagement() {
                 <div className="bg-red-50 p-4 rounded-lg border border-red-200">
                   <div className="text-red-600 text-sm font-medium mb-1">Low Performers</div>
                   <div className="text-2xl font-bold text-gray-900">12</div>
-                  <div className="text-sm text-gray-600">Score < 70</div>
+                  <div className="text-sm text-gray-600">Score &lt; 70</div>
                 </div>
                 <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
                   <div className="text-blue-600 text-sm font-medium mb-1">Under Review</div>

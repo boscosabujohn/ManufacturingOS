@@ -294,7 +294,7 @@ export default function SupplierScorecard() {
               <AlertTriangle className="w-5 h-5 text-amber-600" />
             </div>
             <div className="text-2xl font-bold text-gray-900">8</div>
-            <div className="text-sm text-gray-600">Score <75</div>
+            <div className="text-sm text-gray-600">Score &lt;75</div>
           </div>
 
           <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-4 rounded-lg">
