@@ -339,13 +339,30 @@ const menuItems: MenuItem[] = [
       { id: 'machine-master', name: 'Machine Master', href: '/common-masters/machine-master', description: 'Equipment database' },
       { id: 'work-center-master', name: 'Work Center Master', href: '/common-masters/work-center-master', description: 'Production centers' },
       { id: 'operation-master', name: 'Operation Master', href: '/common-masters/operation-master', description: 'Manufacturing processes' },
+      { id: 'routing-master', name: 'Routing Master', href: '/common-masters/routing-master', description: 'Process routing' },
       { id: 'tool-master', name: 'Tool Master', href: '/common-masters/tool-master', description: 'Manufacturing tools' },
+      { id: 'quality-parameter-master', name: 'Quality Parameter Master', href: '/common-masters/quality-parameter-master', description: 'Quality standards' },
+      { id: 'skill-master', name: 'Skill Master', href: '/common-masters/skill-master', description: 'Worker skills' },
+      { id: 'batch-lot-master', name: 'Batch/Lot Master', href: '/common-masters/batch-lot-master', description: 'Batch tracking' },
 
       // Kitchen Manufacturing Specific
-      { id: 'cabinet-type-master', name: 'Cabinet Type Master', href: '/common-masters/cabinet-type-master', description: 'Product categories' },
+      { id: 'cabinet-type-master', name: 'Cabinet Type Master', href: '/common-masters/cabinet-type-master', description: 'Cabinet categories' },
       { id: 'hardware-master', name: 'Hardware Master', href: '/common-masters/hardware-master', description: 'Fittings & accessories' },
       { id: 'finish-master', name: 'Finish Master', href: '/common-masters/finish-master', description: 'Surface treatments' },
       { id: 'material-grade-master', name: 'Material Grade Master', href: '/common-masters/material-grade-master', description: 'Quality grades' },
+      { id: 'kitchen-layout-master', name: 'Kitchen Layout Master', href: '/common-masters/kitchen-layout-master', description: 'Layout templates' },
+      { id: 'installation-type-master', name: 'Installation Type Master', href: '/common-masters/installation-type-master', description: 'Installation methods' },
+      { id: 'appliance-master', name: 'Appliance Master', href: '/common-masters/appliance-master', description: 'Appliance catalog' },
+      { id: 'counter-material-master', name: 'Counter Material Master', href: '/common-masters/counter-material-master', description: 'Counter materials' },
+
+      // Logistics & Transportation Masters
+      { id: 'transporter-master', name: 'Transporter Master', href: '/logistics/transporter-master', description: 'Transport companies' },
+      { id: 'vehicle-master', name: 'Vehicle Master', href: '/logistics/vehicle-master', description: 'Fleet management' },
+      { id: 'driver-master', name: 'Driver Master', href: '/logistics/driver-master', description: 'Driver database' },
+      { id: 'route-master', name: 'Route Master', href: '/logistics/route-master', description: 'Delivery routes' },
+      { id: 'packaging-master', name: 'Packaging Master', href: '/logistics/packaging-master', description: 'Packaging types' },
+      { id: 'freight-master', name: 'Freight Master', href: '/logistics/freight-master', description: 'Freight terms' },
+      { id: 'port-master', name: 'Port/Terminal Master', href: '/logistics/port-master', description: 'Ports & terminals' },
 
       // System Masters
       { id: 'user-master', name: 'User Master', href: '/common-masters/user-master', description: 'System users' },
