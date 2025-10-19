@@ -1,10 +1,21 @@
 'use client';
 
 import { useState } from 'react';
-import { Users, Search, Filter, Download, Plus, Edit, Eye, Mail, Phone } from 'lucide-react';
+import { Users, Search, Filter, Download, Plus, Edit, Eye, Mail, Phone, X } from 'lucide-react';
 
 export default function AllEmployeesPage() {
   const [searchTerm, setSearchTerm] = useState('');
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    department: '',
+    designation: '',
+    joiningDate: '',
+    employeeType: 'Full-Time',
+  });
 
   return (
     <div className="p-6">
@@ -38,7 +49,10 @@ export default function AllEmployeesPage() {
               <Download className="h-4 w-4" />
               Export
             </button>
-            <button className="flex items-center gap-2 px-4 py-2 bg-pink-600 text-white rounded-lg hover:bg-pink-700 transition-colors">
+            <button
+              onClick={() => setShowAddModal(true)}
+              className="flex items-center gap-2 px-4 py-2 bg-pink-600 text-white rounded-lg hover:bg-pink-700 transition-colors"
+            >
               <Plus className="h-4 w-4" />
               Add Employee
             </button>
@@ -173,6 +187,210 @@ export default function AllEmployeesPage() {
           </div>
         </div>
       </div>
+
+      {/* Add Employee Modal */}
+      {showAddModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
+            {/* Modal Header */}
+            <div className="flex items-center justify-between p-6 border-b border-gray-200 sticky top-0 bg-white">
+              <div className="flex items-center gap-3">
+                <div className="h-10 w-10 rounded-full bg-pink-100 flex items-center justify-center">
+                  <Plus className="h-5 w-5 text-pink-600" />
+                </div>
+                <div>
+                  <h2 className="text-xl font-bold text-gray-900">Add New Employee</h2>
+                  <p className="text-sm text-gray-600">Fill in employee details</p>
+                </div>
+              </div>
+              <button
+                onClick={() => setShowAddModal(false)}
+                className="text-gray-400 hover:text-gray-600 transition-colors"
+              >
+                <X className="h-6 w-6" />
+              </button>
+            </div>
+
+            {/* Modal Body */}
+            <form className="p-6" onSubmit={(e) => {
+              e.preventDefault();
+              // Handle form submission here
+              console.log('Form submitted:', formData);
+              alert('Employee added successfully! (This is a demo - backend integration needed)');
+              setShowAddModal(false);
+              setFormData({
+                firstName: '',
+                lastName: '',
+                email: '',
+                phone: '',
+                department: '',
+                designation: '',
+                joiningDate: '',
+                employeeType: 'Full-Time',
+              });
+            }}>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* First Name */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    First Name <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={formData.firstName}
+                    onChange={(e) => setFormData({...formData, firstName: e.target.value})}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+                    placeholder="Enter first name"
+                  />
+                </div>
+
+                {/* Last Name */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Last Name <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={formData.lastName}
+                    onChange={(e) => setFormData({...formData, lastName: e.target.value})}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+                    placeholder="Enter last name"
+                  />
+                </div>
+
+                {/* Email */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Email Address <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="email"
+                    required
+                    value={formData.email}
+                    onChange={(e) => setFormData({...formData, email: e.target.value})}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+                    placeholder="employee@company.com"
+                  />
+                </div>
+
+                {/* Phone */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Phone Number <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="tel"
+                    required
+                    value={formData.phone}
+                    onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+                    placeholder="+1 234 567 8900"
+                  />
+                </div>
+
+                {/* Department */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Department <span className="text-red-500">*</span>
+                  </label>
+                  <select
+                    required
+                    value={formData.department}
+                    onChange={(e) => setFormData({...formData, department: e.target.value})}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+                  >
+                    <option value="">Select Department</option>
+                    <option value="Engineering">Engineering</option>
+                    <option value="Sales">Sales</option>
+                    <option value="Marketing">Marketing</option>
+                    <option value="Finance">Finance</option>
+                    <option value="Human Resources">Human Resources</option>
+                    <option value="Operations">Operations</option>
+                    <option value="Production">Production</option>
+                    <option value="Quality">Quality</option>
+                  </select>
+                </div>
+
+                {/* Designation */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Designation <span className="text-red-500">*</span>
+                  </label>
+                  <select
+                    required
+                    value={formData.designation}
+                    onChange={(e) => setFormData({...formData, designation: e.target.value})}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+                  >
+                    <option value="">Select Designation</option>
+                    <option value="Junior Engineer">Junior Engineer</option>
+                    <option value="Senior Engineer">Senior Engineer</option>
+                    <option value="Lead Engineer">Lead Engineer</option>
+                    <option value="Manager">Manager</option>
+                    <option value="Senior Manager">Senior Manager</option>
+                    <option value="Executive">Executive</option>
+                    <option value="Analyst">Analyst</option>
+                    <option value="Specialist">Specialist</option>
+                  </select>
+                </div>
+
+                {/* Employee Type */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Employee Type <span className="text-red-500">*</span>
+                  </label>
+                  <select
+                    required
+                    value={formData.employeeType}
+                    onChange={(e) => setFormData({...formData, employeeType: e.target.value})}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+                  >
+                    <option value="Full-Time">Full-Time</option>
+                    <option value="Part-Time">Part-Time</option>
+                    <option value="Contract">Contract</option>
+                    <option value="Intern">Intern</option>
+                    <option value="Consultant">Consultant</option>
+                  </select>
+                </div>
+
+                {/* Joining Date */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Joining Date <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="date"
+                    required
+                    value={formData.joiningDate}
+                    onChange={(e) => setFormData({...formData, joiningDate: e.target.value})}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+                  />
+                </div>
+              </div>
+
+              {/* Form Actions */}
+              <div className="flex items-center justify-end gap-3 mt-8 pt-6 border-t border-gray-200">
+                <button
+                  type="button"
+                  onClick={() => setShowAddModal(false)}
+                  className="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="px-6 py-2 bg-pink-600 text-white rounded-lg hover:bg-pink-700 transition-colors flex items-center gap-2"
+                >
+                  <Plus className="h-4 w-4" />
+                  Add Employee
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
