@@ -1,0 +1,3193 @@
+{
+  "after-sales-service": {
+    "name": "After Sales Service",
+    "route": "/after-sales-service",
+    "subsections": {
+      "billing": {
+        "name": "Billing",
+        "pages": [
+          {
+            "route": "/after-sales-service/billing",
+            "type": "list",
+            "depth": 2
+          },
+          {
+            "route": "/after-sales-service/billing/create",
+            "type": "detail",
+            "depth": 3
+          },
+          {
+            "route": "/after-sales-service/billing/payments",
+            "type": "detail",
+            "depth": 3
+          },
+          {
+            "route": "/after-sales-service/billing/view/:id",
+            "type": "detail",
+            "depth": 4
+          }
+        ]
+      },
+      "dashboard": {
+        "name": "Dashboard",
+        "pages": [
+          {
+            "route": "/after-sales-service/dashboard",
+            "type": "list",
+            "depth": 2
+          },
+          {
+            "route": "/after-sales-service/dashboard/analytics",
+            "type": "detail",
+            "depth": 3
+          },
+          {
+            "route": "/after-sales-service/dashboard/reports",
+            "type": "detail",
+            "depth": 3
+          }
+        ]
+      },
+      "field-service": {
+        "name": "Field Service",
+        "pages": [
+          {
+            "route": "/after-sales-service/field-service",
+            "type": "list",
+            "depth": 2
+          },
+          {
+            "route": "/after-sales-service/field-service/dispatch",
+            "type": "detail",
+            "depth": 3
+          },
+          {
+            "route": "/after-sales-service/field-service/schedule",
+            "type": "detail",
+            "depth": 3
+          },
+          {
+            "route": "/after-sales-service/field-service/view/:id",
+            "type": "detail",
+            "depth": 4
+          }
+        ]
+      },
+      "installations": {
+        "name": "Installations",
+        "pages": [
+          {
+            "route": "/after-sales-service/installations",
+            "type": "list",
+            "depth": 2
+          },
+          {
+            "route": "/after-sales-service/installations/add",
+            "type": "add",
+            "depth": 3
+          },
+          {
+            "route": "/after-sales-service/installations/calendar",
+            "type": "detail",
+            "depth": 3
+          },
+          {
+            "route": "/after-sales-service/installations/view/:id",
+            "type": "detail",
+            "depth": 4
+          }
+        ]
+      },
+      "service-contracts": {
+        "name": "Service Contracts",
+        "pages": [
+          {
+            "route": "/after-sales-service/service-contracts",
+            "type": "list",
+            "depth": 2
+          },
+          {
+            "route": "/after-sales-service/service-contracts/add",
+            "type": "add",
+            "depth": 3
+          },
+          {
+            "route": "/after-sales-service/service-contracts/terms",
+            "type": "detail",
+            "depth": 3
+          },
+          {
+            "route": "/after-sales-service/service-contracts/view/:id",
+            "type": "detail",
+            "depth": 4
+          },
+          {
+            "route": "/after-sales-service/service-contracts/renew/:id",
+            "type": "detail",
+            "depth": 4
+          }
+        ]
+      },
+      "service-requests": {
+        "name": "Service Requests",
+        "pages": [
+          {
+            "route": "/after-sales-service/service-requests",
+            "type": "list",
+            "depth": 2
+          },
+          {
+            "route": "/after-sales-service/service-requests/add",
+            "type": "add",
+            "depth": 3
+          },
+          {
+            "route": "/after-sales-service/service-requests/sla-dashboard",
+            "type": "detail",
+            "depth": 3
+          },
+          {
+            "route": "/after-sales-service/service-requests/view/:id",
+            "type": "detail",
+            "depth": 4
+          }
+        ]
+      },
+      "warranties": {
+        "name": "Warranties",
+        "pages": [
+          {
+            "route": "/after-sales-service/warranties",
+            "type": "list",
+            "depth": 2
+          },
+          {
+            "route": "/after-sales-service/warranties/add",
+            "type": "add",
+            "depth": 3
+          },
+          {
+            "route": "/after-sales-service/warranties/claims",
+            "type": "detail",
+            "depth": 3
+          },
+          {
+            "route": "/after-sales-service/warranties/view/:id",
+            "type": "detail",
+            "depth": 4
+          },
+          {
+            "route": "/after-sales-service/warranties/claims/:id",
+            "type": "detail",
+            "depth": 4
+          }
+        ]
+      }
+    },
+    "has_dashboard": true
+  },
+  "common-masters": {
+    "name": "Common Masters",
+    "route": "/common-masters",
+    "subsections": {
+      "appliance-master": {
+        "name": "Appliance Master",
+        "pages": [
+          {
+            "route": "/common-masters/appliance-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "bank-master": {
+        "name": "Bank Master",
+        "pages": [
+          {
+            "route": "/common-masters/bank-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "barcode-master": {
+        "name": "Barcode Master",
+        "pages": [
+          {
+            "route": "/common-masters/barcode-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "batch-lot-master": {
+        "name": "Batch Lot Master",
+        "pages": [
+          {
+            "route": "/common-masters/batch-lot-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "branch-master": {
+        "name": "Branch Master",
+        "pages": [
+          {
+            "route": "/common-masters/branch-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "brand-master": {
+        "name": "Brand Master",
+        "pages": [
+          {
+            "route": "/common-masters/brand-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "cabinet-type-master": {
+        "name": "Cabinet Type Master",
+        "pages": [
+          {
+            "route": "/common-masters/cabinet-type-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "chart-of-accounts-master": {
+        "name": "Chart Of Accounts Master",
+        "pages": [
+          {
+            "route": "/common-masters/chart-of-accounts-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "city-master": {
+        "name": "City Master",
+        "pages": [
+          {
+            "route": "/common-masters/city-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "company-master": {
+        "name": "Company Master",
+        "pages": [
+          {
+            "route": "/common-masters/company-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "cost-center-master": {
+        "name": "Cost Center Master",
+        "pages": [
+          {
+            "route": "/common-masters/cost-center-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "counter-material-master": {
+        "name": "Counter Material Master",
+        "pages": [
+          {
+            "route": "/common-masters/counter-material-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "country-master": {
+        "name": "Country Master",
+        "pages": [
+          {
+            "route": "/common-masters/country-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "currency-master": {
+        "name": "Currency Master",
+        "pages": [
+          {
+            "route": "/common-masters/currency-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "customer-category-master": {
+        "name": "Customer Category Master",
+        "pages": [
+          {
+            "route": "/common-masters/customer-category-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "customer-master": {
+        "name": "Customer Master",
+        "pages": [
+          {
+            "route": "/common-masters/customer-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "department-master": {
+        "name": "Department Master",
+        "pages": [
+          {
+            "route": "/common-masters/department-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "designation-master": {
+        "name": "Designation Master",
+        "pages": [
+          {
+            "route": "/common-masters/designation-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "document-type-master": {
+        "name": "Document Type Master",
+        "pages": [
+          {
+            "route": "/common-masters/document-type-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "employee-master": {
+        "name": "Employee Master",
+        "pages": [
+          {
+            "route": "/common-masters/employee-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "exchange-rate-master": {
+        "name": "Exchange Rate Master",
+        "pages": [
+          {
+            "route": "/common-masters/exchange-rate-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "finish-master": {
+        "name": "Finish Master",
+        "pages": [
+          {
+            "route": "/common-masters/finish-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "hardware-master": {
+        "name": "Hardware Master",
+        "pages": [
+          {
+            "route": "/common-masters/hardware-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "holiday-master": {
+        "name": "Holiday Master",
+        "pages": [
+          {
+            "route": "/common-masters/holiday-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "hsn-sac-master": {
+        "name": "Hsn Sac Master",
+        "pages": [
+          {
+            "route": "/common-masters/hsn-sac-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "installation-type-master": {
+        "name": "Installation Type Master",
+        "pages": [
+          {
+            "route": "/common-masters/installation-type-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "item-category-master": {
+        "name": "Item Category Master",
+        "pages": [
+          {
+            "route": "/common-masters/item-category-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "item-group-master": {
+        "name": "Item Group Master",
+        "pages": [
+          {
+            "route": "/common-masters/item-group-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "item-master": {
+        "name": "Item Master",
+        "pages": [
+          {
+            "route": "/common-masters/item-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "kitchen-layout-master": {
+        "name": "Kitchen Layout Master",
+        "pages": [
+          {
+            "route": "/common-masters/kitchen-layout-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "location-master": {
+        "name": "Location Master",
+        "pages": [
+          {
+            "route": "/common-masters/location-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "machine-master": {
+        "name": "Machine Master",
+        "pages": [
+          {
+            "route": "/common-masters/machine-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "material-grade-master": {
+        "name": "Material Grade Master",
+        "pages": [
+          {
+            "route": "/common-masters/material-grade-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "number-series-master": {
+        "name": "Number Series Master",
+        "pages": [
+          {
+            "route": "/common-masters/number-series-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "operation-master": {
+        "name": "Operation Master",
+        "pages": [
+          {
+            "route": "/common-masters/operation-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "payment-terms-master": {
+        "name": "Payment Terms Master",
+        "pages": [
+          {
+            "route": "/common-masters/payment-terms-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "plant-master": {
+        "name": "Plant Master",
+        "pages": [
+          {
+            "route": "/common-masters/plant-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "price-list-master": {
+        "name": "Price List Master",
+        "pages": [
+          {
+            "route": "/common-masters/price-list-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "quality-parameter-master": {
+        "name": "Quality Parameter Master",
+        "pages": [
+          {
+            "route": "/common-masters/quality-parameter-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "role-master": {
+        "name": "Role Master",
+        "pages": [
+          {
+            "route": "/common-masters/role-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "routing-master": {
+        "name": "Routing Master",
+        "pages": [
+          {
+            "route": "/common-masters/routing-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "shift-master": {
+        "name": "Shift Master",
+        "pages": [
+          {
+            "route": "/common-masters/shift-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "skill-master": {
+        "name": "Skill Master",
+        "pages": [
+          {
+            "route": "/common-masters/skill-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "state-master": {
+        "name": "State Master",
+        "pages": [
+          {
+            "route": "/common-masters/state-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "tax-master": {
+        "name": "Tax Master",
+        "pages": [
+          {
+            "route": "/common-masters/tax-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "territory-master": {
+        "name": "Territory Master",
+        "pages": [
+          {
+            "route": "/common-masters/territory-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "tool-master": {
+        "name": "Tool Master",
+        "pages": [
+          {
+            "route": "/common-masters/tool-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "uom-conversion-master": {
+        "name": "Uom Conversion Master",
+        "pages": [
+          {
+            "route": "/common-masters/uom-conversion-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "uom-master": {
+        "name": "Uom Master",
+        "pages": [
+          {
+            "route": "/common-masters/uom-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "user-master": {
+        "name": "User Master",
+        "pages": [
+          {
+            "route": "/common-masters/user-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "vendor-category-master": {
+        "name": "Vendor Category Master",
+        "pages": [
+          {
+            "route": "/common-masters/vendor-category-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "vendor-master": {
+        "name": "Vendor Master",
+        "pages": [
+          {
+            "route": "/common-masters/vendor-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "warehouse-master": {
+        "name": "Warehouse Master",
+        "pages": [
+          {
+            "route": "/common-masters/warehouse-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "work-center-master": {
+        "name": "Work Center Master",
+        "pages": [
+          {
+            "route": "/common-masters/work-center-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      }
+    },
+    "has_dashboard": true
+  },
+  "crm": {
+    "name": "Crm",
+    "route": "/crm",
+    "subsections": {
+      "contacts": {
+        "name": "Contacts",
+        "pages": [
+          {
+            "route": "/crm/contacts",
+            "type": "list",
+            "depth": 2
+          },
+          {
+            "route": "/crm/contacts/add",
+            "type": "add",
+            "depth": 3
+          },
+          {
+            "route": "/crm/contacts/view/:id",
+            "type": "detail",
+            "depth": 4
+          },
+          {
+            "route": "/crm/contacts/edit/:id",
+            "type": "detail",
+            "depth": 4
+          }
+        ]
+      },
+      "customers": {
+        "name": "Customers",
+        "pages": [
+          {
+            "route": "/crm/customers",
+            "type": "list",
+            "depth": 2
+          },
+          {
+            "route": "/crm/customers/add",
+            "type": "add",
+            "depth": 3
+          },
+          {
+            "route": "/crm/customers/view/:id",
+            "type": "detail",
+            "depth": 4
+          },
+          {
+            "route": "/crm/customers/edit/:id",
+            "type": "detail",
+            "depth": 4
+          }
+        ]
+      },
+      "interactions": {
+        "name": "Interactions",
+        "pages": [
+          {
+            "route": "/crm/interactions",
+            "type": "list",
+            "depth": 2
+          },
+          {
+            "route": "/crm/interactions/add",
+            "type": "add",
+            "depth": 3
+          },
+          {
+            "route": "/crm/interactions/view/:id",
+            "type": "detail",
+            "depth": 4
+          },
+          {
+            "route": "/crm/interactions/edit/:id",
+            "type": "detail",
+            "depth": 4
+          }
+        ]
+      },
+      "leads": {
+        "name": "Leads",
+        "pages": [
+          {
+            "route": "/crm/leads",
+            "type": "list",
+            "depth": 2
+          },
+          {
+            "route": "/crm/leads/add",
+            "type": "add",
+            "depth": 3
+          },
+          {
+            "route": "/crm/leads/view/:id",
+            "type": "detail",
+            "depth": 4
+          },
+          {
+            "route": "/crm/leads/edit/:id",
+            "type": "detail",
+            "depth": 4
+          }
+        ]
+      },
+      "opportunities": {
+        "name": "Opportunities",
+        "pages": [
+          {
+            "route": "/crm/opportunities",
+            "type": "list",
+            "depth": 2
+          },
+          {
+            "route": "/crm/opportunities/add",
+            "type": "add",
+            "depth": 3
+          },
+          {
+            "route": "/crm/opportunities/view/:id",
+            "type": "detail",
+            "depth": 4
+          },
+          {
+            "route": "/crm/opportunities/edit/:id",
+            "type": "detail",
+            "depth": 4
+          }
+        ]
+      }
+    },
+    "has_dashboard": true
+  },
+  "estimation": {
+    "name": "Estimation",
+    "route": "/estimation",
+    "subsections": {
+      "boq": {
+        "name": "Boq",
+        "pages": [
+          {
+            "route": "/estimation/boq",
+            "type": "list",
+            "depth": 2
+          },
+          {
+            "route": "/estimation/boq/add",
+            "type": "add",
+            "depth": 3
+          },
+          {
+            "route": "/estimation/boq/view/:id",
+            "type": "detail",
+            "depth": 4
+          },
+          {
+            "route": "/estimation/boq/edit/:id",
+            "type": "detail",
+            "depth": 4
+          }
+        ]
+      },
+      "costing": {
+        "name": "Costing",
+        "pages": [
+          {
+            "route": "/estimation/costing",
+            "type": "list",
+            "depth": 2
+          },
+          {
+            "route": "/estimation/costing/add",
+            "type": "add",
+            "depth": 3
+          },
+          {
+            "route": "/estimation/costing/view/:id",
+            "type": "detail",
+            "depth": 4
+          },
+          {
+            "route": "/estimation/costing/edit/:id",
+            "type": "detail",
+            "depth": 4
+          }
+        ]
+      },
+      "pricing": {
+        "name": "Pricing",
+        "pages": [
+          {
+            "route": "/estimation/pricing",
+            "type": "list",
+            "depth": 2
+          },
+          {
+            "route": "/estimation/pricing/add",
+            "type": "add",
+            "depth": 3
+          },
+          {
+            "route": "/estimation/pricing/view/:id",
+            "type": "detail",
+            "depth": 4
+          },
+          {
+            "route": "/estimation/pricing/edit/:id",
+            "type": "detail",
+            "depth": 4
+          }
+        ]
+      }
+    },
+    "has_dashboard": true
+  },
+  "finance": {
+    "name": "Finance",
+    "route": "/finance",
+    "subsections": {
+      "accounting": {
+        "name": "Accounting",
+        "pages": [
+          {
+            "route": "/finance/accounting",
+            "type": "list",
+            "depth": 2
+          },
+          {
+            "route": "/finance/accounting/add",
+            "type": "add",
+            "depth": 3
+          },
+          {
+            "route": "/finance/accounting/chart-of-accounts",
+            "type": "detail",
+            "depth": 3
+          },
+          {
+            "route": "/finance/accounting/general-ledger",
+            "type": "detail",
+            "depth": 3
+          },
+          {
+            "route": "/finance/accounting/journal-entries",
+            "type": "detail",
+            "depth": 3
+          },
+          {
+            "route": "/finance/accounting/ledger-report",
+            "type": "detail",
+            "depth": 3
+          },
+          {
+            "route": "/finance/accounting/periods",
+            "type": "detail",
+            "depth": 3
+          },
+          {
+            "route": "/finance/accounting/trial-balance",
+            "type": "detail",
+            "depth": 3
+          },
+          {
+            "route": "/finance/accounting/view/:id",
+            "type": "detail",
+            "depth": 4
+          },
+          {
+            "route": "/finance/accounting/edit/:id",
+            "type": "detail",
+            "depth": 4
+          }
+        ]
+      },
+      "accounts-payable": {
+        "name": "Accounts Payable",
+        "pages": [
+          {
+            "route": "/finance/accounts-payable",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "accounts-receivable": {
+        "name": "Accounts Receivable",
+        "pages": [
+          {
+            "route": "/finance/accounts-receivable",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "analytics": {
+        "name": "Analytics",
+        "pages": [
+          {
+            "route": "/finance/analytics",
+            "type": "list",
+            "depth": 2
+          },
+          {
+            "route": "/finance/analytics/financial-ratios",
+            "type": "detail",
+            "depth": 3
+          },
+          {
+            "route": "/finance/analytics/kpi-dashboard",
+            "type": "detail",
+            "depth": 3
+          },
+          {
+            "route": "/finance/analytics/profitability-analysis",
+            "type": "detail",
+            "depth": 3
+          }
+        ]
+      },
+      "assets": {
+        "name": "Assets",
+        "pages": [
+          {
+            "route": "/finance/assets",
+            "type": "list",
+            "depth": 2
+          },
+          {
+            "route": "/finance/assets/asset-disposal",
+            "type": "detail",
+            "depth": 3
+          },
+          {
+            "route": "/finance/assets/depreciation",
+            "type": "detail",
+            "depth": 3
+          },
+          {
+            "route": "/finance/assets/fixed-assets",
+            "type": "detail",
+            "depth": 3
+          }
+        ]
+      },
+      "automation": {
+        "name": "Automation",
+        "pages": [
+          {
+            "route": "/finance/automation",
+            "type": "list",
+            "depth": 2
+          },
+          {
+            "route": "/finance/automation/alerts",
+            "type": "detail",
+            "depth": 3
+          },
+          {
+            "route": "/finance/automation/recurring-transactions",
+            "type": "detail",
+            "depth": 3
+          },
+          {
+            "route": "/finance/automation/workflows",
+            "type": "detail",
+            "depth": 3
+          }
+        ]
+      },
+      "bank-reconciliation": {
+        "name": "Bank Reconciliation",
+        "pages": [
+          {
+            "route": "/finance/bank-reconciliation",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "budget": {
+        "name": "Budget",
+        "pages": [
+          {
+            "route": "/finance/budget",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "budgeting": {
+        "name": "Budgeting",
+        "pages": [
+          {
+            "route": "/finance/budgeting",
+            "type": "list",
+            "depth": 2
+          },
+          {
+            "route": "/finance/budgeting/budget-vs-actual",
+            "type": "detail",
+            "depth": 3
+          },
+          {
+            "route": "/finance/budgeting/budgets",
+            "type": "detail",
+            "depth": 3
+          },
+          {
+            "route": "/finance/budgeting/multi-year-planning",
+            "type": "detail",
+            "depth": 3
+          }
+        ]
+      },
+      "cash": {
+        "name": "Cash",
+        "pages": [
+          {
+            "route": "/finance/cash",
+            "type": "list",
+            "depth": 2
+          },
+          {
+            "route": "/finance/cash/anticipated-payments",
+            "type": "detail",
+            "depth": 3
+          },
+          {
+            "route": "/finance/cash/anticipated-receipts",
+            "type": "detail",
+            "depth": 3
+          },
+          {
+            "route": "/finance/cash/bank-accounts",
+            "type": "detail",
+            "depth": 3
+          },
+          {
+            "route": "/finance/cash/bank-reconciliation",
+            "type": "detail",
+            "depth": 3
+          },
+          {
+            "route": "/finance/cash/cash-flow-forecast",
+            "type": "detail",
+            "depth": 3
+          }
+        ]
+      },
+      "cash-flow": {
+        "name": "Cash Flow",
+        "pages": [
+          {
+            "route": "/finance/cash-flow",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "consolidation": {
+        "name": "Consolidation",
+        "pages": [
+          {
+            "route": "/finance/consolidation",
+            "type": "list",
+            "depth": 2
+          },
+          {
+            "route": "/finance/consolidation/financial-consolidation",
+            "type": "detail",
+            "depth": 3
+          },
+          {
+            "route": "/finance/consolidation/intercompany",
+            "type": "detail",
+            "depth": 3
+          }
+        ]
+      },
+      "controls": {
+        "name": "Controls",
+        "pages": [
+          {
+            "route": "/finance/controls",
+            "type": "list",
+            "depth": 2
+          },
+          {
+            "route": "/finance/controls/approval-workflows",
+            "type": "detail",
+            "depth": 3
+          },
+          {
+            "route": "/finance/controls/audit-trail",
+            "type": "detail",
+            "depth": 3
+          },
+          {
+            "route": "/finance/controls/documents",
+            "type": "detail",
+            "depth": 3
+          }
+        ]
+      },
+      "cost-centers": {
+        "name": "Cost Centers",
+        "pages": [
+          {
+            "route": "/finance/cost-centers",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "costing": {
+        "name": "Costing",
+        "pages": [
+          {
+            "route": "/finance/costing",
+            "type": "list",
+            "depth": 2
+          },
+          {
+            "route": "/finance/costing/cost-centers",
+            "type": "detail",
+            "depth": 3
+          },
+          {
+            "route": "/finance/costing/job-costing",
+            "type": "detail",
+            "depth": 3
+          },
+          {
+            "route": "/finance/costing/profit-centers",
+            "type": "detail",
+            "depth": 3
+          },
+          {
+            "route": "/finance/costing/standard-costing",
+            "type": "detail",
+            "depth": 3
+          },
+          {
+            "route": "/finance/costing/variance-analysis",
+            "type": "detail",
+            "depth": 3
+          },
+          {
+            "route": "/finance/costing/wip-accounting",
+            "type": "detail",
+            "depth": 3
+          }
+        ]
+      },
+      "credit": {
+        "name": "Credit",
+        "pages": [
+          {
+            "route": "/finance/credit",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "currency": {
+        "name": "Currency",
+        "pages": [
+          {
+            "route": "/finance/currency",
+            "type": "list",
+            "depth": 2
+          },
+          {
+            "route": "/finance/currency/exchange-rates",
+            "type": "detail",
+            "depth": 3
+          },
+          {
+            "route": "/finance/currency/management",
+            "type": "detail",
+            "depth": 3
+          }
+        ]
+      },
+      "dashboard": {
+        "name": "Dashboard",
+        "pages": [
+          {
+            "route": "/finance/dashboard",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "general-ledger": {
+        "name": "General Ledger",
+        "pages": [
+          {
+            "route": "/finance/general-ledger",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "integration": {
+        "name": "Integration",
+        "pages": [
+          {
+            "route": "/finance/integration",
+            "type": "list",
+            "depth": 2
+          },
+          {
+            "route": "/finance/integration/procurement",
+            "type": "detail",
+            "depth": 3
+          },
+          {
+            "route": "/finance/integration/production",
+            "type": "detail",
+            "depth": 3
+          }
+        ]
+      },
+      "integrations": {
+        "name": "Integrations",
+        "pages": [
+          {
+            "route": "/finance/integrations",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "investments": {
+        "name": "Investments",
+        "pages": [
+          {
+            "route": "/finance/investments",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "invoices": {
+        "name": "Invoices",
+        "pages": [
+          {
+            "route": "/finance/invoices",
+            "type": "list",
+            "depth": 2
+          },
+          {
+            "route": "/finance/invoices/add",
+            "type": "add",
+            "depth": 3
+          },
+          {
+            "route": "/finance/invoices/view/:id",
+            "type": "detail",
+            "depth": 4
+          },
+          {
+            "route": "/finance/invoices/edit/:id",
+            "type": "detail",
+            "depth": 4
+          }
+        ]
+      },
+      "multi-currency": {
+        "name": "Multi Currency",
+        "pages": [
+          {
+            "route": "/finance/multi-currency",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "payables": {
+        "name": "Payables",
+        "pages": [
+          {
+            "route": "/finance/payables",
+            "type": "list",
+            "depth": 2
+          },
+          {
+            "route": "/finance/payables/add",
+            "type": "add",
+            "depth": 3
+          },
+          {
+            "route": "/finance/payables/payments",
+            "type": "detail",
+            "depth": 3
+          },
+          {
+            "route": "/finance/payables/view/:id",
+            "type": "detail",
+            "depth": 4
+          },
+          {
+            "route": "/finance/payables/edit/:id",
+            "type": "detail",
+            "depth": 4
+          }
+        ]
+      },
+      "payments": {
+        "name": "Payments",
+        "pages": [
+          {
+            "route": "/finance/payments",
+            "type": "list",
+            "depth": 2
+          },
+          {
+            "route": "/finance/payments/add",
+            "type": "add",
+            "depth": 3
+          },
+          {
+            "route": "/finance/payments/view/:id",
+            "type": "detail",
+            "depth": 4
+          },
+          {
+            "route": "/finance/payments/edit/:id",
+            "type": "detail",
+            "depth": 4
+          }
+        ]
+      },
+      "period-operations": {
+        "name": "Period Operations",
+        "pages": [
+          {
+            "route": "/finance/period-operations",
+            "type": "list",
+            "depth": 2
+          },
+          {
+            "route": "/finance/period-operations/period-close",
+            "type": "detail",
+            "depth": 3
+          },
+          {
+            "route": "/finance/period-operations/year-end",
+            "type": "detail",
+            "depth": 3
+          }
+        ]
+      },
+      "periods": {
+        "name": "Periods",
+        "pages": [
+          {
+            "route": "/finance/periods",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "receivables": {
+        "name": "Receivables",
+        "pages": [
+          {
+            "route": "/finance/receivables",
+            "type": "list",
+            "depth": 2
+          },
+          {
+            "route": "/finance/receivables/add",
+            "type": "add",
+            "depth": 3
+          },
+          {
+            "route": "/finance/receivables/credit-management",
+            "type": "detail",
+            "depth": 3
+          },
+          {
+            "route": "/finance/receivables/invoices",
+            "type": "detail",
+            "depth": 3
+          },
+          {
+            "route": "/finance/receivables/view/:id",
+            "type": "detail",
+            "depth": 4
+          },
+          {
+            "route": "/finance/receivables/edit/:id",
+            "type": "detail",
+            "depth": 4
+          }
+        ]
+      },
+      "reporting": {
+        "name": "Reporting",
+        "pages": [
+          {
+            "route": "/finance/reporting",
+            "type": "list",
+            "depth": 2
+          },
+          {
+            "route": "/finance/reporting/report-builder",
+            "type": "detail",
+            "depth": 3
+          }
+        ]
+      },
+      "reports": {
+        "name": "Reports",
+        "pages": [
+          {
+            "route": "/finance/reports",
+            "type": "list",
+            "depth": 2
+          },
+          {
+            "route": "/finance/reports/balance-sheet",
+            "type": "detail",
+            "depth": 3
+          },
+          {
+            "route": "/finance/reports/cash-flow",
+            "type": "detail",
+            "depth": 3
+          },
+          {
+            "route": "/finance/reports/profit-loss",
+            "type": "detail",
+            "depth": 3
+          },
+          {
+            "route": "/finance/reports/trial-balance",
+            "type": "detail",
+            "depth": 3
+          }
+        ]
+      },
+      "tax": {
+        "name": "Tax",
+        "pages": [
+          {
+            "route": "/finance/tax",
+            "type": "list",
+            "depth": 2
+          },
+          {
+            "route": "/finance/tax/gst",
+            "type": "detail",
+            "depth": 3
+          },
+          {
+            "route": "/finance/tax/tax-reports",
+            "type": "detail",
+            "depth": 3
+          },
+          {
+            "route": "/finance/tax/tds",
+            "type": "detail",
+            "depth": 3
+          }
+        ]
+      },
+      "workflows": {
+        "name": "Workflows",
+        "pages": [
+          {
+            "route": "/finance/workflows",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      }
+    },
+    "has_dashboard": true
+  },
+  "hr": {
+    "name": "Hr",
+    "route": "/hr",
+    "subsections": {
+      "attendance": {
+        "name": "Attendance",
+        "pages": [
+          {
+            "route": "/hr/attendance",
+            "type": "list",
+            "depth": 2
+          },
+          {
+            "route": "/hr/attendance/add",
+            "type": "add",
+            "depth": 3
+          },
+          {
+            "route": "/hr/attendance/view/:id",
+            "type": "detail",
+            "depth": 4
+          }
+        ]
+      },
+      "employees": {
+        "name": "Employees",
+        "pages": [
+          {
+            "route": "/hr/employees",
+            "type": "list",
+            "depth": 2
+          },
+          {
+            "route": "/hr/employees/add",
+            "type": "add",
+            "depth": 3
+          },
+          {
+            "route": "/hr/employees/view/:id",
+            "type": "detail",
+            "depth": 4
+          },
+          {
+            "route": "/hr/employees/edit/:id",
+            "type": "detail",
+            "depth": 4
+          }
+        ]
+      },
+      "leave": {
+        "name": "Leave",
+        "pages": [
+          {
+            "route": "/hr/leave",
+            "type": "list",
+            "depth": 2
+          },
+          {
+            "route": "/hr/leave/add",
+            "type": "add",
+            "depth": 3
+          },
+          {
+            "route": "/hr/leave/view/:id",
+            "type": "detail",
+            "depth": 4
+          },
+          {
+            "route": "/hr/leave/edit/:id",
+            "type": "detail",
+            "depth": 4
+          }
+        ]
+      },
+      "payroll": {
+        "name": "Payroll",
+        "pages": [
+          {
+            "route": "/hr/payroll",
+            "type": "list",
+            "depth": 2
+          },
+          {
+            "route": "/hr/payroll/add",
+            "type": "add",
+            "depth": 3
+          },
+          {
+            "route": "/hr/payroll/view/:id",
+            "type": "detail",
+            "depth": 4
+          },
+          {
+            "route": "/hr/payroll/edit/:id",
+            "type": "detail",
+            "depth": 4
+          }
+        ]
+      },
+      "performance": {
+        "name": "Performance",
+        "pages": [
+          {
+            "route": "/hr/performance",
+            "type": "list",
+            "depth": 2
+          },
+          {
+            "route": "/hr/performance/add",
+            "type": "add",
+            "depth": 3
+          },
+          {
+            "route": "/hr/performance/view/:id",
+            "type": "detail",
+            "depth": 4
+          },
+          {
+            "route": "/hr/performance/edit/:id",
+            "type": "detail",
+            "depth": 4
+          }
+        ]
+      }
+    },
+    "has_dashboard": true
+  },
+  "inventory": {
+    "name": "Inventory",
+    "route": "/inventory",
+    "subsections": {
+      "movements": {
+        "name": "Movements",
+        "pages": [
+          {
+            "route": "/inventory/movements",
+            "type": "list",
+            "depth": 2
+          },
+          {
+            "route": "/inventory/movements/add",
+            "type": "add",
+            "depth": 3
+          },
+          {
+            "route": "/inventory/movements/view/:id",
+            "type": "detail",
+            "depth": 4
+          }
+        ]
+      },
+      "stock": {
+        "name": "Stock",
+        "pages": [
+          {
+            "route": "/inventory/stock",
+            "type": "list",
+            "depth": 2
+          },
+          {
+            "route": "/inventory/stock/add",
+            "type": "add",
+            "depth": 3
+          },
+          {
+            "route": "/inventory/stock/view/:id",
+            "type": "detail",
+            "depth": 4
+          },
+          {
+            "route": "/inventory/stock/edit/:id",
+            "type": "detail",
+            "depth": 4
+          }
+        ]
+      },
+      "transfers": {
+        "name": "Transfers",
+        "pages": [
+          {
+            "route": "/inventory/transfers",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "warehouse": {
+        "name": "Warehouse",
+        "pages": [
+          {
+            "route": "/inventory/warehouse",
+            "type": "list",
+            "depth": 2
+          },
+          {
+            "route": "/inventory/warehouse/view/:id",
+            "type": "detail",
+            "depth": 4
+          }
+        ]
+      }
+    },
+    "has_dashboard": true
+  },
+  "logistics": {
+    "name": "Logistics",
+    "route": "/logistics",
+    "subsections": {
+      "carriers": {
+        "name": "Carriers",
+        "pages": [
+          {
+            "route": "/logistics/carriers",
+            "type": "list",
+            "depth": 2
+          },
+          {
+            "route": "/logistics/carriers/add",
+            "type": "add",
+            "depth": 3
+          },
+          {
+            "route": "/logistics/carriers/view/:id",
+            "type": "detail",
+            "depth": 4
+          },
+          {
+            "route": "/logistics/carriers/edit/:id",
+            "type": "detail",
+            "depth": 4
+          }
+        ]
+      },
+      "driver-master": {
+        "name": "Driver Master",
+        "pages": [
+          {
+            "route": "/logistics/driver-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "freight-master": {
+        "name": "Freight Master",
+        "pages": [
+          {
+            "route": "/logistics/freight-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "packaging-master": {
+        "name": "Packaging Master",
+        "pages": [
+          {
+            "route": "/logistics/packaging-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "port-master": {
+        "name": "Port Master",
+        "pages": [
+          {
+            "route": "/logistics/port-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "route-master": {
+        "name": "Route Master",
+        "pages": [
+          {
+            "route": "/logistics/route-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "shipping": {
+        "name": "Shipping",
+        "pages": [
+          {
+            "route": "/logistics/shipping",
+            "type": "list",
+            "depth": 2
+          },
+          {
+            "route": "/logistics/shipping/add",
+            "type": "add",
+            "depth": 3
+          },
+          {
+            "route": "/logistics/shipping/view/:id",
+            "type": "detail",
+            "depth": 4
+          },
+          {
+            "route": "/logistics/shipping/edit/:id",
+            "type": "detail",
+            "depth": 4
+          }
+        ]
+      },
+      "tracking": {
+        "name": "Tracking",
+        "pages": [
+          {
+            "route": "/logistics/tracking",
+            "type": "list",
+            "depth": 2
+          },
+          {
+            "route": "/logistics/tracking/view/:id",
+            "type": "detail",
+            "depth": 4
+          }
+        ]
+      },
+      "transporter-master": {
+        "name": "Transporter Master",
+        "pages": [
+          {
+            "route": "/logistics/transporter-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "vehicle-master": {
+        "name": "Vehicle Master",
+        "pages": [
+          {
+            "route": "/logistics/vehicle-master",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      }
+    },
+    "has_dashboard": true
+  },
+  "procurement": {
+    "name": "Procurement",
+    "route": "/procurement",
+    "subsections": {
+      "analytics": {
+        "name": "Analytics",
+        "pages": [
+          {
+            "route": "/procurement/analytics",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "approvals": {
+        "name": "Approvals",
+        "pages": [
+          {
+            "route": "/procurement/approvals",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "automation": {
+        "name": "Automation",
+        "pages": [
+          {
+            "route": "/procurement/automation",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "budget": {
+        "name": "Budget",
+        "pages": [
+          {
+            "route": "/procurement/budget",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "budget-tracking": {
+        "name": "Budget Tracking",
+        "pages": [
+          {
+            "route": "/procurement/budget-tracking",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "calendar": {
+        "name": "Calendar",
+        "pages": [
+          {
+            "route": "/procurement/calendar",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "category-management": {
+        "name": "Category Management",
+        "pages": [
+          {
+            "route": "/procurement/category-management",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "collaboration": {
+        "name": "Collaboration",
+        "pages": [
+          {
+            "route": "/procurement/collaboration",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "compliance": {
+        "name": "Compliance",
+        "pages": [
+          {
+            "route": "/procurement/compliance",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "contract-management": {
+        "name": "Contract Management",
+        "pages": [
+          {
+            "route": "/procurement/contract-management",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "contracts": {
+        "name": "Contracts",
+        "pages": [
+          {
+            "route": "/procurement/contracts",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "e-marketplace": {
+        "name": "E Marketplace",
+        "pages": [
+          {
+            "route": "/procurement/e-marketplace",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "grn": {
+        "name": "Grn",
+        "pages": [
+          {
+            "route": "/procurement/grn",
+            "type": "list",
+            "depth": 2
+          },
+          {
+            "route": "/procurement/grn/add",
+            "type": "add",
+            "depth": 3
+          },
+          {
+            "route": "/procurement/grn/:id/inspect",
+            "type": "detail",
+            "depth": 4
+          },
+          {
+            "route": "/procurement/grn/view/:id",
+            "type": "detail",
+            "depth": 4
+          },
+          {
+            "route": "/procurement/grn/edit/:id",
+            "type": "detail",
+            "depth": 4
+          }
+        ]
+      },
+      "invoices": {
+        "name": "Invoices",
+        "pages": [
+          {
+            "route": "/procurement/invoices",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "notifications": {
+        "name": "Notifications",
+        "pages": [
+          {
+            "route": "/procurement/notifications",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "po": {
+        "name": "Po",
+        "pages": [
+          {
+            "route": "/procurement/po",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "purchase-orders": {
+        "name": "Purchase Orders",
+        "pages": [
+          {
+            "route": "/procurement/purchase-orders",
+            "type": "list",
+            "depth": 2
+          },
+          {
+            "route": "/procurement/purchase-orders/create",
+            "type": "detail",
+            "depth": 3
+          }
+        ]
+      },
+      "purchase-requisition": {
+        "name": "Purchase Requisition",
+        "pages": [
+          {
+            "route": "/procurement/purchase-requisition",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "quality-assurance": {
+        "name": "Quality Assurance",
+        "pages": [
+          {
+            "route": "/procurement/quality-assurance",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "requisitions": {
+        "name": "Requisitions",
+        "pages": [
+          {
+            "route": "/procurement/requisitions",
+            "type": "list",
+            "depth": 2
+          },
+          {
+            "route": "/procurement/requisitions/add",
+            "type": "add",
+            "depth": 3
+          },
+          {
+            "route": "/procurement/requisitions/view/:id",
+            "type": "detail",
+            "depth": 4
+          },
+          {
+            "route": "/procurement/requisitions/edit/:id",
+            "type": "detail",
+            "depth": 4
+          }
+        ]
+      },
+      "rfq": {
+        "name": "Rfq",
+        "pages": [
+          {
+            "route": "/procurement/rfq",
+            "type": "list",
+            "depth": 2
+          },
+          {
+            "route": "/procurement/rfq/:id/compare",
+            "type": "detail",
+            "depth": 4
+          }
+        ]
+      },
+      "rfq-rfp": {
+        "name": "Rfq Rfp",
+        "pages": [
+          {
+            "route": "/procurement/rfq-rfp",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "risk-management": {
+        "name": "Risk Management",
+        "pages": [
+          {
+            "route": "/procurement/risk-management",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "savings-tracker": {
+        "name": "Savings Tracker",
+        "pages": [
+          {
+            "route": "/procurement/savings-tracker",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "spend-analysis": {
+        "name": "Spend Analysis",
+        "pages": [
+          {
+            "route": "/procurement/spend-analysis",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "strategic-sourcing": {
+        "name": "Strategic Sourcing",
+        "pages": [
+          {
+            "route": "/procurement/strategic-sourcing",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "supplier-diversity": {
+        "name": "Supplier Diversity",
+        "pages": [
+          {
+            "route": "/procurement/supplier-diversity",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "supplier-onboarding": {
+        "name": "Supplier Onboarding",
+        "pages": [
+          {
+            "route": "/procurement/supplier-onboarding",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "supplier-portal": {
+        "name": "Supplier Portal",
+        "pages": [
+          {
+            "route": "/procurement/supplier-portal",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "supplier-relationship": {
+        "name": "Supplier Relationship",
+        "pages": [
+          {
+            "route": "/procurement/supplier-relationship",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "supplier-scorecard": {
+        "name": "Supplier Scorecard",
+        "pages": [
+          {
+            "route": "/procurement/supplier-scorecard",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "vendor-management": {
+        "name": "Vendor Management",
+        "pages": [
+          {
+            "route": "/procurement/vendor-management",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "vendor-performance": {
+        "name": "Vendor Performance",
+        "pages": [
+          {
+            "route": "/procurement/vendor-performance",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "vendors": {
+        "name": "Vendors",
+        "pages": [
+          {
+            "route": "/procurement/vendors",
+            "type": "list",
+            "depth": 2
+          },
+          {
+            "route": "/procurement/vendors/add",
+            "type": "add",
+            "depth": 3
+          },
+          {
+            "route": "/procurement/vendors/view/:id",
+            "type": "detail",
+            "depth": 4
+          },
+          {
+            "route": "/procurement/vendors/edit/:id",
+            "type": "detail",
+            "depth": 4
+          }
+        ]
+      },
+      "orders": {
+        "name": "Orders",
+        "pages": [
+          {
+            "route": "/procurement/orders/add",
+            "type": "add",
+            "depth": 3
+          },
+          {
+            "route": "/procurement/orders/view/:id",
+            "type": "detail",
+            "depth": 4
+          },
+          {
+            "route": "/procurement/orders/edit/:id",
+            "type": "detail",
+            "depth": 4
+          }
+        ]
+      }
+    },
+    "has_dashboard": true
+  },
+  "production": {
+    "name": "Production",
+    "route": "/production",
+    "subsections": {
+      "analytics": {
+        "name": "Analytics",
+        "pages": [
+          {
+            "route": "/production/analytics",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "capacity-planning": {
+        "name": "Capacity Planning",
+        "pages": [
+          {
+            "route": "/production/capacity-planning",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "floor": {
+        "name": "Floor",
+        "pages": [
+          {
+            "route": "/production/floor",
+            "type": "list",
+            "depth": 2
+          },
+          {
+            "route": "/production/floor/view/:id",
+            "type": "detail",
+            "depth": 4
+          },
+          {
+            "route": "/production/floor/edit/:id",
+            "type": "detail",
+            "depth": 4
+          }
+        ]
+      },
+      "mrp": {
+        "name": "Mrp",
+        "pages": [
+          {
+            "route": "/production/mrp",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "planning": {
+        "name": "Planning",
+        "pages": [
+          {
+            "route": "/production/planning",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "ppg": {
+        "name": "Ppg",
+        "pages": [
+          {
+            "route": "/production/ppg",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "quality": {
+        "name": "Quality",
+        "pages": [
+          {
+            "route": "/production/quality",
+            "type": "list",
+            "depth": 2
+          },
+          {
+            "route": "/production/quality/add",
+            "type": "add",
+            "depth": 3
+          },
+          {
+            "route": "/production/quality/view/:id",
+            "type": "detail",
+            "depth": 4
+          },
+          {
+            "route": "/production/quality/edit/:id",
+            "type": "detail",
+            "depth": 4
+          }
+        ]
+      },
+      "scheduling": {
+        "name": "Scheduling",
+        "pages": [
+          {
+            "route": "/production/scheduling",
+            "type": "list",
+            "depth": 2
+          },
+          {
+            "route": "/production/scheduling/add",
+            "type": "add",
+            "depth": 3
+          },
+          {
+            "route": "/production/scheduling/view/:id",
+            "type": "detail",
+            "depth": 4
+          },
+          {
+            "route": "/production/scheduling/edit/:id",
+            "type": "detail",
+            "depth": 4
+          }
+        ]
+      },
+      "shopfloor": {
+        "name": "Shopfloor",
+        "pages": [
+          {
+            "route": "/production/shopfloor",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "work-orders": {
+        "name": "Work Orders",
+        "pages": [
+          {
+            "route": "/production/work-orders",
+            "type": "list",
+            "depth": 2
+          },
+          {
+            "route": "/production/work-orders/add",
+            "type": "add",
+            "depth": 3
+          },
+          {
+            "route": "/production/work-orders/view/:id",
+            "type": "detail",
+            "depth": 4
+          },
+          {
+            "route": "/production/work-orders/edit/:id",
+            "type": "detail",
+            "depth": 4
+          }
+        ]
+      },
+      "bom": {
+        "name": "Bom",
+        "pages": [
+          {
+            "route": "/production/bom/add",
+            "type": "add",
+            "depth": 3
+          },
+          {
+            "route": "/production/bom/view/:id",
+            "type": "detail",
+            "depth": 4
+          },
+          {
+            "route": "/production/bom/edit/:id",
+            "type": "detail",
+            "depth": 4
+          }
+        ]
+      }
+    },
+    "has_dashboard": true
+  },
+  "project-management": {
+    "name": "Project Management",
+    "route": "/project-management",
+    "subsections": {
+      "analytics": {
+        "name": "Analytics",
+        "pages": [
+          {
+            "route": "/project-management/analytics",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "budget": {
+        "name": "Budget",
+        "pages": [
+          {
+            "route": "/project-management/budget",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "change-orders": {
+        "name": "Change Orders",
+        "pages": [
+          {
+            "route": "/project-management/change-orders",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "commissioning": {
+        "name": "Commissioning",
+        "pages": [
+          {
+            "route": "/project-management/commissioning",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "create": {
+        "name": "Create",
+        "pages": [
+          {
+            "route": "/project-management/create",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "customer-acceptance": {
+        "name": "Customer Acceptance",
+        "pages": [
+          {
+            "route": "/project-management/customer-acceptance",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "dashboard": {
+        "name": "Dashboard",
+        "pages": [
+          {
+            "route": "/project-management/dashboard",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "deliverables": {
+        "name": "Deliverables",
+        "pages": [
+          {
+            "route": "/project-management/deliverables",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "documents": {
+        "name": "Documents",
+        "pages": [
+          {
+            "route": "/project-management/documents",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "installation-tracking": {
+        "name": "Installation Tracking",
+        "pages": [
+          {
+            "route": "/project-management/installation-tracking",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "issues": {
+        "name": "Issues",
+        "pages": [
+          {
+            "route": "/project-management/issues",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "labor-tracking": {
+        "name": "Labor Tracking",
+        "pages": [
+          {
+            "route": "/project-management/labor-tracking",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "material-consumption": {
+        "name": "Material Consumption",
+        "pages": [
+          {
+            "route": "/project-management/material-consumption",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "milestone-templates": {
+        "name": "Milestone Templates",
+        "pages": [
+          {
+            "route": "/project-management/milestone-templates",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "mrp": {
+        "name": "Mrp",
+        "pages": [
+          {
+            "route": "/project-management/mrp",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "profitability": {
+        "name": "Profitability",
+        "pages": [
+          {
+            "route": "/project-management/profitability",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "progress": {
+        "name": "Progress",
+        "pages": [
+          {
+            "route": "/project-management/progress",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "project-costing": {
+        "name": "Project Costing",
+        "pages": [
+          {
+            "route": "/project-management/project-costing",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "project-types": {
+        "name": "Project Types",
+        "pages": [
+          {
+            "route": "/project-management/project-types",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "quality-inspection": {
+        "name": "Quality Inspection",
+        "pages": [
+          {
+            "route": "/project-management/quality-inspection",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "reports": {
+        "name": "Reports",
+        "pages": [
+          {
+            "route": "/project-management/reports",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "resource-allocation": {
+        "name": "Resource Allocation",
+        "pages": [
+          {
+            "route": "/project-management/resource-allocation",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "resource-utilization": {
+        "name": "Resource Utilization",
+        "pages": [
+          {
+            "route": "/project-management/resource-utilization",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "resources": {
+        "name": "Resources",
+        "pages": [
+          {
+            "route": "/project-management/resources",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "schedule": {
+        "name": "Schedule",
+        "pages": [
+          {
+            "route": "/project-management/schedule",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "settings": {
+        "name": "Settings",
+        "pages": [
+          {
+            "route": "/project-management/settings",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "site-issues": {
+        "name": "Site Issues",
+        "pages": [
+          {
+            "route": "/project-management/site-issues",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "site-survey": {
+        "name": "Site Survey",
+        "pages": [
+          {
+            "route": "/project-management/site-survey",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "tasks": {
+        "name": "Tasks",
+        "pages": [
+          {
+            "route": "/project-management/tasks",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "templates": {
+        "name": "Templates",
+        "pages": [
+          {
+            "route": "/project-management/templates",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "timeline": {
+        "name": "Timeline",
+        "pages": [
+          {
+            "route": "/project-management/timeline",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "wbs": {
+        "name": "Wbs",
+        "pages": [
+          {
+            "route": "/project-management/wbs",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "view": {
+        "name": "View",
+        "pages": [
+          {
+            "route": "/project-management/view/:id",
+            "type": "detail",
+            "depth": 3
+          }
+        ]
+      }
+    },
+    "has_dashboard": true
+  },
+  "projects": {
+    "name": "Projects",
+    "route": "/projects",
+    "subsections": {
+      "commissioning": {
+        "name": "Commissioning",
+        "pages": [
+          {
+            "route": "/projects/commissioning",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "planning": {
+        "name": "Planning",
+        "pages": [
+          {
+            "route": "/projects/planning",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "resources": {
+        "name": "Resources",
+        "pages": [
+          {
+            "route": "/projects/resources",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "tracking": {
+        "name": "Tracking",
+        "pages": [
+          {
+            "route": "/projects/tracking",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      }
+    },
+    "has_dashboard": true
+  },
+  "sales": {
+    "name": "Sales",
+    "route": "/sales",
+    "subsections": {
+      "handover": {
+        "name": "Handover",
+        "pages": [
+          {
+            "route": "/sales/handover",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "orders": {
+        "name": "Orders",
+        "pages": [
+          {
+            "route": "/sales/orders",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "quotations": {
+        "name": "Quotations",
+        "pages": [
+          {
+            "route": "/sales/quotations",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "rfp": {
+        "name": "Rfp",
+        "pages": [
+          {
+            "route": "/sales/rfp",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      }
+    },
+    "has_dashboard": true
+  },
+  "workflow": {
+    "name": "Workflow",
+    "route": "/workflow",
+    "subsections": {
+      "approvals": {
+        "name": "Approvals",
+        "pages": [
+          {
+            "route": "/workflow/approvals",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "automation": {
+        "name": "Automation",
+        "pages": [
+          {
+            "route": "/workflow/automation",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "templates": {
+        "name": "Templates",
+        "pages": [
+          {
+            "route": "/workflow/templates",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      }
+    }
+  },
+  "support": {
+    "name": "Support",
+    "route": "/support",
+    "subsections": {
+      "incidents": {
+        "name": "Incidents",
+        "pages": [
+          {
+            "route": "/support/incidents",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "knowledge": {
+        "name": "Knowledge",
+        "pages": [
+          {
+            "route": "/support/knowledge",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "tickets": {
+        "name": "Tickets",
+        "pages": [
+          {
+            "route": "/support/tickets",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      }
+    }
+  },
+  "rfq": {
+    "name": "Rfq",
+    "route": "/rfq",
+    "subsections": {
+      "add": {
+        "name": "Add",
+        "pages": [
+          {
+            "route": "/rfq/add",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "view": {
+        "name": "View",
+        "pages": [
+          {
+            "route": "/rfq/view/:id",
+            "type": "detail",
+            "depth": 3
+          }
+        ]
+      },
+      "edit": {
+        "name": "Edit",
+        "pages": [
+          {
+            "route": "/rfq/edit/:id",
+            "type": "detail",
+            "depth": 3
+          }
+        ]
+      }
+    }
+  },
+  "reports": {
+    "name": "Reports",
+    "route": "/reports",
+    "subsections": {
+      "analytics": {
+        "name": "Analytics",
+        "pages": [
+          {
+            "route": "/reports/analytics",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "custom": {
+        "name": "Custom",
+        "pages": [
+          {
+            "route": "/reports/custom",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "dashboards": {
+        "name": "Dashboards",
+        "pages": [
+          {
+            "route": "/reports/dashboards",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      }
+    }
+  },
+  "it-admin": {
+    "name": "It Admin",
+    "route": "/it-admin",
+    "subsections": {
+      "audit": {
+        "name": "Audit",
+        "pages": [
+          {
+            "route": "/it-admin/audit",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "roles": {
+        "name": "Roles",
+        "pages": [
+          {
+            "route": "/it-admin/roles",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "system": {
+        "name": "System",
+        "pages": [
+          {
+            "route": "/it-admin/system",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      },
+      "users": {
+        "name": "Users",
+        "pages": [
+          {
+            "route": "/it-admin/users",
+            "type": "list",
+            "depth": 2
+          }
+        ]
+      }
+    }
+  }
+}

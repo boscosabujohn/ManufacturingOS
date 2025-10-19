@@ -1,0 +1,404 @@
+Module,Subsection,Route,Page Type,In Sidebar,Depth,File Path
+After Sales Service,Billing,/after-sales-service/billing,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\after-sales-service\billing\page.tsx
+After Sales Service,Billing,/after-sales-service/billing/create,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\after-sales-service\billing\create\page.tsx
+After Sales Service,Billing,/after-sales-service/billing/payments,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\after-sales-service\billing\payments\page.tsx
+After Sales Service,Billing,/after-sales-service/billing/view/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\after-sales-service\billing\view\[id]\page.tsx
+After Sales Service,Dashboard,/after-sales-service,dashboard,Yes,1,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\after-sales-service\page.tsx
+After Sales Service,Dashboard,/after-sales-service/dashboard,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\after-sales-service\dashboard\page.tsx
+After Sales Service,Dashboard,/after-sales-service/dashboard/analytics,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\after-sales-service\dashboard\analytics\page.tsx
+After Sales Service,Dashboard,/after-sales-service/dashboard/reports,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\after-sales-service\dashboard\reports\page.tsx
+After Sales Service,Field Service,/after-sales-service/field-service,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\after-sales-service\field-service\page.tsx
+After Sales Service,Field Service,/after-sales-service/field-service/dispatch,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\after-sales-service\field-service\dispatch\page.tsx
+After Sales Service,Field Service,/after-sales-service/field-service/schedule,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\after-sales-service\field-service\schedule\page.tsx
+After Sales Service,Field Service,/after-sales-service/field-service/view/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\after-sales-service\field-service\view\[id]\page.tsx
+After Sales Service,Installations,/after-sales-service/installations,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\after-sales-service\installations\page.tsx
+After Sales Service,Installations,/after-sales-service/installations/add,create,No,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\after-sales-service\installations\add\page.tsx
+After Sales Service,Installations,/after-sales-service/installations/calendar,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\after-sales-service\installations\calendar\page.tsx
+After Sales Service,Installations,/after-sales-service/installations/view/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\after-sales-service\installations\view\[id]\page.tsx
+After Sales Service,Service Contracts,/after-sales-service/service-contracts,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\after-sales-service\service-contracts\page.tsx
+After Sales Service,Service Contracts,/after-sales-service/service-contracts/add,create,No,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\after-sales-service\service-contracts\add\page.tsx
+After Sales Service,Service Contracts,/after-sales-service/service-contracts/renew/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\after-sales-service\service-contracts\renew\[id]\page.tsx
+After Sales Service,Service Contracts,/after-sales-service/service-contracts/terms,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\after-sales-service\service-contracts\terms\page.tsx
+After Sales Service,Service Contracts,/after-sales-service/service-contracts/view/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\after-sales-service\service-contracts\view\[id]\page.tsx
+After Sales Service,Service Requests,/after-sales-service/service-requests,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\after-sales-service\service-requests\page.tsx
+After Sales Service,Service Requests,/after-sales-service/service-requests/add,create,No,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\after-sales-service\service-requests\add\page.tsx
+After Sales Service,Service Requests,/after-sales-service/service-requests/sla-dashboard,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\after-sales-service\service-requests\sla-dashboard\page.tsx
+After Sales Service,Service Requests,/after-sales-service/service-requests/view/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\after-sales-service\service-requests\view\[id]\page.tsx
+After Sales Service,Warranties,/after-sales-service/warranties,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\after-sales-service\warranties\page.tsx
+After Sales Service,Warranties,/after-sales-service/warranties/add,create,No,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\after-sales-service\warranties\add\page.tsx
+After Sales Service,Warranties,/after-sales-service/warranties/claims,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\after-sales-service\warranties\claims\page.tsx
+After Sales Service,Warranties,/after-sales-service/warranties/claims/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\after-sales-service\warranties\claims\[id]\page.tsx
+After Sales Service,Warranties,/after-sales-service/warranties/view/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\after-sales-service\warranties\view\[id]\page.tsx
+Common Masters,Appliance Master,/common-masters/appliance-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\common-masters\appliance-master\page.tsx
+Common Masters,Bank Master,/common-masters/bank-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\common-masters\bank-master\page.tsx
+Common Masters,Barcode Master,/common-masters/barcode-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\common-masters\barcode-master\page.tsx
+Common Masters,Batch Lot Master,/common-masters/batch-lot-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\common-masters\batch-lot-master\page.tsx
+Common Masters,Branch Master,/common-masters/branch-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\common-masters\branch-master\page.tsx
+Common Masters,Brand Master,/common-masters/brand-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\common-masters\brand-master\page.tsx
+Common Masters,Cabinet Type Master,/common-masters/cabinet-type-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\common-masters\cabinet-type-master\page.tsx
+Common Masters,Chart Of Accounts Master,/common-masters/chart-of-accounts-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\common-masters\chart-of-accounts-master\page.tsx
+Common Masters,City Master,/common-masters/city-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\common-masters\city-master\page.tsx
+Common Masters,Company Master,/common-masters/company-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\common-masters\company-master\page.tsx
+Common Masters,Cost Center Master,/common-masters/cost-center-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\common-masters\cost-center-master\page.tsx
+Common Masters,Counter Material Master,/common-masters/counter-material-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\common-masters\counter-material-master\page.tsx
+Common Masters,Country Master,/common-masters/country-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\common-masters\country-master\page.tsx
+Common Masters,Currency Master,/common-masters/currency-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\common-masters\currency-master\page.tsx
+Common Masters,Customer Category Master,/common-masters/customer-category-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\common-masters\customer-category-master\page.tsx
+Common Masters,Customer Master,/common-masters/customer-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\common-masters\customer-master\page.tsx
+Common Masters,Dashboard,/common-masters,dashboard,Yes,1,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\common-masters\page.tsx
+Common Masters,Department Master,/common-masters/department-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\common-masters\department-master\page.tsx
+Common Masters,Designation Master,/common-masters/designation-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\common-masters\designation-master\page.tsx
+Common Masters,Document Type Master,/common-masters/document-type-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\common-masters\document-type-master\page.tsx
+Common Masters,Employee Master,/common-masters/employee-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\common-masters\employee-master\page.tsx
+Common Masters,Exchange Rate Master,/common-masters/exchange-rate-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\common-masters\exchange-rate-master\page.tsx
+Common Masters,Finish Master,/common-masters/finish-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\common-masters\finish-master\page.tsx
+Common Masters,Hardware Master,/common-masters/hardware-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\common-masters\hardware-master\page.tsx
+Common Masters,Holiday Master,/common-masters/holiday-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\common-masters\holiday-master\page.tsx
+Common Masters,Hsn Sac Master,/common-masters/hsn-sac-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\common-masters\hsn-sac-master\page.tsx
+Common Masters,Installation Type Master,/common-masters/installation-type-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\common-masters\installation-type-master\page.tsx
+Common Masters,Item Category Master,/common-masters/item-category-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\common-masters\item-category-master\page.tsx
+Common Masters,Item Group Master,/common-masters/item-group-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\common-masters\item-group-master\page.tsx
+Common Masters,Item Master,/common-masters/item-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\common-masters\item-master\page.tsx
+Common Masters,Kitchen Layout Master,/common-masters/kitchen-layout-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\common-masters\kitchen-layout-master\page.tsx
+Common Masters,Location Master,/common-masters/location-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\common-masters\location-master\page.tsx
+Common Masters,Machine Master,/common-masters/machine-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\common-masters\machine-master\page.tsx
+Common Masters,Material Grade Master,/common-masters/material-grade-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\common-masters\material-grade-master\page.tsx
+Common Masters,Number Series Master,/common-masters/number-series-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\common-masters\number-series-master\page.tsx
+Common Masters,Operation Master,/common-masters/operation-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\common-masters\operation-master\page.tsx
+Common Masters,Payment Terms Master,/common-masters/payment-terms-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\common-masters\payment-terms-master\page.tsx
+Common Masters,Plant Master,/common-masters/plant-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\common-masters\plant-master\page.tsx
+Common Masters,Price List Master,/common-masters/price-list-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\common-masters\price-list-master\page.tsx
+Common Masters,Quality Parameter Master,/common-masters/quality-parameter-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\common-masters\quality-parameter-master\page.tsx
+Common Masters,Role Master,/common-masters/role-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\common-masters\role-master\page.tsx
+Common Masters,Routing Master,/common-masters/routing-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\common-masters\routing-master\page.tsx
+Common Masters,Shift Master,/common-masters/shift-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\common-masters\shift-master\page.tsx
+Common Masters,Skill Master,/common-masters/skill-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\common-masters\skill-master\page.tsx
+Common Masters,State Master,/common-masters/state-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\common-masters\state-master\page.tsx
+Common Masters,Tax Master,/common-masters/tax-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\common-masters\tax-master\page.tsx
+Common Masters,Territory Master,/common-masters/territory-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\common-masters\territory-master\page.tsx
+Common Masters,Tool Master,/common-masters/tool-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\common-masters\tool-master\page.tsx
+Common Masters,Uom Conversion Master,/common-masters/uom-conversion-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\common-masters\uom-conversion-master\page.tsx
+Common Masters,Uom Master,/common-masters/uom-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\common-masters\uom-master\page.tsx
+Common Masters,User Master,/common-masters/user-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\common-masters\user-master\page.tsx
+Common Masters,Vendor Category Master,/common-masters/vendor-category-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\common-masters\vendor-category-master\page.tsx
+Common Masters,Vendor Master,/common-masters/vendor-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\common-masters\vendor-master\page.tsx
+Common Masters,Warehouse Master,/common-masters/warehouse-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\common-masters\warehouse-master\page.tsx
+Common Masters,Work Center Master,/common-masters/work-center-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\common-masters\work-center-master\page.tsx
+Crm,Contacts,/crm/contacts,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\crm\contacts\page.tsx
+Crm,Contacts,/crm/contacts/add,create,No,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\crm\contacts\add\page.tsx
+Crm,Contacts,/crm/contacts/edit/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\crm\contacts\edit\[id]\page.tsx
+Crm,Contacts,/crm/contacts/view/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\crm\contacts\view\[id]\page.tsx
+Crm,Customers,/crm/customers,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\crm\customers\page.tsx
+Crm,Customers,/crm/customers/add,create,No,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\crm\customers\add\page.tsx
+Crm,Customers,/crm/customers/edit/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\crm\customers\edit\[id]\page.tsx
+Crm,Customers,/crm/customers/view/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\crm\customers\view\[id]\page.tsx
+Crm,Dashboard,/crm,dashboard,Yes,1,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\crm\page.tsx
+Crm,Interactions,/crm/interactions,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\crm\interactions\page.tsx
+Crm,Interactions,/crm/interactions/add,create,No,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\crm\interactions\add\page.tsx
+Crm,Interactions,/crm/interactions/edit/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\crm\interactions\edit\[id]\page.tsx
+Crm,Interactions,/crm/interactions/view/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\crm\interactions\view\[id]\page.tsx
+Crm,Leads,/crm/leads,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\crm\leads\page.tsx
+Crm,Leads,/crm/leads/add,create,No,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\crm\leads\add\page.tsx
+Crm,Leads,/crm/leads/edit/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\crm\leads\edit\[id]\page.tsx
+Crm,Leads,/crm/leads/view/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\crm\leads\view\[id]\page.tsx
+Crm,Opportunities,/crm/opportunities,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\crm\opportunities\page.tsx
+Crm,Opportunities,/crm/opportunities/add,create,No,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\crm\opportunities\add\page.tsx
+Crm,Opportunities,/crm/opportunities/edit/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\crm\opportunities\edit\[id]\page.tsx
+Crm,Opportunities,/crm/opportunities/view/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\crm\opportunities\view\[id]\page.tsx
+Estimation,Boq,/estimation/boq,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\estimation\boq\page.tsx
+Estimation,Boq,/estimation/boq/add,create,No,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\estimation\boq\add\page.tsx
+Estimation,Boq,/estimation/boq/edit/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\estimation\boq\edit\[id]\page.tsx
+Estimation,Boq,/estimation/boq/view/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\estimation\boq\view\[id]\page.tsx
+Estimation,Costing,/estimation/costing,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\estimation\costing\page.tsx
+Estimation,Costing,/estimation/costing/add,create,No,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\estimation\costing\add\page.tsx
+Estimation,Costing,/estimation/costing/edit/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\estimation\costing\edit\[id]\page.tsx
+Estimation,Costing,/estimation/costing/view/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\estimation\costing\view\[id]\page.tsx
+Estimation,Dashboard,/estimation,dashboard,Yes,1,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\estimation\page.tsx
+Estimation,Pricing,/estimation/pricing,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\estimation\pricing\page.tsx
+Estimation,Pricing,/estimation/pricing/add,create,No,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\estimation\pricing\add\page.tsx
+Estimation,Pricing,/estimation/pricing/edit/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\estimation\pricing\edit\[id]\page.tsx
+Estimation,Pricing,/estimation/pricing/view/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\estimation\pricing\view\[id]\page.tsx
+Finance,Accounting,/finance/accounting,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\accounting\page.tsx
+Finance,Accounting,/finance/accounting/add,create,No,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\accounting\add\page.tsx
+Finance,Accounting,/finance/accounting/chart-of-accounts,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\accounting\chart-of-accounts\page.tsx
+Finance,Accounting,/finance/accounting/edit/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\accounting\edit\[id]\page.tsx
+Finance,Accounting,/finance/accounting/general-ledger,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\accounting\general-ledger\page.tsx
+Finance,Accounting,/finance/accounting/journal-entries,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\accounting\journal-entries\page.tsx
+Finance,Accounting,/finance/accounting/ledger-report,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\accounting\ledger-report\page.tsx
+Finance,Accounting,/finance/accounting/periods,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\accounting\periods\page.tsx
+Finance,Accounting,/finance/accounting/trial-balance,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\accounting\trial-balance\page.tsx
+Finance,Accounting,/finance/accounting/view/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\accounting\view\[id]\page.tsx
+Finance,Accounts Payable,/finance/accounts-payable,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\accounts-payable\page.tsx
+Finance,Accounts Receivable,/finance/accounts-receivable,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\accounts-receivable\page.tsx
+Finance,Analytics,/finance/analytics,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\analytics\page.tsx
+Finance,Analytics,/finance/analytics/financial-ratios,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\analytics\financial-ratios\page.tsx
+Finance,Analytics,/finance/analytics/kpi-dashboard,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\analytics\kpi-dashboard\page.tsx
+Finance,Analytics,/finance/analytics/profitability-analysis,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\analytics\profitability-analysis\page.tsx
+Finance,Assets,/finance/assets,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\assets\page.tsx
+Finance,Assets,/finance/assets/asset-disposal,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\assets\asset-disposal\page.tsx
+Finance,Assets,/finance/assets/depreciation,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\assets\depreciation\page.tsx
+Finance,Assets,/finance/assets/fixed-assets,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\assets\fixed-assets\page.tsx
+Finance,Automation,/finance/automation,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\automation\page.tsx
+Finance,Automation,/finance/automation/alerts,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\automation\alerts\page.tsx
+Finance,Automation,/finance/automation/recurring-transactions,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\automation\recurring-transactions\page.tsx
+Finance,Automation,/finance/automation/workflows,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\automation\workflows\page.tsx
+Finance,Bank Reconciliation,/finance/bank-reconciliation,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\bank-reconciliation\page.tsx
+Finance,Budget,/finance/budget,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\budget\page.tsx
+Finance,Budgeting,/finance/budgeting,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\budgeting\page.tsx
+Finance,Budgeting,/finance/budgeting/budget-vs-actual,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\budgeting\budget-vs-actual\page.tsx
+Finance,Budgeting,/finance/budgeting/budgets,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\budgeting\budgets\page.tsx
+Finance,Budgeting,/finance/budgeting/multi-year-planning,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\budgeting\multi-year-planning\page.tsx
+Finance,Cash,/finance/cash,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\cash\page.tsx
+Finance,Cash,/finance/cash/anticipated-payments,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\cash\anticipated-payments\page.tsx
+Finance,Cash,/finance/cash/anticipated-receipts,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\cash\anticipated-receipts\page.tsx
+Finance,Cash,/finance/cash/bank-accounts,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\cash\bank-accounts\page.tsx
+Finance,Cash,/finance/cash/bank-reconciliation,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\cash\bank-reconciliation\page.tsx
+Finance,Cash,/finance/cash/cash-flow-forecast,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\cash\cash-flow-forecast\page.tsx
+Finance,Cash Flow,/finance/cash-flow,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\cash-flow\page.tsx
+Finance,Consolidation,/finance/consolidation,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\consolidation\page.tsx
+Finance,Consolidation,/finance/consolidation/financial-consolidation,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\consolidation\financial-consolidation\page.tsx
+Finance,Consolidation,/finance/consolidation/intercompany,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\consolidation\intercompany\page.tsx
+Finance,Controls,/finance/controls,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\controls\page.tsx
+Finance,Controls,/finance/controls/approval-workflows,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\controls\approval-workflows\page.tsx
+Finance,Controls,/finance/controls/audit-trail,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\controls\audit-trail\page.tsx
+Finance,Controls,/finance/controls/documents,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\controls\documents\page.tsx
+Finance,Cost Centers,/finance/cost-centers,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\cost-centers\page.tsx
+Finance,Costing,/finance/costing,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\costing\page.tsx
+Finance,Costing,/finance/costing/cost-centers,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\costing\cost-centers\page.tsx
+Finance,Costing,/finance/costing/job-costing,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\costing\job-costing\page.tsx
+Finance,Costing,/finance/costing/profit-centers,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\costing\profit-centers\page.tsx
+Finance,Costing,/finance/costing/standard-costing,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\costing\standard-costing\page.tsx
+Finance,Costing,/finance/costing/variance-analysis,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\costing\variance-analysis\page.tsx
+Finance,Costing,/finance/costing/wip-accounting,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\costing\wip-accounting\page.tsx
+Finance,Credit,/finance/credit,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\credit\page.tsx
+Finance,Currency,/finance/currency,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\currency\page.tsx
+Finance,Currency,/finance/currency/exchange-rates,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\currency\exchange-rates\page.tsx
+Finance,Currency,/finance/currency/management,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\currency\management\page.tsx
+Finance,Dashboard,/finance,dashboard,Yes,1,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\page.tsx
+Finance,Dashboard,/finance/dashboard,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\dashboard\page.tsx
+Finance,General Ledger,/finance/general-ledger,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\general-ledger\page.tsx
+Finance,Integration,/finance/integration,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\integration\page.tsx
+Finance,Integration,/finance/integration/procurement,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\integration\procurement\page.tsx
+Finance,Integration,/finance/integration/production,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\integration\production\page.tsx
+Finance,Integrations,/finance/integrations,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\integrations\page.tsx
+Finance,Investments,/finance/investments,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\investments\page.tsx
+Finance,Invoices,/finance/invoices,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\invoices\page.tsx
+Finance,Invoices,/finance/invoices/add,create,No,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\invoices\add\page.tsx
+Finance,Invoices,/finance/invoices/edit/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\invoices\edit\[id]\page.tsx
+Finance,Invoices,/finance/invoices/view/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\invoices\view\[id]\page.tsx
+Finance,Multi Currency,/finance/multi-currency,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\multi-currency\page.tsx
+Finance,Payables,/finance/payables,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\payables\page.tsx
+Finance,Payables,/finance/payables/add,create,No,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\payables\add\page.tsx
+Finance,Payables,/finance/payables/edit/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\payables\edit\[id]\page.tsx
+Finance,Payables,/finance/payables/payments,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\payables\payments\page.tsx
+Finance,Payables,/finance/payables/view/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\payables\view\[id]\page.tsx
+Finance,Payments,/finance/payments,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\payments\page.tsx
+Finance,Payments,/finance/payments/add,create,No,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\payments\add\page.tsx
+Finance,Payments,/finance/payments/edit/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\payments\edit\[id]\page.tsx
+Finance,Payments,/finance/payments/view/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\payments\view\[id]\page.tsx
+Finance,Period Operations,/finance/period-operations,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\period-operations\page.tsx
+Finance,Period Operations,/finance/period-operations/period-close,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\period-operations\period-close\page.tsx
+Finance,Period Operations,/finance/period-operations/year-end,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\period-operations\year-end\page.tsx
+Finance,Periods,/finance/periods,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\periods\page.tsx
+Finance,Receivables,/finance/receivables,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\receivables\page.tsx
+Finance,Receivables,/finance/receivables/add,create,No,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\receivables\add\page.tsx
+Finance,Receivables,/finance/receivables/credit-management,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\receivables\credit-management\page.tsx
+Finance,Receivables,/finance/receivables/edit/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\receivables\edit\[id]\page.tsx
+Finance,Receivables,/finance/receivables/invoices,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\receivables\invoices\page.tsx
+Finance,Receivables,/finance/receivables/view/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\receivables\view\[id]\page.tsx
+Finance,Reporting,/finance/reporting,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\reporting\page.tsx
+Finance,Reporting,/finance/reporting/report-builder,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\reporting\report-builder\page.tsx
+Finance,Reports,/finance/reports,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\reports\page.tsx
+Finance,Reports,/finance/reports/balance-sheet,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\reports\balance-sheet\page.tsx
+Finance,Reports,/finance/reports/cash-flow,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\reports\cash-flow\page.tsx
+Finance,Reports,/finance/reports/profit-loss,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\reports\profit-loss\page.tsx
+Finance,Reports,/finance/reports/trial-balance,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\reports\trial-balance\page.tsx
+Finance,Tax,/finance/tax,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\tax\page.tsx
+Finance,Tax,/finance/tax/gst,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\tax\gst\page.tsx
+Finance,Tax,/finance/tax/tax-reports,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\tax\tax-reports\page.tsx
+Finance,Tax,/finance/tax/tds,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\tax\tds\page.tsx
+Finance,Workflows,/finance/workflows,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\finance\workflows\page.tsx
+Hr,Attendance,/hr/attendance,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\hr\attendance\page.tsx
+Hr,Attendance,/hr/attendance/add,create,No,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\hr\attendance\add\page.tsx
+Hr,Attendance,/hr/attendance/view/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\hr\attendance\view\[id]\page.tsx
+Hr,Dashboard,/hr,dashboard,Yes,1,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\hr\page.tsx
+Hr,Employees,/hr/employees,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\hr\employees\page.tsx
+Hr,Employees,/hr/employees/add,create,No,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\hr\employees\add\page.tsx
+Hr,Employees,/hr/employees/edit/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\hr\employees\edit\[id]\page.tsx
+Hr,Employees,/hr/employees/view/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\hr\employees\view\[id]\page.tsx
+Hr,Leave,/hr/leave,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\hr\leave\page.tsx
+Hr,Leave,/hr/leave/add,create,No,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\hr\leave\add\page.tsx
+Hr,Leave,/hr/leave/edit/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\hr\leave\edit\[id]\page.tsx
+Hr,Leave,/hr/leave/view/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\hr\leave\view\[id]\page.tsx
+Hr,Payroll,/hr/payroll,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\hr\payroll\page.tsx
+Hr,Payroll,/hr/payroll/add,create,No,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\hr\payroll\add\page.tsx
+Hr,Payroll,/hr/payroll/edit/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\hr\payroll\edit\[id]\page.tsx
+Hr,Payroll,/hr/payroll/view/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\hr\payroll\view\[id]\page.tsx
+Hr,Performance,/hr/performance,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\hr\performance\page.tsx
+Hr,Performance,/hr/performance/add,create,No,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\hr\performance\add\page.tsx
+Hr,Performance,/hr/performance/edit/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\hr\performance\edit\[id]\page.tsx
+Hr,Performance,/hr/performance/view/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\hr\performance\view\[id]\page.tsx
+Inventory,Dashboard,/inventory,dashboard,Yes,1,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\inventory\page.tsx
+Inventory,Movements,/inventory/movements,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\inventory\movements\page.tsx
+Inventory,Movements,/inventory/movements/add,create,No,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\inventory\movements\add\page.tsx
+Inventory,Movements,/inventory/movements/view/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\inventory\movements\view\[id]\page.tsx
+Inventory,Stock,/inventory/stock,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\inventory\stock\page.tsx
+Inventory,Stock,/inventory/stock/add,create,No,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\inventory\stock\add\page.tsx
+Inventory,Stock,/inventory/stock/edit/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\inventory\stock\edit\[id]\page.tsx
+Inventory,Stock,/inventory/stock/view/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\inventory\stock\view\[id]\page.tsx
+Inventory,Transfers,/inventory/transfers,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\inventory\transfers\page.tsx
+Inventory,Warehouse,/inventory/warehouse,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\inventory\warehouse\page.tsx
+Inventory,Warehouse,/inventory/warehouse/view/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\inventory\warehouse\view\[id]\page.tsx
+It Admin,Audit,/it-admin/audit,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\it-admin\audit\page.tsx
+It Admin,Roles,/it-admin/roles,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\it-admin\roles\page.tsx
+It Admin,System,/it-admin/system,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\it-admin\system\page.tsx
+It Admin,Users,/it-admin/users,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\it-admin\users\page.tsx
+Logistics,Carriers,/logistics/carriers,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\logistics\carriers\page.tsx
+Logistics,Carriers,/logistics/carriers/add,create,No,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\logistics\carriers\add\page.tsx
+Logistics,Carriers,/logistics/carriers/edit/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\logistics\carriers\edit\[id]\page.tsx
+Logistics,Carriers,/logistics/carriers/view/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\logistics\carriers\view\[id]\page.tsx
+Logistics,Dashboard,/logistics,dashboard,Yes,1,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\logistics\page.tsx
+Logistics,Driver Master,/logistics/driver-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\logistics\driver-master\page.tsx
+Logistics,Freight Master,/logistics/freight-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\logistics\freight-master\page.tsx
+Logistics,Packaging Master,/logistics/packaging-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\logistics\packaging-master\page.tsx
+Logistics,Port Master,/logistics/port-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\logistics\port-master\page.tsx
+Logistics,Route Master,/logistics/route-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\logistics\route-master\page.tsx
+Logistics,Shipping,/logistics/shipping,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\logistics\shipping\page.tsx
+Logistics,Shipping,/logistics/shipping/add,create,No,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\logistics\shipping\add\page.tsx
+Logistics,Shipping,/logistics/shipping/edit/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\logistics\shipping\edit\[id]\page.tsx
+Logistics,Shipping,/logistics/shipping/view/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\logistics\shipping\view\[id]\page.tsx
+Logistics,Tracking,/logistics/tracking,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\logistics\tracking\page.tsx
+Logistics,Tracking,/logistics/tracking/view/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\logistics\tracking\view\[id]\page.tsx
+Logistics,Transporter Master,/logistics/transporter-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\logistics\transporter-master\page.tsx
+Logistics,Vehicle Master,/logistics/vehicle-master,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\logistics\vehicle-master\page.tsx
+Procurement,Analytics,/procurement/analytics,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\procurement\analytics\page.tsx
+Procurement,Approvals,/procurement/approvals,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\procurement\approvals\page.tsx
+Procurement,Automation,/procurement/automation,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\procurement\automation\page.tsx
+Procurement,Budget,/procurement/budget,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\procurement\budget\page.tsx
+Procurement,Budget Tracking,/procurement/budget-tracking,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\procurement\budget-tracking\page.tsx
+Procurement,Calendar,/procurement/calendar,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\procurement\calendar\page.tsx
+Procurement,Category Management,/procurement/category-management,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\procurement\category-management\page.tsx
+Procurement,Collaboration,/procurement/collaboration,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\procurement\collaboration\page.tsx
+Procurement,Compliance,/procurement/compliance,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\procurement\compliance\page.tsx
+Procurement,Contract Management,/procurement/contract-management,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\procurement\contract-management\page.tsx
+Procurement,Contracts,/procurement/contracts,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\procurement\contracts\page.tsx
+Procurement,Dashboard,/procurement,dashboard,Yes,1,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\procurement\page.tsx
+Procurement,E Marketplace,/procurement/e-marketplace,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\procurement\e-marketplace\page.tsx
+Procurement,Grn,/procurement/grn,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\procurement\grn\page.tsx
+Procurement,Grn,/procurement/grn/:id/inspect,feature,Yes,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\procurement\grn\[id]\inspect\page.tsx
+Procurement,Grn,/procurement/grn/add,create,No,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\procurement\grn\add\page.tsx
+Procurement,Grn,/procurement/grn/edit/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\procurement\grn\edit\[id]\page.tsx
+Procurement,Grn,/procurement/grn/view/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\procurement\grn\view\[id]\page.tsx
+Procurement,Invoices,/procurement/invoices,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\procurement\invoices\page.tsx
+Procurement,Notifications,/procurement/notifications,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\procurement\notifications\page.tsx
+Procurement,Orders,/procurement/orders/add,create,No,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\procurement\orders\add\page.tsx
+Procurement,Orders,/procurement/orders/edit/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\procurement\orders\edit\[id]\page.tsx
+Procurement,Orders,/procurement/orders/view/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\procurement\orders\view\[id]\page.tsx
+Procurement,Po,/procurement/po,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\procurement\po\page.tsx
+Procurement,Purchase Orders,/procurement/purchase-orders,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\procurement\purchase-orders\page.tsx
+Procurement,Purchase Orders,/procurement/purchase-orders/create,feature,Yes,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\procurement\purchase-orders\create\page.tsx
+Procurement,Purchase Requisition,/procurement/purchase-requisition,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\procurement\purchase-requisition\page.tsx
+Procurement,Quality Assurance,/procurement/quality-assurance,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\procurement\quality-assurance\page.tsx
+Procurement,Requisitions,/procurement/requisitions,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\procurement\requisitions\page.tsx
+Procurement,Requisitions,/procurement/requisitions/add,create,No,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\procurement\requisitions\add\page.tsx
+Procurement,Requisitions,/procurement/requisitions/edit/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\procurement\requisitions\edit\[id]\page.tsx
+Procurement,Requisitions,/procurement/requisitions/view/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\procurement\requisitions\view\[id]\page.tsx
+Procurement,Rfq,/procurement/rfq,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\procurement\rfq\page.tsx
+Procurement,Rfq,/procurement/rfq/:id/compare,feature,Yes,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\procurement\rfq\[id]\compare\page.tsx
+Procurement,Rfq Rfp,/procurement/rfq-rfp,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\procurement\rfq-rfp\page.tsx
+Procurement,Risk Management,/procurement/risk-management,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\procurement\risk-management\page.tsx
+Procurement,Savings Tracker,/procurement/savings-tracker,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\procurement\savings-tracker\page.tsx
+Procurement,Spend Analysis,/procurement/spend-analysis,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\procurement\spend-analysis\page.tsx
+Procurement,Strategic Sourcing,/procurement/strategic-sourcing,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\procurement\strategic-sourcing\page.tsx
+Procurement,Supplier Diversity,/procurement/supplier-diversity,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\procurement\supplier-diversity\page.tsx
+Procurement,Supplier Onboarding,/procurement/supplier-onboarding,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\procurement\supplier-onboarding\page.tsx
+Procurement,Supplier Portal,/procurement/supplier-portal,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\procurement\supplier-portal\page.tsx
+Procurement,Supplier Relationship,/procurement/supplier-relationship,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\procurement\supplier-relationship\page.tsx
+Procurement,Supplier Scorecard,/procurement/supplier-scorecard,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\procurement\supplier-scorecard\page.tsx
+Procurement,Vendor Management,/procurement/vendor-management,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\procurement\vendor-management\page.tsx
+Procurement,Vendor Performance,/procurement/vendor-performance,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\procurement\vendor-performance\page.tsx
+Procurement,Vendors,/procurement/vendors,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\procurement\vendors\page.tsx
+Procurement,Vendors,/procurement/vendors/add,create,No,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\procurement\vendors\add\page.tsx
+Procurement,Vendors,/procurement/vendors/edit/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\procurement\vendors\edit\[id]\page.tsx
+Procurement,Vendors,/procurement/vendors/view/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\procurement\vendors\view\[id]\page.tsx
+Production,Analytics,/production/analytics,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\production\analytics\page.tsx
+Production,Bom,/production/bom/add,create,No,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\production\bom\add\page.tsx
+Production,Bom,/production/bom/edit/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\production\bom\edit\[id]\page.tsx
+Production,Bom,/production/bom/view/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\production\bom\view\[id]\page.tsx
+Production,Capacity Planning,/production/capacity-planning,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\production\capacity-planning\page.tsx
+Production,Dashboard,/production,dashboard,Yes,1,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\production\page.tsx
+Production,Floor,/production/floor,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\production\floor\page.tsx
+Production,Floor,/production/floor/edit/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\production\floor\edit\[id]\page.tsx
+Production,Floor,/production/floor/view/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\production\floor\view\[id]\page.tsx
+Production,Mrp,/production/mrp,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\production\mrp\page.tsx
+Production,Planning,/production/planning,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\production\planning\page.tsx
+Production,Ppg,/production/ppg,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\production\ppg\page.tsx
+Production,Quality,/production/quality,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\production\quality\page.tsx
+Production,Quality,/production/quality/add,create,No,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\production\quality\add\page.tsx
+Production,Quality,/production/quality/edit/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\production\quality\edit\[id]\page.tsx
+Production,Quality,/production/quality/view/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\production\quality\view\[id]\page.tsx
+Production,Scheduling,/production/scheduling,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\production\scheduling\page.tsx
+Production,Scheduling,/production/scheduling/add,create,No,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\production\scheduling\add\page.tsx
+Production,Scheduling,/production/scheduling/edit/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\production\scheduling\edit\[id]\page.tsx
+Production,Scheduling,/production/scheduling/view/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\production\scheduling\view\[id]\page.tsx
+Production,Shopfloor,/production/shopfloor,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\production\shopfloor\page.tsx
+Production,Work Orders,/production/work-orders,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\production\work-orders\page.tsx
+Production,Work Orders,/production/work-orders/add,create,No,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\production\work-orders\add\page.tsx
+Production,Work Orders,/production/work-orders/edit/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\production\work-orders\edit\[id]\page.tsx
+Production,Work Orders,/production/work-orders/view/:id,detail,No,4,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\production\work-orders\view\[id]\page.tsx
+Project Management,Analytics,/project-management/analytics,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\project-management\analytics\page.tsx
+Project Management,Budget,/project-management/budget,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\project-management\budget\page.tsx
+Project Management,Change Orders,/project-management/change-orders,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\project-management\change-orders\page.tsx
+Project Management,Commissioning,/project-management/commissioning,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\project-management\commissioning\page.tsx
+Project Management,Create,/project-management/create,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\project-management\create\page.tsx
+Project Management,Customer Acceptance,/project-management/customer-acceptance,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\project-management\customer-acceptance\page.tsx
+Project Management,Dashboard,/project-management,dashboard,Yes,1,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\project-management\page.tsx
+Project Management,Dashboard,/project-management/dashboard,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\project-management\dashboard\page.tsx
+Project Management,Deliverables,/project-management/deliverables,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\project-management\deliverables\page.tsx
+Project Management,Documents,/project-management/documents,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\project-management\documents\page.tsx
+Project Management,Installation Tracking,/project-management/installation-tracking,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\project-management\installation-tracking\page.tsx
+Project Management,Issues,/project-management/issues,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\project-management\issues\page.tsx
+Project Management,Labor Tracking,/project-management/labor-tracking,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\project-management\labor-tracking\page.tsx
+Project Management,Material Consumption,/project-management/material-consumption,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\project-management\material-consumption\page.tsx
+Project Management,Milestone Templates,/project-management/milestone-templates,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\project-management\milestone-templates\page.tsx
+Project Management,Mrp,/project-management/mrp,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\project-management\mrp\page.tsx
+Project Management,Profitability,/project-management/profitability,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\project-management\profitability\page.tsx
+Project Management,Progress,/project-management/progress,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\project-management\progress\page.tsx
+Project Management,Project Costing,/project-management/project-costing,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\project-management\project-costing\page.tsx
+Project Management,Project Types,/project-management/project-types,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\project-management\project-types\page.tsx
+Project Management,Quality Inspection,/project-management/quality-inspection,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\project-management\quality-inspection\page.tsx
+Project Management,Reports,/project-management/reports,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\project-management\reports\page.tsx
+Project Management,Resource Allocation,/project-management/resource-allocation,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\project-management\resource-allocation\page.tsx
+Project Management,Resource Utilization,/project-management/resource-utilization,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\project-management\resource-utilization\page.tsx
+Project Management,Resources,/project-management/resources,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\project-management\resources\page.tsx
+Project Management,Schedule,/project-management/schedule,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\project-management\schedule\page.tsx
+Project Management,Settings,/project-management/settings,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\project-management\settings\page.tsx
+Project Management,Site Issues,/project-management/site-issues,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\project-management\site-issues\page.tsx
+Project Management,Site Survey,/project-management/site-survey,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\project-management\site-survey\page.tsx
+Project Management,Tasks,/project-management/tasks,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\project-management\tasks\page.tsx
+Project Management,Templates,/project-management/templates,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\project-management\templates\page.tsx
+Project Management,Timeline,/project-management/timeline,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\project-management\timeline\page.tsx
+Project Management,View,/project-management/view/:id,detail,No,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\project-management\view\[id]\page.tsx
+Project Management,Wbs,/project-management/wbs,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\project-management\wbs\page.tsx
+Projects,Commissioning,/projects/commissioning,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\projects\commissioning\page.tsx
+Projects,Dashboard,/projects,dashboard,Yes,1,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\projects\page.tsx
+Projects,Planning,/projects/planning,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\projects\planning\page.tsx
+Projects,Resources,/projects/resources,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\projects\resources\page.tsx
+Projects,Tracking,/projects/tracking,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\projects\tracking\page.tsx
+Reports,Analytics,/reports/analytics,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\reports\analytics\page.tsx
+Reports,Custom,/reports/custom,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\reports\custom\page.tsx
+Reports,Dashboards,/reports/dashboards,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\reports\dashboards\page.tsx
+Rfq,Add,/rfq/add,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\rfq\add\page.tsx
+Rfq,Edit,/rfq/edit/:id,detail,No,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\rfq\edit\[id]\page.tsx
+Rfq,View,/rfq/view/:id,detail,No,3,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\rfq\view\[id]\page.tsx
+Sales,Dashboard,/sales,dashboard,Yes,1,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\sales\page.tsx
+Sales,Handover,/sales/handover,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\sales\handover\page.tsx
+Sales,Orders,/sales/orders,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\sales\orders\page.tsx
+Sales,Quotations,/sales/quotations,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\sales\quotations\page.tsx
+Sales,Rfp,/sales/rfp,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\sales\rfp\page.tsx
+Support,Incidents,/support/incidents,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\support\incidents\page.tsx
+Support,Knowledge,/support/knowledge,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\support\knowledge\page.tsx
+Support,Tickets,/support/tickets,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\support\tickets\page.tsx
+Workflow,Approvals,/workflow/approvals,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\workflow\approvals\page.tsx
+Workflow,Automation,/workflow/automation,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\workflow\automation\page.tsx
+Workflow,Templates,/workflow/templates,list,Yes,2,D:\KreupAI\ManufacturingOS-1\b3-erp\frontend\src\app\(modules)\workflow\templates\page.tsx

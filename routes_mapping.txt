@@ -1,0 +1,676 @@
+
+=== AFTER SALES SERVICE ===
+  Billing:
+    /after-sales-service/billing
+    /after-sales-service/billing/create
+    /after-sales-service/billing/payments
+    /after-sales-service/billing/view/:id
+  Dashboard:
+    /after-sales-service/dashboard
+    /after-sales-service/dashboard/analytics
+    /after-sales-service/dashboard/reports
+  Field Service:
+    /after-sales-service/field-service
+    /after-sales-service/field-service/dispatch
+    /after-sales-service/field-service/schedule
+    /after-sales-service/field-service/view/:id
+  Installations:
+    /after-sales-service/installations
+    /after-sales-service/installations/add
+    /after-sales-service/installations/calendar
+    /after-sales-service/installations/view/:id
+  Main/Dashboard:
+    /after-sales-service
+  Service Contracts:
+    /after-sales-service/service-contracts
+    /after-sales-service/service-contracts/add
+    /after-sales-service/service-contracts/renew/:id
+    /after-sales-service/service-contracts/terms
+    /after-sales-service/service-contracts/view/:id
+  Service Requests:
+    /after-sales-service/service-requests
+    /after-sales-service/service-requests/add
+    /after-sales-service/service-requests/sla-dashboard
+    /after-sales-service/service-requests/view/:id
+  Warranties:
+    /after-sales-service/warranties
+    /after-sales-service/warranties/add
+    /after-sales-service/warranties/claims
+    /after-sales-service/warranties/claims/:id
+    /after-sales-service/warranties/view/:id
+
+=== COMMON MASTERS ===
+  Appliance Master:
+    /common-masters/appliance-master
+  Bank Master:
+    /common-masters/bank-master
+  Barcode Master:
+    /common-masters/barcode-master
+  Batch Lot Master:
+    /common-masters/batch-lot-master
+  Branch Master:
+    /common-masters/branch-master
+  Brand Master:
+    /common-masters/brand-master
+  Cabinet Type Master:
+    /common-masters/cabinet-type-master
+  Chart Of Accounts Master:
+    /common-masters/chart-of-accounts-master
+  City Master:
+    /common-masters/city-master
+  Company Master:
+    /common-masters/company-master
+  Cost Center Master:
+    /common-masters/cost-center-master
+  Counter Material Master:
+    /common-masters/counter-material-master
+  Country Master:
+    /common-masters/country-master
+  Currency Master:
+    /common-masters/currency-master
+  Customer Category Master:
+    /common-masters/customer-category-master
+  Customer Master:
+    /common-masters/customer-master
+  Department Master:
+    /common-masters/department-master
+  Designation Master:
+    /common-masters/designation-master
+  Document Type Master:
+    /common-masters/document-type-master
+  Employee Master:
+    /common-masters/employee-master
+  Exchange Rate Master:
+    /common-masters/exchange-rate-master
+  Finish Master:
+    /common-masters/finish-master
+  Hardware Master:
+    /common-masters/hardware-master
+  Holiday Master:
+    /common-masters/holiday-master
+  Hsn Sac Master:
+    /common-masters/hsn-sac-master
+  Installation Type Master:
+    /common-masters/installation-type-master
+  Item Category Master:
+    /common-masters/item-category-master
+  Item Group Master:
+    /common-masters/item-group-master
+  Item Master:
+    /common-masters/item-master
+  Kitchen Layout Master:
+    /common-masters/kitchen-layout-master
+  Location Master:
+    /common-masters/location-master
+  Machine Master:
+    /common-masters/machine-master
+  Main/Dashboard:
+    /common-masters
+  Material Grade Master:
+    /common-masters/material-grade-master
+  Number Series Master:
+    /common-masters/number-series-master
+  Operation Master:
+    /common-masters/operation-master
+  Payment Terms Master:
+    /common-masters/payment-terms-master
+  Plant Master:
+    /common-masters/plant-master
+  Price List Master:
+    /common-masters/price-list-master
+  Quality Parameter Master:
+    /common-masters/quality-parameter-master
+  Role Master:
+    /common-masters/role-master
+  Routing Master:
+    /common-masters/routing-master
+  Shift Master:
+    /common-masters/shift-master
+  Skill Master:
+    /common-masters/skill-master
+  State Master:
+    /common-masters/state-master
+  Tax Master:
+    /common-masters/tax-master
+  Territory Master:
+    /common-masters/territory-master
+  Tool Master:
+    /common-masters/tool-master
+  Uom Conversion Master:
+    /common-masters/uom-conversion-master
+  Uom Master:
+    /common-masters/uom-master
+  User Master:
+    /common-masters/user-master
+  Vendor Category Master:
+    /common-masters/vendor-category-master
+  Vendor Master:
+    /common-masters/vendor-master
+  Warehouse Master:
+    /common-masters/warehouse-master
+  Work Center Master:
+    /common-masters/work-center-master
+
+=== CRM ===
+  Contacts:
+    /crm/contacts
+    /crm/contacts/add
+    /crm/contacts/edit/:id
+    /crm/contacts/view/:id
+  Customers:
+    /crm/customers
+    /crm/customers/add
+    /crm/customers/edit/:id
+    /crm/customers/view/:id
+  Interactions:
+    /crm/interactions
+    /crm/interactions/add
+    /crm/interactions/edit/:id
+    /crm/interactions/view/:id
+  Leads:
+    /crm/leads
+    /crm/leads/add
+    /crm/leads/edit/:id
+    /crm/leads/view/:id
+  Main/Dashboard:
+    /crm
+  Opportunities:
+    /crm/opportunities
+    /crm/opportunities/add
+    /crm/opportunities/edit/:id
+    /crm/opportunities/view/:id
+
+=== ESTIMATION ===
+  Boq:
+    /estimation/boq
+    /estimation/boq/add
+    /estimation/boq/edit/:id
+    /estimation/boq/view/:id
+  Costing:
+    /estimation/costing
+    /estimation/costing/add
+    /estimation/costing/edit/:id
+    /estimation/costing/view/:id
+  Main/Dashboard:
+    /estimation
+  Pricing:
+    /estimation/pricing
+    /estimation/pricing/add
+    /estimation/pricing/edit/:id
+    /estimation/pricing/view/:id
+
+=== FINANCE ===
+  Accounting:
+    /finance/accounting
+    /finance/accounting/add
+    /finance/accounting/chart-of-accounts
+    /finance/accounting/edit/:id
+    /finance/accounting/general-ledger
+    /finance/accounting/journal-entries
+    /finance/accounting/ledger-report
+    /finance/accounting/periods
+    /finance/accounting/trial-balance
+    /finance/accounting/view/:id
+  Accounts Payable:
+    /finance/accounts-payable
+  Accounts Receivable:
+    /finance/accounts-receivable
+  Analytics:
+    /finance/analytics
+    /finance/analytics/financial-ratios
+    /finance/analytics/kpi-dashboard
+    /finance/analytics/profitability-analysis
+  Assets:
+    /finance/assets
+    /finance/assets/asset-disposal
+    /finance/assets/depreciation
+    /finance/assets/fixed-assets
+  Automation:
+    /finance/automation
+    /finance/automation/alerts
+    /finance/automation/recurring-transactions
+    /finance/automation/workflows
+  Bank Reconciliation:
+    /finance/bank-reconciliation
+  Budget:
+    /finance/budget
+  Budgeting:
+    /finance/budgeting
+    /finance/budgeting/budget-vs-actual
+    /finance/budgeting/budgets
+    /finance/budgeting/multi-year-planning
+  Cash:
+    /finance/cash
+    /finance/cash/anticipated-payments
+    /finance/cash/anticipated-receipts
+    /finance/cash/bank-accounts
+    /finance/cash/bank-reconciliation
+    /finance/cash/cash-flow-forecast
+  Cash Flow:
+    /finance/cash-flow
+  Consolidation:
+    /finance/consolidation
+    /finance/consolidation/financial-consolidation
+    /finance/consolidation/intercompany
+  Controls:
+    /finance/controls
+    /finance/controls/approval-workflows
+    /finance/controls/audit-trail
+    /finance/controls/documents
+  Cost Centers:
+    /finance/cost-centers
+  Costing:
+    /finance/costing
+    /finance/costing/cost-centers
+    /finance/costing/job-costing
+    /finance/costing/profit-centers
+    /finance/costing/standard-costing
+    /finance/costing/variance-analysis
+    /finance/costing/wip-accounting
+  Credit:
+    /finance/credit
+  Currency:
+    /finance/currency
+    /finance/currency/exchange-rates
+    /finance/currency/management
+  Dashboard:
+    /finance/dashboard
+  General Ledger:
+    /finance/general-ledger
+  Integration:
+    /finance/integration
+    /finance/integration/procurement
+    /finance/integration/production
+  Integrations:
+    /finance/integrations
+  Investments:
+    /finance/investments
+  Invoices:
+    /finance/invoices
+    /finance/invoices/add
+    /finance/invoices/edit/:id
+    /finance/invoices/view/:id
+  Main/Dashboard:
+    /finance
+  Multi Currency:
+    /finance/multi-currency
+  Payables:
+    /finance/payables
+    /finance/payables/add
+    /finance/payables/edit/:id
+    /finance/payables/payments
+    /finance/payables/view/:id
+  Payments:
+    /finance/payments
+    /finance/payments/add
+    /finance/payments/edit/:id
+    /finance/payments/view/:id
+  Period Operations:
+    /finance/period-operations
+    /finance/period-operations/period-close
+    /finance/period-operations/year-end
+  Periods:
+    /finance/periods
+  Receivables:
+    /finance/receivables
+    /finance/receivables/add
+    /finance/receivables/credit-management
+    /finance/receivables/edit/:id
+    /finance/receivables/invoices
+    /finance/receivables/view/:id
+  Reporting:
+    /finance/reporting
+    /finance/reporting/report-builder
+  Reports:
+    /finance/reports
+    /finance/reports/balance-sheet
+    /finance/reports/cash-flow
+    /finance/reports/profit-loss
+    /finance/reports/trial-balance
+  Tax:
+    /finance/tax
+    /finance/tax/gst
+    /finance/tax/tax-reports
+    /finance/tax/tds
+  Workflows:
+    /finance/workflows
+
+=== HR ===
+  Attendance:
+    /hr/attendance
+    /hr/attendance/add
+    /hr/attendance/view/:id
+  Employees:
+    /hr/employees
+    /hr/employees/add
+    /hr/employees/edit/:id
+    /hr/employees/view/:id
+  Leave:
+    /hr/leave
+    /hr/leave/add
+    /hr/leave/edit/:id
+    /hr/leave/view/:id
+  Main/Dashboard:
+    /hr
+  Payroll:
+    /hr/payroll
+    /hr/payroll/add
+    /hr/payroll/edit/:id
+    /hr/payroll/view/:id
+  Performance:
+    /hr/performance
+    /hr/performance/add
+    /hr/performance/edit/:id
+    /hr/performance/view/:id
+
+=== INVENTORY ===
+  Main/Dashboard:
+    /inventory
+  Movements:
+    /inventory/movements
+    /inventory/movements/add
+    /inventory/movements/view/:id
+  Stock:
+    /inventory/stock
+    /inventory/stock/add
+    /inventory/stock/edit/:id
+    /inventory/stock/view/:id
+  Transfers:
+    /inventory/transfers
+  Warehouse:
+    /inventory/warehouse
+    /inventory/warehouse/view/:id
+
+=== IT ADMIN ===
+  Audit:
+    /it-admin/audit
+  Roles:
+    /it-admin/roles
+  System:
+    /it-admin/system
+  Users:
+    /it-admin/users
+
+=== LOGISTICS ===
+  Carriers:
+    /logistics/carriers
+    /logistics/carriers/add
+    /logistics/carriers/edit/:id
+    /logistics/carriers/view/:id
+  Driver Master:
+    /logistics/driver-master
+  Freight Master:
+    /logistics/freight-master
+  Main/Dashboard:
+    /logistics
+  Packaging Master:
+    /logistics/packaging-master
+  Port Master:
+    /logistics/port-master
+  Route Master:
+    /logistics/route-master
+  Shipping:
+    /logistics/shipping
+    /logistics/shipping/add
+    /logistics/shipping/edit/:id
+    /logistics/shipping/view/:id
+  Tracking:
+    /logistics/tracking
+    /logistics/tracking/view/:id
+  Transporter Master:
+    /logistics/transporter-master
+  Vehicle Master:
+    /logistics/vehicle-master
+
+=== PROCUREMENT ===
+  Analytics:
+    /procurement/analytics
+  Approvals:
+    /procurement/approvals
+  Automation:
+    /procurement/automation
+  Budget:
+    /procurement/budget
+  Budget Tracking:
+    /procurement/budget-tracking
+  Calendar:
+    /procurement/calendar
+  Category Management:
+    /procurement/category-management
+  Collaboration:
+    /procurement/collaboration
+  Compliance:
+    /procurement/compliance
+  Contract Management:
+    /procurement/contract-management
+  Contracts:
+    /procurement/contracts
+  E Marketplace:
+    /procurement/e-marketplace
+  Grn:
+    /procurement/grn
+    /procurement/grn/:id/inspect
+    /procurement/grn/add
+    /procurement/grn/edit/:id
+    /procurement/grn/view/:id
+  Invoices:
+    /procurement/invoices
+  Main/Dashboard:
+    /procurement
+  Notifications:
+    /procurement/notifications
+  Orders:
+    /procurement/orders/add
+    /procurement/orders/edit/:id
+    /procurement/orders/view/:id
+  Po:
+    /procurement/po
+  Purchase Orders:
+    /procurement/purchase-orders
+    /procurement/purchase-orders/create
+  Purchase Requisition:
+    /procurement/purchase-requisition
+  Quality Assurance:
+    /procurement/quality-assurance
+  Requisitions:
+    /procurement/requisitions
+    /procurement/requisitions/add
+    /procurement/requisitions/edit/:id
+    /procurement/requisitions/view/:id
+  Rfq:
+    /procurement/rfq
+    /procurement/rfq/:id/compare
+  Rfq Rfp:
+    /procurement/rfq-rfp
+  Risk Management:
+    /procurement/risk-management
+  Savings Tracker:
+    /procurement/savings-tracker
+  Spend Analysis:
+    /procurement/spend-analysis
+  Strategic Sourcing:
+    /procurement/strategic-sourcing
+  Supplier Diversity:
+    /procurement/supplier-diversity
+  Supplier Onboarding:
+    /procurement/supplier-onboarding
+  Supplier Portal:
+    /procurement/supplier-portal
+  Supplier Relationship:
+    /procurement/supplier-relationship
+  Supplier Scorecard:
+    /procurement/supplier-scorecard
+  Vendor Management:
+    /procurement/vendor-management
+  Vendor Performance:
+    /procurement/vendor-performance
+  Vendors:
+    /procurement/vendors
+    /procurement/vendors/add
+    /procurement/vendors/edit/:id
+    /procurement/vendors/view/:id
+
+=== PRODUCTION ===
+  Analytics:
+    /production/analytics
+  Bom:
+    /production/bom/add
+    /production/bom/edit/:id
+    /production/bom/view/:id
+  Capacity Planning:
+    /production/capacity-planning
+  Floor:
+    /production/floor
+    /production/floor/edit/:id
+    /production/floor/view/:id
+  Main/Dashboard:
+    /production
+  Mrp:
+    /production/mrp
+  Planning:
+    /production/planning
+  Ppg:
+    /production/ppg
+  Quality:
+    /production/quality
+    /production/quality/add
+    /production/quality/edit/:id
+    /production/quality/view/:id
+  Scheduling:
+    /production/scheduling
+    /production/scheduling/add
+    /production/scheduling/edit/:id
+    /production/scheduling/view/:id
+  Shopfloor:
+    /production/shopfloor
+  Work Orders:
+    /production/work-orders
+    /production/work-orders/add
+    /production/work-orders/edit/:id
+    /production/work-orders/view/:id
+
+=== PROJECT MANAGEMENT ===
+  Analytics:
+    /project-management/analytics
+  Budget:
+    /project-management/budget
+  Change Orders:
+    /project-management/change-orders
+  Commissioning:
+    /project-management/commissioning
+  Create:
+    /project-management/create
+  Customer Acceptance:
+    /project-management/customer-acceptance
+  Dashboard:
+    /project-management/dashboard
+  Deliverables:
+    /project-management/deliverables
+  Documents:
+    /project-management/documents
+  Installation Tracking:
+    /project-management/installation-tracking
+  Issues:
+    /project-management/issues
+  Labor Tracking:
+    /project-management/labor-tracking
+  Main/Dashboard:
+    /project-management
+  Material Consumption:
+    /project-management/material-consumption
+  Milestone Templates:
+    /project-management/milestone-templates
+  Mrp:
+    /project-management/mrp
+  Profitability:
+    /project-management/profitability
+  Progress:
+    /project-management/progress
+  Project Costing:
+    /project-management/project-costing
+  Project Types:
+    /project-management/project-types
+  Quality Inspection:
+    /project-management/quality-inspection
+  Reports:
+    /project-management/reports
+  Resource Allocation:
+    /project-management/resource-allocation
+  Resource Utilization:
+    /project-management/resource-utilization
+  Resources:
+    /project-management/resources
+  Schedule:
+    /project-management/schedule
+  Settings:
+    /project-management/settings
+  Site Issues:
+    /project-management/site-issues
+  Site Survey:
+    /project-management/site-survey
+  Tasks:
+    /project-management/tasks
+  Templates:
+    /project-management/templates
+  Timeline:
+    /project-management/timeline
+  View:
+    /project-management/view/:id
+  Wbs:
+    /project-management/wbs
+
+=== PROJECTS ===
+  Commissioning:
+    /projects/commissioning
+  Main/Dashboard:
+    /projects
+  Planning:
+    /projects/planning
+  Resources:
+    /projects/resources
+  Tracking:
+    /projects/tracking
+
+=== REPORTS ===
+  Analytics:
+    /reports/analytics
+  Custom:
+    /reports/custom
+  Dashboards:
+    /reports/dashboards
+
+=== RFQ ===
+  Add:
+    /rfq/add
+  Edit:
+    /rfq/edit/:id
+  View:
+    /rfq/view/:id
+
+=== SALES ===
+  Handover:
+    /sales/handover
+  Main/Dashboard:
+    /sales
+  Orders:
+    /sales/orders
+  Quotations:
+    /sales/quotations
+  Rfp:
+    /sales/rfp
+
+=== SUPPORT ===
+  Incidents:
+    /support/incidents
+  Knowledge:
+    /support/knowledge
+  Tickets:
+    /support/tickets
+
+=== WORKFLOW ===
+  Approvals:
+    /workflow/approvals
+  Automation:
+    /workflow/automation
+  Templates:
+    /workflow/templates
