@@ -70,8 +70,9 @@ const menuItems: MenuItem[] = [
         description: 'Lead tracking & conversion',
         subItems: [
           { id: 'all-leads', name: 'All Leads', href: '/crm/leads', description: 'View all leads' },
-          { id: 'new-leads', name: 'New Leads', href: '/crm/leads/new', description: 'New incoming leads' },
-          { id: 'qualified-leads', name: 'Qualified Leads', href: '/crm/leads/qualified', description: 'Qualified prospects' },
+          { id: 'add-lead', name: 'Add New Lead', href: '/crm/leads/add', description: 'Create a new lead' },
+          { id: 'new-leads', name: 'New Leads', href: '/crm/leads?status=new', description: 'New incoming leads' },
+          { id: 'qualified-leads', name: 'Qualified Leads', href: '/crm/leads?status=qualified', description: 'Qualified prospects' },
           { id: 'lead-scoring', name: 'Lead Scoring', href: '/crm/leads/scoring', description: 'Score & prioritize leads' },
           { id: 'lead-sources', name: 'Lead Sources', href: '/crm/leads/sources', description: 'Track lead sources' },
           { id: 'lead-assignment', name: 'Lead Assignment', href: '/crm/leads/assignment', description: 'Auto-assign leads' },

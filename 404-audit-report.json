@@ -1,0 +1,2779 @@
+{
+  "timestamp": "2025-10-20T07:54:20.887Z",
+  "summary": {
+    "total": 996,
+    "existing": 590,
+    "missing": 406,
+    "completionPercentage": "59.2"
+  },
+  "missingUrls": [
+    "/after-sales-service/analytics/ftf",
+    "/after-sales-service/analytics/technicians",
+    "/after-sales-service/billing/pending",
+    "/after-sales-service/feedback/complaints",
+    "/after-sales-service/feedback/nps",
+    "/after-sales-service/feedback/ratings",
+    "/after-sales-service/feedback/surveys",
+    "/after-sales-service/field-service/mobile",
+    "/after-sales-service/field-service/tracking",
+    "/after-sales-service/installations/completed",
+    "/after-sales-service/installations/pending",
+    "/after-sales-service/knowledge/articles",
+    "/after-sales-service/knowledge/faqs",
+    "/after-sales-service/knowledge/manuals",
+    "/after-sales-service/knowledge/troubleshooting",
+    "/after-sales-service/parts",
+    "/after-sales-service/parts/consumption",
+    "/after-sales-service/parts/requisition",
+    "/after-sales-service/parts/returns",
+    "/after-sales-service/service-contracts/active",
+    "/after-sales-service/service-contracts/expiring",
+    "/after-sales-service/service-contracts/renewals",
+    "/after-sales-service/service-requests/in-progress",
+    "/after-sales-service/service-requests/open",
+    "/after-sales-service/service-requests/resolved",
+    "/after-sales-service/warranties/active",
+    "/after-sales-service/warranties/claims/approvals",
+    "/after-sales-service/warranties/expired",
+    "/cpq",
+    "/cpq/analytics/discounts",
+    "/cpq/analytics/pricing",
+    "/cpq/analytics/products",
+    "/cpq/analytics/quotes",
+    "/cpq/analytics/sales-cycle",
+    "/cpq/analytics/win-rate",
+    "/cpq/contracts/approvals",
+    "/cpq/contracts/clauses",
+    "/cpq/contracts/execution",
+    "/cpq/contracts/generate",
+    "/cpq/contracts/templates",
+    "/cpq/guided-selling/cross-sell",
+    "/cpq/guided-selling/playbooks",
+    "/cpq/guided-selling/questionnaire",
+    "/cpq/guided-selling/recommendations",
+    "/cpq/integration/cad",
+    "/cpq/integration/crm",
+    "/cpq/integration/ecommerce",
+    "/cpq/integration/erp",
+    "/cpq/pricing/contracts",
+    "/cpq/pricing/customer",
+    "/cpq/pricing/dynamic",
+    "/cpq/pricing/promotions",
+    "/cpq/pricing/rules",
+    "/cpq/pricing/volume",
+    "/cpq/products/bundles",
+    "/cpq/products/catalog",
+    "/cpq/products/compatibility",
+    "/cpq/products/configurator",
+    "/cpq/products/options",
+    "/cpq/products/rules",
+    "/cpq/proposals/builder",
+    "/cpq/proposals/content",
+    "/cpq/proposals/signatures",
+    "/cpq/proposals/templates",
+    "/cpq/quotes",
+    "/cpq/quotes/approvals",
+    "/cpq/quotes/comparison",
+    "/cpq/quotes/create",
+    "/cpq/quotes/templates",
+    "/cpq/quotes/versions",
+    "/cpq/settings/general",
+    "/cpq/settings/notifications",
+    "/cpq/settings/numbering",
+    "/cpq/settings/permissions",
+    "/cpq/workflow/approvals",
+    "/cpq/workflow/discounts",
+    "/cpq/workflow/executive",
+    "/cpq/workflow/legal",
+    "/crm/activities",
+    "/crm/activities/calendar",
+    "/crm/activities/calls",
+    "/crm/activities/emails",
+    "/crm/activities/meetings",
+    "/crm/activities/tasks",
+    "/crm/analytics",
+    "/crm/analytics/custom",
+    "/crm/analytics/customers",
+    "/crm/analytics/revenue",
+    "/crm/analytics/sales",
+    "/crm/analytics/team",
+    "/crm/campaigns",
+    "/crm/campaigns/automation",
+    "/crm/campaigns/email",
+    "/crm/campaigns/performance",
+    "/crm/campaigns/templates",
+    "/crm/contacts/lists",
+    "/crm/contacts/roles",
+    "/crm/contracts",
+    "/crm/contracts/amendments",
+    "/crm/contracts/renewals",
+    "/crm/contracts/templates",
+    "/crm/customers/hierarchy",
+    "/crm/customers/portal",
+    "/crm/customers/segments",
+    "/crm/interactions/analysis",
+    "/crm/interactions/timeline",
+    "/crm/opportunities/forecast",
+    "/crm/opportunities/lost",
+    "/crm/opportunities/pipeline",
+    "/crm/opportunities/won",
+    "/crm/proposals",
+    "/crm/quotes",
+    "/crm/quotes/create",
+    "/crm/quotes/pricing",
+    "/crm/quotes/templates",
+    "/crm/settings/fields",
+    "/crm/settings/stages",
+    "/crm/settings/statuses",
+    "/crm/settings/teams",
+    "/crm/settings/territories",
+    "/crm/support/knowledge",
+    "/crm/support/sla",
+    "/crm/support/tickets",
+    "/estimation/analytics/accuracy",
+    "/estimation/analytics/performance",
+    "/estimation/analytics/reports",
+    "/estimation/analytics/win-loss",
+    "/estimation/boq/analysis",
+    "/estimation/boq/comparison",
+    "/estimation/boq/templates",
+    "/estimation/costing/breakdown",
+    "/estimation/costing/labor",
+    "/estimation/costing/materials",
+    "/estimation/costing/overhead",
+    "/estimation/pricing/competitive",
+    "/estimation/pricing/margins",
+    "/estimation/pricing/markup",
+    "/estimation/rates/equipment",
+    "/estimation/rates/labor",
+    "/estimation/rates/materials",
+    "/estimation/rates/subcontractors",
+    "/estimation/settings/categories",
+    "/estimation/settings/markup",
+    "/estimation/settings/templates",
+    "/estimation/settings/workflow",
+    "/estimation/workflow/approved",
+    "/estimation/workflow/converted",
+    "/estimation/workflow/drafts",
+    "/estimation/workflow/pending",
+    "/estimation/workflow/rejected",
+    "/inventory/adjustments",
+    "/inventory/adjustments/approvals",
+    "/inventory/adjustments/create",
+    "/inventory/adjustments/quantity",
+    "/inventory/adjustments/reasons",
+    "/inventory/adjustments/value",
+    "/inventory/adjustments/write-offs",
+    "/inventory/analytics/carrying-cost",
+    "/inventory/analytics/dead-stock",
+    "/inventory/analytics/reports",
+    "/inventory/analytics/turnover",
+    "/inventory/analytics/velocity",
+    "/inventory/cycle-count",
+    "/inventory/cycle-count/physical",
+    "/inventory/cycle-count/reconciliation",
+    "/inventory/cycle-count/variance",
+    "/inventory/kitting/assembly",
+    "/inventory/kitting/disassembly",
+    "/inventory/kitting/kits",
+    "/inventory/movements/issue",
+    "/inventory/movements/receipt",
+    "/inventory/movements/reports",
+    "/inventory/optimization/abc",
+    "/inventory/optimization/eoq",
+    "/inventory/optimization/forecast",
+    "/inventory/optimization/planning",
+    "/inventory/optimization/reorder",
+    "/inventory/optimization/safety-stock",
+    "/inventory/replenishment",
+    "/inventory/replenishment/auto",
+    "/inventory/replenishment/create",
+    "/inventory/replenishment/min-max",
+    "/inventory/replenishment/rules",
+    "/inventory/replenishment/suggestions",
+    "/inventory/settings/categories",
+    "/inventory/settings/policies",
+    "/inventory/settings/storage",
+    "/inventory/settings/uom",
+    "/inventory/stock/aging",
+    "/inventory/stock/levels",
+    "/inventory/stock/low-stock",
+    "/inventory/stock/valuation",
+    "/inventory/tracking/barcode",
+    "/inventory/tracking/batch",
+    "/inventory/tracking/expiry",
+    "/inventory/tracking/serial",
+    "/inventory/transfers/completed",
+    "/inventory/transfers/create",
+    "/inventory/transfers/pending",
+    "/inventory/warehouse/capacity",
+    "/inventory/warehouse/locations",
+    "/inventory/warehouse/zones",
+    "/it-admin",
+    "/it-admin/audit/changes",
+    "/it-admin/audit/compliance",
+    "/it-admin/audit/logins",
+    "/it-admin/customization/branding",
+    "/it-admin/customization/fields",
+    "/it-admin/customization/templates",
+    "/it-admin/customization/workflows",
+    "/it-admin/database/backup",
+    "/it-admin/database/cleanup",
+    "/it-admin/database/export",
+    "/it-admin/database/import",
+    "/it-admin/license",
+    "/it-admin/license/features",
+    "/it-admin/license/users",
+    "/it-admin/monitoring/errors",
+    "/it-admin/monitoring/health",
+    "/it-admin/monitoring/logs",
+    "/it-admin/monitoring/performance",
+    "/it-admin/roles/create",
+    "/it-admin/roles/hierarchy",
+    "/it-admin/roles/permissions",
+    "/it-admin/roles/policies",
+    "/it-admin/scheduler/automation",
+    "/it-admin/scheduler/history",
+    "/it-admin/scheduler/jobs",
+    "/it-admin/security/2fa",
+    "/it-admin/security/alerts",
+    "/it-admin/security/ip-whitelist",
+    "/it-admin/security/password",
+    "/it-admin/security/sessions",
+    "/it-admin/system/company",
+    "/it-admin/system/email",
+    "/it-admin/system/integrations",
+    "/it-admin/system/notifications",
+    "/it-admin/users/active",
+    "/it-admin/users/bulk",
+    "/it-admin/users/create",
+    "/it-admin/users/groups",
+    "/it-admin/users/inactive",
+    "/logistics/analytics/delivery",
+    "/logistics/analytics/optimization",
+    "/logistics/analytics/reports",
+    "/logistics/analytics/spend",
+    "/logistics/carriers/contracts",
+    "/logistics/carriers/performance",
+    "/logistics/carriers/rates",
+    "/logistics/drivers/assignments",
+    "/logistics/drivers/compliance",
+    "/logistics/drivers/performance",
+    "/logistics/fleet/fuel",
+    "/logistics/fleet/maintenance",
+    "/logistics/fleet/tracking",
+    "/logistics/fleet/utilization",
+    "/logistics/freight/audit",
+    "/logistics/freight/booking",
+    "/logistics/freight/invoicing",
+    "/logistics/freight/quotes",
+    "/logistics/planning/consolidation",
+    "/logistics/planning/dispatch",
+    "/logistics/planning/loads",
+    "/logistics/planning/routes",
+    "/logistics/planning/trips",
+    "/logistics/shipping/inbound",
+    "/logistics/shipping/loading",
+    "/logistics/shipping/outbound",
+    "/logistics/shipping/schedule",
+    "/logistics/tracking/exceptions",
+    "/logistics/tracking/pod",
+    "/logistics/tracking/status",
+    "/logistics/tracking/trace",
+    "/logistics/warehouse/cross-dock",
+    "/logistics/warehouse/dock",
+    "/logistics/warehouse/yard",
+    "/production/analytics/efficiency",
+    "/production/analytics/oee",
+    "/production/analytics/productivity",
+    "/production/analytics/variance",
+    "/production/bom",
+    "/production/bom/comparison",
+    "/production/bom/costing",
+    "/production/bom/multi-level",
+    "/production/bom/versions",
+    "/production/downtime",
+    "/production/downtime/analysis",
+    "/production/downtime/log",
+    "/production/downtime/rca",
+    "/production/maintenance",
+    "/production/maintenance/history",
+    "/production/maintenance/preventive",
+    "/production/maintenance/requests",
+    "/production/maintenance/spares",
+    "/production/mrp/planned-orders",
+    "/production/mrp/requirements",
+    "/production/mrp/results",
+    "/production/mrp/shortage",
+    "/production/planning/aggregate",
+    "/production/planning/demand",
+    "/production/quality/ncr",
+    "/production/quality/plans",
+    "/production/quality/reports",
+    "/production/scheduling/gantt",
+    "/production/scheduling/optimize",
+    "/production/scheduling/resources",
+    "/production/scheduling/sequencing",
+    "/production/settings/lines",
+    "/production/settings/routing",
+    "/production/settings/shifts",
+    "/production/settings/work-centers",
+    "/production/shopfloor/logs",
+    "/production/shopfloor/operator",
+    "/production/shopfloor/tracking",
+    "/production/work-orders/completed",
+    "/production/work-orders/pending",
+    "/production/work-orders/progress",
+    "/production/work-orders/tracking",
+    "/sales/analytics",
+    "/sales/analytics/customers",
+    "/sales/analytics/forecast",
+    "/sales/analytics/products",
+    "/sales/analytics/reports",
+    "/sales/analytics/targets",
+    "/sales/delivery/installation",
+    "/sales/delivery/notes",
+    "/sales/handover/accepted",
+    "/sales/handover/pending",
+    "/sales/invoices",
+    "/sales/invoices/create",
+    "/sales/invoices/credit-notes",
+    "/sales/invoices/overdue",
+    "/sales/invoices/paid",
+    "/sales/invoices/pending",
+    "/sales/orders/confirmed",
+    "/sales/orders/create",
+    "/sales/orders/delivered",
+    "/sales/orders/production",
+    "/sales/orders/ready",
+    "/sales/orders/shipped",
+    "/sales/orders/tracking",
+    "/sales/pricing/discounts",
+    "/sales/pricing/lists",
+    "/sales/pricing/promotions",
+    "/sales/pricing/special",
+    "/sales/quotations/approved",
+    "/sales/quotations/converted",
+    "/sales/quotations/create",
+    "/sales/quotations/expired",
+    "/sales/quotations/pending",
+    "/sales/returns",
+    "/sales/returns/refunds",
+    "/sales/returns/replacements",
+    "/sales/rfp/create",
+    "/sales/rfp/shortlisted",
+    "/sales/rfp/submitted",
+    "/sales/rfp/won",
+    "/sales/settings/payment-terms",
+    "/sales/settings/shipping",
+    "/sales/settings/tax",
+    "/sales/settings/terms",
+    "/support",
+    "/support/analytics/csat",
+    "/support/analytics/frt",
+    "/support/analytics/resolution",
+    "/support/analytics/tickets",
+    "/support/assets",
+    "/support/assets/depreciation",
+    "/support/assets/hardware",
+    "/support/assets/software",
+    "/support/assets/tracking",
+    "/support/automation/assignment",
+    "/support/automation/escalation",
+    "/support/automation/responses",
+    "/support/automation/rules",
+    "/support/changes",
+    "/support/changes/create",
+    "/support/changes/emergency",
+    "/support/changes/pending",
+    "/support/changes/scheduled",
+    "/support/incidents/create",
+    "/support/incidents/critical",
+    "/support/incidents/major",
+    "/support/incidents/tracking",
+    "/support/knowledge/create",
+    "/support/knowledge/faqs",
+    "/support/knowledge/guides",
+    "/support/knowledge/troubleshooting",
+    "/support/problems",
+    "/support/problems/create",
+    "/support/problems/known-errors",
+    "/support/problems/rca",
+    "/support/reports",
+    "/support/sla",
+    "/support/sla/breaches",
+    "/support/sla/compliance",
+    "/support/sla/settings",
+    "/support/team/agents",
+    "/support/team/performance",
+    "/support/team/skills",
+    "/support/team/workload",
+    "/support/tickets/assigned",
+    "/support/tickets/categories",
+    "/support/tickets/create",
+    "/support/tickets/open",
+    "/support/tickets/resolved"
+  ],
+  "existingPages": [
+    {
+      "url": "/after-sales-service",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\after-sales-service\\page.tsx"
+    },
+    {
+      "url": "/after-sales-service/billing",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\after-sales-service\\billing\\page.tsx"
+    },
+    {
+      "url": "/after-sales-service/billing/create",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\after-sales-service\\billing\\create\\page.tsx"
+    },
+    {
+      "url": "/after-sales-service/billing/payments",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\after-sales-service\\billing\\payments\\page.tsx"
+    },
+    {
+      "url": "/after-sales-service/dashboard",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\after-sales-service\\dashboard\\page.tsx"
+    },
+    {
+      "url": "/after-sales-service/dashboard/analytics",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\after-sales-service\\dashboard\\analytics\\page.tsx"
+    },
+    {
+      "url": "/after-sales-service/dashboard/reports",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\after-sales-service\\dashboard\\reports\\page.tsx"
+    },
+    {
+      "url": "/after-sales-service/field-service",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\after-sales-service\\field-service\\page.tsx"
+    },
+    {
+      "url": "/after-sales-service/field-service/dispatch",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\after-sales-service\\field-service\\dispatch\\page.tsx"
+    },
+    {
+      "url": "/after-sales-service/field-service/schedule",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\after-sales-service\\field-service\\schedule\\page.tsx"
+    },
+    {
+      "url": "/after-sales-service/installations",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\after-sales-service\\installations\\page.tsx"
+    },
+    {
+      "url": "/after-sales-service/installations/add",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\after-sales-service\\installations\\add\\page.tsx"
+    },
+    {
+      "url": "/after-sales-service/installations/calendar",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\after-sales-service\\installations\\calendar\\page.tsx"
+    },
+    {
+      "url": "/after-sales-service/service-contracts",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\after-sales-service\\service-contracts\\page.tsx"
+    },
+    {
+      "url": "/after-sales-service/service-contracts/add",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\after-sales-service\\service-contracts\\add\\page.tsx"
+    },
+    {
+      "url": "/after-sales-service/service-contracts/terms",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\after-sales-service\\service-contracts\\terms\\page.tsx"
+    },
+    {
+      "url": "/after-sales-service/service-requests",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\after-sales-service\\service-requests\\page.tsx"
+    },
+    {
+      "url": "/after-sales-service/service-requests/add",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\after-sales-service\\service-requests\\add\\page.tsx"
+    },
+    {
+      "url": "/after-sales-service/service-requests/sla-dashboard",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\after-sales-service\\service-requests\\sla-dashboard\\page.tsx"
+    },
+    {
+      "url": "/after-sales-service/warranties",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\after-sales-service\\warranties\\page.tsx"
+    },
+    {
+      "url": "/after-sales-service/warranties/add",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\after-sales-service\\warranties\\add\\page.tsx"
+    },
+    {
+      "url": "/after-sales-service/warranties/claims",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\after-sales-service\\warranties\\claims\\page.tsx"
+    },
+    {
+      "url": "/common-masters/appliance-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\common-masters\\appliance-master\\page.tsx"
+    },
+    {
+      "url": "/common-masters/bank-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\common-masters\\bank-master\\page.tsx"
+    },
+    {
+      "url": "/common-masters/barcode-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\common-masters\\barcode-master\\page.tsx"
+    },
+    {
+      "url": "/common-masters/batch-lot-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\common-masters\\batch-lot-master\\page.tsx"
+    },
+    {
+      "url": "/common-masters/branch-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\common-masters\\branch-master\\page.tsx"
+    },
+    {
+      "url": "/common-masters/brand-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\common-masters\\brand-master\\page.tsx"
+    },
+    {
+      "url": "/common-masters/cabinet-type-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\common-masters\\cabinet-type-master\\page.tsx"
+    },
+    {
+      "url": "/common-masters/chart-of-accounts-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\common-masters\\chart-of-accounts-master\\page.tsx"
+    },
+    {
+      "url": "/common-masters/city-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\common-masters\\city-master\\page.tsx"
+    },
+    {
+      "url": "/common-masters/company-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\common-masters\\company-master\\page.tsx"
+    },
+    {
+      "url": "/common-masters/cost-center-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\common-masters\\cost-center-master\\page.tsx"
+    },
+    {
+      "url": "/common-masters/counter-material-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\common-masters\\counter-material-master\\page.tsx"
+    },
+    {
+      "url": "/common-masters/country-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\common-masters\\country-master\\page.tsx"
+    },
+    {
+      "url": "/common-masters/currency-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\common-masters\\currency-master\\page.tsx"
+    },
+    {
+      "url": "/common-masters/customer-category-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\common-masters\\customer-category-master\\page.tsx"
+    },
+    {
+      "url": "/common-masters/customer-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\common-masters\\customer-master\\page.tsx"
+    },
+    {
+      "url": "/common-masters/department-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\common-masters\\department-master\\page.tsx"
+    },
+    {
+      "url": "/common-masters/designation-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\common-masters\\designation-master\\page.tsx"
+    },
+    {
+      "url": "/common-masters/document-type-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\common-masters\\document-type-master\\page.tsx"
+    },
+    {
+      "url": "/common-masters/employee-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\common-masters\\employee-master\\page.tsx"
+    },
+    {
+      "url": "/common-masters/exchange-rate-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\common-masters\\exchange-rate-master\\page.tsx"
+    },
+    {
+      "url": "/common-masters/finish-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\common-masters\\finish-master\\page.tsx"
+    },
+    {
+      "url": "/common-masters/hardware-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\common-masters\\hardware-master\\page.tsx"
+    },
+    {
+      "url": "/common-masters/holiday-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\common-masters\\holiday-master\\page.tsx"
+    },
+    {
+      "url": "/common-masters/hsn-sac-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\common-masters\\hsn-sac-master\\page.tsx"
+    },
+    {
+      "url": "/common-masters/installation-type-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\common-masters\\installation-type-master\\page.tsx"
+    },
+    {
+      "url": "/common-masters/item-category-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\common-masters\\item-category-master\\page.tsx"
+    },
+    {
+      "url": "/common-masters/item-group-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\common-masters\\item-group-master\\page.tsx"
+    },
+    {
+      "url": "/common-masters/item-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\common-masters\\item-master\\page.tsx"
+    },
+    {
+      "url": "/common-masters/kitchen-layout-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\common-masters\\kitchen-layout-master\\page.tsx"
+    },
+    {
+      "url": "/common-masters/machine-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\common-masters\\machine-master\\page.tsx"
+    },
+    {
+      "url": "/common-masters/material-grade-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\common-masters\\material-grade-master\\page.tsx"
+    },
+    {
+      "url": "/common-masters/number-series-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\common-masters\\number-series-master\\page.tsx"
+    },
+    {
+      "url": "/common-masters/operation-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\common-masters\\operation-master\\page.tsx"
+    },
+    {
+      "url": "/common-masters/payment-terms-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\common-masters\\payment-terms-master\\page.tsx"
+    },
+    {
+      "url": "/common-masters/plant-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\common-masters\\plant-master\\page.tsx"
+    },
+    {
+      "url": "/common-masters/price-list-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\common-masters\\price-list-master\\page.tsx"
+    },
+    {
+      "url": "/common-masters/quality-parameter-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\common-masters\\quality-parameter-master\\page.tsx"
+    },
+    {
+      "url": "/common-masters/role-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\common-masters\\role-master\\page.tsx"
+    },
+    {
+      "url": "/common-masters/routing-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\common-masters\\routing-master\\page.tsx"
+    },
+    {
+      "url": "/common-masters/shift-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\common-masters\\shift-master\\page.tsx"
+    },
+    {
+      "url": "/common-masters/skill-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\common-masters\\skill-master\\page.tsx"
+    },
+    {
+      "url": "/common-masters/state-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\common-masters\\state-master\\page.tsx"
+    },
+    {
+      "url": "/common-masters/tax-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\common-masters\\tax-master\\page.tsx"
+    },
+    {
+      "url": "/common-masters/territory-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\common-masters\\territory-master\\page.tsx"
+    },
+    {
+      "url": "/common-masters/tool-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\common-masters\\tool-master\\page.tsx"
+    },
+    {
+      "url": "/common-masters/uom-conversion-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\common-masters\\uom-conversion-master\\page.tsx"
+    },
+    {
+      "url": "/common-masters/uom-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\common-masters\\uom-master\\page.tsx"
+    },
+    {
+      "url": "/common-masters/user-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\common-masters\\user-master\\page.tsx"
+    },
+    {
+      "url": "/common-masters/vendor-category-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\common-masters\\vendor-category-master\\page.tsx"
+    },
+    {
+      "url": "/common-masters/vendor-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\common-masters\\vendor-master\\page.tsx"
+    },
+    {
+      "url": "/common-masters/warehouse-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\common-masters\\warehouse-master\\page.tsx"
+    },
+    {
+      "url": "/common-masters/work-center-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\common-masters\\work-center-master\\page.tsx"
+    },
+    {
+      "url": "/crm",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\crm\\page.tsx"
+    },
+    {
+      "url": "/crm/contacts",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\crm\\contacts\\page.tsx"
+    },
+    {
+      "url": "/crm/customers",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\crm\\customers\\page.tsx"
+    },
+    {
+      "url": "/crm/interactions",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\crm\\interactions\\page.tsx"
+    },
+    {
+      "url": "/crm/leads",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\crm\\leads\\page.tsx"
+    },
+    {
+      "url": "/crm/leads/add",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\crm\\leads\\add\\page.tsx"
+    },
+    {
+      "url": "/crm/leads/assignment",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\crm\\leads\\assignment\\page.tsx"
+    },
+    {
+      "url": "/crm/leads/scoring",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\crm\\leads\\scoring\\page.tsx"
+    },
+    {
+      "url": "/crm/leads/sources",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\crm\\leads\\sources\\page.tsx"
+    },
+    {
+      "url": "/crm/opportunities",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\crm\\opportunities\\page.tsx"
+    },
+    {
+      "url": "/dashboard",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\dashboard\\page.tsx"
+    },
+    {
+      "url": "/estimation",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\estimation\\page.tsx"
+    },
+    {
+      "url": "/estimation/boq",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\estimation\\boq\\page.tsx"
+    },
+    {
+      "url": "/estimation/boq/add",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\estimation\\boq\\add\\page.tsx"
+    },
+    {
+      "url": "/estimation/costing",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\estimation\\costing\\page.tsx"
+    },
+    {
+      "url": "/estimation/costing/add",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\estimation\\costing\\add\\page.tsx"
+    },
+    {
+      "url": "/estimation/pricing",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\estimation\\pricing\\page.tsx"
+    },
+    {
+      "url": "/estimation/pricing/add",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\estimation\\pricing\\add\\page.tsx"
+    },
+    {
+      "url": "/finance/accounting/chart-of-accounts",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\finance\\accounting\\chart-of-accounts\\page.tsx"
+    },
+    {
+      "url": "/finance/accounting/general-ledger",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\finance\\accounting\\general-ledger\\page.tsx"
+    },
+    {
+      "url": "/finance/accounting/journal-entries",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\finance\\accounting\\journal-entries\\page.tsx"
+    },
+    {
+      "url": "/finance/accounting/ledger-report",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\finance\\accounting\\ledger-report\\page.tsx"
+    },
+    {
+      "url": "/finance/accounting/periods",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\finance\\accounting\\periods\\page.tsx"
+    },
+    {
+      "url": "/finance/accounting/trial-balance",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\finance\\accounting\\trial-balance\\page.tsx"
+    },
+    {
+      "url": "/finance/analytics/financial-ratios",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\finance\\analytics\\financial-ratios\\page.tsx"
+    },
+    {
+      "url": "/finance/analytics/kpi-dashboard",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\finance\\analytics\\kpi-dashboard\\page.tsx"
+    },
+    {
+      "url": "/finance/analytics/profitability-analysis",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\finance\\analytics\\profitability-analysis\\page.tsx"
+    },
+    {
+      "url": "/finance/assets/asset-disposal",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\finance\\assets\\asset-disposal\\page.tsx"
+    },
+    {
+      "url": "/finance/assets/depreciation",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\finance\\assets\\depreciation\\page.tsx"
+    },
+    {
+      "url": "/finance/assets/fixed-assets",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\finance\\assets\\fixed-assets\\page.tsx"
+    },
+    {
+      "url": "/finance/automation/alerts",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\finance\\automation\\alerts\\page.tsx"
+    },
+    {
+      "url": "/finance/automation/recurring-transactions",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\finance\\automation\\recurring-transactions\\page.tsx"
+    },
+    {
+      "url": "/finance/automation/workflows",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\finance\\automation\\workflows\\page.tsx"
+    },
+    {
+      "url": "/finance/budgeting/budget-vs-actual",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\finance\\budgeting\\budget-vs-actual\\page.tsx"
+    },
+    {
+      "url": "/finance/budgeting/budgets",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\finance\\budgeting\\budgets\\page.tsx"
+    },
+    {
+      "url": "/finance/budgeting/multi-year-planning",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\finance\\budgeting\\multi-year-planning\\page.tsx"
+    },
+    {
+      "url": "/finance/cash/anticipated-payments",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\finance\\cash\\anticipated-payments\\page.tsx"
+    },
+    {
+      "url": "/finance/cash/anticipated-receipts",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\finance\\cash\\anticipated-receipts\\page.tsx"
+    },
+    {
+      "url": "/finance/cash/bank-accounts",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\finance\\cash\\bank-accounts\\page.tsx"
+    },
+    {
+      "url": "/finance/cash/bank-reconciliation",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\finance\\cash\\bank-reconciliation\\page.tsx"
+    },
+    {
+      "url": "/finance/cash/cash-flow-forecast",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\finance\\cash\\cash-flow-forecast\\page.tsx"
+    },
+    {
+      "url": "/finance/consolidation/financial-consolidation",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\finance\\consolidation\\financial-consolidation\\page.tsx"
+    },
+    {
+      "url": "/finance/consolidation/intercompany",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\finance\\consolidation\\intercompany\\page.tsx"
+    },
+    {
+      "url": "/finance/controls/approval-workflows",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\finance\\controls\\approval-workflows\\page.tsx"
+    },
+    {
+      "url": "/finance/controls/audit-trail",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\finance\\controls\\audit-trail\\page.tsx"
+    },
+    {
+      "url": "/finance/controls/documents",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\finance\\controls\\documents\\page.tsx"
+    },
+    {
+      "url": "/finance/costing/cost-centers",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\finance\\costing\\cost-centers\\page.tsx"
+    },
+    {
+      "url": "/finance/costing/job-costing",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\finance\\costing\\job-costing\\page.tsx"
+    },
+    {
+      "url": "/finance/costing/profit-centers",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\finance\\costing\\profit-centers\\page.tsx"
+    },
+    {
+      "url": "/finance/costing/standard-costing",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\finance\\costing\\standard-costing\\page.tsx"
+    },
+    {
+      "url": "/finance/costing/variance-analysis",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\finance\\costing\\variance-analysis\\page.tsx"
+    },
+    {
+      "url": "/finance/costing/wip-accounting",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\finance\\costing\\wip-accounting\\page.tsx"
+    },
+    {
+      "url": "/finance/currency/exchange-rates",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\finance\\currency\\exchange-rates\\page.tsx"
+    },
+    {
+      "url": "/finance/currency/gain-loss",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\finance\\currency\\gain-loss\\page.tsx"
+    },
+    {
+      "url": "/finance/currency/management",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\finance\\currency\\management\\page.tsx"
+    },
+    {
+      "url": "/finance/dashboard",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\finance\\dashboard\\page.tsx"
+    },
+    {
+      "url": "/finance/integration/procurement",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\finance\\integration\\procurement\\page.tsx"
+    },
+    {
+      "url": "/finance/integration/production",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\finance\\integration\\production\\page.tsx"
+    },
+    {
+      "url": "/finance/payables",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\finance\\payables\\page.tsx"
+    },
+    {
+      "url": "/finance/payables/aging",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\finance\\payables\\aging\\page.tsx"
+    },
+    {
+      "url": "/finance/payables/payments",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\finance\\payables\\payments\\page.tsx"
+    },
+    {
+      "url": "/finance/period-operations/period-close",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\finance\\period-operations\\period-close\\page.tsx"
+    },
+    {
+      "url": "/finance/period-operations/year-end",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\finance\\period-operations\\year-end\\page.tsx"
+    },
+    {
+      "url": "/finance/receivables",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\finance\\receivables\\page.tsx"
+    },
+    {
+      "url": "/finance/receivables/aging",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\finance\\receivables\\aging\\page.tsx"
+    },
+    {
+      "url": "/finance/receivables/credit-management",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\finance\\receivables\\credit-management\\page.tsx"
+    },
+    {
+      "url": "/finance/receivables/invoices",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\finance\\receivables\\invoices\\page.tsx"
+    },
+    {
+      "url": "/finance/reports/balance-sheet",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\finance\\reports\\balance-sheet\\page.tsx"
+    },
+    {
+      "url": "/finance/reports/cash-flow",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\finance\\reports\\cash-flow\\page.tsx"
+    },
+    {
+      "url": "/finance/reports/profit-loss",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\finance\\reports\\profit-loss\\page.tsx"
+    },
+    {
+      "url": "/finance/reports/trial-balance",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\finance\\reports\\trial-balance\\page.tsx"
+    },
+    {
+      "url": "/finance/tax/gst",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\finance\\tax\\gst\\page.tsx"
+    },
+    {
+      "url": "/finance/tax/tax-reports",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\finance\\tax\\tax-reports\\page.tsx"
+    },
+    {
+      "url": "/finance/tax/tds",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\finance\\tax\\tds\\page.tsx"
+    },
+    {
+      "url": "/hr/alumni/directory",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\alumni\\directory\\page.tsx"
+    },
+    {
+      "url": "/hr/alumni/network",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\alumni\\network\\page.tsx"
+    },
+    {
+      "url": "/hr/alumni/rehire",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\alumni\\rehire\\page.tsx"
+    },
+    {
+      "url": "/hr/assets/inventory/allocation",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\assets\\inventory\\allocation\\page.tsx"
+    },
+    {
+      "url": "/hr/assets/inventory/audit",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\assets\\inventory\\audit\\page.tsx"
+    },
+    {
+      "url": "/hr/assets/inventory/requests",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\assets\\inventory\\requests\\page.tsx"
+    },
+    {
+      "url": "/hr/assets/inventory/stock",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\assets\\inventory\\stock\\page.tsx"
+    },
+    {
+      "url": "/hr/assets/it/accessories",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\assets\\it\\accessories\\page.tsx"
+    },
+    {
+      "url": "/hr/assets/it/desktops",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\assets\\it\\desktops\\page.tsx"
+    },
+    {
+      "url": "/hr/assets/it/laptops",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\assets\\it\\laptops\\page.tsx"
+    },
+    {
+      "url": "/hr/assets/it/mobiles",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\assets\\it\\mobiles\\page.tsx"
+    },
+    {
+      "url": "/hr/assets/it/monitors",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\assets\\it\\monitors\\page.tsx"
+    },
+    {
+      "url": "/hr/assets/maintenance/amc",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\assets\\maintenance\\amc\\page.tsx"
+    },
+    {
+      "url": "/hr/assets/maintenance/history",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\assets\\maintenance\\history\\page.tsx"
+    },
+    {
+      "url": "/hr/assets/maintenance/preventive",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\assets\\maintenance\\preventive\\page.tsx"
+    },
+    {
+      "url": "/hr/assets/maintenance/requests",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\assets\\maintenance\\requests\\page.tsx"
+    },
+    {
+      "url": "/hr/assets/office/access-cards",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\assets\\office\\access-cards\\page.tsx"
+    },
+    {
+      "url": "/hr/assets/office/furniture",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\assets\\office\\furniture\\page.tsx"
+    },
+    {
+      "url": "/hr/assets/office/id-cards",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\assets\\office\\id-cards\\page.tsx"
+    },
+    {
+      "url": "/hr/assets/office/stationery",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\assets\\office\\stationery\\page.tsx"
+    },
+    {
+      "url": "/hr/assets/reports/allocation",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\assets\\reports\\allocation\\page.tsx"
+    },
+    {
+      "url": "/hr/assets/reports/costs",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\assets\\reports\\costs\\page.tsx"
+    },
+    {
+      "url": "/hr/assets/reports/department",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\assets\\reports\\department\\page.tsx"
+    },
+    {
+      "url": "/hr/assets/reports/employee",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\assets\\reports\\employee\\page.tsx"
+    },
+    {
+      "url": "/hr/assets/reports/register",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\assets\\reports\\register\\page.tsx"
+    },
+    {
+      "url": "/hr/assets/requests",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\assets\\requests\\page.tsx"
+    },
+    {
+      "url": "/hr/assets/return",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\assets\\return\\page.tsx"
+    },
+    {
+      "url": "/hr/assets/transfer",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\assets\\transfer\\page.tsx"
+    },
+    {
+      "url": "/hr/assets/vehicles/assignment",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\assets\\vehicles\\assignment\\page.tsx"
+    },
+    {
+      "url": "/hr/assets/vehicles/fuel",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\assets\\vehicles\\fuel\\page.tsx"
+    },
+    {
+      "url": "/hr/assets/vehicles/list",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\assets\\vehicles\\list\\page.tsx"
+    },
+    {
+      "url": "/hr/attendance/biometric",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\attendance\\biometric\\page.tsx"
+    },
+    {
+      "url": "/hr/attendance/calendar",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\attendance\\calendar\\page.tsx"
+    },
+    {
+      "url": "/hr/attendance/daily",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\attendance\\daily\\page.tsx"
+    },
+    {
+      "url": "/hr/attendance/mark",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\attendance\\mark\\page.tsx"
+    },
+    {
+      "url": "/hr/attendance/monthly",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\attendance\\monthly\\page.tsx"
+    },
+    {
+      "url": "/hr/attendance/policies",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\attendance\\policies\\page.tsx"
+    },
+    {
+      "url": "/hr/attendance/reports",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\attendance\\reports\\page.tsx"
+    },
+    {
+      "url": "/hr/attendance/working-hours",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\attendance\\working-hours\\page.tsx"
+    },
+    {
+      "url": "/hr/cards/management",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\cards\\management\\page.tsx"
+    },
+    {
+      "url": "/hr/cards/reconciliation",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\cards\\reconciliation\\page.tsx"
+    },
+    {
+      "url": "/hr/cards/transactions",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\cards\\transactions\\page.tsx"
+    },
+    {
+      "url": "/hr/compliance/audit/audits",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\compliance\\audit\\audits\\page.tsx"
+    },
+    {
+      "url": "/hr/compliance/audit/findings",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\compliance\\audit\\findings\\page.tsx"
+    },
+    {
+      "url": "/hr/compliance/audit/remediation",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\compliance\\audit\\remediation\\page.tsx"
+    },
+    {
+      "url": "/hr/compliance/diversity/eeo",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\compliance\\diversity\\eeo\\page.tsx"
+    },
+    {
+      "url": "/hr/compliance/diversity/grievance",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\compliance\\diversity\\grievance\\page.tsx"
+    },
+    {
+      "url": "/hr/compliance/diversity/metrics",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\compliance\\diversity\\metrics\\page.tsx"
+    },
+    {
+      "url": "/hr/compliance/diversity/posh",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\compliance\\diversity\\posh\\page.tsx"
+    },
+    {
+      "url": "/hr/compliance/labor/calendar",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\compliance\\labor\\calendar\\page.tsx"
+    },
+    {
+      "url": "/hr/compliance/labor/registers",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\compliance\\labor\\registers\\page.tsx"
+    },
+    {
+      "url": "/hr/compliance/labor/tracker",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\compliance\\labor\\tracker\\page.tsx"
+    },
+    {
+      "url": "/hr/compliance/licenses/certificates",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\compliance\\licenses\\certificates\\page.tsx"
+    },
+    {
+      "url": "/hr/compliance/licenses/master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\compliance\\licenses\\master\\page.tsx"
+    },
+    {
+      "url": "/hr/compliance/licenses/renewals",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\compliance\\licenses\\renewals\\page.tsx"
+    },
+    {
+      "url": "/hr/compliance/policy/acknowledgment",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\compliance\\policy\\acknowledgment\\page.tsx"
+    },
+    {
+      "url": "/hr/compliance/policy/disciplinary",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\compliance\\policy\\disciplinary\\page.tsx"
+    },
+    {
+      "url": "/hr/compliance/policy/violations",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\compliance\\policy\\violations\\page.tsx"
+    },
+    {
+      "url": "/hr/compliance/reports/alerts",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\compliance\\reports\\alerts\\page.tsx"
+    },
+    {
+      "url": "/hr/compliance/reports/dashboard",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\compliance\\reports\\dashboard\\page.tsx"
+    },
+    {
+      "url": "/hr/compliance/reports/statutory",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\compliance\\reports\\statutory\\page.tsx"
+    },
+    {
+      "url": "/hr/compliance/returns/esi",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\compliance\\returns\\esi\\page.tsx"
+    },
+    {
+      "url": "/hr/compliance/returns/lwf",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\compliance\\returns\\lwf\\page.tsx"
+    },
+    {
+      "url": "/hr/compliance/returns/pf",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\compliance\\returns\\pf\\page.tsx"
+    },
+    {
+      "url": "/hr/compliance/returns/pt",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\compliance\\returns\\pt\\page.tsx"
+    },
+    {
+      "url": "/hr/compliance/returns/tds",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\compliance\\returns\\tds\\page.tsx"
+    },
+    {
+      "url": "/hr/documents/certificates/employment",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\documents\\certificates\\employment\\page.tsx"
+    },
+    {
+      "url": "/hr/documents/certificates/experience",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\documents\\certificates\\experience\\page.tsx"
+    },
+    {
+      "url": "/hr/documents/certificates/salary",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\documents\\certificates\\salary\\page.tsx"
+    },
+    {
+      "url": "/hr/documents/certificates/status",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\documents\\certificates\\status\\page.tsx"
+    },
+    {
+      "url": "/hr/documents/compliance/audit",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\documents\\compliance\\audit\\page.tsx"
+    },
+    {
+      "url": "/hr/documents/compliance/expired",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\documents\\compliance\\expired\\page.tsx"
+    },
+    {
+      "url": "/hr/documents/compliance/missing",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\documents\\compliance\\missing\\page.tsx"
+    },
+    {
+      "url": "/hr/documents/compliance/renewals",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\documents\\compliance\\renewals\\page.tsx"
+    },
+    {
+      "url": "/hr/documents/declarations",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\documents\\declarations\\page.tsx"
+    },
+    {
+      "url": "/hr/documents/education",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\documents\\education\\page.tsx"
+    },
+    {
+      "url": "/hr/documents/employment",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\documents\\employment\\page.tsx"
+    },
+    {
+      "url": "/hr/documents/insurance",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\documents\\insurance\\page.tsx"
+    },
+    {
+      "url": "/hr/documents/nominations",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\documents\\nominations\\page.tsx"
+    },
+    {
+      "url": "/hr/documents/personal",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\documents\\personal\\page.tsx"
+    },
+    {
+      "url": "/hr/documents/policies/attendance",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\documents\\policies\\attendance\\page.tsx"
+    },
+    {
+      "url": "/hr/documents/policies/conduct",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\documents\\policies\\conduct\\page.tsx"
+    },
+    {
+      "url": "/hr/documents/policies/expense",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\documents\\policies\\expense\\page.tsx"
+    },
+    {
+      "url": "/hr/documents/policies/handbook",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\documents\\policies\\handbook\\page.tsx"
+    },
+    {
+      "url": "/hr/documents/policies/leave",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\documents\\policies\\leave\\page.tsx"
+    },
+    {
+      "url": "/hr/documents/policies/other",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\documents\\policies\\other\\page.tsx"
+    },
+    {
+      "url": "/hr/documents/repository/archive",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\documents\\repository\\archive\\page.tsx"
+    },
+    {
+      "url": "/hr/documents/repository/browse",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\documents\\repository\\browse\\page.tsx"
+    },
+    {
+      "url": "/hr/documents/repository/search",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\documents\\repository\\search\\page.tsx"
+    },
+    {
+      "url": "/hr/documents/repository/upload",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\documents\\repository\\upload\\page.tsx"
+    },
+    {
+      "url": "/hr/documents/statutory",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\documents\\statutory\\page.tsx"
+    },
+    {
+      "url": "/hr/documents/upload",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\documents\\upload\\page.tsx"
+    },
+    {
+      "url": "/hr/employees/departments",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\employees\\departments\\page.tsx"
+    },
+    {
+      "url": "/hr/employees/designations",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\employees\\designations\\page.tsx"
+    },
+    {
+      "url": "/hr/employees/directory/active",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\employees\\directory\\active\\page.tsx"
+    },
+    {
+      "url": "/hr/employees/directory/all",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\employees\\directory\\all\\page.tsx"
+    },
+    {
+      "url": "/hr/employees/directory/contract",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\employees\\directory\\contract\\page.tsx"
+    },
+    {
+      "url": "/hr/employees/directory/inactive",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\employees\\directory\\inactive\\page.tsx"
+    },
+    {
+      "url": "/hr/employees/directory/probation",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\employees\\directory\\probation\\page.tsx"
+    },
+    {
+      "url": "/hr/employees/org-chart",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\employees\\org-chart\\page.tsx"
+    },
+    {
+      "url": "/hr/employees/profiles",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\employees\\profiles\\page.tsx"
+    },
+    {
+      "url": "/hr/employees/separations",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\employees\\separations\\page.tsx"
+    },
+    {
+      "url": "/hr/employees/teams",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\employees\\teams\\page.tsx"
+    },
+    {
+      "url": "/hr/employees/transfers-promotions",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\employees\\transfers-promotions\\page.tsx"
+    },
+    {
+      "url": "/hr/expenses/approved",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\expenses\\approved\\page.tsx"
+    },
+    {
+      "url": "/hr/expenses/my",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\expenses\\my\\page.tsx"
+    },
+    {
+      "url": "/hr/expenses/pending",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\expenses\\pending\\page.tsx"
+    },
+    {
+      "url": "/hr/expenses/rejected",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\expenses\\rejected\\page.tsx"
+    },
+    {
+      "url": "/hr/expenses/reports/budget",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\expenses\\reports\\budget\\page.tsx"
+    },
+    {
+      "url": "/hr/expenses/reports/department",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\expenses\\reports\\department\\page.tsx"
+    },
+    {
+      "url": "/hr/expenses/reports/summary",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\expenses\\reports\\summary\\page.tsx"
+    },
+    {
+      "url": "/hr/expenses/reports/travel",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\expenses\\reports\\travel\\page.tsx"
+    },
+    {
+      "url": "/hr/expenses/settings/approval",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\expenses\\settings\\approval\\page.tsx"
+    },
+    {
+      "url": "/hr/expenses/settings/categories",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\expenses\\settings\\categories\\page.tsx"
+    },
+    {
+      "url": "/hr/expenses/settings/per-diem",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\expenses\\settings\\per-diem\\page.tsx"
+    },
+    {
+      "url": "/hr/expenses/settings/policies",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\expenses\\settings\\policies\\page.tsx"
+    },
+    {
+      "url": "/hr/expenses/submit",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\expenses\\submit\\page.tsx"
+    },
+    {
+      "url": "/hr/leave/apply",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\leave\\apply\\page.tsx"
+    },
+    {
+      "url": "/hr/leave/approvals",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\leave\\approvals\\page.tsx"
+    },
+    {
+      "url": "/hr/leave/balance/department",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\leave\\balance\\department\\page.tsx"
+    },
+    {
+      "url": "/hr/leave/balance/my",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\leave\\balance\\my\\page.tsx"
+    },
+    {
+      "url": "/hr/leave/balance/team",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\leave\\balance\\team\\page.tsx"
+    },
+    {
+      "url": "/hr/leave/encashment/approval",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\leave\\encashment\\approval\\page.tsx"
+    },
+    {
+      "url": "/hr/leave/encashment/history",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\leave\\encashment\\history\\page.tsx"
+    },
+    {
+      "url": "/hr/leave/encashment/requests",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\leave\\encashment\\requests\\page.tsx"
+    },
+    {
+      "url": "/hr/leave/history",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\leave\\history\\page.tsx"
+    },
+    {
+      "url": "/hr/leave/policies",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\leave\\policies\\page.tsx"
+    },
+    {
+      "url": "/hr/leave/reports/analytics",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\leave\\reports\\analytics\\page.tsx"
+    },
+    {
+      "url": "/hr/leave/reports/department",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\leave\\reports\\department\\page.tsx"
+    },
+    {
+      "url": "/hr/leave/reports/summary",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\leave\\reports\\summary\\page.tsx"
+    },
+    {
+      "url": "/hr/leave/status",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\leave\\status\\page.tsx"
+    },
+    {
+      "url": "/hr/leave/team-calendar",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\leave\\team-calendar\\page.tsx"
+    },
+    {
+      "url": "/hr/leave/types",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\leave\\types\\page.tsx"
+    },
+    {
+      "url": "/hr/offboarding/acceptance",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\offboarding\\acceptance\\page.tsx"
+    },
+    {
+      "url": "/hr/offboarding/clearance/assets",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\offboarding\\clearance\\assets\\page.tsx"
+    },
+    {
+      "url": "/hr/offboarding/clearance/checklist",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\offboarding\\clearance\\checklist\\page.tsx"
+    },
+    {
+      "url": "/hr/offboarding/clearance/finance",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\offboarding\\clearance\\finance\\page.tsx"
+    },
+    {
+      "url": "/hr/offboarding/clearance/hr",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\offboarding\\clearance\\hr\\page.tsx"
+    },
+    {
+      "url": "/hr/offboarding/clearance/it",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\offboarding\\clearance\\it\\page.tsx"
+    },
+    {
+      "url": "/hr/offboarding/docs/experience",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\offboarding\\docs\\experience\\page.tsx"
+    },
+    {
+      "url": "/hr/offboarding/docs/relieving",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\offboarding\\docs\\relieving\\page.tsx"
+    },
+    {
+      "url": "/hr/offboarding/docs/service",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\offboarding\\docs\\service\\page.tsx"
+    },
+    {
+      "url": "/hr/offboarding/early-release",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\offboarding\\early-release\\page.tsx"
+    },
+    {
+      "url": "/hr/offboarding/exit-interview",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\offboarding\\exit-interview\\page.tsx"
+    },
+    {
+      "url": "/hr/offboarding/fnf/gratuity",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\offboarding\\fnf\\gratuity\\page.tsx"
+    },
+    {
+      "url": "/hr/offboarding/fnf/leave",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\offboarding\\fnf\\leave\\page.tsx"
+    },
+    {
+      "url": "/hr/offboarding/fnf/payment",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\offboarding\\fnf\\payment\\page.tsx"
+    },
+    {
+      "url": "/hr/offboarding/fnf/salary",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\offboarding\\fnf\\salary\\page.tsx"
+    },
+    {
+      "url": "/hr/offboarding/notice-period",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\offboarding\\notice-period\\page.tsx"
+    },
+    {
+      "url": "/hr/offboarding/resignations",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\offboarding\\resignations\\page.tsx"
+    },
+    {
+      "url": "/hr/onboarding/access",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\onboarding\\access\\page.tsx"
+    },
+    {
+      "url": "/hr/onboarding/checklist",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\onboarding\\checklist\\page.tsx"
+    },
+    {
+      "url": "/hr/onboarding/documents",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\onboarding\\documents\\page.tsx"
+    },
+    {
+      "url": "/hr/onboarding/first-day",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\onboarding\\first-day\\page.tsx"
+    },
+    {
+      "url": "/hr/onboarding/id-card",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\onboarding\\id-card\\page.tsx"
+    },
+    {
+      "url": "/hr/onboarding/induction/department",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\onboarding\\induction\\department\\page.tsx"
+    },
+    {
+      "url": "/hr/onboarding/induction/hr",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\onboarding\\induction\\hr\\page.tsx"
+    },
+    {
+      "url": "/hr/onboarding/medical",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\onboarding\\medical\\page.tsx"
+    },
+    {
+      "url": "/hr/onboarding/offers",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\onboarding\\offers\\page.tsx"
+    },
+    {
+      "url": "/hr/onboarding/policies",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\onboarding\\policies\\page.tsx"
+    },
+    {
+      "url": "/hr/onboarding/training",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\onboarding\\training\\page.tsx"
+    },
+    {
+      "url": "/hr/onboarding/verification",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\onboarding\\verification\\page.tsx"
+    },
+    {
+      "url": "/hr/onboarding/welcome-kit",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\onboarding\\welcome-kit\\page.tsx"
+    },
+    {
+      "url": "/hr/overtime/approval",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\overtime\\approval\\page.tsx"
+    },
+    {
+      "url": "/hr/overtime/comp-off",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\overtime\\comp-off\\page.tsx"
+    },
+    {
+      "url": "/hr/overtime/reports",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\overtime\\reports\\page.tsx"
+    },
+    {
+      "url": "/hr/overtime/requests",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\overtime\\requests\\page.tsx"
+    },
+    {
+      "url": "/hr/payroll/advances/requests",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\payroll\\advances\\requests\\page.tsx"
+    },
+    {
+      "url": "/hr/payroll/assignments",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\payroll\\assignments\\page.tsx"
+    },
+    {
+      "url": "/hr/payroll/bonus/annual",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\payroll\\bonus\\annual\\page.tsx"
+    },
+    {
+      "url": "/hr/payroll/bonus/performance",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\payroll\\bonus\\performance\\page.tsx"
+    },
+    {
+      "url": "/hr/payroll/bonus/processing",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\payroll\\bonus\\processing\\page.tsx"
+    },
+    {
+      "url": "/hr/payroll/bonus/schemes",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\payroll\\bonus\\schemes\\page.tsx"
+    },
+    {
+      "url": "/hr/payroll/calendar",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\payroll\\calendar\\page.tsx"
+    },
+    {
+      "url": "/hr/payroll/components",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\payroll\\components\\page.tsx"
+    },
+    {
+      "url": "/hr/payroll/disbursement",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\payroll\\disbursement\\page.tsx"
+    },
+    {
+      "url": "/hr/payroll/esi/contribution",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\payroll\\esi\\contribution\\page.tsx"
+    },
+    {
+      "url": "/hr/payroll/esi/returns",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\payroll\\esi\\returns\\page.tsx"
+    },
+    {
+      "url": "/hr/payroll/increment/annual",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\payroll\\increment\\annual\\page.tsx"
+    },
+    {
+      "url": "/hr/payroll/increment/arrears",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\payroll\\increment\\arrears\\page.tsx"
+    },
+    {
+      "url": "/hr/payroll/increment/letters",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\payroll\\increment\\letters\\page.tsx"
+    },
+    {
+      "url": "/hr/payroll/increment/performance",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\payroll\\increment\\performance\\page.tsx"
+    },
+    {
+      "url": "/hr/payroll/loans/approval",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\payroll\\loans\\approval\\page.tsx"
+    },
+    {
+      "url": "/hr/payroll/loans/emi",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\payroll\\loans\\emi\\page.tsx"
+    },
+    {
+      "url": "/hr/payroll/loans/recovery",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\payroll\\loans\\recovery\\page.tsx"
+    },
+    {
+      "url": "/hr/payroll/loans/requests",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\payroll\\loans\\requests\\page.tsx"
+    },
+    {
+      "url": "/hr/payroll/pf/contribution",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\payroll\\pf\\contribution\\page.tsx"
+    },
+    {
+      "url": "/hr/payroll/pf/returns",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\payroll\\pf\\returns\\page.tsx"
+    },
+    {
+      "url": "/hr/payroll/pf/uan",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\payroll\\pf\\uan\\page.tsx"
+    },
+    {
+      "url": "/hr/payroll/pt",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\payroll\\pt\\page.tsx"
+    },
+    {
+      "url": "/hr/payroll/reports/bank",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\payroll\\reports\\bank\\page.tsx"
+    },
+    {
+      "url": "/hr/payroll/reports/dept-cost",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\payroll\\reports\\dept-cost\\page.tsx"
+    },
+    {
+      "url": "/hr/payroll/reports/esi",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\payroll\\reports\\esi\\page.tsx"
+    },
+    {
+      "url": "/hr/payroll/reports/payslips",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\payroll\\reports\\payslips\\page.tsx"
+    },
+    {
+      "url": "/hr/payroll/reports/pf",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\payroll\\reports\\pf\\page.tsx"
+    },
+    {
+      "url": "/hr/payroll/reports/register",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\payroll\\reports\\register\\page.tsx"
+    },
+    {
+      "url": "/hr/payroll/reports/tds",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\payroll\\reports\\tds\\page.tsx"
+    },
+    {
+      "url": "/hr/payroll/revisions",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\payroll\\revisions\\page.tsx"
+    },
+    {
+      "url": "/hr/payroll/run",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\payroll\\run\\page.tsx"
+    },
+    {
+      "url": "/hr/payroll/tax/declarations",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\payroll\\tax\\declarations\\page.tsx"
+    },
+    {
+      "url": "/hr/payroll/tax/form16",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\payroll\\tax\\form16\\page.tsx"
+    },
+    {
+      "url": "/hr/payroll/tax/reports",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\payroll\\tax\\reports\\page.tsx"
+    },
+    {
+      "url": "/hr/payroll/tax/tds",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\payroll\\tax\\tds\\page.tsx"
+    },
+    {
+      "url": "/hr/payroll/templates",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\payroll\\templates\\page.tsx"
+    },
+    {
+      "url": "/hr/payroll/verification",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\payroll\\verification\\page.tsx"
+    },
+    {
+      "url": "/hr/performance/feedback/give",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\performance\\feedback\\give\\page.tsx"
+    },
+    {
+      "url": "/hr/performance/feedback/received",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\performance\\feedback\\received\\page.tsx"
+    },
+    {
+      "url": "/hr/performance/feedback/recognition",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\performance\\feedback\\recognition\\page.tsx"
+    },
+    {
+      "url": "/hr/performance/feedback/requests",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\performance\\feedback\\requests\\page.tsx"
+    },
+    {
+      "url": "/hr/performance/goals/alignment",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\performance\\goals\\alignment\\page.tsx"
+    },
+    {
+      "url": "/hr/performance/goals/department",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\performance\\goals\\department\\page.tsx"
+    },
+    {
+      "url": "/hr/performance/goals/my",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\performance\\goals\\my\\page.tsx"
+    },
+    {
+      "url": "/hr/performance/goals/set",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\performance\\goals\\set\\page.tsx"
+    },
+    {
+      "url": "/hr/performance/goals/team",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\performance\\goals\\team\\page.tsx"
+    },
+    {
+      "url": "/hr/performance/goals/tracking",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\performance\\goals\\tracking\\page.tsx"
+    },
+    {
+      "url": "/hr/performance/kpi/assignment",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\performance\\kpi\\assignment\\page.tsx"
+    },
+    {
+      "url": "/hr/performance/kpi/dashboard",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\performance\\kpi\\dashboard\\page.tsx"
+    },
+    {
+      "url": "/hr/performance/kpi/master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\performance\\kpi\\master\\page.tsx"
+    },
+    {
+      "url": "/hr/performance/kpi/tracking",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\performance\\kpi\\tracking\\page.tsx"
+    },
+    {
+      "url": "/hr/performance/pip/create",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\performance\\pip\\create\\page.tsx"
+    },
+    {
+      "url": "/hr/performance/pip/review",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\performance\\pip\\review\\page.tsx"
+    },
+    {
+      "url": "/hr/performance/pip/tracking",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\performance\\pip\\tracking\\page.tsx"
+    },
+    {
+      "url": "/hr/performance/reports/analytics",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\performance\\reports\\analytics\\page.tsx"
+    },
+    {
+      "url": "/hr/performance/reports/department",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\performance\\reports\\department\\page.tsx"
+    },
+    {
+      "url": "/hr/performance/reports/distribution",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\performance\\reports\\distribution\\page.tsx"
+    },
+    {
+      "url": "/hr/performance/reports/trends",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\performance\\reports\\trends\\page.tsx"
+    },
+    {
+      "url": "/hr/performance/reviews/cycles",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\performance\\reviews\\cycles\\page.tsx"
+    },
+    {
+      "url": "/hr/performance/reviews/manager",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\performance\\reviews\\manager\\page.tsx"
+    },
+    {
+      "url": "/hr/performance/reviews/meetings",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\performance\\reviews\\meetings\\page.tsx"
+    },
+    {
+      "url": "/hr/performance/reviews/peer",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\performance\\reviews\\peer\\page.tsx"
+    },
+    {
+      "url": "/hr/performance/reviews/rating",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\performance\\reviews\\rating\\page.tsx"
+    },
+    {
+      "url": "/hr/performance/reviews/self",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\performance\\reviews\\self\\page.tsx"
+    },
+    {
+      "url": "/hr/probation/confirmation",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\probation\\confirmation\\page.tsx"
+    },
+    {
+      "url": "/hr/probation/feedback",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\probation\\feedback\\page.tsx"
+    },
+    {
+      "url": "/hr/probation/reviews",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\probation\\reviews\\page.tsx"
+    },
+    {
+      "url": "/hr/probation/tracking",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\probation\\tracking\\page.tsx"
+    },
+    {
+      "url": "/hr/reimbursement/paid",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\reimbursement\\paid\\page.tsx"
+    },
+    {
+      "url": "/hr/reimbursement/pending",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\reimbursement\\pending\\page.tsx"
+    },
+    {
+      "url": "/hr/reimbursement/processing",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\reimbursement\\processing\\page.tsx"
+    },
+    {
+      "url": "/hr/reimbursement/settlement",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\reimbursement\\settlement\\page.tsx"
+    },
+    {
+      "url": "/hr/safety/audits/actions",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\safety\\audits\\actions\\page.tsx"
+    },
+    {
+      "url": "/hr/safety/audits/findings",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\safety\\audits\\findings\\page.tsx"
+    },
+    {
+      "url": "/hr/safety/audits/inspections",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\safety\\audits\\inspections\\page.tsx"
+    },
+    {
+      "url": "/hr/safety/audits/schedule",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\safety\\audits\\schedule\\page.tsx"
+    },
+    {
+      "url": "/hr/safety/emergency/contacts",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\safety\\emergency\\contacts\\page.tsx"
+    },
+    {
+      "url": "/hr/safety/emergency/drills",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\safety\\emergency\\drills\\page.tsx"
+    },
+    {
+      "url": "/hr/safety/emergency/plans",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\safety\\emergency\\plans\\page.tsx"
+    },
+    {
+      "url": "/hr/safety/incidents/investigation",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\safety\\incidents\\investigation\\page.tsx"
+    },
+    {
+      "url": "/hr/safety/incidents/near-miss",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\safety\\incidents\\near-miss\\page.tsx"
+    },
+    {
+      "url": "/hr/safety/incidents/report",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\safety\\incidents\\report\\page.tsx"
+    },
+    {
+      "url": "/hr/safety/incidents/tracking",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\safety\\incidents\\tracking\\page.tsx"
+    },
+    {
+      "url": "/hr/safety/management/committee",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\safety\\management\\committee\\page.tsx"
+    },
+    {
+      "url": "/hr/safety/management/policies",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\safety\\management\\policies\\page.tsx"
+    },
+    {
+      "url": "/hr/safety/management/procedures",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\safety\\management\\procedures\\page.tsx"
+    },
+    {
+      "url": "/hr/safety/management/training",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\safety\\management\\training\\page.tsx"
+    },
+    {
+      "url": "/hr/safety/ppe/inventory",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\safety\\ppe\\inventory\\page.tsx"
+    },
+    {
+      "url": "/hr/safety/ppe/issuance",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\safety\\ppe\\issuance\\page.tsx"
+    },
+    {
+      "url": "/hr/safety/ppe/tracking",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\safety\\ppe\\tracking\\page.tsx"
+    },
+    {
+      "url": "/hr/safety/reports/analytics",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\safety\\reports\\analytics\\page.tsx"
+    },
+    {
+      "url": "/hr/safety/reports/compliance",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\safety\\reports\\compliance\\page.tsx"
+    },
+    {
+      "url": "/hr/safety/reports/kpi",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\safety\\reports\\kpi\\page.tsx"
+    },
+    {
+      "url": "/hr/safety/risk/controls",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\safety\\risk\\controls\\page.tsx"
+    },
+    {
+      "url": "/hr/safety/risk/evaluation",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\safety\\risk\\evaluation\\page.tsx"
+    },
+    {
+      "url": "/hr/safety/risk/hazards",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\safety\\risk\\hazards\\page.tsx"
+    },
+    {
+      "url": "/hr/safety/risk/register",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\safety\\risk\\register\\page.tsx"
+    },
+    {
+      "url": "/hr/safety/wellness/checkups",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\safety\\wellness\\checkups\\page.tsx"
+    },
+    {
+      "url": "/hr/safety/wellness/ergonomics",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\safety\\wellness\\ergonomics\\page.tsx"
+    },
+    {
+      "url": "/hr/safety/wellness/occupational",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\safety\\wellness\\occupational\\page.tsx"
+    },
+    {
+      "url": "/hr/safety/wellness/programs",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\safety\\wellness\\programs\\page.tsx"
+    },
+    {
+      "url": "/hr/shifts/assignment",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\shifts\\assignment\\page.tsx"
+    },
+    {
+      "url": "/hr/shifts/master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\shifts\\master\\page.tsx"
+    },
+    {
+      "url": "/hr/shifts/roster",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\shifts\\roster\\page.tsx"
+    },
+    {
+      "url": "/hr/shifts/swaps",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\shifts\\swaps\\page.tsx"
+    },
+    {
+      "url": "/hr/succession/development/leadership",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\succession\\development\\leadership\\page.tsx"
+    },
+    {
+      "url": "/hr/succession/development/mentoring",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\succession\\development\\mentoring\\page.tsx"
+    },
+    {
+      "url": "/hr/succession/development/rotation",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\succession\\development\\rotation\\page.tsx"
+    },
+    {
+      "url": "/hr/succession/plans/create",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\succession\\plans\\create\\page.tsx"
+    },
+    {
+      "url": "/hr/succession/plans/matrix",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\succession\\plans\\matrix\\page.tsx"
+    },
+    {
+      "url": "/hr/succession/plans/tracking",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\succession\\plans\\tracking\\page.tsx"
+    },
+    {
+      "url": "/hr/succession/positions/identify",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\succession\\positions\\identify\\page.tsx"
+    },
+    {
+      "url": "/hr/succession/positions/profiles",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\succession\\positions\\profiles\\page.tsx"
+    },
+    {
+      "url": "/hr/succession/positions/risk",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\succession\\positions\\risk\\page.tsx"
+    },
+    {
+      "url": "/hr/succession/reports/analytics",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\succession\\reports\\analytics\\page.tsx"
+    },
+    {
+      "url": "/hr/succession/reports/bench-strength",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\succession\\reports\\bench-strength\\page.tsx"
+    },
+    {
+      "url": "/hr/succession/reports/coverage",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\succession\\reports\\coverage\\page.tsx"
+    },
+    {
+      "url": "/hr/succession/talent/development",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\succession\\talent\\development\\page.tsx"
+    },
+    {
+      "url": "/hr/succession/talent/identify",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\succession\\talent\\identify\\page.tsx"
+    },
+    {
+      "url": "/hr/succession/talent/profiles",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\succession\\talent\\profiles\\page.tsx"
+    },
+    {
+      "url": "/hr/succession/talent/readiness",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\succession\\talent\\readiness\\page.tsx"
+    },
+    {
+      "url": "/hr/timesheets/approval",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\timesheets\\approval\\page.tsx"
+    },
+    {
+      "url": "/hr/timesheets/entry",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\timesheets\\entry\\page.tsx"
+    },
+    {
+      "url": "/hr/timesheets/project-hours",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\timesheets\\project-hours\\page.tsx"
+    },
+    {
+      "url": "/hr/training/budget/allocation",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\training\\budget\\allocation\\page.tsx"
+    },
+    {
+      "url": "/hr/training/budget/costs",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\training\\budget\\costs\\page.tsx"
+    },
+    {
+      "url": "/hr/training/budget/tracking",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\training\\budget\\tracking\\page.tsx"
+    },
+    {
+      "url": "/hr/training/effectiveness/assessments",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\training\\effectiveness\\assessments\\page.tsx"
+    },
+    {
+      "url": "/hr/training/effectiveness/feedback",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\training\\effectiveness\\feedback\\page.tsx"
+    },
+    {
+      "url": "/hr/training/effectiveness/impact",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\training\\effectiveness\\impact\\page.tsx"
+    },
+    {
+      "url": "/hr/training/elearning/certifications",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\training\\elearning\\certifications\\page.tsx"
+    },
+    {
+      "url": "/hr/training/elearning/library",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\training\\elearning\\library\\page.tsx"
+    },
+    {
+      "url": "/hr/training/elearning/my",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\training\\elearning\\my\\page.tsx"
+    },
+    {
+      "url": "/hr/training/elearning/progress",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\training\\elearning\\progress\\page.tsx"
+    },
+    {
+      "url": "/hr/training/enrollment/attendance",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\training\\enrollment\\attendance\\page.tsx"
+    },
+    {
+      "url": "/hr/training/enrollment/enroll",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\training\\enrollment\\enroll\\page.tsx"
+    },
+    {
+      "url": "/hr/training/enrollment/my",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\training\\enrollment\\my\\page.tsx"
+    },
+    {
+      "url": "/hr/training/enrollment/waiting",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\training\\enrollment\\waiting\\page.tsx"
+    },
+    {
+      "url": "/hr/training/programs/catalog",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\training\\programs\\catalog\\page.tsx"
+    },
+    {
+      "url": "/hr/training/programs/create",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\training\\programs\\create\\page.tsx"
+    },
+    {
+      "url": "/hr/training/programs/external",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\training\\programs\\external\\page.tsx"
+    },
+    {
+      "url": "/hr/training/programs/schedule",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\training\\programs\\schedule\\page.tsx"
+    },
+    {
+      "url": "/hr/training/reports/department",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\training\\reports\\department\\page.tsx"
+    },
+    {
+      "url": "/hr/training/reports/employee",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\training\\reports\\employee\\page.tsx"
+    },
+    {
+      "url": "/hr/training/reports/hours",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\training\\reports\\hours\\page.tsx"
+    },
+    {
+      "url": "/hr/training/reports/summary",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\training\\reports\\summary\\page.tsx"
+    },
+    {
+      "url": "/hr/training/skills/assessment",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\training\\skills\\assessment\\page.tsx"
+    },
+    {
+      "url": "/hr/training/skills/certifications",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\training\\skills\\certifications\\page.tsx"
+    },
+    {
+      "url": "/hr/training/skills/gap",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\training\\skills\\gap\\page.tsx"
+    },
+    {
+      "url": "/hr/training/skills/matrix",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\training\\skills\\matrix\\page.tsx"
+    },
+    {
+      "url": "/hr/travel/advances",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\travel\\advances\\page.tsx"
+    },
+    {
+      "url": "/hr/travel/booking/cab",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\travel\\booking\\cab\\page.tsx"
+    },
+    {
+      "url": "/hr/travel/booking/flight",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\travel\\booking\\flight\\page.tsx"
+    },
+    {
+      "url": "/hr/travel/booking/hotel",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\travel\\booking\\hotel\\page.tsx"
+    },
+    {
+      "url": "/hr/travel/history",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\travel\\history\\page.tsx"
+    },
+    {
+      "url": "/hr/travel/requests",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\hr\\travel\\requests\\page.tsx"
+    },
+    {
+      "url": "/inventory",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\inventory\\page.tsx"
+    },
+    {
+      "url": "/inventory/movements",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\inventory\\movements\\page.tsx"
+    },
+    {
+      "url": "/inventory/movements/add",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\inventory\\movements\\add\\page.tsx"
+    },
+    {
+      "url": "/inventory/stock",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\inventory\\stock\\page.tsx"
+    },
+    {
+      "url": "/inventory/stock/add",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\inventory\\stock\\add\\page.tsx"
+    },
+    {
+      "url": "/inventory/transfers",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\inventory\\transfers\\page.tsx"
+    },
+    {
+      "url": "/inventory/warehouse",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\inventory\\warehouse\\page.tsx"
+    },
+    {
+      "url": "/it-admin/audit",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\it-admin\\audit\\page.tsx"
+    },
+    {
+      "url": "/it-admin/roles",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\it-admin\\roles\\page.tsx"
+    },
+    {
+      "url": "/it-admin/system",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\it-admin\\system\\page.tsx"
+    },
+    {
+      "url": "/it-admin/users",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\it-admin\\users\\page.tsx"
+    },
+    {
+      "url": "/logistics",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\logistics\\page.tsx"
+    },
+    {
+      "url": "/logistics/carriers",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\logistics\\carriers\\page.tsx"
+    },
+    {
+      "url": "/logistics/carriers/add",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\logistics\\carriers\\add\\page.tsx"
+    },
+    {
+      "url": "/logistics/driver-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\logistics\\driver-master\\page.tsx"
+    },
+    {
+      "url": "/logistics/freight-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\logistics\\freight-master\\page.tsx"
+    },
+    {
+      "url": "/logistics/packaging-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\logistics\\packaging-master\\page.tsx"
+    },
+    {
+      "url": "/logistics/port-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\logistics\\port-master\\page.tsx"
+    },
+    {
+      "url": "/logistics/route-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\logistics\\route-master\\page.tsx"
+    },
+    {
+      "url": "/logistics/shipping",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\logistics\\shipping\\page.tsx"
+    },
+    {
+      "url": "/logistics/shipping/add",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\logistics\\shipping\\add\\page.tsx"
+    },
+    {
+      "url": "/logistics/tracking",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\logistics\\tracking\\page.tsx"
+    },
+    {
+      "url": "/logistics/transporter-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\logistics\\transporter-master\\page.tsx"
+    },
+    {
+      "url": "/logistics/vehicle-master",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\logistics\\vehicle-master\\page.tsx"
+    },
+    {
+      "url": "/procurement",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\procurement\\page.tsx"
+    },
+    {
+      "url": "/procurement/analytics",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\procurement\\analytics\\page.tsx"
+    },
+    {
+      "url": "/procurement/approvals",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\procurement\\approvals\\page.tsx"
+    },
+    {
+      "url": "/procurement/automation",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\procurement\\automation\\page.tsx"
+    },
+    {
+      "url": "/procurement/budget",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\procurement\\budget\\page.tsx"
+    },
+    {
+      "url": "/procurement/budget-tracking",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\procurement\\budget-tracking\\page.tsx"
+    },
+    {
+      "url": "/procurement/calendar",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\procurement\\calendar\\page.tsx"
+    },
+    {
+      "url": "/procurement/category-management",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\procurement\\category-management\\page.tsx"
+    },
+    {
+      "url": "/procurement/collaboration",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\procurement\\collaboration\\page.tsx"
+    },
+    {
+      "url": "/procurement/compliance",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\procurement\\compliance\\page.tsx"
+    },
+    {
+      "url": "/procurement/contract-management",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\procurement\\contract-management\\page.tsx"
+    },
+    {
+      "url": "/procurement/contracts",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\procurement\\contracts\\page.tsx"
+    },
+    {
+      "url": "/procurement/e-marketplace",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\procurement\\e-marketplace\\page.tsx"
+    },
+    {
+      "url": "/procurement/grn",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\procurement\\grn\\page.tsx"
+    },
+    {
+      "url": "/procurement/grn/add",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\procurement\\grn\\add\\page.tsx"
+    },
+    {
+      "url": "/procurement/invoices",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\procurement\\invoices\\page.tsx"
+    },
+    {
+      "url": "/procurement/notifications",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\procurement\\notifications\\page.tsx"
+    },
+    {
+      "url": "/procurement/po",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\procurement\\po\\page.tsx"
+    },
+    {
+      "url": "/procurement/purchase-orders",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\procurement\\purchase-orders\\page.tsx"
+    },
+    {
+      "url": "/procurement/purchase-orders/create",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\procurement\\purchase-orders\\create\\page.tsx"
+    },
+    {
+      "url": "/procurement/quality-assurance",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\procurement\\quality-assurance\\page.tsx"
+    },
+    {
+      "url": "/procurement/requisitions",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\procurement\\requisitions\\page.tsx"
+    },
+    {
+      "url": "/procurement/requisitions/add",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\procurement\\requisitions\\add\\page.tsx"
+    },
+    {
+      "url": "/procurement/rfq",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\procurement\\rfq\\page.tsx"
+    },
+    {
+      "url": "/procurement/rfq-rfp",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\procurement\\rfq-rfp\\page.tsx"
+    },
+    {
+      "url": "/procurement/risk-management",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\procurement\\risk-management\\page.tsx"
+    },
+    {
+      "url": "/procurement/savings-tracker",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\procurement\\savings-tracker\\page.tsx"
+    },
+    {
+      "url": "/procurement/spend-analysis",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\procurement\\spend-analysis\\page.tsx"
+    },
+    {
+      "url": "/procurement/strategic-sourcing",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\procurement\\strategic-sourcing\\page.tsx"
+    },
+    {
+      "url": "/procurement/supplier-diversity",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\procurement\\supplier-diversity\\page.tsx"
+    },
+    {
+      "url": "/procurement/supplier-onboarding",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\procurement\\supplier-onboarding\\page.tsx"
+    },
+    {
+      "url": "/procurement/supplier-portal",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\procurement\\supplier-portal\\page.tsx"
+    },
+    {
+      "url": "/procurement/supplier-scorecard",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\procurement\\supplier-scorecard\\page.tsx"
+    },
+    {
+      "url": "/procurement/vendor-performance",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\procurement\\vendor-performance\\page.tsx"
+    },
+    {
+      "url": "/procurement/vendors",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\procurement\\vendors\\page.tsx"
+    },
+    {
+      "url": "/procurement/vendors/add",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\procurement\\vendors\\add\\page.tsx"
+    },
+    {
+      "url": "/production",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\production\\page.tsx"
+    },
+    {
+      "url": "/production/analytics",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\production\\analytics\\page.tsx"
+    },
+    {
+      "url": "/production/bom/add",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\production\\bom\\add\\page.tsx"
+    },
+    {
+      "url": "/production/capacity-planning",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\production\\capacity-planning\\page.tsx"
+    },
+    {
+      "url": "/production/floor",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\production\\floor\\page.tsx"
+    },
+    {
+      "url": "/production/mrp",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\production\\mrp\\page.tsx"
+    },
+    {
+      "url": "/production/planning",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\production\\planning\\page.tsx"
+    },
+    {
+      "url": "/production/ppg",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\production\\ppg\\page.tsx"
+    },
+    {
+      "url": "/production/quality",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\production\\quality\\page.tsx"
+    },
+    {
+      "url": "/production/quality/add",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\production\\quality\\add\\page.tsx"
+    },
+    {
+      "url": "/production/scheduling",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\production\\scheduling\\page.tsx"
+    },
+    {
+      "url": "/production/scheduling/add",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\production\\scheduling\\add\\page.tsx"
+    },
+    {
+      "url": "/production/shopfloor",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\production\\shopfloor\\page.tsx"
+    },
+    {
+      "url": "/production/work-orders",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\production\\work-orders\\page.tsx"
+    },
+    {
+      "url": "/production/work-orders/add",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\production\\work-orders\\add\\page.tsx"
+    },
+    {
+      "url": "/project-management",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\project-management\\page.tsx"
+    },
+    {
+      "url": "/project-management/analytics",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\project-management\\analytics\\page.tsx"
+    },
+    {
+      "url": "/project-management/budget",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\project-management\\budget\\page.tsx"
+    },
+    {
+      "url": "/project-management/change-orders",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\project-management\\change-orders\\page.tsx"
+    },
+    {
+      "url": "/project-management/commissioning",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\project-management\\commissioning\\page.tsx"
+    },
+    {
+      "url": "/project-management/create",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\project-management\\create\\page.tsx"
+    },
+    {
+      "url": "/project-management/customer-acceptance",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\project-management\\customer-acceptance\\page.tsx"
+    },
+    {
+      "url": "/project-management/dashboard",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\project-management\\dashboard\\page.tsx"
+    },
+    {
+      "url": "/project-management/deliverables",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\project-management\\deliverables\\page.tsx"
+    },
+    {
+      "url": "/project-management/documents",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\project-management\\documents\\page.tsx"
+    },
+    {
+      "url": "/project-management/installation-tracking",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\project-management\\installation-tracking\\page.tsx"
+    },
+    {
+      "url": "/project-management/issues",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\project-management\\issues\\page.tsx"
+    },
+    {
+      "url": "/project-management/labor-tracking",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\project-management\\labor-tracking\\page.tsx"
+    },
+    {
+      "url": "/project-management/material-consumption",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\project-management\\material-consumption\\page.tsx"
+    },
+    {
+      "url": "/project-management/milestone-templates",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\project-management\\milestone-templates\\page.tsx"
+    },
+    {
+      "url": "/project-management/mrp",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\project-management\\mrp\\page.tsx"
+    },
+    {
+      "url": "/project-management/profitability",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\project-management\\profitability\\page.tsx"
+    },
+    {
+      "url": "/project-management/progress",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\project-management\\progress\\page.tsx"
+    },
+    {
+      "url": "/project-management/project-costing",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\project-management\\project-costing\\page.tsx"
+    },
+    {
+      "url": "/project-management/project-types",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\project-management\\project-types\\page.tsx"
+    },
+    {
+      "url": "/project-management/quality-inspection",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\project-management\\quality-inspection\\page.tsx"
+    },
+    {
+      "url": "/project-management/reports",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\project-management\\reports\\page.tsx"
+    },
+    {
+      "url": "/project-management/resource-allocation",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\project-management\\resource-allocation\\page.tsx"
+    },
+    {
+      "url": "/project-management/resource-utilization",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\project-management\\resource-utilization\\page.tsx"
+    },
+    {
+      "url": "/project-management/resources",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\project-management\\resources\\page.tsx"
+    },
+    {
+      "url": "/project-management/schedule",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\project-management\\schedule\\page.tsx"
+    },
+    {
+      "url": "/project-management/settings",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\project-management\\settings\\page.tsx"
+    },
+    {
+      "url": "/project-management/site-issues",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\project-management\\site-issues\\page.tsx"
+    },
+    {
+      "url": "/project-management/site-survey",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\project-management\\site-survey\\page.tsx"
+    },
+    {
+      "url": "/project-management/tasks",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\project-management\\tasks\\page.tsx"
+    },
+    {
+      "url": "/project-management/templates",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\project-management\\templates\\page.tsx"
+    },
+    {
+      "url": "/project-management/timeline",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\project-management\\timeline\\page.tsx"
+    },
+    {
+      "url": "/project-management/wbs",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\project-management\\wbs\\page.tsx"
+    },
+    {
+      "url": "/rfq",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\rfq\\page.tsx"
+    },
+    {
+      "url": "/sales",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\sales\\page.tsx"
+    },
+    {
+      "url": "/sales/handover",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\sales\\handover\\page.tsx"
+    },
+    {
+      "url": "/sales/orders",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\sales\\orders\\page.tsx"
+    },
+    {
+      "url": "/sales/quotations",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\sales\\quotations\\page.tsx"
+    },
+    {
+      "url": "/sales/rfp",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\sales\\rfp\\page.tsx"
+    },
+    {
+      "url": "/support/incidents",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\support\\incidents\\page.tsx"
+    },
+    {
+      "url": "/support/knowledge",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\support\\knowledge\\page.tsx"
+    },
+    {
+      "url": "/support/tickets",
+      "path": "d:\\KreupAI\\ManufacturingOS-1\\b3-erp\\frontend\\src\\app\\(modules)\\support\\tickets\\page.tsx"
+    }
+  ]
+}

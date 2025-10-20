@@ -25,7 +25,11 @@ import {
   Target,
   Clock,
   AlertCircle,
+  Loader2,
+  CheckCircle,
+  XCircle,
 } from 'lucide-react';
+import { leadsApi, type LeadFormData as ApiLeadFormData } from '@/lib/api/leads';
 
 interface LeadFormData {
   // Basic Information
@@ -176,6 +180,10 @@ export default function AddLeadPage() {
   const [newTag, setNewTag] = useState('');
   const [newProduct, setNewProduct] = useState('');
   const [leadScore, setLeadScore] = useState(0);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const updateFormData = (field: keyof LeadFormData, value: any) => {
     setFormData(prev => ({ ...prev, [field]: value }));
@@ -268,13 +276,144 @@ export default function AddLeadPage() {
     setLeadScore(Math.min(score, 100));
   };
 
-  const handleSubmit = () => {
-    calculateLeadScore();
-    // Here you would typically send data to API
-    console.log('Lead Data:', formData);
-    console.log('Attachments:', attachments);
-    console.log('Lead Score:', leadScore);
-    router.push('/crm/leads');
+  const validateForm = (): boolean => {
+    const newErrors: Record<string, string> = {};
+
+    // Validate required fields
+    if (!formData.firstName.trim()) {
+      newErrors.firstName = 'First name is required';
+    }
+    if (!formData.lastName.trim()) {
+      newErrors.lastName = 'Last name is required';
+    }
+    if (!formData.company.trim()) {
+      newErrors.company = 'Company name is required';
+    }
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email is required';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = 'Invalid email format';
+    }
+    if (!formData.leadSource) {
+      newErrors.leadSource = 'Lead source is required';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = async () => {
+    // Validate form
+    if (!validateForm()) {
+      setErrorMessage('Please fill in all required fields correctly');
+      return;
+    }
+
+    setIsSubmitting(true);
+    setErrorMessage('');
+    setSuccessMessage('');
+
+    try {
+      // Calculate lead score
+      const score = calculateLeadScoreValue();
+
+      // Prepare data for API
+      const leadData: ApiLeadFormData = {
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        title: formData.title || undefined,
+        company: formData.company,
+        website: formData.website || undefined,
+        industry: formData.industry || undefined,
+        employeeCount: formData.employeeCount || undefined,
+        annualRevenue: formData.annualRevenue || undefined,
+        email: formData.email,
+        phone: formData.phone || undefined,
+        mobile: formData.mobile || undefined,
+        fax: formData.fax || undefined,
+        street: formData.street || undefined,
+        city: formData.city || undefined,
+        state: formData.state || undefined,
+        postalCode: formData.postalCode || undefined,
+        country: formData.country || undefined,
+        status: formData.status || undefined,
+        rating: formData.rating || undefined,
+        leadSource: formData.leadSource,
+        leadSubSource: formData.leadSubSource || undefined,
+        referredBy: formData.referredBy || undefined,
+        campaign: formData.campaign || undefined,
+        estimatedValue: formData.estimatedValue ? parseFloat(formData.estimatedValue) : undefined,
+        estimatedCloseDate: formData.estimatedCloseDate || undefined,
+        probability: formData.probability ? parseInt(formData.probability) : undefined,
+        productInterest: formData.productInterest.length > 0 ? formData.productInterest : undefined,
+        customProducts: formData.customProducts.length > 0 ? formData.customProducts : undefined,
+        assignedTo: formData.assignedTo || undefined,
+        teamAssignment: formData.teamAssignment || undefined,
+        description: formData.description || undefined,
+        tags: formData.tags.length > 0 ? formData.tags : undefined,
+        customFields: Object.keys(formData.customFields).length > 0 ? formData.customFields : undefined,
+        linkedIn: formData.linkedIn || undefined,
+        twitter: formData.twitter || undefined,
+        facebook: formData.facebook || undefined,
+        gdprConsent: formData.gdprConsent,
+        emailOptIn: formData.emailOptIn,
+        smsOptIn: formData.smsOptIn,
+        doNotCall: formData.doNotCall,
+        leadScore: score,
+      };
+
+      // Call API to create lead
+      const createdLead = await leadsApi.create(leadData);
+
+      setSuccessMessage('Lead created successfully!');
+
+      // Redirect to leads list after a short delay
+      setTimeout(() => {
+        router.push('/crm/leads');
+      }, 1500);
+    } catch (error: any) {
+      console.error('Error creating lead:', error);
+      setErrorMessage(
+        error.response?.data?.message ||
+        'Failed to create lead. Please try again.'
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const calculateLeadScoreValue = (): number => {
+    let score = 0;
+
+    // Company size scoring
+    if (formData.employeeCount === '1000+') score += 20;
+    else if (formData.employeeCount === '500-999') score += 15;
+    else if (formData.employeeCount === '100-499') score += 10;
+    else if (formData.employeeCount === '50-99') score += 5;
+
+    // Revenue scoring
+    if (formData.annualRevenue === '$100M+') score += 20;
+    else if (formData.annualRevenue === '$50M-$100M') score += 15;
+    else if (formData.annualRevenue === '$10M-$50M') score += 10;
+    else if (formData.annualRevenue === '$1M-$10M') score += 5;
+
+    // Engagement scoring
+    if (formData.email) score += 10;
+    if (formData.phone) score += 10;
+    if (formData.website) score += 5;
+
+    // Interest level
+    if (formData.rating === 'hot') score += 20;
+    else if (formData.rating === 'warm') score += 10;
+
+    // Product interest
+    score += formData.productInterest.length * 5;
+
+    // Source quality
+    if (formData.leadSource === 'Referral') score += 15;
+    else if (formData.leadSource === 'Events') score += 10;
+
+    return Math.min(score, 100);
   };
 
   const steps = [
@@ -304,6 +443,22 @@ export default function AddLeadPage() {
           </div>
         </div>
       </div>
+
+      {/* Success Message */}
+      {successMessage && (
+        <div className="mb-6 bg-green-50 border border-green-200 rounded-lg p-4 flex items-center space-x-3">
+          <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0" />
+          <p className="text-green-800 font-medium">{successMessage}</p>
+        </div>
+      )}
+
+      {/* Error Message */}
+      {errorMessage && (
+        <div className="mb-6 bg-red-50 border border-red-200 rounded-lg p-4 flex items-center space-x-3">
+          <XCircle className="h-5 w-5 text-red-600 flex-shrink-0" />
+          <p className="text-red-800 font-medium">{errorMessage}</p>
+        </div>
+      )}
 
       {/* Progress Steps */}
       <div className="mb-6 bg-white rounded-lg border border-gray-200 p-6">
@@ -368,10 +523,22 @@ export default function AddLeadPage() {
                 <input
                   type="text"
                   value={formData.firstName}
-                  onChange={(e) => updateFormData('firstName', e.target.value)}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  onChange={(e) => {
+                    updateFormData('firstName', e.target.value);
+                    if (errors.firstName) {
+                      setErrors(prev => ({ ...prev, firstName: '' }));
+                    }
+                  }}
+                  className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
+                    errors.firstName
+                      ? 'border-red-500 focus:ring-red-500'
+                      : 'border-gray-300 focus:ring-blue-500'
+                  }`}
                   placeholder="John"
                 />
+                {errors.firstName && (
+                  <p className="text-red-500 text-xs mt-1">{errors.firstName}</p>
+                )}
               </div>
 
               <div>
@@ -381,10 +548,22 @@ export default function AddLeadPage() {
                 <input
                   type="text"
                   value={formData.lastName}
-                  onChange={(e) => updateFormData('lastName', e.target.value)}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  onChange={(e) => {
+                    updateFormData('lastName', e.target.value);
+                    if (errors.lastName) {
+                      setErrors(prev => ({ ...prev, lastName: '' }));
+                    }
+                  }}
+                  className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
+                    errors.lastName
+                      ? 'border-red-500 focus:ring-red-500'
+                      : 'border-gray-300 focus:ring-blue-500'
+                  }`}
                   placeholder="Smith"
                 />
+                {errors.lastName && (
+                  <p className="text-red-500 text-xs mt-1">{errors.lastName}</p>
+                )}
               </div>
 
               <div>
@@ -405,10 +584,22 @@ export default function AddLeadPage() {
                 <input
                   type="text"
                   value={formData.company}
-                  onChange={(e) => updateFormData('company', e.target.value)}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  onChange={(e) => {
+                    updateFormData('company', e.target.value);
+                    if (errors.company) {
+                      setErrors(prev => ({ ...prev, company: '' }));
+                    }
+                  }}
+                  className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
+                    errors.company
+                      ? 'border-red-500 focus:ring-red-500'
+                      : 'border-gray-300 focus:ring-blue-500'
+                  }`}
                   placeholder="Acme Corporation"
                 />
+                {errors.company && (
+                  <p className="text-red-500 text-xs mt-1">{errors.company}</p>
+                )}
               </div>
 
               <div>
@@ -502,11 +693,23 @@ export default function AddLeadPage() {
                   <input
                     type="email"
                     value={formData.email}
-                    onChange={(e) => updateFormData('email', e.target.value)}
-                    className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    onChange={(e) => {
+                      updateFormData('email', e.target.value);
+                      if (errors.email) {
+                        setErrors(prev => ({ ...prev, email: '' }));
+                      }
+                    }}
+                    className={`w-full pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
+                      errors.email
+                        ? 'border-red-500 focus:ring-red-500'
+                        : 'border-gray-300 focus:ring-blue-500'
+                    }`}
                     placeholder="john.smith@example.com"
                   />
                 </div>
+                {errors.email && (
+                  <p className="text-red-500 text-xs mt-1">{errors.email}</p>
+                )}
               </div>
 
               <div>
@@ -702,14 +905,24 @@ export default function AddLeadPage() {
                   onChange={(e) => {
                     updateFormData('leadSource', e.target.value);
                     updateFormData('leadSubSource', '');
+                    if (errors.leadSource) {
+                      setErrors(prev => ({ ...prev, leadSource: '' }));
+                    }
                   }}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
+                    errors.leadSource
+                      ? 'border-red-500 focus:ring-red-500'
+                      : 'border-gray-300 focus:ring-blue-500'
+                  }`}
                 >
                   <option value="">Select Lead Source</option>
                   {Object.keys(leadSources).map(source => (
                     <option key={source} value={source}>{source}</option>
                   ))}
                 </select>
+                {errors.leadSource && (
+                  <p className="text-red-500 text-xs mt-1">{errors.leadSource}</p>
+                )}
               </div>
 
               <div>
@@ -1148,16 +1361,27 @@ export default function AddLeadPage() {
         <div className="flex items-center justify-between">
           <button
             onClick={() => router.back()}
-            className="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+            className="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            disabled={isSubmitting}
           >
             Cancel
           </button>
           <button
             onClick={handleSubmit}
-            className="flex items-center space-x-2 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            disabled={isSubmitting}
+            className="flex items-center space-x-2 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            <Save className="h-5 w-5" />
-            <span>Save</span>
+            {isSubmitting ? (
+              <>
+                <Loader2 className="h-5 w-5 animate-spin" />
+                <span>Saving...</span>
+              </>
+            ) : (
+              <>
+                <Save className="h-5 w-5" />
+                <span>Save Lead</span>
+              </>
+            )}
           </button>
         </div>
       </div>
