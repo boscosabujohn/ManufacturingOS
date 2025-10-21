@@ -204,20 +204,7 @@ export default function CRMDashboard() {
   }
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-cyan-50 to-blue-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="max-w-7xl mx-auto space-y-6">
-        {/* Header */}
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900">Customer Relationship Management</h1>
-            <p className="text-gray-600 mt-1">Leads, opportunities, and customer interactions</p>
-          </div>
-          <button className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-cyan-600 to-blue-600 text-white rounded-lg hover:from-cyan-700 hover:to-blue-700 transition-all shadow-md">
-            <UserPlus className="h-5 w-5" />
-            Add New Lead
-          </button>
-        </div>
-
+    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
         {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-5 border border-blue-200 shadow-sm">
@@ -415,7 +402,6 @@ export default function CRMDashboard() {
             </div>
           </div>
         </div>
-      </div>
     </div>
   )
 }

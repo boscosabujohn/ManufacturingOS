@@ -210,7 +210,7 @@ export default function RFQListPage() {
               Export
             </button>
             <Link
-              href="/(modules)/rfq/add"
+              href="/rfq/add"
               className="flex items-center gap-2 px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition-colors"
             >
               <Plus className="h-4 w-4" />
@@ -283,13 +283,13 @@ export default function RFQListPage() {
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                       <div className="flex gap-2">
                         <Link
-                          href={`/(modules)/rfq/view/${rfq.id}`}
+                          href={`/rfq/view/${rfq.id}`}
                           className="text-blue-600 hover:text-blue-900"
                         >
                           <Eye className="h-4 w-4" />
                         </Link>
                         <Link
-                          href={`/(modules)/rfq/edit/${rfq.id}`}
+                          href={`/rfq/edit/${rfq.id}`}
                           className="text-amber-600 hover:text-amber-900"
                         >
                           <Edit className="h-4 w-4" />

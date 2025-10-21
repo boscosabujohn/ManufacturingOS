@@ -183,36 +183,6 @@ export default function SalesForecastPage() {
 
   return (
     <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      {/* Header */}
-      <div className="mb-6">
-        <div className="flex items-center justify-between mb-4">
-          <div>
-            <h1 className="text-2xl font-bold text-gray-900 flex items-center">
-              <TrendingUp className="h-7 w-7 text-blue-600 mr-3" />
-              Sales Forecast
-            </h1>
-            <p className="text-sm text-gray-600 mt-1">Revenue projections and pipeline analysis</p>
-          </div>
-          <div className="flex space-x-3">
-            <button
-              onClick={() => setViewMode(viewMode === 'chart' ? 'table' : 'chart')}
-              className="flex items-center space-x-2 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
-            >
-              {viewMode === 'chart' ? <BarChart3 className="h-4 w-4" /> : <LineChart className="h-4 w-4" />}
-              <span>{viewMode === 'chart' ? 'Table View' : 'Chart View'}</span>
-            </button>
-            <button className="flex items-center space-x-2 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">
-              <RefreshCw className="h-4 w-4" />
-              <span>Refresh</span>
-            </button>
-            <button className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-              <Download className="h-4 w-4" />
-              <span>Export Forecast</span>
-            </button>
-          </div>
-        </div>
-      </div>
-
       {/* Period Selector */}
       <div className="mb-6 bg-white rounded-lg border border-gray-200 p-4">
         <div className="flex items-center space-x-4">

@@ -626,6 +626,15 @@ export default function ProductionAnalyticsPage() {
               <svg className="w-full h-full" viewBox="0 0 100 100">
                 {(() => {
                   let currentAngle = -90;
+                  const colorMap: { [key: string]: string } = {
+                    'bg-red-500': '#ef4444',
+                    'bg-orange-500': '#f97316',
+                    'bg-yellow-500': '#eab308',
+                    'bg-blue-500': '#3b82f6',
+                    'bg-purple-500': '#a855f7',
+                    'bg-gray-500': '#6b7280'
+                  };
+
                   return downtimeData.map((item, index) => {
                     const angle = (item.percentage / 100) * 360;
                     const x1 = 50 + 40 * Math.cos((currentAngle * Math.PI) / 180);
@@ -641,15 +650,6 @@ export default function ProductionAnalyticsPage() {
 
                     currentAngle += angle;
 
-                    const colorMap: { [key: string]: string } = {
-                      'bg-red-500': '#ef4444',
-                      'bg-orange-500': '#f97316',
-                      'bg-yellow-500': '#eab308',
-                      'bg-blue-500': '#3b82f6',
-                      'bg-purple-500': '#a855f7',
-                      'bg-gray-500': '#6b7280'
-                    };
-
                     return (
                       <g key={index}>
                         <path d={path} fill={colorMap[item.color]} className="hover:opacity-80 cursor-pointer" />
@@ -660,7 +660,7 @@ export default function ProductionAnalyticsPage() {
                         )}
                       </g>
                     );
-                  })();
+                  });
                 })()}
                 <circle cx="50" cy="50" r="20" fill="white" />
                 <text x="50" y="48" textAnchor="middle" fontSize="6" fill="#374151" fontWeight="bold">

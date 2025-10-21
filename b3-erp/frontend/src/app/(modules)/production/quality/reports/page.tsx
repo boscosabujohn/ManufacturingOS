@@ -1,0 +1,540 @@
+'use client';
+
+import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { ArrowLeft, Download, Filter, BarChart3, TrendingUp, TrendingDown, Calendar, FileText, Award, AlertTriangle } from 'lucide-react';
+
+interface QualityMetric {
+  period: string;
+  totalProduced: number;
+  totalInspected: number;
+  totalPassed: number;
+  totalRejected: number;
+  passRate: number;
+  rejectionRate: number;
+  firstPassYield: number;
+  reworkCount: number;
+  scrapCount: number;
+  ncrCount: number;
+  costOfQuality: number;
+}
+
+interface ProductQuality {
+  productCode: string;
+  productName: string;
+  category: string;
+  totalProduced: number;
+  passRate: number;
+  rejectionRate: number;
+  defectRate: number;
+  topDefects: string[];
+  qualityScore: number;
+  trend: 'improving' | 'stable' | 'declining';
+}
+
+interface DefectAnalysis {
+  defectType: string;
+  occurrences: number;
+  percentage: number;
+  affectedProducts: number;
+  estimatedCost: number;
+  trend: 'increasing' | 'stable' | 'decreasing';
+}
+
+export default function QualityReportsPage() {
+  const router = useRouter();
+  const [selectedPeriod, setSelectedPeriod] = useState<string>('current-month');
+  const [filterCategory, setFilterCategory] = useState<string>('all');
+
+  // Mock data for quality metrics over time
+  const qualityMetrics: QualityMetric[] = [
+    {
+      period: 'Oct 2025',
+      totalProduced: 4850,
+      totalInspected: 4850,
+      totalPassed: 4695,
+      totalRejected: 155,
+      passRate: 96.8,
+      rejectionRate: 3.2,
+      firstPassYield: 94.5,
+      reworkCount: 112,
+      scrapCount: 43,
+      ncrCount: 8,
+      costOfQuality: 1285000
+    },
+    {
+      period: 'Sep 2025',
+      totalProduced: 4620,
+      totalInspected: 4620,
+      totalPassed: 4480,
+      totalRejected: 140,
+      passRate: 97.0,
+      rejectionRate: 3.0,
+      firstPassYield: 95.2,
+      reworkCount: 98,
+      scrapCount: 42,
+      ncrCount: 6,
+      costOfQuality: 1150000
+    },
+    {
+      period: 'Aug 2025',
+      totalProduced: 4440,
+      totalInspected: 4440,
+      totalPassed: 4250,
+      totalRejected: 190,
+      passRate: 95.7,
+      rejectionRate: 4.3,
+      firstPassYield: 93.8,
+      reworkCount: 125,
+      scrapCount: 65,
+      ncrCount: 10,
+      costOfQuality: 1520000
+    },
+    {
+      period: 'Jul 2025',
+      totalProduced: 4280,
+      totalInspected: 4280,
+      totalPassed: 4105,
+      totalRejected: 175,
+      passRate: 95.9,
+      rejectionRate: 4.1,
+      firstPassYield: 94.1,
+      reworkCount: 118,
+      scrapCount: 57,
+      ncrCount: 9,
+      costOfQuality: 1420000
+    }
+  ];
+
+  // Mock data for product-wise quality
+  const productQuality: ProductQuality[] = [
+    {
+      productCode: 'KIT-SINK-001',
+      productName: 'Premium Stainless Steel Kitchen Sink',
+      category: 'Kitchen Sinks',
+      totalProduced: 850,
+      passRate: 97.2,
+      rejectionRate: 2.8,
+      defectRate: 2.8,
+      topDefects: ['Surface finish', 'Welding defects', 'Dimensional'],
+      qualityScore: 97.2,
+      trend: 'improving'
+    },
+    {
+      productCode: 'KIT-FAUCET-002',
+      productName: 'Chrome Kitchen Faucet',
+      category: 'Kitchen Faucets',
+      totalProduced: 1120,
+      passRate: 96.5,
+      rejectionRate: 3.5,
+      defectRate: 3.5,
+      topDefects: ['Pressure test failure', 'Chrome defects', 'Thread issues'],
+      qualityScore: 96.5,
+      trend: 'stable'
+    },
+    {
+      productCode: 'KIT-COOKWARE-003',
+      productName: 'Non-Stick Cookware Set',
+      category: 'Cookware',
+      totalProduced: 680,
+      passRate: 95.1,
+      rejectionRate: 4.9,
+      defectRate: 4.9,
+      topDefects: ['Coating adhesion', 'Handle issues', 'Surface defects'],
+      qualityScore: 95.1,
+      trend: 'declining'
+    },
+    {
+      productCode: 'KIT-CHIMNEY-001',
+      productName: 'Built-in Kitchen Chimney',
+      category: 'Kitchen Appliances',
+      totalProduced: 420,
+      passRate: 98.1,
+      rejectionRate: 1.9,
+      defectRate: 1.9,
+      topDefects: ['Noise level', 'Electrical safety', 'Filter efficiency'],
+      qualityScore: 98.1,
+      trend: 'improving'
+    },
+    {
+      productCode: 'KIT-MIXER-007',
+      productName: 'Electric Mixer Grinder',
+      category: 'Kitchen Appliances',
+      totalProduced: 920,
+      passRate: 97.8,
+      rejectionRate: 2.2,
+      defectRate: 2.2,
+      topDefects: ['Motor performance', 'Blade quality', 'Jar leakage'],
+      qualityScore: 97.8,
+      trend: 'stable'
+    },
+    {
+      productCode: 'KIT-CABINET-004',
+      productName: 'Modular Kitchen Cabinet',
+      category: 'Kitchen Cabinets',
+      totalProduced: 580,
+      passRate: 96.0,
+      rejectionRate: 4.0,
+      defectRate: 4.0,
+      topDefects: ['Dimensional', 'Edge banding', 'Hardware issues'],
+      qualityScore: 96.0,
+      trend: 'improving'
+    },
+    {
+      productCode: 'KIT-STORAGE-008',
+      productName: 'Kitchen Storage Container Set',
+      category: 'Kitchen Accessories',
+      totalProduced: 1280,
+      passRate: 98.5,
+      rejectionRate: 1.5,
+      defectRate: 1.5,
+      topDefects: ['Lid fit', 'Material defects', 'Print quality'],
+      qualityScore: 98.5,
+      trend: 'stable'
+    }
+  ];
+
+  // Mock data for defect analysis
+  const defectAnalysis: DefectAnalysis[] = [
+    {
+      defectType: 'Surface Finish Defects',
+      occurrences: 45,
+      percentage: 29.0,
+      affectedProducts: 3,
+      estimatedCost: 385000,
+      trend: 'decreasing'
+    },
+    {
+      defectType: 'Coating Issues',
+      occurrences: 35,
+      percentage: 22.6,
+      affectedProducts: 2,
+      estimatedCost: 425000,
+      trend: 'stable'
+    },
+    {
+      defectType: 'Dimensional Non-Conformance',
+      occurrences: 28,
+      percentage: 18.1,
+      affectedProducts: 4,
+      estimatedCost: 215000,
+      trend: 'stable'
+    },
+    {
+      defectType: 'Functional Test Failures',
+      occurrences: 22,
+      percentage: 14.2,
+      affectedProducts: 3,
+      estimatedCost: 340000,
+      trend: 'increasing'
+    },
+    {
+      defectType: 'Material Defects',
+      occurrences: 15,
+      percentage: 9.7,
+      affectedProducts: 2,
+      estimatedCost: 185000,
+      trend: 'decreasing'
+    },
+    {
+      defectType: 'Packaging Damage',
+      occurrences: 10,
+      percentage: 6.4,
+      affectedProducts: 5,
+      estimatedCost: 45000,
+      trend: 'stable'
+    }
+  ];
+
+  const filteredProducts = productQuality.filter(product => {
+    return filterCategory === 'all' || product.category === filterCategory;
+  });
+
+  const currentMetrics = qualityMetrics[0];
+  const previousMetrics = qualityMetrics[1];
+
+  const getTrendColor = (trend: string) => {
+    switch (trend) {
+      case 'improving': return 'text-green-700 bg-green-100';
+      case 'stable': return 'text-blue-700 bg-blue-100';
+      case 'declining': return 'text-red-700 bg-red-100';
+      case 'increasing': return 'text-red-700 bg-red-100';
+      case 'decreasing': return 'text-green-700 bg-green-100';
+      default: return 'text-gray-700 bg-gray-100';
+    }
+  };
+
+  const getTrendIcon = (trend: string) => {
+    switch (trend) {
+      case 'improving':
+      case 'decreasing':
+        return <TrendingUp className="w-4 h-4" />;
+      case 'declining':
+      case 'increasing':
+        return <TrendingDown className="w-4 h-4" />;
+      default:
+        return <BarChart3 className="w-4 h-4" />;
+    }
+  };
+
+  const getQualityScoreColor = (score: number) => {
+    if (score >= 98) return 'text-green-600';
+    if (score >= 95) return 'text-blue-600';
+    if (score >= 90) return 'text-yellow-600';
+    return 'text-red-600';
+  };
+
+  return (
+    <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
+      {/* Inline Header */}
+      <div className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div className="flex items-center gap-4">
+          <button
+            onClick={() => router.back()}
+            className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+          >
+            <ArrowLeft className="w-5 h-5 text-gray-600" />
+          </button>
+          <div>
+            <h1 className="text-2xl font-bold text-gray-900">Quality Reports & Analytics</h1>
+            <p className="text-sm text-gray-500 mt-1">Comprehensive quality performance metrics and trends</p>
+          </div>
+        </div>
+        <div className="flex items-center gap-2">
+          <button className="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors flex items-center gap-2">
+            <Download className="w-4 h-4" />
+            <span>Export Report</span>
+          </button>
+        </div>
+      </div>
+
+      {/* Period Selector */}
+      <div className="bg-white rounded-xl border border-gray-200 p-4 mb-6">
+        <div className="flex items-center gap-4">
+          <Calendar className="w-5 h-5 text-gray-400" />
+          <select
+            value={selectedPeriod}
+            onChange={(e) => setSelectedPeriod(e.target.value)}
+            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          >
+            <option value="current-month">Current Month (Oct 2025)</option>
+            <option value="last-month">Last Month (Sep 2025)</option>
+            <option value="last-quarter">Last Quarter (Jul-Sep 2025)</option>
+            <option value="ytd">Year to Date (2025)</option>
+          </select>
+        </div>
+      </div>
+
+      {/* Summary Stats */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6 border border-green-200">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm font-medium text-green-600">Pass Rate</p>
+              <p className="text-2xl font-bold text-green-900 mt-1">{currentMetrics.passRate}%</p>
+              <p className="text-xs text-green-600 mt-1">
+                {currentMetrics.passRate > previousMetrics.passRate ? '↑' : '↓'}
+                {Math.abs(currentMetrics.passRate - previousMetrics.passRate).toFixed(1)}% vs last month
+              </p>
+            </div>
+            <div className="p-3 bg-green-200 rounded-lg">
+              <Award className="w-6 h-6 text-green-700" />
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 border border-blue-200">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm font-medium text-blue-600">First Pass Yield</p>
+              <p className="text-2xl font-bold text-blue-900 mt-1">{currentMetrics.firstPassYield}%</p>
+              <p className="text-xs text-blue-600 mt-1">
+                {currentMetrics.firstPassYield > previousMetrics.firstPassYield ? '↑' : '↓'}
+                {Math.abs(currentMetrics.firstPassYield - previousMetrics.firstPassYield).toFixed(1)}% vs last month
+              </p>
+            </div>
+            <div className="p-3 bg-blue-200 rounded-lg">
+              <BarChart3 className="w-6 h-6 text-blue-700" />
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-xl p-6 border border-red-200">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm font-medium text-red-600">Rejection Rate</p>
+              <p className="text-2xl font-bold text-red-900 mt-1">{currentMetrics.rejectionRate}%</p>
+              <p className="text-xs text-red-600 mt-1">
+                {currentMetrics.rejectedCount} units rejected
+              </p>
+            </div>
+            <div className="p-3 bg-red-200 rounded-lg">
+              <AlertTriangle className="w-6 h-6 text-red-700" />
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-6 border border-orange-200">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm font-medium text-orange-600">Cost of Quality</p>
+              <p className="text-2xl font-bold text-orange-900 mt-1">₹{(currentMetrics.costOfQuality / 100000).toFixed(1)}L</p>
+              <p className="text-xs text-orange-600 mt-1">
+                {currentMetrics.ncrCount} NCRs this month
+              </p>
+            </div>
+            <div className="p-3 bg-orange-200 rounded-lg">
+              <FileText className="w-6 h-6 text-orange-700" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Monthly Trend */}
+      <div className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
+        <h3 className="text-lg font-bold text-gray-900 mb-4">Monthly Quality Trend</h3>
+        <div className="overflow-x-auto">
+          <table className="w-full">
+            <thead className="bg-gray-50 border-b border-gray-200">
+              <tr>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Period</th>
+                <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase">Produced</th>
+                <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase">Passed</th>
+                <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase">Pass Rate</th>
+                <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase">FPY</th>
+                <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase">Rework</th>
+                <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase">Scrap</th>
+                <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase">NCRs</th>
+                <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase">Cost</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-200">
+              {qualityMetrics.map((metric, idx) => (
+                <tr key={idx} className="hover:bg-gray-50">
+                  <td className="px-4 py-3 text-sm font-medium text-gray-900">{metric.period}</td>
+                  <td className="px-4 py-3 text-sm text-gray-900 text-right">{metric.totalProduced.toLocaleString()}</td>
+                  <td className="px-4 py-3 text-sm text-green-600 text-right">{metric.totalPassed.toLocaleString()}</td>
+                  <td className="px-4 py-3 text-sm font-bold text-right">
+                    <span className={getQualityScoreColor(metric.passRate)}>{metric.passRate}%</span>
+                  </td>
+                  <td className="px-4 py-3 text-sm text-blue-600 text-right">{metric.firstPassYield}%</td>
+                  <td className="px-4 py-3 text-sm text-yellow-600 text-right">{metric.reworkCount}</td>
+                  <td className="px-4 py-3 text-sm text-red-600 text-right">{metric.scrapCount}</td>
+                  <td className="px-4 py-3 text-sm text-orange-600 text-right">{metric.ncrCount}</td>
+                  <td className="px-4 py-3 text-sm text-gray-900 text-right">₹{(metric.costOfQuality / 100000).toFixed(1)}L</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* Product-wise Quality */}
+      <div className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
+        <div className="flex items-center justify-between mb-4">
+          <h3 className="text-lg font-bold text-gray-900">Product-wise Quality Performance</h3>
+          <select
+            value={filterCategory}
+            onChange={(e) => setFilterCategory(e.target.value)}
+            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+          >
+            <option value="all">All Categories</option>
+            <option value="Kitchen Sinks">Kitchen Sinks</option>
+            <option value="Kitchen Faucets">Kitchen Faucets</option>
+            <option value="Cookware">Cookware</option>
+            <option value="Kitchen Cabinets">Kitchen Cabinets</option>
+            <option value="Kitchen Appliances">Kitchen Appliances</option>
+            <option value="Kitchen Accessories">Kitchen Accessories</option>
+          </select>
+        </div>
+        <div className="space-y-3">
+          {filteredProducts.map((product, idx) => (
+            <div key={idx} className="p-4 bg-gray-50 rounded-lg">
+              <div className="flex items-center justify-between mb-2">
+                <div className="flex-1">
+                  <div className="flex items-center gap-2 mb-1">
+                    <h4 className="text-sm font-bold text-gray-900">{product.productCode}</h4>
+                    <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium ${getTrendColor(product.trend)}`}>
+                      {getTrendIcon(product.trend)}
+                      {product.trend}
+                    </span>
+                  </div>
+                  <p className="text-sm text-gray-600">{product.productName}</p>
+                </div>
+                <div className="text-right">
+                  <p className="text-sm text-gray-500">Quality Score</p>
+                  <p className={`text-2xl font-bold ${getQualityScoreColor(product.qualityScore)}`}>
+                    {product.qualityScore}%
+                  </p>
+                </div>
+              </div>
+              <div className="grid grid-cols-4 gap-4 mt-3">
+                <div>
+                  <p className="text-xs text-gray-500">Total Produced</p>
+                  <p className="text-sm font-semibold text-gray-900">{product.totalProduced}</p>
+                </div>
+                <div>
+                  <p className="text-xs text-gray-500">Pass Rate</p>
+                  <p className="text-sm font-semibold text-green-600">{product.passRate}%</p>
+                </div>
+                <div>
+                  <p className="text-xs text-gray-500">Rejection Rate</p>
+                  <p className="text-sm font-semibold text-red-600">{product.rejectionRate}%</p>
+                </div>
+                <div>
+                  <p className="text-xs text-gray-500">Top Defects</p>
+                  <p className="text-xs text-gray-700">{product.topDefects.slice(0, 2).join(', ')}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Defect Analysis */}
+      <div className="bg-white rounded-xl border border-gray-200 p-6">
+        <h3 className="text-lg font-bold text-gray-900 mb-4">Defect Analysis - Pareto Chart</h3>
+        <div className="overflow-x-auto">
+          <table className="w-full">
+            <thead className="bg-gray-50 border-b border-gray-200">
+              <tr>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Defect Type</th>
+                <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase">Occurrences</th>
+                <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase">Percentage</th>
+                <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase">Products</th>
+                <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase">Est. Cost</th>
+                <th className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase">Trend</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Visual</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-200">
+              {defectAnalysis.map((defect, idx) => (
+                <tr key={idx} className="hover:bg-gray-50">
+                  <td className="px-4 py-3 text-sm font-medium text-gray-900">{defect.defectType}</td>
+                  <td className="px-4 py-3 text-sm text-gray-900 text-right">{defect.occurrences}</td>
+                  <td className="px-4 py-3 text-sm font-bold text-gray-900 text-right">{defect.percentage}%</td>
+                  <td className="px-4 py-3 text-sm text-gray-700 text-right">{defect.affectedProducts}</td>
+                  <td className="px-4 py-3 text-sm text-orange-600 text-right">₹{defect.estimatedCost.toLocaleString()}</td>
+                  <td className="px-4 py-3 text-center">
+                    <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium ${getTrendColor(defect.trend)}`}>
+                      {getTrendIcon(defect.trend)}
+                      {defect.trend}
+                    </span>
+                  </td>
+                  <td className="px-4 py-3">
+                    <div className="w-full bg-gray-200 rounded-full h-2">
+                      <div
+                        className="bg-red-500 h-2 rounded-full"
+                        style={{ width: `${defect.percentage}%` }}
+                      ></div>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  );
+}

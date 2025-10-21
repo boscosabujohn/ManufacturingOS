@@ -230,32 +230,6 @@ export default function LeadAssignmentPage() {
 
   return (
     <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      {/* Header */}
-      <div className="mb-6">
-        <div className="flex items-center justify-between mb-4">
-          <div>
-            <h1 className="text-2xl font-bold text-gray-900 flex items-center">
-              <Users className="h-7 w-7 text-blue-600 mr-3" />
-              Lead Assignment & Distribution
-            </h1>
-            <p className="text-sm text-gray-600 mt-1">Manage sales rep workload and auto-assignment rules</p>
-          </div>
-          <div className="flex space-x-3">
-            <button
-              onClick={() => setShowSettings(!showSettings)}
-              className="flex items-center space-x-2 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
-            >
-              <Settings className="h-4 w-4" />
-              <span>Configure Rules</span>
-            </button>
-            <button className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-              <UserPlus className="h-4 w-4" />
-              <span>Manual Assignment</span>
-            </button>
-          </div>
-        </div>
-      </div>
-
       {/* Stats */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
         <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">

@@ -153,19 +153,8 @@ export default function CalendarPage() {
     .slice(0, 5);
 
   return (
-    <div className="p-8">
+    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
       <div className="mb-8">
-        <div className="flex justify-between items-center mb-6">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900">Calendar</h1>
-            <p className="text-gray-600 mt-1">Schedule and manage activities</p>
-          </div>
-          <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-            <Plus className="w-4 h-4" />
-            New Event
-          </button>
-        </div>
-
         {/* View Toggle & Navigation */}
         <div className="flex justify-between items-center mb-6">
           <div className="flex gap-2">

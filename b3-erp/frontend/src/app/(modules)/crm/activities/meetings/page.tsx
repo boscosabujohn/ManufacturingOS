@@ -246,19 +246,8 @@ export default function MeetingsPage() {
   };
 
   return (
-    <div className="p-8">
+    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
       <div className="mb-8">
-        <div className="flex justify-between items-center mb-6">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900">Meetings</h1>
-            <p className="text-gray-600 mt-1">Schedule and manage meetings</p>
-          </div>
-          <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-            <Plus className="w-4 h-4" />
-            Schedule Meeting
-          </button>
-        </div>
-
         {/* Statistics Cards */}
         <div className="grid grid-cols-1 md:grid-cols-6 gap-6 mb-8">
           <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-6 text-white">

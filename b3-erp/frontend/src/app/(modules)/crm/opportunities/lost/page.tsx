@@ -250,31 +250,6 @@ export default function LostOpportunitiesPage() {
 
   return (
     <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      {/* Header */}
-      <div className="mb-6">
-        <div className="flex items-center justify-between mb-4">
-          <div>
-            <h1 className="text-2xl font-bold text-gray-900 flex items-center">
-              <XCircle className="h-7 w-7 text-red-600 mr-3" />
-              Lost Opportunities
-            </h1>
-            <p className="text-sm text-gray-600 mt-1">
-              Analysis and insights from lost deals
-            </p>
-          </div>
-          <div className="flex space-x-3">
-            <button className="flex items-center space-x-2 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">
-              <BarChart3 className="h-4 w-4" />
-              <span>Loss Analysis</span>
-            </button>
-            <button className="flex items-center space-x-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
-              <Download className="h-4 w-4" />
-              <span>Export Report</span>
-            </button>
-          </div>
-        </div>
-      </div>
-
       {/* Statistics Cards */}
       <div className="grid grid-cols-1 md:grid-cols-6 gap-4 mb-6">
         <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-4 border border-red-200">
