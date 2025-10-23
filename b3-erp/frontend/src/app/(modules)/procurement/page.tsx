@@ -430,11 +430,13 @@ export default function ProcurementDashboard() {
                 <p className="text-sm text-gray-500 mt-1">Budget vs Actual Spending</p>
               </div>
               <div className="flex items-center gap-2">
-                <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
-                  <Filter className="h-4 w-4 text-gray-500" />
+                <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                  <Filter className="h-4 w-4 text-gray-600" />
+                  <span className="text-gray-700">Filter</span>
                 </button>
-                <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
-                  <Download className="h-4 w-4 text-gray-500" />
+                <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                  <Download className="h-4 w-4 text-gray-600" />
+                  <span className="text-gray-700">Download</span>
                 </button>
               </div>
             </div>

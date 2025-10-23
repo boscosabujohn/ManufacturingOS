@@ -374,8 +374,9 @@ const SupplierCollaboration: React.FC<SupplierCollaborationProps> = () => {
                 <button className="flex-1 bg-blue-500 text-white py-2 rounded hover:bg-blue-600 text-sm">
                   View Details
                 </button>
-                <button className="px-3 py-2 border border-gray-300 rounded hover:bg-gray-50">
-                  <MessageCircle className="h-4 w-4" />
+                <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded hover:bg-gray-50">
+                  <MessageCircle className="h-4 w-4 text-gray-600" />
+                  <span className="text-gray-700">Message</span>
                 </button>
               </div>
             </div>
@@ -407,8 +408,9 @@ const SupplierCollaboration: React.FC<SupplierCollaborationProps> = () => {
             </select>
           </div>
           <div className="flex gap-2">
-            <button className="px-3 py-2 border rounded-lg hover:bg-gray-50">
-              <Filter className="h-4 w-4" />
+            <button className="inline-flex items-center gap-1.5 px-3 py-2 border rounded-lg hover:bg-gray-50">
+              <Filter className="h-4 w-4 text-gray-600" />
+              <span className="text-gray-700">Filter</span>
             </button>
             <button className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
               Invite Supplier
@@ -485,11 +487,13 @@ const SupplierCollaboration: React.FC<SupplierCollaborationProps> = () => {
               <button className="flex-1 bg-blue-500 text-white py-2 rounded hover:bg-blue-600 text-sm">
                 Collaborate
               </button>
-              <button className="px-3 py-2 border border-gray-300 rounded hover:bg-gray-50">
-                <MessageCircle className="h-4 w-4" />
+              <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded hover:bg-gray-50">
+                <MessageCircle className="h-4 w-4 text-gray-600" />
+                <span className="text-gray-700">Message</span>
               </button>
-              <button className="px-3 py-2 border border-gray-300 rounded hover:bg-gray-50">
-                <Video className="h-4 w-4" />
+              <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded hover:bg-gray-50">
+                <Video className="h-4 w-4 text-gray-600" />
+                <span className="text-gray-700">Video</span>
               </button>
             </div>
           </div>
@@ -530,8 +534,9 @@ const SupplierCollaboration: React.FC<SupplierCollaborationProps> = () => {
               <Plus className="h-4 w-4" />
               New Discussion
             </button>
-            <button className="px-3 py-2 border rounded-lg hover:bg-gray-50">
-              <Bell className="h-4 w-4" />
+            <button className="inline-flex items-center gap-1.5 px-3 py-2 border rounded-lg hover:bg-gray-50">
+              <Bell className="h-4 w-4 text-gray-600" />
+              <span className="text-gray-700">Notifications</span>
             </button>
           </div>
         </div>
@@ -592,11 +597,13 @@ const SupplierCollaboration: React.FC<SupplierCollaborationProps> = () => {
                   </div>
                 </div>
                 <div className="flex gap-2">
-                  <button className="p-2 hover:bg-gray-100 rounded">
-                    <Eye className="h-4 w-4" />
+                  <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                    <Eye className="h-4 w-4 text-gray-600" />
+                    <span className="text-gray-700">View</span>
                   </button>
-                  <button className="p-2 hover:bg-gray-100 rounded">
-                    <MessageCircle className="h-4 w-4" />
+                  <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                    <MessageCircle className="h-4 w-4 text-gray-600" />
+                    <span className="text-gray-700">Message</span>
                   </button>
                 </div>
               </div>
@@ -665,8 +672,9 @@ const SupplierCollaboration: React.FC<SupplierCollaborationProps> = () => {
               <Upload className="h-4 w-4" />
               Upload Document
             </button>
-            <button className="px-3 py-2 border rounded-lg hover:bg-gray-50">
-              <Share2 className="h-4 w-4" />
+            <button className="inline-flex items-center gap-1.5 px-3 py-2 border rounded-lg hover:bg-gray-50">
+              <Share2 className="h-4 w-4 text-gray-600" />
+              <span className="text-gray-700">Share</span>
             </button>
           </div>
         </div>
@@ -736,14 +744,17 @@ const SupplierCollaboration: React.FC<SupplierCollaborationProps> = () => {
                     {doc.status.replace('_', ' ').toUpperCase()}
                   </span>
                   <div className="flex gap-2">
-                    <button className="p-2 hover:bg-gray-100 rounded">
-                      <Eye className="h-4 w-4" />
+                    <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                      <Eye className="h-4 w-4 text-gray-600" />
+                      <span className="text-gray-700">View</span>
                     </button>
-                    <button className="p-2 hover:bg-gray-100 rounded">
-                      <Download className="h-4 w-4" />
+                    <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                      <Download className="h-4 w-4 text-gray-600" />
+                      <span className="text-gray-700">Download</span>
                     </button>
-                    <button className="p-2 hover:bg-gray-100 rounded">
-                      <Share2 className="h-4 w-4" />
+                    <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                      <Share2 className="h-4 w-4 text-gray-600" />
+                      <span className="text-gray-700">Share</span>
                     </button>
                   </div>
                 </div>

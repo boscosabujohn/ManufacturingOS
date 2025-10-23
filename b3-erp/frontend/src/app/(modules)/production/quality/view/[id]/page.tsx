@@ -499,8 +499,9 @@ export default function QualityControlViewPage() {
                   <div className="flex items-center space-x-1">
                     <FileText className="h-4 w-4" />
                     <span>WO: {inspection.workOrderNumber}</span>
-                    <button className="text-blue-600 hover:text-blue-700">
+                    <button className="inline-flex items-center gap-1 px-2 py-1 text-blue-600 hover:text-blue-700">
                       <ExternalLink className="h-3 w-3" />
+                      <span className="text-xs">Open</span>
                     </button>
                   </div>
                   <div className="flex items-center space-x-1">
@@ -540,11 +541,13 @@ export default function QualityControlViewPage() {
                 <FileWarning className="h-4 w-4" />
                 <span>Request Deviation</span>
               </button>
-              <button className="p-2 border rounded-lg hover:bg-gray-50 transition-colors">
+              <button className="inline-flex items-center gap-1.5 px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors">
                 <Printer className="h-5 w-5 text-gray-600" />
+                <span className="text-gray-700">Print</span>
               </button>
-              <button className="p-2 border rounded-lg hover:bg-gray-50 transition-colors">
+              <button className="inline-flex items-center gap-1.5 px-3 py-2 border rounded-lg hover:bg-gray-50 transition-colors">
                 <Download className="h-5 w-5 text-gray-600" />
+                <span className="text-gray-700">Download</span>
               </button>
             </div>
           </div>

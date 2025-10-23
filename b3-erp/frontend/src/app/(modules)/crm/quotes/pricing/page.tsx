@@ -314,19 +314,23 @@ export default function PricingRulesPage() {
 
               <div className="flex items-center gap-2">
                 {rule.isActive ? (
-                  <button className="text-green-600 hover:text-green-700">
+                  <button className="inline-flex items-center gap-1.5 px-3 py-2 text-green-600 hover:text-green-700 hover:bg-green-50 rounded-lg text-sm">
                     <ToggleRight className="w-6 h-6" />
+                    <span>Disable</span>
                   </button>
                 ) : (
-                  <button className="text-gray-400 hover:text-gray-600">
+                  <button className="inline-flex items-center gap-1.5 px-3 py-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg text-sm">
                     <ToggleLeft className="w-6 h-6" />
+                    <span>Enable</span>
                   </button>
                 )}
-                <button className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg">
+                <button className="inline-flex items-center gap-1.5 px-3 py-2 text-gray-600 hover:bg-gray-100 rounded-lg text-sm">
                   <Edit className="w-4 h-4" />
+                  <span>Edit</span>
                 </button>
-                <button className="p-2 text-red-600 hover:bg-red-50 rounded-lg">
+                <button className="inline-flex items-center gap-1.5 px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg text-sm">
                   <Trash2 className="w-4 h-4" />
+                  <span>Delete</span>
                 </button>
               </div>
             </div>

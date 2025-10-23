@@ -637,7 +637,8 @@ export default function SpendAnalysis() {
                             </div>
                           </td>
                           <td className="px-4 py-3">
-                            <button className="p-1 hover:bg-gray-100 rounded">
+                            <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                              <span className="text-gray-700">View</span>
                               <ChevronRight className="w-4 h-4 text-gray-600" />
                             </button>
                           </td>

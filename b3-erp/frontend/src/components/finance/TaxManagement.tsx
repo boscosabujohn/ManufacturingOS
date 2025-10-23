@@ -679,8 +679,9 @@ const TaxManagement: React.FC = () => {
                 >
                   <EyeIcon className="w-4 h-4" />
                 </button>
-                <button className="text-gray-600 hover:text-blue-600">
-                  <PencilIcon className="w-4 h-4" />
+                <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                  <PencilIcon className="w-4 h-4 text-gray-600" />
+                  <span className="text-gray-700">Edit</span>
                 </button>
               </div>
             </div>
@@ -804,12 +805,14 @@ const TaxManagement: React.FC = () => {
                       >
                         <EyeIcon className="w-4 h-4" />
                       </button>
-                      <button className="text-gray-600 hover:text-blue-600">
-                        <PencilIcon className="w-4 h-4" />
+                      <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                        <PencilIcon className="w-4 h-4 text-gray-600" />
+                        <span className="text-gray-700">Edit</span>
                       </button>
                       {filing.status === 'filed' && (
-                        <button className="text-gray-600 hover:text-green-600">
-                          <DocumentArrowDownIcon className="w-4 h-4" />
+                        <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                          <DocumentArrowDownIcon className="w-4 h-4 text-gray-600" />
+                          <span className="text-gray-700">Download</span>
                         </button>
                       )}
                     </div>
@@ -1053,8 +1056,9 @@ const TaxManagement: React.FC = () => {
                 <DocumentArrowDownIcon className="w-4 h-4 mr-1" />
                 Download
               </button>
-              <button className="px-3 py-2 border border-gray-300 rounded text-sm hover:bg-gray-50 flex items-center justify-center">
-                <EyeIcon className="w-4 h-4" />
+              <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded text-sm hover:bg-gray-50">
+                <EyeIcon className="w-4 h-4 text-gray-600" />
+                <span className="text-gray-700">View</span>
               </button>
             </div>
           </div>

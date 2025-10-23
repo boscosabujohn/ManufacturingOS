@@ -258,9 +258,10 @@ export default function QuotationComparisonPage() {
           <div className="flex items-center gap-3 mb-2">
             <Link
               href="/procurement/rfq"
-              className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+              className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
             >
-              <ArrowLeft className="h-5 w-5" />
+              <ArrowLeft className="h-5 w-5 text-gray-600" />
+              <span className="text-gray-700">Back</span>
             </Link>
             <h1 className="text-2xl font-bold text-gray-900">Quotation Comparison</h1>
           </div>
@@ -404,11 +405,13 @@ export default function QuotationComparisonPage() {
                       Negotiate
                     </button>
                   )}
-                  <button className="px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
-                    <Eye className="h-4 w-4" />
+                  <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+                    <Eye className="h-4 w-4 text-gray-600" />
+                    <span className="text-gray-700">View</span>
                   </button>
-                  <button className="px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
-                    <Mail className="h-4 w-4" />
+                  <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+                    <Mail className="h-4 w-4 text-gray-600" />
+                    <span className="text-gray-700">Email</span>
                   </button>
                 </div>
               </div>

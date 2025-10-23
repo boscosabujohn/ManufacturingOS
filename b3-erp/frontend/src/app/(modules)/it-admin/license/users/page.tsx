@@ -454,8 +454,9 @@ export default function LicenseUsers() {
                     <button className="text-purple-600 hover:text-purple-900 mr-3">
                       View
                     </button>
-                    <button className="text-red-600 hover:text-red-900">
-                      <UserMinus className="h-4 w-4 inline" />
+                    <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-red-300 rounded-lg hover:bg-red-50 text-sm">
+                      <UserMinus className="h-4 w-4 text-red-600" />
+                      <span className="text-red-600">Remove</span>
                     </button>
                   </td>
                 </tr>

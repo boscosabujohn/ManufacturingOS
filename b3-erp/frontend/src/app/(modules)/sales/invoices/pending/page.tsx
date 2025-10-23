@@ -239,8 +239,9 @@ export default function PendingInvoicesPage() {
                       </div>
                       <p className="text-gray-600 mt-1">{invoice.customerName}</p>
                     </div>
-                    <button className="p-2 hover:bg-gray-100 rounded-lg">
-                      <MoreVertical className="w-5 h-5 text-gray-500" />
+                    <button className="inline-flex items-center gap-1.5 px-3 py-2 hover:bg-gray-100 rounded-lg text-sm">
+                      <MoreVertical className="w-4 h-4 text-gray-600" />
+                      <span className="text-gray-700">More</span>
                     </button>
                   </div>
 
@@ -290,11 +291,13 @@ export default function PendingInvoicesPage() {
                       <Send className="w-4 h-4" />
                       Send Reminder
                     </button>
-                    <button className="px-4 py-2 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors">
+                    <button className="inline-flex items-center gap-1.5 px-4 py-2 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors text-sm">
                       <Eye className="w-4 h-4" />
+                      <span>View</span>
                     </button>
-                    <button className="px-4 py-2 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors">
+                    <button className="inline-flex items-center gap-1.5 px-4 py-2 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors text-sm">
                       <Download className="w-4 h-4" />
+                      <span>Download</span>
                     </button>
                   </div>
                 </div>

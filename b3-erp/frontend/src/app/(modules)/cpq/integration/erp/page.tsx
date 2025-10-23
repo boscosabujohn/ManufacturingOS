@@ -394,7 +394,11 @@ export default function CPQIntegrationERPPage() {
                       <span className="text-gray-900">{order.erpStatus}</span>
                     </td>
                     <td className="py-3 px-4 text-center">
-                      <button className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg">
+                      <button
+                        className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg"
+                        aria-label="View"
+                        title="View"
+                      >
                         <Eye className="h-4 w-4" />
                       </button>
                     </td>

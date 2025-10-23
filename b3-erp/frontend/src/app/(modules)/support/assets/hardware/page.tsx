@@ -451,8 +451,9 @@ export default function HardwareAssets() {
                         >
                           <Eye className="h-4 w-4 text-gray-600" />
                         </button>
-                        <button className="p-1 hover:bg-gray-100 rounded">
+                        <button className="inline-flex items-center gap-1.5 px-3 py-2 hover:bg-gray-100 rounded-lg text-sm">
                           <Edit className="h-4 w-4 text-gray-600" />
+                          <span className="text-gray-700">Edit</span>
                         </button>
                       </div>
                     </td>

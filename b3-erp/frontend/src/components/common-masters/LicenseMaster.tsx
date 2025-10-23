@@ -421,14 +421,17 @@ export default function LicenseMaster() {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                       <div className="flex items-center gap-2">
-                        <button className="text-blue-600 hover:text-blue-900">
-                          <Edit3 className="w-4 h-4" />
+                        <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                          <Edit3 className="w-4 h-4 text-gray-600" />
+                          <span className="text-gray-700">Edit</span>
                         </button>
-                        <button className="text-red-600 hover:text-red-900">
-                          <Trash2 className="w-4 h-4" />
+                        <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-red-300 rounded-lg hover:bg-red-50 text-sm">
+                          <Trash2 className="w-4 h-4 text-red-600" />
+                          <span className="text-red-600">Delete</span>
                         </button>
-                        <button className="text-gray-600 hover:text-gray-900">
-                          <FileText className="w-4 h-4" />
+                        <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                          <FileText className="w-4 h-4 text-gray-600" />
+                          <span className="text-gray-700">Document</span>
                         </button>
                       </div>
                     </td>

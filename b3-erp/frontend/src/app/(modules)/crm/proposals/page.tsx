@@ -373,17 +373,21 @@ export default function ProposalsPage() {
                 </div>
 
                 <div className="flex items-center gap-2">
-                  <button className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg">
+                  <button className="inline-flex items-center gap-1.5 px-3 py-2 text-gray-600 hover:bg-gray-100 rounded-lg text-sm">
                     <Eye className="w-4 h-4" />
+                    <span>View</span>
                   </button>
-                  <button className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg">
+                  <button className="inline-flex items-center gap-1.5 px-3 py-2 text-gray-600 hover:bg-gray-100 rounded-lg text-sm">
                     <Edit className="w-4 h-4" />
+                    <span>Edit</span>
                   </button>
-                  <button className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg">
+                  <button className="inline-flex items-center gap-1.5 px-3 py-2 text-gray-600 hover:bg-gray-100 rounded-lg text-sm">
                     <Download className="w-4 h-4" />
+                    <span>Download</span>
                   </button>
-                  <button className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg">
+                  <button className="inline-flex items-center gap-1.5 px-3 py-2 text-gray-600 hover:bg-gray-100 rounded-lg text-sm">
                     <Copy className="w-4 h-4" />
+                    <span>Copy</span>
                   </button>
                   {proposal.status === 'draft' && (
                     <button className="px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm flex items-center gap-1">
@@ -391,8 +395,9 @@ export default function ProposalsPage() {
                       Send
                     </button>
                   )}
-                  <button className="p-2 text-red-600 hover:bg-red-50 rounded-lg">
+                  <button className="inline-flex items-center gap-1.5 px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg text-sm">
                     <Trash2 className="w-4 h-4" />
+                    <span>Delete</span>
                   </button>
                 </div>
               </div>

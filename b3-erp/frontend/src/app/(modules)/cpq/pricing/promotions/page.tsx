@@ -296,7 +296,11 @@ export default function CPQPricingPromotionsPage() {
                   </td>
                   <td className="px-4 py-4 whitespace-nowrap text-right">
                     <div className="flex items-center justify-end gap-2">
-                      <button className="p-1.5 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors">
+                      <button
+                        className="p-1.5 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                        aria-label="Edit"
+                        title="Edit"
+                      >
                         <Edit className="h-4 w-4" />
                       </button>
                       <button className="p-1.5 text-gray-600 hover:bg-gray-50 rounded-lg transition-colors">

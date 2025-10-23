@@ -619,17 +619,20 @@ const CreditManagement = () => {
                     <td className="text-center py-2">
                       {application.status === 'under-review' && (
                         <div className="flex justify-center space-x-2">
-                          <button className="text-green-600 hover:text-green-800">
-                            <CheckCircle className="h-4 w-4" />
+                          <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-green-300 rounded-lg hover:bg-green-50 text-sm">
+                            <CheckCircle className="h-4 w-4 text-green-600" />
+                            <span className="text-green-600">Approve</span>
                           </button>
-                          <button className="text-red-600 hover:text-red-800">
-                            <XCircle className="h-4 w-4" />
+                          <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-red-300 rounded-lg hover:bg-red-50 text-sm">
+                            <XCircle className="h-4 w-4 text-red-600" />
+                            <span className="text-red-600">Reject</span>
                           </button>
                         </div>
                       )}
                       {application.status !== 'under-review' && (
-                        <button className="text-blue-600 hover:text-blue-800">
-                          <Eye className="h-4 w-4" />
+                        <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                          <Eye className="h-4 w-4 text-gray-600" />
+                          <span className="text-gray-700">View</span>
                         </button>
                       )}
                     </td>

@@ -499,9 +499,10 @@ export default function EditLeavePage({ params }: { params: { id: string } }) {
                       <div className="flex items-center gap-2">
                         <button
                           type="button"
-                          className="p-1 hover:bg-gray-200 rounded transition-colors"
+                          className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm"
                         >
                           <Download className="w-4 h-4 text-gray-600" />
+                          <span className="text-gray-700">Download</span>
                         </button>
                         <button
                           type="button"

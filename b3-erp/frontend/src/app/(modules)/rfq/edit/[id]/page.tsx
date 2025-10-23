@@ -748,8 +748,9 @@ export default function EditRFQPage() {
                     <FileText className="h-5 w-5 text-blue-600" />
                     <span className="text-sm text-gray-900">{file}</span>
                   </div>
-                  <button type="button" className="text-red-600 hover:text-red-800">
-                    <Trash2 className="h-5 w-5" />
+                  <button type="button" className="inline-flex items-center gap-1.5 px-3 py-2 text-red-600 hover:text-red-800 border border-red-300 rounded-lg hover:bg-red-50 text-sm">
+                    <Trash2 className="h-4 w-4" />
+                    <span>Delete</span>
                   </button>
                 </div>
               ))}

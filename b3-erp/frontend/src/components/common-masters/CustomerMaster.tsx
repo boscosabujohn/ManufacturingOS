@@ -385,18 +385,21 @@ export default function CustomerMaster() {
                       <div className="flex items-center gap-2">
                         <button
                           onClick={() => handleEditCustomer(customer)}
-                          className="text-blue-600 hover:text-blue-900"
+                          className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm"
                         >
-                          <Edit className="w-4 h-4" />
+                          <Edit className="w-4 h-4 text-gray-600" />
+                          <span className="text-gray-700">Edit</span>
                         </button>
-                        <button className="text-gray-600 hover:text-gray-900">
-                          <Eye className="w-4 h-4" />
+                        <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                          <Eye className="w-4 h-4 text-gray-600" />
+                          <span className="text-gray-700">View</span>
                         </button>
                         <button
                           onClick={() => handleDeleteCustomer(customer.id)}
-                          className="text-red-600 hover:text-red-900"
+                          className="inline-flex items-center gap-1.5 px-3 py-2 border border-red-300 rounded-lg hover:bg-red-50 text-sm"
                         >
-                          <Trash2 className="w-4 h-4" />
+                          <Trash2 className="w-4 h-4 text-red-600" />
+                          <span className="text-red-600">Delete</span>
                         </button>
                       </div>
                     </td>

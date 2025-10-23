@@ -251,11 +251,13 @@ const DiscountMaster: React.FC = () => {
                   <p className="text-sm text-gray-500">{discount.description}</p>
                 </div>
                 <div className="flex gap-2">
-                  <button className="p-2 text-blue-600 hover:bg-blue-50 rounded">
-                    <Eye className="w-4 h-4" />
+                  <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                    <Eye className="w-4 h-4 text-gray-600" />
+                    <span className="text-gray-700">View</span>
                   </button>
-                  <button className="p-2 text-green-600 hover:bg-green-50 rounded">
-                    <Edit3 className="w-4 h-4" />
+                  <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                    <Edit3 className="w-4 h-4 text-gray-600" />
+                    <span className="text-gray-700">Edit</span>
                   </button>
                 </div>
               </div>

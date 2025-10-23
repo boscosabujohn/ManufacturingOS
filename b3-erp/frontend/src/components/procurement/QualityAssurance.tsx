@@ -393,11 +393,13 @@ const QualityAssurance: React.FC<QualityAssuranceProps> = () => {
               </span>
 
               <div className="flex gap-2">
-                <button className="text-blue-600 hover:text-blue-800">
-                  <Eye className="h-4 w-4" />
+                <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                  <Eye className="h-4 w-4 text-gray-600" />
+                  <span className="text-gray-700">View</span>
                 </button>
-                <button className="text-green-600 hover:text-green-800">
-                  <ClipboardCheck className="h-4 w-4" />
+                <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-green-300 rounded-lg hover:bg-green-50 text-sm">
+                  <ClipboardCheck className="h-4 w-4 text-green-600" />
+                  <span className="text-green-600">Check</span>
                 </button>
               </div>
             </div>
@@ -533,8 +535,9 @@ const QualityAssurance: React.FC<QualityAssuranceProps> = () => {
               <button className="flex-1 bg-blue-500 text-white py-2 rounded hover:bg-blue-600 text-sm">
                 Use Template
               </button>
-              <button className="px-3 py-2 border border-gray-300 rounded hover:bg-gray-50">
-                <Edit3 className="h-4 w-4" />
+              <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded hover:bg-gray-50">
+                <Edit3 className="h-4 w-4 text-gray-600" />
+                <span className="text-gray-700">Edit</span>
               </button>
             </div>
           </div>
@@ -671,8 +674,9 @@ const QualityAssurance: React.FC<QualityAssuranceProps> = () => {
                   </button>
                 </td>
                 <td className="py-2">
-                  <button className="text-gray-600 hover:text-gray-800">
-                    <Eye className="h-4 w-4" />
+                  <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                    <Eye className="h-4 w-4 text-gray-600" />
+                    <span className="text-gray-700">View</span>
                   </button>
                 </td>
               </tr>
@@ -706,8 +710,9 @@ const QualityAssurance: React.FC<QualityAssuranceProps> = () => {
                 </td>
                 <td className="py-2">2024-12-20</td>
                 <td className="py-2">
-                  <button className="text-gray-400">
-                    <Upload className="h-4 w-4" />
+                  <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                    <Upload className="h-4 w-4 text-gray-600" />
+                    <span className="text-gray-700">Upload</span>
                   </button>
                 </td>
                 <td className="py-2">
@@ -848,11 +853,13 @@ const QualityAssurance: React.FC<QualityAssuranceProps> = () => {
                 <td className="py-2">2.3 MB</td>
                 <td className="py-2">
                   <div className="flex gap-2">
-                    <button className="text-blue-600 hover:text-blue-800">
-                      <Download className="h-4 w-4" />
+                    <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                      <Download className="h-4 w-4 text-gray-600" />
+                      <span className="text-gray-700">Download</span>
                     </button>
-                    <button className="text-gray-600 hover:text-gray-800">
-                      <Eye className="h-4 w-4" />
+                    <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                      <Eye className="h-4 w-4 text-gray-600" />
+                      <span className="text-gray-700">View</span>
                     </button>
                   </div>
                 </td>
@@ -865,11 +872,13 @@ const QualityAssurance: React.FC<QualityAssuranceProps> = () => {
                 <td className="py-2">3.1 MB</td>
                 <td className="py-2">
                   <div className="flex gap-2">
-                    <button className="text-blue-600 hover:text-blue-800">
-                      <Download className="h-4 w-4" />
+                    <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                      <Download className="h-4 w-4 text-gray-600" />
+                      <span className="text-gray-700">Download</span>
                     </button>
-                    <button className="text-gray-600 hover:text-gray-800">
-                      <Eye className="h-4 w-4" />
+                    <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                      <Eye className="h-4 w-4 text-gray-600" />
+                      <span className="text-gray-700">View</span>
                     </button>
                   </div>
                 </td>
@@ -882,11 +891,13 @@ const QualityAssurance: React.FC<QualityAssuranceProps> = () => {
                 <td className="py-2">1.8 MB</td>
                 <td className="py-2">
                   <div className="flex gap-2">
-                    <button className="text-blue-600 hover:text-blue-800">
-                      <Download className="h-4 w-4" />
+                    <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                      <Download className="h-4 w-4 text-gray-600" />
+                      <span className="text-gray-700">Download</span>
                     </button>
-                    <button className="text-gray-600 hover:text-gray-800">
-                      <Eye className="h-4 w-4" />
+                    <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                      <Eye className="h-4 w-4 text-gray-600" />
+                      <span className="text-gray-700">View</span>
                     </button>
                   </div>
                 </td>

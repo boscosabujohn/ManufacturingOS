@@ -558,9 +558,10 @@ const MajorIncidentsPage = () => {
               </div>
               <button
                 onClick={handleCloseDetails}
-                className="text-gray-400 hover:text-gray-600"
+                className="inline-flex items-center gap-1.5 px-3 py-2 text-gray-600 hover:bg-gray-100 rounded-lg text-sm"
               >
-                <XCircle className="w-6 h-6" />
+                <XCircle className="w-5 h-5" />
+                <span className="text-gray-700">Close</span>
               </button>
             </div>
 

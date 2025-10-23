@@ -315,8 +315,9 @@ export default function KnownErrors() {
                   <h3 className="text-lg font-semibold text-gray-900">{error.title}</h3>
                 </div>
               </div>
-              <button className="text-purple-600 hover:text-purple-700">
-                <ChevronRight className="h-5 w-5" />
+              <button className="inline-flex items-center gap-1.5 px-3 py-2 text-purple-600 hover:text-purple-700 hover:bg-purple-50 rounded-lg text-sm">
+                <span>View</span>
+                <ChevronRight className="h-4 w-4" />
               </button>
             </div>
 

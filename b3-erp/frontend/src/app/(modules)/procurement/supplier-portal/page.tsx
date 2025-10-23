@@ -85,11 +85,13 @@ export default function SupplierPortal() {
             </div>
           </div>
           <div className="flex gap-2">
-            <button className="px-4 py-2 bg-white/20 rounded-lg hover:bg-white/30 transition-colors">
+            <button className="inline-flex items-center gap-1.5 px-4 py-2 bg-white/20 rounded-lg hover:bg-white/30 transition-colors">
               <Bell className="h-5 w-5" />
+              <span>Notifications</span>
             </button>
-            <button className="px-4 py-2 bg-white/20 rounded-lg hover:bg-white/30 transition-colors">
+            <button className="inline-flex items-center gap-1.5 px-4 py-2 bg-white/20 rounded-lg hover:bg-white/30 transition-colors">
               <Settings className="h-5 w-5" />
+              <span>Settings</span>
             </button>
           </div>
         </div>
@@ -272,11 +274,13 @@ export default function SupplierPortal() {
                 className="pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
               />
             </div>
-            <button className="p-2 border rounded-lg hover:bg-gray-50">
-              <Filter className="h-4 w-4" />
+            <button className="inline-flex items-center gap-1.5 px-3 py-2 border rounded-lg hover:bg-gray-50">
+              <Filter className="h-4 w-4 text-gray-600" />
+              <span className="text-gray-700">Filter</span>
             </button>
-            <button className="p-2 border rounded-lg hover:bg-gray-50">
-              <Download className="h-4 w-4" />
+            <button className="inline-flex items-center gap-1.5 px-3 py-2 border rounded-lg hover:bg-gray-50">
+              <Download className="h-4 w-4 text-gray-600" />
+              <span className="text-gray-700">Download</span>
             </button>
           </div>
         </div>
@@ -315,15 +319,18 @@ export default function SupplierPortal() {
                   <td className="py-3 px-4 text-gray-600">{po.delivery}</td>
                   <td className="py-3 px-4">
                     <div className="flex justify-center gap-2">
-                      <button className="p-1 hover:bg-gray-100 rounded">
+                      <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
                         <Eye className="h-4 w-4 text-gray-600" />
+                        <span className="text-gray-700">View</span>
                       </button>
-                      <button className="p-1 hover:bg-gray-100 rounded">
+                      <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
                         <Download className="h-4 w-4 text-gray-600" />
+                        <span className="text-gray-700">Download</span>
                       </button>
                       {po.status === 'In Progress' && (
-                        <button className="p-1 hover:bg-gray-100 rounded">
+                        <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-blue-300 rounded-lg hover:bg-blue-50 text-sm">
                           <Truck className="h-4 w-4 text-blue-600" />
+                          <span className="text-blue-600">Track</span>
                         </button>
                       )}
                     </div>
@@ -360,8 +367,9 @@ export default function SupplierPortal() {
               }`}>
                 {rfq.status}
               </span>
-              <button className="p-1 hover:bg-gray-100 rounded">
+              <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
                 <Eye className="h-4 w-4 text-gray-600" />
+                <span className="text-gray-700">View</span>
               </button>
             </div>
             <h4 className="font-semibold text-gray-900 mb-2">{rfq.id}</h4>
@@ -434,15 +442,18 @@ export default function SupplierPortal() {
                     </td>
                     <td className="py-3 px-4">
                       <div className="flex justify-center gap-2">
-                        <button className="p-1 hover:bg-gray-100 rounded">
+                        <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
                           <Eye className="h-4 w-4 text-gray-600" />
+                          <span className="text-gray-700">View</span>
                         </button>
-                        <button className="p-1 hover:bg-gray-100 rounded">
+                        <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
                           <Download className="h-4 w-4 text-gray-600" />
+                          <span className="text-gray-700">Download</span>
                         </button>
                         {invoice.status === 'Pending' && (
-                          <button className="p-1 hover:bg-gray-100 rounded">
+                          <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-blue-300 rounded-lg hover:bg-blue-50 text-sm">
                             <Send className="h-4 w-4 text-blue-600" />
+                            <span className="text-blue-600">Send</span>
                           </button>
                         )}
                       </div>

@@ -266,8 +266,9 @@ const FinancialConsolidation = () => {
                   <td className="py-2">{session.entities.length}</td>
                   <td className="py-2">{session.adjustments}</td>
                   <td className="py-2">
-                    <button className="text-blue-600 hover:text-blue-800 mr-2">
-                      <Eye className="h-4 w-4" />
+                    <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                      <Eye className="h-4 w-4 text-gray-600" />
+                      <span className="text-gray-700">View</span>
                     </button>
                   </td>
                 </tr>
@@ -355,8 +356,9 @@ const FinancialConsolidation = () => {
                       </span>
                     </td>
                     <td className="py-2">
-                      <button className="text-blue-600 hover:text-blue-800">
-                        <Settings className="h-4 w-4" />
+                      <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                        <Settings className="h-4 w-4 text-gray-600" />
+                        <span className="text-gray-700">Settings</span>
                       </button>
                     </td>
                   </tr>
@@ -425,8 +427,9 @@ const FinancialConsolidation = () => {
         <div className="flex justify-between items-center mb-4">
           <h3 className="text-lg font-semibold">Intercompany Transactions</h3>
           <div className="flex space-x-2">
-            <button className="border border-gray-300 px-4 py-2 rounded hover:bg-gray-50">
-              <Filter className="h-4 w-4" />
+            <button className="inline-flex items-center gap-1.5 px-4 py-2 border border-gray-300 rounded hover:bg-gray-50">
+              <Filter className="h-4 w-4 text-gray-600" />
+              <span className="text-gray-700">Filter</span>
             </button>
             <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
               Auto-Match
@@ -489,8 +492,9 @@ const FinancialConsolidation = () => {
                     )}
                   </td>
                   <td className="py-2">
-                    <button className="text-blue-600 hover:text-blue-800">
-                      <Check className="h-4 w-4" />
+                    <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-green-300 rounded-lg hover:bg-green-50 text-sm">
+                      <Check className="h-4 w-4 text-green-600" />
+                      <span className="text-green-600">Approve</span>
                     </button>
                   </td>
                 </tr>
@@ -603,12 +607,14 @@ const FinancialConsolidation = () => {
                     </span>
                   </td>
                   <td className="py-2">
-                    <button className="text-blue-600 hover:text-blue-800 mr-2">
-                      <Eye className="h-4 w-4" />
+                    <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm mr-2">
+                      <Eye className="h-4 w-4 text-gray-600" />
+                      <span className="text-gray-700">View</span>
                     </button>
                     {adjustment.status === 'draft' && (
-                      <button className="text-green-600 hover:text-green-800">
-                        <Check className="h-4 w-4" />
+                      <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-green-300 rounded-lg hover:bg-green-50 text-sm">
+                        <Check className="h-4 w-4 text-green-600" />
+                        <span className="text-green-600">Approve</span>
                       </button>
                     )}
                   </td>
@@ -869,8 +875,9 @@ const FinancialConsolidation = () => {
                   <h4 className="font-medium">{report.name}</h4>
                   <p className="text-sm text-gray-500 mt-1">{report.type} • {report.size}</p>
                 </div>
-                <button className="text-blue-600 hover:text-blue-800">
-                  <Download className="h-5 w-5" />
+                <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                  <Download className="h-5 w-5 text-gray-600" />
+                  <span className="text-gray-700">Download</span>
                 </button>
               </div>
             </div>
@@ -953,8 +960,9 @@ const FinancialConsolidation = () => {
                       {item.status}
                     </span>
                     {item.status === 'pending' && (
-                      <button className="text-green-600 hover:text-green-800">
-                        <Check className="h-4 w-4" />
+                      <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-green-300 rounded-lg hover:bg-green-50 text-sm">
+                        <Check className="h-4 w-4 text-green-600" />
+                        <span className="text-green-600">Approve</span>
                       </button>
                     )}
                   </div>

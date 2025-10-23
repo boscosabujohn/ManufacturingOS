@@ -1,10 +1,35 @@
 'use client';
 
-import { useState } from 'react';
-import { PieChart, Search, Filter, Download, TrendingUp } from 'lucide-react';
+import { useMemo, useState } from 'react';
+import { PieChart, Search, Filter, Download, TrendingUp, User, Briefcase } from 'lucide-react';
+
+type Resource = {
+  id: string;
+  name: string;
+  role: string;
+  dept: string;
+  utilization: number; // 0-100
+  billablePct: number; // 0-100
+  projects: number;
+};
+
+const RESOURCES: Resource[] = [
+  { id: 'E-101', name: 'Amit Singh', role: 'Project Manager', dept: 'Projects', utilization: 82, billablePct: 90, projects: 4 },
+  { id: 'E-214', name: 'Priya Patel', role: 'Designer', dept: 'Design', utilization: 65, billablePct: 80, projects: 3 },
+  { id: 'E-307', name: 'Rahul Kumar', role: 'Engineer', dept: 'Engineering', utilization: 92, billablePct: 95, projects: 5 },
+  { id: 'E-118', name: 'Sara Ali', role: 'Installer', dept: 'Installation', utilization: 48, billablePct: 60, projects: 2 },
+  { id: 'E-512', name: 'Vikram Reddy', role: 'Developer', dept: 'IT', utilization: 71, billablePct: 30, projects: 2 },
+];
 
 export default function ResourceUtilizationPage() {
   const [searchTerm, setSearchTerm] = useState('');
+  const [deptFilter, setDeptFilter] = useState<string>('all');
+  const depts = useMemo(() => ['all', ...Array.from(new Set(RESOURCES.map(r => r.dept)))], []);
+  const filtered = useMemo(() => RESOURCES.filter(r => {
+    const matchesSearch = [r.name, r.role, r.dept, r.id].some(v => v.toLowerCase().includes(searchTerm.toLowerCase()));
+    const matchesDept = deptFilter === 'all' ? true : r.dept === deptFilter;
+    return matchesSearch && matchesDept;
+  }), [searchTerm, deptFilter]);
 
   return (
     <div className="p-6">
@@ -82,12 +107,57 @@ export default function ResourceUtilizationPage() {
         </div>
       </div>
 
-      {/* Content placeholder */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
-        <div className="text-center text-gray-500">
-          <PieChart className="h-16 w-16 mx-auto mb-4 text-gray-400" />
-          <h3 className="text-lg font-semibold text-gray-700 mb-2">Utilization Analytics</h3>
-          <p className="text-gray-600">Track resource utilization rates, billable vs non-billable hours, and efficiency metrics</p>
+      {/* Filters */}
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-4">
+        <div className="flex items-center gap-3">
+          <Filter className="h-4 w-4 text-gray-500" />
+          <select value={deptFilter} onChange={(e)=>setDeptFilter(e.target.value)} className="px-3 py-2 border rounded-lg text-sm">
+            {depts.map(d => <option key={d} value={d}>{d==='all'?'All Departments':d}</option>)}
+          </select>
+          <button className="ml-auto px-3 py-2 text-sm bg-teal-600 text-white rounded-lg hover:bg-teal-700 flex items-center gap-2"><Download className="h-4 w-4" /> Export</button>
+        </div>
+      </div>
+
+      {/* Resource table */}
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+        <div className="overflow-x-auto">
+          <table className="min-w-full divide-y divide-gray-200">
+            <thead className="bg-gray-50">
+              <tr>
+                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600">Resource</th>
+                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600">Role/Dept</th>
+                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600">Utilization</th>
+                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600">Billable</th>
+                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600">Projects</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-200 bg-white">
+              {filtered.map(r => (
+                <tr key={r.id} className="hover:bg-gray-50">
+                  <td className="px-4 py-3">
+                    <div className="flex items-center gap-2"><User className="h-4 w-4 text-gray-500" /><div className="flex flex-col"><span className="font-medium text-gray-900">{r.name}</span><span className="text-xs text-gray-500">{r.id}</span></div></div>
+                  </td>
+                  <td className="px-4 py-3 text-sm text-gray-700">{r.role} • {r.dept}</td>
+                  <td className="px-4 py-3">
+                    <div className="w-44">
+                      <div className="h-2 w-full bg-gray-100 rounded"><div className={`h-2 rounded ${r.utilization>85?'bg-red-500':r.utilization<60?'bg-yellow-500':'bg-green-600'}`} style={{ width: `${r.utilization}%` }} /></div>
+                      <div className="mt-1 text-xs text-gray-600">{r.utilization}%</div>
+                    </div>
+                  </td>
+                  <td className="px-4 py-3">
+                    <div className="w-44">
+                      <div className="h-2 w-full bg-gray-100 rounded"><div className="h-2 rounded bg-indigo-500" style={{ width: `${r.billablePct}%` }} /></div>
+                      <div className="mt-1 text-xs text-gray-600">{r.billablePct}% billable</div>
+                    </div>
+                  </td>
+                  <td className="px-4 py-3 text-sm text-gray-700 flex items-center gap-2"><Briefcase className="h-4 w-4 text-gray-500" /> {r.projects}</td>
+                </tr>
+              ))}
+              {filtered.length===0 && (
+                <tr><td colSpan={5} className="px-4 py-8 text-center text-gray-500">No resources</td></tr>
+              )}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

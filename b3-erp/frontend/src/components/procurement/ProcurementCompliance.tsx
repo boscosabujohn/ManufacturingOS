@@ -165,8 +165,9 @@ const ProcurementCompliance: React.FC<ProcurementComplianceProps> = () => {
                       <td className="py-2">{req.nextReview}</td>
                       <td className="py-2">{req.owner}</td>
                       <td className="py-2">
-                        <button className="text-blue-600 hover:text-blue-800">
-                          <Eye className="h-4 w-4" />
+                        <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                          <Eye className="h-4 w-4 text-gray-600" />
+                          <span className="text-gray-700">View</span>
                         </button>
                       </td>
                     </tr>

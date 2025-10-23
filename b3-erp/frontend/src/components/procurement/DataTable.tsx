@@ -263,8 +263,9 @@ export function DataTable<T extends Record<string, any>>({
             {customActions}
             {exportable && (
               <div className="relative group">
-                <button className="p-2 border rounded-lg hover:bg-gray-50">
-                  <Download className="h-4 w-4" />
+                <button className="inline-flex items-center gap-1.5 px-3 py-2 border rounded-lg hover:bg-gray-50">
+                  <Download className="h-4 w-4 text-gray-600" />
+                  <span className="text-gray-700">Export</span>
                 </button>
                 <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border hidden group-hover:block z-10">
                   <button

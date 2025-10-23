@@ -465,11 +465,13 @@ export default function SupportReports() {
                       <Play className="h-4 w-4" />
                       Generate Now
                     </button>
-                    <button className="px-3 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">
-                      <Eye className="h-4 w-4" />
+                    <button className="inline-flex items-center gap-1.5 px-3 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                      <Eye className="h-4 w-4 text-gray-600" />
+                      <span className="text-gray-700">View</span>
                     </button>
-                    <button className="px-3 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">
-                      <Settings className="h-4 w-4" />
+                    <button className="inline-flex items-center gap-1.5 px-3 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                      <Settings className="h-4 w-4 text-gray-600" />
+                      <span className="text-gray-700">Settings</span>
                     </button>
                   </div>
                 </div>
@@ -496,8 +498,9 @@ export default function SupportReports() {
                     <div className="text-sm text-gray-600">{scheduled.schedule}</div>
                   </div>
                   <div className="flex gap-2">
-                    <button className="px-3 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
-                      <Settings className="h-4 w-4" />
+                    <button className="inline-flex items-center gap-1.5 px-3 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                      <Settings className="h-4 w-4 text-gray-600" />
+                      <span className="text-gray-700">Settings</span>
                     </button>
                     <button className="px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm flex items-center gap-2">
                       <Play className="h-4 w-4" />

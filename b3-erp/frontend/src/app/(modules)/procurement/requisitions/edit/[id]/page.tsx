@@ -772,9 +772,10 @@ export default function EditRequisitionPage() {
                   </div>
                   <button
                     type="button"
-                    className="text-red-600 hover:text-red-800"
+                    className="inline-flex items-center gap-1.5 px-3 py-2 border border-red-300 rounded-lg hover:bg-red-50 text-sm"
                   >
-                    <Trash2 className="h-5 w-5" />
+                    <Trash2 className="h-5 w-5 text-red-600" />
+                    <span className="text-red-600">Delete</span>
                   </button>
                 </div>
               ))}

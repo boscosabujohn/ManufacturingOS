@@ -176,11 +176,13 @@ export default function ScheduleGanttPage() {
           </div>
 
           <div className="flex items-center gap-2">
-            <button className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
-              <ZoomOut className="w-5 h-5 text-gray-600" />
+            <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors text-sm">
+              <ZoomOut className="w-4 h-4 text-gray-600" />
+              <span className="text-gray-700">Zoom Out</span>
             </button>
-            <button className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
-              <ZoomIn className="w-5 h-5 text-gray-600" />
+            <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors text-sm">
+              <ZoomIn className="w-4 h-4 text-gray-600" />
+              <span className="text-gray-700">Zoom In</span>
             </button>
           </div>
         </div>

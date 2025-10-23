@@ -338,8 +338,9 @@ export default function EnhancedFinanceDashboard() {
           <p className="text-3xl font-bold mb-2">{formatCurrency(dashboardData.cashPosition.totalCash)}</p>
           <div className="flex items-center justify-between">
             <span className="text-blue-100 text-sm">+{dashboardData.cashPosition.change}% this month</span>
-            <button className="text-blue-200 hover:text-white">
+            <button className="inline-flex items-center gap-1.5 px-3 py-2 bg-white/20 rounded-lg hover:bg-white/30 text-sm">
               <Eye className="h-4 w-4" />
+              <span>View</span>
             </button>
           </div>
         </div>
@@ -356,8 +357,9 @@ export default function EnhancedFinanceDashboard() {
           <p className="text-3xl font-bold mb-2">{formatCurrency(dashboardData.accountsReceivable.total)}</p>
           <div className="flex items-center justify-between">
             <span className="text-green-100 text-sm">{formatPercentage(dashboardData.accountsReceivable.overduePercentage)} overdue</span>
-            <button className="text-green-200 hover:text-white">
+            <button className="inline-flex items-center gap-1.5 px-3 py-2 bg-white/20 rounded-lg hover:bg-white/30 text-sm">
               <Eye className="h-4 w-4" />
+              <span>View</span>
             </button>
           </div>
         </div>
@@ -374,8 +376,9 @@ export default function EnhancedFinanceDashboard() {
           <p className="text-3xl font-bold mb-2">{formatCurrency(dashboardData.accountsPayable.total)}</p>
           <div className="flex items-center justify-between">
             <span className="text-orange-100 text-sm">{formatPercentage(dashboardData.accountsPayable.overduePercentage)} overdue</span>
-            <button className="text-orange-200 hover:text-white">
+            <button className="inline-flex items-center gap-1.5 px-3 py-2 bg-white/20 rounded-lg hover:bg-white/30 text-sm">
               <Eye className="h-4 w-4" />
+              <span>View</span>
             </button>
           </div>
         </div>
@@ -392,8 +395,9 @@ export default function EnhancedFinanceDashboard() {
           <p className="text-3xl font-bold mb-2">{formatCurrency(dashboardData.overview.netProfit)}</p>
           <div className="flex items-center justify-between">
             <span className="text-purple-100 text-sm">{formatPercentage(dashboardData.overview.profitMargin)} margin</span>
-            <button className="text-purple-200 hover:text-white">
+            <button className="inline-flex items-center gap-1.5 px-3 py-2 bg-white/20 rounded-lg hover:bg-white/30 text-sm">
               <Eye className="h-4 w-4" />
+              <span>View</span>
             </button>
           </div>
         </div>

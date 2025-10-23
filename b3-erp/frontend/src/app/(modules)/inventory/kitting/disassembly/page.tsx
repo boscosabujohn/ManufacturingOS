@@ -383,12 +383,14 @@ export default function DisassemblyPage() {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm">
                     <div className="flex items-center space-x-2">
-                      <button className="text-blue-600 hover:text-blue-800">
-                        <Eye className="w-4 h-4" />
+                      <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                        <Eye className="w-4 h-4 text-gray-600" />
+                        <span className="text-gray-700">View</span>
                       </button>
                       {disassembly.status === 'pending' && (
-                        <button className="text-orange-600 hover:text-orange-800">
-                          <Undo2 className="w-4 h-4" />
+                        <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-orange-300 rounded-lg hover:bg-orange-50 text-sm">
+                          <Undo2 className="w-4 h-4 text-orange-600" />
+                          <span className="text-orange-600">Revert</span>
                         </button>
                       )}
                     </div>

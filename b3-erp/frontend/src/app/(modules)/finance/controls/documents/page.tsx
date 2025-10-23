@@ -73,9 +73,18 @@ export default function DocumentManagementPage() {
                   <td className="px-6 py-4 text-sm text-gray-900">{doc.size}</td>
                   <td className="px-6 py-4">
                     <div className="flex items-center justify-center gap-2">
-                      <button className="p-1.5 text-blue-600 hover:bg-blue-50 rounded"><Eye className="h-4 w-4" /></button>
-                      <button className="p-1.5 text-green-600 hover:bg-green-50 rounded"><Download className="h-4 w-4" /></button>
-                      <button className="p-1.5 text-red-600 hover:bg-red-50 rounded"><Trash2 className="h-4 w-4" /></button>
+                      <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                        <Eye className="h-4 w-4 text-gray-600" />
+                        <span className="text-gray-700">View</span>
+                      </button>
+                      <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                        <Download className="h-4 w-4 text-gray-600" />
+                        <span className="text-gray-700">Download</span>
+                      </button>
+                      <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-red-300 rounded-lg hover:bg-red-50 text-sm">
+                        <Trash2 className="h-4 w-4 text-red-600" />
+                        <span className="text-red-600">Delete</span>
+                      </button>
                     </div>
                   </td>
                 </tr>

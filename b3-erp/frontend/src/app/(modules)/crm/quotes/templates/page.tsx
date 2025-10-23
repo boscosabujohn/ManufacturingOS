@@ -397,14 +397,17 @@ export default function QuoteTemplatesPage() {
                   <Copy className="w-4 h-4" />
                   Use Template
                 </button>
-                <button className="flex items-center justify-center gap-2 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
-                  <Eye className="w-4 h-4" />
+                <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                  <Eye className="w-4 h-4 text-gray-600" />
+                  <span className="text-gray-700">View</span>
                 </button>
-                <button className="flex items-center justify-center gap-2 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
-                  <Edit className="w-4 h-4" />
+                <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                  <Edit className="w-4 h-4 text-gray-600" />
+                  <span className="text-gray-700">Edit</span>
                 </button>
-                <button className="flex items-center justify-center gap-2 px-3 py-2 border border-red-300 rounded-lg hover:bg-red-50">
+                <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-red-300 rounded-lg hover:bg-red-50 text-sm">
                   <Trash2 className="w-4 h-4 text-red-600" />
+                  <span className="text-red-600">Delete</span>
                 </button>
               </div>
 

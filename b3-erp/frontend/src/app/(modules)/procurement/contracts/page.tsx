@@ -622,14 +622,17 @@ export default function ContractsPage() {
                         <ChevronRight className="h-4 w-4" />
                       )}
                     </button>
-                    <button className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg">
-                      <Eye className="h-4 w-4" />
+                    <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                      <Eye className="h-4 w-4 text-gray-600" />
+                      <span className="text-gray-700">View</span>
                     </button>
-                    <button className="p-2 text-green-600 hover:bg-green-50 rounded-lg">
-                      <Edit className="h-4 w-4" />
+                    <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                      <Edit className="h-4 w-4 text-gray-600" />
+                      <span className="text-gray-700">Edit</span>
                     </button>
-                    <button className="p-2 text-gray-600 hover:bg-gray-50 rounded-lg">
-                      <MoreVertical className="h-4 w-4" />
+                    <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                      <MoreVertical className="h-4 w-4 text-gray-600" />
+                      <span className="text-gray-700">More</span>
                     </button>
                   </div>
                 </div>
@@ -651,8 +654,9 @@ export default function ContractsPage() {
                               <p className="text-sm font-medium text-gray-900 truncate">{doc.name}</p>
                               <p className="text-xs text-gray-500">{doc.type} • {doc.size}</p>
                             </div>
-                            <button className="text-blue-600 hover:text-blue-800">
-                              <Download className="h-4 w-4" />
+                            <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                              <Download className="h-4 w-4 text-gray-600" />
+                              <span className="text-gray-700">Download</span>
                             </button>
                           </div>
                         ))}

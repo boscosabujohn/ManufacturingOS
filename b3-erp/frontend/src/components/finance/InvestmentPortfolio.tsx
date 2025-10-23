@@ -810,8 +810,9 @@ const InvestmentPortfolio = () => {
                     </td>
                     <td className="text-center py-2">
                       {transaction.status === 'pending' && (
-                        <button className="text-red-600 hover:text-red-800">
-                          <X className="h-4 w-4" />
+                        <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-red-300 rounded-lg hover:bg-red-50 text-sm">
+                          <X className="h-4 w-4 text-red-600" />
+                          <span className="text-red-600">Cancel</span>
                         </button>
                       )}
                     </td>
@@ -899,11 +900,13 @@ const InvestmentPortfolio = () => {
                         ${new Intl.NumberFormat('en-US').format(transaction.totalAmount)}
                       </p>
                       <div className="flex space-x-1 mt-1">
-                        <button className="text-green-600 hover:text-green-800">
-                          <Check className="h-4 w-4" />
+                        <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-green-300 rounded-lg hover:bg-green-50 text-sm">
+                          <Check className="h-4 w-4 text-green-600" />
+                          <span className="text-green-600">Approve</span>
                         </button>
-                        <button className="text-red-600 hover:text-red-800">
-                          <X className="h-4 w-4" />
+                        <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-red-300 rounded-lg hover:bg-red-50 text-sm">
+                          <X className="h-4 w-4 text-red-600" />
+                          <span className="text-red-600">Reject</span>
                         </button>
                       </div>
                     </div>

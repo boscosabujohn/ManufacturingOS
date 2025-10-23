@@ -298,11 +298,13 @@ export default function DealStagesPage() {
                       <p className="text-sm text-gray-600 mb-3">{stage.description}</p>
                     </div>
                     <div className="flex items-center gap-2">
-                      <button className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg">
-                        <Edit className="w-4 h-4" />
+                      <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                        <Edit className="w-4 h-4 text-gray-600" />
+                        <span className="text-gray-700">Edit</span>
                       </button>
-                      <button className="p-2 text-red-600 hover:bg-red-50 rounded-lg">
-                        <Trash2 className="w-4 h-4" />
+                      <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-red-300 rounded-lg hover:bg-red-50 text-sm">
+                        <Trash2 className="w-4 h-4 text-red-600" />
+                        <span className="text-red-600">Delete</span>
                       </button>
                     </div>
                   </div>

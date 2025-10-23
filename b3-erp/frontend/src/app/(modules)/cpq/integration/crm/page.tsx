@@ -323,18 +323,34 @@ export default function CPQIntegrationCRMPage() {
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
-                      <button className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg">
+                      <button
+                        className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg"
+                        aria-label="View"
+                        title="View"
+                      >
                         <Eye className="h-4 w-4" />
                       </button>
-                      <button className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg">
+                      <button
+                        className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg"
+                        aria-label="Settings"
+                        title="Settings"
+                      >
                         <Settings className="h-4 w-4" />
                       </button>
                       {flow.status === 'active' ? (
-                        <button className="p-2 text-orange-600 hover:bg-orange-50 rounded-lg">
+                        <button
+                          className="p-2 text-orange-600 hover:bg-orange-50 rounded-lg"
+                          aria-label="Pause"
+                          title="Pause"
+                        >
                           <Pause className="h-4 w-4" />
                         </button>
                       ) : (
-                        <button className="p-2 text-green-600 hover:bg-green-50 rounded-lg">
+                        <button
+                          className="p-2 text-green-600 hover:bg-green-50 rounded-lg"
+                          aria-label="Play"
+                          title="Play"
+                        >
                           <Play className="h-4 w-4" />
                         </button>
                       )}

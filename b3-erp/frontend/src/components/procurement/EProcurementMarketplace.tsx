@@ -389,8 +389,9 @@ const EProcurementMarketplace: React.FC<EProcurementMarketplaceProps> = () => {
                 <div className="mb-3">
                   <div className="flex justify-between items-start mb-2">
                     <h4 className="font-semibold text-lg">{product.name}</h4>
-                    <button className="text-gray-400 hover:text-red-500">
-                      <Heart className="h-5 w-5" />
+                    <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                      <Heart className="h-5 w-5 text-gray-400" />
+                      <span className="text-gray-600">Favorite</span>
                     </button>
                   </div>
                   <p className="text-sm text-gray-600 mb-2">{product.supplier}</p>
@@ -453,8 +454,9 @@ const EProcurementMarketplace: React.FC<EProcurementMarketplaceProps> = () => {
                     <ShoppingCart className="h-4 w-4" />
                     Add to Cart
                   </button>
-                  <button className="px-3 py-2 border border-gray-300 rounded hover:bg-gray-50">
-                    <Eye className="h-4 w-4" />
+                  <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded hover:bg-gray-50">
+                    <Eye className="h-4 w-4 text-gray-600" />
+                    <span className="text-gray-700">View</span>
                   </button>
                 </div>
               </div>
@@ -464,8 +466,9 @@ const EProcurementMarketplace: React.FC<EProcurementMarketplaceProps> = () => {
 
         {/* Pagination */}
         <div className="flex justify-center gap-2 mt-8">
-          <button className="px-3 py-2 border rounded hover:bg-gray-50">
-            <ChevronLeft className="h-4 w-4" />
+          <button className="inline-flex items-center gap-1.5 px-3 py-2 border rounded hover:bg-gray-50">
+            <ChevronLeft className="h-4 w-4 text-gray-600" />
+            <span className="text-gray-700">Previous</span>
           </button>
           {[1, 2, 3, 4, 5].map((page) => (
             <button
@@ -477,8 +480,9 @@ const EProcurementMarketplace: React.FC<EProcurementMarketplaceProps> = () => {
               {page}
             </button>
           ))}
-          <button className="px-3 py-2 border rounded hover:bg-gray-50">
-            <ChevronRight className="h-4 w-4" />
+          <button className="inline-flex items-center gap-1.5 px-3 py-2 border rounded hover:bg-gray-50">
+            <span className="text-gray-700">Next</span>
+            <ChevronRight className="h-4 w-4 text-gray-600" />
           </button>
         </div>
       </div>
@@ -760,11 +764,13 @@ const EProcurementMarketplace: React.FC<EProcurementMarketplaceProps> = () => {
                   </td>
                   <td className="py-2">
                     <div className="flex gap-2">
-                      <button className="text-blue-600 hover:text-blue-800">
-                        <Eye className="h-4 w-4" />
+                      <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                        <Eye className="h-4 w-4 text-gray-600" />
+                        <span className="text-gray-700">View</span>
                       </button>
-                      <button className="text-gray-600 hover:text-gray-800">
-                        <Download className="h-4 w-4" />
+                      <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                        <Download className="h-4 w-4 text-gray-600" />
+                        <span className="text-gray-700">Download</span>
                       </button>
                     </div>
                   </td>

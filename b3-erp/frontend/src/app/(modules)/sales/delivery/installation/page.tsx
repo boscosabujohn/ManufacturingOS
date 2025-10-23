@@ -563,8 +563,9 @@ export default function InstallationPage() {
                     View Details
                   </button>
                   {installation.photosAvailable && (
-                    <button className="px-4 py-2 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors">
+                    <button className="inline-flex items-center gap-1.5 px-4 py-2 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors text-sm">
                       <Camera className="w-4 h-4" />
+                      <span>Photos</span>
                     </button>
                   )}
                 </div>

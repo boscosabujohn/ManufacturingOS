@@ -581,7 +581,11 @@ export default function ClaimDetailsPage({ params }: { params: { id: string } })
                     </div>
                     <div className="text-xs text-gray-500">{formatDate(doc.uploadedDate)}</div>
                   </div>
-                  <button className="text-gray-400 hover:text-gray-600">
+                  <button
+                    className="text-gray-400 hover:text-gray-600"
+                    aria-label="Download"
+                    title="Download"
+                  >
                     <Download className="w-5 h-5" />
                   </button>
                 </div>

@@ -190,8 +190,9 @@ export default function DashboardPage() {
 
             {/* User Actions */}
             <div className="flex items-center space-x-4">
-              <button className="relative p-2 text-gray-400 hover:text-gray-500">
-                <Bell className="h-6 w-6" />
+              <button className="relative inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                <Bell className="h-5 w-5 text-gray-600" />
+                <span className="text-gray-700">Notifications</span>
                 <span className="absolute top-0 right-0 block h-2 w-2 rounded-full bg-red-500 ring-2 ring-white"></span>
               </button>
               <button className="flex items-center space-x-2 p-2 text-gray-700 hover:text-gray-900">

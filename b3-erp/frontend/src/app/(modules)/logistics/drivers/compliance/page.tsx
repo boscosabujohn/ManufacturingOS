@@ -1127,14 +1127,17 @@ export default function DriverCompliancePage() {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm">
                     <div className="flex items-center space-x-2">
-                      <button className="text-blue-600 hover:text-blue-800">
-                        <Eye className="w-4 h-4" />
+                      <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                        <Eye className="w-4 h-4 text-gray-600" />
+                        <span className="text-gray-700">View</span>
                       </button>
-                      <button className="text-green-600 hover:text-green-800">
-                        <FileText className="w-4 h-4" />
+                      <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                        <FileText className="w-4 h-4 text-gray-600" />
+                        <span className="text-gray-700">Document</span>
                       </button>
-                      <button className="text-purple-600 hover:text-purple-800">
-                        <Edit2 className="w-4 h-4" />
+                      <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                        <Edit2 className="w-4 h-4 text-gray-600" />
+                        <span className="text-gray-700">Edit</span>
                       </button>
                     </div>
                   </td>

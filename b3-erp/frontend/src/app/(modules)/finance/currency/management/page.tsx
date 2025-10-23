@@ -316,14 +316,17 @@ export default function CurrencyManagementPage() {
                     </td>
                     <td className="px-6 py-4">
                       <div className="flex items-center justify-center gap-2">
-                        <button className="p-1.5 text-blue-600 hover:bg-blue-50 rounded transition-colors">
-                          <Eye className="h-4 w-4" />
+                        <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                          <Eye className="h-4 w-4 text-gray-600" />
+                          <span className="text-gray-700">View</span>
                         </button>
-                        <button className="p-1.5 text-green-600 hover:bg-green-50 rounded transition-colors">
-                          <Edit className="h-4 w-4" />
+                        <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                          <Edit className="h-4 w-4 text-gray-600" />
+                          <span className="text-gray-700">Edit</span>
                         </button>
-                        <button className="p-1.5 text-purple-600 hover:bg-purple-50 rounded transition-colors">
-                          <TrendingUp className="h-4 w-4" />
+                        <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                          <TrendingUp className="h-4 w-4 text-gray-600" />
+                          <span className="text-gray-700">Trends</span>
                         </button>
                       </div>
                     </td>

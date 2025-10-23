@@ -820,8 +820,9 @@ export default function CustomReportsPage() {
                       <Play className="w-4 h-4" />
                       Run
                     </button>
-                    <button className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50">
-                      <Edit className="w-4 h-4" />
+                    <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                      <Edit className="w-4 h-4 text-gray-600" />
+                      <span className="text-gray-700">Edit</span>
                     </button>
                     <button
                       onClick={() => handleDuplicateReport(report)}
@@ -874,8 +875,9 @@ export default function CustomReportsPage() {
                     >
                       Run
                     </button>
-                    <button className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50">
-                      <Edit className="w-4 h-4" />
+                    <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                      <Edit className="w-4 h-4 text-gray-600" />
+                      <span className="text-gray-700">Edit</span>
                     </button>
                     <button
                       onClick={() => handleDuplicateReport(report)}

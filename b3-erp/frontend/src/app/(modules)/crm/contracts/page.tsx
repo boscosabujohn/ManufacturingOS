@@ -467,14 +467,17 @@ export default function ContractsPage() {
                 </div>
 
                 <div className="flex items-center gap-2">
-                  <button className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg">
+                  <button className="inline-flex items-center gap-1.5 px-3 py-2 text-gray-600 hover:bg-gray-100 rounded-lg text-sm">
                     <Eye className="w-4 h-4" />
+                    <span>View</span>
                   </button>
-                  <button className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg">
+                  <button className="inline-flex items-center gap-1.5 px-3 py-2 text-gray-600 hover:bg-gray-100 rounded-lg text-sm">
                     <Edit className="w-4 h-4" />
+                    <span>Edit</span>
                   </button>
-                  <button className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg">
+                  <button className="inline-flex items-center gap-1.5 px-3 py-2 text-gray-600 hover:bg-gray-100 rounded-lg text-sm">
                     <Download className="w-4 h-4" />
+                    <span>Download</span>
                   </button>
                 </div>
               </div>

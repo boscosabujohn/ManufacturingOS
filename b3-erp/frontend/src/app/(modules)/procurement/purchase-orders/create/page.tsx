@@ -294,9 +294,10 @@ export default function CreatePurchaseOrderPage() {
           <div className="flex items-center gap-3 mb-2">
             <Link
               href="/procurement/purchase-orders"
-              className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+              className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
             >
-              <ArrowLeft className="h-5 w-5" />
+              <ArrowLeft className="h-5 w-5 text-gray-600" />
+              <span className="text-gray-700">Back</span>
             </Link>
             <h1 className="text-2xl font-bold text-gray-900">Create Purchase Order</h1>
           </div>
@@ -488,8 +489,9 @@ export default function CreatePurchaseOrderPage() {
                     placeholder="REQ-2024-XXX"
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
-                  <button className="absolute right-2 top-2.5 text-gray-400 hover:text-gray-600">
+                  <button className="absolute right-2 top-2.5 inline-flex items-center gap-1.5 px-2 py-1 text-gray-600 hover:text-gray-800">
                     <Search className="h-4 w-4" />
+                    <span className="text-sm">Search</span>
                   </button>
                 </div>
               </div>
@@ -711,11 +713,13 @@ export default function CreatePurchaseOrderPage() {
                       </td>
                       <td className="px-4 py-3">
                         <div className="flex items-center gap-2">
-                          <button className="text-gray-600 hover:text-gray-800">
-                            <Edit2 className="h-4 w-4" />
+                          <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                            <Edit2 className="h-4 w-4 text-gray-600" />
+                            <span className="text-gray-700">Edit</span>
                           </button>
-                          <button className="text-gray-600 hover:text-gray-800">
-                            <Copy className="h-4 w-4" />
+                          <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                            <Copy className="h-4 w-4 text-gray-600" />
+                            <span className="text-gray-700">Copy</span>
                           </button>
                           <button
                             onClick={() => handleRemoveItem(item.id)}

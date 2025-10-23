@@ -557,11 +557,13 @@ export default function ContractRenewalsPage() {
                   </div>
                   <div className="text-sm font-medium text-teal-900 truncate">{renewal.contactPerson.split(' - ')[0]}</div>
                   <div className="flex gap-2 mt-2">
-                    <a href={`mailto:${renewal.contactEmail}`} className="text-teal-700 hover:text-teal-800">
+                    <a href={`mailto:${renewal.contactEmail}`} className="inline-flex items-center gap-1.5 px-2 py-1 text-teal-700 hover:text-teal-800 hover:bg-teal-50 rounded text-xs">
                       <Mail className="w-4 h-4" />
+                      <span>Email</span>
                     </a>
-                    <a href={`tel:${renewal.contactPhone}`} className="text-teal-700 hover:text-teal-800">
+                    <a href={`tel:${renewal.contactPhone}`} className="inline-flex items-center gap-1.5 px-2 py-1 text-teal-700 hover:text-teal-800 hover:bg-teal-50 rounded text-xs">
                       <Phone className="w-4 h-4" />
+                      <span>Call</span>
                     </a>
                   </div>
                 </div>

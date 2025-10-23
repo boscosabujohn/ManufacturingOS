@@ -1286,11 +1286,13 @@ export default function MilestoneTemplatesPage() {
                   <Eye className="w-4 h-4" />
                   View Details
                 </button>
-                <button className="flex items-center justify-center px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
-                  <Copy className="w-4 h-4" />
+                <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                  <Copy className="w-4 h-4 text-gray-600" />
+                  <span className="text-gray-700">Copy</span>
                 </button>
-                <button className="flex items-center justify-center px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
-                  <Edit className="w-4 h-4" />
+                <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                  <Edit className="w-4 h-4 text-gray-600" />
+                  <span className="text-gray-700">Edit</span>
                 </button>
               </div>
             </div>

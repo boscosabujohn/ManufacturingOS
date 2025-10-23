@@ -244,6 +244,8 @@ export default function InstallationCalendarPage() {
             <button
               onClick={previousMonth}
               className="p-2 hover:bg-gray-100 rounded-md"
+              aria-label="Previous"
+              title="Previous"
             >
               <ChevronLeft className="w-5 h-5 text-gray-600" />
             </button>
@@ -253,6 +255,8 @@ export default function InstallationCalendarPage() {
             <button
               onClick={nextMonth}
               className="p-2 hover:bg-gray-100 rounded-md"
+              aria-label="Next"
+              title="Next"
             >
               <ChevronRight className="w-5 h-5 text-gray-600" />
             </button>

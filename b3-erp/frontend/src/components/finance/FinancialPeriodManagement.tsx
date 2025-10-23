@@ -585,13 +585,15 @@ const FinancialPeriodManagement = () => {
                   </td>
                   <td className="text-center py-2">
                     {task.status === 'pending' && (
-                      <button className="text-blue-600 hover:text-blue-800">
-                        <Play className="h-4 w-4" />
+                      <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-blue-300 rounded-lg hover:bg-blue-50 text-sm">
+                        <Play className="h-4 w-4 text-blue-600" />
+                        <span className="text-blue-600">Start</span>
                       </button>
                     )}
                     {task.status === 'in-progress' && (
-                      <button className="text-green-600 hover:text-green-800">
-                        <Check className="h-4 w-4" />
+                      <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-green-300 rounded-lg hover:bg-green-50 text-sm">
+                        <Check className="h-4 w-4 text-green-600" />
+                        <span className="text-green-600">Complete</span>
                       </button>
                     )}
                   </td>
@@ -824,12 +826,14 @@ const FinancialPeriodManagement = () => {
                   </td>
                   <td className="text-center py-2">
                     {entry.status === 'draft' && (
-                      <button className="text-blue-600 hover:text-blue-800">
-                        <Check className="h-4 w-4" />
+                      <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-green-300 rounded-lg hover:bg-green-50 text-sm">
+                        <Check className="h-4 w-4 text-green-600" />
+                        <span className="text-green-600">Approve</span>
                       </button>
                     )}
-                    <button className="text-gray-600 hover:text-gray-800 ml-2">
-                      <Eye className="h-4 w-4" />
+                    <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm ml-2">
+                      <Eye className="h-4 w-4 text-gray-600" />
+                      <span className="text-gray-700">View</span>
                     </button>
                   </td>
                 </tr>

@@ -325,10 +325,18 @@ export default function CPQSettingsNumberingPage() {
               <p className="text-2xl font-bold text-blue-900 font-mono">{numberingSchemes.quotes.sample}</p>
             </div>
             <div className="flex items-center gap-2">
-              <button className="p-2 text-blue-600 bg-white rounded-lg hover:bg-blue-50">
+              <button
+                className="p-2 text-blue-600 bg-white rounded-lg hover:bg-blue-50"
+                aria-label="View"
+                title="View"
+              >
                 <Eye className="h-4 w-4" />
               </button>
-              <button className="p-2 text-blue-600 bg-white rounded-lg hover:bg-blue-50">
+              <button
+                className="p-2 text-blue-600 bg-white rounded-lg hover:bg-blue-50"
+                aria-label="Copy"
+                title="Copy"
+              >
                 <Copy className="h-4 w-4" />
               </button>
             </div>

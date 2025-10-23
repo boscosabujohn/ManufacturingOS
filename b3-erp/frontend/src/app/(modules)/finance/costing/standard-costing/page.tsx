@@ -318,11 +318,13 @@ export default function StandardCostingPage() {
                       <p className="text-purple-100 mt-1">{selectedCost.productCode} • Version {selectedCost.version}</p>
                     </div>
                     <div className="flex items-center gap-2">
-                      <button className="p-2 bg-white/20 hover:bg-white/30 rounded-lg transition-colors">
+                      <button className="inline-flex items-center gap-1.5 px-3 py-2 bg-white/20 hover:bg-white/30 rounded-lg transition-colors text-sm">
                         <Eye className="h-5 w-5" />
+                        <span>View</span>
                       </button>
-                      <button className="p-2 bg-white/20 hover:bg-white/30 rounded-lg transition-colors">
+                      <button className="inline-flex items-center gap-1.5 px-3 py-2 bg-white/20 hover:bg-white/30 rounded-lg transition-colors text-sm">
                         <Edit className="h-5 w-5" />
+                        <span>Edit</span>
                       </button>
                     </div>
                   </div>

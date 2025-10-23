@@ -359,8 +359,9 @@ export default function Problems() {
                   )}
                 </div>
 
-                <button className="ml-4 text-purple-600 hover:text-purple-700 p-2">
-                  <Eye className="h-5 w-5" />
+                <button className="ml-4 inline-flex items-center gap-1.5 px-3 py-2 text-purple-600 hover:text-purple-700 hover:bg-purple-50 rounded-lg text-sm">
+                  <Eye className="h-4 w-4" />
+                  <span>View</span>
                 </button>
               </div>
             </div>

@@ -423,12 +423,14 @@ export default function AcceptedHandoverPage() {
                     <FileText className="w-4 h-4" />
                     View POD
                   </button>
-                  <button className="px-4 py-2 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors">
+                  <button className="inline-flex items-center gap-1.5 px-4 py-2 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors text-sm">
                     <Download className="w-4 h-4" />
+                    <span>Download</span>
                   </button>
                   {handover.photosAvailable && (
-                    <button className="px-4 py-2 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors">
+                    <button className="inline-flex items-center gap-1.5 px-4 py-2 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors text-sm">
                       <Camera className="w-4 h-4" />
+                      <span>Photos</span>
                     </button>
                   )}
                 </div>

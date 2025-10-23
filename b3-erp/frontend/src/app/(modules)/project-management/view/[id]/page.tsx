@@ -151,9 +151,10 @@ export default function ViewProjectPage({ params }: { params: { id: string } }) 
         <div className="flex items-center gap-4">
           <Link
             href="/project-management"
-            className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+            className="inline-flex items-center gap-1.5 px-3 py-2 hover:bg-gray-100 rounded-lg transition-colors text-sm"
           >
-            <ArrowLeft className="w-5 h-5 text-gray-600" />
+            <ArrowLeft className="w-4 h-4 text-gray-600" />
+            <span className="text-gray-700">Back</span>
           </Link>
           <div>
             <div className="flex items-center gap-3">
@@ -173,8 +174,9 @@ export default function ViewProjectPage({ params }: { params: { id: string } }) 
             <Edit className="w-4 h-4" />
             Edit Project
           </Link>
-          <button className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
-            <MoreVertical className="w-5 h-5" />
+          <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors text-sm">
+            <MoreVertical className="w-4 h-4 text-gray-600" />
+            <span className="text-gray-700">More</span>
           </button>
         </div>
       </div>

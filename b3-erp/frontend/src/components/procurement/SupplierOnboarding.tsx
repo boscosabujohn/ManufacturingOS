@@ -575,14 +575,17 @@ export default function SupplierOnboarding() {
                         </td>
                         <td className="px-4 py-3">
                           <div className="flex items-center gap-2">
-                            <button className="p-1 hover:bg-gray-100 rounded">
+                            <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
                               <Eye className="w-4 h-4 text-gray-600" />
+                              <span className="text-gray-700">View</span>
                             </button>
-                            <button className="p-1 hover:bg-gray-100 rounded">
+                            <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
                               <Edit className="w-4 h-4 text-gray-600" />
+                              <span className="text-gray-700">Edit</span>
                             </button>
-                            <button className="p-1 hover:bg-gray-100 rounded">
+                            <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
                               <MessageSquare className="w-4 h-4 text-gray-600" />
+                              <span className="text-gray-700">Comment</span>
                             </button>
                           </div>
                         </td>

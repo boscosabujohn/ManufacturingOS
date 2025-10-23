@@ -224,11 +224,13 @@ export default function RoleHierarchyPage() {
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-lg font-bold text-gray-900">Role Details</h2>
               <div className="flex gap-2">
-                <button className="p-2 hover:bg-gray-100 rounded-lg">
+                <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
                   <Edit className="w-4 h-4 text-gray-600" />
+                  <span className="text-gray-700">Edit</span>
                 </button>
-                <button className="p-2 hover:bg-red-50 rounded-lg">
+                <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-red-300 rounded-lg hover:bg-red-50 text-sm">
                   <Trash2 className="w-4 h-4 text-red-600" />
+                  <span className="text-red-600">Delete</span>
                 </button>
               </div>
             </div>

@@ -509,9 +509,10 @@ const ErrorMonitoringPage = () => {
               <h3 className="text-xl font-bold text-gray-900">Error Details</h3>
               <button
                 onClick={handleCloseDetails}
-                className="text-gray-400 hover:text-gray-600"
+                className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm"
               >
-                <XCircle className="w-6 h-6" />
+                <XCircle className="w-6 h-6 text-gray-600" />
+                <span className="text-gray-700">Close</span>
               </button>
             </div>
 

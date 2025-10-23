@@ -401,11 +401,13 @@ export default function AutoAssignment() {
                     </div>
                   </div>
                   <div className="flex gap-2">
-                    <button className="p-2 hover:bg-gray-200 rounded-lg">
+                    <button className="inline-flex items-center gap-1.5 px-3 py-2 hover:bg-gray-200 rounded-lg text-sm">
                       <Settings className="h-4 w-4 text-gray-600" />
+                      <span className="text-gray-700">Settings</span>
                     </button>
-                    <button className="p-2 hover:bg-gray-200 rounded-lg">
+                    <button className="inline-flex items-center gap-1.5 px-3 py-2 hover:bg-gray-200 rounded-lg text-sm">
                       <Trash2 className="h-4 w-4 text-red-600" />
+                      <span className="text-red-700">Delete</span>
                     </button>
                   </div>
                 </div>

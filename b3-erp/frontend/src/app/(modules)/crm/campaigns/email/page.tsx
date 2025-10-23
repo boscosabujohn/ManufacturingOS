@@ -282,22 +282,27 @@ export default function EmailCampaignsPage() {
                 </div>
 
                 <div className="flex gap-2 ml-4">
-                  <button className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+                  <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
                     <Eye className="w-4 h-4" />
+                    <span>View</span>
                   </button>
-                  <button className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+                  <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
                     <Edit className="w-4 h-4" />
+                    <span>Edit</span>
                   </button>
-                  <button className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+                  <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
                     <Copy className="w-4 h-4" />
+                    <span>Copy</span>
                   </button>
                   {campaign.status === 'paused' && (
-                    <button className="p-2 border border-green-300 rounded-lg hover:bg-green-50">
+                    <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-green-300 rounded-lg hover:bg-green-50 text-sm">
                       <Play className="w-4 h-4 text-green-600" />
+                      <span className="text-green-600">Play</span>
                     </button>
                   )}
-                  <button className="p-2 border border-red-300 rounded-lg hover:bg-red-50">
+                  <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-red-300 rounded-lg hover:bg-red-50 text-sm">
                     <Trash2 className="w-4 h-4 text-red-600" />
+                    <span className="text-red-600">Delete</span>
                   </button>
                 </div>
               </div>

@@ -358,11 +358,13 @@ export default function CustomerSegmentsPage() {
                   <Eye className="w-4 h-4" />
                   View Details
                 </button>
-                <button className="flex items-center justify-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+                <button className="flex items-center justify-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
                   <Edit className="w-4 h-4" />
+                  <span>Edit</span>
                 </button>
-                <button className="flex items-center justify-center gap-2 px-4 py-2 border border-red-300 text-red-600 rounded-lg hover:bg-red-50">
+                <button className="flex items-center justify-center gap-2 px-4 py-2 border border-red-300 text-red-600 rounded-lg hover:bg-red-50 text-sm">
                   <Trash2 className="w-4 h-4" />
+                  <span>Delete</span>
                 </button>
               </div>
 

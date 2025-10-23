@@ -690,8 +690,9 @@ export default function ViewWorkOrderPage() {
                 <PlayCircle className="h-4 w-4" />
                 <span>Record Progress</span>
               </button>
-              <button className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+              <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
                 <MoreVertical className="h-5 w-5 text-gray-600" />
+                <span className="text-gray-700">More</span>
               </button>
             </div>
           </div>

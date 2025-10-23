@@ -459,8 +459,9 @@ export default function RFQRFPManagement() {
                             {rfq.status}
                           </div>
                         </div>
-                        <button className="p-1 hover:bg-gray-200 rounded">
+                        <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
                           <Eye className="w-4 h-4 text-gray-600" />
+                          <span className="text-gray-700">View</span>
                         </button>
                       </div>
                     </div>
@@ -582,14 +583,17 @@ export default function RFQRFPManagement() {
                         </td>
                         <td className="px-4 py-3">
                           <div className="flex items-center gap-2">
-                            <button className="p-1 hover:bg-gray-100 rounded">
+                            <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
                               <Eye className="w-4 h-4 text-gray-600" />
+                              <span className="text-gray-700">View</span>
                             </button>
-                            <button className="p-1 hover:bg-gray-100 rounded">
+                            <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
                               <Edit className="w-4 h-4 text-gray-600" />
+                              <span className="text-gray-700">Edit</span>
                             </button>
-                            <button className="p-1 hover:bg-gray-100 rounded">
+                            <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
                               <MoreVertical className="w-4 h-4 text-gray-600" />
+                              <span className="text-gray-700">More</span>
                             </button>
                           </div>
                         </td>
@@ -711,14 +715,17 @@ export default function RFQRFPManagement() {
                           </td>
                           <td className="px-4 py-3">
                             <div className="flex items-center gap-2">
-                              <button className="p-1 hover:bg-gray-100 rounded">
+                              <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
                                 <Eye className="w-4 h-4 text-gray-600" />
+                                <span className="text-gray-700">View</span>
                               </button>
-                              <button className="p-1 hover:bg-gray-100 rounded">
+                              <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-green-300 rounded-lg hover:bg-green-50 text-sm">
                                 <ThumbsUp className="w-4 h-4 text-green-600" />
+                                <span className="text-green-600">Approve</span>
                               </button>
-                              <button className="p-1 hover:bg-gray-100 rounded">
+                              <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-red-300 rounded-lg hover:bg-red-50 text-sm">
                                 <XCircle className="w-4 h-4 text-red-600" />
+                                <span className="text-red-600">Reject</span>
                               </button>
                             </div>
                           </td>
@@ -928,8 +935,9 @@ export default function RFQRFPManagement() {
                   <div key={template.name} className="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition">
                     <div className="flex items-start justify-between mb-3">
                       <FileText className="w-8 h-8 text-blue-600" />
-                      <button className="p-1 hover:bg-gray-100 rounded">
+                      <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
                         <MoreVertical className="w-4 h-4 text-gray-600" />
+                        <span className="text-gray-700">More</span>
                       </button>
                     </div>
                     <h4 className="font-semibold text-gray-900 mb-1">{template.name}</h4>

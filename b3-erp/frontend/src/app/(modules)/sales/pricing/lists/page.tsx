@@ -447,11 +447,13 @@ export default function PriceListsPage() {
                     </td>
                     <td className="px-6 py-4">
                       <div className="flex items-center justify-center gap-2">
-                        <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+                        <button className="inline-flex items-center gap-1.5 px-3 py-2 hover:bg-gray-100 rounded-lg transition-colors text-sm">
                           <Eye className="w-4 h-4 text-gray-600" />
+                          <span className="text-gray-700">View</span>
                         </button>
-                        <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+                        <button className="inline-flex items-center gap-1.5 px-3 py-2 hover:bg-gray-100 rounded-lg transition-colors text-sm">
                           <Edit className="w-4 h-4 text-indigo-600" />
+                          <span className="text-indigo-700">Edit</span>
                         </button>
                       </div>
                     </td>

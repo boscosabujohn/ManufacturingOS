@@ -1,10 +1,34 @@
 'use client';
 
-import { useState } from 'react';
-import { Flag, Search, Filter, PlusCircle, Download } from 'lucide-react';
+import { useMemo, useState } from 'react';
+import { Flag, Search, Filter, PlusCircle, Download, CalendarDays, Link2 } from 'lucide-react';
+
+type Milestone = {
+  id: string;
+  title: string;
+  project: string;
+  owner: string;
+  due: string;
+  status: 'planned' | 'in_progress' | 'achieved' | 'overdue';
+  progress: number;
+  dependencies?: string[];
+};
+
+const MILESTONES: Milestone[] = [
+  { id: 'MS-101', title: 'Design Sign-off', project: 'Kitchen Fitout - Tower A', owner: 'Priya Patel', due: '2025-10-21', status: 'achieved', progress: 100 },
+  { id: 'MS-102', title: 'Material Procurement Complete', project: 'Luxury Villa Wardrobes', owner: 'Amit Singh', due: '2025-10-28', status: 'in_progress', progress: 65, dependencies: ['MS-101'] },
+  { id: 'MS-103', title: 'Assembly Line Ready', project: 'Corporate Pantry Rollout', owner: 'Rahul Kumar', due: '2025-10-24', status: 'overdue', progress: 40 },
+  { id: 'MS-104', title: 'QC Gate Pass', project: 'Showroom Refurbishment', owner: 'QC Team', due: '2025-11-05', status: 'planned', progress: 0, dependencies: ['MS-102'] },
+];
 
 export default function MilestonesPage() {
   const [searchTerm, setSearchTerm] = useState('');
+  const [statusFilter, setStatusFilter] = useState<'all'|'planned'|'in_progress'|'achieved'|'overdue'>('all');
+  const data = useMemo(() => MILESTONES.filter(m => {
+    const matchSearch = [m.title, m.project, m.owner, m.id].some(v => v.toLowerCase().includes(searchTerm.toLowerCase()));
+    const matchStatus = statusFilter==='all' ? true : m.status === statusFilter;
+    return matchSearch && matchStatus;
+  }), [searchTerm, statusFilter]);
 
   return (
     <div className="p-6">
@@ -86,12 +110,58 @@ export default function MilestonesPage() {
         </div>
       </div>
 
-      {/* Content placeholder */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
-        <div className="text-center text-gray-500">
-          <Flag className="h-16 w-16 mx-auto mb-4 text-gray-400" />
-          <h3 className="text-lg font-semibold text-gray-700 mb-2">Milestone Tracker</h3>
-          <p className="text-gray-600">Track major project milestones, deliverables, and key decision points</p>
+      {/* Milestones table */}
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+        <div className="overflow-x-auto">
+          <table className="min-w-full divide-y divide-gray-200">
+            <thead className="bg-gray-50">
+              <tr>
+                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600">Milestone</th>
+                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600">Project</th>
+                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600">Owner</th>
+                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600">Due</th>
+                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600">Progress</th>
+                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600">Status</th>
+                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600">Dependencies</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-200 bg-white">
+              {data.map(m => (
+                <tr key={m.id} className="hover:bg-gray-50">
+                  <td className="px-4 py-3">
+                    <div className="flex flex-col">
+                      <span className="font-medium text-gray-900">{m.title}</span>
+                      <span className="text-xs text-gray-500">{m.id}</span>
+                    </div>
+                  </td>
+                  <td className="px-4 py-3 text-sm text-gray-700">{m.project}</td>
+                  <td className="px-4 py-3 text-sm text-gray-700">{m.owner}</td>
+                  <td className="px-4 py-3 text-sm text-gray-700 flex items-center gap-2"><CalendarDays className="h-4 w-4 text-gray-500" /> {m.due}</td>
+                  <td className="px-4 py-3">
+                    <div className="w-40">
+                      <div className="h-2 w-full bg-gray-100 rounded"><div className={`h-2 rounded ${m.progress>=100?'bg-green-600':m.progress>=50?'bg-blue-600':'bg-yellow-500'}`} style={{ width: `${m.progress}%` }} /></div>
+                      <div className="mt-1 text-xs text-gray-600">{m.progress}%</div>
+                    </div>
+                  </td>
+                  <td className="px-4 py-3 text-sm">
+                    <span className={`px-2 py-1 text-xs rounded-full ${m.status==='achieved'?'bg-green-50 text-green-700':m.status==='in_progress'?'bg-blue-50 text-blue-700':m.status==='planned'?'bg-gray-100 text-gray-700':'bg-red-50 text-red-700'}`}>{m.status.replace('_',' ')}</span>
+                  </td>
+                  <td className="px-4 py-3 text-sm text-gray-700">
+                    {m.dependencies?.length ? (
+                      <div className="flex flex-wrap gap-2">
+                        {m.dependencies.map(d => (
+                          <span key={d} className="inline-flex items-center gap-1 px-2 py-1 rounded-full border text-xs text-gray-700"><Link2 className="h-3 w-3" /> {d}</span>
+                        ))}
+                      </div>
+                    ) : <span className="text-gray-400">—</span>}
+                  </td>
+                </tr>
+              ))}
+              {data.length===0 && (
+                <tr><td colSpan={7} className="px-4 py-8 text-center text-gray-500">No milestones</td></tr>
+              )}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

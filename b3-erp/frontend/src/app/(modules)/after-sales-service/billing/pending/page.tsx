@@ -403,10 +403,18 @@ export default function PendingBillsPage() {
               </div>
 
               <div className="ml-6 flex gap-2 flex-shrink-0">
-                <button className="p-2 rounded-lg hover:bg-gray-100 transition-colors text-emerald-600 hover:text-emerald-700">
+                <button
+                  className="p-2 rounded-lg hover:bg-gray-100 transition-colors text-emerald-600 hover:text-emerald-700"
+                  aria-label="Download"
+                  title="Download"
+                >
                   <Download className="h-5 w-5" />
                 </button>
-                <button className="p-2 rounded-lg hover:bg-gray-100 transition-colors text-emerald-600 hover:text-emerald-700">
+                <button
+                  className="p-2 rounded-lg hover:bg-gray-100 transition-colors text-emerald-600 hover:text-emerald-700"
+                  aria-label="View"
+                  title="View"
+                >
                   <Eye className="h-5 w-5" />
                 </button>
               </div>

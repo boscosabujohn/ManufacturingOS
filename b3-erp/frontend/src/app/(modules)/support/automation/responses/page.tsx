@@ -514,14 +514,17 @@ Senior Support Team`,
                 </div>
               </div>
               <div className="flex gap-2">
-                <button className="p-2 hover:bg-gray-100 rounded-lg">
+                <button className="inline-flex items-center gap-1.5 px-3 py-2 hover:bg-gray-100 rounded-lg text-sm">
                   <Edit2 className="h-4 w-4 text-gray-600" />
+                  <span className="text-gray-700">Edit</span>
                 </button>
-                <button className="p-2 hover:bg-gray-100 rounded-lg">
+                <button className="inline-flex items-center gap-1.5 px-3 py-2 hover:bg-gray-100 rounded-lg text-sm">
                   <Copy className="h-4 w-4 text-blue-600" />
+                  <span className="text-blue-700">Copy</span>
                 </button>
-                <button className="p-2 hover:bg-gray-100 rounded-lg">
+                <button className="inline-flex items-center gap-1.5 px-3 py-2 hover:bg-gray-100 rounded-lg text-sm">
                   <Trash2 className="h-4 w-4 text-red-600" />
+                  <span className="text-red-700">Delete</span>
                 </button>
               </div>
             </div>

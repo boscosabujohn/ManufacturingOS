@@ -304,15 +304,17 @@ export default function ScheduledChanges() {
             <div className="flex gap-2">
               <button
                 onClick={previousMonth}
-                className="p-2 border rounded-lg hover:bg-gray-50"
+                className="inline-flex items-center gap-1.5 px-3 py-2 border rounded-lg hover:bg-gray-50 text-sm"
               >
-                <ChevronLeft className="h-5 w-5" />
+                <ChevronLeft className="h-4 w-4 text-gray-600" />
+                <span className="text-gray-700">Previous</span>
               </button>
               <button
                 onClick={nextMonth}
-                className="p-2 border rounded-lg hover:bg-gray-50"
+                className="inline-flex items-center gap-1.5 px-3 py-2 border rounded-lg hover:bg-gray-50 text-sm"
               >
-                <ChevronRight className="h-5 w-5" />
+                <span className="text-gray-700">Next</span>
+                <ChevronRight className="h-4 w-4 text-gray-600" />
               </button>
             </div>
           </div>

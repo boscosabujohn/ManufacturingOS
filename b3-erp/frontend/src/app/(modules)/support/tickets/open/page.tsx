@@ -296,8 +296,9 @@ export default function OpenTickets() {
                     {ticket.createdAt}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                    <button className="text-blue-600 hover:text-blue-900">
+                    <button className="inline-flex items-center gap-1.5 px-3 py-2 text-blue-600 hover:text-blue-900 hover:bg-blue-50 rounded-lg text-sm">
                       <Eye className="h-4 w-4" />
+                      <span>View</span>
                     </button>
                   </td>
                 </tr>

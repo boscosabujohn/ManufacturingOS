@@ -104,11 +104,13 @@ export default function BudgetTracking() {
             <p className="text-gray-600 mt-1">Monitor budgets, track spending, and analyze variances</p>
           </div>
           <div className="flex gap-3">
-            <button className="p-2 border rounded-lg hover:bg-gray-50">
-              <RefreshCw className="h-5 w-5" />
+            <button className="inline-flex items-center gap-1.5 px-3 py-2 border rounded-lg hover:bg-gray-50">
+              <RefreshCw className="h-5 w-5 text-gray-600" />
+              <span className="text-gray-700">Refresh</span>
             </button>
-            <button className="p-2 border rounded-lg hover:bg-gray-50">
-              <Download className="h-5 w-5" />
+            <button className="inline-flex items-center gap-1.5 px-3 py-2 border rounded-lg hover:bg-gray-50">
+              <Download className="h-5 w-5 text-gray-600" />
+              <span className="text-gray-700">Download</span>
             </button>
             <button
               onClick={() => setShowBudgetModal(true)}

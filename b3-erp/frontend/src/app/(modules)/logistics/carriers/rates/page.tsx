@@ -359,7 +359,7 @@ export default function CarrierRatesPage() {
         <div className="bg-gradient-to-br from-purple-500 to-purple-600 text-white rounded-xl p-4 shadow-sm">
           <div className="flex items-center justify-between mb-2">
             <Calculator className="w-7 h-7 opacity-80" />
-            <span className="text-xl font-bold">¹{rateStats.avgBaseRate}</span>
+            <span className="text-xl font-bold">ï¿½{rateStats.avgBaseRate}</span>
           </div>
           <p className="text-xs font-medium opacity-90">Avg Base Rate</p>
         </div>
@@ -367,7 +367,7 @@ export default function CarrierRatesPage() {
         <div className="bg-gradient-to-br from-orange-500 to-orange-600 text-white rounded-xl p-4 shadow-sm">
           <div className="flex items-center justify-between mb-2">
             <Package className="w-7 h-7 opacity-80" />
-            <span className="text-xl font-bold">¹{rateStats.avgPerKgRate}</span>
+            <span className="text-xl font-bold">ï¿½{rateStats.avgPerKgRate}</span>
           </div>
           <p className="text-xs font-medium opacity-90">Avg Per Kg</p>
         </div>
@@ -489,7 +489,7 @@ export default function CarrierRatesPage() {
                     <div className="text-xs">
                       <div className="flex items-center gap-1 mb-1">
                         <MapPin className="w-3 h-3 text-gray-400" />
-                        <span className="text-gray-600">{rate.origin} ’ {rate.destination}</span>
+                        <span className="text-gray-600">{rate.origin} ï¿½ {rate.destination}</span>
                       </div>
                       <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs bg-gray-100 text-gray-700">
                         {rate.zone}
@@ -497,10 +497,10 @@ export default function CarrierRatesPage() {
                     </div>
                   </td>
                   <td className="px-6 py-4 text-right">
-                    <p className="text-sm font-semibold text-gray-900">¹{rate.baseRate}</p>
+                    <p className="text-sm font-semibold text-gray-900">ï¿½{rate.baseRate}</p>
                   </td>
                   <td className="px-6 py-4 text-right">
-                    <p className="text-sm font-semibold text-gray-900">¹{rate.perKgRate}</p>
+                    <p className="text-sm font-semibold text-gray-900">ï¿½{rate.perKgRate}</p>
                   </td>
                   <td className="px-6 py-4 text-right">
                     <p className="text-sm font-semibold text-orange-600">{rate.fuelSurcharge}%</p>
@@ -513,7 +513,7 @@ export default function CarrierRatesPage() {
                     <p className="text-xs text-gray-900 font-medium">{rate.transitTime}</p>
                   </td>
                   <td className="px-6 py-4 text-right">
-                    <p className="text-sm font-bold text-blue-600">¹{calculateTotalCost(rate.baseRate, rate.perKgRate, rate.fuelSurcharge)}</p>
+                    <p className="text-sm font-bold text-blue-600">ï¿½{calculateTotalCost(rate.baseRate, rate.perKgRate, rate.fuelSurcharge)}</p>
                   </td>
                   <td className="px-6 py-4 text-right">
                     {rate.rateChange !== 0 && (
@@ -536,8 +536,9 @@ export default function CarrierRatesPage() {
                     )}
                   </td>
                   <td className="px-6 py-4 text-center">
-                    <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+                    <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
                       <Edit className="w-4 h-4 text-gray-600" />
+                      <span className="text-gray-700">Edit</span>
                     </button>
                   </td>
                 </tr>
@@ -560,11 +561,11 @@ export default function CarrierRatesPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm text-blue-700">
           <div className="flex items-start gap-2">
             <span className="font-medium">Total Cost =</span>
-            <span>(Base Rate + Per Kg Rate × Weight) × (1 + Fuel Surcharge %)</span>
+            <span>(Base Rate + Per Kg Rate ï¿½ Weight) ï¿½ (1 + Fuel Surcharge %)</span>
           </div>
           <div className="flex items-start gap-2">
             <span className="font-medium">Volumetric Weight =</span>
-            <span>(Length × Width × Height) / Volumetric Divisor</span>
+            <span>(Length ï¿½ Width ï¿½ Height) / Volumetric Divisor</span>
           </div>
           <div className="flex items-start gap-2">
             <span className="font-medium">Chargeable Weight =</span>

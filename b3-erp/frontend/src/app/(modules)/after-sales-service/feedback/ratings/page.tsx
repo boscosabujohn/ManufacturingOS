@@ -418,7 +418,11 @@ export default function RatingsPage() {
                 </div>
               </div>
 
-              <button className="ml-6 p-2 hover:bg-white/60 rounded-lg transition-colors text-gray-600 hover:text-gray-700 flex-shrink-0">
+              <button
+                className="ml-6 p-2 hover:bg-white/60 rounded-lg transition-colors text-gray-600 hover:text-gray-700 flex-shrink-0"
+                aria-label="Download"
+                title="Download"
+              >
                 <Download className="h-5 w-5" />
               </button>
             </div>

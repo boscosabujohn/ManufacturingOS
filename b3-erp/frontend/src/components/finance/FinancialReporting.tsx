@@ -387,8 +387,9 @@ const FinancialReporting: React.FC = () => {
                 <div className="flex items-center space-x-3">
                   {getStatusBadge(report.status)}
                   {report.status === 'completed' && (
-                    <button className="text-blue-600 hover:text-blue-800">
-                      <ArrowDownTrayIcon className="w-5 h-5" />
+                    <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                      <ArrowDownTrayIcon className="w-5 h-5 text-gray-600" />
+                      <span className="text-gray-700">Download</span>
                     </button>
                   )}
                 </div>
@@ -436,8 +437,9 @@ const FinancialReporting: React.FC = () => {
                 >
                   <PencilIcon className="w-4 h-4" />
                 </button>
-                <button className="text-gray-600 hover:text-red-600">
-                  <TrashIcon className="w-4 h-4" />
+                <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-red-300 rounded-lg hover:bg-red-50 text-sm">
+                  <TrashIcon className="w-4 h-4 text-red-600" />
+                  <span className="text-red-600">Delete</span>
                 </button>
               </div>
             </div>
@@ -482,11 +484,13 @@ const FinancialReporting: React.FC = () => {
                 <PlayIcon className="w-4 h-4 mr-1" />
                 Generate
               </button>
-              <button className="px-3 py-2 border border-gray-300 rounded text-sm hover:bg-gray-50 flex items-center justify-center">
-                <EyeIcon className="w-4 h-4" />
+              <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded text-sm hover:bg-gray-50">
+                <EyeIcon className="w-4 h-4 text-gray-600" />
+                <span className="text-gray-700">View</span>
               </button>
-              <button className="px-3 py-2 border border-gray-300 rounded text-sm hover:bg-gray-50 flex items-center justify-center">
-                <DocumentDuplicateIcon className="w-4 h-4" />
+              <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded text-sm hover:bg-gray-50">
+                <DocumentDuplicateIcon className="w-4 h-4 text-gray-600" />
+                <span className="text-gray-700">Copy</span>
               </button>
             </div>
           </div>
@@ -597,11 +601,13 @@ const FinancialReporting: React.FC = () => {
                   {getStatusBadge(template.status)}
 
                   <div className="flex space-x-2">
-                    <button className="text-blue-600 hover:text-blue-800">
-                      <PencilIcon className="w-4 h-4" />
+                    <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                      <PencilIcon className="w-4 h-4 text-gray-600" />
+                      <span className="text-gray-700">Edit</span>
                     </button>
-                    <button className="text-green-600 hover:text-green-800">
-                      <PlayIcon className="w-4 h-4" />
+                    <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-green-300 rounded-lg hover:bg-green-50 text-sm">
+                      <PlayIcon className="w-4 h-4 text-green-600" />
+                      <span className="text-green-600">Generate</span>
                     </button>
                   </div>
                 </div>

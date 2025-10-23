@@ -309,11 +309,13 @@ export default function SerialTrackingPage() {
                     <td className="px-6 py-4 text-slate-600 text-sm">{product.location}</td>
                     <td className="px-6 py-4">
                       <div className="flex gap-2">
-                        <button className="p-2 hover:bg-blue-100 rounded-lg text-blue-600">
-                          <Eye className="w-4 h-4" />
+                        <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                          <Eye className="w-4 h-4 text-gray-600" />
+                          <span className="text-gray-700">View</span>
                         </button>
-                        <button className="p-2 hover:bg-slate-100 rounded-lg text-slate-600">
-                          <Edit2 className="w-4 h-4" />
+                        <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                          <Edit2 className="w-4 h-4 text-gray-600" />
+                          <span className="text-gray-700">Edit</span>
                         </button>
                       </div>
                     </td>

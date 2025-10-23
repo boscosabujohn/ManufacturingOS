@@ -1,10 +1,31 @@
 'use client';
 
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { BarChart3, Search, Filter, Download, TrendingUp } from 'lucide-react';
+import { ResponsiveContainer, LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, BarChart, Bar, Legend } from 'recharts';
+
+const velocityData = [
+  { week: 'W34', stories: 18 },
+  { week: 'W35', stories: 22 },
+  { week: 'W36', stories: 20 },
+  { week: 'W37', stories: 24 },
+  { week: 'W38', stories: 25 },
+  { week: 'W39', stories: 23 },
+  { week: 'W40', stories: 26 },
+];
+
+const statusBreakdown = [
+  { status: 'Todo', count: 54 },
+  { status: 'In Progress', count: 38 },
+  { status: 'Blocked', count: 6 },
+  { status: 'Review', count: 12 },
+  { status: 'Done', count: 245 },
+];
 
 export default function PerformanceMetricsPage() {
   const [searchTerm, setSearchTerm] = useState('');
+  const filteredVelocity = useMemo(() => velocityData, []);
+  const filteredStatus = useMemo(() => statusBreakdown, []);
 
   return (
     <div className="p-6">
@@ -82,12 +103,79 @@ export default function PerformanceMetricsPage() {
         </div>
       </div>
 
-      {/* Content placeholder */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
-        <div className="text-center text-gray-500">
-          <BarChart3 className="h-16 w-16 mx-auto mb-4 text-gray-400" />
-          <h3 className="text-lg font-semibold text-gray-700 mb-2">Performance Dashboard</h3>
-          <p className="text-gray-600">Track KPIs including SPI, CPI, quality metrics, and resource utilization</p>
+      {/* Charts */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+          <div className="flex items-center justify-between mb-2">
+            <h3 className="font-semibold text-gray-800">Velocity (Stories per Week)</h3>
+            <span className="text-xs text-gray-500">Last 7 weeks</span>
+          </div>
+          <div className="h-64">
+            <ResponsiveContainer width="100%" height="100%">
+              <LineChart data={filteredVelocity} margin={{ top: 8, right: 16, left: 0, bottom: 0 }}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="week" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Line type="monotone" dataKey="stories" stroke="#0d9488" strokeWidth={2} dot={{ r: 3 }} />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+          <div className="flex items-center justify-between mb-2">
+            <h3 className="font-semibold text-gray-800">Tasks by Status</h3>
+            <span className="text-xs text-gray-500">Current</span>
+          </div>
+          <div className="h-64">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={filteredStatus} margin={{ top: 8, right: 16, left: 0, bottom: 0 }}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="status" />
+                <YAxis />
+                <Tooltip />
+                <Bar dataKey="count" fill="#6366f1" radius={[4,4,0,0]} />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+      </div>
+
+      {/* SLA table */}
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 mt-4 overflow-hidden">
+        <div className="px-4 py-3 border-b">
+          <h3 className="font-semibold text-gray-800">KPI Summary</h3>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="min-w-full divide-y divide-gray-200">
+            <thead className="bg-gray-50">
+              <tr>
+                <th className="px-4 py-2 text-left text-xs font-semibold text-gray-600">KPI</th>
+                <th className="px-4 py-2 text-left text-xs font-semibold text-gray-600">Target</th>
+                <th className="px-4 py-2 text-left text-xs font-semibold text-gray-600">Current</th>
+                <th className="px-4 py-2 text-left text-xs font-semibold text-gray-600">Trend</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-200 bg-white">
+              {[
+                { k: 'On-time Delivery', t: '95%', c: '92%', trend: 'down' },
+                { k: 'Defect Rate', t: '< 2%', c: '1.4%', trend: 'up' },
+                { k: 'Lead Time', t: '< 21 days', c: '19 days', trend: 'up' },
+                { k: 'Budget Variance', t: '±5%', c: '+3%', trend: 'flat' },
+              ].map((r) => (
+                <tr key={r.k}>
+                  <td className="px-4 py-2 text-sm text-gray-800">{r.k}</td>
+                  <td className="px-4 py-2 text-sm text-gray-600">{r.t}</td>
+                  <td className="px-4 py-2 text-sm text-gray-800">{r.c}</td>
+                  <td className="px-4 py-2 text-sm">
+                    <span className={`px-2 py-1 text-xs rounded-full ${r.trend==='up'?'bg-green-50 text-green-700':r.trend==='down'?'bg-red-50 text-red-700':'bg-gray-100 text-gray-700'}`}>{r.trend}</span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

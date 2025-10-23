@@ -552,15 +552,17 @@ export default function EstimationCategoriesPage() {
                       <div className="flex items-center gap-2">
                         <button
                           onClick={handleSave}
-                          className="text-green-600 hover:text-green-900"
+                          className="inline-flex items-center gap-1.5 px-3 py-2 border border-green-300 rounded-lg hover:bg-green-50 text-sm"
                         >
-                          <Save className="h-4 w-4" />
+                          <Save className="h-4 w-4 text-green-600" />
+                          <span className="text-green-600">Save</span>
                         </button>
                         <button
                           onClick={handleCancel}
-                          className="text-gray-600 hover:text-gray-900"
+                          className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm"
                         >
-                          <X className="h-4 w-4" />
+                          <X className="h-4 w-4 text-gray-600" />
+                          <span className="text-gray-700">Cancel</span>
                         </button>
                       </div>
                     ) : (

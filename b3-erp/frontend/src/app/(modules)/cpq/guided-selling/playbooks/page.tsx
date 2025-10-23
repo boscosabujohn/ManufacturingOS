@@ -482,13 +482,25 @@ export default function GuidedSellingPlaybooksPage() {
                     <Play className="h-4 w-4" />
                     Use Playbook
                   </button>
-                  <button className="flex items-center justify-center gap-2 bg-gray-100 text-gray-700 px-3 py-2 rounded-lg hover:bg-gray-200">
+                  <button
+                    className="flex items-center justify-center gap-2 bg-gray-100 text-gray-700 px-3 py-2 rounded-lg hover:bg-gray-200"
+                    aria-label="View"
+                    title="View"
+                  >
                     <Eye className="h-4 w-4" />
                   </button>
-                  <button className="flex items-center justify-center gap-2 bg-gray-100 text-gray-700 px-3 py-2 rounded-lg hover:bg-gray-200">
+                  <button
+                    className="flex items-center justify-center gap-2 bg-gray-100 text-gray-700 px-3 py-2 rounded-lg hover:bg-gray-200"
+                    aria-label="Edit"
+                    title="Edit"
+                  >
                     <Edit2 className="h-4 w-4" />
                   </button>
-                  <button className="flex items-center justify-center gap-2 bg-gray-100 text-gray-700 px-3 py-2 rounded-lg hover:bg-gray-200">
+                  <button
+                    className="flex items-center justify-center gap-2 bg-gray-100 text-gray-700 px-3 py-2 rounded-lg hover:bg-gray-200"
+                    aria-label="Copy"
+                    title="Copy"
+                  >
                     <Copy className="h-4 w-4" />
                   </button>
                 </div>

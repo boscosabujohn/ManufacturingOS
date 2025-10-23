@@ -466,13 +466,25 @@ export default function CallsPage() {
               </div>
 
               <div className="flex gap-2 ml-4">
-                <button className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+                <button
+                  className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50"
+                  aria-label="View"
+                  title="View"
+                >
                   <Eye className="w-4 h-4 text-gray-600" />
                 </button>
-                <button className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+                <button
+                  className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50"
+                  aria-label="Edit"
+                  title="Edit"
+                >
                   <Edit className="w-4 h-4 text-gray-600" />
                 </button>
-                <button className="p-2 border border-red-300 rounded-lg hover:bg-red-50">
+                <button
+                  className="p-2 border border-red-300 rounded-lg hover:bg-red-50"
+                  aria-label="Delete"
+                  title="Delete"
+                >
                   <Trash2 className="w-4 h-4 text-red-600" />
                 </button>
               </div>

@@ -1,10 +1,19 @@
 'use client';
 
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Calendar, Search, Filter, Download } from 'lucide-react';
+
+type CalEvent = { id: string; title: string; resource: string; day: number; time: string; durationHrs: number; color: string };
+const EVENTS: CalEvent[] = [
+  { id: 'E1', title: 'Install - Tower A', resource: 'Sara Ali', day: 2, time: '10:00', durationHrs: 3, color: 'bg-teal-600' },
+  { id: 'E2', title: 'Design Review', resource: 'Priya Patel', day: 3, time: '14:00', durationHrs: 2, color: 'bg-indigo-600' },
+  { id: 'E3', title: 'Site Survey', resource: 'Rahul Kumar', day: 4, time: '09:00', durationHrs: 2, color: 'bg-amber-600' },
+  { id: 'E4', title: 'Client Handover', resource: 'Amit Singh', day: 5, time: '16:00', durationHrs: 1, color: 'bg-emerald-600' },
+];
 
 export default function ResourceCalendarPage() {
   const [searchTerm, setSearchTerm] = useState('');
+  const filtered = useMemo(() => EVENTS.filter(e => [e.title, e.resource].some(v => v.toLowerCase().includes(searchTerm.toLowerCase()))), [searchTerm]);
 
   return (
     <div className="p-6">
@@ -82,12 +91,26 @@ export default function ResourceCalendarPage() {
         </div>
       </div>
 
-      {/* Content placeholder */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
-        <div className="text-center text-gray-500">
-          <Calendar className="h-16 w-16 mx-auto mb-4 text-gray-400" />
-          <h3 className="text-lg font-semibold text-gray-700 mb-2">Resource Calendar View</h3>
-          <p className="text-gray-600">Visual calendar showing resource availability, bookings, and time off</p>
+      {/* Week grid: Mon-Sun */}
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+        <div className="grid grid-cols-7 bg-gray-50 text-xs font-medium text-gray-600">
+          {['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].map((d) => (
+            <div key={d} className="px-3 py-2 border-r last:border-r-0 border-gray-200">{d}</div>
+          ))}
+        </div>
+        <div className="grid grid-cols-7 min-h-[280px]">
+          {Array.from({length:7}).map((_, col) => (
+            <div key={col} className="border-r last:border-r-0 border-gray-200 p-2">
+              <div className="space-y-2">
+                {filtered.filter(e => e.day===col+1).map(e => (
+                  <div key={e.id} className={`text-white ${e.color} rounded-md px-2 py-2 shadow-sm`}> 
+                    <div className="text-xs font-semibold leading-tight">{e.time} • {e.title}</div>
+                    <div className="text-[11px] opacity-90">{e.resource} • {e.durationHrs}h</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>

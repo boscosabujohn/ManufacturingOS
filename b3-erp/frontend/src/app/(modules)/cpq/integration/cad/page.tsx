@@ -302,7 +302,11 @@ export default function CPQIntegrationCADPage() {
                     {getStatusIcon(system.status)}
                     <span className="capitalize">{system.status}</span>
                   </div>
-                  <button className="p-2 hover:bg-gray-100 rounded-lg">
+                  <button
+                    className="p-2 hover:bg-gray-100 rounded-lg"
+                    aria-label="Settings"
+                    title="Settings"
+                  >
                     <Settings className="w-5 h-5 text-gray-600" />
                   </button>
                 </div>

@@ -260,8 +260,9 @@ export default function SLASettings() {
                         {config.priority === 'P0' ? 'Critical' : config.priority === 'P1' ? 'High' : config.priority === 'P2' ? 'Medium' : 'Low'} Priority
                       </span>
                     </div>
-                    <button className="text-red-600 hover:text-red-700">
+                    <button className="inline-flex items-center gap-1.5 px-3 py-2 text-red-600 hover:text-red-700 border border-red-300 rounded-lg hover:bg-red-50 text-sm">
                       <Trash2 className="h-4 w-4" />
+                      <span>Delete</span>
                     </button>
                   </div>
 
@@ -496,8 +497,9 @@ export default function SLASettings() {
                         <span className="text-sm text-gray-700">Active</span>
                       </label>
                     </div>
-                    <button className="text-red-600 hover:text-red-700">
+                    <button className="inline-flex items-center gap-1.5 px-3 py-2 text-red-600 hover:text-red-700 border border-red-300 rounded-lg hover:bg-red-50 text-sm">
                       <Trash2 className="h-4 w-4" />
+                      <span>Delete</span>
                     </button>
                   </div>
 

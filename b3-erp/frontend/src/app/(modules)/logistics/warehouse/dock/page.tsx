@@ -434,8 +434,9 @@ export default function DockManagementPage() {
               </div>
 
               {dock.status !== 'available' && dock.status !== 'maintenance' && (
-                <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+                <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
                   <Edit className="w-4 h-4 text-gray-600" />
+                  <span className="text-gray-700">Edit</span>
                 </button>
               )}
             </div>

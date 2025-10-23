@@ -758,8 +758,9 @@ const GeneralLedger: React.FC = () => {
                       >
                         <EyeIcon className="w-4 h-4" />
                       </button>
-                      <button className="text-gray-600 hover:text-blue-600">
-                        <PencilIcon className="w-4 h-4" />
+                      <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                        <PencilIcon className="w-4 h-4 text-gray-600" />
+                        <span className="text-gray-700">Edit</span>
                       </button>
                     </div>
                   </td>
@@ -894,12 +895,14 @@ const GeneralLedger: React.FC = () => {
                       >
                         <EyeIcon className="w-4 h-4" />
                       </button>
-                      <button className="text-gray-600 hover:text-blue-600">
-                        <PencilIcon className="w-4 h-4" />
+                      <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                        <PencilIcon className="w-4 h-4 text-gray-600" />
+                        <span className="text-gray-700">Edit</span>
                       </button>
                       {entry.status === 'posted' && (
-                        <button className="text-gray-600 hover:text-red-600">
-                          <DocumentArrowDownIcon className="w-4 h-4" />
+                        <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                          <DocumentArrowDownIcon className="w-4 h-4 text-gray-600" />
+                          <span className="text-gray-700">Download</span>
                         </button>
                       )}
                     </div>

@@ -318,8 +318,9 @@ export default function DashboardsPage() {
       <div className="bg-white rounded-lg shadow-sm p-6">
         <div className="flex justify-between items-center mb-4">
           <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
-          <button className="p-2 hover:bg-gray-100 rounded-lg">
+          <button className="inline-flex items-center gap-1.5 px-3 py-2 hover:bg-gray-100 rounded-lg text-sm">
             <Settings className="w-4 h-4 text-gray-600" />
+            <span className="text-gray-700">Settings</span>
           </button>
         </div>
         <ResponsiveContainer width="100%" height={250}>
@@ -725,15 +726,17 @@ export default function DashboardsPage() {
                 </button>
                 <button
                   onClick={handleShareDashboard}
-                  className="p-2 bg-gray-100 hover:bg-gray-200 rounded-lg"
+                  className="inline-flex items-center gap-1.5 px-3 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm"
                 >
-                  <Share2 className="w-5 h-5" />
+                  <Share2 className="w-4 h-4 text-gray-600" />
+                  <span className="text-gray-700">Share</span>
                 </button>
                 <button
                   onClick={handleExportDashboard}
-                  className="p-2 bg-gray-100 hover:bg-gray-200 rounded-lg"
+                  className="inline-flex items-center gap-1.5 px-3 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm"
                 >
-                  <Download className="w-5 h-5" />
+                  <Download className="w-4 h-4 text-gray-600" />
+                  <span className="text-gray-700">Download</span>
                 </button>
                 {isEditing && (
                   <button

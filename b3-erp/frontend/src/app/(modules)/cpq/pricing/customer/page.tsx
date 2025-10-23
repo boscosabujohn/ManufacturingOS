@@ -278,7 +278,11 @@ export default function CPQPricingCustomerPage() {
                     <div className="text-xs text-gray-600">{customer.lastUpdated}</div>
                   </td>
                   <td className="px-4 py-4 whitespace-nowrap text-right">
-                    <button className="p-1.5 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors">
+                    <button
+                      className="p-1.5 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                      aria-label="Edit"
+                      title="Edit"
+                    >
                       <Edit className="h-4 w-4" />
                     </button>
                   </td>

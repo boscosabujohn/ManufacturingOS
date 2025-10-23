@@ -389,14 +389,17 @@ export default function VariancePage() {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm">
                     <div className="flex items-center space-x-2">
-                      <button className="text-blue-600 hover:text-blue-800">
-                        <Edit className="w-4 h-4" />
+                      <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                        <Edit className="w-4 h-4 text-gray-600" />
+                        <span className="text-gray-700">Edit</span>
                       </button>
-                      <button className="text-green-600 hover:text-green-800">
-                        <CheckCircle className="w-4 h-4" />
+                      <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-green-300 rounded-lg hover:bg-green-50 text-sm">
+                        <CheckCircle className="w-4 h-4 text-green-600" />
+                        <span className="text-green-600">Approve</span>
                       </button>
-                      <button className="text-gray-600 hover:text-gray-800">
-                        <MessageSquare className="w-4 h-4" />
+                      <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                        <MessageSquare className="w-4 h-4 text-gray-600" />
+                        <span className="text-gray-700">Comment</span>
                       </button>
                     </div>
                   </td>

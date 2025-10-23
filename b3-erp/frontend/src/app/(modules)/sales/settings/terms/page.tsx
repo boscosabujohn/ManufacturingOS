@@ -372,8 +372,9 @@ export default function TermsSettingsPage() {
                   <Edit className="h-4 w-4" />
                   Edit
                 </button>
-                <button className="px-4 py-2 border border-red-300 text-red-700 rounded-lg hover:bg-red-50 flex items-center justify-center">
+                <button className="inline-flex items-center gap-1.5 px-4 py-2 border border-red-300 text-red-700 rounded-lg hover:bg-red-50 text-sm">
                   <Trash2 className="h-4 w-4" />
+                  <span>Delete</span>
                 </button>
               </div>
             </div>

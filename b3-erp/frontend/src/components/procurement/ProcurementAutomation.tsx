@@ -538,8 +538,9 @@ export default function ProcurementAutomation() {
                           {rule.status === 'paused' && <Pause className="w-3 h-3 mr-1" />}
                           {rule.status}
                         </span>
-                        <button className="p-1 hover:bg-gray-100 rounded">
+                        <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
                           <Settings className="w-4 h-4 text-gray-600" />
+                          <span className="text-gray-700">Settings</span>
                         </button>
                       </div>
                     </div>
@@ -919,8 +920,9 @@ export default function ProcurementAutomation() {
                         <div className="flex-1 bg-green-100 text-green-700 px-3 py-2 rounded-lg text-sm">
                           Connected: SAP S/4HANA
                         </div>
-                        <button className="p-2 hover:bg-gray-100 rounded">
+                        <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
                           <Settings className="w-4 h-4 text-gray-600" />
+                          <span className="text-gray-700">Settings</span>
                         </button>
                       </div>
                     </div>
@@ -930,8 +932,9 @@ export default function ProcurementAutomation() {
                         <div className="flex-1 bg-purple-100 text-purple-700 px-3 py-2 rounded-lg text-sm">
                           Azure AI Services
                         </div>
-                        <button className="p-2 hover:bg-gray-100 rounded">
+                        <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
                           <Settings className="w-4 h-4 text-gray-600" />
+                          <span className="text-gray-700">Settings</span>
                         </button>
                       </div>
                     </div>

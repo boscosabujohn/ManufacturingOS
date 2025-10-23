@@ -319,7 +319,7 @@ export default function FreightInvoicingPage() {
         <div className="bg-gradient-to-br from-purple-500 to-purple-600 text-white rounded-xl p-4 shadow-sm">
           <div className="flex items-center justify-between mb-2">
             <DollarSign className="w-7 h-7 opacity-80" />
-            <span className="text-lg font-bold">¹{(invoiceStats.totalBilled / 1000000).toFixed(1)}M</span>
+            <span className="text-lg font-bold">ï¿½{(invoiceStats.totalBilled / 1000000).toFixed(1)}M</span>
           </div>
           <p className="text-xs font-medium opacity-90">Total Billed</p>
         </div>
@@ -327,7 +327,7 @@ export default function FreightInvoicingPage() {
         <div className="bg-gradient-to-br from-green-400 to-green-500 text-white rounded-xl p-4 shadow-sm">
           <div className="flex items-center justify-between mb-2">
             <CheckCircle className="w-7 h-7 opacity-80" />
-            <span className="text-lg font-bold">¹{(invoiceStats.totalReceived / 1000000).toFixed(1)}M</span>
+            <span className="text-lg font-bold">ï¿½{(invoiceStats.totalReceived / 1000000).toFixed(1)}M</span>
           </div>
           <p className="text-xs font-medium opacity-90">Received</p>
         </div>
@@ -335,7 +335,7 @@ export default function FreightInvoicingPage() {
         <div className="bg-gradient-to-br from-orange-500 to-orange-600 text-white rounded-xl p-4 shadow-sm">
           <div className="flex items-center justify-between mb-2">
             <AlertTriangle className="w-7 h-7 opacity-80" />
-            <span className="text-lg font-bold">¹{(invoiceStats.totalOutstanding / 1000000).toFixed(1)}M</span>
+            <span className="text-lg font-bold">ï¿½{(invoiceStats.totalOutstanding / 1000000).toFixed(1)}M</span>
           </div>
           <p className="text-xs font-medium opacity-90">Outstanding</p>
         </div>
@@ -401,18 +401,18 @@ export default function FreightInvoicingPage() {
                   <td className="px-6 py-4">
                     <p className="text-sm font-semibold text-gray-900">{invoice.customerName}</p>
                     <p className="text-xs text-gray-500 mt-0.5">{invoice.carrier}</p>
-                    <p className="text-xs text-gray-600 mt-1">{invoice.origin} ’ {invoice.destination}</p>
+                    <p className="text-xs text-gray-600 mt-1">{invoice.origin} ï¿½ {invoice.destination}</p>
                   </td>
                   <td className="px-6 py-4 text-right">
-                    <p className="text-sm font-bold text-gray-900">¹{invoice.totalAmount.toLocaleString()}</p>
-                    <p className="text-xs text-gray-500 mt-0.5">Base: ¹{invoice.baseAmount.toLocaleString()}</p>
+                    <p className="text-sm font-bold text-gray-900">ï¿½{invoice.totalAmount.toLocaleString()}</p>
+                    <p className="text-xs text-gray-500 mt-0.5">Base: ï¿½{invoice.baseAmount.toLocaleString()}</p>
                   </td>
                   <td className="px-6 py-4 text-right">
-                    <p className="text-sm font-semibold text-green-600">¹{invoice.paidAmount.toLocaleString()}</p>
+                    <p className="text-sm font-semibold text-green-600">ï¿½{invoice.paidAmount.toLocaleString()}</p>
                   </td>
                   <td className="px-6 py-4 text-right">
                     <p className={`text-sm font-semibold ${invoice.balanceAmount > 0 ? 'text-red-600' : 'text-gray-400'}`}>
-                      ¹{invoice.balanceAmount.toLocaleString()}
+                      ï¿½{invoice.balanceAmount.toLocaleString()}
                     </p>
                   </td>
                   <td className="px-6 py-4">
@@ -427,11 +427,13 @@ export default function FreightInvoicingPage() {
                   </td>
                   <td className="px-6 py-4 text-center">
                     <div className="flex items-center justify-center gap-2">
-                      <button className="p-2 hover:bg-gray-100 rounded-lg">
+                      <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
                         <Eye className="w-4 h-4 text-gray-600" />
+                        <span className="text-gray-700">View</span>
                       </button>
-                      <button className="p-2 hover:bg-gray-100 rounded-lg">
+                      <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
                         <Download className="w-4 h-4 text-gray-600" />
+                        <span className="text-gray-700">Download</span>
                       </button>
                     </div>
                   </td>

@@ -262,9 +262,10 @@ export const ThemeSettingsPanel: React.FC<{
               </div>
               <button
                 onClick={onClose}
-                className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg"
+                className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 text-sm"
               >
                 <Settings className="h-5 w-5 text-gray-500 dark:text-gray-400" />
+                <span className="text-gray-700 dark:text-gray-300">Settings</span>
               </button>
             </div>
           </div>

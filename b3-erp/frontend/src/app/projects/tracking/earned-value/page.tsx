@@ -1,10 +1,28 @@
 'use client';
 
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { TrendingUp, Search, Filter, Download, DollarSign } from 'lucide-react';
+import { ResponsiveContainer, LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend } from 'recharts';
+
+type EvmPoint = { period: string; PV: number; EV: number; AC: number };
+const EVM_SERIES: EvmPoint[] = [
+  { period: 'W36', PV: 850, EV: 820, AC: 790 },
+  { period: 'W37', PV: 900, EV: 870, AC: 860 },
+  { period: 'W38', PV: 1000, EV: 930, AC: 960 },
+  { period: 'W39', PV: 1100, EV: 1040, AC: 1010 },
+  { period: 'W40', PV: 1200, EV: 1110, AC: 1050 },
+];
+
+type EvmRow = { project: string; PV: number; EV: number; AC: number };
+const EVM_TABLE: EvmRow[] = [
+  { project: 'Kitchen Fitout - Tower A', PV: 420, EV: 400, AC: 380 },
+  { project: 'Luxury Villa Wardrobes', PV: 360, EV: 330, AC: 340 },
+  { project: 'Corporate Pantry Rollout', PV: 300, EV: 310, AC: 290 },
+];
 
 export default function EarnedValueManagementPage() {
   const [searchTerm, setSearchTerm] = useState('');
+  const rows = useMemo(() => EVM_TABLE.filter(r => r.project.toLowerCase().includes(searchTerm.toLowerCase())), [searchTerm]);
 
   return (
     <div className="p-6">
@@ -82,12 +100,71 @@ export default function EarnedValueManagementPage() {
         </div>
       </div>
 
-      {/* Content placeholder */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
-        <div className="text-center text-gray-500">
-          <TrendingUp className="h-16 w-16 mx-auto mb-4 text-gray-400" />
-          <h3 className="text-lg font-semibold text-gray-700 mb-2">EVM Analysis</h3>
-          <p className="text-gray-600">Track PV, EV, AC with SPI, CPI calculations and project forecasting</p>
+      {/* EVM Curve */}
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-4">
+        <div className="flex items-center justify-between mb-2">
+          <h3 className="font-semibold text-gray-800">EVM S-Curve</h3>
+          <span className="text-xs text-gray-500">Weekly</span>
+        </div>
+        <div className="h-72">
+          <ResponsiveContainer width="100%" height="100%">
+            <LineChart data={EVM_SERIES} margin={{ top: 8, right: 16, left: 0, bottom: 0 }}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="period" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Line type="monotone" dataKey="PV" stroke="#6366f1" strokeWidth={2} />
+              <Line type="monotone" dataKey="EV" stroke="#10b981" strokeWidth={2} />
+              <Line type="monotone" dataKey="AC" stroke="#f59e0b" strokeWidth={2} />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+
+      {/* Table with SPI/CPI */}
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+        <div className="px-4 py-3 border-b">
+          <h3 className="font-semibold text-gray-800">Project EVM Summary</h3>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="min-w-full divide-y divide-gray-200">
+            <thead className="bg-gray-50">
+              <tr>
+                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600">Project</th>
+                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600">PV</th>
+                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600">EV</th>
+                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600">AC</th>
+                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600">SV (EV - PV)</th>
+                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600">CV (EV - AC)</th>
+                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600">SPI (EV/PV)</th>
+                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600">CPI (EV/AC)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-200 bg-white">
+              {rows.map(r => {
+                const sv = r.EV - r.PV;
+                const cv = r.EV - r.AC;
+                const spi = r.PV ? (r.EV / r.PV) : 0;
+                const cpi = r.AC ? (r.EV / r.AC) : 0;
+                return (
+                  <tr key={r.project} className="hover:bg-gray-50">
+                    <td className="px-4 py-3 text-sm text-gray-800">{r.project}</td>
+                    <td className="px-4 py-3 text-sm text-gray-700">{r.PV.toFixed(0)}</td>
+                    <td className="px-4 py-3 text-sm text-gray-700">{r.EV.toFixed(0)}</td>
+                    <td className="px-4 py-3 text-sm text-gray-700">{r.AC.toFixed(0)}</td>
+                    <td className={`px-4 py-3 text-sm ${sv>=0?'text-green-700':'text-red-700'}`}>{sv.toFixed(0)}</td>
+                    <td className={`px-4 py-3 text-sm ${cv>=0?'text-green-700':'text-red-700'}`}>{cv.toFixed(0)}</td>
+                    <td className="px-4 py-3 text-sm">{spi.toFixed(2)}</td>
+                    <td className="px-4 py-3 text-sm">{cpi.toFixed(2)}</td>
+                  </tr>
+                );
+              })}
+              {rows.length===0 && (
+                <tr><td colSpan={8} className="px-4 py-8 text-center text-gray-500">No matching projects</td></tr>
+              )}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

@@ -680,17 +680,21 @@ export default function AccountsReceivableManagement() {
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                         <div className="flex items-center space-x-2">
-                          <button className="text-blue-600 hover:text-blue-900">
-                            <Mail className="h-4 w-4" />
+                          <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                            <Mail className="h-4 w-4 text-gray-600" />
+                            <span className="text-gray-700">Email</span>
                           </button>
-                          <button className="text-green-600 hover:text-green-900">
-                            <Phone className="h-4 w-4" />
+                          <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                            <Phone className="h-4 w-4 text-gray-600" />
+                            <span className="text-gray-700">Call</span>
                           </button>
-                          <button className="text-gray-600 hover:text-gray-900">
-                            <Eye className="h-4 w-4" />
+                          <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                            <Eye className="h-4 w-4 text-gray-600" />
+                            <span className="text-gray-700">View</span>
                           </button>
-                          <button className="text-gray-600 hover:text-gray-900">
-                            <MoreHorizontal className="h-4 w-4" />
+                          <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                            <MoreHorizontal className="h-4 w-4 text-gray-600" />
+                            <span className="text-gray-700">More</span>
                           </button>
                         </div>
                       </td>

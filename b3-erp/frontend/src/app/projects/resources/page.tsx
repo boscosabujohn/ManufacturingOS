@@ -1,10 +1,18 @@
 'use client';
 
-import { useState } from 'react';
-import { Users, Search, Filter, PlusCircle, Download } from 'lucide-react';
+import { useMemo, useState } from 'react';
+import { Users, Search, Filter, PlusCircle, Download, AlertTriangle, ChevronRight } from 'lucide-react';
+
+type Res = { id: string; name: string; role: string; dept: string; utilization: number };
+const TOP_OVER: Res[] = [
+  { id: 'E-307', name: 'Rahul Kumar', role: 'Engineer', dept: 'Engineering', utilization: 92 },
+  { id: 'E-101', name: 'Amit Singh', role: 'Project Manager', dept: 'Projects', utilization: 88 },
+  { id: 'E-512', name: 'Vikram Reddy', role: 'Developer', dept: 'IT', utilization: 86 },
+];
 
 export default function ResourceAllocationPage() {
   const [searchTerm, setSearchTerm] = useState('');
+  const list = useMemo(() => TOP_OVER, []);
 
   return (
     <div className="p-6">
@@ -86,12 +94,72 @@ export default function ResourceAllocationPage() {
         </div>
       </div>
 
-      {/* Content placeholder */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
-        <div className="text-center text-gray-500">
-          <Users className="h-16 w-16 mx-auto mb-4 text-gray-400" />
-          <h3 className="text-lg font-semibold text-gray-700 mb-2">Resource Allocation Matrix</h3>
-          <p className="text-gray-600">Manage resource assignments, capacity, and availability across projects</p>
+      {/* Overview cards */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+        <a href="/projects/resources/utilization" className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 hover:shadow transition-shadow">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm text-gray-600">Utilization</p>
+              <p className="text-2xl font-bold text-gray-900 mt-1">78%</p>
+            </div>
+            <ChevronRight className="h-6 w-6 text-gray-400" />
+          </div>
+          <p className="text-xs text-gray-500 mt-1">Avg. across active resources</p>
+        </a>
+        <a href="/projects/resources/team" className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 hover:shadow transition-shadow">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm text-gray-600">Team Members</p>
+              <p className="text-2xl font-bold text-gray-900 mt-1">68</p>
+            </div>
+            <ChevronRight className="h-6 w-6 text-gray-400" />
+          </div>
+          <p className="text-xs text-gray-500 mt-1">Across 12 departments</p>
+        </a>
+        <a href="/projects/resources/calendar" className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 hover:shadow transition-shadow">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm text-gray-600">Bookings This Week</p>
+              <p className="text-2xl font-bold text-gray-900 mt-1">112</p>
+            </div>
+            <ChevronRight className="h-6 w-6 text-gray-400" />
+          </div>
+          <p className="text-xs text-gray-500 mt-1">Meetings, installs, surveys</p>
+        </a>
+      </div>
+
+      {/* Overutilized list */}
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+        <div className="px-4 py-3 border-b flex items-center gap-2">
+          <AlertTriangle className="h-4 w-4 text-amber-600" />
+          <h3 className="font-semibold text-gray-800">Top Overutilized Resources</h3>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="min-w-full divide-y divide-gray-200">
+            <thead className="bg-gray-50">
+              <tr>
+                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600">Resource</th>
+                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600">Role</th>
+                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600">Department</th>
+                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-600">Utilization</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-200 bg-white">
+              {list.map(r => (
+                <tr key={r.id} className="hover:bg-gray-50">
+                  <td className="px-4 py-3 text-sm text-gray-800">{r.name} <span className="text-gray-400">({r.id})</span></td>
+                  <td className="px-4 py-3 text-sm text-gray-700">{r.role}</td>
+                  <td className="px-4 py-3 text-sm text-gray-700">{r.dept}</td>
+                  <td className="px-4 py-3">
+                    <div className="w-40">
+                      <div className="h-2 w-full bg-gray-100 rounded"><div className={`h-2 rounded ${r.utilization>85?'bg-red-500':'bg-yellow-500'}`} style={{ width: `${r.utilization}%` }} /></div>
+                      <div className="mt-1 text-xs text-gray-600">{r.utilization}%</div>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

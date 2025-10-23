@@ -553,11 +553,13 @@ const FinancialAutomation = () => {
                   View Details
                 </button>
                 <div className="flex space-x-2">
-                  <button className="text-gray-600 hover:text-gray-800">
-                    <Settings className="h-4 w-4" />
+                  <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                    <Settings className="h-4 w-4 text-gray-600" />
+                    <span className="text-gray-700">Settings</span>
                   </button>
-                  <button className="text-yellow-600 hover:text-yellow-800">
-                    <Pause className="h-4 w-4" />
+                  <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-yellow-300 rounded-lg hover:bg-yellow-50 text-sm">
+                    <Pause className="h-4 w-4 text-yellow-600" />
+                    <span className="text-yellow-600">Pause</span>
                   </button>
                 </div>
               </div>
@@ -748,12 +750,14 @@ const FinancialAutomation = () => {
                           <Settings className="h-4 w-4" />
                         </button>
                         {rule.status === 'active' ? (
-                          <button className="text-yellow-600 hover:text-yellow-800">
-                            <Pause className="h-4 w-4" />
+                          <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-yellow-300 rounded-lg hover:bg-yellow-50 text-sm">
+                            <Pause className="h-4 w-4 text-yellow-600" />
+                            <span className="text-yellow-600">Pause</span>
                           </button>
                         ) : (
-                          <button className="text-green-600 hover:text-green-800">
-                            <Play className="h-4 w-4" />
+                          <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-green-300 rounded-lg hover:bg-green-50 text-sm">
+                            <Play className="h-4 w-4 text-green-600" />
+                            <span className="text-green-600">Play</span>
                           </button>
                         )}
                       </div>
@@ -1106,8 +1110,9 @@ const FinancialAutomation = () => {
                     <td className="text-right py-2">{execution.recordsProcessed}</td>
                     <td className="py-2">{execution.triggeredBy}</td>
                     <td className="text-center py-2">
-                      <button className="text-blue-600 hover:text-blue-800">
-                        <Eye className="h-4 w-4" />
+                      <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                        <Eye className="h-4 w-4 text-gray-600" />
+                        <span className="text-gray-700">View</span>
                       </button>
                     </td>
                   </tr>

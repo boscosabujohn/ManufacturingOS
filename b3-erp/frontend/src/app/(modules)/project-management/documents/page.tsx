@@ -706,8 +706,9 @@ export default function DocumentsPage() {
                     >
                       <Eye className="h-4 w-4" />
                     </button>
-                    <button className="p-1 text-green-600 hover:text-green-800">
-                      <Download className="h-4 w-4" />
+                    <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                      <Download className="h-4 w-4 text-gray-600" />
+                      <span className="text-gray-700">Download</span>
                     </button>
                   </div>
                 </div>

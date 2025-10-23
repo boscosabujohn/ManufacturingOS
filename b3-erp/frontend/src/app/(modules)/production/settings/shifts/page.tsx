@@ -414,11 +414,13 @@ export default function ShiftsSettingsPage() {
                   </td>
                   <td className="px-4 py-3">
                     <div className="flex items-center justify-center gap-2">
-                      <button className="p-1 hover:bg-gray-100 rounded transition-colors">
-                        <Edit2 className="w-4 h-4 text-blue-600" />
+                      <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                        <Edit2 className="w-4 h-4 text-gray-600" />
+                        <span className="text-gray-700">Edit</span>
                       </button>
-                      <button className="p-1 hover:bg-gray-100 rounded transition-colors">
+                      <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-red-300 rounded-lg hover:bg-red-50 text-sm">
                         <Trash2 className="w-4 h-4 text-red-600" />
+                        <span className="text-red-600">Delete</span>
                       </button>
                     </div>
                   </td>

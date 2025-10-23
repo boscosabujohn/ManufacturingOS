@@ -763,18 +763,22 @@ export default function PurchaseOrdersPage() {
                       <div className="flex items-center gap-2">
                         <Link
                           href={`/procurement/purchase-orders/${order.id}`}
-                          className="text-blue-600 hover:text-blue-800"
+                          className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm"
                         >
-                          <Eye className="h-4 w-4" />
+                          <Eye className="h-4 w-4 text-gray-600" />
+                          <span className="text-gray-700">View</span>
                         </Link>
-                        <button className="text-green-600 hover:text-green-800">
-                          <Edit className="h-4 w-4" />
+                        <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                          <Edit className="h-4 w-4 text-gray-600" />
+                          <span className="text-gray-700">Edit</span>
                         </button>
-                        <button className="text-gray-600 hover:text-gray-800">
-                          <Printer className="h-4 w-4" />
+                        <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                          <Printer className="h-4 w-4 text-gray-600" />
+                          <span className="text-gray-700">Print</span>
                         </button>
-                        <button className="text-gray-600 hover:text-gray-800">
-                          <MoreVertical className="h-4 w-4" />
+                        <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                          <MoreVertical className="h-4 w-4 text-gray-600" />
+                          <span className="text-gray-700">More</span>
                         </button>
                       </div>
                     </td>
@@ -879,22 +883,27 @@ export default function PurchaseOrdersPage() {
                     <div className="flex gap-2">
                       <Link
                         href={`/procurement/purchase-orders/${order.id}`}
-                        className="p-1.5 text-blue-600 hover:bg-blue-50 rounded"
+                        className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm"
                       >
-                        <Eye className="h-4 w-4" />
+                        <Eye className="h-4 w-4 text-gray-600" />
+                        <span className="text-gray-700">View</span>
                       </Link>
-                      <button className="p-1.5 text-green-600 hover:bg-green-50 rounded">
-                        <Edit className="h-4 w-4" />
+                      <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                        <Edit className="h-4 w-4 text-gray-600" />
+                        <span className="text-gray-700">Edit</span>
                       </button>
-                      <button className="p-1.5 text-gray-600 hover:bg-gray-50 rounded">
-                        <Printer className="h-4 w-4" />
+                      <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                        <Printer className="h-4 w-4 text-gray-600" />
+                        <span className="text-gray-700">Print</span>
                       </button>
-                      <button className="p-1.5 text-gray-600 hover:bg-gray-50 rounded">
-                        <Mail className="h-4 w-4" />
+                      <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                        <Mail className="h-4 w-4 text-gray-600" />
+                        <span className="text-gray-700">Email</span>
                       </button>
                     </div>
-                    <button className="p-1.5 text-gray-600 hover:bg-gray-50 rounded">
-                      <MoreVertical className="h-4 w-4" />
+                    <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                      <MoreVertical className="h-4 w-4 text-gray-600" />
+                      <span className="text-gray-700">More</span>
                     </button>
                   </div>
                 </div>

@@ -825,11 +825,13 @@ const MultiCurrencyManagement: React.FC = () => {
                         >
                           <EyeIcon className="w-4 h-4" />
                         </button>
-                        <button className="text-gray-600 hover:text-blue-600">
-                          <PencilIcon className="w-4 h-4" />
+                        <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                          <PencilIcon className="w-4 h-4 text-gray-600" />
+                          <span className="text-gray-700">Edit</span>
                         </button>
-                        <button className="text-gray-600 hover:text-green-600">
-                          <CogIcon className="w-4 h-4" />
+                        <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                          <CogIcon className="w-4 h-4 text-gray-600" />
+                          <span className="text-gray-700">Settings</span>
                         </button>
                       </div>
                     </td>
@@ -910,11 +912,13 @@ const MultiCurrencyManagement: React.FC = () => {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                     <div className="flex space-x-2">
-                      <button className="text-blue-600 hover:text-blue-800">
-                        <ArrowPathIcon className="w-4 h-4" />
+                      <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                        <ArrowPathIcon className="w-4 h-4 text-gray-600" />
+                        <span className="text-gray-700">Refresh</span>
                       </button>
-                      <button className="text-gray-600 hover:text-blue-600">
-                        <PencilIcon className="w-4 h-4" />
+                      <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                        <PencilIcon className="w-4 h-4 text-gray-600" />
+                        <span className="text-gray-700">Edit</span>
                       </button>
                     </div>
                   </td>
