@@ -6,7 +6,8 @@ import {
   ArrowLeft, Edit, Package, MapPin, Calendar, TrendingUp,
   TrendingDown, AlertTriangle, DollarSign, BarChart3,
   Warehouse, RefreshCw, ShoppingCart, Truck, Clock,
-  CheckCircle, XCircle, Activity, FileText, Download
+  CheckCircle, XCircle, Activity, FileText, Download,
+  PieChart, Target, Zap, ArrowRight, Box, Layers
 } from 'lucide-react';
 
 interface StockItem {
@@ -89,7 +90,7 @@ interface ActivityLog {
 
 export default function StockViewPage({ params }: { params: { id: string } }) {
   const router = useRouter();
-  const [activeTab, setActiveTab] = useState<'overview' | 'transactions' | 'locations' | 'activity'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'transactions' | 'locations' | 'activity' | 'analytics'>('overview');
 
   // Mock data
   const stockItem: StockItem = {
@@ -346,6 +347,16 @@ export default function StockViewPage({ params }: { params: { id: string } }) {
             }`}
           >
             Activity Log
+          </button>
+          <button
+            onClick={() => setActiveTab('analytics')}
+            className={`pb-3 px-1 border-b-2 font-medium transition-colors ${
+              activeTab === 'analytics'
+                ? 'border-blue-500 text-blue-600'
+                : 'border-transparent text-gray-500 hover:text-gray-700'
+            }`}
+          >
+            Stock Analytics
           </button>
         </div>
       </div>
@@ -777,6 +788,375 @@ export default function StockViewPage({ params }: { params: { id: string } }) {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      )}
+
+      {activeTab === 'analytics' && (
+        <div className="space-y-6">
+          {/* Stock Aging Analysis */}
+          <div className="bg-white p-6 rounded-lg border border-gray-200">
+            <h3 className="text-lg font-bold text-gray-900 mb-6 flex items-center gap-2">
+              <Clock className="w-5 h-5 text-blue-600" />
+              Stock Aging & Turnover Analysis
+            </h3>
+            <div className="grid grid-cols-3 gap-6">
+              <div className="bg-gradient-to-br from-green-50 to-emerald-50 p-6 rounded-lg border border-green-200">
+                <div className="flex items-center justify-between mb-4">
+                  <RefreshCw className="w-8 h-8 text-green-600" />
+                  <span className="text-sm font-semibold text-green-600 bg-green-100 px-2 py-1 rounded-full">Fast Moving</span>
+                </div>
+                <div className="text-sm text-gray-600 mb-2">Inventory Turnover</div>
+                <div className="text-3xl font-bold text-gray-900 mb-1">12.5x</div>
+                <div className="text-xs text-gray-500">times per year</div>
+                <div className="mt-4 bg-white/60 rounded-lg p-3">
+                  <div className="text-xs text-gray-600 mb-1">Days Inventory Outstanding (DIO)</div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-lg font-bold text-gray-900">29 days</span>
+                    <span className="text-xs text-green-600">Industry: 45 days</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-lg border border-blue-200">
+                <div className="flex items-center justify-between mb-4">
+                  <Clock className="w-8 h-8 text-blue-600" />
+                  <span className="text-sm font-semibold text-blue-600">Average</span>
+                </div>
+                <div className="text-sm text-gray-600 mb-2">Average Stock Age</div>
+                <div className="text-3xl font-bold text-gray-900 mb-1">18 days</div>
+                <div className="text-xs text-gray-500">current batch</div>
+                <div className="mt-4 space-y-2">
+                  <div className="flex justify-between text-xs">
+                    <span className="text-gray-600">0-30 days:</span>
+                    <span className="font-semibold text-green-600">85% (2,082 {stockItem.uom})</span>
+                  </div>
+                  <div className="flex justify-between text-xs">
+                    <span className="text-gray-600">31-60 days:</span>
+                    <span className="font-semibold text-yellow-600">12% (294 {stockItem.uom})</span>
+                  </div>
+                  <div className="flex justify-between text-xs">
+                    <span className="text-gray-600">60+ days:</span>
+                    <span className="font-semibold text-red-600">3% (74 {stockItem.uom})</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-gradient-to-br from-purple-50 to-pink-50 p-6 rounded-lg border border-purple-200">
+                <div className="flex items-center justify-between mb-4">
+                  <TrendingUp className="w-8 h-8 text-purple-600" />
+                  <span className="text-sm font-semibold text-purple-600">Efficient</span>
+                </div>
+                <div className="text-sm text-gray-600 mb-2">Carrying Cost</div>
+                <div className="text-3xl font-bold text-gray-900 mb-1">₹2.8K</div>
+                <div className="text-xs text-gray-500">per month</div>
+                <div className="mt-4 bg-white/60 rounded-lg p-3">
+                  <div className="text-xs text-gray-600 mb-2">Annual Cost Breakdown</div>
+                  <div className="space-y-1">
+                    <div className="flex justify-between text-xs">
+                      <span className="text-gray-600">Storage:</span>
+                      <span className="font-semibold">₹18,500</span>
+                    </div>
+                    <div className="flex justify-between text-xs">
+                      <span className="text-gray-600">Insurance:</span>
+                      <span className="font-semibold">₹8,200</span>
+                    </div>
+                    <div className="flex justify-between text-xs">
+                      <span className="text-gray-600">Handling:</span>
+                      <span className="font-semibold">₹7,100</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Demand Forecasting & Reorder Optimization */}
+          <div className="grid grid-cols-2 gap-6">
+            <div className="bg-white p-6 rounded-lg border border-gray-200">
+              <h3 className="text-lg font-bold text-gray-900 mb-6 flex items-center gap-2">
+                <Target className="w-5 h-5 text-emerald-600" />
+                Demand Forecast & Reorder Planning
+              </h3>
+              <div className="space-y-4">
+                <div className="bg-gradient-to-r from-emerald-50 to-green-50 p-4 rounded-lg border border-emerald-100">
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-sm font-semibold text-gray-700">Next 30 Days Forecast</span>
+                    <span className="text-xs bg-emerald-600 text-white px-2 py-1 rounded-full">AI Predicted</span>
+                  </div>
+                  <div className="grid grid-cols-3 gap-3">
+                    <div>
+                      <div className="text-xs text-gray-600 mb-1">Expected Demand</div>
+                      <div className="text-2xl font-bold text-emerald-600">1,850</div>
+                      <div className="text-xs text-gray-500">{stockItem.uom}</div>
+                    </div>
+                    <div>
+                      <div className="text-xs text-gray-600 mb-1">Confidence</div>
+                      <div className="text-2xl font-bold text-blue-600">94%</div>
+                      <div className="text-xs text-gray-500">accuracy</div>
+                    </div>
+                    <div>
+                      <div className="text-xs text-gray-600 mb-1">Safety Buffer</div>
+                      <div className="text-2xl font-bold text-orange-600">+15%</div>
+                      <div className="text-xs text-gray-500">cushion</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                        <ShoppingCart className="w-5 h-5 text-blue-600" />
+                      </div>
+                      <div>
+                        <div className="text-sm font-semibold text-gray-900">Economic Order Quantity (EOQ)</div>
+                        <div className="text-xs text-gray-500">Optimal order size</div>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-lg font-bold text-gray-900">625 {stockItem.uom}</div>
+                      <div className="text-xs text-green-600">Min cost point</div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
+                        <AlertTriangle className="w-5 h-5 text-orange-600" />
+                      </div>
+                      <div>
+                        <div className="text-sm font-semibold text-gray-900">Reorder Point</div>
+                        <div className="text-xs text-gray-500">Trigger threshold</div>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-lg font-bold text-gray-900">500 {stockItem.uom}</div>
+                      <div className="text-xs text-orange-600">Current: Above ✓</div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                        <Calendar className="w-5 h-5 text-green-600" />
+                      </div>
+                      <div>
+                        <div className="text-sm font-semibold text-gray-900">Next Order Due</div>
+                        <div className="text-xs text-gray-500">Based on consumption</div>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-lg font-bold text-gray-900">Nov 22, 2025</div>
+                      <div className="text-xs text-gray-600">30 days away</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-4 rounded-lg border border-blue-100">
+                  <div className="flex items-center gap-3 mb-3">
+                    <Zap className="w-5 h-5 text-blue-600" />
+                    <span className="text-sm font-semibold text-gray-700">Smart Recommendations</span>
+                  </div>
+                  <ul className="space-y-2 text-xs text-gray-600">
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" />
+                      <span>Order 625 {stockItem.uom} when stock reaches 500 {stockItem.uom} to minimize costs</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
+                      <span>Consider bulk discount: 10% off on orders above 800 {stockItem.uom} from Tata Steel</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <AlertTriangle className="w-4 h-4 text-orange-600 flex-shrink-0 mt-0.5" />
+                      <span>Monitor 74 {stockItem.uom} of aging stock (60+ days) for potential write-off</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white p-6 rounded-lg border border-gray-200">
+              <h3 className="text-lg font-bold text-gray-900 mb-6 flex items-center gap-2">
+                <PieChart className="w-5 h-5 text-indigo-600" />
+                Stock Valuation & Cost Analysis
+              </h3>
+              <div className="space-y-4">
+                <div className="bg-gradient-to-r from-indigo-50 to-purple-50 p-4 rounded-lg border border-indigo-100">
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-sm font-semibold text-gray-700">Current Stock Value</span>
+                    <span className="text-xs bg-indigo-600 text-white px-2 py-1 rounded-full">At Avg Cost</span>
+                  </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <div className="text-xs text-gray-600 mb-1">Total Value</div>
+                      <div className="text-2xl font-bold text-indigo-600">₹4.54L</div>
+                      <div className="text-xs text-gray-500">2,450 {stockItem.uom} @ ₹185.50</div>
+                    </div>
+                    <div>
+                      <div className="text-xs text-gray-600 mb-1">Available Value</div>
+                      <div className="text-2xl font-bold text-green-600">₹2.97L</div>
+                      <div className="text-xs text-gray-500">1,600 {stockItem.uom} uncommitted</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-3">
+                  <div>
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-sm font-semibold text-gray-700">Cost Price Trend (Last 90 Days)</span>
+                      <span className="text-sm font-bold text-green-600">+2.1%</span>
+                    </div>
+                    <div className="flex items-center gap-4">
+                      <div className="flex-1">
+                        <div className="w-full bg-gray-200 rounded-full h-2">
+                          <div className="bg-gradient-to-r from-green-500 via-blue-500 to-purple-500 h-2 rounded-full" style={{ width: '75%' }}></div>
+                        </div>
+                      </div>
+                      <div className="text-xs text-gray-600">
+                        <div>Min: ₹180.00</div>
+                        <div>Max: ₹185.50</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-gray-50 p-3 rounded-lg">
+                    <div className="text-xs text-gray-600 mb-2 font-semibold">Valuation Methods Comparison</div>
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs text-gray-600">FIFO (First In First Out)</span>
+                        <span className="text-sm font-bold text-gray-900">₹4.54L</span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs text-gray-600">LIFO (Last In First Out)</span>
+                        <span className="text-sm font-bold text-gray-900">₹4.48L</span>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs text-gray-600">Weighted Average</span>
+                        <span className="text-sm font-bold text-blue-600">₹4.47L ✓</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-gradient-to-r from-orange-50 to-red-50 p-3 rounded-lg border border-orange-100">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-xs font-semibold text-gray-700">Price Variance Analysis</span>
+                      <span className="text-xs bg-orange-600 text-white px-2 py-1 rounded-full">+1.5%</span>
+                    </div>
+                    <div className="space-y-1 text-xs">
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Standard Cost:</span>
+                        <span className="font-semibold">₹182.75</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Actual Cost:</span>
+                        <span className="font-semibold">₹185.50</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Variance:</span>
+                        <span className="font-semibold text-orange-600">+₹2.75 per {stockItem.uom}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-gradient-to-r from-green-50 to-emerald-50 p-4 rounded-lg border border-green-100">
+                  <div className="flex items-center gap-3 mb-3">
+                    <DollarSign className="w-5 h-5 text-green-600" />
+                    <span className="text-sm font-semibold text-gray-700">Cost Savings Opportunities</span>
+                  </div>
+                  <div className="grid grid-cols-2 gap-3">
+                    <div>
+                      <div className="text-xs text-gray-600 mb-1">Bulk Order Discount</div>
+                      <div className="text-lg font-bold text-green-600">₹18.5K</div>
+                      <div className="text-xs text-gray-500">10% on 800+ {stockItem.uom}</div>
+                    </div>
+                    <div>
+                      <div className="text-xs text-gray-600 mb-1">Reduced Carrying Cost</div>
+                      <div className="text-lg font-bold text-blue-600">₹5.2K</div>
+                      <div className="text-xs text-gray-500">JIT optimization</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* ABC Analysis & Stock Classification */}
+          <div className="bg-white p-6 rounded-lg border border-gray-200">
+            <h3 className="text-lg font-bold text-gray-900 mb-6 flex items-center gap-2">
+              <Layers className="w-5 h-5 text-purple-600" />
+              ABC Analysis & Stock Classification
+            </h3>
+            <div className="grid grid-cols-4 gap-4">
+              <div className="bg-gradient-to-br from-red-50 to-pink-50 p-4 rounded-lg border border-red-200">
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-2xl font-bold text-red-600">A</span>
+                  <span className="text-xs bg-red-600 text-white px-2 py-1 rounded-full">High Value</span>
+                </div>
+                <div className="text-sm text-gray-600 mb-1">Classification</div>
+                <div className="text-xs text-gray-500 mb-3">Tight control, frequent review</div>
+                <div className="space-y-1 text-xs">
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Value Contribution:</span>
+                    <span className="font-bold text-red-600">78%</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Items:</span>
+                    <span className="font-semibold">15% of SKUs</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-gradient-to-br from-yellow-50 to-amber-50 p-4 rounded-lg border border-yellow-200">
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-2xl font-bold text-yellow-600">B</span>
+                  <span className="text-xs bg-yellow-600 text-white px-2 py-1 rounded-full">Medium Value</span>
+                </div>
+                <div className="text-sm text-gray-600 mb-1">Classification</div>
+                <div className="text-xs text-gray-500 mb-3">Moderate control, regular review</div>
+                <div className="space-y-1 text-xs">
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Value Contribution:</span>
+                    <span className="font-bold text-yellow-600">17%</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Items:</span>
+                    <span className="font-semibold">30% of SKUs</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-gradient-to-br from-green-50 to-emerald-50 p-4 rounded-lg border border-green-200">
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-2xl font-bold text-green-600">C</span>
+                  <span className="text-xs bg-green-600 text-white px-2 py-1 rounded-full">Low Value</span>
+                </div>
+                <div className="text-sm text-gray-600 mb-1">Classification</div>
+                <div className="text-xs text-gray-500 mb-3">Basic control, periodic review</div>
+                <div className="space-y-1 text-xs">
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Value Contribution:</span>
+                    <span className="font-bold text-green-600">5%</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Items:</span>
+                    <span className="font-semibold">55% of SKUs</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-4 rounded-lg border border-blue-200">
+                <div className="flex items-center justify-between mb-3">
+                  <Box className="w-8 h-8 text-blue-600" />
+                  <CheckCircle className="w-5 h-5 text-blue-600" />
+                </div>
+                <div className="text-sm text-gray-600 mb-1">This Item Status</div>
+                <div className="text-2xl font-bold text-red-600 mb-1">Class A</div>
+                <div className="text-xs text-gray-500 mb-2">Critical item - high value</div>
+                <div className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">Fast moving, tight control required</div>
+              </div>
+            </div>
           </div>
         </div>
       )}

@@ -5,7 +5,8 @@ import { useRouter } from 'next/navigation';
 import {
   ArrowLeft, Edit, Warehouse as WarehouseIcon, MapPin, Package,
   Users, DollarSign, BarChart3, TrendingUp, AlertTriangle,
-  CheckCircle, Phone, Mail, Calendar, Activity, Download
+  CheckCircle, Phone, Mail, Calendar, Activity, Download,
+  PieChart, Target, Zap, Layers, Box, TrendingDown, Eye
 } from 'lucide-react';
 
 interface Warehouse {
@@ -32,7 +33,7 @@ interface Warehouse {
   racks: number;
   bins: number;
   status: 'active' | 'inactive' | 'maintenance';
-  temperature controlled: boolean;
+  temperatureControlled: boolean;
   securityEnabled: boolean;
   fireSafety: boolean;
   manager: string;
@@ -70,7 +71,7 @@ interface ActivityLog {
 
 export default function WarehouseViewPage({ params }: { params: { id: string } }) {
   const router = useRouter();
-  const [activeTab, setActiveTab] = useState<'overview' | 'zones' | 'stock' | 'activity'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'zones' | 'stock' | 'activity' | 'analytics'>('overview');
 
   // Mock data
   const warehouse: Warehouse = {
@@ -305,6 +306,16 @@ export default function WarehouseViewPage({ params }: { params: { id: string } }
             }`}
           >
             Recent Activity
+          </button>
+          <button
+            onClick={() => setActiveTab('analytics')}
+            className={`pb-3 px-1 border-b-2 font-medium transition-colors ${
+              activeTab === 'analytics'
+                ? 'border-blue-500 text-blue-600'
+                : 'border-transparent text-gray-500 hover:text-gray-700'
+            }`}
+          >
+            Capacity Analytics
           </button>
         </div>
       </div>
@@ -648,6 +659,345 @@ export default function WarehouseViewPage({ params }: { params: { id: string } }
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      )}
+
+      {activeTab === 'analytics' && (
+        <div className="space-y-6">
+          {/* Capacity & Utilization Analytics */}
+          <div className="bg-white p-6 rounded-lg border border-gray-200">
+            <h3 className="text-lg font-bold text-gray-900 mb-6 flex items-center gap-2">
+              <BarChart3 className="w-5 h-5 text-blue-600" />
+              Capacity & Space Utilization Analytics
+            </h3>
+            <div className="grid grid-cols-3 gap-6">
+              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-lg border border-blue-200">
+                <div className="flex items-center justify-between mb-4">
+                  <Layers className="w-8 h-8 text-blue-600" />
+                  <span className="text-2xl font-bold text-blue-600">{areaUtilization}%</span>
+                </div>
+                <div className="text-sm text-gray-600 mb-2">Space Utilization</div>
+                <div className="text-xs text-gray-500 mb-4">{warehouse.usedArea.toLocaleString()} / {warehouse.totalArea.toLocaleString()} {warehouse.areaUnit}</div>
+                <div className="w-full bg-gray-200 rounded-full h-3 mb-2">
+                  <div className="bg-gradient-to-r from-blue-500 to-indigo-500 h-3 rounded-full" style={{ width: `${areaUtilization}%` }}></div>
+                </div>
+                <div className="flex justify-between text-xs text-gray-600">
+                  <span>Available: {(warehouse.totalArea - warehouse.usedArea).toLocaleString()} {warehouse.areaUnit}</span>
+                  <span className={parseFloat(areaUtilization) > 85 ? 'text-orange-600 font-semibold' : 'text-green-600'}>
+                    {parseFloat(areaUtilization) > 85 ? 'High' : 'Optimal'}
+                  </span>
+                </div>
+              </div>
+
+              <div className="bg-gradient-to-br from-purple-50 to-pink-50 p-6 rounded-lg border border-purple-200">
+                <div className="flex items-center justify-between mb-4">
+                  <Package className="w-8 h-8 text-purple-600" />
+                  <span className="text-2xl font-bold text-purple-600">{capacityUtilization}%</span>
+                </div>
+                <div className="text-sm text-gray-600 mb-2">Pallet Capacity</div>
+                <div className="text-xs text-gray-500 mb-4">{warehouse.usedCapacity.toLocaleString()} / {warehouse.totalCapacity.toLocaleString()} {warehouse.capacityUnit}</div>
+                <div className="w-full bg-gray-200 rounded-full h-3 mb-2">
+                  <div className="bg-gradient-to-r from-purple-500 to-pink-500 h-3 rounded-full" style={{ width: `${capacityUtilization}%` }}></div>
+                </div>
+                <div className="flex justify-between text-xs text-gray-600">
+                  <span>Available: {(warehouse.totalCapacity - warehouse.usedCapacity).toLocaleString()} {warehouse.capacityUnit}</span>
+                  <span className={parseFloat(capacityUtilization) > 85 ? 'text-orange-600 font-semibold' : 'text-green-600'}>
+                    {parseFloat(capacityUtilization) > 85 ? 'High' : 'Optimal'}
+                  </span>
+                </div>
+              </div>
+
+              <div className="bg-gradient-to-br from-green-50 to-emerald-50 p-6 rounded-lg border border-green-200">
+                <div className="flex items-center justify-between mb-4">
+                  <TrendingUp className="w-8 h-8 text-green-600" />
+                  <span className="text-sm font-semibold text-green-600 bg-green-100 px-2 py-1 rounded-full">Efficient</span>
+                </div>
+                <div className="text-sm text-gray-600 mb-2">Storage Efficiency</div>
+                <div className="text-3xl font-bold text-gray-900 mb-1">92.5%</div>
+                <div className="text-xs text-gray-500 mb-4">vs 88% industry average</div>
+                <div className="space-y-2">
+                  <div className="flex justify-between text-xs">
+                    <span className="text-gray-600">Picking efficiency:</span>
+                    <span className="font-semibold text-green-600">95%</span>
+                  </div>
+                  <div className="flex justify-between text-xs">
+                    <span className="text-gray-600">Accuracy rate:</span>
+                    <span className="font-semibold text-blue-600">98.5%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Zone-wise Performance Heatmap */}
+          <div className="bg-white p-6 rounded-lg border border-gray-200">
+            <h3 className="text-lg font-bold text-gray-900 mb-6 flex items-center gap-2">
+              <Eye className="w-5 h-5 text-indigo-600" />
+              Zone Performance Heatmap
+            </h3>
+            <div className="grid grid-cols-4 gap-4">
+              {zones.map((zone, index) => {
+                const utilization = zone.utilizationPercentage;
+                const getHeatColor = (util: number) => {
+                  if (util >= 90) return 'from-red-400 to-red-600 text-white';
+                  if (util >= 75) return 'from-orange-400 to-orange-600 text-white';
+                  if (util >= 50) return 'from-yellow-400 to-yellow-600 text-white';
+                  return 'from-green-400 to-green-600 text-white';
+                };
+                
+                return (
+                  <div key={zone.zone} className={`bg-gradient-to-br ${getHeatColor(utilization)} p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow`}>
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-lg font-bold">Zone {zone.zone}</span>
+                      <span className="text-2xl font-bold">{utilization}%</span>
+                    </div>
+                    <div className="text-sm opacity-90 mb-3">{zone.name}</div>
+                    <div className="space-y-1 text-xs opacity-90">
+                      <div className="flex justify-between">
+                        <span>Capacity:</span>
+                        <span className="font-semibold">{zone.utilized.toLocaleString()} / {zone.capacity.toLocaleString()}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>Items:</span>
+                        <span className="font-semibold">{zone.itemsStored}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>Aisles:</span>
+                        <span className="font-semibold">{zone.aisles}</span>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+            <div className="mt-6 flex items-center justify-center gap-6">
+              <div className="flex items-center gap-2">
+                <div className="w-4 h-4 bg-gradient-to-br from-green-400 to-green-600 rounded"></div>
+                <span className="text-xs text-gray-600">0-50% (Underutilized)</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-4 h-4 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded"></div>
+                <span className="text-xs text-gray-600">50-75% (Optimal)</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-4 h-4 bg-gradient-to-br from-orange-400 to-orange-600 rounded"></div>
+                <span className="text-xs text-gray-600">75-90% (High)</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-4 h-4 bg-gradient-to-br from-red-400 to-red-600 rounded"></div>
+                <span className="text-xs text-gray-600">90-100% (Critical)</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Storage Optimization Recommendations */}
+          <div className="grid grid-cols-2 gap-6">
+            <div className="bg-white p-6 rounded-lg border border-gray-200">
+              <h3 className="text-lg font-bold text-gray-900 mb-6 flex items-center gap-2">
+                <Target className="w-5 h-5 text-emerald-600" />
+                Storage Optimization Insights
+              </h3>
+              <div className="space-y-4">
+                <div className="bg-gradient-to-r from-emerald-50 to-green-50 p-4 rounded-lg border border-emerald-100">
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-sm font-semibold text-gray-700">Space Optimization Score</span>
+                    <span className="text-xs bg-emerald-600 text-white px-2 py-1 rounded-full">Excellent</span>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <div className="text-4xl font-bold text-emerald-600">8.7/10</div>
+                    <div className="flex-1">
+                      <div className="text-xs text-gray-600 mb-1">Compared to industry benchmark</div>
+                      <div className="w-full bg-gray-200 rounded-full h-2">
+                        <div className="bg-gradient-to-r from-emerald-500 to-green-500 h-2 rounded-full" style={{ width: '87%' }}></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-3">
+                  <div className="flex items-start gap-3 p-3 bg-blue-50 rounded-lg border border-blue-100">
+                    <CheckCircle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                    <div className="flex-1">
+                      <div className="text-sm font-semibold text-gray-900 mb-1">Zone D - Optimization Opportunity</div>
+                      <div className="text-xs text-gray-600">Currently at 95% capacity. Consider expanding vertical storage or redistributing to Zone E (52% utilized)</div>
+                      <div className="mt-2 text-xs text-blue-600 font-semibold">Potential space savings: 450 sq ft</div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3 p-3 bg-orange-50 rounded-lg border border-orange-100">
+                    <AlertTriangle className="w-5 h-5 text-orange-600 flex-shrink-0 mt-0.5" />
+                    <div className="flex-1">
+                      <div className="text-sm font-semibold text-gray-900 mb-1">Zone A - Nearing Capacity</div>
+                      <div className="text-xs text-gray-600">90% utilized. Recommend immediate action: expand vertical racks or transfer slow-moving items</div>
+                      <div className="mt-2 text-xs text-orange-600 font-semibold">Action required within 2 weeks</div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3 p-3 bg-green-50 rounded-lg border border-green-100">
+                    <TrendingUp className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                    <div className="flex-1">
+                      <div className="text-sm font-semibold text-gray-900 mb-1">Cross-Docking Efficiency</div>
+                      <div className="text-xs text-gray-600">Transit zone operating at 67% efficiency. Increase by 20% through improved scheduling</div>
+                      <div className="mt-2 text-xs text-green-600 font-semibold">Estimated time savings: 3.5 hrs/day</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white p-6 rounded-lg border border-gray-200">
+              <h3 className="text-lg font-bold text-gray-900 mb-6 flex items-center gap-2">
+                <PieChart className="w-5 h-5 text-purple-600" />
+                Cost & Operational Metrics
+              </h3>
+              <div className="space-y-4">
+                <div className="bg-gradient-to-r from-purple-50 to-pink-50 p-4 rounded-lg border border-purple-100">
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-sm font-semibold text-gray-700">Monthly Operating Cost</span>
+                    <span className="text-xs bg-purple-600 text-white px-2 py-1 rounded-full">-8% vs last month</span>
+                  </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <div className="text-xs text-gray-600 mb-1">Total Cost</div>
+                      <div className="text-2xl font-bold text-purple-600">₹12.5L</div>
+                      <div className="text-xs text-gray-500">October 2025</div>
+                    </div>
+                    <div>
+                      <div className="text-xs text-gray-600 mb-1">Per Sq Ft Cost</div>
+                      <div className="text-2xl font-bold text-blue-600">₹25</div>
+                      <div className="text-xs text-gray-500">Industry: ₹28</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-3">
+                  <div>
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-sm font-semibold text-gray-700">Cost Breakdown</span>
+                    </div>
+                    <div className="space-y-2">
+                      <div>
+                        <div className="flex justify-between text-xs mb-1">
+                          <span className="text-gray-600">Labor (45%)</span>
+                          <span className="font-semibold">₹5.6L</span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-2">
+                          <div className="bg-blue-500 h-2 rounded-full" style={{ width: '45%' }}></div>
+                        </div>
+                      </div>
+                      <div>
+                        <div className="flex justify-between text-xs mb-1">
+                          <span className="text-gray-600">Utilities (30%)</span>
+                          <span className="font-semibold">₹3.8L</span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-2">
+                          <div className="bg-green-500 h-2 rounded-full" style={{ width: '30%' }}></div>
+                        </div>
+                      </div>
+                      <div>
+                        <div className="flex justify-between text-xs mb-1">
+                          <span className="text-gray-600">Maintenance (15%)</span>
+                          <span className="font-semibold">₹1.9L</span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-2">
+                          <div className="bg-orange-500 h-2 rounded-full" style={{ width: '15%' }}></div>
+                        </div>
+                      </div>
+                      <div>
+                        <div className="flex justify-between text-xs mb-1">
+                          <span className="text-gray-600">Other (10%)</span>
+                          <span className="font-semibold">₹1.2L</span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-2">
+                          <div className="bg-purple-500 h-2 rounded-full" style={{ width: '10%' }}></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-gradient-to-r from-green-50 to-emerald-50 p-4 rounded-lg border border-green-100">
+                  <div className="flex items-center gap-3 mb-3">
+                    <Zap className="w-5 h-5 text-green-600" />
+                    <span className="text-sm font-semibold text-gray-700">Cost Savings Potential</span>
+                  </div>
+                  <div className="grid grid-cols-2 gap-3">
+                    <div>
+                      <div className="text-xs text-gray-600 mb-1">Energy Optimization</div>
+                      <div className="text-lg font-bold text-green-600">₹45K/mo</div>
+                      <div className="text-xs text-gray-500">LED lighting, HVAC</div>
+                    </div>
+                    <div>
+                      <div className="text-xs text-gray-600 mb-1">Process Automation</div>
+                      <div className="text-lg font-bold text-blue-600">₹85K/mo</div>
+                      <div className="text-xs text-gray-500">AGV, WMS upgrades</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Predictive Analytics */}
+          <div className="bg-gradient-to-br from-indigo-50 to-purple-50 p-6 rounded-lg border border-indigo-200">
+            <h3 className="text-lg font-bold text-gray-900 mb-6 flex items-center gap-2">
+              <Zap className="w-5 h-5 text-indigo-600" />
+              Predictive Analytics & Forecasts
+            </h3>
+            <div className="grid grid-cols-4 gap-4">
+              <div className="bg-white p-4 rounded-lg border border-indigo-100">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                    <TrendingUp className="w-5 h-5 text-blue-600" />
+                  </div>
+                  <div>
+                    <div className="text-xs text-gray-500">Capacity Forecast</div>
+                    <div className="text-sm font-bold text-gray-900">Next 90 days</div>
+                  </div>
+                </div>
+                <p className="text-xs text-gray-600">Expected to reach 85% utilization by Jan 15, 2026. Plan expansion or stock reduction</p>
+              </div>
+
+              <div className="bg-white p-4 rounded-lg border border-indigo-100">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
+                    <AlertTriangle className="w-5 h-5 text-orange-600" />
+                  </div>
+                  <div>
+                    <div className="text-xs text-gray-500">Peak Season Alert</div>
+                    <div className="text-sm font-bold text-gray-900">Dec 10-Jan 5</div>
+                  </div>
+                </div>
+                <p className="text-xs text-gray-600">Demand surge expected. Reserve 2,000 additional pallet positions for seasonal inventory</p>
+              </div>
+
+              <div className="bg-white p-4 rounded-lg border border-indigo-100">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                    <CheckCircle className="w-5 h-5 text-green-600" />
+                  </div>
+                  <div>
+                    <div className="text-xs text-gray-500">Inventory Turnover</div>
+                    <div className="text-sm font-bold text-gray-900">14.2x/year</div>
+                  </div>
+                </div>
+                <p className="text-xs text-gray-600">Exceeds industry average of 11.5x. Efficient stock rotation and fast-moving inventory mix</p>
+              </div>
+
+              <div className="bg-white p-4 rounded-lg border border-indigo-100">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
+                    <DollarSign className="w-5 h-5 text-purple-600" />
+                  </div>
+                  <div>
+                    <div className="text-xs text-gray-500">ROI Improvement</div>
+                    <div className="text-sm font-bold text-gray-900">+12% potential</div>
+                  </div>
+                </div>
+                <p className="text-xs text-gray-600">Implement recommended optimizations to improve warehouse ROI from current 18% to 20.2%</p>
+              </div>
+            </div>
           </div>
         </div>
       )}

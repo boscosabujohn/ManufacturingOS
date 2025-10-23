@@ -23,6 +23,7 @@ import {
   Banknote,
   Wallet,
   CreditCard,
+  AlertTriangle,
 } from 'lucide-react';
 
 interface PayrollEntry {
@@ -78,7 +79,7 @@ interface Activity {
 
 export default function ViewPayrollPage({ params }: { params: { id: string } }) {
   const router = useRouter();
-  const [activeTab, setActiveTab] = useState<'overview' | 'breakdown' | 'attendance' | 'activity'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'breakdown' | 'attendance' | 'activity' | 'analytics'>('overview');
 
   // Mock data - replace with API call
   const payroll: PayrollEntry = {
@@ -304,6 +305,16 @@ export default function ViewPayrollPage({ params }: { params: { id: string } }) 
                 }`}
               >
                 Activity
+              </button>
+              <button
+                onClick={() => setActiveTab('analytics')}
+                className={`py-4 border-b-2 font-medium transition-colors ${
+                  activeTab === 'analytics'
+                    ? 'border-blue-600 text-blue-600'
+                    : 'border-transparent text-gray-600 hover:text-gray-900'
+                }`}
+              >
+                Tax & Analytics
               </button>
             </div>
           </div>
@@ -654,6 +665,132 @@ export default function ViewPayrollPage({ params }: { params: { id: string } }) 
                     </div>
                   </div>
                 ))}
+              </div>
+            )}
+
+            {/* Tax & Analytics Tab */}
+            {activeTab === 'analytics' && (
+              <div className="space-y-6">
+                <h3 className="text-lg font-bold text-gray-900 mb-4">Tax Optimization & Salary Analytics</h3>
+
+                {/* Tax Breakdown Chart */}
+                <div className="p-6 bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl border border-purple-200">
+                  <h4 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                    <DollarSign className="w-5 h-5 text-purple-600" />
+                    Tax Breakdown & Optimization
+                  </h4>
+                  <div className="grid grid-cols-3 gap-4 mb-6">
+                    <div className="text-center p-4 bg-white rounded-lg">
+                      <div className="text-3xl font-bold text-purple-600 mb-1">₹{payroll.incomeTax.toLocaleString('en-IN')}</div>
+                      <div className="text-sm text-gray-600">Income Tax (TDS)</div>
+                    </div>
+                    <div className="text-center p-4 bg-white rounded-lg">
+                      <div className="text-3xl font-bold text-blue-600 mb-1">₹{payroll.providentFund.toLocaleString('en-IN')}</div>
+                      <div className="text-sm text-gray-600">Provident Fund</div>
+                    </div>
+                    <div className="text-center p-4 bg-white rounded-lg">
+                      <div className="text-3xl font-bold text-green-600 mb-1">₹{(payroll.incomeTax * 0.15).toFixed(0)}</div>
+                      <div className="text-sm text-gray-600">Potential Savings</div>
+                    </div>
+                  </div>
+                  
+                  {/* Tax Optimization Suggestions */}
+                  <div className="space-y-3">
+                    <div className="p-4 bg-white rounded-lg border border-green-200">
+                      <div className="flex items-start gap-3">
+                        <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                        <div>
+                          <div className="font-semibold text-gray-900 text-sm">80C Deduction Utilized</div>
+                          <div className="text-xs text-gray-600 mt-1">
+                            PF contribution of ₹{payroll.providentFund.toLocaleString('en-IN')} eligible under Section 80C.
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="p-4 bg-white rounded-lg border border-yellow-200">
+                      <div className="flex items-start gap-3">
+                        <AlertTriangle className="w-5 h-5 text-yellow-600 flex-shrink-0 mt-0.5" />
+                        <div>
+                          <div className="font-semibold text-gray-900 text-sm">HRA Optimization Opportunity</div>
+                          <div className="text-xs text-gray-600 mt-1">
+                            Current HRA: ₹{payroll.hra.toLocaleString('en-IN')}. Submit rent receipts to claim exemption.
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Salary Comparison Analytics */}
+                <div className="p-6 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl border border-blue-200">
+                  <h4 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                    <TrendingUp className="w-5 h-5 text-blue-600" />
+                    Salary Comparison & Market Benchmarking
+                  </h4>
+                  <div className="grid grid-cols-2 gap-6 mb-6">
+                    <div className="p-4 bg-white rounded-lg">
+                      <div className="text-sm text-gray-600 mb-2">Your Annual CTC</div>
+                      <div className="text-3xl font-bold text-blue-600 mb-1">₹{(payroll.grossSalary * 12).toLocaleString('en-IN')}</div>
+                      <div className="text-sm text-gray-600">Per Annum</div>
+                    </div>
+                    <div className="p-4 bg-white rounded-lg">
+                      <div className="text-sm text-gray-600 mb-2">Market Average</div>
+                      <div className="text-3xl font-bold text-gray-600 mb-1">₹{((payroll.grossSalary * 12) * 1.08).toLocaleString('en-IN')}</div>
+                      <div className="text-sm text-green-600 font-medium">Within 8% of market</div>
+                    </div>
+                  </div>
+
+                  {/* Percentile Ranking */}
+                  <div className="mb-6">
+                    <div className="flex justify-between items-center mb-2">
+                      <span className="text-sm text-gray-700 font-medium">Salary Percentile</span>
+                      <span className="text-lg font-bold text-blue-600">78th percentile</span>
+                    </div>
+                    <div className="w-full h-3 bg-gray-200 rounded-full overflow-hidden">
+                      <div className="h-full bg-gradient-to-r from-green-500 via-blue-500 to-purple-500 rounded-full" style={{ width: '78%' }} />
+                    </div>
+                  </div>
+
+                  {/* YoY Growth */}
+                  <div className="grid grid-cols-3 gap-4">
+                    <div className="text-center p-4 bg-white rounded-lg border border-green-200">
+                      <div className="text-2xl font-bold text-green-600 mb-1">+12%</div>
+                      <div className="text-xs text-gray-600">YoY Growth</div>
+                    </div>
+                    <div className="text-center p-4 bg-white rounded-lg border border-blue-200">
+                      <div className="text-2xl font-bold text-blue-600 mb-1">₹{(payroll.grossSalary * 0.12).toFixed(0)}</div>
+                      <div className="text-xs text-gray-600">Increment</div>
+                    </div>
+                    <div className="text-center p-4 bg-white rounded-lg border border-purple-200">
+                      <div className="text-2xl font-bold text-purple-600 mb-1">Oct 2024</div>
+                      <div className="text-xs text-gray-600">Last Revision</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Payslip Generator */}
+                <div className="p-6 bg-gradient-to-br from-indigo-50 to-purple-50 rounded-xl border border-indigo-200">
+                  <h4 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                    <Receipt className="w-5 h-5 text-indigo-600" />
+                    Payslip & Documents
+                  </h4>
+                  <div className="grid grid-cols-2 gap-4">
+                    <button className="p-4 bg-white rounded-lg border border-indigo-200 hover:border-indigo-400 hover:shadow-md transition-all text-left">
+                      <div className="flex items-center gap-3 mb-2">
+                        <Download className="w-5 h-5 text-indigo-600" />
+                        <div className="font-semibold text-gray-900">Download Payslip (PDF)</div>
+                      </div>
+                      <div className="text-xs text-gray-600">Salary slip for {payroll.payPeriod}</div>
+                    </button>
+                    <button className="p-4 bg-white rounded-lg border border-indigo-200 hover:border-indigo-400 hover:shadow-md transition-all text-left">
+                      <div className="flex items-center gap-3 mb-2">
+                        <FileText className="w-5 h-5 text-indigo-600" />
+                        <div className="font-semibold text-gray-900">Form 16 (Annual)</div>
+                      </div>
+                      <div className="text-xs text-gray-600">TDS certificate FY 2024-25</div>
+                    </button>
+                  </div>
+                </div>
               </div>
             )}
           </div>

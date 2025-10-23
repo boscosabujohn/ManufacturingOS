@@ -5,7 +5,8 @@ import { useRouter } from 'next/navigation';
 import {
   ArrowLeft, Package, Calendar, User, FileText, MapPin,
   TrendingUp, TrendingDown, AlertTriangle, CheckCircle,
-  XCircle, Clock, Truck, RefreshCw, Download, Activity
+  XCircle, Clock, Truck, RefreshCw, Download, Activity,
+  BarChart3, PieChart, Target, Zap, History, Eye
 } from 'lucide-react';
 
 interface StockMovement {
@@ -60,7 +61,7 @@ interface ActivityLog {
 
 export default function StockMovementViewPage({ params }: { params: { id: string } }) {
   const router = useRouter();
-  const [activeTab, setActiveTab] = useState<'details' | 'documents' | 'activity'>('details');
+  const [activeTab, setActiveTab] = useState<'details' | 'documents' | 'activity' | 'analytics'>('details');
 
   // Mock data
   const movement: StockMovement = {
@@ -276,6 +277,16 @@ export default function StockMovementViewPage({ params }: { params: { id: string
             }`}
           >
             Activity Log
+          </button>
+          <button
+            onClick={() => setActiveTab('analytics')}
+            className={`pb-3 px-1 border-b-2 font-medium transition-colors ${
+              activeTab === 'analytics'
+                ? 'border-blue-500 text-blue-600'
+                : 'border-transparent text-gray-500 hover:text-gray-700'
+            }`}
+          >
+            Analytics & Insights
           </button>
         </div>
       </div>
@@ -564,6 +575,298 @@ export default function StockMovementViewPage({ params }: { params: { id: string
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      )}
+
+      {activeTab === 'analytics' && (
+        <div className="space-y-6">
+          {/* Movement Impact Analysis */}
+          <div className="bg-white p-6 rounded-lg border border-gray-200">
+            <h3 className="text-lg font-bold text-gray-900 mb-6 flex items-center gap-2">
+              <BarChart3 className="w-5 h-5 text-blue-600" />
+              Movement Impact Analysis
+            </h3>
+            <div className="grid grid-cols-3 gap-6">
+              <div className="bg-gradient-to-br from-green-50 to-emerald-50 p-6 rounded-lg border border-green-200">
+                <div className="flex items-center justify-between mb-4">
+                  <TrendingUp className="w-8 h-8 text-green-600" />
+                  <span className="text-2xl font-bold text-green-600">+24.1%</span>
+                </div>
+                <div className="text-sm text-gray-600 mb-2">Stock Level Change</div>
+                <div className="text-xs text-gray-500">From 2,075 → 2,575 {movement.uom}</div>
+                <div className="mt-4 bg-white/60 rounded-lg p-3">
+                  <div className="text-xs text-gray-600 mb-1">Days of Stock Coverage</div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-lg font-bold text-gray-900">38 days</span>
+                    <span className="text-xs text-green-600">+7 days</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-gradient-to-br from-purple-50 to-violet-50 p-6 rounded-lg border border-purple-200">
+                <div className="flex items-center justify-between mb-4">
+                  <Target className="w-8 h-8 text-purple-600" />
+                  <span className="text-sm font-semibold text-purple-600">OPTIMAL</span>
+                </div>
+                <div className="text-sm text-gray-600 mb-2">Inventory Position</div>
+                <div className="text-xs text-gray-500 mb-4">After this movement</div>
+                <div className="space-y-2">
+                  <div className="flex justify-between items-center">
+                    <span className="text-xs text-gray-600">Safety Stock:</span>
+                    <span className="text-xs font-semibold text-green-600">✓ Maintained</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-xs text-gray-600">Reorder Level:</span>
+                    <span className="text-xs font-semibold text-green-600">✓ Above</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-xs text-gray-600">Max Level:</span>
+                    <span className="text-xs font-semibold text-blue-600">51% utilized</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-gradient-to-br from-orange-50 to-amber-50 p-6 rounded-lg border border-orange-200">
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-2xl">₹</span>
+                  <Zap className="w-6 h-6 text-orange-600" />
+                </div>
+                <div className="text-sm text-gray-600 mb-2">Value Impact</div>
+                <div className="text-2xl font-bold text-gray-900 mb-1">₹92,750</div>
+                <div className="text-xs text-gray-500 mb-4">Movement value</div>
+                <div className="bg-white/60 rounded-lg p-3">
+                  <div className="text-xs text-gray-600 mb-1">Total Stock Value</div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-lg font-bold text-gray-900">₹4.77L</span>
+                    <span className="text-xs text-green-600">+19.4%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Movement Pattern Analysis */}
+          <div className="grid grid-cols-2 gap-6">
+            <div className="bg-white p-6 rounded-lg border border-gray-200">
+              <h3 className="text-lg font-bold text-gray-900 mb-6 flex items-center gap-2">
+                <History className="w-5 h-5 text-indigo-600" />
+                Historical Movement Patterns
+              </h3>
+              <div className="space-y-4">
+                <div className="bg-gradient-to-r from-indigo-50 to-blue-50 p-4 rounded-lg border border-indigo-100">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-sm font-semibold text-gray-700">Last 30 Days Activity</span>
+                    <span className="text-xs bg-indigo-600 text-white px-2 py-1 rounded-full">12 movements</span>
+                  </div>
+                  <div className="grid grid-cols-3 gap-3 mt-3">
+                    <div>
+                      <div className="text-xs text-gray-600 mb-1">Receipts</div>
+                      <div className="text-lg font-bold text-green-600">5</div>
+                      <div className="text-xs text-gray-500">+2,450 {movement.uom}</div>
+                    </div>
+                    <div>
+                      <div className="text-xs text-gray-600 mb-1">Issues</div>
+                      <div className="text-lg font-bold text-red-600">6</div>
+                      <div className="text-xs text-gray-500">-1,875 {movement.uom}</div>
+                    </div>
+                    <div>
+                      <div className="text-xs text-gray-600 mb-1">Net Flow</div>
+                      <div className="text-lg font-bold text-blue-600">+575</div>
+                      <div className="text-xs text-gray-500">{movement.uom}</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                        <TrendingUp className="w-5 h-5 text-green-600" />
+                      </div>
+                      <div>
+                        <div className="text-sm font-semibold text-gray-900">Average Receipt</div>
+                        <div className="text-xs text-gray-500">Per transaction</div>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-lg font-bold text-gray-900">490 {movement.uom}</div>
+                      <div className="text-xs text-green-600">+8% vs last month</div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
+                        <TrendingDown className="w-5 h-5 text-red-600" />
+                      </div>
+                      <div>
+                        <div className="text-sm font-semibold text-gray-900">Average Issue</div>
+                        <div className="text-xs text-gray-500">Per transaction</div>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-lg font-bold text-gray-900">312 {movement.uom}</div>
+                      <div className="text-xs text-gray-600">Consistent pattern</div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                        <Clock className="w-5 h-5 text-blue-600" />
+                      </div>
+                      <div>
+                        <div className="text-sm font-semibold text-gray-900">Movement Frequency</div>
+                        <div className="text-xs text-gray-500">Average interval</div>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-lg font-bold text-gray-900">2.5 days</div>
+                      <div className="text-xs text-gray-600">Between movements</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white p-6 rounded-lg border border-gray-200">
+              <h3 className="text-lg font-bold text-gray-900 mb-6 flex items-center gap-2">
+                <PieChart className="w-5 h-5 text-emerald-600" />
+                Movement Efficiency Metrics
+              </h3>
+              <div className="space-y-4">
+                <div className="bg-gradient-to-r from-emerald-50 to-teal-50 p-4 rounded-lg border border-emerald-100">
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-sm font-semibold text-gray-700">Processing Time</span>
+                    <span className="text-xs bg-emerald-600 text-white px-2 py-1 rounded-full">Excellent</span>
+                  </div>
+                  <div className="grid grid-cols-2 gap-3">
+                    <div>
+                      <div className="text-xs text-gray-600 mb-1">Request to Complete</div>
+                      <div className="text-2xl font-bold text-emerald-600">22.5h</div>
+                      <div className="text-xs text-gray-500">vs 28h avg</div>
+                    </div>
+                    <div>
+                      <div className="text-xs text-gray-600 mb-1">Approval Time</div>
+                      <div className="text-2xl font-bold text-blue-600">3.2h</div>
+                      <div className="text-xs text-gray-500">Fast track</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-3">
+                  <div>
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-sm font-semibold text-gray-700">Documentation Compliance</span>
+                      <span className="text-sm font-bold text-emerald-600">100%</span>
+                    </div>
+                    <div className="w-full bg-gray-200 rounded-full h-2">
+                      <div className="bg-gradient-to-r from-emerald-500 to-teal-500 h-2 rounded-full" style={{ width: '100%' }}></div>
+                    </div>
+                    <div className="flex justify-between mt-1">
+                      <span className="text-xs text-gray-500">3/3 documents attached</span>
+                      <span className="text-xs text-emerald-600">✓ Complete</span>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-sm font-semibold text-gray-700">Quality Check Score</span>
+                      <span className="text-sm font-bold text-green-600">98%</span>
+                    </div>
+                    <div className="w-full bg-gray-200 rounded-full h-2">
+                      <div className="bg-gradient-to-r from-green-500 to-emerald-500 h-2 rounded-full" style={{ width: '98%' }}></div>
+                    </div>
+                    <div className="flex justify-between mt-1">
+                      <span className="text-xs text-gray-500">Specifications met</span>
+                      <span className="text-xs text-green-600">✓ Passed</span>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-sm font-semibold text-gray-700">Storage Efficiency</span>
+                      <span className="text-sm font-bold text-blue-600">92%</span>
+                    </div>
+                    <div className="w-full bg-gray-200 rounded-full h-2">
+                      <div className="bg-gradient-to-r from-blue-500 to-indigo-500 h-2 rounded-full" style={{ width: '92%' }}></div>
+                    </div>
+                    <div className="flex justify-between mt-1">
+                      <span className="text-xs text-gray-500">Optimal location assignment</span>
+                      <span className="text-xs text-blue-600">Zone A - Prime</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-4 rounded-lg border border-blue-100 mt-4">
+                  <div className="flex items-center gap-3 mb-3">
+                    <Eye className="w-5 h-5 text-blue-600" />
+                    <span className="text-sm font-semibold text-gray-700">Accuracy Tracking</span>
+                  </div>
+                  <div className="grid grid-cols-2 gap-3">
+                    <div>
+                      <div className="text-xs text-gray-600 mb-1">Quantity Accuracy</div>
+                      <div className="text-lg font-bold text-blue-600">100%</div>
+                      <div className="text-xs text-gray-500">No discrepancy</div>
+                    </div>
+                    <div>
+                      <div className="text-xs text-gray-600 mb-1">Location Accuracy</div>
+                      <div className="text-lg font-bold text-green-600">100%</div>
+                      <div className="text-xs text-gray-500">Correct bin</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Predictive Insights */}
+          <div className="bg-gradient-to-br from-purple-50 to-pink-50 p-6 rounded-lg border border-purple-200">
+            <h3 className="text-lg font-bold text-gray-900 mb-6 flex items-center gap-2">
+              <Zap className="w-5 h-5 text-purple-600" />
+              Predictive Insights & Recommendations
+            </h3>
+            <div className="grid grid-cols-3 gap-4">
+              <div className="bg-white p-4 rounded-lg border border-purple-100">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                    <CheckCircle className="w-5 h-5 text-green-600" />
+                  </div>
+                  <div>
+                    <div className="text-xs text-gray-500">Next Reorder</div>
+                    <div className="text-sm font-bold text-gray-900">38 days</div>
+                  </div>
+                </div>
+                <p className="text-xs text-gray-600">Based on current consumption rate of 68 {movement.uom}/day, next order due by Nov 30</p>
+              </div>
+
+              <div className="bg-white p-4 rounded-lg border border-purple-100">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                    <TrendingUp className="w-5 h-5 text-blue-600" />
+                  </div>
+                  <div>
+                    <div className="text-xs text-gray-500">Optimal Order Qty</div>
+                    <div className="text-sm font-bold text-gray-900">625 {movement.uom}</div>
+                  </div>
+                </div>
+                <p className="text-xs text-gray-600">Economic Order Quantity (EOQ) calculated based on usage patterns and carrying costs</p>
+              </div>
+
+              <div className="bg-white p-4 rounded-lg border border-purple-100">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
+                    <AlertTriangle className="w-5 h-5 text-orange-600" />
+                  </div>
+                  <div>
+                    <div className="text-xs text-gray-500">Cost Optimization</div>
+                    <div className="text-sm font-bold text-gray-900">₹12.5K/year</div>
+                  </div>
+                </div>
+                <p className="text-xs text-gray-600">Potential savings by adjusting reorder levels and reducing emergency purchases</p>
+              </div>
+            </div>
           </div>
         </div>
       )}

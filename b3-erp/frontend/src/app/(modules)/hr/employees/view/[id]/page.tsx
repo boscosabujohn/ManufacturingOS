@@ -782,11 +782,219 @@ export default function ViewEmployeePage({ params }: { params: { id: string } })
 
             {/* Documents Tab */}
             {activeTab === 'documents' && (
-              <div>
-                <h3 className="text-lg font-bold text-gray-900 mb-4">Employee Documents</h3>
-                <div className="p-12 bg-gray-50 border-2 border-dashed border-gray-300 rounded-xl text-center">
-                  <FileText className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                  <p className="text-gray-600">Document management feature coming soon</p>
+              <div className="space-y-6">
+                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                  <FileText className="w-5 h-5 text-blue-600" />
+                  Employee Documents Vault
+                </h3>
+
+                {/* Document Categories */}
+                <div className="grid grid-cols-4 gap-4">
+                  <div className="p-6 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl border border-blue-200 cursor-pointer hover:shadow-lg transition-shadow">
+                    <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-3">
+                      <FileText className="w-6 h-6 text-blue-600" />
+                    </div>
+                    <div className="text-2xl font-bold text-blue-600 mb-1">12</div>
+                    <div className="text-sm text-gray-600">Identity Docs</div>
+                  </div>
+                  <div className="p-6 bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl border border-green-200 cursor-pointer hover:shadow-lg transition-shadow">
+                    <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-3">
+                      <Award className="w-6 h-6 text-green-600" />
+                    </div>
+                    <div className="text-2xl font-bold text-green-600 mb-1">8</div>
+                    <div className="text-sm text-gray-600">Certifications</div>
+                  </div>
+                  <div className="p-6 bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl border border-purple-200 cursor-pointer hover:shadow-lg transition-shadow">
+                    <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-3">
+                      <FileText className="w-6 h-6 text-purple-600" />
+                    </div>
+                    <div className="text-2xl font-bold text-purple-600 mb-1">5</div>
+                    <div className="text-sm text-gray-600">HR Forms</div>
+                  </div>
+                  <div className="p-6 bg-gradient-to-br from-orange-50 to-red-50 rounded-xl border border-orange-200 cursor-pointer hover:shadow-lg transition-shadow">
+                    <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-3">
+                      <FileText className="w-6 h-6 text-orange-600" />
+                    </div>
+                    <div className="text-2xl font-bold text-orange-600 mb-1">15</div>
+                    <div className="text-sm text-gray-600">All Documents</div>
+                  </div>
+                </div>
+
+                {/* Document List */}
+                <div className="space-y-3">
+                  {/* Identity Documents */}
+                  <div className="border border-gray-200 rounded-lg p-4">
+                    <div className="font-bold text-gray-900 mb-3 flex items-center gap-2">
+                      <User className="w-5 h-5 text-blue-600" />
+                      Identity Documents
+                    </div>
+                    <div className="space-y-2">
+                      {['Aadhaar Card.pdf', 'PAN Card.pdf', 'Passport Copy.pdf', 'Driving License.pdf'].map((doc) => (
+                        <div key={doc} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                          <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
+                              <FileText className="w-5 h-5 text-red-600" />
+                            </div>
+                            <div>
+                              <div className="font-semibold text-gray-900">{doc}</div>
+                              <div className="text-xs text-gray-600">Uploaded on 15 Mar 2020 • 234 KB</div>
+                            </div>
+                          </div>
+                          <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium">
+                            View
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Certifications */}
+                  <div className="border border-gray-200 rounded-lg p-4">
+                    <div className="font-bold text-gray-900 mb-3 flex items-center gap-2">
+                      <Award className="w-5 h-5 text-green-600" />
+                      Professional Certifications
+                    </div>
+                    <div className="space-y-2">
+                      {[
+                        'B.Tech Degree Certificate.pdf',
+                        'Six Sigma Green Belt.pdf',
+                        'Lean Manufacturing Certificate.pdf',
+                        'Safety Training Completion.pdf',
+                      ].map((doc) => (
+                        <div key={doc} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                          <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                              <Award className="w-5 h-5 text-green-600" />
+                            </div>
+                            <div>
+                              <div className="font-semibold text-gray-900">{doc}</div>
+                              <div className="text-xs text-gray-600">Valid until Dec 2026 • 156 KB</div>
+                            </div>
+                          </div>
+                          <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium">
+                            View
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* HR Forms */}
+                  <div className="border border-gray-200 rounded-lg p-4">
+                    <div className="font-bold text-gray-900 mb-3 flex items-center gap-2">
+                      <FileText className="w-5 h-5 text-purple-600" />
+                      HR Forms & Agreements
+                    </div>
+                    <div className="space-y-2">
+                      {[
+                        'Employment Agreement.pdf',
+                        'Offer Letter.pdf',
+                        'NDA Agreement.pdf',
+                        'Background Verification Report.pdf',
+                      ].map((doc) => (
+                        <div key={doc} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                          <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
+                              <FileText className="w-5 h-5 text-purple-600" />
+                            </div>
+                            <div>
+                              <div className="font-semibold text-gray-900">{doc}</div>
+                              <div className="text-xs text-gray-600">Signed on 10 Mar 2020 • 512 KB</div>
+                            </div>
+                          </div>
+                          <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium">
+                            View
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Upload New Document */}
+                <div className="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center hover:border-blue-400 transition-colors cursor-pointer">
+                  <FileText className="w-12 h-12 text-gray-400 mx-auto mb-3" />
+                  <div className="font-semibold text-gray-900 mb-1">Upload New Document</div>
+                  <div className="text-sm text-gray-600">Drag and drop files here or click to browse</div>
+                </div>
+
+                {/* Skill Matrix */}
+                <div className="p-6 bg-gradient-to-br from-indigo-50 to-blue-50 rounded-xl border border-indigo-200">
+                  <h4 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                    <Target className="w-5 h-5 text-indigo-600" />
+                    Skill Matrix & Competency Levels
+                  </h4>
+                  <div className="space-y-4">
+                    {[
+                      { skill: 'Production Planning', level: 90, category: 'Technical' },
+                      { skill: 'Quality Control', level: 85, category: 'Technical' },
+                      { skill: 'Lean Manufacturing', level: 80, category: 'Process' },
+                      { skill: 'Team Management', level: 88, category: 'Leadership' },
+                      { skill: 'Problem Solving', level: 82, category: 'Soft Skills' },
+                      { skill: 'Communication', level: 75, category: 'Soft Skills' },
+                    ].map((item) => (
+                      <div key={item.skill}>
+                        <div className="flex justify-between items-center mb-2">
+                          <div>
+                            <span className="font-semibold text-gray-900">{item.skill}</span>
+                            <span className="ml-2 px-2 py-0.5 bg-indigo-100 text-indigo-700 rounded text-xs">{item.category}</span>
+                          </div>
+                          <span className="font-bold text-indigo-600">{item.level}%</span>
+                        </div>
+                        <div className="w-full h-2.5 bg-gray-200 rounded-full overflow-hidden">
+                          <div
+                            className={`h-full rounded-full transition-all ${
+                              item.level >= 85 ? 'bg-gradient-to-r from-green-500 to-emerald-500' :
+                              item.level >= 75 ? 'bg-gradient-to-r from-blue-500 to-indigo-500' :
+                              'bg-gradient-to-r from-yellow-500 to-orange-500'
+                            }`}
+                            style={{ width: `${item.level}%` }}
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Career Progression Timeline */}
+                <div className="p-6 bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl border border-purple-200">
+                  <h4 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                    <TrendingUp className="w-5 h-5 text-purple-600" />
+                    Career Progression Timeline
+                  </h4>
+                  <div className="space-y-4">
+                    {[
+                      { date: '2020-03', role: 'Production Supervisor', type: 'joined' },
+                      { date: '2020-09', role: 'Production Supervisor', type: 'confirmed' },
+                      { date: '2021-10', role: 'Senior Production Supervisor', type: 'promoted' },
+                      { date: '2023-04', role: 'Production Manager', type: 'promoted' },
+                    ].map((item, idx) => (
+                      <div key={idx} className="flex gap-4">
+                        <div className="flex flex-col items-center">
+                          <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
+                            item.type === 'promoted' ? 'bg-purple-100' :
+                            item.type === 'confirmed' ? 'bg-green-100' : 'bg-blue-100'
+                          }`}>
+                            {item.type === 'promoted' ? (
+                              <TrendingUp className="w-5 h-5 text-purple-600" />
+                            ) : item.type === 'confirmed' ? (
+                              <CheckCircle2 className="w-5 h-5 text-green-600" />
+                            ) : (
+                              <User className="w-5 h-5 text-blue-600" />
+                            )}
+                          </div>
+                          {idx < 3 && <div className="w-0.5 h-12 bg-purple-200 my-1" />}
+                        </div>
+                        <div className="flex-1 pb-4">
+                          <div className="text-sm text-gray-600 mb-1">
+                            {new Date(item.date).toLocaleDateString('en-IN', { month: 'short', year: 'numeric' })}
+                          </div>
+                          <div className="font-semibold text-gray-900">{item.role}</div>
+                          <div className="text-sm text-purple-600 capitalize">{item.type}</div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             )}

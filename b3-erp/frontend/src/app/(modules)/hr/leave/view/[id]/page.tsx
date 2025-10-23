@@ -41,7 +41,7 @@ interface LeaveRequest {
 
 export default function ViewLeavePage({ params }: { params: { id: string } }) {
   const router = useRouter();
-  const [activeTab, setActiveTab] = useState<'details' | 'history' | 'documents'>('details');
+  const [activeTab, setActiveTab] = useState<'details' | 'history' | 'documents' | 'insights'>('details');
 
   // Mock leave request data
   const leaveRequest: LeaveRequest = {
@@ -234,6 +234,16 @@ export default function ViewLeavePage({ params }: { params: { id: string } }) {
                 }`}
               >
                 Documents
+              </button>
+              <button
+                onClick={() => setActiveTab('insights')}
+                className={`py-4 border-b-2 font-medium transition-colors ${
+                  activeTab === 'insights'
+                    ? 'border-blue-600 text-blue-600'
+                    : 'border-transparent text-gray-600 hover:text-gray-900'
+                }`}
+              >
+                Insights & Analytics
               </button>
             </div>
           </div>
@@ -442,6 +452,260 @@ export default function ViewLeavePage({ params }: { params: { id: string } }) {
                     <p className="text-gray-600">No documents attached</p>
                   </div>
                 )}
+              </div>
+            )}
+
+            {/* Insights & Analytics Tab */}
+            {activeTab === 'insights' && (
+              <div className="space-y-6">
+                <h3 className="text-lg font-bold text-gray-900 mb-4">Leave Insights & Analytics</h3>
+
+                {/* Leave Balance Forecast */}
+                <div className="p-6 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl border border-blue-200">
+                  <h4 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                    <Calendar className="w-5 h-5 text-blue-600" />
+                    Leave Balance Forecast
+                  </h4>
+                  <div className="grid grid-cols-4 gap-4 mb-6">
+                    <div className="text-center p-4 bg-white rounded-lg">
+                      <div className="text-3xl font-bold text-blue-600 mb-1">24</div>
+                      <div className="text-sm text-gray-600">Total Annual</div>
+                    </div>
+                    <div className="text-center p-4 bg-white rounded-lg">
+                      <div className="text-3xl font-bold text-red-600 mb-1">7</div>
+                      <div className="text-sm text-gray-600">Used YTD</div>
+                    </div>
+                    <div className="text-center p-4 bg-white rounded-lg">
+                      <div className="text-3xl font-bold text-green-600 mb-1">17</div>
+                      <div className="text-sm text-gray-600">Remaining</div>
+                    </div>
+                    <div className="text-center p-4 bg-white rounded-lg">
+                      <div className="text-3xl font-bold text-purple-600 mb-1">2</div>
+                      <div className="text-sm text-gray-600">Pending</div>
+                    </div>
+                  </div>
+                  <div className="space-y-3">
+                    <div>
+                      <div className="flex justify-between text-sm mb-2">
+                        <span className="text-gray-700">Casual Leave</span>
+                        <span className="font-semibold">8 / 12 remaining</span>
+                      </div>
+                      <div className="w-full h-2.5 bg-gray-200 rounded-full overflow-hidden">
+                        <div className="h-full bg-gradient-to-r from-green-500 to-emerald-500 rounded-full" style={{ width: '67%' }} />
+                      </div>
+                    </div>
+                    <div>
+                      <div className="flex justify-between text-sm mb-2">
+                        <span className="text-gray-700">Sick Leave</span>
+                        <span className="font-semibold">6 / 8 remaining</span>
+                      </div>
+                      <div className="w-full h-2.5 bg-gray-200 rounded-full overflow-hidden">
+                        <div className="h-full bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full" style={{ width: '75%' }} />
+                      </div>
+                    </div>
+                    <div>
+                      <div className="flex justify-between text-sm mb-2">
+                        <span className="text-gray-700">Earned Leave</span>
+                        <span className="font-semibold">3 / 4 remaining</span>
+                      </div>
+                      <div className="w-full h-2.5 bg-gray-200 rounded-full overflow-hidden">
+                        <div className="h-full bg-gradient-to-r from-purple-500 to-pink-500 rounded-full" style={{ width: '75%' }} />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Team Availability Heatmap */}
+                <div className="p-6 bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl border border-green-200">
+                  <h4 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                    <User className="w-5 h-5 text-green-600" />
+                    Team Availability During Leave Period
+                  </h4>
+                  <div className="grid grid-cols-7 gap-2 mb-4">
+                    {['22 Jan', '23 Jan', '24 Jan', '25 Jan', '26 Jan', '27 Jan', '28 Jan'].map((date, idx) => (
+                      <div key={date} className="text-center">
+                        <div className="text-xs text-gray-600 mb-2">{date}</div>
+                        <div className={`h-20 rounded-lg flex items-center justify-center font-bold text-sm ${
+                          idx >= 0 && idx <= 2 ? 'bg-red-200 text-red-700' :
+                          idx === 5 || idx === 6 ? 'bg-gray-200 text-gray-600' :
+                          'bg-green-200 text-green-700'
+                        }`}>
+                          {idx >= 0 && idx <= 2 ? '65%' :
+                           idx === 5 || idx === 6 ? 'WO' :
+                           '92%'}
+                        </div>
+                        <div className="text-xs text-gray-600 mt-1">
+                          {idx >= 0 && idx <= 2 ? '7/12 present' :
+                           idx === 5 || idx === 6 ? 'Weekend' :
+                           '11/12 present'}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="p-4 bg-white rounded-lg border border-yellow-200">
+                    <div className="flex items-start gap-3">
+                      <AlertTriangle className="w-5 h-5 text-yellow-600 flex-shrink-0 mt-0.5" />
+                      <div>
+                        <div className="font-semibold text-gray-900 text-sm">Team Coverage Alert</div>
+                        <div className="text-xs text-gray-600 mt-1">
+                          Team availability drops to 65% during leave period (Jan 22-24). Consider staggering leaves or arranging backup coverage.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Approval Workflow Visualizer */}
+                <div className="p-6 bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl border border-purple-200">
+                  <h4 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-purple-600" />
+                    Approval Workflow Status
+                  </h4>
+                  <div className="space-y-4">
+                    {[
+                      { stage: 'Employee Submission', status: 'completed', user: 'Rajesh Kumar', date: 'Jan 20, 10:15 AM', time: '0h' },
+                      { stage: 'Manager Review', status: 'completed', user: 'Sarah Johnson', date: 'Jan 20, 2:30 PM', time: '4h 15m' },
+                      { stage: 'HR Verification', status: 'completed', user: 'Priya Patel', date: 'Jan 20, 3:45 PM', time: '1h 15m' },
+                      { stage: 'Final Approval', status: 'completed', user: 'Sarah Johnson', date: 'Jan 20, 4:00 PM', time: '15m' },
+                    ].map((step, idx) => (
+                      <div key={idx} className="flex gap-4">
+                        <div className="flex flex-col items-center">
+                          <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
+                            step.status === 'completed' ? 'bg-green-100' :
+                            step.status === 'pending' ? 'bg-yellow-100' : 'bg-gray-100'
+                          }`}>
+                            {step.status === 'completed' ? (
+                              <CheckCircle2 className="w-5 h-5 text-green-600" />
+                            ) : (
+                              <Clock className="w-5 h-5 text-yellow-600" />
+                            )}
+                          </div>
+                          {idx < 3 && (
+                            <div className={`w-0.5 h-12 my-1 ${
+                              step.status === 'completed' ? 'bg-green-300' : 'bg-gray-200'
+                            }`} />
+                          )}
+                        </div>
+                        <div className="flex-1 pb-4">
+                          <div className="font-semibold text-gray-900">{step.stage}</div>
+                          <div className="text-sm text-gray-600 mt-1">{step.user}</div>
+                          <div className="text-xs text-gray-500 mt-1">{step.date}</div>
+                          <div className="text-xs text-purple-600 mt-1 font-medium">Turnaround: {step.time}</div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="mt-4 p-4 bg-white rounded-lg border border-green-200">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <div className="font-semibold text-gray-900">Total Approval Time</div>
+                        <div className="text-sm text-gray-600">From submission to final approval</div>
+                      </div>
+                      <div className="text-2xl font-bold text-green-600">5h 45m</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Policy Compliance Check */}
+                <div className="p-6 bg-gradient-to-br from-orange-50 to-red-50 rounded-xl border border-orange-200">
+                  <h4 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                    <FileText className="w-5 h-5 text-orange-600" />
+                    Policy Compliance Check
+                  </h4>
+                  <div className="space-y-3">
+                    <div className="p-4 bg-white rounded-lg border border-green-200">
+                      <div className="flex items-start gap-3">
+                        <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                        <div>
+                          <div className="font-semibold text-gray-900 text-sm">Advance Notice Met</div>
+                          <div className="text-xs text-gray-600 mt-1">
+                            Leave applied 2 days in advance (policy requires 1 day minimum for sick leave)
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="p-4 bg-white rounded-lg border border-green-200">
+                      <div className="flex items-start gap-3">
+                        <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                        <div>
+                          <div className="font-semibold text-gray-900 text-sm">Balance Available</div>
+                          <div className="text-xs text-gray-600 mt-1">
+                            Sufficient sick leave balance (6 days remaining, 3 days requested)
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="p-4 bg-white rounded-lg border border-green-200">
+                      <div className="flex items-start gap-3">
+                        <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                        <div>
+                          <div className="font-semibold text-gray-900 text-sm">Medical Certificate Attached</div>
+                          <div className="text-xs text-gray-600 mt-1">
+                            Required documentation provided (policy mandates certificate for sick leave ≥ 3 days)
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="p-4 bg-white rounded-lg border border-green-200">
+                      <div className="flex items-start gap-3">
+                        <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                        <div>
+                          <div className="font-semibold text-gray-900 text-sm">Handover Completed</div>
+                          <div className="text-xs text-gray-600 mt-1">
+                            Work handover assigned to Amit Patel with detailed notes
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Calendar Integration Preview */}
+                <div className="p-6 bg-gradient-to-br from-indigo-50 to-blue-50 rounded-xl border border-indigo-200">
+                  <h4 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                    <Calendar className="w-5 h-5 text-indigo-600" />
+                    Calendar Integration
+                  </h4>
+                  <div className="grid grid-cols-7 gap-2 mb-4">
+                    <div className="text-center font-semibold text-gray-700 text-xs">Sun</div>
+                    <div className="text-center font-semibold text-gray-700 text-xs">Mon</div>
+                    <div className="text-center font-semibold text-gray-700 text-xs">Tue</div>
+                    <div className="text-center font-semibold text-gray-700 text-xs">Wed</div>
+                    <div className="text-center font-semibold text-gray-700 text-xs">Thu</div>
+                    <div className="text-center font-semibold text-gray-700 text-xs">Fri</div>
+                    <div className="text-center font-semibold text-gray-700 text-xs">Sat</div>
+                    {[...Array(31)].map((_, idx) => {
+                      const isLeaveDay = idx >= 21 && idx <= 23;
+                      const isWeekend = idx % 7 === 0 || idx % 7 === 6;
+                      return (
+                        <div
+                          key={idx}
+                          className={`aspect-square rounded-lg flex items-center justify-center text-sm font-medium ${
+                            isLeaveDay ? 'bg-red-500 text-white' :
+                            isWeekend ? 'bg-gray-200 text-gray-500' :
+                            'bg-white border border-gray-200 text-gray-700'
+                          }`}
+                        >
+                          {idx + 1}
+                        </div>
+                      );
+                    })}
+                  </div>
+                  <div className="flex items-center justify-center gap-6 text-sm">
+                    <div className="flex items-center gap-2">
+                      <div className="w-4 h-4 bg-red-500 rounded"></div>
+                      <span className="text-gray-700">Leave Days</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-4 h-4 bg-gray-200 rounded"></div>
+                      <span className="text-gray-700">Weekends</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-4 h-4 bg-white border border-gray-200 rounded"></div>
+                      <span className="text-gray-700">Working Days</span>
+                    </div>
+                  </div>
+                </div>
               </div>
             )}
           </div>

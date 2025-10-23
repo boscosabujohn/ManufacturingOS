@@ -483,11 +483,243 @@ export default function ViewAttendancePage({ params }: { params: { id: string } 
 
             {/* Analytics Tab */}
             {activeTab === 'analytics' && (
-              <div>
-                <h3 className="text-lg font-bold text-gray-900 mb-4">Attendance Analytics</h3>
-                <div className="p-12 bg-gray-50 border-2 border-dashed border-gray-300 rounded-xl text-center">
-                  <BarChart3 className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                  <p className="text-gray-600">Detailed analytics and charts coming soon</p>
+              <div className="space-y-6">
+                <h3 className="text-lg font-bold text-gray-900 mb-4">Attendance Analytics & Insights</h3>
+
+                {/* Attendance Timeline Visualization */}
+                <div className="p-6 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl border border-blue-200">
+                  <h4 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                    <Clock className="w-5 h-5 text-blue-600" />
+                    Attendance Timeline (Last 20 Days)
+                  </h4>
+                  <div className="flex gap-1.5">
+                    {attendanceRecords.reverse().map((record, idx) => {
+                      const statusColors = {
+                        present: 'bg-green-500 hover:bg-green-600',
+                        absent: 'bg-red-500 hover:bg-red-600',
+                        half_day: 'bg-yellow-500 hover:bg-yellow-600',
+                        leave: 'bg-blue-500 hover:bg-blue-600',
+                        holiday: 'bg-purple-500 hover:bg-purple-600',
+                      };
+                      return (
+                        <div
+                          key={idx}
+                          className={`h-16 flex-1 ${statusColors[record.status]} rounded-lg transition-all cursor-pointer group relative`}
+                          title={`${record.date} - ${record.status}`}
+                        >
+                          <div className="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white text-xs px-3 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap">
+                            <div className="font-semibold">{new Date(record.date).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' })}</div>
+                            <div className="text-gray-300">{record.status.replace('_', ' ').toUpperCase()}</div>
+                            {record.hoursWorked > 0 && <div className="text-gray-300">{record.hoursWorked.toFixed(1)} hrs</div>}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                  <div className="mt-4 flex items-center justify-center gap-6 text-sm">
+                    <div className="flex items-center gap-2">
+                      <div className="w-4 h-4 bg-green-500 rounded"></div>
+                      <span className="text-gray-700">Present</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-4 h-4 bg-red-500 rounded"></div>
+                      <span className="text-gray-700">Absent</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-4 h-4 bg-yellow-500 rounded"></div>
+                      <span className="text-gray-700">Half Day</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-4 h-4 bg-blue-500 rounded"></div>
+                      <span className="text-gray-700">Leave</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-4 h-4 bg-purple-500 rounded"></div>
+                      <span className="text-gray-700">Holiday</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Punctuality Analysis */}
+                <div className="grid grid-cols-2 gap-6">
+                  <div className="p-6 bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl border border-green-200">
+                    <h4 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                      <Timer className="w-5 h-5 text-green-600" />
+                      Punctuality Score
+                    </h4>
+                    <div className="text-center">
+                      <div className="text-5xl font-bold text-green-600 mb-2">85%</div>
+                      <p className="text-sm text-gray-600 mb-4">On-time check-ins</p>
+                      <div className="space-y-2">
+                        <div className="flex justify-between text-sm">
+                          <span className="text-gray-600">Early Arrivals</span>
+                          <span className="font-semibold text-green-600">12 days</span>
+                        </div>
+                        <div className="flex justify-between text-sm">
+                          <span className="text-gray-600">On Time</span>
+                          <span className="font-semibold text-blue-600">4 days</span>
+                        </div>
+                        <div className="flex justify-between text-sm">
+                          <span className="text-gray-600">Late Arrivals</span>
+                          <span className="font-semibold text-red-600">3 days</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="p-6 bg-gradient-to-br from-orange-50 to-red-50 rounded-xl border border-orange-200">
+                    <h4 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                      <AlertTriangle className="w-5 h-5 text-orange-600" />
+                      Anomalies Detected
+                    </h4>
+                    <div className="space-y-3">
+                      <div className="p-3 bg-white rounded-lg border border-orange-200">
+                        <div className="flex items-start gap-3">
+                          <AlertTriangle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
+                          <div>
+                            <div className="font-semibold text-gray-900 text-sm">Consecutive Late Arrivals</div>
+                            <div className="text-xs text-gray-600 mt-1">3 late check-ins in last week (Jan 18-20)</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="p-3 bg-white rounded-lg border border-yellow-200">
+                        <div className="flex items-start gap-3">
+                          <AlertTriangle className="w-5 h-5 text-yellow-600 flex-shrink-0 mt-0.5" />
+                          <div>
+                            <div className="font-semibold text-gray-900 text-sm">Extended Lunch Break</div>
+                            <div className="text-xs text-gray-600 mt-1">Jan 17 - Early checkout detected</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="p-3 bg-white rounded-lg border border-green-200">
+                        <div className="flex items-start gap-3">
+                          <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                          <div>
+                            <div className="font-semibold text-gray-900 text-sm">Perfect Week</div>
+                            <div className="text-xs text-gray-600 mt-1">Week of Jan 8-12 - 100% on-time</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Location Tracking Insights */}
+                <div className="p-6 bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl border border-purple-200">
+                  <h4 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                    <MapPin className="w-5 h-5 text-purple-600" />
+                    Location Tracking
+                  </h4>
+                  <div className="grid grid-cols-3 gap-4">
+                    <div className="p-4 bg-white rounded-lg border border-purple-200">
+                      <div className="flex items-center gap-3 mb-2">
+                        <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
+                          <Building2 className="w-5 h-5 text-purple-600" />
+                        </div>
+                        <div>
+                          <div className="font-semibold text-gray-900">Factory - Building A</div>
+                          <div className="text-xs text-gray-600">Primary Location</div>
+                        </div>
+                      </div>
+                      <div className="text-2xl font-bold text-purple-600">18 days</div>
+                      <div className="text-sm text-gray-600">95% of check-ins</div>
+                    </div>
+                    <div className="p-4 bg-white rounded-lg border border-purple-200">
+                      <div className="flex items-center gap-3 mb-2">
+                        <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                          <Building2 className="w-5 h-5 text-blue-600" />
+                        </div>
+                        <div>
+                          <div className="font-semibold text-gray-900">Head Office</div>
+                          <div className="text-xs text-gray-600">Secondary Location</div>
+                        </div>
+                      </div>
+                      <div className="text-2xl font-bold text-blue-600">1 day</div>
+                      <div className="text-sm text-gray-600">5% of check-ins</div>
+                    </div>
+                    <div className="p-4 bg-white rounded-lg border border-green-200">
+                      <div className="flex items-center gap-3 mb-2">
+                        <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                          <MapPin className="w-5 h-5 text-green-600" />
+                        </div>
+                        <div>
+                          <div className="font-semibold text-gray-900">Geo-fence Status</div>
+                          <div className="text-xs text-gray-600">Compliance</div>
+                        </div>
+                      </div>
+                      <div className="text-2xl font-bold text-green-600">100%</div>
+                      <div className="text-sm text-gray-600">Valid location</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Shift Pattern Analysis */}
+                <div className="p-6 bg-gradient-to-br from-indigo-50 to-blue-50 rounded-xl border border-indigo-200">
+                  <h4 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                    <BarChart3 className="w-5 h-5 text-indigo-600" />
+                    Work Pattern Analysis
+                  </h4>
+                  <div className="grid grid-cols-4 gap-4">
+                    <div className="text-center p-4 bg-white rounded-lg border border-indigo-200">
+                      <div className="text-3xl font-bold text-indigo-600 mb-1">9.1</div>
+                      <div className="text-sm text-gray-600">Avg Hours/Day</div>
+                    </div>
+                    <div className="text-center p-4 bg-white rounded-lg border border-indigo-200">
+                      <div className="text-3xl font-bold text-orange-600 mb-1">2.5</div>
+                      <div className="text-sm text-gray-600">Total OT Hours</div>
+                    </div>
+                    <div className="text-center p-4 bg-white rounded-lg border border-indigo-200">
+                      <div className="text-3xl font-bold text-green-600 mb-1">5</div>
+                      <div className="text-sm text-gray-600">Perfect Days</div>
+                    </div>
+                    <div className="text-center p-4 bg-white rounded-lg border border-indigo-200">
+                      <div className="text-3xl font-bold text-blue-600 mb-1">Day</div>
+                      <div className="text-sm text-gray-600">Current Shift</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Predictive Insights */}
+                <div className="p-6 bg-gradient-to-br from-yellow-50 to-orange-50 rounded-xl border border-yellow-200">
+                  <h4 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                    <TrendingUp className="w-5 h-5 text-yellow-600" />
+                    Predictive Insights & Recommendations
+                  </h4>
+                  <div className="space-y-3">
+                    <div className="flex items-start gap-3 p-4 bg-white rounded-lg border border-green-200">
+                      <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <Award className="w-5 h-5 text-green-600" />
+                      </div>
+                      <div>
+                        <div className="font-semibold text-gray-900">Excellent Attendance</div>
+                        <div className="text-sm text-gray-600 mt-1">
+                          94% attendance rate is above company average of 90%. On track for monthly attendance bonus.
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3 p-4 bg-white rounded-lg border border-yellow-200">
+                      <div className="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <AlertTriangle className="w-5 h-5 text-yellow-600" />
+                      </div>
+                      <div>
+                        <div className="font-semibold text-gray-900">Punctuality Alert</div>
+                        <div className="text-sm text-gray-600 mt-1">
+                          3 late arrivals detected in last 5 working days. Please ensure timely check-ins to maintain excellent record.
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3 p-4 bg-white rounded-lg border border-blue-200">
+                      <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <TrendingUp className="w-5 h-5 text-blue-600" />
+                      </div>
+                      <div>
+                        <div className="font-semibold text-gray-900">Overtime Notice</div>
+                        <div className="text-sm text-gray-600 mt-1">
+                          2.5 hours of overtime accumulated this month. Eligible for OT compensation as per policy.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             )}
