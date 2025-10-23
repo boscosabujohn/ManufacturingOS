@@ -25,7 +25,9 @@
       "Bash(npx next:*)",
       "Bash(node:*)",
       "Bash(npm install:*)",
-      "Bash(taskkill:*)"
+      "Bash(taskkill:*)",
+      "Bash(python:*)",
+      "Bash(awk:*)"
     ],
     "deny": [],
     "ask": []
