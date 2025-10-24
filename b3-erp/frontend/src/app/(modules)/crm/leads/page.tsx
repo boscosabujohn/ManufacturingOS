@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Plus, Search, Eye, Edit, Trash2, Phone, Mail, Building2, User, Calendar, TrendingUp, X, Globe, Clock, CheckCircle, MessageSquare, FileText, PhoneCall, Video, Send, Activity, ArrowRight, Circle, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Plus, Search, Eye, Edit, Trash2, Phone, Mail, Building2, User, Users, Calendar, TrendingUp, X, Globe, Clock, CheckCircle, MessageSquare, FileText, PhoneCall, Video, Send, Activity, ArrowRight, Circle, ChevronLeft, ChevronRight, Download, RefreshCw } from 'lucide-react';
+import { DataTable, EmptyState, LoadingState, PageToolbar } from '@/components/ui';
 
 interface Lead {
   id: string;
@@ -238,6 +239,7 @@ export default function LeadsPage() {
   const [showDetailModal, setShowDetailModal] = useState(false);
   const [selectedLead, setSelectedLead] = useState<Lead | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
   const itemsPerPage = 10;
 
   const filteredLeads = leads.filter((lead) => {
@@ -256,7 +258,7 @@ export default function LeadsPage() {
 
   const stats = {
     total: leads.length,
-    new: leads.filter((l) => l.status === 'new').length,
+    newLeads: leads.filter((l) => l.status === 'new').length,
     qualified: leads.filter((l) => l.status === 'qualified').length,
     totalValue: leads.reduce((sum, l) => sum + l.value, 0),
   };
@@ -273,9 +275,46 @@ export default function LeadsPage() {
 
   return (
     <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      {/* Stats with Add Button */}
-      <div className="mb-6 flex items-start gap-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 flex-1">
+      {/* Page Header with Toolbar */}
+      <PageToolbar
+        title="Leads"
+        subtitle={`${stats.total} leads · ${stats.newLeads} new · ${stats.qualified} qualified`}
+        breadcrumbs={[
+          { label: 'CRM', href: '/crm' },
+          { label: 'Leads' }
+        ]}
+        actions={[
+          {
+            label: 'Export',
+            icon: Download,
+            variant: 'secondary',
+            onClick: () => console.log('Export leads')
+          },
+          {
+            label: 'Refresh',
+            icon: RefreshCw,
+            variant: 'secondary',
+            onClick: () => console.log('Refresh leads')
+          },
+          {
+            label: 'Add New Lead',
+            icon: Plus,
+            variant: 'primary',
+            href: '/crm/leads/add'
+          }
+        ]}
+        tabs={[
+          { id: 'all', label: 'All Leads', count: stats.total },
+          { id: 'new', label: 'New', count: stats.newLeads },
+          { id: 'qualified', label: 'Qualified', count: stats.qualified }
+        ]}
+        activeTab={statusFilter}
+        onTabChange={(tabId) => setStatusFilter(tabId === 'all' ? 'all' : tabId)}
+      />
+
+      {/* Stats Grid (moved below toolbar) */}
+      <div className="mb-6 mt-6">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
@@ -290,7 +329,7 @@ export default function LeadsPage() {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-purple-600">New Leads</p>
-              <p className="text-2xl font-bold text-purple-900 mt-1">{stats.new}</p>
+              <p className="text-2xl font-bold text-purple-900 mt-1">{stats.newLeads}</p>
             </div>
             <TrendingUp className="h-8 w-8 text-purple-600" />
           </div>
@@ -315,15 +354,6 @@ export default function LeadsPage() {
             <TrendingUp className="h-8 w-8 text-indigo-600" />
           </div>
         </div>
-        </div>
-
-        <button
-          onClick={() => window.location.href = '/crm/leads/add'}
-          className="flex items-center space-x-2 px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors h-fit flex-shrink-0"
-        >
-          <Plus className="h-5 w-5" />
-          <span>Add Lead</span>
-        </button>
       </div>
 
       {/* Filters */}
@@ -355,115 +385,128 @@ export default function LeadsPage() {
       </div>
 
       {/* Table */}
-      <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
-        <table className="w-full">
-          <thead className="bg-gray-50 border-b border-gray-200">
-            <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Lead</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Company</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Contact</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Value</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-gray-200">
-            {paginatedLeads.map((lead) => (
-              <tr key={lead.id} className="hover:bg-gray-50">
-                <td className="px-6 py-4">
-                  <div className="font-medium text-gray-900">{lead.name}</div>
-                  <div className="text-sm text-gray-500">{lead.source}</div>
-                </td>
-                <td className="px-6 py-4">{lead.company}</td>
-                <td className="px-6 py-4">
-                  <div className="text-sm">{lead.email}</div>
-                  <div className="text-sm text-gray-500">{lead.phone}</div>
-                </td>
-                <td className="px-6 py-4">
-                  <span className={`px-2 py-1 text-xs font-semibold rounded-full ${statusColors[lead.status]}`}>
-                    {lead.status.charAt(0).toUpperCase() + lead.status.slice(1)}
-                  </span>
-                </td>
-                <td className="px-6 py-4 font-semibold">${lead.value.toLocaleString()}</td>
-                <td className="px-6 py-4">
-                  <div className="flex items-center space-x-1">
-                    <button
-                      onClick={() => handleViewLead(lead)}
-                      className="flex items-center space-x-1 px-3 py-1.5 text-blue-600 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors text-sm font-medium"
-                      title="View Details"
-                    >
-                      <Eye className="h-4 w-4" />
-                      <span>View</span>
-                    </button>
-                    <button
-                      onClick={() => router.push(`/crm/leads/edit/${lead.id}`)}
-                      className="flex items-center space-x-1 px-3 py-1.5 text-green-600 bg-green-50 hover:bg-green-100 rounded-lg transition-colors text-sm font-medium"
-                      title="Edit Lead"
-                    >
-                      <Edit className="h-4 w-4" />
-                      <span>Edit</span>
-                    </button>
-                    <button
-                      onClick={() => handleDeleteLead(lead.id)}
-                      className="flex items-center space-x-1 px-3 py-1.5 text-red-600 bg-red-50 hover:bg-red-100 rounded-lg transition-colors text-sm font-medium"
-                      title="Delete Lead"
-                    >
-                      <Trash2 className="h-4 w-4" />
-                      <span>Delete</span>
-                    </button>
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-
-        {/* Pagination */}
-        <div className="px-6 py-4 border-t border-gray-200 flex items-center justify-between">
-          <div className="text-sm text-gray-700">
-            Showing {startIndex + 1} to {Math.min(startIndex + itemsPerPage, filteredLeads.length)} of {filteredLeads.length} items
-          </div>
-          <div className="flex items-center space-x-2">
-            <button
-              onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
-              disabled={currentPage === 1}
-              className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              <ChevronLeft className="h-4 w-4" />
-            </button>
-            <div className="flex items-center space-x-1">
-              {Array.from({ length: totalPages }, (_, i) => i + 1)
-                .filter(page => {
-                  return page === 1 || page === totalPages || (page >= currentPage - 1 && page <= currentPage + 1);
-                })
-                .map((page, index, array) => (
-                  <div key={page} className="flex items-center">
-                    {index > 0 && array[index - 1] !== page - 1 && (
-                      <span className="px-2 text-gray-400">...</span>
-                    )}
-                    <button
-                      onClick={() => setCurrentPage(page)}
-                      className={`px-3 py-1 rounded-lg ${
-                        currentPage === page
-                          ? 'bg-blue-600 text-white'
-                          : 'border border-gray-300 hover:bg-gray-50'
-                      }`}
-                    >
-                      {page}
-                    </button>
-                  </div>
-                ))}
-            </div>
-            <button
-              onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
-              disabled={currentPage === totalPages}
-              className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              <ChevronRight className="h-4 w-4" />
-            </button>
-          </div>
-        </div>
-      </div>
+      {isLoading ? (
+        <LoadingState message="Loading leads..." />
+      ) : filteredLeads.length === 0 ? (
+        <EmptyState
+          icon={Users}
+          title={searchQuery || statusFilter !== 'all' ? "No leads found" : "No leads yet"}
+          description={
+            searchQuery || statusFilter !== 'all'
+              ? "Try adjusting your search or filters to find what you're looking for."
+              : "Get started by adding your first lead to the system."
+          }
+          action={{
+            label: "Add New Lead",
+            onClick: () => router.push('/crm/leads/add'),
+            icon: Plus
+          }}
+          secondaryAction={
+            searchQuery || statusFilter !== 'all'
+              ? {
+                  label: "Clear Filters",
+                  onClick: () => {
+                    setSearchQuery('');
+                    setStatusFilter('all');
+                  }
+                }
+              : undefined
+          }
+        />
+      ) : (
+        <DataTable
+          data={filteredLeads}
+          columns={[
+          {
+            key: 'name',
+            header: 'Lead',
+            sortable: true,
+            render: (lead) => (
+              <div>
+                <div className="font-medium text-gray-900">{lead.name}</div>
+                <div className="text-sm text-gray-500">{lead.source}</div>
+              </div>
+            )
+          },
+          {
+            key: 'company',
+            header: 'Company',
+            sortable: true
+          },
+          {
+            key: 'email',
+            header: 'Contact',
+            render: (lead) => (
+              <div>
+                <div className="text-sm">{lead.email}</div>
+                <div className="text-sm text-gray-500">{lead.phone}</div>
+              </div>
+            )
+          },
+          {
+            key: 'status',
+            header: 'Status',
+            sortable: true,
+            render: (lead) => (
+              <span className={`px-2 py-1 text-xs font-semibold rounded-full ${statusColors[lead.status]}`}>
+                {lead.status.charAt(0).toUpperCase() + lead.status.slice(1)}
+              </span>
+            )
+          },
+          {
+            key: 'value',
+            header: 'Value',
+            sortable: true,
+            render: (lead) => (
+              <span className="font-semibold">${lead.value.toLocaleString()}</span>
+            )
+          },
+          {
+            key: 'actions',
+            header: 'Actions',
+            render: (lead) => (
+              <div className="flex items-center space-x-1">
+                <button
+                  onClick={() => handleViewLead(lead)}
+                  className="flex items-center space-x-1 px-3 py-1.5 text-blue-600 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors text-sm font-medium"
+                  title="View Details"
+                >
+                  <Eye className="h-4 w-4" />
+                  <span>View</span>
+                </button>
+                <button
+                  onClick={() => router.push(`/crm/leads/edit/${lead.id}`)}
+                  className="flex items-center space-x-1 px-3 py-1.5 text-green-600 bg-green-50 hover:bg-green-100 rounded-lg transition-colors text-sm font-medium"
+                  title="Edit Lead"
+                >
+                  <Edit className="h-4 w-4" />
+                  <span>Edit</span>
+                </button>
+                <button
+                  onClick={() => handleDeleteLead(lead.id)}
+                  className="flex items-center space-x-1 px-3 py-1.5 text-red-600 bg-red-50 hover:bg-red-100 rounded-lg transition-colors text-sm font-medium"
+                  title="Delete Lead"
+                >
+                  <Trash2 className="h-4 w-4" />
+                  <span>Delete</span>
+                </button>
+              </div>
+            )
+          }
+        ]}
+        pagination={{
+          enabled: true,
+          pageSize: itemsPerPage,
+          currentPage: currentPage,
+          onPageChange: setCurrentPage
+        }}
+        sorting={{
+          enabled: true,
+          defaultSort: { column: 'name', direction: 'asc' }
+        }}
+        onRowClick={(lead) => handleViewLead(lead)}
+        />
+      )}
 
       {/* Lead Detail Modal - Enhanced View */}
       {showDetailModal && selectedLead && (

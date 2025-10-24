@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import {
   Truck,
   Package,
@@ -13,6 +14,7 @@ import {
   ArrowUpRight,
   Navigation
 } from 'lucide-react'
+import { KPICard, CardSkeleton } from '@/components/ui'
 
 interface LogisticsStats {
   activeShipments: number
@@ -42,6 +44,7 @@ interface Shipment {
 }
 
 export default function LogisticsDashboard() {
+  const [isLoading, setIsLoading] = useState(false)
   const [stats] = useState<LogisticsStats>({
     activeShipments: 45,
     inTransit: 28,
@@ -142,49 +145,45 @@ export default function LogisticsDashboard() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-5 border border-blue-200 shadow-sm">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-blue-600">Active Shipments</p>
-                <p className="text-2xl font-bold text-blue-900 mt-1">{stats.activeShipments}</p>
-                <p className="text-xs text-blue-700 mt-1">{stats.inTransit} in transit</p>
-              </div>
-              <Truck className="h-10 w-10 text-blue-600" />
-            </div>
-          </div>
-
-          <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-5 border border-green-200 shadow-sm">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-green-600">On-Time Delivery</p>
-                <p className="text-2xl font-bold text-green-900 mt-1">{stats.onTimeDeliveryRate}%</p>
-                <p className="text-xs text-green-700 mt-1">{stats.delivered} delivered</p>
-              </div>
-              <CheckCircle className="h-10 w-10 text-green-600" />
-            </div>
-          </div>
-
-          <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-5 border border-purple-200 shadow-sm">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-purple-600">Active Vehicles</p>
-                <p className="text-2xl font-bold text-purple-900 mt-1">{stats.vehiclesActive}</p>
-                <p className="text-xs text-purple-700 mt-1">{stats.totalDistance} km today</p>
-              </div>
-              <Navigation className="h-10 w-10 text-purple-600" />
-            </div>
-          </div>
-
-          <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-5 border border-orange-200 shadow-sm">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-orange-600">Avg Delivery Time</p>
-                <p className="text-2xl font-bold text-orange-900 mt-1">{stats.avgDeliveryTime} days</p>
-                <p className="text-xs text-orange-700 mt-1">{stats.delayedShipments} delayed</p>
-              </div>
-              <Clock className="h-10 w-10 text-orange-600" />
-            </div>
-          </div>
+          {isLoading ? (
+            <>
+              <CardSkeleton />
+              <CardSkeleton />
+              <CardSkeleton />
+              <CardSkeleton />
+            </>
+          ) : (
+            <>
+              <KPICard
+                title="Active Shipments"
+                value={stats.activeShipments}
+                icon={Truck}
+                color="blue"
+                description={`${stats.inTransit} in transit`}
+              />
+              <KPICard
+                title="On-Time Delivery"
+                value={`${stats.onTimeDeliveryRate}%`}
+                icon={CheckCircle}
+                color="green"
+                description={`${stats.delivered} delivered`}
+              />
+              <KPICard
+                title="Active Vehicles"
+                value={stats.vehiclesActive}
+                icon={Navigation}
+                color="purple"
+                description={`${stats.totalDistance} km today`}
+              />
+              <KPICard
+                title="Avg Delivery Time"
+                value={`${stats.avgDeliveryTime} days`}
+                icon={Clock}
+                color="yellow"
+                description={`${stats.delayedShipments} delayed`}
+              />
+            </>
+          )}
         </div>
 
         <div className="bg-white rounded-xl shadow-sm border border-gray-200">

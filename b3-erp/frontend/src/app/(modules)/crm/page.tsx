@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import {
   Users,
   TrendingUp,
@@ -9,11 +10,9 @@ import {
   Mail,
   Calendar,
   CheckCircle,
-  Clock,
-  ArrowUpRight,
-  Star,
-  UserPlus
+  ArrowUpRight
 } from 'lucide-react'
+import { KPICard, CardSkeleton } from '@/components/ui'
 
 interface CRMStats {
   totalLeads: number
@@ -54,6 +53,7 @@ interface Opportunity {
 }
 
 export default function CRMDashboard() {
+  const [isLoading, setIsLoading] = useState(false)
   const [stats] = useState<CRMStats>({
     totalLeads: 234,
     activeLeads: 145,
@@ -204,52 +204,48 @@ export default function CRMDashboard() {
   }
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
+    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6 space-y-6">
         {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-5 border border-blue-200 shadow-sm">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-blue-600">Active Leads</p>
-                <p className="text-2xl font-bold text-blue-900 mt-1">{stats.activeLeads}</p>
-                <p className="text-xs text-blue-700 mt-1">{stats.totalLeads} total leads</p>
-              </div>
-              <Users className="h-10 w-10 text-blue-600" />
-            </div>
-          </div>
-
-          <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-5 border border-green-200 shadow-sm">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-green-600">Opportunities Value</p>
-                <p className="text-2xl font-bold text-green-900 mt-1">₹{(stats.opportunityValue / 10000000).toFixed(1)}Cr</p>
-                <p className="text-xs text-green-700 mt-1">{stats.activeOpportunities} active</p>
-              </div>
-              <Target className="h-10 w-10 text-green-600" />
-            </div>
-          </div>
-
-          <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-5 border border-purple-200 shadow-sm">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-purple-600">Conversion Rate</p>
-                <p className="text-2xl font-bold text-purple-900 mt-1">{stats.conversionRate}%</p>
-                <p className="text-xs text-purple-700 mt-1">{stats.convertedLeads} converted</p>
-              </div>
-              <TrendingUp className="h-10 w-10 text-purple-600" />
-            </div>
-          </div>
-
-          <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-5 border border-orange-200 shadow-sm">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-orange-600">Total Customers</p>
-                <p className="text-2xl font-bold text-orange-900 mt-1">{stats.totalCustomers}</p>
-                <p className="text-xs text-orange-700 mt-1">{stats.interactionsThisMonth} interactions</p>
-              </div>
-              <CheckCircle className="h-10 w-10 text-orange-600" />
-            </div>
-          </div>
+          {isLoading ? (
+            <>
+              <CardSkeleton />
+              <CardSkeleton />
+              <CardSkeleton />
+              <CardSkeleton />
+            </>
+          ) : (
+            <>
+              <KPICard
+                title="Active Leads"
+                value={stats.activeLeads}
+                icon={Users}
+                color="blue"
+                description={`${stats.totalLeads} total leads`}
+              />
+              <KPICard
+                title="Opportunities Value"
+                value={`₹${(stats.opportunityValue / 10000000).toFixed(1)}Cr`}
+                icon={Target}
+                color="green"
+                description={`${stats.activeOpportunities} active`}
+              />
+              <KPICard
+                title="Conversion Rate"
+                value={`${stats.conversionRate}%`}
+                icon={TrendingUp}
+                color="purple"
+                description={`${stats.convertedLeads} converted`}
+              />
+              <KPICard
+                title="Total Customers"
+                value={stats.totalCustomers}
+                icon={CheckCircle}
+                color="yellow"
+                description={`${stats.interactionsThisMonth} interactions`}
+              />
+            </>
+          )}
         </div>
 
         {/* Main Content Grid */}
@@ -259,10 +255,13 @@ export default function CRMDashboard() {
             <div className="p-6 border-b border-gray-200">
               <div className="flex items-center justify-between">
                 <h2 className="text-lg font-semibold text-gray-900">Recent Leads</h2>
-                <button className="text-blue-600 hover:text-blue-700 text-sm font-medium flex items-center gap-1">
+                <Link
+                  href="/crm/leads"
+                  className="text-blue-600 hover:text-blue-700 text-sm font-medium flex items-center gap-1"
+                >
                   View All
                   <ArrowUpRight className="h-4 w-4" />
-                </button>
+                </Link>
               </div>
             </div>
             <div className="p-6">
@@ -309,10 +308,13 @@ export default function CRMDashboard() {
             <div className="p-6 border-b border-gray-200">
               <div className="flex items-center justify-between">
                 <h2 className="text-lg font-semibold text-gray-900">Top Opportunities</h2>
-                <button className="text-blue-600 hover:text-blue-700 text-sm font-medium flex items-center gap-1">
+                <Link
+                  href="/crm/opportunities"
+                  className="text-blue-600 hover:text-blue-700 text-sm font-medium flex items-center gap-1"
+                >
                   View All
                   <ArrowUpRight className="h-4 w-4" />
-                </button>
+                </Link>
               </div>
             </div>
             <div className="p-6">
@@ -363,44 +365,37 @@ export default function CRMDashboard() {
 
         {/* Additional Stats */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="bg-white rounded-lg p-5 border border-gray-200 shadow-sm">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-gray-600">Avg Deal Size</p>
-                <p className="text-2xl font-bold text-gray-900 mt-1">₹{(stats.avgDealSize / 100000).toFixed(1)}L</p>
-                <p className="text-xs text-green-600 mt-1">+8% from last quarter</p>
-              </div>
-              <div className="p-3 bg-green-100 rounded-full">
-                <TrendingUp className="h-6 w-6 text-green-600" />
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-white rounded-lg p-5 border border-gray-200 shadow-sm">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-gray-600">Meetings Scheduled</p>
-                <p className="text-2xl font-bold text-gray-900 mt-1">{stats.meetingsScheduled}</p>
-                <p className="text-xs text-gray-600 mt-1">This week</p>
-              </div>
-              <div className="p-3 bg-blue-100 rounded-full">
-                <Calendar className="h-6 w-6 text-blue-600" />
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-white rounded-lg p-5 border border-gray-200 shadow-sm">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-gray-600">This Month Interactions</p>
-                <p className="text-2xl font-bold text-gray-900 mt-1">{stats.interactionsThisMonth}</p>
-                <p className="text-xs text-green-600 mt-1">+15% from last month</p>
-              </div>
-              <div className="p-3 bg-purple-100 rounded-full">
-                <Phone className="h-6 w-6 text-purple-600" />
-              </div>
-            </div>
-          </div>
+          {isLoading ? (
+            <>
+              <CardSkeleton />
+              <CardSkeleton />
+              <CardSkeleton />
+            </>
+          ) : (
+            <>
+              <KPICard
+                title="Avg Deal Size"
+                value={`₹${(stats.avgDealSize / 100000).toFixed(1)}L`}
+                icon={TrendingUp}
+                color="green"
+                trend={{ value: 8, isPositive: true, label: 'from last quarter' }}
+              />
+              <KPICard
+                title="Meetings Scheduled"
+                value={stats.meetingsScheduled}
+                icon={Calendar}
+                color="blue"
+                description="This week"
+              />
+              <KPICard
+                title="This Month Interactions"
+                value={stats.interactionsThisMonth}
+                icon={Phone}
+                color="purple"
+                trend={{ value: 15, isPositive: true, label: 'from last month' }}
+              />
+            </>
+          )}
         </div>
     </div>
   )

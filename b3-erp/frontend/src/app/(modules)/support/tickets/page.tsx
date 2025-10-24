@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Plus, Search, Eye, Edit, Trash2, MessageSquare, Clock, User, AlertCircle, CheckCircle, XCircle, Filter, Download, ArrowUpDown, ChevronLeft, ChevronRight, Calendar, Tag, Mail, Phone } from 'lucide-react';
+import { Plus, Search, Eye, Edit, Trash2, MessageSquare, Clock, User, AlertCircle, CheckCircle, XCircle, Filter, Download, ArrowUpDown, ChevronLeft, ChevronRight, Calendar, Tag, Mail, Phone, Ticket, RefreshCw } from 'lucide-react';
+import { FilterPanel, EmptyState, LoadingState, PageToolbar } from '@/components/ui';
 
 interface Ticket {
   id: string;
@@ -303,6 +304,7 @@ export default function TicketsPage() {
   const [sortField, setSortField] = useState<keyof Ticket | null>(null);
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
   const [selectedTickets, setSelectedTickets] = useState<string[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
   const itemsPerPage = 10;
 
   const handleSort = (field: keyof Ticket) => {
@@ -391,7 +393,41 @@ export default function TicketsPage() {
 
   return (
     <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6 flex items-start gap-4">
+      {/* Page Header with Toolbar */}
+      <PageToolbar
+        title="Support Tickets"
+        subtitle={`${stats.total} tickets · ${stats.open} open · ${stats.slaBreach} SLA breach`}
+        breadcrumbs={[
+          { label: 'Support', href: '/support' },
+          { label: 'Tickets' }
+        ]}
+        actions={[
+          {
+            label: 'Export',
+            icon: Download,
+            variant: 'secondary',
+            onClick: handleExport
+          },
+          {
+            label: 'Refresh',
+            icon: RefreshCw,
+            variant: 'secondary',
+            onClick: () => console.log('Refresh tickets')
+          },
+          {
+            label: 'New Ticket',
+            icon: Plus,
+            variant: 'primary',
+            href: '/support/tickets/create'
+          }
+        ]}
+        searchPlaceholder="Search tickets by number, subject, customer..."
+        onSearch={(query) => setSearchQuery(query)}
+        filterCount={showAdvancedFilters ? 7 : 0}
+        onFilterToggle={() => setShowAdvancedFilters(!showAdvancedFilters)}
+      />
+
+      <div className="mb-6 mt-6 flex items-start gap-4">
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4 flex-1">
           <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
             <div className="flex items-center justify-between">
@@ -453,43 +489,9 @@ export default function TicketsPage() {
             </div>
           </div>
         </div>
-
-        <button
-          onClick={() => router.push('/support/tickets/add')}
-          className="flex items-center space-x-2 px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors h-fit flex-shrink-0"
-        >
-          <Plus className="h-5 w-5" />
-          <span>New Ticket</span>
-        </button>
       </div>
 
       <div className="mb-6">
-        <div className="flex gap-4 mb-4">
-          <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-            <input
-              type="text"
-              placeholder="Search tickets by number, subject, customer, or assignee..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-          <button
-            onClick={() => setShowAdvancedFilters(!showAdvancedFilters)}
-            className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-          >
-            <Filter className="h-5 w-5" />
-            <span>Filters</span>
-          </button>
-          <button
-            onClick={handleExport}
-            className="flex items-center space-x-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
-          >
-            <Download className="h-5 w-5" />
-            <span>Export</span>
-          </button>
-        </div>
 
         {selectedTickets.length > 0 && (
           <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 flex items-center justify-between mb-4">
@@ -519,137 +521,176 @@ export default function TicketsPage() {
         )}
 
         {showAdvancedFilters && (
-          <div className="bg-gray-50 p-4 rounded-lg border border-gray-200 grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
-              <select
-                value={statusFilter}
-                onChange={(e) => setStatusFilter(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              >
-                <option value="all">All Status</option>
-                <option value="open">Open</option>
-                <option value="in_progress">In Progress</option>
-                <option value="pending">Pending</option>
-                <option value="resolved">Resolved</option>
-                <option value="closed">Closed</option>
-                <option value="reopened">Reopened</option>
-              </select>
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Priority</label>
-              <select
-                value={priorityFilter}
-                onChange={(e) => setPriorityFilter(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              >
-                <option value="all">All Priorities</option>
-                <option value="low">Low</option>
-                <option value="medium">Medium</option>
-                <option value="high">High</option>
-                <option value="critical">Critical</option>
-              </select>
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Category</label>
-              <select
-                value={categoryFilter}
-                onChange={(e) => setCategoryFilter(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              >
-                <option value="all">All Categories</option>
-                <option value="technical">Technical</option>
-                <option value="billing">Billing</option>
-                <option value="general">General</option>
-                <option value="complaint">Complaint</option>
-                <option value="feature_request">Feature Request</option>
-                <option value="installation">Installation</option>
-              </select>
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">SLA Status</label>
-              <select
-                value={slaFilter}
-                onChange={(e) => setSlaFilter(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              >
-                <option value="all">All SLA Status</option>
-                <option value="within_sla">Within SLA</option>
-                <option value="approaching_sla">Approaching SLA</option>
-                <option value="breached_sla">Breached SLA</option>
-              </select>
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Assigned To</label>
-              <select
-                value={assignedToFilter}
-                onChange={(e) => setAssignedToFilter(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              >
-                <option value="all">All Assignees</option>
-                {assignees.map(assignee => (
-                  <option key={assignee} value={assignee}>{assignee}</option>
-                ))}
-              </select>
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Source</label>
-              <select
-                value={sourceFilter}
-                onChange={(e) => setSourceFilter(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              >
-                <option value="all">All Sources</option>
-                <option value="email">Email</option>
-                <option value="phone">Phone</option>
-                <option value="portal">Portal</option>
-                <option value="chat">Chat</option>
-                <option value="walk_in">Walk-in</option>
-              </select>
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Department</label>
-              <select
-                value={departmentFilter}
-                onChange={(e) => setDepartmentFilter(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              >
-                <option value="all">All Departments</option>
-                {departments.map(dept => (
-                  <option key={dept} value={dept}>{dept}</option>
-                ))}
-              </select>
-            </div>
-
-            <div className="flex items-end">
-              <button
-                onClick={() => {
-                  setStatusFilter('all');
-                  setPriorityFilter('all');
-                  setCategoryFilter('all');
-                  setSlaFilter('all');
-                  setAssignedToFilter('all');
-                  setSourceFilter('all');
-                  setDepartmentFilter('all');
-                }}
-                className="px-4 py-2 text-blue-600 hover:text-blue-700 font-medium"
-              >
-                Clear All Filters
-              </button>
-            </div>
-          </div>
+          <FilterPanel
+            filters={[
+              {
+                id: 'status',
+                label: 'Status',
+                type: 'select',
+                options: [
+                  { value: 'all', label: 'All Status' },
+                  { value: 'open', label: 'Open' },
+                  { value: 'in_progress', label: 'In Progress' },
+                  { value: 'pending', label: 'Pending' },
+                  { value: 'resolved', label: 'Resolved' },
+                  { value: 'closed', label: 'Closed' },
+                  { value: 'reopened', label: 'Reopened' }
+                ]
+              },
+              {
+                id: 'priority',
+                label: 'Priority',
+                type: 'select',
+                options: [
+                  { value: 'all', label: 'All Priorities' },
+                  { value: 'low', label: 'Low' },
+                  { value: 'medium', label: 'Medium' },
+                  { value: 'high', label: 'High' },
+                  { value: 'critical', label: 'Critical' }
+                ]
+              },
+              {
+                id: 'category',
+                label: 'Category',
+                type: 'select',
+                options: [
+                  { value: 'all', label: 'All Categories' },
+                  { value: 'technical', label: 'Technical' },
+                  { value: 'billing', label: 'Billing' },
+                  { value: 'general', label: 'General' },
+                  { value: 'complaint', label: 'Complaint' },
+                  { value: 'feature_request', label: 'Feature Request' },
+                  { value: 'installation', label: 'Installation' }
+                ]
+              },
+              {
+                id: 'sla',
+                label: 'SLA Status',
+                type: 'select',
+                options: [
+                  { value: 'all', label: 'All SLA Status' },
+                  { value: 'within_sla', label: 'Within SLA' },
+                  { value: 'approaching_sla', label: 'Approaching SLA' },
+                  { value: 'breached_sla', label: 'Breached SLA' }
+                ]
+              },
+              {
+                id: 'assignedTo',
+                label: 'Assigned To',
+                type: 'select',
+                options: [
+                  { value: 'all', label: 'All Assignees' },
+                  ...assignees.map(a => ({ value: a, label: a }))
+                ]
+              },
+              {
+                id: 'source',
+                label: 'Source',
+                type: 'select',
+                options: [
+                  { value: 'all', label: 'All Sources' },
+                  { value: 'email', label: 'Email' },
+                  { value: 'phone', label: 'Phone' },
+                  { value: 'portal', label: 'Portal' },
+                  { value: 'chat', label: 'Chat' },
+                  { value: 'walk_in', label: 'Walk-in' }
+                ]
+              },
+              {
+                id: 'department',
+                label: 'Department',
+                type: 'select',
+                options: [
+                  { value: 'all', label: 'All Departments' },
+                  ...departments.map(d => ({ value: d, label: d }))
+                ]
+              }
+            ]}
+            activeFilters={{
+              status: statusFilter,
+              priority: priorityFilter,
+              category: categoryFilter,
+              sla: slaFilter,
+              assignedTo: assignedToFilter,
+              source: sourceFilter,
+              department: departmentFilter
+            }}
+            onFilterChange={(filterId, value) => {
+              switch (filterId) {
+                case 'status': setStatusFilter(value); break;
+                case 'priority': setPriorityFilter(value); break;
+                case 'category': setCategoryFilter(value); break;
+                case 'sla': setSlaFilter(value); break;
+                case 'assignedTo': setAssignedToFilter(value); break;
+                case 'source': setSourceFilter(value); break;
+                case 'department': setDepartmentFilter(value); break;
+              }
+            }}
+            onClearAll={() => {
+              setStatusFilter('all');
+              setPriorityFilter('all');
+              setCategoryFilter('all');
+              setSlaFilter('all');
+              setAssignedToFilter('all');
+              setSourceFilter('all');
+              setDepartmentFilter('all');
+            }}
+          />
         )}
       </div>
 
-      <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
-        <div className="overflow-x-auto max-h-[calc(100vh-400px)] overflow-y-auto">
-          <table className="w-full">
+      {isLoading ? (
+        <div className="bg-white rounded-lg border border-gray-200 overflow-hidden p-8">
+          <LoadingState message="Loading tickets..." />
+        </div>
+      ) : filteredTickets.length === 0 ? (
+        <div className="bg-white rounded-lg border border-gray-200 overflow-hidden p-8">
+          <EmptyState
+            icon={Ticket}
+            title={
+              searchQuery || statusFilter !== 'all' || priorityFilter !== 'all' ||
+              categoryFilter !== 'all' || assignedToFilter !== 'all' ||
+              slaFilter !== 'all' || sourceFilter !== 'all' || departmentFilter !== 'all'
+                ? "No tickets found"
+                : "No tickets yet"
+            }
+            description={
+              searchQuery || statusFilter !== 'all' || priorityFilter !== 'all' ||
+              categoryFilter !== 'all' || assignedToFilter !== 'all' ||
+              slaFilter !== 'all' || sourceFilter !== 'all' || departmentFilter !== 'all'
+                ? "Try adjusting your search or filters to find what you're looking for."
+                : "Get started by creating your first support ticket."
+            }
+            action={{
+              label: "Create Ticket",
+              onClick: () => router.push('/support/tickets/create'),
+              icon: Plus
+            }}
+            secondaryAction={
+              searchQuery || statusFilter !== 'all' || priorityFilter !== 'all' ||
+              categoryFilter !== 'all' || assignedToFilter !== 'all' ||
+              slaFilter !== 'all' || sourceFilter !== 'all' || departmentFilter !== 'all'
+                ? {
+                    label: "Clear Filters",
+                    onClick: () => {
+                      setSearchQuery('');
+                      setStatusFilter('all');
+                      setPriorityFilter('all');
+                      setCategoryFilter('all');
+                      setAssignedToFilter('all');
+                      setSlaFilter('all');
+                      setSourceFilter('all');
+                      setDepartmentFilter('all');
+                    }
+                  }
+                : undefined
+            }
+          />
+        </div>
+      ) : (
+        <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+          <div className="overflow-x-auto max-h-[calc(100vh-400px)] overflow-y-auto">
+            <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200 sticky top-0">
               <tr>
                 <th className="px-4 py-3 text-left">
@@ -825,7 +866,8 @@ export default function TicketsPage() {
             </button>
           </div>
         </div>
-      </div>
+        </div>
+      )}
     </div>
   );
 }

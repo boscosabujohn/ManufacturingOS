@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import {
   Package,
   TrendingUp,
@@ -12,6 +13,7 @@ import {
   ArrowUpRight,
   Activity
 } from 'lucide-react'
+import { KPICard, CardSkeleton } from '@/components/ui'
 
 interface InventoryStats {
   totalItems: number
@@ -45,6 +47,7 @@ interface LowStockItem {
 }
 
 export default function InventoryDashboard() {
+  const [isLoading, setIsLoading] = useState(false)
   const [stats] = useState<InventoryStats>({
     totalItems: 1248,
     totalValue: 45680000,
@@ -182,57 +185,56 @@ export default function InventoryDashboard() {
             <h1 className="text-3xl font-bold text-gray-900">Inventory Management</h1>
             <p className="text-gray-600 mt-1">Real-time stock tracking and warehouse management</p>
           </div>
-          <button className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all shadow-md">
+          <Link
+            href="/inventory/stock/entry"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all shadow-md"
+          >
             <Package className="h-5 w-5" />
-            New Stock Entry
-          </button>
+            <span>New Stock Entry</span>
+          </Link>
         </div>
 
         {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-5 border border-blue-200 shadow-sm">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-blue-600">Total Items</p>
-                <p className="text-2xl font-bold text-blue-900 mt-1">{stats.totalItems.toLocaleString()}</p>
-                <p className="text-xs text-blue-700 mt-1">Active SKUs</p>
-              </div>
-              <Package className="h-10 w-10 text-blue-600" />
-            </div>
-          </div>
-
-          <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-5 border border-green-200 shadow-sm">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-green-600">Total Value</p>
-                <p className="text-2xl font-bold text-green-900 mt-1">₹{(stats.totalValue / 10000000).toFixed(1)}Cr</p>
-                <p className="text-xs text-green-700 mt-1">Current Inventory</p>
-              </div>
-              <BarChart3 className="h-10 w-10 text-green-600" />
-            </div>
-          </div>
-
-          <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-5 border border-orange-200 shadow-sm">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-orange-600">Low Stock Alerts</p>
-                <p className="text-2xl font-bold text-orange-900 mt-1">{stats.lowStockItems}</p>
-                <p className="text-xs text-orange-700 mt-1">{stats.outOfStockItems} out of stock</p>
-              </div>
-              <AlertTriangle className="h-10 w-10 text-orange-600" />
-            </div>
-          </div>
-
-          <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-5 border border-purple-200 shadow-sm">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-purple-600">Warehouses</p>
-                <p className="text-2xl font-bold text-purple-900 mt-1">{stats.warehouseCount}</p>
-                <p className="text-xs text-purple-700 mt-1">{stats.stockAccuracy}% accuracy</p>
-              </div>
-              <Warehouse className="h-10 w-10 text-purple-600" />
-            </div>
-          </div>
+          {isLoading ? (
+            <>
+              <CardSkeleton />
+              <CardSkeleton />
+              <CardSkeleton />
+              <CardSkeleton />
+            </>
+          ) : (
+            <>
+              <KPICard
+                title="Total Items"
+                value={stats.totalItems.toLocaleString()}
+                icon={Package}
+                color="blue"
+                description="Active SKUs"
+              />
+              <KPICard
+                title="Total Value"
+                value={`₹${(stats.totalValue / 10000000).toFixed(1)}Cr`}
+                icon={BarChart3}
+                color="green"
+                description="Current Inventory"
+              />
+              <KPICard
+                title="Low Stock Alerts"
+                value={stats.lowStockItems}
+                icon={AlertTriangle}
+                color="red"
+                description={`${stats.outOfStockItems} out of stock`}
+              />
+              <KPICard
+                title="Warehouses"
+                value={stats.warehouseCount}
+                icon={Warehouse}
+                color="purple"
+                description={`${stats.stockAccuracy}% accuracy`}
+              />
+            </>
+          )}
         </div>
 
         {/* Main Content Grid */}
@@ -242,10 +244,13 @@ export default function InventoryDashboard() {
             <div className="p-6 border-b border-gray-200">
               <div className="flex items-center justify-between">
                 <h2 className="text-lg font-semibold text-gray-900">Recent Movements</h2>
-                <button className="text-blue-600 hover:text-blue-700 text-sm font-medium flex items-center gap-1">
+                <Link
+                  href="/inventory/movements"
+                  className="text-blue-600 hover:text-blue-700 text-sm font-medium flex items-center gap-1"
+                >
                   View All
                   <ArrowUpRight className="h-4 w-4" />
-                </button>
+                </Link>
               </div>
             </div>
             <div className="p-6">
@@ -320,44 +325,37 @@ export default function InventoryDashboard() {
 
         {/* Quick Stats */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="bg-white rounded-lg p-5 border border-gray-200 shadow-sm">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-gray-600">Avg Turnover Rate</p>
-                <p className="text-2xl font-bold text-gray-900 mt-1">{stats.avgTurnoverRate}x</p>
-                <p className="text-xs text-green-600 mt-1">+12% from last month</p>
-              </div>
-              <div className="p-3 bg-blue-100 rounded-full">
-                <RefreshCw className="h-6 w-6 text-blue-600" />
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-white rounded-lg p-5 border border-gray-200 shadow-sm">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-gray-600">Monthly Movements</p>
-                <p className="text-2xl font-bold text-gray-900 mt-1">{stats.monthlyMovements}</p>
-                <p className="text-xs text-green-600 mt-1">+8% from last month</p>
-              </div>
-              <div className="p-3 bg-green-100 rounded-full">
-                <Activity className="h-6 w-6 text-green-600" />
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-white rounded-lg p-5 border border-gray-200 shadow-sm">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-gray-600">Stock Accuracy</p>
-                <p className="text-2xl font-bold text-gray-900 mt-1">{stats.stockAccuracy}%</p>
-                <p className="text-xs text-green-600 mt-1">+0.5% from last cycle</p>
-              </div>
-              <div className="p-3 bg-purple-100 rounded-full">
-                <BarChart3 className="h-6 w-6 text-purple-600" />
-              </div>
-            </div>
-          </div>
+          {isLoading ? (
+            <>
+              <CardSkeleton />
+              <CardSkeleton />
+              <CardSkeleton />
+            </>
+          ) : (
+            <>
+              <KPICard
+                title="Avg Turnover Rate"
+                value={`${stats.avgTurnoverRate}x`}
+                icon={RefreshCw}
+                color="blue"
+                trend={{ value: 12, isPositive: true, label: 'from last month' }}
+              />
+              <KPICard
+                title="Monthly Movements"
+                value={stats.monthlyMovements}
+                icon={Activity}
+                color="green"
+                trend={{ value: 8, isPositive: true, label: 'from last month' }}
+              />
+              <KPICard
+                title="Stock Accuracy"
+                value={`${stats.stockAccuracy}%`}
+                icon={BarChart3}
+                color="purple"
+                trend={{ value: 0.5, isPositive: true, label: 'from last cycle' }}
+              />
+            </>
+          )}
         </div>
       </div>
     </div>

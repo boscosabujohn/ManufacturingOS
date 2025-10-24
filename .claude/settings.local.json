@@ -27,7 +27,13 @@
       "Bash(npm install:*)",
       "Bash(taskkill:*)",
       "Bash(python:*)",
-      "Bash(awk:*)"
+      "Bash(awk:*)",
+      "Bash(npm run build:*)",
+      "Bash(npm cache clean:*)",
+      "Bash(npx eslint:*)",
+      "Bash(npx tsc:*)",
+      "Bash(timeout:*)",
+      "Bash(powershell:*)"
     ],
     "deny": [],
     "ask": []

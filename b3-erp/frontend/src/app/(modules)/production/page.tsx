@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import {
   Factory,
   TrendingUp,
@@ -13,6 +14,7 @@ import {
   ArrowUpRight,
   Activity
 } from 'lucide-react'
+import { KPICard, CardSkeleton } from '@/components/ui'
 
 interface ProductionStats {
   activeWorkOrders: number
@@ -51,6 +53,7 @@ interface ProductionLine {
 }
 
 export default function ProductionDashboard() {
+  const [isLoading, setIsLoading] = useState(false)
   const [stats] = useState<ProductionStats>({
     activeWorkOrders: 45,
     completedToday: 12,
@@ -203,57 +206,56 @@ export default function ProductionDashboard() {
             <h1 className="text-3xl font-bold text-gray-900">Production Management</h1>
             <p className="text-gray-600 mt-1">Real-time production monitoring and control</p>
           </div>
-          <button className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg hover:from-purple-700 hover:to-pink-700 transition-all shadow-md">
+          <Link
+            href="/production/work-orders/create"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg hover:from-purple-700 hover:to-pink-700 transition-all shadow-md"
+          >
             <Factory className="h-5 w-5" />
-            New Work Order
-          </button>
+            <span>New Work Order</span>
+          </Link>
         </div>
 
         {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-5 border border-blue-200 shadow-sm">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-blue-600">Active Work Orders</p>
-                <p className="text-2xl font-bold text-blue-900 mt-1">{stats.activeWorkOrders}</p>
-                <p className="text-xs text-blue-700 mt-1">{stats.completedToday} completed today</p>
-              </div>
-              <Factory className="h-10 w-10 text-blue-600" />
-            </div>
-          </div>
-
-          <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-5 border border-green-200 shadow-sm">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-green-600">Production Efficiency</p>
-                <p className="text-2xl font-bold text-green-900 mt-1">{stats.productionEfficiency}%</p>
-                <p className="text-xs text-green-700 mt-1">Target: 85%</p>
-              </div>
-              <TrendingUp className="h-10 w-10 text-green-600" />
-            </div>
-          </div>
-
-          <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-5 border border-purple-200 shadow-sm">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-purple-600">OEE Score</p>
-                <p className="text-2xl font-bold text-purple-900 mt-1">{stats.oeeScore}%</p>
-                <p className="text-xs text-purple-700 mt-1">Overall Equipment Effectiveness</p>
-              </div>
-              <BarChart3 className="h-10 w-10 text-purple-600" />
-            </div>
-          </div>
-
-          <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-5 border border-orange-200 shadow-sm">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-orange-600">Production Lines</p>
-                <p className="text-2xl font-bold text-orange-900 mt-1">{stats.activeLines}/{stats.totalLines}</p>
-                <p className="text-xs text-orange-700 mt-1">{stats.workforce} workers active</p>
-              </div>
-              <Settings className="h-10 w-10 text-orange-600" />
-            </div>
-          </div>
+          {isLoading ? (
+            <>
+              <CardSkeleton />
+              <CardSkeleton />
+              <CardSkeleton />
+              <CardSkeleton />
+            </>
+          ) : (
+            <>
+              <KPICard
+                title="Active Work Orders"
+                value={stats.activeWorkOrders}
+                icon={Factory}
+                color="blue"
+                description={`${stats.completedToday} completed today`}
+              />
+              <KPICard
+                title="Production Efficiency"
+                value={`${stats.productionEfficiency}%`}
+                icon={TrendingUp}
+                color="green"
+                description="Target: 85%"
+              />
+              <KPICard
+                title="OEE Score"
+                value={`${stats.oeeScore}%`}
+                icon={BarChart3}
+                color="purple"
+                description="Overall Equipment Effectiveness"
+              />
+              <KPICard
+                title="Production Lines"
+                value={`${stats.activeLines}/${stats.totalLines}`}
+                icon={Settings}
+                color="yellow"
+                description={`${stats.workforce} workers active`}
+              />
+            </>
+          )}
         </div>
 
         {/* Main Content Grid */}

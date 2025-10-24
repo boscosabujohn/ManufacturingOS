@@ -47,6 +47,7 @@ import {
   Smartphone,
   Tablet
 } from 'lucide-react';
+import { KPICard, CardSkeleton } from '@/components/ui';
 import {
   LineChart as RechartsLineChart,
   AreaChart,
@@ -185,85 +186,53 @@ export default function FinanceDashboard() {
 
       {/* Key Metrics - Top Row */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-        {/* Cash Position */}
-        <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl shadow-lg p-6 text-white">
-          <div className="flex items-center justify-between mb-4">
-            <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center">
-              <Wallet className="w-6 h-6" />
-            </div>
-            {dashboardData.cashPosition.trend === 'up' ? (
-              <ArrowUpRight className="w-6 h-6 text-green-300" />
-            ) : (
-              <ArrowDownRight className="w-6 h-6 text-red-300" />
-            )}
-          </div>
-          <p className="text-blue-100 text-sm mb-1">Total Cash Position</p>
-          <p className="text-3xl font-bold mb-2">{formatCurrency(dashboardData.cashPosition.totalCash)}</p>
-          <div className="flex items-center gap-2 text-sm">
-            <span className="bg-white/20 px-2 py-1 rounded">
-              {dashboardData.cashPosition.change > 0 ? '+' : ''}{dashboardData.cashPosition.change}%
-            </span>
-            <span className="text-blue-100">vs last month</span>
-          </div>
-        </div>
-
-        {/* Accounts Receivable */}
-        <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-green-500">
-          <div className="flex items-center justify-between mb-4">
-            <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-              <TrendingUp className="w-6 h-6 text-green-600" />
-            </div>
-            <span className="text-xs font-semibold text-red-600 bg-red-100 px-2 py-1 rounded">
-              {dashboardData.accountsReceivable.overduePercentage}% Overdue
-            </span>
-          </div>
-          <p className="text-gray-600 text-sm mb-1">Accounts Receivable</p>
-          <p className="text-3xl font-bold text-gray-900 mb-2">
-            {formatCurrency(dashboardData.accountsReceivable.total)}
-          </p>
-          <div className="flex items-center gap-4 text-sm">
-            <span className="text-green-600">
-              Current: {formatCurrency(dashboardData.accountsReceivable.current)}
-            </span>
-          </div>
-        </div>
-
-        {/* Accounts Payable */}
-        <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-red-500">
-          <div className="flex items-center justify-between mb-4">
-            <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
-              <TrendingDown className="w-6 h-6 text-red-600" />
-            </div>
-            <span className="text-xs font-semibold text-orange-600 bg-orange-100 px-2 py-1 rounded">
-              {dashboardData.accountsPayable.overduePercentage}% Overdue
-            </span>
-          </div>
-          <p className="text-gray-600 text-sm mb-1">Accounts Payable</p>
-          <p className="text-3xl font-bold text-gray-900 mb-2">
-            {formatCurrency(dashboardData.accountsPayable.total)}
-          </p>
-          <div className="flex items-center gap-4 text-sm">
-            <span className="text-blue-600">
-              Current: {formatCurrency(dashboardData.accountsPayable.current)}
-            </span>
-          </div>
-        </div>
-
-        {/* Net Profit */}
-        <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl shadow-lg p-6 text-white">
-          <div className="flex items-center justify-between mb-4">
-            <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center">
-              <PieChart className="w-6 h-6" />
-            </div>
-            <ArrowUpRight className="w-6 h-6 text-green-300" />
-          </div>
-          <p className="text-purple-100 text-sm mb-1">Net Profit (This Month)</p>
-          <p className="text-3xl font-bold mb-2">{formatCurrency(dashboardData.netProfit.amount)}</p>
-          <div className="flex items-center gap-2 text-sm">
-            <span className="bg-white/20 px-2 py-1 rounded">{dashboardData.netProfit.margin}% Margin</span>
-            <span className="text-purple-100">+{dashboardData.netProfit.change}%</span>
-          </div>
-        </div>
+        {isLoading ? (
+          <>
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+          </>
+        ) : (
+          <>
+            <KPICard
+              title="Total Cash Position"
+              value={formatCurrency(dashboardData.cashPosition.totalCash)}
+              icon={Wallet}
+              color="blue"
+              trend={{
+                value: dashboardData.cashPosition.change,
+                isPositive: dashboardData.cashPosition.change > 0,
+                label: 'vs last month'
+              }}
+            />
+            <KPICard
+              title="Accounts Receivable"
+              value={formatCurrency(dashboardData.accountsReceivable.total)}
+              icon={TrendingUp}
+              color="green"
+              description={`Current: ${formatCurrency(dashboardData.accountsReceivable.current)}`}
+            />
+            <KPICard
+              title="Accounts Payable"
+              value={formatCurrency(dashboardData.accountsPayable.total)}
+              icon={TrendingDown}
+              color="red"
+              description={`Current: ${formatCurrency(dashboardData.accountsPayable.current)}`}
+            />
+            <KPICard
+              title="Net Profit (This Month)"
+              value={formatCurrency(dashboardData.netProfit.amount)}
+              icon={PieChart}
+              color="purple"
+              trend={{
+                value: dashboardData.netProfit.change,
+                isPositive: true
+              }}
+              description={`${dashboardData.netProfit.margin}% Margin`}
+            />
+          </>
+        )}
       </div>
 
       {/* Quick Actions */}

@@ -1,5 +1,5 @@
-import FinancialDashboard from '@/components/finance/FinancialDashboard';
+import EnhancedFinanceDashboard from '@/components/finance/EnhancedFinanceDashboard';
 
 export default function FinanceDashboardPage() {
-  return <FinancialDashboard />;
+  return <EnhancedFinanceDashboard />;
 }

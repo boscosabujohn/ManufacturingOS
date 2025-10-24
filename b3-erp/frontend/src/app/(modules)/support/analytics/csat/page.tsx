@@ -1,7 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import { Star, TrendingUp, TrendingDown, ThumbsUp, ThumbsDown, MessageSquare, Users, Download, Filter } from 'lucide-react'
+import { Star, TrendingUp, TrendingDown, ThumbsUp, ThumbsDown, MessageSquare, Users, Download, Filter, RefreshCw } from 'lucide-react'
+import { ChartWrapper } from '@/components/ui'
 
 interface CSATTrend {
   period: string
@@ -241,9 +242,16 @@ export default function CSATAnalytics() {
       </div>
 
       {/* CSAT and NPS Trends */}
-      <div className="bg-white rounded-lg shadow-sm border p-6">
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-semibold text-gray-900">CSAT & NPS Trends</h2>
+      <ChartWrapper
+        title="CSAT & NPS Trends"
+        description="Track customer satisfaction scores and Net Promoter Score over time"
+        showRefresh={true}
+        showDownload={true}
+        onRefresh={() => console.log('Refresh trends')}
+        onDownload={() => console.log('Download trends')}
+        height="h-96"
+      >
+        <div className="mb-4 flex justify-end">
           <div className="flex gap-2">
             {(['week', 'month', 'quarter', 'year'] as const).map(period => (
               <button
@@ -310,13 +318,18 @@ export default function CSATAnalytics() {
             })}
           </div>
         </div>
-      </div>
+      </ChartWrapper>
 
       {/* Category Satisfaction and Rating Distribution */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Category Satisfaction */}
-        <div className="bg-white rounded-lg shadow-sm border p-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Satisfaction by Category</h2>
+        <ChartWrapper
+          title="Satisfaction by Category"
+          description="Customer satisfaction scores across support categories"
+          showDownload={true}
+          onDownload={() => console.log('Download category data')}
+          height="h-auto"
+        >
           <div className="space-y-3">
             {categorySatisfaction.map((cat, index) => (
               <div key={index} className="bg-gray-50 rounded-lg p-4">
@@ -353,11 +366,16 @@ export default function CSATAnalytics() {
               </div>
             ))}
           </div>
-        </div>
+        </ChartWrapper>
 
         {/* Rating Distribution */}
-        <div className="bg-white rounded-lg shadow-sm border p-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Rating Distribution</h2>
+        <ChartWrapper
+          title="Rating Distribution"
+          description="Distribution of customer ratings (1-5 stars)"
+          showDownload={true}
+          onDownload={() => console.log('Download rating distribution')}
+          height="h-auto"
+        >
           <div className="space-y-4">
             {ratingDistribution.map((rating, index) => (
               <div key={index} className="space-y-2">
@@ -389,7 +407,7 @@ export default function CSATAnalytics() {
               </div>
             ))}
           </div>
-        </div>
+        </ChartWrapper>
       </div>
 
       {/* Feedback Themes */}

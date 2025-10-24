@@ -1,20 +1,13 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import {
-  Ticket, AlertCircle, CheckCircle, Clock, TrendingUp, Users,
+  Ticket, AlertCircle, CheckCircle, Clock, Users,
   FileText, Settings, Target, BarChart3, Activity, MessageSquare,
-  Zap, Shield, Archive
+  Zap, Shield, Inbox
 } from 'lucide-react'
-
-interface Metric {
-  id: string
-  name: string
-  value: number
-  change: number
-  icon: any
-  color: string
-}
+import { KPICard, CardSkeleton } from '@/components/ui'
 
 interface RecentTicket {
   id: string
@@ -28,17 +21,7 @@ interface RecentTicket {
 }
 
 export default function SupportDashboard() {
-  const [metrics] = useState<Metric[]>([
-    { id: '1', name: 'Open Tickets', value: 87, change: -12.5, icon: Ticket, color: 'from-blue-600 to-cyan-600' },
-    { id: '2', name: 'Critical Issues', value: 12, change: -25.0, icon: AlertCircle, color: 'from-red-600 to-pink-600' },
-    { id: '3', name: 'Resolved Today', value: 45, change: 18.4, icon: CheckCircle, color: 'from-green-600 to-emerald-600' },
-    { id: '4', name: 'Avg Response Time', value: 23, change: -15.2, icon: Clock, color: 'from-purple-600 to-indigo-600' },
-    { id: '5', name: 'Active Incidents', value: 8, change: -33.3, icon: AlertCircle, color: 'from-orange-600 to-red-600' },
-    { id: '6', name: 'Team Members', value: 24, change: 4.3, icon: Users, color: 'from-indigo-600 to-purple-600' },
-    { id: '7', name: 'SLA Compliance', value: 94, change: 2.1, icon: Target, color: 'from-green-500 to-green-600' },
-    { id: '8', name: 'Knowledge Articles', value: 156, change: 12.0, icon: FileText, color: 'from-yellow-600 to-orange-600' }
-  ])
-
+  const [isLoading, setIsLoading] = useState(false)
   const [recentTickets] = useState<RecentTicket[]>([
     {
       id: '1',
@@ -144,45 +127,103 @@ export default function SupportDashboard() {
           <p className="text-gray-600 mt-1">ITSM and customer support overview</p>
         </div>
         <div className="flex items-center gap-2">
-          <button className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">
-            <Settings className="h-4 w-4 inline mr-2" />
-            Settings
-          </button>
-          <button className="px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-cyan-600 rounded-lg hover:from-blue-700 hover:to-cyan-700">
-            <Ticket className="h-4 w-4 inline mr-2" />
-            Create Ticket
-          </button>
+          <Link
+            href="/support/omnichannel"
+            className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg hover:from-purple-700 hover:to-pink-700 shadow-md"
+          >
+            <Inbox className="h-4 w-4" />
+            <span>Omnichannel Inbox</span>
+          </Link>
+          <Link
+            href="/support/sla/settings"
+            className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"
+          >
+            <Settings className="h-4 w-4" />
+            <span>Settings</span>
+          </Link>
+          <Link
+            href="/support/tickets/create"
+            className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-cyan-600 rounded-lg hover:from-blue-700 hover:to-cyan-700"
+          >
+            <Ticket className="h-4 w-4" />
+            <span>Create Ticket</span>
+          </Link>
         </div>
       </div>
 
       {/* Metrics Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        {metrics.map((metric) => {
-          const Icon = metric.icon
-          return (
-            <div key={metric.id} className={`bg-gradient-to-r ${metric.color} text-white rounded-lg p-6`}>
-              <div className="flex items-center justify-between mb-4">
-                <Icon className="h-8 w-8 opacity-80" />
-                <div className="text-right">
-                  <p className="text-3xl font-bold">
-                    {metric.name === 'SLA Compliance' || metric.name === 'Avg Response Time'
-                      ? `${metric.value}${metric.name === 'SLA Compliance' ? '%' : 'm'}`
-                      : metric.value}
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-center justify-between">
-                <p className="text-sm opacity-90">{metric.name}</p>
-                <div className="flex items-center gap-1">
-                  <TrendingUp className={`h-4 w-4 ${metric.change >= 0 ? '' : 'rotate-180'}`} />
-                  <span className="text-xs font-medium">
-                    {metric.change >= 0 ? '+' : ''}{metric.change}%
-                  </span>
-                </div>
-              </div>
-            </div>
-          )
-        })}
+        {isLoading ? (
+          <>
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+          </>
+        ) : (
+          <>
+            <KPICard
+              title="Open Tickets"
+              value={87}
+              icon={Ticket}
+              color="blue"
+              trend={{ value: 12.5, isPositive: false }}
+            />
+            <KPICard
+              title="Critical Issues"
+              value={12}
+              icon={AlertCircle}
+              color="red"
+              trend={{ value: 25.0, isPositive: false }}
+            />
+            <KPICard
+              title="Resolved Today"
+              value={45}
+              icon={CheckCircle}
+              color="green"
+              trend={{ value: 18.4, isPositive: true }}
+            />
+            <KPICard
+              title="Avg Response Time"
+              value="23m"
+              icon={Clock}
+              color="purple"
+              trend={{ value: 15.2, isPositive: false, label: 'faster' }}
+            />
+            <KPICard
+              title="Active Incidents"
+              value={8}
+              icon={AlertCircle}
+              color="red"
+              trend={{ value: 33.3, isPositive: false }}
+            />
+            <KPICard
+              title="Team Members"
+              value={24}
+              icon={Users}
+              color="indigo"
+              trend={{ value: 4.3, isPositive: true }}
+            />
+            <KPICard
+              title="SLA Compliance"
+              value="94%"
+              icon={Target}
+              color="green"
+              trend={{ value: 2.1, isPositive: true }}
+            />
+            <KPICard
+              title="Knowledge Articles"
+              value={156}
+              icon={FileText}
+              color="yellow"
+              trend={{ value: 12.0, isPositive: true }}
+            />
+          </>
+        )}
       </div>
 
       {/* Main Content Grid */}
@@ -335,41 +376,59 @@ export default function SupportDashboard() {
           </div>
 
           <div className="grid grid-cols-2 gap-4">
-            <button className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-lg p-4 hover:from-blue-700 hover:to-cyan-700 text-left">
+            <Link
+              href="/support/tickets/create"
+              className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-lg p-4 hover:from-blue-700 hover:to-cyan-700 text-left block"
+            >
               <Ticket className="h-6 w-6 mb-2" />
               <h3 className="font-semibold text-sm">Create Ticket</h3>
               <p className="text-xs opacity-90 mt-1">New support ticket</p>
-            </button>
+            </Link>
 
-            <button className="bg-gradient-to-r from-red-600 to-pink-600 text-white rounded-lg p-4 hover:from-red-700 hover:to-pink-700 text-left">
+            <Link
+              href="/support/tickets/create?type=incident"
+              className="bg-gradient-to-r from-red-600 to-pink-600 text-white rounded-lg p-4 hover:from-red-700 hover:to-pink-700 text-left block"
+            >
               <AlertCircle className="h-6 w-6 mb-2" />
               <h3 className="font-semibold text-sm">Report Incident</h3>
               <p className="text-xs opacity-90 mt-1">Critical issue</p>
-            </button>
+            </Link>
 
-            <button className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-lg p-4 hover:from-purple-700 hover:to-indigo-700 text-left">
+            <Link
+              href="/support/knowledge-base"
+              className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-lg p-4 hover:from-purple-700 hover:to-indigo-700 text-left block"
+            >
               <MessageSquare className="h-6 w-6 mb-2" />
               <h3 className="font-semibold text-sm">Knowledge Base</h3>
               <p className="text-xs opacity-90 mt-1">Browse articles</p>
-            </button>
+            </Link>
 
-            <button className="bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-lg p-4 hover:from-green-700 hover:to-emerald-700 text-left">
+            <Link
+              href="/it-administration/monitoring/system"
+              className="bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-lg p-4 hover:from-green-700 hover:to-emerald-700 text-left block"
+            >
               <Activity className="h-6 w-6 mb-2" />
               <h3 className="font-semibold text-sm">System Status</h3>
               <p className="text-xs opacity-90 mt-1">Check health</p>
-            </button>
+            </Link>
 
-            <button className="bg-gradient-to-r from-orange-600 to-yellow-600 text-white rounded-lg p-4 hover:from-orange-700 hover:to-yellow-700 text-left">
+            <Link
+              href="/support/changes/create"
+              className="bg-gradient-to-r from-orange-600 to-yellow-600 text-white rounded-lg p-4 hover:from-orange-700 hover:to-yellow-700 text-left block"
+            >
               <Settings className="h-6 w-6 mb-2" />
               <h3 className="font-semibold text-sm">Request Change</h3>
               <p className="text-xs opacity-90 mt-1">System change</p>
-            </button>
+            </Link>
 
-            <button className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg p-4 hover:from-indigo-700 hover:to-purple-700 text-left">
+            <Link
+              href="/support/assets/hardware"
+              className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg p-4 hover:from-indigo-700 hover:to-purple-700 text-left block"
+            >
               <Shield className="h-6 w-6 mb-2" />
               <h3 className="font-semibold text-sm">Asset Request</h3>
               <p className="text-xs opacity-90 mt-1">Hardware/Software</p>
-            </button>
+            </Link>
           </div>
         </div>
       </div>

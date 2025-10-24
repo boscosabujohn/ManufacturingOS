@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import {
   Users,
   Calendar,
@@ -19,6 +20,7 @@ import {
   Building
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import { KPICard, CardSkeleton } from '@/components/ui';
 
 interface DashboardStats {
   totalEmployees: number;
@@ -42,6 +44,7 @@ interface RecentActivity {
 
 export default function HRDashboardPage() {
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
 
   // Sample dashboard data
   const stats: DashboardStats = {
@@ -167,61 +170,49 @@ export default function HRDashboardPage() {
 
         {/* Main Statistics Cards */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          <div
-            className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-6 text-white shadow-lg cursor-pointer hover:shadow-2xl transition-shadow"
-            onClick={() => router.push('/hr/employees')}
-          >
-            <div className="flex items-center justify-between mb-2">
-              <Users className="w-8 h-8 opacity-80" />
-              <TrendingUp className="w-5 h-5" />
-            </div>
-            <div className="text-2xl font-bold mb-1">{stats.totalEmployees}</div>
-            <div className="text-blue-100 text-sm">Total Employees</div>
-            <div className="mt-2 text-xs text-blue-100">{stats.activeEmployees} active</div>
-          </div>
-
-          <div
-            className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-6 text-white shadow-lg cursor-pointer hover:shadow-2xl transition-shadow"
-            onClick={() => router.push('/hr/attendance')}
-          >
-            <div className="flex items-center justify-between mb-2">
-              <Clock className="w-8 h-8 opacity-80" />
-              <Calendar className="w-5 h-5" />
-            </div>
-            <div className="text-2xl font-bold mb-1">{stats.onLeaveToday}</div>
-            <div className="text-green-100 text-sm">On Leave Today</div>
-            <div className="mt-2 text-xs text-green-100">
-              {((stats.onLeaveToday / stats.totalEmployees) * 100).toFixed(1)}% of workforce
-            </div>
-          </div>
-
-          <div
-            className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl p-6 text-white shadow-lg cursor-pointer hover:shadow-2xl transition-shadow"
-            onClick={() => router.push('/hr/payroll')}
-          >
-            <div className="flex items-center justify-between mb-2">
-              <DollarSign className="w-8 h-8 opacity-80" />
-              <TrendingUp className="w-5 h-5" />
-            </div>
-            <div className="text-2xl font-bold mb-1">{formatCurrency(stats.monthlyPayroll)}</div>
-            <div className="text-purple-100 text-sm">Monthly Payroll</div>
-            <div className="mt-2 text-xs text-purple-100">
-              Avg: {formatCurrency(stats.averageSalary)}
-            </div>
-          </div>
-
-          <div
-            className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl p-6 text-white shadow-lg cursor-pointer hover:shadow-2xl transition-shadow"
-            onClick={() => router.push('/hr/leave')}
-          >
-            <div className="flex items-center justify-between mb-2">
-              <AlertTriangle className="w-8 h-8 opacity-80" />
-              <Clock className="w-5 h-5" />
-            </div>
-            <div className="text-2xl font-bold mb-1">{stats.pendingApprovals}</div>
-            <div className="text-orange-100 text-sm">Pending Approvals</div>
-            <div className="mt-2 text-xs text-orange-100">Requires action</div>
-          </div>
+          {isLoading ? (
+            <>
+              <CardSkeleton />
+              <CardSkeleton />
+              <CardSkeleton />
+              <CardSkeleton />
+            </>
+          ) : (
+            <>
+              <KPICard
+                title="Total Employees"
+                value={stats.totalEmployees}
+                icon={Users}
+                color="blue"
+                description={`${stats.activeEmployees} active`}
+                onClick={() => router.push('/hr/employees')}
+              />
+              <KPICard
+                title="On Leave Today"
+                value={stats.onLeaveToday}
+                icon={Clock}
+                color="green"
+                description={`${((stats.onLeaveToday / stats.totalEmployees) * 100).toFixed(1)}% of workforce`}
+                onClick={() => router.push('/hr/attendance')}
+              />
+              <KPICard
+                title="Monthly Payroll"
+                value={formatCurrency(stats.monthlyPayroll)}
+                icon={DollarSign}
+                color="purple"
+                description={`Avg: ${formatCurrency(stats.averageSalary)}`}
+                onClick={() => router.push('/hr/payroll')}
+              />
+              <KPICard
+                title="Pending Approvals"
+                value={stats.pendingApprovals}
+                icon={AlertTriangle}
+                color="red"
+                description="Requires action"
+                onClick={() => router.push('/hr/leave')}
+              />
+            </>
+          )}
         </div>
 
         {/* Secondary Stats */}

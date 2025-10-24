@@ -1,0 +1,287 @@
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import { Activity, Cpu, Database, Wifi, WifiOff, TrendingUp } from 'lucide-react';
+
+export type ConnectionStatus = 'connected' | 'disconnected' | 'error';
+export type DataStreamType = 'plc' | 'scada' | 'sensor' | 'machine';
+
+export interface MachineData {
+  machineId: string;
+  machineName: string;
+  status: 'running' | 'idle' | 'down' | 'setup';
+  connectionStatus: ConnectionStatus;
+  currentSpeed: number;
+  targetSpeed: number;
+  temperature: number;
+  vibration: number;
+  powerConsumption: number;
+  cycleTime: number;
+  partCount: number;
+  lastUpdate: string;
+}
+
+export interface DataStream {
+  id: string;
+  source: string;
+  type: DataStreamType;
+  status: ConnectionStatus;
+  dataPoints: number;
+  updateFrequency: number;
+  lastSync: string;
+}
+
+const MESIntegration: React.FC = () => {
+  const [realTimeUpdate, setRealTimeUpdate] = useState(0);
+
+  // Simulate real-time updates
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setRealTimeUpdate(prev => prev + 1);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const machines: MachineData[] = [
+    {
+      machineId: 'M001',
+      machineName: 'CNC Mill #1',
+      status: 'running',
+      connectionStatus: 'connected',
+      currentSpeed: 4500 + (realTimeUpdate % 100),
+      targetSpeed: 4800,
+      temperature: 65 + (realTimeUpdate % 5),
+      vibration: 0.8,
+      powerConsumption: 12.5,
+      cycleTime: 145,
+      partCount: 1247 + realTimeUpdate,
+      lastUpdate: new Date().toLocaleTimeString(),
+    },
+    {
+      machineId: 'M002',
+      machineName: 'CNC Lathe #2',
+      status: 'running',
+      connectionStatus: 'connected',
+      currentSpeed: 3200,
+      targetSpeed: 3200,
+      temperature: 58,
+      vibration: 0.6,
+      powerConsumption: 10.2,
+      cycleTime: 98,
+      partCount: 892 + realTimeUpdate,
+      lastUpdate: new Date().toLocaleTimeString(),
+    },
+    {
+      machineId: 'M003',
+      machineName: 'Press #1',
+      status: 'idle',
+      connectionStatus: 'connected',
+      currentSpeed: 0,
+      targetSpeed: 0,
+      temperature: 42,
+      vibration: 0.1,
+      powerConsumption: 2.1,
+      cycleTime: 0,
+      partCount: 645,
+      lastUpdate: new Date().toLocaleTimeString(),
+    },
+    {
+      machineId: 'M004',
+      machineName: 'Grinder #1',
+      status: 'down',
+      connectionStatus: 'error',
+      currentSpeed: 0,
+      targetSpeed: 2400,
+      temperature: 38,
+      vibration: 0,
+      powerConsumption: 0,
+      cycleTime: 0,
+      partCount: 234,
+      lastUpdate: '10 min ago',
+    },
+  ];
+
+  const dataStreams: DataStream[] = [
+    { id: 'DS001', source: 'Siemens S7-1500 PLC', type: 'plc', status: 'connected', dataPoints: 1247, updateFrequency: 1, lastSync: '2 sec ago' },
+    { id: 'DS002', source: 'Rockwell ControlLogix PLC', type: 'plc', status: 'connected', dataPoints: 892, updateFrequency: 1, lastSync: '1 sec ago' },
+    { id: 'DS003', source: 'SCADA System - Main', type: 'scada', status: 'connected', dataPoints: 3456, updateFrequency: 5, lastSync: '3 sec ago' },
+    { id: 'DS004', source: 'IoT Sensor Network', type: 'sensor', status: 'connected', dataPoints: 8923, updateFrequency: 10, lastSync: '8 sec ago' },
+    { id: 'DS005', source: 'Grinder Control System', type: 'machine', status: 'error', dataPoints: 0, updateFrequency: 1, lastSync: '10 min ago' },
+  ];
+
+  const getStatusColor = (status: string): string => {
+    switch (status) {
+      case 'running': case 'connected': return 'bg-green-100 text-green-800';
+      case 'idle': return 'bg-yellow-100 text-yellow-800';
+      case 'down': case 'disconnected': case 'error': return 'bg-red-100 text-red-800';
+      case 'setup': return 'bg-blue-100 text-blue-800';
+      default: return 'bg-gray-100 text-gray-800';
+    }
+  };
+
+  return (
+    <div className="space-y-6">
+      <div className="bg-gradient-to-r from-green-600 to-teal-600 text-white p-6 rounded-lg shadow-lg">
+        <div className="flex items-center space-x-3">
+          <Cpu className="h-8 w-8" />
+          <div>
+            <h2 className="text-2xl font-bold">MES Integration & Shop Floor Data</h2>
+            <p className="text-green-100">Real-time machine monitoring and data streaming</p>
+          </div>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-green-500">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm text-gray-600">Connected Machines</p>
+              <p className="text-2xl font-bold text-green-600">
+                {machines.filter(m => m.connectionStatus === 'connected').length}/{machines.length}
+              </p>
+            </div>
+            <Wifi className="h-8 w-8 text-green-500" />
+          </div>
+        </div>
+
+        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-blue-500">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm text-gray-600">Running</p>
+              <p className="text-2xl font-bold text-blue-600">
+                {machines.filter(m => m.status === 'running').length}
+              </p>
+            </div>
+            <Activity className="h-8 w-8 text-blue-500" />
+          </div>
+        </div>
+
+        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-red-500">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm text-gray-600">Down/Error</p>
+              <p className="text-2xl font-bold text-red-600">
+                {machines.filter(m => m.status === 'down' || m.connectionStatus === 'error').length}
+              </p>
+            </div>
+            <WifiOff className="h-8 w-8 text-red-500" />
+          </div>
+        </div>
+
+        <div className="bg-white p-4 rounded-lg shadow border-l-4 border-purple-500">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm text-gray-600">Total Parts Today</p>
+              <p className="text-2xl font-bold text-purple-600">
+                {machines.reduce((sum, m) => sum + m.partCount, 0).toLocaleString()}
+              </p>
+            </div>
+            <TrendingUp className="h-8 w-8 text-purple-500" />
+          </div>
+        </div>
+      </div>
+
+      <div className="bg-white rounded-lg shadow overflow-hidden">
+        <div className="px-6 py-4 border-b border-gray-200">
+          <div className="flex items-center justify-between">
+            <h3 className="text-lg font-semibold text-gray-900">Real-Time Machine Data</h3>
+            <span className="text-sm text-gray-600">Auto-updating every 3 seconds</span>
+          </div>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="min-w-full divide-y divide-gray-200">
+            <thead className="bg-gradient-to-r from-green-600 to-teal-600 text-white">
+              <tr>
+                <th className="px-6 py-3 text-left text-xs font-medium uppercase">Machine</th>
+                <th className="px-6 py-3 text-left text-xs font-medium uppercase">Status</th>
+                <th className="px-6 py-3 text-left text-xs font-medium uppercase">Connection</th>
+                <th className="px-6 py-3 text-left text-xs font-medium uppercase">Speed (RPM)</th>
+                <th className="px-6 py-3 text-left text-xs font-medium uppercase">Temp (°C)</th>
+                <th className="px-6 py-3 text-left text-xs font-medium uppercase">Vibration</th>
+                <th className="px-6 py-3 text-left text-xs font-medium uppercase">Power (kW)</th>
+                <th className="px-6 py-3 text-left text-xs font-medium uppercase">Cycle Time</th>
+                <th className="px-6 py-3 text-left text-xs font-medium uppercase">Part Count</th>
+                <th className="px-6 py-3 text-left text-xs font-medium uppercase">Last Update</th>
+              </tr>
+            </thead>
+            <tbody className="bg-white divide-y divide-gray-200">
+              {machines.map((machine) => (
+                <tr key={machine.machineId} className="hover:bg-gray-50">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{machine.machineName}</td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <span className={`px-2 py-1 text-xs font-semibold rounded-full ${getStatusColor(machine.status)}`}>
+                      {machine.status}
+                    </span>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <span className={`px-2 py-1 text-xs font-semibold rounded-full ${getStatusColor(machine.connectionStatus)}`}>
+                      {machine.connectionStatus}
+                    </span>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm">
+                    <div className="text-gray-900">{machine.currentSpeed} / {machine.targetSpeed}</div>
+                    <div className="w-20 bg-gray-200 rounded-full h-1 mt-1">
+                      <div className="bg-blue-500 h-1 rounded-full" style={{ width: `${(machine.currentSpeed / machine.targetSpeed) * 100}%` }}></div>
+                    </div>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <span className={`text-sm font-medium ${machine.temperature > 70 ? 'text-red-600' : machine.temperature > 60 ? 'text-yellow-600' : 'text-green-600'}`}>
+                      {machine.temperature}°C
+                    </span>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{machine.vibration} mm/s</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{machine.powerConsumption} kW</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{machine.cycleTime > 0 ? `${machine.cycleTime}s` : '-'}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-blue-600">{machine.partCount}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{machine.lastUpdate}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div className="bg-white rounded-lg shadow overflow-hidden">
+        <div className="px-6 py-4 border-b border-gray-200">
+          <h3 className="text-lg font-semibold text-gray-900">Data Stream Connections</h3>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="min-w-full divide-y divide-gray-200">
+            <thead className="bg-gray-50">
+              <tr>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Source</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Type</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Data Points</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Update Freq (sec)</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Last Sync</th>
+              </tr>
+            </thead>
+            <tbody className="bg-white divide-y divide-gray-200">
+              {dataStreams.map((stream) => (
+                <tr key={stream.id} className="hover:bg-gray-50">
+                  <td className="px-6 py-4 text-sm font-medium text-gray-900">{stream.source}</td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <span className="px-2 py-1 text-xs font-semibold rounded bg-blue-100 text-blue-800 uppercase">
+                      {stream.type}
+                    </span>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <span className={`px-2 py-1 text-xs font-semibold rounded-full ${getStatusColor(stream.status)}`}>
+                      {stream.status}
+                    </span>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{stream.dataPoints.toLocaleString()}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{stream.updateFrequency}s</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{stream.lastSync}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default MESIntegration;
