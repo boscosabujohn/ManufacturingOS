@@ -446,7 +446,12 @@ export default function CPQIntegrationEcommercePage() {
             {webQuotes.map((quote) => (
               <tr key={quote.id} className="hover:bg-gray-50">
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <a href="#" className="text-sm font-medium text-blue-600 hover:text-blue-800">{quote.quoteId}</a>
+                  <button
+                    onClick={() => alert(`View quote details for ${quote.quoteId} - Feature coming soon`)}
+                    className="text-sm font-medium text-blue-600 hover:text-blue-800 underline"
+                  >
+                    {quote.quoteId}
+                  </button>
                 </td>
                 <td className="px-6 py-4">
                   <div className="text-sm font-medium text-gray-900">{quote.customerName}</div>

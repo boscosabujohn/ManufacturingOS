@@ -378,7 +378,12 @@ export default function CPQIntegrationCADPage() {
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{file.cadSystem}</td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <a href="#" className="text-sm text-blue-600 hover:text-blue-800 font-medium">{file.quoteId}</a>
+                  <button
+                    onClick={() => alert(`View quote ${file.quoteId} - Feature coming soon`)}
+                    className="text-sm text-blue-600 hover:text-blue-800 font-medium underline"
+                  >
+                    {file.quoteId}
+                  </button>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{file.fileSize}</td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{file.importedDate}</td>

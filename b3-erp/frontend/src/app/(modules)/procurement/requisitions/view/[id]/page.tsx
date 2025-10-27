@@ -726,7 +726,12 @@ export default function ViewRequisitionPage() {
                   <div>
                     <p className="text-xs font-medium text-gray-500 uppercase mb-1">Linked RFQ</p>
                     {requisition.linkedRFQ ? (
-                      <a href="#" className="text-sm text-blue-600 hover:underline font-semibold">{requisition.linkedRFQ}</a>
+                      <button
+                        onClick={() => alert(`View linked RFQ ${requisition.linkedRFQ} - Feature coming soon`)}
+                        className="text-sm text-blue-600 hover:underline font-semibold"
+                      >
+                        {requisition.linkedRFQ}
+                      </button>
                     ) : (
                       <p className="text-sm text-gray-400 italic">Not yet created</p>
                     )}
@@ -734,7 +739,12 @@ export default function ViewRequisitionPage() {
                   <div>
                     <p className="text-xs font-medium text-gray-500 uppercase mb-1">Linked PO</p>
                     {requisition.linkedPO ? (
-                      <a href="#" className="text-sm text-blue-600 hover:underline font-semibold">{requisition.linkedPO}</a>
+                      <button
+                        onClick={() => alert(`View linked PO ${requisition.linkedPO} - Feature coming soon`)}
+                        className="text-sm text-blue-600 hover:underline font-semibold"
+                      >
+                        {requisition.linkedPO}
+                      </button>
                     ) : (
                       <p className="text-sm text-gray-400 italic">Not yet created</p>
                     )}

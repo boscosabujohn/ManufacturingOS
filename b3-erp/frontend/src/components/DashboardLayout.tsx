@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { Search, Bell, User, Menu, ChevronDown } from 'lucide-react';
 import Sidebar from '@/components/Sidebar';
 import MegaMenu from '@/components/MegaMenu';
@@ -130,9 +131,9 @@ export default function DashboardLayout({ children, pageTitle }: DashboardLayout
                 </p>
               </div>
               <div className="flex space-x-8">
-                <a href="#" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">Help Center</a>
-                <a href="#" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">Documentation</a>
-                <a href="#" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">Contact Support</a>
+                <Link href="/help" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">Help Center</Link>
+                <Link href="/documentation" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">Documentation</Link>
+                <Link href="/support/incidents" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">Contact Support</Link>
               </div>
             </div>
           </div>

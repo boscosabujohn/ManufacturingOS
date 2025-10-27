@@ -44,7 +44,14 @@
       "Bash(cat:*)",
       "Bash(do if [ -f \"$file\" ])",
       "Bash(then echo \"exists: $file\")",
-      "Bash(else echo \"new: $file\")"
+      "Bash(else echo \"new: $file\")",
+      "Bash(do if [ -f \"(modules)/$route/page.tsx\" ])",
+      "Bash([ -f \"$route/page.tsx\" ])",
+      "Bash(then echo \"EXISTS: $route\")",
+      "Bash(else echo \"MISSING: $route\")",
+      "Bash(do if [ -d \"(modules)/$route\" ])",
+      "Bash([ -f \"(modules)/$route/page.tsx\" ])",
+      "Bash([ -d \"$route\" ])"
     ],
     "deny": [],
     "ask": []

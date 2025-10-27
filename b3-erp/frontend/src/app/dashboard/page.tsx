@@ -429,9 +429,9 @@ export default function DashboardPage() {
                 </p>
               </div>
               <div className="flex space-x-8">
-                <a href="#" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">Help Center</a>
-                <a href="#" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">Documentation</a>
-                <a href="#" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">Contact Support</a>
+                <Link href="/help" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">Help Center</Link>
+                <Link href="/documentation" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">Documentation</Link>
+                <Link href="/support/incidents" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">Contact Support</Link>
               </div>
             </div>
           </div>

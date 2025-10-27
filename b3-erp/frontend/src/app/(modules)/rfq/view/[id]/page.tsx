@@ -573,7 +573,12 @@ export default function ViewRFQPage() {
                   <div>
                     <p className="text-xs font-medium text-gray-500 uppercase mb-1">Linked Purchase Requisition</p>
                     {rfq.linkedPR ? (
-                      <a href="#" className="text-sm text-blue-600 hover:underline font-semibold">{rfq.linkedPR}</a>
+                      <button
+                        onClick={() => alert(`View linked PR ${rfq.linkedPR} - Feature coming soon`)}
+                        className="text-sm text-blue-600 hover:underline font-semibold"
+                      >
+                        {rfq.linkedPR}
+                      </button>
                     ) : (
                       <p className="text-sm text-gray-400 italic">No linked PR</p>
                     )}

@@ -368,9 +368,9 @@ export default function DashboardPage() {
               </p>
             </div>
             <div className="flex space-x-6">
-              <a href="#" className="text-sm text-gray-500 hover:text-gray-900">Help</a>
-              <a href="#" className="text-sm text-gray-500 hover:text-gray-900">Documentation</a>
-              <a href="#" className="text-sm text-gray-500 hover:text-gray-900">Support</a>
+              <Link href="/help" className="text-sm text-gray-500 hover:text-gray-900">Help</Link>
+              <Link href="/documentation" className="text-sm text-gray-500 hover:text-gray-900">Documentation</Link>
+              <Link href="/support/incidents" className="text-sm text-gray-500 hover:text-gray-900">Support</Link>
             </div>
           </div>
         </div>
