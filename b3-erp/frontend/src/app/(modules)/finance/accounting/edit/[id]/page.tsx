@@ -550,7 +550,7 @@ export default function GLEntryEditPage() {
                       <button
                         onClick={() => handleDuplicateLine(line.id)}
                         className="p-1.5 text-blue-600 hover:bg-blue-50 rounded transition-colors"
-                        title="Duplicate line"
+                       
                       >
                         <Copy className="h-4 w-4" />
                       </button>
@@ -558,7 +558,7 @@ export default function GLEntryEditPage() {
                         onClick={() => handleRemoveLine(line.id)}
                         disabled={journalLines.length <= 2}
                         className="p-1.5 text-red-600 hover:bg-red-50 rounded transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                        title="Remove line"
+                       
                       >
                         <Trash2 className="h-4 w-4" />
                       </button>

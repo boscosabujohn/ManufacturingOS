@@ -323,11 +323,11 @@ export default function MedicalCheckupPage() {
       render: (value: boolean, row: MedicalCheckup) => (
         <div className="flex items-center gap-2">
           {value ? (
-            <CheckCircle className="w-5 h-5 text-green-600" title="Report Uploaded" />
+            <CheckCircle className="w-5 h-5 text-green-600" />
           ) : row.checkupDate ? (
-            <XCircle className="w-5 h-5 text-red-600" title="Report Pending" />
+            <XCircle className="w-5 h-5 text-red-600" />
           ) : (
-            <Clock className="w-5 h-5 text-gray-400" title="Checkup Pending" />
+            <Clock className="w-5 h-5 text-gray-400" />
           )}
         </div>
       )
@@ -341,7 +341,7 @@ export default function MedicalCheckupPage() {
           {row.reportUploaded && (
             <button
               className="p-2 text-blue-600 hover:bg-blue-50 rounded transition-colors"
-              title="View Report"
+             
             >
               <Eye className="w-4 h-4" />
             </button>
@@ -349,7 +349,7 @@ export default function MedicalCheckupPage() {
           {!row.reportUploaded && row.checkupDate && (
             <button
               className="p-2 text-green-600 hover:bg-green-50 rounded transition-colors"
-              title="Upload Report"
+             
             >
               <Upload className="w-4 h-4" />
             </button>
@@ -357,7 +357,7 @@ export default function MedicalCheckupPage() {
           {row.reportUploaded && (
             <button
               className="p-2 text-purple-600 hover:bg-purple-50 rounded transition-colors"
-              title="Download Report"
+             
             >
               <Download className="w-4 h-4" />
             </button>

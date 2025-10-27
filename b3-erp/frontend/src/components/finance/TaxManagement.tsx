@@ -6,12 +6,12 @@ import {
   PieChart, Pie, Cell, AreaChart, Area
 } from 'recharts';
 import {
-  DocumentTextIcon, CurrencyDollarIcon, CalendarIcon, ExclamationTriangleIcon,
+  FileText, DollarSign, CalendarIcon, AlertTriangle,
   CheckCircleIcon, ClockIcon, PlusIcon, PencilIcon, EyeIcon,
-  DocumentArrowDownIcon, DocumentArrowUpIcon, BanknotesIcon,
-  ChartBarIcon, ShieldCheckIcon, InformationCircleIcon,
-  BuildingOffice2Icon, GlobeAltIcon, ReceiptPercentIcon
-} from '@heroicons/react/24/outline';
+  FileDown, FileUp, Banknote,
+  BarChart3, ShieldCheckIcon, Info,
+  Building2, Globe, Receipt
+} from 'lucide-react';
 
 interface TaxJurisdiction {
   id: string;
@@ -452,10 +452,10 @@ const TaxManagement: React.FC = () => {
   const getStatusBadge = (status: string) => {
     const statusConfig = {
       draft: { bg: 'bg-yellow-100', text: 'text-yellow-800', icon: ClockIcon },
-      prepared: { bg: 'bg-blue-100', text: 'text-blue-800', icon: DocumentTextIcon },
+      prepared: { bg: 'bg-blue-100', text: 'text-blue-800', icon: FileText },
       filed: { bg: 'bg-green-100', text: 'text-green-800', icon: CheckCircleIcon },
       paid: { bg: 'bg-green-100', text: 'text-green-800', icon: CheckCircleIcon },
-      overdue: { bg: 'bg-red-100', text: 'text-red-800', icon: ExclamationTriangleIcon },
+      overdue: { bg: 'bg-red-100', text: 'text-red-800', icon: AlertTriangle },
       amended: { bg: 'bg-purple-100', text: 'text-purple-800', icon: PencilIcon }
     };
 
@@ -490,15 +490,15 @@ const TaxManagement: React.FC = () => {
   const getJurisdictionTypeIcon = (type: string) => {
     switch (type) {
       case 'federal':
-        return <BuildingOffice2Icon className="w-5 h-5 text-blue-600" />;
+        return <Building2 className="w-5 h-5 text-blue-600" />;
       case 'state':
-        return <BuildingOffice2Icon className="w-5 h-5 text-green-600" />;
+        return <Building2 className="w-5 h-5 text-green-600" />;
       case 'local':
-        return <BuildingOffice2Icon className="w-5 h-5 text-orange-600" />;
+        return <Building2 className="w-5 h-5 text-orange-600" />;
       case 'international':
-        return <GlobeAltIcon className="w-5 h-5 text-purple-600" />;
+        return <Globe className="w-5 h-5 text-purple-600" />;
       default:
-        return <InformationCircleIcon className="w-5 h-5 text-gray-600" />;
+        return <Info className="w-5 h-5 text-gray-600" />;
     }
   };
 
@@ -509,7 +509,7 @@ const TaxManagement: React.FC = () => {
         <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <CurrencyDollarIcon className="h-8 w-8 text-blue-600" />
+              <DollarSign className="h-8 w-8 text-blue-600" />
             </div>
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600">Total Tax Liability</p>
@@ -523,7 +523,7 @@ const TaxManagement: React.FC = () => {
         <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <DocumentTextIcon className="h-8 w-8 text-green-600" />
+              <FileText className="h-8 w-8 text-green-600" />
             </div>
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600">Active Jurisdictions</p>
@@ -537,7 +537,7 @@ const TaxManagement: React.FC = () => {
         <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <ExclamationTriangleIcon className="h-8 w-8 text-orange-600" />
+              <AlertTriangle className="h-8 w-8 text-orange-600" />
             </div>
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600">Compliance Alerts</p>
@@ -811,7 +811,7 @@ const TaxManagement: React.FC = () => {
                       </button>
                       {filing.status === 'filed' && (
                         <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
-                          <DocumentArrowDownIcon className="w-4 h-4 text-gray-600" />
+                          <FileDown className="w-4 h-4 text-gray-600" />
                           <span className="text-gray-700">Download</span>
                         </button>
                       )}
@@ -1033,7 +1033,7 @@ const TaxManagement: React.FC = () => {
                 <h4 className="font-semibold text-gray-900">{report.name}</h4>
                 <p className="text-sm text-gray-600">{report.period}</p>
               </div>
-              <DocumentTextIcon className="w-6 h-6 text-blue-600" />
+              <FileText className="w-6 h-6 text-blue-600" />
             </div>
 
             <div className="space-y-2 text-sm">
@@ -1053,7 +1053,7 @@ const TaxManagement: React.FC = () => {
 
             <div className="mt-4 pt-4 border-t border-gray-200 flex space-x-2">
               <button className="flex-1 bg-blue-600 text-white px-3 py-2 rounded text-sm hover:bg-blue-700 flex items-center justify-center">
-                <DocumentArrowDownIcon className="w-4 h-4 mr-1" />
+                <FileDown className="w-4 h-4 mr-1" />
                 Download
               </button>
               <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded text-sm hover:bg-gray-50">
@@ -1078,12 +1078,12 @@ const TaxManagement: React.FC = () => {
       <div className="border-b border-gray-200 mb-6">
         <nav className="-mb-px flex space-x-8">
           {[
-            { key: 'dashboard', label: 'Dashboard', icon: ChartBarIcon },
-            { key: 'jurisdictions', label: 'Jurisdictions', icon: GlobeAltIcon },
-            { key: 'filings', label: 'Tax Filings', icon: DocumentTextIcon },
-            { key: 'calculations', label: 'Calculations', icon: ReceiptPercentIcon },
+            { key: 'dashboard', label: 'Dashboard', icon: BarChart3 },
+            { key: 'jurisdictions', label: 'Jurisdictions', icon: Globe },
+            { key: 'filings', label: 'Tax Filings', icon: FileText },
+            { key: 'calculations', label: 'Calculations', icon: Receipt },
             { key: 'compliance', label: 'Compliance', icon: ShieldCheckIcon },
-            { key: 'reports', label: 'Reports', icon: DocumentArrowDownIcon }
+            { key: 'reports', label: 'Reports', icon: FileDown }
           ].map(({ key, label, icon: Icon }) => (
             <button
               key={key}

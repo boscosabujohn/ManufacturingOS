@@ -406,14 +406,14 @@ export default function PendingBillsPage() {
                 <button
                   className="p-2 rounded-lg hover:bg-gray-100 transition-colors text-emerald-600 hover:text-emerald-700"
                   aria-label="Download"
-                  title="Download"
+                 
                 >
                   <Download className="h-5 w-5" />
                 </button>
                 <button
                   className="p-2 rounded-lg hover:bg-gray-100 transition-colors text-emerald-600 hover:text-emerald-700"
                   aria-label="View"
-                  title="View"
+                 
                 >
                   <Eye className="h-5 w-5" />
                 </button>

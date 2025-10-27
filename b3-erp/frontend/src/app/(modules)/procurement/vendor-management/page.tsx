@@ -1095,14 +1095,14 @@ const VendorManagementDashboard = () => {
                         <button
                           onClick={() => router.push(`/procurement/vendors/view/${vendor.vendor_id}`)}
                           className="p-1 text-blue-600 hover:bg-blue-50 rounded"
-                          title="View"
+                         
                         >
                           <Eye className="w-4 h-4" />
                         </button>
                         <button
                           onClick={() => router.push(`/procurement/vendors/edit/${vendor.vendor_id}`)}
                           className="p-1 text-gray-600 hover:bg-gray-50 rounded"
-                          title="Edit"
+                         
                         >
                           <Edit className="w-4 h-4" />
                         </button>

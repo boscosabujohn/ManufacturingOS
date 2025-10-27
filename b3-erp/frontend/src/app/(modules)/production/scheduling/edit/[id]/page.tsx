@@ -25,7 +25,7 @@ import {
   Zap,
   Target,
   Database,
-  Tool,
+  Wrench,
   ArrowRight,
   RefreshCw,
   Send,
@@ -850,7 +850,7 @@ const ProductionSchedulingEditPage = () => {
                             <AlertTriangle className="w-4 h-4 text-red-500" />
                           )}
                           {!wo.toolsAvailable && (
-                            <Tool className="w-4 h-4 text-orange-500" />
+                            <Wrench className="w-4 h-4 text-orange-500" />
                           )}
                         </div>
                         <div className="text-sm text-gray-700">
@@ -1039,9 +1039,9 @@ const ProductionSchedulingEditPage = () => {
                       <X className="w-4 h-4 text-red-600" />
                     )}
                     {wo.toolsAvailable ? (
-                      <Tool className="w-4 h-4 text-green-600" />
+                      <Wrench className="w-4 h-4 text-green-600" />
                     ) : (
-                      <Tool className="w-4 h-4 text-red-600" />
+                      <Wrench className="w-4 h-4 text-red-600" />
                     )}
                   </div>
                 </div>
@@ -1053,7 +1053,7 @@ const ProductionSchedulingEditPage = () => {
                 <span>Material Available</span>
               </div>
               <div className="flex items-center gap-2 text-xs text-gray-600 mt-1">
-                <Tool className="w-3 h-3 text-green-600" />
+                <Wrench className="w-3 h-3 text-green-600" />
                 <span>Tools Available</span>
               </div>
             </div>
@@ -1104,7 +1104,7 @@ const ProductionSchedulingEditPage = () => {
                 </span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-sm text-gray-700">Tool Issues:</span>
+                <span className="text-sm text-gray-700">Wrench Issues:</span>
                 <span className="font-semibold text-orange-600">
                   {
                     scheduleData.workOrders.filter((wo) => !wo.toolsAvailable)

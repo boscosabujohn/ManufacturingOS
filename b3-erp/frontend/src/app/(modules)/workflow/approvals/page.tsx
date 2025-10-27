@@ -659,14 +659,14 @@ export default function ApprovalsPage() {
                   <button
                     onClick={() => handleApprove(approval)}
                     className="flex items-center justify-center px-3 py-2 text-green-600 bg-green-50 hover:bg-green-100 rounded-lg transition-colors"
-                    title="Approve"
+                   
                   >
                     <ThumbsUp className="h-4 w-4" />
                   </button>
                   <button
                     onClick={() => handleReject(approval)}
                     className="flex items-center justify-center px-3 py-2 text-red-600 bg-red-50 hover:bg-red-100 rounded-lg transition-colors"
-                    title="Reject"
+                   
                   >
                     <ThumbsDown className="h-4 w-4" />
                   </button>

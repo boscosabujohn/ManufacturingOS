@@ -359,7 +359,7 @@ export default function ExpiredQuotationsPage() {
                 <option value="all">All Ages</option>
                 <option value="recent">Recent (≤15 days)</option>
                 <option value="moderate">Moderate (16-30 days)</option>
-                <option value="old">Old (>30 days)</option>
+                <option value="old">Old ({'>'}30 days)</option>
               </select>
             </div>
           </div>
@@ -385,7 +385,7 @@ export default function ExpiredQuotationsPage() {
                         {getReasonLabel(quotation.reason)}
                       </span>
                       {quotation.canRevive && (
-                        <RefreshCw className="w-4 h-4 text-blue-600" title="Can be revived" />
+                        <RefreshCw className="w-4 h-4 text-blue-600" />
                       )}
                     </div>
                     <div className="flex items-start gap-3">
@@ -525,7 +525,7 @@ export default function ExpiredQuotationsPage() {
                         <RotateCcw className="w-4 h-4" />
                         Revive Quote
                       </button>
-                      <button className="p-2 hover:bg-green-50 rounded-lg transition-colors" title="Send Follow-up">
+                      <button className="p-2 hover:bg-green-50 rounded-lg transition-colors">
                         <Send className="w-4 h-4 text-green-600" />
                       </button>
                     </>
@@ -535,10 +535,10 @@ export default function ExpiredQuotationsPage() {
                       View Details
                     </button>
                   )}
-                  <button className="p-2 hover:bg-purple-50 rounded-lg transition-colors" title="Duplicate for New Quote">
+                  <button className="p-2 hover:bg-purple-50 rounded-lg transition-colors">
                     <Copy className="w-4 h-4 text-purple-600" />
                   </button>
-                  <button className="p-2 hover:bg-red-50 rounded-lg transition-colors" title="Archive">
+                  <button className="p-2 hover:bg-red-50 rounded-lg transition-colors">
                     <Trash2 className="w-4 h-4 text-red-600" />
                   </button>
                 </div>

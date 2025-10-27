@@ -515,13 +515,13 @@ export default function CostCentersPage() {
                       </td>
                       <td className="px-6 py-4">
                         <div className="flex items-center justify-center gap-2">
-                          <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors" title="View Details">
+                          <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors">
                             <Eye className="w-4 h-4 text-blue-400" />
                           </button>
-                          <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors" title="Edit">
+                          <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors">
                             <Edit className="w-4 h-4 text-green-400" />
                           </button>
-                          <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors" title="View Analytics">
+                          <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors">
                             <BarChart3 className="w-4 h-4 text-purple-400" />
                           </button>
                         </div>

@@ -405,21 +405,21 @@ export default function ProjectPlanningPage() {
                       <button
                         onClick={() => router.push(`/projects/planning/view/${project.id}`)}
                         className="p-1.5 text-blue-600 hover:bg-blue-50 rounded transition-colors"
-                        title="View Details"
+                       
                       >
                         <Eye className="h-4 w-4" />
                       </button>
                       <button
                         onClick={() => router.push(`/projects/planning/edit/${project.id}`)}
                         className="p-1.5 text-green-600 hover:bg-green-50 rounded transition-colors"
-                        title="Edit Project"
+                       
                       >
                         <Edit className="h-4 w-4" />
                       </button>
                       <button
                         onClick={() => handleDelete(project.id)}
                         className="p-1.5 text-red-600 hover:bg-red-50 rounded transition-colors"
-                        title="Delete Project"
+                       
                       >
                         <Trash2 className="h-4 w-4" />
                       </button>

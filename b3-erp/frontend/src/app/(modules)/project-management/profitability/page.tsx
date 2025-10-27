@@ -858,7 +858,7 @@ export default function ProfitabilityAnalysisPage() {
                     <button
                       onClick={() => router.push(`/project-management/${project.projectId}`)}
                       className="text-cyan-600 hover:text-cyan-800"
-                      title="View Details"
+                     
                     >
                       <Eye className="w-5 h-5" />
                     </button>

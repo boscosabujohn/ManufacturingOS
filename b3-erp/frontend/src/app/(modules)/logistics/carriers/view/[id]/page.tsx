@@ -25,6 +25,7 @@ import {
   Navigation,
   Building2,
   User,
+  X,
 } from 'lucide-react';
 
 interface Carrier {

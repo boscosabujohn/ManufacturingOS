@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from 'react';
 import { Calendar, Users, CheckCircle, XCircle, Clock, Search, Filter, Download, TrendingUp, TrendingDown } from 'lucide-react';
-import DataTable from '@/components/DataTable';
+import DataTable, { Column } from '@/components/DataTable';
 
 interface MonthlyAttendance {
   id: string;
@@ -115,8 +115,8 @@ export default function MonthlyAttendancePage() {
     return 'text-orange-600 bg-orange-50';
   };
 
-  const columns = [
-    { key: 'employeeCode', label: 'Employee', sortable: true,
+  const columns: Column<MonthlyAttendance>[] = [
+    { id: 'employeeCode', accessor: 'employeeCode', label: 'Employee', sortable: true,
       render: (v: string, row: MonthlyAttendance) => (
         <div className="flex items-center gap-3">
           <div className="h-10 w-10 rounded-full bg-indigo-100 flex items-center justify-center">
@@ -129,12 +129,12 @@ export default function MonthlyAttendancePage() {
         </div>
       )
     },
-    { key: 'department', label: 'Department', sortable: true,
+    { id: 'department', accessor: 'department', label: 'Department', sortable: true,
       render: (v: string, row: MonthlyAttendance) => (
         <div><div className="font-medium text-gray-900">{v}</div><div className="text-xs text-gray-500">{row.designation}</div></div>
       )
     },
-    { key: 'presentDays', label: 'Days', sortable: true,
+    { id: 'presentDays', accessor: 'presentDays', label: 'Days', sortable: true,
       render: (v: number, row: MonthlyAttendance) => (
         <div className="text-sm">
           <div className="flex items-center gap-3">
@@ -154,7 +154,7 @@ export default function MonthlyAttendancePage() {
         </div>
       )
     },
-    { key: 'lateMarks', label: 'Late/Half Day', sortable: true,
+    { id: 'lateMarks', accessor: 'lateMarks', label: 'Late/Half Day', sortable: true,
       render: (v: number, row: MonthlyAttendance) => (
         <div className="text-sm">
           <div className="flex items-center gap-2">
@@ -167,7 +167,7 @@ export default function MonthlyAttendancePage() {
         </div>
       )
     },
-    { key: 'workHours', label: 'Hours', sortable: true,
+    { id: 'workHours', accessor: 'workHours', label: 'Hours', sortable: true,
       render: (v: number, row: MonthlyAttendance) => (
         <div className="text-sm">
           <div className="font-semibold text-blue-600">{v}h</div>
@@ -178,7 +178,7 @@ export default function MonthlyAttendancePage() {
         </div>
       )
     },
-    { key: 'attendancePercentage', label: 'Attendance %', sortable: true,
+    { id: 'attendancePercentage', accessor: 'attendancePercentage', label: 'Attendance %', sortable: true,
       render: (v: number) => (
         <div className={`inline-flex items-center gap-1 px-2 py-1 rounded-full font-semibold ${getAttendanceBadge(v)}`}>
           {v >= 95 ? <TrendingUp className="w-3 h-3" /> : <TrendingDown className="w-3 h-3" />}
@@ -186,7 +186,7 @@ export default function MonthlyAttendancePage() {
         </div>
       )
     },
-    { key: 'punctualityScore', label: 'Punctuality', sortable: true,
+    { id: 'punctualityScore', accessor: 'punctualityScore', label: 'Punctuality', sortable: true,
       render: (v: number) => (
         <div className={`inline-flex items-center gap-1 px-2 py-1 rounded-full font-semibold ${getPunctualityBadge(v)}`}>
           {v >= 90 ? <CheckCircle className="w-3 h-3" /> : <Clock className="w-3 h-3" />}

@@ -2,8 +2,8 @@
 
 import { useState, useMemo } from 'react';
 import { UserX, Search, Filter, Calendar, CheckCircle, XCircle, AlertCircle, TrendingDown, Users } from 'lucide-react';
-import DataTable from '@/components/DataTable';
-import StatusBadge from '@/components/StatusBadge';
+import DataTable, { Column } from '@/components/DataTable';
+import StatusBadge, { BadgeStatus } from '@/components/StatusBadge';
 
 interface Separation {
   id: string;
@@ -81,18 +81,18 @@ export default function SeparationsPage() {
     return { total: mockSeparations.length, thisMonth, pending, avgYOS };
   }, []);
 
-  const columns = [
-    { key: 'employeeCode', label: 'Employee', sortable: true,
+  const columns: Column<Separation>[] = [
+    { id: 'employeeCode', accessor: 'employeeCode', label: 'Employee', sortable: true,
       render: (v: string, row: Separation) => (
         <div><div className="font-semibold text-gray-900">{v}</div><div className="text-xs text-gray-500">{row.name}</div></div>
       )
     },
-    { key: 'designation', label: 'Designation', sortable: true,
+    { id: 'designation', accessor: 'designation', label: 'Designation', sortable: true,
       render: (v: string, row: Separation) => (
         <div><div className="font-medium text-gray-900">{v}</div><div className="text-xs text-gray-500">{row.department}</div></div>
       )
     },
-    { key: 'separationType', label: 'Type', sortable: true,
+    { id: 'separationType', accessor: 'separationType', label: 'Type', sortable: true,
       render: (v: string) => {
         const colors = {
           resignation: 'bg-blue-100 text-blue-700',
@@ -104,16 +104,16 @@ export default function SeparationsPage() {
         return <span className={`px-2 py-1 rounded-full text-xs font-medium ${colors[v as keyof typeof colors]}`}>{v.replace('_', ' ').toUpperCase()}</span>;
       }
     },
-    { key: 'lastWorkingDay', label: 'Last Working Day', sortable: true,
+    { id: 'lastWorkingDay', accessor: 'lastWorkingDay', label: 'Last Working Day', sortable: true,
       render: (v: string, row: Separation) => (
         <div className="text-sm"><div className="font-medium text-gray-900">{new Date(v).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}</div>
         <div className="text-xs text-gray-500">{row.noticePeriod} days notice</div></div>
       )
     },
-    { key: 'clearanceStatus', label: 'Clearance', sortable: true,
+    { id: 'clearanceStatus', accessor: 'clearanceStatus', label: 'Clearance', sortable: true,
       render: (v: string, row: Separation) => (
         <div className="text-sm">
-          <StatusBadge status={v} />
+          <StatusBadge status={v as BadgeStatus} />
           <div className="text-xs space-y-0.5 mt-1">
             <div className={row.exitInterviewDone ? 'text-green-600' : 'text-red-600'}>
               {row.exitInterviewDone ? '✓' : '✗'} Exit Interview
@@ -125,10 +125,10 @@ export default function SeparationsPage() {
         </div>
       )
     },
-    { key: 'yearsOfService', label: 'Service', sortable: true,
+    { id: 'yearsOfService', accessor: 'yearsOfService', label: 'Service', sortable: true,
       render: (v: number) => <div className="font-medium text-gray-900">{v} years</div>
     },
-    { key: 'rehireEligible', label: 'Rehire', sortable: true,
+    { id: 'rehireEligible', accessor: 'rehireEligible', label: 'Rehire', sortable: true,
       render: (v: boolean) => v ? (
         <div className="flex items-center gap-1 text-green-600"><CheckCircle className="w-4 h-4" />Eligible</div>
       ) : (

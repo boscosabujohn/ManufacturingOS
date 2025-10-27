@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Plus, Search, Eye, Edit, Wrench, CheckCircle, XCircle, Clock, Calendar, MapPin, Download, Filter, ChevronLeft, ChevronRight, Tool, FileText } from 'lucide-react';
+import { Plus, Search, Eye, Edit, Wrench, CheckCircle, XCircle, Clock, Calendar, MapPin, Download, Filter, ChevronLeft, ChevronRight, FileText } from 'lucide-react';
 
 interface Commissioning {
   id: string;
@@ -184,7 +184,7 @@ export default function CommissioningPage() {
               <p className="text-sm font-medium text-yellow-600">In Progress</p>
               <p className="text-2xl font-bold text-yellow-900 mt-1">{stats.inProgress}</p>
             </div>
-            <Tool className="h-8 w-8 text-yellow-600" />
+            <Wrench className="h-8 w-8 text-yellow-600" />
           </div>
         </div>
 

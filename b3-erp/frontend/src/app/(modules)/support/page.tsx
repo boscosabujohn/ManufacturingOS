@@ -167,56 +167,56 @@ export default function SupportDashboard() {
         ) : (
           <>
             <KPICard
-              title="Open Tickets"
+             
               value={87}
               icon={Ticket}
               color="blue"
               trend={{ value: 12.5, isPositive: false }}
             />
             <KPICard
-              title="Critical Issues"
+             
               value={12}
               icon={AlertCircle}
               color="red"
               trend={{ value: 25.0, isPositive: false }}
             />
             <KPICard
-              title="Resolved Today"
+             
               value={45}
               icon={CheckCircle}
               color="green"
               trend={{ value: 18.4, isPositive: true }}
             />
             <KPICard
-              title="Avg Response Time"
+             
               value="23m"
               icon={Clock}
               color="purple"
               trend={{ value: 15.2, isPositive: false, label: 'faster' }}
             />
             <KPICard
-              title="Active Incidents"
+             
               value={8}
               icon={AlertCircle}
               color="red"
               trend={{ value: 33.3, isPositive: false }}
             />
             <KPICard
-              title="Team Members"
+             
               value={24}
               icon={Users}
               color="indigo"
               trend={{ value: 4.3, isPositive: true }}
             />
             <KPICard
-              title="SLA Compliance"
+             
               value="94%"
               icon={Target}
               color="green"
               trend={{ value: 2.1, isPositive: true }}
             />
             <KPICard
-              title="Knowledge Articles"
+             
               value={156}
               icon={FileText}
               color="yellow"

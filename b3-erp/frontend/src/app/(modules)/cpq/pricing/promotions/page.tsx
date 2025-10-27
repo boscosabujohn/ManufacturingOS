@@ -299,7 +299,7 @@ export default function CPQPricingPromotionsPage() {
                       <button
                         className="p-1.5 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
                         aria-label="Edit"
-                        title="Edit"
+                       
                       >
                         <Edit className="h-4 w-4" />
                       </button>

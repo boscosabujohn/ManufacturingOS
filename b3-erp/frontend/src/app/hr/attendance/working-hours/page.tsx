@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 import { Clock, Plus, Edit, Users, Calendar, Sun, Moon, Coffee, CheckCircle, AlertCircle } from 'lucide-react';
-import DataTable from '@/components/DataTable';
-import StatusBadge from '@/components/StatusBadge';
+import DataTable, { Column } from '@/components/DataTable';
+import StatusBadge, { BadgeStatus } from '@/components/StatusBadge';
 
 interface WorkingSchedule {
   id: string;
@@ -145,8 +145,8 @@ export default function WorkingHoursPage() {
     return `${displayHour}:${minutes} ${ampm}`;
   };
 
-  const columns = [
-    { key: 'name', label: 'Schedule Name', sortable: true,
+  const columns: Column<WorkingSchedule>[] = [
+    { id: 'name', accessor: 'name', label: 'Schedule Name', sortable: true,
       render: (v: string, row: WorkingSchedule) => (
         <div className="flex items-center gap-3">
           <div className="p-2 rounded-lg bg-gray-50">
@@ -161,7 +161,7 @@ export default function WorkingHoursPage() {
         </div>
       )
     },
-    { key: 'startTime', label: 'Timings', sortable: true,
+    { id: 'startTime', accessor: 'startTime', label: 'Timings', sortable: true,
       render: (v: string, row: WorkingSchedule) => (
         <div className="text-sm">
           <div className="font-medium text-gray-900">
@@ -173,7 +173,7 @@ export default function WorkingHoursPage() {
         </div>
       )
     },
-    { key: 'workingDays', label: 'Working Days', sortable: false,
+    { id: 'workingDays', accessor: 'workingDays', label: 'Working Days', sortable: false,
       render: (v: string[]) => (
         <div className="text-sm">
           <div className="font-medium text-gray-900">{v.length} days/week</div>
@@ -183,7 +183,7 @@ export default function WorkingHoursPage() {
         </div>
       )
     },
-    { key: 'employeeCount', label: 'Employees', sortable: true,
+    { id: 'employeeCount', accessor: 'employeeCount', label: 'Employees', sortable: true,
       render: (v: number, row: WorkingSchedule) => (
         <div className="flex items-center gap-2">
           <Users className="w-4 h-4 text-indigo-500" />
@@ -191,7 +191,7 @@ export default function WorkingHoursPage() {
         </div>
       )
     },
-    { key: 'gracePeriod', label: 'Grace Period', sortable: true,
+    { id: 'gracePeriod', accessor: 'gracePeriod', label: 'Grace Period', sortable: true,
       render: (v: number) => (
         <div className="text-sm">
           {v > 0 ? (
@@ -202,8 +202,8 @@ export default function WorkingHoursPage() {
         </div>
       )
     },
-    { key: 'status', label: 'Status', sortable: true,
-      render: (v: string) => <StatusBadge status={v} />
+    { id: 'status', accessor: 'status', label: 'Status', sortable: true,
+      render: (v: string) => <StatusBadge status={v as BadgeStatus} />
     }
   ];
 

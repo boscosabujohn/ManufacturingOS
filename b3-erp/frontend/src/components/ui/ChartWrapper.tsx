@@ -4,7 +4,7 @@ import { ChartSkeleton } from './LoadingState';
 import { EmptyState } from './EmptyState';
 
 export interface ChartWrapperProps {
-  title: string;
+  title?: string;
   description?: string;
   loading?: boolean;
   error?: string;

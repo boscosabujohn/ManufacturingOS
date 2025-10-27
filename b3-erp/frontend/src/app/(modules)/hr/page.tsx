@@ -180,7 +180,7 @@ export default function HRDashboardPage() {
           ) : (
             <>
               <KPICard
-                title="Total Employees"
+               
                 value={stats.totalEmployees}
                 icon={Users}
                 color="blue"
@@ -188,7 +188,7 @@ export default function HRDashboardPage() {
                 onClick={() => router.push('/hr/employees')}
               />
               <KPICard
-                title="On Leave Today"
+               
                 value={stats.onLeaveToday}
                 icon={Clock}
                 color="green"
@@ -196,7 +196,7 @@ export default function HRDashboardPage() {
                 onClick={() => router.push('/hr/attendance')}
               />
               <KPICard
-                title="Monthly Payroll"
+               
                 value={formatCurrency(stats.monthlyPayroll)}
                 icon={DollarSign}
                 color="purple"
@@ -204,7 +204,7 @@ export default function HRDashboardPage() {
                 onClick={() => router.push('/hr/payroll')}
               />
               <KPICard
-                title="Pending Approvals"
+               
                 value={stats.pendingApprovals}
                 icon={AlertTriangle}
                 color="red"

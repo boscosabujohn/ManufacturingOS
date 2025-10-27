@@ -309,14 +309,14 @@ export default function CPQQuotesVersionsPage() {
                       <button
                         className="p-1.5 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
                         aria-label="View"
-                        title="View"
+                       
                       >
                         <Eye className="h-4 w-4" />
                       </button>
                       <button
                         className="p-1.5 text-purple-600 hover:bg-purple-50 rounded-lg transition-colors"
                         aria-label="Copy"
-                        title="Copy"
+                       
                       >
                         <Copy className="h-4 w-4" />
                       </button>

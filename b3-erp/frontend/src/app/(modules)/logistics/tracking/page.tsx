@@ -658,13 +658,13 @@ export default function LogisticsTrackingPage() {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                     <div className="flex items-center gap-2">
-                      <button className="p-1 hover:bg-gray-100 rounded" title="View Details">
+                      <button className="p-1 hover:bg-gray-100 rounded">
                         <Eye className="w-4 h-4 text-gray-600" />
                       </button>
-                      <button className="p-1 hover:bg-gray-100 rounded" title="View on Map">
+                      <button className="p-1 hover:bg-gray-100 rounded">
                         <Map className="w-4 h-4 text-blue-600" />
                       </button>
-                      <button className="p-1 hover:bg-gray-100 rounded" title="Edit">
+                      <button className="p-1 hover:bg-gray-100 rounded">
                         <Edit2 className="w-4 h-4 text-green-600" />
                       </button>
                     </div>

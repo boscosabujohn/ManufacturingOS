@@ -192,11 +192,11 @@ export default function Page() {
               setShowDetailModal(true);
             }}
             className="p-1 hover:bg-gray-100 rounded"
-            title="View Details"
+           
           >
             <Eye className="h-4 w-4 text-gray-600" />
           </button>
-          <button className="p-1 hover:bg-gray-100 rounded" title="Upload Documents">
+          <button className="p-1 hover:bg-gray-100 rounded">
             <Upload className="h-4 w-4 text-blue-600" />
           </button>
         </div>

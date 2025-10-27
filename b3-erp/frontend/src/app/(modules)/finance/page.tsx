@@ -196,7 +196,7 @@ export default function FinanceDashboard() {
         ) : (
           <>
             <KPICard
-              title="Total Cash Position"
+             
               value={formatCurrency(dashboardData.cashPosition.totalCash)}
               icon={Wallet}
               color="blue"
@@ -207,21 +207,21 @@ export default function FinanceDashboard() {
               }}
             />
             <KPICard
-              title="Accounts Receivable"
+             
               value={formatCurrency(dashboardData.accountsReceivable.total)}
               icon={TrendingUp}
               color="green"
               description={`Current: ${formatCurrency(dashboardData.accountsReceivable.current)}`}
             />
             <KPICard
-              title="Accounts Payable"
+             
               value={formatCurrency(dashboardData.accountsPayable.total)}
               icon={TrendingDown}
               color="red"
               description={`Current: ${formatCurrency(dashboardData.accountsPayable.current)}`}
             />
             <KPICard
-              title="Net Profit (This Month)"
+             
               value={formatCurrency(dashboardData.netProfit.amount)}
               icon={PieChart}
               color="purple"

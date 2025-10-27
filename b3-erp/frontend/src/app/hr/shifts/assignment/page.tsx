@@ -3,7 +3,7 @@
 import { useState, useMemo } from 'react';
 import { UserCheck, Search, Filter, Plus, Edit, Users, Clock, CheckCircle } from 'lucide-react';
 import DataTable from '@/components/DataTable';
-import StatusBadge from '@/components/StatusBadge';
+import StatusBadge, { BadgeStatus } from '@/components/StatusBadge';
 
 interface ShiftAssignment {
   id: string;
@@ -118,7 +118,7 @@ export default function ShiftAssignmentPage() {
       )
     },
     { key: 'status', label: 'Status', sortable: true,
-      render: (v: string) => <StatusBadge status={v} />
+      render: (v: string) => <StatusBadge status={v as BadgeStatus} />
     },
     { key: 'id', label: 'Actions', sortable: false,
       render: () => (

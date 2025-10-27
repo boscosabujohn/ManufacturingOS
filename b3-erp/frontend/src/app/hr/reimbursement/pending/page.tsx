@@ -153,13 +153,13 @@ export default function Page() {
     { key: 'actions', label: 'Actions', sortable: false,
       render: (_: any, row: PendingReimbursement) => (
         <div className="flex gap-2">
-          <button className="p-1 hover:bg-gray-100 rounded" title="View Details">
+          <button className="p-1 hover:bg-gray-100 rounded">
             <Eye className="h-4 w-4 text-gray-600" />
           </button>
-          <button className="p-1 hover:bg-green-100 rounded" title="Approve">
+          <button className="p-1 hover:bg-green-100 rounded">
             <Check className="h-4 w-4 text-green-600" />
           </button>
-          <button className="p-1 hover:bg-red-100 rounded" title="Reject">
+          <button className="p-1 hover:bg-red-100 rounded">
             <X className="h-4 w-4 text-red-600" />
           </button>
         </div>

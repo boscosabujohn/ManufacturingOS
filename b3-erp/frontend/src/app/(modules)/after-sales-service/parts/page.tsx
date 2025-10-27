@@ -674,7 +674,7 @@ export default function ServicePartsPage() {
                           router.push(`/after-sales-service/parts/requisition?part=${part.id}`);
                         }}
                         className="text-blue-600 hover:text-blue-900"
-                        title="Create Requisition"
+                       
                       >
                         <ShoppingCart className="w-4 h-4" />
                       </button>
@@ -684,7 +684,7 @@ export default function ServicePartsPage() {
                           router.push(`/inventory/parts/view/${part.id}`);
                         }}
                         className="text-green-600 hover:text-green-900"
-                        title="View Details"
+                       
                       >
                         <Eye className="w-4 h-4" />
                       </button>
@@ -694,7 +694,7 @@ export default function ServicePartsPage() {
                           router.push(`/inventory/parts/edit/${part.id}`);
                         }}
                         className="text-gray-600 hover:text-gray-900"
-                        title="Edit Part"
+                       
                       >
                         <Edit className="w-4 h-4" />
                       </button>

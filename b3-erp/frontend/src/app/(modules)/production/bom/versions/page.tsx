@@ -567,21 +567,21 @@ export default function BOMVersionsPage() {
                       <div className="flex items-center gap-2">
                         <button
                           className="text-blue-600 hover:text-blue-900"
-                          title="View Details"
+                         
                         >
                           <Eye className="h-4 w-4" />
                         </button>
                         {version.status === 'current' && (
                           <button
                             className="text-gray-600 hover:text-gray-900"
-                            title="Edit Version"
+                           
                           >
                             <Edit2 className="h-4 w-4" />
                           </button>
                         )}
                         <button
                           className="text-purple-600 hover:text-purple-900"
-                          title="Create New Version"
+                         
                         >
                           <Copy className="h-4 w-4" />
                         </button>

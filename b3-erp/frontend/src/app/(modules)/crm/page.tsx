@@ -217,28 +217,28 @@ export default function CRMDashboard() {
           ) : (
             <>
               <KPICard
-                title="Active Leads"
+               
                 value={stats.activeLeads}
                 icon={Users}
                 color="blue"
                 description={`${stats.totalLeads} total leads`}
               />
               <KPICard
-                title="Opportunities Value"
+               
                 value={`₹${(stats.opportunityValue / 10000000).toFixed(1)}Cr`}
                 icon={Target}
                 color="green"
                 description={`${stats.activeOpportunities} active`}
               />
               <KPICard
-                title="Conversion Rate"
+               
                 value={`${stats.conversionRate}%`}
                 icon={TrendingUp}
                 color="purple"
                 description={`${stats.convertedLeads} converted`}
               />
               <KPICard
-                title="Total Customers"
+               
                 value={stats.totalCustomers}
                 icon={CheckCircle}
                 color="yellow"
@@ -374,21 +374,21 @@ export default function CRMDashboard() {
           ) : (
             <>
               <KPICard
-                title="Avg Deal Size"
+               
                 value={`₹${(stats.avgDealSize / 100000).toFixed(1)}L`}
                 icon={TrendingUp}
                 color="green"
                 trend={{ value: 8, isPositive: true, label: 'from last quarter' }}
               />
               <KPICard
-                title="Meetings Scheduled"
+               
                 value={stats.meetingsScheduled}
                 icon={Calendar}
                 color="blue"
                 description="This week"
               />
               <KPICard
-                title="This Month Interactions"
+               
                 value={stats.interactionsThisMonth}
                 icon={Phone}
                 color="purple"

@@ -14,7 +14,7 @@ import {
   Eye, 
   Edit, 
   MessageSquare,
-  Priority,
+  Flag,
   Tag,
   Building,
   Wrench,
@@ -460,10 +460,10 @@ const OpenServiceRequestsPage = () => {
         <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
           <div className="flex items-center">
             <div className="p-2 bg-red-100 rounded-lg">
-              <Priority className="h-6 w-6 text-red-600" />
+              <Flag className="h-6 w-6 text-red-600" />
             </div>
             <div className="ml-4">
-              <p className="text-sm font-medium text-gray-600">Critical Priority</p>
+              <p className="text-sm font-medium text-gray-600">Critical Flag</p>
               <p className="text-2xl font-bold text-gray-900">
                 {filteredRequests.filter(r => r.issue.priority === 'Critical').length}
               </p>
@@ -514,7 +514,7 @@ const OpenServiceRequestsPage = () => {
                   Product
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Priority & SLA
+                  Flag & SLA
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Timeline
@@ -606,25 +606,25 @@ const OpenServiceRequestsPage = () => {
                       <button
                         onClick={() => setSelectedRequest(request)}
                         className="text-blue-600 hover:text-blue-800"
-                        title="View Details"
+                       
                       >
                         <Eye className="h-4 w-4" />
                       </button>
                       <button
                         className="text-green-600 hover:text-green-800"
-                        title="Edit Request"
+                       
                       >
                         <Edit className="h-4 w-4" />
                       </button>
                       <button
                         className="text-purple-600 hover:text-purple-800"
-                        title="Add Comment"
+                       
                       >
                         <MessageSquare className="h-4 w-4" />
                       </button>
                       <button
                         className="text-gray-600 hover:text-gray-800"
-                        title="External Link"
+                       
                       >
                         <ExternalLink className="h-4 w-4" />
                       </button>

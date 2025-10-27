@@ -337,7 +337,7 @@ export default function PaymentsPage() {
                       <button
                         onClick={() => router.push(`/finance/payments/view/${payment.id}`)}
                         className="flex items-center space-x-1 px-3 py-1.5 text-blue-600 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors text-sm font-medium"
-                        title="View Details"
+                       
                       >
                         <Eye className="h-4 w-4" />
                         <span>View</span>
@@ -345,7 +345,7 @@ export default function PaymentsPage() {
                       {payment.status === 'failed' && (
                         <button
                           className="flex items-center space-x-1 px-3 py-1.5 text-orange-600 bg-orange-50 hover:bg-orange-100 rounded-lg transition-colors text-sm font-medium"
-                          title="Retry"
+                         
                         >
                           <AlertCircle className="h-4 w-4" />
                           <span>Retry</span>

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { HandCoins, Search, CheckCircle, Clock, XCircle, AlertCircle, Calendar, DollarSign, TrendingUp, FileText, Percent } from 'lucide-react';
+import { Coins as HandCoins, Search, CheckCircle, Clock, XCircle, AlertCircle, Calendar, DollarSign, TrendingUp, FileText, Percent } from 'lucide-react';
 
 interface LoanRequest {
   id: string;

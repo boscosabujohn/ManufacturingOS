@@ -144,8 +144,8 @@ export default function VendorCategoryMasterPage() {
           <div className={`font-medium ${value >= 90 ? 'text-green-600' : value >= 75 ? 'text-yellow-600' : 'text-red-600'}`}>
             On-time: {value}%
           </div>
-          <div className={`${row.defectRate <= 2 ? 'text-green-600' : 'text-red-600'}`}>
-            Defects: {row.defectRate}%
+          <div className={`${row.defectRate ?? 0 <= 2 ? 'text-green-600' : 'text-red-600'}`}>
+            Defects: {row.defectRate ?? 0}%
           </div>
           {row.complianceScore && (
             <div className="text-blue-600">
@@ -167,8 +167,8 @@ export default function VendorCategoryMasterPage() {
             {value} vendors
           </div>
           <div className="text-green-600">Purchases: ₹{(row.totalPurchases / 1000000).toFixed(1)}M</div>
-          <div className="text-orange-600">Pending: ₹{(row.pendingPayments / 1000000).toFixed(1)}M</div>
-          <div className="text-gray-500">Avg PO: ₹{(row.averagePOValue / 1000).toFixed(0)}K</div>
+          <div className="text-orange-600">Pending: ₹{((row.pendingPayments || 0) / 1000000).toFixed(1)}M</div>
+          <div className="text-gray-500">Avg PO: ₹{((row.averagePOValue || 0) / 1000).toFixed(0)}K</div>
         </div>
       )
     },

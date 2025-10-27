@@ -31,7 +31,6 @@ import {
   Boxes,
   TrendingDown,
   DollarSign,
-  Tool,
   Settings,
   RefreshCw,
   Calendar,
@@ -468,7 +467,7 @@ export default function ProductionFloorViewPage() {
         qualityScore: 97.0,
         loginTime: '06:15 AM',
         hoursWorked: 5.58,
-        skills: ['CNC Operation', 'Programming', 'Tool Setting'],
+        skills: ['CNC Operation', 'Programming', 'Wrench Setting'],
         certifications: ['CNC Level 2', 'Safety Training'],
         trainingNeeded: ['Advanced Programming'],
         performanceRating: 'good',
@@ -544,7 +543,7 @@ export default function ProductionFloorViewPage() {
         qualityScore: 99.5,
         loginTime: '06:00 AM',
         hoursWorked: 5.83,
-        skills: ['CNC Programming', 'Tool Setting', 'Maintenance'],
+        skills: ['CNC Programming', 'Wrench Setting', 'Maintenance'],
         certifications: ['CNC Level 3', 'Programming Advanced', 'Safety Training'],
         trainingNeeded: [],
         performanceRating: 'excellent',
@@ -808,7 +807,7 @@ export default function ProductionFloorViewPage() {
         nextMaintenanceDue: '2025-01-20',
         maintenanceInterval: 1000,
         costPerPart: 2.5,
-        toolLocation: 'Tool Crib A - Rack 5',
+        toolLocation: 'Wrench Crib A - Rack 5',
         assignedOperator: 'Manoj Kumar',
       },
       {
@@ -827,7 +826,7 @@ export default function ProductionFloorViewPage() {
         nextMaintenanceDue: '2025-01-15',
         maintenanceInterval: 500,
         costPerPart: 1.8,
-        toolLocation: 'Tool Crib B - Rack 2',
+        toolLocation: 'Wrench Crib B - Rack 2',
         assignedOperator: 'Vikram Singh',
       },
       {
@@ -846,7 +845,7 @@ export default function ProductionFloorViewPage() {
         nextMaintenanceDue: '2025-01-25',
         maintenanceInterval: 2000,
         costPerPart: 0.8,
-        toolLocation: 'Tool Crib C - Rack 1',
+        toolLocation: 'Wrench Crib C - Rack 1',
         assignedOperator: 'Amit Sharma',
       },
       {
@@ -865,7 +864,7 @@ export default function ProductionFloorViewPage() {
         nextMaintenanceDue: '2025-01-12',
         maintenanceInterval: 10000,
         costPerPart: 5.2,
-        toolLocation: 'Tool Crib D - Rack 8',
+        toolLocation: 'Wrench Crib D - Rack 8',
         assignedOperator: 'Not Assigned',
       },
       {
@@ -922,7 +921,7 @@ export default function ProductionFloorViewPage() {
         nextMaintenanceDue: '2025-01-14',
         maintenanceInterval: 300,
         costPerPart: 3.2,
-        toolLocation: 'Tool Crib A - Rack 12',
+        toolLocation: 'Wrench Crib A - Rack 12',
         assignedOperator: 'Not Assigned',
       },
       {
@@ -941,7 +940,7 @@ export default function ProductionFloorViewPage() {
         nextMaintenanceDue: '2025-01-18',
         maintenanceInterval: 200,
         costPerPart: 1.2,
-        toolLocation: 'Tool Crib A - Rack 7',
+        toolLocation: 'Wrench Crib A - Rack 7',
         assignedOperator: 'Suresh Patel',
       },
     ],
@@ -959,7 +958,7 @@ export default function ProductionFloorViewPage() {
       {
         id: '2',
         workCenter: 'Welding Station 1',
-        reason: 'Tool Change - Welding Tip',
+        reason: 'Wrench Change - Welding Tip',
         category: 'tool',
         startTime: '11:30 AM',
         duration: '00:20',
@@ -1049,7 +1048,7 @@ export default function ProductionFloorViewPage() {
         notes: 'Assembly Line 2 conveyor belt showing signs of wear. Maintenance requested. All other lines running smoothly.',
         pendingIssues: [
           'Assembly Line 2 - Conveyor belt maintenance pending',
-          'Tool change required for CNC Machine 2',
+          'Wrench change required for CNC Machine 2',
           'Material shortage alert for Bearing 6205',
         ],
         completedWOs: 6,
@@ -1083,7 +1082,7 @@ export default function ProductionFloorViewPage() {
         timestamp: '11:30 AM',
         type: 'tool',
         workCenter: 'Welding Station 1',
-        description: 'Tool change completed',
+        description: 'Wrench change completed',
         details: 'Welding tip replaced, downtime: 20 minutes',
         severity: 'info',
       },
@@ -1523,7 +1522,7 @@ export default function ProductionFloorViewPage() {
               }`}
             >
               <Wrench className="w-5 h-5" />
-              <span>Tool & Die Tracking</span>
+              <span>Wrench & Die Tracking</span>
             </button>
           </div>
         </div>
@@ -2324,7 +2323,7 @@ export default function ProductionFloorViewPage() {
             </div>
           )}
 
-          {/* Tool & Die Tracking Tab */}
+          {/* Wrench & Die Tracking Tab */}
           {activeTab === 'tools' && (
             <div className="space-y-6">
               {/* Summary Cards */}
@@ -2373,12 +2372,12 @@ export default function ProductionFloorViewPage() {
                         {floorData.toolTracking.length}
                       </p>
                     </div>
-                    <Tool className="w-8 h-8 text-blue-600" />
+                    <Wrench className="w-8 h-8 text-blue-600" />
                   </div>
                 </div>
               </div>
 
-              {/* Tool Cards */}
+              {/* Wrench Cards */}
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">Active Tools & Dies</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -2422,10 +2421,10 @@ export default function ProductionFloorViewPage() {
                         <p className="font-medium text-gray-900">{tool.workCenter}</p>
                       </div>
 
-                      {/* Tool Life Progress */}
+                      {/* Wrench Life Progress */}
                       <div className="mb-3">
                         <div className="flex items-center justify-between text-sm mb-1">
-                          <span className="text-gray-600">Tool Life Remaining</span>
+                          <span className="text-gray-600">Wrench Life Remaining</span>
                           <span className="font-semibold text-gray-900">{tool.toolLife}%</span>
                         </div>
                         <div className="w-full bg-gray-200 rounded-full h-2">

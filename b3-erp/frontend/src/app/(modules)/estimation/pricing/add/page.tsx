@@ -580,7 +580,7 @@ export default function AddPricingPage() {
                             type="button"
                             onClick={() => handleDuplicateItem(item.id)}
                             className="p-1 text-blue-600 hover:bg-blue-50 rounded"
-                            title="Duplicate"
+                           
                           >
                             <Copy className="h-4 w-4" />
                           </button>
@@ -588,7 +588,7 @@ export default function AddPricingPage() {
                             type="button"
                             onClick={() => handleRemoveItem(item.id)}
                             className="p-1 text-red-600 hover:bg-red-50 rounded"
-                            title="Delete"
+                           
                           >
                             <Trash2 className="h-4 w-4" />
                           </button>

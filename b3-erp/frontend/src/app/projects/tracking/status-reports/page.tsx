@@ -536,9 +536,9 @@ export default function StatusReportsPage() {
                   </td>
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-1">
-                      <div className={`w-3 h-3 rounded-full ${getHealthColor(r.scheduleHealth)}`} title="Schedule" />
-                      <div className={`w-3 h-3 rounded-full ${getHealthColor(r.budgetHealth)}`} title="Budget" />
-                      <div className={`w-3 h-3 rounded-full ${getHealthColor(r.qualityHealth)}`} title="Quality" />
+                      <div className={`w-3 h-3 rounded-full ${getHealthColor(r.scheduleHealth)}`} />
+                      <div className={`w-3 h-3 rounded-full ${getHealthColor(r.budgetHealth)}`} />
+                      <div className={`w-3 h-3 rounded-full ${getHealthColor(r.qualityHealth)}`} />
                     </div>
                     <div className={`text-xs font-medium mt-1 ${getOverallStatusColor(r.overallStatus)}`}>
                       {r.overallStatus}
@@ -557,10 +557,10 @@ export default function StatusReportsPage() {
                   </td>
                   <td className="px-4 py-3 text-right">
                     <div className="flex justify-end gap-2">
-                      <button className="text-gray-700 hover:text-gray-900 p-1" title="View">
+                      <button className="text-gray-700 hover:text-gray-900 p-1">
                         <Eye className="h-4 w-4" />
                       </button>
-                      <button className="text-teal-700 hover:text-teal-900 p-1" title="Download">
+                      <button className="text-teal-700 hover:text-teal-900 p-1">
                         <Download className="h-4 w-4" />
                       </button>
                     </div>

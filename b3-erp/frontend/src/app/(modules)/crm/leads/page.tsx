@@ -277,7 +277,7 @@ export default function LeadsPage() {
     <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
       {/* Page Header with Toolbar */}
       <PageToolbar
-        title="Leads"
+       
         subtitle={`${stats.total} leads · ${stats.newLeads} new · ${stats.qualified} qualified`}
         breadcrumbs={[
           { label: 'CRM', href: '/crm' },
@@ -354,6 +354,7 @@ export default function LeadsPage() {
             <TrendingUp className="h-8 w-8 text-indigo-600" />
           </div>
         </div>
+      </div>
       </div>
 
       {/* Filters */}
@@ -469,7 +470,7 @@ export default function LeadsPage() {
                 <button
                   onClick={() => handleViewLead(lead)}
                   className="flex items-center space-x-1 px-3 py-1.5 text-blue-600 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors text-sm font-medium"
-                  title="View Details"
+                 
                 >
                   <Eye className="h-4 w-4" />
                   <span>View</span>
@@ -477,7 +478,7 @@ export default function LeadsPage() {
                 <button
                   onClick={() => router.push(`/crm/leads/edit/${lead.id}`)}
                   className="flex items-center space-x-1 px-3 py-1.5 text-green-600 bg-green-50 hover:bg-green-100 rounded-lg transition-colors text-sm font-medium"
-                  title="Edit Lead"
+                 
                 >
                   <Edit className="h-4 w-4" />
                   <span>Edit</span>
@@ -485,7 +486,7 @@ export default function LeadsPage() {
                 <button
                   onClick={() => handleDeleteLead(lead.id)}
                   className="flex items-center space-x-1 px-3 py-1.5 text-red-600 bg-red-50 hover:bg-red-100 rounded-lg transition-colors text-sm font-medium"
-                  title="Delete Lead"
+                 
                 >
                   <Trash2 className="h-4 w-4" />
                   <span>Delete</span>

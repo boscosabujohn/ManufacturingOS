@@ -6,6 +6,19 @@ export { default as ComplianceAutomation } from './ComplianceAutomation';
 export { default as TreasuryManagement } from './TreasuryManagement';
 export { default as PredictiveCashForecasting } from './PredictiveCashForecasting';
 
+// Export components with alternative names for backward compatibility
+export { default as FinancialPayables } from './AccountsPayableWorkflow';
+export { default as FinancialReceivables } from './AccountsReceivableManagement';
+export { default as FinancialBankreconciliation } from './BankReconciliation';
+export { default as FinancialBudgetManagement } from './BudgetManagement';
+export { default as FinancialCashFlow } from './CashFlowManagement';
+export { default as FinancialCostcenters } from './CostCenterManagement';
+export { default as FinancialCredit } from './CreditManagement';
+export { default as FinancialGeneralLedger } from './GeneralLedger';
+export { default as FinancialInvestments } from './InvestmentPortfolio';
+export { default as FinancialMulticurrency } from './MultiCurrencyManagement';
+export { default as FinancialPeriods } from './FinancialPeriodManagement';
+
 // Export types from GeneralLedgerAdvanced
 export type {
   Account,

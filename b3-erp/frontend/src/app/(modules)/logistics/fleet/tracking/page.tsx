@@ -35,7 +35,7 @@ interface VehicleTracking {
   currentTrip: string | null;
   currentLoad: string | null;
   speed: number; // km/h
-  fuel Level: number; // percentage
+  fuelLevel: number; // percentage
   odometer: number; // km
   lastUpdated: string;
   destination: string | null;

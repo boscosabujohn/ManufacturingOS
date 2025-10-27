@@ -412,14 +412,14 @@ const ProductionFloorPage = () => {
                       <button
                         onClick={() => handleView(activity.id)}
                         className="text-blue-600 hover:text-blue-900"
-                        title="View"
+                       
                       >
                         <Eye className="w-5 h-5" />
                       </button>
                       <button
                         onClick={() => handleEdit(activity.id)}
                         className="text-yellow-600 hover:text-yellow-900"
-                        title="Edit"
+                       
                       >
                         <Edit2 className="w-5 h-5" />
                       </button>
@@ -427,7 +427,7 @@ const ProductionFloorPage = () => {
                         <button
                           onClick={() => handlePause(activity.id)}
                           className="text-orange-600 hover:text-orange-900"
-                          title="Pause"
+                         
                         >
                           <Pause className="w-5 h-5" />
                         </button>

@@ -418,14 +418,14 @@ export default function MinMaxSettingsPage() {
                         <button
                           onClick={() => handleSave(setting.id)}
                           className="p-1.5 bg-green-600 text-white rounded hover:bg-green-700"
-                          title="Save"
+                         
                         >
                           <Save className="w-4 h-4" />
                         </button>
                         <button
                           onClick={handleCancel}
                           className="p-1.5 bg-gray-300 text-gray-700 rounded hover:bg-gray-400"
-                          title="Cancel"
+                         
                         >
                           <X className="w-4 h-4" />
                         </button>
@@ -434,7 +434,7 @@ export default function MinMaxSettingsPage() {
                       <button
                         onClick={() => handleEdit(setting)}
                         className="p-1.5 bg-blue-600 text-white rounded hover:bg-blue-700"
-                        title="Edit"
+                       
                       >
                         <Edit className="w-4 h-4" />
                       </button>

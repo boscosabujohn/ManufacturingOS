@@ -821,7 +821,7 @@ export default function PartsRequisitionPage() {
                           router.push(`/after-sales-service/parts/requisition/view/${requisition.id}`);
                         }}
                         className="text-blue-600 hover:text-blue-900"
-                        title="View Details"
+                       
                       >
                         <Eye className="w-4 h-4" />
                       </button>
@@ -831,7 +831,7 @@ export default function PartsRequisitionPage() {
                           router.push(`/after-sales-service/parts/requisition/edit/${requisition.id}`);
                         }}
                         className="text-gray-600 hover:text-gray-900"
-                        title="Edit Requisition"
+                       
                       >
                         <Edit className="w-4 h-4" />
                       </button>
@@ -842,7 +842,7 @@ export default function PartsRequisitionPage() {
                             // Handle tracking
                           }}
                           className="text-green-600 hover:text-green-900"
-                          title="Track Delivery"
+                         
                         >
                           <Truck className="w-4 h-4" />
                         </button>

@@ -378,13 +378,13 @@ export default function WarrantyClaimsPage() {
                       <button
                         onClick={() => router.push(`/after-sales-service/warranties/claims/${claim.id}`)}
                         className="p-1 text-gray-600 hover:bg-gray-100 rounded"
-                        title="View Details"
+                       
                       >
                         <Eye className="w-4 h-4" />
                       </button>
                       <button
                         className="p-1 text-gray-600 hover:bg-gray-100 rounded"
-                        title="Download"
+                       
                       >
                         <Download className="w-4 h-4" />
                       </button>

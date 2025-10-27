@@ -377,21 +377,21 @@ export default function RolesPage() {
                       <button
                         onClick={() => handleView(role.id)}
                         className="text-blue-600 hover:text-blue-900 p-1 rounded hover:bg-blue-50"
-                        title="View Role"
+                       
                       >
                         <Eye className="w-4 h-4" />
                       </button>
                       <button
                         onClick={() => handleEdit(role.id)}
                         className="text-green-600 hover:text-green-900 p-1 rounded hover:bg-green-50"
-                        title="Edit Role"
+                       
                       >
                         <Edit className="w-4 h-4" />
                       </button>
                       <button
                         onClick={() => handleDuplicate(role.id)}
                         className="text-purple-600 hover:text-purple-900 p-1 rounded hover:bg-purple-50"
-                        title="Duplicate Role"
+                       
                       >
                         <Copy className="w-4 h-4" />
                       </button>

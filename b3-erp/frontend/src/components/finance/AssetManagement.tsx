@@ -6,12 +6,12 @@ import {
   PieChart, Pie, Cell, AreaChart, Area
 } from 'recharts';
 import {
-  BuildingOfficeIcon, TruckIcon, ComputerDesktopIcon, WrenchScrewdriverIcon,
-  ClockIcon, CurrencyDollarIcon, DocumentTextIcon, CalendarIcon,
-  PlusIcon, PencilIcon, TrashIcon, EyeIcon, ArrowTrendingDownIcon,
-  CheckCircleIcon, ExclamationTriangleIcon, InformationCircleIcon,
-  QrCodeIcon, DocumentDuplicateIcon, PhotoIcon, MapPinIcon
-} from '@heroicons/react/24/outline';
+  Building2 as Building2, Truck as TruckIcon, Monitor as ComputerDesktopIcon, Wrench as WrenchScrewdriverIcon,
+  Clock as ClockIcon, DollarSign as DollarSign, FileText as DocumentTextIcon, Calendar as CalendarIcon,
+  Plus as PlusIcon, Pencil as PencilIcon, Trash2 as TrashIcon, Eye as EyeIcon, TrendingDown as TrendingDown,
+  CheckCircle as CheckCircleIcon, AlertTriangle as ExclamationTriangleIcon, Info as InformationCircleIcon,
+  QrCode as QrCodeIcon, Copy as DocumentDuplicateIcon, Image as PhotoIcon, MapPin as MapPinIcon
+} from 'lucide-react';
 
 interface Asset {
   id: string;
@@ -119,7 +119,7 @@ const AssetManagement: React.FC = () => {
       name: 'Buildings & Real Estate',
       code: 'BLDG',
       color: '#3B82F6',
-      icon: BuildingOfficeIcon,
+      icon: Building2,
       defaultUsefulLife: 30,
       defaultDepreciationMethod: 'straight-line'
     },
@@ -414,7 +414,7 @@ const AssetManagement: React.FC = () => {
         <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <CurrencyDollarIcon className="h-8 w-8 text-blue-600" />
+              <DollarSign className="h-8 w-8 text-blue-600" />
             </div>
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600">Total Asset Value</p>
@@ -440,7 +440,7 @@ const AssetManagement: React.FC = () => {
         <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <ArrowTrendingDownIcon className="h-8 w-8 text-orange-600" />
+              <TrendingDown className="h-8 w-8 text-orange-600" />
             </div>
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600">Annual Depreciation</p>
@@ -862,9 +862,9 @@ const AssetManagement: React.FC = () => {
       <div className="border-b border-gray-200 mb-6">
         <nav className="-mb-px flex space-x-8">
           {[
-            { key: 'dashboard', label: 'Dashboard', icon: CurrencyDollarIcon },
+            { key: 'dashboard', label: 'Dashboard', icon: DollarSign },
             { key: 'assets', label: 'Assets', icon: DocumentTextIcon },
-            { key: 'depreciation', label: 'Depreciation', icon: ArrowTrendingDownIcon },
+            { key: 'depreciation', label: 'Depreciation', icon: TrendingDown },
             { key: 'maintenance', label: 'Maintenance', icon: WrenchScrewdriverIcon },
             { key: 'movements', label: 'Movements', icon: MapPinIcon }
           ].map(({ key, label, icon: Icon }) => (

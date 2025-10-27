@@ -446,13 +446,13 @@ export default function PendingChanges() {
                       <button
                         onClick={() => setSelectedChange(change)}
                         className="p-1 hover:bg-gray-100 rounded"
-                        title="View Details"
+                       
                       >
                         <Eye className="h-4 w-4 text-gray-600" />
                       </button>
                       <button
                         className="p-1 hover:bg-gray-100 rounded"
-                        title="Add Comment"
+                       
                       >
                         <MessageSquare className="h-4 w-4 text-gray-600" />
                       </button>

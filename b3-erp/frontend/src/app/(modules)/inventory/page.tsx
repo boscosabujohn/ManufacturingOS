@@ -206,28 +206,28 @@ export default function InventoryDashboard() {
           ) : (
             <>
               <KPICard
-                title="Total Items"
+               
                 value={stats.totalItems.toLocaleString()}
                 icon={Package}
                 color="blue"
                 description="Active SKUs"
               />
               <KPICard
-                title="Total Value"
+               
                 value={`₹${(stats.totalValue / 10000000).toFixed(1)}Cr`}
                 icon={BarChart3}
                 color="green"
                 description="Current Inventory"
               />
               <KPICard
-                title="Low Stock Alerts"
+               
                 value={stats.lowStockItems}
                 icon={AlertTriangle}
                 color="red"
                 description={`${stats.outOfStockItems} out of stock`}
               />
               <KPICard
-                title="Warehouses"
+               
                 value={stats.warehouseCount}
                 icon={Warehouse}
                 color="purple"
@@ -334,21 +334,21 @@ export default function InventoryDashboard() {
           ) : (
             <>
               <KPICard
-                title="Avg Turnover Rate"
+               
                 value={`${stats.avgTurnoverRate}x`}
                 icon={RefreshCw}
                 color="blue"
                 trend={{ value: 12, isPositive: true, label: 'from last month' }}
               />
               <KPICard
-                title="Monthly Movements"
+               
                 value={stats.monthlyMovements}
                 icon={Activity}
                 color="green"
                 trend={{ value: 8, isPositive: true, label: 'from last month' }}
               />
               <KPICard
-                title="Stock Accuracy"
+               
                 value={`${stats.stockAccuracy}%`}
                 icon={BarChart3}
                 color="purple"

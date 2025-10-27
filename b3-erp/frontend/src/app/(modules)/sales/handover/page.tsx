@@ -452,14 +452,14 @@ export default function HandoverPage() {
                         <button
                           onClick={() => handleView(handover.id)}
                           className="p-1 text-blue-600 hover:bg-blue-50 rounded transition-colors"
-                          title="View"
+                         
                         >
                           <Eye className="w-4 h-4" />
                         </button>
                         <button
                           onClick={() => handleEdit(handover.id)}
                           className="p-1 text-yellow-600 hover:bg-yellow-50 rounded transition-colors"
-                          title="Edit"
+                         
                         >
                           <Edit2 className="w-4 h-4" />
                         </button>
@@ -467,7 +467,7 @@ export default function HandoverPage() {
                           <button
                             onClick={() => handleComplete(handover.id)}
                             className="p-1 text-green-600 hover:bg-green-50 rounded transition-colors"
-                            title="Complete"
+                           
                           >
                             <CheckCircle className="w-4 h-4" />
                           </button>

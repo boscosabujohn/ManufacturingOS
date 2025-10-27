@@ -3,7 +3,7 @@
 import { useState, useMemo } from 'react';
 import { Users, Plus, UserPlus, Search, Filter, TrendingUp, TrendingDown, Target, Award, Mail, Phone, LayoutGrid, List } from 'lucide-react';
 import DataTable from '@/components/DataTable';
-import StatusBadge from '@/components/StatusBadge';
+import StatusBadge, { BadgeStatus } from '@/components/StatusBadge';
 
 interface TeamMember {
   id: string;
@@ -384,7 +384,7 @@ export default function TeamsPage() {
       key: 'status',
       label: 'Status',
       sortable: true,
-      render: (v: string) => <StatusBadge status={v} />
+      render: (v: string) => <StatusBadge status={v as BadgeStatus} />
     },
     {
       key: 'actions',

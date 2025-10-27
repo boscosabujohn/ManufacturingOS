@@ -314,7 +314,7 @@ export default function CRMAdvancedFeaturesPage() {
   return (
     <div className="w-full h-full flex flex-col bg-gray-50">
       <PageToolbar
-        title="Advanced CRM Features"
+       
         subtitle="Industry-leading AI and automation capabilities"
         breadcrumbs={[
           { label: 'CRM', href: '/crm' },
@@ -352,8 +352,8 @@ export default function CRMAdvancedFeaturesPage() {
                 leadName="John Smith"
                 leadCompany="TechCorp Global Inc."
                 score={mockAIScore}
-                onAcceptRecommendation={(action) => alert(`Accepted: ${action}`)}
-                onRejectRecommendation={(action) => alert(`Rejected: ${action}`)}
+                onAcceptRecommendation={(action: string) => alert(`Accepted: ${action}`)}
+                onRejectRecommendation={(action: string) => alert(`Rejected: ${action}`)}
                 showPredictions={true}
               />
             </div>
@@ -387,10 +387,10 @@ export default function CRMAdvancedFeaturesPage() {
             </p>
             <AccountHierarchyTree
               rootAccount={mockAccountHierarchy}
-              onAddChild={(id) => alert(`Add child to: ${id}`)}
-              onEdit={(id) => alert(`Edit account: ${id}`)}
-              onView={(id) => alert(`View account: ${id}`)}
-              onLink={(id) => alert(`Link account: ${id}`)}
+              onAddChild={(id: string) => alert(`Add child to: ${id}`)}
+              onEdit={(id: string) => alert(`Edit account: ${id}`)}
+              onView={(id: string) => alert(`View account: ${id}`)}
+              onLink={(id: string) => alert(`Link account: ${id}`)}
               showActions={true}
               expandAll={false}
             />
@@ -448,12 +448,12 @@ export default function CRMAdvancedFeaturesPage() {
                 { id: '2', name: 'Mike Chen', role: 'Sales Manager' },
                 { id: '3', name: 'David Park', role: 'Solutions Engineer' },
               ]}
-              onAddComment={(activityId, comment, mentions) =>
+              onAddComment={(activityId: string, comment: string, mentions: string[]) =>
                 alert(`Comment on ${activityId}: ${comment}. Mentions: ${mentions.join(', ')}`)
               }
-              onLike={(activityId) => alert(`Liked activity: ${activityId}`)}
-              onEdit={(activityId) => alert(`Edit activity: ${activityId}`)}
-              onDelete={(activityId) => alert(`Delete activity: ${activityId}`)}
+              onLike={(activityId: string) => alert(`Liked activity: ${activityId}`)}
+              onEdit={(activityId: string) => alert(`Edit activity: ${activityId}`)}
+              onDelete={(activityId: string) => alert(`Delete activity: ${activityId}`)}
               showComments={true}
               showActions={true}
             />
@@ -479,8 +479,8 @@ export default function CRMAdvancedFeaturesPage() {
                 { id: '2', name: 'Mike Chen' },
                 { id: '3', name: 'David Park' },
               ]}
-              onSave={(workflow) => alert(`Workflow saved: ${workflow.name}`)}
-              onTest={(workflow) => alert(`Testing workflow: ${workflow.name}`)}
+              onSave={(workflow: { name: string }) => alert(`Workflow saved: ${workflow.name}`)}
+              onTest={(workflow: { name: string }) => alert(`Testing workflow: ${workflow.name}`)}
             />
           </div>
         </TabContent>
@@ -496,10 +496,10 @@ export default function CRMAdvancedFeaturesPage() {
               tasks={mockTasks}
               currentUser={{ id: '1', name: 'Sarah Johnson' }}
               onAddTask={() => alert('Add new task')}
-              onEditTask={(id) => alert(`Edit task: ${id}`)}
-              onDeleteTask={(id) => alert(`Delete task: ${id}`)}
-              onViewTask={(id) => alert(`View task: ${id}`)}
-              onStatusChange={(id, status) => alert(`Change task ${id} to ${status}`)}
+              onEditTask={(id: string) => alert(`Edit task: ${id}`)}
+              onDeleteTask={(id: string) => alert(`Delete task: ${id}`)}
+              onViewTask={(id: string) => alert(`View task: ${id}`)}
+              onStatusChange={(id: string, status: string) => alert(`Change task ${id} to ${status}`)}
               showFilters={true}
               viewMode="board"
             />

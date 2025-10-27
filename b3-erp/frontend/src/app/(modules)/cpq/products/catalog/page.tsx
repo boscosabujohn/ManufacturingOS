@@ -300,14 +300,14 @@ export default function CPQProductsCatalogPage() {
                 <button
                   className="px-3 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 text-xs"
                   aria-label="Edit"
-                  title="Edit"
+                 
                 >
                   <Edit className="h-3 w-3" />
                 </button>
                 <button
                   className="px-3 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 text-xs"
                   aria-label="Copy"
-                  title="Copy"
+                 
                 >
                   <Copy className="h-3 w-3" />
                 </button>

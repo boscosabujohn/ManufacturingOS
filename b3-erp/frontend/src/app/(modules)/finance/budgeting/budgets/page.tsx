@@ -529,21 +529,21 @@ export default function BudgetsPage() {
                       </td>
                       <td className="px-6 py-4">
                         <div className="flex items-center justify-center gap-2">
-                          <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors" title="View Details">
+                          <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors">
                             <Eye className="w-4 h-4 text-blue-400" />
                           </button>
-                          <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors" title="Edit Budget">
+                          <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors">
                             <Edit className="w-4 h-4 text-green-400" />
                           </button>
-                          <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors" title="Copy Budget">
+                          <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors">
                             <Copy className="w-4 h-4 text-purple-400" />
                           </button>
                           {budget.status === 'Active' ? (
-                            <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors" title="Lock Budget">
+                            <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors">
                               <Unlock className="w-4 h-4 text-orange-400" />
                             </button>
                           ) : (
-                            <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors" title="Unlock Budget">
+                            <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors">
                               <Lock className="w-4 h-4 text-gray-400" />
                             </button>
                           )}

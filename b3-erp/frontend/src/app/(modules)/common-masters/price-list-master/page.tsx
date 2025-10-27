@@ -53,7 +53,8 @@ export default function PriceListMasterPage() {
     return colors[type as keyof typeof colors] || 'bg-gray-100 text-gray-800';
   };
 
-  const isCurrentlyValid = (validFrom: string, validTo?: string) => {
+  const isCurrentlyValid = (validFrom: string | null | undefined, validTo?: string | null) => {
+    if (!validFrom) return false;
     const now = new Date();
     const from = new Date(validFrom);
     const to = validTo ? new Date(validTo) : null;
@@ -193,7 +194,7 @@ export default function PriceListMasterPage() {
       render: (value, row) => (
         <div className="text-xs">
           <div className="font-medium text-gray-900">{value} transactions</div>
-          <div className="text-green-600">Revenue: {getCurrencySymbol(row.currency)}{(row.totalRevenue / 1000000).toFixed(2)}M</div>
+          <div className="text-green-600">Revenue: {getCurrencySymbol(row.currency)}{((row.totalRevenue || 0) / 1000000).toFixed(2)}M</div>
           {row.lastUsedDate && (
             <div className="text-gray-500">
               Last: {new Date(row.lastUsedDate).toLocaleDateString('en-IN')}

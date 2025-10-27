@@ -536,9 +536,9 @@ export default function ProductionSequencingPage() {
                       <div className="flex items-center gap-2">
                         <span className="text-sm text-gray-900">#{seq.suggestedSequence}</span>
                         {isOptimal ? (
-                          <CheckCircle2 className="h-4 w-4 text-green-600" title="Optimal position" />
+                          <CheckCircle2 className="h-4 w-4 text-green-600" />
                         ) : (
-                          <TrendingUp className="h-4 w-4 text-orange-600" title="Could be optimized" />
+                          <TrendingUp className="h-4 w-4 text-orange-600" />
                         )}
                       </div>
                     </td>

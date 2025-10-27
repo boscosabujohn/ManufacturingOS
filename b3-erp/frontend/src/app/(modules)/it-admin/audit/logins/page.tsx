@@ -563,7 +563,7 @@ const LoginAuditLogsPage = () => {
                     <button
                       onClick={() => handleViewDetails(log)}
                       className="text-blue-600 hover:text-blue-700 p-1"
-                      title="View Details"
+                     
                     >
                       <Eye className="w-4 h-4" />
                     </button>

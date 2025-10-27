@@ -426,7 +426,7 @@ export default function PaymentsPage() {
                     <button
                       onClick={() => router.push(`/after-sales-service/billing/view/${payment.invoiceId}`)}
                       className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-                      title="View Invoice"
+                     
                     >
                       <Eye className="h-4 w-4" />
                     </button>

@@ -6,13 +6,13 @@ import {
   PieChart, Pie, Cell, AreaChart, Area
 } from 'recharts';
 import {
-  ShieldCheckIcon, ExclamationTriangleIcon, ClockIcon, CheckCircleIcon,
-  DocumentTextIcon, UserIcon, CogIcon, BellIcon,
+  ShieldCheckIcon, AlertTriangle, ClockIcon, CheckCircleIcon,
+  FileText, UserIcon, CogIcon, BellIcon,
   PlusIcon, PencilIcon, EyeIcon, TrashIcon,
-  LockClosedIcon, UnlockOpenIcon, InformationCircleIcon,
-  AdjustmentsHorizontalIcon, MagnifyingGlassIcon,
-  DocumentMagnifyingGlassIcon, ChartBarIcon, CalendarIcon
-} from '@heroicons/react/24/outline';
+  Lock, Unlock, Info,
+  SlidersHorizontal, Search,
+  FileSearch, BarChart3, CalendarIcon
+} from 'lucide-react';
 
 interface FinancialControl {
   id: string;
@@ -486,10 +486,10 @@ const FinancialControls: React.FC = () => {
 
   const getExceptionStatusBadge = (status: string) => {
     const statusConfig = {
-      open: { bg: 'bg-red-100', text: 'text-red-800', icon: ExclamationTriangleIcon },
+      open: { bg: 'bg-red-100', text: 'text-red-800', icon: AlertTriangle },
       investigating: { bg: 'bg-yellow-100', text: 'text-yellow-800', icon: ClockIcon },
       resolved: { bg: 'bg-green-100', text: 'text-green-800', icon: CheckCircleIcon },
-      false_positive: { bg: 'bg-gray-100', text: 'text-gray-800', icon: InformationCircleIcon }
+      false_positive: { bg: 'bg-gray-100', text: 'text-gray-800', icon: Info }
     };
 
     const config = statusConfig[status as keyof typeof statusConfig];
@@ -506,8 +506,8 @@ const FinancialControls: React.FC = () => {
   const getAuditResultBadge = (result: string) => {
     const resultConfig = {
       success: { bg: 'bg-green-100', text: 'text-green-800', icon: CheckCircleIcon },
-      failure: { bg: 'bg-red-100', text: 'text-red-800', icon: ExclamationTriangleIcon },
-      blocked: { bg: 'bg-orange-100', text: 'text-orange-800', icon: LockClosedIcon }
+      failure: { bg: 'bg-red-100', text: 'text-red-800', icon: AlertTriangle },
+      blocked: { bg: 'bg-orange-100', text: 'text-orange-800', icon: Lock }
     };
 
     const config = resultConfig[result as keyof typeof resultConfig];
@@ -542,7 +542,7 @@ const FinancialControls: React.FC = () => {
         <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <ExclamationTriangleIcon className="h-8 w-8 text-orange-600" />
+              <AlertTriangle className="h-8 w-8 text-orange-600" />
             </div>
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600">Open Exceptions</p>
@@ -573,7 +573,7 @@ const FinancialControls: React.FC = () => {
         <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <DocumentTextIcon className="h-8 w-8 text-purple-600" />
+              <FileText className="h-8 w-8 text-purple-600" />
             </div>
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600">Audit Records</p>
@@ -1059,7 +1059,7 @@ const FinancialControls: React.FC = () => {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                     <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
-                      <DocumentMagnifyingGlassIcon className="w-4 h-4 text-gray-600" />
+                      <FileSearch className="w-4 h-4 text-gray-600" />
                       <span className="text-gray-700">Review</span>
                     </button>
                   </td>
@@ -1265,11 +1265,11 @@ const FinancialControls: React.FC = () => {
       <div className="border-b border-gray-200 mb-6">
         <nav className="-mb-px flex space-x-8">
           {[
-            { key: 'dashboard', label: 'Dashboard', icon: ChartBarIcon },
+            { key: 'dashboard', label: 'Dashboard', icon: BarChart3 },
             { key: 'controls', label: 'Controls', icon: ShieldCheckIcon },
-            { key: 'exceptions', label: 'Exceptions', icon: ExclamationTriangleIcon },
-            { key: 'audit-trail', label: 'Audit Trail', icon: DocumentMagnifyingGlassIcon },
-            { key: 'workflows', label: 'Workflows', icon: AdjustmentsHorizontalIcon },
+            { key: 'exceptions', label: 'Exceptions', icon: AlertTriangle },
+            { key: 'audit-trail', label: 'Audit Trail', icon: FileSearch },
+            { key: 'workflows', label: 'Workflows', icon: SlidersHorizontal },
             { key: 'compliance', label: 'Compliance', icon: CheckCircleIcon }
           ].map(({ key, label, icon: Icon }) => (
             <button

@@ -21,7 +21,8 @@ import {
   TrendingDown,
   Archive,
   RotateCcw,
-  Shield
+  Shield,
+  CheckCircle2
 } from 'lucide-react';
 
 interface ExpiredWarranty {
@@ -619,21 +620,21 @@ const ExpiredWarrantiesPage = () => {
                           <button
                             onClick={() => setSelectedWarranty(warranty)}
                             className="p-2 text-blue-600 hover:text-blue-800 hover:bg-blue-50 rounded-md"
-                            title="View Details"
+                           
                           >
                             <Eye className="h-4 w-4" />
                           </button>
                           {warranty.extensionEligible && (
                             <button
                               className="p-2 text-green-600 hover:text-green-800 hover:bg-green-50 rounded-md"
-                              title="Extend Warranty"
+                             
                             >
                               <RefreshCw className="h-4 w-4" />
                             </button>
                           )}
                           <button
                             className="p-2 text-purple-600 hover:text-purple-800 hover:bg-purple-50 rounded-md"
-                            title="Download Report"
+                           
                           >
                             <Download className="h-4 w-4" />
                           </button>
@@ -709,14 +710,14 @@ const ExpiredWarrantiesPage = () => {
                     {warranty.extensionEligible && (
                       <button
                         className="p-2 border border-green-300 text-green-600 rounded-md hover:bg-green-50"
-                        title="Extend"
+                       
                       >
                         <RefreshCw className="h-4 w-4" />
                       </button>
                     )}
                     <button
                       className="p-2 border border-gray-300 rounded-md hover:bg-gray-50"
-                      title="Download"
+                     
                     >
                       <Download className="h-4 w-4" />
                     </button>

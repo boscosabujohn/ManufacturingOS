@@ -954,13 +954,13 @@ export default function CustomersPage() {
                   <td className="px-4 py-3">
                     <div className="flex flex-wrap gap-1">
                       {customer.salesBlock && (
-                        <span className="px-1.5 py-0.5 text-xs font-medium bg-red-100 text-red-700 rounded" title="Sales Block">S</span>
+                        <span className="px-1.5 py-0.5 text-xs font-medium bg-red-100 text-red-700 rounded">S</span>
                       )}
                       {customer.deliveryBlock && (
-                        <span className="px-1.5 py-0.5 text-xs font-medium bg-orange-100 text-orange-700 rounded" title="Delivery Block">D</span>
+                        <span className="px-1.5 py-0.5 text-xs font-medium bg-orange-100 text-orange-700 rounded">D</span>
                       )}
                       {customer.billingBlock && (
-                        <span className="px-1.5 py-0.5 text-xs font-medium bg-yellow-100 text-yellow-700 rounded" title="Billing Block">B</span>
+                        <span className="px-1.5 py-0.5 text-xs font-medium bg-yellow-100 text-yellow-700 rounded">B</span>
                       )}
                       {!customer.salesBlock && !customer.deliveryBlock && !customer.billingBlock && (
                         <span className="text-xs text-gray-400">-</span>
@@ -972,21 +972,21 @@ export default function CustomersPage() {
                       <button
                         onClick={() => handleViewCustomer(customer)}
                         className="p-1.5 text-blue-600 hover:bg-blue-50 rounded transition-colors"
-                        title="View Details"
+                       
                       >
                         <Eye className="h-4 w-4" />
                       </button>
                       <button
                         onClick={() => router.push(`/crm/customers/edit/${customer.id}`)}
                         className="p-1.5 text-green-600 hover:bg-green-50 rounded transition-colors"
-                        title="Edit Customer"
+                       
                       >
                         <Edit className="h-4 w-4" />
                       </button>
                       <button
                         onClick={() => handleDeleteCustomer(customer.id)}
                         className="p-1.5 text-red-600 hover:bg-red-50 rounded transition-colors"
-                        title="Delete Customer"
+                       
                       >
                         <Trash2 className="h-4 w-4" />
                       </button>

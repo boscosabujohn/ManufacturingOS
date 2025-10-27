@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { BarChart3, TrendingUp, Download, Filter, Calendar, Users, Clock, AlertCircle, CheckCircle } from 'lucide-react';
-import DataTable from '@/components/DataTable';
+import DataTable, { Column } from '@/components/DataTable';
 
 interface DepartmentReport {
   department: string;
@@ -101,8 +101,8 @@ export default function AttendanceReportsPage() {
     totalAbsences: mockDepartmentReports.reduce((sum, dept) => sum + dept.absentDays, 0)
   };
 
-  const columns = [
-    { key: 'department', label: 'Department', sortable: true,
+  const columns: Column<DepartmentReport>[] = [
+    { id: 'department', accessor: 'department', label: 'Department', sortable: true,
       render: (v: string) => (
         <div className="flex items-center gap-2">
           <div className="w-10 h-10 rounded-lg bg-indigo-100 flex items-center justify-center">
@@ -112,10 +112,10 @@ export default function AttendanceReportsPage() {
         </div>
       )
     },
-    { key: 'totalEmployees', label: 'Employees', sortable: true,
+    { id: 'totalEmployees', accessor: 'totalEmployees', label: 'Employees', sortable: true,
       render: (v: number) => <div className="font-medium text-gray-900">{v}</div>
     },
-    { key: 'presentDays', label: 'Days Summary', sortable: true,
+    { id: 'presentDays', accessor: 'presentDays', label: 'Days Summary', sortable: true,
       render: (v: number, row: DepartmentReport) => (
         <div className="text-sm space-y-1">
           <div className="flex items-center gap-2">
@@ -128,7 +128,7 @@ export default function AttendanceReportsPage() {
         </div>
       )
     },
-    { key: 'lateMarks', label: 'Late Marks', sortable: true,
+    { id: 'lateMarks', accessor: 'lateMarks', label: 'Late Marks', sortable: true,
       render: (v: number) => (
         <div className="flex items-center gap-2">
           <Clock className="w-4 h-4 text-orange-500" />
@@ -136,7 +136,7 @@ export default function AttendanceReportsPage() {
         </div>
       )
     },
-    { key: 'attendanceRate', label: 'Attendance %', sortable: true,
+    { id: 'attendanceRate', accessor: 'attendanceRate', label: 'Attendance %', sortable: true,
       render: (v: number) => {
         const color = v >= 95 ? 'text-green-600 bg-green-50' : v >= 85 ? 'text-yellow-600 bg-yellow-50' : 'text-red-600 bg-red-50';
         return (
@@ -152,7 +152,7 @@ export default function AttendanceReportsPage() {
         );
       }
     },
-    { key: 'punctualityRate', label: 'Punctuality %', sortable: true,
+    { id: 'punctualityRate', accessor: 'punctualityRate', label: 'Punctuality %', sortable: true,
       render: (v: number) => {
         const color = v >= 90 ? 'text-green-600 bg-green-50' : v >= 75 ? 'text-yellow-600 bg-yellow-50' : 'text-orange-600 bg-orange-50';
         return (

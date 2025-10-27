@@ -11,7 +11,6 @@ import {
   Users,
   DollarSign,
   FileSpreadsheet,
-  FilePdf,
   Mail,
   Play,
   Settings,
@@ -414,37 +413,37 @@ export default function ReportsPage() {
                 <div className="flex items-center gap-2 ml-4">
                   <button
                     className="p-2 text-gray-600 hover:bg-gray-100 rounded-md transition-colors"
-                    title="Generate Now"
+                   
                   >
                     <Play className="w-4 h-4" />
                   </button>
                   <button
                     className="p-2 text-gray-600 hover:bg-gray-100 rounded-md transition-colors"
-                    title="View Report"
+                   
                   >
                     <Eye className="w-4 h-4" />
                   </button>
                   <button
                     className="p-2 text-gray-600 hover:bg-gray-100 rounded-md transition-colors"
-                    title="Download"
+                   
                   >
                     <Download className="w-4 h-4" />
                   </button>
                   <button
                     className="p-2 text-gray-600 hover:bg-gray-100 rounded-md transition-colors"
-                    title="Settings"
+                   
                   >
                     <Settings className="w-4 h-4" />
                   </button>
                   <button
                     className="p-2 text-gray-600 hover:bg-gray-100 rounded-md transition-colors"
-                    title="Duplicate"
+                   
                   >
                     <Copy className="w-4 h-4" />
                   </button>
                   <button
                     className="p-2 text-red-600 hover:bg-red-50 rounded-md transition-colors"
-                    title="Delete"
+                   
                   >
                     <Trash2 className="w-4 h-4" />
                   </button>
@@ -559,7 +558,7 @@ export default function ReportsPage() {
                 <div className="grid grid-cols-3 gap-3">
                   <label className="flex items-center gap-2 p-3 border border-gray-300 rounded-md cursor-pointer hover:bg-gray-50">
                     <input type="radio" name="format" value="PDF" defaultChecked className="text-blue-600" />
-                    <FilePdf className="w-4 h-4 text-red-600" />
+                    <FileText className="w-4 h-4 text-red-600" />
                     <span className="text-sm">PDF</span>
                   </label>
                   <label className="flex items-center gap-2 p-3 border border-gray-300 rounded-md cursor-pointer hover:bg-gray-50">

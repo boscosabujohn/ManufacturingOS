@@ -402,7 +402,7 @@ export default function ContractTermsConfigPage() {
                       setShowTemplateModal(true);
                     }}
                     className="p-2 text-gray-600 hover:bg-gray-100 rounded-md transition-colors"
-                    title="Edit"
+                   
                   >
                     <Edit className="w-4 h-4" />
                   </button>
@@ -412,13 +412,13 @@ export default function ContractTermsConfigPage() {
                       setTemplates([...templates, newTemplate]);
                     }}
                     className="p-2 text-gray-600 hover:bg-gray-100 rounded-md transition-colors"
-                    title="Duplicate"
+                   
                   >
                     <Copy className="w-4 h-4" />
                   </button>
                   <button
                     className="p-2 text-red-600 hover:bg-red-50 rounded-md transition-colors"
-                    title="Delete"
+                   
                   >
                     <Trash2 className="w-4 h-4" />
                   </button>
@@ -492,13 +492,13 @@ export default function ContractTermsConfigPage() {
                 <div className="flex items-center gap-2 ml-4">
                   <button
                     className="p-2 text-gray-600 hover:bg-gray-100 rounded-md transition-colors"
-                    title="Edit"
+                   
                   >
                     <Edit className="w-4 h-4" />
                   </button>
                   <button
                     className="p-2 text-red-600 hover:bg-red-50 rounded-md transition-colors"
-                    title="Delete"
+                   
                   >
                     <Trash2 className="w-4 h-4" />
                   </button>

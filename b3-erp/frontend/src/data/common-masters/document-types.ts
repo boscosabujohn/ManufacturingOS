@@ -13,7 +13,7 @@ export interface DocumentType {
 
   // Storage & Format
   allowedFormats: string[];
-  maxFileSizeM B: number;
+  maxFileSizeMB: number;
   multipleFilesAllowed: boolean;
   encryptionRequired: boolean;
 
@@ -41,7 +41,7 @@ export const mockDocumentTypes: DocumentType[] = [
     description: 'Unique Identification Number issued by UIDAI',
     isMandatory: true,
     isVerificationRequired: true,
-    validityPeriod: null,
+    validityPeriod: undefined,
     renewalRequired: false,
     allowedFormats: ['pdf', 'jpg', 'png'],
     maxFileSizeMB: 2,
@@ -65,7 +65,7 @@ export const mockDocumentTypes: DocumentType[] = [
     description: 'Permanent Account Number for tax purposes',
     isMandatory: true,
     isVerificationRequired: true,
-    validityPeriod: null,
+    validityPeriod: undefined,
     renewalRequired: false,
     allowedFormats: ['pdf', 'jpg', 'png'],
     maxFileSizeMB: 2,
@@ -113,7 +113,7 @@ export const mockDocumentTypes: DocumentType[] = [
     description: 'Degree certificate from university/college',
     isMandatory: true,
     isVerificationRequired: true,
-    validityPeriod: null,
+    validityPeriod: undefined,
     renewalRequired: false,
     allowedFormats: ['pdf', 'jpg', 'png'],
     maxFileSizeMB: 5,
@@ -137,7 +137,7 @@ export const mockDocumentTypes: DocumentType[] = [
     description: 'Relieving letter from previous employer',
     isMandatory: true,
     isVerificationRequired: true,
-    validityPeriod: null,
+    validityPeriod: undefined,
     renewalRequired: false,
     allowedFormats: ['pdf'],
     maxFileSizeMB: 3,

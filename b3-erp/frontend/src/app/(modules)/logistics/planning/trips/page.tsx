@@ -46,7 +46,7 @@ interface TripDetails {
   totalWeight: number; // in kg
   deliveredShipments: number;
   remainingShipments: number;
-  odometer Start: number;
+  odometerStart: number;
   odometerEnd: number | null;
   tollsPaid: number;
   fuelCost: number;

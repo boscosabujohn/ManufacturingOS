@@ -611,7 +611,7 @@ const SystemChangesAuditPage = () => {
                     <button
                       onClick={() => handleViewDetails(change)}
                       className="text-purple-600 hover:text-purple-700 p-1"
-                      title="View Details"
+                     
                     >
                       <Eye className="w-4 h-4" />
                     </button>

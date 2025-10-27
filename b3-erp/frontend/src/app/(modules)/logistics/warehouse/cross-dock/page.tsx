@@ -20,7 +20,7 @@ interface CrossDockOperation {
   priority: 'high' | 'medium' | 'low';
   inboundDock: string;
   outboundDock: string;
-  dwell Time: number;
+  dwellTime: number;
   targetDwellTime: number;
   progress: number;
   orderNos: string[];

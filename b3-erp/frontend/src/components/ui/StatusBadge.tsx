@@ -1,7 +1,7 @@
 import React from 'react';
 import { CheckCircle, Clock, AlertCircle, XCircle, Hammer } from 'lucide-react';
 
-export type BadgeStatus = 'implemented' | 'in-progress' | 'planned' | 'deprecated' | 'coming-soon' | 'active' | 'inactive' | 'pending' | 'approved' | 'rejected';
+export type BadgeStatus = 'implemented' | 'in-progress' | 'planned' | 'deprecated' | 'coming-soon' | 'active' | 'inactive' | 'pending' | 'approved' | 'rejected' | 'draft' | 'error' | 'success' | 'warning' | 'cancelled' | 'withdrawn' | 'on_hold' | 'on_leave' | 'upcoming' | 'excellent' | 'good' | 'average' | 'needs_improvement';
 
 export interface StatusBadgeProps {
   status: BadgeStatus;
@@ -72,6 +72,84 @@ const statusConfig = {
     icon: XCircle,
     className: 'bg-red-100 text-red-700 border-red-200',
     iconClassName: 'text-red-600'
+  },
+  draft: {
+    label: 'Draft',
+    icon: Clock,
+    className: 'bg-gray-100 text-gray-700 border-gray-200',
+    iconClassName: 'text-gray-600'
+  },
+  error: {
+    label: 'Error',
+    icon: XCircle,
+    className: 'bg-red-100 text-red-700 border-red-200',
+    iconClassName: 'text-red-600'
+  },
+  success: {
+    label: 'Success',
+    icon: CheckCircle,
+    className: 'bg-green-100 text-green-700 border-green-200',
+    iconClassName: 'text-green-600'
+  },
+  warning: {
+    label: 'Warning',
+    icon: AlertCircle,
+    className: 'bg-yellow-100 text-yellow-700 border-yellow-200',
+    iconClassName: 'text-yellow-600'
+  },
+  cancelled: {
+    label: 'Cancelled',
+    icon: XCircle,
+    className: 'bg-gray-100 text-gray-700 border-gray-200',
+    iconClassName: 'text-gray-600'
+  },
+  withdrawn: {
+    label: 'Withdrawn',
+    icon: XCircle,
+    className: 'bg-gray-100 text-gray-700 border-gray-200',
+    iconClassName: 'text-gray-600'
+  },
+  on_hold: {
+    label: 'On Hold',
+    icon: Clock,
+    className: 'bg-orange-100 text-orange-700 border-orange-200',
+    iconClassName: 'text-orange-600'
+  },
+  on_leave: {
+    label: 'On Leave',
+    icon: AlertCircle,
+    className: 'bg-purple-100 text-purple-700 border-purple-200',
+    iconClassName: 'text-purple-600'
+  },
+  upcoming: {
+    label: 'Upcoming',
+    icon: Clock,
+    className: 'bg-blue-100 text-blue-700 border-blue-200',
+    iconClassName: 'text-blue-600'
+  },
+  excellent: {
+    label: 'Excellent',
+    icon: CheckCircle,
+    className: 'bg-green-100 text-green-700 border-green-200',
+    iconClassName: 'text-green-600'
+  },
+  good: {
+    label: 'Good',
+    icon: CheckCircle,
+    className: 'bg-blue-100 text-blue-700 border-blue-200',
+    iconClassName: 'text-blue-600'
+  },
+  average: {
+    label: 'Average',
+    icon: AlertCircle,
+    className: 'bg-yellow-100 text-yellow-700 border-yellow-200',
+    iconClassName: 'text-yellow-600'
+  },
+  needs_improvement: {
+    label: 'Needs Improvement',
+    icon: AlertCircle,
+    className: 'bg-orange-100 text-orange-700 border-orange-200',
+    iconClassName: 'text-orange-600'
   }
 };
 

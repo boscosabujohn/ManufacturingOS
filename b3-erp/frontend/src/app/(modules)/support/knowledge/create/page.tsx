@@ -214,36 +214,36 @@ export default function CreateKnowledgeArticle() {
 
             {/* Formatting Toolbar */}
             <div className="flex flex-wrap items-center gap-2 mb-4 p-3 bg-gray-50 border border-gray-200 rounded-lg">
-              <button className="p-2 hover:bg-gray-200 rounded transition-colors" title="Bold">
+              <button className="p-2 hover:bg-gray-200 rounded transition-colors">
                 <Bold className="h-4 w-4 text-gray-600" />
               </button>
-              <button className="p-2 hover:bg-gray-200 rounded transition-colors" title="Italic">
+              <button className="p-2 hover:bg-gray-200 rounded transition-colors">
                 <Italic className="h-4 w-4 text-gray-600" />
               </button>
-              <button className="p-2 hover:bg-gray-200 rounded transition-colors" title="Underline">
+              <button className="p-2 hover:bg-gray-200 rounded transition-colors">
                 <Underline className="h-4 w-4 text-gray-600" />
               </button>
               <div className="w-px h-6 bg-gray-300 mx-1"></div>
-              <button className="p-2 hover:bg-gray-200 rounded transition-colors" title="Align Left">
+              <button className="p-2 hover:bg-gray-200 rounded transition-colors">
                 <AlignLeft className="h-4 w-4 text-gray-600" />
               </button>
-              <button className="p-2 hover:bg-gray-200 rounded transition-colors" title="Align Center">
+              <button className="p-2 hover:bg-gray-200 rounded transition-colors">
                 <AlignCenter className="h-4 w-4 text-gray-600" />
               </button>
-              <button className="p-2 hover:bg-gray-200 rounded transition-colors" title="Align Right">
+              <button className="p-2 hover:bg-gray-200 rounded transition-colors">
                 <AlignRight className="h-4 w-4 text-gray-600" />
               </button>
               <div className="w-px h-6 bg-gray-300 mx-1"></div>
-              <button className="p-2 hover:bg-gray-200 rounded transition-colors" title="Bulleted List">
+              <button className="p-2 hover:bg-gray-200 rounded transition-colors">
                 <List className="h-4 w-4 text-gray-600" />
               </button>
-              <button className="p-2 hover:bg-gray-200 rounded transition-colors" title="Insert Link">
+              <button className="p-2 hover:bg-gray-200 rounded transition-colors">
                 <Link className="h-4 w-4 text-gray-600" />
               </button>
-              <button className="p-2 hover:bg-gray-200 rounded transition-colors" title="Insert Image">
+              <button className="p-2 hover:bg-gray-200 rounded transition-colors">
                 <Image className="h-4 w-4 text-gray-600" />
               </button>
-              <button className="p-2 hover:bg-gray-200 rounded transition-colors" title="Insert Code">
+              <button className="p-2 hover:bg-gray-200 rounded transition-colors">
                 <Code className="h-4 w-4 text-gray-600" />
               </button>
             </div>

@@ -98,7 +98,7 @@ export default function CompletedWorkOrdersPage() {
       successRate: 92.0,
       priority: 'urgent',
       salesOrderNumber: 'SO-2025-0828',
-      customerName: 'Builder's Choice',
+      customerName: "Builder's Choice",
       startDate: '2025-09-25',
       completionDate: '2025-10-10',
       dueDate: '2025-10-08',
@@ -591,7 +591,7 @@ export default function CompletedWorkOrdersPage() {
                       </span>
                     </td>
                     <td className="px-4 py-4">
-                      <button className="text-blue-600 hover:text-blue-900" title="View Details">
+                      <button className="text-blue-600 hover:text-blue-900">
                         <Eye className="h-4 w-4" />
                       </button>
                     </td>

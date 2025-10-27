@@ -71,11 +71,11 @@ export default function RoleMasterPage() {
       header: 'Permissions',
       accessor: 'permissions',
       sortable: false,
-      render: (value) => (
+      render: (value: Role['permissions']) => (
         <div className="text-sm text-gray-600">
           <div>{value.length} modules</div>
           <div className="text-xs text-gray-500">
-            {value.filter(p => p.canApprove).length} with approval rights
+            {value.filter((p: { canApprove?: boolean }) => p.canApprove).length} with approval rights
           </div>
         </div>
       )

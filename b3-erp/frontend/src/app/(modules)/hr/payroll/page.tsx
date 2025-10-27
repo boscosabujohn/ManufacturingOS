@@ -374,14 +374,14 @@ export default function PayrollPage() {
                         <button
                           onClick={() => handleView(record.id)}
                           className="text-blue-600 hover:text-blue-800"
-                          title="View"
+                         
                         >
                           <Eye className="h-5 w-5" />
                         </button>
                         <button
                           onClick={() => handleEdit(record.id)}
                           className="text-gray-600 hover:text-gray-800"
-                          title="Edit"
+                         
                         >
                           <Edit className="h-5 w-5" />
                         </button>
@@ -389,7 +389,7 @@ export default function PayrollPage() {
                           <button
                             onClick={() => handleProcess(record.id)}
                             className="text-green-600 hover:text-green-800"
-                            title="Process"
+                           
                           >
                             <CheckCircle className="h-5 w-5" />
                           </button>

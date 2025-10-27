@@ -119,10 +119,10 @@ export default function FinancialReportsPage() {
                     )}
                   </div>
                   <div className="flex gap-2">
-                    <button className="p-1.5 text-blue-600 hover:bg-blue-50 rounded transition-colors" title="View">
+                    <button className="p-1.5 text-blue-600 hover:bg-blue-50 rounded transition-colors">
                       <Eye className="w-4 h-4" />
                     </button>
-                    <button className="p-1.5 text-green-600 hover:bg-green-50 rounded transition-colors" title="Generate">
+                    <button className="p-1.5 text-green-600 hover:bg-green-50 rounded transition-colors">
                       <Download className="w-4 h-4" />
                     </button>
                   </div>

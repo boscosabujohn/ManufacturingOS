@@ -51,6 +51,7 @@ import {
   Percent,
   Users,
   Hash,
+  Eye,
 } from 'lucide-react';
 
 interface ContactPerson {

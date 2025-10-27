@@ -533,7 +533,7 @@ export default function GeneralLedgerPage() {
                           <button
                             onClick={() => setExpandedEntry(expandedEntry === entry.id ? null : entry.id)}
                             className="p-2 hover:bg-gray-700 rounded-lg transition-colors"
-                            title="View Details"
+                           
                           >
                             {expandedEntry === entry.id ? (
                               <ChevronDown className="w-4 h-4 text-blue-400" />
@@ -541,7 +541,7 @@ export default function GeneralLedgerPage() {
                               <ChevronRight className="w-4 h-4 text-blue-400" />
                             )}
                           </button>
-                          <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors" title="View Voucher">
+                          <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors">
                             <Eye className="w-4 h-4 text-purple-400" />
                           </button>
                         </div>

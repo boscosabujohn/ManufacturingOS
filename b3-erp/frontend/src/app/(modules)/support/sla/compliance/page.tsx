@@ -246,7 +246,7 @@ export default function SLACompliance() {
                 <div
                   className="absolute top-0 h-2 w-0.5 bg-blue-500"
                   style={{ left: '95%' }}
-                  title="Target: 95%"
+                 
                 />
               </div>
               <div className="flex justify-between text-xs text-gray-500">

@@ -316,28 +316,28 @@ export default function CPQQuotesPage() {
                       <button
                         className="p-1.5 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
                         aria-label="View"
-                        title="View"
+                       
                       >
                         <Eye className="h-4 w-4" />
                       </button>
                       <button
                         className="p-1.5 text-green-600 hover:bg-green-50 rounded-lg transition-colors"
                         aria-label="Edit"
-                        title="Edit"
+                       
                       >
                         <Edit className="h-4 w-4" />
                       </button>
                       <button
                         className="p-1.5 text-purple-600 hover:bg-purple-50 rounded-lg transition-colors"
                         aria-label="Copy"
-                        title="Copy"
+                       
                       >
                         <Copy className="h-4 w-4" />
                       </button>
                       <button
                         className="p-1.5 text-orange-600 hover:bg-orange-50 rounded-lg transition-colors"
                         aria-label="Send"
-                        title="Send"
+                       
                       >
                         <Send className="h-4 w-4" />
                       </button>

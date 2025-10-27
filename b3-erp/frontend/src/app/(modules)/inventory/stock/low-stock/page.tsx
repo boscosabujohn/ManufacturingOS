@@ -131,7 +131,7 @@ export default function LowStockPage() {
       priority: 'high',
       status: 'pending'
     }
-  ];
+  ]);
 
   const getPriorityColor = (priority: string) => {
     switch (priority) {

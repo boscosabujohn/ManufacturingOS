@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { TrendingUp, TrendingDown, DollarSign, PieChart, Activity, AlertTriangle, Target, Calendar, BarChart3, Shield, Clock, ArrowUpRight, ArrowDownRight, Plus, X, Filter, Download, ChevronUp, ChevronDown, Info, Star, Briefcase, Globe, Building2 } from 'lucide-react';
+import { TrendingUp, TrendingDown, DollarSign, PieChart, Activity, AlertTriangle, Target, Calendar, BarChart3, Shield, Clock, ArrowUpRight, ArrowDownRight, Plus, X, Filter, Download, ChevronUp, ChevronDown, Info, Star, Briefcase, Globe, Building2, Check } from 'lucide-react';
 import { LineChart, Line, AreaChart, Area, BarChart, Bar, PieChart as RePieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ScatterChart, Scatter, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, Treemap } from 'recharts';
 
 interface Investment {

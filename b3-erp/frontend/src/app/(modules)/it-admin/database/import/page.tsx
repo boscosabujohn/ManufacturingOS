@@ -527,7 +527,7 @@ export default function DatabaseImportPage() {
                       <button
                         onClick={() => handlePauseImport(job.id)}
                         className="p-2 hover:bg-yellow-50 rounded-lg text-yellow-600"
-                        title="Pause import"
+                       
                       >
                         <Pause className="w-5 h-5" />
                       </button>
@@ -536,7 +536,7 @@ export default function DatabaseImportPage() {
                       <button
                         onClick={() => handleResumeImport(job.id)}
                         className="p-2 hover:bg-green-50 rounded-lg text-green-600"
-                        title="Resume import"
+                       
                       >
                         <Play className="w-5 h-5" />
                       </button>
@@ -545,7 +545,7 @@ export default function DatabaseImportPage() {
                       <button
                         onClick={() => handleRetryImport(job.id)}
                         className="p-2 hover:bg-blue-50 rounded-lg text-blue-600"
-                        title="Retry import"
+                       
                       >
                         <RotateCcw className="w-5 h-5" />
                       </button>

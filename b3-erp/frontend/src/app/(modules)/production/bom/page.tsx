@@ -554,19 +554,19 @@ export default function BOMPage() {
                         <button
                           onClick={() => router.push(`/production/bom/${bom.id}`)}
                           className="text-blue-600 hover:text-blue-900"
-                          title="View Details"
+                         
                         >
                           <Eye className="h-4 w-4" />
                         </button>
                         <button
                           className="text-gray-600 hover:text-gray-900"
-                          title="Edit BOM"
+                         
                         >
                           <Edit2 className="h-4 w-4" />
                         </button>
                         <button
                           className="text-purple-600 hover:text-purple-900"
-                          title="Copy BOM"
+                         
                         >
                           <Copy className="h-4 w-4" />
                         </button>

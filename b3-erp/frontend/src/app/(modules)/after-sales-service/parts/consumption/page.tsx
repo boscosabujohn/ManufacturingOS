@@ -45,7 +45,7 @@ interface ConsumptionItem {
   totalCost: number;
   stockBefore: number;
   stockAfter: number;
-  reason: 'defective' | 'worn_out' | 'damaged' | 'upgrade' | 'preventive' | 'customer_request';
+  reason: 'defective' | 'worn_out' | 'damaged' | 'upgrade' | 'preventive' | 'customer_request' | 'inspection';
   replacementType: 'identical' | 'alternative' | 'upgraded';
   warranty: boolean;
   serialNumber?: string;
@@ -407,7 +407,6 @@ const mockConsumptions: PartsConsumption[] = [
     totalValue: 450,
     consumptionType: 'unplanned',
     approvalStatus: 'pending',
-    totalItems: 2,
     laborHours: 1.5,
     completionStatus: 'partial',
     costCenter: 'QA-001',
@@ -934,7 +933,7 @@ export default function PartsConsumptionPage() {
                           router.push(`/after-sales-service/parts/consumption/view/${consumption.id}`);
                         }}
                         className="text-blue-600 hover:text-blue-900"
-                        title="View Details"
+                       
                       >
                         <Eye className="w-4 h-4" />
                       </button>
@@ -944,7 +943,7 @@ export default function PartsConsumptionPage() {
                           router.push(`/after-sales-service/parts/consumption/edit/${consumption.id}`);
                         }}
                         className="text-gray-600 hover:text-gray-900"
-                        title="Edit Record"
+                       
                       >
                         <Edit className="w-4 h-4" />
                       </button>
@@ -954,7 +953,7 @@ export default function PartsConsumptionPage() {
                           // Handle download report
                         }}
                         className="text-green-600 hover:text-green-900"
-                        title="Download Report"
+                       
                       >
                         <Download className="w-4 h-4" />
                       </button>

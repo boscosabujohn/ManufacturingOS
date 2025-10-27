@@ -485,14 +485,14 @@ export default function CustomFieldsPage() {
                       <button
                         onClick={() => setEditingField(field)}
                         className="p-2 hover:bg-blue-50 rounded-lg text-blue-600"
-                        title="Edit field"
+                       
                       >
                         <Edit className="w-5 h-5" />
                       </button>
                       <button
                         onClick={() => handleDelete(field.id)}
                         className="p-2 hover:bg-red-50 rounded-lg text-red-600"
-                        title="Delete field"
+                       
                       >
                         <Trash2 className="w-5 h-5" />
                       </button>

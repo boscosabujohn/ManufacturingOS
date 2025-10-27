@@ -351,14 +351,14 @@ export default function EstimateWorkflowRejectedPage() {
                   </td>
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-2">
-                      <button className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg" title="View Details">
+                      <button className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg">
                         <Eye className="h-4 w-4" />
                       </button>
-                      <button className="p-2 text-gray-600 hover:bg-gray-50 rounded-lg" title="Comments">
+                      <button className="p-2 text-gray-600 hover:bg-gray-50 rounded-lg">
                         <MessageSquare className="h-4 w-4" />
                       </button>
                       {estimate.canRevise && !estimate.revisedEstimate && (
-                        <button className="p-2 text-green-600 hover:bg-green-50 rounded-lg" title="Create Revision">
+                        <button className="p-2 text-green-600 hover:bg-green-50 rounded-lg">
                           <RotateCcw className="h-4 w-4" />
                         </button>
                       )}

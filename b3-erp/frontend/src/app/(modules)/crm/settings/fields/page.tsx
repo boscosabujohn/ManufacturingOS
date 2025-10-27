@@ -773,25 +773,25 @@ export default function CustomFieldsPage() {
                   {/* Actions */}
                   <div className="flex items-center gap-2">
                     {field.isActive ? (
-                      <button className="p-2 hover:bg-green-50 rounded-lg transition-colors" title="Active">
+                      <button className="p-2 hover:bg-green-50 rounded-lg transition-colors">
                         <Eye className="w-5 h-5 text-green-600" />
                       </button>
                     ) : (
-                      <button className="p-2 hover:bg-gray-50 rounded-lg transition-colors" title="Inactive">
+                      <button className="p-2 hover:bg-gray-50 rounded-lg transition-colors">
                         <EyeOff className="w-5 h-5 text-gray-400" />
                       </button>
                     )}
                     <button
                       className="p-2 hover:bg-blue-50 rounded-lg transition-colors"
                       disabled={field.category === 'system'}
-                      title="Edit Field"
+                     
                     >
                       <Edit className={`w-5 h-5 ${field.category === 'system' ? 'text-gray-300' : 'text-blue-600'}`} />
                     </button>
-                    <button className="p-2 hover:bg-purple-50 rounded-lg transition-colors" title="Duplicate Field">
+                    <button className="p-2 hover:bg-purple-50 rounded-lg transition-colors">
                       <Copy className="w-5 h-5 text-purple-600" />
                     </button>
-                    <button className="p-2 hover:bg-gray-50 rounded-lg transition-colors" title="Field Settings">
+                    <button className="p-2 hover:bg-gray-50 rounded-lg transition-colors">
                       <Settings className="w-5 h-5 text-gray-600" />
                     </button>
                     <button

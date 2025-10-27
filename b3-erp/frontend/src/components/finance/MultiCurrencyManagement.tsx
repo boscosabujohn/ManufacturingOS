@@ -6,12 +6,12 @@ import {
   PieChart, Pie, Cell, AreaChart, Area
 } from 'recharts';
 import {
-  CurrencyDollarIcon, GlobeAltIcon, ArrowsRightLeftIcon, TrendingUpIcon,
-  TrendingDownIcon, ClockIcon, ExclamationTriangleIcon, CheckCircleIcon,
-  PlusIcon, PencilIcon, EyeIcon, AdjustmentsHorizontalIcon,
-  BanknotesIcon, ChartBarIcon, CogIcon, BellIcon,
-  DocumentTextIcon, ArrowPathIcon, InformationCircleIcon
-} from '@heroicons/react/24/outline';
+  DollarSign, Globe, ArrowRightLeft, TrendingUpIcon,
+  TrendingDownIcon, ClockIcon, AlertTriangle, CheckCircleIcon,
+  PlusIcon, PencilIcon, EyeIcon, SlidersHorizontal,
+  Banknote, BarChart3, CogIcon, BellIcon,
+  FileText, RefreshCw, Info
+} from 'lucide-react';
 
 interface Currency {
   id: string;
@@ -505,7 +505,7 @@ const MultiCurrencyManagement: React.FC = () => {
       pending: { bg: 'bg-yellow-100', text: 'text-yellow-800', icon: ClockIcon },
       executed: { bg: 'bg-blue-100', text: 'text-blue-800', icon: CheckCircleIcon },
       settled: { bg: 'bg-green-100', text: 'text-green-800', icon: CheckCircleIcon },
-      cancelled: { bg: 'bg-red-100', text: 'text-red-800', icon: ExclamationTriangleIcon }
+      cancelled: { bg: 'bg-red-100', text: 'text-red-800', icon: AlertTriangle }
     };
 
     const config = statusConfig[status as keyof typeof statusConfig];
@@ -535,7 +535,7 @@ const MultiCurrencyManagement: React.FC = () => {
         <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <GlobeAltIcon className="h-8 w-8 text-blue-600" />
+              <Globe className="h-8 w-8 text-blue-600" />
             </div>
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600">Active Currencies</p>
@@ -549,7 +549,7 @@ const MultiCurrencyManagement: React.FC = () => {
         <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <CurrencyDollarIcon className="h-8 w-8 text-green-600" />
+              <DollarSign className="h-8 w-8 text-green-600" />
             </div>
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600">Total Exposure</p>
@@ -728,7 +728,7 @@ const MultiCurrencyManagement: React.FC = () => {
               autoRefresh ? 'bg-green-600 text-white' : 'bg-gray-200 text-gray-700'
             }`}
           >
-            <ArrowPathIcon className="w-4 h-4 mr-2" />
+            <RefreshCw className="w-4 h-4 mr-2" />
             {autoRefresh ? 'Auto Refresh On' : 'Auto Refresh Off'}
           </button>
           <button
@@ -913,7 +913,7 @@ const MultiCurrencyManagement: React.FC = () => {
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                     <div className="flex space-x-2">
                       <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
-                        <ArrowPathIcon className="w-4 h-4 text-gray-600" />
+                        <RefreshCw className="w-4 h-4 text-gray-600" />
                         <span className="text-gray-700">Refresh</span>
                       </button>
                       <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
@@ -1160,7 +1160,7 @@ const MultiCurrencyManagement: React.FC = () => {
       <div className="flex justify-between items-center">
         <h3 className="text-lg font-semibold text-gray-900">Currency Revaluation</h3>
         <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 flex items-center">
-          <ArrowsRightLeftIcon className="w-5 h-5 mr-2" />
+          <ArrowRightLeft className="w-5 h-5 mr-2" />
           Run Revaluation
         </button>
       </div>
@@ -1238,13 +1238,13 @@ const MultiCurrencyManagement: React.FC = () => {
       <div className="border-b border-gray-200 mb-6">
         <nav className="-mb-px flex space-x-8">
           {[
-            { key: 'dashboard', label: 'Dashboard', icon: ChartBarIcon },
-            { key: 'currencies', label: 'Currencies', icon: GlobeAltIcon },
-            { key: 'rates', label: 'Exchange Rates', icon: ArrowsRightLeftIcon },
-            { key: 'exposure', label: 'Exposure', icon: CurrencyDollarIcon },
-            { key: 'transactions', label: 'Transactions', icon: BanknotesIcon },
-            { key: 'hedging', label: 'Hedging', icon: AdjustmentsHorizontalIcon },
-            { key: 'revaluation', label: 'Revaluation', icon: CalculatorIcon }
+            { key: 'dashboard', label: 'Dashboard', icon: BarChart3 },
+            { key: 'currencies', label: 'Currencies', icon: Globe },
+            { key: 'rates', label: 'Exchange Rates', icon: ArrowRightLeft },
+            { key: 'exposure', label: 'Exposure', icon: DollarSign },
+            { key: 'transactions', label: 'Transactions', icon: Banknote },
+            { key: 'hedging', label: 'Hedging', icon: SlidersHorizontal },
+            { key: 'revaluation', label: 'Revaluation', icon: Calculator }
           ].map(({ key, label, icon: Icon }) => (
             <button
               key={key}

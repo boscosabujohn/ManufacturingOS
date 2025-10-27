@@ -338,8 +338,8 @@ export default function TicketsPage() {
     filteredTickets = [...filteredTickets].sort((a, b) => {
       const aValue = a[sortField];
       const bValue = b[sortField];
-      if (aValue < bValue) return sortDirection === 'asc' ? -1 : 1;
-      if (aValue > bValue) return sortDirection === 'asc' ? 1 : -1;
+      if (aValue !== undefined && bValue !== undefined && aValue < bValue) return sortDirection === 'asc' ? -1 : 1;
+      if (aValue !== undefined && bValue !== undefined && aValue > bValue) return sortDirection === 'asc' ? 1 : -1;
       return 0;
     });
   }
@@ -395,7 +395,7 @@ export default function TicketsPage() {
     <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6">
       {/* Page Header with Toolbar */}
       <PageToolbar
-        title="Support Tickets"
+       
         subtitle={`${stats.total} tickets · ${stats.open} open · ${stats.slaBreach} SLA breach`}
         breadcrumbs={[
           { label: 'Support', href: '/support' },
@@ -796,21 +796,21 @@ export default function TicketsPage() {
                       <button
                         onClick={() => router.push(`/support/tickets/view/${ticket.id}`)}
                         className="p-1.5 text-blue-600 hover:bg-blue-50 rounded transition-colors"
-                        title="View Details"
+                       
                       >
                         <Eye className="h-4 w-4" />
                       </button>
                       <button
                         onClick={() => router.push(`/support/tickets/edit/${ticket.id}`)}
                         className="p-1.5 text-green-600 hover:bg-green-50 rounded transition-colors"
-                        title="Edit Ticket"
+                       
                       >
                         <Edit className="h-4 w-4" />
                       </button>
                       <button
                         onClick={() => handleDeleteTicket(ticket.id)}
                         className="p-1.5 text-red-600 hover:bg-red-50 rounded transition-colors"
-                        title="Delete Ticket"
+                       
                       >
                         <Trash2 className="h-4 w-4" />
                       </button>

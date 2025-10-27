@@ -3,7 +3,7 @@
 import { useState, useMemo } from 'react';
 import { Clock, Plus, Search, Filter, Calendar, AlertCircle, CheckCircle, XCircle, TrendingUp } from 'lucide-react';
 import DataTable from '@/components/DataTable';
-import StatusBadge from '@/components/StatusBadge';
+import StatusBadge, { BadgeStatus } from '@/components/StatusBadge';
 
 interface OvertimeRequest {
   id: string;
@@ -178,7 +178,7 @@ export default function OvertimeRequestsPage() {
       )
     },
     { key: 'status', label: 'Status', sortable: true,
-      render: (v: string) => <StatusBadge status={v} />
+      render: (v: string) => <StatusBadge status={v as BadgeStatus} />
     }
   ];
 

@@ -227,28 +227,28 @@ export default function ProductionDashboard() {
           ) : (
             <>
               <KPICard
-                title="Active Work Orders"
+               
                 value={stats.activeWorkOrders}
                 icon={Factory}
                 color="blue"
                 description={`${stats.completedToday} completed today`}
               />
               <KPICard
-                title="Production Efficiency"
+               
                 value={`${stats.productionEfficiency}%`}
                 icon={TrendingUp}
                 color="green"
                 description="Target: 85%"
               />
               <KPICard
-                title="OEE Score"
+               
                 value={`${stats.oeeScore}%`}
                 icon={BarChart3}
                 color="purple"
                 description="Overall Equipment Effectiveness"
               />
               <KPICard
-                title="Production Lines"
+               
                 value={`${stats.activeLines}/${stats.totalLines}`}
                 icon={Settings}
                 color="yellow"

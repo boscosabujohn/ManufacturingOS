@@ -974,11 +974,11 @@ export default function ProjectCharterPage() {
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-blue-600 font-bold">•</span>
-                <span><strong>Finance Director:</strong> Required for all projects >₹10 Lakhs budget</span>
+                <span><strong>Finance Director:</strong> Required for all projects {'>'}₹10 Lakhs budget</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-blue-600 font-bold">•</span>
-                <span><strong>CXO Approval:</strong> CEO/CIO approval for strategic or high-value projects (>₹1 Crore)</span>
+                <span><strong>CXO Approval:</strong> CEO/CIO approval for strategic or high-value projects ({'>'}₹1 Crore)</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-blue-600 font-bold">•</span>

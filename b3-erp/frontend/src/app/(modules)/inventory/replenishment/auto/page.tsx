@@ -419,7 +419,7 @@ export default function AutoReplenishmentPage() {
                       <button
                         onClick={() => handleEditConfig(config.id)}
                         className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
-                        title="Edit"
+                       
                       >
                         <Settings className="w-5 h-5 text-blue-600" />
                       </button>

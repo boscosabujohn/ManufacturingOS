@@ -890,7 +890,7 @@ export default function EditWorkOrderPage() {
                         <button
                           onClick={() => removeMaterialRequirement(index)}
                           className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
-                          title="Remove"
+                         
                           disabled={formData.materialRequirements.length === 1}
                         >
                           <Trash2 className="h-5 w-5" />
@@ -1032,7 +1032,7 @@ export default function EditWorkOrderPage() {
                         <button
                           onClick={() => moveOperationUp(index)}
                           className="flex-1 p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-                          title="Move Up"
+                         
                           disabled={index === 0}
                         >
                           ↑
@@ -1040,7 +1040,7 @@ export default function EditWorkOrderPage() {
                         <button
                           onClick={() => moveOperationDown(index)}
                           className="flex-1 p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-                          title="Move Down"
+                         
                           disabled={index === formData.operations.length - 1}
                         >
                           ↓
@@ -1048,7 +1048,7 @@ export default function EditWorkOrderPage() {
                         <button
                           onClick={() => removeOperation(index)}
                           className="flex-1 p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
-                          title="Remove"
+                         
                           disabled={formData.operations.length === 1}
                         >
                           <Trash2 className="h-5 w-5" />

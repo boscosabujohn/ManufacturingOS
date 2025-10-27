@@ -7,7 +7,7 @@ import {
   XCircle, Clock, Users, Package, DollarSign, Globe,
   Zap, FileText, Settings, Filter, Search, Download,
   ChevronRight, Eye, Edit3, Plus, Gauge, Award,
-  ShieldAlert, ShieldCheck, ShieldOff, TrendingFlat
+  ShieldAlert, ShieldCheck, ShieldOff, Minus
 } from 'lucide-react';
 import {
   LineChart, Line, BarChart, Bar, PieChart as RePieChart, Pie,
@@ -418,7 +418,7 @@ const ProcurementRiskManagement: React.FC<ProcurementRiskManagementProps> = () =
                       ) : supplier.trend === 'decreasing' ? (
                         <TrendingDown className="h-4 w-4 text-green-500" />
                       ) : (
-                        <TrendingFlat className="h-4 w-4 text-gray-500" />
+                        <Minus className="h-4 w-4 text-gray-500" />
                       )}
                       <span className="text-sm">{supplier.trend}</span>
                     </span>
@@ -667,7 +667,7 @@ const ProcurementRiskManagement: React.FC<ProcurementRiskManagementProps> = () =
             <div className="flex items-start gap-3">
               <span className="font-bold text-red-500">5</span>
               <div>
-                <p className="font-medium">Almost Certain (>90%)</p>
+                <p className="font-medium">Almost Certain ({'>'}90%)</p>
                 <p className="text-sm text-gray-600">Expected to occur in most circumstances</p>
               </div>
             </div>
@@ -695,7 +695,7 @@ const ProcurementRiskManagement: React.FC<ProcurementRiskManagementProps> = () =
             <div className="flex items-start gap-3">
               <span className="font-bold text-blue-500">1</span>
               <div>
-                <p className="font-medium">Rare (<10%)</p>
+                <p className="font-medium">Rare (&lt;10%)</p>
                 <p className="text-sm text-gray-600">May occur only in exceptional circumstances</p>
               </div>
             </div>
@@ -709,7 +709,7 @@ const ProcurementRiskManagement: React.FC<ProcurementRiskManagementProps> = () =
               <span className="font-bold text-red-500">5</span>
               <div>
                 <p className="font-medium">Catastrophic</p>
-                <p className="text-sm text-gray-600">Major disruption, >$1M loss, regulatory breach</p>
+                <p className="text-sm text-gray-600">Major disruption, {'>'}$1M loss, regulatory breach</p>
               </div>
             </div>
             <div className="flex items-start gap-3">
@@ -737,7 +737,7 @@ const ProcurementRiskManagement: React.FC<ProcurementRiskManagementProps> = () =
               <span className="font-bold text-blue-500">1</span>
               <div>
                 <p className="font-medium">Insignificant</p>
-                <p className="text-sm text-gray-600">Minimal impact, <$10K loss</p>
+                <p className="text-sm text-gray-600">Minimal impact, &lt;$10K loss</p>
               </div>
             </div>
           </div>
@@ -909,7 +909,7 @@ const ProcurementRiskManagement: React.FC<ProcurementRiskManagementProps> = () =
               <Radar name="Before Mitigation" dataKey="before" stroke="#EF4444" fill="#EF4444" fillOpacity={0.3} />
               <Radar name="After Mitigation" dataKey="after" stroke="#10B981" fill="#10B981" fillOpacity={0.3} />
               <Legend />
-            </Radar>
+            </RadarChart>
           </ResponsiveContainer>
         </div>
       </div>
@@ -1073,7 +1073,7 @@ const ProcurementRiskManagement: React.FC<ProcurementRiskManagementProps> = () =
             </div>
             <div className="text-2xl font-bold mb-1">94.8%</div>
             <div className="flex items-center gap-1">
-              <TrendingFlat className="h-4 w-4 text-gray-500" />
+              <Minus className="h-4 w-4 text-gray-500" />
               <span className="text-xs text-gray-600">Stable</span>
             </div>
           </div>
@@ -1094,20 +1094,20 @@ const ProcurementRiskManagement: React.FC<ProcurementRiskManagementProps> = () =
     </div>
   );
 
-  const Plus = () => (
-    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  const Plus = ({ className = "" }: { className?: string }) => (
+    <svg className={`w-4 h-4 ${className}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
     </svg>
   );
 
-  const Calendar = () => (
+  const Calendar = ({ className = "" }: { className?: string }) => (
     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
     </svg>
   );
 
-  const TrendingFlat = () => (
-    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  const Minus = ({ className = "" }: { className?: string }) => (
+    <svg className={`w-4 h-4 ${className}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14" />
     </svg>
   );

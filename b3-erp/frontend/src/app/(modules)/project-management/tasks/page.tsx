@@ -497,7 +497,7 @@ export default function TasksListPage() {
                     <Link
                       href={`/project-management/tasks/view/${task.id}`}
                       className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-                      title="View Details"
+                     
                     >
                       <Eye className="w-4 h-4" />
                     </Link>

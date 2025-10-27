@@ -398,13 +398,13 @@ export default function EstimateWorkflowApprovedPage() {
                   </td>
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-2">
-                      <button className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg" title="View Details">
+                      <button className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg">
                         <Eye className="h-4 w-4" />
                       </button>
-                      <button className="p-2 text-green-600 hover:bg-green-50 rounded-lg" title="Download PDF">
+                      <button className="p-2 text-green-600 hover:bg-green-50 rounded-lg">
                         <FileText className="h-4 w-4" />
                       </button>
-                      <button className="p-2 text-purple-600 hover:bg-purple-50 rounded-lg" title="Send to Customer">
+                      <button className="p-2 text-purple-600 hover:bg-purple-50 rounded-lg">
                         <Send className="h-4 w-4" />
                       </button>
                     </div>

@@ -110,7 +110,7 @@ const statusColors = {
 
 export default function ActivityManagementTracking() {
   const [activities, setActivities] = useState<Activity[]>(mockActivities);
-  const [filter Type, setFilterType] = useState<string>('all');
+  const [filterType, setFilterType] = useState<string>('all');
   const [filterStatus, setFilterStatus] = useState<string>('all');
   const [realTimeUpdate, setRealTimeUpdate] = useState(0);
 

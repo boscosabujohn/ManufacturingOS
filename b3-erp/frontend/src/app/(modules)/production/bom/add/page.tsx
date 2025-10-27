@@ -704,7 +704,7 @@ export default function BOMAddPage() {
               <button
                 onClick={() => addComponent(component.level + 1, component.id)}
                 className="p-1 hover:bg-blue-100 rounded text-blue-600"
-                title="Add child component"
+               
               >
                 <Plus className="h-4 w-4" />
               </button>
@@ -712,7 +712,7 @@ export default function BOMAddPage() {
             <button
               onClick={() => removeComponent(component.id)}
               className="p-1 hover:bg-red-100 rounded text-red-600"
-              title="Remove"
+             
             >
               <Trash2 className="h-4 w-4" />
             </button>

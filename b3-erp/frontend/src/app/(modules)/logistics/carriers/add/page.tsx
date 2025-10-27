@@ -309,7 +309,7 @@ export default function AddCarrierPage() {
                     type="button"
                     onClick={generateCarrierCode}
                     className="px-4 py-2.5 bg-gradient-to-r from-purple-600 to-purple-700 text-white rounded-lg hover:from-purple-700 hover:to-purple-800 transition-all flex items-center gap-2"
-                    title="Auto-generate code"
+                   
                   >
                     <Sparkles className="w-4 h-4" />
                   </button>

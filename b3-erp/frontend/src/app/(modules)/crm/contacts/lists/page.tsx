@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { List, Users, Mail, Filter as FilterIcon, TrendingUp, Target, Calendar, Search, Plus, Edit, Trash2, Eye, Download, Upload, CheckCircle, XCircle, Clock, BarChart3, Send, UserPlus, Copy, Archive } from 'lucide-react';
+import { List, Users, Mail, Phone, Filter as FilterIcon, TrendingUp, Target, Calendar, Search, Plus, Edit, Trash2, Eye, Download, Upload, CheckCircle, XCircle, Clock, BarChart3, Send, UserPlus, Copy, Archive } from 'lucide-react';
 
 interface ContactList {
   id: string;

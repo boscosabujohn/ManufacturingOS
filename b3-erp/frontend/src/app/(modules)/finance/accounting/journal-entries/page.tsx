@@ -485,7 +485,7 @@ export default function JournalEntriesPage() {
                         <button
                           onClick={() => router.push(`/finance/accounting/view/${entry.id}`)}
                           className="p-1.5 text-blue-600 hover:bg-blue-50 rounded transition-colors"
-                          title="View"
+                         
                         >
                           <Eye className="h-4 w-4" />
                         </button>
@@ -494,7 +494,7 @@ export default function JournalEntriesPage() {
                             <button
                               onClick={() => router.push(`/finance/accounting/edit/${entry.id}`)}
                               className="p-1.5 text-green-600 hover:bg-green-50 rounded transition-colors"
-                              title="Edit"
+                             
                             >
                               <Edit className="h-4 w-4" />
                             </button>
@@ -502,7 +502,7 @@ export default function JournalEntriesPage() {
                               onClick={() => handlePostEntry(entry.id)}
                               disabled={isProcessing}
                               className="p-1.5 text-purple-600 hover:bg-purple-50 rounded transition-colors disabled:opacity-50"
-                              title="Post"
+                             
                             >
                               {isProcessing ? (
                                 <Loader className="h-4 w-4 animate-spin" />
@@ -517,7 +517,7 @@ export default function JournalEntriesPage() {
                             onClick={() => handleUnpostEntry(entry.id)}
                             disabled={isProcessing}
                             className="p-1.5 text-red-600 hover:bg-red-50 rounded transition-colors disabled:opacity-50"
-                            title="Unpost"
+                           
                           >
                             {isProcessing ? (
                               <Loader className="h-4 w-4 animate-spin" />

@@ -386,14 +386,14 @@ const ProductionQualityPage = () => {
                       <button
                         onClick={() => handleView(inspection.id)}
                         className="text-blue-600 hover:text-blue-900"
-                        title="View"
+                       
                       >
                         <Eye className="w-5 h-5" />
                       </button>
                       <button
                         onClick={() => handleEdit(inspection.id)}
                         className="text-yellow-600 hover:text-yellow-900"
-                        title="Edit"
+                       
                       >
                         <Edit2 className="w-5 h-5" />
                       </button>
@@ -401,7 +401,7 @@ const ProductionQualityPage = () => {
                         <button
                           onClick={() => handleApprove(inspection.id)}
                           className="text-green-600 hover:text-green-900"
-                          title="Approve"
+                         
                         >
                           <CheckIcon className="w-5 h-5" />
                         </button>

@@ -6,7 +6,7 @@ import {
   Clock, Target, Activity, PieChart, LineChart as LineChartIcon,
   Calendar, Filter, Download, RefreshCw, Settings,
   ChevronRight, Eye, FileText, Award, AlertCircle,
-  ShoppingCart, Zap, Globe, Shield, ArrowUp, ArrowDown
+  ShoppingCart, Zap, Globe, Shield
 } from 'lucide-react';
 import {
   LineChart, Line, BarChart, Bar, PieChart as RePieChart, Pie,
@@ -110,7 +110,7 @@ const ProcurementAnalytics: React.FC<ProcurementAnalyticsProps> = () => {
           <div className="flex items-center justify-between mb-4">
             <DollarSign className="h-8 w-8 text-blue-500" />
             <span className={`flex items-center text-sm ${kpiMetrics.spendChange >= 0 ? 'text-red-600' : 'text-green-600'}`}>
-              {kpiMetrics.spendChange >= 0 ? <ArrowUp className="h-4 w-4" /> : <ArrowDown className="h-4 w-4" />}
+              {kpiMetrics.spendChange >= 0 ? <ArrowUp /> : <ArrowDown />}
               {Math.abs(kpiMetrics.spendChange)}%
             </span>
           </div>
@@ -122,7 +122,7 @@ const ProcurementAnalytics: React.FC<ProcurementAnalyticsProps> = () => {
           <div className="flex items-center justify-between mb-4">
             <ShoppingCart className="h-8 w-8 text-green-500" />
             <span className={`flex items-center text-sm ${kpiMetrics.ordersChange >= 0 ? 'text-green-600' : 'text-red-600'}`}>
-              {kpiMetrics.ordersChange >= 0 ? <ArrowUp className="h-4 w-4" /> : <ArrowDown className="h-4 w-4" />}
+              {kpiMetrics.ordersChange >= 0 ? <ArrowUp /> : <ArrowDown />}
               {Math.abs(kpiMetrics.ordersChange)}%
             </span>
           </div>
@@ -134,7 +134,7 @@ const ProcurementAnalytics: React.FC<ProcurementAnalyticsProps> = () => {
           <div className="flex items-center justify-between mb-4">
             <Users className="h-8 w-8 text-purple-500" />
             <span className={`flex items-center text-sm ${kpiMetrics.suppliersChange >= 0 ? 'text-green-600' : 'text-red-600'}`}>
-              {kpiMetrics.suppliersChange >= 0 ? <ArrowUp className="h-4 w-4" /> : <ArrowDown className="h-4 w-4" />}
+              {kpiMetrics.suppliersChange >= 0 ? <ArrowUp /> : <ArrowDown />}
               {Math.abs(kpiMetrics.suppliersChange)}%
             </span>
           </div>
@@ -883,20 +883,20 @@ const ProcurementAnalytics: React.FC<ProcurementAnalyticsProps> = () => {
     </div>
   );
 
-  const Plus = () => (
-    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  const Plus = ({ className = "" }: { className?: string }) => (
+    <svg className={`w-4 h-4 ${className}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
     </svg>
   );
 
-  const ArrowUp = () => (
-    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  const ArrowUp = ({ className = "" }: { className?: string }) => (
+    <svg className={`w-4 h-4 ${className}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
     </svg>
   );
 
-  const ArrowDown = () => (
-    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  const ArrowDown = ({ className = "" }: { className?: string }) => (
+    <svg className={`w-4 h-4 ${className}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
     </svg>
   );

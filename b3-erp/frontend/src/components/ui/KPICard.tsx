@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import { LucideIcon } from 'lucide-react';
 
 export interface KPICardProps {
-  title: string;
+  title?: string;
   value: string | number;
   icon?: LucideIcon;
   trend?: {

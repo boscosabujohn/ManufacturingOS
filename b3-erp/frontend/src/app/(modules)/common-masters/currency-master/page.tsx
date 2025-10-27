@@ -50,7 +50,7 @@ export default function CurrencyMasterPage() {
         <div className="flex items-center gap-2">
           <span className="font-mono font-semibold text-blue-600">{value}</span>
           {row.isBaseCurrency && (
-            <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" title="Base Currency" />
+            <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
           )}
         </div>
       )

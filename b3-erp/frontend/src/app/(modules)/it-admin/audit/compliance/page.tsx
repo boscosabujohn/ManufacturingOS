@@ -723,7 +723,7 @@ const ComplianceAuditPage = () => {
                       <button
                         onClick={() => handleViewDetails(req)}
                         className="text-green-600 hover:text-green-700 p-1"
-                        title="View Details"
+                       
                       >
                         <Eye className="w-4 h-4" />
                       </button>
@@ -800,7 +800,7 @@ const ComplianceAuditPage = () => {
                       <button
                         onClick={() => handleViewDetails(vio)}
                         className="text-green-600 hover:text-green-700 p-1"
-                        title="View Details"
+                       
                       >
                         <Eye className="w-4 h-4" />
                       </button>

@@ -380,7 +380,7 @@ export default function FAQs() {
                       console.log('Edit FAQ:', faq.id)
                     }}
                     className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-                    title="Edit FAQ"
+                   
                   >
                     <Edit className="h-4 w-4" />
                   </button>

@@ -448,7 +448,7 @@ export default function LeadAssignmentPage() {
                     <button
                       onClick={() => router.push(`/crm/leads?assignedTo=${rep.id}`)}
                       className="p-2 text-blue-600 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors"
-                      title="View Leads"
+                     
                     >
                       <Eye className="h-5 w-5" />
                     </button>

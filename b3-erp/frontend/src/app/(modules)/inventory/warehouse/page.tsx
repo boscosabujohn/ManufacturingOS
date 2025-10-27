@@ -423,13 +423,13 @@ const InventoryWarehousePage = () => {
                       <div className="flex items-center gap-2">
                         <button
                           className="p-1 text-blue-600 hover:bg-blue-50 rounded transition-colors"
-                          title="View Details"
+                         
                         >
                           <Eye className="w-4 h-4" />
                         </button>
                         <button
                           className="p-1 text-gray-600 hover:bg-gray-50 rounded transition-colors"
-                          title="Edit Warehouse"
+                         
                         >
                           <Edit className="w-4 h-4" />
                         </button>

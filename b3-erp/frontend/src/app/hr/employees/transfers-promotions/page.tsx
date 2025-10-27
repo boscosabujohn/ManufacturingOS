@@ -2,8 +2,8 @@
 
 import { useState, useMemo } from 'react';
 import { TrendingUp, Search, Filter, Plus, ArrowRight, Award, Building2, Calendar, CheckCircle, Clock, XCircle } from 'lucide-react';
-import DataTable from '@/components/DataTable';
-import StatusBadge from '@/components/StatusBadge';
+import DataTable, { Column } from '@/components/DataTable';
+import StatusBadge, { BadgeStatus } from '@/components/StatusBadge';
 
 interface TransferPromotion {
   id: string;
@@ -91,19 +91,19 @@ export default function TransfersPromotionsPage() {
     return { total: mockTransfersPromotions.length, promotions, transfers, pending, avgIncrement };
   }, []);
 
-  const columns = [
-    { key: 'employeeCode', label: 'Employee', sortable: true,
+  const columns: Column<TransferPromotion>[] = [
+    { id: 'employeeCode', accessor: 'employeeCode', label: 'Employee', sortable: true,
       render: (v: string, row: TransferPromotion) => (
         <div><div className="font-semibold text-gray-900">{v}</div><div className="text-xs text-gray-500">{row.name}</div></div>
       )
     },
-    { key: 'type', label: 'Type', sortable: true,
+    { id: 'type', accessor: 'type', label: 'Type', sortable: true,
       render: (v: string) => {
         const colors = { promotion: 'bg-green-100 text-green-700', transfer: 'bg-blue-100 text-blue-700', both: 'bg-purple-100 text-purple-700' };
         return <span className={`px-2 py-1 rounded-full text-xs font-medium ${colors[v as keyof typeof colors]}`}>{v.toUpperCase()}</span>;
       }
     },
-    { key: 'fromDesignation', label: 'From → To', sortable: true,
+    { id: 'fromDesignation', accessor: 'fromDesignation', label: 'From → To', sortable: true,
       render: (v: string, row: TransferPromotion) => (
         <div className="text-sm">
           {row.type !== 'transfer' ? (
@@ -125,7 +125,7 @@ export default function TransfersPromotionsPage() {
         </div>
       )
     },
-    { key: 'effectiveDate', label: 'Effective Date', sortable: true,
+    { id: 'effectiveDate', accessor: 'effectiveDate', label: 'Effective Date', sortable: true,
       render: (v: string) => (
         <div className="flex items-center gap-2 text-sm text-gray-700">
           <Calendar className="w-4 h-4 text-gray-400" />
@@ -133,15 +133,15 @@ export default function TransfersPromotionsPage() {
         </div>
       )
     },
-    { key: 'salaryIncrement', label: 'Increment', sortable: true,
+    { id: 'salaryIncrement', accessor: 'salaryIncrement', label: 'Increment', sortable: true,
       render: (v?: number) => v ? (
         <div className="font-semibold text-green-600">+{v}%</div>
       ) : (
         <div className="text-gray-400">-</div>
       )
     },
-    { key: 'status', label: 'Status', sortable: true,
-      render: (v: string) => <StatusBadge status={v} />
+    { id: 'status', accessor: 'status', label: 'Status', sortable: true,
+      render: (v: string) => <StatusBadge status={v as BadgeStatus} />
     }
   ];
 

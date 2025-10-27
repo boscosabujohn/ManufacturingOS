@@ -579,11 +579,11 @@ export default function AccountsReceivableManagement() {
                       formatter={(value) => [formatCurrency(Number(value)), 'Amount']}
                     />
                     <Legend />
-                    <RechartsPieChart data={agingBuckets} dataKey="amount" nameKey="period" cx="50%" cy="50%" outerRadius={100}>
+                    <Pie data={agingBuckets} dataKey="amount" nameKey="period" cx="50%" cy="50%" outerRadius={100}>
                       {agingBuckets.map((entry, index) => (
                         <Cell key={`cell-${index}`} fill={entry.color} />
                       ))}
-                    </RechartsPieChart>
+                    </Pie>
                   </RechartsPieChart>
                 </ResponsiveContainer>
               </div>

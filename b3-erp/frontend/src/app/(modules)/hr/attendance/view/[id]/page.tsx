@@ -15,6 +15,7 @@ import {
   MapPin,
   Timer,
   Award,
+  Building2,
 } from 'lucide-react';
 
 interface AttendanceRecord {

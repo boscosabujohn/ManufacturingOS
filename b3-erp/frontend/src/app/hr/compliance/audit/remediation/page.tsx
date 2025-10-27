@@ -1,6 +1,6 @@
 'use client';
 
-import { Tool, CheckCircle, Clock } from 'lucide-react';
+import { Wrench, CheckCircle, Clock } from 'lucide-react';
 
 export default function Page() {
   const plans = [
@@ -13,7 +13,7 @@ export default function Page() {
   return (
     <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
       <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2 mb-6">
-        <Tool className="h-6 w-6 text-green-600" />
+        <Wrench className="h-6 w-6 text-green-600" />
         Remediation Plans
       </h1>
       <div className="grid grid-cols-2 gap-4 mb-6">

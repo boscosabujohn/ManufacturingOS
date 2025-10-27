@@ -6,11 +6,11 @@ import {
   ComposedChart, Area, AreaChart, PieChart, Pie, Cell
 } from 'recharts';
 import {
-  CurrencyDollarIcon, TrendingUpIcon, TrendingDownIcon, ExclamationTriangleIcon,
-  CalendarIcon, DocumentTextIcon, ChartBarIcon, AdjustmentsHorizontalIcon,
+  DollarSign, TrendingUpIcon, TrendingDownIcon, AlertTriangle,
+  CalendarIcon, FileText, BarChart3, SlidersHorizontal,
   PlusIcon, PencilIcon, EyeIcon, ArrowUpIcon, ArrowDownIcon,
-  CheckCircleIcon, ClockIcon, XCircleIcon, InformationCircleIcon
-} from '@heroicons/react/24/outline';
+  CheckCircleIcon, ClockIcon, XCircleIcon, Info
+} from 'lucide-react';
 
 interface Budget {
   id: string;
@@ -263,7 +263,7 @@ const BudgetManagement: React.FC = () => {
     const statusConfig = {
       draft: { bg: 'bg-yellow-100', text: 'text-yellow-800', icon: ClockIcon },
       active: { bg: 'bg-green-100', text: 'text-green-800', icon: CheckCircleIcon },
-      locked: { bg: 'bg-blue-100', text: 'text-blue-800', icon: InformationCircleIcon },
+      locked: { bg: 'bg-blue-100', text: 'text-blue-800', icon: Info },
       closed: { bg: 'bg-gray-100', text: 'text-gray-800', icon: XCircleIcon }
     };
 
@@ -285,7 +285,7 @@ const BudgetManagement: React.FC = () => {
         <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <CurrencyDollarIcon className="h-8 w-8 text-blue-600" />
+              <DollarSign className="h-8 w-8 text-blue-600" />
             </div>
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600">Total Budget</p>
@@ -297,7 +297,7 @@ const BudgetManagement: React.FC = () => {
         <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <ChartBarIcon className="h-8 w-8 text-green-600" />
+              <BarChart3 className="h-8 w-8 text-green-600" />
             </div>
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600">Actual Spend</p>
@@ -323,7 +323,7 @@ const BudgetManagement: React.FC = () => {
         <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <ExclamationTriangleIcon className="h-8 w-8 text-yellow-600" />
+              <AlertTriangle className="h-8 w-8 text-yellow-600" />
             </div>
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600">Budget Alerts</p>
@@ -360,7 +360,7 @@ const BudgetManagement: React.FC = () => {
               <XAxis type="number" />
               <YAxis dataKey="department" type="category" width={80} />
               <Tooltip formatter={(value) => formatCurrency(Number(value))} />
-              <Bar dataKey="variance" fill={(entry) => entry > 0 ? '#10B981' : '#EF4444'} />
+              <Bar dataKey="variance" fill={(entry: number) => entry > 0 ? '#10B981' : '#EF4444'} />
             </BarChart>
           </ResponsiveContainer>
         </div>
@@ -576,7 +576,7 @@ const BudgetManagement: React.FC = () => {
                     <td className="px-6 py-4 whitespace-nowrap">
                       {Math.abs(dept.variancePercent) > 10 ? (
                         <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
-                          <ExclamationTriangleIcon className="w-3 h-3 mr-1" />
+                          <AlertTriangle className="w-3 h-3 mr-1" />
                           Alert
                         </span>
                       ) : Math.abs(dept.variancePercent) > 5 ? (
@@ -654,15 +654,15 @@ const BudgetManagement: React.FC = () => {
           <h4 className="font-medium text-gray-900 mb-4">Risk Factors</h4>
           <div className="space-y-2">
             <div className="flex items-center text-sm">
-              <ExclamationTriangleIcon className="w-4 h-4 text-red-500 mr-2" />
+              <AlertTriangle className="w-4 h-4 text-red-500 mr-2" />
               Market volatility
             </div>
             <div className="flex items-center text-sm">
-              <ExclamationTriangleIcon className="w-4 h-4 text-yellow-500 mr-2" />
+              <AlertTriangle className="w-4 h-4 text-yellow-500 mr-2" />
               Supply chain costs
             </div>
             <div className="flex items-center text-sm">
-              <ExclamationTriangleIcon className="w-4 h-4 text-blue-500 mr-2" />
+              <AlertTriangle className="w-4 h-4 text-blue-500 mr-2" />
               Currency fluctuation
             </div>
           </div>
@@ -750,11 +750,11 @@ const BudgetManagement: React.FC = () => {
       <div className="border-b border-gray-200 mb-6">
         <nav className="-mb-px flex space-x-8">
           {[
-            { key: 'dashboard', label: 'Dashboard', icon: ChartBarIcon },
-            { key: 'budgets', label: 'Budgets', icon: DocumentTextIcon },
+            { key: 'dashboard', label: 'Dashboard', icon: BarChart3 },
+            { key: 'budgets', label: 'Budgets', icon: FileText },
             { key: 'variance', label: 'Variance Analysis', icon: TrendingUpIcon },
             { key: 'forecasting', label: 'Forecasting', icon: CalendarIcon },
-            { key: 'scenarios', label: 'Scenarios', icon: AdjustmentsHorizontalIcon }
+            { key: 'scenarios', label: 'Scenarios', icon: SlidersHorizontal }
           ].map(({ key, label, icon: Icon }) => (
             <button
               key={key}

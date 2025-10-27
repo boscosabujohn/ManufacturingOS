@@ -349,10 +349,10 @@ export default function EstimateWorkflowPendingPage() {
                   </td>
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-2">
-                      <button className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg" title="View Details">
+                      <button className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg">
                         <Eye className="h-4 w-4" />
                       </button>
-                      <button className="p-2 text-gray-600 hover:bg-gray-50 rounded-lg relative" title="Comments">
+                      <button className="p-2 text-gray-600 hover:bg-gray-50 rounded-lg relative">
                         <MessageSquare className="h-4 w-4" />
                         {estimate.comments > 0 && (
                           <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
@@ -360,10 +360,10 @@ export default function EstimateWorkflowPendingPage() {
                           </span>
                         )}
                       </button>
-                      <button className="p-2 text-green-600 hover:bg-green-50 rounded-lg" title="Approve">
+                      <button className="p-2 text-green-600 hover:bg-green-50 rounded-lg">
                         <CheckCircle className="h-4 w-4" />
                       </button>
-                      <button className="p-2 text-red-600 hover:bg-red-50 rounded-lg" title="Reject">
+                      <button className="p-2 text-red-600 hover:bg-red-50 rounded-lg">
                         <XCircle className="h-4 w-4" />
                       </button>
                     </div>

@@ -586,7 +586,7 @@ const SystemHealthPage = () => {
                       <button
                         onClick={() => handleViewDetails(service)}
                         className="text-green-600 hover:text-green-700 p-1"
-                        title="View Details"
+                       
                       >
                         <Eye className="w-4 h-4" />
                       </button>
@@ -694,7 +694,7 @@ const SystemHealthPage = () => {
                       <button
                         onClick={() => handleViewDetails(server)}
                         className="text-green-600 hover:text-green-700 p-1"
-                        title="View Details"
+                       
                       >
                         <Eye className="w-4 h-4" />
                       </button>

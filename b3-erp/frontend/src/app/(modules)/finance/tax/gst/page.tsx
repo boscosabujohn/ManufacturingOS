@@ -502,7 +502,7 @@ export default function GSTManagementPage() {
                         </td>
                         <td className="px-6 py-4">
                           <div className="flex items-center justify-center gap-2">
-                            <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors" title="View Details">
+                            <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors">
                               <Eye className="w-4 h-4 text-blue-400" />
                             </button>
                           </div>
@@ -567,15 +567,15 @@ export default function GSTManagementPage() {
                       </td>
                       <td className="px-6 py-4">
                         <div className="flex items-center justify-center gap-2">
-                          <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors" title="View Details">
+                          <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors">
                             <Eye className="w-4 h-4 text-blue-400" />
                           </button>
                           {ret.status !== 'Filed' && (
-                            <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors" title="File Return">
+                            <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors">
                               <Send className="w-4 h-4 text-green-400" />
                             </button>
                           )}
-                          <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors" title="Download">
+                          <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors">
                             <Download className="w-4 h-4 text-purple-400" />
                           </button>
                         </div>

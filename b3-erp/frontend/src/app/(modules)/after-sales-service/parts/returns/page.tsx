@@ -49,7 +49,7 @@ interface ReturnItem {
   quantityRejected: number;
   unitCost: number;
   totalCost: number;
-  returnReason: 'unused' | 'defective' | 'wrong_part' | 'excess_stock' | 'warranty_return' | 'expired' | 'damaged';
+  returnReason: 'unused' | 'defective' | 'wrong_part' | 'excess_stock' | 'warranty_return' | 'expired' | 'damaged' | 'customer_cancelled';
   condition: 'new' | 'like_new' | 'good' | 'fair' | 'poor' | 'defective';
   restockable: boolean;
   serialNumber?: string;
@@ -794,14 +794,14 @@ export default function PartsReturnsPage() {
                           setShowDetailsModal(true);
                         }}
                         className="text-emerald-600 hover:text-emerald-800 transition-colors"
-                        title="View Details"
+                       
                       >
                         <Eye className="h-5 w-5" />
                       </button>
                       <button
                         onClick={() => router.push(`/after-sales-service/parts/returns/edit/${ret.id}`)}
                         className="text-blue-600 hover:text-blue-800 transition-colors"
-                        title="Edit Return"
+                       
                       >
                         <Edit className="h-5 w-5" />
                       </button>

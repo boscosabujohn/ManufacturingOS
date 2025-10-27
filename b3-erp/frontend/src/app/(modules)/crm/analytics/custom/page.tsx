@@ -530,27 +530,27 @@ export default function CustomReportsPage() {
                   <span>{report.createdBy}</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <button className="p-2 hover:bg-blue-50 rounded-lg transition-colors" title="Run Report">
+                  <button className="p-2 hover:bg-blue-50 rounded-lg transition-colors">
                     <Play className="w-4 h-4 text-blue-600" />
                   </button>
-                  <button className="p-2 hover:bg-purple-50 rounded-lg transition-colors" title="View Report">
+                  <button className="p-2 hover:bg-purple-50 rounded-lg transition-colors">
                     <Eye className="w-4 h-4 text-purple-600" />
                   </button>
-                  <button className="p-2 hover:bg-green-50 rounded-lg transition-colors" title="Download">
+                  <button className="p-2 hover:bg-green-50 rounded-lg transition-colors">
                     <Download className="w-4 h-4 text-green-600" />
                   </button>
-                  <button className="p-2 hover:bg-orange-50 rounded-lg transition-colors" title="Edit">
+                  <button className="p-2 hover:bg-orange-50 rounded-lg transition-colors">
                     <Edit className="w-4 h-4 text-orange-600" />
                   </button>
-                  <button className="p-2 hover:bg-gray-50 rounded-lg transition-colors" title="Duplicate">
+                  <button className="p-2 hover:bg-gray-50 rounded-lg transition-colors">
                     <Copy className="w-4 h-4 text-gray-600" />
                   </button>
                   {report.isShared && (
-                    <button className="p-2 hover:bg-blue-50 rounded-lg transition-colors" title="Share Settings">
+                    <button className="p-2 hover:bg-blue-50 rounded-lg transition-colors">
                       <Share2 className="w-4 h-4 text-blue-600" />
                     </button>
                   )}
-                  <button className="p-2 hover:bg-gray-50 rounded-lg transition-colors" title="Settings">
+                  <button className="p-2 hover:bg-gray-50 rounded-lg transition-colors">
                     <Settings className="w-4 h-4 text-gray-600" />
                   </button>
                 </div>

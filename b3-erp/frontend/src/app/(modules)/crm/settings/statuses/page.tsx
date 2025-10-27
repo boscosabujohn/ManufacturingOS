@@ -625,19 +625,19 @@ export default function CustomStatusesPage() {
                   <button
                     onClick={() => setEditingStatus(status.id)}
                     className="p-2 hover:bg-blue-50 rounded-lg transition-colors"
-                    title="Edit Status"
+                   
                   >
                     <Edit className="w-5 h-5 text-blue-600" />
                   </button>
                   <button
                     className="p-2 hover:bg-purple-50 rounded-lg transition-colors"
-                    title="Duplicate Status"
+                   
                   >
                     <Copy className="w-5 h-5 text-purple-600" />
                   </button>
                   <button
                     className="p-2 hover:bg-gray-50 rounded-lg transition-colors"
-                    title="Configure Transitions"
+                   
                   >
                     <Settings className="w-5 h-5 text-gray-600" />
                   </button>

@@ -154,26 +154,26 @@ export default function TimesheetApprovalPage() {
       )
     },
     { key: 'id', label: 'Actions', sortable: false,
-      render: (_, row: TimesheetSubmission) => (
+      render: (_: unknown, row: TimesheetSubmission) => (
         <div className="flex gap-2">
           <button
             onClick={() => handleView(row)}
             className="p-2 text-blue-600 hover:bg-blue-50 rounded transition-colors"
-            title="View Details"
+           
           >
             <Eye className="h-4 w-4" />
           </button>
           <button
             onClick={() => handleApprove(row)}
             className="p-2 text-green-600 hover:bg-green-50 rounded transition-colors"
-            title="Approve"
+           
           >
             <Check className="h-4 w-4" />
           </button>
           <button
             onClick={() => handleReject(row)}
             className="p-2 text-red-600 hover:bg-red-50 rounded transition-colors"
-            title="Reject"
+           
           >
             <X className="h-4 w-4" />
           </button>

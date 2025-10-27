@@ -269,14 +269,14 @@ export default function IDCardGenerationPage() {
           <button
             onClick={() => setSelectedCard(row)}
             className="p-2 text-blue-600 hover:bg-blue-50 rounded transition-colors"
-            title="View Details"
+           
           >
             <Eye className="w-4 h-4" />
           </button>
           {row.status === 'ready_to_print' && (
             <button
               className="p-2 text-purple-600 hover:bg-purple-50 rounded transition-colors"
-              title="Print ID Card"
+             
             >
               <Printer className="w-4 h-4" />
             </button>
@@ -284,7 +284,7 @@ export default function IDCardGenerationPage() {
           {(row.status === 'printed' || row.status === 'issued') && (
             <button
               className="p-2 text-green-600 hover:bg-green-50 rounded transition-colors"
-              title="Download"
+             
             >
               <Download className="w-4 h-4" />
             </button>

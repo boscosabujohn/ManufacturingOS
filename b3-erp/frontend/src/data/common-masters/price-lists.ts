@@ -7,19 +7,26 @@ export interface PriceList {
   // Pricing
   pricingMethod: 'fixed' | 'markup' | 'discount_from_mrp';
   basePrice: 'cost' | 'standard' | 'mrp';
+  priceListType?: string;
   markupPercentage?: number;
   discountPercentage?: number;
 
   // Applicability
   applicableFor: 'sales' | 'purchase';
   customerCategory?: string;
+  applicableCustomerCategories?: string[];
   territory?: string;
+  territoryRestrictions?: string[];
   currency: string;
+  exchangeRateApplied?: number;
 
   // Validity
   effectiveFrom: string;
+  validFrom?: string;
+  validTo?: string | null;
   effectiveTo: string | null;
   autoUpdate: boolean;
+  roundingRule?: 'none' | 'nearest' | 'up' | 'down';
 
   // Items
   itemsCount: number;
@@ -31,6 +38,7 @@ export interface PriceList {
   customersUsing: number;
   transactionsCount: number;
   totalAmount: number;
+  totalRevenue?: number;
   lastUsedDate: string;
 
   isDefault: boolean;
@@ -209,8 +217,11 @@ export function getPriceListStats() {
     active: mockPriceLists.filter(p => p.isActive).length,
     forSales: mockPriceLists.filter(p => p.applicableFor === 'sales').length,
     totalCustomers: mockPriceLists.reduce((sum, p) => sum + p.customersUsing, 0),
+    totalItems: mockPriceLists.reduce((sum, p) => sum + p.itemsCount, 0),
     totalTransactions: mockPriceLists.reduce((sum, p) => sum + p.transactionsCount, 0),
     totalAmount: mockPriceLists.reduce((sum, p) => sum + p.totalAmount, 0),
+    totalRevenue: mockPriceLists.reduce((sum, p) => sum + (p.totalRevenue || p.totalAmount), 0),
+    avgMarkup: Math.round(mockPriceLists.reduce((sum, p) => sum + (p.markupPercentage || 0), 0) / mockPriceLists.length),
     defaultList: mockPriceLists.find(p => p.isDefault)
   };
 }

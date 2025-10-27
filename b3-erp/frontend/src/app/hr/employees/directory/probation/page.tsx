@@ -3,7 +3,7 @@
 import { useState, useMemo } from 'react';
 import { Clock, Search, Filter, AlertCircle, CheckCircle, XCircle, Calendar, TrendingUp, Users } from 'lucide-react';
 import DataTable from '@/components/DataTable';
-import StatusBadge from '@/components/StatusBadge';
+import StatusBadge, { BadgeStatus } from '@/components/StatusBadge';
 
 interface ProbationEmployee {
   id: string;
@@ -148,7 +148,7 @@ export default function ProbationEmployeesPage() {
     },
     {
       key: 'status', label: 'Status', sortable: true,
-      render: (v: string) => <StatusBadge status={v} />
+      render: (v: string) => <StatusBadge status={v as BadgeStatus} />
     }
   ];
 

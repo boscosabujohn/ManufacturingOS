@@ -988,7 +988,7 @@ export default function AddPurchaseOrderPage() {
                           <button
                             onClick={() => duplicateLineItem(index)}
                             className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-                            title="Duplicate"
+                           
                           >
                             <Copy className="h-4 w-4" />
                           </button>
@@ -996,7 +996,7 @@ export default function AddPurchaseOrderPage() {
                             <button
                               onClick={() => removeLineItem(index)}
                               className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
-                              title="Remove"
+                             
                             >
                               <Trash2 className="h-4 w-4" />
                             </button>

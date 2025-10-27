@@ -17,22 +17,22 @@ interface Account {
   allowPosting: boolean;
   currency: string;
   taxConfiguration: {
-    taxable: boolean;
+    taxable?: boolean;
     defaultTaxCode?: string;
-    taxCategory: string;
+    taxCategory?: string;
   };
   reportingSettings: {
-    includeInBalanceSheet: boolean;
-    includeInPL: boolean;
-    includeInCashFlow: boolean;
-    reportingGroup: string;
+    includeInBalanceSheet?: boolean;
+    includeInPL?: boolean;
+    includeInCashFlow?: boolean;
+    reportingGroup?: string;
   };
   balanceInfo: {
-    openingBalance: number;
-    currentBalance: number;
-    debitBalance: number;
-    creditBalance: number;
-    lastActivity: string;
+    openingBalance?: number;
+    currentBalance?: number;
+    debitBalance?: number;
+    creditBalance?: number;
+    lastActivity?: string;
   };
   restrictions: {
     department?: string[];
@@ -423,7 +423,8 @@ export default function ChartOfAccountsMaster() {
     return `px-2 py-1 rounded-full text-xs font-medium ${colors[type as keyof typeof colors]}`;
   };
 
-  const formatBalance = (balance: number) => {
+  const formatBalance = (balance: number | undefined) => {
+    if (balance === undefined) return '$0.00';
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency: 'USD',
@@ -763,7 +764,7 @@ interface AccountModalProps {
 }
 
 function AccountModal({ account, accounts, onSave, onClose, activeTab, setActiveTab }: AccountModalProps) {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<Partial<Account>>({
     accountCode: account?.accountCode || '',
     accountName: account?.accountName || '',
     parentId: account?.parentId || '',
@@ -773,7 +774,7 @@ function AccountModal({ account, accounts, onSave, onClose, activeTab, setActive
     status: account?.status || 'active',
     description: account?.description || '',
     isControlAccount: account?.isControlAccount || false,
-    allowPosting: account?.allowPosting || true,
+    allowPosting: account?.allowPosting !== undefined ? account.allowPosting : true,
     currency: account?.currency || 'USD',
     taxConfiguration: account?.taxConfiguration || {
       taxable: false,

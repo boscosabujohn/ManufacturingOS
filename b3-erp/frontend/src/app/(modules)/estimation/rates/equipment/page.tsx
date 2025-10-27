@@ -419,7 +419,7 @@ export default function EquipmentRatesPage() {
                         <button
                           onClick={() => setEditingId(null)}
                           className="p-2 text-green-600 hover:bg-green-50 rounded-lg"
-                          title="Save"
+                         
                         >
                           <Save className="h-4 w-4" />
                         </button>
@@ -427,12 +427,12 @@ export default function EquipmentRatesPage() {
                         <button
                           onClick={() => setEditingId(equipment.id)}
                           className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg"
-                          title="Edit"
+                         
                         >
                           <Edit2 className="h-4 w-4" />
                         </button>
                       )}
-                      <button className="p-2 text-gray-600 hover:bg-gray-50 rounded-lg" title="History">
+                      <button className="p-2 text-gray-600 hover:bg-gray-50 rounded-lg">
                         <History className="h-4 w-4" />
                       </button>
                     </div>

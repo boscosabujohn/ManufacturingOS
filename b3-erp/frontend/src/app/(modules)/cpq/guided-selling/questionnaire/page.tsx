@@ -502,31 +502,31 @@ export default function QuestionnairePage() {
                       <div className="flex items-center gap-2">
                         <button
                           className="text-blue-600 hover:text-blue-900"
-                          title="Start Questionnaire"
+                         
                         >
                           <Play className="h-4 w-4" />
                         </button>
                         <button
                           className="text-gray-600 hover:text-gray-900"
-                          title="View Details"
+                         
                         >
                           <Eye className="h-4 w-4" />
                         </button>
                         <button
                           className="text-gray-600 hover:text-gray-900"
-                          title="Edit"
+                         
                         >
                           <Edit2 className="h-4 w-4" />
                         </button>
                         <button
                           className="text-purple-600 hover:text-purple-900"
-                          title="Copy"
+                         
                         >
                           <Copy className="h-4 w-4" />
                         </button>
                         <button
                           className="text-orange-600 hover:text-orange-900"
-                          title="View Analytics"
+                         
                         >
                           <BarChart3 className="h-4 w-4" />
                         </button>

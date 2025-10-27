@@ -398,7 +398,7 @@ export default function EstimationSettingsMarkupPage() {
                         <button
                           onClick={() => setEditingId(null)}
                           className="p-2 text-green-600 hover:bg-green-50 rounded-lg"
-                          title="Save"
+                         
                         >
                           <Save className="h-4 w-4" />
                         </button>
@@ -406,7 +406,7 @@ export default function EstimationSettingsMarkupPage() {
                         <button
                           onClick={() => setEditingId(setting.id)}
                           className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg"
-                          title="Edit"
+                         
                         >
                           <Edit2 className="h-4 w-4" />
                         </button>

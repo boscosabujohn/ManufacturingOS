@@ -433,25 +433,25 @@ export default function BankAccountsPage() {
                         <div className="flex items-center justify-center gap-2">
                           <button
                             className="p-2 hover:bg-gray-700 rounded-lg transition-colors"
-                            title="View Details"
+                           
                           >
                             <Eye className="w-4 h-4 text-blue-400" />
                           </button>
                           <button
                             className="p-2 hover:bg-gray-700 rounded-lg transition-colors"
-                            title="Edit Account"
+                           
                           >
                             <Edit className="w-4 h-4 text-green-400" />
                           </button>
                           <button
                             className="p-2 hover:bg-gray-700 rounded-lg transition-colors"
-                            title="Reconcile"
+                           
                           >
                             <RefreshCw className="w-4 h-4 text-purple-400" />
                           </button>
                           <button
                             className="p-2 hover:bg-gray-700 rounded-lg transition-colors"
-                            title="More Actions"
+                           
                           >
                             <MoreVertical className="w-4 h-4 text-gray-400" />
                           </button>

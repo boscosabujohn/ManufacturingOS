@@ -344,13 +344,13 @@ export default function FinancialPeriodsPage() {
                   <div className="flex items-center gap-2">
                     <button
                       className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-                      title="View Details"
+                     
                     >
                       <Eye className="w-5 h-5" />
                     </button>
                     <button
                       className="p-2 text-purple-600 hover:bg-purple-50 rounded-lg transition-colors"
-                      title="Settings"
+                     
                     >
                       <Settings className="w-5 h-5" />
                     </button>
@@ -432,14 +432,14 @@ export default function FinancialPeriodsPage() {
                     <div className="flex items-center gap-1">
                       <button
                         className="p-1.5 text-blue-600 hover:bg-blue-50 rounded transition-colors"
-                        title="View"
+                       
                       >
                         <Eye className="w-4 h-4" />
                       </button>
                       {period.status === 'Open' && (
                         <button
                           className="p-1.5 text-red-600 hover:bg-red-50 rounded transition-colors"
-                          title="Close Period"
+                         
                         >
                           <Lock className="w-4 h-4" />
                         </button>
@@ -447,7 +447,7 @@ export default function FinancialPeriodsPage() {
                       {period.status === 'Closed' && (
                         <button
                           className="p-1.5 text-green-600 hover:bg-green-50 rounded transition-colors"
-                          title="Reopen Period"
+                         
                         >
                           <Unlock className="w-4 h-4" />
                         </button>

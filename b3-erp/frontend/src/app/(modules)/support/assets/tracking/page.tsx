@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { MapPin, Package, User, Calendar, TrendingRight, CheckCircle, Clock, AlertCircle, Building, Truck, Archive, Eye, Filter, Search, Plus, History } from 'lucide-react'
+import { MapPin, Package, User, Calendar, TrendingUp, CheckCircle, Clock, AlertCircle, Building, Truck, Archive, Eye, Filter, Search, Plus, History } from 'lucide-react'
 
 interface AssetMovement {
   id: string
@@ -357,7 +357,7 @@ export default function AssetTracking() {
 
   const getMovementIcon = (type: string) => {
     switch (type) {
-      case 'Transfer': return TrendingRight
+      case 'Transfer': return TrendingUp
       case 'Assignment': return User
       case 'Return': return Package
       case 'Maintenance': return AlertCircle

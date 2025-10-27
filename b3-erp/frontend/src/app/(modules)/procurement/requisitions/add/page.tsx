@@ -617,7 +617,7 @@ export default function AddRequisitionPage() {
                             setShowItemModal(true)
                           }}
                           className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-                          title="Edit"
+                         
                         >
                           <Edit2 className="h-4 w-4" />
                         </button>
@@ -625,7 +625,7 @@ export default function AddRequisitionPage() {
                           type="button"
                           onClick={() => handleDuplicateItem(item)}
                           className="p-2 text-gray-600 hover:bg-gray-50 rounded-lg transition-colors"
-                          title="Duplicate"
+                         
                         >
                           <Copy className="h-4 w-4" />
                         </button>
@@ -633,7 +633,7 @@ export default function AddRequisitionPage() {
                           type="button"
                           onClick={() => handleDeleteItem(item.id)}
                           className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
-                          title="Delete"
+                         
                         >
                           <Trash2 className="h-4 w-4" />
                         </button>

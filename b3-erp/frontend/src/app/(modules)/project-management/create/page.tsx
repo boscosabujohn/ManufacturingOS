@@ -485,7 +485,7 @@ export default function CreateProjectPage() {
                       type="button"
                       onClick={() => removeTeamMember(member.id)}
                       className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
-                      title="Remove Member"
+                     
                     >
                       <Trash2 className="w-4 h-4" />
                     </button>
@@ -555,7 +555,7 @@ export default function CreateProjectPage() {
                       type="button"
                       onClick={() => removeDeliverable(deliverable.id)}
                       className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
-                      title="Remove Deliverable"
+                     
                     >
                       <Trash2 className="w-4 h-4" />
                     </button>

@@ -3,7 +3,7 @@
 import { useState, useMemo } from 'react';
 import { User, Search, Plus, Edit, Eye, Mail, Phone, MapPin, Calendar, Briefcase, Filter, Download, Upload, Building2, Users, Award, Clock, X } from 'lucide-react';
 import DataTable from '@/components/DataTable';
-import StatusBadge from '@/components/StatusBadge';
+import StatusBadge, { BadgeStatus } from '@/components/StatusBadge';
 
 interface EmployeeProfile {
   id: string;
@@ -426,7 +426,7 @@ export default function EmployeeProfilesPage() {
       key: 'status',
       label: 'Status',
       sortable: true,
-      render: (v: string) => <StatusBadge status={v} />
+      render: (v: string) => <StatusBadge status={v as BadgeStatus} />
     },
     {
       key: 'actions',

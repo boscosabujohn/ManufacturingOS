@@ -390,21 +390,21 @@ export default function SystemPage() {
                       <button
                         onClick={() => handleView(config.id)}
                         className="text-blue-600 hover:text-blue-900 p-1 rounded hover:bg-blue-50"
-                        title="View Config"
+                       
                       >
                         <Eye className="w-4 h-4" />
                       </button>
                       <button
                         onClick={() => handleEdit(config.id)}
                         className="text-green-600 hover:text-green-900 p-1 rounded hover:bg-green-50"
-                        title="Edit Config"
+                       
                       >
                         <Edit className="w-4 h-4" />
                       </button>
                       <button
                         onClick={() => handleReset(config.id)}
                         className="text-orange-600 hover:text-orange-900 p-1 rounded hover:bg-orange-50"
-                        title="Reset to Default"
+                       
                       >
                         <RotateCcw className="w-4 h-4" />
                       </button>

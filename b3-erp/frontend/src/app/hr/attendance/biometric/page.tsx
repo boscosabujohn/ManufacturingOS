@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from 'react';
 import { Fingerprint, Plus, Edit, Activity, MapPin, Wifi, WifiOff, RefreshCw, AlertTriangle, CheckCircle, Search, Filter } from 'lucide-react';
-import DataTable from '@/components/DataTable';
+import DataTable, { Column } from '@/components/DataTable';
 import StatusBadge from '@/components/StatusBadge';
 
 interface BiometricDevice {
@@ -139,8 +139,8 @@ export default function BiometricDevicesPage() {
     return `${diffDays} day${diffDays > 1 ? 's' : ''} ago`;
   };
 
-  const columns = [
-    { key: 'name', label: 'Device Details', sortable: true,
+  const columns: Column<BiometricDevice>[] = [
+    { id: 'name', accessor: 'name', label: 'Device Details', sortable: true,
       render: (v: string, row: BiometricDevice) => (
         <div className="flex items-center gap-3">
           <div className={`p-2 rounded-lg ${
@@ -159,7 +159,7 @@ export default function BiometricDevicesPage() {
         </div>
       )
     },
-    { key: 'location', label: 'Location', sortable: true,
+    { id: 'location', accessor: 'location', label: 'Location', sortable: true,
       render: (v: string) => (
         <div className="flex items-center gap-2">
           <MapPin className="w-4 h-4 text-gray-400" />
@@ -167,7 +167,7 @@ export default function BiometricDevicesPage() {
         </div>
       )
     },
-    { key: 'ipAddress', label: 'Network', sortable: true,
+    { id: 'ipAddress', accessor: 'ipAddress', label: 'Network', sortable: true,
       render: (v: string, row: BiometricDevice) => (
         <div className="text-sm">
           <div className="font-medium text-gray-900">{v}:{row.port}</div>
@@ -183,7 +183,7 @@ export default function BiometricDevicesPage() {
         </div>
       )
     },
-    { key: 'totalPunchesToday', label: 'Today\'s Activity', sortable: true,
+    { id: 'totalPunchesToday', accessor: 'totalPunchesToday', label: 'Today\'s Activity', sortable: true,
       render: (v: number, row: BiometricDevice) => (
         <div className="text-sm">
           <div className="font-semibold text-blue-600">{v} punches</div>
@@ -191,7 +191,7 @@ export default function BiometricDevicesPage() {
         </div>
       )
     },
-    { key: 'storageUsed', label: 'Storage', sortable: true,
+    { id: 'storageUsed', accessor: 'storageUsed', label: 'Storage', sortable: true,
       render: (v: number) => (
         <div className="text-sm">
           <div className="font-medium text-gray-900">{v}%</div>
@@ -206,7 +206,7 @@ export default function BiometricDevicesPage() {
         </div>
       )
     },
-    { key: 'lastSyncTime', label: 'Last Sync', sortable: true,
+    { id: 'lastSyncTime', accessor: 'lastSyncTime', label: 'Last Sync', sortable: true,
       render: (v: string, row: BiometricDevice) => (
         <div className="text-sm">
           <div className="font-medium text-gray-900">{getTimeSince(v)}</div>

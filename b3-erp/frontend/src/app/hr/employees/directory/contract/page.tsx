@@ -3,7 +3,7 @@
 import { useState, useMemo } from 'react';
 import { FileText, Search, Filter, Calendar, AlertCircle, CheckCircle, Clock, Mail, Phone, Building2, Users, RefreshCw, Download } from 'lucide-react';
 import DataTable from '@/components/DataTable';
-import StatusBadge from '@/components/StatusBadge';
+import StatusBadge, { BadgeStatus } from '@/components/StatusBadge';
 
 interface ContractEmployee {
   id: string;
@@ -389,7 +389,7 @@ export default function ContractEmployeesPage() {
       key: 'status',
       label: 'Status',
       sortable: true,
-      render: (v: string) => <StatusBadge status={v} />
+      render: (v: string) => <StatusBadge status={v as BadgeStatus} />
     },
     {
       key: 'renewalEligible',

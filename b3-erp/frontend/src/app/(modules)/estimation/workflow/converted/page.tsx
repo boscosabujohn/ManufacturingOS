@@ -394,13 +394,13 @@ export default function EstimateWorkflowConvertedPage() {
                   </td>
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-2">
-                      <button className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg" title="View Estimate">
+                      <button className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg">
                         <Eye className="h-4 w-4" />
                       </button>
-                      <button className="p-2 text-green-600 hover:bg-green-50 rounded-lg" title="View Order">
+                      <button className="p-2 text-green-600 hover:bg-green-50 rounded-lg">
                         <ExternalLink className="h-4 w-4" />
                       </button>
-                      <button className="p-2 text-gray-600 hover:bg-gray-50 rounded-lg" title="Download PDF">
+                      <button className="p-2 text-gray-600 hover:bg-gray-50 rounded-lg">
                         <FileText className="h-4 w-4" />
                       </button>
                     </div>

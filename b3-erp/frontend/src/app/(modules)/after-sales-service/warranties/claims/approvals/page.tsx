@@ -697,7 +697,7 @@ const ClaimsApprovalsPage = () => {
               <option value="">All Amounts</option>
               <option value="low">Low (≤₹10K)</option>
               <option value="medium">Medium (₹10K-25K)</option>
-              <option value="high">High (>₹25K)</option>
+              <option value="high">High ({'>'}₹25K)</option>
             </select>
           </div>
         )}
@@ -809,7 +809,7 @@ const ClaimsApprovalsPage = () => {
                   <button
                     onClick={() => setSelectedClaim(claim)}
                     className="p-2 text-blue-600 hover:text-blue-800 hover:bg-blue-50 rounded-md"
-                    title="View Details"
+                   
                   >
                     <Eye className="h-4 w-4" />
                   </button>
@@ -821,7 +821,7 @@ const ClaimsApprovalsPage = () => {
                           setApprovalAction('approve');
                         }}
                         className="p-2 text-green-600 hover:text-green-800 hover:bg-green-50 rounded-md"
-                        title="Approve"
+                       
                       >
                         <ThumbsUp className="h-4 w-4" />
                       </button>
@@ -831,7 +831,7 @@ const ClaimsApprovalsPage = () => {
                           setApprovalAction('reject');
                         }}
                         className="p-2 text-red-600 hover:text-red-800 hover:bg-red-50 rounded-md"
-                        title="Reject"
+                       
                       >
                         <ThumbsDown className="h-4 w-4" />
                       </button>
@@ -839,7 +839,7 @@ const ClaimsApprovalsPage = () => {
                   )}
                   <button
                     className="p-2 text-purple-600 hover:text-purple-800 hover:bg-purple-50 rounded-md"
-                    title="Download"
+                   
                   >
                     <Download className="h-4 w-4" />
                   </button>

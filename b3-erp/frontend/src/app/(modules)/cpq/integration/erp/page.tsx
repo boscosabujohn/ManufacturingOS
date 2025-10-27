@@ -397,7 +397,7 @@ export default function CPQIntegrationERPPage() {
                       <button
                         className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg"
                         aria-label="View"
-                        title="View"
+                       
                       >
                         <Eye className="h-4 w-4" />
                       </button>

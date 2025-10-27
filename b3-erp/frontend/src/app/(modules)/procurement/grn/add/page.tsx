@@ -1026,7 +1026,7 @@ const GRNAddPage = () => {
                               className={`p-1 rounded ${
                                 item.accept_reject === 'accept' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-600'
                               }`}
-                              title="Accept"
+                             
                             >
                               <CheckCircle className="w-4 h-4" />
                             </button>
@@ -1035,7 +1035,7 @@ const GRNAddPage = () => {
                               className={`p-1 rounded ${
                                 item.accept_reject === 'reject' ? 'bg-red-100 text-red-700' : 'bg-gray-100 text-gray-600'
                               }`}
-                              title="Reject"
+                             
                             >
                               <XCircle className="w-4 h-4" />
                             </button>

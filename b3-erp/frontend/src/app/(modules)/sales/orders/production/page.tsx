@@ -554,7 +554,7 @@ export default function ProductionOrdersPage() {
                           <BarChart3 className="w-4 h-4" />
                           Track Progress
                         </button>
-                        <button className="p-2 hover:bg-yellow-50 rounded-lg transition-colors" title="Pause Production">
+                        <button className="p-2 hover:bg-yellow-50 rounded-lg transition-colors">
                           <Pause className="w-4 h-4 text-yellow-600" />
                         </button>
                       </>
@@ -574,10 +574,10 @@ export default function ProductionOrdersPage() {
                         View Details
                       </button>
                     )}
-                    <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors" title="Download Report">
+                    <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
                       <Download className="w-4 h-4 text-gray-600" />
                     </button>
-                    <button className="p-2 hover:bg-purple-50 rounded-lg transition-colors" title="Production Settings">
+                    <button className="p-2 hover:bg-purple-50 rounded-lg transition-colors">
                       <Wrench className="w-4 h-4 text-purple-600" />
                     </button>
                   </div>

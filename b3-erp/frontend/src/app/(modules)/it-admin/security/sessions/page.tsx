@@ -545,21 +545,21 @@ const SessionManagementPage = () => {
                         <div className="flex items-center justify-end gap-2">
                           <button
                             className="text-blue-600 hover:text-blue-700 p-1"
-                            title="View Details"
+                           
                           >
                             <Eye className="w-4 h-4" />
                           </button>
                           <button
                             onClick={() => handleTerminateSession(session.id)}
                             className="text-red-600 hover:text-red-700 p-1"
-                            title="Terminate Session"
+                           
                           >
                             <XCircle className="w-4 h-4" />
                           </button>
                           <button
                             onClick={() => handleTerminateAllUserSessions(session.userId, session.userName)}
                             className="text-orange-600 hover:text-orange-700 p-1"
-                            title="Terminate All User Sessions"
+                           
                           >
                             <Trash2 className="w-4 h-4" />
                           </button>

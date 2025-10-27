@@ -447,19 +447,19 @@ export default function AnticipatedReceiptsPage() {
                     <div className="flex items-center gap-2">
                       <button
                         className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-                        title="View Details"
+                       
                       >
                         <Eye className="w-4 h-4" />
                       </button>
                       <button
                         className="p-2 text-green-600 hover:bg-green-50 rounded-lg transition-colors"
-                        title="Edit"
+                       
                       >
                         <Edit className="w-4 h-4" />
                       </button>
                       <button
                         className="p-2 text-purple-600 hover:bg-purple-50 rounded-lg transition-colors"
-                        title="Send Reminder"
+                       
                       >
                         <Mail className="w-4 h-4" />
                       </button>

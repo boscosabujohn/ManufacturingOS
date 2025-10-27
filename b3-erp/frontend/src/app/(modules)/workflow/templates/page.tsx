@@ -569,7 +569,7 @@ export default function WorkflowTemplatesPage() {
               <button
                 onClick={() => handleDuplicateTemplate(template)}
                 className="flex items-center justify-center px-3 py-2 text-purple-600 bg-purple-50 hover:bg-purple-100 rounded-lg transition-colors"
-                title="Duplicate"
+               
               >
                 <Copy className="h-4 w-4" />
               </button>
@@ -577,7 +577,7 @@ export default function WorkflowTemplatesPage() {
                 <button
                   onClick={() => handleActivateTemplate(template.id)}
                   className="flex items-center justify-center px-3 py-2 text-green-600 bg-green-50 hover:bg-green-100 rounded-lg transition-colors"
-                  title="Activate"
+                 
                 >
                   <Play className="h-4 w-4" />
                 </button>
@@ -585,7 +585,7 @@ export default function WorkflowTemplatesPage() {
               <button
                 onClick={() => handleDeleteTemplate(template.id)}
                 className="flex items-center justify-center px-3 py-2 text-red-600 bg-red-50 hover:bg-red-100 rounded-lg transition-colors"
-                title="Delete"
+               
               >
                 <Trash2 className="h-4 w-4" />
               </button>

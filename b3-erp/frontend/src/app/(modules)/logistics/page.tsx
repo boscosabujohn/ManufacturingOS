@@ -155,28 +155,28 @@ export default function LogisticsDashboard() {
           ) : (
             <>
               <KPICard
-                title="Active Shipments"
+               
                 value={stats.activeShipments}
                 icon={Truck}
                 color="blue"
                 description={`${stats.inTransit} in transit`}
               />
               <KPICard
-                title="On-Time Delivery"
+               
                 value={`${stats.onTimeDeliveryRate}%`}
                 icon={CheckCircle}
                 color="green"
                 description={`${stats.delivered} delivered`}
               />
               <KPICard
-                title="Active Vehicles"
+               
                 value={stats.vehiclesActive}
                 icon={Navigation}
                 color="purple"
                 description={`${stats.totalDistance} km today`}
               />
               <KPICard
-                title="Avg Delivery Time"
+               
                 value={`${stats.avgDeliveryTime} days`}
                 icon={Clock}
                 color="yellow"

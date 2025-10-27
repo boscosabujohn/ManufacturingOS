@@ -16,7 +16,7 @@ import {
   Target,
   Ruler,
   Weight,
-  Tool,
+  Wrench,
   Camera,
   Search,
   RefreshCw,
@@ -679,7 +679,7 @@ const QualityInspectionAddPage = () => {
           {/* Equipment Calibration */}
           <div className="bg-white rounded-lg shadow-md p-4">
             <h3 className="font-semibold text-gray-800 mb-4 flex items-center gap-2">
-              <Tool className="w-5 h-5" />
+              <Wrench className="w-5 h-5" />
               Equipment Calibration Check
             </h3>
             <div className="space-y-2">

@@ -498,14 +498,14 @@ const SchedulerAutomationPage = () => {
                 <button
                   onClick={() => handleViewDetails(rule)}
                   className="text-gray-600 hover:text-gray-700 p-1"
-                  title="View Details"
+                 
                 >
                   <Eye className="w-4 h-4" />
                 </button>
-                <button className="text-blue-600 hover:text-blue-700 p-1" title="Edit">
+                <button className="text-blue-600 hover:text-blue-700 p-1">
                   <Edit className="w-4 h-4" />
                 </button>
-                <button className="text-red-600 hover:text-red-700 p-1" title="Delete">
+                <button className="text-red-600 hover:text-red-700 p-1">
                   <Trash2 className="w-4 h-4" />
                 </button>
               </div>

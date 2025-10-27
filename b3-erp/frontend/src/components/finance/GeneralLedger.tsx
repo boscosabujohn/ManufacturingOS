@@ -6,12 +6,12 @@ import {
   PieChart, Pie, Cell, AreaChart, Area
 } from 'recharts';
 import {
-  DocumentTextIcon, PlusIcon, PencilIcon, EyeIcon, MagnifyingGlassIcon,
-  CalendarIcon, CurrencyDollarIcon, CheckCircleIcon, ClockIcon,
-  ExclamationTriangleIcon, ArrowUpIcon, ArrowDownIcon, FunnelIcon,
-  DocumentArrowDownIcon, DocumentArrowUpIcon, BanknotesIcon,
-  ChartBarIcon, AdjustmentsHorizontalIcon, InformationCircleIcon
-} from '@heroicons/react/24/outline';
+  FileText, PlusIcon, PencilIcon, EyeIcon, Search,
+  CalendarIcon, DollarSign, CheckCircleIcon, ClockIcon,
+  AlertTriangle, ArrowUpIcon, ArrowDownIcon, Filter,
+  FileDown, FileUp, Banknote,
+  BarChart3, SlidersHorizontal, Info
+} from 'lucide-react';
 
 interface ChartOfAccount {
   id: string;
@@ -514,7 +514,7 @@ const GeneralLedger: React.FC = () => {
     const statusConfig = {
       draft: { bg: 'bg-yellow-100', text: 'text-yellow-800', icon: ClockIcon },
       posted: { bg: 'bg-green-100', text: 'text-green-800', icon: CheckCircleIcon },
-      reversed: { bg: 'bg-red-100', text: 'text-red-800', icon: ExclamationTriangleIcon }
+      reversed: { bg: 'bg-red-100', text: 'text-red-800', icon: AlertTriangle }
     };
 
     const config = statusConfig[status as keyof typeof statusConfig];
@@ -554,7 +554,7 @@ const GeneralLedger: React.FC = () => {
         <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <DocumentTextIcon className="h-8 w-8 text-blue-600" />
+              <FileText className="h-8 w-8 text-blue-600" />
             </div>
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600">Chart of Accounts</p>
@@ -566,7 +566,7 @@ const GeneralLedger: React.FC = () => {
         <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <BanknotesIcon className="h-8 w-8 text-green-600" />
+              <Banknote className="h-8 w-8 text-green-600" />
             </div>
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600">Journal Entries</p>
@@ -581,7 +581,7 @@ const GeneralLedger: React.FC = () => {
         <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <CurrencyDollarIcon className="h-8 w-8 text-purple-600" />
+              <DollarSign className="h-8 w-8 text-purple-600" />
             </div>
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600">Total Assets</p>
@@ -792,7 +792,7 @@ const GeneralLedger: React.FC = () => {
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Search</label>
             <div className="relative">
-              <MagnifyingGlassIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
               <input
                 type="text"
                 value={searchTerm}
@@ -901,7 +901,7 @@ const GeneralLedger: React.FC = () => {
                       </button>
                       {entry.status === 'posted' && (
                         <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
-                          <DocumentArrowDownIcon className="w-4 h-4 text-gray-600" />
+                          <FileDown className="w-4 h-4 text-gray-600" />
                           <span className="text-gray-700">Download</span>
                         </button>
                       )}
@@ -928,7 +928,7 @@ const GeneralLedger: React.FC = () => {
           <div className="flex items-center space-x-2">
             <span className="text-sm text-gray-600">As of {formatDate(new Date().toISOString())}</span>
             <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 flex items-center">
-              <DocumentArrowDownIcon className="w-4 h-4 mr-2" />
+              <FileDown className="w-4 h-4 mr-2" />
               Export
             </button>
           </div>
@@ -1140,10 +1140,10 @@ const GeneralLedger: React.FC = () => {
       <div className="border-b border-gray-200 mb-6">
         <nav className="-mb-px flex space-x-8">
           {[
-            { key: 'dashboard', label: 'Dashboard', icon: ChartBarIcon },
-            { key: 'accounts', label: 'Chart of Accounts', icon: DocumentTextIcon },
-            { key: 'journal', label: 'Journal Entries', icon: BanknotesIcon },
-            { key: 'trial-balance', label: 'Trial Balance', icon: CurrencyDollarIcon }
+            { key: 'dashboard', label: 'Dashboard', icon: BarChart3 },
+            { key: 'accounts', label: 'Chart of Accounts', icon: FileText },
+            { key: 'journal', label: 'Journal Entries', icon: Banknote },
+            { key: 'trial-balance', label: 'Trial Balance', icon: DollarSign }
           ].map(({ key, label, icon: Icon }) => (
             <button
               key={key}

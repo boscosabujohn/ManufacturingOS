@@ -12,7 +12,7 @@ export interface ToolbarAction {
 }
 
 export interface PageToolbarProps {
-  title: string;
+  title?: string;
   subtitle?: string;
   breadcrumbs?: Array<{ label: string; href?: string }>;
   backButton?: {

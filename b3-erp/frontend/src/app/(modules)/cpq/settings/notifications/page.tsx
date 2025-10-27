@@ -261,21 +261,21 @@ export default function CPQSettingsNotificationsPage() {
                   <button
                     className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg"
                     aria-label="View"
-                    title="View"
+                   
                   >
                     <Eye className="h-4 w-4" />
                   </button>
                   <button
                     className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg"
                     aria-label="Edit"
-                    title="Edit"
+                   
                   >
                     <Edit className="h-4 w-4" />
                   </button>
                   <button
                     className="p-2 text-red-600 hover:bg-red-50 rounded-lg"
                     aria-label="Delete"
-                    title="Delete"
+                   
                   >
                     <Trash2 className="h-4 w-4" />
                   </button>
@@ -429,14 +429,14 @@ export default function CPQSettingsNotificationsPage() {
                       <button
                         className="p-1 text-gray-600 hover:bg-gray-100 rounded"
                         aria-label="Edit"
-                        title="Edit"
+                       
                       >
                         <Edit className="h-4 w-4" />
                       </button>
                       <button
                         className="p-1 text-red-600 hover:bg-red-50 rounded"
                         aria-label="Delete"
-                        title="Delete"
+                       
                       >
                         <Trash2 className="h-4 w-4" />
                       </button>

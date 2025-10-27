@@ -485,7 +485,7 @@ export default function CityMaster() {
                         <div className="text-sm font-medium text-gray-900 flex items-center gap-2">
                           {city.cityName}
                           {city.isCapital && (
-                            <Flag className="h-3 w-3 text-orange-500" title="Capital" />
+                            <Flag className="h-3 w-3 text-orange-500" />
                           )}
                         </div>
                         <div className="text-sm text-gray-500">
@@ -506,16 +506,16 @@ export default function CityMaster() {
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-2">
                       {city.infrastructure.airport && (
-                        <Plane className="h-4 w-4 text-blue-600" title="Airport" />
+                        <Plane className="h-4 w-4 text-blue-600" />
                       )}
                       {city.infrastructure.seaport && (
-                        <Anchor className="h-4 w-4 text-cyan-600" title="Seaport" />
+                        <Anchor className="h-4 w-4 text-cyan-600" />
                       )}
                       {city.infrastructure.railwayStation && (
-                        <Train className="h-4 w-4 text-green-600" title="Railway" />
+                        <Train className="h-4 w-4 text-green-600" />
                       )}
                       {city.infrastructure.metroRail && (
-                        <Navigation className="h-4 w-4 text-purple-600" title="Metro" />
+                        <Navigation className="h-4 w-4 text-purple-600" />
                       )}
                     </div>
                   </td>

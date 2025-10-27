@@ -472,10 +472,10 @@ export default function DepreciationPage() {
                         </td>
                         <td className="px-6 py-4">
                           <div className="flex items-center justify-center gap-2">
-                            <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors" title="View Details">
+                            <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors">
                               <Eye className="w-4 h-4 text-blue-400" />
                             </button>
-                            <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors" title="Pause">
+                            <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors">
                               <Pause className="w-4 h-4 text-orange-400" />
                             </button>
                           </div>

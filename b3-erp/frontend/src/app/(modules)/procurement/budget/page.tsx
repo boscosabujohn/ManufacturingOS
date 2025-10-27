@@ -9,7 +9,7 @@ import {
   DollarSign, TrendingUp, TrendingDown, AlertTriangle, CheckCircle,
   Calendar, Filter, Download, RefreshCw, Settings, Info, Plus,
   ChevronDown, ChevronUp, ArrowUp, ArrowDown, Target, Zap,
-  PieChart as PieChartIcon, BarChart3, Activity, Eye, Edit
+  PieChart as PieChartIcon, BarChart3, Activity, Eye, Edit, XCircle
 } from 'lucide-react'
 
 export default function BudgetTracking() {

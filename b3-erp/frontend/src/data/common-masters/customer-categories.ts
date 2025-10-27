@@ -9,6 +9,7 @@ export interface CustomerCategory {
   maxDiscountAllowed: number;
   priceListId: string;
   priceListName: string;
+  defaultPriceList?: string;
 
   // Credit & Payment
   defaultCreditLimit: number;
@@ -19,6 +20,10 @@ export interface CustomerCategory {
   // Business Classification
   businessType: 'dealer' | 'distributor' | 'retailer' | 'end_user' | 'institutional' | 'government';
   priority: 'vip' | 'high' | 'medium' | 'low';
+  tier?: 'platinum' | 'gold' | 'silver' | 'bronze';
+  volumeDiscountApplicable?: boolean;
+  creditDays?: number;
+  specialPricingApplicable?: boolean;
 
   // Territory
   defaultTerritory?: string;
@@ -190,6 +195,7 @@ export function getCustomerCategoryStats() {
     totalSales: mockCustomerCategories.reduce((sum, c) => sum + c.totalSales, 0),
     totalOutstanding: mockCustomerCategories.reduce((sum, c) => sum + c.outstandingAmount, 0),
     avgDiscount: Math.round(mockCustomerCategories.reduce((sum, c) => sum + c.defaultDiscount, 0) / mockCustomerCategories.length),
+    avgOrderValue: Math.round(mockCustomerCategories.reduce((sum, c) => sum + c.avgOrderValue, 0) / mockCustomerCategories.length),
     vipCategories: mockCustomerCategories.filter(c => c.priority === 'vip').length
   };
 }

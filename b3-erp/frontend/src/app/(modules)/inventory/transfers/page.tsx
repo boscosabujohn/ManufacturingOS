@@ -390,13 +390,13 @@ const InventoryTransfersPage = () => {
                       <div className="flex items-center gap-2">
                         <button
                           className="p-1 text-blue-600 hover:bg-blue-50 rounded transition-colors"
-                          title="View Details"
+                         
                         >
                           <Eye className="w-4 h-4" />
                         </button>
                         <button
                           className="p-1 text-gray-600 hover:bg-gray-50 rounded transition-colors"
-                          title="Edit Transfer"
+                         
                         >
                           <Edit className="w-4 h-4" />
                         </button>
@@ -404,7 +404,7 @@ const InventoryTransfersPage = () => {
                           <button
                             onClick={() => handleApprove(transfer.transferId)}
                             className="p-1 text-green-600 hover:bg-green-50 rounded transition-colors"
-                            title="Approve Transfer"
+                           
                           >
                             <CheckCircle className="w-4 h-4" />
                           </button>

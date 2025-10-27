@@ -436,14 +436,14 @@ export default function ProcurementGRNPage() {
                         <button
                           onClick={() => handleView(grn.id)}
                           className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-                          title="View Details"
+                         
                         >
                           <Eye className="w-4 h-4" />
                         </button>
                         <button
                           onClick={() => handleEdit(grn.id)}
                           className="p-2 text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors"
-                          title="Edit"
+                         
                         >
                           <Edit2 className="w-4 h-4" />
                         </button>
@@ -451,7 +451,7 @@ export default function ProcurementGRNPage() {
                           <button
                             onClick={() => handleApprove(grn.id)}
                             className="p-2 text-green-600 hover:bg-green-50 rounded-lg transition-colors"
-                            title="Approve"
+                           
                           >
                             <CheckCircle className="w-4 h-4" />
                           </button>

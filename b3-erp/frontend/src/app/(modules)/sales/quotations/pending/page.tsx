@@ -475,16 +475,16 @@ export default function PendingQuotationsPage() {
                     <Send className="w-4 h-4" />
                     {quotation.status === 'pending_send' ? 'Send Now' : 'Follow Up'}
                   </button>
-                  <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors" title="View">
+                  <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
                     <Eye className="w-4 h-4 text-gray-600" />
                   </button>
-                  <button className="p-2 hover:bg-blue-50 rounded-lg transition-colors" title="Edit">
+                  <button className="p-2 hover:bg-blue-50 rounded-lg transition-colors">
                     <Edit className="w-4 h-4 text-blue-600" />
                   </button>
-                  <button className="p-2 hover:bg-purple-50 rounded-lg transition-colors" title="Duplicate">
+                  <button className="p-2 hover:bg-purple-50 rounded-lg transition-colors">
                     <Copy className="w-4 h-4 text-purple-600" />
                   </button>
-                  <button className="p-2 hover:bg-red-50 rounded-lg transition-colors" title="Delete">
+                  <button className="p-2 hover:bg-red-50 rounded-lg transition-colors">
                     <Trash2 className="w-4 h-4 text-red-600" />
                   </button>
                 </div>

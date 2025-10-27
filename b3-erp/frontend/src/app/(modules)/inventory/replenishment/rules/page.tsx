@@ -365,14 +365,14 @@ export default function ReplenishmentRulesPage() {
                 <button
                   onClick={() => handleEditRule(rule.id)}
                   className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
-                  title="Edit"
+                 
                 >
                   <Edit className="w-5 h-5 text-blue-600" />
                 </button>
                 <button
                   onClick={() => handleDeleteRule(rule.id)}
                   className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
-                  title="Delete"
+                 
                 >
                   <Trash2 className="w-5 h-5 text-red-600" />
                 </button>

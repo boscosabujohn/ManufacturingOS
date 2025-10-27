@@ -258,7 +258,7 @@ export default function TimesheetEntryPage() {
                     <button
                       onClick={() => deleteRow(entry.id)}
                       className="p-2 text-red-600 hover:bg-red-50 rounded transition-colors"
-                      title="Delete row"
+                     
                     >
                       <Trash2 className="h-4 w-4" />
                     </button>

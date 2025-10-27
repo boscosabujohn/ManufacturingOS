@@ -243,7 +243,7 @@ export default function CSATAnalytics() {
 
       {/* CSAT and NPS Trends */}
       <ChartWrapper
-        title="CSAT & NPS Trends"
+       
         description="Track customer satisfaction scores and Net Promoter Score over time"
         showRefresh={true}
         showDownload={true}
@@ -309,9 +309,9 @@ export default function CSATAnalytics() {
                     </div>
                   </div>
                   <div className="flex gap-1 h-2">
-                    <div className="bg-green-500 rounded" style={{ width: `${((trend.promoters / trend.responses) * 100)}%` }} title="Promoters"></div>
-                    <div className="bg-yellow-500 rounded" style={{ width: `${((trend.passives / trend.responses) * 100)}%` }} title="Passives"></div>
-                    <div className="bg-red-500 rounded" style={{ width: `${((trend.detractors / trend.responses) * 100)}%` }} title="Detractors"></div>
+                    <div className="bg-green-500 rounded" style={{ width: `${((trend.promoters / trend.responses) * 100)}%` }}></div>
+                    <div className="bg-yellow-500 rounded" style={{ width: `${((trend.passives / trend.responses) * 100)}%` }}></div>
+                    <div className="bg-red-500 rounded" style={{ width: `${((trend.detractors / trend.responses) * 100)}%` }}></div>
                   </div>
                 </div>
               )
@@ -324,7 +324,7 @@ export default function CSATAnalytics() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Category Satisfaction */}
         <ChartWrapper
-          title="Satisfaction by Category"
+         
           description="Customer satisfaction scores across support categories"
           showDownload={true}
           onDownload={() => console.log('Download category data')}
@@ -370,7 +370,7 @@ export default function CSATAnalytics() {
 
         {/* Rating Distribution */}
         <ChartWrapper
-          title="Rating Distribution"
+         
           description="Distribution of customer ratings (1-5 stars)"
           showDownload={true}
           onDownload={() => console.log('Download rating distribution')}

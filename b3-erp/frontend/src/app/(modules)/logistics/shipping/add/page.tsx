@@ -637,7 +637,7 @@ export default function AddShipmentPage() {
                     onClick={handleGenerateTracking}
                     disabled={!formData.carrier}
                     className="px-3 py-2.5 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                    title="Generate tracking number"
+                   
                   >
                     <Calculator className="w-4 h-4" />
                   </button>

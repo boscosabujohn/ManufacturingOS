@@ -466,7 +466,7 @@ const SchedulerHistoryPage = () => {
                     <button
                       onClick={() => handleViewDetails(item)}
                       className="text-indigo-600 hover:text-indigo-700 p-1"
-                      title="View Details"
+                     
                     >
                       <Eye className="w-4 h-4" />
                     </button>

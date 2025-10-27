@@ -618,19 +618,19 @@ export default function DocumentsPage() {
                         <button
                           onClick={() => setSelectedDocument(doc)}
                           className="text-blue-600 hover:text-blue-800"
-                          title="View Details"
+                         
                         >
                           <Eye className="h-5 w-5" />
                         </button>
                         <button
                           className="text-green-600 hover:text-green-800"
-                          title="Download"
+                         
                         >
                           <Download className="h-5 w-5" />
                         </button>
                         <button
                           className="text-red-600 hover:text-red-800"
-                          title="Delete"
+                         
                         >
                           <Trash2 className="h-5 w-5" />
                         </button>

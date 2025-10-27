@@ -702,11 +702,11 @@ export default function ProjectBudgetPage() {
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-red-600 font-bold">•</span>
-                <span><strong>Over Budget:</strong> Exceeding approved budget by >5%, requires corrective action</span>
+                <span><strong>Over Budget:</strong> Exceeding approved budget by {'>'}5%, requires corrective action</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-blue-600 font-bold">•</span>
-                <span><strong>Under Budget:</strong> Spending less than approved budget by >5%, may indicate scope reduction or savings</span>
+                <span><strong>Under Budget:</strong> Spending less than approved budget by {'>'}5%, may indicate scope reduction or savings</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-yellow-600 font-bold">•</span>
@@ -754,7 +754,7 @@ export default function ProjectBudgetPage() {
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-indigo-600 font-bold">•</span>
-                <span><strong>Early Warning:</strong> Flag variances >5% immediately for corrective action</span>
+                <span><strong>Early Warning:</strong> Flag variances {'>'}5% immediately for corrective action</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-indigo-600 font-bold">•</span>

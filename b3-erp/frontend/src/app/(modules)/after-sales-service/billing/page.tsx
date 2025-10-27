@@ -573,7 +573,7 @@ export default function ServiceBillingPage() {
                         <button
                           onClick={() => router.push(`/after-sales-service/billing/view/${invoice.id}`)}
                           className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-                          title="View"
+                         
                         >
                           <Eye className="h-4 w-4" />
                         </button>
@@ -581,7 +581,7 @@ export default function ServiceBillingPage() {
                           <button
                             onClick={() => router.push(`/after-sales-service/billing/edit/${invoice.id}`)}
                             className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
-                            title="Edit"
+                           
                           >
                             <Edit className="h-4 w-4" />
                           </button>
@@ -589,7 +589,7 @@ export default function ServiceBillingPage() {
                         {(invoice.status === 'draft' || invoice.status === 'sent') && (
                           <button
                             className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-                            title="Send Invoice"
+                           
                           >
                             <Send className="h-4 w-4" />
                           </button>

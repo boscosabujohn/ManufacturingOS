@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { MapPin, Navigation, Clock, Phone, User, CheckCircle, AlertTriangle, Battery, Wifi, RefreshCw, Search, Filter, Calendar, Truck, Tool, Home, Building2, Zap, TrendingUp } from 'lucide-react';
+import { MapPin, Navigation, Clock, Phone, User, CheckCircle, AlertTriangle, Battery, Wifi, RefreshCw, Search, Filter, Calendar, Truck, Wrench, Home, Building2, Zap, TrendingUp } from 'lucide-react';
 
 interface TechnicianLocation {
   id: string;
@@ -285,7 +285,7 @@ export default function TechnicianTrackingPage() {
   const getStatusIcon = (status: string) => {
     switch (status) {
       case 'available': return <CheckCircle className="h-4 w-4" />;
-      case 'on_job': return <Tool className="h-4 w-4" />;
+      case 'on_job': return <Wrench className="h-4 w-4" />;
       case 'in_transit': return <Truck className="h-4 w-4" />;
       case 'on_break': return <Clock className="h-4 w-4" />;
       case 'offline': return <AlertTriangle className="h-4 w-4" />;
@@ -364,7 +364,7 @@ export default function TechnicianTrackingPage() {
               <p className="text-3xl font-bold text-gray-900 mt-2">{totalJobsToday}</p>
             </div>
             <div className="bg-purple-100 p-3 rounded-lg">
-              <Tool className="h-6 w-6 text-purple-600" />
+              <Wrench className="h-6 w-6 text-purple-600" />
             </div>
           </div>
         </div>
@@ -506,7 +506,7 @@ export default function TechnicianTrackingPage() {
 
                     {tech.currentJob && (
                       <div className="flex items-center gap-2 text-blue-600">
-                        <Tool className="h-3 w-3" />
+                        <Wrench className="h-3 w-3" />
                         <span className="truncate">{tech.currentJob} - {tech.currentCustomer}</span>
                       </div>
                     )}
@@ -608,7 +608,7 @@ export default function TechnicianTrackingPage() {
                   <h3 className="text-sm font-semibold text-gray-700 mb-3">Current Job</h3>
                   <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
                     <div className="flex items-center gap-2 mb-2">
-                      <Tool className="h-5 w-5 text-blue-600" />
+                      <Wrench className="h-5 w-5 text-blue-600" />
                       <span className="font-medium text-blue-900">{selectedTechnician.currentJob}</span>
                     </div>
                     <div className="text-sm text-blue-700">

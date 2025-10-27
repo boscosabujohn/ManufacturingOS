@@ -437,23 +437,23 @@ export default function InvoicesPage() {
                       </td>
                       <td className="px-6 py-4">
                         <div className="flex items-center justify-center gap-2">
-                          <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors" title="View">
+                          <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors">
                             <Eye className="w-4 h-4 text-blue-400" />
                           </button>
                           {invoice.status === 'Draft' && (
-                            <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors" title="Edit">
+                            <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors">
                               <Edit className="w-4 h-4 text-green-400" />
                             </button>
                           )}
-                          <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors" title="Print">
+                          <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors">
                             <Printer className="w-4 h-4 text-purple-400" />
                           </button>
                           {invoice.status !== 'Sent' && invoice.status !== 'Paid' && (
-                            <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors" title="Send">
+                            <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors">
                               <Send className="w-4 h-4 text-cyan-400" />
                             </button>
                           )}
-                          <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors" title="Duplicate">
+                          <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors">
                             <Copy className="w-4 h-4 text-yellow-400" />
                           </button>
                         </div>

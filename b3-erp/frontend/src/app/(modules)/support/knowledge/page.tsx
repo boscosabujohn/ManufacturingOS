@@ -282,8 +282,8 @@ export default function KnowledgePage() {
     filteredArticles = [...filteredArticles].sort((a, b) => {
       const aValue = a[sortField];
       const bValue = b[sortField];
-      if (aValue < bValue) return sortDirection === 'asc' ? -1 : 1;
-      if (aValue > bValue) return sortDirection === 'asc' ? 1 : -1;
+      if (aValue !== undefined && bValue !== undefined && aValue < bValue) return sortDirection === 'asc' ? -1 : 1;
+      if (aValue !== undefined && bValue !== undefined && aValue > bValue) return sortDirection === 'asc' ? 1 : -1;
       return 0;
     });
   }
@@ -555,21 +555,21 @@ export default function KnowledgePage() {
                       <button
                         onClick={() => router.push(`/support/knowledge/view/${article.id}`)}
                         className="p-1.5 text-blue-600 hover:bg-blue-50 rounded transition-colors"
-                        title="View Article"
+                       
                       >
                         <Eye className="h-4 w-4" />
                       </button>
                       <button
                         onClick={() => router.push(`/support/knowledge/edit/${article.id}`)}
                         className="p-1.5 text-green-600 hover:bg-green-50 rounded transition-colors"
-                        title="Edit Article"
+                       
                       >
                         <Edit className="h-4 w-4" />
                       </button>
                       <button
                         onClick={() => handleDeleteArticle(article.id)}
                         className="p-1.5 text-red-600 hover:bg-red-50 rounded transition-colors"
-                        title="Delete Article"
+                       
                       >
                         <Trash2 className="h-4 w-4" />
                       </button>

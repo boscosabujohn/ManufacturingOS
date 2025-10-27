@@ -397,7 +397,7 @@ export default function EmployeesPage() {
                       <button
                         onClick={() => router.push(`/hr/employees/view/${emp.id}`)}
                         className="flex items-center space-x-1 px-3 py-1.5 text-blue-600 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors text-sm font-medium"
-                        title="View Details"
+                       
                       >
                         <Eye className="h-4 w-4" />
                         <span>View</span>
@@ -405,7 +405,7 @@ export default function EmployeesPage() {
                       <button
                         onClick={() => router.push(`/hr/employees/edit/${emp.id}`)}
                         className="flex items-center space-x-1 px-3 py-1.5 text-green-600 bg-green-50 hover:bg-green-100 rounded-lg transition-colors text-sm font-medium"
-                        title="Edit"
+                       
                       >
                         <Edit className="h-4 w-4" />
                         <span>Edit</span>
@@ -413,7 +413,7 @@ export default function EmployeesPage() {
                       <button
                         onClick={() => handleDelete(emp.id)}
                         className="flex items-center space-x-1 px-3 py-1.5 text-red-600 bg-red-50 hover:bg-red-100 rounded-lg transition-colors text-sm font-medium"
-                        title="Delete"
+                       
                       >
                         <Trash2 className="h-4 w-4" />
                         <span>Delete</span>

@@ -218,28 +218,28 @@ export default function SalesDashboard() {
           ) : (
             <>
               <KPICard
-                title="Total Revenue"
+               
                 value={`₹${(stats.totalRevenue / 10000000).toFixed(1)}Cr`}
                 icon={DollarSign}
                 color="green"
                 trend={{ value: stats.revenueGrowth, isPositive: true, label: 'growth' }}
               />
               <KPICard
-                title="Active Orders"
+               
                 value={stats.activeOrders}
                 icon={ShoppingBag}
                 color="blue"
                 description={`${stats.ordersThisMonth} this month`}
               />
               <KPICard
-                title="Active Customers"
+               
                 value={stats.customersActive}
                 icon={Users}
                 color="purple"
                 description={`${stats.conversionRate}% conversion`}
               />
               <KPICard
-                title="Target Achievement"
+               
                 value={`${stats.targetAchievement}%`}
                 icon={Target}
                 color="yellow"
@@ -360,21 +360,21 @@ export default function SalesDashboard() {
           ) : (
             <>
               <KPICard
-                title="Avg Order Value"
+               
                 value={`₹${(stats.avgOrderValue / 100000).toFixed(1)}L`}
                 icon={TrendingUp}
                 color="green"
                 trend={{ value: 12, isPositive: true, label: 'from last month' }}
               />
               <KPICard
-                title="Pending Quotations"
+               
                 value={stats.pendingQuotations}
                 icon={FileText}
                 color="yellow"
                 description={`${stats.quotationsThisMonth} sent this month`}
               />
               <KPICard
-                title="Conversion Rate"
+               
                 value={`${stats.conversionRate}%`}
                 icon={CheckCircle}
                 color="blue"

@@ -8,7 +8,7 @@ interface Promotion {
   id: string
   name: string
   code: string
-  type: 'festival' | 'clearance' | 'combo' | 'seasonal' | 'launch'
+  type: 'festival' | 'clearance' | 'combo' | 'seasonal' | 'launch' | 'bundle'
   description: string
   category: string
   applicableProducts: string[]

@@ -343,20 +343,20 @@ export default function DatabaseBackupPage() {
                       <button
                         onClick={() => handleRestore(backup.id)}
                         className="p-2 hover:bg-blue-50 rounded-lg text-blue-600"
-                        title="Restore backup"
+                       
                       >
                         <RotateCcw className="w-5 h-5" />
                       </button>
                       <button
                         className="p-2 hover:bg-green-50 rounded-lg text-green-600"
-                        title="Download backup"
+                       
                       >
                         <Download className="w-5 h-5" />
                       </button>
                       <button
                         onClick={() => handleDelete(backup.id)}
                         className="p-2 hover:bg-red-50 rounded-lg text-red-600"
-                        title="Delete backup"
+                       
                       >
                         <Trash2 className="w-5 h-5" />
                       </button>

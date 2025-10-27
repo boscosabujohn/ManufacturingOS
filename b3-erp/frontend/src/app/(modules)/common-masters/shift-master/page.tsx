@@ -110,10 +110,10 @@ export default function ShiftMasterPage() {
       header: 'Breaks',
       accessor: 'breaks',
       sortable: false,
-      render: (value) => (
+      render: (value: Shift['breaks']) => (
         <div className="text-xs text-gray-600">
           {value.length > 0 ? (
-            value.map((brk, idx) => (
+            value.map((brk: { type: string; duration: number }, idx: number) => (
               <div key={idx}>
                 {brk.type}: {brk.duration}min
               </div>

@@ -20,16 +20,16 @@ interface Company {
   registrationNumber: string;
   taxId: string;
   address: {
-    line1: string;
+    line1?: string;
     line2?: string;
-    city: string;
-    state: string;
-    country: string;
-    postalCode: string;
+    city?: string;
+    state?: string;
+    country?: string;
+    postalCode?: string;
   };
   contact: {
-    phone: string;
-    email: string;
+    phone?: string;
+    email?: string;
     website?: string;
     fax?: string;
   };

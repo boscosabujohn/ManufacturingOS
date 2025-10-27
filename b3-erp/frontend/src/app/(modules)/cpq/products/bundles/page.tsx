@@ -246,7 +246,7 @@ export default function CPQProductsBundlesPage() {
                 <button
                   className="px-3 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"
                   aria-label="Edit"
-                  title="Edit"
+                 
                 >
                   <Edit className="h-4 w-4" />
                 </button>

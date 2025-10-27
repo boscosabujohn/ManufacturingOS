@@ -29,6 +29,9 @@ import {
   Tag,
   Globe,
   User,
+  Truck,
+  Briefcase,
+  Upload,
 } from 'lucide-react';
 
 // Enterprise Customer Interface matching comprehensive ERP fields

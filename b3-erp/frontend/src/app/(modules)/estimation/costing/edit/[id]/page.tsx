@@ -455,14 +455,14 @@ export default function EditCostingPage() {
                           <button
                             onClick={() => duplicateItem(index)}
                             className="p-1 text-blue-600 hover:bg-blue-50 rounded transition-colors"
-                            title="Duplicate"
+                           
                           >
                             <Copy className="h-4 w-4" />
                           </button>
                           <button
                             onClick={() => removeItem(index)}
                             className="p-1 text-red-600 hover:bg-red-50 rounded transition-colors"
-                            title="Remove"
+                           
                           >
                             <Trash2 className="h-4 w-4" />
                           </button>

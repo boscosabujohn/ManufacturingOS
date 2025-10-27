@@ -627,14 +627,14 @@ export default function FieldServicePage() {
                         <button
                           onClick={() => router.push(`/after-sales-service/field-service/view/${job.id}`)}
                           className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-                          title="View"
+                         
                         >
                           <Eye className="h-4 w-4" />
                         </button>
                         <button
                           onClick={() => router.push(`/after-sales-service/field-service/edit/${job.id}`)}
                           className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
-                          title="Edit"
+                         
                         >
                           <Edit className="h-4 w-4" />
                         </button>

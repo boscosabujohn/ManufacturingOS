@@ -2,8 +2,8 @@
 
 import { useState, useMemo } from 'react';
 import { Calendar, Users, CheckCircle, XCircle, Clock, Search, Filter, Download, AlertCircle } from 'lucide-react';
-import DataTable from '@/components/DataTable';
-import StatusBadge from '@/components/StatusBadge';
+import DataTable, { Column } from '@/components/DataTable';
+import StatusBadge, { BadgeStatus } from '@/components/StatusBadge';
 
 interface DailyAttendance {
   id: string;
@@ -59,8 +59,8 @@ export default function DailyAttendancePage() {
     return { total: mockAttendance.length, present, absent, late, onLeave };
   }, []);
 
-  const columns = [
-    { key: 'employeeCode', label: 'Employee', sortable: true,
+  const columns: Column<DailyAttendance>[] = [
+    { id: 'employeeCode', accessor: 'employeeCode', label: 'Employee', sortable: true,
       render: (v: string, row: DailyAttendance) => (
         <div className="flex items-center gap-3">
           <div className="h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center">
@@ -73,13 +73,13 @@ export default function DailyAttendancePage() {
         </div>
       )
     },
-    { key: 'department', label: 'Department', sortable: true,
+    { id: 'department', accessor: 'department', label: 'Department', sortable: true,
       render: (v: string, row: DailyAttendance) => (
         <div><div className="font-medium text-gray-900">{v}</div><div className="text-xs text-gray-500">{row.designation}</div></div>
       )
     },
-    { key: 'shift', label: 'Shift', sortable: true },
-    { key: 'checkIn', label: 'Check In', sortable: true,
+    { id: 'shift', accessor: 'shift', label: 'Shift', sortable: true },
+    { id: 'checkIn', accessor: 'checkIn', label: 'Check In', sortable: true,
       render: (v: string, row: DailyAttendance) => (
         <div className="text-sm">
           {v ? (
@@ -93,16 +93,16 @@ export default function DailyAttendancePage() {
         </div>
       )
     },
-    { key: 'checkOut', label: 'Check Out', sortable: true,
+    { id: 'checkOut', accessor: 'checkOut', label: 'Check Out', sortable: true,
       render: (v?: string) => v ? <div className="font-medium text-gray-900">{v}</div> : <span className="text-gray-400">-</span>
     },
-    { key: 'workHours', label: 'Hours', sortable: true,
+    { id: 'workHours', accessor: 'workHours', label: 'Hours', sortable: true,
       render: (v?: number) => v ? <div className="font-semibold text-blue-600">{v}h</div> : <span className="text-gray-400">-</span>
     },
-    { key: 'status', label: 'Status', sortable: true,
-      render: (v: string) => <StatusBadge status={v} />
+    { id: 'status', accessor: 'status', label: 'Status', sortable: true,
+      render: (v: string) => <StatusBadge status={v as BadgeStatus} />
     },
-    { key: 'location', label: 'Location', sortable: true }
+    { id: 'location', accessor: 'location', label: 'Location', sortable: true }
   ];
 
   return (

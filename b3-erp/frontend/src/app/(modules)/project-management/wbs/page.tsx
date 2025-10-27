@@ -620,10 +620,10 @@ export default function WBSPage() {
 
           {/* Actions */}
           <div className="w-20 flex-shrink-0 flex items-center justify-end gap-2">
-            <button className="p-1 text-blue-600 hover:bg-blue-50 rounded transition-colors" title="Edit">
+            <button className="p-1 text-blue-600 hover:bg-blue-50 rounded transition-colors">
               <Edit className="w-4 h-4" />
             </button>
-            <button className="p-1 text-gray-400 hover:bg-gray-100 rounded transition-colors" title="More">
+            <button className="p-1 text-gray-400 hover:bg-gray-100 rounded transition-colors">
               <FileText className="w-4 h-4" />
             </button>
           </div>

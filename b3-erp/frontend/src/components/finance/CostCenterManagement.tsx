@@ -6,12 +6,12 @@ import {
   PieChart, Pie, Cell, AreaChart, Area, Treemap
 } from 'recharts';
 import {
-  BuildingOfficeIcon, CurrencyDollarIcon, ChartBarIcon, AdjustmentsHorizontalIcon,
+  Building2, DollarSign, BarChart3, SlidersHorizontal,
   PlusIcon, PencilIcon, EyeIcon, TrashIcon, ArrowRightIcon,
-  CheckCircleIcon, ClockIcon, ExclamationTriangleIcon, InformationCircleIcon,
-  DocumentTextIcon, CalculatorIcon, FunnelIcon, ShareIcon,
-  UserGroupIcon, BanknotesIcon, TrendingUpIcon, TrendingDownIcon
-} from '@heroicons/react/24/outline';
+  CheckCircleIcon, ClockIcon, AlertTriangle, Info,
+  FileText, CalculatorIcon, Filter, ShareIcon,
+  Users, Banknote, TrendingUpIcon, TrendingDownIcon
+} from 'lucide-react';
 
 interface CostCenter {
   id: string;
@@ -539,8 +539,8 @@ const CostCenterManagement: React.FC = () => {
     const statusConfig = {
       pending: { bg: 'bg-yellow-100', text: 'text-yellow-800', icon: ClockIcon },
       executed: { bg: 'bg-green-100', text: 'text-green-800', icon: CheckCircleIcon },
-      failed: { bg: 'bg-red-100', text: 'text-red-800', icon: ExclamationTriangleIcon },
-      reversed: { bg: 'bg-gray-100', text: 'text-gray-800', icon: InformationCircleIcon }
+      failed: { bg: 'bg-red-100', text: 'text-red-800', icon: AlertTriangle },
+      reversed: { bg: 'bg-gray-100', text: 'text-gray-800', icon: Info }
     };
 
     const config = statusConfig[status as keyof typeof statusConfig];
@@ -572,7 +572,7 @@ const CostCenterManagement: React.FC = () => {
         <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <BuildingOfficeIcon className="h-8 w-8 text-blue-600" />
+              <Building2 className="h-8 w-8 text-blue-600" />
             </div>
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600">Active Cost Centers</p>
@@ -586,7 +586,7 @@ const CostCenterManagement: React.FC = () => {
         <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <CurrencyDollarIcon className="h-8 w-8 text-green-600" />
+              <DollarSign className="h-8 w-8 text-green-600" />
             </div>
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600">Total Budget</p>
@@ -600,7 +600,7 @@ const CostCenterManagement: React.FC = () => {
         <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <ChartBarIcon className="h-8 w-8 text-purple-600" />
+              <BarChart3 className="h-8 w-8 text-purple-600" />
             </div>
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600">Total Actual</p>
@@ -1057,7 +1057,7 @@ const CostCenterManagement: React.FC = () => {
       <div className="flex justify-between items-center">
         <h3 className="text-lg font-semibold text-gray-900">Cost Center Reports</h3>
         <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 flex items-center">
-          <DocumentTextIcon className="w-5 h-5 mr-2" />
+          <FileText className="w-5 h-5 mr-2" />
           Generate Report
         </button>
       </div>
@@ -1075,7 +1075,7 @@ const CostCenterManagement: React.FC = () => {
                 <h4 className="font-semibold text-gray-900">{report.name}</h4>
                 <p className="text-sm text-gray-600 mt-1">Cost center analysis report</p>
               </div>
-              <DocumentTextIcon className="w-6 h-6 text-blue-600" />
+              <FileText className="w-6 h-6 text-blue-600" />
             </div>
 
             <div className="space-y-2 text-sm">
@@ -1118,11 +1118,11 @@ const CostCenterManagement: React.FC = () => {
       <div className="border-b border-gray-200 mb-6">
         <nav className="-mb-px flex space-x-8">
           {[
-            { key: 'dashboard', label: 'Dashboard', icon: ChartBarIcon },
-            { key: 'cost-centers', label: 'Cost Centers', icon: BuildingOfficeIcon },
-            { key: 'rules', label: 'Allocation Rules', icon: AdjustmentsHorizontalIcon },
-            { key: 'transactions', label: 'Transactions', icon: BanknotesIcon },
-            { key: 'reports', label: 'Reports', icon: DocumentTextIcon }
+            { key: 'dashboard', label: 'Dashboard', icon: BarChart3 },
+            { key: 'cost-centers', label: 'Cost Centers', icon: Building2 },
+            { key: 'rules', label: 'Allocation Rules', icon: SlidersHorizontal },
+            { key: 'transactions', label: 'Transactions', icon: Banknote },
+            { key: 'reports', label: 'Reports', icon: FileText }
           ].map(({ key, label, icon: Icon }) => (
             <button
               key={key}

@@ -2,6 +2,10 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  generateBuildId: async () => {
+    // Generate a unique build ID to avoid Next.js 14.1.0 build ID generation bug
+    return 'build-' + Date.now()
+  },
   images: {
     domains: ['localhost'],
   },

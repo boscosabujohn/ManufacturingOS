@@ -26,7 +26,8 @@ import {
   Eye,
   Crown,
   Zap,
-  Activity
+  Activity,
+  MapPin
 } from 'lucide-react';
 
 interface TeamMember {
@@ -690,13 +691,13 @@ export default function TeamsPage() {
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
-                      <button className="p-2 hover:bg-blue-50 rounded-lg transition-colors" title="View Team">
+                      <button className="p-2 hover:bg-blue-50 rounded-lg transition-colors">
                         <Eye className="w-5 h-5 text-blue-600" />
                       </button>
-                      <button className="p-2 hover:bg-purple-50 rounded-lg transition-colors" title="Edit Team">
+                      <button className="p-2 hover:bg-purple-50 rounded-lg transition-colors">
                         <Edit className="w-5 h-5 text-purple-600" />
                       </button>
-                      <button className="p-2 hover:bg-gray-50 rounded-lg transition-colors" title="Settings">
+                      <button className="p-2 hover:bg-gray-50 rounded-lg transition-colors">
                         <Settings className="w-5 h-5 text-gray-600" />
                       </button>
                     </div>
@@ -864,7 +865,7 @@ export default function TeamsPage() {
                           <p className="text-sm text-gray-600">{member.team}</p>
                         </div>
                       </div>
-                      <PerformanceIcon className={`w-6 h-6 ${performanceBadge.color}`} title={performanceBadge.label} />
+                      <PerformanceIcon className={`w-6 h-6 ${performanceBadge.color}`} />
                     </div>
 
                     {/* Contact Info */}
@@ -957,13 +958,13 @@ export default function TeamsPage() {
                         Joined {new Date(member.hireDate).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
                       </div>
                       <div className="flex items-center gap-2">
-                        <button className="p-2 hover:bg-blue-50 rounded-lg transition-colors" title="View Profile">
+                        <button className="p-2 hover:bg-blue-50 rounded-lg transition-colors">
                           <Eye className="w-4 h-4 text-blue-600" />
                         </button>
-                        <button className="p-2 hover:bg-purple-50 rounded-lg transition-colors" title="Edit Member">
+                        <button className="p-2 hover:bg-purple-50 rounded-lg transition-colors">
                           <Edit className="w-4 h-4 text-purple-600" />
                         </button>
-                        <button className="p-2 hover:bg-gray-50 rounded-lg transition-colors" title="Settings">
+                        <button className="p-2 hover:bg-gray-50 rounded-lg transition-colors">
                           <Settings className="w-4 h-4 text-gray-600" />
                         </button>
                       </div>

@@ -31,7 +31,7 @@ import {
   CheckSquare,
   ArrowRight,
   Gauge,
-  Tool,
+  Wrench,
   Play,
 } from "lucide-react";
 

@@ -6,27 +6,40 @@ export interface VendorCategory {
 
   // Payment & Credit
   defaultPaymentTerms: string;
+  defaultDeliveryTerms?: string;
   creditPeriod: number;
+  paymentDays?: number;
   advancePaymentPercentage?: number;
+  advancePaymentRequired?: boolean;
+  advancePercentage?: number;
 
   // Material Type
   materialType: 'raw_material' | 'components' | 'consumables' | 'services' | 'packaging' | 'tools' | 'others';
+  vendorType?: string;
+  isPreferred?: boolean;
 
   // Performance & Quality
   qualityRating: 'A' | 'B' | 'C';
   minOrderValue: number;
   leadTimeDays: number;
+  onTimeDeliveryRate?: number;
 
   // Evaluation
   evaluationRequired: boolean;
   inspectionRequired: boolean;
+  requiresQualityInspection?: boolean;
   certificationRequired: boolean;
+  certifications?: string[];
+  defectRate?: number;
+  complianceScore?: number;
 
   // Usage & Performance
   vendorsCount: number;
   totalPurchases: number;
   avgOrderValue: number;
+  averagePOValue?: number;
   outstandingAmount: number;
+  pendingPayments?: number;
 
   isActive: boolean;
   createdBy: string;
@@ -176,7 +189,10 @@ export function getVendorCategoryStats() {
     totalVendors: mockVendorCategories.reduce((sum, v) => sum + v.vendorsCount, 0),
     totalPurchases: mockVendorCategories.reduce((sum, v) => sum + v.totalPurchases, 0),
     totalOutstanding: mockVendorCategories.reduce((sum, v) => sum + v.outstandingAmount, 0),
+    totalPending: mockVendorCategories.reduce((sum, v) => sum + (v.pendingPayments || 0), 0),
     gradeA: mockVendorCategories.filter(v => v.qualityRating === 'A').length,
-    requiresQC: mockVendorCategories.filter(v => v.inspectionRequired).length
+    requiresQC: mockVendorCategories.filter(v => v.inspectionRequired).length,
+    avgQuality: mockVendorCategories.reduce((sum, v) => sum + (v.defectRate || 0), 0) / mockVendorCategories.length,
+    avgOnTime: mockVendorCategories.reduce((sum, v) => sum + (v.onTimeDeliveryRate || 0), 0) / mockVendorCategories.length
   };
 }

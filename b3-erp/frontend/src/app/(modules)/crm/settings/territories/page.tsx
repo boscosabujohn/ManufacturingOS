@@ -591,19 +591,19 @@ export default function TerritoriesPage() {
 
                   {/* Actions */}
                   <div className="flex items-center gap-2">
-                    <button className="p-2 hover:bg-blue-50 rounded-lg transition-colors" title="View Details">
+                    <button className="p-2 hover:bg-blue-50 rounded-lg transition-colors">
                       <Eye className="w-5 h-5 text-blue-600" />
                     </button>
-                    <button className="p-2 hover:bg-purple-50 rounded-lg transition-colors" title="Edit Territory">
+                    <button className="p-2 hover:bg-purple-50 rounded-lg transition-colors">
                       <Edit className="w-5 h-5 text-purple-600" />
                     </button>
-                    <button className="p-2 hover:bg-green-50 rounded-lg transition-colors" title="Reassign">
+                    <button className="p-2 hover:bg-green-50 rounded-lg transition-colors">
                       <UserPlus className="w-5 h-5 text-green-600" />
                     </button>
-                    <button className="p-2 hover:bg-orange-50 rounded-lg transition-colors" title="Duplicate">
+                    <button className="p-2 hover:bg-orange-50 rounded-lg transition-colors">
                       <Copy className="w-5 h-5 text-orange-600" />
                     </button>
-                    <button className="p-2 hover:bg-gray-50 rounded-lg transition-colors" title="Settings">
+                    <button className="p-2 hover:bg-gray-50 rounded-lg transition-colors">
                       <Settings className="w-5 h-5 text-gray-600" />
                     </button>
                   </div>

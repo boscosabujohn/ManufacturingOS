@@ -33,7 +33,11 @@ import {
   ArrowUpDown,
   Zap,
   Target,
-  RefreshCw
+  RefreshCw,
+  Edit2,
+  GitCompare,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react'
 
 interface RFQ {
@@ -413,14 +417,14 @@ export default function ProcurementRFQPage() {
                         <button
                           onClick={() => handleView(rfq.id)}
                           className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-                          title="View Details"
+                         
                         >
                           <Eye className="w-4 h-4" />
                         </button>
                         <button
                           onClick={() => handleEdit(rfq.id)}
                           className="p-2 text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors"
-                          title="Edit"
+                         
                         >
                           <Edit2 className="w-4 h-4" />
                         </button>
@@ -428,7 +432,7 @@ export default function ProcurementRFQPage() {
                           <button
                             onClick={() => handleCompareQuotes(rfq.id)}
                             className="p-2 text-purple-600 hover:bg-purple-50 rounded-lg transition-colors"
-                            title="Compare Quotes"
+                           
                           >
                             <GitCompare className="w-4 h-4" />
                           </button>

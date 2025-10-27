@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Smartphone, Download, QrCode, CheckCircle, Clock, MapPin, Tool, Camera, FileText, MessageSquare, Star, Battery, Wifi, RefreshCw, PlayCircle, Settings, Users, TrendingUp, Zap, Package, Shield } from 'lucide-react';
+import { Smartphone, Download, QrCode, CheckCircle, Clock, MapPin, Wrench, Camera, FileText, MessageSquare, Star, Battery, Wifi, RefreshCw, PlayCircle, Settings, Users, TrendingUp, Zap, Package, Shield } from 'lucide-react';
 
 interface AppFeature {
   id: string;
@@ -26,7 +26,7 @@ const appFeatures: AppFeature[] = [
     id: '1',
     name: 'Job Management',
     description: 'View, accept, and manage service jobs in real-time',
-    icon: Tool,
+    icon: Wrench,
     category: 'core',
     available: true
   },

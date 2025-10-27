@@ -421,7 +421,7 @@ export default function IntegrationsPage() {
                           <button
                             onClick={() => handleSync(integration.id)}
                             className="p-2 hover:bg-gray-100 rounded-lg"
-                            title="Sync now"
+                           
                           >
                             <RefreshCw className="w-5 h-5 text-gray-600" />
                           </button>
@@ -429,7 +429,7 @@ export default function IntegrationsPage() {
                         <button
                           onClick={() => setSelectedIntegration(integration.id)}
                           className="p-2 hover:bg-gray-100 rounded-lg"
-                          title="Settings"
+                         
                         >
                           <Settings className="w-5 h-5 text-gray-600" />
                         </button>

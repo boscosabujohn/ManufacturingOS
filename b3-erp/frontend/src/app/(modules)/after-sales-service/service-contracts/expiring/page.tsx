@@ -643,14 +643,14 @@ export default function ExpiringServiceContractsPage() {
                       <button
                         onClick={() => handleRenewalAction(contract)}
                         className="text-green-600 hover:text-green-900"
-                        title="Renewal Action"
+                       
                       >
                         <RefreshCw className="w-4 h-4" />
                       </button>
                       <button
                         onClick={() => router.push(`/after-sales-service/service-contracts/view/${contract.id}`)}
                         className="text-blue-600 hover:text-blue-900"
-                        title="View Details"
+                       
                       >
                         <Eye className="w-4 h-4" />
                       </button>
@@ -659,7 +659,7 @@ export default function ExpiringServiceContractsPage() {
                           // Handle contact action
                         }}
                         className="text-purple-600 hover:text-purple-900"
-                        title="Contact Customer"
+                       
                       >
                         <Phone className="w-4 h-4" />
                       </button>

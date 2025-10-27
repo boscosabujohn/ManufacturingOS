@@ -379,21 +379,21 @@ export default function UsersPage() {
                       <button
                         onClick={() => handleView(user.id)}
                         className="text-blue-600 hover:text-blue-900 p-1 rounded hover:bg-blue-50"
-                        title="View User"
+                       
                       >
                         <Eye className="w-4 h-4" />
                       </button>
                       <button
                         onClick={() => handleEdit(user.id)}
                         className="text-green-600 hover:text-green-900 p-1 rounded hover:bg-green-50"
-                        title="Edit User"
+                       
                       >
                         <Edit className="w-4 h-4" />
                       </button>
                       <button
                         onClick={() => handleResetPassword(user.id)}
                         className="text-orange-600 hover:text-orange-900 p-1 rounded hover:bg-orange-50"
-                        title="Reset Password"
+                       
                       >
                         <Key className="w-4 h-4" />
                       </button>

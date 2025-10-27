@@ -7,12 +7,12 @@ import {
   RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, Treemap
 } from 'recharts';
 import {
-  ChartBarIcon, FunnelIcon, ArrowTrendingUpIcon, ArrowTrendingDownIcon,
-  CurrencyDollarIcon, CalculatorIcon, PresentationChartLineIcon,
-  MagnifyingGlassIcon, AdjustmentsHorizontalIcon, EyeIcon,
-  DocumentArrowDownIcon, CalendarIcon, ClockIcon,
-  ExclamationTriangleIcon, CheckCircleIcon, InformationCircleIcon
-} from '@heroicons/react/24/outline';
+  BarChart3, Filter, TrendingUp, TrendingDown,
+  DollarSign, CalculatorIcon, PresentationIcon,
+  Search, SlidersHorizontal, EyeIcon,
+  FileDown, CalendarIcon, ClockIcon,
+  AlertTriangle, CheckCircleIcon, Info
+} from 'lucide-react';
 
 interface AnalyticsMetric {
   id: string;
@@ -363,9 +363,9 @@ const FinancialAnalytics: React.FC = () => {
 
   const getTrendIcon = (trend: string, changePercent: number) => {
     if (changePercent > 0) {
-      return <ArrowTrendingUpIcon className="w-4 h-4 text-green-600" />;
+      return <TrendingUp className="w-4 h-4 text-green-600" />;
     } else if (changePercent < 0) {
-      return <ArrowTrendingDownIcon className="w-4 h-4 text-red-600" />;
+      return <TrendingDown className="w-4 h-4 text-red-600" />;
     }
     return <div className="w-4 h-4" />;
   };
@@ -375,13 +375,13 @@ const FinancialAnalytics: React.FC = () => {
       case 'opportunity':
         return <CheckCircleIcon className="w-5 h-5 text-green-600" />;
       case 'risk':
-        return <ExclamationTriangleIcon className="w-5 h-5 text-red-600" />;
+        return <AlertTriangle className="w-5 h-5 text-red-600" />;
       case 'trend':
-        return <ArrowTrendingUpIcon className="w-5 h-5 text-blue-600" />;
+        return <TrendingUp className="w-5 h-5 text-blue-600" />;
       case 'anomaly':
-        return <InformationCircleIcon className="w-5 h-5 text-orange-600" />;
+        return <Info className="w-5 h-5 text-orange-600" />;
       default:
-        return <InformationCircleIcon className="w-5 h-5 text-gray-600" />;
+        return <Info className="w-5 h-5 text-gray-600" />;
     }
   };
 
@@ -780,7 +780,7 @@ const FinancialAnalytics: React.FC = () => {
           onClick={() => setShowReportBuilder(true)}
           className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 flex items-center"
         >
-          <PresentationChartLineIcon className="w-5 h-5 mr-2" />
+          <PresentationIcon className="w-5 h-5 mr-2" />
           Build Report
         </button>
       </div>
@@ -830,7 +830,7 @@ const FinancialAnalytics: React.FC = () => {
                 Edit
               </button>
               <button className="px-3 py-2 border border-gray-300 rounded text-sm hover:bg-gray-50">
-                <DocumentArrowDownIcon className="w-4 h-4" />
+                <FileDown className="w-4 h-4" />
               </button>
             </div>
           </div>
@@ -912,11 +912,11 @@ const FinancialAnalytics: React.FC = () => {
       <div className="border-b border-gray-200 mb-6">
         <nav className="-mb-px flex space-x-8">
           {[
-            { key: 'overview', label: 'Overview', icon: ChartBarIcon },
+            { key: 'overview', label: 'Overview', icon: BarChart3 },
             { key: 'metrics', label: 'Key Metrics', icon: CalculatorIcon },
-            { key: 'drill-down', label: 'Drill-Down', icon: FunnelIcon },
-            { key: 'insights', label: 'AI Insights', icon: ArrowTrendingUpIcon },
-            { key: 'custom-reports', label: 'Custom Reports', icon: PresentationChartLineIcon }
+            { key: 'drill-down', label: 'Drill-Down', icon: Filter },
+            { key: 'insights', label: 'AI Insights', icon: TrendingUp },
+            { key: 'custom-reports', label: 'Custom Reports', icon: PresentationIcon }
           ].map(({ key, label, icon: Icon }) => (
             <button
               key={key}

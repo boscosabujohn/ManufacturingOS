@@ -714,7 +714,7 @@ export default function BOMEditPage() {
               <button
                 onClick={() => addComponent(component.level + 1, component.id)}
                 className="p-1 hover:bg-blue-100 rounded text-blue-600"
-                title="Add child component"
+               
               >
                 <Plus className="h-4 w-4" />
               </button>
@@ -722,14 +722,14 @@ export default function BOMEditPage() {
             <button
               onClick={() => moveComponentUp(component.id)}
               className="p-1 hover:bg-gray-200 rounded text-gray-600"
-              title="Move up"
+             
             >
               <ArrowUp className="h-3.5 w-3.5" />
             </button>
             <button
               onClick={() => moveComponentDown(component.id)}
               className="p-1 hover:bg-gray-200 rounded text-gray-600"
-              title="Move down"
+             
             >
               <ArrowDown className="h-3.5 w-3.5" />
             </button>
@@ -737,7 +737,7 @@ export default function BOMEditPage() {
               <button
                 onClick={() => outdentComponent(component.id)}
                 className="p-1 hover:bg-gray-200 rounded text-gray-600"
-                title="Decrease level"
+               
               >
                 <Outdent className="h-3.5 w-3.5" />
               </button>
@@ -746,7 +746,7 @@ export default function BOMEditPage() {
               <button
                 onClick={() => indentComponent(component.id)}
                 className="p-1 hover:bg-gray-200 rounded text-gray-600"
-                title="Increase level"
+               
               >
                 <Indent className="h-3.5 w-3.5" />
               </button>
@@ -754,7 +754,7 @@ export default function BOMEditPage() {
             <button
               onClick={() => removeComponent(component.id)}
               className="p-1 hover:bg-red-100 rounded text-red-600"
-              title="Remove"
+             
             >
               <Trash2 className="h-4 w-4" />
             </button>

@@ -451,20 +451,20 @@ export default function TemplatesPage() {
                         setShowPreview(true);
                       }}
                       className="p-2 hover:bg-purple-50 rounded-lg text-purple-600"
-                      title="Preview template"
+                     
                     >
                       <Eye className="w-5 h-5" />
                     </button>
                     <button
                       onClick={() => handleDuplicate(template.id)}
                       className="p-2 hover:bg-green-50 rounded-lg text-green-600"
-                      title="Duplicate template"
+                     
                     >
                       <Copy className="w-5 h-5" />
                     </button>
                     <button
                       className="p-2 hover:bg-blue-50 rounded-lg text-blue-600"
-                      title="Edit template"
+                     
                     >
                       <Edit className="w-5 h-5" />
                     </button>
@@ -472,7 +472,7 @@ export default function TemplatesPage() {
                       <button
                         onClick={() => handleDelete(template.id)}
                         className="p-2 hover:bg-red-50 rounded-lg text-red-600"
-                        title="Delete template"
+                       
                       >
                         <Trash2 className="w-5 h-5" />
                       </button>

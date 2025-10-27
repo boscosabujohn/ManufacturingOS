@@ -521,13 +521,13 @@ export default function ConfirmedOrdersPage() {
                       <PlayCircle className="w-4 h-4" />
                       Start Processing
                     </button>
-                    <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors" title="View Details">
+                    <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
                       <Eye className="w-4 h-4 text-gray-600" />
                     </button>
-                    <button className="p-2 hover:bg-green-50 rounded-lg transition-colors" title="Download PDF">
+                    <button className="p-2 hover:bg-green-50 rounded-lg transition-colors">
                       <Download className="w-4 h-4 text-green-600" />
                     </button>
-                    <button className="p-2 hover:bg-purple-50 rounded-lg transition-colors" title="Send to Customer">
+                    <button className="p-2 hover:bg-purple-50 rounded-lg transition-colors">
                       <Send className="w-4 h-4 text-purple-600" />
                     </button>
                   </div>

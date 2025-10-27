@@ -657,8 +657,8 @@ export default function SupplierOnboarding() {
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Auto-approval Threshold</label>
                     <select className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
-                      <option>Low Risk (Score > 80)</option>
-                      <option>Medium Risk (Score > 60)</option>
+                      <option>Low Risk (Score {'>='} 80)</option>
+                      <option>Medium Risk (Score {'>='} 60)</option>
                       <option>High Risk (Manual Only)</option>
                     </select>
                   </div>

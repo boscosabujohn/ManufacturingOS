@@ -374,21 +374,21 @@ export default function CPQProposalsContentPage() {
               <button
                 className="p-2 text-gray-600 hover:bg-gray-50 rounded-lg border border-gray-200"
                 aria-label="View"
-                title="View"
+               
               >
                 <Eye className="h-4 w-4" />
               </button>
               <button
                 className="p-2 text-gray-600 hover:bg-gray-50 rounded-lg border border-gray-200"
                 aria-label="Download"
-                title="Download"
+               
               >
                 <Download className="h-4 w-4" />
               </button>
               <button
                 className="p-2 text-gray-600 hover:bg-gray-50 rounded-lg border border-gray-200"
                 aria-label="Edit"
-                title="Edit"
+               
               >
                 <Edit className="h-4 w-4" />
               </button>

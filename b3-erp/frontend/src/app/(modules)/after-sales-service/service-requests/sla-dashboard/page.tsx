@@ -23,8 +23,8 @@ interface SLATicket {
   responseDeadline: string;
   resolutionDeadline: string;
   status: 'Open' | 'In Progress' | 'Pending' | 'Resolved';
-  responseStatus: 'Met' | 'At Risk' | 'Breached';
-  resolutionStatus: 'On Track' | 'At Risk' | 'Breached';
+  responseStatus: 'Met' | 'At Risk' | 'Breached' | 'On Track';
+  resolutionStatus: 'On Track' | 'At Risk' | 'Breached' | 'Met';
 }
 
 export default function SLADashboardPage() {

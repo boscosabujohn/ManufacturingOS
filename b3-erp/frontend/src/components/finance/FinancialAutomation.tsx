@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Zap, Bot, Settings, Play, Pause, Clock, CheckCircle, XCircle, AlertCircle, TrendingUp, Calendar, Filter, Plus, X, Eye, Code, Terminal, Database, GitBranch, RefreshCw, Shield, Bell, Activity, FileText, DollarSign, ArrowRight, Target, Cpu } from 'lucide-react';
+import { Zap, Bot, Settings, Play, Pause, Clock, CheckCircle, XCircle, AlertCircle, TrendingUp, Calendar, Filter, Plus, X, Eye, Code, Terminal, Database, GitBranch, RefreshCw, Shield, Bell, Activity, FileText, DollarSign, ArrowRight, Target, Cpu, ChevronDown } from 'lucide-react';
 import { LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, AreaChart, Area, RadialBarChart, RadialBar, ScatterChart, Scatter, Treemap } from 'recharts';
 
 interface AutomationRule {

@@ -239,7 +239,7 @@ export default function LeaveSummaryPage() {
         <ul className="text-sm text-blue-800 space-y-1 ml-7">
           <li>✓ Comprehensive leave allocation vs utilization analysis across all leave types</li>
           <li>✓ Monthly trends showing leave consumption patterns and seasonal variations</li>
-          <li>✓ Utilization rate color-coding: Red (>80%), Orange (60-80%), Yellow (40-60%), Green (&lt;40%)</li>
+          <li>✓ Utilization rate color-coding: Red ({'>'}80%), Orange (60-80%), Yellow (40-60%), Green (&lt;40%)</li>
           <li>✓ Average days per employee metric for workforce planning</li>
           <li>✓ High/low utilization alerts for proactive leave balance management</li>
         </ul>

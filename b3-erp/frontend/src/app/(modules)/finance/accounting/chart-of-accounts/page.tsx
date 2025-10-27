@@ -257,13 +257,13 @@ export default function ChartOfAccountsPage() {
               <button
                 onClick={() => router.push(`/finance/accounting/ledger-report?account=${account.code}`)}
                 className="p-1.5 text-blue-600 hover:bg-blue-50 rounded transition-colors"
-                title="View Ledger"
+               
               >
                 <Eye className="h-4 w-4" />
               </button>
               <button
                 className="p-1.5 text-green-600 hover:bg-green-50 rounded transition-colors"
-                title="Edit Account"
+               
               >
                 <Edit className="h-4 w-4" />
               </button>
@@ -271,13 +271,13 @@ export default function ChartOfAccountsPage() {
                 <>
                   <button
                     className="p-1.5 text-purple-600 hover:bg-purple-50 rounded transition-colors"
-                    title="Toggle Active"
+                   
                   >
                     {account.isActive ? <PowerOff className="h-4 w-4" /> : <Power className="h-4 w-4" />}
                   </button>
                   <button
                     className="p-1.5 text-red-600 hover:bg-red-50 rounded transition-colors"
-                    title="Delete Account"
+                   
                   >
                     <Trash2 className="h-4 w-4" />
                   </button>

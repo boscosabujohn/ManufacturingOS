@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { 
+import {
   Box,
   Upload,
   Download,
@@ -12,7 +12,6 @@ import {
   Settings,
   FileText,
   Layers,
-  Cube,
   Link,
   Zap,
   Clock,
@@ -305,7 +304,7 @@ export default function CPQIntegrationCADPage() {
                   <button
                     className="p-2 hover:bg-gray-100 rounded-lg"
                     aria-label="Settings"
-                    title="Settings"
+                   
                   >
                     <Settings className="w-5 h-5 text-gray-600" />
                   </button>
@@ -395,13 +394,13 @@ export default function CPQIntegrationCADPage() {
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm">
                   <div className="flex items-center space-x-2">
-                    <button className="p-1 hover:bg-gray-100 rounded" title="Download">
+                    <button className="p-1 hover:bg-gray-100 rounded">
                       <Download className="w-4 h-4 text-gray-600" />
                     </button>
-                    <button className="p-1 hover:bg-gray-100 rounded" title="View 3D">
-                      <Cube className="w-4 h-4 text-gray-600" />
+                    <button className="p-1 hover:bg-gray-100 rounded">
+                      <Box className="w-4 h-4 text-gray-600" />
                     </button>
-                    <button className="p-1 hover:bg-gray-100 rounded" title="Open in CAD">
+                    <button className="p-1 hover:bg-gray-100 rounded">
                       <ExternalLink className="w-4 h-4 text-gray-600" />
                     </button>
                   </div>
@@ -464,7 +463,7 @@ export default function CPQIntegrationCADPage() {
         <div className="p-6">
           <div className="bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg h-96 flex items-center justify-center border-2 border-dashed border-gray-300">
             <div className="text-center">
-              <Cube className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+              <Box className="w-16 h-16 text-gray-400 mx-auto mb-4" />
               <p className="text-gray-600 font-medium">3D Viewer</p>
               <p className="text-sm text-gray-500 mt-1">Select a design file to preview 3D model</p>
             </div>

@@ -14,7 +14,7 @@ import {
   Eye, 
   Edit, 
   MessageSquare,
-  Priority,
+  Flag,
   Tag,
   Building,
   Wrench,
@@ -974,25 +974,25 @@ const ResolvedServiceRequestsPage = () => {
                       <button
                         onClick={() => setSelectedRequest(request)}
                         className="text-blue-600 hover:text-blue-800"
-                        title="View Details"
+                       
                       >
                         <Eye className="h-4 w-4" />
                       </button>
                       <button
                         className="text-green-600 hover:text-green-800"
-                        title="Download Report"
+                       
                       >
                         <Download className="h-4 w-4" />
                       </button>
                       <button
                         className="text-purple-600 hover:text-purple-800"
-                        title="Follow-up"
+                       
                       >
                         <RefreshCw className="h-4 w-4" />
                       </button>
                       <button
                         className="text-gray-600 hover:text-gray-800"
-                        title="External Link"
+                       
                       >
                         <ExternalLink className="h-4 w-4" />
                       </button>

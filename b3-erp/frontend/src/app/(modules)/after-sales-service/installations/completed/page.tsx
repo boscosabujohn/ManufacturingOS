@@ -716,19 +716,19 @@ const CompletedInstallationsPage = () => {
                         <button
                           onClick={() => setSelectedInstallation(installation)}
                           className="p-2 text-blue-600 hover:text-blue-800 hover:bg-blue-50 rounded-md"
-                          title="View Details"
+                         
                         >
                           <Eye className="h-4 w-4" />
                         </button>
                         <button
                           className="p-2 text-green-600 hover:text-green-800 hover:bg-green-50 rounded-md"
-                          title="Download Report"
+                         
                         >
                           <Download className="h-4 w-4" />
                         </button>
                         <button
                           className="p-2 text-purple-600 hover:text-purple-800 hover:bg-purple-50 rounded-md"
-                          title="View Documents"
+                         
                         >
                           <FileText className="h-4 w-4" />
                         </button>
@@ -784,7 +784,7 @@ const CompletedInstallationsPage = () => {
                   </button>
                   <button
                     className="p-2 border border-gray-300 rounded-md hover:bg-gray-50"
-                    title="Download Report"
+                   
                   >
                     <Download className="h-4 w-4" />
                   </button>

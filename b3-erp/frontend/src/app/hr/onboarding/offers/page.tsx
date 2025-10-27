@@ -172,14 +172,14 @@ export default function Page() {
     { key: 'actions', label: 'Actions', sortable: false,
       render: (_: any, row: OfferLetter) => (
         <div className="flex gap-2">
-          <button className="p-1 hover:bg-gray-100 rounded" title="View">
+          <button className="p-1 hover:bg-gray-100 rounded">
             <Eye className="h-4 w-4 text-gray-600" />
           </button>
-          <button className="p-1 hover:bg-gray-100 rounded" title="Download">
+          <button className="p-1 hover:bg-gray-100 rounded">
             <Download className="h-4 w-4 text-gray-600" />
           </button>
           {row.status === 'draft' && (
-            <button className="p-1 hover:bg-gray-100 rounded" title="Send">
+            <button className="p-1 hover:bg-gray-100 rounded">
               <Send className="h-4 w-4 text-blue-600" />
             </button>
           )}

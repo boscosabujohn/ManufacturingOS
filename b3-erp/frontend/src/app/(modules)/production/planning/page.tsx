@@ -1042,13 +1042,13 @@ const ProductionPlanningPage = () => {
                             <div className="flex items-center justify-center gap-2">
                               <button
                                 className="p-1 text-blue-600 hover:bg-blue-50 rounded"
-                                title="View Details"
+                               
                               >
                                 <Eye className="h-4 w-4" />
                               </button>
                               <button
                                 className="p-1 text-green-600 hover:bg-green-50 rounded"
-                                title="Edit Plan"
+                               
                               >
                                 <Edit className="h-4 w-4" />
                               </button>

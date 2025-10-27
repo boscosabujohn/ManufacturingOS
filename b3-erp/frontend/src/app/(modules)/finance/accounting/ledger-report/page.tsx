@@ -5,7 +5,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import {
   Calendar, Download, Printer, Search, Filter, FileText, BarChart3,
   ArrowUpCircle, ArrowDownCircle, Eye, TrendingUp, DollarSign,
-  ChevronLeft, ChevronRight, RefreshCw, Info, Hash, BookOpen
+  ChevronLeft, ChevronRight, RefreshCw, Info, Hash, BookOpen, CheckCircle
 } from 'lucide-react';
 
 // TypeScript Interfaces
@@ -596,7 +596,7 @@ export default function LedgerReportPage() {
                     <button
                       onClick={() => router.push(`/finance/accounting/view/${transaction.entryNumber}`)}
                       className="p-1.5 text-blue-600 hover:bg-blue-50 rounded transition-colors"
-                      title="View Entry"
+                     
                     >
                       <Eye className="h-4 w-4" />
                     </button>

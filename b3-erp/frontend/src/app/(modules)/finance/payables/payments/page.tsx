@@ -472,21 +472,21 @@ export default function PaymentsPage() {
                     </td>
                     <td className="px-6 py-4">
                       <div className="flex items-center justify-center gap-2">
-                        <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors" title="View">
+                        <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors">
                           <Eye className="w-4 h-4 text-blue-400" />
                         </button>
                         {(payment.status === 'Draft' || payment.status === 'Failed') && (
-                          <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors" title="Edit">
+                          <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors">
                             <Edit className="w-4 h-4 text-green-400" />
                           </button>
                         )}
                         {payment.status === 'Processed' && (
-                          <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors" title="Print Receipt">
+                          <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors">
                             <Printer className="w-4 h-4 text-purple-400" />
                           </button>
                         )}
                         {payment.status === 'Pending Approval' && (
-                          <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors" title="Approve">
+                          <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors">
                             <CheckCircle className="w-4 h-4 text-green-400" />
                           </button>
                         )}

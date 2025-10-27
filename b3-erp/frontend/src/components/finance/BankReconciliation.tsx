@@ -6,12 +6,12 @@ import {
   PieChart, Pie, Cell, AreaChart, Area
 } from 'recharts';
 import {
-  BuildingLibraryIcon, DocumentTextIcon, CheckCircleIcon, XCircleIcon,
-  ArrowsRightLeftIcon, MagnifyingGlassIcon, DocumentArrowDownIcon,
-  DocumentArrowUpIcon, CalendarIcon, CurrencyDollarIcon, ClockIcon,
-  ExclamationTriangleIcon, ArrowPathIcon, PlusIcon, PencilIcon,
-  EyeIcon, AdjustmentsHorizontalIcon, ChartBarIcon, InformationCircleIcon
-} from '@heroicons/react/24/outline';
+  Landmark, FileText, CheckCircleIcon, XCircleIcon,
+  ArrowRightLeft, Search, FileDown,
+  FileUp, CalendarIcon, DollarSign, ClockIcon,
+  AlertTriangle, RefreshCw, PlusIcon, PencilIcon,
+  EyeIcon, SlidersHorizontal, BarChart3, Info
+} from 'lucide-react';
 
 interface BankAccount {
   id: string;
@@ -497,11 +497,11 @@ const BankReconciliation: React.FC = () => {
     const statusConfig = {
       matched: { bg: 'bg-green-100', text: 'text-green-800', icon: CheckCircleIcon },
       unmatched: { bg: 'bg-red-100', text: 'text-red-800', icon: XCircleIcon },
-      partial: { bg: 'bg-yellow-100', text: 'text-yellow-800', icon: ExclamationTriangleIcon },
+      partial: { bg: 'bg-yellow-100', text: 'text-yellow-800', icon: AlertTriangle },
       excluded: { bg: 'bg-gray-100', text: 'text-gray-800', icon: XCircleIcon },
-      disputed: { bg: 'bg-orange-100', text: 'text-orange-800', icon: ExclamationTriangleIcon },
+      disputed: { bg: 'bg-orange-100', text: 'text-orange-800', icon: AlertTriangle },
       pending: { bg: 'bg-blue-100', text: 'text-blue-800', icon: ClockIcon },
-      processing: { bg: 'bg-blue-100', text: 'text-blue-800', icon: ArrowPathIcon },
+      processing: { bg: 'bg-blue-100', text: 'text-blue-800', icon: RefreshCw },
       reconciled: { bg: 'bg-green-100', text: 'text-green-800', icon: CheckCircleIcon },
       in_progress: { bg: 'bg-yellow-100', text: 'text-yellow-800', icon: ClockIcon },
       completed: { bg: 'bg-green-100', text: 'text-green-800', icon: CheckCircleIcon },
@@ -541,7 +541,7 @@ const BankReconciliation: React.FC = () => {
         <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <BuildingLibraryIcon className="h-8 w-8 text-blue-600" />
+              <Landmark className="h-8 w-8 text-blue-600" />
             </div>
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600">Bank Accounts</p>
@@ -555,7 +555,7 @@ const BankReconciliation: React.FC = () => {
         <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <CurrencyDollarIcon className="h-8 w-8 text-green-600" />
+              <DollarSign className="h-8 w-8 text-green-600" />
             </div>
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600">Total Balance</p>
@@ -582,7 +582,7 @@ const BankReconciliation: React.FC = () => {
         <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <ExclamationTriangleIcon className="h-8 w-8 text-orange-600" />
+              <AlertTriangle className="h-8 w-8 text-orange-600" />
             </div>
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600">Unmatched Items</p>
@@ -784,7 +784,7 @@ const BankReconciliation: React.FC = () => {
                 onClick={() => setShowUploadModal(true)}
                 className="px-3 py-2 border border-gray-300 rounded text-sm hover:bg-gray-50 flex items-center"
               >
-                <DocumentArrowUpIcon className="w-4 h-4" />
+                <FileUp className="w-4 h-4" />
               </button>
             </div>
           </div>
@@ -1004,7 +1004,7 @@ const BankReconciliation: React.FC = () => {
           onClick={() => setShowUploadModal(true)}
           className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 flex items-center"
         >
-          <DocumentArrowUpIcon className="w-5 h-5 mr-2" />
+          <FileUp className="w-5 h-5 mr-2" />
           Upload Statement
         </button>
       </div>
@@ -1085,7 +1085,7 @@ const BankReconciliation: React.FC = () => {
                         <EyeIcon className="w-4 h-4" />
                       </button>
                       <button className="text-gray-600 hover:text-blue-600">
-                        <DocumentArrowDownIcon className="w-4 h-4" />
+                        <FileDown className="w-4 h-4" />
                       </button>
                     </div>
                   </td>
@@ -1124,7 +1124,7 @@ const BankReconciliation: React.FC = () => {
                   <PencilIcon className="w-4 h-4" />
                 </button>
                 <button className={`${rule.isActive ? 'text-green-600' : 'text-gray-400'}`}>
-                  <AdjustmentsHorizontalIcon className="w-4 h-4" />
+                  <SlidersHorizontal className="w-4 h-4" />
                 </button>
               </div>
             </div>
@@ -1247,7 +1247,7 @@ const BankReconciliation: React.FC = () => {
                           <EyeIcon className="w-4 h-4" />
                         </button>
                         <button className="text-gray-600 hover:text-blue-600">
-                          <DocumentArrowDownIcon className="w-4 h-4" />
+                          <FileDown className="w-4 h-4" />
                         </button>
                       </div>
                     </td>
@@ -1272,11 +1272,11 @@ const BankReconciliation: React.FC = () => {
       <div className="border-b border-gray-200 mb-6">
         <nav className="-mb-px flex space-x-8">
           {[
-            { key: 'dashboard', label: 'Dashboard', icon: ChartBarIcon },
-            { key: 'accounts', label: 'Accounts', icon: BuildingLibraryIcon },
-            { key: 'reconcile', label: 'Reconcile', icon: ArrowsRightLeftIcon },
-            { key: 'statements', label: 'Statements', icon: DocumentTextIcon },
-            { key: 'rules', label: 'Matching Rules', icon: AdjustmentsHorizontalIcon },
+            { key: 'dashboard', label: 'Dashboard', icon: BarChart3 },
+            { key: 'accounts', label: 'Accounts', icon: Landmark },
+            { key: 'reconcile', label: 'Reconcile', icon: ArrowRightLeft },
+            { key: 'statements', label: 'Statements', icon: FileText },
+            { key: 'rules', label: 'Matching Rules', icon: SlidersHorizontal },
             { key: 'history', label: 'History', icon: ClockIcon }
           ].map(({ key, label, icon: Icon }) => (
             <button

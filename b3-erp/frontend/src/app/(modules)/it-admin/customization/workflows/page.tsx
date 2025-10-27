@@ -517,14 +517,14 @@ export default function WorkflowsPage() {
                     </button>
                     <button
                       className="p-2 hover:bg-blue-50 rounded-lg text-blue-600"
-                      title="Edit workflow"
+                     
                     >
                       <Edit className="w-5 h-5" />
                     </button>
                     <button
                       onClick={() => handleDelete(workflow.id)}
                       className="p-2 hover:bg-red-50 rounded-lg text-red-600"
-                      title="Delete workflow"
+                     
                     >
                       <Trash2 className="w-5 h-5" />
                     </button>

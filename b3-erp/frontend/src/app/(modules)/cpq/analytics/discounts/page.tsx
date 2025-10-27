@@ -501,7 +501,7 @@ export default function CPQAnalyticsDiscountsPage() {
               </div>
               <div>
                 <p className="text-sm font-semibold text-gray-900 mb-1">Diminishing Returns</p>
-                <p className="text-xs text-gray-600">Discounts >15% show 38% win rate. Not effective for conversion improvement.</p>
+                <p className="text-xs text-gray-600">Discounts {'>'}15% show 38% win rate. Not effective for conversion improvement.</p>
               </div>
             </div>
           </div>

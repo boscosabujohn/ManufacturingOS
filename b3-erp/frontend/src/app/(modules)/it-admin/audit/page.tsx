@@ -393,7 +393,7 @@ export default function AuditPage() {
                     <button
                       onClick={() => handleViewDetails(log.id)}
                       className="text-blue-600 hover:text-blue-900 p-1 rounded hover:bg-blue-50"
-                      title="View Details"
+                     
                     >
                       <Eye className="w-4 h-4" />
                     </button>

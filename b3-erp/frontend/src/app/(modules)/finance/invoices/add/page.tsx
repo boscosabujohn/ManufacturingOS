@@ -649,14 +649,14 @@ export default function AddInvoicePage() {
                           <button
                             onClick={() => duplicateLineItem(index)}
                             className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-                            title="Duplicate"
+                           
                           >
                             <Copy className="h-5 w-5" />
                           </button>
                           <button
                             onClick={() => removeLineItem(index)}
                             className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
-                            title="Remove"
+                           
                             disabled={formData.lineItems.length === 1}
                           >
                             <Trash2 className="h-5 w-5" />

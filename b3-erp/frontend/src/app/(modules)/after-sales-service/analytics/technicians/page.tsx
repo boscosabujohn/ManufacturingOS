@@ -203,9 +203,11 @@ export default function TechniciansAnalyticsPage() {
     if (sortBy === 'rating') {
       filtered.sort((a, b) => b.rating - a.rating);
     } else if (sortBy === 'ftfRate') {
-      const ftfRateA = (a.ftfCount / a.totalServices) * 100;
-      const ftfRateB = (b.ftfCount / b.totalServices) * 100;
-      filtered.sort((a, b) => ftfRateB - ftfRateA);
+      filtered.sort((a, b) => {
+        const ftfRateA = (a.ftfCount / a.totalServices) * 100;
+        const ftfRateB = (b.ftfCount / b.totalServices) * 100;
+        return ftfRateB - ftfRateA;
+      });
     } else if (sortBy === 'services') {
       filtered.sort((a, b) => b.totalServices - a.totalServices);
     } else {

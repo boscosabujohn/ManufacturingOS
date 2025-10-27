@@ -478,7 +478,7 @@ export default function OpportunitiesPipelinePage() {
 
               return (
                 <Droppable key={stage.id} droppableId={stage.id}>
-                  {(provided, snapshot) => (
+                  {(provided: any, snapshot: any) => (
                     <div
                       ref={provided.innerRef}
                       {...provided.droppableProps}
@@ -506,7 +506,7 @@ export default function OpportunitiesPipelinePage() {
                       <div className="space-y-3 min-h-[200px]">
                         {stage.opportunities.map((opportunity, index) => (
                           <Draggable key={opportunity.id} draggableId={opportunity.id} index={index}>
-                            {(provided, snapshot) => (
+                            {(provided: any, snapshot: any) => (
                               <div
                                 ref={provided.innerRef}
                                 {...provided.draggableProps}

@@ -529,7 +529,7 @@ export default function WarrantiesPage() {
                         <button
                           onClick={() => router.push(`/after-sales-service/warranties/view/${warranty.id}`)}
                           className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-                          title="View"
+                         
                         >
                           <Eye className="h-4 w-4" />
                         </button>
@@ -537,7 +537,7 @@ export default function WarrantiesPage() {
                           <button
                             onClick={() => router.push(`/after-sales-service/warranties/claims/add?warrantyId=${warranty.id}`)}
                             className="p-2 text-orange-600 hover:bg-orange-50 rounded-lg transition-colors"
-                            title="Create Claim"
+                           
                           >
                             <FileText className="h-4 w-4" />
                           </button>
@@ -545,7 +545,7 @@ export default function WarrantiesPage() {
                         <button
                           onClick={() => router.push(`/after-sales-service/warranties/edit/${warranty.id}`)}
                           className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
-                          title="Edit"
+                         
                         >
                           <Edit className="h-4 w-4" />
                         </button>

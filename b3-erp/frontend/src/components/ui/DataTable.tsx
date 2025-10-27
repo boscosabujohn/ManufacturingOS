@@ -4,9 +4,11 @@ import { EmptyState } from './EmptyState';
 import { TableSkeleton } from './LoadingState';
 
 export interface Column<T = any> {
-  id: string;
-  header: string;
-  accessor: keyof T | ((row: T) => any);
+  id?: string;
+  key?: string; // Alternative to id for backward compatibility
+  header?: string | (() => React.ReactNode);
+  label?: string; // Alternative to header for backward compatibility
+  accessor?: keyof T | ((row: T) => any);
   sortable?: boolean;
   width?: string;
   align?: 'left' | 'center' | 'right';
@@ -134,9 +136,10 @@ export function DataTable<T extends Record<string, any>>({
   };
 
   const getCellValue = (row: T, column: Column<T>) => {
-    return typeof column.accessor === 'function'
-      ? column.accessor(row)
-      : row[column.accessor];
+    const accessor = column.accessor || (column.id as keyof T) || (column.key as keyof T);
+    return typeof accessor === 'function'
+      ? accessor(row)
+      : accessor ? row[accessor] : undefined;
   };
 
   const getRowClassName = (row: T, index: number): string => {
@@ -186,34 +189,40 @@ export function DataTable<T extends Record<string, any>>({
                 </th>
               )}
 
-              {columns.map((column) => (
-                <th
-                  key={column.id}
-                  className={`px-4 py-3 text-${column.align || 'left'} text-xs font-medium text-gray-700 uppercase tracking-wider ${column.width || ''}`}
-                >
-                  {column.sortable && sorting?.enabled ? (
-                    <button
-                      onClick={() => handleSort(column.id)}
-                      className="inline-flex items-center gap-1 hover:text-gray-900 transition-colors group"
-                    >
-                      {column.header}
-                      <span className="text-gray-400 group-hover:text-gray-600">
-                        {sortConfig?.column === column.id ? (
-                          sortConfig.direction === 'asc' ? (
-                            <ChevronUp className="w-4 h-4" />
+              {columns.map((column) => {
+                const headerContent = typeof column.header === 'function'
+                  ? column.header()
+                  : (column.header || column.label);
+
+                return (
+                  <th
+                    key={column.id || column.key || column.label || (typeof column.header === 'string' ? column.header : '')}
+                    className={`px-4 py-3 text-${column.align || 'left'} text-xs font-medium text-gray-700 uppercase tracking-wider ${column.width || ''}`}
+                  >
+                    {column.sortable && sorting?.enabled ? (
+                      <button
+                        onClick={() => handleSort(column.id || column.key || '')}
+                        className="inline-flex items-center gap-1 hover:text-gray-900 transition-colors group"
+                      >
+                        {headerContent}
+                        <span className="text-gray-400 group-hover:text-gray-600">
+                          {sortConfig?.column === (column.id || column.key) ? (
+                            sortConfig.direction === 'asc' ? (
+                              <ChevronUp className="w-4 h-4" />
+                            ) : (
+                              <ChevronDown className="w-4 h-4" />
+                            )
                           ) : (
-                            <ChevronDown className="w-4 h-4" />
-                          )
-                        ) : (
-                          <ChevronsUpDown className="w-4 h-4" />
-                        )}
-                      </span>
-                    </button>
-                  ) : (
-                    column.header
-                  )}
-                </th>
-              ))}
+                            <ChevronsUpDown className="w-4 h-4" />
+                          )}
+                        </span>
+                      </button>
+                    ) : (
+                      headerContent
+                    )}
+                  </th>
+                );
+              })}
             </tr>
           </thead>
 
@@ -240,10 +249,11 @@ export function DataTable<T extends Record<string, any>>({
 
                 {columns.map((column) => {
                   const value = getCellValue(row, column);
+                  const headerKey = typeof column.header === 'string' ? column.header : '';
 
                   return (
                     <td
-                      key={column.id}
+                      key={column.id || column.key || column.label || headerKey}
                       className={`px-4 py-3 text-sm text-gray-900 text-${column.align || 'left'}`}
                     >
                       {column.render ? column.render(value, row, rowIndex) : value}

@@ -397,14 +397,14 @@ const ProductionSchedulingPage = () => {
                       <button
                         onClick={() => handleView(schedule.id)}
                         className="text-blue-600 hover:text-blue-900"
-                        title="View"
+                       
                       >
                         <Eye className="w-5 h-5" />
                       </button>
                       <button
                         onClick={() => handleEdit(schedule.id)}
                         className="text-yellow-600 hover:text-yellow-900"
-                        title="Edit"
+                       
                       >
                         <Edit2 className="w-5 h-5" />
                       </button>
@@ -412,7 +412,7 @@ const ProductionSchedulingPage = () => {
                         <button
                           onClick={() => handleStart(schedule.id)}
                           className="text-green-600 hover:text-green-900"
-                          title="Start"
+                         
                         >
                           <Play className="w-5 h-5" />
                         </button>

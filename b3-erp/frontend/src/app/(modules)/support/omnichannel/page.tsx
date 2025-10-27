@@ -281,7 +281,7 @@ function OmnichannelSupportPageContent() {
       {/* Page Header */}
       <div className="bg-white border-b border-gray-200 px-6 py-4">
         <PageToolbar
-          title="Omnichannel Support"
+         
           subtitle="Unified inbox across all communication channels"
           breadcrumbs={[
             { label: 'Support', href: '/support' },

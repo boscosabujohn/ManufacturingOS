@@ -423,7 +423,7 @@ export default function LeadScoringPage() {
                       router.push(`/crm/leads/view/${lead.id}`);
                     }}
                     className="p-2 text-blue-600 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors"
-                    title="View Details"
+                   
                   >
                     <Eye className="h-5 w-5" />
                   </button>
@@ -433,7 +433,7 @@ export default function LeadScoringPage() {
                       router.push(`/crm/leads/edit/${lead.id}`);
                     }}
                     className="p-2 text-green-600 bg-green-50 hover:bg-green-100 rounded-lg transition-colors"
-                    title="Edit Lead"
+                   
                   >
                     <Edit className="h-5 w-5" />
                   </button>

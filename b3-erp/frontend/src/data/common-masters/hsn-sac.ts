@@ -15,11 +15,14 @@ export interface HSNSAC {
   // Applicability
   applicableFor: 'goods' | 'services';
   itemGroup?: string;
+  isExempted?: boolean;
+  isNilRated?: boolean;
+  isReverseCharge?: boolean;
 
   // Usage
   itemsCount: number;
   transactionsCount: number;
-  totalTaxable Amount: number;
+  totalTaxableAmount: number;
   totalTaxCollected: number;
   lastUsedDate: string;
 

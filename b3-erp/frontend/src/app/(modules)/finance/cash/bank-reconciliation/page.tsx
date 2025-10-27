@@ -28,7 +28,7 @@ interface BankTransaction {
   credit: number;
   balance: number;
   matched: boolean;
-  erp TransactionId?: string;
+  erpTransactionId?: string;
 }
 
 interface ERPTransaction {
@@ -423,16 +423,16 @@ export default function BankReconciliationPage() {
                         <div className="flex items-center justify-center gap-2">
                           {!txn.matched && (
                             <>
-                              <button className="p-2 hover:bg-green-600/20 rounded-lg transition-colors" title="Match">
+                              <button className="p-2 hover:bg-green-600/20 rounded-lg transition-colors">
                                 <Check className="w-4 h-4 text-green-400" />
                               </button>
-                              <button className="p-2 hover:bg-blue-600/20 rounded-lg transition-colors" title="Create Entry">
+                              <button className="p-2 hover:bg-blue-600/20 rounded-lg transition-colors">
                                 <Plus className="w-4 h-4 text-blue-400" />
                               </button>
                             </>
                           )}
                           {txn.matched && (
-                            <button className="p-2 hover:bg-red-600/20 rounded-lg transition-colors" title="Unmatch">
+                            <button className="p-2 hover:bg-red-600/20 rounded-lg transition-colors">
                               <X className="w-4 h-4 text-red-400" />
                             </button>
                           )}
@@ -496,12 +496,12 @@ export default function BankReconciliationPage() {
                       <td className="px-6 py-4">
                         <div className="flex items-center justify-center gap-2">
                           {!txn.matched && (
-                            <button className="p-2 hover:bg-green-600/20 rounded-lg transition-colors" title="Match">
+                            <button className="p-2 hover:bg-green-600/20 rounded-lg transition-colors">
                               <Check className="w-4 h-4 text-green-400" />
                             </button>
                           )}
                           {txn.matched && (
-                            <button className="p-2 hover:bg-red-600/20 rounded-lg transition-colors" title="Unmatch">
+                            <button className="p-2 hover:bg-red-600/20 rounded-lg transition-colors">
                               <X className="w-4 h-4 text-red-400" />
                             </button>
                           )}
@@ -556,7 +556,7 @@ export default function BankReconciliationPage() {
                         </td>
                         <td className="px-6 py-4">
                           <div className="flex items-center justify-center gap-2">
-                            <button className="p-2 hover:bg-red-600/20 rounded-lg transition-colors" title="Unmatch">
+                            <button className="p-2 hover:bg-red-600/20 rounded-lg transition-colors">
                               <X className="w-4 h-4 text-red-400" />
                             </button>
                           </div>

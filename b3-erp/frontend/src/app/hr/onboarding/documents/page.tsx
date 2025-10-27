@@ -192,13 +192,13 @@ export default function OnboardingDocumentsPage() {
           <button
             onClick={() => setSelectedCandidate(row)}
             className="p-2 text-blue-600 hover:bg-blue-50 rounded transition-colors"
-            title="View Details"
+           
           >
             <Eye className="w-4 h-4" />
           </button>
           <button
             className="p-2 text-green-600 hover:bg-green-50 rounded transition-colors"
-            title="Upload Documents"
+           
           >
             <Upload className="w-4 h-4" />
           </button>

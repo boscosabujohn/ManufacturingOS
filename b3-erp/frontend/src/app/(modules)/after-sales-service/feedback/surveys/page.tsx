@@ -415,21 +415,21 @@ export default function SurveysPage() {
                 <button
                   className="p-2 hover:bg-gray-100 rounded-lg transition-colors text-blue-600 hover:text-blue-700"
                   aria-label="View"
-                  title="View"
+                 
                 >
                   <Eye className="h-5 w-5" />
                 </button>
                 <button
                   className="p-2 hover:bg-gray-100 rounded-lg transition-colors text-emerald-600 hover:text-emerald-700"
                   aria-label="View Analytics"
-                  title="View Analytics"
+                 
                 >
                   <BarChart3 className="h-5 w-5" />
                 </button>
                 <button
                   className="p-2 hover:bg-gray-100 rounded-lg transition-colors text-orange-600 hover:text-orange-700"
                   aria-label="Download"
-                  title="Download"
+                 
                 >
                   <Download className="h-5 w-5" />
                 </button>

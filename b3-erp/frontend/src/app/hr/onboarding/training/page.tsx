@@ -305,7 +305,7 @@ export default function TrainingSchedulePage() {
         <div className="flex gap-2">
           <button
             className="p-2 text-blue-600 hover:bg-blue-50 rounded transition-colors"
-            title="View Schedule"
+           
           >
             <Eye className="w-4 h-4" />
           </button>

@@ -51,7 +51,20 @@
       "Bash(else echo \"MISSING: $route\")",
       "Bash(do if [ -d \"(modules)/$route\" ])",
       "Bash([ -f \"(modules)/$route/page.tsx\" ])",
-      "Bash([ -d \"$route\" ])"
+      "Bash([ -d \"$route\" ])",
+      "Bash(1)",
+      "Bash(do grep -n \"Tool\" \"$file\")",
+      "Bash(do echo \"FILE: $file\")",
+      "Bash(do sed -i 's/\\bPriority\\b/Flag/g' \"$file\")",
+      "Bash(do sed -i \"s/@heroicons\\/react\\/24\\/outline/lucide-react/g\" \"$file\")",
+      "Bash(cut:*)",
+      "Bash(do sed -i \"s/{ key: ''/{ id: ''/g; s/, label:/, accessor: ''\\1'', label:/g\" \"$file\")",
+      "Bash(do sed -i \"s/{ key: ''\\([^'']*\\)'', label:/{ id: ''\\1'', accessor: ''\\1'', label:/g\" \"$file\")",
+      "Bash(do sed -i \"s/import StatusBadge from/import StatusBadge, { BadgeStatus } from/g\" \"$file\")",
+      "Bash(do)",
+      "Bash(grep:*)",
+      "Bash(do sed -i 's/aValue < bValue/aValue !== undefined \\&\\& bValue !== undefined \\&\\& aValue < bValue/g; s/aValue > bValue/aValue !== undefined \\&\\& bValue !== undefined \\&\\& aValue > bValue/g' \"$file\")",
+      "Bash(do sed -i 's/getTrendIcon(metric\\.trend,/getTrendIcon(metric.trend as \"\"up\"\" | \"\"down\"\" | \"\"stable\"\",/g' $file/page.tsx)"
     ],
     "deny": [],
     "ask": []

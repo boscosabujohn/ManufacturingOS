@@ -147,7 +147,7 @@ export default function LeaveAnalyticsPage() {
           <div className="space-y-3">
             <div>
               <div className="flex items-center justify-between text-sm mb-1">
-                <span className="text-gray-700">High Utilizers (>25 days)</span>
+                <span className="text-gray-700">High Utilizers ({'>'}25 days)</span>
                 <span className="font-semibold text-red-600">15%</span>
               </div>
               <div className="w-full bg-gray-200 rounded-full h-2">

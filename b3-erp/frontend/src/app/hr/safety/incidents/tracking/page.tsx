@@ -203,7 +203,7 @@ export default function Page() {
     },
     { key: 'actions', label: 'Actions', sortable: false,
       render: (_: any, row: SafetyIncident) => (
-        <button className="p-1 hover:bg-gray-100 rounded" title="View Details">
+        <button className="p-1 hover:bg-gray-100 rounded">
           <Eye className="h-4 w-4 text-gray-600" />
         </button>
       )

@@ -247,7 +247,7 @@ export default function TrialBalancePage() {
             <button
               onClick={() => router.push(`/finance/accounting/ledger-report?account=${account.accountCode}`)}
               className="p-1.5 text-blue-600 hover:bg-blue-50 rounded transition-colors"
-              title="View Ledger"
+             
             >
               <Eye className="h-4 w-4" />
             </button>

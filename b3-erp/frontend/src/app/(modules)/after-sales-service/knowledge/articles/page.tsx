@@ -379,21 +379,21 @@ export default function ArticlesPage() {
                 <button
                   className="p-2 hover:bg-gray-100 rounded-lg transition-colors text-blue-600 hover:text-blue-700"
                   aria-label="View"
-                  title="View"
+                 
                 >
                   <Eye className="h-5 w-5" />
                 </button>
                 <button
                   className="p-2 hover:bg-gray-100 rounded-lg transition-colors text-amber-600 hover:text-amber-700"
                   aria-label="Edit"
-                  title="Edit"
+                 
                 >
                   <Edit className="h-5 w-5" />
                 </button>
                 <button
                   className="p-2 hover:bg-gray-100 rounded-lg transition-colors text-red-600 hover:text-red-700"
                   aria-label="Delete"
-                  title="Delete"
+                 
                 >
                   <Trash2 className="h-5 w-5" />
                 </button>

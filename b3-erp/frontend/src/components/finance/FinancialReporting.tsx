@@ -6,11 +6,11 @@ import {
   XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
 } from 'recharts';
 import {
-  DocumentTextIcon, ChartBarIcon, CalendarIcon, ArrowDownTrayIcon,
-  AdjustmentsHorizontalIcon, EyeIcon, DocumentDuplicateIcon,
+  FileText, BarChart3, CalendarIcon, Download,
+  SlidersHorizontal, EyeIcon, Copy,
   PlusIcon, PencilIcon, TrashIcon, PlayIcon, ClockIcon,
-  ExclamationTriangleIcon, CheckCircleIcon, InformationCircleIcon
-} from '@heroicons/react/24/outline';
+  AlertTriangle, CheckCircleIcon, Info
+} from 'lucide-react';
 
 interface ReportTemplate {
   id: string;
@@ -234,10 +234,10 @@ const FinancialReporting: React.FC = () => {
     const statusConfig = {
       active: { bg: 'bg-green-100', text: 'text-green-800', icon: CheckCircleIcon },
       draft: { bg: 'bg-yellow-100', text: 'text-yellow-800', icon: ClockIcon },
-      archived: { bg: 'bg-gray-100', text: 'text-gray-800', icon: InformationCircleIcon },
+      archived: { bg: 'bg-gray-100', text: 'text-gray-800', icon: Info },
       generating: { bg: 'bg-blue-100', text: 'text-blue-800', icon: ClockIcon },
       completed: { bg: 'bg-green-100', text: 'text-green-800', icon: CheckCircleIcon },
-      failed: { bg: 'bg-red-100', text: 'text-red-800', icon: ExclamationTriangleIcon }
+      failed: { bg: 'bg-red-100', text: 'text-red-800', icon: AlertTriangle }
     };
 
     const config = statusConfig[status as keyof typeof statusConfig];
@@ -276,7 +276,7 @@ const FinancialReporting: React.FC = () => {
         <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <DocumentTextIcon className="h-8 w-8 text-blue-600" />
+              <FileText className="h-8 w-8 text-blue-600" />
             </div>
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600">Total Templates</p>
@@ -288,7 +288,7 @@ const FinancialReporting: React.FC = () => {
         <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <ChartBarIcon className="h-8 w-8 text-green-600" />
+              <BarChart3 className="h-8 w-8 text-green-600" />
             </div>
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600">Reports Generated</p>
@@ -315,7 +315,7 @@ const FinancialReporting: React.FC = () => {
         <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <ArrowDownTrayIcon className="h-8 w-8 text-purple-600" />
+              <Download className="h-8 w-8 text-purple-600" />
             </div>
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600">Downloads</p>
@@ -388,7 +388,7 @@ const FinancialReporting: React.FC = () => {
                   {getStatusBadge(report.status)}
                   {report.status === 'completed' && (
                     <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
-                      <ArrowDownTrayIcon className="w-5 h-5 text-gray-600" />
+                      <Download className="w-5 h-5 text-gray-600" />
                       <span className="text-gray-700">Download</span>
                     </button>
                   )}
@@ -489,7 +489,7 @@ const FinancialReporting: React.FC = () => {
                 <span className="text-gray-700">View</span>
               </button>
               <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded text-sm hover:bg-gray-50">
-                <DocumentDuplicateIcon className="w-4 h-4 text-gray-600" />
+                <Copy className="w-4 h-4 text-gray-600" />
                 <span className="text-gray-700">Copy</span>
               </button>
             </div>
@@ -552,7 +552,7 @@ const FinancialReporting: React.FC = () => {
                   {report.status === 'completed' && (
                     <div className="flex space-x-2">
                       <button className="bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700 flex items-center">
-                        <ArrowDownTrayIcon className="w-4 h-4 mr-1" />
+                        <Download className="w-4 h-4 mr-1" />
                         Download
                       </button>
                       <button className="border border-gray-300 px-3 py-1 rounded text-sm hover:bg-gray-50 flex items-center">
@@ -694,10 +694,10 @@ const FinancialReporting: React.FC = () => {
       <div className="border-b border-gray-200 mb-6">
         <nav className="-mb-px flex space-x-8">
           {[
-            { key: 'dashboard', label: 'Dashboard', icon: ChartBarIcon },
-            { key: 'templates', label: 'Templates', icon: DocumentTextIcon },
+            { key: 'dashboard', label: 'Dashboard', icon: BarChart3 },
+            { key: 'templates', label: 'Templates', icon: FileText },
             { key: 'generate', label: 'Generate', icon: PlayIcon },
-            { key: 'reports', label: 'Reports', icon: DocumentDuplicateIcon },
+            { key: 'reports', label: 'Reports', icon: Copy },
             { key: 'schedule', label: 'Schedule', icon: CalendarIcon }
           ].map(({ key, label, icon: Icon }) => (
             <button

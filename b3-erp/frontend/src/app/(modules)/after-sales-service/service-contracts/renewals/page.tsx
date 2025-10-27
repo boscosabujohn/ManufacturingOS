@@ -639,7 +639,7 @@ export default function ServiceContractRenewalsPage() {
                           router.push(`/after-sales-service/service-contracts/view/${renewal.id}`);
                         }}
                         className="text-blue-600 hover:text-blue-900"
-                        title="View Details"
+                       
                       >
                         <Eye className="w-4 h-4" />
                       </button>
@@ -649,7 +649,7 @@ export default function ServiceContractRenewalsPage() {
                           router.push(`/after-sales-service/service-contracts/edit/${renewal.id}`);
                         }}
                         className="text-gray-600 hover:text-gray-900"
-                        title="Edit Renewal"
+                       
                       >
                         <Edit className="w-4 h-4" />
                       </button>
@@ -659,7 +659,7 @@ export default function ServiceContractRenewalsPage() {
                           // Handle send proposal
                         }}
                         className="text-green-600 hover:text-green-900"
-                        title="Send Proposal"
+                       
                       >
                         <Send className="w-4 h-4" />
                       </button>
@@ -669,7 +669,7 @@ export default function ServiceContractRenewalsPage() {
                           // Handle contact customer
                         }}
                         className="text-purple-600 hover:text-purple-900"
-                        title="Contact Customer"
+                       
                       >
                         <Phone className="w-4 h-4" />
                       </button>

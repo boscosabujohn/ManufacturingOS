@@ -219,7 +219,7 @@ export default function OverdueInvoicesPage() {
           <div className="bg-gradient-to-br from-orange-500 to-red-600 rounded-xl p-6 text-white shadow-lg">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-orange-100 text-sm font-medium">Critical (>30 days)</p>
+                <p className="text-orange-100 text-sm font-medium">Critical ({'>'}30 days)</p>
                 <p className="text-3xl font-bold mt-2">{criticalOverdue}</p>
                 <p className="text-orange-100 text-xs mt-1">Immediate action needed</p>
               </div>

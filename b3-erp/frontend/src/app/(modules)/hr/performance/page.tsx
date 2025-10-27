@@ -450,7 +450,7 @@ export default function PerformancePage() {
                       <button
                         onClick={() => router.push(`/hr/performance/view/${review.id}`)}
                         className="flex items-center space-x-1 px-3 py-1.5 text-blue-600 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors text-sm font-medium"
-                        title="View Details"
+                       
                       >
                         <Eye className="h-4 w-4" />
                         <span>View</span>
@@ -458,7 +458,7 @@ export default function PerformancePage() {
                       <button
                         onClick={() => router.push(`/hr/performance/edit/${review.id}`)}
                         className="flex items-center space-x-1 px-3 py-1.5 text-green-600 bg-green-50 hover:bg-green-100 rounded-lg transition-colors text-sm font-medium"
-                        title="Edit"
+                       
                       >
                         <Edit className="h-4 w-4" />
                         <span>Edit</span>

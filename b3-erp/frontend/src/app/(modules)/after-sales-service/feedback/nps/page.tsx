@@ -465,7 +465,7 @@ export default function NPSPage() {
               <button
                 className="ml-6 p-2 hover:bg-white/40 rounded-lg transition-colors flex-shrink-0"
                 aria-label="Download"
-                title="Download"
+               
               >
                 <Download className="h-5 w-5 text-gray-600" />
               </button>

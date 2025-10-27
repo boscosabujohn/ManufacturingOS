@@ -233,8 +233,8 @@ export default function IncidentsPage() {
     filteredIncidents = [...filteredIncidents].sort((a, b) => {
       const aValue = a[sortField];
       const bValue = b[sortField];
-      if (aValue < bValue) return sortDirection === 'asc' ? -1 : 1;
-      if (aValue > bValue) return sortDirection === 'asc' ? 1 : -1;
+      if (aValue !== undefined && bValue !== undefined && aValue < bValue) return sortDirection === 'asc' ? -1 : 1;
+      if (aValue !== undefined && bValue !== undefined && aValue > bValue) return sortDirection === 'asc' ? 1 : -1;
       return 0;
     });
   }
@@ -497,21 +497,21 @@ export default function IncidentsPage() {
                       <button
                         onClick={() => router.push(`/support/incidents/view/${incident.id}`)}
                         className="p-1.5 text-blue-600 hover:bg-blue-50 rounded transition-colors"
-                        title="View Details"
+                       
                       >
                         <Eye className="h-4 w-4" />
                       </button>
                       <button
                         onClick={() => router.push(`/support/incidents/edit/${incident.id}`)}
                         className="p-1.5 text-green-600 hover:bg-green-50 rounded transition-colors"
-                        title="Edit Incident"
+                       
                       >
                         <Edit className="h-4 w-4" />
                       </button>
                       <button
                         onClick={() => handleDeleteIncident(incident.id)}
                         className="p-1.5 text-red-600 hover:bg-red-50 rounded transition-colors"
-                        title="Delete Incident"
+                       
                       >
                         <Trash2 className="h-4 w-4" />
                       </button>

@@ -519,13 +519,13 @@ export default function ConvertedQuotationsPage() {
                       <Eye className="w-4 h-4" />
                       View Order
                     </button>
-                    <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors" title="Download PDF">
+                    <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
                       <Download className="w-4 h-4 text-gray-600" />
                     </button>
-                    <button className="p-2 hover:bg-blue-50 rounded-lg transition-colors" title="Send Invoice">
+                    <button className="p-2 hover:bg-blue-50 rounded-lg transition-colors">
                       <Send className="w-4 h-4 text-blue-600" />
                     </button>
-                    <button className="p-2 hover:bg-purple-50 rounded-lg transition-colors" title="Duplicate">
+                    <button className="p-2 hover:bg-purple-50 rounded-lg transition-colors">
                       <Copy className="w-4 h-4 text-purple-600" />
                     </button>
                   </div>

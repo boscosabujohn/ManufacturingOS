@@ -101,7 +101,7 @@ export default function LeaveApprovalsPage() {
       sortable: false,
       render: (value) => isUrgent(value) ? (
         <div className="flex items-center justify-center">
-          <AlertCircle className="w-5 h-5 text-red-500" title="Urgent - Leave starts soon!" />
+          <AlertCircle className="w-5 h-5 text-red-500" />
         </div>
       ) : null
     },
