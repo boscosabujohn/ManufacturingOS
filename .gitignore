@@ -75,3 +75,7 @@ pnpm-lock.yaml
 .Trashes
 ehthumbs.db
 Thumbs.db
+ 
+# Windows reserved device files accidentally created
+NUL
+nul

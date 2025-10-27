@@ -220,6 +220,22 @@ const menuItems: MenuItem[] = [
         ],
       },
       {
+        id: 'enterprise-features',
+        name: '🚀 Enterprise Features',
+        href: '#',
+        description: 'Enterprise-grade CRM',
+        subItems: [
+          { id: 'lead-scoring-ai', name: 'Lead Scoring & Qualification', href: '/crm/enterprise-features#lead-scoring', description: 'AI-powered lead scoring' },
+          { id: 'pipeline-management', name: 'Sales Pipeline Management', href: '/crm/enterprise-features#pipeline', description: 'Visual pipeline with forecasting' },
+          { id: 'account-contact', name: 'Account & Contact Management', href: '/crm/enterprise-features#accounts', description: 'Hierarchical account management' },
+          { id: 'activity-tracking', name: 'Activity Management & Tracking', href: '/crm/enterprise-features#activity', description: 'Email tracking & call logging' },
+          { id: 'sales-automation', name: 'Sales Automation', href: '/crm/enterprise-features#automation', description: 'Automated workflows' },
+          { id: 'collaboration-intel', name: 'Collaboration & Intelligence', href: '/crm/enterprise-features#collaboration', description: 'AI recommendations' },
+          { id: 'customer-360', name: 'Customer 360° View', href: '/crm/enterprise-features#customer360', description: 'Complete customer profile' },
+          { id: 'all-enterprise-features', name: '→ View All Features', href: '/crm/enterprise-features', description: 'Complete enterprise showcase' },
+        ],
+      },
+      {
         id: 'crm-settings',
         name: 'CRM Settings',
         href: '#',

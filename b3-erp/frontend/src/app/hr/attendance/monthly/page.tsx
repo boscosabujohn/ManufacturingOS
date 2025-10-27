@@ -1,100 +1,377 @@
 'use client';
 
-import { Calendar, Download, Filter, Search } from 'lucide-react';
+import { useState, useMemo } from 'react';
+import { Calendar, Users, CheckCircle, XCircle, Clock, Search, Filter, Download, TrendingUp, TrendingDown } from 'lucide-react';
+import DataTable from '@/components/DataTable';
+
+interface MonthlyAttendance {
+  id: string;
+  employeeCode: string;
+  name: string;
+  department: string;
+  designation: string;
+  totalDays: number;
+  workingDays: number;
+  presentDays: number;
+  absentDays: number;
+  lateMarks: number;
+  halfDays: number;
+  paidLeaves: number;
+  unpaidLeaves: number;
+  weekOffs: number;
+  holidays: number;
+  workHours: number;
+  expectedHours: number;
+  attendancePercentage: number;
+  punctualityScore: number;
+}
 
 export default function MonthlyAttendancePage() {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedDepartment, setSelectedDepartment] = useState('all');
+  const [selectedMonth, setSelectedMonth] = useState('2024-11');
+  const [showFilters, setShowFilters] = useState(false);
+
+  const mockMonthlyAttendance: MonthlyAttendance[] = [
+    {
+      id: '1', employeeCode: 'KMF2020001', name: 'Rajesh Kumar', department: 'Production', designation: 'Manager',
+      totalDays: 30, workingDays: 22, presentDays: 21, absentDays: 1, lateMarks: 3, halfDays: 0,
+      paidLeaves: 0, unpaidLeaves: 0, weekOffs: 4, holidays: 4, workHours: 189, expectedHours: 198,
+      attendancePercentage: 95.45, punctualityScore: 86.36
+    },
+    {
+      id: '2', employeeCode: 'KMF2019002', name: 'Meera Nair', department: 'Quality', designation: 'QC Head',
+      totalDays: 30, workingDays: 22, presentDays: 20, absentDays: 0, lateMarks: 5, halfDays: 1,
+      paidLeaves: 2, unpaidLeaves: 0, weekOffs: 4, holidays: 4, workHours: 185.5, expectedHours: 198,
+      attendancePercentage: 100, punctualityScore: 77.27
+    },
+    {
+      id: '3', employeeCode: 'KMF2021003', name: 'Arun Patel', department: 'IT', designation: 'Sr. Engineer',
+      totalDays: 30, workingDays: 22, presentDays: 22, absentDays: 0, lateMarks: 1, halfDays: 0,
+      paidLeaves: 0, unpaidLeaves: 0, weekOffs: 4, holidays: 4, workHours: 198, expectedHours: 198,
+      attendancePercentage: 100, punctualityScore: 95.45
+    },
+    {
+      id: '4', employeeCode: 'KMF2022004', name: 'Kavita Desai', department: 'HR', designation: 'Executive',
+      totalDays: 30, workingDays: 22, presentDays: 19, absentDays: 0, lateMarks: 2, halfDays: 2,
+      paidLeaves: 3, unpaidLeaves: 0, weekOffs: 4, holidays: 4, workHours: 180, expectedHours: 198,
+      attendancePercentage: 100, punctualityScore: 90.91
+    },
+    {
+      id: '5', employeeCode: 'KMF2020005', name: 'Vikram Singh', department: 'Production', designation: 'Supervisor',
+      totalDays: 30, workingDays: 22, presentDays: 22, absentDays: 0, lateMarks: 0, halfDays: 0,
+      paidLeaves: 0, unpaidLeaves: 0, weekOffs: 4, holidays: 4, workHours: 198, expectedHours: 198,
+      attendancePercentage: 100, punctualityScore: 100
+    },
+    {
+      id: '6', employeeCode: 'KMF2018006', name: 'Priya Menon', department: 'Finance', designation: 'Accountant',
+      totalDays: 30, workingDays: 22, presentDays: 18, absentDays: 2, lateMarks: 4, halfDays: 1,
+      paidLeaves: 2, unpaidLeaves: 0, weekOffs: 4, holidays: 4, workHours: 171, expectedHours: 198,
+      attendancePercentage: 90.91, punctualityScore: 81.82
+    },
+    {
+      id: '7', employeeCode: 'KMF2019007', name: 'Suresh Babu', department: 'Logistics', designation: 'Manager',
+      totalDays: 30, workingDays: 22, presentDays: 21, absentDays: 1, lateMarks: 2, halfDays: 0,
+      paidLeaves: 0, unpaidLeaves: 0, weekOffs: 4, holidays: 4, workHours: 189, expectedHours: 198,
+      attendancePercentage: 95.45, punctualityScore: 90.91
+    },
+    {
+      id: '8', employeeCode: 'KMF2021008', name: 'Anjali Reddy', department: 'Marketing', designation: 'Executive',
+      totalDays: 30, workingDays: 22, presentDays: 20, absentDays: 0, lateMarks: 6, halfDays: 0,
+      paidLeaves: 2, unpaidLeaves: 0, weekOffs: 4, holidays: 4, workHours: 180, expectedHours: 198,
+      attendancePercentage: 100, punctualityScore: 72.73
+    },
+  ];
+
+  const departments = ['all', 'Production', 'Quality', 'IT', 'HR', 'Finance', 'Logistics', 'Marketing'];
+
+  const filteredData = useMemo(() => {
+    return mockMonthlyAttendance.filter(att => {
+      const matchesSearch = att.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                          att.employeeCode.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchesDepartment = selectedDepartment === 'all' || att.department === selectedDepartment;
+      return matchesSearch && matchesDepartment;
+    });
+  }, [searchTerm, selectedDepartment]);
+
+  const stats = useMemo(() => {
+    const totalEmployees = mockMonthlyAttendance.length;
+    const avgAttendance = mockMonthlyAttendance.reduce((sum, a) => sum + a.attendancePercentage, 0) / totalEmployees;
+    const avgPunctuality = mockMonthlyAttendance.reduce((sum, a) => sum + a.punctualityScore, 0) / totalEmployees;
+    const perfectAttendance = mockMonthlyAttendance.filter(a => a.attendancePercentage === 100 && a.lateMarks === 0).length;
+    const poorAttendance = mockMonthlyAttendance.filter(a => a.attendancePercentage < 90).length;
+    return { totalEmployees, avgAttendance, avgPunctuality, perfectAttendance, poorAttendance };
+  }, []);
+
+  const getAttendanceBadge = (percentage: number) => {
+    if (percentage >= 95) return 'text-green-600 bg-green-50';
+    if (percentage >= 85) return 'text-yellow-600 bg-yellow-50';
+    return 'text-red-600 bg-red-50';
+  };
+
+  const getPunctualityBadge = (score: number) => {
+    if (score >= 90) return 'text-green-600 bg-green-50';
+    if (score >= 75) return 'text-yellow-600 bg-yellow-50';
+    return 'text-orange-600 bg-orange-50';
+  };
+
+  const columns = [
+    { key: 'employeeCode', label: 'Employee', sortable: true,
+      render: (v: string, row: MonthlyAttendance) => (
+        <div className="flex items-center gap-3">
+          <div className="h-10 w-10 rounded-full bg-indigo-100 flex items-center justify-center">
+            <span className="text-indigo-600 font-semibold text-sm">{row.name.split(' ').map(n => n[0]).join('')}</span>
+          </div>
+          <div>
+            <div className="font-semibold text-gray-900">{row.name}</div>
+            <div className="text-xs text-gray-500">{v}</div>
+          </div>
+        </div>
+      )
+    },
+    { key: 'department', label: 'Department', sortable: true,
+      render: (v: string, row: MonthlyAttendance) => (
+        <div><div className="font-medium text-gray-900">{v}</div><div className="text-xs text-gray-500">{row.designation}</div></div>
+      )
+    },
+    { key: 'presentDays', label: 'Days', sortable: true,
+      render: (v: number, row: MonthlyAttendance) => (
+        <div className="text-sm">
+          <div className="flex items-center gap-3">
+            <div className="text-center">
+              <div className="text-lg font-bold text-green-600">{v}</div>
+              <div className="text-xs text-gray-500">Present</div>
+            </div>
+            <div className="text-center">
+              <div className="text-lg font-bold text-red-600">{row.absentDays}</div>
+              <div className="text-xs text-gray-500">Absent</div>
+            </div>
+            <div className="text-center">
+              <div className="text-lg font-bold text-blue-600">{row.paidLeaves}</div>
+              <div className="text-xs text-gray-500">Leave</div>
+            </div>
+          </div>
+        </div>
+      )
+    },
+    { key: 'lateMarks', label: 'Late/Half Day', sortable: true,
+      render: (v: number, row: MonthlyAttendance) => (
+        <div className="text-sm">
+          <div className="flex items-center gap-2">
+            <Clock className="w-4 h-4 text-orange-500" />
+            <span className="font-medium text-gray-900">{v} late</span>
+          </div>
+          {row.halfDays > 0 && (
+            <div className="text-xs text-gray-500 mt-1">{row.halfDays} half day(s)</div>
+          )}
+        </div>
+      )
+    },
+    { key: 'workHours', label: 'Hours', sortable: true,
+      render: (v: number, row: MonthlyAttendance) => (
+        <div className="text-sm">
+          <div className="font-semibold text-blue-600">{v}h</div>
+          <div className="text-xs text-gray-500">of {row.expectedHours}h</div>
+          <div className="w-full bg-gray-200 rounded-full h-1.5 mt-1">
+            <div className="bg-blue-500 h-1.5 rounded-full" style={{ width: `${(v / row.expectedHours) * 100}%` }}></div>
+          </div>
+        </div>
+      )
+    },
+    { key: 'attendancePercentage', label: 'Attendance %', sortable: true,
+      render: (v: number) => (
+        <div className={`inline-flex items-center gap-1 px-2 py-1 rounded-full font-semibold ${getAttendanceBadge(v)}`}>
+          {v >= 95 ? <TrendingUp className="w-3 h-3" /> : <TrendingDown className="w-3 h-3" />}
+          {v.toFixed(1)}%
+        </div>
+      )
+    },
+    { key: 'punctualityScore', label: 'Punctuality', sortable: true,
+      render: (v: number) => (
+        <div className={`inline-flex items-center gap-1 px-2 py-1 rounded-full font-semibold ${getPunctualityBadge(v)}`}>
+          {v >= 90 ? <CheckCircle className="w-3 h-3" /> : <Clock className="w-3 h-3" />}
+          {v.toFixed(1)}%
+        </div>
+      )
+    }
+  ];
+
   return (
     <div className="p-6">
       <div className="mb-6">
         <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
           <Calendar className="h-8 w-8 text-blue-600" />
-          Monthly Attendance Register
+          Monthly Attendance
         </h1>
-        <p className="text-gray-600 mt-2">Complete monthly attendance records and analysis</p>
+        <p className="text-gray-600 mt-2">
+          Comprehensive monthly attendance summary and analytics
+        </p>
       </div>
 
-      {/* Month Selector */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col md:flex-row gap-4 justify-between items-center">
-          <div className="flex gap-4 items-center">
-            <select className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
-              <option>October 2025</option>
-              <option>September 2025</option>
-              <option>August 2025</option>
-            </select>
-            <select className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
-              <option>All Departments</option>
-              <option>Engineering</option>
-              <option>HR</option>
-            </select>
+      {/* Stats Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-6 mb-6">
+        <div className="bg-white border-2 border-indigo-200 rounded-lg p-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm text-gray-600">Total Employees</p>
+              <p className="text-2xl font-bold text-indigo-600">{stats.totalEmployees}</p>
+            </div>
+            <Users className="h-10 w-10 text-indigo-400" />
           </div>
-          <div className="flex gap-2">
-            <button className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">
-              <Filter className="h-4 w-4" />
-              Filter
-            </button>
+        </div>
+        <div className="bg-white border-2 border-green-200 rounded-lg p-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm text-gray-600">Avg Attendance</p>
+              <p className="text-2xl font-bold text-green-600">{stats.avgAttendance.toFixed(1)}%</p>
+            </div>
+            <CheckCircle className="h-10 w-10 text-green-400" />
+          </div>
+        </div>
+        <div className="bg-white border-2 border-blue-200 rounded-lg p-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm text-gray-600">Avg Punctuality</p>
+              <p className="text-2xl font-bold text-blue-600">{stats.avgPunctuality.toFixed(1)}%</p>
+            </div>
+            <Clock className="h-10 w-10 text-blue-400" />
+          </div>
+        </div>
+        <div className="bg-white border-2 border-purple-200 rounded-lg p-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm text-gray-600">Perfect Attendance</p>
+              <p className="text-2xl font-bold text-purple-600">{stats.perfectAttendance}</p>
+              <p className="text-xs text-gray-500 mt-1">No absents or lates</p>
+            </div>
+            <TrendingUp className="h-10 w-10 text-purple-400" />
+          </div>
+        </div>
+        <div className="bg-white border-2 border-red-200 rounded-lg p-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm text-gray-600">Poor Attendance</p>
+              <p className="text-2xl font-bold text-red-600">{stats.poorAttendance}</p>
+              <p className="text-xs text-gray-500 mt-1">Below 90%</p>
+            </div>
+            <XCircle className="h-10 w-10 text-red-400" />
+          </div>
+        </div>
+      </div>
+
+      {/* Month Selector & Actions */}
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div className="flex items-center gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Select Month</label>
+              <input
+                type="month"
+                value={selectedMonth}
+                onChange={(e) => setSelectedMonth(e.target.value)}
+                className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
+            </div>
+            <div className="pt-7">
+              <span className="text-sm text-gray-600">
+                Showing data for <span className="font-semibold text-gray-900">
+                  {new Date(selectedMonth + '-01').toLocaleDateString('en-IN', { month: 'long', year: 'numeric' })}
+                </span>
+              </span>
+            </div>
+          </div>
+          <div className="flex items-center gap-2 pt-7">
             <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
               <Download className="h-4 w-4" />
-              Export
+              Export Report
             </button>
           </div>
         </div>
       </div>
 
-      {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
-          <p className="text-blue-600 text-sm font-medium">Total Days</p>
-          <p className="text-2xl font-bold text-blue-900 mt-1">31</p>
+      {/* Search & Filter Bar */}
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
+        <div className="flex flex-col md:flex-row gap-4">
+          <div className="flex-1 relative">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+            <input
+              type="text"
+              placeholder="Search by name or employee code..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
+          </div>
+          <button
+            onClick={() => setShowFilters(!showFilters)}
+            className={`flex items-center gap-2 px-4 py-2 border rounded-lg transition-colors ${
+              showFilters ? 'bg-blue-50 border-blue-300 text-blue-700' : 'border-gray-300 text-gray-700 hover:bg-gray-50'
+            }`}
+          >
+            <Filter className="h-4 w-4" />
+            Filters
+          </button>
         </div>
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
-          <p className="text-green-600 text-sm font-medium">Present</p>
-          <p className="text-2xl font-bold text-green-900 mt-1">24</p>
-        </div>
-        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-4 border border-red-200">
-          <p className="text-red-600 text-sm font-medium">Absent</p>
-          <p className="text-2xl font-bold text-red-900 mt-1">2</p>
-        </div>
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
-          <p className="text-yellow-600 text-sm font-medium">Leave</p>
-          <p className="text-2xl font-bold text-yellow-900 mt-1">3</p>
-        </div>
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
-          <p className="text-purple-600 text-sm font-medium">Holidays</p>
-          <p className="text-2xl font-bold text-purple-900 mt-1">2</p>
-        </div>
+
+        {showFilters && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 pt-4 border-t">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Department</label>
+              <select
+                value={selectedDepartment}
+                onChange={(e) => setSelectedDepartment(e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+              >
+                {departments.map(dept => (
+                  <option key={dept} value={dept}>{dept === 'all' ? 'All Departments' : dept}</option>
+                ))}
+              </select>
+            </div>
+          </div>
+        )}
       </div>
 
-      {/* Monthly Register Table */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-        <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead className="bg-gray-50 border-b border-gray-200">
-              <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase sticky left-0 bg-gray-50">Employee</th>
-                {[...Array(31)].map((_, i) => (
-                  <th key={i} className="px-2 py-3 text-center text-xs font-medium text-gray-500">{i + 1}</th>
-                ))}
-                <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase">Total</th>
-              </tr>
-            </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
-              {[1, 2, 3, 4, 5].map((emp) => (
-                <tr key={emp} className="hover:bg-gray-50">
-                  <td className="px-6 py-4 whitespace-nowrap sticky left-0 bg-white">
-                    <div className="text-sm font-medium text-gray-900">John Doe {emp}</div>
-                    <div className="text-sm text-gray-500">EMP{1000 + emp}</div>
-                  </td>
-                  {[...Array(31)].map((_, i) => (
-                    <td key={i} className="px-2 py-4 text-center">
-                      <span className="inline-block w-6 h-6 rounded bg-green-100 text-green-800 text-xs font-semibold leading-6">P</span>
-                    </td>
-                  ))}
-                  <td className="px-6 py-4 text-center text-sm font-medium text-gray-900">24</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+      {/* Attendance Table */}
+      <DataTable data={filteredData} columns={columns} />
+
+      {/* Legend */}
+      <div className="mt-6 bg-gray-50 rounded-lg border border-gray-200 p-4">
+        <h3 className="text-sm font-semibold text-gray-700 mb-3">Legend & Metrics</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+          <div>
+            <h4 className="font-medium text-gray-700 mb-2">Attendance Percentage</h4>
+            <div className="space-y-1">
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                <span className="text-gray-600">≥ 95% - Excellent</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                <span className="text-gray-600">85% - 94% - Good</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                <span className="text-gray-600">&lt; 85% - Needs Improvement</span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <h4 className="font-medium text-gray-700 mb-2">Punctuality Score</h4>
+            <div className="space-y-1">
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                <span className="text-gray-600">≥ 90% - Excellent</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                <span className="text-gray-600">75% - 89% - Good</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 rounded-full bg-orange-500"></div>
+                <span className="text-gray-600">&lt; 75% - Needs Improvement</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

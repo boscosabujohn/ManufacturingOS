@@ -33,7 +33,18 @@
       "Bash(npx eslint:*)",
       "Bash(npx tsc:*)",
       "Bash(timeout:*)",
-      "Bash(powershell:*)"
+      "Bash(powershell:*)",
+      "Bash(cd:*)",
+      "Bash(do if [ -f \"$dir/page.tsx\" ])",
+      "Bash(then wc -l \"$dir/page.tsx\")",
+      "Bash(else echo \"✗ $dir: MISSING\")",
+      "Bash(fi)",
+      "Bash(do echo \"$file\")",
+      "Bash(do echo \"=== $dir ===\")",
+      "Bash(cat:*)",
+      "Bash(do if [ -f \"$file\" ])",
+      "Bash(then echo \"exists: $file\")",
+      "Bash(else echo \"new: $file\")"
     ],
     "deny": [],
     "ask": []

@@ -1,8 +1,110 @@
 'use client';
 
-import { Calendar, Users, CheckCircle, XCircle, Clock, Search, Filter, Download } from 'lucide-react';
+import { useState, useMemo } from 'react';
+import { Calendar, Users, CheckCircle, XCircle, Clock, Search, Filter, Download, AlertCircle } from 'lucide-react';
+import DataTable from '@/components/DataTable';
+import StatusBadge from '@/components/StatusBadge';
+
+interface DailyAttendance {
+  id: string;
+  employeeCode: string;
+  name: string;
+  department: string;
+  designation: string;
+  shift: string;
+  checkIn: string;
+  checkOut?: string;
+  workHours?: number;
+  status: 'present' | 'absent' | 'late' | 'half_day' | 'on_leave' | 'week_off';
+  lateBy?: number;
+  location: string;
+}
 
 export default function DailyAttendancePage() {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedDepartment, setSelectedDepartment] = useState('all');
+  const [selectedStatus, setSelectedStatus] = useState('all');
+  const [showFilters, setShowFilters] = useState(false);
+  const [selectedDate] = useState(new Date());
+
+  const mockAttendance: DailyAttendance[] = [
+    { id: '1', employeeCode: 'KMF2020001', name: 'Rajesh Kumar', department: 'Production', designation: 'Manager', shift: 'Day Shift', checkIn: '09:00 AM', checkOut: '06:00 PM', workHours: 9, status: 'present', location: 'Plant A' },
+    { id: '2', employeeCode: 'KMF2019002', name: 'Meera Nair', department: 'Quality', designation: 'QC Head', shift: 'General', checkIn: '09:15 AM', checkOut: '06:15 PM', workHours: 9, status: 'late', lateBy: 15, location: 'Quality Lab' },
+    { id: '3', employeeCode: 'KMF2021003', name: 'Arun Patel', department: 'IT', designation: 'Sr. Engineer', shift: 'Flexible', checkIn: '10:00 AM', checkOut: '07:00 PM', workHours: 9, status: 'present', location: 'IT Dept' },
+    { id: '4', employeeCode: 'KMF2022004', name: 'Kavita Desai', department: 'HR', designation: 'Executive', shift: 'General', checkIn: '09:00 AM', checkOut: '02:00 PM', workHours: 5, status: 'half_day', location: 'HR Dept' },
+    { id: '5', employeeCode: 'KMF2020005', name: 'Vikram Singh', department: 'Production', designation: 'Supervisor', shift: 'Night Shift', checkIn: '10:00 PM', checkOut: '06:00 AM', workHours: 8, status: 'present', location: 'Plant A' },
+    { id: '6', employeeCode: 'KMF2018006', name: 'Priya Menon', department: 'Finance', designation: 'Accountant', shift: 'General', checkIn: '', status: 'on_leave', location: 'Finance' },
+    { id: '7', employeeCode: 'KMF2019007', name: 'Suresh Babu', department: 'Logistics', designation: 'Manager', shift: 'Day Shift', checkIn: '', status: 'absent', location: 'Warehouse' },
+    { id: '8', employeeCode: 'KMF2021008', name: 'Anjali Reddy', department: 'Marketing', designation: 'Executive', shift: 'General', checkIn: '09:30 AM', checkOut: '06:30 PM', workHours: 9, status: 'late', lateBy: 30, location: 'Marketing' },
+  ];
+
+  const departments = ['all', 'Production', 'Quality', 'IT', 'HR', 'Finance', 'Logistics', 'Marketing'];
+  const statuses = ['all', 'present', 'absent', 'late', 'half_day', 'on_leave', 'week_off'];
+
+  const filteredData = useMemo(() => {
+    return mockAttendance.filter(att => {
+      const matchesSearch = att.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                          att.employeeCode.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchesDepartment = selectedDepartment === 'all' || att.department === selectedDepartment;
+      const matchesStatus = selectedStatus === 'all' || att.status === selectedStatus;
+      return matchesSearch && matchesDepartment && matchesStatus;
+    });
+  }, [searchTerm, selectedDepartment, selectedStatus]);
+
+  const stats = useMemo(() => {
+    const present = mockAttendance.filter(a => a.status === 'present' || a.status === 'late' || a.status === 'half_day').length;
+    const absent = mockAttendance.filter(a => a.status === 'absent').length;
+    const late = mockAttendance.filter(a => a.status === 'late').length;
+    const onLeave = mockAttendance.filter(a => a.status === 'on_leave').length;
+    return { total: mockAttendance.length, present, absent, late, onLeave };
+  }, []);
+
+  const columns = [
+    { key: 'employeeCode', label: 'Employee', sortable: true,
+      render: (v: string, row: DailyAttendance) => (
+        <div className="flex items-center gap-3">
+          <div className="h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center">
+            <span className="text-blue-600 font-semibold text-sm">{row.name.split(' ').map(n => n[0]).join('')}</span>
+          </div>
+          <div>
+            <div className="font-semibold text-gray-900">{row.name}</div>
+            <div className="text-xs text-gray-500">{v}</div>
+          </div>
+        </div>
+      )
+    },
+    { key: 'department', label: 'Department', sortable: true,
+      render: (v: string, row: DailyAttendance) => (
+        <div><div className="font-medium text-gray-900">{v}</div><div className="text-xs text-gray-500">{row.designation}</div></div>
+      )
+    },
+    { key: 'shift', label: 'Shift', sortable: true },
+    { key: 'checkIn', label: 'Check In', sortable: true,
+      render: (v: string, row: DailyAttendance) => (
+        <div className="text-sm">
+          {v ? (
+            <div>
+              <div className="font-medium text-gray-900">{v}</div>
+              {row.lateBy && <div className="text-xs text-orange-600">Late by {row.lateBy} mins</div>}
+            </div>
+          ) : (
+            <span className="text-gray-400">-</span>
+          )}
+        </div>
+      )
+    },
+    { key: 'checkOut', label: 'Check Out', sortable: true,
+      render: (v?: string) => v ? <div className="font-medium text-gray-900">{v}</div> : <span className="text-gray-400">-</span>
+    },
+    { key: 'workHours', label: 'Hours', sortable: true,
+      render: (v?: number) => v ? <div className="font-semibold text-blue-600">{v}h</div> : <span className="text-gray-400">-</span>
+    },
+    { key: 'status', label: 'Status', sortable: true,
+      render: (v: string) => <StatusBadge status={v} />
+    },
+    { key: 'location', label: 'Location', sortable: true }
+  ];
+
   return (
     <div className="p-6">
       <div className="mb-6">
@@ -10,116 +112,128 @@ export default function DailyAttendancePage() {
           <Calendar className="h-8 w-8 text-blue-600" />
           Daily Attendance
         </h1>
-        <p className="text-gray-600 mt-2">View and manage today's attendance records</p>
+        <p className="text-gray-600 mt-2">
+          View and manage today's attendance - {selectedDate.toLocaleDateString('en-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
+        </p>
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+        <div className="bg-white border-2 border-green-200 rounded-lg p-4">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-green-600 text-sm font-medium">Present</p>
-              <p className="text-2xl font-bold text-green-900 mt-1">1,156</p>
+              <p className="text-sm text-gray-600">Present</p>
+              <p className="text-2xl font-bold text-green-600">{stats.present}</p>
+              <p className="text-xs text-gray-500 mt-1">{((stats.present / stats.total) * 100).toFixed(1)}% of total</p>
             </div>
-            <CheckCircle className="h-10 w-10 text-green-600 opacity-50" />
+            <CheckCircle className="h-10 w-10 text-green-400" />
           </div>
         </div>
-        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-4 border border-red-200">
+        <div className="bg-white border-2 border-red-200 rounded-lg p-4">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-red-600 text-sm font-medium">Absent</p>
-              <p className="text-2xl font-bold text-red-900 mt-1">12</p>
+              <p className="text-sm text-gray-600">Absent</p>
+              <p className="text-2xl font-bold text-red-600">{stats.absent}</p>
+              <p className="text-xs text-gray-500 mt-1">{((stats.absent / stats.total) * 100).toFixed(1)}% of total</p>
             </div>
-            <XCircle className="h-10 w-10 text-red-600 opacity-50" />
+            <XCircle className="h-10 w-10 text-red-400" />
           </div>
         </div>
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
+        <div className="bg-white border-2 border-yellow-200 rounded-lg p-4">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-yellow-600 text-sm font-medium">Late</p>
-              <p className="text-2xl font-bold text-yellow-900 mt-1">34</p>
+              <p className="text-sm text-gray-600">Late</p>
+              <p className="text-2xl font-bold text-yellow-600">{stats.late}</p>
+              <p className="text-xs text-gray-500 mt-1">{((stats.late / stats.total) * 100).toFixed(1)}% of total</p>
             </div>
-            <Clock className="h-10 w-10 text-yellow-600 opacity-50" />
+            <Clock className="h-10 w-10 text-yellow-400" />
           </div>
         </div>
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+        <div className="bg-white border-2 border-blue-200 rounded-lg p-4">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-blue-600 text-sm font-medium">On Leave</p>
-              <p className="text-2xl font-bold text-blue-900 mt-1">32</p>
+              <p className="text-sm text-gray-600">On Leave</p>
+              <p className="text-2xl font-bold text-blue-600">{stats.onLeave}</p>
+              <p className="text-xs text-gray-500 mt-1">{((stats.onLeave / stats.total) * 100).toFixed(1)}% of total</p>
             </div>
-            <Users className="h-10 w-10 text-blue-600 opacity-50" />
+            <Users className="h-10 w-10 text-blue-400" />
           </div>
         </div>
       </div>
 
+      {/* Alert for Absences */}
+      {stats.absent > 0 && (
+        <div className="bg-red-50 border-l-4 border-red-500 rounded-lg p-4 mb-6">
+          <div className="flex items-center gap-3">
+            <AlertCircle className="w-6 h-6 text-red-600" />
+            <div>
+              <h3 className="font-semibold text-red-900">Absent Employees Alert</h3>
+              <p className="text-sm text-red-700">{stats.absent} employee{stats.absent > 1 ? 's are' : ' is'} absent today without leave approval. Please follow up.</p>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Action Bar */}
       <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col md:flex-row gap-4 justify-between">
+        <div className="flex flex-col md:flex-row gap-4">
           <div className="flex-1 relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
             <input
               type="text"
-              placeholder="Search employees..."
+              placeholder="Search by name or employee code..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
           </div>
-          <div className="flex gap-2">
-            <button className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">
-              <Filter className="h-4 w-4" />
-              Filter
-            </button>
-            <button className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">
-              <Download className="h-4 w-4" />
-              Export
-            </button>
-          </div>
+          <button
+            onClick={() => setShowFilters(!showFilters)}
+            className={`flex items-center gap-2 px-4 py-2 border rounded-lg transition-colors ${
+              showFilters ? 'bg-blue-50 border-blue-300 text-blue-700' : 'border-gray-300 text-gray-700 hover:bg-gray-50'
+            }`}
+          >
+            <Filter className="h-4 w-4" />
+            Filters
+          </button>
+          <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+            <Download className="h-4 w-4" />
+            Export
+          </button>
         </div>
+
+        {showFilters && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 pt-4 border-t">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Department</label>
+              <select
+                value={selectedDepartment}
+                onChange={(e) => setSelectedDepartment(e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+              >
+                {departments.map(dept => (
+                  <option key={dept} value={dept}>{dept === 'all' ? 'All Departments' : dept}</option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Status</label>
+              <select
+                value={selectedStatus}
+                onChange={(e) => setSelectedStatus(e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+              >
+                {statuses.map(status => (
+                  <option key={status} value={status}>{status === 'all' ? 'All Status' : status.replace('_', ' ').toUpperCase()}</option>
+                ))}
+              </select>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Attendance Table */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-        <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead className="bg-gray-50 border-b border-gray-200">
-              <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Employee</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Department</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Check In</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Check Out</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Hours</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-              </tr>
-            </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
-              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => (
-                <tr key={i} className="hover:bg-gray-50 transition-colors">
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="flex items-center">
-                      <div className="h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center">
-                        <span className="text-blue-600 font-semibold">JD</span>
-                      </div>
-                      <div className="ml-4">
-                        <div className="text-sm font-medium text-gray-900">John Doe</div>
-                        <div className="text-sm text-gray-500">EMP{1000 + i}</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Engineering</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">09:00 AM</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">06:00 PM</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">9h 0m</td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                      Present
-                    </span>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
+      <DataTable data={filteredData} columns={columns} />
     </div>
   );
 }

@@ -1,11 +1,12 @@
 import React from 'react';
 import { CheckCircle, Clock, AlertCircle, XCircle, Hammer } from 'lucide-react';
 
-export type BadgeStatus = 'implemented' | 'in-progress' | 'planned' | 'deprecated' | 'coming-soon';
+export type BadgeStatus = 'implemented' | 'in-progress' | 'planned' | 'deprecated' | 'coming-soon' | 'active' | 'inactive' | 'pending' | 'approved' | 'rejected';
 
 export interface StatusBadgeProps {
   status: BadgeStatus;
   label?: string;
+  text?: string; // Alternative to label for backward compatibility
   size?: 'sm' | 'md';
   showIcon?: boolean;
   className?: string;
@@ -41,12 +42,43 @@ const statusConfig = {
     icon: Clock,
     className: 'bg-purple-100 text-purple-700 border-purple-200',
     iconClassName: 'text-purple-600'
+  },
+  active: {
+    label: 'Active',
+    icon: CheckCircle,
+    className: 'bg-green-100 text-green-700 border-green-200',
+    iconClassName: 'text-green-600'
+  },
+  inactive: {
+    label: 'Inactive',
+    icon: XCircle,
+    className: 'bg-gray-100 text-gray-700 border-gray-200',
+    iconClassName: 'text-gray-600'
+  },
+  pending: {
+    label: 'Pending',
+    icon: Clock,
+    className: 'bg-yellow-100 text-yellow-700 border-yellow-200',
+    iconClassName: 'text-yellow-600'
+  },
+  approved: {
+    label: 'Approved',
+    icon: CheckCircle,
+    className: 'bg-green-100 text-green-700 border-green-200',
+    iconClassName: 'text-green-600'
+  },
+  rejected: {
+    label: 'Rejected',
+    icon: XCircle,
+    className: 'bg-red-100 text-red-700 border-red-200',
+    iconClassName: 'text-red-600'
   }
 };
 
 export const StatusBadge: React.FC<StatusBadgeProps> = ({
   status,
   label,
+  text,
   size = 'sm',
   showIcon = true,
   className = ''
@@ -66,7 +98,7 @@ export const StatusBadge: React.FC<StatusBadgeProps> = ({
       `}
     >
       {showIcon && <Icon className={`w-3 h-3 ${config.iconClassName}`} />}
-      {label || config.label}
+      {text || label || config.label}
     </span>
   );
 };

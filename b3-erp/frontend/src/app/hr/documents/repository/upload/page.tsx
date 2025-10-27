@@ -1,19 +1,50 @@
 'use client';
 
-import { Upload } from 'lucide-react';
+import { Upload, Folder, AlertCircle } from 'lucide-react';
 
-export default function Page() {
+export default function UploadRepositoryPage() {
   return (
-    <div className="p-6">
+    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
       <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
-          <Upload className="h-8 w-8 text-cyan-600" />
-          Upload Documents
-        </h1>
-        <p className="text-gray-600 mt-2">Upload to repository</p>
+        <h1 className="text-2xl font-bold text-gray-900">Upload to Repository</h1>
+        <p className="text-sm text-gray-600 mt-1">Upload documents to the company repository</p>
       </div>
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <p className="text-gray-600">This page is under construction. Full functionality coming soon.</p>
+
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
+        <h2 className="text-lg font-semibold text-gray-900 mb-4">Select Destination Folder</h2>
+        <select className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option>HR Policies</option>
+          <option>Employee Handbooks</option>
+          <option>Templates</option>
+          <option>Circulars & Notices</option>
+          <option>Compliance Documents</option>
+          <option>Training Materials</option>
+        </select>
+      </div>
+
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
+        <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
+          <Upload className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+          <p className="text-gray-700 font-medium mb-2">Click to upload or drag and drop</p>
+          <p className="text-sm text-gray-500">PDF, DOC, DOCX, XLS, XLSX up to 10MB</p>
+          <button className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium">
+            Select Files
+          </button>
+        </div>
+      </div>
+
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+        <h3 className="font-semibold text-blue-900 mb-2 flex items-center gap-2">
+          <AlertCircle className="h-5 w-5" />
+          Upload Guidelines
+        </h3>
+        <ul className="text-sm text-blue-800 space-y-1 ml-7">
+          <li>• Only authorized personnel can upload to the repository</li>
+          <li>• All documents must be properly categorized</li>
+          <li>• Ensure documents are virus-free before uploading</li>
+          <li>• Use clear, descriptive file names</li>
+          <li>• Add relevant tags and metadata for easy searching</li>
+        </ul>
       </div>
     </div>
   );
