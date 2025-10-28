@@ -7,12 +7,12 @@ export { default as CollaborationIntelligence } from './CollaborationIntelligenc
 export { default as Customer360View } from './Customer360View';
 
 // Advanced features exports
-export { default as AILeadScoreCard } from './AILeadScoreCard';
-export { default as AccountHierarchyTree } from './AccountHierarchyTree';
-export { default as PipelineForecast } from './PipelineForecast';
-export { default as CollaborativeTimeline } from './CollaborativeTimeline';
-export { default as WorkflowBuilder } from './WorkflowBuilder';
-export { default as TaskBoard } from './TaskBoard';
+export { AILeadScoreCard } from './AILeadScoreCard';
+export { AccountHierarchyTree } from './AccountHierarchyTree';
+export { PipelineForecast } from './PipelineForecast';
+export { CollaborativeTimeline } from './CollaborativeTimeline';
+export { WorkflowBuilder } from './WorkflowBuilder';
+export { TaskBoard } from './TaskBoard';
 
 // Re-export types from components
 export type { AILeadScore } from './AILeadScoreCard';

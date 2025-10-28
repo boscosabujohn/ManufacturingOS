@@ -10,6 +10,7 @@ interface QualityMetric {
   totalInspected: number;
   totalPassed: number;
   totalRejected: number;
+  rejectedCount?: number;
   passRate: number;
   rejectionRate: number;
   firstPassYield: number;

@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useCallback, useEffect } from 'react'
 import {
-  Upload, X, File, FileText, Image, Archive, Check, AlertTriangle,
+  Upload, X, File as FileIcon, FileText, Image as ImageIcon, Archive, Check, AlertTriangle,
   Trash2, Eye, Download, RotateCcw, Plus, Paperclip, Cloud,
   FileSpreadsheet, FileImage, FileVideo, Music, Folder
 } from 'lucide-react'
@@ -49,7 +49,7 @@ const getFileIcon = (type: string, size: string = 'h-8 w-8') => {
   if (type.includes('pdf')) return <FileText className={`${size} text-red-500`} />
   if (type.includes('spreadsheet') || type.includes('excel')) return <FileSpreadsheet className={`${size} text-green-600`} />
   if (type.includes('zip') || type.includes('rar') || type.includes('7z')) return <Archive className={`${size} text-yellow-500`} />
-  return <File className={`${size} text-gray-500`} />
+  return <FileIcon className={`${size} text-gray-500`} />
 }
 
 // ============= File Size Formatter =============

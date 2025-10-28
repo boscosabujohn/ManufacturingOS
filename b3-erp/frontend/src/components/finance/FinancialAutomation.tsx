@@ -587,7 +587,7 @@ const FinancialAutomation = () => {
                       resource.used > 60 ? 'bg-yellow-500' :
                       'bg-green-500'
                     }`}
-                    style={{ width: `${resource.resource === 'API Calls' ? (resource.used / resource.limit) * 100 : resource.used}%` }}
+                    style={{ width: `${resource.resource === 'API Calls' ? (resource.used / (resource.limit ?? 1)) * 100 : resource.used}%` }}
                   />
                 </div>
               </div>

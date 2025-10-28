@@ -139,7 +139,7 @@ export function useFormValidation<T extends Record<string, any>>(
     let isValid = true
 
     fieldConfigs.forEach(config => {
-      const error = validateField(config.name, values[config.name])
+      const error = validateField(config.name, values[config.name as keyof typeof values])
       if (error) {
         newErrors[config.name] = error
         isValid = false
@@ -567,7 +567,7 @@ export const ProcurementFormExample: React.FC = () => {
             >
               <FormField
                 config={config}
-                value={values[config.name]}
+                value={values[config.name as keyof typeof values]}
                 error={errors[config.name]}
                 touched={touched[config.name]}
                 onChange={(value) => setValue(config.name, value)}

@@ -4,7 +4,7 @@ export interface Holiday {
   holidayName: string;
   date: string;
   holidayType: 'national' | 'regional' | 'festival' | 'restricted' | 'company';
-  category: 'mandatory' | 'optional';
+  category: 'mandatory' | 'optional' | 'restricted';
   applicableLocations: string[];
   applicableFor: 'all' | 'office' | 'factory' | 'specific';
   description: string;

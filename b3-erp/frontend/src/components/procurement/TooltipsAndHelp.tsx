@@ -21,7 +21,7 @@ interface TooltipProps {
   interactive?: boolean
 }
 
-interface HelpStep {
+export interface HelpStep {
   id: string
   target: string
   title: string

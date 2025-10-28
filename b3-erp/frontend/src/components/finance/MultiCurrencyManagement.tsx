@@ -10,7 +10,7 @@ import {
   TrendingDownIcon, ClockIcon, AlertTriangle, CheckCircleIcon,
   PlusIcon, PencilIcon, EyeIcon, SlidersHorizontal,
   Banknote, BarChart3, CogIcon, BellIcon,
-  FileText, RefreshCw, Info
+  FileText, RefreshCw, Info, Calculator
 } from 'lucide-react';
 
 interface Currency {

@@ -214,7 +214,7 @@ export default function CPQProposalsContentPage() {
   const totalContent = content.length
   const approvedContent = content.filter(c => c.status === 'approved').length
   const totalUsage = content.reduce((sum, c) => sum + c.usageCount, 0)
-  const contentTypes = [...new Set(content.map(c => c.type))].length
+  const contentTypes = Array.from(new Set(content.map(c => c.type))).length
 
   return (
     <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">

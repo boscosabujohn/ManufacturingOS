@@ -32,6 +32,7 @@ interface OptimizationScenario {
 interface Metrics {
   totalDuration: number;
   totalSetupTime: number;
+  setupTime?: number;
   totalCost: number;
   resourceUtilization: number;
   onTimeDelivery: number;

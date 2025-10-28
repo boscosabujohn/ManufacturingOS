@@ -977,20 +977,20 @@ function AccountModal({ account, accounts, onSave, onClose, activeTab, setActive
                   <label className="flex items-center mb-4">
                     <input
                       type="checkbox"
-                      checked={formData.taxConfiguration.taxable}
+                      checked={formData.taxConfiguration?.taxable}
                       onChange={(e) => setFormData({...formData, taxConfiguration: {...formData.taxConfiguration, taxable: e.target.checked}})}
                       className="mr-2"
                     />
                     Taxable Account
                   </label>
                 </div>
-                {formData.taxConfiguration.taxable && (
+                {formData.taxConfiguration?.taxable && (
                   <>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">Default Tax Code</label>
                       <input
                         type="text"
-                        value={formData.taxConfiguration.defaultTaxCode}
+                        value={formData.taxConfiguration?.defaultTaxCode}
                         onChange={(e) => setFormData({...formData, taxConfiguration: {...formData.taxConfiguration, defaultTaxCode: e.target.value}})}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                       />
@@ -998,7 +998,7 @@ function AccountModal({ account, accounts, onSave, onClose, activeTab, setActive
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">Tax Category</label>
                       <select
-                        value={formData.taxConfiguration.taxCategory}
+                        value={formData.taxConfiguration?.taxCategory}
                         onChange={(e) => setFormData({...formData, taxConfiguration: {...formData.taxConfiguration, taxCategory: e.target.value}})}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                       >
@@ -1018,7 +1018,7 @@ function AccountModal({ account, accounts, onSave, onClose, activeTab, setActive
                   <label className="block text-sm font-medium text-gray-700 mb-1">Reporting Group</label>
                   <input
                     type="text"
-                    value={formData.reportingSettings.reportingGroup}
+                    value={formData.reportingSettings?.reportingGroup}
                     onChange={(e) => setFormData({...formData, reportingSettings: {...formData.reportingSettings, reportingGroup: e.target.value}})}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
@@ -1029,7 +1029,7 @@ function AccountModal({ account, accounts, onSave, onClose, activeTab, setActive
                     <label className="flex items-center">
                       <input
                         type="checkbox"
-                        checked={formData.reportingSettings.includeInBalanceSheet}
+                        checked={formData.reportingSettings?.includeInBalanceSheet}
                         onChange={(e) => setFormData({...formData, reportingSettings: {...formData.reportingSettings, includeInBalanceSheet: e.target.checked}})}
                         className="mr-2"
                       />
@@ -1038,7 +1038,7 @@ function AccountModal({ account, accounts, onSave, onClose, activeTab, setActive
                     <label className="flex items-center">
                       <input
                         type="checkbox"
-                        checked={formData.reportingSettings.includeInPL}
+                        checked={formData.reportingSettings?.includeInPL}
                         onChange={(e) => setFormData({...formData, reportingSettings: {...formData.reportingSettings, includeInPL: e.target.checked}})}
                         className="mr-2"
                       />
@@ -1047,7 +1047,7 @@ function AccountModal({ account, accounts, onSave, onClose, activeTab, setActive
                     <label className="flex items-center">
                       <input
                         type="checkbox"
-                        checked={formData.reportingSettings.includeInCashFlow}
+                        checked={formData.reportingSettings?.includeInCashFlow}
                         onChange={(e) => setFormData({...formData, reportingSettings: {...formData.reportingSettings, includeInCashFlow: e.target.checked}})}
                         className="mr-2"
                       />
@@ -1065,7 +1065,7 @@ function AccountModal({ account, accounts, onSave, onClose, activeTab, setActive
                   <input
                     type="number"
                     step="0.01"
-                    value={formData.balanceInfo.openingBalance}
+                    value={formData.balanceInfo?.openingBalance}
                     onChange={(e) => setFormData({...formData, balanceInfo: {...formData.balanceInfo, openingBalance: Number(e.target.value)}})}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
@@ -1075,7 +1075,7 @@ function AccountModal({ account, accounts, onSave, onClose, activeTab, setActive
                   <input
                     type="number"
                     step="0.01"
-                    value={formData.balanceInfo.currentBalance}
+                    value={formData.balanceInfo?.currentBalance}
                     onChange={(e) => setFormData({...formData, balanceInfo: {...formData.balanceInfo, currentBalance: Number(e.target.value)}})}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     readOnly
@@ -1086,7 +1086,7 @@ function AccountModal({ account, accounts, onSave, onClose, activeTab, setActive
                   <input
                     type="number"
                     step="0.01"
-                    value={formData.balanceInfo.debitBalance}
+                    value={formData.balanceInfo?.debitBalance}
                     onChange={(e) => setFormData({...formData, balanceInfo: {...formData.balanceInfo, debitBalance: Number(e.target.value)}})}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     readOnly
@@ -1097,7 +1097,7 @@ function AccountModal({ account, accounts, onSave, onClose, activeTab, setActive
                   <input
                     type="number"
                     step="0.01"
-                    value={formData.balanceInfo.creditBalance}
+                    value={formData.balanceInfo?.creditBalance}
                     onChange={(e) => setFormData({...formData, balanceInfo: {...formData.balanceInfo, creditBalance: Number(e.target.value)}})}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     readOnly

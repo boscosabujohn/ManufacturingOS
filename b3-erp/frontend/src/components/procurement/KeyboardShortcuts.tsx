@@ -154,7 +154,7 @@ export const useProcurementShortcuts = () => {
       key: 'F5',
       action: () => {
         const refreshButton = document.querySelector('[data-shortcut="refresh"]') as HTMLElement
-        refreshButton?.click() || window.location.reload()
+        refreshButton?.click(); if (!refreshButton) window.location.reload()
       },
       description: 'Refresh Data',
       category: 'Data'
@@ -185,7 +185,7 @@ export const useProcurementShortcuts = () => {
       shift: true,
       action: () => {
         const printButton = document.querySelector('[data-shortcut="print"]') as HTMLElement
-        printButton?.click() || window.print()
+        printButton?.click(); if (!printButton) window.print()
       },
       description: 'Print Current Page',
       category: 'Data'

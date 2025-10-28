@@ -27,6 +27,8 @@ import {
   XCircle,
   RefreshCw,
   Search,
+  Plus,
+  AlertTriangle,
   Filter,
   Star,
   ThumbsUp,
@@ -892,7 +894,7 @@ export default function SupplierOnboarding() {
                       { name: 'Logistics', value: 78, fill: '#F59E0B' },
                       { name: 'Components', value: 88, fill: '#8B5CF6' }
                     ]}>
-                      <RadialBar minAngle={15} background dataKey="value" />
+                      <RadialBar background dataKey="value" />
                       <Legend iconSize={10} layout="vertical" verticalAlign="middle" align="right" />
                       <Tooltip />
                     </RadialBarChart>

@@ -173,8 +173,8 @@ export default function FirstResponseTime() {
                 </div>
               </div>
               <div className="text-2xl font-bold text-gray-900">{stat.value}</div>
-              <div className={`text-xs mt-1 flex items-center gap-1 ${getTrendColor(stat.trend, stat.label.includes('FRT') ? 'FRT' : 'other')}`}>
-                {getTrendIcon(stat.trend)}
+              <div className={`text-xs mt-1 flex items-center gap-1 ${getTrendColor(stat.trend as 'up' | 'down' | 'stable', stat.label.includes('FRT') ? 'FRT' : 'other')}`}>
+                {getTrendIcon(stat.trend as 'up' | 'down' | 'stable')}
                 {stat.change}
               </div>
             </div>

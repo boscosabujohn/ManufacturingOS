@@ -7,7 +7,8 @@ interface PFRecord {
   id: string;
   employeeId: string;
   employeeName: string;
-  uanNumber: string;
+  uanNumber?: string;
+  ipNumber?: string;
   designation: string;
   department: string;
   grossWages: number;
@@ -143,7 +144,7 @@ export default function PFReportPage() {
       const matchesSearch =
         record.employeeName.toLowerCase().includes(searchTerm.toLowerCase()) ||
         record.employeeId.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        record.uanNumber.includes(searchTerm);
+        record.uanNumber || record.ipNumber || "".includes(searchTerm);
       const matchesDepartment = selectedDepartment === 'all' || record.department === selectedDepartment;
       return matchesSearch && matchesDepartment;
     });
@@ -311,7 +312,7 @@ export default function PFReportPage() {
                     {record.employeeId}
                   </span>
                   <span className="px-3 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-700">
-                    UAN: {record.uanNumber}
+                    UAN: {record.uanNumber || record.ipNumber || ""}
                   </span>
                 </div>
                 <p className="text-sm text-gray-600">

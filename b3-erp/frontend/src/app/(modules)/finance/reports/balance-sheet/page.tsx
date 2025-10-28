@@ -181,7 +181,7 @@ export default function BalanceSheetPage() {
     );
   };
 
-  const renderExpandableSection = (
+  const renderExpandableSection: any = (
     title: string,
     sectionKey: string,
     items: any,

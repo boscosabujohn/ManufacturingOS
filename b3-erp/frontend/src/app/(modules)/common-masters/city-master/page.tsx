@@ -106,7 +106,7 @@ export default function CityMasterPage() {
           'Tier 3': 'bg-gray-100 text-gray-800'
         };
         return (
-          <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${colors[value]}`}>
+          <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${colors[value as keyof typeof colors]}`}>
             {value}
           </span>
         );

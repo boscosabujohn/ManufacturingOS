@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Star, TrendingUp, TrendingDown, ThumbsUp, ThumbsDown, MessageSquare, Users, Download, Filter, RefreshCw } from 'lucide-react'
+import { Star, TrendingUp, TrendingDown, ThumbsUp, ThumbsDown, MessageSquare, Users, Download, Filter, RefreshCw, AlertCircle } from 'lucide-react'
 import { ChartWrapper } from '@/components/ui'
 
 interface CSATTrend {
@@ -232,8 +232,8 @@ export default function CSATAnalytics() {
                 </div>
               </div>
               <div className="text-2xl font-bold text-gray-900">{stat.value}</div>
-              <div className={`text-xs mt-1 flex items-center gap-1 ${getTrendColor(stat.trend, stat.label)}`}>
-                {getTrendIcon(stat.trend)}
+              <div className={`text-xs mt-1 flex items-center gap-1 ${getTrendColor(stat.trend as 'up' | 'down' | 'stable', stat.label)}`}>
+                {getTrendIcon(stat.trend as 'up' | 'down' | 'stable')}
                 {stat.change}
               </div>
             </div>

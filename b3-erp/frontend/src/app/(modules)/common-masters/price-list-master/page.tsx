@@ -143,8 +143,8 @@ export default function PriceListMasterPage() {
       render: (value, row) => (
         <div className="text-xs">
           <div className="font-medium text-gray-900">{value} items</div>
-          {row.baseMarkupPercentage && (
-            <div className="text-green-600">Markup: +{row.baseMarkupPercentage}%</div>
+          {row.markupPercentage && (
+            <div className="text-green-600">Markup: +{row.markupPercentage}%</div>
           )}
           {row.discountPercentage && (
             <div className="text-orange-600">Discount: -{row.discountPercentage}%</div>

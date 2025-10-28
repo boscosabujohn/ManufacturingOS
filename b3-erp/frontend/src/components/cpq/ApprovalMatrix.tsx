@@ -57,6 +57,7 @@ export interface Approver {
   email: string;
   avatar?: string;
   status: 'pending' | 'approved' | 'rejected';
+  order?: number;
   respondedAt?: string;
   comments?: string;
 }

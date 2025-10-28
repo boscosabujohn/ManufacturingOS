@@ -19,30 +19,35 @@ export default function CRMAnalyticsPage() {
   const [timeRange, setTimeRange] = useState<'week' | 'month' | 'quarter' | 'year'>('month');
 
   // Key Metrics
-  const metrics = {
+  const metrics: {
+    revenue: { current: number; previous: number; change: number; trend: 'up' | 'down' };
+    customers: { current: number; previous: number; change: number; trend: 'up' | 'down' };
+    deals: { current: number; previous: number; change: number; trend: 'up' | 'down' };
+    conversion: { current: number; previous: number; change: number; trend: 'up' | 'down' };
+  } = {
     revenue: {
       current: 2450000,
       previous: 2180000,
       change: 12.4,
-      trend: 'up' as const,
+      trend: 'up',
     },
     customers: {
       current: 1247,
       previous: 1189,
       change: 4.9,
-      trend: 'up' as const,
+      trend: 'up',
     },
     deals: {
       current: 89,
       previous: 102,
       change: -12.7,
-      trend: 'down' as const,
+      trend: 'down',
     },
     conversion: {
       current: 24.5,
       previous: 22.8,
       change: 7.5,
-      trend: 'up' as const,
+      trend: 'up',
     },
   };
 
@@ -133,12 +138,12 @@ export default function CRMAnalyticsPage() {
               ${(metrics.revenue.current / 1000000).toFixed(2)}M
             </div>
             <div className={`flex items-center gap-1 text-sm ${
-              metrics.revenue.trend === 'up' ? 'text-green-600' : 'text-red-600'
+              metrics.revenue.trend === 'down' ? 'text-red-600' : 'text-green-600'
             }`}>
-              {metrics.revenue.trend === 'up' ? (
-                <ArrowUpRight className="w-4 h-4" />
-              ) : (
+              {metrics.revenue.trend === 'down' ? (
                 <ArrowDownRight className="w-4 h-4" />
+              ) : (
+                <ArrowUpRight className="w-4 h-4" />
               )}
               <span>{Math.abs(metrics.revenue.change)}% vs last period</span>
             </div>
@@ -153,12 +158,12 @@ export default function CRMAnalyticsPage() {
               {metrics.customers.current.toLocaleString()}
             </div>
             <div className={`flex items-center gap-1 text-sm ${
-              metrics.customers.trend === 'up' ? 'text-green-600' : 'text-red-600'
+              metrics.customers.trend === 'down' ? 'text-red-600' : 'text-green-600'
             }`}>
-              {metrics.customers.trend === 'up' ? (
-                <ArrowUpRight className="w-4 h-4" />
-              ) : (
+              {metrics.customers.trend === 'down' ? (
                 <ArrowDownRight className="w-4 h-4" />
+              ) : (
+                <ArrowUpRight className="w-4 h-4" />
               )}
               <span>{Math.abs(metrics.customers.change)}% vs last period</span>
             </div>
@@ -173,12 +178,12 @@ export default function CRMAnalyticsPage() {
               {metrics.deals.current}
             </div>
             <div className={`flex items-center gap-1 text-sm ${
-              metrics.deals.trend === 'up' ? 'text-green-600' : 'text-red-600'
+              metrics.deals.trend === 'down' ? 'text-red-600' : 'text-green-600'
             }`}>
-              {metrics.deals.trend === 'up' ? (
-                <ArrowUpRight className="w-4 h-4" />
-              ) : (
+              {metrics.deals.trend === 'down' ? (
                 <ArrowDownRight className="w-4 h-4" />
+              ) : (
+                <ArrowUpRight className="w-4 h-4" />
               )}
               <span>{Math.abs(metrics.deals.change)}% vs last period</span>
             </div>
@@ -193,12 +198,12 @@ export default function CRMAnalyticsPage() {
               {metrics.conversion.current}%
             </div>
             <div className={`flex items-center gap-1 text-sm ${
-              metrics.conversion.trend === 'up' ? 'text-green-600' : 'text-red-600'
+              metrics.conversion.trend === 'down' ? 'text-red-600' : 'text-green-600'
             }`}>
-              {metrics.conversion.trend === 'up' ? (
-                <ArrowUpRight className="w-4 h-4" />
-              ) : (
+              {metrics.conversion.trend === 'down' ? (
                 <ArrowDownRight className="w-4 h-4" />
+              ) : (
+                <ArrowUpRight className="w-4 h-4" />
               )}
               <span>{Math.abs(metrics.conversion.change)}% vs last period</span>
             </div>

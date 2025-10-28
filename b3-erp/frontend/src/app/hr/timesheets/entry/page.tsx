@@ -8,6 +8,7 @@ interface TimesheetEntry {
   projectName: string;
   taskName: string;
   hours: { [key: string]: number };
+  target?: number;
 }
 
 export default function TimesheetEntryPage() {
@@ -215,9 +216,9 @@ export default function TimesheetEntryPage() {
                         type="text"
                         placeholder="Project name"
                         value={entry.projectName}
-                        onChange={(e) => {
+                        onChange={(event) => {
                           setEntries(entries.map(e =>
-                            e.id === entry.id ? { ...e, projectName: e.target.value } : e
+                            e.id === entry.id ? { ...e, projectName: event.target.value } : e
                           ));
                         }}
                         className="w-full px-2 py-1 text-sm font-medium text-gray-900 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500"
@@ -226,9 +227,9 @@ export default function TimesheetEntryPage() {
                         type="text"
                         placeholder="Task description"
                         value={entry.taskName}
-                        onChange={(e) => {
+                        onChange={(event) => {
                           setEntries(entries.map(e =>
-                            e.id === entry.id ? { ...e, taskName: e.target.value } : e
+                            e.id === entry.id ? { ...e, taskName: event.target.value } : e
                           ));
                         }}
                         className="w-full px-2 py-1 text-xs text-gray-600 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500"

@@ -213,6 +213,7 @@ const FinancialConsolidation = () => {
           <ResponsiveContainer width="100%" height={300}>
             <PieChart>
               <Pie
+                dataKey="value"
                 data={financialData.map(fd => ({
                   name: entities.find(e => e.id === fd.entityId)?.name,
                   value: fd.revenue
@@ -397,7 +398,7 @@ const FinancialConsolidation = () => {
           <h3 className="text-lg font-semibold mb-4">Entity Types Distribution</h3>
           <ResponsiveContainer width="100%" height={200}>
             <PieChart>
-              <Pie
+              <Pie dataKey="value"
                 data={[
                   { name: 'Subsidiaries', value: entities.filter(e => e.type === 'subsidiary').length },
                   { name: 'Joint Ventures', value: entities.filter(e => e.type === 'joint-venture').length },
@@ -677,6 +678,7 @@ const FinancialConsolidation = () => {
           <ResponsiveContainer width="100%" height={200}>
             <PieChart>
               <Pie
+                dataKey="value"
                 data={[
                   { name: 'Draft', value: consolidationAdjustments.filter(a => a.status === 'draft').length },
                   { name: 'Approved', value: consolidationAdjustments.filter(a => a.status === 'approved').length },

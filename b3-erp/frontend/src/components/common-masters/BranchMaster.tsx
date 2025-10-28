@@ -291,7 +291,7 @@ export default function BranchMaster() {
     return branches.filter(branch => {
       const matchesSearch = branch.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                            branch.code.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           branch.city.toLowerCase().includes(searchTerm.toLowerCase());
+                           branch.address.city.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesType = filterType === 'All' || branch.type === filterType;
       const matchesStatus = filterStatus === 'All' || branch.status === filterStatus;
       return matchesSearch && matchesType && matchesStatus;

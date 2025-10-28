@@ -142,7 +142,7 @@ export default function CustomerCategoryMasterPage() {
           </div>
           <div className="text-green-600">Sales: ₹{(row.totalSales / 1000000).toFixed(1)}M</div>
           <div className="text-orange-600">Outstanding: ₹{(row.outstandingAmount / 1000000).toFixed(1)}M</div>
-          <div className="text-gray-500">Avg Order: ₹{(row.averageOrderValue / 1000).toFixed(0)}K</div>
+          <div className="text-gray-500">Avg Order: ₹{(row.avgOrderValue / 1000).toFixed(0)}K</div>
         </div>
       )
     },

@@ -360,7 +360,7 @@ const BudgetManagement: React.FC = () => {
               <XAxis type="number" />
               <YAxis dataKey="department" type="category" width={80} />
               <Tooltip formatter={(value) => formatCurrency(Number(value))} />
-              <Bar dataKey="variance" fill={(entry: number) => entry > 0 ? '#10B981' : '#EF4444'} />
+              <Bar dataKey="variance" fill="#3B82F6" />
             </BarChart>
           </ResponsiveContainer>
         </div>

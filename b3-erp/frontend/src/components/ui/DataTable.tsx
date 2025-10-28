@@ -69,8 +69,8 @@ export function DataTable<T extends Record<string, any>>({
     if (!col) return data;
 
     return [...data].sort((a, b) => {
-      const aValue = typeof col.accessor === 'function' ? col.accessor(a) : a[col.accessor];
-      const bValue = typeof col.accessor === 'function' ? col.accessor(b) : b[col.accessor];
+      const aValue = typeof col.accessor === 'function' ? col.accessor(a) : (col.accessor ? a[col.accessor] : undefined);
+      const bValue = typeof col.accessor === 'function' ? col.accessor(b) : (col.accessor ? b[col.accessor] : undefined);
 
       if (aValue === bValue) return 0;
 
@@ -206,7 +206,7 @@ export function DataTable<T extends Record<string, any>>({
                       >
                         {headerContent}
                         <span className="text-gray-400 group-hover:text-gray-600">
-                          {sortConfig?.column === (column.id || column.key) ? (
+                          {sortConfig && sortConfig.column === (column.id || column.key) ? (
                             sortConfig.direction === 'asc' ? (
                               <ChevronUp className="w-4 h-4" />
                             ) : (

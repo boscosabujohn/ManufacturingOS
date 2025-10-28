@@ -170,7 +170,7 @@ export default function ProfitLossPage() {
     );
   };
 
-  const renderExpandableSection = (
+  const renderExpandableSection: any = (
     title: string,
     sectionKey: string,
     items: any,

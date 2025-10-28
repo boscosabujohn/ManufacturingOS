@@ -437,12 +437,12 @@ export default function AccountsPayableWorkflow() {
         <div className="border-b border-gray-200">
           <nav className="flex space-x-8">
             {[
-              { id: 'dashboard', label: 'Dashboard', icon: BarChart3 },
+              { id: 'dashboard', label: 'Dashboard', icon: BarChart },
               { id: 'approvals', label: 'Pending Approvals', icon: Clock, badge: apSummary.invoicesCount.pending },
               { id: 'invoices', label: 'All Invoices', icon: FileText },
               { id: 'batches', label: 'Payment Batches', icon: CreditCard },
               { id: 'rules', label: 'Approval Rules', icon: Settings },
-              { id: 'reports', label: 'Reports', icon: BarChart3 }
+              { id: 'reports', label: 'Reports', icon: BarChart }
             ].map((tab) => (
               <button
                 key={tab.id}

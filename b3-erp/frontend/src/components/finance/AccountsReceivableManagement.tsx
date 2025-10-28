@@ -9,7 +9,7 @@ import {
   ArrowRight, ArrowUpRight, ArrowDownRight, PieChart, BarChart3
 } from 'lucide-react';
 import {
-  LineChart, AreaChart, BarChart, PieChart as RechartsPieChart,
+  LineChart, AreaChart, BarChart, PieChart as RechartsPieChart, Pie,
   XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
   Area, Bar, Line, Cell
 } from 'recharts';

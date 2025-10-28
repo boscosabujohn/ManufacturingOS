@@ -48,6 +48,7 @@ export interface PricingVersion {
   createdBy: string;
   createdAt: string;
   activatedAt?: string;
+  lastModified?: string;
   scheduledFor?: string;
   expiresAt?: string;
   changes: PriceChange[];

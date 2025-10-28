@@ -217,7 +217,7 @@ export default function EnhancedFinanceDashboard() {
   const toggleSection = (section: string) => {
     setExpandedSections(prev => ({
       ...prev,
-      [section]: !prev[section]
+      [section as keyof typeof prev]: !prev[section as keyof typeof prev]
     }));
   };
 

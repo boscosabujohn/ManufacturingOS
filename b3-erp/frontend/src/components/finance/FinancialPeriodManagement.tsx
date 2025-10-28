@@ -876,7 +876,7 @@ const FinancialPeriodManagement = () => {
           <h3 className="text-lg font-semibold mb-4">Entry Types</h3>
           <ResponsiveContainer width="100%" height={200}>
             <PieChart>
-              <Pie
+              <Pie dataKey="value"
                 data={[
                   { name: 'Standard', value: journalEntries.filter(e => e.type === 'standard').length },
                   { name: 'Adjusting', value: journalEntries.filter(e => e.type === 'adjusting').length },

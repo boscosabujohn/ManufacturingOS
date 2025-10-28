@@ -413,7 +413,7 @@ export default function BOMEditPage() {
         });
       };
       setComponents(addToParent(components));
-      setExpandedComponents(new Set([...expandedComponents, parentId]));
+      setExpandedComponents(new Set(Array.from(expandedComponents).concat( parentId)));
     } else {
       setComponents([...components, newComponent]);
     }

@@ -493,7 +493,7 @@ export default function PurchaseRequisitionWorkflow() {
                         formatter={(value: number) => `${value} days`}
                         contentStyle={{ backgroundColor: '#fff', borderRadius: '8px', border: '1px solid #E5E7EB' }}
                       />
-                      <Bar dataKey="time" fill={(entry: any) => entry.color} />
+                      <Bar dataKey="time" fill="#3B82F6" />
                     </BarChart>
                   </ResponsiveContainer>
                 </div>

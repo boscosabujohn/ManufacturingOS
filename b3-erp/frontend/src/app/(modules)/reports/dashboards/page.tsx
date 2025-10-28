@@ -324,7 +324,7 @@ export default function DashboardsPage() {
           </button>
         </div>
         <ResponsiveContainer width="100%" height={250}>
-          {type === 'line' && (
+          {type === 'line' ? (
             <LineChart data={sampleData.timeSeries}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="date" />
@@ -334,8 +334,7 @@ export default function DashboardsPage() {
               <Line type="monotone" dataKey="value" stroke="#3b82f6" strokeWidth={2} />
               <Line type="monotone" dataKey="sales" stroke="#10b981" strokeWidth={2} />
             </LineChart>
-          )}
-          {type === 'bar' && (
+          ) : type === 'bar' ? (
             <BarChart data={sampleData.timeSeries}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="date" />
@@ -345,8 +344,7 @@ export default function DashboardsPage() {
               <Bar dataKey="value" fill="#3b82f6" />
               <Bar dataKey="sales" fill="#10b981" />
             </BarChart>
-          )}
-          {type === 'area' && (
+          ) : type === 'area' ? (
             <AreaChart data={sampleData.timeSeries}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="date" />
@@ -356,8 +354,7 @@ export default function DashboardsPage() {
               <Area type="monotone" dataKey="value" stroke="#3b82f6" fill="#3b82f6" fillOpacity={0.6} />
               <Area type="monotone" dataKey="sales" stroke="#10b981" fill="#10b981" fillOpacity={0.6} />
             </AreaChart>
-          )}
-          {type === 'pie' && (
+          ) : type === 'pie' ? (
             <RechartsPie>
               <Pie
                 data={sampleData.pieData}
@@ -375,6 +372,15 @@ export default function DashboardsPage() {
               </Pie>
               <Tooltip />
             </RechartsPie>
+          ) : (
+            <LineChart data={sampleData.timeSeries}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="date" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Line type="monotone" dataKey="value" stroke="#3b82f6" strokeWidth={2} />
+            </LineChart>
           )}
         </ResponsiveContainer>
       </div>

@@ -449,7 +449,7 @@ export default function LeadsPage() {
             header: 'Status',
             sortable: true,
             render: (lead) => (
-              <span className={`px-2 py-1 text-xs font-semibold rounded-full ${statusColors[lead.status]}`}>
+              <span className={`px-2 py-1 text-xs font-semibold rounded-full ${statusColors[lead.status as keyof typeof statusColors] || ""}`}>
                 {lead.status.charAt(0).toUpperCase() + lead.status.slice(1)}
               </span>
             )

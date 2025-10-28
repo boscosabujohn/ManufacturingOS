@@ -98,10 +98,10 @@ const CreditManagement = () => {
   ];
 
   const creditProfiles: CreditProfile[] = [
-    { customerId: 'C001', creditLimit: 500000, currentExposure: 250000, availableCredit: 250000, creditScore: 750, riskRating: 'low', paymentTerms: 'Net 30', creditStatus: 'approved', lastReviewDate: '2024-01-15', nextReviewDate: '2024-07-15', collateralRequired: false, creditInsurance: true },
+    { customerId: 'C001', creditLimit: 500000, currentExposure: 250000, availableCredit: 250000, creditScore: 750, riskRating: 'low', paymentTerms: 'Net 30', creditStatus: 'approved', lastReviewDate: '2024-01-15', nextReviewDate: '2024-07-15', collateralRequired: false, guarantorRequired: false, creditInsurance: true },
     { customerId: 'C002', creditLimit: 1000000, currentExposure: 750000, availableCredit: 250000, creditScore: 680, riskRating: 'medium', paymentTerms: 'Net 45', creditStatus: 'approved', lastReviewDate: '2024-02-01', nextReviewDate: '2024-08-01', collateralRequired: true, collateralAmount: 200000, creditInsurance: true, guarantorRequired: false },
     { customerId: 'C003', creditLimit: 200000, currentExposure: 180000, availableCredit: 20000, creditScore: 620, riskRating: 'high', paymentTerms: 'Net 15', creditStatus: 'suspended', lastReviewDate: '2024-03-01', nextReviewDate: '2024-04-01', collateralRequired: true, collateralAmount: 100000, guarantorRequired: true, creditInsurance: false },
-    { customerId: 'C004', creditLimit: 750000, currentExposure: 400000, availableCredit: 350000, creditScore: 720, riskRating: 'low', paymentTerms: 'Net 30', creditStatus: 'approved', lastReviewDate: '2024-01-20', nextReviewDate: '2024-07-20', collateralRequired: false, creditInsurance: true },
+    { customerId: 'C004', creditLimit: 750000, currentExposure: 400000, availableCredit: 350000, creditScore: 720, riskRating: 'low', paymentTerms: 'Net 30', creditStatus: 'approved', lastReviewDate: '2024-01-20', nextReviewDate: '2024-07-20', collateralRequired: false, guarantorRequired: false, creditInsurance: true },
     { customerId: 'C005', creditLimit: 0, currentExposure: 50000, availableCredit: 0, creditScore: 450, riskRating: 'very-high', paymentTerms: 'COD', creditStatus: 'rejected', lastReviewDate: '2024-03-15', nextReviewDate: '2024-04-15', collateralRequired: true, guarantorRequired: true, creditInsurance: false }
   ];
 

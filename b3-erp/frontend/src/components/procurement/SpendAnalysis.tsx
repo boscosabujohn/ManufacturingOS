@@ -929,30 +929,11 @@ export default function SpendAnalysis() {
                     aspectRatio={4 / 3}
                     stroke="#fff"
                     fill="#3B82F6"
-                    content={({ x, y, width, height, name, size }: any) => {
-                      return (
-                        <g>
-                          <rect
-                            x={x}
-                            y={y}
-                            width={width}
-                            height={height}
-                            style={{ fill: COLORS[Math.floor(Math.random() * COLORS.length)], stroke: '#fff', strokeWidth: 2 }}
-                          />
-                          {width > 100 && height > 50 && (
-                            <>
-                              <text x={x + width / 2} y={y + height / 2 - 10} textAnchor="middle" fill="#fff" fontSize={12}>
-                                {name.split(' - ')[0]}
-                              </text>
-                              <text x={x + width / 2} y={y + height / 2 + 10} textAnchor="middle" fill="#fff" fontSize={10}>
-                                ${(size / 1000000).toFixed(1)}M
-                              </text>
-                            </>
-                          )}
-                        </g>
-                      )
-                    }}
-                  />
+                  >
+                    {spendCube.map((item, index) => (
+                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                    ))}
+                  </Treemap>
                 </ResponsiveContainer>
               </div>
 

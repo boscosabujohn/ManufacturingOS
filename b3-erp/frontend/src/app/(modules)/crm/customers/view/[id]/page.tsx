@@ -589,7 +589,7 @@ export default function ViewCustomerPage() {
                   <span className="px-3 py-1 text-sm font-semibold rounded-full bg-blue-100 text-blue-700">
                     {customer.industrySector}
                   </span>
-                  <span className={`px-3 py-1 text-sm font-semibold rounded-full border ${statusColors[customer.accountStatus]}`}>
+                  <span className={`px-3 py-1 text-sm font-semibold rounded-full border ${statusColors[customer.accountStatus as keyof typeof statusColors] || ""}`}>
                     {customer.accountStatus.charAt(0).toUpperCase() + customer.accountStatus.slice(1)}
                   </span>
                   <span className="px-3 py-1 text-sm font-semibold rounded-full bg-purple-100 text-purple-700">
@@ -818,7 +818,7 @@ export default function ViewCustomerPage() {
                 <div className="space-y-3">
                   <div>
                     <p className="text-xs font-medium text-gray-500 uppercase mb-1">Account Status</p>
-                    <span className={`px-3 py-1 text-sm font-semibold rounded-full border ${statusColors[customer.accountStatus]}`}>
+                    <span className={`px-3 py-1 text-sm font-semibold rounded-full border ${statusColors[customer.accountStatus as keyof typeof statusColors] || ""}`}>
                       {customer.accountStatus.charAt(0).toUpperCase() + customer.accountStatus.slice(1)}
                     </span>
                   </div>

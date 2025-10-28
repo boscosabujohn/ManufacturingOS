@@ -438,7 +438,7 @@ export default function ProcurementAutomation() {
                   <h3 className="text-lg font-semibold text-gray-900 mb-4">AI Prediction Accuracy</h3>
                   <ResponsiveContainer width="100%" height={250}>
                     <RadialBarChart cx="50%" cy="50%" innerRadius="10%" outerRadius="100%" data={aiPredictions}>
-                      <RadialBar minAngle={15} background dataKey="accuracy">
+                      <RadialBar background dataKey="accuracy">
                         {aiPredictions.map((entry, index) => (
                           <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                         ))}

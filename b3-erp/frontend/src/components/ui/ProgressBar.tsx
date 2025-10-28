@@ -152,7 +152,7 @@ export const MultiProgressBar: React.FC<MultiProgressBarProps> = ({
           return (
             <div
               key={index}
-              className={`${colorClasses[segment.color]} transition-all duration-500`}
+              className={`${segment.color ? colorClasses[segment.color] : ''} transition-all duration-500`}
               style={{ width: `${percentage}%` }}
               title={`${segment.label}: ${segment.value}`}
             />
@@ -164,7 +164,7 @@ export const MultiProgressBar: React.FC<MultiProgressBarProps> = ({
         <div className="flex flex-wrap gap-3 mt-3">
           {segments.map((segment, index) => (
             <div key={index} className="flex items-center gap-2">
-              <div className={`w-3 h-3 rounded-sm ${colorClasses[segment.color]}`} />
+              <div className={`w-3 h-3 rounded-sm ${segment.color ? colorClasses[segment.color] : ''}`} />
               <span className="text-sm text-gray-700">
                 {segment.label}: <span className="font-semibold">{segment.value}</span>
               </span>

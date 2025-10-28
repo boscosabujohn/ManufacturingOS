@@ -862,13 +862,14 @@ export default function SupplierRelationshipManagement() {
                     <Scatter
                       name="Suppliers"
                       data={riskMatrix}
-                      fill={(entry: any) => {
+                      fill="#8884d8"
+                    >
+                      {riskMatrix.map((entry, index) => {
                         const risk = entry.impact * entry.probability / 100
-                        if (risk > 60) return '#EF4444'
-                        if (risk > 30) return '#F59E0B'
-                        return '#10B981'
-                      }}
-                    />
+                        const color = risk > 60 ? '#EF4444' : risk > 30 ? '#F59E0B' : '#10B981'
+                        return <Cell key={`cell-${index}`} fill={color} />
+                      })}
+                    </Scatter>
                   </ScatterChart>
                 </ResponsiveContainer>
               </div>

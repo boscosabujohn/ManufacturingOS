@@ -277,10 +277,9 @@ export default function ShiftMaster() {
       'General': { bg: 'bg-gray-100', text: 'text-gray-800' }
     };
     const config = categoryConfig[category as keyof typeof categoryConfig];
-    const Icon = getCategoryIcon(category);
     return (
       <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium ${config.bg} ${config.text}`}>
-        <Icon />
+        {getCategoryIcon(category)}
         {category}
       </span>
     );

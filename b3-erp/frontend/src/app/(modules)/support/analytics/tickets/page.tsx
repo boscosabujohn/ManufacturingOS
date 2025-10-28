@@ -176,8 +176,8 @@ export default function TicketAnalytics() {
                 </div>
               </div>
               <div className="text-2xl font-bold text-gray-900">{stat.value}</div>
-              <div className={`text-xs mt-1 flex items-center gap-1 ${getTrendColor(stat.trend, stat.label !== 'Open Tickets')}`}>
-                {getTrendIcon(stat.trend)}
+              <div className={`text-xs mt-1 flex items-center gap-1 ${getTrendColor(stat.trend as 'up' | 'down' | 'stable', stat.label !== 'Open Tickets')}`}>
+                {getTrendIcon(stat.trend as 'up' | 'down' | 'stable')}
                 {stat.change}
               </div>
             </div>

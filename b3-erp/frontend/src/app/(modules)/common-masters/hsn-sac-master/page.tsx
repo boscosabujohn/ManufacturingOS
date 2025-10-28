@@ -67,9 +67,9 @@ export default function HSNSACMasterPage() {
           <div className="text-xs text-gray-500 mt-0.5">
             <span className="font-medium">Category:</span> {row.category}
           </div>
-          {row.subcategory && (
+          {row.category && (
             <div className="text-xs text-gray-400">
-              <span className="font-medium">Sub:</span> {row.subcategory}
+              <span className="font-medium">Sub:</span> {row.category}
             </div>
           )}
         </div>
