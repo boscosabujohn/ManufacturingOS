@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import {
   MapPin,
   Users,
@@ -70,12 +71,12 @@ interface Territory {
 }
 
 export default function TerritoriesPage() {
+  const router = useRouter();
   const [searchTerm, setSearchTerm] = useState('');
   const [typeFilter, setTypeFilter] = useState<string>('all');
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [showAddModal, setShowAddModal] = useState(false);
-
-  const territories: Territory[] = [
+  const [territories, setTerritories] = useState<Territory[]>([
     {
       id: 'TER-001',
       name: 'North America East',
@@ -383,7 +384,7 @@ export default function TerritoriesPage() {
       createdAt: '2024-06-01',
       lastModified: '2025-10-14'
     }
-  ];
+  ]);
 
   const filteredTerritories = territories.filter(territory => {
     const matchesSearch = territory.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -454,6 +455,56 @@ export default function TerritoriesPage() {
       case 'pending': return 'bg-yellow-100 text-yellow-700';
       default: return 'bg-gray-100 text-gray-700';
     }
+  };
+
+  const handleViewTerritory = (territory: Territory) => {
+    router.push(`/crm/settings/territories/view/${territory.id}`);
+  };
+
+  const handleEditTerritory = (territory: Territory) => {
+    router.push(`/crm/settings/territories/edit/${territory.id}`);
+  };
+
+  const handleAssignUser = (territory: Territory) => {
+    router.push(`/crm/settings/territories/assign/${territory.id}`);
+  };
+
+  const handleCopyTerritory = (territory: Territory) => {
+    const newTerritory: Territory = {
+      ...territory,
+      id: `TER-${Date.now().toString().slice(-3)}`,
+      name: `${territory.name} (Copy)`,
+      code: `${territory.code}-COPY`,
+      status: 'pending',
+      performance: {
+        ...territory.performance,
+        accounts: 0,
+        activeOpportunities: 0,
+        revenue: 0,
+        quotaAttainment: 0,
+      },
+      growth: {
+        accountsChange: 0,
+        revenueChange: 0,
+      },
+      metrics: {
+        totalLeads: 0,
+        convertedLeads: 0,
+        customerSatisfaction: 0,
+      },
+      createdAt: new Date().toISOString().split('T')[0],
+      lastModified: new Date().toISOString().split('T')[0],
+    };
+    setTerritories([...territories, newTerritory]);
+  };
+
+  const handleSettingsTerritory = (territory: Territory) => {
+    router.push(`/crm/settings/territories/configure/${territory.id}`);
+  };
+
+  const handleCreateTerritory = () => {
+    setShowAddModal(false);
+    router.push('/crm/settings/territories');
   };
 
   return (
@@ -591,19 +642,39 @@ export default function TerritoriesPage() {
 
                   {/* Actions */}
                   <div className="flex items-center gap-2">
-                    <button className="p-2 hover:bg-blue-50 rounded-lg transition-colors">
+                    <button
+                      onClick={() => handleViewTerritory(territory)}
+                      className="p-2 hover:bg-blue-50 rounded-lg transition-colors"
+                      title="View Territory"
+                    >
                       <Eye className="w-5 h-5 text-blue-600" />
                     </button>
-                    <button className="p-2 hover:bg-purple-50 rounded-lg transition-colors">
+                    <button
+                      onClick={() => handleEditTerritory(territory)}
+                      className="p-2 hover:bg-purple-50 rounded-lg transition-colors"
+                      title="Edit Territory"
+                    >
                       <Edit className="w-5 h-5 text-purple-600" />
                     </button>
-                    <button className="p-2 hover:bg-green-50 rounded-lg transition-colors">
+                    <button
+                      onClick={() => handleAssignUser(territory)}
+                      className="p-2 hover:bg-green-50 rounded-lg transition-colors"
+                      title="Assign User"
+                    >
                       <UserPlus className="w-5 h-5 text-green-600" />
                     </button>
-                    <button className="p-2 hover:bg-orange-50 rounded-lg transition-colors">
+                    <button
+                      onClick={() => handleCopyTerritory(territory)}
+                      className="p-2 hover:bg-orange-50 rounded-lg transition-colors"
+                      title="Copy Territory"
+                    >
                       <Copy className="w-5 h-5 text-orange-600" />
                     </button>
-                    <button className="p-2 hover:bg-gray-50 rounded-lg transition-colors">
+                    <button
+                      onClick={() => handleSettingsTerritory(territory)}
+                      className="p-2 hover:bg-gray-50 rounded-lg transition-colors"
+                      title="Configure Territory"
+                    >
                       <Settings className="w-5 h-5 text-gray-600" />
                     </button>
                   </div>
@@ -838,7 +909,10 @@ export default function TerritoriesPage() {
                 >
                   Cancel
                 </button>
-                <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                <button
+                  onClick={handleCreateTerritory}
+                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                >
                   Create Territory
                 </button>
               </div>

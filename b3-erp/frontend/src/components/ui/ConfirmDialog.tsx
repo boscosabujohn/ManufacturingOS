@@ -14,6 +14,10 @@ export interface ConfirmDialogProps {
   cancelLabel?: string
   variant?: 'danger' | 'warning' | 'info' | 'success'
   loading?: boolean
+  impactAnalysis?: {
+    label: string
+    count: number
+  }[]
 }
 
 /**
@@ -39,7 +43,8 @@ export const ConfirmDialog: React.FC<ConfirmDialogProps> = ({
   confirmLabel = 'Confirm',
   cancelLabel = 'Cancel',
   variant = 'info',
-  loading = false
+  loading = false,
+  impactAnalysis
 }) => {
   const variantConfig = {
     danger: {
@@ -85,9 +90,22 @@ export const ConfirmDialog: React.FC<ConfirmDialogProps> = ({
         <h3 className="text-lg font-semibold text-gray-900 mb-2">
           {title}
         </h3>
-        <p className="text-sm text-gray-600 mb-6">
+        <p className="text-sm text-gray-600 mb-4">
           {message}
         </p>
+        {impactAnalysis && impactAnalysis.length > 0 && (
+          <div className={`${config.bgColor} rounded-lg p-4 mb-6 text-left`}>
+            <p className="text-sm font-medium text-gray-700 mb-2">Impact Analysis:</p>
+            <ul className="space-y-1">
+              {impactAnalysis.map((impact, index) => (
+                <li key={index} className="text-sm text-gray-600 flex justify-between">
+                  <span>{impact.label}</span>
+                  <span className="font-semibold">{impact.count}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
         <div className="flex items-center gap-3">
           <button
             onClick={onClose}

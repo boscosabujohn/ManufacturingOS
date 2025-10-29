@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { PageToolbar } from '@/components/ui';
+import { PageToolbar, useToast, ConfirmDialog } from '@/components/ui';
 import {
   AILeadScoreCard,
   AccountHierarchyTree,
@@ -16,8 +16,18 @@ import type {
   ForecastPeriod,
   TimelineActivity,
   Workflow,
-  Task,
+  Task as CRMTask,
 } from '@/components/crm';
+import {
+  TaskModal,
+  CommentModal,
+  WorkflowTestModal,
+  AccountLinkModal,
+  type Task as ModalTask,
+  type Comment,
+  type WorkflowTest,
+  type AccountLink
+} from '@/components/modals';
 import { TabPanel, TabContent } from '@/components/ui';
 import { Brain, Network, TrendingUp, Clock, Zap, CheckCircle } from 'lucide-react';
 
@@ -241,7 +251,7 @@ const mockTimelineActivities: TimelineActivity[] = [
   },
 ];
 
-const mockTasks: Task[] = [
+const mockTasks: CRMTask[] = [
   {
     id: '1',
     title: 'Follow up on proposal with TechCorp',
@@ -262,7 +272,7 @@ const mockTasks: Task[] = [
     title: 'Prepare ROI calculator for manufacturing prospect',
     description: 'Create custom ROI analysis showing cost savings',
     status: 'in_progress',
-    priority: 'critical',
+    priority: 'high',
     assignedTo: { id: '3', name: 'David Park' },
     dueDate: new Date(Date.now() + 1 * 24 * 60 * 60 * 1000).toISOString(),
     createdBy: { id: '1', name: 'Sarah Johnson' },
@@ -300,7 +310,22 @@ const mockTasks: Task[] = [
 ];
 
 export default function CRMAdvancedFeaturesPage() {
+  const { addToast } = useToast();
   const [activeTab, setActiveTab] = useState('ai-scoring');
+
+  // Modal states
+  const [showTaskModal, setShowTaskModal] = useState(false);
+  const [showCommentModal, setShowCommentModal] = useState(false);
+  const [showWorkflowTestModal, setShowWorkflowTestModal] = useState(false);
+  const [showAccountLinkModal, setShowAccountLinkModal] = useState(false);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+
+  // Data states
+  const [editingTask, setEditingTask] = useState<CRMTask | undefined>();
+  const [tasks, setTasks] = useState<CRMTask[]>(mockTasks);
+  const [deleteTarget, setDeleteTarget] = useState<{ type: string; id: string } | null>(null);
+  const [currentActivityId, setCurrentActivityId] = useState<string | undefined>();
+  const [currentAccountId, setCurrentAccountId] = useState<string | undefined>();
 
   const tabs = [
     { id: 'ai-scoring', label: 'AI Lead Scoring', icon: Brain, count: undefined },
@@ -308,8 +333,234 @@ export default function CRMAdvancedFeaturesPage() {
     { id: 'forecast', label: 'Pipeline Forecast', icon: TrendingUp, count: undefined },
     { id: 'timeline', label: 'Activity Timeline', icon: Clock, count: 12 },
     { id: 'workflow', label: 'Workflow Automation', icon: Zap, count: undefined },
-    { id: 'tasks', label: 'Task Management', icon: CheckCircle, count: 4 },
+    { id: 'tasks', label: 'Task Management', icon: CheckCircle, count: tasks.filter(t => t.status !== 'completed').length },
   ];
+
+  // Conversion helpers for Task types
+  const crmTaskToModalTask = (task: CRMTask): ModalTask => ({
+    id: task.id,
+    title: task.title,
+    description: task.description,
+    assignee: task.assignedTo?.name,
+    dueDate: task.dueDate,
+    priority: task.priority === 'critical' ? 'urgent' : task.priority,
+    status: task.status === 'completed' ? 'done' : task.status,
+    tags: task.tags,
+  });
+
+  const modalTaskToCrmTask = (modalTask: ModalTask, existingTask?: CRMTask): CRMTask => {
+    const now = new Date().toISOString();
+    return {
+      id: modalTask.id || Date.now().toString(),
+      title: modalTask.title,
+      description: modalTask.description,
+      status: modalTask.status === 'done' ? 'completed' : modalTask.status,
+      priority: modalTask.priority === 'urgent' ? 'critical' : modalTask.priority,
+      assignedTo: modalTask.assignee ? { id: '1', name: modalTask.assignee } : existingTask?.assignedTo,
+      dueDate: modalTask.dueDate,
+      createdBy: existingTask?.createdBy || { id: '1', name: 'Current User' },
+      createdAt: existingTask?.createdAt || now,
+      relatedTo: existingTask?.relatedTo,
+      tags: modalTask.tags,
+      comments: existingTask?.comments || 0,
+      attachments: existingTask?.attachments || 0,
+    };
+  };
+
+  // Task handlers
+  const handleAddTask = () => {
+    setEditingTask(undefined);
+    setShowTaskModal(true);
+  };
+
+  const handleEditTask = (id: string) => {
+    const task = tasks.find(t => t.id === id);
+    if (task) {
+      setEditingTask(task);
+      setShowTaskModal(true);
+    }
+  };
+
+  const handleDeleteTask = (id: string) => {
+    setDeleteTarget({ type: 'task', id });
+    setShowDeleteConfirm(true);
+  };
+
+  const handleViewTask = (id: string) => {
+    const task = tasks.find(t => t.id === id);
+    if (task) {
+      addToast({
+        title: 'Task Details',
+        message: `Viewing task: ${task.title}`,
+        variant: 'info'
+      });
+    }
+  };
+
+  const handleStatusChange = (id: string, status: string) => {
+    setTasks(tasks.map(t =>
+      t.id === id ? { ...t, status: status as CRMTask['status'] } : t
+    ));
+    addToast({
+      title: 'Status Updated',
+      message: `Task status changed to ${status.replace('_', ' ')}`,
+      variant: 'success'
+    });
+  };
+
+  const handleSaveTask = (modalTask: ModalTask) => {
+    if (editingTask) {
+      const updatedCrmTask = modalTaskToCrmTask(modalTask, editingTask);
+      setTasks(tasks.map(t => t.id === modalTask.id ? updatedCrmTask : t));
+      addToast({
+        title: 'Task Updated',
+        message: 'Task updated successfully',
+        variant: 'success'
+      });
+    } else {
+      const newCrmTask = modalTaskToCrmTask(modalTask);
+      setTasks([...tasks, newCrmTask]);
+      addToast({
+        title: 'Task Added',
+        message: 'New task created successfully',
+        variant: 'success'
+      });
+    }
+  };
+
+  // Activity handlers
+  const handleAddComment = (activityId: string, comment: string, mentions: string[]) => {
+    setCurrentActivityId(activityId);
+    setShowCommentModal(true);
+  };
+
+  const handleSaveComment = (comment: Comment) => {
+    addToast({
+      title: 'Comment Added',
+      message: `Comment posted successfully${comment.mentions.length > 0 ? ` with ${comment.mentions.length} mention(s)` : ''}`,
+      variant: 'success'
+    });
+  };
+
+  const handleLikeActivity = (activityId: string) => {
+    addToast({
+      title: 'Liked',
+      message: 'Activity liked successfully',
+      variant: 'success'
+    });
+  };
+
+  const handleEditActivity = (activityId: string) => {
+    addToast({
+      title: 'Edit Activity',
+      message: `Editing activity: ${activityId}`,
+      variant: 'info'
+    });
+  };
+
+  const handleDeleteActivity = (activityId: string) => {
+    setDeleteTarget({ type: 'activity', id: activityId });
+    setShowDeleteConfirm(true);
+  };
+
+  // Workflow handlers
+  const handleSaveWorkflow = (workflow: { name: string }) => {
+    addToast({
+      title: 'Workflow Saved',
+      message: `Workflow "${workflow.name}" saved successfully`,
+      variant: 'success'
+    });
+  };
+
+  const handleTestWorkflow = (workflow: { name: string }) => {
+    setShowWorkflowTestModal(true);
+  };
+
+  const handleSaveWorkflowTest = (test: WorkflowTest) => {
+    addToast({
+      title: 'Workflow Test Saved',
+      message: `Test "${test.scenario}" completed successfully`,
+      variant: test.results?.success ? 'success' : 'warning'
+    });
+  };
+
+  // Account hierarchy handlers
+  const handleAddChild = (id: string) => {
+    addToast({
+      title: 'Add Child Account',
+      message: `Adding child to account: ${id}`,
+      variant: 'info'
+    });
+  };
+
+  const handleEditAccount = (id: string) => {
+    addToast({
+      title: 'Edit Account',
+      message: `Editing account: ${id}`,
+      variant: 'info'
+    });
+  };
+
+  const handleViewAccount = (id: string) => {
+    addToast({
+      title: 'View Account',
+      message: `Viewing account details: ${id}`,
+      variant: 'info'
+    });
+  };
+
+  const handleLinkAccount = (id: string) => {
+    setCurrentAccountId(id);
+    setShowAccountLinkModal(true);
+  };
+
+  const handleSaveAccountLink = (link: AccountLink) => {
+    addToast({
+      title: 'Account Linked',
+      message: `Successfully linked to ${link.targetAccountName}`,
+      variant: 'success'
+    });
+  };
+
+  // AI Recommendation handlers
+  const handleAcceptRecommendation = (action: string) => {
+    addToast({
+      title: 'Recommendation Accepted',
+      message: `Action accepted: ${action}`,
+      variant: 'success'
+    });
+  };
+
+  const handleRejectRecommendation = (action: string) => {
+    addToast({
+      title: 'Recommendation Rejected',
+      message: `Action rejected: ${action}`,
+      variant: 'info'
+    });
+  };
+
+  // Delete confirmation handler
+  const handleConfirmDelete = () => {
+    if (!deleteTarget) return;
+
+    if (deleteTarget.type === 'task') {
+      setTasks(tasks.filter(t => t.id !== deleteTarget.id));
+      addToast({
+        title: 'Task Deleted',
+        message: 'Task deleted successfully',
+        variant: 'success'
+      });
+    } else if (deleteTarget.type === 'activity') {
+      addToast({
+        title: 'Activity Deleted',
+        message: 'Activity deleted successfully',
+        variant: 'success'
+      });
+    }
+
+    setDeleteTarget(null);
+    setShowDeleteConfirm(false);
+  };
 
   return (
     <div className="w-full h-full flex flex-col bg-gray-50">
@@ -352,8 +603,8 @@ export default function CRMAdvancedFeaturesPage() {
                 leadName="John Smith"
                 leadCompany="TechCorp Global Inc."
                 score={mockAIScore}
-                onAcceptRecommendation={(action: string) => alert(`Accepted: ${action}`)}
-                onRejectRecommendation={(action: string) => alert(`Rejected: ${action}`)}
+                onAcceptRecommendation={handleAcceptRecommendation}
+                onRejectRecommendation={handleRejectRecommendation}
                 showPredictions={true}
               />
             </div>
@@ -387,10 +638,10 @@ export default function CRMAdvancedFeaturesPage() {
             </p>
             <AccountHierarchyTree
               rootAccount={mockAccountHierarchy}
-              onAddChild={(id: string) => alert(`Add child to: ${id}`)}
-              onEdit={(id: string) => alert(`Edit account: ${id}`)}
-              onView={(id: string) => alert(`View account: ${id}`)}
-              onLink={(id: string) => alert(`Link account: ${id}`)}
+              onAddChild={handleAddChild}
+              onEdit={handleEditAccount}
+              onView={handleViewAccount}
+              onLink={handleLinkAccount}
               showActions={true}
               expandAll={false}
             />
@@ -448,12 +699,10 @@ export default function CRMAdvancedFeaturesPage() {
                 { id: '2', name: 'Mike Chen', role: 'Sales Manager' },
                 { id: '3', name: 'David Park', role: 'Solutions Engineer' },
               ]}
-              onAddComment={(activityId: string, comment: string, mentions: string[]) =>
-                alert(`Comment on ${activityId}: ${comment}. Mentions: ${mentions.join(', ')}`)
-              }
-              onLike={(activityId: string) => alert(`Liked activity: ${activityId}`)}
-              onEdit={(activityId: string) => alert(`Edit activity: ${activityId}`)}
-              onDelete={(activityId: string) => alert(`Delete activity: ${activityId}`)}
+              onAddComment={handleAddComment}
+              onLike={handleLikeActivity}
+              onEdit={handleEditActivity}
+              onDelete={handleDeleteActivity}
               showComments={true}
               showActions={true}
             />
@@ -479,8 +728,8 @@ export default function CRMAdvancedFeaturesPage() {
                 { id: '2', name: 'Mike Chen' },
                 { id: '3', name: 'David Park' },
               ]}
-              onSave={(workflow: { name: string }) => alert(`Workflow saved: ${workflow.name}`)}
-              onTest={(workflow: { name: string }) => alert(`Testing workflow: ${workflow.name}`)}
+              onSave={handleSaveWorkflow}
+              onTest={handleTestWorkflow}
             />
           </div>
         </TabContent>
@@ -493,19 +742,73 @@ export default function CRMAdvancedFeaturesPage() {
               records.
             </p>
             <TaskBoard
-              tasks={mockTasks}
+              tasks={tasks}
               currentUser={{ id: '1', name: 'Sarah Johnson' }}
-              onAddTask={() => alert('Add new task')}
-              onEditTask={(id: string) => alert(`Edit task: ${id}`)}
-              onDeleteTask={(id: string) => alert(`Delete task: ${id}`)}
-              onViewTask={(id: string) => alert(`View task: ${id}`)}
-              onStatusChange={(id: string, status: string) => alert(`Change task ${id} to ${status}`)}
+              onAddTask={handleAddTask}
+              onEditTask={handleEditTask}
+              onDeleteTask={handleDeleteTask}
+              onViewTask={handleViewTask}
+              onStatusChange={handleStatusChange}
               showFilters={true}
               viewMode="board"
             />
           </div>
         </TabContent>
       </div>
+
+      {/* Modals */}
+      <TaskModal
+        isOpen={showTaskModal}
+        onClose={() => {
+          setShowTaskModal(false);
+          setEditingTask(undefined);
+        }}
+        onSave={handleSaveTask}
+        task={editingTask ? crmTaskToModalTask(editingTask) : undefined}
+        mode={editingTask ? 'edit' : 'add'}
+      />
+
+      <CommentModal
+        isOpen={showCommentModal}
+        onClose={() => {
+          setShowCommentModal(false);
+          setCurrentActivityId(undefined);
+        }}
+        onSave={handleSaveComment}
+        mode="add"
+      />
+
+      <WorkflowTestModal
+        isOpen={showWorkflowTestModal}
+        onClose={() => setShowWorkflowTestModal(false)}
+        onSave={handleSaveWorkflowTest}
+        mode="add"
+      />
+
+      <AccountLinkModal
+        isOpen={showAccountLinkModal}
+        onClose={() => {
+          setShowAccountLinkModal(false);
+          setCurrentAccountId(undefined);
+        }}
+        onSave={handleSaveAccountLink}
+        currentAccountId={currentAccountId}
+        mode="add"
+      />
+
+      <ConfirmDialog
+        isOpen={showDeleteConfirm}
+        onClose={() => {
+          setShowDeleteConfirm(false);
+          setDeleteTarget(null);
+        }}
+        onConfirm={handleConfirmDelete}
+        title="Confirm Delete"
+        message={`Are you sure you want to delete this ${deleteTarget?.type}? This action cannot be undone.`}
+        confirmLabel="Delete"
+        cancelLabel="Cancel"
+        variant="danger"
+      />
     </div>
   );
 }

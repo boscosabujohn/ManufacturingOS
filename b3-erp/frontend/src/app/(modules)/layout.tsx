@@ -2,6 +2,7 @@
 
 import { usePathname } from 'next/navigation';
 import DashboardLayout from '@/components/DashboardLayout';
+import { ToastProvider } from '@/components/ui/Toast';
 
 export default function ModulesLayout({
   children,
@@ -20,5 +21,9 @@ export default function ModulesLayout({
       .join(' ');
   };
 
-  return <DashboardLayout pageTitle={getPageTitle()}>{children}</DashboardLayout>;
+  return (
+    <ToastProvider>
+      <DashboardLayout pageTitle={getPageTitle()}>{children}</DashboardLayout>
+    </ToastProvider>
+  );
 }

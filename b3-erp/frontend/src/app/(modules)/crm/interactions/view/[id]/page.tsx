@@ -21,6 +21,7 @@ import {
   Plus,
   ArrowRight,
 } from 'lucide-react';
+import { useToast } from '@/components/ui';
 
 interface Interaction {
   id: string;
@@ -127,10 +128,30 @@ export default function ViewInteractionPage() {
   const params = useParams();
   const interactionId = params.id as string;
   const interaction = mockInteraction;
+  const { addToast } = useToast();
 
   const [activeTab, setActiveTab] = useState<'details' | 'activities'>('details');
 
   const TypeIcon = typeIcons[interaction.type];
+
+  // Handler functions for interaction actions
+  const handleScheduleFollowUp = () => {
+    addToast({
+      title: 'Schedule Follow-up',
+      message: `Opening scheduler for follow-up with ${interaction.customer}...`,
+      variant: 'info'
+    });
+    // Future: router.push(`/crm/interactions/${interactionId}/schedule-followup`);
+  };
+
+  const handleSendEmail = () => {
+    addToast({
+      title: 'Send Email',
+      message: `Opening email compose for ${interaction.contactPerson} at ${interaction.customer}...`,
+      variant: 'info'
+    });
+    // Future: router.push(`/crm/interactions/${interactionId}/send-email`);
+  };
 
   const formatTypeLabel = (type: string) => {
     return type.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
@@ -185,12 +206,18 @@ export default function ViewInteractionPage() {
                 <span>Edit</span>
               </button>
               {interaction.followUpRequired && (
-                <button className="flex items-center space-x-2 px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 transition-colors">
+                <button
+                  onClick={handleScheduleFollowUp}
+                  className="flex items-center space-x-2 px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 transition-colors"
+                >
                   <Calendar className="h-4 w-4" />
                   <span>Schedule Follow-up</span>
                 </button>
               )}
-              <button className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+              <button
+                onClick={handleSendEmail}
+                className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              >
                 <Send className="h-4 w-4" />
                 <span>Send Email</span>
               </button>
@@ -229,7 +256,10 @@ export default function ViewInteractionPage() {
                 Scheduled for: <span className="font-semibold">{interaction.followUpDate}</span> | Assigned to: <span className="font-semibold">{interaction.assignedTo}</span>
               </p>
             </div>
-            <button className="flex items-center space-x-2 px-6 py-3 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 transition-colors font-semibold">
+            <button
+              onClick={handleScheduleFollowUp}
+              className="flex items-center space-x-2 px-6 py-3 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 transition-colors font-semibold"
+            >
               <Calendar className="h-5 w-5" />
               <span>Schedule Follow-up Now</span>
             </button>

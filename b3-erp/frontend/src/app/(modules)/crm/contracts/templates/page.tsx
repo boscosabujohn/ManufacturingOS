@@ -1,7 +1,9 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { Plus, Search, Eye, Edit, Copy, Trash2, Star, FileText, Calendar, DollarSign, TrendingUp, Clock, CheckCircle, RefreshCw } from 'lucide-react';
+import { ConfirmDialog } from '@/components/ui';
 
 interface ContractTemplate {
   id: string;
@@ -206,10 +208,13 @@ const mockTemplates: ContractTemplate[] = [
 ];
 
 export default function ContractTemplatesPage() {
-  const [templates] = useState<ContractTemplate[]>(mockTemplates);
+  const router = useRouter();
+  const [templates, setTemplates] = useState<ContractTemplate[]>(mockTemplates);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterCategory, setFilterCategory] = useState<'all' | 'service' | 'subscription' | 'license' | 'support' | 'maintenance' | 'custom'>('all');
   const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+  const [templateToDelete, setTemplateToDelete] = useState<ContractTemplate | null>(null);
 
   const filteredTemplates = templates.filter(template => {
     const matchesSearch = template.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -249,11 +254,43 @@ export default function ContractTemplatesPage() {
     }
   };
 
+  const handleCreateTemplate = () => {
+    router.push('/crm/contracts/templates/create');
+  };
+
+  const handleUseTemplate = (template: ContractTemplate) => {
+    router.push(`/crm/contracts/create?templateId=${template.id}`);
+  };
+
+  const handleViewTemplate = (template: ContractTemplate) => {
+    router.push(`/crm/contracts/templates/view/${template.id}`);
+  };
+
+  const handleEditTemplate = (template: ContractTemplate) => {
+    router.push(`/crm/contracts/templates/edit/${template.id}`);
+  };
+
+  const handleDeleteClick = (template: ContractTemplate) => {
+    setTemplateToDelete(template);
+    setShowDeleteDialog(true);
+  };
+
+  const confirmDelete = () => {
+    if (templateToDelete) {
+      setTemplates(templates.filter(t => t.id !== templateToDelete.id));
+      setShowDeleteDialog(false);
+      setTemplateToDelete(null);
+    }
+  };
+
   return (
     <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
       <div className="mb-8">
         <div className="flex justify-end mb-6">
-          <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+          <button
+            onClick={handleCreateTemplate}
+            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          >
             <Plus className="w-4 h-4" />
             Create Template
           </button>
@@ -485,19 +522,35 @@ export default function ContractTemplatesPage() {
 
               {/* Actions */}
               <div className="flex gap-2">
-                <button className="flex-1 flex items-center justify-center gap-2 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm">
+                <button
+                  onClick={() => handleUseTemplate(template)}
+                  className="flex-1 flex items-center justify-center gap-2 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm"
+                  title="Use this template to create a new contract"
+                >
                   <Copy className="w-4 h-4" />
                   Use Template
                 </button>
-                <button className="flex items-center justify-center gap-2 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                <button
+                  onClick={() => handleViewTemplate(template)}
+                  className="flex items-center justify-center gap-2 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm"
+                  title="View template details"
+                >
                   <Eye className="w-4 h-4" />
                   <span>View</span>
                 </button>
-                <button className="flex items-center justify-center gap-2 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                <button
+                  onClick={() => handleEditTemplate(template)}
+                  className="flex items-center justify-center gap-2 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm"
+                  title="Edit template"
+                >
                   <Edit className="w-4 h-4" />
                   <span>Edit</span>
                 </button>
-                <button className="flex items-center justify-center gap-2 px-3 py-2 border border-red-300 rounded-lg hover:bg-red-50 text-sm">
+                <button
+                  onClick={() => handleDeleteClick(template)}
+                  className="flex items-center justify-center gap-2 px-3 py-2 border border-red-300 rounded-lg hover:bg-red-50 text-sm"
+                  title="Delete template"
+                >
                   <Trash2 className="w-4 h-4 text-red-600" />
                   <span className="text-red-600">Delete</span>
                 </button>
@@ -518,6 +571,24 @@ export default function ContractTemplatesPage() {
           <p className="text-gray-600">Try adjusting your search or filters</p>
         </div>
       )}
+
+      {/* Delete Confirmation Dialog */}
+      <ConfirmDialog
+        isOpen={showDeleteDialog}
+        onClose={() => {
+          setShowDeleteDialog(false);
+          setTemplateToDelete(null);
+        }}
+        onConfirm={confirmDelete}
+        title="Delete Contract Template"
+        message={
+          templateToDelete
+            ? `Are you sure you want to delete "${templateToDelete.name}"? This template has been used ${templateToDelete.usageCount} time${templateToDelete.usageCount !== 1 ? 's' : ''}. This action cannot be undone.`
+            : ''
+        }
+        confirmLabel="Delete"
+        variant="danger"
+      />
     </div>
   );
 }

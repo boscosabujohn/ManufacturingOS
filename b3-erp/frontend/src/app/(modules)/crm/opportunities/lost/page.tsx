@@ -23,6 +23,7 @@ import {
   MessageSquare,
   Info,
 } from 'lucide-react';
+import { useToast } from '@/components/ui';
 
 interface LostOpportunity {
   id: string;
@@ -170,6 +171,7 @@ const mockLostOpportunities: LostOpportunity[] = [
 
 export default function LostOpportunitiesPage() {
   const router = useRouter();
+  const { addToast } = useToast();
   const [opportunities, setOpportunities] = useState<LostOpportunity[]>(mockLostOpportunities);
   const [searchQuery, setSearchQuery] = useState('');
   const [lostReasonFilter, setLostReasonFilter] = useState('all');
@@ -246,6 +248,17 @@ export default function LostOpportunitiesPage() {
       default:
         return 'bg-yellow-100 text-yellow-700 border-yellow-200';
     }
+  };
+
+  // Handler for Analysis button
+  const handleAnalyzeLoss = (opp: LostOpportunity) => {
+    // In a real application, this would navigate to a loss analysis page or open a modal
+    addToast({
+      title: 'Loss Analysis',
+      message: `Analyzing loss for "${opp.name}". This will provide insights into why the deal was lost and how to improve.`,
+      variant: 'success'
+    });
+    // Future implementation: router.push(`/crm/opportunities/loss-analysis/${opp.id}`)
   };
 
   return (
@@ -556,7 +569,10 @@ export default function LostOpportunitiesPage() {
                       <span>Reopen</span>
                     </button>
                   )}
-                  <button className="w-full flex items-center justify-center space-x-2 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">
+                  <button
+                    onClick={() => handleAnalyzeLoss(opp)}
+                    className="w-full flex items-center justify-center space-x-2 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                  >
                     <FileText className="h-4 w-4" />
                     <span>Analysis</span>
                   </button>

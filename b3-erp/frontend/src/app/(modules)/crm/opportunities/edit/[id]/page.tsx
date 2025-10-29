@@ -20,6 +20,7 @@ import {
   Users,
   TrendingUp,
 } from 'lucide-react';
+import { useToast } from '@/components/ui';
 
 interface OpportunityFormData {
   name: string;
@@ -72,6 +73,7 @@ const kitchenProducts = [
 
 export default function EditOpportunityPage() {
   const router = useRouter();
+  const { addToast } = useToast();
   const params = useParams();
   const opportunityId = params.id as string;
   const [currentStep, setCurrentStep] = useState(1);
@@ -179,8 +181,13 @@ export default function EditOpportunityPage() {
   };
 
   const handleSubmit = () => {
-    console.log('Updated Opportunity Data:', formData);
-    console.log('Attachments:', attachments);
+    // In a real application, this would send data to the backend API
+    // For now, we'll simulate success and show a toast notification
+    addToast({
+      title: 'Opportunity Updated',
+      message: `${formData.name} has been updated successfully`,
+      variant: 'success'
+    });
     router.push('/crm/opportunities');
   };
 

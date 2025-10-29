@@ -18,6 +18,7 @@ import {
   Briefcase,
   UserCheck,
 } from 'lucide-react';
+import { useToast } from '@/components/ui';
 
 interface ContactFormData {
   // Step 1: Basic Info
@@ -62,6 +63,7 @@ const contactMethods = ['Email', 'Phone', 'Mobile', 'In-Person Meeting'];
 
 export default function AddContactPage() {
   const router = useRouter();
+  const { addToast } = useToast();
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState<ContactFormData>({
     salutation: '',
@@ -112,7 +114,13 @@ export default function AddContactPage() {
   };
 
   const handleSubmit = () => {
-    console.log('Contact Data:', formData);
+    // In a real application, this would send data to the backend API
+    // For now, we'll simulate success and show a toast notification
+    addToast({
+      title: 'Contact Created',
+      message: `${formData.firstName} ${formData.lastName} has been added successfully`,
+      variant: 'success'
+    });
     router.push('/crm/contacts');
   };
 

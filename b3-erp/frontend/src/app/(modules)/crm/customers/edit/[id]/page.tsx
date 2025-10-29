@@ -25,6 +25,7 @@ import {
   AlertCircle,
   Upload,
 } from 'lucide-react';
+import { useToast } from '@/components/ui';
 
 // Comprehensive TypeScript Interface matching Enterprise ERP Systems
 interface Address {
@@ -461,6 +462,7 @@ const mockCustomerData: CustomerFormData = {
 
 export default function EditCustomerPage() {
   const router = useRouter();
+  const { addToast } = useToast();
   const params = useParams();
   const customerId = params.id as string;
 
@@ -615,7 +617,13 @@ export default function EditCustomerPage() {
   };
 
   const handleSubmit = () => {
-    console.log('Updated Customer Data:', formData);
+    // In a real application, this would send data to the backend API
+    // For now, we'll simulate success and show a toast notification
+    addToast({
+      title: 'Customer Updated',
+      message: `${formData.customerName} (${formData.customerNumber}) has been updated successfully`,
+      variant: 'success'
+    });
     router.push('/crm/customers');
   };
 

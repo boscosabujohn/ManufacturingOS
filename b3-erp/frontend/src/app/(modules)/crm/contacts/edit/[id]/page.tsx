@@ -18,6 +18,7 @@ import {
   Briefcase,
   UserCheck,
 } from 'lucide-react';
+import { useToast } from '@/components/ui';
 
 interface ContactFormData {
   // Step 1: Basic Info
@@ -62,6 +63,7 @@ const contactMethods = ['Email', 'Phone', 'Mobile', 'In-Person Meeting'];
 
 export default function EditContactPage() {
   const router = useRouter();
+  const { addToast } = useToast();
   const params = useParams();
   const contactId = params.id as string;
   const [currentStep, setCurrentStep] = useState(1);
@@ -116,7 +118,13 @@ export default function EditContactPage() {
   };
 
   const handleSubmit = () => {
-    console.log('Updated Contact Data:', formData);
+    // In a real application, this would send data to the backend API
+    // For now, we'll simulate success and show a toast notification
+    addToast({
+      title: 'Contact Updated',
+      message: `${formData.firstName} ${formData.lastName}'s information has been updated successfully`,
+      variant: 'success'
+    });
     router.push('/crm/contacts');
   };
 

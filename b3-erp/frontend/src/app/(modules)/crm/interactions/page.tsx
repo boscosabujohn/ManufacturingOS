@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Plus, Search, Eye, Edit, Trash2, Phone, Mail, MessageSquare, MapPin, Headphones, AlertCircle, ThumbsUp, Calendar, User, Clock, ChevronLeft, ChevronRight } from 'lucide-react';
 import { usePageVisitLogger } from '@/hooks/usePageVisitLogger';
+import { useToast, ConfirmDialog } from '@/components/ui';
 
 interface Interaction {
   id: string;
@@ -137,9 +138,12 @@ const outcomeColors = {
 
 export default function InteractionsPage() {
   const router = useRouter();
+  const { addToast } = useToast();
   const [interactions, setInteractions] = useState<Interaction[]>(mockInteractions);
   const [searchQuery, setSearchQuery] = useState('');
   const [typeFilter, setTypeFilter] = useState<string>('all');
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+  const [interactionToDelete, setInteractionToDelete] = useState<string | null>(null);
   const [dateFilter, setDateFilter] = useState<string>('all');
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
@@ -173,8 +177,20 @@ export default function InteractionsPage() {
   };
 
   const handleDeleteInteraction = (id: string) => {
-    if (confirm('Are you sure you want to delete this interaction?')) {
-      setInteractions(interactions.filter((i) => i.id !== id));
+    setInteractionToDelete(id);
+    setShowDeleteDialog(true);
+  };
+
+  const confirmDelete = () => {
+    if (interactionToDelete) {
+      setInteractions(interactions.filter((i) => i.id !== interactionToDelete));
+      addToast({
+        title: 'Interaction Deleted',
+        message: 'The interaction has been deleted successfully',
+        variant: 'success'
+      });
+      setShowDeleteDialog(false);
+      setInteractionToDelete(null);
     }
   };
 
@@ -421,6 +437,20 @@ export default function InteractionsPage() {
           </div>
         </div>
       </div>
+
+      {/* Delete Confirmation Dialog */}
+      <ConfirmDialog
+        isOpen={showDeleteDialog}
+        onClose={() => {
+          setShowDeleteDialog(false);
+          setInteractionToDelete(null);
+        }}
+        onConfirm={confirmDelete}
+        title="Delete Interaction"
+        message="Are you sure you want to delete this interaction? This action cannot be undone."
+        confirmLabel="Delete"
+        variant="danger"
+      />
     </div>
   );
 }

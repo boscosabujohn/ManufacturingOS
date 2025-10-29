@@ -1,7 +1,9 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { Mail, Plus, Send, Eye, Users, TrendingUp, Target, Calendar, Search, Filter, Edit, Copy, Trash2, Play, Pause } from 'lucide-react';
+import { ConfirmDialog } from '@/components/ui';
 
 interface EmailCampaign {
   id: string;
@@ -120,9 +122,58 @@ const mockEmailCampaigns: EmailCampaign[] = [
 ];
 
 export default function EmailCampaignsPage() {
-  const [campaigns] = useState<EmailCampaign[]>(mockEmailCampaigns);
+  const router = useRouter();
+
+  const [campaigns, setCampaigns] = useState<EmailCampaign[]>(mockEmailCampaigns);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterStatus, setFilterStatus] = useState<'all' | 'draft' | 'scheduled' | 'sending' | 'sent' | 'paused'>('all');
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+  const [campaignToDelete, setCampaignToDelete] = useState<EmailCampaign | null>(null);
+
+  const handleViewCampaign = (campaign: EmailCampaign) => {
+    router.push(`/crm/campaigns/email/view/${campaign.id}`);
+  };
+
+  const handleEditCampaign = (campaign: EmailCampaign) => {
+    router.push(`/crm/campaigns/email/edit/${campaign.id}`);
+  };
+
+  const handleCopyCampaign = (campaign: EmailCampaign) => {
+    const newCampaign = {
+      ...campaign,
+      id: Date.now().toString(),
+      name: `${campaign.name} (Copy)`,
+      status: 'draft' as const,
+      sent: 0,
+      delivered: 0,
+      opened: 0,
+      clicked: 0,
+      bounced: 0,
+      unsubscribed: 0,
+      sentDate: undefined,
+      scheduledDate: undefined,
+    };
+    setCampaigns([...campaigns, newCampaign]);
+  };
+
+  const handlePlayCampaign = (campaign: EmailCampaign) => {
+    setCampaigns(campaigns.map(c =>
+      c.id === campaign.id ? { ...c, status: 'sending' } : c
+    ));
+  };
+
+  const handleDeleteClick = (campaign: EmailCampaign) => {
+    setCampaignToDelete(campaign);
+    setShowDeleteDialog(true);
+  };
+
+  const confirmDelete = () => {
+    if (campaignToDelete) {
+      setCampaigns(campaigns.filter(c => c.id !== campaignToDelete.id));
+      setShowDeleteDialog(false);
+      setCampaignToDelete(null);
+    }
+  };
 
   const filteredCampaigns = campaigns.filter(campaign => {
     const matchesSearch = campaign.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -282,25 +333,40 @@ export default function EmailCampaignsPage() {
                 </div>
 
                 <div className="flex gap-2 ml-4">
-                  <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                  <button
+                    onClick={() => handleViewCampaign(campaign)}
+                    className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm"
+                  >
                     <Eye className="w-4 h-4" />
                     <span>View</span>
                   </button>
-                  <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                  <button
+                    onClick={() => handleEditCampaign(campaign)}
+                    className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm"
+                  >
                     <Edit className="w-4 h-4" />
                     <span>Edit</span>
                   </button>
-                  <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                  <button
+                    onClick={() => handleCopyCampaign(campaign)}
+                    className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm"
+                  >
                     <Copy className="w-4 h-4" />
                     <span>Copy</span>
                   </button>
                   {campaign.status === 'paused' && (
-                    <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-green-300 rounded-lg hover:bg-green-50 text-sm">
+                    <button
+                      onClick={() => handlePlayCampaign(campaign)}
+                      className="inline-flex items-center gap-1.5 px-3 py-2 border border-green-300 rounded-lg hover:bg-green-50 text-sm"
+                    >
                       <Play className="w-4 h-4 text-green-600" />
                       <span className="text-green-600">Play</span>
                     </button>
                   )}
-                  <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-red-300 rounded-lg hover:bg-red-50 text-sm">
+                  <button
+                    onClick={() => handleDeleteClick(campaign)}
+                    className="inline-flex items-center gap-1.5 px-3 py-2 border border-red-300 rounded-lg hover:bg-red-50 text-sm"
+                  >
                     <Trash2 className="w-4 h-4 text-red-600" />
                     <span className="text-red-600">Delete</span>
                   </button>
@@ -310,6 +376,19 @@ export default function EmailCampaignsPage() {
           );
         })}
       </div>
+
+      <ConfirmDialog
+        isOpen={showDeleteDialog}
+        onClose={() => {
+          setShowDeleteDialog(false);
+          setCampaignToDelete(null);
+        }}
+        onConfirm={confirmDelete}
+        title="Delete Email Campaign"
+        message={campaignToDelete ? `Are you sure you want to delete "${campaignToDelete.name}"? This action cannot be undone and will remove all campaign data and analytics.` : ''}
+        confirmLabel="Delete"
+        variant="danger"
+      />
     </div>
   );
 }

@@ -23,6 +23,7 @@ import {
   X,
   Link as LinkIcon,
 } from 'lucide-react';
+import { useToast } from '@/components/ui';
 
 interface InteractionFormData {
   // Step 1
@@ -71,6 +72,7 @@ const contactPersons = {
 
 export default function AddInteractionPage() {
   const router = useRouter();
+  const { addToast } = useToast();
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState<InteractionFormData>({
     type: 'call',
@@ -108,7 +110,13 @@ export default function AddInteractionPage() {
   };
 
   const handleSubmit = () => {
-    console.log('Interaction Data:', formData);
+    // In a real application, this would send data to the backend API
+    // For now, we'll simulate success and show a toast notification
+    addToast({
+      title: 'Interaction Logged',
+      message: `${formData.type.charAt(0).toUpperCase() + formData.type.slice(1)} with ${formData.customer} has been logged successfully`,
+      variant: 'success'
+    });
     router.push('/crm/interactions');
   };
 

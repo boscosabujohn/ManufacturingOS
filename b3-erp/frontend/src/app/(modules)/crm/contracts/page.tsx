@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Plus, Search, Eye, Edit, Download, FileText, DollarSign, Calendar, AlertCircle, CheckCircle, Clock, TrendingUp, User, Building2, RefreshCw } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 interface Contract {
   id: string;
@@ -262,6 +263,7 @@ const mockContracts: Contract[] = [
 ];
 
 export default function ContractsPage() {
+  const router = useRouter();
   const [contracts] = useState<Contract[]>(mockContracts);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterStatus, setFilterStatus] = useState<'all' | 'draft' | 'active' | 'pending_renewal' | 'expired' | 'terminated' | 'suspended'>('all');
@@ -319,11 +321,31 @@ export default function ContractsPage() {
     return days <= 90 && days >= 0 && contract.status === 'active';
   };
 
+  const handleCreateContract = () => {
+    router.push('/crm/contracts/create');
+  };
+
+  const handleViewContract = (contract: Contract) => {
+    router.push(`/crm/contracts/view/${contract.id}`);
+  };
+
+  const handleEditContract = (contract: Contract) => {
+    router.push(`/crm/contracts/edit/${contract.id}`);
+  };
+
+  const handleDownloadContract = (contract: Contract) => {
+    // Silent download operation
+    console.log(`Downloading contract ${contract.contractNumber}`);
+  };
+
   return (
     <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
       <div className="mb-8">
         <div className="flex justify-end mb-6">
-          <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+          <button
+            onClick={handleCreateContract}
+            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          >
             <Plus className="w-4 h-4" />
             Create Contract
           </button>
@@ -467,15 +489,24 @@ export default function ContractsPage() {
                 </div>
 
                 <div className="flex items-center gap-2">
-                  <button className="inline-flex items-center gap-1.5 px-3 py-2 text-gray-600 hover:bg-gray-100 rounded-lg text-sm">
+                  <button
+                    onClick={() => handleViewContract(contract)}
+                    className="inline-flex items-center gap-1.5 px-3 py-2 text-gray-600 hover:bg-gray-100 rounded-lg text-sm"
+                  >
                     <Eye className="w-4 h-4" />
                     <span>View</span>
                   </button>
-                  <button className="inline-flex items-center gap-1.5 px-3 py-2 text-gray-600 hover:bg-gray-100 rounded-lg text-sm">
+                  <button
+                    onClick={() => handleEditContract(contract)}
+                    className="inline-flex items-center gap-1.5 px-3 py-2 text-gray-600 hover:bg-gray-100 rounded-lg text-sm"
+                  >
                     <Edit className="w-4 h-4" />
                     <span>Edit</span>
                   </button>
-                  <button className="inline-flex items-center gap-1.5 px-3 py-2 text-gray-600 hover:bg-gray-100 rounded-lg text-sm">
+                  <button
+                    onClick={() => handleDownloadContract(contract)}
+                    className="inline-flex items-center gap-1.5 px-3 py-2 text-gray-600 hover:bg-gray-100 rounded-lg text-sm"
+                  >
                     <Download className="w-4 h-4" />
                     <span>Download</span>
                   </button>

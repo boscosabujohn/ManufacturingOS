@@ -1,7 +1,9 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { Workflow, Plus, Search, Play, Pause, CheckCircle, Clock, Users, Mail, Filter as FilterIcon, TrendingUp, Target, Edit, Copy, Trash2, Eye, GitBranch } from 'lucide-react';
+import { ConfirmDialog } from '@/components/ui';
 
 interface Automation {
   id: string;
@@ -150,10 +152,66 @@ const mockAutomations: Automation[] = [
 ];
 
 export default function CampaignAutomationPage() {
-  const [automations] = useState<Automation[]>(mockAutomations);
+  const router = useRouter();
+
+  const [automations, setAutomations] = useState<Automation[]>(mockAutomations);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterStatus, setFilterStatus] = useState<'all' | 'active' | 'paused' | 'draft'>('all');
   const [filterType, setFilterType] = useState<'all' | 'form_submit' | 'list_join' | 'tag_added' | 'date_based' | 'behavior' | 'manual'>('all');
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+  const [automationToDelete, setAutomationToDelete] = useState<Automation | null>(null);
+
+  // Handler functions for automation actions
+  const handleCreateAutomation = () => {
+    router.push('/crm/campaigns/automation/create');
+  };
+
+  const handleViewAutomation = (automation: Automation) => {
+    router.push(`/crm/campaigns/automation/view/${automation.id}`);
+  };
+
+  const handleEditAutomation = (automation: Automation) => {
+    router.push(`/crm/campaigns/automation/edit/${automation.id}`);
+  };
+
+  const handleCopyAutomation = (automation: Automation) => {
+    const newAutomation = {
+      ...automation,
+      id: Date.now().toString(),
+      name: `${automation.name} (Copy)`,
+      status: 'draft' as const,
+      activeContacts: 0,
+      completedContacts: 0,
+      conversionRate: 0,
+      lastTriggered: undefined,
+    };
+    setAutomations([...automations, newAutomation]);
+  };
+
+  const handlePauseAutomation = (automation: Automation) => {
+    setAutomations(automations.map(a =>
+      a.id === automation.id ? { ...a, status: 'paused' } : a
+    ));
+  };
+
+  const handlePlayAutomation = (automation: Automation) => {
+    setAutomations(automations.map(a =>
+      a.id === automation.id ? { ...a, status: 'active' } : a
+    ));
+  };
+
+  const handleDeleteClick = (automation: Automation) => {
+    setAutomationToDelete(automation);
+    setShowDeleteDialog(true);
+  };
+
+  const confirmDelete = () => {
+    if (automationToDelete) {
+      setAutomations(automations.filter(a => a.id !== automationToDelete.id));
+      setShowDeleteDialog(false);
+      setAutomationToDelete(null);
+    }
+  };
 
   const filteredAutomations = automations.filter(automation => {
     const matchesSearch = automation.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -198,7 +256,10 @@ export default function CampaignAutomationPage() {
     <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
       <div className="mb-8">
         <div className="flex justify-end mb-6">
-          <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+          <button
+            onClick={handleCreateAutomation}
+            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          >
             <Plus className="w-4 h-4" />
             Create Automation
           </button>
@@ -350,31 +411,49 @@ export default function CampaignAutomationPage() {
               </div>
 
               <div className="flex gap-2 ml-4">
-                <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                <button
+                  onClick={() => handleViewAutomation(automation)}
+                  className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm"
+                >
                   <Eye className="w-4 h-4" />
                   <span>View</span>
                 </button>
-                <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                <button
+                  onClick={() => handleEditAutomation(automation)}
+                  className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm"
+                >
                   <Edit className="w-4 h-4" />
                   <span>Edit</span>
                 </button>
-                <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                <button
+                  onClick={() => handleCopyAutomation(automation)}
+                  className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm"
+                >
                   <Copy className="w-4 h-4" />
                   <span>Copy</span>
                 </button>
                 {automation.status === 'active' && (
-                  <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-yellow-300 rounded-lg hover:bg-yellow-50 text-sm">
+                  <button
+                    onClick={() => handlePauseAutomation(automation)}
+                    className="inline-flex items-center gap-1.5 px-3 py-2 border border-yellow-300 rounded-lg hover:bg-yellow-50 text-sm"
+                  >
                     <Pause className="w-4 h-4 text-yellow-600" />
                     <span className="text-yellow-600">Pause</span>
                   </button>
                 )}
                 {automation.status === 'paused' && (
-                  <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-green-300 rounded-lg hover:bg-green-50 text-sm">
+                  <button
+                    onClick={() => handlePlayAutomation(automation)}
+                    className="inline-flex items-center gap-1.5 px-3 py-2 border border-green-300 rounded-lg hover:bg-green-50 text-sm"
+                  >
                     <Play className="w-4 h-4 text-green-600" />
                     <span className="text-green-600">Play</span>
                   </button>
                 )}
-                <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-red-300 rounded-lg hover:bg-red-50 text-sm">
+                <button
+                  onClick={() => handleDeleteClick(automation)}
+                  className="inline-flex items-center gap-1.5 px-3 py-2 border border-red-300 rounded-lg hover:bg-red-50 text-sm"
+                >
                   <Trash2 className="w-4 h-4 text-red-600" />
                   <span className="text-red-600">Delete</span>
                 </button>
@@ -391,6 +470,20 @@ export default function CampaignAutomationPage() {
           <p className="text-gray-600">Try adjusting your search or filters</p>
         </div>
       )}
+
+      {/* Delete Confirmation Dialog */}
+      <ConfirmDialog
+        isOpen={showDeleteDialog}
+        onClose={() => {
+          setShowDeleteDialog(false);
+          setAutomationToDelete(null);
+        }}
+        onConfirm={confirmDelete}
+        title="Delete Automation"
+        message={automationToDelete ? `Are you sure you want to delete "${automationToDelete.name}"? This action cannot be undone and will stop all active workflows.` : ''}
+        confirmLabel="Delete"
+        variant="danger"
+      />
     </div>
   );
 }

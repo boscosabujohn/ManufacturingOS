@@ -25,6 +25,7 @@ import {
   AlertCircle,
   Upload,
 } from 'lucide-react';
+import { useToast } from '@/components/ui';
 
 // Comprehensive TypeScript Interface matching Enterprise ERP Systems
 interface Address {
@@ -295,6 +296,7 @@ const paymentMethodOptions = [
 
 export default function AddCustomerPage() {
   const router = useRouter();
+  const { addToast } = useToast();
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState<CustomerFormData>({
     customerNumber: `CUST-${new Date().getFullYear()}-${Math.floor(Math.random() * 10000).toString().padStart(4, '0')}`,
@@ -549,7 +551,13 @@ export default function AddCustomerPage() {
   };
 
   const handleSubmit = () => {
-    console.log('Enterprise Customer Data:', formData);
+    // In a real application, this would send data to the backend API
+    // For now, we'll simulate success and show a toast notification
+    addToast({
+      title: 'Customer Created',
+      message: `${formData.customerName} (${formData.customerNumber}) has been added successfully`,
+      variant: 'success'
+    });
     router.push('/crm/customers');
   };
 

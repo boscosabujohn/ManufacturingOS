@@ -28,6 +28,7 @@ import {
   Send,
   BarChart3,
 } from 'lucide-react';
+import { useToast } from '@/components/ui';
 
 interface Opportunity {
   id: string;
@@ -229,8 +230,64 @@ export default function ViewOpportunityPage() {
   const params = useParams();
   const opportunityId = params.id as string;
   const opportunity = mockOpportunity; // In real app, fetch by opportunityId
+  const { addToast } = useToast();
 
   const [activeTab, setActiveTab] = useState<'overview' | 'activity' | 'products'>('overview');
+
+  // Handler functions for opportunity actions
+  const handleUpdateStage = () => {
+    addToast({
+      title: 'Update Stage',
+      message: 'Opening stage update dialog...',
+      variant: 'info'
+    });
+    // Future: Show modal to update opportunity stage with dropdown
+  };
+
+  const handleSendProposal = () => {
+    addToast({
+      title: 'Send Proposal',
+      message: `Preparing proposal for ${opportunity.name}...`,
+      variant: 'info'
+    });
+    // Future: router.push(`/crm/opportunities/${opportunityId}/send-proposal`);
+  };
+
+  const handleLogCall = () => {
+    addToast({
+      title: 'Log Call',
+      message: 'Opening call log form...',
+      variant: 'info'
+    });
+    // Future: router.push(`/crm/opportunities/${opportunityId}/log-call`);
+  };
+
+  const handleSendEmail = () => {
+    addToast({
+      title: 'Send Email',
+      message: `Opening email compose for ${opportunity.account}...`,
+      variant: 'info'
+    });
+    // Future: router.push(`/crm/opportunities/${opportunityId}/send-email`);
+  };
+
+  const handleScheduleMeeting = () => {
+    addToast({
+      title: 'Schedule Meeting',
+      message: 'Opening meeting scheduler...',
+      variant: 'info'
+    });
+    // Future: router.push(`/crm/opportunities/${opportunityId}/schedule-meeting`);
+  };
+
+  const handleAddNote = () => {
+    addToast({
+      title: 'Add Note',
+      message: 'Opening note creation form...',
+      variant: 'info'
+    });
+    // Future: router.push(`/crm/opportunities/${opportunityId}/add-note`);
+  };
 
   const tabs = [
     { id: 'overview', name: 'Overview', icon: Target },
@@ -283,11 +340,17 @@ export default function ViewOpportunityPage() {
                 <Edit className="h-4 w-4" />
                 <span>Edit</span>
               </button>
-              <button className="flex items-center space-x-2 px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors">
+              <button
+                onClick={handleUpdateStage}
+                className="flex items-center space-x-2 px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors"
+              >
                 <BarChart3 className="h-4 w-4" />
                 <span>Update Stage</span>
               </button>
-              <button className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+              <button
+                onClick={handleSendProposal}
+                className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              >
                 <Send className="h-4 w-4" />
                 <span>Send Proposal</span>
               </button>
@@ -495,19 +558,31 @@ export default function ViewOpportunityPage() {
             <div className="flex items-center justify-between mb-6">
               <h3 className="text-xl font-bold text-gray-900">Activity Timeline</h3>
               <div className="flex flex-wrap gap-2">
-                <button className="flex items-center space-x-1 px-3 py-1.5 bg-blue-50 text-blue-600 hover:bg-blue-100 rounded-lg transition-colors text-sm font-medium">
+                <button
+                  onClick={handleLogCall}
+                  className="flex items-center space-x-1 px-3 py-1.5 bg-blue-50 text-blue-600 hover:bg-blue-100 rounded-lg transition-colors text-sm font-medium"
+                >
                   <PhoneCall className="h-4 w-4" />
                   <span>Log Call</span>
                 </button>
-                <button className="flex items-center space-x-1 px-3 py-1.5 bg-purple-50 text-purple-600 hover:bg-purple-100 rounded-lg transition-colors text-sm font-medium">
+                <button
+                  onClick={handleSendEmail}
+                  className="flex items-center space-x-1 px-3 py-1.5 bg-purple-50 text-purple-600 hover:bg-purple-100 rounded-lg transition-colors text-sm font-medium"
+                >
                   <Mail className="h-4 w-4" />
                   <span>Send Email</span>
                 </button>
-                <button className="flex items-center space-x-1 px-3 py-1.5 bg-green-50 text-green-600 hover:bg-green-100 rounded-lg transition-colors text-sm font-medium">
+                <button
+                  onClick={handleScheduleMeeting}
+                  className="flex items-center space-x-1 px-3 py-1.5 bg-green-50 text-green-600 hover:bg-green-100 rounded-lg transition-colors text-sm font-medium"
+                >
                   <Calendar className="h-4 w-4" />
                   <span>Schedule Meeting</span>
                 </button>
-                <button className="flex items-center space-x-1 px-3 py-1.5 bg-yellow-50 text-yellow-600 hover:bg-yellow-100 rounded-lg transition-colors text-sm font-medium">
+                <button
+                  onClick={handleAddNote}
+                  className="flex items-center space-x-1 px-3 py-1.5 bg-yellow-50 text-yellow-600 hover:bg-yellow-100 rounded-lg transition-colors text-sm font-medium"
+                >
                   <FileText className="h-4 w-4" />
                   <span>Add Note</span>
                 </button>

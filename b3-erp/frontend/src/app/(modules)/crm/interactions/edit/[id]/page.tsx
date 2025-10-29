@@ -23,6 +23,7 @@ import {
   X,
   Link as LinkIcon,
 } from 'lucide-react';
+import { useToast } from '@/components/ui';
 
 interface InteractionFormData {
   type: string;
@@ -66,6 +67,7 @@ const contactPersons = {
 
 export default function EditInteractionPage() {
   const router = useRouter();
+  const { addToast } = useToast();
   const params = useParams();
   const interactionId = params.id as string;
   const [currentStep, setCurrentStep] = useState(1);
@@ -107,8 +109,13 @@ export default function EditInteractionPage() {
   };
 
   const handleSubmit = () => {
-    console.log('Updated Interaction Data:', formData);
-    console.log('Interaction ID:', interactionId);
+    // In a real application, this would send data to the backend API
+    // For now, we'll simulate success and show a toast notification
+    addToast({
+      title: 'Interaction Updated',
+      message: `Interaction #${interactionId} has been updated successfully`,
+      variant: 'success'
+    });
     router.push('/crm/interactions');
   };
 

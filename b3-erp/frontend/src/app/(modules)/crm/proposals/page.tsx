@@ -1,7 +1,9 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { Plus, Search, Eye, Edit, Send, Download, Copy, Trash2, FileText, DollarSign, Clock, CheckCircle, XCircle, AlertCircle, Calendar, User } from 'lucide-react';
+import { ConfirmDialog } from '@/components/ui';
 
 interface Proposal {
   id: string;
@@ -186,10 +188,13 @@ const mockProposals: Proposal[] = [
 ];
 
 export default function ProposalsPage() {
-  const [proposals] = useState<Proposal[]>(mockProposals);
+  const router = useRouter();
+  const [proposals, setProposals] = useState<Proposal[]>(mockProposals);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterStatus, setFilterStatus] = useState<'all' | 'draft' | 'sent' | 'viewed' | 'accepted' | 'rejected' | 'expired' | 'negotiation'>('all');
   const [sortBy, setSortBy] = useState<'date' | 'value' | 'probability'>('date');
+  const [proposalToDelete, setProposalToDelete] = useState<Proposal | null>(null);
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
 
   const filteredProposals = proposals
     .filter(proposal => {
@@ -250,11 +255,69 @@ export default function ProposalsPage() {
     return daysUntilExpiry <= 7 && daysUntilExpiry >= 0;
   };
 
+  const handleCreateProposal = () => {
+    router.push('/crm/proposals/create');
+  };
+
+  const handleViewProposal = (proposal: Proposal) => {
+    router.push(`/crm/proposals/view/${proposal.id}`);
+  };
+
+  const handleEditProposal = (proposal: Proposal) => {
+    router.push(`/crm/proposals/edit/${proposal.id}`);
+  };
+
+  const handleDownloadProposal = (proposal: Proposal) => {
+    // Simulate PDF download
+    const link = document.createElement('a');
+    link.href = '#';
+    link.download = `${proposal.proposalNumber}.pdf`;
+  };
+
+  const handleCopyProposal = (proposal: Proposal) => {
+    const newProposal: Proposal = {
+      ...proposal,
+      id: Date.now().toString(),
+      proposalNumber: `PROP-${new Date().getFullYear()}-${(proposals.length + 1).toString().padStart(3, '0')}`,
+      status: 'draft',
+      createdDate: new Date().toISOString().split('T')[0],
+      lastActivity: new Date().toISOString().split('T')[0],
+      submittedDate: undefined,
+      viewedDate: undefined,
+      respondedDate: undefined,
+    };
+    setProposals([...proposals, newProposal]);
+  };
+
+  const handleSendProposal = (proposal: Proposal) => {
+    setProposals(proposals.map(p =>
+      p.id === proposal.id
+        ? { ...p, status: 'sent', submittedDate: new Date().toISOString().split('T')[0] }
+        : p
+    ));
+  };
+
+  const handleDeleteProposal = (proposal: Proposal) => {
+    setProposalToDelete(proposal);
+    setShowDeleteDialog(true);
+  };
+
+  const confirmDelete = () => {
+    if (proposalToDelete) {
+      setProposals(proposals.filter(p => p.id !== proposalToDelete.id));
+      setShowDeleteDialog(false);
+      setProposalToDelete(null);
+    }
+  };
+
   return (
     <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
       <div className="mb-8">
         <div className="flex justify-end mb-6">
-          <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+          <button
+            onClick={handleCreateProposal}
+            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          >
             <Plus className="w-4 h-4" />
             Create Proposal
           </button>
@@ -373,29 +436,47 @@ export default function ProposalsPage() {
                 </div>
 
                 <div className="flex items-center gap-2">
-                  <button className="inline-flex items-center gap-1.5 px-3 py-2 text-gray-600 hover:bg-gray-100 rounded-lg text-sm">
+                  <button
+                    onClick={() => handleViewProposal(proposal)}
+                    className="inline-flex items-center gap-1.5 px-3 py-2 text-gray-600 hover:bg-gray-100 rounded-lg text-sm"
+                  >
                     <Eye className="w-4 h-4" />
                     <span>View</span>
                   </button>
-                  <button className="inline-flex items-center gap-1.5 px-3 py-2 text-gray-600 hover:bg-gray-100 rounded-lg text-sm">
+                  <button
+                    onClick={() => handleEditProposal(proposal)}
+                    className="inline-flex items-center gap-1.5 px-3 py-2 text-gray-600 hover:bg-gray-100 rounded-lg text-sm"
+                  >
                     <Edit className="w-4 h-4" />
                     <span>Edit</span>
                   </button>
-                  <button className="inline-flex items-center gap-1.5 px-3 py-2 text-gray-600 hover:bg-gray-100 rounded-lg text-sm">
+                  <button
+                    onClick={() => handleDownloadProposal(proposal)}
+                    className="inline-flex items-center gap-1.5 px-3 py-2 text-gray-600 hover:bg-gray-100 rounded-lg text-sm"
+                  >
                     <Download className="w-4 h-4" />
                     <span>Download</span>
                   </button>
-                  <button className="inline-flex items-center gap-1.5 px-3 py-2 text-gray-600 hover:bg-gray-100 rounded-lg text-sm">
+                  <button
+                    onClick={() => handleCopyProposal(proposal)}
+                    className="inline-flex items-center gap-1.5 px-3 py-2 text-gray-600 hover:bg-gray-100 rounded-lg text-sm"
+                  >
                     <Copy className="w-4 h-4" />
                     <span>Copy</span>
                   </button>
                   {proposal.status === 'draft' && (
-                    <button className="px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm flex items-center gap-1">
+                    <button
+                      onClick={() => handleSendProposal(proposal)}
+                      className="px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm flex items-center gap-1"
+                    >
                       <Send className="w-4 h-4" />
                       Send
                     </button>
                   )}
-                  <button className="inline-flex items-center gap-1.5 px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg text-sm">
+                  <button
+                    onClick={() => handleDeleteProposal(proposal)}
+                    className="inline-flex items-center gap-1.5 px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg text-sm"
+                  >
                     <Trash2 className="w-4 h-4" />
                     <span>Delete</span>
                   </button>
@@ -525,6 +606,22 @@ export default function ProposalsPage() {
           <h3 className="text-lg font-medium text-gray-900 mb-2">No proposals found</h3>
           <p className="text-gray-600">Try adjusting your search or filters</p>
         </div>
+      )}
+
+      {/* Delete Confirmation Dialog */}
+      {proposalToDelete && (
+        <ConfirmDialog
+          isOpen={showDeleteDialog}
+          onClose={() => {
+            setShowDeleteDialog(false);
+            setProposalToDelete(null);
+          }}
+          onConfirm={confirmDelete}
+          title="Delete Proposal"
+          message={`Are you sure you want to delete ${proposalToDelete.proposalNumber} - "${proposalToDelete.title}"? This action cannot be undone.`}
+          confirmLabel="Delete"
+          variant="danger"
+        />
       )}
     </div>
   );

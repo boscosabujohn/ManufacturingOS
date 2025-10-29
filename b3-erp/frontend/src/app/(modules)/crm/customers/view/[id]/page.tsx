@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter, useParams } from 'next/navigation';
+import { useToast } from '@/components/ui';
 import {
   ArrowLeft,
   Edit,
@@ -523,6 +524,7 @@ const interactionColors = {
 export default function ViewCustomerPage() {
   const router = useRouter();
   const params = useParams();
+  const { addToast } = useToast();
   const customerId = params.id as string;
   const customer = mockCustomer;
 
@@ -556,6 +558,61 @@ export default function ViewCustomerPage() {
     } else {
       return formatCurrency(amount);
     }
+  };
+
+  // Action Handlers
+  const handleCreateOrder = () => {
+    addToast({
+      title: 'Create Order',
+      message: 'Navigating to order creation...',
+      variant: 'info'
+    });
+    // Future: router.push(`/sales/orders/create?customerId=${customerId}`);
+  };
+
+  const handleSendInvoice = () => {
+    addToast({
+      title: 'Send Invoice',
+      message: 'Opening invoice sending interface...',
+      variant: 'info'
+    });
+    // Future: Open invoice modal or navigate to invoice page
+  };
+
+  const handleViewOrderDetails = (orderId: string) => {
+    addToast({
+      title: 'Order Details',
+      message: `Viewing order ${orderId}...`,
+      variant: 'info'
+    });
+    // Future: router.push(`/sales/orders/view/${orderId}`);
+  };
+
+  const handleLogCall = () => {
+    addToast({
+      title: 'Log Call',
+      message: 'Opening call logging interface...',
+      variant: 'info'
+    });
+    // Future: Open call logging modal
+  };
+
+  const handleScheduleMeeting = () => {
+    addToast({
+      title: 'Schedule Meeting',
+      message: 'Opening meeting scheduler...',
+      variant: 'info'
+    });
+    // Future: router.push(`/crm/customers/${customerId}/schedule-meeting`);
+  };
+
+  const handleSendEmail = () => {
+    addToast({
+      title: 'Send Email',
+      message: 'Opening email composer...',
+      variant: 'info'
+    });
+    // Future: Open email modal with customer details pre-filled
   };
 
   return (
@@ -613,11 +670,17 @@ export default function ViewCustomerPage() {
                 <Edit className="h-4 w-4" />
                 <span>Edit</span>
               </button>
-              <button className="flex items-center space-x-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+              <button
+                onClick={handleCreateOrder}
+                className="flex items-center space-x-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+              >
                 <ShoppingCart className="h-4 w-4" />
                 <span>Create Order</span>
               </button>
-              <button className="flex items-center space-x-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors">
+              <button
+                onClick={handleSendInvoice}
+                className="flex items-center space-x-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
+              >
                 <Receipt className="h-4 w-4" />
                 <span>Send Invoice</span>
               </button>
@@ -1566,7 +1629,10 @@ export default function ViewCustomerPage() {
           <div>
             <div className="flex items-center justify-between mb-6">
               <h3 className="text-xl font-bold text-gray-900">Order History</h3>
-              <button className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+              <button
+                onClick={handleCreateOrder}
+                className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+              >
                 <ShoppingCart className="h-4 w-4" />
                 <span>New Order</span>
               </button>
@@ -1602,7 +1668,12 @@ export default function ViewCustomerPage() {
                       </td>
                       <td className="px-4 py-4 text-sm text-gray-900">{order.items}</td>
                       <td className="px-4 py-4">
-                        <button className="text-blue-600 hover:text-blue-800 text-sm font-medium">View Details</button>
+                        <button
+                          onClick={() => handleViewOrderDetails(order.orderNumber)}
+                          className="text-blue-600 hover:text-blue-800 text-sm font-medium"
+                        >
+                          View Details
+                        </button>
                       </td>
                     </tr>
                   ))}
@@ -1628,15 +1699,24 @@ export default function ViewCustomerPage() {
             <div className="flex items-center justify-between mb-6">
               <h3 className="text-xl font-bold text-gray-900">Communication Timeline</h3>
               <div className="flex flex-wrap gap-2">
-                <button className="flex items-center space-x-1 px-3 py-1.5 bg-blue-50 text-blue-600 hover:bg-blue-100 rounded-lg text-sm font-medium">
+                <button
+                  onClick={handleLogCall}
+                  className="flex items-center space-x-1 px-3 py-1.5 bg-blue-50 text-blue-600 hover:bg-blue-100 rounded-lg text-sm font-medium"
+                >
                   <PhoneCall className="h-4 w-4" />
                   <span>Log Call</span>
                 </button>
-                <button className="flex items-center space-x-1 px-3 py-1.5 bg-green-50 text-green-600 hover:bg-green-100 rounded-lg text-sm font-medium">
+                <button
+                  onClick={handleScheduleMeeting}
+                  className="flex items-center space-x-1 px-3 py-1.5 bg-green-50 text-green-600 hover:bg-green-100 rounded-lg text-sm font-medium"
+                >
                   <Users className="h-4 w-4" />
                   <span>Schedule Meeting</span>
                 </button>
-                <button className="flex items-center space-x-1 px-3 py-1.5 bg-purple-50 text-purple-600 hover:bg-purple-100 rounded-lg text-sm font-medium">
+                <button
+                  onClick={handleSendEmail}
+                  className="flex items-center space-x-1 px-3 py-1.5 bg-purple-50 text-purple-600 hover:bg-purple-100 rounded-lg text-sm font-medium"
+                >
                   <Mail className="h-4 w-4" />
                   <span>Send Email</span>
                 </button>

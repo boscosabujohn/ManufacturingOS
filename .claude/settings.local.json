@@ -2,7 +2,10 @@
   "permissions": {
     "allow": [
       "Bash(git checkout:*)",
-      "Bash(do sed -i 's/const renderExpandableSection =/const renderExpandableSection: any =/g' $file/page.tsx)"
+      "Bash(do sed -i 's/const renderExpandableSection =/const renderExpandableSection: any =/g' $file/page.tsx)",
+      "Bash(do echo \"=== crm/$dir ===\")",
+      "Bash(PORT=3000 npm run dev)",
+      "Bash(do echo \"=== $file ===\")"
     ],
     "deny": [],
     "ask": []

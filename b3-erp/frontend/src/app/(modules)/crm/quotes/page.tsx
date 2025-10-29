@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import { FileText, Plus, Search, DollarSign, TrendingUp, CheckCircle, Clock, XCircle, Calendar, User, Building2, Download, Send, Eye, Edit, Copy, Trash2 } from 'lucide-react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { ConfirmDialog } from '@/components/ui';
 
 interface Quote {
   id: string;
@@ -146,10 +148,13 @@ const mockQuotes: Quote[] = [
 ];
 
 export default function QuotesPage() {
-  const [quotes] = useState<Quote[]>(mockQuotes);
+  const router = useRouter();
+  const [quotes, setQuotes] = useState<Quote[]>(mockQuotes);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterStatus, setFilterStatus] = useState<'all' | 'draft' | 'sent' | 'viewed' | 'accepted' | 'rejected' | 'expired'>('all');
   const [sortBy, setSortBy] = useState<'date' | 'amount' | 'probability'>('date');
+  const [quoteToDelete, setQuoteToDelete] = useState<Quote | null>(null);
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
 
   const filteredQuotes = quotes
     .filter(quote => {
@@ -224,6 +229,54 @@ export default function QuotesPage() {
   const isExpiringSoon = (validUntil: string) => {
     const daysUntilExpiry = Math.ceil((new Date(validUntil).getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24));
     return daysUntilExpiry <= 7 && daysUntilExpiry > 0;
+  };
+
+  const handleViewQuote = (quote: Quote) => {
+    router.push(`/crm/quotes/view/${quote.id}`);
+  };
+
+  const handleDownloadQuote = (quote: Quote) => {
+    // Simulate PDF download
+    const link = document.createElement('a');
+    link.href = '#';
+    link.download = `${quote.quoteNumber}.pdf`;
+    // In a real app, this would download the actual PDF
+  };
+
+  const handleEditQuote = (quote: Quote) => {
+    router.push(`/crm/quotes/edit/${quote.id}`);
+  };
+
+  const handleCopyQuote = (quote: Quote) => {
+    const newQuote = {
+      ...quote,
+      id: Date.now().toString(),
+      quoteNumber: `QT-${new Date().getFullYear()}-${(quotes.length + 1).toString().padStart(3, '0')}`,
+      status: 'draft' as const,
+      createdDate: new Date().toISOString().split('T')[0],
+      sentDate: undefined,
+      acceptedDate: undefined,
+    };
+    setQuotes([...quotes, newQuote]);
+  };
+
+  const handleSendQuote = (quote: Quote) => {
+    setQuotes(quotes.map(q =>
+      q.id === quote.id ? { ...q, status: 'sent', sentDate: new Date().toISOString().split('T')[0] } : q
+    ));
+  };
+
+  const handleDeleteQuote = (quote: Quote) => {
+    setQuoteToDelete(quote);
+    setShowDeleteDialog(true);
+  };
+
+  const confirmDelete = () => {
+    if (quoteToDelete) {
+      setQuotes(quotes.filter(q => q.id !== quoteToDelete.id));
+      setShowDeleteDialog(false);
+      setQuoteToDelete(null);
+    }
   };
 
   return (
@@ -466,29 +519,47 @@ export default function QuotesPage() {
               </div>
 
               <div className="flex gap-2 ml-4">
-                <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                <button
+                  onClick={() => handleViewQuote(quote)}
+                  className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm"
+                >
                   <Eye className="w-4 h-4 text-gray-600" />
                   <span className="text-gray-700">View</span>
                 </button>
-                <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                <button
+                  onClick={() => handleDownloadQuote(quote)}
+                  className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm"
+                >
                   <Download className="w-4 h-4 text-gray-600" />
                   <span className="text-gray-700">Download</span>
                 </button>
-                <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                <button
+                  onClick={() => handleEditQuote(quote)}
+                  className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm"
+                >
                   <Edit className="w-4 h-4 text-gray-600" />
                   <span className="text-gray-700">Edit</span>
                 </button>
-                <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-blue-300 rounded-lg hover:bg-blue-50 text-sm">
+                <button
+                  onClick={() => handleCopyQuote(quote)}
+                  className="inline-flex items-center gap-1.5 px-3 py-2 border border-blue-300 rounded-lg hover:bg-blue-50 text-sm"
+                >
                   <Copy className="w-4 h-4 text-blue-600" />
                   <span className="text-blue-600">Copy</span>
                 </button>
                 {quote.status === 'draft' && (
-                  <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-green-300 rounded-lg hover:bg-green-50 text-sm">
+                  <button
+                    onClick={() => handleSendQuote(quote)}
+                    className="inline-flex items-center gap-1.5 px-3 py-2 border border-green-300 rounded-lg hover:bg-green-50 text-sm"
+                  >
                     <Send className="w-4 h-4 text-green-600" />
                     <span className="text-green-600">Send</span>
                   </button>
                 )}
-                <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-red-300 rounded-lg hover:bg-red-50 text-sm">
+                <button
+                  onClick={() => handleDeleteQuote(quote)}
+                  className="inline-flex items-center gap-1.5 px-3 py-2 border border-red-300 rounded-lg hover:bg-red-50 text-sm"
+                >
                   <Trash2 className="w-4 h-4 text-red-600" />
                   <span className="text-red-600">Delete</span>
                 </button>
@@ -504,6 +575,22 @@ export default function QuotesPage() {
           <h3 className="text-lg font-medium text-gray-900 mb-2">No quotes found</h3>
           <p className="text-gray-600">Try adjusting your search or filters</p>
         </div>
+      )}
+
+      {/* Delete Confirmation Dialog */}
+      {quoteToDelete && (
+        <ConfirmDialog
+          isOpen={showDeleteDialog}
+          onClose={() => {
+            setShowDeleteDialog(false);
+            setQuoteToDelete(null);
+          }}
+          onConfirm={confirmDelete}
+          title="Delete Quote"
+          message={`Are you sure you want to delete ${quoteToDelete.quoteNumber} - "${quoteToDelete.title}"? This action cannot be undone.`}
+          confirmLabel="Delete"
+          variant="danger"
+        />
       )}
     </div>
   );

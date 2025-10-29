@@ -1,9 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Plus, Search, Eye, Edit, Trash2, Phone, Mail, Building2, User, Users, Calendar, TrendingUp, X, Globe, Clock, CheckCircle, MessageSquare, FileText, PhoneCall, Video, Send, Activity, ArrowRight, Circle, ChevronLeft, ChevronRight, Download, RefreshCw } from 'lucide-react';
-import { DataTable, EmptyState, LoadingState, PageToolbar } from '@/components/ui';
+import { Plus, Search, Eye, Edit, Trash2, Phone, Mail, Building2, User, Users, Calendar, TrendingUp, X, Globe, Clock, CheckCircle, MessageSquare, FileText, PhoneCall, Video, Send, Activity, ArrowRight, Circle, ChevronLeft, ChevronRight, Download, RefreshCw, Upload, Filter, Save, Check, UserPlus, MoreVertical, FileSpreadsheet, ArrowUpDown } from 'lucide-react';
+import { DataTable, EmptyState, LoadingState, PageToolbar, ConfirmDialog, useToast } from '@/components/ui';
 
 interface Lead {
   id: string;
@@ -111,6 +111,20 @@ interface LeadStage {
   date?: string;
   icon: any;
   color: string;
+}
+
+interface SavedFilter {
+  id: string;
+  name: string;
+  filters: {
+    status: string;
+    source: string;
+    assignedTo: string;
+    valueMin: string;
+    valueMax: string;
+    dateFrom: string;
+    dateTo: string;
+  };
 }
 
 // Mock activities for Lead ID 1
@@ -231,8 +245,14 @@ const statusColors = {
   lost: 'bg-red-100 text-red-700',
 };
 
+const LEAD_SOURCES = ['Website', 'Referral', 'Trade Show', 'LinkedIn', 'Cold Call'];
+const ASSIGNED_USERS = ['Sarah Johnson', 'Michael Chen', 'David Park'];
+const LEAD_STATUSES: Lead['status'][] = ['new', 'contacted', 'qualified', 'proposal', 'negotiation', 'won', 'lost'];
+
 export default function LeadsPage() {
   const router = useRouter();
+  const { addToast } = useToast();
+
   const [leads, setLeads] = useState<Lead[]>(mockLeads);
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
@@ -240,7 +260,73 @@ export default function LeadsPage() {
   const [selectedLead, setSelectedLead] = useState<Lead | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
+
+  // Enhanced Delete State
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+  const [leadToDelete, setLeadToDelete] = useState<Lead | null>(null);
+
+  // Bulk Operations State
+  const [selectedLeadIds, setSelectedLeadIds] = useState<Set<string>>(new Set());
+  const [showBulkDeleteDialog, setShowBulkDeleteDialog] = useState(false);
+  const [showBulkAssignDialog, setShowBulkAssignDialog] = useState(false);
+  const [showBulkStatusDialog, setShowBulkStatusDialog] = useState(false);
+  const [bulkAssignUser, setBulkAssignUser] = useState('');
+  const [bulkStatus, setBulkStatus] = useState<Lead['status']>('new');
+
+  // Inline Status Update State
+  const [statusDropdownOpen, setStatusDropdownOpen] = useState<string | null>(null);
+
+  // Advanced Filtering State
+  const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
+  const [sourceFilter, setSourceFilter] = useState<string>('all');
+  const [assignedToFilter, setAssignedToFilter] = useState<string>('all');
+  const [valueMinFilter, setValueMinFilter] = useState<string>('');
+  const [valueMaxFilter, setValueMaxFilter] = useState<string>('');
+  const [dateFromFilter, setDateFromFilter] = useState<string>('');
+  const [dateToFilter, setDateToFilter] = useState<string>('');
+  const [savedFilters, setSavedFilters] = useState<SavedFilter[]>([]);
+  const [showSaveFilterDialog, setShowSaveFilterDialog] = useState(false);
+  const [filterName, setFilterName] = useState('');
+
+  // Import/Export State
+  const [showImportDialog, setShowImportDialog] = useState(false);
+
   const itemsPerPage = 10;
+
+  // Keyboard shortcuts
+  useEffect(() => {
+    const handleKeyPress = (e: KeyboardEvent) => {
+      // Only trigger if not typing in an input
+      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) {
+        return;
+      }
+
+      if (selectedLeadIds.size === 1) {
+        const selectedId = Array.from(selectedLeadIds)[0];
+        const lead = leads.find(l => l.id === selectedId);
+
+        if (!lead) return;
+
+        switch (e.key.toLowerCase()) {
+          case 'd':
+            e.preventDefault();
+            handleDeleteLead(lead);
+            break;
+          case 'e':
+            e.preventDefault();
+            router.push(`/crm/leads/edit/${lead.id}`);
+            break;
+          case 'v':
+            e.preventDefault();
+            handleViewLead(lead);
+            break;
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, [selectedLeadIds, leads, router]);
 
   const filteredLeads = leads.filter((lead) => {
     const matchesSearch =
@@ -248,7 +334,24 @@ export default function LeadsPage() {
       lead.company.toLowerCase().includes(searchQuery.toLowerCase()) ||
       lead.email.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesStatus = statusFilter === 'all' || lead.status === statusFilter;
-    return matchesSearch && matchesStatus;
+    const matchesSource = sourceFilter === 'all' || lead.source === sourceFilter;
+    const matchesAssignedTo = assignedToFilter === 'all' || lead.assignedTo === assignedToFilter;
+
+    const matchesValueRange = (() => {
+      const min = valueMinFilter ? parseFloat(valueMinFilter) : 0;
+      const max = valueMaxFilter ? parseFloat(valueMaxFilter) : Infinity;
+      return lead.value >= min && lead.value <= max;
+    })();
+
+    const matchesDateRange = (() => {
+      if (!dateFromFilter && !dateToFilter) return true;
+      const leadDate = new Date(lead.createdAt);
+      const fromDate = dateFromFilter ? new Date(dateFromFilter) : new Date(0);
+      const toDate = dateToFilter ? new Date(dateToFilter) : new Date();
+      return leadDate >= fromDate && leadDate <= toDate;
+    })();
+
+    return matchesSearch && matchesStatus && matchesSource && matchesAssignedTo && matchesValueRange && matchesDateRange;
   });
 
   // Pagination logic
@@ -263,21 +366,238 @@ export default function LeadsPage() {
     totalValue: leads.reduce((sum, l) => sum + l.value, 0),
   };
 
-  const handleDeleteLead = (id: string) => {
-    if (confirm('Are you sure you want to delete this lead?')) {
-      setLeads(leads.filter((l) => l.id !== id));
+  // Enhanced Delete Handler
+  const handleDeleteLead = (lead: Lead) => {
+    setLeadToDelete(lead);
+    setShowDeleteDialog(true);
+  };
+
+  const confirmDeleteLead = () => {
+    if (leadToDelete) {
+      setLeads(leads.filter((l) => l.id !== leadToDelete.id));
+      setShowDeleteDialog(false);
+      setLeadToDelete(null);
+      addToast({
+        title: 'Lead Deleted',
+        message: `${leadToDelete.name} has been successfully deleted.`,
+        variant: 'success'
+      });
     }
+  };
+
+  // Bulk Operations Handlers
+  const handleSelectLead = (leadId: string) => {
+    const newSelection = new Set(selectedLeadIds);
+    if (newSelection.has(leadId)) {
+      newSelection.delete(leadId);
+    } else {
+      newSelection.add(leadId);
+    }
+    setSelectedLeadIds(newSelection);
+  };
+
+  const handleSelectAll = () => {
+    if (selectedLeadIds.size === paginatedLeads.length) {
+      setSelectedLeadIds(new Set());
+    } else {
+      setSelectedLeadIds(new Set(paginatedLeads.map(l => l.id)));
+    }
+  };
+
+  const handleBulkDelete = () => {
+    setLeads(leads.filter(l => !selectedLeadIds.has(l.id)));
+    setShowBulkDeleteDialog(false);
+    addToast({
+      title: 'Leads Deleted',
+      message: `${selectedLeadIds.size} leads have been successfully deleted.`,
+      variant: 'success'
+    });
+    setSelectedLeadIds(new Set());
+  };
+
+  const handleBulkAssign = () => {
+    if (!bulkAssignUser) return;
+
+    setLeads(leads.map(lead =>
+      selectedLeadIds.has(lead.id)
+        ? { ...lead, assignedTo: bulkAssignUser }
+        : lead
+    ));
+    setShowBulkAssignDialog(false);
+    addToast({
+      title: 'Leads Assigned',
+      message: `${selectedLeadIds.size} leads have been assigned to ${bulkAssignUser}.`,
+      variant: 'success'
+    });
+    setSelectedLeadIds(new Set());
+    setBulkAssignUser('');
+  };
+
+  const handleBulkStatusChange = () => {
+    setLeads(leads.map(lead =>
+      selectedLeadIds.has(lead.id)
+        ? { ...lead, status: bulkStatus }
+        : lead
+    ));
+    setShowBulkStatusDialog(false);
+    addToast({
+      title: 'Status Updated',
+      message: `${selectedLeadIds.size} leads have been updated to ${bulkStatus}.`,
+      variant: 'success'
+    });
+    setSelectedLeadIds(new Set());
+  };
+
+  // Inline Status Update
+  const handleStatusChange = (leadId: string, newStatus: Lead['status']) => {
+    setLeads(leads.map(lead =>
+      lead.id === leadId ? { ...lead, status: newStatus } : lead
+    ));
+    setStatusDropdownOpen(null);
+    addToast({
+      title: 'Status Updated',
+      message: `Lead status has been updated to ${newStatus}.`,
+      variant: 'success'
+    });
+  };
+
+  // Export to CSV
+  const handleExportCSV = () => {
+    const headers = ['Name', 'Company', 'Email', 'Phone', 'Status', 'Source', 'Value', 'Assigned To', 'Created At'];
+    const csvData = [
+      headers.join(','),
+      ...filteredLeads.map(lead => [
+        lead.name,
+        lead.company,
+        lead.email,
+        lead.phone,
+        lead.status,
+        lead.source,
+        lead.value,
+        lead.assignedTo,
+        lead.createdAt
+      ].join(','))
+    ].join('\n');
+
+    const blob = new Blob([csvData], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `leads-export-${new Date().toISOString().split('T')[0]}.csv`;
+    a.click();
+    window.URL.revokeObjectURL(url);
+
+    addToast({
+      title: 'Export Successful',
+      message: `${filteredLeads.length} leads exported to CSV.`,
+      variant: 'success'
+    });
+  };
+
+  // Export to Excel (simplified CSV for now)
+  const handleExportExcel = () => {
+    handleExportCSV();
+  };
+
+  // Save Filter
+  const handleSaveFilter = () => {
+    if (!filterName.trim()) return;
+
+    const newFilter: SavedFilter = {
+      id: Date.now().toString(),
+      name: filterName,
+      filters: {
+        status: statusFilter,
+        source: sourceFilter,
+        assignedTo: assignedToFilter,
+        valueMin: valueMinFilter,
+        valueMax: valueMaxFilter,
+        dateFrom: dateFromFilter,
+        dateTo: dateToFilter
+      }
+    };
+
+    setSavedFilters([...savedFilters, newFilter]);
+    setShowSaveFilterDialog(false);
+    setFilterName('');
+    addToast({
+      title: 'Filter Saved',
+      message: `Filter "${newFilter.name}" has been saved successfully.`,
+      variant: 'success'
+    });
+  };
+
+  // Load Saved Filter
+  const loadSavedFilter = (filter: SavedFilter) => {
+    setStatusFilter(filter.filters.status);
+    setSourceFilter(filter.filters.source);
+    setAssignedToFilter(filter.filters.assignedTo);
+    setValueMinFilter(filter.filters.valueMin);
+    setValueMaxFilter(filter.filters.valueMax);
+    setDateFromFilter(filter.filters.dateFrom);
+    setDateToFilter(filter.filters.dateTo);
+    addToast({
+      title: 'Filter Loaded',
+      message: `Filter "${filter.name}" has been applied.`,
+      variant: 'info'
+    });
+  };
+
+  // Clear Filters
+  const clearAllFilters = () => {
+    setSearchQuery('');
+    setStatusFilter('all');
+    setSourceFilter('all');
+    setAssignedToFilter('all');
+    setValueMinFilter('');
+    setValueMaxFilter('');
+    setDateFromFilter('');
+    setDateToFilter('');
+  };
+
+  // Quick Actions
+  const handleQuickCall = (lead: Lead, e: React.MouseEvent) => {
+    e.stopPropagation();
+    addToast({
+      title: 'Initiating Call',
+      message: `Calling ${lead.name} at ${lead.phone}`,
+      variant: 'info'
+    });
+  };
+
+  const handleQuickEmail = (lead: Lead, e: React.MouseEvent) => {
+    e.stopPropagation();
+    window.location.href = `mailto:${lead.email}`;
+  };
+
+  const handleQuickConvert = (lead: Lead, e: React.MouseEvent) => {
+    e.stopPropagation();
+    addToast({
+      title: 'Convert Lead',
+      message: `Converting ${lead.name} to opportunity...`,
+      variant: 'info'
+    });
   };
 
   const handleViewLead = (lead: Lead) => {
     router.push(`/crm/leads/view/${lead.id}`);
   };
 
+  // Get impact analysis for delete
+  const getDeleteImpactAnalysis = (lead: Lead) => {
+    const activities = mockActivities.filter(a => a.leadId === lead.id).length;
+    return [
+      { label: 'Activities', count: activities },
+      { label: 'Opportunities', count: 1 },
+      { label: 'Documents', count: 3 }
+    ];
+  };
+
   return (
     <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
       {/* Page Header with Toolbar */}
       <PageToolbar
-       
+
         subtitle={`${stats.total} leads · ${stats.newLeads} new · ${stats.qualified} qualified`}
         breadcrumbs={[
           { label: 'CRM', href: '/crm' },
@@ -285,16 +605,25 @@ export default function LeadsPage() {
         ]}
         actions={[
           {
+            label: 'Import',
+            icon: Upload,
+            variant: 'secondary',
+            onClick: () => setShowImportDialog(true)
+          },
+          {
             label: 'Export',
             icon: Download,
             variant: 'secondary',
-            onClick: () => console.log('Export leads')
+            onClick: handleExportCSV
           },
           {
             label: 'Refresh',
             icon: RefreshCw,
             variant: 'secondary',
-            onClick: () => console.log('Refresh leads')
+            onClick: () => {
+              setIsLoading(true);
+              setTimeout(() => setIsLoading(false), 500);
+            }
           },
           {
             label: 'Add New Lead',
@@ -357,32 +686,215 @@ export default function LeadsPage() {
       </div>
       </div>
 
-      {/* Filters */}
-      <div className="flex gap-4 mb-6">
-        <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-          <input
-            type="text"
-            placeholder="Search leads..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
+      {/* Bulk Actions Bar */}
+      {selectedLeadIds.size > 0 && (
+        <div className="mb-4 bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-2">
+              <Check className="h-5 w-5 text-blue-600" />
+              <span className="text-sm font-medium text-blue-900">
+                {selectedLeadIds.size} lead{selectedLeadIds.size > 1 ? 's' : ''} selected
+              </span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <button
+                onClick={() => setShowBulkAssignDialog(true)}
+                className="flex items-center space-x-1 px-3 py-1.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
+              >
+                <UserPlus className="h-4 w-4" />
+                <span>Assign</span>
+              </button>
+              <button
+                onClick={() => setShowBulkStatusDialog(true)}
+                className="flex items-center space-x-1 px-3 py-1.5 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm font-medium"
+              >
+                <ArrowUpDown className="h-4 w-4" />
+                <span>Change Status</span>
+              </button>
+              <button
+                onClick={handleExportExcel}
+                className="flex items-center space-x-1 px-3 py-1.5 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors text-sm font-medium"
+              >
+                <FileSpreadsheet className="h-4 w-4" />
+                <span>Export</span>
+              </button>
+              <button
+                onClick={() => setShowBulkDeleteDialog(true)}
+                className="flex items-center space-x-1 px-3 py-1.5 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors text-sm font-medium"
+              >
+                <Trash2 className="h-4 w-4" />
+                <span>Delete</span>
+              </button>
+              <button
+                onClick={() => setSelectedLeadIds(new Set())}
+                className="flex items-center space-x-1 px-3 py-1.5 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors text-sm font-medium"
+              >
+                <X className="h-4 w-4" />
+                <span>Clear</span>
+              </button>
+            </div>
+          </div>
         </div>
-        <select
-          value={statusFilter}
-          onChange={(e) => setStatusFilter(e.target.value)}
-          className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-        >
-          <option value="all">All Status</option>
-          <option value="new">New</option>
-          <option value="contacted">Contacted</option>
-          <option value="qualified">Qualified</option>
-          <option value="proposal">Proposal</option>
-          <option value="negotiation">Negotiation</option>
-          <option value="won">Won</option>
-          <option value="lost">Lost</option>
-        </select>
+      )}
+
+      {/* Filters */}
+      <div className="mb-6">
+        <div className="flex gap-4 mb-4">
+          <div className="relative flex-1">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+            <input
+              type="text"
+              placeholder="Search leads..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+          <button
+            onClick={() => setShowAdvancedFilters(!showAdvancedFilters)}
+            className={`flex items-center space-x-2 px-4 py-2 border rounded-lg transition-colors ${
+              showAdvancedFilters
+                ? 'bg-blue-50 border-blue-300 text-blue-700'
+                : 'border-gray-300 text-gray-700 hover:bg-gray-50'
+            }`}
+          >
+            <Filter className="h-5 w-5" />
+            <span>Advanced Filters</span>
+          </button>
+          {(sourceFilter !== 'all' || assignedToFilter !== 'all' || valueMinFilter || valueMaxFilter || dateFromFilter || dateToFilter) && (
+            <button
+              onClick={clearAllFilters}
+              className="flex items-center space-x-2 px-4 py-2 border border-red-300 text-red-700 rounded-lg hover:bg-red-50 transition-colors"
+            >
+              <X className="h-5 w-5" />
+              <span>Clear All</span>
+            </button>
+          )}
+        </div>
+
+        {/* Advanced Filters Panel */}
+        {showAdvancedFilters && (
+          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 mb-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Source</label>
+                <select
+                  value={sourceFilter}
+                  onChange={(e) => setSourceFilter(e.target.value)}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  <option value="all">All Sources</option>
+                  {LEAD_SOURCES.map(source => (
+                    <option key={source} value={source}>{source}</option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Assigned To</label>
+                <select
+                  value={assignedToFilter}
+                  onChange={(e) => setAssignedToFilter(e.target.value)}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  <option value="all">All Users</option>
+                  {ASSIGNED_USERS.map(user => (
+                    <option key={user} value={user}>{user}</option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
+                <select
+                  value={statusFilter}
+                  onChange={(e) => setStatusFilter(e.target.value)}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  <option value="all">All Status</option>
+                  {LEAD_STATUSES.map(status => (
+                    <option key={status} value={status}>
+                      {status.charAt(0).toUpperCase() + status.slice(1)}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Min Value ($)</label>
+                <input
+                  type="number"
+                  value={valueMinFilter}
+                  onChange={(e) => setValueMinFilter(e.target.value)}
+                  placeholder="0"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Max Value ($)</label>
+                <input
+                  type="number"
+                  value={valueMaxFilter}
+                  onChange={(e) => setValueMaxFilter(e.target.value)}
+                  placeholder="999999"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Date From</label>
+                <input
+                  type="date"
+                  value={dateFromFilter}
+                  onChange={(e) => setDateFromFilter(e.target.value)}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Date To</label>
+                <input
+                  type="date"
+                  value={dateToFilter}
+                  onChange={(e) => setDateToFilter(e.target.value)}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+            </div>
+
+            <div className="flex items-center justify-between mt-4 pt-4 border-t border-gray-300">
+              <div className="flex items-center space-x-2">
+                <button
+                  onClick={() => setShowSaveFilterDialog(true)}
+                  className="flex items-center space-x-1 px-3 py-1.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
+                >
+                  <Save className="h-4 w-4" />
+                  <span>Save Filter</span>
+                </button>
+
+                {savedFilters.length > 0 && (
+                  <select
+                    onChange={(e) => {
+                      const filter = savedFilters.find(f => f.id === e.target.value);
+                      if (filter) loadSavedFilter(filter);
+                    }}
+                    className="px-3 py-1.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  >
+                    <option value="">Load Saved Filter...</option>
+                    {savedFilters.map(filter => (
+                      <option key={filter.id} value={filter.id}>{filter.name}</option>
+                    ))}
+                  </select>
+                )}
+              </div>
+
+              <span className="text-sm text-gray-600">
+                {filteredLeads.length} lead{filteredLeads.length !== 1 ? 's' : ''} found
+              </span>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Table */}
@@ -415,98 +927,418 @@ export default function LeadsPage() {
           }
         />
       ) : (
-        <DataTable
-          data={filteredLeads}
-          columns={[
-          {
-            key: 'name',
-            header: 'Lead',
-            sortable: true,
-            render: (lead) => (
-              <div>
-                <div className="font-medium text-gray-900">{lead.name}</div>
-                <div className="text-sm text-gray-500">{lead.source}</div>
-              </div>
-            )
-          },
-          {
-            key: 'company',
-            header: 'Company',
-            sortable: true
-          },
-          {
-            key: 'email',
-            header: 'Contact',
-            render: (lead) => (
-              <div>
-                <div className="text-sm">{lead.email}</div>
-                <div className="text-sm text-gray-500">{lead.phone}</div>
-              </div>
-            )
-          },
-          {
-            key: 'status',
-            header: 'Status',
-            sortable: true,
-            render: (lead) => (
-              <span className={`px-2 py-1 text-xs font-semibold rounded-full ${statusColors[lead.status as keyof typeof statusColors] || ""}`}>
-                {lead.status.charAt(0).toUpperCase() + lead.status.slice(1)}
-              </span>
-            )
-          },
-          {
-            key: 'value',
-            header: 'Value',
-            sortable: true,
-            render: (lead) => (
-              <span className="font-semibold">${lead.value.toLocaleString()}</span>
-            )
-          },
-          {
-            key: 'actions',
-            header: 'Actions',
-            render: (lead) => (
-              <div className="flex items-center space-x-1">
-                <button
-                  onClick={() => handleViewLead(lead)}
-                  className="flex items-center space-x-1 px-3 py-1.5 text-blue-600 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors text-sm font-medium"
-                 
+        <div className="bg-white rounded-lg shadow overflow-hidden">
+          <table className="min-w-full divide-y divide-gray-200">
+            <thead className="bg-gray-50">
+              <tr>
+                <th className="px-4 py-3 text-left">
+                  <input
+                    type="checkbox"
+                    checked={selectedLeadIds.size === paginatedLeads.length && paginatedLeads.length > 0}
+                    onChange={handleSelectAll}
+                    className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                  />
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Lead
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Company
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Contact
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Status
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Value
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Quick Actions
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Actions
+                </th>
+              </tr>
+            </thead>
+            <tbody className="bg-white divide-y divide-gray-200">
+              {paginatedLeads.map((lead) => (
+                <tr
+                  key={lead.id}
+                  className={`hover:bg-gray-50 transition-colors ${selectedLeadIds.has(lead.id) ? 'bg-blue-50' : ''}`}
                 >
-                  <Eye className="h-4 w-4" />
-                  <span>View</span>
+                  <td className="px-4 py-4">
+                    <input
+                      type="checkbox"
+                      checked={selectedLeadIds.has(lead.id)}
+                      onChange={() => handleSelectLead(lead.id)}
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                      onClick={(e) => e.stopPropagation()}
+                    />
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <div>
+                      <div className="font-medium text-gray-900">{lead.name}</div>
+                      <div className="text-sm text-gray-500">{lead.source}</div>
+                    </div>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    {lead.company}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <div className="text-sm text-gray-900">{lead.email}</div>
+                    <div className="text-sm text-gray-500">{lead.phone}</div>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <div className="relative">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setStatusDropdownOpen(statusDropdownOpen === lead.id ? null : lead.id);
+                        }}
+                        className={`px-2 py-1 text-xs font-semibold rounded-full ${statusColors[lead.status]} hover:opacity-80 transition-opacity cursor-pointer`}
+                      >
+                        {lead.status.charAt(0).toUpperCase() + lead.status.slice(1)}
+                      </button>
+
+                      {statusDropdownOpen === lead.id && (
+                        <div className="absolute z-10 mt-2 w-40 bg-white rounded-lg shadow-lg border border-gray-200">
+                          {LEAD_STATUSES.map(status => (
+                            <button
+                              key={status}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleStatusChange(lead.id, status);
+                              }}
+                              className={`w-full text-left px-4 py-2 text-sm hover:bg-gray-100 first:rounded-t-lg last:rounded-b-lg ${
+                                lead.status === status ? 'bg-gray-50 font-semibold' : ''
+                              }`}
+                            >
+                              {status.charAt(0).toUpperCase() + status.slice(1)}
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <span className="font-semibold text-gray-900">${lead.value.toLocaleString()}</span>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <div className="flex items-center space-x-1">
+                      <button
+                        onClick={(e) => handleQuickCall(lead, e)}
+                        className="p-1.5 text-blue-600 hover:bg-blue-50 rounded transition-colors"
+                        title="Call"
+                      >
+                        <Phone className="h-4 w-4" />
+                      </button>
+                      <button
+                        onClick={(e) => handleQuickEmail(lead, e)}
+                        className="p-1.5 text-purple-600 hover:bg-purple-50 rounded transition-colors"
+                        title="Email"
+                      >
+                        <Mail className="h-4 w-4" />
+                      </button>
+                      <button
+                        onClick={(e) => handleQuickConvert(lead, e)}
+                        className="p-1.5 text-green-600 hover:bg-green-50 rounded transition-colors"
+                        title="Convert to Opportunity"
+                      >
+                        <TrendingUp className="h-4 w-4" />
+                      </button>
+                    </div>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <div className="flex items-center space-x-1">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleViewLead(lead);
+                        }}
+                        className="flex items-center space-x-1 px-3 py-1.5 text-blue-600 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors text-sm font-medium"
+
+                      >
+                        <Eye className="h-4 w-4" />
+                        <span>View</span>
+                      </button>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          router.push(`/crm/leads/edit/${lead.id}`);
+                        }}
+                        className="flex items-center space-x-1 px-3 py-1.5 text-green-600 bg-green-50 hover:bg-green-100 rounded-lg transition-colors text-sm font-medium"
+
+                      >
+                        <Edit className="h-4 w-4" />
+                        <span>Edit</span>
+                      </button>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleDeleteLead(lead);
+                        }}
+                        className="flex items-center space-x-1 px-3 py-1.5 text-red-600 bg-red-50 hover:bg-red-100 rounded-lg transition-colors text-sm font-medium"
+
+                      >
+                        <Trash2 className="h-4 w-4" />
+                        <span>Delete</span>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <div className="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200">
+              <div className="flex-1 flex justify-between sm:hidden">
+                <button
+                  onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+                  disabled={currentPage === 1}
+                  className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-50"
+                >
+                  Previous
                 </button>
                 <button
-                  onClick={() => router.push(`/crm/leads/edit/${lead.id}`)}
-                  className="flex items-center space-x-1 px-3 py-1.5 text-green-600 bg-green-50 hover:bg-green-100 rounded-lg transition-colors text-sm font-medium"
-                 
+                  onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
+                  disabled={currentPage === totalPages}
+                  className="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-50"
                 >
-                  <Edit className="h-4 w-4" />
-                  <span>Edit</span>
-                </button>
-                <button
-                  onClick={() => handleDeleteLead(lead.id)}
-                  className="flex items-center space-x-1 px-3 py-1.5 text-red-600 bg-red-50 hover:bg-red-100 rounded-lg transition-colors text-sm font-medium"
-                 
-                >
-                  <Trash2 className="h-4 w-4" />
-                  <span>Delete</span>
+                  Next
                 </button>
               </div>
-            )
-          }
-        ]}
-        pagination={{
-          enabled: true,
-          pageSize: itemsPerPage,
-          currentPage: currentPage,
-          onPageChange: setCurrentPage
+              <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+                <div>
+                  <p className="text-sm text-gray-700">
+                    Showing <span className="font-medium">{startIndex + 1}</span> to{' '}
+                    <span className="font-medium">{Math.min(startIndex + itemsPerPage, filteredLeads.length)}</span> of{' '}
+                    <span className="font-medium">{filteredLeads.length}</span> results
+                  </p>
+                </div>
+                <div>
+                  <nav className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+                    <button
+                      onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+                      disabled={currentPage === 1}
+                      className="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-50"
+                    >
+                      <ChevronLeft className="h-5 w-5" />
+                    </button>
+                    {[...Array(totalPages)].map((_, i) => (
+                      <button
+                        key={i + 1}
+                        onClick={() => setCurrentPage(i + 1)}
+                        className={`relative inline-flex items-center px-4 py-2 border text-sm font-medium ${
+                          currentPage === i + 1
+                            ? 'z-10 bg-blue-50 border-blue-500 text-blue-600'
+                            : 'bg-white border-gray-300 text-gray-500 hover:bg-gray-50'
+                        }`}
+                      >
+                        {i + 1}
+                      </button>
+                    ))}
+                    <button
+                      onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
+                      disabled={currentPage === totalPages}
+                      className="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-50"
+                    >
+                      <ChevronRight className="h-5 w-5" />
+                    </button>
+                  </nav>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Enhanced Delete Dialog */}
+      <ConfirmDialog
+        isOpen={showDeleteDialog}
+        onClose={() => {
+          setShowDeleteDialog(false);
+          setLeadToDelete(null);
         }}
-        sorting={{
-          enabled: true,
-          defaultSort: { column: 'name', direction: 'asc' }
-        }}
-        onRowClick={(lead) => handleViewLead(lead)}
-        />
+        onConfirm={confirmDeleteLead}
+        title="Delete Lead"
+        message={`Are you sure you want to delete ${leadToDelete?.name}? This action cannot be undone.`}
+        confirmLabel="Delete Lead"
+        variant="danger"
+        impactAnalysis={leadToDelete ? getDeleteImpactAnalysis(leadToDelete) : undefined}
+      />
+
+      {/* Bulk Delete Dialog */}
+      <ConfirmDialog
+        isOpen={showBulkDeleteDialog}
+        onClose={() => setShowBulkDeleteDialog(false)}
+        onConfirm={handleBulkDelete}
+        title="Delete Multiple Leads"
+        message={`Are you sure you want to delete ${selectedLeadIds.size} lead${selectedLeadIds.size > 1 ? 's' : ''}? This action cannot be undone.`}
+        confirmLabel="Delete All"
+        variant="danger"
+      />
+
+      {/* Bulk Assign Dialog */}
+      {showBulkAssignDialog && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg shadow-xl w-full max-w-md p-6">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">Assign Leads</h3>
+            <p className="text-sm text-gray-600 mb-4">
+              Assign {selectedLeadIds.size} lead{selectedLeadIds.size > 1 ? 's' : ''} to:
+            </p>
+            <select
+              value={bulkAssignUser}
+              onChange={(e) => setBulkAssignUser(e.target.value)}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
+            >
+              <option value="">Select User...</option>
+              {ASSIGNED_USERS.map(user => (
+                <option key={user} value={user}>{user}</option>
+              ))}
+            </select>
+            <div className="flex items-center space-x-3">
+              <button
+                onClick={() => {
+                  setShowBulkAssignDialog(false);
+                  setBulkAssignUser('');
+                }}
+                className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleBulkAssign}
+                disabled={!bulkAssignUser}
+                className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
+              >
+                Assign
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Bulk Status Change Dialog */}
+      {showBulkStatusDialog && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg shadow-xl w-full max-w-md p-6">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">Change Status</h3>
+            <p className="text-sm text-gray-600 mb-4">
+              Change status for {selectedLeadIds.size} lead{selectedLeadIds.size > 1 ? 's' : ''} to:
+            </p>
+            <select
+              value={bulkStatus}
+              onChange={(e) => setBulkStatus(e.target.value as Lead['status'])}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
+            >
+              {LEAD_STATUSES.map(status => (
+                <option key={status} value={status}>
+                  {status.charAt(0).toUpperCase() + status.slice(1)}
+                </option>
+              ))}
+            </select>
+            <div className="flex items-center space-x-3">
+              <button
+                onClick={() => setShowBulkStatusDialog(false)}
+                className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleBulkStatusChange}
+                className="flex-1 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+              >
+                Update Status
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Save Filter Dialog */}
+      {showSaveFilterDialog && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg shadow-xl w-full max-w-md p-6">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">Save Filter</h3>
+            <p className="text-sm text-gray-600 mb-4">
+              Give your filter a name to save it for future use.
+            </p>
+            <input
+              type="text"
+              value={filterName}
+              onChange={(e) => setFilterName(e.target.value)}
+              placeholder="Filter name..."
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
+            />
+            <div className="flex items-center space-x-3">
+              <button
+                onClick={() => {
+                  setShowSaveFilterDialog(false);
+                  setFilterName('');
+                }}
+                className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleSaveFilter}
+                disabled={!filterName.trim()}
+                className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
+              >
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Import Dialog */}
+      {showImportDialog && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl p-6">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-semibold text-gray-900">Import Leads</h3>
+              <button
+                onClick={() => setShowImportDialog(false)}
+                className="text-gray-400 hover:text-gray-600"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+            <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
+              <Upload className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+              <p className="text-sm text-gray-600 mb-2">
+                Drag and drop your CSV or Excel file here, or click to browse
+              </p>
+              <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                Choose File
+              </button>
+            </div>
+            <div className="mt-4 bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <p className="text-sm text-blue-900 font-medium mb-2">Import Requirements:</p>
+              <ul className="text-sm text-blue-700 space-y-1">
+                <li>- File must be in CSV or Excel format</li>
+                <li>- Required columns: Name, Company, Email, Phone</li>
+                <li>- Optional columns: Status, Source, Value, Assigned To</li>
+                <li>- Maximum 1000 leads per import</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Keyboard Shortcuts Help */}
+      {selectedLeadIds.size === 1 && (
+        <div className="fixed bottom-4 left-4 bg-gray-900 text-white text-xs rounded-lg p-3 shadow-lg">
+          <p className="font-semibold mb-1">Keyboard Shortcuts:</p>
+          <p>Press <kbd className="px-1 py-0.5 bg-gray-700 rounded">D</kbd> to Delete</p>
+          <p>Press <kbd className="px-1 py-0.5 bg-gray-700 rounded">E</kbd> to Edit</p>
+          <p>Press <kbd className="px-1 py-0.5 bg-gray-700 rounded">V</kbd> to View</p>
+        </div>
       )}
 
       {/* Lead Detail Modal - Enhanced View */}

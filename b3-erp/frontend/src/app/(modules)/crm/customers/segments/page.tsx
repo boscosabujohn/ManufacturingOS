@@ -1,7 +1,9 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { Users, TrendingUp, DollarSign, Target, Search, Filter, Download, Plus, Edit, Trash2, Eye, PieChart, BarChart3 } from 'lucide-react';
+import { useToast, ConfirmDialog } from '@/components/ui';
 
 interface Segment {
   id: string;
@@ -134,9 +136,13 @@ const mockSegments: Segment[] = [
 ];
 
 export default function CustomerSegmentsPage() {
+  const router = useRouter();
+  const { addToast } = useToast();
   const [segments] = useState<Segment[]>(mockSegments);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterStatus, setFilterStatus] = useState<'all' | 'active' | 'inactive'>('all');
+  const [deleteConfirmOpen, setDeleteConfirmOpen] = useState(false);
+  const [segmentToDelete, setSegmentToDelete] = useState<Segment | null>(null);
   const [sortBy, setSortBy] = useState<'name' | 'customers' | 'revenue' | 'growth'>('customers');
 
   const filteredSegments = segments
@@ -187,6 +193,33 @@ export default function CustomerSegmentsPage() {
     if (rate > 0) return 'text-blue-600';
     if (rate > -10) return 'text-orange-600';
     return 'text-red-600';
+  };
+
+  // Handler functions
+  const handleViewDetails = (segment: Segment) => {
+    router.push(`/crm/customers/segments/${segment.id}`);
+  };
+
+  const handleEditSegment = (segment: Segment) => {
+    router.push(`/crm/customers/segments/edit/${segment.id}`);
+  };
+
+  const handleDeleteClick = (segment: Segment) => {
+    setSegmentToDelete(segment);
+    setDeleteConfirmOpen(true);
+  };
+
+  const handleConfirmDelete = () => {
+    if (segmentToDelete) {
+      addToast({
+        title: 'Segment Deleted',
+        message: `"${segmentToDelete.name}" segment has been deleted successfully`,
+        variant: 'success'
+      });
+      setDeleteConfirmOpen(false);
+      setSegmentToDelete(null);
+      // In a real application, update the segments state here
+    }
   };
 
   return (
@@ -354,15 +387,24 @@ export default function CustomerSegmentsPage() {
 
               {/* Action Buttons */}
               <div className="flex gap-2 pt-4 border-t border-gray-100">
-                <button className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                <button
+                  onClick={() => handleViewDetails(segment)}
+                  className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                >
                   <Eye className="w-4 h-4" />
                   View Details
                 </button>
-                <button className="flex items-center justify-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                <button
+                  onClick={() => handleEditSegment(segment)}
+                  className="flex items-center justify-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm"
+                >
                   <Edit className="w-4 h-4" />
                   <span>Edit</span>
                 </button>
-                <button className="flex items-center justify-center gap-2 px-4 py-2 border border-red-300 text-red-600 rounded-lg hover:bg-red-50 text-sm">
+                <button
+                  onClick={() => handleDeleteClick(segment)}
+                  className="flex items-center justify-center gap-2 px-4 py-2 border border-red-300 text-red-600 rounded-lg hover:bg-red-50 text-sm"
+                >
                   <Trash2 className="w-4 h-4" />
                   <span>Delete</span>
                 </button>
@@ -388,6 +430,17 @@ export default function CustomerSegmentsPage() {
           <p className="text-gray-600">Try adjusting your search or filters</p>
         </div>
       )}
+
+      {/* Delete Confirmation Dialog */}
+      <ConfirmDialog
+        isOpen={deleteConfirmOpen}
+        onClose={() => setDeleteConfirmOpen(false)}
+        onConfirm={handleConfirmDelete}
+        title="Delete Segment"
+        message={`Are you sure you want to delete the "${segmentToDelete?.name}" segment? This action cannot be undone.`}
+        confirmLabel="Delete"
+        variant="danger"
+      />
     </div>
   );
 }

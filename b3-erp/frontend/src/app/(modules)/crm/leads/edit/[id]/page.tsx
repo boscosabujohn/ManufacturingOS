@@ -26,6 +26,7 @@ import {
   Clock,
   AlertCircle,
 } from 'lucide-react';
+import { useToast } from '@/components/ui';
 
 // Import the same interfaces and data from add page
 interface LeadFormData {
@@ -112,6 +113,7 @@ const products = [
 
 export default function EditLeadPage() {
   const router = useRouter();
+  const { addToast } = useToast();
   const params = useParams();
   const leadId = params.id as string;
   const [currentStep, setCurrentStep] = useState(1);
@@ -259,9 +261,13 @@ export default function EditLeadPage() {
 
   const handleSubmit = () => {
     calculateLeadScore();
-    console.log('Updated Lead Data:', formData);
-    console.log('Lead ID:', leadId);
-    console.log('Lead Score:', leadScore);
+    // In a real application, this would send data to the backend API
+    // For now, we'll simulate success and show a toast notification
+    addToast({
+      title: 'Lead Updated',
+      message: `${formData.firstName} ${formData.lastName} from ${formData.company} has been updated successfully`,
+      variant: 'success'
+    });
     router.push('/crm/leads');
   };
 

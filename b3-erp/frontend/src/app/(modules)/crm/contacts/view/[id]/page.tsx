@@ -26,6 +26,7 @@ import {
   Facebook,
   MoreVertical
 } from 'lucide-react';
+import { useToast } from '@/components/ui';
 
 interface Contact {
   id: string;
@@ -186,8 +187,64 @@ export default function ViewContactPage() {
   const params = useParams();
   const contactId = params.id as string;
   const contact = mockContact; // In real app, fetch by contactId
+  const { addToast } = useToast();
 
   const [activeTab, setActiveTab] = useState<'overview' | 'communication' | 'details'>('overview');
+
+  // Handler functions for contact actions
+  const handleSendEmail = () => {
+    addToast({
+      title: 'Send Email',
+      message: `Opening email compose for ${contact.firstName} ${contact.lastName}...`,
+      variant: 'info'
+    });
+    // Future: router.push(`/crm/contacts/${contactId}/send-email`);
+  };
+
+  const handleCall = () => {
+    addToast({
+      title: 'Initiate Call',
+      message: `Initiating call to ${contact.phone}...`,
+      variant: 'info'
+    });
+    // Future: Integrate with phone system or router.push(`/crm/contacts/${contactId}/call`);
+  };
+
+  const handleMore = () => {
+    addToast({
+      title: 'More Actions',
+      message: 'Opening additional contact actions menu...',
+      variant: 'info'
+    });
+    // Future: Show dropdown menu with additional actions
+  };
+
+  const handleLogCall = () => {
+    addToast({
+      title: 'Log Call',
+      message: 'Opening call log form...',
+      variant: 'info'
+    });
+    // Future: router.push(`/crm/contacts/${contactId}/log-call`);
+  };
+
+  const handleScheduleMeeting = () => {
+    addToast({
+      title: 'Schedule Meeting',
+      message: 'Opening meeting scheduler...',
+      variant: 'info'
+    });
+    // Future: router.push(`/crm/contacts/${contactId}/schedule-meeting`);
+  };
+
+  const handleAddNote = () => {
+    addToast({
+      title: 'Add Note',
+      message: 'Opening note creation form...',
+      variant: 'info'
+    });
+    // Future: router.push(`/crm/contacts/${contactId}/add-note`);
+  };
 
   const tabs = [
     { id: 'overview', name: 'Overview', icon: User },
@@ -239,15 +296,24 @@ export default function ViewContactPage() {
                 <Edit className="h-4 w-4" />
                 <span>Edit</span>
               </button>
-              <button className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+              <button
+                onClick={handleSendEmail}
+                className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              >
                 <Mail className="h-4 w-4" />
                 <span>Send Email</span>
               </button>
-              <button className="flex items-center space-x-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors">
+              <button
+                onClick={handleCall}
+                className="flex items-center space-x-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
+              >
                 <PhoneCall className="h-4 w-4" />
                 <span>Call</span>
               </button>
-              <button className="inline-flex items-center gap-2 px-3 py-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition-colors text-sm">
+              <button
+                onClick={handleMore}
+                className="inline-flex items-center gap-2 px-3 py-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition-colors text-sm"
+              >
                 <MoreVertical className="h-5 w-5" />
                 <span>More</span>
               </button>
@@ -431,19 +497,31 @@ export default function ViewContactPage() {
             <div className="flex items-center justify-between mb-6">
               <h3 className="text-xl font-bold text-gray-900">Communication Timeline</h3>
               <div className="flex flex-wrap gap-2">
-                <button className="flex items-center space-x-1 px-3 py-1.5 bg-blue-50 text-blue-600 hover:bg-blue-100 rounded-lg transition-colors text-sm font-medium">
+                <button
+                  onClick={handleLogCall}
+                  className="flex items-center space-x-1 px-3 py-1.5 bg-blue-50 text-blue-600 hover:bg-blue-100 rounded-lg transition-colors text-sm font-medium"
+                >
                   <PhoneCall className="h-4 w-4" />
                   <span>Log Call</span>
                 </button>
-                <button className="flex items-center space-x-1 px-3 py-1.5 bg-purple-50 text-purple-600 hover:bg-purple-100 rounded-lg transition-colors text-sm font-medium">
+                <button
+                  onClick={handleSendEmail}
+                  className="flex items-center space-x-1 px-3 py-1.5 bg-purple-50 text-purple-600 hover:bg-purple-100 rounded-lg transition-colors text-sm font-medium"
+                >
                   <Mail className="h-4 w-4" />
                   <span>Send Email</span>
                 </button>
-                <button className="flex items-center space-x-1 px-3 py-1.5 bg-green-50 text-green-600 hover:bg-green-100 rounded-lg transition-colors text-sm font-medium">
+                <button
+                  onClick={handleScheduleMeeting}
+                  className="flex items-center space-x-1 px-3 py-1.5 bg-green-50 text-green-600 hover:bg-green-100 rounded-lg transition-colors text-sm font-medium"
+                >
                   <Calendar className="h-4 w-4" />
                   <span>Schedule Meeting</span>
                 </button>
-                <button className="flex items-center space-x-1 px-3 py-1.5 bg-yellow-50 text-yellow-600 hover:bg-yellow-100 rounded-lg transition-colors text-sm font-medium">
+                <button
+                  onClick={handleAddNote}
+                  className="flex items-center space-x-1 px-3 py-1.5 bg-yellow-50 text-yellow-600 hover:bg-yellow-100 rounded-lg transition-colors text-sm font-medium"
+                >
                   <FileText className="h-4 w-4" />
                   <span>Add Note</span>
                 </button>

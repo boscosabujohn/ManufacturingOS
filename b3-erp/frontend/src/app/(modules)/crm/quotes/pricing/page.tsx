@@ -1,7 +1,9 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { Plus, Search, Edit, Trash2, ToggleLeft, ToggleRight, Percent, DollarSign, Users, Package, Calendar, TrendingUp, AlertCircle, CheckCircle } from 'lucide-react';
+import { ConfirmDialog } from '@/components/ui';
 
 interface PricingRule {
   id: string;
@@ -163,10 +165,40 @@ const mockRules: PricingRule[] = [
 ];
 
 export default function PricingRulesPage() {
-  const [rules] = useState<PricingRule[]>(mockRules);
+  const router = useRouter();
+  const [rules, setRules] = useState<PricingRule[]>(mockRules);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterType, setFilterType] = useState<'all' | 'volume' | 'customer' | 'product' | 'seasonal' | 'bundle' | 'time-limited'>('all');
   const [showActiveOnly, setShowActiveOnly] = useState(false);
+  const [ruleToDelete, setRuleToDelete] = useState<PricingRule | null>(null);
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+
+  const handleCreateRule = () => {
+    router.push('/crm/quotes/pricing/create');
+  };
+
+  const handleToggleRule = (rule: PricingRule) => {
+    setRules(rules.map(r =>
+      r.id === rule.id ? { ...r, isActive: !r.isActive } : r
+    ));
+  };
+
+  const handleEditRule = (rule: PricingRule) => {
+    router.push(`/crm/quotes/pricing/edit/${rule.id}`);
+  };
+
+  const handleDeleteRule = (rule: PricingRule) => {
+    setRuleToDelete(rule);
+    setShowDeleteDialog(true);
+  };
+
+  const confirmDelete = () => {
+    if (ruleToDelete) {
+      setRules(rules.filter(r => r.id !== ruleToDelete.id));
+      setRuleToDelete(null);
+      setShowDeleteDialog(false);
+    }
+  };
 
   const filteredRules = rules.filter(rule => {
     const matchesSearch = rule.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -212,7 +244,10 @@ export default function PricingRulesPage() {
     <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
       <div className="mb-8">
         <div className="flex justify-end mb-6">
-          <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+          <button
+            onClick={handleCreateRule}
+            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          >
             <Plus className="w-4 h-4" />
             Create Rule
           </button>
@@ -314,21 +349,33 @@ export default function PricingRulesPage() {
 
               <div className="flex items-center gap-2">
                 {rule.isActive ? (
-                  <button className="inline-flex items-center gap-1.5 px-3 py-2 text-green-600 hover:text-green-700 hover:bg-green-50 rounded-lg text-sm">
+                  <button
+                    onClick={() => handleToggleRule(rule)}
+                    className="inline-flex items-center gap-1.5 px-3 py-2 text-green-600 hover:text-green-700 hover:bg-green-50 rounded-lg text-sm"
+                  >
                     <ToggleRight className="w-6 h-6" />
                     <span>Disable</span>
                   </button>
                 ) : (
-                  <button className="inline-flex items-center gap-1.5 px-3 py-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg text-sm">
+                  <button
+                    onClick={() => handleToggleRule(rule)}
+                    className="inline-flex items-center gap-1.5 px-3 py-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg text-sm"
+                  >
                     <ToggleLeft className="w-6 h-6" />
                     <span>Enable</span>
                   </button>
                 )}
-                <button className="inline-flex items-center gap-1.5 px-3 py-2 text-gray-600 hover:bg-gray-100 rounded-lg text-sm">
+                <button
+                  onClick={() => handleEditRule(rule)}
+                  className="inline-flex items-center gap-1.5 px-3 py-2 text-gray-600 hover:bg-gray-100 rounded-lg text-sm"
+                >
                   <Edit className="w-4 h-4" />
                   <span>Edit</span>
                 </button>
-                <button className="inline-flex items-center gap-1.5 px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg text-sm">
+                <button
+                  onClick={() => handleDeleteRule(rule)}
+                  className="inline-flex items-center gap-1.5 px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg text-sm"
+                >
                   <Trash2 className="w-4 h-4" />
                   <span>Delete</span>
                 </button>
@@ -446,6 +493,16 @@ export default function PricingRulesPage() {
           <p className="text-gray-600">Try adjusting your search or filters</p>
         </div>
       )}
+
+      <ConfirmDialog
+        isOpen={showDeleteDialog}
+        onClose={() => setShowDeleteDialog(false)}
+        onConfirm={confirmDelete}
+        title="Delete Pricing Rule"
+        message={`Are you sure you want to delete "${ruleToDelete?.name}"? This action cannot be undone.`}
+        variant="danger"
+        confirmLabel="Delete"
+      />
     </div>
   );
 }

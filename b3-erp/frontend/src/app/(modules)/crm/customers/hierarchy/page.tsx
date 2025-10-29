@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { Building2, ChevronDown, ChevronRight, Users, DollarSign, Package, MapPin, Phone, Mail, Globe, Plus, Edit, Trash2, Eye, Network, ArrowRight } from 'lucide-react';
 
 interface CustomerNode {
@@ -236,6 +237,7 @@ interface HierarchyNodeProps {
 }
 
 function HierarchyNode({ node, level }: HierarchyNodeProps) {
+  const router = useRouter();
   const [isExpanded, setIsExpanded] = useState(level < 2);
 
   const getTypeColor = (type: string) => {
@@ -309,11 +311,17 @@ function HierarchyNode({ node, level }: HierarchyNodeProps) {
                   </div>
                 </div>
                 <div className="flex gap-2">
-                  <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                  <button
+                    onClick={() => router.push(`/crm/customers/view/${node.id}`)}
+                    className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm"
+                  >
                     <Eye className="w-4 h-4 text-gray-600" />
                     <span>View</span>
                   </button>
-                  <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                  <button
+                    onClick={() => router.push(`/crm/customers/edit/${node.id}`)}
+                    className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm"
+                  >
                     <Edit className="w-4 h-4 text-gray-600" />
                     <span>Edit</span>
                   </button>
@@ -431,6 +439,7 @@ function HierarchyNode({ node, level }: HierarchyNodeProps) {
 }
 
 export default function CustomerHierarchyPage() {
+  const router = useRouter();
   const [hierarchies] = useState<CustomerNode[]>(mockHierarchy);
 
   const calculateTotalStats = () => {

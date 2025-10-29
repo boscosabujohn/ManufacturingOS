@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import { Mail, Users, TrendingUp, Target, Search, Plus, Calendar, BarChart3, Play, Pause, CheckCircle, XCircle, Clock, Eye, Edit, Copy, Trash2, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { ConfirmDialog } from '@/components/ui';
 
 interface Campaign {
   id: string;
@@ -151,10 +153,13 @@ const mockCampaigns: Campaign[] = [
 ];
 
 export default function CampaignsPage() {
-  const [campaigns] = useState<Campaign[]>(mockCampaigns);
+  const router = useRouter();
+  const [campaigns, setCampaigns] = useState<Campaign[]>(mockCampaigns);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterStatus, setFilterStatus] = useState<'all' | 'draft' | 'scheduled' | 'active' | 'paused' | 'completed'>('all');
   const [filterType, setFilterType] = useState<'all' | 'email' | 'social' | 'webinar' | 'content' | 'event'>('all');
+  const [campaignToDelete, setCampaignToDelete] = useState<Campaign | null>(null);
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
 
   const filteredCampaigns = campaigns.filter(campaign => {
     const matchesSearch = campaign.name.toLowerCase().includes(searchTerm.toLowerCase());
@@ -209,6 +214,39 @@ export default function CampaignsPage() {
   const calculateROI = (revenue: number, spent: number) => {
     if (spent === 0) return 0;
     return ((revenue - spent) / spent) * 100;
+  };
+
+  const handleViewCampaign = (campaign: Campaign) => {
+    router.push(`/crm/campaigns/view/${campaign.id}`);
+  };
+
+  const handleEditCampaign = (campaign: Campaign) => {
+    router.push(`/crm/campaigns/edit/${campaign.id}`);
+  };
+
+  const handlePauseCampaign = (campaign: Campaign) => {
+    setCampaigns(campaigns.map(c =>
+      c.id === campaign.id ? { ...c, status: 'paused' } : c
+    ));
+  };
+
+  const handleResumeCampaign = (campaign: Campaign) => {
+    setCampaigns(campaigns.map(c =>
+      c.id === campaign.id ? { ...c, status: 'active' } : c
+    ));
+  };
+
+  const handleDeleteCampaign = (campaign: Campaign) => {
+    setCampaignToDelete(campaign);
+    setShowDeleteDialog(true);
+  };
+
+  const confirmDelete = () => {
+    if (campaignToDelete) {
+      setCampaigns(campaigns.filter(c => c.id !== campaignToDelete.id));
+      setShowDeleteDialog(false);
+      setCampaignToDelete(null);
+    }
   };
 
   return (
@@ -447,21 +485,41 @@ export default function CampaignsPage() {
                 </div>
 
                 <div className="flex gap-2 ml-4">
-                  <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                  <button
+                    onClick={() => handleViewCampaign(campaign)}
+                    className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm"
+                  >
                     <Eye className="w-4 h-4 text-gray-600" />
                     <span className="text-gray-700">View</span>
                   </button>
-                  <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                  <button
+                    onClick={() => handleEditCampaign(campaign)}
+                    className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm"
+                  >
                     <Edit className="w-4 h-4 text-gray-600" />
                     <span className="text-gray-700">Edit</span>
                   </button>
-                  {campaign.status === 'active' && (
-                    <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-yellow-300 rounded-lg hover:bg-yellow-50 text-sm">
+                  {campaign.status === 'active' ? (
+                    <button
+                      onClick={() => handlePauseCampaign(campaign)}
+                      className="inline-flex items-center gap-1.5 px-3 py-2 border border-yellow-300 rounded-lg hover:bg-yellow-50 text-sm"
+                    >
                       <Pause className="w-4 h-4 text-yellow-600" />
                       <span className="text-yellow-600">Pause</span>
                     </button>
-                  )}
-                  <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-red-300 rounded-lg hover:bg-red-50 text-sm">
+                  ) : campaign.status === 'paused' ? (
+                    <button
+                      onClick={() => handleResumeCampaign(campaign)}
+                      className="inline-flex items-center gap-1.5 px-3 py-2 border border-green-300 rounded-lg hover:bg-green-50 text-sm"
+                    >
+                      <Play className="w-4 h-4 text-green-600" />
+                      <span className="text-green-600">Resume</span>
+                    </button>
+                  ) : null}
+                  <button
+                    onClick={() => handleDeleteCampaign(campaign)}
+                    className="inline-flex items-center gap-1.5 px-3 py-2 border border-red-300 rounded-lg hover:bg-red-50 text-sm"
+                  >
                     <Trash2 className="w-4 h-4 text-red-600" />
                     <span className="text-red-600">Delete</span>
                   </button>
@@ -471,6 +529,22 @@ export default function CampaignsPage() {
           );
         })}
       </div>
+
+      {/* Delete Confirmation Dialog */}
+      {campaignToDelete && (
+        <ConfirmDialog
+          isOpen={showDeleteDialog}
+          onClose={() => {
+            setShowDeleteDialog(false);
+            setCampaignToDelete(null);
+          }}
+          onConfirm={confirmDelete}
+          title="Delete Campaign"
+          message={`Are you sure you want to delete "${campaignToDelete.name}"? This action cannot be undone.`}
+          confirmLabel="Delete"
+          variant="danger"
+        />
+      )}
     </div>
   );
 }

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import {
   Circle,
   CheckCircle,
@@ -23,6 +24,7 @@ import {
   Eye,
   EyeOff
 } from 'lucide-react';
+import { ConfirmDialog } from '@/components/ui';
 
 interface CustomStatus {
   id: string;
@@ -47,9 +49,12 @@ interface CustomStatus {
 }
 
 export default function CustomStatusesPage() {
+  const router = useRouter();
   const [categoryFilter, setCategoryFilter] = useState<string>('all');
   const [editingStatus, setEditingStatus] = useState<string | null>(null);
   const [showAddModal, setShowAddModal] = useState(false);
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+  const [statusToDelete, setStatusToDelete] = useState<CustomStatus | null>(null);
 
   const [statuses, setStatuses] = useState<CustomStatus[]>([
     {
@@ -456,6 +461,48 @@ export default function CustomStatusesPage() {
     ));
   };
 
+  const handleEditStatus = (status: CustomStatus) => {
+    router.push(`/crm/settings/statuses/edit/${status.id}`);
+  };
+
+  const handleCopyStatus = (status: CustomStatus) => {
+    const newStatus: CustomStatus = {
+      ...status,
+      id: `STS-${Date.now()}`,
+      name: `${status.name} (Copy)`,
+      isDefault: false,
+      usageCount: 0,
+      createdAt: new Date().toISOString().split('T')[0],
+      createdBy: 'Current User',
+      canDelete: true,
+    };
+    setStatuses([...statuses, newStatus]);
+  };
+
+  const handleSettingsStatus = (status: CustomStatus) => {
+    router.push(`/crm/settings/statuses/configure/${status.id}`);
+  };
+
+  const handleDeleteClick = (status: CustomStatus) => {
+    setStatusToDelete(status);
+    setShowDeleteDialog(true);
+  };
+
+  const confirmDelete = () => {
+    if (statusToDelete) {
+      setStatuses(statuses.filter(s => s.id !== statusToDelete.id));
+      setShowDeleteDialog(false);
+      setStatusToDelete(null);
+    }
+  };
+
+  const handleCreateStatus = () => {
+    // This would be called from the modal's Create button
+    // For now, just close the modal - full implementation would gather form data
+    setShowAddModal(false);
+    router.push('/crm/settings/statuses');
+  };
+
   return (
     <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6 space-y-6">
       {/* Header */}
@@ -623,25 +670,28 @@ export default function CustomStatusesPage() {
                     {status.isActive ? <Eye className="w-5 h-5" /> : <EyeOff className="w-5 h-5" />}
                   </button>
                   <button
-                    onClick={() => setEditingStatus(status.id)}
+                    onClick={() => handleEditStatus(status)}
                     className="p-2 hover:bg-blue-50 rounded-lg transition-colors"
-                   
+                    title="Edit Status"
                   >
                     <Edit className="w-5 h-5 text-blue-600" />
                   </button>
                   <button
+                    onClick={() => handleCopyStatus(status)}
                     className="p-2 hover:bg-purple-50 rounded-lg transition-colors"
-                   
+                    title="Copy Status"
                   >
                     <Copy className="w-5 h-5 text-purple-600" />
                   </button>
                   <button
+                    onClick={() => handleSettingsStatus(status)}
                     className="p-2 hover:bg-gray-50 rounded-lg transition-colors"
-                   
+                    title="Configure Status"
                   >
                     <Settings className="w-5 h-5 text-gray-600" />
                   </button>
                   <button
+                    onClick={() => handleDeleteClick(status)}
                     disabled={!status.canDelete}
                     className="p-2 hover:bg-red-50 rounded-lg transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
                     title={status.canDelete ? 'Delete Status' : 'Cannot delete system status'}
@@ -760,7 +810,10 @@ export default function CustomStatusesPage() {
                 >
                   Cancel
                 </button>
-                <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                <button
+                  onClick={handleCreateStatus}
+                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                >
                   Create Status
                 </button>
               </div>
@@ -768,6 +821,28 @@ export default function CustomStatusesPage() {
           </div>
         </div>
       )}
+
+      {/* Delete Confirmation Dialog */}
+      <ConfirmDialog
+        isOpen={showDeleteDialog}
+        onClose={() => {
+          setShowDeleteDialog(false);
+          setStatusToDelete(null);
+        }}
+        onConfirm={confirmDelete}
+        title="Delete Status"
+        message={
+          statusToDelete
+            ? `Are you sure you want to delete "${statusToDelete.name}" status? This action cannot be undone. ${
+                statusToDelete.usageCount > 0
+                  ? `This status is currently used by ${statusToDelete.usageCount} records, which will need to be reassigned.`
+                  : ''
+              }`
+            : ''
+        }
+        confirmLabel="Delete"
+        variant="danger"
+      />
     </div>
   );
 }

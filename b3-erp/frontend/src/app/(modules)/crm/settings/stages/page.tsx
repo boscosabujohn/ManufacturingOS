@@ -1,7 +1,9 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { Plus, GripVertical, Edit, Trash2, CheckCircle, Clock, Target, TrendingUp, AlertCircle, ChevronUp, ChevronDown } from 'lucide-react';
+import { ConfirmDialog } from '@/components/ui';
 
 interface DealStage {
   id: string;
@@ -136,7 +138,31 @@ const mockStages: DealStage[] = [
 ];
 
 export default function DealStagesPage() {
+  const router = useRouter();
   const [stages, setStages] = useState<DealStage[]>(mockStages);
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+  const [stageToDelete, setStageToDelete] = useState<DealStage | null>(null);
+
+  const handleAddStage = () => {
+    router.push('/crm/settings/stages/add');
+  };
+
+  const handleEditStage = (stage: DealStage) => {
+    router.push(`/crm/settings/stages/edit/${stage.id}`);
+  };
+
+  const handleDeleteClick = (stage: DealStage) => {
+    setStageToDelete(stage);
+    setShowDeleteDialog(true);
+  };
+
+  const confirmDelete = () => {
+    if (stageToDelete) {
+      setStages(stages.filter(s => s.id !== stageToDelete.id));
+      setShowDeleteDialog(false);
+      setStageToDelete(null);
+    }
+  };
 
   const getColorClasses = (color: string) => {
     const colors: { [key: string]: { bg: string; text: string; border: string; gradient: string } } = {
@@ -185,7 +211,10 @@ export default function DealStagesPage() {
     <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
       <div className="mb-8">
         <div className="flex justify-end mb-6">
-          <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+          <button
+            onClick={handleAddStage}
+            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          >
             <Plus className="w-4 h-4" />
             Add Stage
           </button>
@@ -298,11 +327,17 @@ export default function DealStagesPage() {
                       <p className="text-sm text-gray-600 mb-3">{stage.description}</p>
                     </div>
                     <div className="flex items-center gap-2">
-                      <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                      <button
+                        onClick={() => handleEditStage(stage)}
+                        className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm"
+                      >
                         <Edit className="w-4 h-4 text-gray-600" />
                         <span className="text-gray-700">Edit</span>
                       </button>
-                      <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-red-300 rounded-lg hover:bg-red-50 text-sm">
+                      <button
+                        onClick={() => handleDeleteClick(stage)}
+                        className="inline-flex items-center gap-1.5 px-3 py-2 border border-red-300 rounded-lg hover:bg-red-50 text-sm"
+                      >
                         <Trash2 className="w-4 h-4 text-red-600" />
                         <span className="text-red-600">Delete</span>
                       </button>
@@ -410,6 +445,19 @@ export default function DealStagesPage() {
           );
         })}
       </div>
+
+      <ConfirmDialog
+        isOpen={showDeleteDialog}
+        onClose={() => {
+          setShowDeleteDialog(false);
+          setStageToDelete(null);
+        }}
+        onConfirm={confirmDelete}
+        title="Delete Deal Stage"
+        message={stageToDelete ? `Are you sure you want to delete "${stageToDelete.name}" stage? This action cannot be undone. All deals in this stage will need to be reassigned.` : ''}
+        confirmLabel="Delete"
+        variant="danger"
+      />
     </div>
   );
 }

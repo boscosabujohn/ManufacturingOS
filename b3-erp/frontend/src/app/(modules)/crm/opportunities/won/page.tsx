@@ -23,6 +23,7 @@ import {
   Target,
   Sparkles,
 } from 'lucide-react';
+import { useToast } from '@/components/ui';
 
 interface WonOpportunity {
   id: string;
@@ -160,6 +161,7 @@ const mockWonOpportunities: WonOpportunity[] = [
 
 export default function WonOpportunitiesPage() {
   const router = useRouter();
+  const { addToast } = useToast();
   const [opportunities, setOpportunities] = useState<WonOpportunity[]>(mockWonOpportunities);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedPeriod, setSelectedPeriod] = useState('all');
@@ -226,6 +228,17 @@ export default function WonOpportunitiesPage() {
           return 0;
       }
     });
+
+  // Handler for Case Study button
+  const handleGenerateCaseStudy = (opp: WonOpportunity) => {
+    // In a real application, this would navigate to a case study generator or open a modal
+    addToast({
+      title: 'Case Study Generation',
+      message: `Generating case study for "${opp.name}". This feature will create a shareable success story.`,
+      variant: 'success'
+    });
+    // Future implementation: router.push(`/crm/opportunities/case-study/${opp.id}`)
+  };
 
   return (
     <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
@@ -493,7 +506,10 @@ export default function WonOpportunitiesPage() {
                     <Eye className="h-4 w-4" />
                     <span>View Details</span>
                   </button>
-                  <button className="w-full flex items-center justify-center space-x-2 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">
+                  <button
+                    onClick={() => handleGenerateCaseStudy(opp)}
+                    className="w-full flex items-center justify-center space-x-2 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                  >
                     <FileText className="h-4 w-4" />
                     <span>Case Study</span>
                   </button>
