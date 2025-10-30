@@ -5,7 +5,11 @@
       "Bash(do sed -i 's/const renderExpandableSection =/const renderExpandableSection: any =/g' $file/page.tsx)",
       "Bash(do echo \"=== crm/$dir ===\")",
       "Bash(PORT=3000 npm run dev)",
-      "Bash(do echo \"=== $file ===\")"
+      "Bash(do echo \"=== $file ===\")",
+      "Bash(xcopy:*)",
+      "Bash(robocopy:*)",
+      "Bash(then sed -i \"s/, PageToolbar//g; s/import { PageToolbar } from ''@\\/components\\/ui'';//g; /^      <PageToolbar$/,/^      \\/>$/d\" \"$dir/page.tsx\")",
+      "Bash(then sed -i '/^    <div className=\"\"w-full h-full flex flex-col bg-gray-50\"\">$/{ N; s/\\n$/\\n/; }' \"$dir/page.tsx\")"
     ],
     "deny": [],
     "ask": []

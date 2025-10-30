@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { Plus, Search, Edit, Clock, AlertCircle, CheckCircle, TrendingUp, TrendingDown, Target, Activity } from 'lucide-react';
 
 interface SLAPolicy {
@@ -186,11 +187,20 @@ const mockPerformance: SLAPerformance[] = [
 ];
 
 export default function SLAManagementPage() {
+  const router = useRouter();
   const [policies] = useState<SLAPolicy[]>(mockPolicies);
   const [performance] = useState<SLAPerformance[]>(mockPerformance);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterPriority, setFilterPriority] = useState<'all' | 'critical' | 'high' | 'medium' | 'low'>('all');
   const [filterCategory, setFilterCategory] = useState<'all' | 'technical' | 'billing' | 'general'>('all');
+
+  const handleCreatePolicy = () => {
+    router.push('/crm/support/sla/create');
+  };
+
+  const handleEditPolicy = (policy: SLAPolicy) => {
+    router.push(`/crm/support/sla/edit/${policy.id}`);
+  };
 
   const filteredPolicies = policies.filter(policy => {
     const matchesSearch = policy.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -259,7 +269,10 @@ export default function SLAManagementPage() {
     <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
       <div className="mb-8">
         <div className="flex justify-end mb-6">
-          <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+          <button
+            onClick={handleCreatePolicy}
+            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          >
             <Plus className="w-4 h-4" />
             Create SLA Policy
           </button>
@@ -376,7 +389,10 @@ export default function SLAManagementPage() {
                     <span>Last updated: {new Date(policy.lastUpdated).toLocaleDateString()}</span>
                   </div>
                 </div>
-                <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                <button
+                  onClick={() => handleEditPolicy(policy)}
+                  className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm"
+                >
                   <Edit className="w-4 h-4 text-gray-600" />
                   <span className="text-gray-700">Edit</span>
                 </button>

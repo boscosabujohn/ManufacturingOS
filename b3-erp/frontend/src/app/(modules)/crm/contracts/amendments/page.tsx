@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { Plus, Search, Eye, Edit, CheckCircle, XCircle, Clock, AlertCircle, FileText, DollarSign, Calendar, User, Building2, TrendingUp, TrendingDown } from 'lucide-react';
 
 interface ContractAmendment {
@@ -270,10 +271,15 @@ const mockAmendments: ContractAmendment[] = [
 ];
 
 export default function ContractAmendmentsPage() {
+  const router = useRouter();
   const [amendments] = useState<ContractAmendment[]>(mockAmendments);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterStatus, setFilterStatus] = useState<'all' | 'draft' | 'pending_review' | 'pending_approval' | 'approved' | 'rejected' | 'executed'>('all');
   const [filterType, setFilterType] = useState<'all' | 'value_change' | 'scope_change' | 'term_extension' | 'term_reduction' | 'pricing_adjustment' | 'service_modification'>('all');
+
+  const handleCreateAmendment = () => {
+    router.push('/crm/contracts/amendments/create');
+  };
 
   const filteredAmendments = amendments.filter(amendment => {
     const matchesSearch = amendment.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -345,7 +351,10 @@ export default function ContractAmendmentsPage() {
     <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
       <div className="mb-8">
         <div className="flex justify-end mb-6">
-          <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+          <button
+            onClick={handleCreateAmendment}
+            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          >
             <Plus className="w-4 h-4" />
             Create Amendment
           </button>

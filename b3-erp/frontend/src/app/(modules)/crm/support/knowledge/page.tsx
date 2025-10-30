@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { Plus, Search, Eye, Edit, ThumbsUp, ThumbsDown, BookOpen, FileText, Video, Code, AlertCircle, TrendingUp, Star, Clock, User } from 'lucide-react';
 
 interface KnowledgeArticle {
@@ -224,11 +225,16 @@ const mockArticles: KnowledgeArticle[] = [
 ];
 
 export default function KnowledgeBasePage() {
+  const router = useRouter();
   const [articles] = useState<KnowledgeArticle[]>(mockArticles);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterCategory, setFilterCategory] = useState<'all' | 'getting_started' | 'how_to' | 'troubleshooting' | 'api_docs' | 'best_practices' | 'faq' | 'release_notes'>('all');
   const [filterType, setFilterType] = useState<'all' | 'article' | 'video' | 'code_snippet' | 'tutorial'>('all');
   const [filterDifficulty, setFilterDifficulty] = useState<'all' | 'beginner' | 'intermediate' | 'advanced'>('all');
+
+  const handleCreateArticle = () => {
+    router.push('/crm/support/knowledge/create');
+  };
 
   const filteredArticles = articles.filter(article => {
     const matchesSearch = article.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -290,7 +296,10 @@ export default function KnowledgeBasePage() {
     <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
       <div className="mb-8">
         <div className="flex justify-end mb-6">
-          <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+          <button
+            onClick={handleCreateArticle}
+            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          >
             <Plus className="w-4 h-4" />
             Create Article
           </button>

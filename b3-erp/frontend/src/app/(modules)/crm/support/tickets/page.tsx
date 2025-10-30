@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { Plus, Search, MessageSquare, Clock, AlertCircle, CheckCircle, XCircle, User, Building2, Calendar, TrendingUp, Mail, Phone, Paperclip } from 'lucide-react';
 
 interface SupportTicket {
@@ -223,11 +224,16 @@ const mockTickets: SupportTicket[] = [
 ];
 
 export default function SupportTicketsPage() {
+  const router = useRouter();
   const [tickets] = useState<SupportTicket[]>(mockTickets);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterStatus, setFilterStatus] = useState<'all' | 'open' | 'in_progress' | 'pending_customer' | 'resolved' | 'closed' | 'cancelled'>('all');
   const [filterPriority, setFilterPriority] = useState<'all' | 'low' | 'medium' | 'high' | 'critical'>('all');
   const [filterCategory, setFilterCategory] = useState<'all' | 'technical' | 'billing' | 'feature_request' | 'bug' | 'access' | 'training' | 'other'>('all');
+
+  const handleCreateTicket = () => {
+    router.push('/crm/support/tickets/create');
+  };
 
   const filteredTickets = tickets.filter(ticket => {
     const matchesSearch = ticket.subject.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -324,7 +330,10 @@ export default function SupportTicketsPage() {
     <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
       <div className="mb-8">
         <div className="flex justify-end mb-6">
-          <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+          <button
+            onClick={handleCreateTicket}
+            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          >
             <Plus className="w-4 h-4" />
             Create Ticket
           </button>
