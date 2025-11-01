@@ -12,8 +12,13 @@ import {
   Filter,
   RefreshCw,
   ChevronDown,
-  AlertCircle
+  AlertCircle,
+  FileText
 } from 'lucide-react';
+import {
+  ValuationReportModal,
+  ValuationReportData
+} from '@/components/inventory/InventoryAnalyticsModals';
 
 interface CategoryValuation {
   category: string;
@@ -35,6 +40,10 @@ interface ValuationHistory {
 export default function StockValuationPage() {
   const [valuationMethod, setValuationMethod] = useState<'FIFO' | 'LIFO' | 'WAVG'>('FIFO');
   const [selectedPeriod, setSelectedPeriod] = useState('current');
+
+  // Modal state
+  const [isValuationModalOpen, setIsValuationModalOpen] = useState(false);
+  const [valuationResult, setValuationResult] = useState<ValuationReportData | null>(null);
 
   const categoryData: CategoryValuation[] = [
     {
@@ -111,6 +120,34 @@ export default function StockValuationPage() {
 
   const varianceFromFIFO = ((totalValuation - categoryData.reduce((sum, cat) => sum + cat.fifoValue, 0)) / totalValuation * 100).toFixed(2);
 
+  // Handler function
+  const handleValuationGenerate = (config: any) => {
+    console.log('Generating valuation report with config:', config);
+    // TODO: API call to generate valuation report
+    // const response = await fetch('/api/inventory/analytics/valuation', { method: 'POST', body: JSON.stringify(config) });
+    // const data = await response.json();
+    // setValuationResult(data);
+
+    setValuationResult({
+      reportDate: config.reportDate,
+      warehouse: config.warehouse,
+      valuationMethod: config.valuationMethod,
+      items: [],
+      summary: {
+        totalItems: totalItems,
+        totalQuantity: totalQuantity,
+        totalValue: totalValuation,
+        byCategory: categoryData.map(cat => ({
+          category: cat.category,
+          value: getCurrentValue(cat),
+          percentage: cat.percentOfTotal
+        }))
+      }
+    });
+    setIsValuationModalOpen(false);
+    alert('Valuation report generated successfully! You can now export it.');
+  };
+
   return (
     <div className="p-6 space-y-6">
       {/* Header */}
@@ -123,6 +160,13 @@ export default function StockValuationPage() {
           <p className="text-gray-600 mt-1">Inventory valuation using different costing methods</p>
         </div>
         <div className="flex items-center space-x-3">
+          <button
+            onClick={() => setIsValuationModalOpen(true)}
+            className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 flex items-center space-x-2"
+          >
+            <FileText className="w-4 h-4" />
+            <span>Generate Report</span>
+          </button>
           <button className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center space-x-2">
             <RefreshCw className="w-4 h-4" />
             <span>Refresh</span>
@@ -410,6 +454,13 @@ export default function StockValuationPage() {
           <div className="text-sm text-gray-600 mt-2">Middle valuation method</div>
         </div>
       </div>
+
+      {/* Valuation Modal */}
+      <ValuationReportModal
+        isOpen={isValuationModalOpen}
+        onClose={() => setIsValuationModalOpen(false)}
+        onGenerate={handleValuationGenerate}
+      />
     </div>
   );
 }

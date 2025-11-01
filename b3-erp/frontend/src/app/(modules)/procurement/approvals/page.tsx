@@ -34,8 +34,21 @@ import {
   Zap,
   Flag,
   MoreVertical,
-  RefreshCw
+  RefreshCw,
+  CheckSquare
 } from 'lucide-react'
+
+// Import Approval Modals
+import {
+  ApproveModal,
+  RejectModal,
+  DelegateModal,
+  ReturnModal,
+  ViewHistoryModal,
+  ViewDetailsModal,
+  BulkActionsModal,
+  ExportApprovalsModal
+} from '@/components/procurement/ApprovalModals'
 
 interface ApprovalRequest {
   id: string
@@ -85,6 +98,18 @@ export default function ApprovalsPage() {
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedPriority, setSelectedPriority] = useState('all')
   const [showDetails, setShowDetails] = useState<string | null>(null)
+
+  // Modal state management
+  const [isApproveModalOpen, setIsApproveModalOpen] = useState(false)
+  const [isRejectModalOpen, setIsRejectModalOpen] = useState(false)
+  const [isDelegateModalOpen, setIsDelegateModalOpen] = useState(false)
+  const [isReturnModalOpen, setIsReturnModalOpen] = useState(false)
+  const [isHistoryModalOpen, setIsHistoryModalOpen] = useState(false)
+  const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false)
+  const [isBulkActionsModalOpen, setIsBulkActionsModalOpen] = useState(false)
+  const [isExportModalOpen, setIsExportModalOpen] = useState(false)
+  const [selectedApproval, setSelectedApproval] = useState<ApprovalRequest | null>(null)
+  const [selectedApprovals, setSelectedApprovals] = useState<string[]>([])
 
   // Mock approval data
   const approvalRequests: ApprovalRequest[] = [
@@ -327,6 +352,58 @@ export default function ApprovalsPage() {
     return matchesTab && matchesStatus && matchesType && matchesPriority && matchesSearch
   })
 
+  // Modal handlers
+  const handleApprove = (request: ApprovalRequest) => {
+    setSelectedApproval(request)
+    setIsApproveModalOpen(true)
+  }
+
+  const handleReject = (request: ApprovalRequest) => {
+    setSelectedApproval(request)
+    setIsRejectModalOpen(true)
+  }
+
+  const handleReturn = (request: ApprovalRequest) => {
+    setSelectedApproval(request)
+    setIsReturnModalOpen(true)
+  }
+
+  const handleViewDetails = (request: ApprovalRequest) => {
+    setSelectedApproval(request)
+    setIsDetailsModalOpen(true)
+  }
+
+  const handleViewHistory = (request: ApprovalRequest) => {
+    setSelectedApproval(request)
+    setIsHistoryModalOpen(true)
+  }
+
+  const handleDelegate = () => {
+    setIsDelegateModalOpen(true)
+  }
+
+  const handleBulkActions = () => {
+    setIsBulkActionsModalOpen(true)
+  }
+
+  const handleExport = () => {
+    setIsExportModalOpen(true)
+  }
+
+  const toggleSelectApproval = (id: string) => {
+    setSelectedApprovals(prev =>
+      prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]
+    )
+  }
+
+  const toggleSelectAll = () => {
+    if (selectedApprovals.length === filteredRequests.length) {
+      setSelectedApprovals([])
+    } else {
+      setSelectedApprovals(filteredRequests.map(r => r.id))
+    }
+  }
+
   return (
     <div className="p-6 space-y-6">
       {/* Header */}
@@ -336,11 +413,26 @@ export default function ApprovalsPage() {
           <p className="text-gray-500 mt-1">Manage and track approval requests across procurement</p>
         </div>
         <div className="flex gap-3">
-          <button className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
-            <RefreshCw className="h-4 w-4" />
-            Refresh
+          {selectedApprovals.length > 0 && (
+            <button
+              onClick={handleBulkActions}
+              className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 flex items-center gap-2"
+            >
+              <Zap className="h-4 w-4" />
+              Bulk Actions ({selectedApprovals.length})
+            </button>
+          )}
+          <button
+            onClick={handleDelegate}
+            className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2"
+          >
+            <UserCheck className="h-4 w-4" />
+            Delegate
           </button>
-          <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2">
+          <button
+            onClick={handleExport}
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2"
+          >
             <Download className="h-4 w-4" />
             Export
           </button>
@@ -459,6 +551,17 @@ export default function ApprovalsPage() {
         {/* Filters */}
         <div className="p-4 border-b bg-gray-50">
           <div className="flex flex-col lg:flex-row gap-4">
+            <div className="flex items-center gap-3">
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={selectedApprovals.length === filteredRequests.length && filteredRequests.length > 0}
+                  onChange={toggleSelectAll}
+                  className="w-4 h-4 text-blue-600 rounded focus:ring-blue-500"
+                />
+                <span className="text-sm font-medium text-gray-700">Select All</span>
+              </label>
+            </div>
             <div className="flex-1 relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
               <input
@@ -514,7 +617,17 @@ export default function ApprovalsPage() {
         <div className="divide-y divide-gray-200">
           {filteredRequests.map((request) => (
             <div key={request.id} className="p-4 hover:bg-gray-50">
-              <div className="flex items-start justify-between">
+              <div className="flex items-start gap-4">
+                {/* Checkbox */}
+                <div className="pt-2">
+                  <input
+                    type="checkbox"
+                    checked={selectedApprovals.includes(request.id)}
+                    onChange={() => toggleSelectApproval(request.id)}
+                    className="w-4 h-4 text-blue-600 rounded focus:ring-blue-500"
+                  />
+                </div>
+
                 <div className="flex-1">
                   {/* Document Header */}
                   <div className="flex items-start gap-4 mb-3">
@@ -671,31 +784,206 @@ export default function ApprovalsPage() {
                 <div className="ml-4">
                   {request.status === 'pending' && request.currentApprover === 'Sarah Johnson' ? (
                     <div className="flex flex-col gap-2">
-                      <button className="px-3 py-1.5 bg-green-600 text-white rounded-lg hover:bg-green-700 text-sm flex items-center gap-1">
+                      <button
+                        onClick={() => handleApprove(request)}
+                        className="px-3 py-1.5 bg-green-600 text-white rounded-lg hover:bg-green-700 text-sm flex items-center gap-1"
+                      >
                         <ThumbsUp className="h-4 w-4" />
                         Approve
                       </button>
-                      <button className="px-3 py-1.5 bg-red-600 text-white rounded-lg hover:bg-red-700 text-sm flex items-center gap-1">
+                      <button
+                        onClick={() => handleReject(request)}
+                        className="px-3 py-1.5 bg-red-600 text-white rounded-lg hover:bg-red-700 text-sm flex items-center gap-1"
+                      >
                         <ThumbsDown className="h-4 w-4" />
                         Reject
                       </button>
-                      <button className="px-3 py-1.5 bg-gray-600 text-white rounded-lg hover:bg-gray-700 text-sm flex items-center gap-1">
+                      <button
+                        onClick={() => handleReturn(request)}
+                        className="px-3 py-1.5 bg-orange-600 text-white rounded-lg hover:bg-orange-700 text-sm flex items-center gap-1"
+                      >
                         <RotateCcw className="h-4 w-4" />
                         Return
                       </button>
+                      <button
+                        onClick={() => handleViewHistory(request)}
+                        className="px-3 py-1.5 text-blue-600 border border-blue-300 rounded-lg hover:bg-blue-50 text-sm flex items-center gap-1"
+                      >
+                        <History className="h-4 w-4" />
+                        History
+                      </button>
                     </div>
                   ) : (
-                    <button className="px-3 py-1.5 text-blue-600 border border-blue-600 rounded-lg hover:bg-blue-50 text-sm flex items-center gap-1">
-                      <Eye className="h-4 w-4" />
-                      View
-                    </button>
+                    <div className="flex flex-col gap-2">
+                      <button
+                        onClick={() => handleViewDetails(request)}
+                        className="px-3 py-1.5 text-blue-600 border border-blue-600 rounded-lg hover:bg-blue-50 text-sm flex items-center gap-1"
+                      >
+                        <Eye className="h-4 w-4" />
+                        View
+                      </button>
+                      <button
+                        onClick={() => handleViewHistory(request)}
+                        className="px-3 py-1.5 text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm flex items-center gap-1"
+                      >
+                        <History className="h-4 w-4" />
+                        History
+                      </button>
+                    </div>
                   )}
                 </div>
+              </div>
               </div>
             </div>
           ))}
         </div>
       </div>
+
+      {/* Approval Modals */}
+      <ApproveModal
+        isOpen={isApproveModalOpen}
+        onClose={() => setIsApproveModalOpen(false)}
+        approval={selectedApproval ? {
+          id: selectedApproval.id,
+          documentType: selectedApproval.documentType,
+          documentNumber: selectedApproval.documentNumber,
+          title: selectedApproval.title,
+          requestedBy: selectedApproval.requestedBy,
+          requestedDate: selectedApproval.requestedDate,
+          amount: selectedApproval.amount,
+          currency: selectedApproval.currency,
+          priority: selectedApproval.priority,
+          status: selectedApproval.status,
+          currentApprover: selectedApproval.currentApprover,
+          approvalLevel: selectedApproval.approvalLevel,
+          totalLevels: selectedApproval.totalLevels,
+          dueDate: selectedApproval.dueDate,
+          department: selectedApproval.department,
+          vendor: selectedApproval.vendor,
+          justification: selectedApproval.justification,
+          nextApprovers: selectedApproval.nextApprovers
+        } : undefined}
+        onSubmit={(data) => {
+          console.log('Approval submitted:', data)
+          setIsApproveModalOpen(false)
+        }}
+      />
+
+      <RejectModal
+        isOpen={isRejectModalOpen}
+        onClose={() => setIsRejectModalOpen(false)}
+        approval={selectedApproval ? {
+          documentNumber: selectedApproval.documentNumber,
+          title: selectedApproval.title,
+          requestedBy: selectedApproval.requestedBy,
+          amount: selectedApproval.amount,
+          currency: selectedApproval.currency,
+          department: selectedApproval.department
+        } : undefined}
+        onSubmit={(data) => {
+          console.log('Rejection submitted:', data)
+          setIsRejectModalOpen(false)
+        }}
+      />
+
+      <DelegateModal
+        isOpen={isDelegateModalOpen}
+        onClose={() => setIsDelegateModalOpen(false)}
+        approval={selectedApproval ? {
+          documentNumber: selectedApproval.documentNumber,
+          title: selectedApproval.title
+        } : undefined}
+        onSubmit={(data) => {
+          console.log('Delegation submitted:', data)
+          setIsDelegateModalOpen(false)
+        }}
+      />
+
+      <ReturnModal
+        isOpen={isReturnModalOpen}
+        onClose={() => setIsReturnModalOpen(false)}
+        approval={selectedApproval ? {
+          documentNumber: selectedApproval.documentNumber,
+          title: selectedApproval.title,
+          amount: selectedApproval.amount,
+          currency: selectedApproval.currency
+        } : undefined}
+        onSubmit={(data) => {
+          console.log('Return submitted:', data)
+          setIsReturnModalOpen(false)
+        }}
+      />
+
+      <ViewHistoryModal
+        isOpen={isHistoryModalOpen}
+        onClose={() => setIsHistoryModalOpen(false)}
+        approval={selectedApproval ? {
+          documentNumber: selectedApproval.documentNumber,
+          title: selectedApproval.title,
+          requestedBy: selectedApproval.requestedBy,
+          requestedDate: selectedApproval.requestedDate,
+          amount: selectedApproval.amount,
+          currency: selectedApproval.currency,
+          documentType: selectedApproval.documentType,
+          department: selectedApproval.department,
+          status: selectedApproval.status,
+          approvalLevel: selectedApproval.approvalLevel,
+          totalLevels: selectedApproval.totalLevels,
+          currentApprover: selectedApproval.currentApprover,
+          dueDate: selectedApproval.dueDate,
+          justification: selectedApproval.justification,
+          approvalHistory: selectedApproval.approvalHistory,
+          nextApprovers: selectedApproval.nextApprovers,
+          attachments: selectedApproval.attachments,
+          comments: selectedApproval.comments
+        } : undefined}
+      />
+
+      <ViewDetailsModal
+        isOpen={isDetailsModalOpen}
+        onClose={() => setIsDetailsModalOpen(false)}
+        approval={selectedApproval ? {
+          documentNumber: selectedApproval.documentNumber,
+          documentType: selectedApproval.documentType,
+          title: selectedApproval.title,
+          requestedBy: selectedApproval.requestedBy,
+          requestedDate: selectedApproval.requestedDate,
+          amount: selectedApproval.amount,
+          currency: selectedApproval.currency,
+          priority: selectedApproval.priority,
+          status: selectedApproval.status,
+          currentApprover: selectedApproval.currentApprover,
+          approvalLevel: selectedApproval.approvalLevel,
+          totalLevels: selectedApproval.totalLevels,
+          dueDate: selectedApproval.dueDate,
+          department: selectedApproval.department,
+          vendor: selectedApproval.vendor,
+          justification: selectedApproval.justification,
+          nextApprovers: selectedApproval.nextApprovers,
+          slaStatus: selectedApproval.slaStatus,
+          attachments: selectedApproval.attachments,
+          comments: selectedApproval.comments
+        } : undefined}
+      />
+
+      <BulkActionsModal
+        isOpen={isBulkActionsModalOpen}
+        onClose={() => setIsBulkActionsModalOpen(false)}
+        onSubmit={(data: any) => {
+          console.log('Bulk action submitted:', data)
+          setIsBulkActionsModalOpen(false)
+          setSelectedApprovals([])
+        }}
+      />
+
+      <ExportApprovalsModal
+        isOpen={isExportModalOpen}
+        onClose={() => setIsExportModalOpen(false)}
+        onSubmit={(data) => {
+          console.log('Export submitted:', data)
+          setIsExportModalOpen(false)
+        }}
+      />
     </div>
   )
 }

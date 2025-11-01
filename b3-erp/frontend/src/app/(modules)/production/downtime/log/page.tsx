@@ -2,10 +2,12 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { ArrowLeft, Save, X, Clock, AlertTriangle } from 'lucide-react';
+import { ArrowLeft, Save, X, Clock, AlertTriangle, Info } from 'lucide-react';
+import { LogDowntimeModal, LogDowntimeData } from '@/components/production/downtime/DowntimeEventModals';
 
 export default function DowntimeLogPage() {
   const router = useRouter();
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState({
     equipment: '',
     category: 'breakdown',
@@ -48,6 +50,14 @@ export default function DowntimeLogPage() {
     });
   };
 
+  const handleModalSubmit = (data: LogDowntimeData) => {
+    console.log('Logging downtime via modal:', data);
+    // TODO: Implement same API call as form submit
+    alert('Downtime event logged successfully via modal!');
+    setIsModalOpen(false);
+    router.push('/production/downtime');
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
       {/* Inline Header */}
@@ -62,6 +72,24 @@ export default function DowntimeLogPage() {
           <div>
             <h1 className="text-2xl font-bold text-gray-900">Log Downtime Event</h1>
             <p className="text-sm text-gray-500 mt-1">Record a new production downtime incident</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Info Banner */}
+      <div className="max-w-3xl mx-auto mb-6">
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 flex items-start gap-3">
+          <Info className="w-5 h-5 text-blue-600 mt-0.5" />
+          <div>
+            <p className="text-sm text-blue-900">
+              <strong>Tip:</strong> You can also log downtime events from the main Downtime Overview page using a quick modal dialog.
+            </p>
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="mt-2 text-sm text-blue-600 hover:text-blue-700 underline"
+            >
+              Try the modal version
+            </button>
           </div>
         </div>
       </div>
@@ -269,6 +297,13 @@ export default function DowntimeLogPage() {
           </ul>
         </div>
       </div>
+
+      {/* Modal */}
+      <LogDowntimeModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onSubmit={handleModalSubmit}
+      />
     </div>
   );
 }

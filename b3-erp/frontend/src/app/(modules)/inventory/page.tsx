@@ -14,6 +14,17 @@ import {
   Activity
 } from 'lucide-react'
 import { KPICard, CardSkeleton } from '@/components/ui'
+import {
+  ViewStockDetailsModal,
+  AddStockItemModal,
+  QuickAdjustmentModal,
+  LowStockAlertModal,
+  StockItem,
+  AddStockItemData,
+  QuickAdjustmentData,
+  LowStockItem as ModalLowStockItem
+} from '@/components/inventory/InventoryStockModals'
+import { ExportStockDataModal, ExportStockDataConfig } from '@/components/inventory/InventoryExportModals'
 
 interface InventoryStats {
   totalItems: number
@@ -58,6 +69,14 @@ export default function InventoryDashboard() {
     monthlyMovements: 456,
     stockAccuracy: 98.5
   })
+
+  // Modal state
+  const [isViewDetailsOpen, setIsViewDetailsOpen] = useState(false)
+  const [isAddItemOpen, setIsAddItemOpen] = useState(false)
+  const [isQuickAdjustOpen, setIsQuickAdjustOpen] = useState(false)
+  const [isLowStockAlertOpen, setIsLowStockAlertOpen] = useState(false)
+  const [isExportOpen, setIsExportOpen] = useState(false)
+  const [selectedItem, setSelectedItem] = useState<StockItem | null>(null)
 
   const [recentMovements] = useState<StockMovement[]>([
     {
@@ -176,6 +195,77 @@ export default function InventoryDashboard() {
     }
   }
 
+  // Modal handlers
+  const handleViewItem = (item: any) => {
+    // Convert to StockItem format
+    const stockItem: StockItem = {
+      id: item.id,
+      itemCode: item.sku || item.itemCode || '',
+      itemName: item.name || item.itemName || '',
+      description: item.description || '',
+      category: item.category || '',
+      uom: item.uom || 'Pieces',
+      barcode: item.barcode || '',
+      currentQuantity: item.currentStock || item.quantity || item.current_quantity || 0,
+      available: item.available || item.currentStock || item.quantity || 0,
+      reserved: item.reserved || 0,
+      onOrder: item.on_order || 0,
+      minLevel: item.min_level || 0,
+      maxLevel: item.max_level || 100,
+      reorderPoint: item.reorderLevel || item.reorder_point || 10,
+      safetyStock: item.safety_stock || 5,
+      costPrice: item.cost_price || 0,
+      sellingPrice: item.selling_price || 0,
+      supplier: item.supplier || '',
+      leadTime: item.lead_time || 7,
+      valuationMethod: item.valuation_method || 'FIFO',
+      enableSerial: item.enable_serial || false,
+      enableBatch: item.enable_batch || false,
+      trackExpiry: item.track_expiry || false,
+      status: item.status || 'active',
+      locations: item.locations || []
+    }
+    setSelectedItem(stockItem)
+    setIsViewDetailsOpen(true)
+  }
+
+  const handleAddItem = () => {
+    setIsAddItemOpen(true)
+  }
+
+  const handleAddItemSubmit = (data: AddStockItemData) => {
+    console.log('Adding stock item:', data)
+    // TODO: Implement API call to add stock item
+    setIsAddItemOpen(false)
+  }
+
+  const handleQuickAdjust = () => {
+    if (selectedItem) {
+      setIsViewDetailsOpen(false)
+      setIsQuickAdjustOpen(true)
+    }
+  }
+
+  const handleQuickAdjustSubmit = (data: QuickAdjustmentData) => {
+    console.log('Adjusting stock:', data)
+    // TODO: Implement API call to adjust stock
+    setIsQuickAdjustOpen(false)
+  }
+
+  const handleLowStockAlert = () => {
+    setIsLowStockAlertOpen(true)
+  }
+
+  const handleExport = () => {
+    setIsExportOpen(true)
+  }
+
+  const handleExportSubmit = (config: ExportStockDataConfig) => {
+    console.log('Exporting stock data:', config)
+    // TODO: Implement API call to export stock data
+    setIsExportOpen(false)
+  }
+
   return (
     <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 px-4 sm:px-6 lg:px-8 py-6">
       <div className="max-w-7xl mx-auto space-y-6">
@@ -185,13 +275,22 @@ export default function InventoryDashboard() {
             <h1 className="text-3xl font-bold text-gray-900">Inventory Management</h1>
             <p className="text-gray-600 mt-1">Real-time stock tracking and warehouse management</p>
           </div>
-          <Link
-            href="/inventory/stock/entry"
-            className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all shadow-md"
-          >
-            <Package className="h-5 w-5" />
-            <span>New Stock Entry</span>
-          </Link>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={handleExport}
+              className="inline-flex items-center gap-2 px-4 py-2 bg-white text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 transition-all shadow-sm"
+            >
+              <ArrowUpRight className="h-5 w-5" />
+              <span>Export</span>
+            </button>
+            <button
+              onClick={handleAddItem}
+              className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all shadow-md"
+            >
+              <Package className="h-5 w-5" />
+              <span>Add Stock Item</span>
+            </button>
+          </div>
         </div>
 
         {/* Stats Grid */}
@@ -289,15 +388,28 @@ export default function InventoryDashboard() {
             <div className="p-6 border-b border-gray-200">
               <div className="flex items-center justify-between">
                 <h2 className="text-lg font-semibold text-gray-900">Low Stock Alerts</h2>
-                <span className="px-3 py-1 bg-red-100 text-red-700 rounded-full text-xs font-semibold">
-                  {lowStockItems.length} Items
-                </span>
+                <div className="flex items-center gap-3">
+                  <span className="px-3 py-1 bg-red-100 text-red-700 rounded-full text-xs font-semibold">
+                    {lowStockItems.length} Items
+                  </span>
+                  <button
+                    onClick={handleLowStockAlert}
+                    className="text-orange-600 hover:text-orange-700 text-sm font-medium flex items-center gap-1"
+                  >
+                    View All
+                    <ArrowUpRight className="h-4 w-4" />
+                  </button>
+                </div>
               </div>
             </div>
             <div className="p-6">
               <div className="space-y-4">
                 {lowStockItems.map((item) => (
-                  <div key={item.id} className="flex items-start justify-between p-3 rounded-lg border border-orange-200 bg-orange-50">
+                  <div
+                    key={item.id}
+                    onClick={() => handleViewItem(item)}
+                    className="flex items-start justify-between p-3 rounded-lg border border-orange-200 bg-orange-50 cursor-pointer hover:shadow-md transition-shadow"
+                  >
                     <div className="flex-1">
                       <div className="flex items-center gap-2">
                         <AlertTriangle className="h-4 w-4 text-orange-600" />
@@ -312,8 +424,14 @@ export default function InventoryDashboard() {
                     <div className="text-right">
                       <p className="text-sm font-semibold text-orange-600">{item.currentStock} units</p>
                       <p className="text-xs text-gray-500 mt-1">Min: {item.reorderLevel}</p>
-                      <button className="mt-2 px-3 py-1 bg-orange-600 text-white text-xs rounded-md hover:bg-orange-700 transition-colors">
-                        Reorder
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          handleViewItem(item)
+                        }}
+                        className="mt-2 px-3 py-1 bg-orange-600 text-white text-xs rounded-md hover:bg-orange-700 transition-colors"
+                      >
+                        View Details
                       </button>
                     </div>
                   </div>
@@ -358,6 +476,46 @@ export default function InventoryDashboard() {
           )}
         </div>
       </div>
+
+      {/* Modals */}
+      <ViewStockDetailsModal
+        isOpen={isViewDetailsOpen}
+        onClose={() => setIsViewDetailsOpen(false)}
+        item={selectedItem}
+        onEdit={() => alert('Edit not implemented yet')}
+        onAdjust={handleQuickAdjust}
+        onTransfer={() => alert('Transfer not implemented yet')}
+        onGenerateBarcode={() => alert('Barcode generation not implemented yet')}
+        onExport={handleExport}
+      />
+
+      <AddStockItemModal
+        isOpen={isAddItemOpen}
+        onClose={() => setIsAddItemOpen(false)}
+        onSubmit={handleAddItemSubmit}
+      />
+
+      <QuickAdjustmentModal
+        isOpen={isQuickAdjustOpen}
+        onClose={() => setIsQuickAdjustOpen(false)}
+        onAdjust={handleQuickAdjustSubmit}
+        item={selectedItem}
+      />
+
+      <LowStockAlertModal
+        isOpen={isLowStockAlertOpen}
+        onClose={() => setIsLowStockAlertOpen(false)}
+        items={[]} // TODO: Pass actual low stock items - needs conversion to ModalLowStockItem format
+        onCreatePurchaseOrders={(ids) => console.log('Create POs for:', ids)}
+        onAdjustLevels={(ids) => console.log('Adjust levels for:', ids)}
+        onDismissAlerts={(ids) => console.log('Dismiss alerts for:', ids)}
+      />
+
+      <ExportStockDataModal
+        isOpen={isExportOpen}
+        onClose={() => setIsExportOpen(false)}
+        onExport={handleExportSubmit}
+      />
     </div>
   )
 }

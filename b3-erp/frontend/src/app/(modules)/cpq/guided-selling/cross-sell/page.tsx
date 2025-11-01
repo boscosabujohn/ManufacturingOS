@@ -16,6 +16,11 @@ import {
   Plus,
   ArrowRight
 } from 'lucide-react';
+import {
+  AnalyticsModal,
+  CreateCampaignModal,
+  CrossSellOpportunity as CrossSellOpportunityType
+} from '@/components/cpq/CrossSellModals';
 
 interface CrossSellOpportunity {
   id: string;
@@ -48,7 +53,12 @@ export default function CrossSellPage() {
   const [filterRelationship, setFilterRelationship] = useState<string>('all');
   const [filterStrength, setFilterStrength] = useState<'all' | 'strong' | 'medium' | 'weak'>('all');
 
-  const opportunities: CrossSellOpportunity[] = [
+  // Modal states
+  const [isAnalyticsOpen, setIsAnalyticsOpen] = useState(false);
+  const [isCampaignOpen, setIsCampaignOpen] = useState(false);
+  const [selectedOpportunity, setSelectedOpportunity] = useState<CrossSellOpportunity | null>(null);
+
+  const [opportunities, setOpportunities] = useState<CrossSellOpportunity[]>([
     {
       id: '1',
       primaryProduct: {
@@ -337,9 +347,26 @@ export default function CrossSellPage() {
       activeCampaigns: 2,
       lastUpdated: '2025-10-08'
     }
-  ];
+  ]);
 
   const relationships = ['all', 'complement', 'essential', 'upgrade', 'bundle'];
+
+  // Handlers
+  const handleViewAnalytics = (opportunity: CrossSellOpportunity) => {
+    setSelectedOpportunity(opportunity);
+    setIsAnalyticsOpen(true);
+  };
+
+  const handleCreateCampaign = (opportunity?: CrossSellOpportunity) => {
+    setSelectedOpportunity(opportunity || null);
+    setIsCampaignOpen(true);
+  };
+
+  const handleSaveCampaign = (campaign: any) => {
+    console.log('Campaign saved:', campaign);
+    setIsCampaignOpen(false);
+    setSelectedOpportunity(null);
+  };
 
   const filteredOpportunities = opportunities.filter(opp => {
     const matchesSearch =
@@ -397,7 +424,10 @@ export default function CrossSellPage() {
             <p className="text-sm text-gray-600">Identify and capitalize on product pairing opportunities</p>
           </div>
         </div>
-        <button className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+        <button
+          onClick={() => handleCreateCampaign()}
+          className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+        >
           <Plus className="h-4 w-4" />
           Create Campaign
         </button>
@@ -582,11 +612,17 @@ export default function CrossSellPage() {
                     Last updated: {opp.lastUpdated}
                   </div>
                   <div className="flex items-center gap-2">
-                    <button className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 text-sm flex items-center gap-2">
+                    <button
+                      onClick={() => handleViewAnalytics(opp)}
+                      className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 text-sm flex items-center gap-2"
+                    >
                       <BarChart3 className="h-4 w-4" />
                       View Analytics
                     </button>
-                    <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm flex items-center gap-2">
+                    <button
+                      onClick={() => handleCreateCampaign(opp)}
+                      className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm flex items-center gap-2"
+                    >
                       <Plus className="h-4 w-4" />
                       Create Campaign
                     </button>
@@ -602,6 +638,28 @@ export default function CrossSellPage() {
       <div className="mt-6 text-sm text-gray-600">
         Showing {filteredOpportunities.length} of {totalOpportunities} cross-sell opportunities
       </div>
+
+      {/* Modals */}
+      {selectedOpportunity && (
+        <AnalyticsModal
+          isOpen={isAnalyticsOpen}
+          onClose={() => {
+            setIsAnalyticsOpen(false);
+            setSelectedOpportunity(null);
+          }}
+          opportunity={selectedOpportunity}
+        />
+      )}
+
+      <CreateCampaignModal
+        isOpen={isCampaignOpen}
+        onClose={() => {
+          setIsCampaignOpen(false);
+          setSelectedOpportunity(null);
+        }}
+        onSave={handleSaveCampaign}
+        opportunity={selectedOpportunity || undefined}
+      />
     </div>
   );
 }

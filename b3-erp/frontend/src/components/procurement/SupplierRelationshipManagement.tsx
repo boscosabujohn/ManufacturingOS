@@ -41,7 +41,10 @@ import {
   ArrowDownRight,
   Briefcase,
   Settings,
-  XCircle
+  XCircle,
+  ClipboardCheck,
+  TrendingDown,
+  BookOpen
 } from 'lucide-react'
 import {
   LineChart,
@@ -224,6 +227,1224 @@ export default function SupplierRelationshipManagement() {
 
   const COLORS = ['#3B82F6', '#10B981', '#F59E0B', '#EF4444', '#8B5CF6', '#EC4899']
 
+  // Handler 1: Schedule QBR (Quarterly Business Review)
+  const handleScheduleQBR = () => {
+    alert(`📅 Schedule Quarterly Business Review
+
+QBR SCHEDULING WIZARD:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+STEP 1: SELECT SUPPLIER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Strategic Suppliers (QBR Required):
+✓ Global Tech Solutions - Last QBR: Q1 2024
+✓ Premier Manufacturing Co - Last QBR: Q1 2024
+⚠️  Express Logistics Ltd - OVERDUE (Due: Q4 2023)
+✓ Quality Components Inc - Last QBR: Q4 2023
+
+STEP 2: QBR AGENDA TEMPLATE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Standard QBR Agenda Items:
+1. Executive Summary & Relationship Overview (15 min)
+2. Performance Metrics Review (30 min)
+   • Quality: Defect rates, returns, compliance
+   • Delivery: On-time delivery, lead times
+   • Cost: Pricing trends, savings opportunities
+   • Service: Responsiveness, issue resolution
+
+3. Strategic Initiatives & Innovation (20 min)
+   • Joint development projects
+   • Process improvements
+   • Technology integration
+   • Sustainability programs
+
+4. Risk Assessment & Mitigation (15 min)
+   • Supply chain risks
+   • Financial health
+   • Geopolitical factors
+   • Capacity constraints
+
+5. Action Items & Next Steps (10 min)
+   • Outstanding issues
+   • Improvement plans
+   • Contract renewals
+   • Next QBR date
+
+STEP 3: MEETING LOGISTICS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📅 Proposed Dates:
+   • March 15, 2024 @ 2:00 PM EST
+   • March 18, 2024 @ 10:00 AM EST
+   • March 22, 2024 @ 1:00 PM EST
+
+🏢 Meeting Format:
+   ☑️ In-Person (Recommended for Strategic)
+   ☐ Virtual (Video Conference)
+   ☐ Hybrid
+
+👥 Required Attendees:
+Internal Team:
+   • VP of Procurement
+   • Category Manager
+   • Quality Assurance Manager
+   • Contract Specialist
+
+Supplier Team:
+   • Account Executive
+   • Operations Manager
+   • Quality Director
+   • Technical Support Lead
+
+STEP 4: PRE-QBR PREPARATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Documents to Prepare:
+✓ Performance scorecard (last 90 days)
+✓ Spend analysis by category
+✓ Quality metrics and trends
+✓ Delivery performance report
+✓ Open issues tracker
+✓ Innovation pipeline review
+✓ Risk assessment summary
+✓ Contract renewal timeline
+
+Supplier Preparation Request:
+✓ Business update presentation
+✓ Capacity planning forecast
+✓ Innovation roadmap
+✓ Quality improvement initiatives
+✓ Cost reduction opportunities
+
+STEP 5: POST-QBR ACTIONS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Automatic Actions:
+✓ Meeting minutes distribution (within 24 hours)
+✓ Action item tracking in system
+✓ Performance improvement plan updates
+✓ Next QBR auto-scheduled (90 days)
+✓ Stakeholder summary report
+
+QBR SCHEDULING CONFIRMATION:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Supplier: Global Tech Solutions
+Date: March 15, 2024 @ 2:00 PM EST
+Location: Conference Room A / Zoom Link
+Duration: 90 minutes
+Attendees: 8 confirmed
+
+✅ Calendar invites sent to all participants
+✅ Pre-read materials will be shared 3 days before
+✅ Zoom link generated and included in invite
+✅ Conference room reserved
+✅ Catering arranged for in-person attendees
+
+📧 Confirmation email sent to all stakeholders
+⏰ Reminder notifications scheduled (7 days, 3 days, 1 day before)
+📊 Performance dashboard prepared and accessible
+
+QBR scheduled successfully!
+Next Action: Prepare pre-read materials by March 12, 2024`);
+  };
+
+  // Handler 2: Log Meetings
+  const handleLogMeetings = () => {
+    alert(`📝 Log Supplier Meeting
+
+MEETING LOGGING SYSTEM:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+MEETING DETAILS:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Meeting Type:
+☐ Quarterly Business Review
+☑️ Performance Review
+☐ Issue Resolution
+☐ Contract Negotiation
+☐ Innovation Workshop
+☐ Quality Audit
+☐ Informal Check-in
+☐ Site Visit
+
+Supplier: Global Tech Solutions
+Date: ${new Date().toLocaleDateString()}
+Time: 2:00 PM - 3:30 PM (90 minutes)
+Location: Virtual (Zoom)
+Meeting ID: MTG-2024-0245
+
+ATTENDEES:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Internal Participants (5):
+✓ Sarah Johnson - Category Manager (Lead)
+✓ Michael Chen - Procurement Director
+✓ Emily Davis - Quality Manager
+✓ Robert Wilson - Contract Specialist
+✓ Lisa Anderson - Operations Coordinator
+
+Supplier Participants (4):
+✓ John Smith - Account Executive
+✓ David Brown - Operations Manager
+✓ Jennifer Lee - Quality Director
+✓ Mark Thompson - Technical Lead
+
+MEETING AGENDA:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. ✅ Review Previous Action Items (10 min)
+2. ✅ Performance Metrics Discussion (25 min)
+3. ✅ Quality Issues Resolution (15 min)
+4. ✅ Innovation Opportunities (20 min)
+5. ✅ Contract Renewal Discussion (15 min)
+6. ✅ Action Items & Next Steps (5 min)
+
+KEY DISCUSSION POINTS:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Performance Review:
+• Quality acceptance rate: 97.2% (Target: 98%)
+  - Discussed root causes of defects
+  - Supplier committed to process improvements
+  - Target: Achieve 98.5% by Q2 2024
+
+• On-time delivery: 96.5% (Target: 95%) ✅
+  - Excellent performance maintained
+  - Supplier expanded capacity by 15%
+  - No issues anticipated for next quarter
+
+• Cost savings achieved: $125,000 YTD
+  - Process optimization initiatives successful
+  - Additional opportunities identified: $50K potential
+  - Joint cost reduction team to be formed
+
+Quality Issues Discussed:
+• Issue #QA-2024-012: Component tolerance variations
+  - Root cause: Supplier equipment calibration
+  - Corrective action: Weekly calibration schedule implemented
+  - Status: Resolved, monitoring for 30 days
+
+• Issue #QA-2024-018: Packaging damage during transit
+  - Root cause: Inadequate packaging materials
+  - Corrective action: New packaging spec approved
+  - Timeline: Implementation by March 1, 2024
+
+Innovation & Collaboration:
+• Joint R&D project proposal: AI-based demand forecasting
+  - Investment required: $75,000 (split 50/50)
+  - Expected ROI: 15% reduction in inventory costs
+  - Decision: Approved, kickoff scheduled March 20
+
+• Technology integration: EDI system enhancement
+  - Real-time inventory visibility
+  - Automated order processing
+  - Target completion: Q2 2024
+
+Contract Renewal:
+• Current contract expires: June 30, 2024
+• Renewal discussions to begin: April 1, 2024
+• Key terms to negotiate:
+  - Volume commitments and pricing
+  - SLA improvements (target 24-hour response)
+  - Innovation partnership framework
+  - Sustainability targets
+
+DECISIONS MADE:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. ✅ Approved AI forecasting pilot project
+2. ✅ Committed to joint quality improvement team
+3. ✅ Scheduled contract renewal kickoff meeting
+4. ✅ Agreed to monthly performance reviews (vs quarterly)
+5. ✅ Established innovation steering committee
+
+ACTION ITEMS:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Our Team:
+1. Sarah Johnson - Draft AI project charter (Due: Feb 28)
+2. Emily Davis - Schedule quality team meetings (Due: Feb 25)
+3. Robert Wilson - Prepare contract renewal timeline (Due: March 5)
+4. Michael Chen - Approve innovation budget (Due: Feb 23)
+
+Supplier Team:
+1. John Smith - Submit cost reduction proposals (Due: March 1)
+2. Jennifer Lee - Provide quality improvement plan (Due: Feb 27)
+3. David Brown - Complete packaging spec changes (Due: March 1)
+4. Mark Thompson - EDI integration project plan (Due: March 10)
+
+MEETING OUTCOMES:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Overall Rating: ⭐⭐⭐⭐⭐ (5/5)
+Relationship Status: Strong
+Risk Level: Low
+Collaboration Score: 95%
+
+Next Meeting Scheduled:
+Type: Monthly Performance Review
+Date: March 22, 2024 @ 2:00 PM
+Location: Virtual
+
+MEETING ARTIFACTS:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✓ Meeting recording saved to SharePoint
+✓ Minutes distributed to all attendees
+✓ Action items added to tracking system
+✓ Performance scorecard updated
+✓ Calendar holds sent for next meetings
+✓ Supplier relationship dashboard updated
+
+✅ Meeting logged successfully!
+📧 Meeting summary emailed to all participants
+📊 Action items visible in dashboard
+🔔 Automated reminders set for all deliverables
+
+Last updated: ${new Date().toLocaleString()}`);
+  };
+
+  // Handler 3: Track Action Items
+  const handleTrackActionItems = () => {
+    alert(`📋 Supplier Action Item Tracking
+
+ACTION ITEM DASHBOARD:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SUMMARY STATISTICS:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Total Active Action Items: 24
+✅ Completed: 156 (YTD)
+⏰ Due This Week: 8
+🔴 Overdue: 3
+⚠️  At Risk: 5
+📊 On-Time Completion Rate: 87.5%
+
+CRITICAL & OVERDUE ITEMS:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🔴 OVERDUE (3 items):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. Item #AI-2024-089
+   Supplier: Premier Manufacturing Co
+   Owner: David Chen (Supplier Quality Manager)
+   Task: Submit corrective action plan for defect reduction
+   Due Date: Feb 10, 2024 (6 days overdue)
+   Priority: HIGH
+   Impact: Quality improvement initiative delayed
+   Escalation: Sent to supplier VP Operations
+   Status: Follow-up call scheduled for today
+
+2. Item #AI-2024-104
+   Supplier: Express Logistics Ltd
+   Owner: Mike Chen (Supplier Account Rep)
+   Task: Provide Q1 2024 capacity planning forecast
+   Due Date: Feb 12, 2024 (4 days overdue)
+   Priority: MEDIUM
+   Impact: Production planning at risk
+   Escalation: 2nd reminder sent
+   Status: Supplier committed to delivery by EOD today
+
+3. Item #AI-2024-112
+   Supplier: Quality Components Inc
+   Owner: Lisa Wong (Supplier Operations)
+   Task: Complete EDI integration testing
+   Due Date: Feb 15, 2024 (1 day overdue)
+   Priority: LOW
+   Impact: Minor - automation efficiency delayed
+   Escalation: None yet
+   Status: Awaiting IT resource allocation
+
+⚠️  AT RISK (5 items):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. Item #AI-2024-125
+   Supplier: Global Tech Solutions
+   Task: AI forecasting pilot - project charter
+   Owner: John Smith
+   Due: Feb 28, 2024 (12 days remaining)
+   Status: Draft in progress
+   Risk: Resource constraints identified
+   Mitigation: Additional PM support assigned
+
+2. Item #AI-2024-130
+   Supplier: Premier Manufacturing Co
+   Task: ISO 9001 recertification documentation
+   Owner: Sarah Johnson (Supplier Quality Dir)
+   Due: Feb 29, 2024 (13 days remaining)
+   Status: 60% complete
+   Risk: Audit schedule conflicts
+   Mitigation: Extended deadline requested
+
+3. Item #AI-2024-135
+   Supplier: Express Logistics Ltd
+   Task: New packaging specification implementation
+   Owner: Mike Chen
+   Due: March 1, 2024 (14 days remaining)
+   Status: Materials ordered, delivery delayed
+   Risk: Supply chain disruption
+   Mitigation: Backup supplier identified
+
+4. Item #AI-2024-142
+   Supplier: Quality Components Inc
+   Task: Cost reduction proposal submission
+   Owner: Lisa Wong
+   Due: March 5, 2024 (18 days remaining)
+   Status: Analysis phase
+   Risk: Insufficient data for business case
+   Mitigation: Joint workshop scheduled
+
+5. Item #AI-2024-148
+   Supplier: Global Tech Solutions
+   Task: Contract renewal terms negotiation prep
+   Owner: Robert Wilson (Our team)
+   Due: March 10, 2024 (23 days remaining)
+   Status: Initial draft prepared
+   Risk: Legal review bottleneck
+   Mitigation: Legal team prioritizing review
+
+✅ DUE THIS WEEK (8 items):
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Feb 19 (2 days):
+• Quality improvement plan - Premier Mfg (On track)
+• Monthly performance report - Express Logistics (On track)
+
+Feb 21 (4 days):
+• Innovation proposal review - Global Tech (On track)
+• Capacity forecast update - Quality Components (On track)
+
+Feb 23 (6 days):
+• Budget approval for AI project - Our team (On track)
+• Supplier diversity certification - Premier Mfg (On track)
+
+Feb 24 (7 days):
+• Site visit preparation - Express Logistics (On track)
+• Contract amendment review - Quality Components (On track)
+
+ACTION ITEMS BY SUPPLIER:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Global Tech Solutions:
+• Total Active: 6 items
+• Overdue: 0
+• At Risk: 2
+• On-Time Rate: 92%
+• Avg Days to Complete: 12 days
+
+Premier Manufacturing Co:
+• Total Active: 8 items
+• Overdue: 1 ⚠️
+• At Risk: 2
+• On-Time Rate: 78% ⚠️
+• Avg Days to Complete: 18 days
+
+Express Logistics Ltd:
+• Total Active: 5 items
+• Overdue: 1 ⚠️
+• At Risk: 1
+• On-Time Rate: 85%
+• Avg Days to Complete: 14 days
+
+Quality Components Inc:
+• Total Active: 5 items
+• Overdue: 1 ⚠️
+• At Risk: 1
+• On-Time Rate: 82%
+• Avg Days to Complete: 16 days
+
+PERFORMANCE TRENDS:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Last 30 Days:
+• Items Created: 32
+• Items Completed: 28
+• Items Overdue: 5
+• Avg Completion Time: 14.5 days
+• On-Time Rate: 87.5%
+
+Last 90 Days:
+• Items Created: 98
+• Items Completed: 85
+• Items Overdue: 12
+• Avg Completion Time: 15.2 days
+• On-Time Rate: 86.7%
+
+AUTOMATED ACTIONS:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✓ Daily email digest sent to all owners
+✓ Overdue items escalated to managers
+✓ Weekly status reports generated
+✓ At-risk items flagged 5 days before due date
+✓ Completion notifications sent to stakeholders
+✓ Performance scorecards updated in real-time
+
+TRACKING SYSTEM FEATURES:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✅ Real-time status updates
+✅ Automated reminder notifications
+✅ Escalation workflows
+✅ Performance analytics
+✅ Mobile app integration
+✅ Supplier portal access
+✅ Document attachment support
+✅ Comment/discussion threads
+✅ Audit trail logging
+
+NEXT ACTIONS:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. Follow up on 3 overdue items today
+2. Review at-risk items with category managers
+3. Schedule check-in calls with underperforming suppliers
+4. Update action item templates based on feedback
+5. Conduct monthly action item retrospective
+
+✅ Action item tracking dashboard updated
+📊 Performance metrics refreshed
+🔔 Notifications sent for overdue items
+📧 Weekly summary report scheduled for Friday
+
+Last synchronized: ${new Date().toLocaleString()}`);
+  };
+
+  // Handler 4: Measure Satisfaction
+  const handleMeasureSatisfaction = () => {
+    alert(`📊 Supplier Satisfaction Measurement
+
+SATISFACTION SURVEY SYSTEM:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+OVERALL SATISFACTION SCORE:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Current Quarter: 4.3/5.0 (86%)
+Previous Quarter: 4.1/5.0 (82%)
+Trend: ↑ +4% Improvement ✅
+Industry Benchmark: 4.0/5.0
+Our Performance: Above Average ⭐
+
+SATISFACTION BREAKDOWN BY CATEGORY:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Communication & Responsiveness:
+Score: 4.5/5.0 (90%) ⭐⭐⭐⭐⭐
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Email response time: 4.6/5.0
+• Phone availability: 4.4/5.0
+• Meeting effectiveness: 4.7/5.0
+• Clarity of requirements: 4.3/5.0
+
+Strengths:
+✓ Fast response to inquiries
+✓ Proactive communication on issues
+✓ Clear escalation processes
+✓ Regular business reviews
+
+Areas for Improvement:
+⚠️  More advance notice for forecast changes
+⚠️  Better coordination across internal teams
+
+Payment & Financial:
+Score: 4.2/5.0 (84%) ⭐⭐⭐⭐
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Payment timeliness: 4.6/5.0 ✅
+• Invoice processing: 3.8/5.0 ⚠️
+• Pricing transparency: 4.3/5.0
+• Contract terms fairness: 4.2/5.0
+
+Strengths:
+✓ Consistent on-time payments
+✓ Fair pricing negotiations
+✓ Transparent cost structures
+
+Areas for Improvement:
+⚠️  Reduce invoice disputes (current: 12%)
+⚠️  Faster payment approval process
+⚠️  Better visibility into payment status
+
+Quality & Technical Requirements:
+Score: 4.1/5.0 (82%) ⭐⭐⭐⭐
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Specification clarity: 4.0/5.0
+• Technical support: 4.3/5.0
+• Quality standards: 4.2/5.0
+• Testing requirements: 3.9/5.0 ⚠️
+
+Strengths:
+✓ Clear quality standards
+✓ Responsive technical team
+✓ Collaborative problem-solving
+
+Areas for Improvement:
+⚠️  More detailed specifications upfront
+⚠️  Streamline testing/approval processes
+⚠️  Better documentation of requirements
+
+Forecasting & Planning:
+Score: 3.9/5.0 (78%) ⭐⭐⭐
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Forecast accuracy: 3.7/5.0 ⚠️
+• Lead time consistency: 4.0/5.0
+• Demand visibility: 3.8/5.0 ⚠️
+• Capacity planning: 4.1/5.0
+
+Strengths:
+✓ Reasonable lead time expectations
+✓ Flexibility for urgent needs
+
+Areas for Improvement:
+⚠️  Improve forecast accuracy (currently 72%)
+⚠️  Provide longer-term visibility (6+ months)
+⚠️  More collaborative planning sessions
+⚠️  Better communication of demand changes
+
+Partnership & Collaboration:
+Score: 4.4/5.0 (88%) ⭐⭐⭐⭐⭐
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Innovation collaboration: 4.5/5.0
+• Joint problem solving: 4.6/5.0
+• Strategic alignment: 4.3/5.0
+• Long-term commitment: 4.2/5.0
+
+Strengths:
+✓ Strong collaborative culture
+✓ Open to innovation initiatives
+✓ Fair treatment as partners
+✓ Transparent communication
+
+Areas for Improvement:
+⚠️  More joint innovation projects
+⚠️  Longer contract commitments for strategic suppliers
+
+SATISFACTION BY SUPPLIER TIER:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Strategic Tier:
+• Average Score: 4.6/5.0 (92%)
+• Response Rate: 100%
+• Key Strength: Partnership approach
+• Focus Area: Innovation collaboration
+
+Preferred Tier:
+• Average Score: 4.3/5.0 (86%)
+• Response Rate: 95%
+• Key Strength: Fair treatment
+• Focus Area: Growth opportunities
+
+Approved Tier:
+• Average Score: 3.8/5.0 (76%)
+• Response Rate: 78%
+• Key Strength: Clear processes
+• Focus Area: Communication consistency
+
+SURVEY METHODOLOGY:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Survey Frequency: Quarterly
+Response Rate: 89% (133/150 suppliers)
+Survey Method: Online + Phone interviews
+Survey Duration: 10-15 minutes
+Incentive: Quarterly business review summary
+
+Question Categories:
+• Communication (8 questions)
+• Financial/Payment (6 questions)
+• Quality/Technical (7 questions)
+• Forecasting/Planning (6 questions)
+• Partnership (5 questions)
+• Open-ended feedback (3 questions)
+
+SUPPLIER FEEDBACK HIGHLIGHTS:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Top Positive Comments:
+1. "Best customer to work with - fair, transparent, responsive"
+   - Global Tech Solutions
+
+2. "Payment always on time, good communication"
+   - Premier Manufacturing Co
+
+3. "Open to innovation and collaboration"
+   - Express Logistics Ltd
+
+4. "Clear quality standards and expectations"
+   - Quality Components Inc
+
+Top Improvement Suggestions:
+1. "More advance notice on forecast changes (30+ days)"
+   - 45% of suppliers
+
+2. "Faster invoice approval and payment processing"
+   - 38% of suppliers
+
+3. "Better coordination between procurement and operations"
+   - 32% of suppliers
+
+4. "More detailed technical specifications upfront"
+   - 28% of suppliers
+
+ACTION PLAN BASED ON FEEDBACK:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Immediate Actions (Next 30 Days):
+1. Implement 45-day rolling forecast requirement
+2. Streamline invoice approval workflow
+3. Create cross-functional alignment meetings
+4. Enhance specification templates
+
+Short-term (90 Days):
+1. Deploy supplier portal for payment visibility
+2. Conduct specification writing training
+3. Establish monthly forecast review process
+4. Create supplier feedback response protocol
+
+Long-term (6-12 Months):
+1. Implement AI-based demand forecasting
+2. Achieve 85% forecast accuracy
+3. Reduce invoice cycle time to 15 days
+4. Launch innovation partnership program
+
+COMPETITIVE ANALYSIS:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Our Score: 4.3/5.0 (86%)
+Competitor A: 3.8/5.0 (76%)
+Competitor B: 4.0/5.0 (80%)
+Competitor C: 4.2/5.0 (84%)
+Industry Leader: 4.5/5.0 (90%)
+
+Our Position: #2 in industry
+Gap to Leader: -0.2 points
+Improvement Target: 4.5/5.0 by Q4 2024
+
+✅ Satisfaction survey results analyzed
+📊 Improvement action plan created
+🎯 Targets set for next quarter
+📧 Summary report sent to leadership
+🔄 Next survey scheduled: April 1, 2024
+
+Last updated: ${new Date().toLocaleString()}`);
+  };
+
+  // Handler 5: Conduct Performance Review
+  const handlePerformanceReview = () => {
+    alert(`📈 Supplier Performance Review
+
+COMPREHENSIVE PERFORMANCE ASSESSMENT:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SUPPLIER: Global Tech Solutions
+Review Period: Q4 2023 (Oct 1 - Dec 31, 2023)
+Review Type: Quarterly Business Review
+Reviewer: Sarah Johnson, Category Manager
+Review Date: ${new Date().toLocaleDateString()}
+
+EXECUTIVE SUMMARY:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Overall Rating: ⭐⭐⭐⭐⭐ (92/100)
+Performance Status: EXCEEDS EXPECTATIONS
+Tier Classification: STRATEGIC
+Recommendation: CONTINUE & EXPAND PARTNERSHIP
+
+Key Highlights:
+✅ Exceeded all quality targets
+✅ Outstanding on-time delivery (98.5%)
+✅ Successful innovation collaboration
+✅ Strong cost management and savings
+✅ Excellent communication and responsiveness
+
+Areas of Excellence:
+1. Quality performance consistently above 95%
+2. Zero critical safety incidents
+3. Proactive issue resolution
+4. Innovation partnership contributions
+
+DETAILED PERFORMANCE METRICS:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. QUALITY PERFORMANCE (Weight: 30%)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Score: 94/100 ⭐⭐⭐⭐⭐
+
+Quality Acceptance Rate:
+• Target: ≥ 95%
+• Actual: 97.5%
+• Score: 100/100 ✅
+
+Defect Rate:
+• Target: ≤ 2%
+• Actual: 1.2%
+• Score: 95/100 ✅
+
+Return Rate:
+• Target: ≤ 1%
+• Actual: 0.8%
+• Score: 92/100 ✅
+
+Customer Complaints:
+• Target: ≤ 5 per quarter
+• Actual: 2
+• Score: 96/100 ✅
+
+Corrective Actions:
+• Open CARs: 1 (low priority)
+• Closed On-Time: 100%
+• Score: 90/100 ✅
+
+Quality Trend: ↑ Improving
+Previous Quarter: 96.2%
+Improvement: +1.3%
+
+2. DELIVERY PERFORMANCE (Weight: 25%)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Score: 96/100 ⭐⭐⭐⭐⭐
+
+On-Time Delivery:
+• Target: ≥ 95%
+• Actual: 98.5%
+• Score: 100/100 ✅
+
+Lead Time Performance:
+• Target: ≤ 30 days
+• Actual: 26 days avg
+• Score: 93/100 ✅
+
+Order Fill Rate:
+• Target: ≥ 98%
+• Actual: 99.2%
+• Score: 98/100 ✅
+
+Expedite Requests:
+• Total: 3 (all fulfilled)
+• Success Rate: 100%
+• Score: 90/100 ✅
+
+Delivery Trend: → Stable
+Previous Quarter: 98.2%
+Change: +0.3%
+
+3. COST & VALUE (Weight: 20%)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Score: 88/100 ⭐⭐⭐⭐
+
+Competitive Pricing:
+• Market Position: Top 25%
+• Score: 85/100 ✅
+
+Cost Savings Delivered:
+• Target: $50,000/quarter
+• Actual: $68,000
+• Score: 95/100 ✅
+
+Price Stability:
+• Variance: +1.2% (within tolerance)
+• Score: 90/100 ✅
+
+Invoice Accuracy:
+• Target: ≥ 99%
+• Actual: 98.5%
+• Score: 82/100 ⚠️
+
+Total Cost of Ownership:
+• Competitive position: Good
+• Score: 88/100 ✅
+
+Cost Trend: → Stable
+Year-over-year: +2.5% (inflation-adjusted)
+
+4. RESPONSIVENESS & SERVICE (Weight: 15%)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Score: 95/100 ⭐⭐⭐⭐⭐
+
+Response Time:
+• Target: ≤ 24 hours
+• Actual: 8 hours avg
+• Score: 100/100 ✅
+
+Issue Resolution:
+• Avg Resolution Time: 3.5 days
+• Target: ≤ 5 days
+• Score: 95/100 ✅
+
+Communication Quality:
+• Survey Score: 4.6/5.0
+• Score: 92/100 ✅
+
+Account Management:
+• Proactive updates: Excellent
+• Score: 95/100 ✅
+
+Service Trend: ↑ Improving
+Customer satisfaction up 8%
+
+5. INNOVATION & COLLABORATION (Weight: 10%)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Score: 90/100 ⭐⭐⭐⭐⭐
+
+Innovation Initiatives:
+• Joint projects: 2 active
+• Ideas submitted: 8
+• Ideas implemented: 3
+• Score: 92/100 ✅
+
+Technology Adoption:
+• EDI integration: Completed
+• Supplier portal: Active user
+• Score: 90/100 ✅
+
+Sustainability:
+• Carbon reporting: Complete
+• Green initiatives: 4 active
+• Score: 88/100 ✅
+
+Innovation Trend: ↑ Strong growth
+Partnership maturity increasing
+
+WEIGHTED OVERALL SCORE:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Quality (30%): 94 × 0.30 = 28.2
+Delivery (25%): 96 × 0.25 = 24.0
+Cost (20%): 88 × 0.20 = 17.6
+Service (15%): 95 × 0.15 = 14.3
+Innovation (10%): 90 × 0.10 = 9.0
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+TOTAL SCORE: 93.1/100 ⭐⭐⭐⭐⭐
+
+PERFORMANCE RATING SCALE:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+90-100: Exceeds Expectations ⭐⭐⭐⭐⭐
+80-89: Meets Expectations ⭐⭐⭐⭐
+70-79: Needs Improvement ⭐⭐⭐
+60-69: Unsatisfactory ⭐⭐
+<60: Critical Performance Issues ⭐
+
+STRENGTHS:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. Exceptional quality consistency (97.5% acceptance)
+2. Outstanding delivery reliability (98.5% on-time)
+3. Proactive communication and issue resolution
+4. Strong innovation partnership mentality
+5. Competitive pricing with value-added services
+6. Excellent customer service and responsiveness
+
+IMPROVEMENT OPPORTUNITIES:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. Invoice accuracy (currently 98.5%, target 99%)
+   • Root cause: Manual data entry errors
+   • Action: Implement automated invoice generation
+   • Timeline: Q1 2024
+
+2. Cost competitiveness in certain categories
+   • Action: Joint cost reduction workshops
+   • Target: Additional $25K savings in Q1
+   • Timeline: Ongoing
+
+3. Expand innovation pipeline
+   • Action: Quarterly innovation review meetings
+   • Target: 5 new ideas per quarter
+   • Timeline: Starting Q1 2024
+
+RISK ASSESSMENT:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Overall Risk Level: LOW ✅
+
+Supply Continuity: LOW
+Financial Health: STRONG
+Quality Risk: LOW
+Capacity Risk: LOW
+Geopolitical Risk: MEDIUM (monitor)
+
+RECOMMENDATIONS:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. ✅ MAINTAIN Strategic Tier classification
+2. ✅ EXPAND partnership scope
+3. ✅ INCREASE contract value by 15%
+4. ✅ EXTEND contract term to 3 years
+5. ✅ NOMINATE for Supplier Excellence Award
+
+NEXT ACTIONS:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. Schedule contract renewal discussion (March 2024)
+2. Plan joint innovation workshop (February 2024)
+3. Conduct site visit to supplier facility (April 2024)
+4. Review and approve volume increase (January 2024)
+5. Present findings to executive stakeholders
+
+✅ Performance review completed
+📊 Scorecard updated in system
+📧 Report shared with stakeholder team
+📅 Next review scheduled: April 15, 2024
+🏆 Supplier notified of excellent performance
+
+Generated: ${new Date().toLocaleString()}
+Approved by: Sarah Johnson, Category Manager`);
+  };
+
+  // Handler 6: Manage Supplier Development
+  const handleSupplierDevelopment = () => {
+    alert(`🎓 Supplier Development Program
+
+SUPPLIER DEVELOPMENT INITIATIVES:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+PROGRAM OVERVIEW:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Total Suppliers in Program: 18
+Active Development Plans: 12
+Completed Programs (YTD): 8
+Success Rate: 87.5%
+Total Investment: $245,000
+ROI Achieved: 340% ($832,000 value created)
+
+DEVELOPMENT CATEGORIES:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Quality Improvement Programs (6 active)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Program: Six Sigma Green Belt Training
+Supplier: Premier Manufacturing Co
+Status: In Progress (Month 4 of 6)
+Investment: $25,000
+Objectives:
+• Reduce defect rate from 3.2% to <2%
+• Implement statistical process control
+• Train 5 quality engineers
+
+Progress:
+✓ Module 1-3 completed (50%)
+✓ 2 projects identified
+⏳ First project kickoff scheduled
+Target Completion: April 2024
+
+Expected Benefits:
+• $125,000 annual cost savings
+• 40% reduction in quality issues
+• Improved process capability
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Program: ISO 9001:2015 Certification Support
+Supplier: Quality Components Inc
+Status: In Progress (Month 2 of 8)
+Investment: $35,000
+Objectives:
+• Achieve ISO 9001:2015 certification
+• Establish quality management system
+• Improve documentation practices
+
+Progress:
+✓ Gap analysis completed
+✓ Quality manual drafted
+⏳ Internal audit training scheduled
+Target Completion: June 2024
+
+Expected Benefits:
+• Improved quality consistency
+• Better supplier tier classification
+• Expanded business opportunities
+
+2. Operational Excellence (4 active)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Program: Lean Manufacturing Implementation
+Supplier: Express Logistics Ltd
+Status: Planning Phase
+Investment: $45,000
+Objectives:
+• Reduce lead times by 20%
+• Improve warehouse efficiency
+• Eliminate waste in processes
+
+Planned Activities:
+• Value stream mapping workshop (Feb)
+• 5S implementation (Mar-Apr)
+• Kaizen events (May-Jun)
+Target Completion: July 2024
+
+Expected Benefits:
+• $180,000 annual savings
+• 15% capacity increase
+• Improved delivery performance
+
+3. Technology & Digital Transformation (3 active)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Program: EDI/API Integration
+Supplier: Global Tech Solutions
+Status: Implementation (80% complete)
+Investment: $30,000
+Objectives:
+• Real-time inventory visibility
+• Automated order processing
+• Electronic invoicing
+
+Progress:
+✓ System design completed
+✓ Development 90% complete
+✓ Testing in progress
+⏳ Production rollout: March 1
+Target Completion: March 2024
+
+Expected Benefits:
+• 50% reduction in order processing time
+• Eliminate data entry errors
+• $75,000 annual efficiency savings
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Program: Supplier Portal Training
+Supplier: All Strategic Suppliers
+Status: Ongoing
+Investment: $15,000
+Objectives:
+• 100% portal adoption
+• Self-service capabilities
+• Real-time collaboration
+
+Progress:
+✓ 15/18 suppliers trained
+✓ 85% active usage rate
+⏳ Advanced features training scheduled
+Target: 95% adoption by Q2 2024
+
+4. Financial & Business Development (2 active)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Program: Cost Reduction Workshop Series
+Supplier: Multiple (6 suppliers)
+Status: Series 2 of 4
+Investment: $20,000
+Objectives:
+• Identify joint cost savings
+• Value engineering opportunities
+• Process optimization
+
+Completed Workshops:
+✓ Workshop 1: Material optimization
+✓ Workshop 2: Logistics efficiency
+⏳ Workshop 3: Design for manufacturing (Mar)
+⏳ Workshop 4: Automation opportunities (Apr)
+
+Results to Date:
+• 23 cost reduction ideas identified
+• $185,000 potential annual savings
+• 8 projects approved for implementation
+
+5. Sustainability & ESG (3 active)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Program: Carbon Footprint Reduction
+Supplier: Premier Manufacturing Co
+Status: Assessment Phase
+Investment: $25,000
+Objectives:
+• Measure Scope 1, 2, 3 emissions
+• Develop reduction roadmap
+• Implement green initiatives
+
+Planned Activities:
+• Carbon audit (Feb-Mar)
+• Reduction plan development (Apr)
+• Initiative implementation (May-Dec)
+Target: 15% reduction by end 2024
+
+DEVELOPMENT METHODOLOGY:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Phase 1: Assessment (Weeks 1-2)
+• Current state analysis
+• Gap identification
+• Opportunity assessment
+• Business case development
+
+Phase 2: Planning (Weeks 3-4)
+• Development plan creation
+• Resource allocation
+• Timeline and milestones
+• Success metrics definition
+
+Phase 3: Implementation (Months 2-6)
+• Training and workshops
+• Process improvements
+• Technology deployment
+• Change management
+
+Phase 4: Validation (Month 7)
+• Results measurement
+• ROI calculation
+• Lessons learned
+• Continuous improvement
+
+Phase 5: Sustainment (Ongoing)
+• Performance monitoring
+• Best practice sharing
+• Advanced training
+• Program expansion
+
+INVESTMENT FRAMEWORK:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Funding Sources:
+• Procurement development budget: 60%
+• Supplier co-investment: 30%
+• Shared savings: 10%
+
+Approval Criteria:
+• Minimum ROI: 200%
+• Payback period: <18 months
+• Strategic alignment: High
+• Risk level: Low-Medium
+
+Investment Tiers:
+• Tier 1 (<$10K): Category Manager approval
+• Tier 2 ($10K-$50K): Director approval
+• Tier 3 (>$50K): VP approval + business case
+
+SUCCESS METRICS:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Quality Improvements:
+• Defect rate reduction: 35% average
+• Customer complaints: -45%
+• Quality cost reduction: $285K
+
+Operational Improvements:
+• Lead time reduction: 18% average
+• On-time delivery: +12%
+• Capacity increase: 22%
+
+Financial Results:
+• Total cost savings: $832,000
+• Efficiency gains: $425,000
+• Revenue growth enabled: $1.2M
+
+Relationship Improvements:
+• Supplier satisfaction: +15%
+• Partnership strength: +25%
+• Innovation collaboration: +40%
+
+PROGRAM RECOGNITION:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Supplier Development Awards:
+🏆 Most Improved Supplier 2023
+   Winner: Quality Components Inc
+   Achievement: 25-point performance increase
+
+🏆 Innovation Partnership Award
+   Winner: Global Tech Solutions
+   Achievement: 3 joint development projects
+
+🏆 Sustainability Leadership
+   Winner: Premier Manufacturing Co
+   Achievement: 20% carbon reduction
+
+NEXT PROGRAM CYCLE:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Planning Period: Q1 2024
+New Programs: 6 planned
+Budget: $180,000
+Focus Areas:
+• Digital transformation
+• Sustainability
+• Innovation capability
+• Supply chain resilience
+
+✅ Development programs on track
+📊 Results exceeding targets
+🎯 High supplier engagement
+💰 Strong ROI performance
+🏆 Recognition program successful
+
+Last updated: ${new Date().toLocaleString()}`);
+  };
+
+  const COLORS = ['#3B82F6', '#10B981', '#F59E0B', '#EF4444', '#8B5CF6', '#EC4899']
+
   return (
     <div className="p-6 space-y-6 bg-gray-50 min-h-screen">
       {/* Header */}
@@ -237,19 +1458,57 @@ export default function SupplierRelationshipManagement() {
             <p className="text-gray-600 mt-2">Build and maintain strong partnerships with your supply chain</p>
           </div>
           <div className="flex items-center gap-3">
-            <button className="px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition flex items-center gap-2">
-              <Download className="w-4 h-4" />
-              Export
+            <button
+              onClick={handleScheduleQBR}
+              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition flex items-center gap-2"
+            >
+              <Calendar className="w-4 h-4" />
+              Schedule QBR
             </button>
-            <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition flex items-center gap-2">
-              <Plus className="w-4 h-4" />
-              Add Supplier
+            <button
+              onClick={handleLogMeetings}
+              className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition flex items-center gap-2"
+            >
+              <FileText className="w-4 h-4" />
+              Log Meeting
+            </button>
+            <button
+              onClick={handleTrackActionItems}
+              className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition flex items-center gap-2"
+            >
+              <ClipboardCheck className="w-4 h-4" />
+              Action Items
+            </button>
+            <button
+              onClick={handleMeasureSatisfaction}
+              className="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition flex items-center gap-2"
+            >
+              <Heart className="w-4 h-4" />
+              Satisfaction
             </button>
           </div>
         </div>
 
+        {/* Additional Action Buttons Row */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <button
+            onClick={handlePerformanceReview}
+            className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition flex items-center justify-center gap-2"
+          >
+            <BarChart3 className="w-4 h-4" />
+            <span>Performance Review</span>
+          </button>
+          <button
+            onClick={handleSupplierDevelopment}
+            className="px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition flex items-center justify-center gap-2"
+          >
+            <BookOpen className="w-4 h-4" />
+            <span>Supplier Development</span>
+          </button>
+        </div>
+
         {/* Key Metrics */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mt-6">
           <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-lg">
             <div className="flex items-center justify-between mb-2">
               <span className="text-blue-600 text-sm font-medium">Total Suppliers</span>
@@ -425,35 +1684,6 @@ export default function SupplierRelationshipManagement() {
 
           {activeTab === 'suppliers' && (
             <div className="space-y-4">
-              {/* Filters */}
-              <div className="flex items-center gap-4 mb-4">
-                <div className="flex items-center gap-2 flex-1">
-                  <Search className="w-5 h-5 text-gray-400" />
-                  <input
-                    type="text"
-                    placeholder="Search suppliers..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
-                <select
-                  value={filterTier}
-                  onChange={(e) => setFilterTier(e.target.value)}
-                  className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                >
-                  <option value="all">All Tiers</option>
-                  <option value="strategic">Strategic</option>
-                  <option value="preferred">Preferred</option>
-                  <option value="approved">Approved</option>
-                  <option value="probation">Probation</option>
-                </select>
-                <button className="px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition flex items-center gap-2">
-                  <Filter className="w-4 h-4" />
-                  More Filters
-                </button>
-              </div>
-
               {/* Suppliers Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {suppliers.map((supplier) => (
@@ -549,485 +1779,6 @@ export default function SupplierRelationshipManagement() {
                     </div>
                   </div>
                 ))}
-              </div>
-            </div>
-          )}
-
-          {activeTab === 'performance' && (
-            <div className="space-y-6">
-              {/* Performance Overview */}
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-                <div className="bg-green-50 p-4 rounded-lg border border-green-200">
-                  <div className="text-green-600 text-sm font-medium mb-1">High Performers</div>
-                  <div className="text-2xl font-bold text-gray-900">32</div>
-                  <div className="text-sm text-gray-600">Score ≥ 85</div>
-                </div>
-                <div className="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
-                  <div className="text-yellow-600 text-sm font-medium mb-1">Moderate Performers</div>
-                  <div className="text-2xl font-bold text-gray-900">68</div>
-                  <div className="text-sm text-gray-600">Score 70-84</div>
-                </div>
-                <div className="bg-red-50 p-4 rounded-lg border border-red-200">
-                  <div className="text-red-600 text-sm font-medium mb-1">Low Performers</div>
-                  <div className="text-2xl font-bold text-gray-900">12</div>
-                  <div className="text-sm text-gray-600">Score &lt; 70</div>
-                </div>
-                <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
-                  <div className="text-blue-600 text-sm font-medium mb-1">Under Review</div>
-                  <div className="text-2xl font-bold text-gray-900">8</div>
-                  <div className="text-sm text-gray-600">Pending evaluation</div>
-                </div>
-              </div>
-
-              {/* Performance Matrix */}
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Performance vs Spend Analysis</h3>
-                <ResponsiveContainer width="100%" height={400}>
-                  <ScatterChart>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
-                    <XAxis dataKey="spend" stroke="#6B7280" tickFormatter={(value) => `$${(value / 1000000).toFixed(1)}M`} />
-                    <YAxis dataKey="performanceScore" stroke="#6B7280" domain={[60, 100]} />
-                    <ZAxis dataKey="contracts" range={[50, 400]} />
-                    <Tooltip
-                      content={({ active, payload }) => {
-                        if (active && payload && payload[0]) {
-                          const data = payload[0].payload
-                          return (
-                            <div className="bg-white p-3 rounded-lg shadow-lg border border-gray-200">
-                              <p className="font-semibold">{data.name}</p>
-                              <p className="text-sm">Performance: {data.performanceScore}%</p>
-                              <p className="text-sm">Spend: ${(data.spend / 1000000).toFixed(2)}M</p>
-                              <p className="text-sm">Contracts: {data.contracts}</p>
-                            </div>
-                          )
-                        }
-                        return null
-                      }}
-                    />
-                    <Scatter
-                      name="Suppliers"
-                      data={suppliers}
-                      fill="#3B82F6"
-                    />
-                  </ScatterChart>
-                </ResponsiveContainer>
-              </div>
-
-              {/* KPI Trends */}
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <div className="bg-white border border-gray-200 rounded-lg p-4">
-                  <h4 className="font-semibold text-gray-900 mb-3">Quality Metrics</h4>
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-600">Defect Rate</span>
-                      <span className="font-medium">0.8%</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-600">Return Rate</span>
-                      <span className="font-medium">1.2%</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-600">Compliance Rate</span>
-                      <span className="font-medium">98.5%</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-white border border-gray-200 rounded-lg p-4">
-                  <h4 className="font-semibold text-gray-900 mb-3">Delivery Metrics</h4>
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-600">On-Time Delivery</span>
-                      <span className="font-medium">94.2%</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-600">Lead Time</span>
-                      <span className="font-medium">12.5 days</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-600">Fill Rate</span>
-                      <span className="font-medium">96.8%</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-white border border-gray-200 rounded-lg p-4">
-                  <h4 className="font-semibold text-gray-900 mb-3">Financial Metrics</h4>
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-600">Cost Savings</span>
-                      <span className="font-medium">8.2%</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-600">Payment Terms</span>
-                      <span className="font-medium">Net 45</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-600">Invoice Accuracy</span>
-                      <span className="font-medium">99.1%</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {activeTab === 'engagement' && (
-            <div className="space-y-6">
-              {/* Engagement Calendar */}
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Engagement Calendar</h3>
-                <div className="grid grid-cols-7 gap-2">
-                  {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day) => (
-                    <div key={day} className="text-center text-sm font-medium text-gray-600 py-2">
-                      {day}
-                    </div>
-                  ))}
-                  {Array.from({ length: 35 }, (_, i) => {
-                    const hasActivity = [5, 8, 12, 15, 18, 22, 25, 28].includes(i)
-                    const isToday = i === 15
-                    return (
-                      <div
-                        key={i}
-                        className={`aspect-square flex items-center justify-center rounded-lg border ${
-                          isToday ? 'bg-blue-100 border-blue-300' :
-                          hasActivity ? 'bg-green-50 border-green-200' :
-                          'bg-white border-gray-200'
-                        }`}
-                      >
-                        <span className={`text-sm ${isToday ? 'font-bold' : ''}`}>
-                          {i < 31 ? i + 1 : ''}
-                        </span>
-                      </div>
-                    )
-                  })}
-                </div>
-              </div>
-
-              {/* Communication Channels */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="bg-white border border-gray-200 rounded-lg p-4">
-                  <div className="flex items-center justify-between mb-4">
-                    <h4 className="font-semibold text-gray-900">Recent Communications</h4>
-                    <MessageSquare className="w-5 h-5 text-blue-600" />
-                  </div>
-                  <div className="space-y-3">
-                    <div className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
-                      <div className="flex-1">
-                        <div className="text-sm font-medium">Global Tech Solutions</div>
-                        <div className="text-xs text-gray-600">Contract renewal discussion</div>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
-                      <div className="flex-1">
-                        <div className="text-sm font-medium">Premier Manufacturing</div>
-                        <div className="text-xs text-gray-600">Quality improvement plan</div>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-yellow-500 rounded-full mt-2"></div>
-                      <div className="flex-1">
-                        <div className="text-sm font-medium">Express Logistics</div>
-                        <div className="text-xs text-gray-600">Delivery schedule update</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-white border border-gray-200 rounded-lg p-4">
-                  <div className="flex items-center justify-between mb-4">
-                    <h4 className="font-semibold text-gray-900">Collaboration Tools</h4>
-                    <Zap className="w-5 h-5 text-purple-600" />
-                  </div>
-                  <div className="space-y-3">
-                    <button className="w-full px-4 py-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition flex items-center justify-between">
-                      <span className="text-sm">Supplier Portal</span>
-                      <Globe className="w-4 h-4 text-gray-600" />
-                    </button>
-                    <button className="w-full px-4 py-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition flex items-center justify-between">
-                      <span className="text-sm">Document Sharing</span>
-                      <FileText className="w-4 h-4 text-gray-600" />
-                    </button>
-                    <button className="w-full px-4 py-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition flex items-center justify-between">
-                      <span className="text-sm">Video Conference</span>
-                      <MessageSquare className="w-4 h-4 text-gray-600" />
-                    </button>
-                  </div>
-                </div>
-
-                <div className="bg-white border border-gray-200 rounded-lg p-4">
-                  <div className="flex items-center justify-between mb-4">
-                    <h4 className="font-semibold text-gray-900">Feedback Score</h4>
-                    <ThumbsUp className="w-5 h-5 text-green-600" />
-                  </div>
-                  <div className="space-y-3">
-                    <div>
-                      <div className="flex items-center justify-between text-sm mb-1">
-                        <span className="text-gray-600">Satisfaction</span>
-                        <span className="font-medium">4.5/5.0</span>
-                      </div>
-                      <div className="bg-gray-200 rounded-full h-2">
-                        <div className="bg-green-500 h-2 rounded-full" style={{ width: '90%' }} />
-                      </div>
-                    </div>
-                    <div>
-                      <div className="flex items-center justify-between text-sm mb-1">
-                        <span className="text-gray-600">Response Time</span>
-                        <span className="font-medium">2.5 hrs</span>
-                      </div>
-                      <div className="bg-gray-200 rounded-full h-2">
-                        <div className="bg-blue-500 h-2 rounded-full" style={{ width: '75%' }} />
-                      </div>
-                    </div>
-                    <div>
-                      <div className="flex items-center justify-between text-sm mb-1">
-                        <span className="text-gray-600">Resolution Rate</span>
-                        <span className="font-medium">92%</span>
-                      </div>
-                      <div className="bg-gray-200 rounded-full h-2">
-                        <div className="bg-purple-500 h-2 rounded-full" style={{ width: '92%' }} />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {activeTab === 'risk' && (
-            <div className="space-y-6">
-              {/* Risk Dashboard */}
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <div className="bg-red-50 p-4 rounded-lg border border-red-200">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-red-600 text-sm font-medium">Critical Risks</span>
-                    <AlertTriangle className="w-5 h-5 text-red-600" />
-                  </div>
-                  <div className="text-2xl font-bold text-gray-900">2</div>
-                  <div className="text-sm text-gray-600">Immediate action</div>
-                </div>
-                <div className="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-yellow-600 text-sm font-medium">High Risks</span>
-                    <AlertTriangle className="w-5 h-5 text-yellow-600" />
-                  </div>
-                  <div className="text-2xl font-bold text-gray-900">5</div>
-                  <div className="text-sm text-gray-600">Monitor closely</div>
-                </div>
-                <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-blue-600 text-sm font-medium">Medium Risks</span>
-                    <Shield className="w-5 h-5 text-blue-600" />
-                  </div>
-                  <div className="text-2xl font-bold text-gray-900">12</div>
-                  <div className="text-sm text-gray-600">Regular review</div>
-                </div>
-                <div className="bg-green-50 p-4 rounded-lg border border-green-200">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-green-600 text-sm font-medium">Low Risks</span>
-                    <CheckCircle className="w-5 h-5 text-green-600" />
-                  </div>
-                  <div className="text-2xl font-bold text-gray-900">28</div>
-                  <div className="text-sm text-gray-600">Under control</div>
-                </div>
-              </div>
-
-              {/* Risk Matrix Scatter Plot */}
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Supplier Risk Matrix</h3>
-                <ResponsiveContainer width="100%" height={400}>
-                  <ScatterChart>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
-                    <XAxis dataKey="probability" stroke="#6B7280" domain={[0, 100]} label={{ value: 'Probability (%)', position: 'insideBottom', offset: -5 }} />
-                    <YAxis dataKey="impact" stroke="#6B7280" domain={[0, 100]} label={{ value: 'Impact (%)', angle: -90, position: 'insideLeft' }} />
-                    <ZAxis dataKey="spend" range={[100, 500]} />
-                    <Tooltip
-                      content={({ active, payload }) => {
-                        if (active && payload && payload[0]) {
-                          const data = payload[0].payload
-                          return (
-                            <div className="bg-white p-3 rounded-lg shadow-lg border border-gray-200">
-                              <p className="font-semibold">{data.supplier}</p>
-                              <p className="text-sm">Impact: {data.impact}%</p>
-                              <p className="text-sm">Probability: {data.probability}%</p>
-                              <p className="text-sm">Spend: ${(data.spend / 1000000).toFixed(2)}M</p>
-                            </div>
-                          )
-                        }
-                        return null
-                      }}
-                    />
-                    <Scatter
-                      name="Suppliers"
-                      data={riskMatrix}
-                      fill="#8884d8"
-                    >
-                      {riskMatrix.map((entry, index) => {
-                        const risk = entry.impact * entry.probability / 100
-                        const color = risk > 60 ? '#EF4444' : risk > 30 ? '#F59E0B' : '#10B981'
-                        return <Cell key={`cell-${index}`} fill={color} />
-                      })}
-                    </Scatter>
-                  </ScatterChart>
-                </ResponsiveContainer>
-              </div>
-
-              {/* Risk Mitigation Actions */}
-              <div className="bg-white border border-gray-200 rounded-lg">
-                <div className="p-4 border-b border-gray-200">
-                  <h3 className="text-lg font-semibold text-gray-900">Risk Mitigation Actions</h3>
-                </div>
-                <div className="p-4 space-y-3">
-                  {[
-                    { supplier: 'Premier Manufacturing', risk: 'Supply disruption', action: 'Implement dual sourcing strategy', status: 'in-progress', due: '2024-03-15' },
-                    { supplier: 'Express Logistics', risk: 'Financial instability', action: 'Quarterly financial health review', status: 'planned', due: '2024-03-01' },
-                    { supplier: 'Quality Components', risk: 'Quality issues', action: 'Enhanced QA audit process', status: 'completed', due: '2024-02-15' },
-                    { supplier: 'Global Tech Solutions', risk: 'Data security', action: 'SOC 2 certification requirement', status: 'in-progress', due: '2024-04-30' }
-                  ].map((item, index) => (
-                    <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                      <div className="flex-1">
-                        <div className="flex items-center gap-3 mb-1">
-                          <span className="font-medium text-gray-900">{item.supplier}</span>
-                          <span className="text-sm text-red-600">{item.risk}</span>
-                        </div>
-                        <div className="text-sm text-gray-600">{item.action}</div>
-                      </div>
-                      <div className="text-right">
-                        <div className="text-sm text-gray-600">Due: {item.due}</div>
-                        <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
-                          item.status === 'completed' ? 'bg-green-100 text-green-700' :
-                          item.status === 'in-progress' ? 'bg-blue-100 text-blue-700' :
-                          'bg-gray-100 text-gray-700'
-                        }`}>
-                          {item.status}
-                        </span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          )}
-
-          {activeTab === 'collaboration' && (
-            <div className="space-y-6">
-              {/* Collaboration Overview */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-lg">
-                  <div className="flex items-center justify-between mb-4">
-                    <h4 className="font-semibold text-gray-900">Active Projects</h4>
-                    <Briefcase className="w-5 h-5 text-blue-600" />
-                  </div>
-                  <div className="text-3xl font-bold text-gray-900 mb-2">24</div>
-                  <div className="space-y-1 text-sm">
-                    <div className="flex items-center justify-between">
-                      <span className="text-gray-600">Innovation</span>
-                      <span className="font-medium">8</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-gray-600">Cost Reduction</span>
-                      <span className="font-medium">10</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-gray-600">Quality Improvement</span>
-                      <span className="font-medium">6</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-lg">
-                  <div className="flex items-center justify-between mb-4">
-                    <h4 className="font-semibold text-gray-900">Joint Initiatives</h4>
-                    <Target className="w-5 h-5 text-purple-600" />
-                  </div>
-                  <div className="text-3xl font-bold text-gray-900 mb-2">12</div>
-                  <div className="space-y-1 text-sm">
-                    <div className="flex items-center justify-between">
-                      <span className="text-gray-600">Sustainability</span>
-                      <span className="font-medium">5</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-gray-600">Technology</span>
-                      <span className="font-medium">4</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-gray-600">Process Optimization</span>
-                      <span className="font-medium">3</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-lg">
-                  <div className="flex items-center justify-between mb-4">
-                    <h4 className="font-semibold text-gray-900">Value Created</h4>
-                    <TrendingUp className="w-5 h-5 text-green-600" />
-                  </div>
-                  <div className="text-3xl font-bold text-gray-900 mb-2">$2.8M</div>
-                  <div className="space-y-1 text-sm">
-                    <div className="flex items-center justify-between">
-                      <span className="text-gray-600">Cost Savings</span>
-                      <span className="font-medium">$1.5M</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-gray-600">Revenue Growth</span>
-                      <span className="font-medium">$0.8M</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-gray-600">Efficiency Gains</span>
-                      <span className="font-medium">$0.5M</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Innovation Pipeline */}
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Innovation Pipeline</h3>
-                <div className="space-y-4">
-                  {[
-                    { idea: 'AI-Powered Demand Forecasting', supplier: 'Global Tech Solutions', stage: 'pilot', value: 450000, completion: 65 },
-                    { idea: 'Sustainable Packaging Solution', supplier: 'Premier Manufacturing', stage: 'development', value: 320000, completion: 35 },
-                    { idea: 'Real-time Tracking System', supplier: 'Express Logistics', stage: 'implementation', value: 280000, completion: 80 },
-                    { idea: 'Automated Quality Testing', supplier: 'Quality Components', stage: 'concept', value: 180000, completion: 15 }
-                  ].map((item, index) => (
-                    <div key={index} className="bg-white p-4 rounded-lg border border-gray-200">
-                      <div className="flex items-start justify-between mb-3">
-                        <div>
-                          <h4 className="font-semibold text-gray-900">{item.idea}</h4>
-                          <div className="text-sm text-gray-600 mt-1">Partner: {item.supplier}</div>
-                        </div>
-                        <div className="text-right">
-                          <div className="text-lg font-bold text-green-600">${(item.value / 1000).toFixed(0)}K</div>
-                          <div className="text-xs text-gray-500">Potential Value</div>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-4">
-                        <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
-                          item.stage === 'implementation' ? 'bg-green-100 text-green-700' :
-                          item.stage === 'pilot' ? 'bg-blue-100 text-blue-700' :
-                          item.stage === 'development' ? 'bg-purple-100 text-purple-700' :
-                          'bg-gray-100 text-gray-700'
-                        }`}>
-                          {item.stage}
-                        </span>
-                        <div className="flex-1">
-                          <div className="flex items-center justify-between text-xs text-gray-600 mb-1">
-                            <span>Progress</span>
-                            <span>{item.completion}%</span>
-                          </div>
-                          <div className="bg-gray-200 rounded-full h-2">
-                            <div
-                              className="bg-blue-500 h-2 rounded-full"
-                              style={{ width: `${item.completion}%` }}
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
               </div>
             </div>
           )}

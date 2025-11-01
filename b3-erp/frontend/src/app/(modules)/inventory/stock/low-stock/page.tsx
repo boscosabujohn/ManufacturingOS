@@ -15,6 +15,11 @@ import {
   Send,
   Bell
 } from 'lucide-react';
+import {
+  ViewStockDetailsModal, LowStockAlertModal, QuickAdjustmentModal,
+  StockItem, LowStockItem as LowStockItemModal, QuickAdjustmentData
+} from '@/components/inventory/InventoryStockModals';
+import { ExportStockDataModal, ExportStockDataConfig } from '@/components/inventory/InventoryExportModals';
 
 interface LowStockItem {
   id: number;
@@ -39,6 +44,14 @@ export default function LowStockPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedPriority, setSelectedPriority] = useState('all');
   const [selectedStatus, setSelectedStatus] = useState('all');
+
+  // Modal states
+  const [isViewDetailsOpen, setIsViewDetailsOpen] = useState(false);
+  const [isLowStockAlertOpen, setIsLowStockAlertOpen] = useState(false);
+  const [isQuickAdjustOpen, setIsQuickAdjustOpen] = useState(false);
+  const [isExportOpen, setIsExportOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState<StockItem | null>(null);
+  const [lowStockModalItems, setLowStockModalItems] = useState<LowStockItemModal[]>([]);
 
   const [lowStockItems, setLowStockItems] = useState<LowStockItem[]>([
     {
@@ -207,6 +220,115 @@ export default function LowStockPage() {
     );
   };
 
+  // Modal handlers
+  const handleViewItem = (item: LowStockItem) => {
+    // Convert to StockItem format
+    const stockItem: StockItem = {
+      id: item.id.toString(),
+      itemCode: item.itemCode,
+      itemName: item.itemName,
+      description: `${item.category} item`,
+      category: item.category,
+      uom: item.uom,
+      barcode: `BC${item.itemCode}`,
+      currentQuantity: item.currentStock,
+      available: item.currentStock,
+      reserved: 0,
+      onOrder: item.suggestedQty,
+      minLevel: item.safetyStock,
+      maxLevel: item.reorderLevel * 2,
+      reorderPoint: item.reorderLevel,
+      safetyStock: item.safetyStock,
+      costPrice: 0, // Not available in current data
+      sellingPrice: 0, // Not available in current data
+      supplier: item.preferredSupplier,
+      leadTime: item.leadTimeDays,
+      valuationMethod: 'FIFO',
+      enableSerial: false,
+      enableBatch: false,
+      trackExpiry: false,
+      status: 'active',
+      locations: [
+        {
+          warehouse: item.warehouse,
+          zone: 'N/A',
+          bin: 'N/A',
+          quantity: item.currentStock,
+          status: 'active'
+        }
+      ]
+    };
+    setSelectedItem(stockItem);
+    setIsViewDetailsOpen(true);
+  };
+
+  const handleManageAlerts = () => {
+    // Convert current low stock items to LowStockItemModal format
+    const items: LowStockItemModal[] = lowStockItems
+      .filter(item => item.status === 'pending')
+      .map(item => ({
+        id: item.id.toString(),
+        itemCode: item.itemCode,
+        itemName: item.itemName,
+        currentQty: item.currentStock,
+        reorderPoint: item.reorderLevel,
+        shortage: item.reorderLevel - item.currentStock,
+        suggestedOrderQty: item.suggestedQty,
+        supplier: item.preferredSupplier,
+        leadTime: item.leadTimeDays,
+        lastOrderDate: item.lastOrderDate
+      }));
+    setLowStockModalItems(items);
+    setIsLowStockAlertOpen(true);
+  };
+
+  const handleCreatePurchaseOrders = (itemIds: string[]) => {
+    console.log('Creating purchase orders for:', itemIds);
+    // TODO: Implement API call to create POs
+    // Convert string IDs back to numbers and mark as ordered
+    const numericIds = itemIds.map(id => parseInt(id));
+    setLowStockItems(prev =>
+      prev.map(item =>
+        numericIds.includes(item.id) ? { ...item, status: 'ordered' as const } : item
+      )
+    );
+  };
+
+  const handleAdjustLevels = (itemIds: string[]) => {
+    console.log('Adjusting levels for:', itemIds);
+    // TODO: Open adjustment modal or navigate to settings
+    setIsLowStockAlertOpen(false);
+    alert('Adjust levels functionality - navigate to stock settings');
+  };
+
+  const handleDismissAlerts = (itemIds: string[]) => {
+    console.log('Dismissing alerts for:', itemIds);
+    // TODO: Implement API call to dismiss alerts
+    const numericIds = itemIds.map(id => parseInt(id));
+    setLowStockItems(prev =>
+      prev.map(item =>
+        numericIds.includes(item.id) ? { ...item, status: 'ignored' as const } : item
+      )
+    );
+  };
+
+  const handleExport = () => {
+    setIsExportOpen(true);
+  };
+
+  const handleExportSubmit = (config: ExportStockDataConfig) => {
+    console.log('Exporting low stock data:', config);
+    // TODO: Implement API call with exportType: 'low-stock'
+    alert(`Export initiated: ${config.format.toUpperCase()} format`);
+    setIsExportOpen(false);
+  };
+
+  const handleQuickAdjust = (data: QuickAdjustmentData) => {
+    console.log('Quick adjustment:', data);
+    // TODO: Implement API call to adjust stock
+    alert('Stock adjustment submitted');
+  };
+
   return (
     <div className="p-6 space-y-6">
       {/* Header */}
@@ -219,15 +341,21 @@ export default function LowStockPage() {
           <p className="text-gray-600 mt-1">Items below reorder level requiring action</p>
         </div>
         <div className="flex items-center space-x-3">
-          <button className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center space-x-2">
+          <button
+            onClick={handleManageAlerts}
+            className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center space-x-2"
+          >
             <Bell className="w-4 h-4" />
-            <span>Send Alerts</span>
+            <span>Manage Alerts</span>
           </button>
           <button className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center space-x-2">
             <RefreshCw className="w-4 h-4" />
             <span>Refresh</span>
           </button>
-          <button className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center space-x-2">
+          <button
+            onClick={handleExport}
+            className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center space-x-2"
+          >
             <Download className="w-4 h-4" />
             <span>Export</span>
           </button>
@@ -331,7 +459,11 @@ export default function LowStockPage() {
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {filteredItems.map((item) => (
-                <tr key={item.id} className="hover:bg-gray-50">
+                <tr
+                  key={item.id}
+                  className="hover:bg-gray-50 cursor-pointer"
+                  onClick={() => handleViewItem(item)}
+                >
                   <td className="px-6 py-4 whitespace-nowrap">
                     <span className={`px-3 py-1 rounded-full text-xs font-medium border flex items-center space-x-1 w-fit ${getPriorityColor(item.priority)}`}>
                       <AlertTriangle className="w-3 h-3" />
@@ -365,10 +497,11 @@ export default function LowStockPage() {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm">
                     {item.status === 'pending' && (
-                      <div className="flex items-center space-x-2">
+                      <div className="flex items-center space-x-2" onClick={(e) => e.stopPropagation()}>
                         <button
                           onClick={() => handleCreatePO(item.id)}
                           className="text-blue-600 hover:text-blue-800 flex items-center space-x-1"
+                          title="Create Purchase Order"
                         >
                           <ShoppingCart className="w-4 h-4" />
                           <span>Order</span>
@@ -376,12 +509,14 @@ export default function LowStockPage() {
                         <button
                           onClick={() => handleMarkOrdered(item.id)}
                           className="text-green-600 hover:text-green-800"
+                          title="Mark as Ordered"
                         >
                           <CheckCircle className="w-4 h-4" />
                         </button>
                         <button
                           onClick={() => handleIgnore(item.id)}
                           className="text-gray-600 hover:text-gray-800"
+                          title="Ignore Alert"
                         >
                           <XCircle className="w-4 h-4" />
                         </button>
@@ -412,11 +547,14 @@ export default function LowStockPage() {
       <div className="bg-white rounded-lg shadow p-6">
         <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <button className="px-6 py-4 border-2 border-blue-300 rounded-lg hover:bg-blue-50 flex items-center space-x-3 transition-colors">
+          <button
+            onClick={handleManageAlerts}
+            className="px-6 py-4 border-2 border-blue-300 rounded-lg hover:bg-blue-50 flex items-center space-x-3 transition-colors"
+          >
             <ShoppingCart className="w-6 h-6 text-blue-600" />
             <div className="text-left">
-              <div className="font-semibold text-gray-900">Create Bulk PO</div>
-              <div className="text-sm text-gray-600">Order all pending items</div>
+              <div className="font-semibold text-gray-900">Manage Alerts</div>
+              <div className="text-sm text-gray-600">Bulk manage low stock items</div>
             </div>
           </button>
 
@@ -428,7 +566,10 @@ export default function LowStockPage() {
             </div>
           </button>
 
-          <button className="px-6 py-4 border-2 border-green-300 rounded-lg hover:bg-green-50 flex items-center space-x-3 transition-colors">
+          <button
+            onClick={handleExport}
+            className="px-6 py-4 border-2 border-green-300 rounded-lg hover:bg-green-50 flex items-center space-x-3 transition-colors"
+          >
             <Download className="w-6 h-6 text-green-600" />
             <div className="text-left">
               <div className="font-semibold text-gray-900">Export Report</div>
@@ -437,6 +578,40 @@ export default function LowStockPage() {
           </button>
         </div>
       </div>
+
+      {/* Modals */}
+      <ViewStockDetailsModal
+        isOpen={isViewDetailsOpen}
+        onClose={() => setIsViewDetailsOpen(false)}
+        item={selectedItem}
+        onEdit={() => alert('Edit not implemented')}
+        onAdjust={() => {
+          setIsViewDetailsOpen(false);
+          setIsQuickAdjustOpen(true);
+        }}
+      />
+
+      <LowStockAlertModal
+        isOpen={isLowStockAlertOpen}
+        onClose={() => setIsLowStockAlertOpen(false)}
+        items={lowStockModalItems}
+        onCreatePurchaseOrders={handleCreatePurchaseOrders}
+        onAdjustLevels={handleAdjustLevels}
+        onDismissAlerts={handleDismissAlerts}
+      />
+
+      <QuickAdjustmentModal
+        isOpen={isQuickAdjustOpen}
+        onClose={() => setIsQuickAdjustOpen(false)}
+        onAdjust={handleQuickAdjust}
+        item={selectedItem}
+      />
+
+      <ExportStockDataModal
+        isOpen={isExportOpen}
+        onClose={() => setIsExportOpen(false)}
+        onExport={handleExportSubmit}
+      />
     </div>
   );
 }

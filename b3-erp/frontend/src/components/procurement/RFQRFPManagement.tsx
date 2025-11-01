@@ -71,6 +71,16 @@ import {
   ZAxis
 } from 'recharts'
 
+// Import RFQ Modals
+import {
+  CreateRFQModal,
+  ViewRFQDetailsModal,
+  SendRFQToSuppliersModal,
+  CompareBidsModal,
+  AwardBidModal,
+  ExportRFQModal
+} from '@/components/procurement/RFQModals'
+
 interface RFQ {
   id: string
   title: string
@@ -106,6 +116,87 @@ export default function RFQRFPManagement() {
   const [selectedRFQ, setSelectedRFQ] = useState<RFQ | null>(null)
   const [filterType, setFilterType] = useState('all')
   const [showComparison, setShowComparison] = useState(false)
+
+  // Modal state management
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false)
+  const [isViewModalOpen, setIsViewModalOpen] = useState(false)
+  const [isSendToSuppliersModalOpen, setIsSendToSuppliersModalOpen] = useState(false)
+  const [isCompareBidsModalOpen, setIsCompareBidsModalOpen] = useState(false)
+  const [isAwardBidModalOpen, setIsAwardBidModalOpen] = useState(false)
+  const [isExportModalOpen, setIsExportModalOpen] = useState(false)
+  const [selectedBid, setSelectedBid] = useState<BidResponse | null>(null)
+
+  // Handler functions
+  const handleCreateRFQ = () => {
+    setIsCreateModalOpen(true)
+  }
+
+  const handleRefresh = () => {
+    console.log('Refreshing RFQ/RFP data...');
+    alert('Refreshing RFQ/RFP Management...\n\nUpdating:\n- Active RFQ/RFP status\n- Response counts and submissions\n- Evaluation progress\n- Timeline status and deadlines\n- Metrics and analytics\n- Supplier participation data\n\nSyncing with:\n- Supplier portal responses\n- Evaluation scorecards\n- Approval workflow status\n- Email notification logs\n\nEstimated time: 10 seconds');
+  };
+
+  const handleSettings = () => {
+    console.log('Opening RFQ settings...');
+    alert('RFQ/RFP Settings\n\nDOCUMENT CONFIGURATION:\n- Default response period (14-30 days)\n- Minimum bidder requirements\n- Auto-publish rules\n- Notification preferences\n\nEVALUATION SETTINGS:\n- Default evaluation criteria\n- Scoring methodology\n- Minimum qualification scores\n- Consensus vs weighted scoring\n- Blind evaluation options\n\nWORKFLOW CONFIGURATION:\n- Approval routing rules\n- Value thresholds for approvals\n- Escalation procedures\n- Required reviewers\n\nSUPPLIER PORTAL:\n- Response submission format\n- Q&A process\n- Clarification deadlines\n- Amendment notifications\n- File upload limits\n\nTEMPLATE MANAGEMENT:\n- Template library\n- Custom templates\n- Standard clauses library\n- Evaluation matrices\n\nNOTIFICATION RULES:\n- Supplier invitations\n- Response confirmations\n- Deadline reminders\n- Amendment alerts\n- Award notifications\n\nCOMPLIANCE SETTINGS:\n- Conflict of interest checks\n- Fair competition rules\n- Audit trail requirements\n- Document retention (7 years)\n- Confidentiality rules\n\nINTEGRATIONS:\n- ERP system sync\n- Email integration\n- Document management\n- Supplier database\n- Contract management');
+  };
+
+  const handleExport = () => {
+    setIsExportModalOpen(true)
+  }
+
+  const handleViewRFQ = (rfq: RFQ) => {
+    setSelectedRFQ(rfq)
+    setIsViewModalOpen(true)
+  }
+
+  const handleEditRFQ = (rfq: RFQ) => {
+    console.log('Editing RFQ:', rfq.id);
+
+    if (rfq.status === 'awarded') {
+      alert(`Cannot Edit Awarded RFQ\n\nRFQ ${rfq.id} has been awarded and cannot be edited.\n\nTo make changes:\n- Create a new RFQ\n- Reference the original\n- Document the reason for re-sourcing\n\nCompleted RFQs are locked for audit compliance.`);
+      return;
+    }
+
+    if (rfq.status === 'cancelled') {
+      alert(`Cannot Edit Cancelled RFQ\n\nRFQ ${rfq.id} has been cancelled.\n\nOptions:\n- Create a new RFQ\n- Clone this RFQ to start fresh\n- Reference cancelled RFQ number`);
+      return;
+    }
+
+    alert(`Edit RFQ/RFP: ${rfq.id}\n\nEDITABLE FIELDS:\n\n${rfq.status === 'draft' ? '✓ ALL FIELDS EDITABLE\nRFQ is in draft - make any changes needed' : '⚠️ LIMITED EDITING - RFQ IS ACTIVE'}\n\nBASIC INFORMATION:\n- Title and description ${rfq.status === 'draft' ? '✓' : '✗'}\n- Category ${rfq.status === 'draft' ? '✓' : '✗'}\n- Estimated value ${rfq.status === 'draft' ? '✓' : '✗'}\n- Priority level ✓\n\nREQUIREMENTS:\n- Item specifications ${rfq.status === 'draft' ? '✓' : 'Amendment only'}\n- Quantities ${rfq.status === 'draft' ? '✓' : 'Amendment only'}\n- Quality standards ${rfq.status === 'draft' ? '✓' : 'Amendment only'}\n- Technical specs ${rfq.status === 'draft' ? '✓' : 'Amendment only'}\n\nTIMELINE:\n- Publish date ${rfq.status === 'draft' ? '✓' : '✗'}\n- Response deadline ✓ (can extend with notification)\n- Evaluation dates ✓\n\nSUPPLIERS:\n- Add suppliers ✓\n- Remove suppliers ${rfq.status === 'draft' ? '✓' : '✗'}\n- Supplier qualifications ${rfq.status === 'draft' ? '✓' : '✗'}\n\nEVALUATION:\n- Criteria ${rfq.status === 'draft' ? '✓' : '✗'}\n- Weights ${rfq.status === 'draft' ? '✓' : '✗'}\n- Scoring method ${rfq.status === 'draft' ? '✓' : '✗'}\n\nDOCUMENTS:\n- Add new documents ✓\n- Replace documents ${rfq.status === 'draft' ? '✓' : 'Amendment only'}\n- Remove documents ${rfq.status === 'draft' ? '✓' : '✗'}\n\n${rfq.status !== 'draft' ? '\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\nAMENDMENT PROCESS\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\nFor active RFQs, changes require:\n\n1. AMENDMENT NOTIFICATION:\n   - All invited suppliers must be notified\n   - Email and portal notification\n   - Amendment number assigned\n\n2. DEADLINE EXTENSION:\n   - Significant changes require deadline extension\n   - Minimum 5 days extension recommended\n   - Suppliers can revise responses\n\n3. APPROVAL:\n   - Category manager approval required\n   - Procurement director (if material change)\n   - Document reason for amendment\n\n4. AUDIT TRAIL:\n   - All changes logged\n   - Original version retained\n   - Amendment history visible\n\nIMPACT ON RESPONSES:\n- Existing responses may need revision\n- Suppliers notified of changes\n- Extended deadline for updates' : ''}\n\nProceed with editing RFQ ${rfq.id}?`);
+  };
+
+  const handleViewBidResponse = (bid: BidResponse) => {
+    console.log('Viewing bid response:', bid.id);
+
+    const rfq = rfqList.find(r => r.id === bid.rfqId);
+
+    alert(`Bid Response Details\n\n${bid.status === 'awarded' ? '🏆' : bid.status === 'shortlisted' ? '⭐' : bid.status === 'under_review' ? '🔍' : bid.status === 'rejected' ? '❌' : '📋'} STATUS: ${bid.status.toUpperCase().replace('_', ' ')}\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\nBID INFORMATION\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\nSupplier: ${bid.supplier}\nRFQ: ${bid.rfqId}${rfq ? ' - ' + rfq.title : ''}\nSubmitted: ${bid.submittedDate}\nBid ID: ${bid.id}\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\nCOMMERCIAL PROPOSAL\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\nTotal Bid Amount: $${(bid.totalAmount / 1000).toFixed(0)}K\nCommercial Score: ${bid.commercialScore}/100\nLead Time: ${bid.leadTime}\n\n${rfq ? `vs Estimate: ${bid.totalAmount < rfq.estimatedValue ? '✓ ' + (((rfq.estimatedValue - bid.totalAmount) / rfq.estimatedValue) * 100).toFixed(1) + '% below budget' : '⚠️ ' + (((bid.totalAmount - rfq.estimatedValue) / rfq.estimatedValue) * 100).toFixed(1) + '% over budget'}` : ''}\n\nPricing Breakdown:\n- Base price: Competitive\n- Payment terms: Standard\n- Warranty: Included\n- Maintenance: Optional\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\nTECHNICAL PROPOSAL\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\nTechnical Score: ${bid.technicalScore}/100\nCompliance: ${bid.compliance}%\n\n${bid.technicalScore >= 90 ? '✓ EXCELLENT TECHNICAL SUBMISSION\n- Exceeds requirements\n- Strong capability demonstrated\n- Innovation proposed' : bid.technicalScore >= 80 ? '✓ GOOD TECHNICAL SUBMISSION\n- Meets all requirements\n- Solid capability\n- Standard approach' : bid.technicalScore >= 70 ? '⚠️ ACCEPTABLE TECHNICAL SUBMISSION\n- Meets minimum requirements\n- Some gaps identified\n- Clarifications needed' : '❌ WEAK TECHNICAL SUBMISSION\n- Below requirements\n- Significant gaps\n- Not recommended'}\n\nTechnical Highlights:\n- Methodology: ${bid.technicalScore >= 85 ? 'Excellent' : 'Adequate'}\n- Team qualifications: ${bid.technicalScore >= 85 ? 'Strong' : 'Acceptable'}\n- Implementation plan: ${bid.technicalScore >= 85 ? 'Detailed' : 'Basic'}\n- Risk management: ${bid.technicalScore >= 85 ? 'Comprehensive' : 'Standard'}\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\nOVERALL EVALUATION\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\nOverall Score: ${bid.score}/100\n\nScore Breakdown:\n- Technical (60%): ${bid.technicalScore} → ${(bid.technicalScore * 0.6).toFixed(1)} points\n- Commercial (40%): ${bid.commercialScore} → ${(bid.commercialScore * 0.4).toFixed(1)} points\n\nRanking: ${bid.status === 'awarded' ? '#1 - WINNER' : bid.status === 'shortlisted' ? 'Top 3 - Shortlisted' : bid.status === 'under_review' ? 'Under Review' : bid.status === 'rejected' ? 'Not Qualified' : 'Submitted'}\n\n${bid.score >= 85 ? '🌟 HIGHLY RECOMMENDED\n→ Strong technical and commercial proposal\n→ Recommend for shortlist/award\n→ Conduct reference checks\n→ Schedule clarification meeting' : bid.score >= 75 ? '✓ RECOMMENDED\n→ Good proposal, meets requirements\n→ Consider for shortlist\n→ Request clarifications if needed' : bid.score >= 65 ? '⚠️ MARGINAL\n→ Meets minimum threshold\n→ Significant weaknesses\n→ Consider only if limited options' : '❌ NOT RECOMMENDED\n→ Below requirements\n→ Do not shortlist\n→ Send standard regret letter'}\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\nNEXT ACTIONS\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n${bid.status === 'submitted' ? '1. Complete initial screening\n2. Verify compliance\n3. Score technical proposal\n4. Score commercial proposal\n5. Make shortlist decision' : bid.status === 'under_review' ? '1. Complete detailed evaluation\n2. Check references\n3. Request clarifications\n4. Make shortlist decision\n5. Schedule presentations (if needed)' : bid.status === 'shortlisted' ? '1. Schedule clarification meeting\n2. Conduct presentations\n3. Perform site visits (if needed)\n4. Request best and final offer\n5. Make award recommendation' : bid.status === 'awarded' ? '1. Issue purchase order\n2. Execute contract\n3. Supplier onboarding\n4. Notify unsuccessful bidders' : '1. Send regret letter\n2. Offer debriefing\n3. Update supplier records'}\n\nATTACHMENTS:\n- Technical proposal (PDF)\n- Price sheet (Excel)\n- Company profile\n- References\n- Certifications\n- Compliance matrix`);
+  };
+
+  const handleCompareBids = () => {
+    setIsCompareBidsModalOpen(true)
+  }
+
+  const handleApproveReject = (bid: BidResponse, action: 'approve' | 'reject') => {
+    console.log(`${action} bid:`, bid.id);
+
+    if (action === 'approve') {
+      alert(`Shortlist Bid Response\n\nSUPPLIER: ${bid.supplier}\nBID: ${bid.id}\nSCORE: ${bid.score}/100\n\nSHORTLIST CONFIRMATION:\n\nThis will:\n✓ Move bid to shortlisted status\n✓ Include in final evaluation\n✓ Schedule for presentations\n✓ Request clarifications\n✓ Notify evaluation team\n\nTYPICAL SHORTLIST SIZE: 2-3 suppliers\n\nNEXT STEPS:\n1. Clarification meeting scheduled\n2. Reference checks initiated\n3. Site visit (if applicable)\n4. Request best and final offer\n5. Presentation to evaluation committee\n\nSHORTLIST CRITERIA MET:\n✓ Score above threshold (${bid.score >= 75 ? 'Yes' : 'No'})\n✓ Compliance verified (${bid.compliance >= 85 ? 'Yes' : 'No'})\n✓ References checked (Pending)\n✓ Technical capability (${bid.technicalScore >= 75 ? 'Confirmed' : 'Questionable'})\n✓ Commercial viability (${bid.commercialScore >= 75 ? 'Confirmed' : 'Questionable'})\n\nConfirm shortlist for ${bid.supplier}?`);
+    } else {
+      alert(`Reject Bid Response\n\nSUPPLIER: ${bid.supplier}\nBID: ${bid.id}\nSCORE: ${bid.score}/100\n\nREJECTION CONFIRMATION:\n\n⚠️ This will:\n✗ Mark bid as rejected\n✗ Exclude from further evaluation\n✗ Send regret letter to supplier\n✗ Cannot be easily undone\n\nREJECTION REASON REQUIRED:\n□ Did not meet technical requirements\n□ Price not competitive\n□ Compliance issues\n□ Failed reference checks\n□ Delivery time unacceptable\n□ Other (specify)\n\nSUPPLIER COMMUNICATION:\n- Regret letter sent automatically\n- Debriefing offered (optional)\n- Feedback provided (if requested)\n- Maintain professional relationship\n\nBID REJECTION CRITERIA:\n${bid.score < 65 ? '✓ Score below minimum threshold' : ''}\n${bid.compliance < 80 ? '✓ Compliance issues identified' : ''}\n${bid.technicalScore < 70 ? '✓ Technical requirements not met' : ''}\n\nDOCUMENTATION:\n- Rejection reason recorded\n- Evaluation notes saved\n- Audit trail maintained\n\n⚠️ IMPORTANT:\nRejection decisions should be:\n- Fair and objective\n- Well documented\n- Based on evaluation criteria\n- Defendable if challenged\n\nProceed with rejection?`);
+    }
+  };
+
+  const handleUseTemplate = (templateName: string) => {
+    console.log('Using template:', templateName);
+    alert(`Use RFQ/RFP Template\n\nTEMPLATE: ${templateName}\n\nTEMPLATE INCLUDES:\n\n📋 DOCUMENT STRUCTURE:\n- Pre-formatted sections\n- Standard clauses\n- Evaluation criteria\n- Response templates\n\n📄 STANDARD CONTENT:\n- Company background\n- Procurement process\n- Submission requirements\n- Terms and conditions\n- Confidentiality agreements\n\n✅ EVALUATION MATRIX:\n- Predefined criteria\n- Standard weights\n- Scoring guidelines\n- Decision matrix\n\n📎 ATTACHMENTS:\n- Response template\n- Compliance checklist\n- Technical specification format\n- Price sheet template\n\nCUSTOMIZATION OPTIONS:\n\n1. Use As-Is:\n   - Quick deployment\n   - Proven format\n   - Minimal changes needed\n\n2. Customize:\n   - Modify sections\n   - Add/remove requirements\n   - Adjust criteria weights\n   - Update specifications\n\n3. Save New Template:\n   - Create custom template\n   - Reuse for similar RFQs\n   - Share with team\n\nTEMPLATE BENEFITS:\n✓ Faster RFQ creation\n✓ Consistent format\n✓ Reduced errors\n✓ Best practices built-in\n✓ Compliance assured\n\nNext: Enter RFQ-specific details\n- Title and description\n- Specifications\n- Timeline\n- Invited suppliers\n\nLoad template ${templateName}?`);
+  };
+
+  const handleCreateTemplate = () => {
+    console.log('Creating new template...');
+    alert('Create New RFQ/RFP Template\n\nTEMPLATE WIZARD:\n\n1. TEMPLATE INFORMATION:\n   - Template name\n   - Category/industry\n   - Description\n   - Template type (RFQ/RFP/RFI)\n\n2. DOCUMENT STRUCTURE:\n   - Section organization\n   - Standard clauses\n   - Appendices\n   - Formatting\n\n3. REQUIREMENTS SECTIONS:\n   - Technical specifications\n   - Delivery requirements\n   - Quality standards\n   - Compliance needs\n\n4. EVALUATION CRITERIA:\n   - Criteria definition\n   - Default weights\n   - Scoring method\n   - Minimum thresholds\n\n5. RESPONSE FORMAT:\n   - Supplier response template\n   - Price sheet format\n   - Document requirements\n   - Submission process\n\n6. TERMS & CONDITIONS:\n   - Standard T&Cs\n   - Payment terms\n   - Delivery terms\n   - Warranties\n   - Confidentiality\n\n7. ATTACHMENTS:\n   - Standard forms\n   - Compliance checklists\n   - Sample agreements\n\nTEMPLATE FEATURES:\n\n□ Placeholders for custom content\n□ Variable sections (optional)\n□ Standard boilerplate\n□ Approval workflows\n□ Document version control\n\nTEMPLATE SHARING:\n- Save to personal library\n- Share with team\n- Set as department default\n- Publish to template library\n\nBEST PRACTICES:\n✓ Use clear, unambiguous language\n✓ Include all necessary information\n✓ Define evaluation criteria clearly\n✓ Specify submission requirements\n✓ Set realistic timelines\n✓ Include contact information\n\nCREATION OPTIONS:\n1. Start from scratch\n2. Clone existing template\n3. Import from document\n4. Use wizard\n\nProceed with template creation?');
+  };
 
   // Mock data
   const rfqList: RFQ[] = [
@@ -270,11 +361,33 @@ export default function RFQRFPManagement() {
             <p className="text-gray-600 mt-2">Manage requests for quotations and proposals efficiently</p>
           </div>
           <div className="flex items-center gap-3">
-            <button className="px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition flex items-center gap-2">
+            <button
+              onClick={handleRefresh}
+              className="px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition flex items-center gap-2"
+              title="Refresh Data"
+            >
+              <RefreshCw className="w-4 h-4" />
+            </button>
+            <button
+              onClick={handleSettings}
+              className="px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition flex items-center gap-2"
+              title="RFQ Settings"
+            >
+              <Settings className="w-4 h-4" />
+            </button>
+            <button
+              onClick={handleExport}
+              className="px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition flex items-center gap-2"
+              title="Export Report"
+            >
               <Download className="w-4 h-4" />
               Export
             </button>
-            <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition flex items-center gap-2">
+            <button
+              onClick={handleCreateRFQ}
+              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition flex items-center gap-2"
+              title="Create New RFQ/RFP"
+            >
               <Plus className="w-4 h-4" />
               New RFQ/RFP
             </button>
@@ -459,7 +572,10 @@ export default function RFQRFPManagement() {
                             {rfq.status}
                           </div>
                         </div>
-                        <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                        <button
+                          onClick={() => handleViewRFQ(rfq)}
+                          className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm"
+                        >
                           <Eye className="w-4 h-4 text-gray-600" />
                           <span className="text-gray-700">View</span>
                         </button>
@@ -583,17 +699,21 @@ export default function RFQRFPManagement() {
                         </td>
                         <td className="px-4 py-3">
                           <div className="flex items-center gap-2">
-                            <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                            <button
+                              onClick={() => handleViewRFQ(rfq)}
+                              className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm"
+                              title="View Details"
+                            >
                               <Eye className="w-4 h-4 text-gray-600" />
                               <span className="text-gray-700">View</span>
                             </button>
-                            <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                            <button
+                              onClick={() => handleEditRFQ(rfq)}
+                              className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm"
+                              title="Edit RFQ"
+                            >
                               <Edit className="w-4 h-4 text-gray-600" />
                               <span className="text-gray-700">Edit</span>
-                            </button>
-                            <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
-                              <MoreVertical className="w-4 h-4 text-gray-600" />
-                              <span className="text-gray-700">More</span>
                             </button>
                           </div>
                         </td>
@@ -636,8 +756,9 @@ export default function RFQRFPManagement() {
                 <div className="p-4 border-b border-gray-200 flex items-center justify-between">
                   <h3 className="text-lg font-semibold text-gray-900">Bid Responses</h3>
                   <button
-                    onClick={() => setShowComparison(!showComparison)}
+                    onClick={handleCompareBids}
                     className="px-3 py-1 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition flex items-center gap-2"
+                    title="Compare Selected Bids"
                   >
                     <GitCompare className="w-4 h-4" />
                     Compare Selected
@@ -715,15 +836,27 @@ export default function RFQRFPManagement() {
                           </td>
                           <td className="px-4 py-3">
                             <div className="flex items-center gap-2">
-                              <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                              <button
+                                onClick={() => handleViewBidResponse(bid)}
+                                className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm"
+                                title="View Bid Details"
+                              >
                                 <Eye className="w-4 h-4 text-gray-600" />
                                 <span className="text-gray-700">View</span>
                               </button>
-                              <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-green-300 rounded-lg hover:bg-green-50 text-sm">
+                              <button
+                                onClick={() => handleApproveReject(bid, 'approve')}
+                                className="inline-flex items-center gap-1.5 px-3 py-2 border border-green-300 rounded-lg hover:bg-green-50 text-sm"
+                                title="Shortlist Bid"
+                              >
                                 <ThumbsUp className="w-4 h-4 text-green-600" />
                                 <span className="text-green-600">Approve</span>
                               </button>
-                              <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-red-300 rounded-lg hover:bg-red-50 text-sm">
+                              <button
+                                onClick={() => handleApproveReject(bid, 'reject')}
+                                className="inline-flex items-center gap-1.5 px-3 py-2 border border-red-300 rounded-lg hover:bg-red-50 text-sm"
+                                title="Reject Bid"
+                              >
                                 <XCircle className="w-4 h-4 text-red-600" />
                                 <span className="text-red-600">Reject</span>
                               </button>
@@ -947,10 +1080,18 @@ export default function RFQRFPManagement() {
                       <span>Updated {template.lastUpdated}</span>
                     </div>
                     <div className="flex gap-2">
-                      <button className="flex-1 px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 transition text-sm">
+                      <button
+                        onClick={() => handleUseTemplate(template.name)}
+                        className="flex-1 px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 transition text-sm"
+                        title="Use This Template"
+                      >
                         Use Template
                       </button>
-                      <button className="px-3 py-1 bg-gray-100 text-gray-700 rounded hover:bg-gray-200 transition">
+                      <button
+                        onClick={() => handleUseTemplate(template.name)}
+                        className="px-3 py-1 bg-gray-100 text-gray-700 rounded hover:bg-gray-200 transition"
+                        title="Preview Template"
+                      >
                         <Eye className="w-4 h-4" />
                       </button>
                     </div>
@@ -960,11 +1101,19 @@ export default function RFQRFPManagement() {
 
               {/* Template Actions */}
               <div className="flex justify-end gap-3">
-                <button className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition flex items-center gap-2">
+                <button
+                  onClick={handleCreateTemplate}
+                  className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition flex items-center gap-2"
+                  title="Import Template from File"
+                >
                   <Upload className="w-4 h-4" />
                   Import Template
                 </button>
-                <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition flex items-center gap-2">
+                <button
+                  onClick={handleCreateTemplate}
+                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition flex items-center gap-2"
+                  title="Create New RFQ/RFP Template"
+                >
                   <Plus className="w-4 h-4" />
                   Create New Template
                 </button>
@@ -973,6 +1122,83 @@ export default function RFQRFPManagement() {
           )}
         </div>
       </div>
+
+      {/* RFQ Modals */}
+      <CreateRFQModal
+        isOpen={isCreateModalOpen}
+        onClose={() => setIsCreateModalOpen(false)}
+        onSubmit={(data) => {
+          console.log('Creating RFQ:', data)
+          setIsCreateModalOpen(false)
+        }}
+      />
+
+      <ViewRFQDetailsModal
+        isOpen={isViewModalOpen}
+        onClose={() => setIsViewModalOpen(false)}
+        rfq={selectedRFQ ? {
+          id: selectedRFQ.id,
+          title: selectedRFQ.title,
+          type: selectedRFQ.type,
+          status: selectedRFQ.status,
+          category: selectedRFQ.category,
+          estimatedValue: selectedRFQ.estimatedValue,
+          responseDeadline: selectedRFQ.responseDeadline,
+          publishDate: selectedRFQ.publishDate,
+          bidders: selectedRFQ.bidders,
+          responsesReceived: selectedRFQ.responsesReceived,
+          owner: selectedRFQ.owner,
+          priority: selectedRFQ.priority
+        } : undefined}
+      />
+
+      <SendRFQToSuppliersModal
+        isOpen={isSendToSuppliersModalOpen}
+        onClose={() => setIsSendToSuppliersModalOpen(false)}
+        rfq={selectedRFQ ? {
+          id: selectedRFQ.id,
+          title: selectedRFQ.title,
+          type: selectedRFQ.type
+        } : undefined}
+        onSubmit={(data) => {
+          console.log('Sending RFQ to suppliers:', data)
+          setIsSendToSuppliersModalOpen(false)
+        }}
+      />
+
+      <CompareBidsModal
+        isOpen={isCompareBidsModalOpen}
+        onClose={() => setIsCompareBidsModalOpen(false)}
+        rfq={selectedRFQ ? {
+          id: selectedRFQ.id,
+          title: selectedRFQ.title
+        } : undefined}
+      />
+
+      <AwardBidModal
+        isOpen={isAwardBidModalOpen}
+        onClose={() => setIsAwardBidModalOpen(false)}
+        bid={selectedBid ? {
+          id: selectedBid.id,
+          rfqId: selectedBid.rfqId,
+          supplier: selectedBid.supplier,
+          totalAmount: selectedBid.totalAmount,
+          score: selectedBid.score
+        } : undefined}
+        onSubmit={(data) => {
+          console.log('Awarding bid:', data)
+          setIsAwardBidModalOpen(false)
+        }}
+      />
+
+      <ExportRFQModal
+        isOpen={isExportModalOpen}
+        onClose={() => setIsExportModalOpen(false)}
+        onExport={(options) => {
+          console.log('Exporting RFQ data:', options)
+          setIsExportModalOpen(false)
+        }}
+      />
     </div>
   )
 }

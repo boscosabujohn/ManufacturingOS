@@ -14,8 +14,10 @@ import {
   ThumbsUp,
   ThumbsDown,
   MessageSquare,
-  User
+  User,
+  History
 } from 'lucide-react'
+import { ViewApprovalModal, ApproveRejectModal, ApprovalHistoryModal, FilterModal } from '@/components/cpq/QuoteApprovalModals'
 
 interface QuoteApproval {
   id: string
@@ -40,7 +42,24 @@ interface QuoteApproval {
 export default function CPQQuotesApprovalsPage() {
   const router = useRouter()
 
-  const [approvals] = useState<QuoteApproval[]>([
+  // State management
+  const [searchQuery, setSearchQuery] = useState('')
+  const [selectedStatusFilter, setSelectedStatusFilter] = useState<string | null>(null)
+
+  // Modal states
+  const [isViewModalOpen, setIsViewModalOpen] = useState(false)
+  const [isApproveRejectModalOpen, setIsApproveRejectModalOpen] = useState(false)
+  const [isHistoryModalOpen, setIsHistoryModalOpen] = useState(false)
+  const [isFilterModalOpen, setIsFilterModalOpen] = useState(false)
+
+  // Selected items
+  const [selectedApproval, setSelectedApproval] = useState<QuoteApproval | null>(null)
+  const [approvalAction, setApprovalAction] = useState<'approve' | 'reject'>('approve')
+
+  // Advanced filters
+  const [appliedFilters, setAppliedFilters] = useState<any>(null)
+
+  const [approvals, setApprovals] = useState<QuoteApproval[]>([
     {
       id: 'APP-001',
       quoteNumber: 'QT-2024-1234',
@@ -182,6 +201,133 @@ export default function CPQQuotesApprovalsPage() {
     }
   ])
 
+  // Handler functions
+  const handleViewApproval = (approval: QuoteApproval) => {
+    setSelectedApproval(approval)
+    setIsViewModalOpen(true)
+  }
+
+  const handleApprove = (approval: QuoteApproval) => {
+    setSelectedApproval(approval)
+    setApprovalAction('approve')
+    setIsApproveRejectModalOpen(true)
+  }
+
+  const handleReject = (approval: QuoteApproval) => {
+    setSelectedApproval(approval)
+    setApprovalAction('reject')
+    setIsApproveRejectModalOpen(true)
+  }
+
+  const handleSubmitApprovalDecision = (comments: string, conditions?: string) => {
+    if (!selectedApproval) return
+
+    const currentUser = 'Current User' // In real app, get from auth context
+    const newStatus = approvalAction === 'approve' ? 'approved' : 'rejected'
+
+    setApprovals(approvals.map(a =>
+      a.id === selectedApproval.id ? {
+        ...a,
+        status: newStatus as 'approved' | 'rejected',
+        approvers: a.approvers.map(approver =>
+          approver.status === 'pending' ? {
+            ...approver,
+            status: approvalAction === 'approve' ? 'approved' : 'rejected',
+            comments: conditions ? `${comments}\nConditions: ${conditions}` : comments,
+            date: new Date().toISOString()
+          } : approver
+        )
+      } : a
+    ))
+
+    setIsApproveRejectModalOpen(false)
+    setSelectedApproval(null)
+  }
+
+  const handleViewHistory = (approval: QuoteApproval) => {
+    setSelectedApproval(approval)
+    setIsHistoryModalOpen(true)
+  }
+
+  const handleExport = () => {
+    const csvContent = [
+      ['ID', 'Quote Number', 'Customer', 'Value', 'Discount %', 'Requester', 'Status', 'Priority', 'Reason', 'Submitted Date'].join(','),
+      ...filteredApprovals.map(a => [
+        a.id,
+        a.quoteNumber,
+        `"${a.customerName}"`,
+        a.value,
+        a.discount,
+        `"${a.requester}"`,
+        a.status,
+        a.priority,
+        `"${a.reason}"`,
+        a.submittedDate
+      ].join(','))
+    ].join('\n')
+
+    const blob = new Blob([csvContent], { type: 'text/csv' })
+    const url = window.URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `quote-approvals-${new Date().toISOString().split('T')[0]}.csv`
+    a.click()
+    window.URL.revokeObjectURL(url)
+  }
+
+  const handleApplyFilters = (filters: any) => {
+    setAppliedFilters(filters)
+    setIsFilterModalOpen(false)
+  }
+
+  const handleStatusFilter = (status: string | null) => {
+    setSelectedStatusFilter(status)
+  }
+
+  // Filtering logic
+  const filteredApprovals = approvals.filter(approval => {
+    // Search filter
+    const matchesSearch = searchQuery === '' ||
+      approval.quoteNumber.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      approval.customerName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      approval.requester.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      approval.reason.toLowerCase().includes(searchQuery.toLowerCase())
+
+    // Status filter
+    const matchesStatus = selectedStatusFilter === null || approval.status === selectedStatusFilter
+
+    // Advanced filters
+    let matchesAdvancedFilters = true
+    if (appliedFilters) {
+      if (appliedFilters.statuses.length > 0 && !appliedFilters.statuses.includes(approval.status)) {
+        matchesAdvancedFilters = false
+      }
+      if (appliedFilters.priorities.length > 0 && !appliedFilters.priorities.includes(approval.priority)) {
+        matchesAdvancedFilters = false
+      }
+      if (appliedFilters.discountRange.min > 0 && approval.discount < appliedFilters.discountRange.min) {
+        matchesAdvancedFilters = false
+      }
+      if (appliedFilters.discountRange.max < 100 && approval.discount > appliedFilters.discountRange.max) {
+        matchesAdvancedFilters = false
+      }
+      if (appliedFilters.valueRange.min > 0 && approval.value < appliedFilters.valueRange.min * 100000) {
+        matchesAdvancedFilters = false
+      }
+      if (appliedFilters.valueRange.max > 0 && approval.value > appliedFilters.valueRange.max * 100000) {
+        matchesAdvancedFilters = false
+      }
+      if (appliedFilters.dateRange.start && new Date(approval.submittedDate) < new Date(appliedFilters.dateRange.start)) {
+        matchesAdvancedFilters = false
+      }
+      if (appliedFilters.dateRange.end && new Date(approval.submittedDate) > new Date(appliedFilters.dateRange.end)) {
+        matchesAdvancedFilters = false
+      }
+    }
+
+    return matchesSearch && matchesStatus && matchesAdvancedFilters
+  })
+
   const getStatusIcon = (status: string) => {
     switch(status) {
       case 'approved': return <CheckCircle className="h-5 w-5 text-green-600" />
@@ -220,10 +366,10 @@ export default function CPQQuotesApprovalsPage() {
     return colors[status] || colors.pending
   }
 
-  const totalApprovals = approvals.length
-  const pending = approvals.filter(a => a.status === 'pending').length
-  const approved = approvals.filter(a => a.status === 'approved').length
-  const rejected = approvals.filter(a => a.status === 'rejected').length
+  const totalApprovals = filteredApprovals.length
+  const pending = filteredApprovals.filter(a => a.status === 'pending').length
+  const approved = filteredApprovals.filter(a => a.status === 'approved').length
+  const rejected = filteredApprovals.filter(a => a.status === 'rejected').length
   const avgApprovalTime = 2.3 // days
 
   return (
@@ -231,11 +377,17 @@ export default function CPQQuotesApprovalsPage() {
       {/* Action Buttons */}
       <div className="mb-6 flex justify-end">
         <div className="flex items-center gap-3">
-          <button className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
+          <button
+            onClick={() => setIsFilterModalOpen(true)}
+            className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2"
+          >
             <Filter className="h-4 w-4" />
             Filter
           </button>
-          <button className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
+          <button
+            onClick={handleExport}
+            className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2"
+          >
             <Download className="h-4 w-4" />
             Export
           </button>
@@ -302,17 +454,55 @@ export default function CPQQuotesApprovalsPage() {
 
       {/* Status Filter */}
       <div className="mb-6 flex gap-3">
-        <button className="px-4 py-2 bg-blue-100 text-blue-700 border border-blue-200 rounded-lg hover:bg-blue-200 text-sm font-medium">
-          All Requests ({totalApprovals})
+        <button
+          onClick={() => handleStatusFilter(null)}
+          className={`px-4 py-2 ${
+            selectedStatusFilter === null
+              ? 'bg-blue-100 text-blue-700 border-blue-200'
+              : 'bg-white text-gray-700 border-gray-300'
+          } border rounded-lg hover:bg-blue-50 text-sm font-medium transition-colors`}
+        >
+          All Requests ({approvals.length})
         </button>
-        <button className="px-4 py-2 bg-white text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
-          Pending ({pending})
+        <button
+          onClick={() => handleStatusFilter('pending')}
+          className={`px-4 py-2 ${
+            selectedStatusFilter === 'pending'
+              ? 'bg-orange-100 text-orange-700 border-orange-200'
+              : 'bg-white text-gray-700 border-gray-300'
+          } border rounded-lg hover:bg-orange-50 text-sm transition-colors`}
+        >
+          Pending ({approvals.filter(a => a.status === 'pending').length})
         </button>
-        <button className="px-4 py-2 bg-white text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
-          Approved ({approved})
+        <button
+          onClick={() => handleStatusFilter('approved')}
+          className={`px-4 py-2 ${
+            selectedStatusFilter === 'approved'
+              ? 'bg-green-100 text-green-700 border-green-200'
+              : 'bg-white text-gray-700 border-gray-300'
+          } border rounded-lg hover:bg-green-50 text-sm transition-colors`}
+        >
+          Approved ({approvals.filter(a => a.status === 'approved').length})
         </button>
-        <button className="px-4 py-2 bg-white text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
-          Rejected ({rejected})
+        <button
+          onClick={() => handleStatusFilter('rejected')}
+          className={`px-4 py-2 ${
+            selectedStatusFilter === 'rejected'
+              ? 'bg-red-100 text-red-700 border-red-200'
+              : 'bg-white text-gray-700 border-gray-300'
+          } border rounded-lg hover:bg-red-50 text-sm transition-colors`}
+        >
+          Rejected ({approvals.filter(a => a.status === 'rejected').length})
+        </button>
+        <button
+          onClick={() => handleStatusFilter('escalated')}
+          className={`px-4 py-2 ${
+            selectedStatusFilter === 'escalated'
+              ? 'bg-purple-100 text-purple-700 border-purple-200'
+              : 'bg-white text-gray-700 border-gray-300'
+          } border rounded-lg hover:bg-purple-50 text-sm transition-colors`}
+        >
+          Escalated ({approvals.filter(a => a.status === 'escalated').length})
         </button>
       </div>
 
@@ -322,7 +512,9 @@ export default function CPQQuotesApprovalsPage() {
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
           <input
             type="text"
-            placeholder="Search by quote number or customer..."
+            placeholder="Search by quote number, customer, requester, or reason..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           />
         </div>
@@ -330,11 +522,18 @@ export default function CPQQuotesApprovalsPage() {
 
       {/* Approvals List */}
       <div className="space-y-4">
-        {approvals.map((approval) => (
-          <div
-            key={approval.id}
-            className="bg-white rounded-lg shadow-sm border border-gray-200 p-5 hover:shadow-md transition-shadow"
-          >
+        {filteredApprovals.length === 0 ? (
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8 text-center">
+            <AlertCircle className="h-12 w-12 text-gray-400 mx-auto mb-3" />
+            <p className="text-gray-600">No approval requests found matching your filters</p>
+          </div>
+        ) : (
+          filteredApprovals.map((approval) => (
+            <div
+              key={approval.id}
+              onClick={() => handleViewApproval(approval)}
+              className="bg-white rounded-lg shadow-sm border border-gray-200 p-5 hover:shadow-md transition-shadow cursor-pointer"
+            >
             <div className="flex items-start justify-between mb-4">
               <div className="flex items-center gap-3">
                 {getStatusIcon(approval.status)}
@@ -426,17 +625,45 @@ export default function CPQQuotesApprovalsPage() {
             </div>
 
             <div className="flex items-center gap-2 mt-4 pt-4 border-t border-gray-200">
-              <button className="flex-1 px-4 py-2 text-sm text-blue-600 bg-blue-50 rounded-lg hover:bg-blue-100 flex items-center justify-center gap-2">
+              <button
+                onClick={(e) => {
+                  e.stopPropagation()
+                  handleViewHistory(approval)
+                }}
+                className="flex-1 px-4 py-2 text-sm text-purple-600 bg-purple-50 rounded-lg hover:bg-purple-100 flex items-center justify-center gap-2 transition-colors"
+              >
+                <History className="h-4 w-4" />
+                History
+              </button>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation()
+                  router.push(`/cpq/quotes/builder?id=${approval.quoteNumber}`)
+                }}
+                className="flex-1 px-4 py-2 text-sm text-blue-600 bg-blue-50 rounded-lg hover:bg-blue-100 flex items-center justify-center gap-2 transition-colors"
+              >
                 <Eye className="h-4 w-4" />
                 View Quote
               </button>
               {approval.status === 'pending' && (
                 <>
-                  <button className="flex-1 px-4 py-2 text-sm text-green-600 bg-green-50 rounded-lg hover:bg-green-100 flex items-center justify-center gap-2">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      handleApprove(approval)
+                    }}
+                    className="flex-1 px-4 py-2 text-sm text-white bg-green-600 hover:bg-green-700 rounded-lg flex items-center justify-center gap-2 font-medium transition-colors"
+                  >
                     <CheckCircle className="h-4 w-4" />
                     Approve
                   </button>
-                  <button className="flex-1 px-4 py-2 text-sm text-red-600 bg-red-50 rounded-lg hover:bg-red-100 flex items-center justify-center gap-2">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      handleReject(approval)
+                    }}
+                    className="flex-1 px-4 py-2 text-sm text-white bg-red-600 hover:bg-red-700 rounded-lg flex items-center justify-center gap-2 font-medium transition-colors"
+                  >
                     <XCircle className="h-4 w-4" />
                     Reject
                   </button>
@@ -444,7 +671,8 @@ export default function CPQQuotesApprovalsPage() {
               )}
             </div>
           </div>
-        ))}
+          ))
+        )}
       </div>
 
       {/* Approval Info */}
@@ -458,6 +686,44 @@ export default function CPQQuotesApprovalsPage() {
           <li><strong>Payment Terms Extension:</strong> Requires Finance Manager approval</li>
         </ul>
       </div>
+
+      {/* Modals */}
+      <ViewApprovalModal
+        isOpen={isViewModalOpen}
+        onClose={() => {
+          setIsViewModalOpen(false)
+          setSelectedApproval(null)
+        }}
+        approval={selectedApproval}
+        onApprove={handleApprove}
+        onReject={handleReject}
+      />
+
+      <ApproveRejectModal
+        isOpen={isApproveRejectModalOpen}
+        onClose={() => {
+          setIsApproveRejectModalOpen(false)
+          setSelectedApproval(null)
+        }}
+        approval={selectedApproval}
+        action={approvalAction}
+        onSubmit={handleSubmitApprovalDecision}
+      />
+
+      <ApprovalHistoryModal
+        isOpen={isHistoryModalOpen}
+        onClose={() => {
+          setIsHistoryModalOpen(false)
+          setSelectedApproval(null)
+        }}
+        approval={selectedApproval}
+      />
+
+      <FilterModal
+        isOpen={isFilterModalOpen}
+        onClose={() => setIsFilterModalOpen(false)}
+        onApply={handleApplyFilters}
+      />
     </div>
   )
 }

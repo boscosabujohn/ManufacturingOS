@@ -10,8 +10,16 @@ import {
   Filter,
   ArrowUpRight,
   ArrowDownRight,
-  Percent
+  Percent,
+  PieChart,
+  RefreshCw
 } from 'lucide-react';
+import {
+  TurnoverAnalysisModal,
+  ABCAnalysisModal,
+  TurnoverAnalysisData,
+  ABCAnalysisData
+} from '@/components/inventory/InventoryAnalyticsModals';
 
 interface ItemTurnover {
   itemCode: string;
@@ -28,6 +36,12 @@ interface ItemTurnover {
 export default function InventoryTurnoverPage() {
   const [selectedPeriod, setSelectedPeriod] = useState('this-year');
   const [selectedCategory, setSelectedCategory] = useState('all');
+
+  // Modal states
+  const [isTurnoverModalOpen, setIsTurnoverModalOpen] = useState(false);
+  const [isABCModalOpen, setIsABCModalOpen] = useState(false);
+  const [turnoverResult, setTurnoverResult] = useState<TurnoverAnalysisData | null>(null);
+  const [abcResult, setABCResult] = useState<ABCAnalysisData | null>(null);
 
   const [turnoverData, setTurnoverData] = useState<ItemTurnover[]>([
     {
@@ -142,6 +156,57 @@ export default function InventoryTurnoverPage() {
     return matchesCategory;
   });
 
+  // Handler functions
+  const handleTurnoverGenerate = (config: any) => {
+    console.log('Generating turnover analysis with config:', config);
+    // TODO: API call to generate turnover analysis
+    // const response = await fetch('/api/inventory/analytics/turnover', { method: 'POST', body: JSON.stringify(config) });
+    // const data = await response.json();
+    // setTurnoverResult(data);
+
+    setTurnoverResult({
+      period: config.period,
+      startDate: config.startDate,
+      endDate: config.endDate,
+      warehouse: config.warehouse,
+      category: config.category,
+      items: [],
+      summary: {
+        avgTurnoverRatio: 5.8,
+        fastMovingCount: 12,
+        slowMovingCount: 8,
+        nonMovingCount: 3
+      }
+    });
+    setIsTurnoverModalOpen(false);
+    alert('Turnover analysis generated successfully!');
+  };
+
+  const handleABCGenerate = (config: any) => {
+    console.log('Generating ABC analysis with config:', config);
+    // TODO: API call to generate ABC analysis
+    // const response = await fetch('/api/inventory/analytics/abc', { method: 'POST', body: JSON.stringify(config) });
+    // const data = await response.json();
+    // setABCResult(data);
+
+    setABCResult({
+      analysisDate: config.analysisDate,
+      warehouse: config.warehouse,
+      criteria: config.criteria,
+      items: [],
+      summary: {
+        aClassCount: 15,
+        bClassCount: 35,
+        cClassCount: 78,
+        aClassValue: 5600000,
+        bClassValue: 1800000,
+        cClassValue: 625000
+      }
+    });
+    setIsABCModalOpen(false);
+    alert('ABC analysis generated successfully!');
+  };
+
   return (
     <div className="p-6 space-y-6">
       {/* Header */}
@@ -154,6 +219,20 @@ export default function InventoryTurnoverPage() {
           <p className="text-gray-600 mt-1">Track inventory turnover ratios and stock rotation efficiency</p>
         </div>
         <div className="flex items-center space-x-3">
+          <button
+            onClick={() => setIsTurnoverModalOpen(true)}
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center space-x-2"
+          >
+            <RefreshCw className="w-4 h-4" />
+            <span>Generate Analysis</span>
+          </button>
+          <button
+            onClick={() => setIsABCModalOpen(true)}
+            className="px-4 py-2 border border-purple-600 text-purple-600 rounded-lg hover:bg-purple-50 flex items-center space-x-2"
+          >
+            <PieChart className="w-4 h-4" />
+            <span>ABC Analysis</span>
+          </button>
           <button className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center space-x-2">
             <Download className="w-4 h-4" />
             <span>Export Report</span>
@@ -323,6 +402,18 @@ export default function InventoryTurnoverPage() {
           </p>
         </div>
       </div>
+
+      {/* Analytics Modals */}
+      <TurnoverAnalysisModal
+        isOpen={isTurnoverModalOpen}
+        onClose={() => setIsTurnoverModalOpen(false)}
+        onGenerate={handleTurnoverGenerate}
+      />
+      <ABCAnalysisModal
+        isOpen={isABCModalOpen}
+        onClose={() => setIsABCModalOpen(false)}
+        onGenerate={handleABCGenerate}
+      />
     </div>
   );
 }

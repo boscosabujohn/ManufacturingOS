@@ -9,7 +9,31 @@ import {
   ZoomOut,
   Download,
   Filter,
+  Plus,
+  GitBranch,
+  TrendingUp,
+  Layers,
+  Target,
+  Link2,
+  Clock,
+  RefreshCw,
+  Printer,
+  FileText,
 } from 'lucide-react';
+import {
+  AddMilestoneModal,
+  EditDependenciesModal,
+  ResourceLoadingModal,
+  TimelineFilterModal,
+  ExportGanttModal,
+  BaselineComparisonModal,
+  CriticalPathModal,
+  AddTaskLinkModal,
+  EditDurationModal,
+  RescheduleModal,
+  PrintSetupModal,
+  TimelineTemplatesModal,
+} from '@/components/project-management/GanttChartModals';
 
 interface Task {
   id: string;
@@ -46,6 +70,21 @@ export default function ScheduleGanttPage() {
   const [viewMode, setViewMode] = useState<'days' | 'weeks' | 'months'>('weeks');
   const [currentDate, setCurrentDate] = useState(new Date('2024-03-15'));
   const [filterPhase, setFilterPhase] = useState('All');
+
+  // Modal states
+  const [showAddMilestone, setShowAddMilestone] = useState(false);
+  const [showEditDependencies, setShowEditDependencies] = useState(false);
+  const [showResourceLoading, setShowResourceLoading] = useState(false);
+  const [showTimelineFilter, setShowTimelineFilter] = useState(false);
+  const [showExportGantt, setShowExportGantt] = useState(false);
+  const [showBaselineComparison, setShowBaselineComparison] = useState(false);
+  const [showCriticalPath, setShowCriticalPath] = useState(false);
+  const [showAddTaskLink, setShowAddTaskLink] = useState(false);
+  const [showEditDuration, setShowEditDuration] = useState(false);
+  const [showReschedule, setShowReschedule] = useState(false);
+  const [showPrintSetup, setShowPrintSetup] = useState(false);
+  const [showTemplates, setShowTemplates] = useState(false);
+  const [selectedTask, setSelectedTask] = useState<Task | null>(null);
 
   const projectStart = new Date('2024-01-15');
   const projectEnd = new Date('2024-04-30');
@@ -119,15 +158,120 @@ export default function ScheduleGanttPage() {
   const totalDays = Math.ceil((projectEnd.getTime() - projectStart.getTime()) / (1000 * 60 * 60 * 24));
   const todayPosition = `${(todayOffset / totalDays) * 100}%`;
 
+  // Modal handlers
+  const handleAddMilestone = (milestone: any) => {
+    console.log('Adding milestone:', milestone);
+    setShowAddMilestone(false);
+  };
+
+  const handleEditDependencies = (dependencies: any) => {
+    console.log('Updating dependencies:', dependencies);
+    setShowEditDependencies(false);
+  };
+
+  const handleApplyFilters = (filters: any) => {
+    console.log('Applying filters:', filters);
+    setShowTimelineFilter(false);
+  };
+
+  const handleExport = (options: any) => {
+    console.log('Exporting:', options);
+    setShowExportGantt(false);
+  };
+
+  const handleAddTaskLink = (link: any) => {
+    console.log('Adding task link:', link);
+    setShowAddTaskLink(false);
+  };
+
+  const handleEditDuration = (duration: any) => {
+    console.log('Editing duration:', duration);
+    setShowEditDuration(false);
+  };
+
+  const handleReschedule = (options: any) => {
+    console.log('Rescheduling:', options);
+    setShowReschedule(false);
+  };
+
+  const handlePrint = (options: any) => {
+    console.log('Printing:', options);
+    setShowPrintSetup(false);
+  };
+
+  const handleApplyTemplate = (template: any) => {
+    console.log('Applying template:', template);
+    setShowTemplates(false);
+  };
+
+  const openEditDependencies = (task: Task) => {
+    setSelectedTask(task);
+    setShowEditDependencies(true);
+  };
+
+  const openEditDuration = (task: Task) => {
+    setSelectedTask(task);
+    setShowEditDuration(true);
+  };
+
   return (
     <div className="w-full h-screen overflow-y-auto overflow-x-hidden">
       <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
         {/* Header Actions */}
-        <div className="flex justify-end mb-4">
-          <button className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
-            <Download className="w-5 h-5" />
-            Export
-          </button>
+        <div className="flex justify-between items-center mb-4">
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => setShowAddMilestone(true)}
+              className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              <Plus className="w-5 h-5" />
+              Add Milestone
+            </button>
+            <button
+              onClick={() => setShowTimelineFilter(true)}
+              className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+            >
+              <Filter className="w-5 h-5" />
+              Filter
+            </button>
+            <button
+              onClick={() => setShowResourceLoading(true)}
+              className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+            >
+              <TrendingUp className="w-5 h-5" />
+              Resource Loading
+            </button>
+            <button
+              onClick={() => setShowBaselineComparison(true)}
+              className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+            >
+              <Layers className="w-5 h-5" />
+              Baseline
+            </button>
+          </div>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => setShowCriticalPath(true)}
+              className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+            >
+              <Target className="w-5 h-5" />
+              Critical Path
+            </button>
+            <button
+              onClick={() => setShowPrintSetup(true)}
+              className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+            >
+              <Printer className="w-5 h-5" />
+              Print
+            </button>
+            <button
+              onClick={() => setShowExportGantt(true)}
+              className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+            >
+              <Download className="w-5 h-5" />
+              Export
+            </button>
+          </div>
         </div>
 
         {/* Controls */}
@@ -347,6 +491,82 @@ export default function ScheduleGanttPage() {
           </p>
         </div>
       </div>
+
+      {/* Modals */}
+      <AddMilestoneModal
+        isOpen={showAddMilestone}
+        onClose={() => setShowAddMilestone(false)}
+        onAdd={handleAddMilestone}
+      />
+
+      {selectedTask && (
+        <>
+          <EditDependenciesModal
+            isOpen={showEditDependencies}
+            onClose={() => setShowEditDependencies(false)}
+            task={selectedTask}
+            onUpdate={handleEditDependencies}
+          />
+
+          <EditDurationModal
+            isOpen={showEditDuration}
+            onClose={() => setShowEditDuration(false)}
+            task={selectedTask}
+            onUpdate={handleEditDuration}
+          />
+        </>
+      )}
+
+      <ResourceLoadingModal
+        isOpen={showResourceLoading}
+        onClose={() => setShowResourceLoading(false)}
+      />
+
+      <TimelineFilterModal
+        isOpen={showTimelineFilter}
+        onClose={() => setShowTimelineFilter(false)}
+        onApply={handleApplyFilters}
+      />
+
+      <ExportGanttModal
+        isOpen={showExportGantt}
+        onClose={() => setShowExportGantt(false)}
+        onExport={handleExport}
+      />
+
+      <BaselineComparisonModal
+        isOpen={showBaselineComparison}
+        onClose={() => setShowBaselineComparison(false)}
+      />
+
+      <CriticalPathModal
+        isOpen={showCriticalPath}
+        onClose={() => setShowCriticalPath(false)}
+      />
+
+      <AddTaskLinkModal
+        isOpen={showAddTaskLink}
+        onClose={() => setShowAddTaskLink(false)}
+        onAdd={handleAddTaskLink}
+      />
+
+      <RescheduleModal
+        isOpen={showReschedule}
+        onClose={() => setShowReschedule(false)}
+        onReschedule={handleReschedule}
+      />
+
+      <PrintSetupModal
+        isOpen={showPrintSetup}
+        onClose={() => setShowPrintSetup(false)}
+        onPrint={handlePrint}
+      />
+
+      <TimelineTemplatesModal
+        isOpen={showTemplates}
+        onClose={() => setShowTemplates(false)}
+        onApply={handleApplyTemplate}
+      />
       </div>
     </div>
   );

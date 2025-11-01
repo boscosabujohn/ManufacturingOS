@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import Link from 'next/link'
 import {
   Plus,
   Search,
@@ -45,6 +44,15 @@ import {
   Timer,
   CalendarCheck
 } from 'lucide-react'
+
+// Import Contract Modals
+import {
+  CreateContractModal,
+  ViewContractDetailsModal,
+  RenewContractModal,
+  AmendContractModal,
+  TerminateContractModal
+} from '@/components/procurement/ContractModals'
 
 interface Contract {
   id: string
@@ -267,6 +275,13 @@ export default function ContractsPage() {
   const [showUploadModal, setShowUploadModal] = useState(false)
   const [selectedContract, setSelectedContract] = useState<Contract | null>(null)
 
+  // Modal state management
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false)
+  const [isViewModalOpen, setIsViewModalOpen] = useState(false)
+  const [isRenewModalOpen, setIsRenewModalOpen] = useState(false)
+  const [isAmendModalOpen, setIsAmendModalOpen] = useState(false)
+  const [isTerminateModalOpen, setIsTerminateModalOpen] = useState(false)
+
   const stats: ContractStats = {
     total: contracts.length,
     active: contracts.filter(c => c.status === 'active').length,
@@ -365,13 +380,13 @@ export default function ContractsPage() {
             <Download className="h-4 w-4" />
             Export
           </button>
-          <Link
-            href="/procurement/contracts/create"
+          <button
+            onClick={() => setIsCreateModalOpen(true)}
             className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2"
           >
             <Plus className="h-4 w-4" />
             New Contract
-          </Link>
+          </button>
         </div>
       </div>
 
@@ -622,7 +637,13 @@ export default function ContractsPage() {
                         <ChevronRight className="h-4 w-4" />
                       )}
                     </button>
-                    <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                    <button
+                      onClick={() => {
+                        setSelectedContract(contract)
+                        setIsViewModalOpen(true)
+                      }}
+                      className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm"
+                    >
                       <Eye className="h-4 w-4 text-gray-600" />
                       <span className="text-gray-700">View</span>
                     </button>
@@ -713,11 +734,23 @@ export default function ContractsPage() {
                         <Send className="h-4 w-4" />
                         Send for Review
                       </button>
-                      <button className="px-3 py-1.5 bg-green-600 text-white rounded-lg hover:bg-green-700 text-sm flex items-center gap-1">
+                      <button
+                        onClick={() => {
+                          setSelectedContract(contract)
+                          setIsRenewModalOpen(true)
+                        }}
+                        className="px-3 py-1.5 bg-green-600 text-white rounded-lg hover:bg-green-700 text-sm flex items-center gap-1"
+                      >
                         <RefreshCw className="h-4 w-4" />
                         Renew Contract
                       </button>
-                      <button className="px-3 py-1.5 bg-purple-600 text-white rounded-lg hover:bg-purple-700 text-sm flex items-center gap-1">
+                      <button
+                        onClick={() => {
+                          setSelectedContract(contract)
+                          setIsAmendModalOpen(true)
+                        }}
+                        className="px-3 py-1.5 bg-purple-600 text-white rounded-lg hover:bg-purple-700 text-sm flex items-center gap-1"
+                      >
                         <FilePlus className="h-4 w-4" />
                         Add Amendment
                       </button>
@@ -725,9 +758,15 @@ export default function ContractsPage() {
                         <History className="h-4 w-4" />
                         View History
                       </button>
-                      <button className="px-3 py-1.5 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 text-sm flex items-center gap-1">
-                        <Archive className="h-4 w-4" />
-                        Archive
+                      <button
+                        onClick={() => {
+                          setSelectedContract(contract)
+                          setIsTerminateModalOpen(true)
+                        }}
+                        className="px-3 py-1.5 text-red-700 bg-white border border-red-300 rounded-lg hover:bg-red-50 text-sm flex items-center gap-1"
+                      >
+                        <AlertCircle className="h-4 w-4" />
+                        Terminate
                       </button>
                     </div>
                   </div>
@@ -795,6 +834,82 @@ export default function ContractsPage() {
           </div>
         </div>
       )}
+
+      {/* Contract Modals */}
+      <CreateContractModal
+        isOpen={isCreateModalOpen}
+        onClose={() => setIsCreateModalOpen(false)}
+        onSubmit={(data) => {
+          console.log('Creating contract:', data)
+          setIsCreateModalOpen(false)
+        }}
+      />
+
+      <ViewContractDetailsModal
+        isOpen={isViewModalOpen}
+        onClose={() => setIsViewModalOpen(false)}
+        contract={selectedContract ? {
+          contractNumber: selectedContract.contractNumber,
+          title: selectedContract.title,
+          vendorName: selectedContract.vendorName,
+          type: selectedContract.type,
+          status: selectedContract.status,
+          value: selectedContract.value,
+          currency: selectedContract.currency,
+          startDate: selectedContract.startDate,
+          endDate: selectedContract.endDate,
+          department: selectedContract.department,
+          owner: selectedContract.owner,
+          paymentTerms: selectedContract.paymentTerms,
+          compliance: selectedContract.compliance,
+          risk: selectedContract.risk
+        } : undefined}
+      />
+
+      <RenewContractModal
+        isOpen={isRenewModalOpen}
+        onClose={() => setIsRenewModalOpen(false)}
+        contract={selectedContract ? {
+          contractNumber: selectedContract.contractNumber,
+          title: selectedContract.title,
+          vendorName: selectedContract.vendorName,
+          endDate: selectedContract.endDate,
+          value: selectedContract.value
+        } : undefined}
+        onSubmit={(data) => {
+          console.log('Renewing contract:', data)
+          setIsRenewModalOpen(false)
+        }}
+      />
+
+      <AmendContractModal
+        isOpen={isAmendModalOpen}
+        onClose={() => setIsAmendModalOpen(false)}
+        contract={selectedContract ? {
+          contractNumber: selectedContract.contractNumber,
+          title: selectedContract.title,
+          vendorName: selectedContract.vendorName
+        } : undefined}
+        onSubmit={(data) => {
+          console.log('Amending contract:', data)
+          setIsAmendModalOpen(false)
+        }}
+      />
+
+      <TerminateContractModal
+        isOpen={isTerminateModalOpen}
+        onClose={() => setIsTerminateModalOpen(false)}
+        contract={selectedContract ? {
+          contractNumber: selectedContract.contractNumber,
+          title: selectedContract.title,
+          vendorName: selectedContract.vendorName,
+          endDate: selectedContract.endDate
+        } : undefined}
+        onSubmit={(data) => {
+          console.log('Terminating contract:', data)
+          setIsTerminateModalOpen(false)
+        }}
+      />
     </div>
   )
 }

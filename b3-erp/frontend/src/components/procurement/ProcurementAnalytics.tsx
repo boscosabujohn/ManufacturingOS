@@ -16,6 +16,14 @@ import {
   Sankey, Funnel, FunnelChart
 } from 'recharts';
 
+// Import Analytics Modals
+import {
+  CreateCustomReportModal,
+  ExportReportModal,
+  ScheduleReportModal,
+  DashboardCustomizationModal
+} from '@/components/procurement/AnalyticsModals'
+
 interface ProcurementAnalyticsProps {}
 
 const ProcurementAnalytics: React.FC<ProcurementAnalyticsProps> = () => {
@@ -23,6 +31,12 @@ const ProcurementAnalytics: React.FC<ProcurementAnalyticsProps> = () => {
   const [dateRange, setDateRange] = useState('last30days');
   const [selectedMetric, setSelectedMetric] = useState('spend');
   const [refreshing, setRefreshing] = useState(false);
+
+  // Modal state management
+  const [isCreateReportModalOpen, setIsCreateReportModalOpen] = useState(false)
+  const [isExportModalOpen, setIsExportModalOpen] = useState(false)
+  const [isScheduleReportModalOpen, setIsScheduleReportModalOpen] = useState(false)
+  const [isDashboardCustomizationModalOpen, setIsDashboardCustomizationModalOpen] = useState(false)
 
   // Mock KPI data
   const kpiMetrics = {
@@ -930,13 +944,33 @@ const ProcurementAnalytics: React.FC<ProcurementAnalyticsProps> = () => {
               <RefreshCw className={`h-4 w-4 ${refreshing ? 'animate-spin' : ''}`} />
               Refresh
             </button>
-            <button className="inline-flex items-center gap-1.5 px-3 py-2 border rounded-lg hover:bg-gray-50">
-              <Download className="h-4 w-4 text-gray-600" />
-              <span className="text-gray-700">Download</span>
+            <button
+              onClick={() => setIsCreateReportModalOpen(true)}
+              className="inline-flex items-center gap-1.5 px-3 py-2 border rounded-lg hover:bg-gray-50"
+            >
+              <FileText className="h-4 w-4 text-gray-600" />
+              <span className="text-gray-700">Create Report</span>
             </button>
-            <button className="inline-flex items-center gap-1.5 px-3 py-2 border rounded-lg hover:bg-gray-50">
+            <button
+              onClick={() => setIsScheduleReportModalOpen(true)}
+              className="inline-flex items-center gap-1.5 px-3 py-2 border rounded-lg hover:bg-gray-50"
+            >
+              <Calendar className="h-4 w-4 text-gray-600" />
+              <span className="text-gray-700">Schedule</span>
+            </button>
+            <button
+              onClick={() => setIsExportModalOpen(true)}
+              className="inline-flex items-center gap-1.5 px-3 py-2 border rounded-lg hover:bg-gray-50"
+            >
+              <Download className="h-4 w-4 text-gray-600" />
+              <span className="text-gray-700">Export</span>
+            </button>
+            <button
+              onClick={() => setIsDashboardCustomizationModalOpen(true)}
+              className="inline-flex items-center gap-1.5 px-3 py-2 border rounded-lg hover:bg-gray-50"
+            >
               <Settings className="h-4 w-4 text-gray-600" />
-              <span className="text-gray-700">Settings</span>
+              <span className="text-gray-700">Customize</span>
             </button>
           </div>
         </div>
@@ -964,6 +998,43 @@ const ProcurementAnalytics: React.FC<ProcurementAnalyticsProps> = () => {
       {activeTab === 'spend-analysis' && renderSpendAnalysis()}
       {activeTab === 'performance' && renderPerformance()}
       {activeTab === 'savings' && renderSavings()}
+
+      {/* Analytics Modals */}
+      <CreateCustomReportModal
+        isOpen={isCreateReportModalOpen}
+        onClose={() => setIsCreateReportModalOpen(false)}
+        onSubmit={(data) => {
+          console.log('Creating custom report:', data)
+          setIsCreateReportModalOpen(false)
+        }}
+      />
+
+      <ExportReportModal
+        isOpen={isExportModalOpen}
+        onClose={() => setIsExportModalOpen(false)}
+        onSubmit={(options) => {
+          console.log('Exporting report:', options)
+          setIsExportModalOpen(false)
+        }}
+      />
+
+      <ScheduleReportModal
+        isOpen={isScheduleReportModalOpen}
+        onClose={() => setIsScheduleReportModalOpen(false)}
+        onSubmit={(data) => {
+          console.log('Scheduling report:', data)
+          setIsScheduleReportModalOpen(false)
+        }}
+      />
+
+      <DashboardCustomizationModal
+        isOpen={isDashboardCustomizationModalOpen}
+        onClose={() => setIsDashboardCustomizationModalOpen(false)}
+        onSubmit={(data) => {
+          console.log('Customizing dashboard:', data)
+          setIsDashboardCustomizationModalOpen(false)
+        }}
+      />
     </div>
   );
 };

@@ -17,6 +17,14 @@ import {
   Eye,
   MessageSquare
 } from 'lucide-react'
+import {
+  ApproveExecutiveDealModal,
+  RejectExecutiveDealModal,
+  PutOnHoldModal,
+  AddExecutiveCommentModal,
+  ViewExecutiveDealModal,
+  ExecutiveApproval as ImportedExecutiveApproval
+} from '@/components/cpq/ExecutiveWorkflowModals'
 
 interface ExecutiveApproval {
   id: string
@@ -81,6 +89,14 @@ interface Comment {
 
 export default function CPQWorkflowExecutivePage() {
   const router = useRouter()
+
+  // Modal states
+  const [isApproveOpen, setIsApproveOpen] = useState(false)
+  const [isRejectOpen, setIsRejectOpen] = useState(false)
+  const [isHoldOpen, setIsHoldOpen] = useState(false)
+  const [isCommentOpen, setIsCommentOpen] = useState(false)
+  const [isViewOpen, setIsViewOpen] = useState(false)
+  const [selectedApproval, setSelectedApproval] = useState<ExecutiveApproval | null>(null)
 
   const [approvals] = useState<ExecutiveApproval[]>([
     {
@@ -444,6 +460,56 @@ export default function CPQWorkflowExecutivePage() {
     }
   }
 
+  // Modal handlers
+  const handleApprove = (approval: ExecutiveApproval) => {
+    setSelectedApproval(approval)
+    setIsApproveOpen(true)
+  }
+
+  const handleReject = (approval: ExecutiveApproval) => {
+    setSelectedApproval(approval)
+    setIsRejectOpen(true)
+  }
+
+  const handleHold = (approval: ExecutiveApproval) => {
+    setSelectedApproval(approval)
+    setIsHoldOpen(true)
+  }
+
+  const handleAddComment = (approval: ExecutiveApproval) => {
+    setSelectedApproval(approval)
+    setIsCommentOpen(true)
+  }
+
+  const handleView = (approval: ExecutiveApproval) => {
+    setSelectedApproval(approval)
+    setIsViewOpen(true)
+  }
+
+  const handleApproveSubmit = (data: { comments: string; conditions?: string }) => {
+    console.log('Approved:', selectedApproval?.documentNumber, data)
+    // TODO: API call to approve the executive deal
+    setIsApproveOpen(false)
+  }
+
+  const handleRejectSubmit = (data: { reason: string; comments: string }) => {
+    console.log('Rejected:', selectedApproval?.documentNumber, data)
+    // TODO: API call to reject the executive deal
+    setIsRejectOpen(false)
+  }
+
+  const handleHoldSubmit = (data: { reason: string; requiredInfo: string; reviewDate: string }) => {
+    console.log('Put on Hold:', selectedApproval?.documentNumber, data)
+    // TODO: API call to put deal on hold
+    setIsHoldOpen(false)
+  }
+
+  const handleCommentSubmit = (comment: string) => {
+    console.log('Comment added:', selectedApproval?.documentNumber, comment)
+    // TODO: API call to add executive comment
+    setIsCommentOpen(false)
+  }
+
   const totalApprovals = approvals.length
   const pendingApprovals = approvals.filter(a => a.status === 'pending').length
   const approvedApprovals = approvals.filter(a => a.status === 'approved').length
@@ -723,25 +789,40 @@ export default function CPQWorkflowExecutivePage() {
             <div className="flex items-center gap-2">
               {approval.status === 'pending' && (
                 <>
-                  <button className="px-4 py-2 text-sm text-white bg-green-600 rounded-lg hover:bg-green-700 flex items-center gap-2">
+                  <button
+                    onClick={() => handleApprove(approval)}
+                    className="px-4 py-2 text-sm text-white bg-green-600 rounded-lg hover:bg-green-700 flex items-center gap-2"
+                  >
                     <CheckCircle className="h-4 w-4" />
                     Approve Deal
                   </button>
-                  <button className="px-4 py-2 text-sm text-white bg-red-600 rounded-lg hover:bg-red-700 flex items-center gap-2">
+                  <button
+                    onClick={() => handleReject(approval)}
+                    className="px-4 py-2 text-sm text-white bg-red-600 rounded-lg hover:bg-red-700 flex items-center gap-2"
+                  >
                     <XCircle className="h-4 w-4" />
                     Reject
                   </button>
-                  <button className="px-4 py-2 text-sm text-white bg-gray-600 rounded-lg hover:bg-gray-700 flex items-center gap-2">
+                  <button
+                    onClick={() => handleHold(approval)}
+                    className="px-4 py-2 text-sm text-white bg-gray-600 rounded-lg hover:bg-gray-700 flex items-center gap-2"
+                  >
                     <Clock className="h-4 w-4" />
                     Put on Hold
                   </button>
-                  <button className="px-4 py-2 text-sm text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
+                  <button
+                    onClick={() => handleAddComment(approval)}
+                    className="px-4 py-2 text-sm text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2"
+                  >
                     <MessageSquare className="h-4 w-4" />
                     Add Comment
                   </button>
                 </>
               )}
-              <button className="px-4 py-2 text-sm text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
+              <button
+                onClick={() => handleView(approval)}
+                className="px-4 py-2 text-sm text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2"
+              >
                 <Eye className="h-4 w-4" />
                 View Full Details
               </button>
@@ -762,6 +843,41 @@ export default function CPQWorkflowExecutivePage() {
           <li><strong>Review Focus:</strong> Strategic importance, financial impact, risk assessment, competitive positioning, long-term value</li>
         </ul>
       </div>
+
+      {/* Modals */}
+      <ApproveExecutiveDealModal
+        isOpen={isApproveOpen}
+        onClose={() => setIsApproveOpen(false)}
+        onApprove={handleApproveSubmit}
+        approval={selectedApproval}
+      />
+
+      <RejectExecutiveDealModal
+        isOpen={isRejectOpen}
+        onClose={() => setIsRejectOpen(false)}
+        onReject={handleRejectSubmit}
+        approval={selectedApproval}
+      />
+
+      <PutOnHoldModal
+        isOpen={isHoldOpen}
+        onClose={() => setIsHoldOpen(false)}
+        onPutOnHold={handleHoldSubmit}
+        approval={selectedApproval}
+      />
+
+      <AddExecutiveCommentModal
+        isOpen={isCommentOpen}
+        onClose={() => setIsCommentOpen(false)}
+        onAddComment={handleCommentSubmit}
+        approval={selectedApproval}
+      />
+
+      <ViewExecutiveDealModal
+        isOpen={isViewOpen}
+        onClose={() => setIsViewOpen(false)}
+        approval={selectedApproval}
+      />
     </div>
   )
 }

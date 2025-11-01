@@ -14,7 +14,29 @@ import {
   Edit,
   FileText,
   User,
+  Upload,
+  History,
+  CheckSquare,
+  Link2,
+  ClipboardCheck,
+  Users,
+  Download,
+  GitBranch,
 } from 'lucide-react';
+import {
+  CreateDeliverableModal,
+  EditDeliverableModal,
+  UploadDocumentModal,
+  VersionHistoryModal,
+  ReviewApprovalModal,
+  LinkToTasksModal,
+  QualityChecklistModal,
+  DeliverableTimelineModal,
+  StakeholderSignOffModal,
+  DeliverableTemplatesModal,
+  ExportDeliverablesModal,
+  DeliverableDependenciesModal,
+} from '@/components/project-management/DeliverablesModals';
 
 interface Deliverable {
   id: string;
@@ -220,6 +242,21 @@ export default function DeliverablesListPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
+  // Modal states
+  const [showCreateDeliverable, setShowCreateDeliverable] = useState(false);
+  const [showEditDeliverable, setShowEditDeliverable] = useState(false);
+  const [showUploadDocument, setShowUploadDocument] = useState(false);
+  const [showVersionHistory, setShowVersionHistory] = useState(false);
+  const [showReviewApproval, setShowReviewApproval] = useState(false);
+  const [showLinkToTasks, setShowLinkToTasks] = useState(false);
+  const [showQualityChecklist, setShowQualityChecklist] = useState(false);
+  const [showTimeline, setShowTimeline] = useState(false);
+  const [showStakeholderSignOff, setShowStakeholderSignOff] = useState(false);
+  const [showTemplates, setShowTemplates] = useState(false);
+  const [showExport, setShowExport] = useState(false);
+  const [showDependencies, setShowDependencies] = useState(false);
+  const [selectedDeliverable, setSelectedDeliverable] = useState<Deliverable | null>(null);
+
   // Calculate statistics
   const stats = {
     total: deliverables.length,
@@ -273,18 +310,132 @@ export default function DeliverablesListPage() {
     });
   };
 
+  // Modal handlers
+  const handleCreateDeliverable = (deliverable: any) => {
+    console.log('Creating deliverable:', deliverable);
+    setShowCreateDeliverable(false);
+  };
+
+  const handleEditDeliverable = (deliverable: any) => {
+    console.log('Editing deliverable:', deliverable);
+    setShowEditDeliverable(false);
+    setSelectedDeliverable(null);
+  };
+
+  const handleUploadDocument = (document: any) => {
+    console.log('Uploading document:', document);
+    setShowUploadDocument(false);
+    setSelectedDeliverable(null);
+  };
+
+  const handleReviewApproval = (decision: string, comments: string) => {
+    console.log('Review decision:', decision, comments);
+    setShowReviewApproval(false);
+    setSelectedDeliverable(null);
+  };
+
+  const handleLinkToTasks = (tasks: string[]) => {
+    console.log('Linking tasks:', tasks);
+    setShowLinkToTasks(false);
+    setSelectedDeliverable(null);
+  };
+
+  const handleQualityChecklist = (checklist: any) => {
+    console.log('Quality checklist:', checklist);
+    setShowQualityChecklist(false);
+    setSelectedDeliverable(null);
+  };
+
+  const handleStakeholderSignOff = (signOff: any) => {
+    console.log('Stakeholder sign-off:', signOff);
+    setShowStakeholderSignOff(false);
+    setSelectedDeliverable(null);
+  };
+
+  const handleApplyTemplate = (template: any) => {
+    console.log('Applying template:', template);
+    setShowTemplates(false);
+  };
+
+  const handleExport = (format: string) => {
+    console.log('Exporting to:', format);
+    setShowExport(false);
+  };
+
+  const handleDependencies = (dependencies: any) => {
+    console.log('Managing dependencies:', dependencies);
+    setShowDependencies(false);
+    setSelectedDeliverable(null);
+  };
+
+  const openEditModal = (deliverable: Deliverable) => {
+    setSelectedDeliverable(deliverable);
+    setShowEditDeliverable(true);
+  };
+
+  const openUploadModal = (deliverable: Deliverable) => {
+    setSelectedDeliverable(deliverable);
+    setShowUploadDocument(true);
+  };
+
+  const openReviewModal = (deliverable: Deliverable) => {
+    setSelectedDeliverable(deliverable);
+    setShowReviewApproval(true);
+  };
+
+  const openLinkTasksModal = (deliverable: Deliverable) => {
+    setSelectedDeliverable(deliverable);
+    setShowLinkToTasks(true);
+  };
+
+  const openQualityModal = (deliverable: Deliverable) => {
+    setSelectedDeliverable(deliverable);
+    setShowQualityChecklist(true);
+  };
+
+  const openTimelineModal = (deliverable: Deliverable) => {
+    setSelectedDeliverable(deliverable);
+    setShowTimeline(true);
+  };
+
+  const openVersionHistoryModal = (deliverable: Deliverable) => {
+    setSelectedDeliverable(deliverable);
+    setShowVersionHistory(true);
+  };
+
+  const openDependenciesModal = (deliverable: Deliverable) => {
+    setSelectedDeliverable(deliverable);
+    setShowDependencies(true);
+  };
+
   return (
     <div className="w-full h-screen overflow-y-auto overflow-x-hidden">
       <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
       {/* Header Actions */}
-      <div className="flex justify-end mb-4">
-        <Link
-          href="/project-management/deliverables/create"
+      <div className="flex justify-between mb-4">
+        <div className="flex gap-2">
+          <button
+            onClick={() => setShowTemplates(true)}
+            className="flex items-center gap-2 bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+          >
+            <FileText className="w-5 h-5" />
+            Templates
+          </button>
+          <button
+            onClick={() => setShowExport(true)}
+            className="flex items-center gap-2 bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+          >
+            <Download className="w-5 h-5" />
+            Export
+          </button>
+        </div>
+        <button
+          onClick={() => setShowCreateDeliverable(true)}
           className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
         >
           <Plus className="w-5 h-5" />
           Add Deliverable
-        </Link>
+        </button>
       </div>
 
       {/* Statistics Cards */}
@@ -489,21 +640,67 @@ export default function DeliverablesListPage() {
                 </div>
 
                 {/* Actions */}
-                <div className="flex items-center gap-2 ml-4">
-                  <Link
-                    href={`/project-management/deliverables/view/${deliverable.id}`}
-                    className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-                   
-                  >
-                    <Eye className="w-4 h-4" />
-                  </Link>
-                  <Link
-                    href={`/project-management/deliverables/edit/${deliverable.id}`}
-                    className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
-                   
-                  >
-                    <Edit className="w-4 h-4" />
-                  </Link>
+                <div className="flex flex-col gap-2 ml-4">
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => openTimelineModal(deliverable)}
+                      className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                      title="View Timeline"
+                    >
+                      <GitBranch className="w-4 h-4" />
+                    </button>
+                    <button
+                      onClick={() => openEditModal(deliverable)}
+                      className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
+                      title="Edit Deliverable"
+                    >
+                      <Edit className="w-4 h-4" />
+                    </button>
+                    <button
+                      onClick={() => openUploadModal(deliverable)}
+                      className="p-2 text-purple-600 hover:bg-purple-50 rounded-lg transition-colors"
+                      title="Upload Document"
+                    >
+                      <Upload className="w-4 h-4" />
+                    </button>
+                    <button
+                      onClick={() => openVersionHistoryModal(deliverable)}
+                      className="p-2 text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors"
+                      title="Version History"
+                    >
+                      <History className="w-4 h-4" />
+                    </button>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => openReviewModal(deliverable)}
+                      className="p-2 text-orange-600 hover:bg-orange-50 rounded-lg transition-colors"
+                      title="Review & Approval"
+                    >
+                      <CheckCircle className="w-4 h-4" />
+                    </button>
+                    <button
+                      onClick={() => openLinkTasksModal(deliverable)}
+                      className="p-2 text-teal-600 hover:bg-teal-50 rounded-lg transition-colors"
+                      title="Link to Tasks"
+                    >
+                      <Link2 className="w-4 h-4" />
+                    </button>
+                    <button
+                      onClick={() => openQualityModal(deliverable)}
+                      className="p-2 text-pink-600 hover:bg-pink-50 rounded-lg transition-colors"
+                      title="Quality Checklist"
+                    >
+                      <ClipboardCheck className="w-4 h-4" />
+                    </button>
+                    <button
+                      onClick={() => openDependenciesModal(deliverable)}
+                      className="p-2 text-violet-600 hover:bg-violet-50 rounded-lg transition-colors"
+                      title="Dependencies"
+                    >
+                      <Network className="w-4 h-4" />
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -534,6 +731,118 @@ export default function DeliverablesListPage() {
           </div>
         </div>
       </div>
+
+      {/* Modals */}
+      <CreateDeliverableModal
+        isOpen={showCreateDeliverable}
+        onClose={() => setShowCreateDeliverable(false)}
+        onCreate={handleCreateDeliverable}
+      />
+
+      {selectedDeliverable && (
+        <>
+          <EditDeliverableModal
+            isOpen={showEditDeliverable}
+            onClose={() => {
+              setShowEditDeliverable(false);
+              setSelectedDeliverable(null);
+            }}
+            deliverable={selectedDeliverable}
+            onSave={handleEditDeliverable}
+          />
+
+          <UploadDocumentModal
+            isOpen={showUploadDocument}
+            onClose={() => {
+              setShowUploadDocument(false);
+              setSelectedDeliverable(null);
+            }}
+            deliverable={selectedDeliverable}
+            onUpload={handleUploadDocument}
+          />
+
+          <VersionHistoryModal
+            isOpen={showVersionHistory}
+            onClose={() => {
+              setShowVersionHistory(false);
+              setSelectedDeliverable(null);
+            }}
+            deliverable={selectedDeliverable}
+          />
+
+          <ReviewApprovalModal
+            isOpen={showReviewApproval}
+            onClose={() => {
+              setShowReviewApproval(false);
+              setSelectedDeliverable(null);
+            }}
+            deliverable={selectedDeliverable}
+            onSubmit={handleReviewApproval}
+          />
+
+          <LinkToTasksModal
+            isOpen={showLinkToTasks}
+            onClose={() => {
+              setShowLinkToTasks(false);
+              setSelectedDeliverable(null);
+            }}
+            deliverable={selectedDeliverable}
+            onLink={handleLinkToTasks}
+          />
+
+          <QualityChecklistModal
+            isOpen={showQualityChecklist}
+            onClose={() => {
+              setShowQualityChecklist(false);
+              setSelectedDeliverable(null);
+            }}
+            deliverable={selectedDeliverable}
+            onSave={handleQualityChecklist}
+          />
+
+          <DeliverableTimelineModal
+            isOpen={showTimeline}
+            onClose={() => {
+              setShowTimeline(false);
+              setSelectedDeliverable(null);
+            }}
+            deliverable={selectedDeliverable}
+          />
+
+          <StakeholderSignOffModal
+            isOpen={showStakeholderSignOff}
+            onClose={() => {
+              setShowStakeholderSignOff(false);
+              setSelectedDeliverable(null);
+            }}
+            deliverable={selectedDeliverable}
+            onSubmit={handleStakeholderSignOff}
+          />
+
+          <DeliverableDependenciesModal
+            isOpen={showDependencies}
+            onClose={() => {
+              setShowDependencies(false);
+              setSelectedDeliverable(null);
+            }}
+            deliverable={selectedDeliverable}
+            onSave={handleDependencies}
+          />
+        </>
+      )}
+
+      <DeliverableTemplatesModal
+        isOpen={showTemplates}
+        onClose={() => setShowTemplates(false)}
+        onApply={handleApplyTemplate}
+      />
+
+      <ExportDeliverablesModal
+        isOpen={showExport}
+        onClose={() => setShowExport(false)}
+        deliverables={filteredDeliverables}
+        onExport={handleExport}
+      />
       </div>
     </div>
   );

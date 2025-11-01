@@ -24,6 +24,12 @@ import {
   ArrowRight,
   List,
 } from 'lucide-react';
+import {
+  RunMRPModal,
+  ConfigureMRPModal,
+  ViewItemDetailsModal,
+  type MRPSettings,
+} from '@/components/production/MRPRunModals';
 
 // TypeScript Interfaces
 interface MRPRequirement {
@@ -123,6 +129,12 @@ const MRPPage: React.FC = () => {
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
   const [filterStatus, setFilterStatus] = useState<'All' | 'Critical' | 'Warning' | 'Normal'>('All');
   const [searchQuery, setSearchQuery] = useState('');
+
+  // Modal State
+  const [isRunMRPOpen, setIsRunMRPOpen] = useState(false);
+  const [isConfigureOpen, setIsConfigureOpen] = useState(false);
+  const [isViewItemOpen, setIsViewItemOpen] = useState(false);
+  const [selectedItemForModal, setSelectedItemForModal] = useState<MRPRequirement | null>(null);
 
   // MRP Configuration State
   const [mrpConfig, setMrpConfig] = useState({
@@ -671,6 +683,41 @@ const MRPPage: React.FC = () => {
     return badges[status as keyof typeof badges] || badges.Normal;
   };
 
+  // Modal Handler Functions
+  const handleOpenRunMRP = () => {
+    setIsRunMRPOpen(true);
+  };
+
+  const handleConfigure = () => {
+    setIsConfigureOpen(true);
+  };
+
+  const handleViewItem = (item: MRPRequirement) => {
+    setSelectedItemForModal(item);
+    setIsViewItemOpen(true);
+  };
+
+  const handleRunMRPSubmit = (config: any) => {
+    // TODO: Integrate with API to run MRP with configuration
+    console.log('Running MRP with config:', config);
+    setIsRunMRPOpen(false);
+
+    // Call existing handleRunMRP to trigger the running state
+    handleRunMRP();
+  };
+
+  const handleSaveConfig = (settings: MRPSettings) => {
+    // TODO: Integrate with API to save MRP configuration
+    console.log('Saving MRP configuration:', settings);
+    setMrpConfig({
+      planningHorizon: settings.planningHorizon,
+      leadTimeConsideration: settings.leadTimeConsideration,
+      safetyStockConsideration: settings.safetyStockConsideration,
+      reorderPointMethod: settings.reorderPointMethod,
+    });
+    setIsConfigureOpen(false);
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 p-6">
       {/* Header */}
@@ -691,7 +738,14 @@ const MRPPage: React.FC = () => {
               Export
             </button>
             <button
-              onClick={handleRunMRP}
+              onClick={handleConfigure}
+              className="flex items-center px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"
+            >
+              <Settings className="w-4 h-4 mr-2" />
+              Settings
+            </button>
+            <button
+              onClick={handleOpenRunMRP}
               disabled={isRunning}
               className="flex items-center px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-gray-400"
             >
@@ -898,7 +952,7 @@ const MRPPage: React.FC = () => {
                     <tr
                       key={item.id}
                       className="hover:bg-gray-50 cursor-pointer"
-                      onClick={() => setSelectedItem(item.id)}
+                      onClick={() => handleViewItem(item)}
                     >
                       <td className="px-4 py-3">
                         <div className="text-sm font-medium text-gray-900">{item.itemCode}</div>
@@ -1426,6 +1480,34 @@ const MRPPage: React.FC = () => {
           </div>
         )}
       </div>
+
+      {/* Modals */}
+      <RunMRPModal
+        isOpen={isRunMRPOpen}
+        onClose={() => setIsRunMRPOpen(false)}
+        onRun={handleRunMRPSubmit}
+      />
+
+      <ConfigureMRPModal
+        isOpen={isConfigureOpen}
+        onClose={() => setIsConfigureOpen(false)}
+        onSave={handleSaveConfig}
+        currentSettings={{
+          planningHorizon: mrpConfig.planningHorizon,
+          leadTimeConsideration: mrpConfig.leadTimeConsideration,
+          safetyStockConsideration: mrpConfig.safetyStockConsideration,
+          reorderPointMethod: mrpConfig.reorderPointMethod,
+          autoApproveThreshold: 10000,
+          criticalShortageThreshold: 7,
+          excessStockThreshold: 150,
+        }}
+      />
+
+      <ViewItemDetailsModal
+        isOpen={isViewItemOpen}
+        onClose={() => setIsViewItemOpen(false)}
+        item={selectedItemForModal}
+      />
     </div>
   );
 };

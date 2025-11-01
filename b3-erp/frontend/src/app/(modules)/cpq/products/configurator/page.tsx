@@ -14,6 +14,11 @@ import {
   FileText,
   Save
 } from 'lucide-react'
+import {
+  GenerateQuoteModal,
+  QuoteSuccessModal,
+  SaveConfigModal
+} from '@/components/cpq/ConfiguratorModals'
 
 interface ConfigStep {
   id: string
@@ -57,20 +62,76 @@ export default function CPQProductsConfiguratorPage() {
     { id: 'CNT-004', name: 'Solid Surface - Corian', price: 55000, selected: false, image: '🔲' }
   ])
 
+  // Modal states
+  const [isGenerateQuoteModalOpen, setIsGenerateQuoteModalOpen] = useState(false)
+  const [isQuoteSuccessModalOpen, setIsQuoteSuccessModalOpen] = useState(false)
+  const [isSaveConfigModalOpen, setIsSaveConfigModalOpen] = useState(false)
+  const [generatedQuote, setGeneratedQuote] = useState<any>(null)
+
   const basePrice = 2800000
   const selectedOptionsPrice = cabinetOptions.find(o => o.selected)?.price || 0
   const totalPrice = basePrice + selectedOptionsPrice
+
+  // Handlers
+  const handleGenerateQuote = () => {
+    setIsGenerateQuoteModalOpen(true)
+  }
+
+  const handleSaveQuote = (quoteData: any) => {
+    setGeneratedQuote(quoteData)
+    setIsGenerateQuoteModalOpen(false)
+    setIsQuoteSuccessModalOpen(true)
+  }
+
+  const handleSaveConfiguration = () => {
+    setIsSaveConfigModalOpen(true)
+  }
+
+  const handleSaveConfig = (configData: any) => {
+    console.log('Configuration saved:', configData)
+    setIsSaveConfigModalOpen(false)
+  }
+
+  const handleDownloadQuote = () => {
+    console.log('Downloading quote:', generatedQuote)
+    // In production, this would generate and download a PDF
+    const element = document.createElement('a')
+    const file = new Blob(
+      [`Quote ${generatedQuote?.quoteNumber}\n\nCustomer: ${generatedQuote?.customerName}\nTotal: ₹${(totalPrice / 100000).toFixed(2)}L`],
+      { type: 'text/plain' }
+    )
+    element.href = URL.createObjectURL(file)
+    element.download = `${generatedQuote?.quoteNumber}.txt`
+    document.body.appendChild(element)
+    element.click()
+    document.body.removeChild(element)
+  }
+
+  const handleViewQuote = () => {
+    router.push(`/cpq/quotes/${generatedQuote?.quoteNumber}`)
+  }
+
+  const handleEmailQuote = () => {
+    console.log('Emailing quote to:', generatedQuote?.customerEmail)
+    setIsQuoteSuccessModalOpen(false)
+  }
 
   return (
     <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
       {/* Action Buttons */}
       <div className="mb-6 flex justify-end">
         <div className="flex items-center gap-3">
-          <button className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
+          <button
+            onClick={handleSaveConfiguration}
+            className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2"
+          >
             <Save className="h-4 w-4" />
             Save Configuration
           </button>
-          <button className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 flex items-center gap-2">
+          <button
+            onClick={handleGenerateQuote}
+            className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 flex items-center gap-2"
+          >
             <FileText className="h-4 w-4" />
             Generate Quote
           </button>
@@ -231,6 +292,37 @@ export default function CPQProductsConfiguratorPage() {
           </div>
         </div>
       </div>
+
+      {/* Modals */}
+      <GenerateQuoteModal
+        isOpen={isGenerateQuoteModalOpen}
+        onClose={() => setIsGenerateQuoteModalOpen(false)}
+        onGenerate={handleSaveQuote}
+        configuration={{
+          basePrice,
+          selectedOptions: cabinetOptions.filter(o => o.selected),
+          totalPrice,
+          steps
+        }}
+      />
+
+      <QuoteSuccessModal
+        isOpen={isQuoteSuccessModalOpen}
+        onClose={() => {
+          setIsQuoteSuccessModalOpen(false)
+          setGeneratedQuote(null)
+        }}
+        quote={generatedQuote}
+        onDownload={handleDownloadQuote}
+        onViewQuote={handleViewQuote}
+        onEmail={handleEmailQuote}
+      />
+
+      <SaveConfigModal
+        isOpen={isSaveConfigModalOpen}
+        onClose={() => setIsSaveConfigModalOpen(false)}
+        onSave={handleSaveConfig}
+      />
     </div>
   )
 }

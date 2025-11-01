@@ -2,7 +2,9 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { ArrowLeft, Download, Plus, Filter, CheckCircle, FileText, Calendar, TrendingUp, AlertCircle } from 'lucide-react';
+import { ArrowLeft, Download, Plus, Filter, CheckCircle, FileText, Calendar, TrendingUp, AlertCircle, Edit } from 'lucide-react';
+import { CreateQualityPlanModal, EditQualityPlanModal, ApproveQualityPlanModal } from '@/components/quality/QualityPlanModals';
+import { ExportQualityPlansModal } from '@/components/quality/QualityExportModals';
 
 interface QualityPlan {
   id: string;
@@ -40,6 +42,13 @@ export default function QualityPlansPage() {
   const [filterCategory, setFilterCategory] = useState<string>('all');
   const [filterStatus, setFilterStatus] = useState<string>('all');
   const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
+
+  // Modal state hooks
+  const [isCreateOpen, setIsCreateOpen] = useState(false);
+  const [isEditOpen, setIsEditOpen] = useState(false);
+  const [isApproveOpen, setIsApproveOpen] = useState(false);
+  const [isExportOpen, setIsExportOpen] = useState(false);
+  const [selectedPlanForModal, setSelectedPlanForModal] = useState<QualityPlan | null>(null);
 
   // Mock data for quality plans
   const qualityPlans: QualityPlan[] = [
@@ -470,6 +479,57 @@ export default function QualityPlansPage() {
     }
   };
 
+  // Handler functions
+  const handleCreate = () => {
+    setIsCreateOpen(true);
+  };
+
+  const handleEdit = (plan: QualityPlan) => {
+    setSelectedPlanForModal(plan);
+    setIsEditOpen(true);
+  };
+
+  const handleApprove = (plan: QualityPlan) => {
+    setSelectedPlanForModal(plan);
+    setIsApproveOpen(true);
+  };
+
+  const handleExport = () => {
+    setIsExportOpen(true);
+  };
+
+  const handleCreateSubmit = (data: any, saveType: 'draft' | 'review') => {
+    // TODO: Implement API call to create quality plan
+    console.log('Creating quality plan:', data, saveType);
+    // API Call example:
+    // await createQualityPlan(data, saveType);
+    // Refresh data after successful creation
+  };
+
+  const handleEditSubmit = (data: any, saveType: 'draft' | 'review' | 'activate') => {
+    // TODO: Implement API call to update quality plan
+    console.log('Updating quality plan:', data, saveType);
+    // API Call example:
+    // await updateQualityPlan(selectedPlanForModal?.id, data, saveType);
+    // Refresh data after successful update
+  };
+
+  const handleApproveSubmit = (decision: 'approve' | 'reject' | 'request_changes', comments: string, effectiveDate?: string, signature?: string) => {
+    // TODO: Implement API call to approve/reject quality plan
+    console.log('Quality plan decision:', { decision, comments, effectiveDate, signature });
+    // API Call example:
+    // await approveQualityPlan(selectedPlanForModal?.id, { decision, comments, effectiveDate, signature });
+    // Refresh data after successful approval/rejection
+  };
+
+  const handleExportSubmit = (data: any) => {
+    // TODO: Implement API call to export quality plans
+    console.log('Exporting quality plans with filters:', data);
+    // API Call example:
+    // await exportQualityPlans(data);
+    // Download file after successful export
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
       {/* Inline Header */}
@@ -487,11 +547,17 @@ export default function QualityPlansPage() {
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2">
+          <button
+            onClick={handleCreate}
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2"
+          >
             <Plus className="w-4 h-4" />
             <span>New Plan</span>
           </button>
-          <button className="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors flex items-center gap-2">
+          <button
+            onClick={handleExport}
+            className="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors flex items-center gap-2"
+          >
             <Download className="w-4 h-4" />
             <span>Export</span>
           </button>
@@ -637,12 +703,30 @@ export default function QualityPlansPage() {
                     </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-center">
-                    <button
-                      onClick={() => setSelectedPlan(plan.id)}
-                      className="text-blue-600 hover:text-blue-800 text-sm font-medium"
-                    >
-                      View Details
-                    </button>
+                    <div className="flex items-center justify-center gap-3">
+                      <button
+                        onClick={() => setSelectedPlan(plan.id)}
+                        className="text-blue-600 hover:text-blue-800 text-sm font-medium"
+                      >
+                        View Details
+                      </button>
+                      <button
+                        onClick={() => handleEdit(plan)}
+                        className="text-gray-600 hover:text-gray-800 text-sm font-medium flex items-center gap-1"
+                      >
+                        <Edit className="w-4 h-4" />
+                        Edit
+                      </button>
+                      {plan.status === 'under-review' && (
+                        <button
+                          onClick={() => handleApprove(plan)}
+                          className="text-green-600 hover:text-green-800 text-sm font-medium flex items-center gap-1"
+                        >
+                          <CheckCircle className="w-4 h-4" />
+                          Approve
+                        </button>
+                      )}
+                    </div>
                   </td>
                 </tr>
               ))}
@@ -764,6 +848,39 @@ export default function QualityPlansPage() {
           </div>
         </div>
       )}
+
+      {/* Modal Components */}
+      <CreateQualityPlanModal
+        isOpen={isCreateOpen}
+        onClose={() => setIsCreateOpen(false)}
+        onSave={handleCreateSubmit}
+      />
+
+      <EditQualityPlanModal
+        isOpen={isEditOpen}
+        onClose={() => {
+          setIsEditOpen(false);
+          setSelectedPlanForModal(null);
+        }}
+        onSave={handleEditSubmit}
+        plan={selectedPlanForModal}
+      />
+
+      <ApproveQualityPlanModal
+        isOpen={isApproveOpen}
+        onClose={() => {
+          setIsApproveOpen(false);
+          setSelectedPlanForModal(null);
+        }}
+        onApprove={handleApproveSubmit}
+        plan={selectedPlanForModal}
+      />
+
+      <ExportQualityPlansModal
+        isOpen={isExportOpen}
+        onClose={() => setIsExportOpen(false)}
+        onExport={handleExportSubmit}
+      />
     </div>
   );
 }

@@ -18,37 +18,24 @@ import {
   Zap,
   Eye
 } from 'lucide-react'
-
-interface ApprovalRequest {
-  id: string
-  type: 'quote' | 'discount' | 'contract' | 'pricing' | 'proposal'
-  documentNumber: string
-  customerName: string
-  value: number
-  requestedBy: string
-  requestDate: string
-  currentApprover: string
-  status: 'pending' | 'approved' | 'rejected' | 'escalated' | 'expired'
-  priority: 'low' | 'medium' | 'high' | 'urgent'
-  reason: string
-  dueDate: string
-  approvalChain: ApprovalStep[]
-  slaStatus: 'on-time' | 'at-risk' | 'breached'
-  timeRemaining: string
-}
-
-interface ApprovalStep {
-  level: number
-  approver: string
-  role: string
-  status: 'pending' | 'approved' | 'rejected' | 'skipped'
-  actionDate?: string
-  comments?: string
-  turnaroundTime?: string
-}
+import {
+  ApproveModal,
+  RejectModal,
+  AddCommentModal,
+  ViewDocumentModal,
+  ApprovalRequest,
+  ApprovalStep
+} from '@/components/cpq/ApprovalWorkflowModals'
 
 export default function CPQWorkflowApprovalsPage() {
   const router = useRouter()
+
+  // Modal states
+  const [isApproveOpen, setIsApproveOpen] = useState(false)
+  const [isRejectOpen, setIsRejectOpen] = useState(false)
+  const [isCommentOpen, setIsCommentOpen] = useState(false)
+  const [isViewOpen, setIsViewOpen] = useState(false)
+  const [selectedRequest, setSelectedRequest] = useState<ApprovalRequest | null>(null)
 
   const [approvals] = useState<ApprovalRequest[]>([
     {
@@ -349,6 +336,45 @@ export default function CPQWorkflowApprovalsPage() {
     }
   }
 
+  // Modal handlers
+  const handleApprove = (request: ApprovalRequest) => {
+    setSelectedRequest(request)
+    setIsApproveOpen(true)
+  }
+
+  const handleReject = (request: ApprovalRequest) => {
+    setSelectedRequest(request)
+    setIsRejectOpen(true)
+  }
+
+  const handleAddComment = (request: ApprovalRequest) => {
+    setSelectedRequest(request)
+    setIsCommentOpen(true)
+  }
+
+  const handleView = (request: ApprovalRequest) => {
+    setSelectedRequest(request)
+    setIsViewOpen(true)
+  }
+
+  const handleApproveSubmit = (data: { comments: string; conditions?: string }) => {
+    console.log('Approved:', selectedRequest?.documentNumber, data)
+    // TODO: API call to approve the request
+    setIsApproveOpen(false)
+  }
+
+  const handleRejectSubmit = (data: { reason: string; comments: string }) => {
+    console.log('Rejected:', selectedRequest?.documentNumber, data)
+    // TODO: API call to reject the request
+    setIsRejectOpen(false)
+  }
+
+  const handleCommentSubmit = (comment: string) => {
+    console.log('Comment added:', selectedRequest?.documentNumber, comment)
+    // TODO: API call to add comment
+    setIsCommentOpen(false)
+  }
+
   const totalRequests = approvals.length
   const pendingRequests = approvals.filter(a => a.status === 'pending').length
   const approvedRequests = approvals.filter(a => a.status === 'approved').length
@@ -573,21 +599,33 @@ export default function CPQWorkflowApprovalsPage() {
             <div className="flex items-center gap-2">
               {approval.status === 'pending' && (
                 <>
-                  <button className="px-3 py-2 text-sm text-white bg-green-600 rounded-lg hover:bg-green-700 flex items-center gap-1">
+                  <button
+                    onClick={() => handleApprove(approval)}
+                    className="px-3 py-2 text-sm text-white bg-green-600 rounded-lg hover:bg-green-700 flex items-center gap-1"
+                  >
                     <CheckCircle className="h-4 w-4" />
                     Approve
                   </button>
-                  <button className="px-3 py-2 text-sm text-white bg-red-600 rounded-lg hover:bg-red-700 flex items-center gap-1">
+                  <button
+                    onClick={() => handleReject(approval)}
+                    className="px-3 py-2 text-sm text-white bg-red-600 rounded-lg hover:bg-red-700 flex items-center gap-1"
+                  >
                     <XCircle className="h-4 w-4" />
                     Reject
                   </button>
-                  <button className="px-3 py-2 text-sm text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-1">
+                  <button
+                    onClick={() => handleAddComment(approval)}
+                    className="px-3 py-2 text-sm text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-1"
+                  >
                     <MessageSquare className="h-4 w-4" />
                     Add Comment
                   </button>
                 </>
               )}
-              <button className="px-3 py-2 text-sm text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-1">
+              <button
+                onClick={() => handleView(approval)}
+                className="px-3 py-2 text-sm text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-1"
+              >
                 <Eye className="h-4 w-4" />
                 View Document
               </button>
@@ -607,6 +645,34 @@ export default function CPQWorkflowApprovalsPage() {
           <li><strong>Escalation:</strong> Automatic escalation for overdue approvals</li>
         </ul>
       </div>
+
+      {/* Modals */}
+      <ApproveModal
+        isOpen={isApproveOpen}
+        onClose={() => setIsApproveOpen(false)}
+        onApprove={handleApproveSubmit}
+        request={selectedRequest}
+      />
+
+      <RejectModal
+        isOpen={isRejectOpen}
+        onClose={() => setIsRejectOpen(false)}
+        onReject={handleRejectSubmit}
+        request={selectedRequest}
+      />
+
+      <AddCommentModal
+        isOpen={isCommentOpen}
+        onClose={() => setIsCommentOpen(false)}
+        onAddComment={handleCommentSubmit}
+        request={selectedRequest}
+      />
+
+      <ViewDocumentModal
+        isOpen={isViewOpen}
+        onClose={() => setIsViewOpen(false)}
+        request={selectedRequest}
+      />
     </div>
   )
 }

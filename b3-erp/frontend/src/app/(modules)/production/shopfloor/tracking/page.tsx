@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { ArrowLeft, RefreshCw, Filter, Activity, Clock, CheckCircle, AlertTriangle, Package, Users } from 'lucide-react';
+import { StationDetailModal, WorkOrderDetailModal, StationDetail, WorkOrderDetail } from '@/components/shopfloor/ShopFloorDetailModals';
 
 interface WorkStation {
   id: string;
@@ -44,6 +45,12 @@ export default function ShopFloorTrackingPage() {
   const router = useRouter();
   const [filterDepartment, setFilterDepartment] = useState<string>('all');
   const [filterStatus, setFilterStatus] = useState<string>('all');
+
+  // Modal states
+  const [isStationDetailOpen, setIsStationDetailOpen] = useState(false);
+  const [isWorkOrderDetailOpen, setIsWorkOrderDetailOpen] = useState(false);
+  const [selectedStation, setSelectedStation] = useState<StationDetail | null>(null);
+  const [selectedWorkOrder, setSelectedWorkOrder] = useState<WorkOrderDetail | null>(null);
 
   // Mock data for work stations
   const workStations: WorkStation[] = [
@@ -305,6 +312,120 @@ export default function ShopFloorTrackingPage() {
     return 'text-red-600';
   };
 
+  // Handler functions for modals
+  const handleViewStation = (station: WorkStation) => {
+    // Convert station data to StationDetail format
+    const stationDetail: StationDetail = {
+      id: station.id,
+      stationId: station.id,
+      stationCode: station.stationCode,
+      name: station.stationName,
+      type: station.department,
+      location: 'Production Floor',
+      status: station.status,
+      equipment: station.stationName,
+      capabilities: ['Manufacturing', 'Assembly'],
+      assignedShifts: ['Morning', 'Evening', 'Night'],
+      currentWorkOrder: station.currentWO || undefined,
+      currentOperator: station.operator || undefined,
+      currentOperation: station.currentProduct || undefined,
+      progress: station.completionPercentage,
+      operationProgress: station.completionPercentage,
+      utilizationRate: station.utilizationPercent,
+      availableCapacity: station.plannedQuantity - station.completedQuantity,
+      totalCapacity: station.plannedQuantity,
+      machineStatus: station.status,
+      lastMaintenance: '2025-10-15',
+      nextMaintenanceDue: '2025-11-15',
+      partsProducedToday: station.completedQuantity,
+      currentCycleTime: station.cycleTime,
+      averageCycleTime: station.cycleTime,
+      targetCycleTime: station.targetCycleTime,
+      oeeScore: station.efficiency,
+      availability: 95,
+      performance: station.efficiency,
+      quality: ((station.completedQuantity - station.rejectedQuantity) / station.completedQuantity * 100) || 100,
+      downtimeToday: '15 mins'
+    };
+    setSelectedStation(stationDetail);
+    setIsStationDetailOpen(true);
+  };
+
+  const handleViewWorkOrder = (workOrder: ActiveWorkOrder) => {
+    // Convert work order data to WorkOrderDetail format
+    const workOrderDetail: WorkOrderDetail = {
+      id: workOrder.id,
+      workOrderNumber: workOrder.workOrderNumber,
+      productCode: workOrder.productCode,
+      productName: workOrder.productName,
+      quantity: workOrder.totalQuantity,
+      completedQuantity: workOrder.completedQuantity,
+      status: 'in-progress',
+      priority: workOrder.status === 'delayed' ? 'urgent' : workOrder.status === 'at-risk' ? 'high' : 'medium',
+      startDate: workOrder.startTime,
+      dueDate: workOrder.expectedCompletion,
+      completionDate: undefined,
+      totalEstimatedTime: '40 hours',
+      actualTimeSpent: '28 hours',
+      notes: `Work order for ${workOrder.productName}`,
+      currentOperation: 'Production',
+      currentStation: workOrder.currentStation,
+      currentOperator: workOrder.assignedOperators[0] || undefined,
+      currentOperationStatus: 'in-progress',
+      operations: [
+        {
+          sequence: 1,
+          operationId: 'OP-001',
+          operationName: 'Material Preparation',
+          status: 'completed',
+          station: workOrder.currentStation,
+          operator: workOrder.assignedOperators[0],
+          completedQty: workOrder.totalQuantity,
+          totalQty: workOrder.totalQuantity,
+          startTime: workOrder.startTime,
+          endTime: workOrder.startTime,
+          duration: '8 hours'
+        },
+        {
+          sequence: 2,
+          operationId: 'OP-002',
+          operationName: 'Manufacturing',
+          status: 'in-progress',
+          station: workOrder.currentStation,
+          operator: workOrder.assignedOperators[0],
+          completedQty: workOrder.completedQuantity,
+          totalQty: workOrder.totalQuantity,
+          startTime: workOrder.startTime,
+          duration: '20 hours'
+        },
+        {
+          sequence: 3,
+          operationId: 'OP-003',
+          operationName: 'Quality Control',
+          status: 'pending',
+          completedQty: 0,
+          totalQty: workOrder.totalQuantity
+        }
+      ],
+      materials: [
+        {
+          materialCode: 'MAT-001',
+          materialName: 'Primary Material',
+          requiredQty: workOrder.totalQuantity * 2,
+          availableQty: workOrder.totalQuantity * 2,
+          unit: 'kg',
+          status: 'available',
+          location: 'Warehouse A'
+        }
+      ],
+      inspectionStatus: 'in-progress',
+      defectsFound: 0,
+      qualityRate: 98
+    };
+    setSelectedWorkOrder(workOrderDetail);
+    setIsWorkOrderDetailOpen(true);
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
       {/* Inline Header */}
@@ -414,7 +535,11 @@ export default function ShopFloorTrackingPage() {
       {/* Work Stations Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
         {filteredStations.map((station) => (
-          <div key={station.id} className={`bg-white rounded-xl border-2 p-6 ${getStatusColor(station.status)}`}>
+          <div
+            key={station.id}
+            className={`bg-white rounded-xl border-2 p-6 cursor-pointer hover:shadow-lg transition-all ${getStatusColor(station.status)}`}
+            onClick={() => handleViewStation(station)}
+          >
             <div className="flex items-start justify-between mb-4">
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-1">
@@ -530,7 +655,11 @@ export default function ShopFloorTrackingPage() {
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {activeWorkOrders.map((wo) => (
-                <tr key={wo.id} className="hover:bg-gray-50">
+                <tr
+                  key={wo.id}
+                  className="hover:bg-gray-50 cursor-pointer transition-colors"
+                  onClick={() => handleViewWorkOrder(wo)}
+                >
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="text-sm font-medium text-blue-600">{wo.workOrderNumber}</div>
                   </td>
@@ -565,6 +694,19 @@ export default function ShopFloorTrackingPage() {
           </table>
         </div>
       </div>
+
+      {/* Modals */}
+      <StationDetailModal
+        isOpen={isStationDetailOpen}
+        onClose={() => setIsStationDetailOpen(false)}
+        station={selectedStation}
+      />
+
+      <WorkOrderDetailModal
+        isOpen={isWorkOrderDetailOpen}
+        onClose={() => setIsWorkOrderDetailOpen(false)}
+        workOrder={selectedWorkOrder}
+      />
     </div>
   );
 }

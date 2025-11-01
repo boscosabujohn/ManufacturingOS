@@ -1,7 +1,19 @@
-'use client';
+"use client";
 
-import { useMemo, useState } from 'react';
-import { Users, Search, Filter, PlusCircle, Download, AlertTriangle, ChevronRight } from 'lucide-react';
+import { useMemo, useState } from "react";
+import {
+  Users,
+  Search,
+  Filter,
+  PlusCircle,
+  Download,
+  AlertTriangle,
+  ChevronRight,
+} from "lucide-react";
+import { AssignToProjectModal } from "@/components/project-management/ResourceModals";
+import { AdvancedFilterModal } from "@/components/project-management/ProjectListModals";
+import { ConfirmDialog } from "@/components/modals/ConfirmDialog";
+import { useToast } from "@/components/ui";
 
 type Res = { id: string; name: string; role: string; dept: string; utilization: number };
 const TOP_OVER: Res[] = [
@@ -11,8 +23,14 @@ const TOP_OVER: Res[] = [
 ];
 
 export default function ResourceAllocationPage() {
-  const [searchTerm, setSearchTerm] = useState('');
+  const { toast } = useToast?.() || { toast: (args: any) => console.log(args) };
+  const [searchTerm, setSearchTerm] = useState("");
   const list = useMemo(() => TOP_OVER, []);
+  // Modal state
+  const [showFilter, setShowFilter] = useState(false);
+  const [showAllocate, setShowAllocate] = useState(false);
+  const [showExport, setShowExport] = useState(false);
+  const [selectedResource, setSelectedResource] = useState<Res | null>(null);
 
   return (
     <div className="p-6">
@@ -38,15 +56,27 @@ export default function ResourceAllocationPage() {
             />
           </div>
           <div className="flex gap-2">
-            <button className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">
+            <button
+              onClick={() => setShowFilter(true)}
+              className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"
+            >
               <Filter className="h-4 w-4" />
               Filter
             </button>
-            <button className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">
+            <button
+              onClick={() => setShowExport(true)}
+              className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"
+            >
               <Download className="h-4 w-4" />
               Export
             </button>
-            <button className="flex items-center gap-2 px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700">
+            <button
+              onClick={() => {
+                setSelectedResource(null);
+                setShowAllocate(true);
+              }}
+              className="flex items-center gap-2 px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700"
+            >
               <PlusCircle className="h-4 w-4" />
               Allocate Resource
             </button>
@@ -162,6 +192,39 @@ export default function ResourceAllocationPage() {
           </table>
         </div>
       </div>
+
+      {/* Modals */}
+      <AdvancedFilterModal
+        isOpen={showFilter}
+        onClose={() => setShowFilter(false)}
+        onApply={(filters: any) => {
+          setShowFilter(false);
+          toast?.({ title: "Filters applied", description: JSON.stringify(filters) });
+        }}
+      />
+
+      <AssignToProjectModal
+        isOpen={showAllocate}
+        onClose={() => setShowAllocate(false)}
+        resource={selectedResource as any}
+        onSubmit={(data: any) => {
+          setShowAllocate(false);
+          toast?.({ title: "Resource allocated", description: `${data?.resourceName || 'Resource'} → ${data?.project || 'Project'}` });
+        }}
+      />
+
+      <ConfirmDialog
+        isOpen={showExport}
+        onClose={() => setShowExport(false)}
+        onConfirm={() => {
+          setShowExport(false);
+          toast?.({ title: "Export started", description: "Generating resource allocation report..." });
+        }}
+        title="Export Resource Allocation"
+        message="Do you want to export the current view as CSV?"
+        confirmLabel="Export CSV"
+        variant="info"
+      />
     </div>
   );
 }

@@ -14,6 +14,7 @@ import {
   TrendingUp,
   Percent
 } from 'lucide-react'
+import { CreateRuleModal, EditRuleModal, TestRuleModal } from '@/components/cpq/PricingRuleModals'
 
 interface PricingRule {
   id: string
@@ -29,7 +30,14 @@ interface PricingRule {
 export default function CPQPricingRulesPage() {
   const router = useRouter()
 
-  const [pricingRules] = useState<PricingRule[]>([
+  const [searchQuery, setSearchQuery] = useState('')
+  const [selectedTypeFilter, setSelectedTypeFilter] = useState<string | null>(null)
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false)
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false)
+  const [isTestModalOpen, setIsTestModalOpen] = useState(false)
+  const [selectedRule, setSelectedRule] = useState<PricingRule | null>(null)
+
+  const [pricingRules, setPricingRules] = useState<PricingRule[]>([
     {
       id: 'PR-001',
       name: 'Premium Material Markup',
@@ -134,20 +142,102 @@ export default function CPQPricingRulesPage() {
     return 'bg-gray-100 text-gray-700 border-gray-200'
   }
 
+  // Handlers
+  const handleCreateRule = (rule: any) => {
+    const newRule: PricingRule = {
+      id: `PR-${String(pricingRules.length + 1).padStart(3, '0')}`,
+      name: rule.name,
+      type: rule.type as 'markup' | 'discount' | 'formula' | 'tiered',
+      condition: rule.description || 'Custom condition',
+      value: '+10%', // Simplified for demo
+      priority: rule.priority,
+      status: rule.status === 'active' ? 'active' : 'inactive',
+      appliedCount: 0
+    }
+    setPricingRules([...pricingRules, newRule])
+    setIsCreateModalOpen(false)
+  }
+
+  const handleEditRule = (rule: PricingRule) => {
+    setSelectedRule(rule)
+    setIsEditModalOpen(true)
+  }
+
+  const handleSaveEdit = (updatedRule: any) => {
+    setPricingRules(pricingRules.map(r =>
+      r.id === updatedRule.id ? {
+        ...r,
+        name: updatedRule.name,
+        priority: updatedRule.priority,
+        status: updatedRule.status
+      } : r
+    ))
+    setIsEditModalOpen(false)
+    setSelectedRule(null)
+  }
+
+  const handleTestRule = (rule: PricingRule) => {
+    setSelectedRule(rule)
+    setIsTestModalOpen(true)
+  }
+
+  const handleToggleStatus = (rule: PricingRule) => {
+    setPricingRules(pricingRules.map(r =>
+      r.id === rule.id
+        ? { ...r, status: r.status === 'active' ? 'inactive' : 'active' }
+        : r
+    ))
+  }
+
+  const handleExport = () => {
+    const headers = ['ID', 'Name', 'Type', 'Condition', 'Value', 'Priority', 'Status', 'Applied Count']
+    const csvData = filteredRules.map(rule => [
+      rule.id,
+      `"${rule.name}"`,
+      rule.type,
+      `"${rule.condition}"`,
+      rule.value,
+      rule.priority,
+      rule.status,
+      rule.appliedCount
+    ])
+
+    const csv = [headers, ...csvData].map(row => row.join(',')).join('\n')
+    const blob = new Blob([csv], { type: 'text/csv' })
+    const url = window.URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `pricing-rules-${new Date().toISOString().split('T')[0]}.csv`
+    a.click()
+    window.URL.revokeObjectURL(url)
+  }
+
+  const handleTypeFilter = (type: string | null) => {
+    setSelectedTypeFilter(type)
+  }
+
+  // Filtering logic
+  const filteredRules = pricingRules.filter(rule => {
+    const matchesSearch = searchQuery === '' ||
+      rule.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      rule.id.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      rule.condition.toLowerCase().includes(searchQuery.toLowerCase())
+
+    const matchesType = selectedTypeFilter === null || rule.type === selectedTypeFilter
+
+    return matchesSearch && matchesType
+  })
+
   return (
     <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
       {/* Action Buttons */}
       <div className="mb-6 flex justify-end">
         <div className="flex items-center gap-3">
-          <button className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
-            <Filter className="h-4 w-4" />
-            Filter
-          </button>
-          <button className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
+          <button onClick={handleExport} className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
             <Download className="h-4 w-4" />
             Export
           </button>
-          <button className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 flex items-center gap-2">
+          <button onClick={() => setIsCreateModalOpen(true)} className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 flex items-center gap-2">
             <Plus className="h-4 w-4" />
             Add Rule
           </button>
@@ -160,8 +250,8 @@ export default function CPQPricingRulesPage() {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Total Rules</p>
-              <p className="text-2xl font-bold text-blue-900 mt-1">{pricingRules.length}</p>
-              <p className="text-xs text-blue-700 mt-1">Pricing rules defined</p>
+              <p className="text-2xl font-bold text-blue-900 mt-1">{filteredRules.length}</p>
+              <p className="text-xs text-blue-700 mt-1">Pricing rules {searchQuery || selectedTypeFilter ? 'matching filter' : 'defined'}</p>
             </div>
             <Calculator className="h-10 w-10 text-blue-600" />
           </div>
@@ -172,7 +262,7 @@ export default function CPQPricingRulesPage() {
             <div>
               <p className="text-sm font-medium text-green-600">Active Rules</p>
               <p className="text-2xl font-bold text-green-900 mt-1">
-                {pricingRules.filter(r => r.status === 'active').length}
+                {filteredRules.filter(r => r.status === 'active').length}
               </p>
               <p className="text-xs text-green-700 mt-1">Currently applied</p>
             </div>
@@ -185,7 +275,7 @@ export default function CPQPricingRulesPage() {
             <div>
               <p className="text-sm font-medium text-purple-600">Total Applications</p>
               <p className="text-2xl font-bold text-purple-900 mt-1">
-                {pricingRules.reduce((sum, r) => sum + r.appliedCount, 0)}
+                {filteredRules.reduce((sum, r) => sum + r.appliedCount, 0)}
               </p>
               <p className="text-xs text-purple-700 mt-1">Rules applied to quotes</p>
             </div>
@@ -207,19 +297,39 @@ export default function CPQPricingRulesPage() {
 
       {/* Rule Type Filter */}
       <div className="mb-6 flex gap-3">
-        <button className="px-4 py-2 bg-blue-100 text-blue-700 border border-blue-200 rounded-lg hover:bg-blue-200 text-sm font-medium">
+        <button onClick={() => handleTypeFilter(null)} className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+          selectedTypeFilter === null
+            ? 'bg-blue-100 text-blue-700 border border-blue-200'
+            : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
+        }`}>
           All Rules ({pricingRules.length})
         </button>
-        <button className="px-4 py-2 bg-white text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+        <button onClick={() => handleTypeFilter('markup')} className={`px-4 py-2 rounded-lg text-sm transition-colors ${
+          selectedTypeFilter === 'markup'
+            ? 'bg-blue-100 text-blue-700 border border-blue-200'
+            : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
+        }`}>
           Markup ({pricingRules.filter(r => r.type === 'markup').length})
         </button>
-        <button className="px-4 py-2 bg-white text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+        <button onClick={() => handleTypeFilter('discount')} className={`px-4 py-2 rounded-lg text-sm transition-colors ${
+          selectedTypeFilter === 'discount'
+            ? 'bg-blue-100 text-blue-700 border border-blue-200'
+            : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
+        }`}>
           Discount ({pricingRules.filter(r => r.type === 'discount').length})
         </button>
-        <button className="px-4 py-2 bg-white text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+        <button onClick={() => handleTypeFilter('formula')} className={`px-4 py-2 rounded-lg text-sm transition-colors ${
+          selectedTypeFilter === 'formula'
+            ? 'bg-blue-100 text-blue-700 border border-blue-200'
+            : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
+        }`}>
           Formula ({pricingRules.filter(r => r.type === 'formula').length})
         </button>
-        <button className="px-4 py-2 bg-white text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+        <button onClick={() => handleTypeFilter('tiered')} className={`px-4 py-2 rounded-lg text-sm transition-colors ${
+          selectedTypeFilter === 'tiered'
+            ? 'bg-blue-100 text-blue-700 border border-blue-200'
+            : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
+        }`}>
           Tiered ({pricingRules.filter(r => r.type === 'tiered').length})
         </button>
       </div>
@@ -230,6 +340,8 @@ export default function CPQPricingRulesPage() {
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
           <input
             type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search pricing rules..."
             className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           />
@@ -253,52 +365,70 @@ export default function CPQPricingRulesPage() {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
-              {pricingRules.map((rule) => (
-                <tr key={rule.id} className="hover:bg-gray-50 transition-colors">
-                  <td className="px-4 py-4">
-                    <div className="text-sm font-medium text-gray-900">{rule.name}</div>
-                    <div className="text-xs text-gray-500">{rule.id}</div>
-                  </td>
-                  <td className="px-4 py-4 whitespace-nowrap text-center">
-                    <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full border ${getTypeColor(rule.type)}`}>
-                      {rule.type}
-                    </span>
-                  </td>
-                  <td className="px-4 py-4">
-                    <div className="text-xs text-gray-700 max-w-xs">{rule.condition}</div>
-                  </td>
-                  <td className="px-4 py-4">
-                    <div className="text-sm font-semibold text-blue-600">{rule.value}</div>
-                  </td>
-                  <td className="px-4 py-4 whitespace-nowrap text-center">
-                    <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full border ${getPriorityColor(rule.priority)}`}>
-                      P{rule.priority}
-                    </span>
-                  </td>
-                  <td className="px-4 py-4 whitespace-nowrap text-center">
-                    <span className="text-sm text-gray-700">{rule.appliedCount}</span>
-                  </td>
-                  <td className="px-4 py-4 whitespace-nowrap text-center">
-                    <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full border ${getStatusColor(rule.status)}`}>
-                      {rule.status}
-                    </span>
-                  </td>
-                  <td className="px-4 py-4 whitespace-nowrap text-right">
-                    <div className="flex items-center justify-end gap-2">
-                      <button
-                        className="p-1.5 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-                        aria-label="Edit"
-                       
-                      >
-                        <Edit className="h-4 w-4" />
-                      </button>
-                      <button className="p-1.5 text-gray-600 hover:bg-gray-50 rounded-lg transition-colors">
-                        {rule.status === 'active' ? <ToggleRight className="h-4 w-4" /> : <ToggleLeft className="h-4 w-4" />}
-                      </button>
-                    </div>
+              {filteredRules.length === 0 ? (
+                <tr>
+                  <td colSpan={8} className="px-4 py-12 text-center text-gray-500">
+                    {searchQuery || selectedTypeFilter ? (
+                      <div>
+                        <p className="text-lg font-medium mb-2">No matching rules found</p>
+                        <p className="text-sm">Try adjusting your search or filter criteria</p>
+                      </div>
+                    ) : (
+                      <div>
+                        <p className="text-lg font-medium mb-2">No pricing rules yet</p>
+                        <p className="text-sm">Click "Add Rule" to create your first pricing rule</p>
+                      </div>
+                    )}
                   </td>
                 </tr>
-              ))}
+              ) : (
+                filteredRules.map((rule) => (
+                  <tr key={rule.id} onClick={() => handleTestRule(rule)} className="hover:bg-gray-50 transition-colors cursor-pointer">
+                    <td className="px-4 py-4">
+                      <div className="text-sm font-medium text-gray-900">{rule.name}</div>
+                      <div className="text-xs text-gray-500">{rule.id}</div>
+                    </td>
+                    <td className="px-4 py-4 whitespace-nowrap text-center">
+                      <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full border ${getTypeColor(rule.type)}`}>
+                        {rule.type}
+                      </span>
+                    </td>
+                    <td className="px-4 py-4">
+                      <div className="text-xs text-gray-700 max-w-xs">{rule.condition}</div>
+                    </td>
+                    <td className="px-4 py-4">
+                      <div className="text-sm font-semibold text-blue-600">{rule.value}</div>
+                    </td>
+                    <td className="px-4 py-4 whitespace-nowrap text-center">
+                      <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full border ${getPriorityColor(rule.priority)}`}>
+                        P{rule.priority}
+                      </span>
+                    </td>
+                    <td className="px-4 py-4 whitespace-nowrap text-center">
+                      <span className="text-sm text-gray-700">{rule.appliedCount}</span>
+                    </td>
+                    <td className="px-4 py-4 whitespace-nowrap text-center">
+                      <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full border ${getStatusColor(rule.status)}`}>
+                        {rule.status}
+                      </span>
+                    </td>
+                    <td className="px-4 py-4 whitespace-nowrap text-right">
+                      <div className="flex items-center justify-end gap-2">
+                        <button
+                          onClick={(e) => { e.stopPropagation(); handleEditRule(rule); }}
+                          className="p-1.5 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                          aria-label="Edit"
+                        >
+                          <Edit className="h-4 w-4" />
+                        </button>
+                        <button onClick={(e) => { e.stopPropagation(); handleToggleStatus(rule); }} className="p-1.5 text-gray-600 hover:bg-gray-50 rounded-lg transition-colors" title={rule.status === 'active' ? 'Deactivate' : 'Activate'}>
+                          {rule.status === 'active' ? <ToggleRight className="h-4 w-4 text-green-600" /> : <ToggleLeft className="h-4 w-4 text-gray-400" />}
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>
@@ -314,6 +444,26 @@ export default function CPQPricingRulesPage() {
           <li><strong>Tiered:</strong> Applies different rates based on quantity ranges</li>
         </ul>
       </div>
+
+      {/* Modals */}
+      <CreateRuleModal
+        isOpen={isCreateModalOpen}
+        onClose={() => setIsCreateModalOpen(false)}
+        onSave={handleCreateRule}
+      />
+
+      <EditRuleModal
+        isOpen={isEditModalOpen}
+        onClose={() => setIsEditModalOpen(false)}
+        onSave={handleSaveEdit}
+        rule={selectedRule}
+      />
+
+      <TestRuleModal
+        isOpen={isTestModalOpen}
+        onClose={() => setIsTestModalOpen(false)}
+        rule={selectedRule}
+      />
     </div>
   )
 }

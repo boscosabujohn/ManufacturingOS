@@ -38,6 +38,7 @@ import {
   PlayCircle,
   FileCheck,
 } from 'lucide-react';
+import { PurchaseRequisitionModal } from '@/components/production/PurchaseRequisitionModal';
 
 // TypeScript Interfaces
 interface MaterialRequirement {
@@ -376,6 +377,7 @@ export default function AddWorkOrderPage() {
   const [selectedSecondaryWC, setSelectedSecondaryWC] = useState('');
   const [showBOMExplosion, setShowBOMExplosion] = useState(false);
   const [showSchedulePreview, setShowSchedulePreview] = useState(false);
+  const [isPRModalOpen, setIsPRModalOpen] = useState(false);
 
   const [formData, setFormData] = useState<WorkOrderFormData>({
     woNumber: woNumber,
@@ -583,6 +585,11 @@ export default function AddWorkOrderPage() {
   const handleRelease = () => {
     console.log('Release Work Order:', formData);
     router.push('/production/work-orders');
+  };
+
+  const handlePRSubmit = (prData: any) => {
+    console.log('Purchase Requisition created:', prData);
+    alert(`Purchase Requisition ${prData.prNumber} created successfully!\n\nItems: ${prData.items.length}\nTotal Cost: ₹${prData.items.reduce((sum: number, item: any) => sum + (parseFloat(item.estimatedCost) || 0), 0).toLocaleString('en-IN')}\n\nPR has been submitted for approval.`);
   };
 
   const formatCurrency = (amount: number) => {
@@ -991,7 +998,10 @@ export default function AddWorkOrderPage() {
                           </p>
                         </div>
                       </div>
-                      <button className="px-3 py-1 bg-orange-600 text-white text-xs rounded hover:bg-orange-700">
+                      <button
+                        onClick={() => setIsPRModalOpen(true)}
+                        className="px-3 py-1 bg-orange-600 text-white text-xs rounded hover:bg-orange-700"
+                      >
                         Create PR
                       </button>
                     </div>
@@ -1484,6 +1494,15 @@ export default function AddWorkOrderPage() {
           </div>
         </div>
       </div>
+
+      {/* Purchase Requisition Modal */}
+      <PurchaseRequisitionModal
+        isOpen={isPRModalOpen}
+        onClose={() => setIsPRModalOpen(false)}
+        materials={formData.materialRequirements}
+        woNumber={woNumber}
+        onSubmit={handlePRSubmit}
+      />
     </div>
   );
 }

@@ -1,7 +1,19 @@
 'use client';
 
 import { useState } from 'react';
-import { BarChart3, TrendingUp, TrendingDown, DollarSign, Clock, CheckCircle, AlertTriangle, Users, Package, Target } from 'lucide-react';
+import { BarChart3, TrendingUp, TrendingDown, DollarSign, Clock, CheckCircle, AlertTriangle, Users, Package, Target, Settings, Calendar, Download, Target as TargetIcon, GitCompare, Bell, Send, Share2, Bookmark } from 'lucide-react';
+import {
+  CustomDashboardModal,
+  TimePeriodFilterModal,
+  ExportAnalyticsModal,
+  KPIConfigurationModal,
+  DrillDownDetailsModal,
+  ComparisonAnalysisModal,
+  AlertThresholdModal,
+  ScheduleAnalyticsModal,
+  ShareAnalyticsModal,
+  SavedViewsModal,
+} from '@/components/project-management/AnalyticsModals';
 
 interface ProjectMetrics {
   totalProjects: number;
@@ -44,6 +56,20 @@ interface ResourceUtilization {
 export default function ProjectAnalyticsPage() {
   const [timeRange, setTimeRange] = useState<'month' | 'quarter' | 'year'>('month');
   const [selectedMetric, setSelectedMetric] = useState<'revenue' | 'profit' | 'projects'>('revenue');
+
+  // Modal states
+  const [isCustomDashboardModalOpen, setIsCustomDashboardModalOpen] = useState(false);
+  const [isTimePeriodFilterModalOpen, setIsTimePeriodFilterModalOpen] = useState(false);
+  const [isExportAnalyticsModalOpen, setIsExportAnalyticsModalOpen] = useState(false);
+  const [isKPIConfigurationModalOpen, setIsKPIConfigurationModalOpen] = useState(false);
+  const [isDrillDownDetailsModalOpen, setIsDrillDownDetailsModalOpen] = useState(false);
+  const [isComparisonAnalysisModalOpen, setIsComparisonAnalysisModalOpen] = useState(false);
+  const [isAlertThresholdModalOpen, setIsAlertThresholdModalOpen] = useState(false);
+  const [isScheduleAnalyticsModalOpen, setIsScheduleAnalyticsModalOpen] = useState(false);
+  const [isShareAnalyticsModalOpen, setIsShareAnalyticsModalOpen] = useState(false);
+  const [isSavedViewsModalOpen, setIsSavedViewsModalOpen] = useState(false);
+  const [drillDownMetric, setDrillDownMetric] = useState<string | null>(null);
+  const [drillDownData, setDrillDownData] = useState<any>(null);
 
   // Mock Data
   const metrics: ProjectMetrics = {
@@ -104,9 +130,133 @@ export default function ProjectAnalyticsPage() {
 
   const maxValue = getMaxValue();
 
+  // Modal Handlers
+  const handleSaveDashboardConfig = (config: any) => {
+    console.log('Dashboard Config:', config);
+    setIsCustomDashboardModalOpen(false);
+  };
+
+  const handleApplyTimePeriodFilter = (filter: any) => {
+    console.log('Time Period Filter:', filter);
+    setIsTimePeriodFilterModalOpen(false);
+  };
+
+  const handleExportAnalytics = (exportConfig: any) => {
+    console.log('Export Config:', exportConfig);
+    setIsExportAnalyticsModalOpen(false);
+  };
+
+  const handleSaveKPIConfiguration = (config: any) => {
+    console.log('KPI Configuration:', config);
+    setIsKPIConfigurationModalOpen(false);
+  };
+
+  const handleComparisonAnalysis = () => {
+    setIsComparisonAnalysisModalOpen(false);
+  };
+
+  const handleSaveAlertThresholds = (thresholds: any) => {
+    console.log('Alert Thresholds:', thresholds);
+    setIsAlertThresholdModalOpen(false);
+  };
+
+  const handleScheduleAnalytics = (schedule: any) => {
+    console.log('Schedule Analytics:', schedule);
+    setIsScheduleAnalyticsModalOpen(false);
+  };
+
+  const handleShareAnalytics = (shareData: any) => {
+    console.log('Share Analytics:', shareData);
+    setIsShareAnalyticsModalOpen(false);
+  };
+
+  const handleLoadView = (viewId: string) => {
+    console.log('Load View:', viewId);
+    setIsSavedViewsModalOpen(false);
+  };
+
+  const handleDrillDown = (metric: string, data: any) => {
+    setDrillDownMetric(metric);
+    setDrillDownData(data);
+    setIsDrillDownDetailsModalOpen(true);
+  };
+
   return (
     <div className="w-full h-screen overflow-y-auto overflow-x-hidden">
       <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+        {/* Page Header with Actions */}
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+          <div>
+            <h1 className="text-2xl font-bold text-gray-900">Project Analytics</h1>
+            <p className="text-sm text-gray-600 mt-1">Comprehensive insights into project performance</p>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <button
+              onClick={() => setIsSavedViewsModalOpen(true)}
+              className="inline-flex items-center px-3 py-2 border border-gray-300 text-sm font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 transition-colors"
+            >
+              <Bookmark className="h-4 w-4 mr-2" />
+              Saved Views
+            </button>
+            <button
+              onClick={() => setIsCustomDashboardModalOpen(true)}
+              className="inline-flex items-center px-3 py-2 border border-gray-300 text-sm font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 transition-colors"
+            >
+              <Settings className="h-4 w-4 mr-2" />
+              Customize
+            </button>
+            <button
+              onClick={() => setIsTimePeriodFilterModalOpen(true)}
+              className="inline-flex items-center px-3 py-2 border border-gray-300 text-sm font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 transition-colors"
+            >
+              <Calendar className="h-4 w-4 mr-2" />
+              Time Filter
+            </button>
+            <button
+              onClick={() => setIsKPIConfigurationModalOpen(true)}
+              className="inline-flex items-center px-3 py-2 border border-gray-300 text-sm font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 transition-colors"
+            >
+              <TargetIcon className="h-4 w-4 mr-2" />
+              KPI Config
+            </button>
+            <button
+              onClick={() => setIsComparisonAnalysisModalOpen(true)}
+              className="inline-flex items-center px-3 py-2 border border-gray-300 text-sm font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 transition-colors"
+            >
+              <GitCompare className="h-4 w-4 mr-2" />
+              Compare
+            </button>
+            <button
+              onClick={() => setIsAlertThresholdModalOpen(true)}
+              className="inline-flex items-center px-3 py-2 border border-gray-300 text-sm font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 transition-colors"
+            >
+              <Bell className="h-4 w-4 mr-2" />
+              Alerts
+            </button>
+            <button
+              onClick={() => setIsScheduleAnalyticsModalOpen(true)}
+              className="inline-flex items-center px-3 py-2 border border-gray-300 text-sm font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 transition-colors"
+            >
+              <Send className="h-4 w-4 mr-2" />
+              Schedule
+            </button>
+            <button
+              onClick={() => setIsShareAnalyticsModalOpen(true)}
+              className="inline-flex items-center px-3 py-2 border border-gray-300 text-sm font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 transition-colors"
+            >
+              <Share2 className="h-4 w-4 mr-2" />
+              Share
+            </button>
+            <button
+              onClick={() => setIsExportAnalyticsModalOpen(true)}
+              className="inline-flex items-center px-3 py-2 bg-blue-600 text-sm font-medium rounded-lg text-white hover:bg-blue-700 transition-colors"
+            >
+              <Download className="h-4 w-4 mr-2" />
+              Export
+            </button>
+          </div>
+        </div>
+
       {/* Time Range Filter */}
       <div className="flex justify-end space-x-2 mb-4">
         <button
@@ -144,7 +294,9 @@ export default function ProjectAnalyticsPage() {
 
       {/* Key Metrics Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
-        <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
+        <div
+          onClick={() => handleDrillDown('Total Projects', { total: metrics.totalProjects, active: metrics.activeProjects, completed: metrics.completedProjects })}
+          className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm cursor-pointer hover:shadow-md transition-shadow">
           <div className="flex items-center justify-between mb-2">
             <div className="p-2 bg-blue-100 rounded-lg">
               <BarChart3 className="h-6 w-6 text-blue-600" />
@@ -159,7 +311,9 @@ export default function ProjectAnalyticsPage() {
           <p className="text-xs text-gray-500 mt-1">{metrics.activeProjects} Active, {metrics.completedProjects} Completed</p>
         </div>
 
-        <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
+        <div
+          onClick={() => handleDrillDown('Total Revenue', { revenue: metrics.totalRevenue, cost: metrics.totalCost })}
+          className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm cursor-pointer hover:shadow-md transition-shadow">
           <div className="flex items-center justify-between mb-2">
             <div className="p-2 bg-green-100 rounded-lg">
               <DollarSign className="h-6 w-6 text-green-600" />
@@ -174,7 +328,9 @@ export default function ProjectAnalyticsPage() {
           <p className="text-xs text-gray-500 mt-1">Cost: ₹{(metrics.totalCost / 10000000).toFixed(1)}Cr</p>
         </div>
 
-        <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
+        <div
+          onClick={() => handleDrillDown('Profit Margin', { margin: metrics.profitMargin, profit: metrics.totalRevenue - metrics.totalCost })}
+          className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm cursor-pointer hover:shadow-md transition-shadow">
           <div className="flex items-center justify-between mb-2">
             <div className="p-2 bg-purple-100 rounded-lg">
               <Target className="h-6 w-6 text-purple-600" />
@@ -189,7 +345,9 @@ export default function ProjectAnalyticsPage() {
           <p className="text-xs text-gray-500 mt-1">Profit: ₹{((metrics.totalRevenue - metrics.totalCost) / 10000000).toFixed(1)}Cr</p>
         </div>
 
-        <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
+        <div
+          onClick={() => handleDrillDown('Avg Duration', { avgDuration: metrics.avgProjectDuration })}
+          className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm cursor-pointer hover:shadow-md transition-shadow">
           <div className="flex items-center justify-between mb-2">
             <div className="p-2 bg-yellow-100 rounded-lg">
               <Clock className="h-6 w-6 text-yellow-600" />
@@ -204,7 +362,9 @@ export default function ProjectAnalyticsPage() {
           <p className="text-xs text-gray-500 mt-1">Days per project</p>
         </div>
 
-        <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
+        <div
+          onClick={() => handleDrillDown('On-Time Delivery', { onTimeDelivery: metrics.onTimeDelivery, delayed: metrics.delayedProjects })}
+          className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm cursor-pointer hover:shadow-md transition-shadow">
           <div className="flex items-center justify-between mb-2">
             <div className="p-2 bg-cyan-100 rounded-lg">
               <CheckCircle className="h-6 w-6 text-cyan-600" />
@@ -525,6 +685,68 @@ export default function ProjectAnalyticsPage() {
           </div>
         </div>
       </div>
+
+      {/* All Modals */}
+      <CustomDashboardModal
+        isOpen={isCustomDashboardModalOpen}
+        onClose={() => setIsCustomDashboardModalOpen(false)}
+        onSave={handleSaveDashboardConfig}
+      />
+
+      <TimePeriodFilterModal
+        isOpen={isTimePeriodFilterModalOpen}
+        onClose={() => setIsTimePeriodFilterModalOpen(false)}
+        onApply={handleApplyTimePeriodFilter}
+      />
+
+      <ExportAnalyticsModal
+        isOpen={isExportAnalyticsModalOpen}
+        onClose={() => setIsExportAnalyticsModalOpen(false)}
+        onExport={handleExportAnalytics}
+      />
+
+      <KPIConfigurationModal
+        isOpen={isKPIConfigurationModalOpen}
+        onClose={() => setIsKPIConfigurationModalOpen(false)}
+        onSave={handleSaveKPIConfiguration}
+      />
+
+      <DrillDownDetailsModal
+        isOpen={isDrillDownDetailsModalOpen}
+        onClose={() => setIsDrillDownDetailsModalOpen(false)}
+        metric={drillDownMetric}
+        data={drillDownData}
+      />
+
+      <ComparisonAnalysisModal
+        isOpen={isComparisonAnalysisModalOpen}
+        onClose={() => setIsComparisonAnalysisModalOpen(false)}
+        metrics={metrics}
+      />
+
+      <AlertThresholdModal
+        isOpen={isAlertThresholdModalOpen}
+        onClose={() => setIsAlertThresholdModalOpen(false)}
+        onSave={handleSaveAlertThresholds}
+      />
+
+      <ScheduleAnalyticsModal
+        isOpen={isScheduleAnalyticsModalOpen}
+        onClose={() => setIsScheduleAnalyticsModalOpen(false)}
+        onSchedule={handleScheduleAnalytics}
+      />
+
+      <ShareAnalyticsModal
+        isOpen={isShareAnalyticsModalOpen}
+        onClose={() => setIsShareAnalyticsModalOpen(false)}
+        onShare={handleShareAnalytics}
+      />
+
+      <SavedViewsModal
+        isOpen={isSavedViewsModalOpen}
+        onClose={() => setIsSavedViewsModalOpen(false)}
+        onLoadView={handleLoadView}
+      />
     </div>
   );
 }

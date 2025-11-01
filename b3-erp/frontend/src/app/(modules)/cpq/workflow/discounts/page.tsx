@@ -17,50 +17,23 @@ import {
   MessageSquare,
   Eye
 } from 'lucide-react'
-
-interface DiscountRequest {
-  id: string
-  quoteNumber: string
-  customerName: string
-  customerType: 'new' | 'repeat' | 'vip' | 'strategic'
-  industry: string
-  originalValue: number
-  discountPercentage: number
-  discountAmount: number
-  finalValue: number
-  requestedBy: string
-  requestDate: string
-  reason: string
-  justification: string
-  currentApprover: string
-  status: 'pending' | 'approved' | 'rejected' | 'expired'
-  priority: 'low' | 'medium' | 'high' | 'urgent'
-  productCategory: string
-  quantity: number
-  competitorPrice?: number
-  marginAfterDiscount: number
-  approvalChain: ApprovalStep[]
-  comments: Comment[]
-}
-
-interface ApprovalStep {
-  level: number
-  approver: string
-  role: string
-  status: 'pending' | 'approved' | 'rejected'
-  actionDate?: string
-  comments?: string
-}
-
-interface Comment {
-  id: string
-  author: string
-  message: string
-  timestamp: string
-}
+import {
+  ApproveDiscountModal,
+  RejectDiscountModal,
+  AddDiscountCommentModal,
+  ViewQuoteModal,
+  DiscountRequest
+} from '@/components/cpq/DiscountWorkflowModals'
 
 export default function CPQWorkflowDiscountsPage() {
   const router = useRouter()
+
+  // Modal states
+  const [isApproveOpen, setIsApproveOpen] = useState(false)
+  const [isRejectOpen, setIsRejectOpen] = useState(false)
+  const [isCommentOpen, setIsCommentOpen] = useState(false)
+  const [isViewOpen, setIsViewOpen] = useState(false)
+  const [selectedDiscount, setSelectedDiscount] = useState<DiscountRequest | null>(null)
 
   const [discounts] = useState<DiscountRequest[]>([
     {
@@ -404,6 +377,45 @@ export default function CPQWorkflowDiscountsPage() {
     }
   }
 
+  // Modal handlers
+  const handleApprove = (discount: DiscountRequest) => {
+    setSelectedDiscount(discount)
+    setIsApproveOpen(true)
+  }
+
+  const handleReject = (discount: DiscountRequest) => {
+    setSelectedDiscount(discount)
+    setIsRejectOpen(true)
+  }
+
+  const handleAddComment = (discount: DiscountRequest) => {
+    setSelectedDiscount(discount)
+    setIsCommentOpen(true)
+  }
+
+  const handleView = (discount: DiscountRequest) => {
+    setSelectedDiscount(discount)
+    setIsViewOpen(true)
+  }
+
+  const handleApproveSubmit = (data: { comments: string; conditions?: string }) => {
+    console.log('Approved discount:', selectedDiscount?.quoteNumber, data)
+    // TODO: API call to approve the discount
+    setIsApproveOpen(false)
+  }
+
+  const handleRejectSubmit = (data: { reason: string; comments: string; alternativeSuggestion?: string }) => {
+    console.log('Rejected discount:', selectedDiscount?.quoteNumber, data)
+    // TODO: API call to reject the discount
+    setIsRejectOpen(false)
+  }
+
+  const handleCommentSubmit = (comment: string) => {
+    console.log('Comment added:', selectedDiscount?.quoteNumber, comment)
+    // TODO: API call to add comment
+    setIsCommentOpen(false)
+  }
+
   const totalRequests = discounts.length
   const pendingRequests = discounts.filter(d => d.status === 'pending').length
   const approvedRequests = discounts.filter(d => d.status === 'approved').length
@@ -666,21 +678,33 @@ export default function CPQWorkflowDiscountsPage() {
             <div className="flex items-center gap-2">
               {discount.status === 'pending' && (
                 <>
-                  <button className="px-3 py-2 text-sm text-white bg-green-600 rounded-lg hover:bg-green-700 flex items-center gap-1">
+                  <button
+                    onClick={() => handleApprove(discount)}
+                    className="px-3 py-2 text-sm text-white bg-green-600 rounded-lg hover:bg-green-700 flex items-center gap-1"
+                  >
                     <CheckCircle className="h-4 w-4" />
                     Approve
                   </button>
-                  <button className="px-3 py-2 text-sm text-white bg-red-600 rounded-lg hover:bg-red-700 flex items-center gap-1">
+                  <button
+                    onClick={() => handleReject(discount)}
+                    className="px-3 py-2 text-sm text-white bg-red-600 rounded-lg hover:bg-red-700 flex items-center gap-1"
+                  >
                     <XCircle className="h-4 w-4" />
                     Reject
                   </button>
-                  <button className="px-3 py-2 text-sm text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-1">
+                  <button
+                    onClick={() => handleAddComment(discount)}
+                    className="px-3 py-2 text-sm text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-1"
+                  >
                     <MessageSquare className="h-4 w-4" />
                     Add Comment
                   </button>
                 </>
               )}
-              <button className="px-3 py-2 text-sm text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-1">
+              <button
+                onClick={() => handleView(discount)}
+                className="px-3 py-2 text-sm text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-1"
+              >
                 <Eye className="h-4 w-4" />
                 View Quote
               </button>
@@ -701,6 +725,34 @@ export default function CPQWorkflowDiscountsPage() {
           <li><strong>Margin Rule:</strong> Minimum 15% margin must be maintained after discount</li>
         </ul>
       </div>
+
+      {/* Modals */}
+      <ApproveDiscountModal
+        isOpen={isApproveOpen}
+        onClose={() => setIsApproveOpen(false)}
+        onApprove={handleApproveSubmit}
+        discount={selectedDiscount}
+      />
+
+      <RejectDiscountModal
+        isOpen={isRejectOpen}
+        onClose={() => setIsRejectOpen(false)}
+        onReject={handleRejectSubmit}
+        discount={selectedDiscount}
+      />
+
+      <AddDiscountCommentModal
+        isOpen={isCommentOpen}
+        onClose={() => setIsCommentOpen(false)}
+        onAddComment={handleCommentSubmit}
+        discount={selectedDiscount}
+      />
+
+      <ViewQuoteModal
+        isOpen={isViewOpen}
+        onClose={() => setIsViewOpen(false)}
+        discount={selectedDiscount}
+      />
     </div>
   )
 }

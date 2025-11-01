@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Calendar, Clock, AlertCircle, CheckCircle, Layers, Zap } from 'lucide-react';
+import { Calendar, Clock, AlertCircle, CheckCircle, Layers, Zap, Download, RefreshCw, BarChart3, Settings, Play, Pause } from 'lucide-react';
 
 export type ScheduleStatus = 'scheduled' | 'in-progress' | 'completed' | 'delayed' | 'blocked';
 export type ConstraintType = 'resource' | 'material' | 'tooling' | 'labor' | 'sequence';
@@ -270,15 +270,112 @@ const FiniteScheduling: React.FC = () => {
     }
   };
 
+  // Handler functions
+  const handleReoptimize = () => {
+    console.log('Re-optimizing schedule with current constraints...');
+    alert('Re-optimizing schedule with current constraints and capacity limits...\n\nOptimization criteria:\n- Minimize makespan\n- Maximize resource utilization\n- Respect constraints and priorities\n- Balance workload across work centers');
+  };
+
+  const handleExportSchedule = () => {
+    console.log('Exporting finite schedule to Excel...');
+    alert('Exporting Finite Schedule Report to Excel...\n\nIncludes:\n- Work center utilization\n- Scheduled jobs timeline\n- Constraint analysis\n- Capacity planning data');
+  };
+
+  const handleViewGantt = () => {
+    console.log('Opening Gantt chart view...');
+    alert('Opening interactive Gantt chart view...\n\nFeatures:\n- Visual timeline of all jobs\n- Drag-and-drop rescheduling\n- Dependency visualization\n- Real-time conflict detection');
+  };
+
+  const handleScheduleSettings = () => {
+    console.log('Opening schedule settings...');
+    alert('Schedule Settings\n\nConfigure:\n- Optimization algorithms\n- Constraint priorities\n- Capacity buffers\n- Scheduling rules and policies');
+  };
+
+  const handleStartJob = (job: ScheduledJob) => {
+    if (job.status === 'in-progress') {
+      alert(`Job ${job.jobNumber} is already in progress.\n\nCurrent progress: ${job.completedQty}/${job.quantity} units (${job.utilizationPercent}%)`);
+      return;
+    }
+    if (job.status === 'completed') {
+      alert(`Job ${job.jobNumber} is already completed.`);
+      return;
+    }
+    if (job.constraints.length > 0) {
+      if (confirm(`Warning: Job ${job.jobNumber} has active constraints:\n${job.constraints.join(', ')}\n\nDo you want to start this job anyway?`)) {
+        console.log('Starting job with constraints:', job);
+        alert(`Job ${job.jobNumber} started!\n\nProduct: ${job.productName}\nWork Center: ${job.workCenter}\nQuantity: ${job.quantity} units\n\n⚠️ Monitor constraints closely.`);
+      }
+    } else {
+      if (confirm(`Start job ${job.jobNumber}?\n\nProduct: ${job.productName}\nWork Center: ${job.workCenter}\nQuantity: ${job.quantity} units\nDuration: ${job.duration} min`)) {
+        console.log('Starting job:', job);
+        alert(`Job ${job.jobNumber} started successfully!\n\nOperators notified.\nReal-time tracking enabled.`);
+      }
+    }
+  };
+
+  const handlePauseJob = (job: ScheduledJob) => {
+    if (job.status !== 'in-progress') {
+      alert(`Job ${job.jobNumber} is not currently in progress.`);
+      return;
+    }
+    if (confirm(`Pause job ${job.jobNumber}?\n\nCurrent progress: ${job.completedQty}/${job.quantity} units\n\nWork will be temporarily suspended.`)) {
+      console.log('Pausing job:', job);
+      alert(`Job ${job.jobNumber} paused.\n\nProgress saved: ${job.completedQty} units completed.\nWork center ${job.workCenter} will be available for other jobs.`);
+    }
+  };
+
+  const handleResolveConstraint = (constraint: ScheduleConstraint) => {
+    if (constraint.resolution) {
+      if (confirm(`Mark constraint as resolved?\n\nType: ${constraint.type}\nDescription: ${constraint.description}\n\nResolution: ${constraint.resolution}\n\nThis will unblock ${constraint.impactedJobs} job(s).`)) {
+        console.log('Resolving constraint:', constraint);
+        alert(`Constraint resolved successfully!\n\n${constraint.impactedJobs} job(s) unblocked.\nSchedule will be automatically re-optimized.`);
+      }
+    } else {
+      alert(`Resolve ${constraint.type} constraint:\n\n${constraint.description}\n\nImpacts: ${constraint.impactedJobs} job(s)\nSeverity: ${constraint.severity}\n\nPlease provide resolution details and update the constraint status.`);
+    }
+  };
+
   return (
     <div className="space-y-6">
       {/* Header */}
       <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-6 rounded-lg shadow-lg">
-        <div className="flex items-center space-x-3">
-          <Calendar className="h-8 w-8" />
-          <div>
-            <h2 className="text-2xl font-bold">Finite Capacity Scheduling</h2>
-            <p className="text-blue-100">Constraint-based planning with real-time optimization</p>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-3">
+            <Calendar className="h-8 w-8" />
+            <div>
+              <h2 className="text-2xl font-bold">Finite Capacity Scheduling</h2>
+              <p className="text-blue-100">Constraint-based planning with real-time optimization</p>
+            </div>
+          </div>
+          <div className="flex space-x-2">
+            <button
+              onClick={handleReoptimize}
+              className="flex items-center space-x-2 px-4 py-2 bg-white text-blue-600 rounded-lg hover:bg-blue-50 transition-colors"
+            >
+              <RefreshCw className="h-4 w-4" />
+              <span>Re-optimize</span>
+            </button>
+            <button
+              onClick={handleViewGantt}
+              className="flex items-center space-x-2 px-4 py-2 bg-white text-blue-600 rounded-lg hover:bg-blue-50 transition-colors"
+            >
+              <BarChart3 className="h-4 w-4" />
+              <span>Gantt View</span>
+            </button>
+            <button
+              onClick={handleScheduleSettings}
+              className="flex items-center space-x-2 px-4 py-2 bg-white text-blue-600 rounded-lg hover:bg-blue-50 transition-colors"
+            >
+              <Settings className="h-4 w-4" />
+              <span>Settings</span>
+            </button>
+            <button
+              onClick={handleExportSchedule}
+              className="flex items-center space-x-2 px-4 py-2 bg-white text-blue-600 rounded-lg hover:bg-blue-50 transition-colors"
+            >
+              <Download className="h-4 w-4" />
+              <span>Export</span>
+            </button>
           </div>
         </div>
       </div>
@@ -422,6 +519,7 @@ const FiniteScheduling: React.FC = () => {
                 <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Duration</th>
                 <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Progress</th>
                 <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Constraints</th>
+                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Actions</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
@@ -472,6 +570,33 @@ const FiniteScheduling: React.FC = () => {
                       <CheckCircle className="h-5 w-5 text-green-500" />
                     )}
                   </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm">
+                    <div className="flex space-x-2">
+                      {job.status === 'in-progress' ? (
+                        <button
+                          onClick={() => handlePauseJob(job)}
+                          className="flex items-center space-x-1 px-3 py-1 bg-yellow-100 text-yellow-700 rounded hover:bg-yellow-200 transition-colors"
+                          title="Pause Job"
+                        >
+                          <Pause className="h-4 w-4" />
+                          <span>Pause</span>
+                        </button>
+                      ) : job.status === 'scheduled' || job.status === 'delayed' || job.status === 'blocked' ? (
+                        <button
+                          onClick={() => handleStartJob(job)}
+                          className="flex items-center space-x-1 px-3 py-1 bg-green-100 text-green-700 rounded hover:bg-green-200 transition-colors"
+                          title="Start Job"
+                        >
+                          <Play className="h-4 w-4" />
+                          <span>Start</span>
+                        </button>
+                      ) : (
+                        <span className="px-3 py-1 bg-gray-100 text-gray-500 rounded text-xs">
+                          Completed
+                        </span>
+                      )}
+                    </div>
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -507,6 +632,13 @@ const FiniteScheduling: React.FC = () => {
                     </p>
                   )}
                 </div>
+                <button
+                  onClick={() => handleResolveConstraint(constraint)}
+                  className="ml-4 flex items-center space-x-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+                >
+                  <CheckCircle className="h-4 w-4" />
+                  <span>Resolve</span>
+                </button>
               </div>
             </div>
           ))}

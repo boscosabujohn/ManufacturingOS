@@ -19,6 +19,16 @@ import {
   AlertCircle,
   FileWarning
 } from 'lucide-react';
+import {
+  CreateBOMModal,
+  EditBOMModal,
+  CopyBOMModal,
+  ViewBOMDetailsModal,
+  type CreateBOMData,
+  type EditBOMData,
+  type CopyBOMData,
+  type BOMDetails
+} from '@/components/production/bom/BOMCoreModals';
 
 interface BOM {
   id: string;
@@ -49,6 +59,13 @@ export default function BOMPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterStatus, setFilterStatus] = useState<'all' | 'active' | 'draft' | 'pending-approval' | 'obsolete'>('all');
   const [filterCategory, setFilterCategory] = useState<string>('all');
+
+  // Modal state hooks
+  const [isCreateOpen, setIsCreateOpen] = useState(false);
+  const [isEditOpen, setIsEditOpen] = useState(false);
+  const [isCopyOpen, setIsCopyOpen] = useState(false);
+  const [isViewOpen, setIsViewOpen] = useState(false);
+  const [selectedBOM, setSelectedBOM] = useState<BOM | null>(null);
 
   const boms: BOM[] = [
     {
@@ -359,6 +376,79 @@ export default function BOMPage() {
   const avgComponents = Math.round(boms.reduce((sum, b) => sum + b.totalComponents, 0) / totalBOMs);
   const totalMfgValue = boms.filter(b => b.status === 'active').reduce((sum, b) => sum + b.totalMfgCost, 0);
 
+  // Modal handler functions
+  const handleCreate = () => {
+    setIsCreateOpen(true);
+  };
+
+  const handleEdit = (bom: BOM) => {
+    setSelectedBOM(bom);
+    setIsEditOpen(true);
+  };
+
+  const handleCopy = (bom: BOM) => {
+    setSelectedBOM(bom);
+    setIsCopyOpen(true);
+  };
+
+  const handleView = (bom: BOM) => {
+    setSelectedBOM(bom);
+    setIsViewOpen(true);
+  };
+
+  const handleCreateSubmit = (data: CreateBOMData) => {
+    // TODO: API call to create BOM
+    console.log('Create BOM data:', data);
+    setIsCreateOpen(false);
+  };
+
+  const handleEditSubmit = (data: EditBOMData) => {
+    // TODO: API call to update BOM
+    console.log('Edit BOM data:', data);
+    setIsEditOpen(false);
+    setSelectedBOM(null);
+  };
+
+  const handleCopySubmit = (data: CopyBOMData) => {
+    // TODO: API call to copy BOM
+    console.log('Copy BOM data:', data);
+    setIsCopyOpen(false);
+    setSelectedBOM(null);
+  };
+
+  // Helper function to convert BOM to BOMDetails
+  const convertToBOMDetails = (bom: BOM | null): BOMDetails | null => {
+    if (!bom) return null;
+    return {
+      id: bom.id,
+      bomCode: bom.bomCode,
+      productId: bom.productCode,
+      productName: bom.productName,
+      productCode: bom.productCode,
+      version: bom.version,
+      revision: bom.revision,
+      status: bom.status === 'active' ? 'active' : bom.status === 'draft' ? 'draft' : bom.status === 'obsolete' ? 'obsolete' : 'inactive',
+      effectiveDateFrom: bom.effectiveFrom,
+      effectiveDateTo: bom.effectiveTo,
+      notes: '',
+      components: [],
+      componentCount: bom.totalComponents,
+      bomLevels: bom.levels,
+      costs: {
+        material: bom.totalCost,
+        labor: bom.laborCost,
+        overhead: bom.overheadCost,
+        total: bom.totalMfgCost
+      },
+      createdBy: bom.createdBy,
+      createdAt: bom.createdDate,
+      modifiedBy: bom.createdBy,
+      modifiedAt: bom.lastModified,
+      approvedBy: bom.approvedBy,
+      approvedAt: bom.approvedDate
+    };
+  };
+
   return (
     <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
       {/* Inline Header */}
@@ -385,7 +475,10 @@ export default function BOMPage() {
             <Layers className="h-4 w-4" />
             Multi-Level View
           </button>
-          <button className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+          <button
+            onClick={handleCreate}
+            className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+          >
             <Plus className="h-4 w-4" />
             New BOM
           </button>
@@ -552,21 +645,23 @@ export default function BOMPage() {
                     <td className="px-4 py-4">
                       <div className="flex items-center gap-2">
                         <button
-                          onClick={() => router.push(`/production/bom/${bom.id}`)}
+                          onClick={() => handleView(bom)}
                           className="text-blue-600 hover:text-blue-900"
-                         
+                          title="View Details"
                         >
                           <Eye className="h-4 w-4" />
                         </button>
                         <button
+                          onClick={() => handleEdit(bom)}
                           className="text-gray-600 hover:text-gray-900"
-                         
+                          title="Edit BOM"
                         >
                           <Edit2 className="h-4 w-4" />
                         </button>
                         <button
+                          onClick={() => handleCopy(bom)}
                           className="text-purple-600 hover:text-purple-900"
-                         
+                          title="Copy BOM"
                         >
                           <Copy className="h-4 w-4" />
                         </button>
@@ -584,6 +679,42 @@ export default function BOMPage() {
       <div className="mt-4 text-sm text-gray-600">
         Showing {filteredBOMs.length} of {totalBOMs} BOMs
       </div>
+
+      {/* Modal Components */}
+      <CreateBOMModal
+        isOpen={isCreateOpen}
+        onClose={() => setIsCreateOpen(false)}
+        onCreate={handleCreateSubmit}
+      />
+
+      <EditBOMModal
+        isOpen={isEditOpen}
+        onClose={() => {
+          setIsEditOpen(false);
+          setSelectedBOM(null);
+        }}
+        onUpdate={handleEditSubmit}
+        currentBOM={convertToBOMDetails(selectedBOM)}
+      />
+
+      <CopyBOMModal
+        isOpen={isCopyOpen}
+        onClose={() => {
+          setIsCopyOpen(false);
+          setSelectedBOM(null);
+        }}
+        onCopy={handleCopySubmit}
+        sourceBOM={convertToBOMDetails(selectedBOM)}
+      />
+
+      <ViewBOMDetailsModal
+        isOpen={isViewOpen}
+        onClose={() => {
+          setIsViewOpen(false);
+          setSelectedBOM(null);
+        }}
+        bom={convertToBOMDetails(selectedBOM)}
+      />
     </div>
   );
 }

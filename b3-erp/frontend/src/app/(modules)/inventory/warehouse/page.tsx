@@ -11,8 +11,16 @@ import {
   Package,
   TrendingUp,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  Plus
 } from 'lucide-react'
+import {
+  CreateWarehouseModal,
+  ViewWarehouseDetailsModal,
+  CreateZoneModal,
+  WarehouseData,
+  ZoneData
+} from '@/components/inventory/InventoryWarehouseModals'
 
 interface Warehouse {
   id: string
@@ -38,6 +46,14 @@ const InventoryWarehousePage = () => {
   const [typeFilter, setTypeFilter] = useState('all')
   const [currentPage, setCurrentPage] = useState(1)
   const itemsPerPage = 10
+
+  // Modal states
+  const [isCreateWarehouseOpen, setIsCreateWarehouseOpen] = useState(false)
+  const [isViewWarehouseOpen, setIsViewWarehouseOpen] = useState(false)
+  const [isCreateZoneOpen, setIsCreateZoneOpen] = useState(false)
+  const [selectedWarehouse, setSelectedWarehouse] = useState<WarehouseData | null>(null)
+  const [warehouseList, setWarehouseList] = useState<Warehouse[]>([])
+  const [selectedWarehouseIdForZone, setSelectedWarehouseIdForZone] = useState<string>('')
 
   const warehouses: Warehouse[] = [
     {
@@ -242,6 +258,106 @@ const InventoryWarehousePage = () => {
     console.log('Exporting warehouse report...')
   }
 
+  // Convert Warehouse to WarehouseData
+  const convertToWarehouseData = (warehouse: Warehouse): WarehouseData => {
+    return {
+      warehouseId: warehouse.warehouseId,
+      warehouseName: warehouse.name,
+      warehouseCode: warehouse.warehouseId,
+      warehouseType: warehouse.type === 'factory' ? 'production' : warehouse.type === 'regional' ? 'distribution' : warehouse.type,
+      location: {
+        address: warehouse.address,
+        city: warehouse.city,
+        state: '',
+        zipCode: '',
+        country: 'India'
+      },
+      contact: {
+        managerName: warehouse.manager,
+        phone: warehouse.contactNumber,
+        email: `${warehouse.manager.toLowerCase().replace(' ', '.')}@company.com`
+      },
+      capacity: {
+        totalArea: warehouse.capacity,
+        usedArea: Math.round(warehouse.capacity * warehouse.utilizationPercent / 100),
+        unit: 'sqft'
+      },
+      status: warehouse.status,
+      zones: [],
+      features: []
+    }
+  }
+
+  // Handle warehouse creation
+  const handleCreateWarehouse = (data: WarehouseData) => {
+    // TODO: Integrate with API to create warehouse
+    console.log('Creating warehouse:', data)
+
+    // Update local state
+    const newWarehouse: Warehouse = {
+      id: (warehouses.length + 1).toString(),
+      warehouseId: data.warehouseId,
+      name: data.warehouseName,
+      location: data.location.address,
+      type: data.warehouseType === 'production' ? 'factory' : data.warehouseType as any,
+      capacity: data.capacity.totalArea,
+      currentStockValue: 0,
+      utilizationPercent: 0,
+      manager: data.contact.managerName,
+      status: data.status,
+      address: data.location.address,
+      contactNumber: data.contact.phone,
+      establishedDate: new Date().toISOString().split('T')[0],
+      totalItems: 0,
+      city: data.location.city
+    }
+
+    setWarehouseList([...warehouseList, newWarehouse])
+    setIsCreateWarehouseOpen(false)
+  }
+
+  // Handle warehouse view
+  const handleViewWarehouse = (warehouse: Warehouse) => {
+    const warehouseData = convertToWarehouseData(warehouse)
+    setSelectedWarehouse(warehouseData)
+    setIsViewWarehouseOpen(true)
+  }
+
+  // Handle warehouse edit
+  const handleEditWarehouse = () => {
+    // TODO: Implement edit functionality - reuse CreateWarehouseModal with edit mode
+    console.log('Edit warehouse:', selectedWarehouse)
+    setIsViewWarehouseOpen(false)
+    // Could open CreateWarehouseModal with pre-filled data
+  }
+
+  // Handle add zone from warehouse details
+  const handleAddZoneFromWarehouse = () => {
+    if (selectedWarehouse) {
+      setSelectedWarehouseIdForZone(selectedWarehouse.warehouseId)
+      setIsViewWarehouseOpen(false)
+      setIsCreateZoneOpen(true)
+    }
+  }
+
+  // Handle zone creation
+  const handleCreateZone = (data: ZoneData) => {
+    // TODO: Integrate with API to create zone
+    console.log('Creating zone:', data)
+
+    // Update local warehouse zones
+    if (selectedWarehouse) {
+      const updatedWarehouse = {
+        ...selectedWarehouse,
+        zones: [...selectedWarehouse.zones, data.zoneName]
+      }
+      setSelectedWarehouse(updatedWarehouse)
+    }
+
+    setIsCreateZoneOpen(false)
+    setSelectedWarehouseIdForZone('')
+  }
+
   return (
     <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6">
       <div className="max-w-[1600px] mx-auto space-y-6">
@@ -289,7 +405,14 @@ const InventoryWarehousePage = () => {
           })}
         </div>
 
-        <div className="flex justify-end">
+        <div className="flex justify-between">
+          <button
+            onClick={() => setIsCreateWarehouseOpen(true)}
+            className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+          >
+            <Plus className="w-4 h-4" />
+            Create Warehouse
+          </button>
           <button
             onClick={handleExport}
             className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
@@ -378,7 +501,11 @@ const InventoryWarehousePage = () => {
               </thead>
               <tbody className="divide-y divide-gray-200">
                 {currentWarehouses.map((warehouse) => (
-                  <tr key={warehouse.id} className="hover:bg-gray-50 transition-colors">
+                  <tr
+                    key={warehouse.id}
+                    className="hover:bg-gray-50 transition-colors cursor-pointer"
+                    onClick={() => handleViewWarehouse(warehouse)}
+                  >
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm font-medium text-gray-900">{warehouse.warehouseId}</div>
                     </td>
@@ -419,17 +546,19 @@ const InventoryWarehousePage = () => {
                         {warehouse.status.charAt(0).toUpperCase() + warehouse.status.slice(1)}
                       </span>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-6 py-4 whitespace-nowrap" onClick={(e) => e.stopPropagation()}>
                       <div className="flex items-center gap-2">
                         <button
                           className="p-1 text-blue-600 hover:bg-blue-50 rounded transition-colors"
-                         
+                          onClick={() => handleViewWarehouse(warehouse)}
+                          title="View Details"
                         >
                           <Eye className="w-4 h-4" />
                         </button>
                         <button
                           className="p-1 text-gray-600 hover:bg-gray-50 rounded transition-colors"
-                         
+                          onClick={() => handleViewWarehouse(warehouse)}
+                          title="Edit"
                         >
                           <Edit className="w-4 h-4" />
                         </button>
@@ -482,6 +611,31 @@ const InventoryWarehousePage = () => {
           </div>
         </div>
       </div>
+
+      {/* Modals */}
+      <CreateWarehouseModal
+        isOpen={isCreateWarehouseOpen}
+        onClose={() => setIsCreateWarehouseOpen(false)}
+        onSubmit={handleCreateWarehouse}
+      />
+
+      <ViewWarehouseDetailsModal
+        isOpen={isViewWarehouseOpen}
+        onClose={() => setIsViewWarehouseOpen(false)}
+        warehouse={selectedWarehouse}
+        onEdit={handleEditWarehouse}
+        onAddZone={handleAddZoneFromWarehouse}
+      />
+
+      <CreateZoneModal
+        isOpen={isCreateZoneOpen}
+        onClose={() => {
+          setIsCreateZoneOpen(false)
+          setSelectedWarehouseIdForZone('')
+        }}
+        onSubmit={handleCreateZone}
+        warehouseId={selectedWarehouseIdForZone}
+      />
     </div>
   )
 }

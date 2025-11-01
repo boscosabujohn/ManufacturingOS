@@ -601,6 +601,7 @@ export default function ViewWorkOrderPage() {
   const workOrder = mockWorkOrder;
 
   const [activeTab, setActiveTab] = useState<'overview' | 'materials' | 'progress' | 'quality'>('overview');
+  const [showMoreMenu, setShowMoreMenu] = useState(false);
 
   const tabs = [
     { id: 'overview', name: 'Overview', icon: ClipboardList },
@@ -632,6 +633,33 @@ export default function ViewWorkOrderPage() {
   };
 
   const oeeMetrics = calculateOEE();
+
+  const handleRecordProgress = () => {
+    router.push(`/production/work-orders/progress`);
+  };
+
+  const handleMoreAction = (action: string) => {
+    setShowMoreMenu(false);
+    switch (action) {
+      case 'print':
+        alert('Printing work order...');
+        break;
+      case 'download':
+        alert('Downloading work order PDF...');
+        break;
+      case 'share':
+        alert('Share work order via email or link...');
+        break;
+      case 'duplicate':
+        alert('Creating duplicate work order...');
+        break;
+      case 'archive':
+        alert('Archiving work order...');
+        break;
+      default:
+        break;
+    }
+  };
 
   return (
     <div className="w-full min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
@@ -686,14 +714,62 @@ export default function ViewWorkOrderPage() {
                 <Edit className="h-4 w-4" />
                 <span>Edit</span>
               </button>
-              <button className="flex items-center space-x-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+              <button
+                onClick={handleRecordProgress}
+                className="flex items-center space-x-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+              >
                 <PlayCircle className="h-4 w-4" />
                 <span>Record Progress</span>
               </button>
-              <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
-                <MoreVertical className="h-5 w-5 text-gray-600" />
-                <span className="text-gray-700">More</span>
-              </button>
+              <div className="relative">
+                <button
+                  onClick={() => setShowMoreMenu(!showMoreMenu)}
+                  className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
+                >
+                  <MoreVertical className="h-5 w-5 text-gray-600" />
+                  <span className="text-gray-700">More</span>
+                </button>
+                {showMoreMenu && (
+                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-10">
+                    <button
+                      onClick={() => handleMoreAction('print')}
+                      className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center gap-2"
+                    >
+                      <Printer className="h-4 w-4" />
+                      Print Work Order
+                    </button>
+                    <button
+                      onClick={() => handleMoreAction('download')}
+                      className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center gap-2"
+                    >
+                      <Download className="h-4 w-4" />
+                      Download PDF
+                    </button>
+                    <button
+                      onClick={() => handleMoreAction('share')}
+                      className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center gap-2"
+                    >
+                      <Share2 className="h-4 w-4" />
+                      Share
+                    </button>
+                    <div className="border-t border-gray-200 my-1"></div>
+                    <button
+                      onClick={() => handleMoreAction('duplicate')}
+                      className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center gap-2"
+                    >
+                      <FileText className="h-4 w-4" />
+                      Duplicate
+                    </button>
+                    <button
+                      onClick={() => handleMoreAction('archive')}
+                      className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 flex items-center gap-2"
+                    >
+                      <XCircle className="h-4 w-4" />
+                      Archive
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
 

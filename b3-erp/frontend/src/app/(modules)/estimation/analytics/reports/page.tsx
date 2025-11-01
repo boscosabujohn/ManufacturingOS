@@ -31,6 +31,7 @@ interface Report {
 
 export default function EstimationAnalyticsReportsPage() {
   const router = useRouter()
+  const [selectedCategory, setSelectedCategory] = useState<string>('all')
 
   const [reports] = useState<Report[]>([
     {
@@ -145,6 +146,44 @@ export default function EstimationAnalyticsReportsPage() {
     }
   ])
 
+  const handleDownloadReport = (reportId: string, reportName: string) => {
+    console.log('Downloading report:', reportId, reportName)
+    alert(`Downloading report: ${reportName}`)
+  }
+
+  const handleScheduleReport = (reportId: string, reportName: string) => {
+    router.push(`/estimation/analytics/reports/schedule/${reportId}`)
+  }
+
+  const handleGenerateCustomReport = () => {
+    router.push('/estimation/analytics/reports/custom')
+  }
+
+  const handleScheduleRecurring = () => {
+    router.push('/estimation/analytics/reports/schedule')
+  }
+
+  const handleBulkDownload = () => {
+    const availableReports = reports.filter(r => r.status === 'available')
+    if (availableReports.length === 0) {
+      alert('No reports available for download')
+      return
+    }
+    const reportNames = availableReports.map(r => r.name).join(', ')
+    if (confirm(`Download ${availableReports.length} reports?\n\n${reportNames}`)) {
+      console.log('Bulk downloading reports:', availableReports.map(r => r.id))
+      alert(`Preparing ${availableReports.length} reports for download...`)
+    }
+  }
+
+  const handleViewSchedule = (reportId: string) => {
+    router.push(`/estimation/analytics/reports/schedule/${reportId}`)
+  }
+
+  const filteredReports = selectedCategory === 'all'
+    ? reports
+    : reports.filter(r => r.category === selectedCategory)
+
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'available':
@@ -197,15 +236,15 @@ export default function EstimationAnalyticsReportsPage() {
       {/* Action Buttons */}
       <div className="mb-6 flex justify-end">
         <div className="flex items-center gap-3">
-          <button className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
-            <Filter className="h-4 w-4" />
-            Filter
-          </button>
-          <button className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
+          <button
+            onClick={handleScheduleRecurring}
+            className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
             <Calendar className="h-4 w-4" />
             Schedule Report
           </button>
-          <button className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 flex items-center gap-2">
+          <button
+            onClick={handleGenerateCustomReport}
+            className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 flex items-center gap-2">
             <FileText className="h-4 w-4" />
             Generate Custom Report
           </button>
@@ -262,13 +301,24 @@ export default function EstimationAnalyticsReportsPage() {
       {/* Category Filters */}
       <div className="mb-6">
         <div className="flex flex-wrap gap-2">
-          <button className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium">
+          <button
+            onClick={() => setSelectedCategory('all')}
+            className={`px-4 py-2 rounded-lg text-sm font-medium ${
+              selectedCategory === 'all'
+                ? 'bg-blue-600 text-white'
+                : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
+            }`}>
             All Reports
           </button>
           {categories.map((category) => (
             <button
               key={category}
-              className="px-4 py-2 bg-white text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm font-medium"
+              onClick={() => setSelectedCategory(category)}
+              className={`px-4 py-2 rounded-lg text-sm font-medium ${
+                selectedCategory === category
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
+              }`}
             >
               {category}
             </button>
@@ -278,7 +328,7 @@ export default function EstimationAnalyticsReportsPage() {
 
       {/* Reports Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {reports.map((report) => (
+        {filteredReports.map((report) => (
           <div
             key={report.id}
             className="bg-white rounded-lg shadow-sm border border-gray-200 p-5 hover:shadow-md transition-shadow"
@@ -322,11 +372,15 @@ export default function EstimationAnalyticsReportsPage() {
             <div className="flex items-center gap-2">
               {report.status === 'available' && (
                 <>
-                  <button className="flex-1 px-3 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 flex items-center justify-center gap-2 text-sm">
+                  <button
+                    onClick={() => handleDownloadReport(report.id, report.name)}
+                    className="flex-1 px-3 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 flex items-center justify-center gap-2 text-sm">
                     <Download className="h-4 w-4" />
                     Download
                   </button>
-                  <button className="px-3 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                  <button
+                    onClick={() => handleScheduleReport(report.id, report.name)}
+                    className="px-3 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
                     Schedule
                   </button>
                 </>
@@ -337,7 +391,9 @@ export default function EstimationAnalyticsReportsPage() {
                 </button>
               )}
               {report.status === 'scheduled' && (
-                <button className="w-full px-3 py-2 text-yellow-700 bg-yellow-50 border border-yellow-200 rounded-lg text-sm">
+                <button
+                  onClick={() => handleViewSchedule(report.id)}
+                  className="w-full px-3 py-2 text-yellow-700 bg-yellow-50 border border-yellow-200 rounded-lg text-sm">
                   View Schedule
                 </button>
               )}
@@ -350,7 +406,9 @@ export default function EstimationAnalyticsReportsPage() {
       <div className="mt-8 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-6 border border-blue-200">
         <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <button className="px-4 py-3 bg-white text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 text-left">
+          <button
+            onClick={handleScheduleRecurring}
+            className="px-4 py-3 bg-white text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 text-left">
             <div className="flex items-center gap-3">
               <Calendar className="h-5 w-5 text-blue-600" />
               <div>
@@ -359,7 +417,9 @@ export default function EstimationAnalyticsReportsPage() {
               </div>
             </div>
           </button>
-          <button className="px-4 py-3 bg-white text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 text-left">
+          <button
+            onClick={handleGenerateCustomReport}
+            className="px-4 py-3 bg-white text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 text-left">
             <div className="flex items-center gap-3">
               <FileText className="h-5 w-5 text-purple-600" />
               <div>
@@ -368,7 +428,9 @@ export default function EstimationAnalyticsReportsPage() {
               </div>
             </div>
           </button>
-          <button className="px-4 py-3 bg-white text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 text-left">
+          <button
+            onClick={handleBulkDownload}
+            className="px-4 py-3 bg-white text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 text-left">
             <div className="flex items-center gap-3">
               <Download className="h-5 w-5 text-green-600" />
               <div>

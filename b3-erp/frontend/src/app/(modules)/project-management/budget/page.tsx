@@ -10,7 +10,34 @@ import {
   AlertCircle,
   Edit,
   Trash2,
+  FileText,
+  Download,
+  Upload,
+  History,
+  PieChart,
+  Target,
+  Bell,
+  Lock,
+  BarChart3,
+  Calendar,
 } from 'lucide-react';
+import {
+  AddBudgetItemModal,
+  EditBudgetItemModal,
+  RecordActualCostModal,
+  VarianceAnalysisModal,
+  BudgetForecastModal,
+  CostBreakdownModal,
+  BudgetAllocationModal,
+  BudgetHistoryModal,
+  BudgetAlertSettingsModal,
+  BudgetApprovalModal,
+  BudgetBaselineModal,
+  BudgetTemplateModal,
+  ExportBudgetModal,
+  ImportBudgetModal,
+  BudgetComparisonModal,
+} from '@/components/project-management/BudgetModals';
 
 interface BudgetItem {
   id: string;
@@ -152,6 +179,23 @@ export default function BudgetPlanningPage() {
   const [budgetItems, setBudgetItems] = useState<BudgetItem[]>(mockBudgetItems);
   const [showAddModal, setShowAddModal] = useState(false);
 
+  // Modal states
+  const [showEditItem, setShowEditItem] = useState(false);
+  const [showRecordCost, setShowRecordCost] = useState(false);
+  const [showVarianceAnalysis, setShowVarianceAnalysis] = useState(false);
+  const [showForecast, setShowForecast] = useState(false);
+  const [showCostBreakdown, setShowCostBreakdown] = useState(false);
+  const [showAllocation, setShowAllocation] = useState(false);
+  const [showHistory, setShowHistory] = useState(false);
+  const [showAlertSettings, setShowAlertSettings] = useState(false);
+  const [showApproval, setShowApproval] = useState(false);
+  const [showBaseline, setShowBaseline] = useState(false);
+  const [showTemplate, setShowTemplate] = useState(false);
+  const [showExport, setShowExport] = useState(false);
+  const [showImport, setShowImport] = useState(false);
+  const [showComparison, setShowComparison] = useState(false);
+  const [selectedItem, setSelectedItem] = useState<BudgetItem | null>(null);
+
   // Calculate totals
   const estimatedCost = budgetItems.reduce((sum, item) => sum + item.estimatedCost, 0);
   const actualCost = budgetItems.reduce((sum, item) => sum + item.actualCost, 0);
@@ -198,22 +242,165 @@ export default function BudgetPlanningPage() {
     }
   };
 
+  // Modal handlers
+  const handleAddItem = (item: any) => {
+    console.log('Adding budget item:', item);
+    setShowAddModal(false);
+  };
+
+  const handleEditItem = (item: any) => {
+    console.log('Editing budget item:', item);
+    setShowEditItem(false);
+    setSelectedItem(null);
+  };
+
+  const handleRecordCost = (cost: any) => {
+    console.log('Recording actual cost:', cost);
+    setShowRecordCost(false);
+    setSelectedItem(null);
+  };
+
+  const handleAllocation = (allocation: any) => {
+    console.log('Applying budget allocation:', allocation);
+    setShowAllocation(false);
+  };
+
+  const handleAlertSettings = (settings: any) => {
+    console.log('Saving alert settings:', settings);
+    setShowAlertSettings(false);
+  };
+
+  const handleApproval = (approval: any) => {
+    console.log('Submitting for approval:', approval);
+    setShowApproval(false);
+  };
+
+  const handleBaseline = (baseline: any) => {
+    console.log('Setting baseline:', baseline);
+    setShowBaseline(false);
+  };
+
+  const handleTemplate = (template: any) => {
+    console.log('Applying template:', template);
+    setShowTemplate(false);
+  };
+
+  const handleExport = (format: string) => {
+    console.log('Exporting budget:', format);
+    setShowExport(false);
+  };
+
+  const handleImport = (file: File) => {
+    console.log('Importing budget:', file);
+    setShowImport(false);
+  };
+
+  const openEditModal = (item: BudgetItem) => {
+    setSelectedItem(item);
+    setShowEditItem(true);
+  };
+
+  const openRecordCostModal = (item: BudgetItem) => {
+    setSelectedItem(item);
+    setShowRecordCost(true);
+  };
+
+  const openVarianceModal = (item: BudgetItem) => {
+    setSelectedItem(item);
+    setShowVarianceAnalysis(true);
+  };
+
+  const openHistoryModal = (item: BudgetItem) => {
+    setSelectedItem(item);
+    setShowHistory(true);
+  };
+
   return (
     <div className="w-full h-screen overflow-y-auto overflow-x-hidden">
       <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
         {/* Header Actions */}
-        <div className="flex justify-end gap-3 mb-4">
-          <button
-            onClick={() => setShowAddModal(true)}
-            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-          >
-            <Plus className="w-5 h-5" />
-            Add Budget Item
-          </button>
-          <button className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
-            <Save className="w-5 h-5" />
-            Save Budget
-          </button>
+        <div className="flex justify-between mb-4">
+          <div className="flex gap-2">
+            <button
+              onClick={() => setShowTemplate(true)}
+              className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+            >
+              <FileText className="w-5 h-5" />
+              Templates
+            </button>
+            <button
+              onClick={() => setShowImport(true)}
+              className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+            >
+              <Upload className="w-5 h-5" />
+              Import
+            </button>
+            <button
+              onClick={() => setShowExport(true)}
+              className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+            >
+              <Download className="w-5 h-5" />
+              Export
+            </button>
+          </div>
+          <div className="flex gap-2">
+            <button
+              onClick={() => setShowForecast(true)}
+              className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+            >
+              <TrendingUp className="w-5 h-5" />
+              Forecast
+            </button>
+            <button
+              onClick={() => setShowCostBreakdown(true)}
+              className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+            >
+              <PieChart className="w-5 h-5" />
+              Breakdown
+            </button>
+            <button
+              onClick={() => setShowComparison(true)}
+              className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+            >
+              <BarChart3 className="w-5 h-5" />
+              Compare
+            </button>
+            <button
+              onClick={() => setShowAllocation(true)}
+              className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+            >
+              <Target className="w-5 h-5" />
+              Allocate
+            </button>
+            <button
+              onClick={() => setShowAlertSettings(true)}
+              className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+            >
+              <Bell className="w-5 h-5" />
+              Alerts
+            </button>
+            <button
+              onClick={() => setShowBaseline(true)}
+              className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+            >
+              <Target className="w-5 h-5" />
+              Baseline
+            </button>
+            <button
+              onClick={() => setShowApproval(true)}
+              className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+            >
+              <Lock className="w-5 h-5" />
+              Approve
+            </button>
+            <button
+              onClick={() => setShowAddModal(true)}
+              className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              <Plus className="w-5 h-5" />
+              Add Item
+            </button>
+          </div>
         </div>
 
         {/* Summary Cards */}
@@ -380,13 +567,33 @@ export default function BudgetPlanningPage() {
                   </td>
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-2">
-                      <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
-                        <Edit className="w-4 h-4 text-gray-600" />
-                        <span className="text-gray-700">Edit</span>
+                      <button
+                        onClick={() => openEditModal(item)}
+                        className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
+                        title="Edit"
+                      >
+                        <Edit className="w-4 h-4" />
                       </button>
-                      <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-red-300 rounded-lg hover:bg-red-50 text-sm">
-                        <Trash2 className="w-4 h-4 text-red-600" />
-                        <span className="text-red-600">Delete</span>
+                      <button
+                        onClick={() => openRecordCostModal(item)}
+                        className="p-2 text-purple-600 hover:bg-purple-50 rounded-lg transition-colors"
+                        title="Record Cost"
+                      >
+                        <DollarSign className="w-4 h-4" />
+                      </button>
+                      <button
+                        onClick={() => openVarianceModal(item)}
+                        className="p-2 text-orange-600 hover:bg-orange-50 rounded-lg transition-colors"
+                        title="Variance Analysis"
+                      >
+                        <TrendingUp className="w-4 h-4" />
+                      </button>
+                      <button
+                        onClick={() => openHistoryModal(item)}
+                        className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
+                        title="History"
+                      >
+                        <History className="w-4 h-4" />
                       </button>
                     </div>
                   </td>
@@ -454,6 +661,115 @@ export default function BudgetPlanningPage() {
           ))}
         </div>
       </div>
+
+      {/* Modals */}
+      <AddBudgetItemModal
+        isOpen={showAddModal}
+        onClose={() => setShowAddModal(false)}
+        onAdd={handleAddItem}
+      />
+
+      {selectedItem && (
+        <>
+          <EditBudgetItemModal
+            isOpen={showEditItem}
+            onClose={() => {
+              setShowEditItem(false);
+              setSelectedItem(null);
+            }}
+            item={selectedItem}
+            onSave={handleEditItem}
+          />
+
+          <RecordActualCostModal
+            isOpen={showRecordCost}
+            onClose={() => {
+              setShowRecordCost(false);
+              setSelectedItem(null);
+            }}
+            item={selectedItem}
+            onRecord={handleRecordCost}
+          />
+
+          <VarianceAnalysisModal
+            isOpen={showVarianceAnalysis}
+            onClose={() => {
+              setShowVarianceAnalysis(false);
+              setSelectedItem(null);
+            }}
+            item={selectedItem}
+          />
+
+          <BudgetHistoryModal
+            isOpen={showHistory}
+            onClose={() => {
+              setShowHistory(false);
+              setSelectedItem(null);
+            }}
+            item={selectedItem}
+          />
+        </>
+      )}
+
+      <BudgetForecastModal
+        isOpen={showForecast}
+        onClose={() => setShowForecast(false)}
+        budgetItems={budgetItems}
+      />
+
+      <CostBreakdownModal
+        isOpen={showCostBreakdown}
+        onClose={() => setShowCostBreakdown(false)}
+        budgetItems={budgetItems}
+      />
+
+      <BudgetAllocationModal
+        isOpen={showAllocation}
+        onClose={() => setShowAllocation(false)}
+        onAllocate={handleAllocation}
+      />
+
+      <BudgetAlertSettingsModal
+        isOpen={showAlertSettings}
+        onClose={() => setShowAlertSettings(false)}
+        onSave={handleAlertSettings}
+      />
+
+      <BudgetApprovalModal
+        isOpen={showApproval}
+        onClose={() => setShowApproval(false)}
+        onSubmit={handleApproval}
+      />
+
+      <BudgetBaselineModal
+        isOpen={showBaseline}
+        onClose={() => setShowBaseline(false)}
+        onSave={handleBaseline}
+      />
+
+      <BudgetTemplateModal
+        isOpen={showTemplate}
+        onClose={() => setShowTemplate(false)}
+        onApply={handleTemplate}
+      />
+
+      <ExportBudgetModal
+        isOpen={showExport}
+        onClose={() => setShowExport(false)}
+        onExport={handleExport}
+      />
+
+      <ImportBudgetModal
+        isOpen={showImport}
+        onClose={() => setShowImport(false)}
+        onImport={handleImport}
+      />
+
+      <BudgetComparisonModal
+        isOpen={showComparison}
+        onClose={() => setShowComparison(false)}
+        budgetItems={budgetItems}
+      />
       </div>
     </div>
   );

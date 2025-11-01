@@ -3,6 +3,13 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { ArrowLeft, Download, AlertTriangle, Clock, TrendingDown, Activity, Wrench, Zap } from 'lucide-react';
+import {
+  LogDowntimeModal, ViewDowntimeDetailsModal, EditDowntimeEventModal,
+  ResolveDowntimeModal, DeleteDowntimeModal,
+  LogDowntimeData, DowntimeEvent as DowntimeEventModal, EditDowntimeData, ResolveDowntimeData
+} from '@/components/production/downtime/DowntimeEventModals';
+import { QuickAnalysisModal, QuickAnalysisData } from '@/components/production/downtime/DowntimeAnalysisModals';
+import { ExportDowntimeDataModal, ExportDowntimeConfig } from '@/components/production/downtime/DowntimeExportModals';
 
 interface DowntimeEvent {
   id: string;
@@ -41,6 +48,16 @@ export default function DowntimeDashboardPage() {
   const router = useRouter();
   const [filterCategory, setFilterCategory] = useState<string>('all');
   const [filterStatus, setFilterStatus] = useState<string>('all');
+
+  // Modal state
+  const [isLogDowntimeOpen, setIsLogDowntimeOpen] = useState(false);
+  const [isViewDetailsOpen, setIsViewDetailsOpen] = useState(false);
+  const [isEditOpen, setIsEditOpen] = useState(false);
+  const [isResolveOpen, setIsResolveOpen] = useState(false);
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+  const [isQuickAnalysisOpen, setIsQuickAnalysisOpen] = useState(false);
+  const [isExportOpen, setIsExportOpen] = useState(false);
+  const [selectedEvent, setSelectedEvent] = useState<DowntimeEvent | null>(null);
 
   // Mock data for downtime events
   const downtimeEvents: DowntimeEvent[] = [
@@ -257,6 +274,73 @@ export default function DowntimeDashboardPage() {
     }
   };
 
+  // Modal handlers
+  const handleLogDowntime = () => {
+    setIsLogDowntimeOpen(true);
+  };
+
+  const handleLogDowntimeSubmit = (data: LogDowntimeData) => {
+    console.log('Logging downtime:', data);
+    // TODO: Implement API call
+    setIsLogDowntimeOpen(false);
+  };
+
+  const handleViewEvent = (event: DowntimeEvent) => {
+    setSelectedEvent(event);
+    setIsViewDetailsOpen(true);
+  };
+
+  const handleEditEvent = () => {
+    setIsViewDetailsOpen(false);
+    setIsEditOpen(true);
+  };
+
+  const handleEditSubmit = (data: EditDowntimeData) => {
+    console.log('Editing event:', data);
+    // TODO: Implement API call
+    setIsEditOpen(false);
+  };
+
+  const handleResolveEvent = () => {
+    setIsViewDetailsOpen(false);
+    setIsResolveOpen(true);
+  };
+
+  const handleResolveSubmit = (data: ResolveDowntimeData) => {
+    console.log('Resolving event:', data);
+    // TODO: Implement API call
+    setIsResolveOpen(false);
+    if (data.requireRCA) {
+      // TODO: Open CreateRCAModal with event details
+      alert('RCA modal would open here');
+    }
+  };
+
+  const handleDeleteEvent = (event: DowntimeEvent) => {
+    setSelectedEvent(event);
+    setIsDeleteOpen(true);
+  };
+
+  const handleDeleteSubmit = (reason: string) => {
+    console.log('Deleting event:', selectedEvent?.id, 'Reason:', reason);
+    // TODO: Implement API call
+    setIsDeleteOpen(false);
+  };
+
+  const handleQuickAnalysis = () => {
+    setIsQuickAnalysisOpen(true);
+  };
+
+  const handleExport = () => {
+    setIsExportOpen(true);
+  };
+
+  const handleExportSubmit = async (config: ExportDowntimeConfig) => {
+    console.log('Exporting data:', config);
+    // TODO: Implement API call
+    setIsExportOpen(false);
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
       {/* Inline Header */}
@@ -275,12 +359,15 @@ export default function DowntimeDashboardPage() {
         </div>
         <div className="flex items-center gap-2">
           <button
-            onClick={() => router.push('/production/downtime/log')}
+            onClick={handleLogDowntime}
             className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
           >
             Log Downtime
           </button>
-          <button className="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors flex items-center gap-2">
+          <button
+            onClick={handleExport}
+            className="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors flex items-center gap-2"
+          >
             <Download className="w-4 h-4" />
             <span>Export</span>
           </button>
@@ -402,7 +489,11 @@ export default function DowntimeDashboardPage() {
       {/* Downtime Events */}
       <div className="space-y-4">
         {filteredEvents.map((event) => (
-          <div key={event.id} className={`bg-white rounded-xl border-2 p-6 ${getSeverityColor(event.severity)}`}>
+          <div
+            key={event.id}
+            onClick={() => handleViewEvent(event)}
+            className={`bg-white rounded-xl border-2 p-6 cursor-pointer hover:shadow-lg transition-shadow ${getSeverityColor(event.severity)}`}
+          >
             <div className="flex items-start gap-4">
               {/* Icon */}
               <div className={`p-3 rounded-lg ${getCategoryColor(event.category)}`}>
@@ -478,7 +569,7 @@ export default function DowntimeDashboardPage() {
       {/* Quick Links */}
       <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
         <button
-          onClick={() => router.push('/production/downtime/log')}
+          onClick={handleLogDowntime}
           className="p-4 bg-white border-2 border-red-200 rounded-xl hover:bg-red-50 transition-colors text-left"
         >
           <Clock className="w-6 h-6 text-red-600 mb-2" />
@@ -486,7 +577,7 @@ export default function DowntimeDashboardPage() {
           <p className="text-sm text-gray-500">Record new downtime event</p>
         </button>
         <button
-          onClick={() => router.push('/production/downtime/analysis')}
+          onClick={handleQuickAnalysis}
           className="p-4 bg-white border-2 border-blue-200 rounded-xl hover:bg-blue-50 transition-colors text-left"
         >
           <Activity className="w-6 h-6 text-blue-600 mb-2" />
@@ -502,6 +593,55 @@ export default function DowntimeDashboardPage() {
           <p className="text-sm text-gray-500">Investigate major events</p>
         </button>
       </div>
+
+      {/* Modals */}
+      <LogDowntimeModal
+        isOpen={isLogDowntimeOpen}
+        onClose={() => setIsLogDowntimeOpen(false)}
+        onSubmit={handleLogDowntimeSubmit}
+      />
+
+      <ViewDowntimeDetailsModal
+        isOpen={isViewDetailsOpen}
+        onClose={() => setIsViewDetailsOpen(false)}
+        event={selectedEvent}
+        onEdit={handleEditEvent}
+        onResolve={handleResolveEvent}
+        onInitiateRCA={() => alert('RCA modal would open')}
+      />
+
+      <EditDowntimeEventModal
+        isOpen={isEditOpen}
+        onClose={() => setIsEditOpen(false)}
+        onSave={handleEditSubmit}
+        event={selectedEvent}
+      />
+
+      <ResolveDowntimeModal
+        isOpen={isResolveOpen}
+        onClose={() => setIsResolveOpen(false)}
+        onResolve={handleResolveSubmit}
+        event={selectedEvent}
+      />
+
+      <DeleteDowntimeModal
+        isOpen={isDeleteOpen}
+        onClose={() => setIsDeleteOpen(false)}
+        onDelete={handleDeleteSubmit}
+        event={selectedEvent}
+      />
+
+      <QuickAnalysisModal
+        isOpen={isQuickAnalysisOpen}
+        onClose={() => setIsQuickAnalysisOpen(false)}
+        data={null}
+      />
+
+      <ExportDowntimeDataModal
+        isOpen={isExportOpen}
+        onClose={() => setIsExportOpen(false)}
+        onExport={handleExportSubmit}
+      />
     </div>
   );
 }

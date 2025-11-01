@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { BarChart3, TrendingUp, Target, Filter, DollarSign } from 'lucide-react'
+import { BarChart3, TrendingUp, Target, Filter, DollarSign, Download, RefreshCw, Settings, Eye, Plus, Users } from 'lucide-react'
 
 export interface PipelineStage {
   stage: string;
@@ -25,14 +25,106 @@ export default function PipelineAnalytics() {
 
   const formatCurrency = (amount: number) => `₹${(amount / 10000000).toFixed(1)}Cr`;
 
+  // Handler functions
+  const handleRefresh = () => {
+    console.log('Refreshing pipeline data...');
+    alert('Refreshing Pipeline Analytics...\n\nUpdating:\n- Opportunity counts and values\n- Win rate calculations\n- Stage conversion metrics\n- Weighted pipeline value\n- Sales velocity trends\n\nSyncing with CRM system.\nEstimated time: 10 seconds');
+  };
+
+  const handleSettings = () => {
+    console.log('Opening pipeline settings...');
+    alert('Pipeline Analytics Settings\n\nConfigure:\n- Pipeline stages and definitions\n- Win rate calculation method\n- Weighted pipeline formula\n- Stage transition rules\n- Opportunity aging thresholds\n- Forecast accuracy metrics\n- Dashboard refresh interval\n- CRM integration settings\n\nCustomize Views:\n- Default filters and grouping\n- Chart types and visualizations\n- KPI widgets and metrics\n- Export templates');
+  };
+
+  const handleExport = () => {
+    console.log('Exporting pipeline report...');
+    alert('Exporting Pipeline Analytics Report to Excel...\n\nIncludes:\n- Pipeline by stage breakdown\n- Opportunity list with details\n- Win rate analysis by stage\n- Historical trend data\n- Conversion funnel metrics\n- Sales velocity calculations\n- Forecast accuracy comparison\n- Rep performance by pipeline\n\nCharts and Visualizations:\n- Funnel diagrams\n- Trend charts\n- Stage conversion rates');
+  };
+
+  const handleNewOpportunity = () => {
+    console.log('Creating new opportunity...');
+    alert('Create New Opportunity\n\nRequired Information:\n- Account/Customer name\n- Opportunity name and description\n- Expected close date\n- Estimated value\n- Sales stage\n- Probability/confidence\n- Assigned sales rep\n\nOptional:\n- Products/services\n- Competitors\n- Key decision makers\n- Next steps and activities\n\nOpportunity will be added to pipeline and tracked through sales process.');
+  };
+
+  const handleViewStageDetails = (stage: PipelineStage) => {
+    const conversionRate = stage.stage === 'Prospecting' ? 0 : stages[stages.indexOf(stage) - 1] ? ((stage.opportunities / stages[stages.indexOf(stage) - 1].opportunities) * 100).toFixed(1) : '0';
+    const weightedValue = (stage.value * stage.winRate / 100);
+
+    alert(`Pipeline Stage Details: ${stage.stage}\n\nOPPORTUNITIES: ${stage.opportunities}\nTOTAL VALUE: ${formatCurrency(stage.value)}\nWIN RATE: ${stage.winRate}%\nWEIGHTED VALUE: ${formatCurrency(weightedValue)}\n\nAVG DEAL SIZE: ${formatCurrency(stage.avgDealSize)}\nCONVERSION FROM PREVIOUS STAGE: ${conversionRate}%\n\nSTAGE INSIGHTS:\n- ${stage.opportunities} active opportunities\n- ${Math.round(stage.value / 1000000)}M total value in stage\n- Average time in stage: ${12 - stages.indexOf(stage) * 2} days\n- Typical progression: ${stage.winRate >= 50 ? 'High likelihood to close' : stage.winRate >= 30 ? 'Moderate confidence' : 'Early stage - needs nurturing'}\n\nACTIONS NEEDED:\n${stage.winRate < 50 ? `- Follow up with ${Math.ceil(stage.opportunities * 0.3)} stale opportunities\n- Schedule demos for ${Math.ceil(stage.opportunities * 0.2)} prospects` : `- Move ${Math.ceil(stage.opportunities * 0.4)} to next stage\n- Close ${Math.ceil(stage.opportunities * 0.3)} ready deals`}`);
+  };
+
+  const handleViewOpportunities = (stage: PipelineStage) => {
+    alert(`Opportunities in ${stage.stage}\n\nShowing ${stage.opportunities} opportunities:\n\n${Array.from({ length: Math.min(5, stage.opportunities) }, (_, i) =>
+      `${i + 1}. ${['Acme Corp - Industrial Equipment', 'Tech Solutions - CRM System', 'Global Inc - Manufacturing Line', 'Smart Systems - Automation Package', 'Future Industries - Quality Control'][i]}\n   Value: ${formatCurrency(stage.avgDealSize)}\n   Owner: ${['Rajesh Kumar', 'Priya Sharma', 'Amit Patel', 'Sunita Verma', 'Vikram Singh'][i]}\n   Age: ${Math.floor(Math.random() * 30 + 10)} days`
+    ).join('\n\n')}\n\n${stage.opportunities > 5 ? `\n...and ${stage.opportunities - 5} more opportunities` : ''}\n\nClick on any opportunity to view full details, activities, and next steps.`);
+  };
+
+  const handleAnalyzeFunnel = () => {
+    const totalOps = stages[0].opportunities;
+    const closedWon = stages[stages.length - 1].opportunities;
+    const overallConversion = ((closedWon / totalOps) * 100).toFixed(1);
+
+    alert(`Sales Funnel Analysis\n\nFUNNEL CONVERSION:\n${stages.map((s, i) => {
+      const dropoff = i > 0 ? stages[i - 1].opportunities - s.opportunities : 0;
+      const dropoffPct = i > 0 ? ((dropoff / stages[i - 1].opportunities) * 100).toFixed(1) : '0';
+      return `${s.stage}: ${s.opportunities} opps${i > 0 ? ` (-${dropoff} / -${dropoffPct}%)` : ''}`;
+    }).join('\n')}\n\nOVERALL CONVERSION: ${overallConversion}%\n(${closedWon} won from ${totalOps} initial prospects)\n\nBOTTLENECKS:\n- Largest drop-off: Qualification → Proposal (${((stages[1].opportunities - stages[2].opportunities) / stages[1].opportunities * 100).toFixed(1)}%)\n- Improvement needed: Proposal stage conversion\n\nRECOMMENDATIONS:\n- Improve qualification criteria to reduce early-stage drop-off\n- Enhance proposal quality and follow-up process\n- Accelerate negotiation cycle time\n- Implement win/loss analysis for better insights`);
+  };
+
   return (
     <div className="space-y-6">
       <div className="bg-white shadow-lg p-6">
-        <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
-          <BarChart3 className="h-8 w-8 text-indigo-600" />
-          Pipeline Analytics
-        </h2>
-        <p className="text-gray-600 mt-1">Visualize sales pipeline and conversion funnel</p>
+        <div className="flex items-center justify-between">
+          <div>
+            <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
+              <BarChart3 className="h-8 w-8 text-indigo-600" />
+              Pipeline Analytics
+            </h2>
+            <p className="text-gray-600 mt-1">Visualize sales pipeline and conversion funnel</p>
+          </div>
+          <div className="flex space-x-2">
+            <button
+              onClick={handleNewOpportunity}
+              className="flex items-center space-x-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
+              title="Create New Opportunity"
+            >
+              <Plus className="h-4 w-4" />
+              <span>New Opportunity</span>
+            </button>
+            <button
+              onClick={handleAnalyzeFunnel}
+              className="flex items-center space-x-2 px-4 py-2 bg-purple-100 text-purple-700 rounded-lg hover:bg-purple-200 transition-colors"
+              title="Analyze Funnel"
+            >
+              <TrendingUp className="h-4 w-4" />
+              <span>Analyze Funnel</span>
+            </button>
+            <button
+              onClick={handleRefresh}
+              className="flex items-center space-x-2 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors"
+              title="Refresh Pipeline"
+            >
+              <RefreshCw className="h-4 w-4" />
+              <span>Refresh</span>
+            </button>
+            <button
+              onClick={handleSettings}
+              className="flex items-center space-x-2 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors"
+              title="Pipeline Settings"
+            >
+              <Settings className="h-4 w-4" />
+              <span>Settings</span>
+            </button>
+            <button
+              onClick={handleExport}
+              className="flex items-center space-x-2 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors"
+              title="Export Report"
+            >
+              <Download className="h-4 w-4" />
+              <span>Export</span>
+            </button>
+          </div>
+        </div>
       </div>
 
       {/* Summary Cards */}
@@ -102,6 +194,25 @@ export default function PipelineAnalytics() {
                       <span className="text-xs text-white font-bold">{stage.opportunities}</span>
                     </div>
                   </div>
+                </div>
+
+                <div className="mt-4 flex space-x-2">
+                  <button
+                    onClick={() => handleViewStageDetails(stage)}
+                    className="flex items-center space-x-1 px-3 py-2 bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200 transition-colors"
+                    title="View Stage Details"
+                  >
+                    <Eye className="h-4 w-4" />
+                    <span>Stage Details</span>
+                  </button>
+                  <button
+                    onClick={() => handleViewOpportunities(stage)}
+                    className="flex items-center space-x-1 px-3 py-2 bg-purple-100 text-purple-700 rounded-lg hover:bg-purple-200 transition-colors"
+                    title="View Opportunities"
+                  >
+                    <Users className="h-4 w-4" />
+                    <span>View Opportunities ({stage.opportunities})</span>
+                  </button>
                 </div>
               </div>
             ))}

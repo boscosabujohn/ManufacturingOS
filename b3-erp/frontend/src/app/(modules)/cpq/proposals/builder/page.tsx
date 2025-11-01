@@ -20,6 +20,16 @@ import {
   Palette,
   CheckCircle
 } from 'lucide-react'
+import {
+  PreviewModal,
+  SendProposalModal,
+  ExportPDFModal,
+  SaveDraftModal,
+  SettingsModal,
+  SectionEditorModal,
+  Proposal,
+  ProposalSection as ProposalSectionType
+} from '@/components/cpq/ProposalBuilderModals'
 
 interface ProposalSection {
   id: string
@@ -102,6 +112,78 @@ export default function CPQProposalsBuilderPage() {
 
   const [selectedSection, setSelectedSection] = useState<string | null>(null)
 
+  // Modal states
+  const [isPreviewOpen, setIsPreviewOpen] = useState(false)
+  const [isSendOpen, setIsSendOpen] = useState(false)
+  const [isExportOpen, setIsExportOpen] = useState(false)
+  const [isSaveDraftOpen, setIsSaveDraftOpen] = useState(false)
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false)
+  const [isSectionEditorOpen, setIsSectionEditorOpen] = useState(false)
+  const [editingSection, setEditingSection] = useState<ProposalSection | null>(null)
+
+  // Build full proposal object for modals
+  const fullProposal: Proposal = {
+    id: 'PROP-001',
+    proposalNumber: proposalData.quoteNumber,
+    customerName: proposalData.customer,
+    contactEmail: 'contact@prestigeproperties.com',
+    contactPhone: '+91 98765 43210',
+    quoteId: proposalData.quoteNumber,
+    sections: sections,
+    status: 'draft',
+    totalValue: 2850000,
+    validUntil: proposalData.validUntil,
+    createdDate: new Date().toISOString().split('T')[0],
+    branding: {
+      primaryColor: '#3b82f6',
+      secondaryColor: '#8b5cf6',
+      accentColor: '#ec4899'
+    },
+    settings: {
+      pageSize: 'A4',
+      orientation: 'portrait',
+      includePageNumbers: true,
+      includeTableOfContents: true,
+      includeTermsAndConditions: true
+    }
+  }
+
+  // Modal handlers
+  const handleSendProposal = (data: any) => {
+    console.log('Sending proposal:', data)
+    // Add send logic here
+  }
+
+  const handleExportPDF = (settings: any) => {
+    console.log('Exporting PDF:', settings)
+    // Add export logic here
+  }
+
+  const handleSaveDraft = (data: any) => {
+    console.log('Saving draft:', data)
+    // Add save logic here
+  }
+
+  const handleSaveSettings = (settings: any) => {
+    console.log('Saving settings:', settings)
+    // Add settings save logic here
+  }
+
+  const handleEditSection = (section: ProposalSection) => {
+    setEditingSection(section)
+    setIsSectionEditorOpen(true)
+  }
+
+  const handleSaveSection = (section: ProposalSectionType) => {
+    if (editingSection) {
+      setSections(sections.map(s =>
+        s.id === section.id ? section : s
+      ))
+    } else {
+      setSections([...sections, section])
+    }
+  }
+
   const getSectionIcon = (type: string) => {
     switch (type) {
       case 'cover': return <FileText className="h-4 w-4" />
@@ -172,19 +254,31 @@ export default function CPQProposalsBuilderPage() {
           </p>
         </div>
         <div className="flex items-center gap-3">
-          <button className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
+          <button
+            onClick={() => setIsPreviewOpen(true)}
+            className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2"
+          >
             <Eye className="h-4 w-4" />
             Preview
           </button>
-          <button className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
+          <button
+            onClick={() => setIsSaveDraftOpen(true)}
+            className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2"
+          >
             <Save className="h-4 w-4" />
             Save Draft
           </button>
-          <button className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
+          <button
+            onClick={() => setIsExportOpen(true)}
+            className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2"
+          >
             <Download className="h-4 w-4" />
             Export PDF
           </button>
-          <button className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 flex items-center gap-2">
+          <button
+            onClick={() => setIsSendOpen(true)}
+            className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 flex items-center gap-2"
+          >
             <Send className="h-4 w-4" />
             Send Proposal
           </button>
@@ -278,14 +372,20 @@ export default function CPQProposalsBuilderPage() {
               <div className="space-y-3">
                 <div>
                   <label className="text-xs font-medium text-gray-700">Header Image</label>
-                  <button className="w-full mt-1 px-3 py-2 text-sm text-gray-700 bg-gray-50 rounded-lg hover:bg-gray-100 flex items-center justify-center gap-2 border border-gray-200">
+                  <button
+                    onClick={() => setIsSettingsOpen(true)}
+                    className="w-full mt-1 px-3 py-2 text-sm text-gray-700 bg-gray-50 rounded-lg hover:bg-gray-100 flex items-center justify-center gap-2 border border-gray-200"
+                  >
                     <Image className="h-4 w-4" />
                     Upload Logo
                   </button>
                 </div>
                 <div>
                   <label className="text-xs font-medium text-gray-700">Color Theme</label>
-                  <button className="w-full mt-1 px-3 py-2 text-sm text-gray-700 bg-gray-50 rounded-lg hover:bg-gray-100 flex items-center justify-center gap-2 border border-gray-200">
+                  <button
+                    onClick={() => setIsSettingsOpen(true)}
+                    className="w-full mt-1 px-3 py-2 text-sm text-gray-700 bg-gray-50 rounded-lg hover:bg-gray-100 flex items-center justify-center gap-2 border border-gray-200"
+                  >
                     <Palette className="h-4 w-4" />
                     Customize Colors
                   </button>
@@ -420,6 +520,51 @@ export default function CPQProposalsBuilderPage() {
           </div>
         </div>
       </div>
+
+      {/* Modals */}
+      <PreviewModal
+        isOpen={isPreviewOpen}
+        onClose={() => setIsPreviewOpen(false)}
+        proposal={fullProposal}
+      />
+
+      <SendProposalModal
+        isOpen={isSendOpen}
+        onClose={() => setIsSendOpen(false)}
+        onSend={handleSendProposal}
+        proposal={fullProposal}
+      />
+
+      <ExportPDFModal
+        isOpen={isExportOpen}
+        onClose={() => setIsExportOpen(false)}
+        onExport={handleExportPDF}
+        proposal={fullProposal}
+      />
+
+      <SaveDraftModal
+        isOpen={isSaveDraftOpen}
+        onClose={() => setIsSaveDraftOpen(false)}
+        onSave={handleSaveDraft}
+        proposal={fullProposal}
+      />
+
+      <SettingsModal
+        isOpen={isSettingsOpen}
+        onClose={() => setIsSettingsOpen(false)}
+        onSave={handleSaveSettings}
+        proposal={fullProposal}
+      />
+
+      <SectionEditorModal
+        isOpen={isSectionEditorOpen}
+        onClose={() => {
+          setIsSectionEditorOpen(false)
+          setEditingSection(null)
+        }}
+        onSave={handleSaveSection}
+        section={editingSection}
+      />
     </div>
   )
 }

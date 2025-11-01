@@ -2,7 +2,9 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { ArrowLeft, Download, Plus, Filter, AlertTriangle, CheckCircle, Clock, XCircle, FileText, User } from 'lucide-react';
+import { ArrowLeft, Download, Plus, Filter, AlertTriangle, CheckCircle, Clock, XCircle, FileText, User, Eye, Edit } from 'lucide-react';
+import { RaiseNCRModal, ViewNCRDetailsModal, EditNCRModal } from '@/components/quality/NCRModals';
+import { ExportNCRModal } from '@/components/quality/QualityExportModals';
 
 interface NCR {
   id: string;
@@ -38,7 +40,13 @@ export default function NCRPage() {
   const [filterSeverity, setFilterSeverity] = useState<string>('all');
   const [filterStatus, setFilterStatus] = useState<string>('all');
   const [filterType, setFilterType] = useState<string>('all');
-  const [selectedNCR, setSelectedNCR] = useState<string | null>(null);
+
+  // Modal state hooks
+  const [isRaiseOpen, setIsRaiseOpen] = useState(false);
+  const [isViewOpen, setIsViewOpen] = useState(false);
+  const [isEditOpen, setIsEditOpen] = useState(false);
+  const [isExportOpen, setIsExportOpen] = useState(false);
+  const [selectedNCR, setSelectedNCR] = useState<NCR | null>(null);
 
   // Mock data for NCRs
   const ncrs: NCR[] = [
@@ -323,6 +331,73 @@ export default function NCRPage() {
     }
   };
 
+  // Handler functions
+  const handleRaise = () => {
+    setIsRaiseOpen(true);
+  };
+
+  const handleView = (ncr: NCR) => {
+    // Convert NCR format for modal compatibility
+    const modalNCR = convertNCRForModal(ncr);
+    setSelectedNCR(modalNCR as any);
+    setIsViewOpen(true);
+  };
+
+  const handleEdit = (ncr: NCR) => {
+    // Convert NCR format for modal compatibility
+    const modalNCR = convertNCRForModal(ncr);
+    setSelectedNCR(modalNCR as any);
+    setIsEditOpen(true);
+  };
+
+  // Helper function to convert NCR format for modal compatibility
+  const convertNCRForModal = (ncr: NCR): any => {
+    return {
+      ...ncr,
+      severity: ncr.severity.charAt(0).toUpperCase() + ncr.severity.slice(1),
+      status: ncr.status.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' '),
+      detectionDate: ncr.detectedDate,
+      detectionStage: ncr.detectedStage,
+      createdDate: ncr.detectedDate,
+      lastModified: ncr.detectedDate,
+    };
+  };
+
+  const handleExport = () => {
+    setIsExportOpen(true);
+  };
+
+  const handleRaiseSubmit = (data: any) => {
+    // TODO: Implement API call to create new NCR
+    console.log('Raise NCR submitted:', data);
+    setIsRaiseOpen(false);
+  };
+
+  const handleViewClose = () => {
+    setIsViewOpen(false);
+    setSelectedNCR(null);
+  };
+
+  const handleEditSubmit = (data: any) => {
+    // TODO: Implement API call to update NCR
+    console.log('Edit NCR submitted:', data);
+    setIsEditOpen(false);
+    setSelectedNCR(null);
+  };
+
+  const handleExportSubmit = (data: any) => {
+    // TODO: Implement API call to export NCR data
+    console.log('Export NCR submitted:', data);
+    setIsExportOpen(false);
+  };
+
+  const handleCloseNCR = (ncrId: string) => {
+    // TODO: Implement API call to close NCR
+    console.log('Close NCR:', ncrId);
+    setIsViewOpen(false);
+    setSelectedNCR(null);
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
       {/* Inline Header */}
@@ -340,11 +415,17 @@ export default function NCRPage() {
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <button className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors flex items-center gap-2">
+          <button
+            onClick={handleRaise}
+            className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors flex items-center gap-2"
+          >
             <Plus className="w-4 h-4" />
             <span>Raise NCR</span>
           </button>
-          <button className="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors flex items-center gap-2">
+          <button
+            onClick={handleExport}
+            className="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors flex items-center gap-2"
+          >
             <Download className="w-4 h-4" />
             <span>Export</span>
           </button>
@@ -447,7 +528,7 @@ export default function NCRPage() {
       {/* NCR List */}
       <div className="space-y-4">
         {filteredNCRs.map((ncr) => (
-          <div key={ncr.id} className={`bg-white rounded-xl border-2 p-6 ${getSeverityColor(ncr.severity)}`}>
+          <div key={ncr.id} className={`bg-white rounded-xl border-2 p-6 hover:shadow-lg transition-shadow ${getSeverityColor(ncr.severity)}`}>
             <div className="flex items-start gap-4">
               {/* Icon */}
               <div className={`p-3 rounded-lg ${getStatusColor(ncr.status)}`}>
@@ -568,10 +649,58 @@ export default function NCRPage() {
                   </div>
                 </div>
               </div>
+
+              {/* Action Buttons */}
+              <div className="flex flex-col gap-2">
+                <button
+                  onClick={() => handleView(ncr)}
+                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2 whitespace-nowrap"
+                >
+                  <Eye className="w-4 h-4" />
+                  <span>View</span>
+                </button>
+                {ncr.status !== 'closed' && ncr.status !== 'rejected' && (
+                  <button
+                    onClick={() => handleEdit(ncr)}
+                    className="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors flex items-center gap-2 whitespace-nowrap"
+                  >
+                    <Edit className="w-4 h-4" />
+                    <span>Edit</span>
+                  </button>
+                )}
+              </div>
             </div>
           </div>
         ))}
       </div>
+
+      {/* Modal Components */}
+      <RaiseNCRModal
+        isOpen={isRaiseOpen}
+        onClose={() => setIsRaiseOpen(false)}
+        onSave={handleRaiseSubmit}
+      />
+
+      <ViewNCRDetailsModal
+        isOpen={isViewOpen}
+        onClose={handleViewClose}
+        ncr={selectedNCR}
+        onEdit={(ncr) => handleEdit(ncr as any)}
+        onCloseNCR={handleCloseNCR}
+      />
+
+      <EditNCRModal
+        isOpen={isEditOpen}
+        onClose={() => setIsEditOpen(false)}
+        onSave={handleEditSubmit}
+        ncr={selectedNCR}
+      />
+
+      <ExportNCRModal
+        isOpen={isExportOpen}
+        onClose={() => setIsExportOpen(false)}
+        onExport={handleExportSubmit}
+      />
     </div>
   );
 }

@@ -40,6 +40,33 @@ interface PendingEstimate {
 export default function EstimateWorkflowPendingPage() {
   const router = useRouter()
 
+  const handleViewEstimate = (estimateId: string) => {
+    router.push(`/estimation/workflow/pending/view/${estimateId}`)
+  }
+
+  const handleViewComments = (estimateId: string) => {
+    router.push(`/estimation/workflow/pending/comments/${estimateId}`)
+  }
+
+  const handleApprove = (estimateId: string, projectName: string) => {
+    if (confirm(`Are you sure you want to approve "${projectName}"?`)) {
+      console.log('Approving estimate:', estimateId)
+      // Would make API call here
+    }
+  }
+
+  const handleReject = (estimateId: string, projectName: string) => {
+    if (confirm(`Are you sure you want to reject "${projectName}"? Please provide a reason in comments.`)) {
+      console.log('Rejecting estimate:', estimateId)
+      // Would make API call here
+    }
+  }
+
+  const handleExport = () => {
+    console.log('Exporting pending estimates report')
+    // Would generate Excel/PDF export
+  }
+
   const [pendingEstimates] = useState<PendingEstimate[]>([
     {
       id: 'PEND-001',
@@ -217,11 +244,10 @@ export default function EstimateWorkflowPendingPage() {
       {/* Action Buttons */}
       <div className="mb-6 flex justify-end">
         <div className="flex items-center gap-3">
-          <button className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
-            <Filter className="h-4 w-4" />
-            Filter
-          </button>
-          <button className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 flex items-center gap-2">
+          <button
+            onClick={handleExport}
+            className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 flex items-center gap-2"
+          >
             <Download className="h-4 w-4" />
             Export
           </button>
@@ -349,10 +375,18 @@ export default function EstimateWorkflowPendingPage() {
                   </td>
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-2">
-                      <button className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg">
+                      <button
+                        onClick={() => handleViewEstimate(estimate.id)}
+                        className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg"
+                        title="View Details"
+                      >
                         <Eye className="h-4 w-4" />
                       </button>
-                      <button className="p-2 text-gray-600 hover:bg-gray-50 rounded-lg relative">
+                      <button
+                        onClick={() => handleViewComments(estimate.id)}
+                        className="p-2 text-gray-600 hover:bg-gray-50 rounded-lg relative"
+                        title="View Comments"
+                      >
                         <MessageSquare className="h-4 w-4" />
                         {estimate.comments > 0 && (
                           <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
@@ -360,10 +394,18 @@ export default function EstimateWorkflowPendingPage() {
                           </span>
                         )}
                       </button>
-                      <button className="p-2 text-green-600 hover:bg-green-50 rounded-lg">
+                      <button
+                        onClick={() => handleApprove(estimate.id, estimate.projectName)}
+                        className="p-2 text-green-600 hover:bg-green-50 rounded-lg"
+                        title="Approve"
+                      >
                         <CheckCircle className="h-4 w-4" />
                       </button>
-                      <button className="p-2 text-red-600 hover:bg-red-50 rounded-lg">
+                      <button
+                        onClick={() => handleReject(estimate.id, estimate.projectName)}
+                        className="p-2 text-red-600 hover:bg-red-50 rounded-lg"
+                        title="Reject"
+                      >
                         <XCircle className="h-4 w-4" />
                       </button>
                     </div>

@@ -19,6 +19,13 @@ import {
   TrendingUp,
   Eye
 } from 'lucide-react'
+import {
+  ViewProposalModal,
+  SendReminderModal,
+  SignatureDetailsModal,
+  ExportReportModal,
+  SignatureRecord
+} from '@/components/cpq/ProposalSignatureModals'
 
 interface ProposalSignature {
   id: string
@@ -199,6 +206,58 @@ export default function CPQProposalsSignaturesPage() {
   const signatureRate = ((signed / totalSignatures) * 100).toFixed(1)
   const totalValue = signatures.filter(s => s.status === 'signed').reduce((sum, s) => sum + s.proposalValue, 0)
 
+  // Modal states
+  const [isViewProposalOpen, setIsViewProposalOpen] = useState(false)
+  const [isReminderOpen, setIsReminderOpen] = useState(false)
+  const [isDetailsOpen, setIsDetailsOpen] = useState(false)
+  const [isExportOpen, setIsExportOpen] = useState(false)
+  const [selectedSignature, setSelectedSignature] = useState<ProposalSignature | null>(null)
+
+  // Convert local signature to SignatureRecord
+  const convertToSignatureRecord = (sig: ProposalSignature): SignatureRecord => ({
+    id: sig.id,
+    signatureId: sig.id,
+    proposalNumber: sig.proposalNumber,
+    proposalTitle: `Proposal for ${sig.customerName}`,
+    customerName: sig.customerName,
+    customerEmail: sig.email,
+    signerName: sig.contactPerson,
+    signerTitle: 'Decision Maker',
+    status: sig.status,
+    sentDate: sig.sentDate,
+    viewedDate: sig.viewedDate,
+    signedDate: sig.signedDate,
+    expiryDate: sig.expiryDate,
+    remindersSent: sig.remindersSent,
+    ipAddress: sig.ipAddress,
+    location: sig.ipAddress ? 'Bangalore, India' : undefined,
+    device: sig.deviceInfo
+  })
+
+  // Modal handlers
+  const handleViewProposal = (sig: ProposalSignature) => {
+    setSelectedSignature(sig)
+    setIsViewProposalOpen(true)
+  }
+
+  const handleSendReminder = (sig: ProposalSignature) => {
+    setSelectedSignature(sig)
+    setIsReminderOpen(true)
+  }
+
+  const handleViewDetails = (sig: ProposalSignature) => {
+    setSelectedSignature(sig)
+    setIsDetailsOpen(true)
+  }
+
+  const handleSendReminderAction = (data: any) => {
+    console.log('Sending reminder:', data)
+  }
+
+  const handleExport = (settings: any) => {
+    console.log('Exporting report:', settings)
+  }
+
   return (
     <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
       {/* Action Buttons */}
@@ -208,7 +267,10 @@ export default function CPQProposalsSignaturesPage() {
             <Filter className="h-4 w-4" />
             Filter
           </button>
-          <button className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
+          <button
+            onClick={() => setIsExportOpen(true)}
+            className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2"
+          >
             <Download className="h-4 w-4" />
             Export Report
           </button>
@@ -406,12 +468,24 @@ export default function CPQProposalsSignaturesPage() {
 
             {/* Action Buttons */}
             <div className="flex items-center gap-2 pt-4 border-t border-gray-200">
-              <button className="flex-1 px-4 py-2 text-sm text-blue-600 bg-blue-50 rounded-lg hover:bg-blue-100 flex items-center justify-center gap-2">
+              <button
+                onClick={() => handleViewProposal(signature)}
+                className="flex-1 px-4 py-2 text-sm text-blue-600 bg-blue-50 rounded-lg hover:bg-blue-100 flex items-center justify-center gap-2"
+              >
                 <Eye className="h-4 w-4" />
                 View Proposal
               </button>
+              <button
+                onClick={() => handleViewDetails(signature)}
+                className="px-4 py-2 text-sm text-gray-600 bg-gray-50 rounded-lg hover:bg-gray-100"
+              >
+                Details
+              </button>
               {signature.status === 'pending' && (
-                <button className="flex-1 px-4 py-2 text-sm text-orange-600 bg-orange-50 rounded-lg hover:bg-orange-100 flex items-center justify-center gap-2">
+                <button
+                  onClick={() => handleSendReminder(signature)}
+                  className="flex-1 px-4 py-2 text-sm text-orange-600 bg-orange-50 rounded-lg hover:bg-orange-100 flex items-center justify-center gap-2"
+                >
                   <Mail className="h-4 w-4" />
                   Send Reminder
                 </button>
@@ -441,6 +515,47 @@ export default function CPQProposalsSignaturesPage() {
           <li><strong>Secure:</strong> IP address and device tracking for verification</li>
         </ul>
       </div>
+
+      {/* Modals */}
+      {isViewProposalOpen && selectedSignature && (
+        <ViewProposalModal
+          isOpen={isViewProposalOpen}
+          onClose={() => {
+            setIsViewProposalOpen(false)
+            setSelectedSignature(null)
+          }}
+          signature={convertToSignatureRecord(selectedSignature)}
+        />
+      )}
+
+      {isReminderOpen && selectedSignature && (
+        <SendReminderModal
+          isOpen={isReminderOpen}
+          onClose={() => {
+            setIsReminderOpen(false)
+            setSelectedSignature(null)
+          }}
+          onSend={handleSendReminderAction}
+          signature={convertToSignatureRecord(selectedSignature)}
+        />
+      )}
+
+      {isDetailsOpen && selectedSignature && (
+        <SignatureDetailsModal
+          isOpen={isDetailsOpen}
+          onClose={() => {
+            setIsDetailsOpen(false)
+            setSelectedSignature(null)
+          }}
+          signature={convertToSignatureRecord(selectedSignature)}
+        />
+      )}
+
+      <ExportReportModal
+        isOpen={isExportOpen}
+        onClose={() => setIsExportOpen(false)}
+        onExport={handleExport}
+      />
     </div>
   )
 }

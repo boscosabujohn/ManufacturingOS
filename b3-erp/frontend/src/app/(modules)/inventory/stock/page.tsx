@@ -3,6 +3,11 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Plus, Search, Eye, Edit, Package, AlertTriangle, TrendingUp, TrendingDown, Download, Filter, ChevronLeft, ChevronRight, BarChart3, Warehouse } from 'lucide-react';
+import {
+  ViewStockDetailsModal, AddStockItemModal, EditStockItemModal, QuickAdjustmentModal,
+  StockItem as ModalStockItem, AddStockItemData, QuickAdjustmentData
+} from '@/components/inventory/InventoryStockModals';
+import { ExportStockDataModal, ExportStockDataConfig } from '@/components/inventory/InventoryExportModals';
 
 interface StockItem {
   id: string;
@@ -136,6 +141,14 @@ export default function StockPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
+  // Modal states
+  const [isViewDetailsOpen, setIsViewDetailsOpen] = useState(false);
+  const [isAddItemOpen, setIsAddItemOpen] = useState(false);
+  const [isEditItemOpen, setIsEditItemOpen] = useState(false);
+  const [isQuickAdjustOpen, setIsQuickAdjustOpen] = useState(false);
+  const [isExportOpen, setIsExportOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState<StockItem | null>(null);
+
   const filteredItems = stockItems.filter((item) => {
     const matchesSearch =
       item.itemName.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -158,6 +171,152 @@ export default function StockPage() {
   };
 
   const categories = Array.from(new Set(stockItems.map((item) => item.category)));
+
+  // Handler functions
+  const handleViewItem = (item: StockItem) => {
+    setSelectedItem(item);
+    setIsViewDetailsOpen(true);
+  };
+
+  const handleAddItem = () => {
+    setIsAddItemOpen(true);
+  };
+
+  const handleAddItemSubmit = (data: AddStockItemData) => {
+    // Convert AddStockItemData to StockItem format
+    const newItem: StockItem = {
+      id: `STK-${String(stockItems.length + 1).padStart(3, '0')}`,
+      itemCode: data.itemCode,
+      itemName: data.itemName,
+      category: data.category,
+      currentStock: data.initialQuantity,
+      unit: data.uom,
+      reorderLevel: data.minLevel,
+      maxLevel: data.maxLevel,
+      location: `${data.warehouse}-${data.zone}-${data.bin}`,
+      lastUpdated: new Date().toISOString().split('T')[0],
+      status: data.initialQuantity === 0 ? 'out_of_stock' :
+              data.initialQuantity <= data.minLevel ? 'low_stock' :
+              data.initialQuantity >= data.maxLevel ? 'overstock' : 'in_stock',
+      unitCost: data.costPrice,
+      totalValue: data.initialQuantity * data.costPrice,
+    };
+    setStockItems([...stockItems, newItem]);
+    console.log('New stock item added:', newItem);
+  };
+
+  const handleEditItem = (item: StockItem) => {
+    setSelectedItem(item);
+    setIsEditItemOpen(true);
+  };
+
+  const handleEditItemSubmit = (data: Partial<AddStockItemData>) => {
+    if (!selectedItem) return;
+
+    setStockItems(stockItems.map(item =>
+      item.id === selectedItem.id
+        ? {
+            ...item,
+            itemName: data.itemName || item.itemName,
+            category: data.category || item.category,
+            reorderLevel: data.minLevel !== undefined ? data.minLevel : item.reorderLevel,
+            maxLevel: data.maxLevel !== undefined ? data.maxLevel : item.maxLevel,
+            unitCost: data.costPrice !== undefined ? data.costPrice : item.unitCost,
+            totalValue: item.currentStock * (data.costPrice !== undefined ? data.costPrice : item.unitCost),
+            lastUpdated: new Date().toISOString().split('T')[0],
+          }
+        : item
+    ));
+    console.log('Stock item updated:', selectedItem.id);
+  };
+
+  const handleQuickAdjust = (item: StockItem) => {
+    setSelectedItem(item);
+    setIsQuickAdjustOpen(true);
+  };
+
+  const handleQuickAdjustSubmit = (data: QuickAdjustmentData) => {
+    if (!selectedItem) return;
+
+    let newQuantity = selectedItem.currentStock;
+    switch (data.adjustmentType) {
+      case 'increase':
+        newQuantity = selectedItem.currentStock + data.quantity;
+        break;
+      case 'decrease':
+        newQuantity = selectedItem.currentStock - data.quantity;
+        break;
+      case 'set':
+        newQuantity = data.quantity;
+        break;
+    }
+
+    const newStatus = newQuantity === 0 ? 'out_of_stock' :
+                     newQuantity <= selectedItem.reorderLevel ? 'low_stock' :
+                     newQuantity >= selectedItem.maxLevel ? 'overstock' : 'in_stock';
+
+    setStockItems(stockItems.map(item =>
+      item.id === selectedItem.id
+        ? {
+            ...item,
+            currentStock: newQuantity,
+            totalValue: newQuantity * item.unitCost,
+            status: newStatus,
+            lastUpdated: new Date().toISOString().split('T')[0],
+          }
+        : item
+    ));
+    console.log('Stock adjusted:', selectedItem.id, data);
+  };
+
+  const handleExport = () => {
+    setIsExportOpen(true);
+  };
+
+  const handleExportSubmit = (config: ExportStockDataConfig) => {
+    console.log('Exporting stock data with config:', config);
+    // TODO: Implement actual export functionality
+    alert(`Export started: ${config.exportType} as ${config.format}`);
+  };
+
+  // Convert page StockItem to modal StockItem format
+  const convertToModalStockItem = (item: StockItem): ModalStockItem => {
+    return {
+      id: item.id,
+      itemCode: item.itemCode,
+      itemName: item.itemName,
+      description: '', // Not in page data
+      category: item.category,
+      uom: item.unit,
+      barcode: '', // Not in page data
+      currentQuantity: item.currentStock,
+      available: item.currentStock, // Simplified
+      reserved: 0, // Not in page data
+      onOrder: 0, // Not in page data
+      minLevel: item.reorderLevel,
+      maxLevel: item.maxLevel,
+      reorderPoint: item.reorderLevel,
+      safetyStock: 0, // Not in page data
+      costPrice: item.unitCost,
+      sellingPrice: item.unitCost * 1.2, // Simplified
+      supplier: '', // Not in page data
+      leadTime: 7, // Default
+      valuationMethod: 'FIFO',
+      enableSerial: false,
+      enableBatch: false,
+      trackExpiry: false,
+      status: 'active',
+      locations: [{
+        warehouse: item.location.split('-')[0] || 'WH-01',
+        zone: item.location.split('-')[1] || 'Zone-A',
+        bin: item.location.split('-')[2] || 'Bin-01',
+        quantity: item.currentStock,
+        status: 'active'
+      }],
+      lastModifiedBy: 'System',
+      lastModifiedDate: item.lastUpdated,
+    };
+  };
 
   return (
     <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
@@ -208,7 +367,7 @@ export default function StockPage() {
         </div>
 
         <button
-          onClick={() => router.push('/inventory/stock/add')}
+          onClick={handleAddItem}
           className="flex items-center space-x-2 px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors h-fit flex-shrink-0"
         >
           <Plus className="h-5 w-5" />
@@ -251,7 +410,10 @@ export default function StockPage() {
           <option value="out_of_stock">Out of Stock</option>
           <option value="overstock">Overstock</option>
         </select>
-        <button className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+        <button
+          onClick={handleExport}
+          className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
+        >
           <Download className="h-4 w-4" />
           <span>Export</span>
         </button>
@@ -275,7 +437,11 @@ export default function StockPage() {
           </thead>
           <tbody className="divide-y divide-gray-200">
             {paginatedItems.map((item) => (
-              <tr key={item.id} className="hover:bg-gray-50">
+              <tr
+                key={item.id}
+                className="hover:bg-gray-50 cursor-pointer"
+                onClick={() => handleViewItem(item)}
+              >
                 <td className="px-6 py-4 font-medium text-gray-900">{item.itemCode}</td>
                 <td className="px-6 py-4">
                   <div className="font-medium text-gray-900">{item.itemName}</div>
@@ -302,19 +468,23 @@ export default function StockPage() {
                 <td className="px-6 py-4">
                   <div className="flex items-center space-x-1">
                     <button
-                      onClick={() => router.push(`/inventory/stock/view/${item.id}`)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleEditItem(item);
+                      }}
                       className="flex items-center space-x-1 px-3 py-1.5 text-blue-600 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors text-sm font-medium"
-                     
-                    >
-                      <Eye className="h-4 w-4" />
-                      <span>View</span>
-                    </button>
-                    <button
-                      onClick={() => router.push(`/inventory/stock/edit/${item.id}`)}
-                      className="flex items-center space-x-1 px-3 py-1.5 text-green-600 bg-green-50 hover:bg-green-100 rounded-lg transition-colors text-sm font-medium"
-                     
                     >
                       <Edit className="h-4 w-4" />
+                      <span>Edit</span>
+                    </button>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleQuickAdjust(item);
+                      }}
+                      className="flex items-center space-x-1 px-3 py-1.5 text-green-600 bg-green-50 hover:bg-green-100 rounded-lg transition-colors text-sm font-medium"
+                    >
+                      <TrendingUp className="h-4 w-4" />
                       <span>Adjust</span>
                     </button>
                   </div>
@@ -367,6 +537,48 @@ export default function StockPage() {
           </div>
         </div>
       </div>
+
+      {/* Modals */}
+      <ViewStockDetailsModal
+        isOpen={isViewDetailsOpen}
+        onClose={() => setIsViewDetailsOpen(false)}
+        item={selectedItem ? convertToModalStockItem(selectedItem) : null}
+        onEdit={() => {
+          setIsViewDetailsOpen(false);
+          if (selectedItem) handleEditItem(selectedItem);
+        }}
+        onAdjust={() => {
+          setIsViewDetailsOpen(false);
+          if (selectedItem) handleQuickAdjust(selectedItem);
+        }}
+        onExport={handleExport}
+      />
+
+      <AddStockItemModal
+        isOpen={isAddItemOpen}
+        onClose={() => setIsAddItemOpen(false)}
+        onSubmit={handleAddItemSubmit}
+      />
+
+      <EditStockItemModal
+        isOpen={isEditItemOpen}
+        onClose={() => setIsEditItemOpen(false)}
+        onSave={handleEditItemSubmit}
+        item={selectedItem ? convertToModalStockItem(selectedItem) : null}
+      />
+
+      <QuickAdjustmentModal
+        isOpen={isQuickAdjustOpen}
+        onClose={() => setIsQuickAdjustOpen(false)}
+        onAdjust={handleQuickAdjustSubmit}
+        item={selectedItem ? convertToModalStockItem(selectedItem) : null}
+      />
+
+      <ExportStockDataModal
+        isOpen={isExportOpen}
+        onClose={() => setIsExportOpen(false)}
+        onExport={handleExportSubmit}
+      />
     </div>
   );
 }

@@ -323,6 +323,18 @@ export default function PendingWorkOrdersPage() {
   const urgentOrders = pendingOrders.filter(o => o.priority === 'urgent').length;
   const totalValue = pendingOrders.reduce((sum, o) => sum + o.estimatedCost, 0);
 
+  const handleViewDetails = (workOrderId: string) => {
+    router.push(`/production/work-orders/view/${workOrderId}`);
+  };
+
+  const handleStartProduction = (order: PendingWorkOrder) => {
+    if (confirm(`Start production for Work Order ${order.workOrderNumber}?\n\nProduct: ${order.productName}\nQuantity: ${order.quantity} ${order.unit}\nEstimated Duration: ${order.estimatedDuration} days`)) {
+      console.log('Starting production for:', order);
+      alert(`Production started for ${order.workOrderNumber}!\n\nWork order has been moved to "In Progress" status.\nYou can track progress in the In Progress section.`);
+      router.push('/production/work-orders/progress');
+    }
+  };
+
   return (
     <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
       {/* Inline Header */}
@@ -547,12 +559,18 @@ export default function PendingWorkOrdersPage() {
                     Created {order.createdDate} by {order.createdBy}
                   </div>
                   <div className="flex items-center gap-2">
-                    <button className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 text-sm flex items-center gap-2">
+                    <button
+                      onClick={() => handleViewDetails(order.id)}
+                      className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 text-sm flex items-center gap-2"
+                    >
                       <Eye className="h-4 w-4" />
                       View Details
                     </button>
                     {order.status === 'ready-to-start' && (
-                      <button className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 text-sm flex items-center gap-2">
+                      <button
+                        onClick={() => handleStartProduction(order)}
+                        className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 text-sm flex items-center gap-2"
+                      >
                         <Play className="h-4 w-4" />
                         Start Production
                       </button>

@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Plus, Search, Eye, Edit, Trash2, Factory, Calendar, Package, TrendingUp, Activity, CheckCircle, AlertTriangle, ChevronLeft, ChevronRight, Download } from 'lucide-react';
+import { PlanModal, ViewPlanModal, ExportModal } from '@/components/production/PPGModals';
 
 interface ProductionPlan {
   id: string;
@@ -152,6 +153,13 @@ export default function PPGPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
+  // Modal states
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isViewModalOpen, setIsViewModalOpen] = useState(false);
+  const [isExportModalOpen, setIsExportModalOpen] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState<ProductionPlan | null>(null);
+
   const filteredPlans = plans.filter((plan) => {
     const matchesSearch =
       plan.planNumber.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -178,6 +186,55 @@ export default function PPGPage() {
     if (confirm('Are you sure you want to delete this production plan?')) {
       setPlans(plans.filter((p) => p.id !== id));
     }
+  };
+
+  const handleCreatePlan = (planData: Partial<ProductionPlan>) => {
+    const newPlan: ProductionPlan = {
+      id: `PPG-${String(plans.length + 1).padStart(3, '0')}`,
+      planNumber: planData.planNumber || '',
+      planName: planData.planName || '',
+      productLine: planData.productLine || '',
+      startDate: planData.startDate || '',
+      endDate: planData.endDate || '',
+      status: planData.status as any || 'draft',
+      totalCapacity: planData.totalCapacity || 0,
+      usedCapacity: planData.usedCapacity || 0,
+      capacityUnit: planData.capacityUnit || 'hours',
+      materialsReady: 0,
+      materialsRequired: 100,
+      workOrdersTotal: 0,
+      workOrdersCompleted: 0,
+      onSchedulePercentage: 100,
+      shiftPlan: planData.shiftPlan || '',
+      planner: planData.planner || '',
+      notes: planData.notes || '',
+    };
+    setPlans([...plans, newPlan]);
+  };
+
+  const handleEditPlan = (planData: Partial<ProductionPlan>) => {
+    if (!selectedPlan) return;
+    setPlans(
+      plans.map((p) =>
+        p.id === selectedPlan.id ? { ...p, ...planData } : p
+      )
+    );
+  };
+
+  const handleViewPlan = (plan: ProductionPlan) => {
+    setSelectedPlan(plan);
+    setIsViewModalOpen(true);
+  };
+
+  const handleEditClick = (plan: ProductionPlan) => {
+    setSelectedPlan(plan);
+    setIsEditModalOpen(true);
+  };
+
+  const handleExport = (format: string, filters: any) => {
+    console.log('Exporting as:', format, 'with filters:', filters);
+    // Implement actual export logic here
+    alert(`Exporting production plans as ${format.toUpperCase()}`);
   };
 
   return (
@@ -227,7 +284,7 @@ export default function PPGPage() {
         </div>
 
         <button
-          onClick={() => router.push('/production/ppg/add')}
+          onClick={() => setIsCreateModalOpen(true)}
           className="flex items-center space-x-2 px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors h-fit flex-shrink-0"
         >
           <Plus className="h-5 w-5" />
@@ -259,7 +316,10 @@ export default function PPGPage() {
           <option value="completed">Completed</option>
           <option value="cancelled">Cancelled</option>
         </select>
-        <button className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+        <button
+          onClick={() => setIsExportModalOpen(true)}
+          className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
+        >
           <Download className="h-4 w-4" />
           <span>Export</span>
         </button>
@@ -361,25 +421,31 @@ export default function PPGPage() {
                   <td className="px-6 py-4">
                     <div className="flex items-center space-x-1">
                       <button
-                        onClick={() => router.push(`/production/ppg/view/${plan.id}`)}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleViewPlan(plan);
+                        }}
                         className="flex items-center space-x-1 px-3 py-1.5 text-blue-600 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors text-sm font-medium"
-                       
                       >
                         <Eye className="h-4 w-4" />
                         <span>View</span>
                       </button>
                       <button
-                        onClick={() => router.push(`/production/ppg/edit/${plan.id}`)}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleEditClick(plan);
+                        }}
                         className="flex items-center space-x-1 px-3 py-1.5 text-green-600 bg-green-50 hover:bg-green-100 rounded-lg transition-colors text-sm font-medium"
-                       
                       >
                         <Edit className="h-4 w-4" />
                         <span>Edit</span>
                       </button>
                       <button
-                        onClick={() => handleDelete(plan.id)}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleDelete(plan.id);
+                        }}
                         className="flex items-center space-x-1 px-3 py-1.5 text-red-600 bg-red-50 hover:bg-red-100 rounded-lg transition-colors text-sm font-medium"
-                       
                       >
                         <Trash2 className="h-4 w-4" />
                         <span>Delete</span>
@@ -435,6 +501,38 @@ export default function PPGPage() {
           </div>
         </div>
       </div>
+
+      {/* Modals */}
+      <PlanModal
+        isOpen={isCreateModalOpen}
+        onClose={() => setIsCreateModalOpen(false)}
+        onSave={handleCreatePlan}
+      />
+
+      <PlanModal
+        isOpen={isEditModalOpen}
+        onClose={() => {
+          setIsEditModalOpen(false);
+          setSelectedPlan(null);
+        }}
+        plan={selectedPlan}
+        onSave={handleEditPlan}
+      />
+
+      <ViewPlanModal
+        isOpen={isViewModalOpen}
+        onClose={() => {
+          setIsViewModalOpen(false);
+          setSelectedPlan(null);
+        }}
+        plan={selectedPlan}
+      />
+
+      <ExportModal
+        isOpen={isExportModalOpen}
+        onClose={() => setIsExportModalOpen(false)}
+        onExport={handleExport}
+      />
     </div>
   );
 }

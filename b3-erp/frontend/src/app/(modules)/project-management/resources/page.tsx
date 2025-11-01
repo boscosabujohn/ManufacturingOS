@@ -16,7 +16,28 @@ import {
   Edit,
   Mail,
   Phone,
+  MoreVertical,
+  UserPlus,
+  Activity,
+  Award,
+  DollarSign,
+  FileText,
+  GitCompare,
 } from 'lucide-react';
+import {
+  AddResourceModal,
+  EditResourceModal,
+  AssignToProjectModal,
+  ResourceCalendarModal,
+  ResourceWorkloadModal,
+  RequestResourceModal,
+  SkillsMatrixModal,
+  CostRatesModal,
+  AvailabilityPlanningModal,
+  ResourceHistoryModal,
+  BulkAssignModal,
+  ResourceComparisonModal,
+} from '@/components/project-management/ResourceModals';
 
 interface Resource {
   id: string;
@@ -303,6 +324,41 @@ export default function ResourcesListPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
+  // Modal states
+  const [modals, setModals] = useState({
+    addResource: false,
+    editResource: false,
+    assignToProject: false,
+    resourceCalendar: false,
+    resourceWorkload: false,
+    requestResource: false,
+    skillsMatrix: false,
+    costRates: false,
+    availabilityPlanning: false,
+    resourceHistory: false,
+    bulkAssign: false,
+    resourceComparison: false,
+  });
+
+  const [selectedResource, setSelectedResource] = useState<Resource | null>(null);
+  const [selectedResources, setSelectedResources] = useState<Resource[]>([]);
+  const [showResourceMenu, setShowResourceMenu] = useState<string | null>(null);
+
+  const openModal = (modalName: keyof typeof modals, resource?: Resource) => {
+    if (resource) setSelectedResource(resource);
+    setModals({ ...modals, [modalName]: true });
+  };
+
+  const closeModal = (modalName: keyof typeof modals) => {
+    setModals({ ...modals, [modalName]: false });
+    setSelectedResource(null);
+  };
+
+  const handleModalSubmit = (modalName: string, data: any) => {
+    console.log(`${modalName} submitted:`, data);
+    // Here you would typically make an API call to save the data
+  };
+
   // Calculate statistics
   const stats = {
     total: resources.length,
@@ -362,14 +418,49 @@ export default function ResourcesListPage() {
   return (
     <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6 space-y-6">
       {/* Header Actions */}
-      <div className="flex justify-end mb-4">
-        <Link
-          href="/project-management/resources/add"
-          className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
-        >
-          <Plus className="w-5 h-5" />
-          Add Resource
-        </Link>
+      <div className="flex justify-between items-center mb-4">
+        <div className="flex gap-2">
+          {selectedResources.length > 0 && (
+            <>
+              <button
+                onClick={() => openModal('bulkAssign')}
+                className="flex items-center gap-2 bg-violet-600 text-white px-4 py-2 rounded-lg hover:bg-violet-700 transition-colors"
+              >
+                <UserPlus className="w-5 h-5" />
+                Bulk Assign ({selectedResources.length})
+              </button>
+              <button
+                onClick={() => setSelectedResources([])}
+                className="flex items-center gap-2 bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition-colors"
+              >
+                Clear Selection
+              </button>
+            </>
+          )}
+        </div>
+        <div className="flex gap-2">
+          <button
+            onClick={() => openModal('resourceComparison')}
+            className="flex items-center gap-2 bg-rose-600 text-white px-4 py-2 rounded-lg hover:bg-rose-700 transition-colors"
+          >
+            <GitCompare className="w-5 h-5" />
+            Compare Resources
+          </button>
+          <button
+            onClick={() => openModal('requestResource')}
+            className="flex items-center gap-2 bg-orange-600 text-white px-4 py-2 rounded-lg hover:bg-orange-700 transition-colors"
+          >
+            <Users className="w-5 h-5" />
+            Request Resource
+          </button>
+          <button
+            onClick={() => openModal('addResource')}
+            className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+          >
+            <Plus className="w-5 h-5" />
+            Add Resource
+          </button>
+        </div>
       </div>
 
       {/* Statistics Cards */}
@@ -593,20 +684,112 @@ export default function ResourcesListPage() {
 
                 {/* Actions */}
                 <div className="flex items-center gap-2 ml-4">
-                  <Link
-                    href={`/project-management/resources/view/${resource.id}`}
-                    className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-                   
-                  >
-                    <Eye className="w-4 h-4" />
-                  </Link>
-                  <Link
-                    href={`/project-management/resources/edit/${resource.id}`}
-                    className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
-                   
-                  >
-                    <Edit className="w-4 h-4" />
-                  </Link>
+                  <input
+                    type="checkbox"
+                    checked={selectedResources.some(r => r.id === resource.id)}
+                    onChange={(e) => {
+                      if (e.target.checked) {
+                        setSelectedResources([...selectedResources, resource]);
+                      } else {
+                        setSelectedResources(selectedResources.filter(r => r.id !== resource.id));
+                      }
+                    }}
+                    className="w-5 h-5 text-blue-600 rounded focus:ring-2 focus:ring-blue-500"
+                  />
+                  <div className="relative">
+                    <button
+                      onClick={() => setShowResourceMenu(showResourceMenu === resource.id ? null : resource.id)}
+                      className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
+                    >
+                      <MoreVertical className="w-4 h-4" />
+                    </button>
+                    {showResourceMenu === resource.id && (
+                      <div className="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-200 z-10">
+                        <div className="py-1">
+                          <button
+                            onClick={() => {
+                              openModal('editResource', resource);
+                              setShowResourceMenu(null);
+                            }}
+                            className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 flex items-center gap-2"
+                          >
+                            <Edit className="w-4 h-4" />
+                            Edit Resource
+                          </button>
+                          <button
+                            onClick={() => {
+                              openModal('assignToProject', resource);
+                              setShowResourceMenu(null);
+                            }}
+                            className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 flex items-center gap-2"
+                          >
+                            <UserPlus className="w-4 h-4" />
+                            Assign to Project
+                          </button>
+                          <button
+                            onClick={() => {
+                              openModal('resourceCalendar', resource);
+                              setShowResourceMenu(null);
+                            }}
+                            className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 flex items-center gap-2"
+                          >
+                            <Calendar className="w-4 h-4" />
+                            View Calendar
+                          </button>
+                          <button
+                            onClick={() => {
+                              openModal('resourceWorkload', resource);
+                              setShowResourceMenu(null);
+                            }}
+                            className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 flex items-center gap-2"
+                          >
+                            <Activity className="w-4 h-4" />
+                            View Workload
+                          </button>
+                          <button
+                            onClick={() => {
+                              openModal('skillsMatrix', resource);
+                              setShowResourceMenu(null);
+                            }}
+                            className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 flex items-center gap-2"
+                          >
+                            <Award className="w-4 h-4" />
+                            Skills Matrix
+                          </button>
+                          <button
+                            onClick={() => {
+                              openModal('costRates', resource);
+                              setShowResourceMenu(null);
+                            }}
+                            className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 flex items-center gap-2"
+                          >
+                            <DollarSign className="w-4 h-4" />
+                            Cost Rates
+                          </button>
+                          <button
+                            onClick={() => {
+                              openModal('availabilityPlanning', resource);
+                              setShowResourceMenu(null);
+                            }}
+                            className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 flex items-center gap-2"
+                          >
+                            <Clock className="w-4 h-4" />
+                            Availability Planning
+                          </button>
+                          <button
+                            onClick={() => {
+                              openModal('resourceHistory', resource);
+                              setShowResourceMenu(null);
+                            }}
+                            className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 flex items-center gap-2"
+                          >
+                            <FileText className="w-4 h-4" />
+                            Resource History
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
@@ -637,6 +820,94 @@ export default function ResourcesListPage() {
           </div>
         </div>
       </div>
+
+      {/* All Modals */}
+      <AddResourceModal
+        isOpen={modals.addResource}
+        onClose={() => closeModal('addResource')}
+        onSubmit={(data) => handleModalSubmit('addResource', data)}
+      />
+
+      {selectedResource && (
+        <>
+          <EditResourceModal
+            isOpen={modals.editResource}
+            onClose={() => closeModal('editResource')}
+            resource={selectedResource}
+            onSubmit={(data) => handleModalSubmit('editResource', data)}
+          />
+
+          <AssignToProjectModal
+            isOpen={modals.assignToProject}
+            onClose={() => closeModal('assignToProject')}
+            resource={selectedResource}
+            onSubmit={(data) => handleModalSubmit('assignToProject', data)}
+          />
+
+          <ResourceCalendarModal
+            isOpen={modals.resourceCalendar}
+            onClose={() => closeModal('resourceCalendar')}
+            resource={selectedResource}
+          />
+
+          <ResourceWorkloadModal
+            isOpen={modals.resourceWorkload}
+            onClose={() => closeModal('resourceWorkload')}
+            resource={selectedResource}
+          />
+
+          <SkillsMatrixModal
+            isOpen={modals.skillsMatrix}
+            onClose={() => closeModal('skillsMatrix')}
+            resource={selectedResource}
+            onSubmit={(data) => handleModalSubmit('skillsMatrix', data)}
+          />
+
+          <CostRatesModal
+            isOpen={modals.costRates}
+            onClose={() => closeModal('costRates')}
+            resource={selectedResource}
+            onSubmit={(data) => handleModalSubmit('costRates', data)}
+          />
+
+          <AvailabilityPlanningModal
+            isOpen={modals.availabilityPlanning}
+            onClose={() => closeModal('availabilityPlanning')}
+            resource={selectedResource}
+            onSubmit={(data) => handleModalSubmit('availabilityPlanning', data)}
+          />
+
+          <ResourceHistoryModal
+            isOpen={modals.resourceHistory}
+            onClose={() => closeModal('resourceHistory')}
+            resource={selectedResource}
+          />
+        </>
+      )}
+
+      <RequestResourceModal
+        isOpen={modals.requestResource}
+        onClose={() => closeModal('requestResource')}
+        onSubmit={(data) => handleModalSubmit('requestResource', data)}
+      />
+
+      <BulkAssignModal
+        isOpen={modals.bulkAssign}
+        onClose={() => closeModal('bulkAssign')}
+        selectedResources={selectedResources}
+        onSubmit={(data) => handleModalSubmit('bulkAssign', data)}
+      />
+
+      <ResourceComparisonModal
+        isOpen={modals.resourceComparison}
+        onClose={() => closeModal('resourceComparison')}
+        resources={resources}
+        onSelect={(resource) => {
+          setSelectedResource(resource);
+          closeModal('resourceComparison');
+          openModal('editResource', resource);
+        }}
+      />
     </div>
   );
 }

@@ -11,23 +11,15 @@ import {
   TrendingDown,
   Activity,
   DollarSign,
-  RefreshCw
+  RefreshCw,
+  Plus
 } from 'lucide-react'
-
-interface DynamicPricingFactor {
-  id: string
-  name: string
-  type: 'demand' | 'inventory' | 'competitor' | 'time' | 'customer'
-  currentValue: string
-  impact: 'positive' | 'negative' | 'neutral'
-  adjustment: string
-  lastUpdated: string
-}
+import { DynamicFactorModal, FilterModal, DynamicPricingFactor } from '@/components/cpq/DynamicPricingModals'
 
 export default function CPQPricingDynamicPage() {
   const router = useRouter()
 
-  const [pricingFactors] = useState<DynamicPricingFactor[]>([
+  const [pricingFactors, setPricingFactors] = useState<DynamicPricingFactor[]>([
     {
       id: 'DF-001',
       name: 'High Demand - Modular Kitchens',
@@ -102,6 +94,12 @@ export default function CPQPricingDynamicPage() {
     }
   ])
 
+  const [searchQuery, setSearchQuery] = useState('')
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isFilterModalOpen, setIsFilterModalOpen] = useState(false)
+  const [selectedFactor, setSelectedFactor] = useState<DynamicPricingFactor | null>(null)
+  const [appliedFilters, setAppliedFilters] = useState<any>(null)
+
   const getTypeColor = (type: string) => {
     const colors: any = {
       demand: 'bg-blue-100 text-blue-700 border-blue-200',
@@ -125,7 +123,72 @@ export default function CPQPricingDynamicPage() {
     return 'text-gray-700'
   }
 
-  const totalAdjustment = pricingFactors.reduce((sum, factor) => {
+  // Handlers
+  const handleAddFactor = () => {
+    setSelectedFactor(null)
+    setIsModalOpen(true)
+  }
+
+  const handleEditFactor = (factor: DynamicPricingFactor) => {
+    setSelectedFactor(factor)
+    setIsModalOpen(true)
+  }
+
+  const handleSaveFactor = (factor: DynamicPricingFactor) => {
+    if (selectedFactor) {
+      setPricingFactors(pricingFactors.map(f => f.id === factor.id ? factor : f))
+    } else {
+      setPricingFactors([factor, ...pricingFactors])
+    }
+  }
+
+  const handleExport = () => {
+    const headers = ['ID', 'Name', 'Type', 'Current Value', 'Impact', 'Adjustment', 'Last Updated']
+    const csvData = filteredFactors.map(factor => [
+      factor.id,
+      `"${factor.name}"`,
+      factor.type,
+      `"${factor.currentValue}"`,
+      factor.impact,
+      factor.adjustment,
+      factor.lastUpdated
+    ])
+
+    const csv = [headers, ...csvData].map(row => row.join(',')).join('\n')
+    const blob = new Blob([csv], { type: 'text/csv' })
+    const url = window.URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `dynamic-pricing-${new Date().toISOString().split('T')[0]}.csv`
+    a.click()
+    window.URL.revokeObjectURL(url)
+  }
+
+  const handleApplyFilters = (filters: any) => {
+    setAppliedFilters(filters)
+  }
+
+  // Filtering logic
+  const filteredFactors = pricingFactors.filter(factor => {
+    const matchesSearch = searchQuery === '' ||
+      factor.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      factor.id.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      factor.type.toLowerCase().includes(searchQuery.toLowerCase())
+
+    let matchesFilters = true
+    if (appliedFilters) {
+      if (appliedFilters.types.length > 0 && !appliedFilters.types.includes(factor.type)) {
+        matchesFilters = false
+      }
+      if (appliedFilters.impacts.length > 0 && !appliedFilters.impacts.includes(factor.impact)) {
+        matchesFilters = false
+      }
+    }
+
+    return matchesSearch && matchesFilters
+  })
+
+  const totalAdjustment = filteredFactors.reduce((sum, factor) => {
     const value = parseFloat(factor.adjustment.replace(/[+%-]/g, ''))
     return sum + (factor.adjustment.startsWith('-') ? -value : value)
   }, 0)
@@ -135,17 +198,31 @@ export default function CPQPricingDynamicPage() {
       {/* Action Buttons */}
       <div className="mb-6 flex justify-end">
         <div className="flex items-center gap-3">
-          <button className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
+          <button
+            onClick={() => setIsFilterModalOpen(true)}
+            className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2"
+          >
             <Filter className="h-4 w-4" />
             Filter
+            {appliedFilters && (appliedFilters.types.length > 0 || appliedFilters.impacts.length > 0) && (
+              <span className="px-2 py-0.5 bg-blue-100 text-blue-700 rounded-full text-xs font-semibold">
+                Active
+              </span>
+            )}
           </button>
-          <button className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
+          <button
+            onClick={handleExport}
+            className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2"
+          >
             <Download className="h-4 w-4" />
             Export
           </button>
-          <button className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 flex items-center gap-2">
-            <RefreshCw className="h-4 w-4" />
-            Refresh Prices
+          <button
+            onClick={handleAddFactor}
+            className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 flex items-center gap-2"
+          >
+            <Plus className="h-4 w-4" />
+            Add Factor
           </button>
         </div>
       </div>
@@ -156,8 +233,8 @@ export default function CPQPricingDynamicPage() {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Active Factors</p>
-              <p className="text-2xl font-bold text-blue-900 mt-1">{pricingFactors.length}</p>
-              <p className="text-xs text-blue-700 mt-1">Influencing prices</p>
+              <p className="text-2xl font-bold text-blue-900 mt-1">{filteredFactors.length}</p>
+              <p className="text-xs text-blue-700 mt-1">{searchQuery || appliedFilters ? 'Matching factors' : 'Influencing prices'}</p>
             </div>
             <Zap className="h-10 w-10 text-blue-600" />
           </div>
@@ -168,7 +245,7 @@ export default function CPQPricingDynamicPage() {
             <div>
               <p className="text-sm font-medium text-green-600">Positive Impact</p>
               <p className="text-2xl font-bold text-green-900 mt-1">
-                {pricingFactors.filter(f => f.impact === 'positive').length}
+                {filteredFactors.filter(f => f.impact === 'positive').length}
               </p>
               <p className="text-xs text-green-700 mt-1">Price increases</p>
             </div>
@@ -181,7 +258,7 @@ export default function CPQPricingDynamicPage() {
             <div>
               <p className="text-sm font-medium text-red-600">Negative Impact</p>
               <p className="text-2xl font-bold text-red-900 mt-1">
-                {pricingFactors.filter(f => f.impact === 'negative').length}
+                {filteredFactors.filter(f => f.impact === 'negative').length}
               </p>
               <p className="text-xs text-red-700 mt-1">Price decreases</p>
             </div>
@@ -204,9 +281,9 @@ export default function CPQPricingDynamicPage() {
       </div>
 
       {/* Factor Type Filter */}
-      <div className="mb-6 flex gap-3">
+      <div className="mb-6 flex gap-3 flex-wrap">
         <button className="px-4 py-2 bg-blue-100 text-blue-700 border border-blue-200 rounded-lg hover:bg-blue-200 text-sm font-medium">
-          All Factors ({pricingFactors.length})
+          All Factors ({filteredFactors.length})
         </button>
         <button className="px-4 py-2 bg-white text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
           Demand ({pricingFactors.filter(f => f.type === 'demand').length})
@@ -228,6 +305,8 @@ export default function CPQPricingDynamicPage() {
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
           <input
             type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search dynamic pricing factors..."
             className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           />
@@ -249,7 +328,33 @@ export default function CPQPricingDynamicPage() {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
-              {pricingFactors.map((factor) => (
+              {filteredFactors.length === 0 ? (
+                <tr>
+                  <td colSpan={6} className="px-4 py-12 text-center text-gray-500">
+                    {searchQuery || appliedFilters ? (
+                      <div>
+                        <p className="text-lg font-medium mb-2">No matching factors found</p>
+                        <p className="text-sm">Try adjusting your search or filter criteria</p>
+                        <button
+                          onClick={() => {
+                            setSearchQuery('')
+                            setAppliedFilters(null)
+                          }}
+                          className="mt-4 px-4 py-2 text-blue-600 hover:text-blue-700 text-sm font-medium"
+                        >
+                          Clear filters
+                        </button>
+                      </div>
+                    ) : (
+                      <div>
+                        <p className="text-lg font-medium mb-2">No dynamic pricing factors yet</p>
+                        <p className="text-sm">Click "Add Factor" to create your first dynamic pricing factor</p>
+                      </div>
+                    )}
+                  </td>
+                </tr>
+              ) : (
+                filteredFactors.map((factor) => (
                 <tr key={factor.id} className="hover:bg-gray-50 transition-colors">
                   <td className="px-4 py-4">
                     <div className="text-sm font-medium text-gray-900">{factor.name}</div>
@@ -274,10 +379,23 @@ export default function CPQPricingDynamicPage() {
                     </span>
                   </td>
                   <td className="px-4 py-4 whitespace-nowrap">
-                    <div className="text-xs text-gray-600">{factor.lastUpdated}</div>
+                    <div className="flex items-center gap-2">
+                      <button
+                        onClick={() => handleEditFactor(factor)}
+                        className="text-xs text-gray-600 hover:text-blue-600"
+                      >
+                        {new Date(factor.lastUpdated).toLocaleString('en-IN', {
+                          day: '2-digit',
+                          month: 'short',
+                          hour: '2-digit',
+                          minute: '2-digit'
+                        })}
+                      </button>
+                    </div>
                   </td>
                 </tr>
-              ))}
+                ))
+              )}
             </tbody>
           </table>
         </div>
@@ -294,6 +412,23 @@ export default function CPQPricingDynamicPage() {
           <li><strong>Customer:</strong> Personalizes pricing based on customer segment and loyalty</li>
         </ul>
       </div>
+
+      {/* Modals */}
+      <DynamicFactorModal
+        isOpen={isModalOpen}
+        onClose={() => {
+          setIsModalOpen(false)
+          setSelectedFactor(null)
+        }}
+        onSave={handleSaveFactor}
+        factor={selectedFactor}
+      />
+
+      <FilterModal
+        isOpen={isFilterModalOpen}
+        onClose={() => setIsFilterModalOpen(false)}
+        onApply={handleApplyFilters}
+      />
     </div>
   )
 }

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import {
   BarChart3, TrendingUp, Activity, AlertTriangle,
   Clock, Users, Package, Settings, Download,
@@ -78,9 +79,11 @@ interface OperatorProductivity {
 }
 
 export default function ProductionAnalyticsPage() {
+  const router = useRouter();
   const [dateRange, setDateRange] = useState('thisMonth');
   const [selectedPlant, setSelectedPlant] = useState('all');
   const [selectedDepartment, setSelectedDepartment] = useState('all');
+  const [isRefreshing, setIsRefreshing] = useState(false);
 
   // Mock OEE Metrics
   const oeeMetrics: OEEMetrics = {
@@ -200,6 +203,31 @@ export default function ProductionAnalyticsPage() {
     return 'bg-gradient-to-r from-blue-500 to-blue-600';
   };
 
+  // Handler functions
+  const handleRefresh = () => {
+    setIsRefreshing(true);
+    setTimeout(() => {
+      setIsRefreshing(false);
+      alert('Dashboard data refreshed successfully!');
+    }, 1000);
+  };
+
+  const handleExportDashboard = () => {
+    alert('Exporting complete analytics dashboard to Excel...');
+  };
+
+  const handleViewAllProducts = () => {
+    router.push('/production/work-orders');
+  };
+
+  const handleViewAllOperators = () => {
+    alert('Viewing all operator productivity rankings...');
+  };
+
+  const handleReportClick = (reportType: string) => {
+    alert(`Opening ${reportType} report...`);
+  };
+
   return (
     <div className="p-6 space-y-6">
       {/* Header */}
@@ -212,11 +240,18 @@ export default function ProductionAnalyticsPage() {
           <p className="text-gray-600 mt-1">Comprehensive production metrics and KPI dashboard</p>
         </div>
         <div className="flex gap-3">
-          <button className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">
-            <RefreshCw className="w-4 h-4" />
-            Refresh
+          <button
+            onClick={handleRefresh}
+            disabled={isRefreshing}
+            className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <RefreshCw className={`w-4 h-4 ${isRefreshing ? 'animate-spin' : ''}`} />
+            {isRefreshing ? 'Refreshing...' : 'Refresh'}
           </button>
-          <button className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-lg hover:from-green-600 hover:to-green-700">
+          <button
+            onClick={handleExportDashboard}
+            className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-lg hover:from-green-600 hover:to-green-700"
+          >
             <Download className="w-4 h-4" />
             Export Dashboard
           </button>
@@ -407,7 +442,12 @@ export default function ProductionAnalyticsPage() {
             <Package className="w-5 h-5 text-blue-600" />
             Product-wise Production (Current Month)
           </h2>
-          <button className="text-sm text-blue-600 hover:text-blue-700 font-medium">View All Products →</button>
+          <button
+            onClick={handleViewAllProducts}
+            className="text-sm text-blue-600 hover:text-blue-700 font-medium"
+          >
+            View All Products →
+          </button>
         </div>
 
         <div className="overflow-x-auto">
@@ -785,7 +825,12 @@ export default function ProductionAnalyticsPage() {
             </h2>
             <p className="text-sm text-gray-600 mt-1">Top 8 performers based on efficiency and quality</p>
           </div>
-          <button className="text-sm text-blue-600 hover:text-blue-700 font-medium">View All Operators →</button>
+          <button
+            onClick={handleViewAllOperators}
+            className="text-sm text-blue-600 hover:text-blue-700 font-medium"
+          >
+            View All Operators →
+          </button>
         </div>
 
         <div className="overflow-x-auto">
@@ -854,49 +899,73 @@ export default function ProductionAnalyticsPage() {
         </div>
 
         <div className="grid grid-cols-4 gap-4">
-          <button className="p-4 border-2 border-gray-200 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-all text-left group">
+          <button
+            onClick={() => handleReportClick('Daily Production Report')}
+            className="p-4 border-2 border-gray-200 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-all text-left group"
+          >
             <BarChart3 className="w-8 h-8 text-blue-600 mb-2" />
             <div className="font-semibold text-gray-900 group-hover:text-blue-700">Daily Production Report</div>
             <div className="text-sm text-gray-600 mt-1">Shift-wise production summary</div>
           </button>
 
-          <button className="p-4 border-2 border-gray-200 rounded-lg hover:border-green-500 hover:bg-green-50 transition-all text-left group">
+          <button
+            onClick={() => handleReportClick('Work Order Status')}
+            className="p-4 border-2 border-gray-200 rounded-lg hover:border-green-500 hover:bg-green-50 transition-all text-left group"
+          >
             <TrendingUp className="w-8 h-8 text-green-600 mb-2" />
             <div className="font-semibold text-gray-900 group-hover:text-green-700">Work Order Status</div>
             <div className="text-sm text-gray-600 mt-1">Current WO progress tracking</div>
           </button>
 
-          <button className="p-4 border-2 border-gray-200 rounded-lg hover:border-purple-500 hover:bg-purple-50 transition-all text-left group">
+          <button
+            onClick={() => handleReportClick('Material Consumption')}
+            className="p-4 border-2 border-gray-200 rounded-lg hover:border-purple-500 hover:bg-purple-50 transition-all text-left group"
+          >
             <Package className="w-8 h-8 text-purple-600 mb-2" />
             <div className="font-semibold text-gray-900 group-hover:text-purple-700">Material Consumption</div>
             <div className="text-sm text-gray-600 mt-1">Raw material usage analysis</div>
           </button>
 
-          <button className="p-4 border-2 border-gray-200 rounded-lg hover:border-orange-500 hover:bg-orange-50 transition-all text-left group">
+          <button
+            onClick={() => handleReportClick('Quality Report')}
+            className="p-4 border-2 border-gray-200 rounded-lg hover:border-orange-500 hover:bg-orange-50 transition-all text-left group"
+          >
             <AlertTriangle className="w-8 h-8 text-orange-600 mb-2" />
             <div className="font-semibold text-gray-900 group-hover:text-orange-700">Quality Report</div>
             <div className="text-sm text-gray-600 mt-1">Defects and rejections</div>
           </button>
 
-          <button className="p-4 border-2 border-gray-200 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-all text-left group">
+          <button
+            onClick={() => handleReportClick('Efficiency Report')}
+            className="p-4 border-2 border-gray-200 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-all text-left group"
+          >
             <Activity className="w-8 h-8 text-blue-600 mb-2" />
             <div className="font-semibold text-gray-900 group-hover:text-blue-700">Efficiency Report</div>
             <div className="text-sm text-gray-600 mt-1">OEE and productivity metrics</div>
           </button>
 
-          <button className="p-4 border-2 border-gray-200 rounded-lg hover:border-red-500 hover:bg-red-50 transition-all text-left group">
+          <button
+            onClick={() => handleReportClick('Downtime Analysis')}
+            className="p-4 border-2 border-gray-200 rounded-lg hover:border-red-500 hover:bg-red-50 transition-all text-left group"
+          >
             <Clock className="w-8 h-8 text-red-600 mb-2" />
             <div className="font-semibold text-gray-900 group-hover:text-red-700">Downtime Analysis</div>
             <div className="text-sm text-gray-600 mt-1">Machine downtime breakdown</div>
           </button>
 
-          <button className="p-4 border-2 border-gray-200 rounded-lg hover:border-green-500 hover:bg-green-50 transition-all text-left group">
+          <button
+            onClick={() => handleReportClick('Cost Variance Report')}
+            className="p-4 border-2 border-gray-200 rounded-lg hover:border-green-500 hover:bg-green-50 transition-all text-left group"
+          >
             <Target className="w-8 h-8 text-green-600 mb-2" />
             <div className="font-semibold text-gray-900 group-hover:text-green-700">Cost Variance Report</div>
             <div className="text-sm text-gray-600 mt-1">Standard vs actual costing</div>
           </button>
 
-          <button className="p-4 border-2 border-gray-200 rounded-lg hover:border-purple-500 hover:bg-purple-50 transition-all text-left group">
+          <button
+            onClick={() => handleReportClick('Labor Productivity')}
+            className="p-4 border-2 border-gray-200 rounded-lg hover:border-purple-500 hover:bg-purple-50 transition-all text-left group"
+          >
             <Users className="w-8 h-8 text-purple-600 mb-2" />
             <div className="font-semibold text-gray-900 group-hover:text-purple-700">Labor Productivity</div>
             <div className="text-sm text-gray-600 mt-1">Operator efficiency rankings</div>

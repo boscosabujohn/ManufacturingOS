@@ -17,6 +17,12 @@ import {
   BarChart3,
   Package
 } from 'lucide-react';
+import {
+  SendToCustomerModal,
+  AddToQuoteModal,
+  GenerateRecommendationModal,
+  Recommendation as RecommendationType
+} from '@/components/cpq/RecommendationModals';
 
 interface Recommendation {
   id: string;
@@ -44,7 +50,13 @@ export default function RecommendationsPage() {
   const [filterType, setFilterType] = useState<string>('all');
   const [filterPriority, setFilterPriority] = useState<'all' | 'high' | 'medium' | 'low'>('all');
 
-  const recommendations: Recommendation[] = [
+  // Modal states
+  const [isSendModalOpen, setIsSendModalOpen] = useState(false);
+  const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
+  const [isGenerateModalOpen, setIsGenerateModalOpen] = useState(false);
+  const [selectedRecommendation, setSelectedRecommendation] = useState<Recommendation | null>(null);
+
+  const [recommendations, setRecommendations] = useState<Recommendation[]>([
     {
       id: '1',
       customerId: 'CUST-2025-1142',
@@ -273,9 +285,29 @@ export default function RecommendationsPage() {
       createdDate: '2025-10-15',
       expiresDate: '2025-10-22'
     }
-  ];
+  ]);
 
   const types = ['all', 'best-match', 'upgrade', 'alternative', 'frequently-bought', 'trending'];
+
+  // Handlers
+  const handleSendToCustomer = (recommendation: Recommendation) => {
+    setSelectedRecommendation(recommendation);
+    setIsSendModalOpen(true);
+  };
+
+  const handleAddToQuote = (recommendation: Recommendation) => {
+    setSelectedRecommendation(recommendation);
+    setIsQuoteModalOpen(true);
+  };
+
+  const handleGenerateNew = () => {
+    setIsGenerateModalOpen(true);
+  };
+
+  const handleGenerateRecommendation = (recommendation: Recommendation) => {
+    setRecommendations([recommendation, ...recommendations]);
+    setIsGenerateModalOpen(false);
+  };
 
   const filteredRecommendations = recommendations.filter(rec => {
     const matchesSearch =
@@ -334,7 +366,10 @@ export default function RecommendationsPage() {
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <button className="flex items-center gap-2 bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700">
+          <button
+            onClick={handleGenerateNew}
+            className="flex items-center gap-2 bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700"
+          >
             <Brain className="h-4 w-4" />
             Generate New
           </button>
@@ -520,10 +555,16 @@ export default function RecommendationsPage() {
                     Created {rec.createdDate} • Expires {rec.expiresDate}
                   </div>
                   <div className="flex items-center gap-2">
-                    <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm">
+                    <button
+                      onClick={() => handleSendToCustomer(rec)}
+                      className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm"
+                    >
                       Send to Customer
                     </button>
-                    <button className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 text-sm">
+                    <button
+                      onClick={() => handleAddToQuote(rec)}
+                      className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 text-sm"
+                    >
                       Add to Quote
                     </button>
                   </div>
@@ -538,6 +579,35 @@ export default function RecommendationsPage() {
       <div className="mt-6 text-sm text-gray-600">
         Showing {filteredRecommendations.length} of {totalRecommendations} recommendations
       </div>
+
+      {/* Modals */}
+      <GenerateRecommendationModal
+        isOpen={isGenerateModalOpen}
+        onClose={() => setIsGenerateModalOpen(false)}
+        onGenerate={handleGenerateRecommendation}
+      />
+
+      {selectedRecommendation && (
+        <>
+          <SendToCustomerModal
+            isOpen={isSendModalOpen}
+            onClose={() => {
+              setIsSendModalOpen(false);
+              setSelectedRecommendation(null);
+            }}
+            recommendation={selectedRecommendation}
+          />
+
+          <AddToQuoteModal
+            isOpen={isQuoteModalOpen}
+            onClose={() => {
+              setIsQuoteModalOpen(false);
+              setSelectedRecommendation(null);
+            }}
+            recommendation={selectedRecommendation}
+          />
+        </>
+      )}
     </div>
   );
 }

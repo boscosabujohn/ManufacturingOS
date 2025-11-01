@@ -12,8 +12,23 @@ import {
   Truck,
   DollarSign,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  Plus,
+  Filter
 } from 'lucide-react'
+import {
+  CreateTransferModal,
+  ViewTransferDetailsModal,
+  ApproveTransferModal,
+  DispatchTransferModal,
+  ReceiveTransferModal,
+  TransferHistoryModal,
+  CreateTransferData,
+  Transfer,
+  ApproveTransferData,
+  DispatchTransferData,
+  ReceiveTransferData
+} from '@/components/inventory/InventoryTransferModals'
 
 interface StockTransfer {
   id: string
@@ -39,6 +54,15 @@ const InventoryTransfersPage = () => {
   const [locationFilter, setLocationFilter] = useState('all')
   const [currentPage, setCurrentPage] = useState(1)
   const itemsPerPage = 10
+
+  // Modal state hooks
+  const [isCreateOpen, setIsCreateOpen] = useState(false)
+  const [isViewDetailsOpen, setIsViewDetailsOpen] = useState(false)
+  const [isApproveOpen, setIsApproveOpen] = useState(false)
+  const [isDispatchOpen, setIsDispatchOpen] = useState(false)
+  const [isReceiveOpen, setIsReceiveOpen] = useState(false)
+  const [isHistoryOpen, setIsHistoryOpen] = useState(false)
+  const [selectedTransfer, setSelectedTransfer] = useState<Transfer | null>(null)
 
   const transfers: StockTransfer[] = [
     {
@@ -221,6 +245,104 @@ const InventoryTransfersPage = () => {
     console.log('Approving transfer:', transferId)
   }
 
+  // Modal handler functions
+  const handleCreateTransfer = () => {
+    setIsCreateOpen(true)
+  }
+
+  const handleCreateTransferSubmit = (data: CreateTransferData, isDraft: boolean) => {
+    console.log('Creating transfer:', data, 'isDraft:', isDraft)
+    // TODO: Implement API call
+    setIsCreateOpen(false)
+  }
+
+  const handleViewTransfer = (transfer: StockTransfer) => {
+    // Convert StockTransfer to Transfer format
+    const transferData: Transfer = {
+      id: transfer.id,
+      transferNumber: transfer.transferId,
+      status: transfer.status === 'in_transit' ? 'in-transit' : transfer.status === 'received' ? 'completed' : transfer.status,
+      priority: 'normal',
+      transferType: 'warehouse',
+      fromLocation: {
+        warehouse: transfer.fromWarehouse,
+        zone: '',
+        bin: ''
+      },
+      toLocation: {
+        warehouse: transfer.toWarehouse,
+        zone: '',
+        bin: ''
+      },
+      transferDate: transfer.transferDate,
+      expectedDelivery: transfer.expectedDelivery,
+      reason: 'Stock transfer',
+      items: [],
+      timeline: [
+        {
+          event: 'Transfer Created',
+          date: transfer.transferDate,
+          user: transfer.initiatedBy,
+          notes: ''
+        }
+      ],
+      createdBy: transfer.initiatedBy,
+      createdDate: transfer.transferDate,
+      approvedBy: transfer.approvedBy || undefined,
+      value: transfer.totalValue
+    }
+    setSelectedTransfer(transferData)
+    setIsViewDetailsOpen(true)
+  }
+
+  const handleApproveTransfer = () => {
+    setIsViewDetailsOpen(false)
+    setIsApproveOpen(true)
+  }
+
+  const handleApproveSubmit = (data: ApproveTransferData) => {
+    console.log('Approving transfer:', data)
+    // TODO: Implement API call
+    setIsApproveOpen(false)
+  }
+
+  const handleDispatch = () => {
+    setIsViewDetailsOpen(false)
+    setIsDispatchOpen(true)
+  }
+
+  const handleDispatchSubmit = (data: DispatchTransferData) => {
+    console.log('Dispatching transfer:', data)
+    // TODO: Implement API call
+    setIsDispatchOpen(false)
+  }
+
+  const handleReceive = () => {
+    setIsViewDetailsOpen(false)
+    setIsReceiveOpen(true)
+  }
+
+  const handleReceiveSubmit = (data: ReceiveTransferData) => {
+    console.log('Receiving transfer:', data)
+    // TODO: Implement API call
+    setIsReceiveOpen(false)
+  }
+
+  const handleViewHistory = () => {
+    setIsHistoryOpen(true)
+  }
+
+  const handleEdit = () => {
+    setIsViewDetailsOpen(false)
+    setIsCreateOpen(true)
+  }
+
+  const handleCancel = () => {
+    console.log('Cancelling transfer')
+    // TODO: Implement cancel API call
+    setIsViewDetailsOpen(false)
+  }
+
   return (
     <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6">
       <div className="max-w-[1600px] mx-auto space-y-6">
@@ -265,14 +387,31 @@ const InventoryTransfersPage = () => {
           })}
         </div>
 
-        <div className="flex justify-end">
-          <button
-            onClick={handleExport}
-            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-          >
-            <Download className="w-4 h-4" />
-            Export Report
-          </button>
+        <div className="flex justify-between items-center">
+          <h1 className="text-2xl font-bold text-gray-900">Inventory Transfers</h1>
+          <div className="flex gap-3">
+            <button
+              onClick={handleViewHistory}
+              className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+            >
+              <Filter className="w-4 h-4" />
+              View History
+            </button>
+            <button
+              onClick={handleExport}
+              className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+            >
+              <Download className="w-4 h-4" />
+              Export Report
+            </button>
+            <button
+              onClick={handleCreateTransfer}
+              className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              <Plus className="w-4 h-4" />
+              Create Transfer
+            </button>
+          </div>
         </div>
 
         {/* Filters and Search */}
@@ -356,7 +495,11 @@ const InventoryTransfersPage = () => {
               </thead>
               <tbody className="divide-y divide-gray-200">
                 {currentTransfers.map((transfer) => (
-                  <tr key={transfer.id} className="hover:bg-gray-50 transition-colors">
+                  <tr
+                    key={transfer.id}
+                    className="hover:bg-gray-50 transition-colors cursor-pointer"
+                    onClick={() => handleViewTransfer(transfer)}
+                  >
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm font-medium text-gray-900">{transfer.transferId}</div>
                     </td>
@@ -389,22 +532,35 @@ const InventoryTransfersPage = () => {
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center gap-2">
                         <button
+                          onClick={(e) => {
+                            e.stopPropagation()
+                            handleViewTransfer(transfer)
+                          }}
                           className="p-1 text-blue-600 hover:bg-blue-50 rounded transition-colors"
-                         
+                          title="View Details"
                         >
                           <Eye className="w-4 h-4" />
                         </button>
                         <button
+                          onClick={(e) => {
+                            e.stopPropagation()
+                            handleViewTransfer(transfer)
+                            setTimeout(() => handleEdit(), 100)
+                          }}
                           className="p-1 text-gray-600 hover:bg-gray-50 rounded transition-colors"
-                         
+                          title="Edit Transfer"
                         >
                           <Edit className="w-4 h-4" />
                         </button>
                         {transfer.status === 'draft' && (
                           <button
-                            onClick={() => handleApprove(transfer.transferId)}
+                            onClick={(e) => {
+                              e.stopPropagation()
+                              handleViewTransfer(transfer)
+                              setTimeout(() => handleApproveTransfer(), 100)
+                            }}
                             className="p-1 text-green-600 hover:bg-green-50 rounded transition-colors"
-                           
+                            title="Approve Transfer"
                           >
                             <CheckCircle className="w-4 h-4" />
                           </button>
@@ -457,6 +613,72 @@ const InventoryTransfersPage = () => {
             </div>
           </div>
         </div>
+
+        {/* Modal Components */}
+        <CreateTransferModal
+          isOpen={isCreateOpen}
+          onClose={() => {
+            setIsCreateOpen(false)
+            setSelectedTransfer(null)
+          }}
+          onSubmit={handleCreateTransferSubmit}
+        />
+
+        <ViewTransferDetailsModal
+          isOpen={isViewDetailsOpen}
+          onClose={() => {
+            setIsViewDetailsOpen(false)
+            setSelectedTransfer(null)
+          }}
+          transfer={selectedTransfer}
+          onEdit={handleEdit}
+          onApprove={handleApproveTransfer}
+          onReject={() => {
+            setIsViewDetailsOpen(false)
+            setIsApproveOpen(true)
+          }}
+          onDispatch={handleDispatch}
+          onReceive={handleReceive}
+          onCancel={handleCancel}
+          onPrint={() => console.log('Print transfer')}
+        />
+
+        <ApproveTransferModal
+          isOpen={isApproveOpen}
+          onClose={() => {
+            setIsApproveOpen(false)
+            setIsViewDetailsOpen(true)
+          }}
+          onSubmit={handleApproveSubmit}
+          transfer={selectedTransfer}
+        />
+
+        <DispatchTransferModal
+          isOpen={isDispatchOpen}
+          onClose={() => {
+            setIsDispatchOpen(false)
+            setIsViewDetailsOpen(true)
+          }}
+          onSubmit={handleDispatchSubmit}
+          transfer={selectedTransfer}
+        />
+
+        <ReceiveTransferModal
+          isOpen={isReceiveOpen}
+          onClose={() => {
+            setIsReceiveOpen(false)
+            setIsViewDetailsOpen(true)
+          }}
+          onSubmit={handleReceiveSubmit}
+          transfer={selectedTransfer}
+        />
+
+        <TransferHistoryModal
+          isOpen={isHistoryOpen}
+          onClose={() => setIsHistoryOpen(false)}
+          onViewDetails={handleViewTransfer}
+          onExport={() => console.log('Export history')}
+        />
       </div>
     </div>
   )

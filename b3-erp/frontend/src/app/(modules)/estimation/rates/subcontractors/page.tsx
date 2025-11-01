@@ -44,6 +44,18 @@ export default function SubcontractorsRatesPage() {
   const router = useRouter()
   const [editingId, setEditingId] = useState<string | null>(null)
 
+  const handleAddSubcontractor = () => {
+    router.push('/estimation/rates/subcontractors/add')
+  }
+
+  const handleExport = () => {
+    console.log('Exporting subcontractor rates')
+  }
+
+  const handleViewHistory = (subcontractorId: string) => {
+    router.push(`/estimation/rates/subcontractors/history/${subcontractorId}`)
+  }
+
   const [subcontractorRates] = useState<SubcontractorRate[]>([
     {
       id: 'SUB-R-001',
@@ -303,11 +315,15 @@ export default function SubcontractorsRatesPage() {
             <Filter className="h-4 w-4" />
             Filter
           </button>
-          <button className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
+          <button
+            onClick={handleExport}
+            className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
             <Download className="h-4 w-4" />
             Export
           </button>
-          <button className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 flex items-center gap-2">
+          <button
+            onClick={handleAddSubcontractor}
+            className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 flex items-center gap-2">
             <Plus className="h-4 w-4" />
             Add Subcontractor
           </button>
@@ -483,7 +499,9 @@ export default function SubcontractorsRatesPage() {
                           <Edit2 className="h-4 w-4" />
                         </button>
                       )}
-                      <button className="p-2 text-gray-600 hover:bg-gray-50 rounded-lg">
+                      <button
+                        onClick={() => handleViewHistory(subcontractor.id)}
+                        className="p-2 text-gray-600 hover:bg-gray-50 rounded-lg">
                         <History className="h-4 w-4" />
                       </button>
                     </div>

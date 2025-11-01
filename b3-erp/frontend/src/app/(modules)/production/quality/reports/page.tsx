@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { ArrowLeft, Download, Filter, BarChart3, TrendingUp, TrendingDown, Calendar, FileText, Award, AlertTriangle } from 'lucide-react';
+import { ExportQualityReportModal } from '@/components/quality/QualityExportModals';
 
 interface QualityMetric {
   period: string;
@@ -46,6 +47,7 @@ export default function QualityReportsPage() {
   const router = useRouter();
   const [selectedPeriod, setSelectedPeriod] = useState<string>('current-month');
   const [filterCategory, setFilterCategory] = useState<string>('all');
+  const [isExportOpen, setIsExportOpen] = useState(false);
 
   // Mock data for quality metrics over time
   const qualityMetrics: QualityMetric[] = [
@@ -285,6 +287,16 @@ export default function QualityReportsPage() {
     return 'text-red-600';
   };
 
+  // Modal handlers
+  const handleExport = () => {
+    setIsExportOpen(true);
+  };
+
+  const handleExportSubmit = (data: any) => {
+    console.log('Export quality report data:', data);
+    // TODO: API call to export quality report
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
       {/* Inline Header */}
@@ -302,7 +314,7 @@ export default function QualityReportsPage() {
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <button className="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors flex items-center gap-2">
+          <button onClick={handleExport} className="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors flex items-center gap-2">
             <Download className="w-4 h-4" />
             <span>Export Report</span>
           </button>
@@ -536,6 +548,13 @@ export default function QualityReportsPage() {
           </table>
         </div>
       </div>
+
+      {/* Export Modal */}
+      <ExportQualityReportModal
+        isOpen={isExportOpen}
+        onClose={() => setIsExportOpen(false)}
+        onExport={handleExportSubmit}
+      />
     </div>
   );
 }

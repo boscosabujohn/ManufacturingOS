@@ -58,6 +58,12 @@ import {
   AreaChart,
   Area
 } from 'recharts'
+import {
+  SubmitRequisitionModal,
+  ApproveRejectModal,
+  ConvertToPOModal,
+  TrackStatusModal
+} from '@/components/procurement/PurchaseRequisitionModals'
 
 interface Requisition {
   id: string
@@ -93,6 +99,13 @@ export default function PurchaseRequisitionWorkflow() {
   const [selectedRequisition, setSelectedRequisition] = useState<Requisition | null>(null)
   const [filterStatus, setFilterStatus] = useState('all')
   const [showNewRequisition, setShowNewRequisition] = useState(false)
+
+  // Modal states
+  const [isSubmitRequisitionModalOpen, setIsSubmitRequisitionModalOpen] = useState(false)
+  const [isApproveRejectModalOpen, setIsApproveRejectModalOpen] = useState(false)
+  const [isConvertToPOModalOpen, setIsConvertToPOModalOpen] = useState(false)
+  const [isTrackStatusModalOpen, setIsTrackStatusModalOpen] = useState(false)
+  const [approvalAction, setApprovalAction] = useState<'approve' | 'reject' | 'request_info'>('approve')
 
   // Mock data
   const requisitions: Requisition[] = [
@@ -249,7 +262,7 @@ export default function PurchaseRequisitionWorkflow() {
               Export
             </button>
             <button
-              onClick={() => setShowNewRequisition(true)}
+              onClick={() => setIsSubmitRequisitionModalOpen(true)}
               className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition flex items-center gap-2"
             >
               <Plus className="w-4 h-4" />
@@ -424,17 +437,30 @@ export default function PurchaseRequisitionWorkflow() {
                         </td>
                         <td className="px-4 py-3">
                           <div className="flex items-center gap-2">
-                            <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                            <button
+                              onClick={() => {
+                                setSelectedRequisition(req)
+                                setIsTrackStatusModalOpen(true)
+                              }}
+                              className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm"
+                            >
                               <Eye className="w-4 h-4 text-gray-600" />
-                              <span className="text-gray-700">View</span>
+                              <span className="text-gray-700">Track</span>
                             </button>
-                            <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
-                              <Edit className="w-4 h-4 text-gray-600" />
-                              <span className="text-gray-700">Edit</span>
-                            </button>
+                            {req.status === 'approved' && (
+                              <button
+                                onClick={() => {
+                                  setSelectedRequisition(req)
+                                  setIsConvertToPOModalOpen(true)
+                                }}
+                                className="inline-flex items-center gap-1.5 px-3 py-2 border border-green-300 rounded-lg hover:bg-green-50 text-sm"
+                              >
+                                <ShoppingCart className="w-4 h-4 text-green-600" />
+                                <span className="text-green-700">Create PO</span>
+                              </button>
+                            )}
                             <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
                               <MoreVertical className="w-4 h-4 text-gray-600" />
-                              <span className="text-gray-700">More</span>
                             </button>
                           </div>
                         </td>
@@ -768,15 +794,36 @@ export default function PurchaseRequisitionWorkflow() {
                           <div className="text-sm text-gray-500">Total Amount</div>
                         </div>
                         <div className="flex flex-col gap-2">
-                          <button className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition flex items-center justify-center gap-2">
+                          <button
+                            onClick={() => {
+                              setSelectedRequisition(req)
+                              setApprovalAction('approve')
+                              setIsApproveRejectModalOpen(true)
+                            }}
+                            className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition flex items-center justify-center gap-2"
+                          >
                             <CheckCircle className="w-4 h-4" />
                             Approve
                           </button>
-                          <button className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition flex items-center justify-center gap-2">
+                          <button
+                            onClick={() => {
+                              setSelectedRequisition(req)
+                              setApprovalAction('reject')
+                              setIsApproveRejectModalOpen(true)
+                            }}
+                            className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition flex items-center justify-center gap-2"
+                          >
                             <XCircle className="w-4 h-4" />
                             Reject
                           </button>
-                          <button className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition flex items-center justify-center gap-2">
+                          <button
+                            onClick={() => {
+                              setSelectedRequisition(req)
+                              setApprovalAction('request_info')
+                              setIsApproveRejectModalOpen(true)
+                            }}
+                            className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition flex items-center justify-center gap-2"
+                          >
                             <MessageSquare className="w-4 h-4" />
                             Request Info
                           </button>
@@ -873,6 +920,43 @@ export default function PurchaseRequisitionWorkflow() {
           )}
         </div>
       </div>
+
+      {/* Purchase Requisition Modals */}
+      <SubmitRequisitionModal
+        isOpen={isSubmitRequisitionModalOpen}
+        onClose={() => setIsSubmitRequisitionModalOpen(false)}
+        onSubmit={(data) => {
+          console.log('Submit requisition:', data)
+          setIsSubmitRequisitionModalOpen(false)
+        }}
+      />
+
+      <ApproveRejectModal
+        isOpen={isApproveRejectModalOpen}
+        onClose={() => setIsApproveRejectModalOpen(false)}
+        requisition={selectedRequisition}
+        action={approvalAction}
+        onSubmit={(data) => {
+          console.log('Approval action:', data)
+          setIsApproveRejectModalOpen(false)
+        }}
+      />
+
+      <ConvertToPOModal
+        isOpen={isConvertToPOModalOpen}
+        onClose={() => setIsConvertToPOModalOpen(false)}
+        requisition={selectedRequisition}
+        onSubmit={(data) => {
+          console.log('Convert to PO:', data)
+          setIsConvertToPOModalOpen(false)
+        }}
+      />
+
+      <TrackStatusModal
+        isOpen={isTrackStatusModalOpen}
+        onClose={() => setIsTrackStatusModalOpen(false)}
+        requisition={selectedRequisition}
+      />
     </div>
   )
 }

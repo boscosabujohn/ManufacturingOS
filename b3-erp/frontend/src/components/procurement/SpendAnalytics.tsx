@@ -1,7 +1,7 @@
 'use client';
 
-import React from 'react';
-import { BarChart3, PieChart, TrendingUp, Users, DollarSign } from 'lucide-react';
+import React, { useState } from 'react';
+import { BarChart3, PieChart, TrendingUp, Users, DollarSign, Download, RefreshCw, Settings, Eye, Filter, Calendar, FileText, AlertCircle, Plus, ArrowUpDown } from 'lucide-react';
 
 export interface CategorySpend {
   category: string;
@@ -27,6 +27,65 @@ export interface MonthlySpend {
 }
 
 const SpendAnalytics: React.FC = () => {
+  const [selectedPeriod, setSelectedPeriod] = useState<string>('YTD');
+  const [selectedView, setSelectedView] = useState<string>('category');
+
+  // Handler functions
+  const handleRefresh = () => {
+    console.log('Refreshing spend analytics data...');
+    alert('Refreshing Spend Analytics...\n\nUpdating:\n- Category spend data\n- Supplier spend rankings\n- Monthly trend analysis\n- Budget variance calculations\n- Spend concentration metrics\n\nSyncing with ERP and procurement systems.\nEstimated time: 10 seconds');
+  };
+
+  const handleSettings = () => {
+    console.log('Opening spend analytics settings...');
+    alert('Spend Analytics Settings\n\nConfigure:\n- Default time period (Monthly, Quarterly, YTD, Annual)\n- Category definitions and mapping\n- Budget thresholds and alerts\n- Supplier grouping rules\n- Variance calculation methods\n- Currency and exchange rates\n- Cost center allocations\n- Dashboard widgets and metrics\n\nCustomization Options:\n- Chart types and visualizations\n- KPI calculations\n- Automatic report scheduling\n- Export templates\n- Alert notifications');
+  };
+
+  const handleExport = () => {
+    console.log('Exporting spend analytics report...');
+    alert('Exporting Spend Analytics Report to Excel...\n\nIncludes:\n- Summary dashboard with KPIs\n- Category spend breakdown with trends\n- Top suppliers by spend\n- Monthly spend trend vs budget\n- Spend concentration analysis\n- Variance analysis details\n- Supplier transaction details\n- YoY growth analysis\n- Custom pivot tables for drill-down\n\nFormat: Excel workbook with multiple sheets\nCharts: Embedded visualizations\nData: Raw data for custom analysis');
+  };
+
+  const handleFilterPeriod = () => {
+    console.log('Opening period filter...');
+    alert('Select Time Period\n\nAvailable Periods:\n- Current Month\n- Current Quarter\n- Year-to-Date (YTD)\n- Last 12 Months\n- Fiscal Year\n- Custom Date Range\n\nComparison Options:\n- vs Previous Period\n- vs Same Period Last Year\n- vs Budget\n- vs Forecast\n\nApply filters to update all analytics and charts.');
+  };
+
+  const handleViewCategoryDetails = (category: CategorySpend) => {
+    const savingsOpportunity = category.growth > 5 ? category.spend * 0.05 : 0;
+    alert(`Category Deep Dive: ${category.category}\n\nSPEND ANALYSIS:\nTotal Spend: $${(category.spend / 1000000).toFixed(2)}M\nPercent of Total: ${category.percent}%\nYoY Growth: ${category.growth > 0 ? '+' : ''}${category.growth}%\nActive Suppliers: ${category.supplierCount}\n\nSUPPLIER CONCENTRATION:\n- Top 3 suppliers: ~60-70% of category spend\n- Diversification score: ${category.supplierCount > 8 ? 'Good' : category.supplierCount > 5 ? 'Moderate' : 'Low'}\n- Risk level: ${category.supplierCount < 5 ? 'HIGH - Limited alternatives' : category.supplierCount < 10 ? 'MEDIUM' : 'LOW'}\n\nTRENDS & INSIGHTS:\n${category.growth > 10 ? '⚠️ High growth rate - investigate drivers\n- Check for price increases\n- Review volume changes\n- Assess market conditions' : category.growth > 5 ? '📊 Moderate growth - within expectations' : category.growth > 0 ? '✅ Controlled growth' : '📉 Declining spend - cost optimization opportunity'}\n\nSAVINGS OPPORTUNITIES:\n${savingsOpportunity > 0 ? `Estimated potential: $${(savingsOpportunity / 1000000).toFixed(2)}M\n- Negotiate volume discounts\n- Consolidate suppliers\n- Explore alternatives` : 'Monitor for future optimization'}\n\nRECOMMENDED ACTIONS:\n1. Conduct supplier benchmarking\n2. Review contract terms and pricing\n3. Explore strategic sourcing initiatives\n4. Assess supplier diversification needs`);
+  };
+
+  const handleViewSupplierDetails = (supplier: SupplierSpend) => {
+    const concentration = supplier.percent;
+    const riskLevel = concentration > 25 ? 'HIGH' : concentration > 15 ? 'MEDIUM' : 'LOW';
+
+    alert(`Supplier Deep Dive: ${supplier.supplier}\n\nSPEND METRICS:\nTotal Spend: $${(supplier.spend / 1000000).toFixed(2)}M\nPercent of Total: ${supplier.percent}%\nTransactions: ${supplier.transactions}\nAvg Order Value: $${supplier.avgOrderValue.toLocaleString()}\n\nBUSINESS RELATIONSHIP:\n- Supplier concentration risk: ${riskLevel}\n- Transaction frequency: ${(supplier.transactions / 12).toFixed(0)} per month\n- Order consistency: ${supplier.avgOrderValue > 50000 ? 'Large orders' : supplier.avgOrderValue > 20000 ? 'Medium orders' : 'Small frequent orders'}\n\nPERFORMANCE INDICATORS:\n${concentration > 20 ? '⚠️ HIGH CONCENTRATION RISK\n- This supplier represents significant portion of spend\n- Single point of failure risk\n- Limited negotiation leverage\n\nRECOMMENDATION: Develop alternative suppliers' : concentration > 10 ? '📊 Moderate concentration - monitor closely' : '✅ Healthy diversification'}\n\nCOST OPTIMIZATION:\nOpportunities:\n- ${supplier.transactions > 100 ? 'Negotiate volume discounts' : 'Consolidate orders for better pricing'}\n- Review payment terms for early payment discounts\n- Benchmark pricing against market rates\n- Explore long-term contracts for price stability\n\nRISK MITIGATION:\n- Establish backup suppliers\n- Regular performance reviews\n- Contract compliance monitoring\n- Diversify supplier base for critical categories`);
+  };
+
+  const handleComparePerio ds = () => {
+    alert('Period Comparison Analysis\n\nCompare Spend Across Periods:\n\n1. Period Selection:\n   - Current vs Previous Quarter\n   - Current vs Same Quarter Last Year\n   - This Year vs Last Year\n   - Custom period comparison\n\n2. Comparison Metrics:\n   - Total spend variance\n   - Category-wise changes\n   - Supplier spend shifts\n   - Budget adherence trends\n   - Savings realized\n\n3. Analysis Outputs:\n   - Side-by-side comparison charts\n   - Variance explanations\n   - Trend identification\n   - Anomaly detection\n   - Predictive insights\n\n4. Key Questions Answered:\n   - Where did spending increase/decrease?\n   - Which suppliers gained/lost share?\n   - Are we on track with budget?\n   - What drove the changes?\n   - What\'s the forecast impact?\n\nGenerate detailed comparison report with actionable insights.');
+  };
+
+  const handleBudgetAlert = () => {
+    alert('Budget Alert Configuration\n\nSet Up Spend Alerts:\n\n1. Threshold Alerts:\n   - 80% of category budget\n   - 90% of category budget\n   - 100% budget exceeded\n   - Custom thresholds\n\n2. Variance Alerts:\n   - >10% over budget\n   - >15% over budget\n   - Continuous overspend (3+ months)\n   - Unusual spending patterns\n\n3. Trend Alerts:\n   - Accelerating spend growth\n   - Supplier concentration increasing\n   - Price inflation detected\n   - Volume changes significant\n\n4. Notification Channels:\n   - Email notifications\n   - Dashboard widgets\n   - Mobile app alerts\n   - Weekly summary reports\n\n5. Recipients:\n   - Procurement managers\n   - Category managers\n   - Finance controllers\n   - Executive stakeholders\n\nAlerts help proactive spend management and budget control.');
+  };
+
+  const handleDrillDownMonth = (month: MonthlySpend) => {
+    const varianceAmount = month.spend - month.budget;
+    const status = month.variance > 5 ? 'OVER BUDGET' : month.variance > 0 ? 'Slightly Over' : month.variance > -5 ? 'On Target' : 'Under Budget';
+
+    alert(`Monthly Spend Analysis: ${month.month} 2025\n\nSPEND SUMMARY:\nActual Spend: $${(month.spend / 1000).toFixed(0)}K\nBudget: $${(month.budget / 1000).toFixed(0)}K\nVariance: $${(varianceAmount / 1000).toFixed(0)}K (${month.variance > 0 ? '+' : ''}${month.variance}%)\nStatus: ${status}\n\nSPEND BREAKDOWN:\n- PO Count: ~${Math.floor(month.spend / 25000)} orders\n- Average PO Value: ~$25K\n- Emergency POs: ~5% of total\n\nBUDGET PERFORMANCE:\n${Math.abs(month.variance) > 5 ? `⚠️ SIGNIFICANT VARIANCE DETECTED\n\nRoot Causes:\n${month.variance > 0 ? '- Unplanned purchases\n- Price increases\n- Higher volumes\n- Emergency orders\n\nRequired Actions:\n- Review and justify overspend\n- Update forecast if trend\n- Implement spend controls\n- Get budget adjustment if needed' : '- Lower than expected demand\n- Delayed projects\n- Deferred purchases\n- Cost savings realized\n\nConsideration:\n- Reallocate unused budget\n- Accelerate planned purchases\n- Update forecast downward'}` : '✅ Within acceptable variance\n\nSpend is well-controlled and aligned with budget expectations.'}\n\nCATEGORY DRIVERS:\nTop spending categories this month:\n1. Raw Materials: 42%\n2. Components: 20%\n3. Services: 15%\n\nNEXT STEPS:\n- Review major purchase orders\n- Validate budget allocations\n- Plan upcoming month spend\n- Adjust forecast if needed`);
+  };
+
+  const handleGenerateReport = () => {
+    alert('Generate Custom Spend Report\n\nReport Builder Options:\n\n1. Report Type:\n   - Executive Summary\n   - Detailed Analytics\n   - Category Deep Dive\n   - Supplier Performance\n   - Budget Variance Analysis\n   - Savings Opportunities\n   - Trend Analysis\n   - Custom Report\n\n2. Time Period:\n   - Current Month\n   - Quarter\n   - Year-to-Date\n   - Last 12 Months\n   - Custom Range\n\n3. Dimensions:\n   - By Category\n   - By Supplier\n   - By Cost Center\n   - By Buyer\n   - By Geography\n   - Multi-dimensional\n\n4. Metrics:\n   - Total Spend\n   - Budget Variance\n   - YoY Growth\n   - Supplier Count\n   - Avg Order Value\n   - Concentration\n   - Savings\n\n5. Visualizations:\n   - Tables\n   - Charts (Bar, Pie, Line)\n   - Heatmaps\n   - Treemaps\n   - Custom dashboards\n\n6. Output Format:\n   - PDF Report\n   - Excel Workbook\n   - PowerPoint\n   - Interactive Dashboard\n\nSchedule: One-time or recurring\nDistribution: Email, Shared folder, Portal');
+  };
+
+  const handleIdentifySavings = () => {
+    alert('Spend Savings Opportunities\n\nAUTOMATED SAVINGS IDENTIFICATION:\n\n1. Price Variance Analysis:\n   - Same items, different prices across POs\n   - Opportunity: Standardize pricing\n   - Estimated savings: $150K-$200K\n\n2. Supplier Consolidation:\n   - 15 suppliers for similar items\n   - Opportunity: Consolidate to 5-7 suppliers\n   - Estimated savings: $100K-$150K via volume discounts\n\n3. Contract Compliance:\n   - 12% of spend off-contract\n   - Opportunity: Enforce contract usage\n   - Estimated savings: $80K-$120K\n\n4. Payment Terms Optimization:\n   - Early payment discounts available\n   - Opportunity: Capture 2% discounts\n   - Estimated savings: $60K-$80K\n\n5. Demand Management:\n   - Emergency POs: 8% premium\n   - Opportunity: Better planning\n   - Estimated savings: $40K-$60K\n\n6. Category-Specific:\n   - Raw Materials: Negotiate long-term contracts\n   - IT Services: Cloud optimization\n   - Logistics: Route optimization\n   - Packaging: Alternative materials\n\nTOTAL POTENTIAL SAVINGS:\n$430K - $610K (3.5% - 5% of total spend)\n\nIMPLEMENTATION ROADMAP:\nQ1: Quick wins (pricing, compliance)\nQ2: Supplier consolidation\nQ3: Contract negotiations\nQ4: Process improvements\n\nSTART WITH: Highest impact, lowest effort initiatives');
+  };
+
   // Mock data - Category spend
   const categorySpend: CategorySpend[] = [
     { category: 'Raw Materials', spend: 5200000, percent: 42, growth: 8.5, supplierCount: 12 },
@@ -70,11 +129,68 @@ const SpendAnalytics: React.FC = () => {
     <div className="space-y-6">
       {/* Header */}
       <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white p-6 rounded-lg shadow-lg">
-        <div className="flex items-center space-x-3">
-          <BarChart3 className="h-8 w-8" />
-          <div>
-            <h2 className="text-2xl font-bold">Spend Analytics</h2>
-            <p className="text-blue-100">Comprehensive spending analysis and insights</p>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-3">
+            <BarChart3 className="h-8 w-8" />
+            <div>
+              <h2 className="text-2xl font-bold">Spend Analytics</h2>
+              <p className="text-blue-100">Comprehensive spending analysis and insights</p>
+            </div>
+          </div>
+          <div className="flex space-x-2">
+            <button
+              onClick={handleIdentifySavings}
+              className="flex items-center space-x-2 px-4 py-2 bg-white text-purple-700 rounded-lg hover:bg-blue-50 transition-colors font-medium"
+              title="Identify Savings Opportunities"
+            >
+              <DollarSign className="h-4 w-4" />
+              <span>Savings Opportunities</span>
+            </button>
+            <button
+              onClick={handleGenerateReport}
+              className="flex items-center space-x-2 px-4 py-2 bg-white text-purple-700 rounded-lg hover:bg-blue-50 transition-colors font-medium"
+              title="Generate Custom Report"
+            >
+              <FileText className="h-4 w-4" />
+              <span>Generate Report</span>
+            </button>
+            <button
+              onClick={handleFilterPeriod}
+              className="flex items-center space-x-2 px-4 py-2 bg-purple-700 text-white rounded-lg hover:bg-purple-800 transition-colors"
+              title="Filter Time Period"
+            >
+              <Calendar className="h-4 w-4" />
+              <span>{selectedPeriod}</span>
+            </button>
+            <button
+              onClick={handleComparePeriods}
+              className="flex items-center space-x-2 px-4 py-2 bg-purple-700 text-white rounded-lg hover:bg-purple-800 transition-colors"
+              title="Compare Periods"
+            >
+              <ArrowUpDown className="h-4 w-4" />
+              <span>Compare</span>
+            </button>
+            <button
+              onClick={handleRefresh}
+              className="flex items-center space-x-2 px-4 py-2 bg-purple-700 text-white rounded-lg hover:bg-purple-800 transition-colors"
+              title="Refresh Data"
+            >
+              <RefreshCw className="h-4 w-4" />
+            </button>
+            <button
+              onClick={handleSettings}
+              className="flex items-center space-x-2 px-4 py-2 bg-purple-700 text-white rounded-lg hover:bg-purple-800 transition-colors"
+              title="Analytics Settings"
+            >
+              <Settings className="h-4 w-4" />
+            </button>
+            <button
+              onClick={handleExport}
+              className="flex items-center space-x-2 px-4 py-2 bg-purple-700 text-white rounded-lg hover:bg-purple-800 transition-colors"
+              title="Export to Excel"
+            >
+              <Download className="h-4 w-4" />
+            </button>
           </div>
         </div>
       </div>
@@ -148,6 +264,7 @@ const SpendAnalytics: React.FC = () => {
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">YoY Growth</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Suppliers</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Distribution</th>
+                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
@@ -171,6 +288,16 @@ const SpendAnalytics: React.FC = () => {
                         style={{ width: `${category.percent}%` }}
                       ></div>
                     </div>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                    <button
+                      onClick={() => handleViewCategoryDetails(category)}
+                      className="inline-flex items-center px-3 py-1 bg-purple-100 text-purple-700 rounded-lg hover:bg-purple-200 transition-colors"
+                      title="View Category Details"
+                    >
+                      <Eye className="h-3 w-3 mr-1" />
+                      View Details
+                    </button>
                   </td>
                 </tr>
               ))}
@@ -197,6 +324,7 @@ const SpendAnalytics: React.FC = () => {
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Transactions</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Avg Order Value</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Distribution</th>
+                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
@@ -219,6 +347,16 @@ const SpendAnalytics: React.FC = () => {
                       ></div>
                     </div>
                   </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                    <button
+                      onClick={() => handleViewSupplierDetails(supplier)}
+                      className="inline-flex items-center px-3 py-1 bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200 transition-colors"
+                      title="View Supplier Details"
+                    >
+                      <Eye className="h-3 w-3 mr-1" />
+                      View Details
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -229,9 +367,19 @@ const SpendAnalytics: React.FC = () => {
       {/* Monthly Spend Trend */}
       <div className="bg-white rounded-lg shadow overflow-hidden">
         <div className="px-6 py-4 border-b border-gray-200">
-          <div className="flex items-center space-x-2">
-            <TrendingUp className="h-5 w-5 text-green-600" />
-            <h3 className="text-lg font-semibold text-gray-900">Monthly Spend Trend (2025)</h3>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-2">
+              <TrendingUp className="h-5 w-5 text-green-600" />
+              <h3 className="text-lg font-semibold text-gray-900">Monthly Spend Trend (2025)</h3>
+            </div>
+            <button
+              onClick={handleBudgetAlert}
+              className="flex items-center space-x-2 px-3 py-1 bg-yellow-100 text-yellow-700 rounded-lg hover:bg-yellow-200 transition-colors"
+              title="Configure Budget Alerts"
+            >
+              <AlertCircle className="h-4 w-4" />
+              <span>Set Alerts</span>
+            </button>
           </div>
         </div>
         <div className="p-6">
@@ -250,6 +398,14 @@ const SpendAnalytics: React.FC = () => {
                     <span className={`text-sm font-bold ${month.variance > 0 ? 'text-red-600' : 'text-green-600'}`}>
                       {month.variance > 0 ? '+' : ''}{month.variance}%
                     </span>
+                    <button
+                      onClick={() => handleDrillDownMonth(month)}
+                      className="inline-flex items-center px-2 py-1 bg-gray-100 text-gray-700 rounded hover:bg-gray-200 transition-colors text-xs"
+                      title="View Month Details"
+                    >
+                      <Eye className="h-3 w-3 mr-1" />
+                      Details
+                    </button>
                   </div>
                 </div>
                 <div className="relative w-full bg-gray-200 rounded-full h-6">

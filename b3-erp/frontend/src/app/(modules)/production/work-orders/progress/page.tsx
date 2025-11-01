@@ -19,6 +19,7 @@ import {
   Users,
   Settings
 } from 'lucide-react';
+import { UpdateProgressModal } from '@/components/production/UpdateProgressModal';
 
 interface InProgressWorkOrder {
   id: string;
@@ -52,6 +53,8 @@ export default function InProgressWorkOrdersPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterPriority, setFilterPriority] = useState<string>('all');
   const [filterStatus, setFilterStatus] = useState<string>('all');
+  const [selectedWorkOrder, setSelectedWorkOrder] = useState<InProgressWorkOrder | null>(null);
+  const [isProgressModalOpen, setIsProgressModalOpen] = useState(false);
 
   const inProgressOrders: InProgressWorkOrder[] = [
     {
@@ -294,6 +297,27 @@ export default function InProgressWorkOrdersPage() {
   const onTrack = inProgressOrders.filter(o => o.status === 'on-track').length;
   const atRisk = inProgressOrders.filter(o => o.status === 'at-risk').length;
   const delayed = inProgressOrders.filter(o => o.status === 'delayed').length;
+
+  const handleViewDetails = (workOrderId: string) => {
+    router.push(`/production/work-orders/view/${workOrderId}`);
+  };
+
+  const handlePause = (order: InProgressWorkOrder) => {
+    if (confirm(`Pause production for Work Order ${order.workOrderNumber}?\n\nProduct: ${order.productName}\nCurrent Progress: ${order.completionPercentage}%`)) {
+      console.log('Pausing work order:', order);
+      alert(`Work Order ${order.workOrderNumber} has been paused.\n\nStatus: On Hold\nCurrent Progress: ${order.completionPercentage}%\nProduced: ${order.produced} ${order.unit}`);
+    }
+  };
+
+  const handleUpdateProgress = (order: InProgressWorkOrder) => {
+    setSelectedWorkOrder(order);
+    setIsProgressModalOpen(true);
+  };
+
+  const handleProgressUpdate = (updateData: any) => {
+    console.log('Progress updated:', updateData);
+    alert(`Progress updated successfully for ${selectedWorkOrder?.workOrderNumber}!\n\nProduced: ${updateData.produced} ${selectedWorkOrder?.unit}\nRejected: ${updateData.rejected}\nCompletion: ${updateData.completionPercentage}%\nCurrent Station: ${updateData.currentStation}`);
+  };
 
   return (
     <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
@@ -538,15 +562,24 @@ export default function InProgressWorkOrdersPage() {
 
                 {/* Actions */}
                 <div className="flex items-center justify-end gap-2 pt-4 border-t border-gray-200">
-                  <button className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 text-sm flex items-center gap-2">
+                  <button
+                    onClick={() => handleViewDetails(order.id)}
+                    className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 text-sm flex items-center gap-2"
+                  >
                     <Eye className="h-4 w-4" />
                     View Details
                   </button>
-                  <button className="px-4 py-2 bg-orange-100 text-orange-700 rounded-lg hover:bg-orange-200 text-sm flex items-center gap-2">
+                  <button
+                    onClick={() => handlePause(order)}
+                    className="px-4 py-2 bg-orange-100 text-orange-700 rounded-lg hover:bg-orange-200 text-sm flex items-center gap-2"
+                  >
                     <Pause className="h-4 w-4" />
                     Pause
                   </button>
-                  <button className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 text-sm flex items-center gap-2">
+                  <button
+                    onClick={() => handleUpdateProgress(order)}
+                    className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 text-sm flex items-center gap-2"
+                  >
                     <TrendingUp className="h-4 w-4" />
                     Update Progress
                   </button>
@@ -561,6 +594,17 @@ export default function InProgressWorkOrdersPage() {
       <div className="mt-6 text-sm text-gray-600">
         Showing {filteredOrders.length} of {totalInProgress} work orders in progress
       </div>
+
+      {/* Update Progress Modal */}
+      <UpdateProgressModal
+        isOpen={isProgressModalOpen}
+        onClose={() => {
+          setIsProgressModalOpen(false);
+          setSelectedWorkOrder(null);
+        }}
+        workOrder={selectedWorkOrder}
+        onUpdate={handleProgressUpdate}
+      />
     </div>
   );
 }

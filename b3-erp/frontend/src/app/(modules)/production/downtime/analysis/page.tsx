@@ -3,6 +3,11 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { ArrowLeft, Download, Filter, BarChart3, TrendingUp, TrendingDown, Calendar } from 'lucide-react';
+import {
+  EquipmentAnalysisModal, CategoryTrendModal, PeriodComparisonModal,
+  EquipmentAnalysisData, CategoryTrendData, PeriodComparisonData
+} from '@/components/production/downtime/DowntimeAnalysisModals';
+import { ExportAnalysisReportModal, ExportAnalysisConfig } from '@/components/production/downtime/DowntimeExportModals';
 
 interface DowntimeAnalytics {
   period: string;
@@ -38,6 +43,14 @@ interface CategoryBreakdown {
 export default function DowntimeAnalysisPage() {
   const router = useRouter();
   const [selectedPeriod, setSelectedPeriod] = useState<string>('current-month');
+
+  // Modal states
+  const [isEquipmentAnalysisOpen, setIsEquipmentAnalysisOpen] = useState(false);
+  const [isCategoryTrendOpen, setIsCategoryTrendOpen] = useState(false);
+  const [isPeriodComparisonOpen, setIsPeriodComparisonOpen] = useState(false);
+  const [isExportOpen, setIsExportOpen] = useState(false);
+  const [selectedEquipmentData, setSelectedEquipmentData] = useState<EquipmentAnalysisData | null>(null);
+  const [selectedCategoryData, setSelectedCategoryData] = useState<CategoryTrendData | null>(null);
 
   // Mock analytics data
   const monthlyAnalytics: DowntimeAnalytics[] = [
@@ -244,6 +257,70 @@ export default function DowntimeAnalysisPage() {
     }
   };
 
+  // Modal handlers
+  const handleEquipmentClick = (equipment: any) => {
+    // Convert to EquipmentAnalysisData format
+    const equipmentData: EquipmentAnalysisData = {
+      equipmentId: equipment.equipment,
+      equipmentName: equipment.equipment,
+      type: 'CNC', // TODO: Get from equipment data
+      period: selectedPeriod,
+      metrics: {
+        totalDowntime: equipment.totalDowntime,
+        eventCount: equipment.breakdownCount,
+        mtbf: equipment.mtbf,
+        mttr: equipment.mttr,
+        trend: equipment.trend,
+        targetMTBF: 168, // 1 week
+        targetMTTR: 4
+      },
+      events: [], // TODO: Fetch actual events
+      categoryBreakdown: [], // TODO: Fetch category breakdown
+      costImpact: {
+        total: 0, // TODO: Calculate
+        average: 0,
+        trend: 0
+      },
+      recommendations: equipment.trend === 'worsening' ? [
+        'Schedule preventive maintenance',
+        'Investigate recurring failure patterns',
+        'Review operator training'
+      ] : []
+    };
+    setSelectedEquipmentData(equipmentData);
+    setIsEquipmentAnalysisOpen(true);
+  };
+
+  const handleCategoryClick = (category: any) => {
+    // Convert to CategoryTrendData format
+    const categoryData: CategoryTrendData = {
+      category: category.category,
+      totalEvents: category.count,
+      totalHours: category.totalHours,
+      avgDuration: category.avgDuration,
+      totalCost: 0, // TODO: Calculate
+      trendStatus: category.trend,
+      monthlyTrends: [], // TODO: Fetch monthly data
+      topEquipment: [] // TODO: Fetch top equipment
+    };
+    setSelectedCategoryData(categoryData);
+    setIsCategoryTrendOpen(true);
+  };
+
+  const handleComparePeriods = () => {
+    setIsPeriodComparisonOpen(true);
+  };
+
+  const handleExport = () => {
+    setIsExportOpen(true);
+  };
+
+  const handleExportSubmit = (config: ExportAnalysisConfig) => {
+    console.log('Exporting analysis:', config);
+    // TODO: Implement API call
+    setIsExportOpen(false);
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
       {/* Inline Header */}
@@ -261,7 +338,17 @@ export default function DowntimeAnalysisPage() {
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <button className="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors flex items-center gap-2">
+          <button
+            onClick={handleComparePeriods}
+            className="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors flex items-center gap-2"
+          >
+            <BarChart3 className="w-4 h-4" />
+            <span>Compare Periods</span>
+          </button>
+          <button
+            onClick={handleExport}
+            className="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors flex items-center gap-2"
+          >
             <Download className="w-4 h-4" />
             <span>Export Report</span>
           </button>
@@ -382,7 +469,11 @@ export default function DowntimeAnalysisPage() {
         <h3 className="text-lg font-bold text-gray-900 mb-4">Equipment-wise Downtime Analysis</h3>
         <div className="space-y-3">
           {equipmentDowntime.map((eq, idx) => (
-            <div key={idx} className="p-4 bg-gray-50 rounded-lg">
+            <div
+              key={idx}
+              className="p-4 bg-gray-50 rounded-lg cursor-pointer hover:shadow-lg transition-all"
+              onClick={() => handleEquipmentClick(eq)}
+            >
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-2">
                   <h4 className="text-sm font-bold text-gray-900">{eq.equipment}</h4>
@@ -445,7 +536,11 @@ export default function DowntimeAnalysisPage() {
             </thead>
             <tbody className="divide-y divide-gray-200">
               {categoryBreakdown.map((cat, idx) => (
-                <tr key={idx} className="hover:bg-gray-50">
+                <tr
+                  key={idx}
+                  className="cursor-pointer hover:bg-gray-50"
+                  onClick={() => handleCategoryClick(cat)}
+                >
                   <td className="px-4 py-3 text-sm font-medium text-gray-900">{cat.category}</td>
                   <td className="px-4 py-3 text-sm text-gray-900 text-right">{cat.count}</td>
                   <td className="px-4 py-3 text-sm font-bold text-red-600 text-right">{cat.totalHours}h</td>
@@ -471,6 +566,31 @@ export default function DowntimeAnalysisPage() {
           </table>
         </div>
       </div>
+
+      {/* Modal Components */}
+      <EquipmentAnalysisModal
+        isOpen={isEquipmentAnalysisOpen}
+        onClose={() => setIsEquipmentAnalysisOpen(false)}
+        data={selectedEquipmentData}
+      />
+
+      <CategoryTrendModal
+        isOpen={isCategoryTrendOpen}
+        onClose={() => setIsCategoryTrendOpen(false)}
+        data={selectedCategoryData}
+      />
+
+      <PeriodComparisonModal
+        isOpen={isPeriodComparisonOpen}
+        onClose={() => setIsPeriodComparisonOpen(false)}
+        data={null}
+      />
+
+      <ExportAnalysisReportModal
+        isOpen={isExportOpen}
+        onClose={() => setIsExportOpen(false)}
+        onExport={handleExportSubmit}
+      />
     </div>
   );
 }

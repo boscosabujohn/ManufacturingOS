@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { Search, Filter, Download, Eye, Edit2, Play, Calendar, Clock, CheckCircle, AlertCircle } from 'lucide-react'
 
 interface ProductionSchedule {
@@ -127,6 +128,7 @@ const mockSchedules: ProductionSchedule[] = [
 ]
 
 const ProductionSchedulingPage = () => {
+  const router = useRouter()
   const [searchTerm, setSearchTerm] = useState('')
   const [statusFilter, setStatusFilter] = useState('all')
   const [workCenterFilter, setWorkCenterFilter] = useState('all')
@@ -189,18 +191,24 @@ const ProductionSchedulingPage = () => {
 
   const handleExport = () => {
     console.log('Exporting production schedule report...')
+    alert('Exporting Production Schedule Report...')
   }
 
   const handleView = (id: string) => {
-    console.log('View schedule:', id)
+    router.push(`/production/scheduling/view/${id}`)
   }
 
   const handleEdit = (id: string) => {
-    console.log('Edit schedule:', id)
+    router.push(`/production/scheduling/edit/${id}`)
   }
 
   const handleStart = (id: string) => {
-    console.log('Start production:', id)
+    const schedule = mockSchedules.find(s => s.id === id)
+    if (schedule && confirm(`Start production for Schedule ${schedule.schedule_id}?\n\nWork Order: ${schedule.work_order_id}\nProduct: ${schedule.product_name}\nQuantity: ${schedule.quantity} ${schedule.unit}`)) {
+      console.log('Starting production for:', schedule)
+      alert(`Production started for ${schedule.schedule_id}!`)
+      // Could navigate to work orders in progress page
+    }
   }
 
   return (

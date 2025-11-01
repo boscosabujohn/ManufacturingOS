@@ -10,8 +10,23 @@ import {
   Calendar,
   Download,
   Eye,
-  Filter
+  Filter,
+  PieChart,
+  AlertCircle,
+  RefreshCw
 } from 'lucide-react';
+import {
+  TurnoverAnalysisModal,
+  ABCAnalysisModal,
+  ValuationReportModal,
+  StockAgingModal,
+  ReorderAnalysisModal,
+  TurnoverAnalysisData,
+  ABCAnalysisData,
+  ValuationReportData,
+  StockAgingData,
+  ReorderAnalysisData
+} from '@/components/inventory/InventoryAnalyticsModals';
 
 interface Report {
   id: number;
@@ -28,6 +43,20 @@ interface Report {
 export default function AnalyticsReportsPage() {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedFrequency, setSelectedFrequency] = useState('all');
+
+  // Modal states for quick analytics
+  const [isTurnoverModalOpen, setIsTurnoverModalOpen] = useState(false);
+  const [isABCModalOpen, setIsABCModalOpen] = useState(false);
+  const [isValuationModalOpen, setIsValuationModalOpen] = useState(false);
+  const [isAgingModalOpen, setIsAgingModalOpen] = useState(false);
+  const [isReorderModalOpen, setIsReorderModalOpen] = useState(false);
+
+  // Generated analysis results
+  const [turnoverResult, setTurnoverResult] = useState<TurnoverAnalysisData | null>(null);
+  const [abcResult, setABCResult] = useState<ABCAnalysisData | null>(null);
+  const [valuationResult, setValuationResult] = useState<ValuationReportData | null>(null);
+  const [agingResult, setAgingResult] = useState<StockAgingData | null>(null);
+  const [reorderResult, setReorderResult] = useState<ReorderAnalysisData | null>(null);
 
   const [reports, setReports] = useState<Report[]>([
     {
@@ -182,6 +211,126 @@ export default function AnalyticsReportsPage() {
     const matchesFrequency = selectedFrequency === 'all' || report.frequency === selectedFrequency;
     return matchesCategory && matchesFrequency;
   });
+
+  // Handler functions for modal generate actions
+  const handleTurnoverGenerate = (config: any) => {
+    console.log('Generating turnover analysis with config:', config);
+    // TODO: API call to generate turnover analysis
+    // const response = await fetch('/api/inventory/analytics/turnover', { method: 'POST', body: JSON.stringify(config) });
+    // const data = await response.json();
+    // setTurnoverResult(data);
+
+    // Mock result for demo
+    setTurnoverResult({
+      period: config.period,
+      startDate: config.startDate,
+      endDate: config.endDate,
+      warehouse: config.warehouse,
+      category: config.category,
+      items: [],
+      summary: {
+        avgTurnoverRatio: 5.8,
+        fastMovingCount: 12,
+        slowMovingCount: 8,
+        nonMovingCount: 3
+      }
+    });
+    setIsTurnoverModalOpen(false);
+    alert('Turnover analysis generated successfully!');
+  };
+
+  const handleABCGenerate = (config: any) => {
+    console.log('Generating ABC analysis with config:', config);
+    // TODO: API call to generate ABC analysis
+    // const response = await fetch('/api/inventory/analytics/abc', { method: 'POST', body: JSON.stringify(config) });
+    // const data = await response.json();
+    // setABCResult(data);
+
+    setABCResult({
+      analysisDate: config.analysisDate,
+      warehouse: config.warehouse,
+      criteria: config.criteria,
+      items: [],
+      summary: {
+        aClassCount: 15,
+        bClassCount: 35,
+        cClassCount: 78,
+        aClassValue: 5600000,
+        bClassValue: 1800000,
+        cClassValue: 625000
+      }
+    });
+    setIsABCModalOpen(false);
+    alert('ABC analysis generated successfully!');
+  };
+
+  const handleValuationGenerate = (config: any) => {
+    console.log('Generating valuation report with config:', config);
+    // TODO: API call to generate valuation report
+    // const response = await fetch('/api/inventory/analytics/valuation', { method: 'POST', body: JSON.stringify(config) });
+    // const data = await response.json();
+    // setValuationResult(data);
+
+    setValuationResult({
+      reportDate: config.reportDate,
+      warehouse: config.warehouse,
+      valuationMethod: config.valuationMethod,
+      items: [],
+      summary: {
+        totalItems: 378,
+        totalQuantity: 18450,
+        totalValue: 8025000,
+        byCategory: []
+      }
+    });
+    setIsValuationModalOpen(false);
+    alert('Valuation report generated successfully!');
+  };
+
+  const handleAgingGenerate = (config: any) => {
+    console.log('Generating aging analysis with config:', config);
+    // TODO: API call to generate aging analysis
+    // const response = await fetch('/api/inventory/analytics/aging', { method: 'POST', body: JSON.stringify(config) });
+    // const data = await response.json();
+    // setAgingResult(data);
+
+    setAgingResult({
+      reportDate: config.reportDate,
+      warehouse: config.warehouse,
+      items: [],
+      summary: {
+        totalValue: 681300,
+        bucket_0_30: { quantity: 0, value: 0, percentage: 0 },
+        bucket_31_60: { quantity: 195, value: 66600, percentage: 9.8 },
+        bucket_61_90: { quantity: 67, value: 214400, percentage: 31.5 },
+        bucket_91_180: { quantity: 363, value: 194500, percentage: 28.5 },
+        bucket_180_plus: { quantity: 45, value: 202500, percentage: 29.7 }
+      }
+    });
+    setIsAgingModalOpen(false);
+    alert('Stock aging analysis generated successfully!');
+  };
+
+  const handleReorderGenerate = (config: any) => {
+    console.log('Generating reorder analysis with config:', config);
+    // TODO: API call to generate reorder analysis
+    // const response = await fetch('/api/inventory/analytics/reorder', { method: 'POST', body: JSON.stringify(config) });
+    // const data = await response.json();
+    // setReorderResult(data);
+
+    setReorderResult({
+      analysisDate: config.analysisDate,
+      warehouse: config.warehouse,
+      items: [],
+      summary: {
+        criticalItems: 5,
+        highPriorityItems: 12,
+        totalReorderValue: 1250000
+      }
+    });
+    setIsReorderModalOpen(false);
+    alert('Reorder analysis generated successfully!');
+  };
 
   return (
     <div className="p-6 space-y-6">
@@ -343,6 +492,54 @@ export default function AnalyticsReportsPage() {
         </div>
       </div>
 
+      {/* Quick Analytics Actions */}
+      <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-lg shadow-md p-6 border border-indigo-200">
+        <div className="flex items-center justify-between mb-4">
+          <div>
+            <h3 className="text-lg font-semibold text-gray-900">Quick Analytics</h3>
+            <p className="text-sm text-gray-600 mt-1">Generate reports and analysis on-demand</p>
+          </div>
+          <BarChart3 className="w-8 h-8 text-indigo-600" />
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-3">
+          <button
+            onClick={() => setIsTurnoverModalOpen(true)}
+            className="flex flex-col items-center gap-2 p-4 bg-white rounded-lg border-2 border-blue-200 hover:border-blue-500 hover:shadow-md transition-all"
+          >
+            <TrendingUp className="w-6 h-6 text-blue-600" />
+            <span className="text-sm font-medium text-gray-900">Turnover Analysis</span>
+          </button>
+          <button
+            onClick={() => setIsABCModalOpen(true)}
+            className="flex flex-col items-center gap-2 p-4 bg-white rounded-lg border-2 border-purple-200 hover:border-purple-500 hover:shadow-md transition-all"
+          >
+            <PieChart className="w-6 h-6 text-purple-600" />
+            <span className="text-sm font-medium text-gray-900">ABC Analysis</span>
+          </button>
+          <button
+            onClick={() => setIsValuationModalOpen(true)}
+            className="flex flex-col items-center gap-2 p-4 bg-white rounded-lg border-2 border-green-200 hover:border-green-500 hover:shadow-md transition-all"
+          >
+            <DollarSign className="w-6 h-6 text-green-600" />
+            <span className="text-sm font-medium text-gray-900">Valuation Report</span>
+          </button>
+          <button
+            onClick={() => setIsAgingModalOpen(true)}
+            className="flex flex-col items-center gap-2 p-4 bg-white rounded-lg border-2 border-orange-200 hover:border-orange-500 hover:shadow-md transition-all"
+          >
+            <Calendar className="w-6 h-6 text-orange-600" />
+            <span className="text-sm font-medium text-gray-900">Stock Aging</span>
+          </button>
+          <button
+            onClick={() => setIsReorderModalOpen(true)}
+            className="flex flex-col items-center gap-2 p-4 bg-white rounded-lg border-2 border-red-200 hover:border-red-500 hover:shadow-md transition-all"
+          >
+            <AlertCircle className="w-6 h-6 text-red-600" />
+            <span className="text-sm font-medium text-gray-900">Reorder Analysis</span>
+          </button>
+        </div>
+      </div>
+
       {/* Quick Access Report Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="bg-white rounded-lg shadow p-6 hover:shadow-lg transition-shadow">
@@ -396,6 +593,33 @@ export default function AnalyticsReportsPage() {
           </ul>
         </div>
       </div>
+
+      {/* Analytics Modals */}
+      <TurnoverAnalysisModal
+        isOpen={isTurnoverModalOpen}
+        onClose={() => setIsTurnoverModalOpen(false)}
+        onGenerate={handleTurnoverGenerate}
+      />
+      <ABCAnalysisModal
+        isOpen={isABCModalOpen}
+        onClose={() => setIsABCModalOpen(false)}
+        onGenerate={handleABCGenerate}
+      />
+      <ValuationReportModal
+        isOpen={isValuationModalOpen}
+        onClose={() => setIsValuationModalOpen(false)}
+        onGenerate={handleValuationGenerate}
+      />
+      <StockAgingModal
+        isOpen={isAgingModalOpen}
+        onClose={() => setIsAgingModalOpen(false)}
+        onGenerate={handleAgingGenerate}
+      />
+      <ReorderAnalysisModal
+        isOpen={isReorderModalOpen}
+        onClose={() => setIsReorderModalOpen(false)}
+        onGenerate={handleReorderGenerate}
+      />
     </div>
   );
 }

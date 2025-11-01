@@ -14,24 +14,12 @@ import {
   AlertCircle,
   Clock
 } from 'lucide-react'
-
-interface ContractPricing {
-  id: string
-  contractName: string
-  customerId: string
-  customerName: string
-  contractValue: number
-  discount: number
-  startDate: string
-  endDate: string
-  status: 'active' | 'expiring-soon' | 'expired'
-  renewalDate: string
-}
+import { ContractModal, FilterModal, ContractPricing } from '@/components/cpq/ContractPricingModals'
 
 export default function CPQPricingContractsPage() {
   const router = useRouter()
 
-  const [contracts] = useState<ContractPricing[]>([
+  const [contracts, setContracts] = useState<ContractPricing[]>([
     {
       id: 'CT-001',
       contractName: 'Annual Supply Agreement - Prestige',
@@ -118,6 +106,12 @@ export default function CPQPricingContractsPage() {
     }
   ])
 
+  const [searchQuery, setSearchQuery] = useState('')
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isFilterModalOpen, setIsFilterModalOpen] = useState(false)
+  const [selectedContract, setSelectedContract] = useState<ContractPricing | null>(null)
+  const [appliedFilters, setAppliedFilters] = useState<any>(null)
+
   const getStatusColor = (status: string) => {
     const colors: any = {
       active: 'bg-green-100 text-green-700 border-green-200',
@@ -133,24 +127,121 @@ export default function CPQPricingContractsPage() {
     return <AlertCircle className="h-4 w-4" />
   }
 
-  const totalContractValue = contracts.reduce((sum, c) => sum + c.contractValue, 0)
-  const activeContracts = contracts.filter(c => c.status === 'active').length
-  const expiringSoon = contracts.filter(c => c.status === 'expiring-soon').length
+  // Handlers
+  const handleAddContract = () => {
+    setSelectedContract(null)
+    setIsModalOpen(true)
+  }
+
+  const handleEditContract = (contract: ContractPricing) => {
+    setSelectedContract(contract)
+    setIsModalOpen(true)
+  }
+
+  const handleSaveContract = (contract: ContractPricing) => {
+    if (selectedContract) {
+      setContracts(contracts.map(c => c.id === contract.id ? contract : c))
+    } else {
+      setContracts([contract, ...contracts])
+    }
+  }
+
+  const handleExport = () => {
+    const headers = ['ID', 'Contract Name', 'Customer', 'Value', 'Discount', 'Start Date', 'End Date', 'Renewal Date', 'Status']
+    const csvData = filteredContracts.map(contract => [
+      contract.id,
+      `"${contract.contractName}"`,
+      `"${contract.customerName}"`,
+      contract.contractValue,
+      contract.discount,
+      contract.startDate,
+      contract.endDate,
+      contract.renewalDate,
+      contract.status
+    ])
+
+    const csv = [headers, ...csvData].map(row => row.join(',')).join('\n')
+    const blob = new Blob([csv], { type: 'text/csv' })
+    const url = window.URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `contracts-${new Date().toISOString().split('T')[0]}.csv`
+    a.click()
+    window.URL.revokeObjectURL(url)
+  }
+
+  const handleApplyFilters = (filters: any) => {
+    setAppliedFilters(filters)
+  }
+
+  // Filtering logic
+  const filteredContracts = contracts.filter(contract => {
+    const matchesSearch = searchQuery === '' ||
+      contract.contractName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      contract.customerName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      contract.id.toLowerCase().includes(searchQuery.toLowerCase())
+
+    let matchesFilters = true
+    if (appliedFilters) {
+      if (appliedFilters.status.length > 0 && !appliedFilters.status.includes(contract.status)) {
+        matchesFilters = false
+      }
+
+      if (appliedFilters.discountRange.min > 0 || appliedFilters.discountRange.max > 0) {
+        if (appliedFilters.discountRange.min > 0 && contract.discount < appliedFilters.discountRange.min) {
+          matchesFilters = false
+        }
+        if (appliedFilters.discountRange.max > 0 && contract.discount > appliedFilters.discountRange.max) {
+          matchesFilters = false
+        }
+      }
+
+      if (appliedFilters.valueRange.min > 0 || appliedFilters.valueRange.max > 0) {
+        const valueInCr = contract.contractValue / 10000000
+        if (appliedFilters.valueRange.min > 0 && valueInCr < appliedFilters.valueRange.min) {
+          matchesFilters = false
+        }
+        if (appliedFilters.valueRange.max > 0 && valueInCr > appliedFilters.valueRange.max) {
+          matchesFilters = false
+        }
+      }
+    }
+
+    return matchesSearch && matchesFilters
+  })
+
+  const totalContractValue = filteredContracts.reduce((sum, c) => sum + c.contractValue, 0)
+  const activeContracts = filteredContracts.filter(c => c.status === 'active').length
+  const expiringSoon = filteredContracts.filter(c => c.status === 'expiring-soon').length
 
   return (
     <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
       {/* Action Buttons */}
       <div className="mb-6 flex justify-end">
         <div className="flex items-center gap-3">
-          <button className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
+          <button
+            onClick={() => setIsFilterModalOpen(true)}
+            className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2"
+          >
             <Filter className="h-4 w-4" />
             Filter
+            {appliedFilters && (appliedFilters.status.length > 0 || appliedFilters.discountRange.min > 0 || appliedFilters.valueRange.min > 0) && (
+              <span className="px-2 py-0.5 bg-blue-100 text-blue-700 rounded-full text-xs font-semibold">
+                Active
+              </span>
+            )}
           </button>
-          <button className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
+          <button
+            onClick={handleExport}
+            className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2"
+          >
             <Download className="h-4 w-4" />
             Export
           </button>
-          <button className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 flex items-center gap-2">
+          <button
+            onClick={handleAddContract}
+            className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 flex items-center gap-2"
+          >
             <Plus className="h-4 w-4" />
             New Contract
           </button>
@@ -228,6 +319,8 @@ export default function CPQPricingContractsPage() {
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
           <input
             type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search contracts..."
             className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           />
@@ -251,7 +344,33 @@ export default function CPQPricingContractsPage() {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
-              {contracts.map((contract) => (
+              {filteredContracts.length === 0 ? (
+                <tr>
+                  <td colSpan={8} className="px-4 py-12 text-center text-gray-500">
+                    {searchQuery || appliedFilters ? (
+                      <div>
+                        <p className="text-lg font-medium mb-2">No matching contracts found</p>
+                        <p className="text-sm">Try adjusting your search or filter criteria</p>
+                        <button
+                          onClick={() => {
+                            setSearchQuery('')
+                            setAppliedFilters(null)
+                          }}
+                          className="mt-4 px-4 py-2 text-blue-600 hover:text-blue-700 text-sm font-medium"
+                        >
+                          Clear filters
+                        </button>
+                      </div>
+                    ) : (
+                      <div>
+                        <p className="text-lg font-medium mb-2">No contracts yet</p>
+                        <p className="text-sm">Click "New Contract" to create your first contract</p>
+                      </div>
+                    )}
+                  </td>
+                </tr>
+              ) : (
+                filteredContracts.map((contract) => (
                 <tr key={contract.id} className="hover:bg-gray-50 transition-colors">
                   <td className="px-4 py-4">
                     <div className="text-sm font-medium text-gray-900">{contract.contractName}</div>
@@ -292,15 +411,16 @@ export default function CPQPricingContractsPage() {
                   </td>
                   <td className="px-4 py-4 whitespace-nowrap text-right">
                     <button
+                      onClick={() => handleEditContract(contract)}
                       className="p-1.5 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
                       aria-label="Edit"
-                     
                     >
                       <Edit className="h-4 w-4" />
                     </button>
                   </td>
                 </tr>
-              ))}
+                ))
+              )}
             </tbody>
           </table>
         </div>
@@ -316,6 +436,23 @@ export default function CPQPricingContractsPage() {
           <li><strong>Compliance Tracking:</strong> Monitor adherence to contract terms and pricing limits</li>
         </ul>
       </div>
+
+      {/* Modals */}
+      <ContractModal
+        isOpen={isModalOpen}
+        onClose={() => {
+          setIsModalOpen(false)
+          setSelectedContract(null)
+        }}
+        onSave={handleSaveContract}
+        contract={selectedContract}
+      />
+
+      <FilterModal
+        isOpen={isFilterModalOpen}
+        onClose={() => setIsFilterModalOpen(false)}
+        onApply={handleApplyFilters}
+      />
     </div>
   )
 }

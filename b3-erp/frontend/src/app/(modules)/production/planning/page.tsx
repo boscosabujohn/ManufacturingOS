@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { RunMRPModal, ExportMPSModal, AdjustPlanModal } from '@/components/production/MPSModals';
 import {
   Calendar,
   TrendingUp,
@@ -137,6 +138,12 @@ const ProductionPlanningPage = () => {
   const [scenarioName, setScenarioName] = useState('');
   const [demandAdjustment, setDemandAdjustment] = useState(0);
   const [capacityAdjustment, setCapacityAdjustment] = useState(0);
+
+  // Modal states
+  const [isRunMRPModalOpen, setIsRunMRPModalOpen] = useState(false);
+  const [isExportModalOpen, setIsExportModalOpen] = useState(false);
+  const [isAdjustPlanModalOpen, setIsAdjustPlanModalOpen] = useState(false);
+  const [selectedProductForAdjust, setSelectedProductForAdjust] = useState<any | null>(null);
 
   // Mock Data - Master Production Schedule
   const [mpsData, setMpsData] = useState<MPSProduct[]>([
@@ -507,7 +514,7 @@ const ProductionPlanningPage = () => {
 
   // Run MRP
   const runMRP = () => {
-    alert('Running MRP cascading...\n\nThis will explode BOMs and generate material requirements for all components.');
+    setIsRunMRPModalOpen(true);
   };
 
   // Freeze Plan
@@ -517,7 +524,28 @@ const ProductionPlanningPage = () => {
 
   // Export MPS
   const exportMPS = () => {
-    alert('Exporting Master Production Schedule to Excel...\n\nFile will include all products, periods, and calculations.');
+    setIsExportModalOpen(true);
+  };
+
+  // Handler functions
+  const handleRunMRP = (options: any) => {
+    console.log('Running MRP with options:', options);
+    alert(`Running MRP Cascade!\n\nType: ${options.regenerative ? 'Regenerative' : 'Net Change'}\nNetting: ${options.nettingMode}\nHorizon: ${options.horizonWeeks} weeks\n\nThis will explode BOMs and generate material requirements for all components.`);
+  };
+
+  const handleExport = (format: string, options: any) => {
+    console.log('Exporting MPS as:', format, 'with options:', options);
+    alert(`Exporting Master Production Schedule as ${format.toUpperCase()}!\n\nIncluded data:\n${
+      options.includeGrossReq ? '✓ Gross Requirements\n' : ''
+    }${options.includeNetReq ? '✓ Net Requirements\n' : ''
+    }${options.includeProjectedInv ? '✓ Projected Available\n' : ''
+    }${options.includePlannedOrders ? '✓ Planned Order Releases\n' : ''
+    }${options.includeATP ? '✓ Available-to-Promise\n' : ''}`);
+  };
+
+  const handleAdjustPlan = (adjustments: any) => {
+    console.log('Applying plan adjustments:', adjustments);
+    alert(`Plan Adjustment Applied!\n\nType: ${adjustments.adjustmentType}\nPeriod: ${adjustments.selectedPeriod}\nValue: ${adjustments.adjustmentValue}\nReason: ${adjustments.reason}`);
   };
 
   // Save Scenario
@@ -1266,6 +1294,12 @@ const ProductionPlanningPage = () => {
                   Run MRP Cascade
                 </button>
                 <button
+                  onClick={() => {
+                    if (mpsData.length > 0) {
+                      setSelectedProductForAdjust(mpsData[0]);
+                      setIsAdjustPlanModalOpen(true);
+                    }
+                  }}
                   disabled={planFrozen}
                   className="px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 font-medium flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
@@ -1949,6 +1983,27 @@ const ProductionPlanningPage = () => {
           )}
         </div>
       </div>
+
+      {/* Modals */}
+      <RunMRPModal
+        isOpen={isRunMRPModalOpen}
+        onClose={() => setIsRunMRPModalOpen(false)}
+        onRun={handleRunMRP}
+      />
+      <ExportMPSModal
+        isOpen={isExportModalOpen}
+        onClose={() => setIsExportModalOpen(false)}
+        onExport={handleExport}
+      />
+      <AdjustPlanModal
+        isOpen={isAdjustPlanModalOpen}
+        onClose={() => {
+          setIsAdjustPlanModalOpen(false);
+          setSelectedProductForAdjust(null);
+        }}
+        product={selectedProductForAdjust}
+        onSave={handleAdjustPlan}
+      />
     </div>
   );
 };

@@ -3,6 +3,8 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { ArrowLeft, Download, Filter, Users, Clock, Award, TrendingUp, AlertCircle, CheckCircle, Package } from 'lucide-react';
+import { OperatorDetailModal, OperatorDetail } from '@/components/shopfloor/ShopFloorDetailModals';
+import { OperatorExportModal, OperatorExportConfig } from '@/components/shopfloor/ShopFloorExportModals';
 
 interface Operator {
   id: string;
@@ -44,6 +46,11 @@ export default function ShopFloorOperatorPage() {
   const [filterDepartment, setFilterDepartment] = useState<string>('all');
   const [filterStatus, setFilterStatus] = useState<string>('all');
   const [filterShift, setFilterShift] = useState<string>('all');
+
+  // Modal states
+  const [isDetailOpen, setIsDetailOpen] = useState(false);
+  const [isExportOpen, setIsExportOpen] = useState(false);
+  const [selectedOperator, setSelectedOperator] = useState<OperatorDetail | null>(null);
 
   // Mock data for operators
   const operators: Operator[] = [
@@ -349,6 +356,60 @@ export default function ShopFloorOperatorPage() {
     return 'text-red-600';
   };
 
+  // Handler functions
+  const handleViewOperator = (operator: Operator) => {
+    // Convert operator data to OperatorDetail format
+    const operatorDetail: OperatorDetail = {
+      id: operator.id,
+      name: operator.operatorName,
+      employeeId: operator.employeeId,
+      shift: operator.shift,
+      station: operator.station || 'Not Assigned',
+      department: operator.department,
+      status: operator.status === 'active' ? 'active' : operator.status === 'on-break' ? 'break' : operator.status === 'idle' ? 'idle' : 'offline',
+      currentWorkOrder: operator.currentWO || undefined,
+      currentOperation: operator.currentProduct || undefined,
+      operationStartTime: operator.shiftStartTime,
+      elapsedTime: `${operator.activeHours}h`,
+      efficiency: operator.todayEfficiency,
+      targetParts: Math.round(operator.todayProduced / (operator.todayEfficiency / 100)),
+      actualParts: operator.todayProduced,
+      goodParts: operator.todayProduced - operator.todayRejected,
+      rejectedParts: operator.todayRejected,
+      qualityRate: operator.qualityScore,
+      defectCount: operator.todayRejected,
+      reworkCount: Math.round(operator.todayRejected * 0.5),
+      totalOperations: operator.status === 'active' ? Math.floor(Math.random() * 5) + 3 : 0,
+      totalPartsToday: operator.todayProduced,
+      totalDowntime: `${operator.breakHours}h`,
+      lastActivityTime: operator.lastActivity,
+      skillLevel: operator.skillLevel.charAt(0).toUpperCase() + operator.skillLevel.slice(1),
+      certifications: operator.certifications,
+      contactInfo: {
+        phone: '+91 98765 43210',
+        email: `${operator.operatorName.toLowerCase().replace(' ', '.')}@company.com`,
+      },
+    };
+    setSelectedOperator(operatorDetail);
+    setIsDetailOpen(true);
+  };
+
+  const handleExport = () => {
+    setIsExportOpen(true);
+  };
+
+  const handleExportSubmit = (config: OperatorExportConfig) => {
+    console.log('Exporting operator data:', config);
+    // TODO: Implement export API call
+    // Example API call:
+    // fetch('/api/shopfloor/operators/export', {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify(config),
+    // })
+    setIsExportOpen(false);
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
       {/* Inline Header */}
@@ -366,7 +427,10 @@ export default function ShopFloorOperatorPage() {
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <button className="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors flex items-center gap-2">
+          <button
+            onClick={handleExport}
+            className="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors flex items-center gap-2"
+          >
             <Download className="w-4 h-4" />
             <span>Export</span>
           </button>
@@ -519,7 +583,11 @@ export default function ShopFloorOperatorPage() {
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {filteredOperators.map((operator) => (
-                <tr key={operator.id} className="hover:bg-gray-50">
+                <tr
+                  key={operator.id}
+                  className="hover:bg-gray-50 cursor-pointer transition-all hover:shadow-md"
+                  onClick={() => handleViewOperator(operator)}
+                >
                   <td className="px-6 py-4">
                     <div>
                       <div className="text-sm font-medium text-gray-900">{operator.operatorName}</div>
@@ -580,6 +648,20 @@ export default function ShopFloorOperatorPage() {
           </table>
         </div>
       </div>
+
+      {/* Modals */}
+      <OperatorDetailModal
+        isOpen={isDetailOpen}
+        onClose={() => setIsDetailOpen(false)}
+        operator={selectedOperator}
+      />
+
+      <OperatorExportModal
+        isOpen={isExportOpen}
+        onClose={() => setIsExportOpen(false)}
+        onExport={handleExportSubmit}
+        operatorName={selectedOperator?.name}
+      />
     </div>
   );
 }

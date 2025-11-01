@@ -13,8 +13,28 @@ import {
   FileText,
   AlertCircle,
   TrendingUp,
-  DollarSign
+  DollarSign,
+  Plus,
+  ClipboardCheck,
+  XCircle,
+  Package,
+  Printer,
+  History
 } from 'lucide-react'
+
+// Import GRN Modals
+import {
+  CreateGRNModal,
+  QualityInspectionModal,
+  AcceptRejectGRNModal,
+  PostToInventoryModal,
+  ViewGRNDetailsModal,
+  EditGRNModal,
+  PrintGRNModal,
+  ExportGRNsModal,
+  GRNHistoryModal,
+  type GRNData
+} from '@/components/procurement/GRNModals'
 
 interface GRN {
   id: string
@@ -155,6 +175,18 @@ export default function ProcurementGRNPage() {
   const [currentPage, setCurrentPage] = useState(1)
   const itemsPerPage = 10
 
+  // Modal state management
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false)
+  const [isViewModalOpen, setIsViewModalOpen] = useState(false)
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false)
+  const [isInspectionModalOpen, setIsInspectionModalOpen] = useState(false)
+  const [isAcceptRejectModalOpen, setIsAcceptRejectModalOpen] = useState(false)
+  const [isPostToInventoryModalOpen, setIsPostToInventoryModalOpen] = useState(false)
+  const [isPrintModalOpen, setIsPrintModalOpen] = useState(false)
+  const [isExportModalOpen, setIsExportModalOpen] = useState(false)
+  const [isHistoryModalOpen, setIsHistoryModalOpen] = useState(false)
+  const [selectedGRN, setSelectedGRN] = useState<GRN | null>(null)
+
   const filteredGRNs = mockGRNs.filter(grn => {
     const matchesSearch = grn.grnNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          grn.poNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -210,20 +242,69 @@ export default function ProcurementGRNPage() {
     }).format(value)
   }
 
-  const handleExport = () => {
-    console.log('Exporting GRN report...')
-  }
-
+  // Modal handlers
   const handleView = (id: string) => {
-    console.log('Viewing GRN:', id)
+    const grn = mockGRNs.find(g => g.id === id)
+    if (grn) {
+      setSelectedGRN(grn)
+      setIsViewModalOpen(true)
+    }
   }
 
   const handleEdit = (id: string) => {
-    console.log('Editing GRN:', id)
+    const grn = mockGRNs.find(g => g.id === id)
+    if (grn) {
+      setSelectedGRN(grn)
+      setIsEditModalOpen(true)
+    }
   }
 
-  const handleApprove = (id: string) => {
-    console.log('Approving GRN:', id)
+  const handleInspection = (id: string) => {
+    const grn = mockGRNs.find(g => g.id === id)
+    if (grn) {
+      setSelectedGRN(grn)
+      setIsInspectionModalOpen(true)
+    }
+  }
+
+  const handleAcceptReject = (id: string) => {
+    const grn = mockGRNs.find(g => g.id === id)
+    if (grn) {
+      setSelectedGRN(grn)
+      setIsAcceptRejectModalOpen(true)
+    }
+  }
+
+  const handlePostToInventory = (id: string) => {
+    const grn = mockGRNs.find(g => g.id === id)
+    if (grn) {
+      setSelectedGRN(grn)
+      setIsPostToInventoryModalOpen(true)
+    }
+  }
+
+  const handlePrint = (id: string) => {
+    const grn = mockGRNs.find(g => g.id === id)
+    if (grn) {
+      setSelectedGRN(grn)
+      setIsPrintModalOpen(true)
+    }
+  }
+
+  const handleHistory = (id: string) => {
+    const grn = mockGRNs.find(g => g.id === id)
+    if (grn) {
+      setSelectedGRN(grn)
+      setIsHistoryModalOpen(true)
+    }
+  }
+
+  const handleExport = () => {
+    setIsExportModalOpen(true)
+  }
+
+  const handleCreateGRN = () => {
+    setIsCreateModalOpen(true)
   }
 
   return (
@@ -319,6 +400,13 @@ export default function ProcurementGRNPage() {
                 </select>
               </div>
 
+              <button
+                onClick={handleCreateGRN}
+                className="px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-xl font-medium"
+              >
+                <Plus className="w-4 h-4" />
+                Create GRN
+              </button>
               <button
                 onClick={handleExport}
                 className="px-6 py-3 bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-xl hover:from-green-700 hover:to-emerald-700 transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-xl font-medium"
@@ -432,30 +520,62 @@ export default function ProcurementGRNPage() {
                       <div className="text-sm text-gray-900">{grn.inspector}</div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm">
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-1">
                         <button
                           onClick={() => handleView(grn.id)}
                           className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-                         
+                          title="View Details"
                         >
                           <Eye className="w-4 h-4" />
                         </button>
                         <button
                           onClick={() => handleEdit(grn.id)}
                           className="p-2 text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors"
-                         
+                          title="Edit GRN"
                         >
                           <Edit2 className="w-4 h-4" />
                         </button>
                         {grn.status === 'under_inspection' && (
                           <button
-                            onClick={() => handleApprove(grn.id)}
+                            onClick={() => handleInspection(grn.id)}
+                            className="p-2 text-yellow-600 hover:bg-yellow-50 rounded-lg transition-colors"
+                            title="Quality Inspection"
+                          >
+                            <ClipboardCheck className="w-4 h-4" />
+                          </button>
+                        )}
+                        {(grn.status === 'under_inspection' || grn.status === 'partially_accepted') && (
+                          <button
+                            onClick={() => handleAcceptReject(grn.id)}
                             className="p-2 text-green-600 hover:bg-green-50 rounded-lg transition-colors"
-                           
+                            title="Accept/Reject"
                           >
                             <CheckCircle className="w-4 h-4" />
                           </button>
                         )}
+                        {(grn.status === 'accepted' || grn.status === 'partially_accepted') && (
+                          <button
+                            onClick={() => handlePostToInventory(grn.id)}
+                            className="p-2 text-purple-600 hover:bg-purple-50 rounded-lg transition-colors"
+                            title="Post to Inventory"
+                          >
+                            <Package className="w-4 h-4" />
+                          </button>
+                        )}
+                        <button
+                          onClick={() => handlePrint(grn.id)}
+                          className="p-2 text-gray-600 hover:bg-gray-50 rounded-lg transition-colors"
+                          title="Print GRN"
+                        >
+                          <Printer className="w-4 h-4" />
+                        </button>
+                        <button
+                          onClick={() => handleHistory(grn.id)}
+                          className="p-2 text-orange-600 hover:bg-orange-50 rounded-lg transition-colors"
+                          title="View History"
+                        >
+                          <History className="w-4 h-4" />
+                        </button>
                       </div>
                     </td>
                   </tr>
@@ -509,6 +629,158 @@ export default function ProcurementGRNPage() {
           </div>
         </div>
       </div>
+
+      {/* GRN Modals */}
+      <CreateGRNModal
+        isOpen={isCreateModalOpen}
+        onClose={() => setIsCreateModalOpen(false)}
+        onSubmit={(data) => {
+          console.log('Creating GRN:', data)
+          setIsCreateModalOpen(false)
+        }}
+      />
+
+      <ViewGRNDetailsModal
+        isOpen={isViewModalOpen}
+        onClose={() => setIsViewModalOpen(false)}
+        grn={selectedGRN ? {
+          id: selectedGRN.id,
+          grnNumber: selectedGRN.grnNumber,
+          poNumber: selectedGRN.poNumber,
+          vendorName: selectedGRN.vendorName,
+          receiptDate: selectedGRN.receiptDate,
+          itemsCount: selectedGRN.itemsCount,
+          orderedQty: selectedGRN.orderedQty,
+          receivedQty: selectedGRN.receivedQty,
+          acceptedQty: selectedGRN.acceptedQty,
+          rejectedQty: selectedGRN.rejectedQty,
+          invoiceValue: selectedGRN.invoiceValue,
+          status: selectedGRN.status,
+          inspector: selectedGRN.inspector,
+          inspectionDate: selectedGRN.inspectionDate,
+          qualityStatus: selectedGRN.qualityStatus,
+          discrepancyNotes: selectedGRN.discrepancyNotes
+        } : undefined}
+      />
+
+      <EditGRNModal
+        isOpen={isEditModalOpen}
+        onClose={() => setIsEditModalOpen(false)}
+        grn={selectedGRN ? {
+          id: selectedGRN.id,
+          grnNumber: selectedGRN.grnNumber,
+          poNumber: selectedGRN.poNumber,
+          vendorName: selectedGRN.vendorName,
+          receiptDate: selectedGRN.receiptDate,
+          itemsCount: selectedGRN.itemsCount,
+          orderedQty: selectedGRN.orderedQty,
+          receivedQty: selectedGRN.receivedQty,
+          acceptedQty: selectedGRN.acceptedQty,
+          rejectedQty: selectedGRN.rejectedQty,
+          invoiceValue: selectedGRN.invoiceValue,
+          status: selectedGRN.status,
+          inspector: selectedGRN.inspector,
+          inspectionDate: selectedGRN.inspectionDate,
+          qualityStatus: selectedGRN.qualityStatus,
+          discrepancyNotes: selectedGRN.discrepancyNotes
+        } : undefined}
+        onSubmit={(data) => {
+          console.log('Updating GRN:', data)
+          setIsEditModalOpen(false)
+        }}
+      />
+
+      <QualityInspectionModal
+        isOpen={isInspectionModalOpen}
+        onClose={() => setIsInspectionModalOpen(false)}
+        grn={selectedGRN ? {
+          id: selectedGRN.id,
+          grnNumber: selectedGRN.grnNumber,
+          poNumber: selectedGRN.poNumber,
+          vendorName: selectedGRN.vendorName
+        } : undefined}
+        onSubmit={(data) => {
+          console.log('Quality Inspection:', data)
+          setIsInspectionModalOpen(false)
+        }}
+      />
+
+      <AcceptRejectGRNModal
+        isOpen={isAcceptRejectModalOpen}
+        onClose={() => setIsAcceptRejectModalOpen(false)}
+        grn={selectedGRN ? {
+          id: selectedGRN.id,
+          grnNumber: selectedGRN.grnNumber,
+          poNumber: selectedGRN.poNumber,
+          vendorName: selectedGRN.vendorName,
+          receivedQty: selectedGRN.receivedQty,
+          acceptedQty: selectedGRN.acceptedQty,
+          rejectedQty: selectedGRN.rejectedQty
+        } : undefined}
+        onSubmit={(data) => {
+          console.log('Accept/Reject GRN:', data)
+          setIsAcceptRejectModalOpen(false)
+        }}
+      />
+
+      <PostToInventoryModal
+        isOpen={isPostToInventoryModalOpen}
+        onClose={() => setIsPostToInventoryModalOpen(false)}
+        grn={selectedGRN ? {
+          id: selectedGRN.id,
+          grnNumber: selectedGRN.grnNumber,
+          poNumber: selectedGRN.poNumber,
+          vendorName: selectedGRN.vendorName,
+          acceptedQty: selectedGRN.acceptedQty
+        } : undefined}
+        onSubmit={(data) => {
+          console.log('Posting to Inventory:', data)
+          setIsPostToInventoryModalOpen(false)
+        }}
+      />
+
+      <PrintGRNModal
+        isOpen={isPrintModalOpen}
+        onClose={() => setIsPrintModalOpen(false)}
+        grn={selectedGRN ? {
+          id: selectedGRN.id,
+          grnNumber: selectedGRN.grnNumber,
+          poNumber: selectedGRN.poNumber,
+          vendorName: selectedGRN.vendorName,
+          receiptDate: selectedGRN.receiptDate,
+          itemsCount: selectedGRN.itemsCount,
+          orderedQty: selectedGRN.orderedQty,
+          receivedQty: selectedGRN.receivedQty,
+          acceptedQty: selectedGRN.acceptedQty,
+          rejectedQty: selectedGRN.rejectedQty,
+          invoiceValue: selectedGRN.invoiceValue,
+          status: selectedGRN.status
+        } : undefined}
+        onPrint={(options) => {
+          console.log('Printing GRN with options:', options)
+          setIsPrintModalOpen(false)
+        }}
+      />
+
+      <ExportGRNsModal
+        isOpen={isExportModalOpen}
+        onClose={() => setIsExportModalOpen(false)}
+        onExport={(options) => {
+          console.log('Exporting GRNs with options:', options)
+          setIsExportModalOpen(false)
+        }}
+      />
+
+      <GRNHistoryModal
+        isOpen={isHistoryModalOpen}
+        onClose={() => setIsHistoryModalOpen(false)}
+        grn={selectedGRN ? {
+          id: selectedGRN.id,
+          grnNumber: selectedGRN.grnNumber,
+          poNumber: selectedGRN.poNumber,
+          vendorName: selectedGRN.vendorName
+        } : undefined}
+      />
     </div>
   )
 }

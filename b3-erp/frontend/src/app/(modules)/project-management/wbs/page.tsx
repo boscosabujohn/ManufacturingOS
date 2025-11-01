@@ -13,7 +13,26 @@ import {
   Clock,
   AlertCircle,
   FileText,
+  Move,
+  GitBranch,
+  Eye,
+  Users,
+  TrendingUp,
+  Download,
+  Upload,
 } from 'lucide-react';
+import {
+  AddWorkPackageModal,
+  EditWBSItemModal,
+  MoveWBSItemModal,
+  DecomposeTaskModal,
+  WBSDetailsModal,
+  AssignResourcesModal,
+  TrackProgressModal,
+  WBSDependenciesModal,
+  ExportWBSModal,
+  ImportWBSTemplateModal,
+} from '@/components/project-management/WBSModals';
 
 interface WBSNode {
   id: string;
@@ -498,6 +517,76 @@ export default function WBSPage() {
   const [expandedNodes, setExpandedNodes] = useState<Set<string>>(new Set(['1']));
   const [searchTerm, setSearchTerm] = useState('');
 
+  // Modal states
+  const [showAddPackage, setShowAddPackage] = useState(false);
+  const [showEditItem, setShowEditItem] = useState(false);
+  const [showMoveItem, setShowMoveItem] = useState(false);
+  const [showDecompose, setShowDecompose] = useState(false);
+  const [showDetails, setShowDetails] = useState(false);
+  const [showAssignResources, setShowAssignResources] = useState(false);
+  const [showTrackProgress, setShowTrackProgress] = useState(false);
+  const [showDependencies, setShowDependencies] = useState(false);
+  const [showExport, setShowExport] = useState(false);
+  const [showImportTemplate, setShowImportTemplate] = useState(false);
+  const [selectedNode, setSelectedNode] = useState<WBSNode | null>(null);
+  const [parentNode, setParentNode] = useState<WBSNode | null>(null);
+
+  // Modal handlers
+  const handleAddPackage = (workPackage: any) => {
+    console.log('Adding work package:', workPackage);
+    setShowAddPackage(false);
+  };
+
+  const handleEditItem = (updates: any) => {
+    console.log('Updating item:', updates);
+    setShowEditItem(false);
+  };
+
+  const handleMoveItem = (targetParent: string) => {
+    console.log('Moving to:', targetParent);
+    setShowMoveItem(false);
+  };
+
+  const handleDecompose = (subtasks: any[]) => {
+    console.log('Creating subtasks:', subtasks);
+    setShowDecompose(false);
+  };
+
+  const handleAssignResources = (resources: string[]) => {
+    console.log('Assigning resources:', resources);
+    setShowAssignResources(false);
+  };
+
+  const handleTrackProgress = (progress: any) => {
+    console.log('Updating progress:', progress);
+    setShowTrackProgress(false);
+  };
+
+  const handleUpdateDependencies = (dependencies: any) => {
+    console.log('Updating dependencies:', dependencies);
+    setShowDependencies(false);
+  };
+
+  const handleExport = (options: any) => {
+    console.log('Exporting WBS:', options);
+    setShowExport(false);
+  };
+
+  const handleImportTemplate = (templateId: string) => {
+    console.log('Importing template:', templateId);
+    setShowImportTemplate(false);
+  };
+
+  const openEditModal = (node: WBSNode) => {
+    setSelectedNode(node);
+    setShowEditItem(true);
+  };
+
+  const openDetailsModal = (node: WBSNode) => {
+    setSelectedNode(node);
+    setShowDetails(true);
+  };
+
   const toggleNode = (nodeId: string) => {
     const newExpanded = new Set(expandedNodes);
     if (newExpanded.has(nodeId)) {
@@ -619,12 +708,30 @@ export default function WBSPage() {
           </div>
 
           {/* Actions */}
-          <div className="w-20 flex-shrink-0 flex items-center justify-end gap-2">
-            <button className="p-1 text-blue-600 hover:bg-blue-50 rounded transition-colors">
+          <div className="w-32 flex-shrink-0 flex items-center justify-end gap-2">
+            <button
+              onClick={() => openDetailsModal(node)}
+              className="p-1 text-indigo-600 hover:bg-indigo-50 rounded transition-colors"
+              title="View Details"
+            >
+              <Eye className="w-4 h-4" />
+            </button>
+            <button
+              onClick={() => openEditModal(node)}
+              className="p-1 text-blue-600 hover:bg-blue-50 rounded transition-colors"
+              title="Edit"
+            >
               <Edit className="w-4 h-4" />
             </button>
-            <button className="p-1 text-gray-400 hover:bg-gray-100 rounded transition-colors">
-              <FileText className="w-4 h-4" />
+            <button
+              onClick={() => {
+                setSelectedNode(node);
+                setShowTrackProgress(true);
+              }}
+              className="p-1 text-green-600 hover:bg-green-50 rounded transition-colors"
+              title="Track Progress"
+            >
+              <TrendingUp className="w-4 h-4" />
             </button>
           </div>
         </div>
@@ -643,15 +750,32 @@ export default function WBSPage() {
     <div className="w-full h-screen overflow-y-auto overflow-x-hidden">
       <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
       {/* Header Actions */}
-      <div className="flex justify-end gap-3 mb-4">
-        <button className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
-          <FileText className="w-5 h-5" />
-          Export WBS
-        </button>
-        <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-          <Plus className="w-5 h-5" />
-          Add Work Package
-        </button>
+      <div className="flex justify-between items-center mb-4">
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => setShowImportTemplate(true)}
+            className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+          >
+            <Upload className="w-5 h-5" />
+            Import Template
+          </button>
+        </div>
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => setShowExport(true)}
+            className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+          >
+            <Download className="w-5 h-5" />
+            Export WBS
+          </button>
+          <button
+            onClick={() => setShowAddPackage(true)}
+            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          >
+            <Plus className="w-5 h-5" />
+            Add Work Package
+          </button>
+        </div>
       </div>
 
       {/* Summary Stats */}
@@ -726,6 +850,78 @@ export default function WBSPage() {
           {mockWBS.map(node => renderNode(node))}
         </div>
       </div>
+
+      {/* Modals */}
+      <AddWorkPackageModal
+        isOpen={showAddPackage}
+        onClose={() => setShowAddPackage(false)}
+        parentNode={parentNode}
+        onAdd={handleAddPackage}
+      />
+
+      {selectedNode && (
+        <>
+          <EditWBSItemModal
+            isOpen={showEditItem}
+            onClose={() => setShowEditItem(false)}
+            item={selectedNode}
+            onUpdate={handleEditItem}
+          />
+
+          <MoveWBSItemModal
+            isOpen={showMoveItem}
+            onClose={() => setShowMoveItem(false)}
+            item={selectedNode}
+            onMove={handleMoveItem}
+          />
+
+          <DecomposeTaskModal
+            isOpen={showDecompose}
+            onClose={() => setShowDecompose(false)}
+            task={selectedNode}
+            onDecompose={handleDecompose}
+          />
+
+          <WBSDetailsModal
+            isOpen={showDetails}
+            onClose={() => setShowDetails(false)}
+            item={selectedNode}
+          />
+
+          <AssignResourcesModal
+            isOpen={showAssignResources}
+            onClose={() => setShowAssignResources(false)}
+            item={selectedNode}
+            onAssign={handleAssignResources}
+          />
+
+          <TrackProgressModal
+            isOpen={showTrackProgress}
+            onClose={() => setShowTrackProgress(false)}
+            item={selectedNode}
+            onUpdate={handleTrackProgress}
+          />
+
+          <WBSDependenciesModal
+            isOpen={showDependencies}
+            onClose={() => setShowDependencies(false)}
+            item={selectedNode}
+            onUpdate={handleUpdateDependencies}
+          />
+        </>
+      )}
+
+      <ExportWBSModal
+        isOpen={showExport}
+        onClose={() => setShowExport(false)}
+        onExport={handleExport}
+      />
+
+      <ImportWBSTemplateModal
+        isOpen={showImportTemplate}
+        onClose={() => setShowImportTemplate(false)}
+        onImport={handleImportTemplate}
+      />
       </div>
     </div>
   );

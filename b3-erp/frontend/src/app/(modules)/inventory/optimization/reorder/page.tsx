@@ -2,7 +2,11 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { ArrowLeft, Search, TrendingUp, Calculator, Save, RefreshCw, Download, AlertTriangle, CheckCircle } from 'lucide-react';
+import { ArrowLeft, Search, TrendingUp, Calculator, Save, RefreshCw, Download, AlertTriangle, CheckCircle, FileText } from 'lucide-react';
+import {
+  ReorderAnalysisModal,
+  ReorderAnalysisData
+} from '@/components/inventory/InventoryAnalyticsModals';
 
 interface ReorderPointData {
   id: string;
@@ -27,6 +31,10 @@ export default function ReorderOptimizationPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [filterStatus, setFilterStatus] = useState('all');
   const [serviceLevel, setServiceLevel] = useState(95);
+
+  // Modal state
+  const [isReorderModalOpen, setIsReorderModalOpen] = useState(false);
+  const [reorderResult, setReorderResult] = useState<ReorderAnalysisData | null>(null);
 
   const reorderData: ReorderPointData[] = [
     {
@@ -200,6 +208,30 @@ export default function ReorderOptimizationPage() {
     alert('Recalculating reorder points based on latest data...');
   };
 
+  const handleReorderGenerate = (config: any) => {
+    console.log('Generating reorder analysis with config:', config);
+    // TODO: API call to generate reorder analysis
+    // const response = await fetch('/api/inventory/analytics/reorder', { method: 'POST', body: JSON.stringify(config) });
+    // const data = await response.json();
+    // setReorderResult(data);
+
+    const criticalItems = reorderData.filter(d => d.status === 'too-low').length;
+    const highPriorityItems = reorderData.filter(d => d.status === 'optimal').length;
+
+    setReorderResult({
+      analysisDate: config.analysisDate,
+      warehouse: config.warehouse,
+      items: [],
+      summary: {
+        criticalItems: criticalItems,
+        highPriorityItems: highPriorityItems,
+        totalReorderValue: 1250000
+      }
+    });
+    setIsReorderModalOpen(false);
+    alert('Reorder analysis generated successfully!');
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
       <div className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
@@ -213,6 +245,13 @@ export default function ReorderOptimizationPage() {
           </div>
         </div>
         <div className="flex gap-2">
+          <button
+            onClick={() => setIsReorderModalOpen(true)}
+            className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 flex items-center gap-2"
+          >
+            <FileText className="w-4 h-4" />
+            <span>Generate Analysis</span>
+          </button>
           <button
             onClick={handleRecalculate}
             className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2"
@@ -364,7 +403,7 @@ export default function ReorderOptimizationPage() {
                   </td>
                   <td className="px-4 py-3 text-center">
                     <div className="text-sm font-semibold text-gray-900">{item.avgDailyDemand} {item.uom}/day</div>
-                    <div className="text-xs text-gray-500">Ã = {item.demandStdDev}</div>
+                    <div className="text-xs text-gray-500">ï¿½ = {item.demandStdDev}</div>
                   </td>
                   <td className="px-4 py-3 text-center">
                     <div className="text-sm font-medium text-gray-900">{item.leadTimeDays} days</div>
@@ -400,10 +439,10 @@ export default function ReorderOptimizationPage() {
         <h3 className="text-sm font-semibold text-blue-900 mb-2">Reorder Point Calculation Formula:</h3>
         <div className="text-sm text-blue-700 space-y-2">
           <p className="font-mono bg-white px-3 py-2 rounded border border-blue-200">
-            ROP = (Average Daily Demand × Lead Time) + Safety Stock
+            ROP = (Average Daily Demand ï¿½ Lead Time) + Safety Stock
           </p>
           <p className="font-mono bg-white px-3 py-2 rounded border border-blue-200">
-            Safety Stock = Z-Score × Demand Std Dev × Lead Time
+            Safety Stock = Z-Score ï¿½ Demand Std Dev ï¿½ Lead Time
           </p>
           <ul className="list-disc list-inside space-y-1 mt-3">
             <li><strong>Service Level 95%:</strong> Z-Score = 1.65 (5% stockout risk)</li>
@@ -414,6 +453,30 @@ export default function ReorderOptimizationPage() {
           </ul>
         </div>
       </div>
+
+      {/* Critical Items View */}
+      {reorderResult && reorderResult.summary.criticalItems > 0 && (
+        <div className="bg-red-50 border border-red-200 rounded-xl p-6">
+          <div className="flex items-center gap-3 mb-4">
+            <AlertTriangle className="w-6 h-6 text-red-600" />
+            <div>
+              <h3 className="text-lg font-semibold text-red-900">Critical Items Requiring Immediate Attention</h3>
+              <p className="text-sm text-red-700">These items are below their reorder points and need immediate action</p>
+            </div>
+          </div>
+          <div className="text-sm text-red-800">
+            <p><strong>{reorderResult.summary.criticalItems}</strong> items require immediate reordering</p>
+            <p className="mt-2">Total estimated reorder value: <strong>â‚¹{reorderResult.summary.totalReorderValue.toLocaleString()}</strong></p>
+          </div>
+        </div>
+      )}
+
+      {/* Reorder Analysis Modal */}
+      <ReorderAnalysisModal
+        isOpen={isReorderModalOpen}
+        onClose={() => setIsReorderModalOpen(false)}
+        onGenerate={handleReorderGenerate}
+      />
     </div>
   );
 }

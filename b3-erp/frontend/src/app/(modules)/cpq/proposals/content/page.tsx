@@ -19,6 +19,14 @@ import {
   TrendingUp,
   Download
 } from 'lucide-react'
+import {
+  UploadContentModal,
+  ViewContentModal,
+  EditContentModal,
+  AddToProposalModal,
+  OrganizeContentModal,
+  ContentItem as ContentItemType
+} from '@/components/cpq/ProposalContentModals'
 
 interface ContentItem {
   id: string
@@ -216,6 +224,65 @@ export default function CPQProposalsContentPage() {
   const totalUsage = content.reduce((sum, c) => sum + c.usageCount, 0)
   const contentTypes = Array.from(new Set(content.map(c => c.type))).length
 
+  // Modal states
+  const [isUploadOpen, setIsUploadOpen] = useState(false)
+  const [isViewOpen, setIsViewOpen] = useState(false)
+  const [isEditOpen, setIsEditOpen] = useState(false)
+  const [isAddToProposalOpen, setIsAddToProposalOpen] = useState(false)
+  const [isOrganizeOpen, setIsOrganizeOpen] = useState(false)
+  const [selectedContent, setSelectedContent] = useState<ContentItem | null>(null)
+
+  // Convert local content to ContentItemType
+  const convertToContentItemType = (item: ContentItem): ContentItemType => ({
+    id: item.id,
+    contentId: item.id,
+    title: item.name,
+    type: item.type,
+    category: item.category,
+    size: item.fileSize || '0 KB',
+    format: item.type === 'document' ? 'PDF' : item.type === 'image' ? 'PNG' : item.type === 'video' ? 'MP4' : 'TXT',
+    description: item.description,
+    usageCount: item.usageCount,
+    lastUsed: item.lastUsed,
+    createdDate: item.createdDate,
+    tags: item.tags,
+    status: item.status === 'approved' ? 'active' : 'archived',
+    createdBy: item.createdBy,
+    version: '1.0'
+  })
+
+  // Modal handlers
+  const handleUpload = (content: any) => {
+    console.log('Uploading content:', content)
+  }
+
+  const handleEdit = (item: ContentItem) => {
+    setSelectedContent(item)
+    setIsEditOpen(true)
+  }
+
+  const handleView = (item: ContentItem) => {
+    setSelectedContent(item)
+    setIsViewOpen(true)
+  }
+
+  const handleAddToProposal = (item: ContentItem) => {
+    setSelectedContent(item)
+    setIsAddToProposalOpen(true)
+  }
+
+  const handleSaveEdit = (editedContent: ContentItemType) => {
+    console.log('Saving edited content:', editedContent)
+  }
+
+  const handleAdd = (data: any) => {
+    console.log('Adding content to proposal:', data)
+  }
+
+  const handleOrganize = (data: any) => {
+    console.log('Organizing content:', data)
+  }
+
   return (
     <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
       {/* Action Buttons */}
@@ -225,11 +292,17 @@ export default function CPQProposalsContentPage() {
             <Filter className="h-4 w-4" />
             Filter
           </button>
-          <button className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
+          <button
+            onClick={() => setIsOrganizeOpen(true)}
+            className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2"
+          >
             <Folder className="h-4 w-4" />
             Organize
           </button>
-          <button className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 flex items-center gap-2">
+          <button
+            onClick={() => setIsUploadOpen(true)}
+            className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 flex items-center gap-2"
+          >
             <Plus className="h-4 w-4" />
             Upload Content
           </button>
@@ -367,28 +440,30 @@ export default function CPQProposalsContentPage() {
 
             {/* Actions */}
             <div className="flex items-center gap-2">
-              <button className="flex-1 px-3 py-2 text-sm text-white bg-blue-600 rounded-lg hover:bg-blue-700 flex items-center justify-center gap-1">
+              <button
+                onClick={() => handleAddToProposal(item)}
+                className="flex-1 px-3 py-2 text-sm text-white bg-blue-600 rounded-lg hover:bg-blue-700 flex items-center justify-center gap-1"
+              >
                 <Plus className="h-3 w-3" />
                 Add to Proposal
               </button>
               <button
+                onClick={() => handleView(item)}
                 className="p-2 text-gray-600 hover:bg-gray-50 rounded-lg border border-gray-200"
                 aria-label="View"
-               
               >
                 <Eye className="h-4 w-4" />
               </button>
               <button
                 className="p-2 text-gray-600 hover:bg-gray-50 rounded-lg border border-gray-200"
                 aria-label="Download"
-               
               >
                 <Download className="h-4 w-4" />
               </button>
               <button
+                onClick={() => handleEdit(item)}
                 className="p-2 text-gray-600 hover:bg-gray-50 rounded-lg border border-gray-200"
                 aria-label="Edit"
-               
               >
                 <Edit className="h-4 w-4" />
               </button>
@@ -408,6 +483,54 @@ export default function CPQProposalsContentPage() {
           <li><strong>Multi-Format Support:</strong> Images, videos, documents, case studies, and specifications</li>
         </ul>
       </div>
+
+      {/* Modals */}
+      <UploadContentModal
+        isOpen={isUploadOpen}
+        onClose={() => setIsUploadOpen(false)}
+        onUpload={handleUpload}
+      />
+
+      {isViewOpen && selectedContent && (
+        <ViewContentModal
+          isOpen={isViewOpen}
+          onClose={() => {
+            setIsViewOpen(false)
+            setSelectedContent(null)
+          }}
+          content={convertToContentItemType(selectedContent)}
+        />
+      )}
+
+      {isEditOpen && selectedContent && (
+        <EditContentModal
+          isOpen={isEditOpen}
+          onClose={() => {
+            setIsEditOpen(false)
+            setSelectedContent(null)
+          }}
+          onSave={handleSaveEdit}
+          content={convertToContentItemType(selectedContent)}
+        />
+      )}
+
+      {isAddToProposalOpen && selectedContent && (
+        <AddToProposalModal
+          isOpen={isAddToProposalOpen}
+          onClose={() => {
+            setIsAddToProposalOpen(false)
+            setSelectedContent(null)
+          }}
+          onAdd={handleAdd}
+          content={convertToContentItemType(selectedContent)}
+        />
+      )}
+
+      <OrganizeContentModal
+        isOpen={isOrganizeOpen}
+        onClose={() => setIsOrganizeOpen(false)}
+        onOrganize={handleOrganize}
+      />
     </div>
   )
 }

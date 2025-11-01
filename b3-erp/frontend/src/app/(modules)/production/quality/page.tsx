@@ -2,6 +2,8 @@
 
 import React, { useState } from 'react'
 import { Search, Filter, Download, Eye, Edit2, CheckCircle as CheckIcon, ClipboardCheck, XCircle, AlertTriangle, TrendingUp } from 'lucide-react'
+import { ViewInspectionModal, EditInspectionModal, ApproveInspectionModal, type Inspection } from '@/components/quality/QualityModals'
+import { ExportInspectionReportModal } from '@/components/quality/QualityExportModals'
 
 interface QualityInspection {
   id: string
@@ -126,6 +128,13 @@ const ProductionQualityPage = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const itemsPerPage = 10
 
+  // Modal state hooks
+  const [isViewOpen, setIsViewOpen] = useState(false)
+  const [isEditOpen, setIsEditOpen] = useState(false)
+  const [isApproveOpen, setIsApproveOpen] = useState(false)
+  const [isExportOpen, setIsExportOpen] = useState(false)
+  const [selectedInspection, setSelectedInspection] = useState<QualityInspection | null>(null)
+
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'pending':
@@ -182,20 +191,104 @@ const ProductionQualityPage = () => {
   const totalInspections = mockInspections.filter(i => i.pass_fail_status !== 'pending').length
   const passRate = totalInspections > 0 ? ((passedInspections / totalInspections) * 100).toFixed(1) : '0.0'
 
+  // Helper function to convert QualityInspection to Inspection modal format
+  const convertToModalInspection = (inspection: QualityInspection): Inspection => {
+    const inspectionTypeMap: Record<string, 'incoming' | 'in-process' | 'final' | 'pre-shipment'> = {
+      'receiving': 'incoming',
+      'in_process': 'in-process',
+      'final': 'final',
+      'first_article': 'in-process',
+      'audit': 'final'
+    }
+
+    const statusMap: Record<string, 'pending' | 'passed' | 'failed' | 'conditional'> = {
+      'pending': 'pending',
+      'passed': 'passed',
+      'failed': 'failed',
+      'conditional': 'conditional'
+    }
+
+    return {
+      id: inspection.inspection_id,
+      workOrderId: inspection.work_order_id,
+      productName: inspection.product_name,
+      productCode: inspection.product_code,
+      inspectionType: inspectionTypeMap[inspection.inspection_type] || 'in-process',
+      inspectionDate: inspection.inspection_date,
+      inspector: inspection.inspector_name,
+      inspectorId: `INS-${inspection.inspector_name.replace(/\s/g, '')}`,
+      workCenter: inspection.work_center,
+      workCenterId: `WC-${inspection.work_center.replace(/\s/g, '')}`,
+      sampleSize: inspection.sample_size,
+      defectsFound: inspection.defects_found,
+      status: statusMap[inspection.pass_fail_status] || 'pending',
+      defectCategories: Object.entries(inspection.defect_categories).map(([category, count], index) => ({
+        id: `${inspection.id}-defect-${index}`,
+        category,
+        count,
+        severity: count > 3 ? 'major' : count > 1 ? 'minor' : 'minor'
+      })),
+      remarks: inspection.remarks
+    }
+  }
+
+  // Handler functions
+  const handleView = (inspection: QualityInspection) => {
+    setSelectedInspection(inspection)
+    setIsViewOpen(true)
+  }
+
+  const handleEdit = (inspection: QualityInspection) => {
+    setSelectedInspection(inspection)
+    setIsEditOpen(true)
+  }
+
+  const handleApprove = (inspection: QualityInspection) => {
+    setSelectedInspection(inspection)
+    setIsApproveOpen(true)
+  }
+
   const handleExport = () => {
-    console.log('Exporting quality inspection report...')
+    setIsExportOpen(true)
   }
 
-  const handleView = (id: string) => {
-    console.log('View inspection:', id)
+  const handleViewClose = () => {
+    setIsViewOpen(false)
+    setSelectedInspection(null)
   }
 
-  const handleEdit = (id: string) => {
-    console.log('Edit inspection:', id)
+  const handleEditSubmit = (data: Inspection) => {
+    // TODO: Replace with actual API call
+    // await fetch(`/api/quality/inspections/${data.id}`, {
+    //   method: 'PUT',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify(data)
+    // });
+    console.log('Edit inspection submitted:', data)
+    setIsEditOpen(false)
+    setSelectedInspection(null)
   }
 
-  const handleApprove = (id: string) => {
-    console.log('Approve inspection:', id)
+  const handleApproveSubmit = (decision: 'approve' | 'reject' | 'request-changes', comments: string, signature: string) => {
+    // TODO: Replace with actual API call
+    // await fetch(`/api/quality/inspections/${selectedInspection?.id}/approve`, {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify({ decision, comments, signature })
+    // });
+    console.log('Approve inspection submitted:', { decision, comments, signature })
+    setIsApproveOpen(false)
+    setSelectedInspection(null)
+  }
+
+  const handleExportSubmit = (data: any) => {
+    // TODO: Replace with actual API call
+    // await fetch('/api/quality/inspections/export', {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify(data)
+    // });
+    console.log('Export inspection report:', data)
   }
 
   return (
@@ -384,24 +477,24 @@ const ProductionQualityPage = () => {
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                     <div className="flex items-center gap-2">
                       <button
-                        onClick={() => handleView(inspection.id)}
+                        onClick={() => handleView(inspection)}
                         className="text-blue-600 hover:text-blue-900"
-                       
+                        title="View Inspection"
                       >
                         <Eye className="w-5 h-5" />
                       </button>
                       <button
-                        onClick={() => handleEdit(inspection.id)}
+                        onClick={() => handleEdit(inspection)}
                         className="text-yellow-600 hover:text-yellow-900"
-                       
+                        title="Edit Inspection"
                       >
                         <Edit2 className="w-5 h-5" />
                       </button>
                       {inspection.pass_fail_status === 'pending' && (
                         <button
-                          onClick={() => handleApprove(inspection.id)}
+                          onClick={() => handleApprove(inspection)}
                           className="text-green-600 hover:text-green-900"
-                         
+                          title="Approve Inspection"
                         >
                           <CheckIcon className="w-5 h-5" />
                         </button>
@@ -455,6 +548,45 @@ const ProductionQualityPage = () => {
           </div>
         </div>
       </div>
+
+      {/* Modal Components */}
+      <ViewInspectionModal
+        isOpen={isViewOpen}
+        onClose={handleViewClose}
+        inspection={selectedInspection ? convertToModalInspection(selectedInspection) : null}
+        onEdit={(inspection) => {
+          const qualityInspection = mockInspections.find(i => i.inspection_id === inspection.id)
+          if (qualityInspection) {
+            handleEdit(qualityInspection)
+          }
+        }}
+      />
+
+      <EditInspectionModal
+        isOpen={isEditOpen}
+        onClose={() => {
+          setIsEditOpen(false)
+          setSelectedInspection(null)
+        }}
+        onSave={handleEditSubmit}
+        inspection={selectedInspection ? convertToModalInspection(selectedInspection) : null}
+      />
+
+      <ApproveInspectionModal
+        isOpen={isApproveOpen}
+        onClose={() => {
+          setIsApproveOpen(false)
+          setSelectedInspection(null)
+        }}
+        onApprove={handleApproveSubmit}
+        inspection={selectedInspection ? convertToModalInspection(selectedInspection) : null}
+      />
+
+      <ExportInspectionReportModal
+        isOpen={isExportOpen}
+        onClose={() => setIsExportOpen(false)}
+        onExport={handleExportSubmit}
+      />
     </div>
   )
 }

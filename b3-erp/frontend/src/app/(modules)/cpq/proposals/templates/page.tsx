@@ -17,6 +17,13 @@ import {
   Layers,
   TrendingUp
 } from 'lucide-react'
+import {
+  TemplateModal,
+  ViewTemplateModal,
+  UseTemplateModal,
+  CopyTemplateModal,
+  ProposalTemplate as TemplateType
+} from '@/components/cpq/ProposalTemplateModals'
 
 interface ProposalTemplate {
   id: string
@@ -207,6 +214,67 @@ export default function CPQProposalsTemplatesPage() {
   const totalUsage = templates.reduce((sum, t) => sum + t.usageCount, 0)
   const avgSuccessRate = (templates.reduce((sum, t) => sum + t.successRate, 0) / templates.length).toFixed(1)
 
+  // Modal states
+  const [isCreateOpen, setIsCreateOpen] = useState(false)
+  const [isViewOpen, setIsViewOpen] = useState(false)
+  const [isUseOpen, setIsUseOpen] = useState(false)
+  const [isCopyOpen, setIsCopyOpen] = useState(false)
+  const [selectedTemplate, setSelectedTemplate] = useState<ProposalTemplate | null>(null)
+
+  // Convert local template to TemplateType
+  const convertToTemplateType = (template: ProposalTemplate): TemplateType => ({
+    id: template.id,
+    templateCode: template.id,
+    templateName: template.name,
+    category: template.category,
+    description: template.description,
+    sections: template.sections,
+    pages: template.pages,
+    usageCount: template.usageCount,
+    successRate: template.successRate,
+    avgDealSize: template.avgDealSize,
+    avgClosureTime: 15,
+    lastUsed: template.lastUsed,
+    createdBy: template.createdBy,
+    createdDate: template.createdDate,
+    tags: [template.category, 'kitchen'],
+    status: template.status
+  })
+
+  // Modal handlers
+  const handleCreateTemplate = (template: TemplateType) => {
+    console.log('Creating template:', template)
+  }
+
+  const handleUseTemplate = (data: any) => {
+    console.log('Using template:', data)
+    router.push('/cpq/proposals/builder')
+  }
+
+  const handleCopyTemplate = (data: any) => {
+    console.log('Copying template:', data)
+  }
+
+  const handleView = (template: ProposalTemplate) => {
+    setSelectedTemplate(template)
+    setIsViewOpen(true)
+  }
+
+  const handleEdit = (template: ProposalTemplate) => {
+    setSelectedTemplate(template)
+    setIsCreateOpen(true)
+  }
+
+  const handleUse = (template: ProposalTemplate) => {
+    setSelectedTemplate(template)
+    setIsUseOpen(true)
+  }
+
+  const handleCopy = (template: ProposalTemplate) => {
+    setSelectedTemplate(template)
+    setIsCopyOpen(true)
+  }
+
   return (
     <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
       {/* Action Buttons */}
@@ -220,7 +288,13 @@ export default function CPQProposalsTemplatesPage() {
             <Download className="h-4 w-4" />
             Export
           </button>
-          <button className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 flex items-center gap-2">
+          <button
+            onClick={() => {
+              setSelectedTemplate(null)
+              setIsCreateOpen(true)
+            }}
+            className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 flex items-center gap-2"
+          >
             <Plus className="h-4 w-4" />
             Create Template
           </button>
@@ -386,28 +460,31 @@ export default function CPQProposalsTemplatesPage() {
 
               {/* Actions */}
               <div className="flex items-center gap-2">
-                <button className="flex-1 px-3 py-2 text-sm text-white bg-blue-600 rounded-lg hover:bg-blue-700 flex items-center justify-center gap-1">
+                <button
+                  onClick={() => handleUse(template)}
+                  className="flex-1 px-3 py-2 text-sm text-white bg-blue-600 rounded-lg hover:bg-blue-700 flex items-center justify-center gap-1"
+                >
                   <Plus className="h-3 w-3" />
                   Use Template
                 </button>
                 <button
+                  onClick={() => handleView(template)}
                   className="p-2 text-gray-600 hover:bg-gray-50 rounded-lg border border-gray-200"
                   aria-label="View"
-                 
                 >
                   <Eye className="h-4 w-4" />
                 </button>
                 <button
+                  onClick={() => handleEdit(template)}
                   className="p-2 text-gray-600 hover:bg-gray-50 rounded-lg border border-gray-200"
                   aria-label="Edit"
-                 
                 >
                   <Edit className="h-4 w-4" />
                 </button>
                 <button
+                  onClick={() => handleCopy(template)}
                   className="p-2 text-gray-600 hover:bg-gray-50 rounded-lg border border-gray-200"
                   aria-label="Copy"
-                 
                 >
                   <Copy className="h-4 w-4" />
                 </button>
@@ -427,6 +504,54 @@ export default function CPQProposalsTemplatesPage() {
           <li><strong>Customization:</strong> Templates are fully customizable while maintaining structure</li>
         </ul>
       </div>
+
+      {/* Modals */}
+      {isCreateOpen && (
+        <TemplateModal
+          isOpen={isCreateOpen}
+          onClose={() => {
+            setIsCreateOpen(false)
+            setSelectedTemplate(null)
+          }}
+          onSave={handleCreateTemplate}
+          template={selectedTemplate ? convertToTemplateType(selectedTemplate) : null}
+        />
+      )}
+
+      {isViewOpen && selectedTemplate && (
+        <ViewTemplateModal
+          isOpen={isViewOpen}
+          onClose={() => {
+            setIsViewOpen(false)
+            setSelectedTemplate(null)
+          }}
+          template={convertToTemplateType(selectedTemplate)}
+        />
+      )}
+
+      {isUseOpen && selectedTemplate && (
+        <UseTemplateModal
+          isOpen={isUseOpen}
+          onClose={() => {
+            setIsUseOpen(false)
+            setSelectedTemplate(null)
+          }}
+          onUse={handleUseTemplate}
+          template={convertToTemplateType(selectedTemplate)}
+        />
+      )}
+
+      {isCopyOpen && selectedTemplate && (
+        <CopyTemplateModal
+          isOpen={isCopyOpen}
+          onClose={() => {
+            setIsCopyOpen(false)
+            setSelectedTemplate(null)
+          }}
+          onCopy={handleCopyTemplate}
+          template={convertToTemplateType(selectedTemplate)}
+        />
+      )}
     </div>
   )
 }

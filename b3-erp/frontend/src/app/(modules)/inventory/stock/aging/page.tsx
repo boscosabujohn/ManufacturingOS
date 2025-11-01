@@ -13,8 +13,13 @@ import {
   BarChart3,
   Archive,
   DollarSign,
-  Calendar
+  Calendar,
+  FileText
 } from 'lucide-react';
+import {
+  StockAgingModal,
+  StockAgingData
+} from '@/components/inventory/InventoryAnalyticsModals';
 
 interface AgingItem {
   id: number;
@@ -37,6 +42,10 @@ export default function StockAgingPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedBucket, setSelectedBucket] = useState('all');
   const [selectedVelocity, setSelectedVelocity] = useState('all');
+
+  // Modal state
+  const [isAgingModalOpen, setIsAgingModalOpen] = useState(false);
+  const [agingResult, setAgingResult] = useState<StockAgingData | null>(null);
 
   const [agingItems, setAgingItems] = useState<AgingItem[]>([
     {
@@ -193,9 +202,34 @@ export default function StockAgingPage() {
                          item.itemCode.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesBucket = selectedBucket === 'all' || item.agingBucket === selectedBucket;
     const matchesVelocity = selectedVelocity === 'all' || item.movementVelocity === selectedVelocity;
-    
+
     return matchesSearch && matchesBucket && matchesVelocity;
   });
+
+  // Handler function
+  const handleAgingGenerate = (config: any) => {
+    console.log('Generating aging analysis with config:', config);
+    // TODO: API call to generate aging analysis
+    // const response = await fetch('/api/inventory/analytics/aging', { method: 'POST', body: JSON.stringify(config) });
+    // const data = await response.json();
+    // setAgingResult(data);
+
+    setAgingResult({
+      reportDate: config.reportDate,
+      warehouse: config.warehouse,
+      items: [],
+      summary: {
+        totalValue: totalValue,
+        bucket_0_30: { quantity: 0, value: 0, percentage: 0 },
+        bucket_31_60: { quantity: 195, value: 66600, percentage: 9.8 },
+        bucket_61_90: { quantity: 67, value: 214400, percentage: 31.5 },
+        bucket_91_180: { quantity: 363, value: 194500, percentage: 28.5 },
+        bucket_180_plus: { quantity: 45, value: 202500, percentage: 29.7 }
+      }
+    });
+    setIsAgingModalOpen(false);
+    alert('Stock aging analysis generated successfully!');
+  };
 
   return (
     <div className="p-6 space-y-6">
@@ -209,6 +243,13 @@ export default function StockAgingPage() {
           <p className="text-gray-600 mt-1">Inventory aging and movement velocity tracking</p>
         </div>
         <div className="flex items-center space-x-3">
+          <button
+            onClick={() => setIsAgingModalOpen(true)}
+            className="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 flex items-center space-x-2"
+          >
+            <FileText className="w-4 h-4" />
+            <span>Generate Analysis</span>
+          </button>
           <button className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center space-x-2">
             <RefreshCw className="w-4 h-4" />
             <span>Refresh</span>
@@ -431,6 +472,13 @@ export default function StockAgingPage() {
           </div>
         </div>
       </div>
+
+      {/* Stock Aging Modal */}
+      <StockAgingModal
+        isOpen={isAgingModalOpen}
+        onClose={() => setIsAgingModalOpen(false)}
+        onGenerate={handleAgingGenerate}
+      />
     </div>
   );
 }

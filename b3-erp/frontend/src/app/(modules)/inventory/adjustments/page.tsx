@@ -15,8 +15,19 @@ import {
   Download,
   AlertCircle,
   CheckCircle,
-  Clock
+  Clock,
+  Upload
 } from 'lucide-react';
+import {
+  CreateAdjustmentModal,
+  BulkAdjustmentModal,
+  ViewAdjustmentDetailsModal,
+  ReconciliationModal,
+  ExportAdjustmentReportModal,
+  StockAdjustmentData,
+  BulkAdjustmentData,
+  ReconciliationData
+} from '@/components/inventory/InventoryAdjustmentModals';
 
 interface Adjustment {
   id: number;
@@ -39,6 +50,14 @@ export default function AdjustmentsPage() {
   const [selectedType, setSelectedType] = useState('all');
   const [selectedStatus, setSelectedStatus] = useState('all');
   const [selectedWarehouse, setSelectedWarehouse] = useState('all');
+
+  // Modal states
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const [isBulkModalOpen, setIsBulkModalOpen] = useState(false);
+  const [isViewModalOpen, setIsViewModalOpen] = useState(false);
+  const [isReconciliationModalOpen, setIsReconciliationModalOpen] = useState(false);
+  const [isExportModalOpen, setIsExportModalOpen] = useState(false);
+  const [selectedAdjustment, setSelectedAdjustment] = useState<Adjustment | null>(null);
 
   const [adjustments, setAdjustments] = useState<Adjustment[]>([
     {
@@ -165,9 +184,163 @@ export default function AdjustmentsPage() {
     const matchesType = selectedType === 'all' || adj.type === selectedType;
     const matchesStatus = selectedStatus === 'all' || adj.status === selectedStatus;
     const matchesWarehouse = selectedWarehouse === 'all' || adj.warehouse.toLowerCase().includes(selectedWarehouse.toLowerCase());
-    
+
     return matchesSearch && matchesType && matchesStatus && matchesWarehouse;
   });
+
+  // Helper function to convert Adjustment to StockAdjustmentData
+  const convertToStockAdjustmentData = (adjustment: Adjustment): StockAdjustmentData => {
+    // Map adjustment type to modal's adjustment type
+    const mapAdjustmentType = (type: string): 'increase' | 'decrease' | 'recount' | 'damage' | 'obsolete' => {
+      if (type === 'quantity') return 'recount';
+      if (type === 'write-off') return 'damage';
+      return 'recount';
+    };
+
+    return {
+      adjustmentNumber: adjustment.adjustmentNumber,
+      adjustmentType: mapAdjustmentType(adjustment.type),
+      adjustmentDate: adjustment.date,
+      warehouse: adjustment.warehouse,
+      reason: adjustment.reason,
+      items: [
+        // Mock items - in real implementation, fetch from API
+        {
+          itemId: '1',
+          itemCode: 'ITEM-001',
+          itemName: 'Sample Item',
+          currentQuantity: 100,
+          adjustedQuantity: 120,
+          difference: 20,
+          reason: adjustment.reason,
+          warehouse: adjustment.warehouse,
+          zone: 'A1',
+          bin: 'B01',
+          costImpact: adjustment.adjustmentValue
+        }
+      ],
+      totalCostImpact: adjustment.adjustmentValue,
+      approver: adjustment.approvedBy,
+      notes: `Created by ${adjustment.createdBy}`
+    };
+  };
+
+  // Modal handlers
+  const handleCreateAdjustment = (data: StockAdjustmentData) => {
+    // TODO: Integrate with API to create adjustment
+    console.log('Creating adjustment:', data);
+
+    // Mock: Add to local state
+    const newAdjustment: Adjustment = {
+      id: adjustments.length + 1,
+      adjustmentNumber: data.adjustmentNumber,
+      date: data.adjustmentDate,
+      warehouse: data.warehouse,
+      type: 'quantity',
+      reason: data.reason,
+      itemsCount: data.items.length,
+      adjustmentValue: data.totalCostImpact,
+      adjustmentType: data.items.reduce((sum, item) => sum + item.difference, 0) > 0 ? 'increase' : 'decrease',
+      createdBy: 'Current User',
+      status: 'draft'
+    };
+
+    setAdjustments([newAdjustment, ...adjustments]);
+    setIsCreateModalOpen(false);
+  };
+
+  const handleBulkAdjustment = (data: BulkAdjustmentData) => {
+    // TODO: Integrate with API to create bulk adjustments
+    console.log('Creating bulk adjustment:', data);
+
+    // Mock: Add to local state
+    const newAdjustment: Adjustment = {
+      id: adjustments.length + 1,
+      adjustmentNumber: `ADJ-BULK-${Date.now()}`,
+      date: data.adjustmentDate,
+      warehouse: data.warehouse,
+      type: 'quantity',
+      reason: data.reason,
+      itemsCount: data.items.length,
+      adjustmentValue: data.items.reduce((sum, item) => sum + item.costImpact, 0),
+      adjustmentType: data.adjustmentType,
+      createdBy: 'Current User',
+      status: 'draft'
+    };
+
+    setAdjustments([newAdjustment, ...adjustments]);
+    setIsBulkModalOpen(false);
+  };
+
+  const handleReconciliation = (data: ReconciliationData) => {
+    // TODO: Integrate with API to create reconciliation
+    console.log('Creating reconciliation:', data);
+
+    // Mock: Add to local state
+    const newAdjustment: Adjustment = {
+      id: adjustments.length + 1,
+      adjustmentNumber: data.reconciliationNumber,
+      date: data.reconciliationDate,
+      warehouse: data.warehouse,
+      type: 'quantity',
+      reason: 'Stock Reconciliation',
+      itemsCount: data.items.length,
+      adjustmentValue: Math.abs(data.variance * 100), // Mock calculation
+      adjustmentType: data.variance > 0 ? 'increase' : 'decrease',
+      createdBy: data.performedBy,
+      status: 'pending-approval'
+    };
+
+    setAdjustments([newAdjustment, ...adjustments]);
+    setIsReconciliationModalOpen(false);
+  };
+
+  const handleExport = (format: string, filters: any) => {
+    // TODO: Integrate with API to export report
+    console.log('Exporting report:', format, filters);
+
+    // Mock: Show success message
+    alert(`Exporting adjustments as ${format.toUpperCase()}`);
+  };
+
+  const handleViewAdjustment = (adjustment: Adjustment) => {
+    setSelectedAdjustment(adjustment);
+    setIsViewModalOpen(true);
+  };
+
+  const handleApproveAdjustment = () => {
+    if (!selectedAdjustment) return;
+
+    // TODO: Integrate with API to approve adjustment
+    console.log('Approving adjustment:', selectedAdjustment.id);
+
+    // Mock: Update local state
+    setAdjustments(adjustments.map(adj =>
+      adj.id === selectedAdjustment.id
+        ? { ...adj, status: 'approved', approvedBy: 'Current User', approvedDate: new Date().toISOString().split('T')[0] }
+        : adj
+    ));
+
+    setIsViewModalOpen(false);
+    setSelectedAdjustment(null);
+  };
+
+  const handleRejectAdjustment = () => {
+    if (!selectedAdjustment) return;
+
+    // TODO: Integrate with API to reject adjustment
+    console.log('Rejecting adjustment:', selectedAdjustment.id);
+
+    // Mock: Update local state
+    setAdjustments(adjustments.map(adj =>
+      adj.id === selectedAdjustment.id
+        ? { ...adj, status: 'rejected' }
+        : adj
+    ));
+
+    setIsViewModalOpen(false);
+    setSelectedAdjustment(null);
+  };
 
   return (
     <div className="p-6 space-y-6">
@@ -181,11 +354,24 @@ export default function AdjustmentsPage() {
           <p className="text-gray-600 mt-1">Manage inventory quantity and value adjustments</p>
         </div>
         <div className="flex items-center space-x-3">
-          <button className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center space-x-2">
+          <button
+            onClick={() => setIsExportModalOpen(true)}
+            className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center space-x-2"
+          >
             <Download className="w-4 h-4" />
             <span>Export</span>
           </button>
-          <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center space-x-2">
+          <button
+            onClick={() => setIsBulkModalOpen(true)}
+            className="px-4 py-2 border border-purple-600 text-purple-600 rounded-lg hover:bg-purple-50 flex items-center space-x-2"
+          >
+            <Upload className="w-4 h-4" />
+            <span>Bulk Adjustment</span>
+          </button>
+          <button
+            onClick={() => setIsCreateModalOpen(true)}
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center space-x-2"
+          >
             <Plus className="w-4 h-4" />
             <span>New Adjustment</span>
           </button>
@@ -235,19 +421,31 @@ export default function AdjustmentsPage() {
       <div className="bg-white rounded-lg shadow p-6">
         <h3 className="text-lg font-semibold mb-4">Quick Actions</h3>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <button className="p-4 border border-blue-200 rounded-lg hover:bg-blue-50 flex flex-col items-center space-y-2">
+          <button
+            onClick={() => setIsCreateModalOpen(true)}
+            className="p-4 border border-blue-200 rounded-lg hover:bg-blue-50 flex flex-col items-center space-y-2"
+          >
             <Settings className="w-8 h-8 text-blue-600" />
             <span className="text-sm font-medium">Quantity Adjustment</span>
           </button>
-          <button className="p-4 border border-purple-200 rounded-lg hover:bg-purple-50 flex flex-col items-center space-y-2">
+          <button
+            onClick={() => setIsCreateModalOpen(true)}
+            className="p-4 border border-purple-200 rounded-lg hover:bg-purple-50 flex flex-col items-center space-y-2"
+          >
             <TrendingUp className="w-8 h-8 text-purple-600" />
             <span className="text-sm font-medium">Value Adjustment</span>
           </button>
-          <button className="p-4 border border-red-200 rounded-lg hover:bg-red-50 flex flex-col items-center space-y-2">
-            <AlertCircle className="w-8 h-8 text-red-600" />
-            <span className="text-sm font-medium">Write-Off</span>
+          <button
+            onClick={() => setIsReconciliationModalOpen(true)}
+            className="p-4 border border-cyan-200 rounded-lg hover:bg-cyan-50 flex flex-col items-center space-y-2"
+          >
+            <CheckCircle className="w-8 h-8 text-cyan-600" />
+            <span className="text-sm font-medium">Reconciliation</span>
           </button>
-          <button className="p-4 border border-yellow-200 rounded-lg hover:bg-yellow-50 flex flex-col items-center space-y-2">
+          <button
+            onClick={() => setSelectedStatus('pending-approval')}
+            className="p-4 border border-yellow-200 rounded-lg hover:bg-yellow-50 flex flex-col items-center space-y-2"
+          >
             <Clock className="w-8 h-8 text-yellow-600" />
             <span className="text-sm font-medium">View Approvals</span>
           </button>
@@ -325,7 +523,11 @@ export default function AdjustmentsPage() {
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {filteredAdjustments.map((adj) => (
-                <tr key={adj.id} className="hover:bg-gray-50">
+                <tr
+                  key={adj.id}
+                  onClick={() => handleViewAdjustment(adj)}
+                  className="hover:bg-gray-50 cursor-pointer"
+                >
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                     {adj.adjustmentNumber}
                   </td>
@@ -370,7 +572,13 @@ export default function AdjustmentsPage() {
                     </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm">
-                    <button className="text-blue-600 hover:text-blue-800 flex items-center space-x-1">
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleViewAdjustment(adj);
+                      }}
+                      className="text-blue-600 hover:text-blue-800 flex items-center space-x-1"
+                    >
                       <Eye className="w-4 h-4" />
                       <span>View</span>
                     </button>
@@ -388,6 +596,42 @@ export default function AdjustmentsPage() {
           </div>
         )}
       </div>
+
+      {/* Modals */}
+      <CreateAdjustmentModal
+        isOpen={isCreateModalOpen}
+        onClose={() => setIsCreateModalOpen(false)}
+        onSubmit={handleCreateAdjustment}
+      />
+
+      <BulkAdjustmentModal
+        isOpen={isBulkModalOpen}
+        onClose={() => setIsBulkModalOpen(false)}
+        onSubmit={handleBulkAdjustment}
+      />
+
+      <ViewAdjustmentDetailsModal
+        isOpen={isViewModalOpen}
+        onClose={() => {
+          setIsViewModalOpen(false);
+          setSelectedAdjustment(null);
+        }}
+        adjustment={selectedAdjustment ? convertToStockAdjustmentData(selectedAdjustment) : null}
+        onApprove={selectedAdjustment?.status === 'pending-approval' ? handleApproveAdjustment : undefined}
+        onReject={selectedAdjustment?.status === 'pending-approval' ? handleRejectAdjustment : undefined}
+      />
+
+      <ReconciliationModal
+        isOpen={isReconciliationModalOpen}
+        onClose={() => setIsReconciliationModalOpen(false)}
+        onSubmit={handleReconciliation}
+      />
+
+      <ExportAdjustmentReportModal
+        isOpen={isExportModalOpen}
+        onClose={() => setIsExportModalOpen(false)}
+        onExport={handleExport}
+      />
     </div>
   );
 }

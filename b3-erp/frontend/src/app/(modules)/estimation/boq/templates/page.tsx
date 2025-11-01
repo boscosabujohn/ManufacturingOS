@@ -34,6 +34,27 @@ export default function BOQTemplatesPage() {
   const router = useRouter()
   const [selectedCategory, setSelectedCategory] = useState('all')
 
+  const handleCreateTemplate = () => {
+    router.push('/estimation/boq/templates/create')
+  }
+
+  const handleViewTemplate = (templateId: string) => {
+    router.push(`/estimation/boq/templates/view/${templateId}`)
+  }
+
+  const handleEditTemplate = (templateId: string) => {
+    router.push(`/estimation/boq/templates/edit/${templateId}`)
+  }
+
+  const handleUseTemplate = (templateId: string) => {
+    router.push(`/estimation/boq/create?template=${templateId}`)
+  }
+
+  const handleExportTemplate = (template: BOQTemplate) => {
+    console.log('Exporting template:', template.name)
+    // Would trigger download of Excel/PDF file
+  }
+
   const [templates] = useState<BOQTemplate[]>([
     {
       id: 'BOQ-TPL-001',
@@ -299,7 +320,10 @@ export default function BOQTemplatesPage() {
             <p className="text-sm text-gray-600 mt-1">Pre-configured Bill of Quantities templates for kitchen projects</p>
           </div>
         </div>
-        <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center gap-2">
+        <button
+          onClick={handleCreateTemplate}
+          className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center gap-2"
+        >
           <Plus className="h-5 w-5" />
           Create Template
         </button>
@@ -452,19 +476,31 @@ export default function BOQTemplatesPage() {
 
               {/* Actions */}
               <div className="grid grid-cols-2 gap-2">
-                <button className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 flex items-center justify-center gap-2">
+                <button
+                  onClick={() => handleViewTemplate(template.id)}
+                  className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 flex items-center justify-center gap-2"
+                >
                   <Eye className="h-4 w-4" />
                   View
                 </button>
-                <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center justify-center gap-2">
+                <button
+                  onClick={() => handleUseTemplate(template.id)}
+                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center justify-center gap-2"
+                >
                   <Copy className="h-4 w-4" />
                   Use Template
                 </button>
-                <button className="px-4 py-2 border border-blue-300 text-blue-700 rounded-lg hover:bg-blue-50 flex items-center justify-center gap-2">
+                <button
+                  onClick={() => handleEditTemplate(template.id)}
+                  className="px-4 py-2 border border-blue-300 text-blue-700 rounded-lg hover:bg-blue-50 flex items-center justify-center gap-2"
+                >
                   <Edit className="h-4 w-4" />
                   Edit
                 </button>
-                <button className="px-4 py-2 border border-green-300 text-green-700 rounded-lg hover:bg-green-50 flex items-center justify-center gap-2">
+                <button
+                  onClick={() => handleExportTemplate(template)}
+                  className="px-4 py-2 border border-green-300 text-green-700 rounded-lg hover:bg-green-50 flex items-center justify-center gap-2"
+                >
                   <Download className="h-4 w-4" />
                   Export
                 </button>

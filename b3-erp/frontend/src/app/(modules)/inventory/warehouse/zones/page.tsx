@@ -3,6 +3,12 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { ArrowLeft, Plus, Search, Edit2, Trash2, Grid, Package, Thermometer, Shield, TrendingUp } from 'lucide-react';
+import {
+  CreateZoneModal,
+  CreateBinModal,
+  ZoneData,
+  BinData
+} from '@/components/inventory/InventoryWarehouseModals';
 
 interface Zone {
   id: string;
@@ -27,6 +33,13 @@ export default function WarehouseZonesPage() {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [filterWarehouse, setFilterWarehouse] = useState<string>('all');
   const [filterType, setFilterType] = useState<string>('all');
+
+  // Modal states
+  const [isCreateZoneOpen, setIsCreateZoneOpen] = useState(false);
+  const [isCreateBinOpen, setIsCreateBinOpen] = useState(false);
+  const [selectedZone, setSelectedZone] = useState<Zone | null>(null);
+  const [selectedZoneIdForBin, setSelectedZoneIdForBin] = useState<string>('');
+  const [zoneList, setZoneList] = useState<Zone[]>([]);
 
   // Mock warehouse zones data
   const zones: Zone[] = [
@@ -246,6 +259,89 @@ export default function WarehouseZonesPage() {
     return 'text-green-600';
   };
 
+  // Convert Zone to ZoneData
+  const convertToZoneData = (zone: Zone): ZoneData => {
+    return {
+      zoneId: zone.id,
+      zoneName: zone.name,
+      zoneCode: zone.code,
+      warehouseId: 'WH-001', // Default warehouse ID
+      zoneType: zone.zoneType === 'cold-storage' ? 'storage' : zone.zoneType === 'hazardous' ? 'quarantine' : zone.zoneType,
+      capacity: zone.capacity,
+      currentUtilization: zone.utilizationPercent,
+      temperature: zone.temperature.includes('Cold') || zone.temperature.includes('Controlled') ? {
+        min: 2,
+        max: 8,
+        controlled: true
+      } : undefined,
+      bins: [],
+      restrictions: zone.specialRequirements
+    };
+  };
+
+  // Handle zone creation
+  const handleCreateZone = (data: ZoneData) => {
+    // TODO: Integrate with API to create zone
+    console.log('Creating zone:', data);
+
+    // Update local state
+    const newZone: Zone = {
+      id: data.zoneId,
+      code: data.zoneCode,
+      name: data.zoneName,
+      warehouse: 'Mumbai Central Warehouse', // Default warehouse
+      zoneType: data.zoneType,
+      area: data.capacity / 2, // Estimate area
+      capacity: data.capacity,
+      currentOccupancy: 0,
+      utilizationPercent: 0,
+      totalLocations: 0,
+      availableLocations: 0,
+      temperature: data.temperature ? `Controlled (${data.temperature.min}-${data.temperature.max}°C)` : 'Ambient (15-25°C)',
+      status: 'active',
+      manager: 'Warehouse Manager',
+      specialRequirements: data.restrictions || []
+    };
+
+    setZoneList([...zoneList, newZone]);
+    setIsCreateZoneOpen(false);
+  };
+
+  // Handle zone card click to view details
+  const handleZoneClick = (zone: Zone) => {
+    setSelectedZone(zone);
+    // Could open a details modal here if needed
+    console.log('Zone clicked:', zone);
+  };
+
+  // Handle add bin from zone
+  const handleAddBinToZone = (zoneId: string) => {
+    setSelectedZoneIdForBin(zoneId);
+    setIsCreateBinOpen(true);
+  };
+
+  // Handle bin creation
+  const handleCreateBin = (data: BinData) => {
+    // TODO: Integrate with API to create bin
+    console.log('Creating bin:', data);
+
+    // Update zone locations count
+    const updatedZones = zoneList.map(zone => {
+      if (zone.id === data.zoneId) {
+        return {
+          ...zone,
+          totalLocations: zone.totalLocations + 1,
+          availableLocations: zone.availableLocations + 1
+        };
+      }
+      return zone;
+    });
+
+    setZoneList(updatedZones);
+    setIsCreateBinOpen(false);
+    setSelectedZoneIdForBin('');
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
       {/* Inline Header */}
@@ -263,7 +359,10 @@ export default function WarehouseZonesPage() {
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2">
+          <button
+            onClick={() => setIsCreateZoneOpen(true)}
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2"
+          >
             <Plus className="w-4 h-4" />
             <span>Add Zone</span>
           </button>
@@ -372,7 +471,11 @@ export default function WarehouseZonesPage() {
       {/* Zones Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {filteredZones.map((zone) => (
-          <div key={zone.id} className="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg transition-shadow">
+          <div
+            key={zone.id}
+            className="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg transition-shadow cursor-pointer"
+            onClick={() => handleZoneClick(zone)}
+          >
             <div className="flex items-start justify-between mb-4">
               <div className="flex items-center gap-3">
                 <div className={`p-3 rounded-lg ${getTypeColor(zone.zoneType)} bg-opacity-20`}>
@@ -452,15 +555,36 @@ export default function WarehouseZonesPage() {
               </div>
             </div>
 
-            <div className="flex items-center justify-end gap-2 pt-4 border-t border-gray-200">
-              <button className="px-3 py-1.5 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 transition-colors flex items-center gap-1 text-sm">
-                <Edit2 className="w-3 h-3" />
-                Edit
+            <div className="flex items-center justify-between gap-2 pt-4 border-t border-gray-200">
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleAddBinToZone(zone.id);
+                }}
+                className="px-3 py-1.5 bg-green-50 text-green-600 rounded-lg hover:bg-green-100 transition-colors flex items-center gap-1 text-sm"
+              >
+                <Plus className="w-3 h-3" />
+                Add Bin
               </button>
-              <button className="px-3 py-1.5 bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition-colors flex items-center gap-1 text-sm">
-                <Trash2 className="w-3 h-3" />
-                Delete
-              </button>
+              <div className="flex gap-2">
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleZoneClick(zone);
+                  }}
+                  className="px-3 py-1.5 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 transition-colors flex items-center gap-1 text-sm"
+                >
+                  <Edit2 className="w-3 h-3" />
+                  Edit
+                </button>
+                <button
+                  onClick={(e) => e.stopPropagation()}
+                  className="px-3 py-1.5 bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition-colors flex items-center gap-1 text-sm"
+                >
+                  <Trash2 className="w-3 h-3" />
+                  Delete
+                </button>
+              </div>
             </div>
           </div>
         ))}
@@ -473,6 +597,23 @@ export default function WarehouseZonesPage() {
           </div>
         </div>
       )}
+
+      {/* Modals */}
+      <CreateZoneModal
+        isOpen={isCreateZoneOpen}
+        onClose={() => setIsCreateZoneOpen(false)}
+        onSubmit={handleCreateZone}
+      />
+
+      <CreateBinModal
+        isOpen={isCreateBinOpen}
+        onClose={() => {
+          setIsCreateBinOpen(false);
+          setSelectedZoneIdForBin('');
+        }}
+        onSubmit={handleCreateBin}
+        zoneId={selectedZoneIdForBin}
+      />
     </div>
   );
 }

@@ -45,6 +45,12 @@ import {
   Gauge
 } from 'lucide-react'
 import {
+  ConfigureRulesModal,
+  TestAutomationModal,
+  ViewLogsModal,
+  ManageAutomationModal
+} from '@/components/procurement/AutomationModals'
+import {
   LineChart as ReLineChart,
   Line,
   AreaChart,
@@ -105,6 +111,36 @@ export default function ProcurementAutomation() {
   const [activeTab, setActiveTab] = useState('overview')
   const [selectedRule, setSelectedRule] = useState<AutomationRule | null>(null)
   const [showAIConfig, setShowAIConfig] = useState(false)
+
+  // Modal states
+  const [isConfigureModalOpen, setIsConfigureModalOpen] = useState(false)
+  const [isTestModalOpen, setIsTestModalOpen] = useState(false)
+  const [isLogsModalOpen, setIsLogsModalOpen] = useState(false)
+  const [isManageModalOpen, setIsManageModalOpen] = useState(false)
+  const [selectedAutomation, setSelectedAutomation] = useState<AutomationRule | null>(null)
+  const [isNewRule, setIsNewRule] = useState(false)
+
+  // Modal handlers
+  const handleConfigureRule = (rule?: AutomationRule) => {
+    setSelectedAutomation(rule || null)
+    setIsNewRule(!rule)
+    setIsConfigureModalOpen(true)
+  }
+
+  const handleTestAutomation = (rule: AutomationRule) => {
+    setSelectedAutomation(rule)
+    setIsTestModalOpen(true)
+  }
+
+  const handleViewLogs = (rule: AutomationRule) => {
+    setSelectedAutomation(rule)
+    setIsLogsModalOpen(true)
+  }
+
+  const handleManageAutomation = (rule: AutomationRule) => {
+    setSelectedAutomation(rule)
+    setIsManageModalOpen(true)
+  }
 
   // Mock data
   const automationRules: AutomationRule[] = [
@@ -274,11 +310,17 @@ export default function ProcurementAutomation() {
             <p className="text-gray-600 mt-2">Intelligent automation and AI-powered procurement optimization</p>
           </div>
           <div className="flex items-center gap-3">
-            <button className="px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition flex items-center gap-2">
-              <Settings className="w-4 h-4" />
-              Configure
+            <button
+              onClick={() => handleViewLogs(automationRules[0])}
+              className="px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition flex items-center gap-2"
+            >
+              <FileSearch className="w-4 h-4" />
+              View Logs
             </button>
-            <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition flex items-center gap-2">
+            <button
+              onClick={() => handleConfigureRule()}
+              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition flex items-center gap-2"
+            >
               <Plus className="w-4 h-4" />
               New Automation
             </button>
@@ -527,7 +569,7 @@ export default function ProcurementAutomation() {
                         </div>
                       </div>
 
-                      <div className="flex items-center gap-2 ml-4">
+                      <div className="flex flex-col items-end gap-2 ml-4">
                         <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${
                           rule.status === 'active' ? 'bg-green-100 text-green-700' :
                           rule.status === 'paused' ? 'bg-yellow-100 text-yellow-700' :
@@ -538,10 +580,36 @@ export default function ProcurementAutomation() {
                           {rule.status === 'paused' && <Pause className="w-3 h-3 mr-1" />}
                           {rule.status}
                         </span>
-                        <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
-                          <Settings className="w-4 h-4 text-gray-600" />
-                          <span className="text-gray-700">Settings</span>
-                        </button>
+                        <div className="flex gap-2">
+                          <button
+                            onClick={() => handleConfigureRule(rule)}
+                            className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm"
+                            title="Configure Rule"
+                          >
+                            <Settings className="w-4 h-4 text-gray-600" />
+                          </button>
+                          <button
+                            onClick={() => handleTestAutomation(rule)}
+                            className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm"
+                            title="Test Automation"
+                          >
+                            <Play className="w-4 h-4 text-green-600" />
+                          </button>
+                          <button
+                            onClick={() => handleViewLogs(rule)}
+                            className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm"
+                            title="View Logs"
+                          >
+                            <Eye className="w-4 h-4 text-blue-600" />
+                          </button>
+                          <button
+                            onClick={() => handleManageAutomation(rule)}
+                            className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm"
+                            title="Manage Status"
+                          >
+                            <Shield className="w-4 h-4 text-purple-600" />
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -553,7 +621,10 @@ export default function ProcurementAutomation() {
                 <Bot className="w-12 h-12 text-gray-400 mx-auto mb-3" />
                 <h3 className="text-lg font-medium text-gray-900 mb-2">Create New Automation Rule</h3>
                 <p className="text-sm text-gray-600 mb-4">Set up intelligent automation for your procurement processes</p>
-                <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+                <button
+                  onClick={() => handleConfigureRule()}
+                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+                >
                   Configure Automation
                 </button>
               </div>
@@ -954,6 +1025,92 @@ export default function ProcurementAutomation() {
           )}
         </div>
       </div>
+
+      {/* Automation Modals */}
+      <ConfigureRulesModal
+        isOpen={isConfigureModalOpen}
+        onClose={() => setIsConfigureModalOpen(false)}
+        automation={selectedAutomation ? {
+          id: selectedAutomation.id,
+          name: selectedAutomation.name,
+          type: selectedAutomation.type,
+          status: selectedAutomation.status,
+          triggersPerDay: selectedAutomation.triggersPerDay,
+          successRate: selectedAutomation.successRate,
+          timeSaved: selectedAutomation.timeSaved,
+          lastRun: selectedAutomation.lastRun,
+          nextRun: selectedAutomation.nextRun,
+          aiEnabled: selectedAutomation.aiEnabled
+        } : undefined}
+        onSubmit={(data) => {
+          console.log('Configure rule:', data);
+          setIsConfigureModalOpen(false);
+        }}
+        isNew={isNewRule}
+      />
+
+      <TestAutomationModal
+        isOpen={isTestModalOpen}
+        onClose={() => setIsTestModalOpen(false)}
+        automation={selectedAutomation ? {
+          id: selectedAutomation.id,
+          name: selectedAutomation.name,
+          type: selectedAutomation.type,
+          status: selectedAutomation.status,
+          triggersPerDay: selectedAutomation.triggersPerDay,
+          successRate: selectedAutomation.successRate,
+          timeSaved: selectedAutomation.timeSaved,
+          lastRun: selectedAutomation.lastRun,
+          nextRun: selectedAutomation.nextRun,
+          aiEnabled: selectedAutomation.aiEnabled
+        } : undefined}
+        onSubmit={(data) => {
+          console.log('Test automation:', data);
+          setIsTestModalOpen(false);
+        }}
+      />
+
+      <ViewLogsModal
+        isOpen={isLogsModalOpen}
+        onClose={() => setIsLogsModalOpen(false)}
+        automation={selectedAutomation ? {
+          id: selectedAutomation.id,
+          name: selectedAutomation.name,
+          type: selectedAutomation.type,
+          status: selectedAutomation.status,
+          triggersPerDay: selectedAutomation.triggersPerDay,
+          successRate: selectedAutomation.successRate,
+          timeSaved: selectedAutomation.timeSaved,
+          lastRun: selectedAutomation.lastRun,
+          nextRun: selectedAutomation.nextRun,
+          aiEnabled: selectedAutomation.aiEnabled
+        } : undefined}
+        onExport={(data) => {
+          console.log('Export logs:', data);
+          setIsLogsModalOpen(false);
+        }}
+      />
+
+      <ManageAutomationModal
+        isOpen={isManageModalOpen}
+        onClose={() => setIsManageModalOpen(false)}
+        automation={selectedAutomation ? {
+          id: selectedAutomation.id,
+          name: selectedAutomation.name,
+          type: selectedAutomation.type,
+          status: selectedAutomation.status,
+          triggersPerDay: selectedAutomation.triggersPerDay,
+          successRate: selectedAutomation.successRate,
+          timeSaved: selectedAutomation.timeSaved,
+          lastRun: selectedAutomation.lastRun,
+          nextRun: selectedAutomation.nextRun,
+          aiEnabled: selectedAutomation.aiEnabled
+        } : undefined}
+        onSubmit={(data) => {
+          console.log('Manage automation:', data);
+          setIsManageModalOpen(false);
+        }}
+      />
     </div>
   )
 }

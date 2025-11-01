@@ -16,6 +16,7 @@ import {
   Download,
   Printer
 } from 'lucide-react';
+import { ExportMultiLevelModal, PrintPreviewModal } from '@/components/production/bom/BOMExportModals';
 
 interface BOMComponent {
   id: string;
@@ -40,6 +41,8 @@ export default function MultiLevelBOMPage() {
   const [selectedProduct, setSelectedProduct] = useState('KIT-SINK-001');
   const [expandedNodes, setExpandedNodes] = useState<Set<string>>(new Set(['1', '1.1', '1.2', '1.3']));
   const [showCosts, setShowCosts] = useState(true);
+  const [isExportOpen, setIsExportOpen] = useState(false);
+  const [isPrintOpen, setIsPrintOpen] = useState(false);
 
   const products = [
     { code: 'KIT-SINK-001', name: 'Premium SS304 Kitchen Sink - Double Bowl' },
@@ -409,6 +412,27 @@ export default function MultiLevelBOMPage() {
 
   const totals = calculateTotals();
 
+  // Modal handlers
+  const handleExport = () => {
+    setIsExportOpen(true);
+  };
+
+  const handlePrint = () => {
+    setIsPrintOpen(true);
+  };
+
+  const handleExportSubmit = (config: any) => {
+    console.log('Export configuration:', config);
+    // TODO: Implement export API call
+    setIsExportOpen(false);
+  };
+
+  const handlePrintSubmit = (config: any) => {
+    console.log('Print configuration:', config);
+    // TODO: Implement print API call
+    setIsPrintOpen(false);
+  };
+
   return (
     <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
       {/* Inline Header */}
@@ -435,11 +459,17 @@ export default function MultiLevelBOMPage() {
             <IndianRupee className="h-4 w-4" />
             {showCosts ? 'Hide' : 'Show'} Costs
           </button>
-          <button className="flex items-center gap-2 bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200">
+          <button
+            onClick={handleExport}
+            className="flex items-center gap-2 bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200"
+          >
             <Download className="h-4 w-4" />
             Export
           </button>
-          <button className="flex items-center gap-2 bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200">
+          <button
+            onClick={handlePrint}
+            className="flex items-center gap-2 bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200"
+          >
             <Printer className="h-4 w-4" />
             Print
           </button>
@@ -570,6 +600,19 @@ export default function MultiLevelBOMPage() {
           </div>
         </div>
       </div>
+
+      {/* Modals */}
+      <ExportMultiLevelModal
+        isOpen={isExportOpen}
+        onClose={() => setIsExportOpen(false)}
+        onExport={handleExportSubmit}
+      />
+
+      <PrintPreviewModal
+        isOpen={isPrintOpen}
+        onClose={() => setIsPrintOpen(false)}
+        onPrint={handlePrintSubmit}
+      />
     </div>
   );
 }

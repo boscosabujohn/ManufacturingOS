@@ -17,23 +17,12 @@ import {
   Grid3x3,
   Image
 } from 'lucide-react'
-
-interface Product {
-  id: string
-  sku: string
-  name: string
-  category: string
-  basePrice: number
-  status: 'active' | 'inactive' | 'discontinued'
-  variants: number
-  lastModified: string
-  image: string
-}
+import { ProductModal, ViewProductModal, FilterModal, Product } from '@/components/cpq/ProductCatalogModals'
 
 export default function CPQProductsCatalogPage() {
   const router = useRouter()
 
-  const [products] = useState<Product[]>([
+  const [products, setProducts] = useState<Product[]>([
     {
       id: 'PROD-001',
       sku: 'PMK-LUX-001',
@@ -124,6 +113,14 @@ export default function CPQProductsCatalogPage() {
     }
   ])
 
+  const [searchQuery, setSearchQuery] = useState('')
+  const [selectedCategory, setSelectedCategory] = useState('All Categories')
+  const [isProductModalOpen, setIsProductModalOpen] = useState(false)
+  const [isViewModalOpen, setIsViewModalOpen] = useState(false)
+  const [isFilterModalOpen, setIsFilterModalOpen] = useState(false)
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null)
+  const [appliedFilters, setAppliedFilters] = useState<any>(null)
+
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'active':
@@ -149,20 +146,132 @@ export default function CPQProductsCatalogPage() {
     'Builder Package'
   ]
 
+  // Handlers
+  const handleAddProduct = () => {
+    setSelectedProduct(null)
+    setIsProductModalOpen(true)
+  }
+
+  const handleEditProduct = (product: Product) => {
+    setSelectedProduct(product)
+    setIsProductModalOpen(true)
+  }
+
+  const handleViewProduct = (product: Product) => {
+    setSelectedProduct(product)
+    setIsViewModalOpen(true)
+  }
+
+  const handleSaveProduct = (product: Product) => {
+    if (selectedProduct) {
+      setProducts(products.map(p => p.id === product.id ? product : p))
+    } else {
+      setProducts([product, ...products])
+    }
+  }
+
+  const handleCopyProduct = (product: Product) => {
+    if (confirm(`Create a duplicate of "${product.name}"?`)) {
+      const newProduct: Product = {
+        ...product,
+        id: `PROD-${Date.now()}`,
+        sku: `${product.sku}-COPY`,
+        name: `${product.name} (Copy)`,
+        lastModified: new Date().toISOString().split('T')[0]
+      }
+      setProducts([newProduct, ...products])
+    }
+  }
+
+  const handleExport = () => {
+    const data = filteredProducts.map(p => ({
+      SKU: p.sku,
+      Name: p.name,
+      Category: p.category,
+      'Base Price': p.basePrice,
+      Status: p.status,
+      Variants: p.variants,
+      'Last Modified': p.lastModified
+    }))
+
+    const csv = [
+      Object.keys(data[0]).join(','),
+      ...data.map(row => Object.values(row).join(','))
+    ].join('\n')
+
+    const blob = new Blob([csv], { type: 'text/csv' })
+    const url = window.URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `products-catalog-${new Date().toISOString().split('T')[0]}.csv`
+    a.click()
+  }
+
+  const handleApplyFilters = (filters: any) => {
+    setAppliedFilters(filters)
+  }
+
+  // Filtering logic
+  const filteredProducts = products.filter(product => {
+    const matchesSearch = searchQuery === '' ||
+      product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      product.sku.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      product.category.toLowerCase().includes(searchQuery.toLowerCase())
+
+    const matchesCategory = selectedCategory === 'All Categories' || product.category === selectedCategory
+
+    let matchesFilters = true
+    if (appliedFilters) {
+      if (appliedFilters.status.length > 0 && !appliedFilters.status.includes(product.status)) {
+        matchesFilters = false
+      }
+
+      if (appliedFilters.priceRange.min > 0 || appliedFilters.priceRange.max > 0) {
+        const priceInLakhs = product.basePrice / 100000
+        if (appliedFilters.priceRange.min > 0 && priceInLakhs < appliedFilters.priceRange.min) {
+          matchesFilters = false
+        }
+        if (appliedFilters.priceRange.max > 0 && priceInLakhs > appliedFilters.priceRange.max) {
+          matchesFilters = false
+        }
+      }
+
+      if (appliedFilters.categories.length > 0 && !appliedFilters.categories.includes(product.category)) {
+        matchesFilters = false
+      }
+    }
+
+    return matchesSearch && matchesCategory && matchesFilters
+  })
+
   return (
     <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
       {/* Action Buttons */}
       <div className="mb-6 flex justify-end">
         <div className="flex items-center gap-3">
-          <button className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
+          <button
+            onClick={() => setIsFilterModalOpen(true)}
+            className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2"
+          >
             <Filter className="h-4 w-4" />
             Filter
+            {appliedFilters && (appliedFilters.status.length > 0 || appliedFilters.categories.length > 0 || appliedFilters.priceRange.min > 0 || appliedFilters.priceRange.max > 0) && (
+              <span className="px-2 py-0.5 bg-blue-100 text-blue-700 rounded-full text-xs font-semibold">
+                Active
+              </span>
+            )}
           </button>
-          <button className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
+          <button
+            onClick={handleExport}
+            className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2"
+          >
             <Download className="h-4 w-4" />
             Export
           </button>
-          <button className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 flex items-center gap-2">
+          <button
+            onClick={handleAddProduct}
+            className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 flex items-center gap-2"
+          >
             <Plus className="h-4 w-4" />
             Add Product
           </button>
@@ -228,11 +337,12 @@ export default function CPQProductsCatalogPage() {
           {categories.map((category) => (
             <button
               key={category}
+              onClick={() => setSelectedCategory(category)}
               className={`px-4 py-2 ${
-                category === 'All Categories'
+                category === selectedCategory
                   ? 'bg-blue-600 text-white'
                   : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
-              } rounded-lg text-sm font-medium`}
+              } rounded-lg text-sm font-medium transition-colors`}
             >
               {category}
             </button>
@@ -246,6 +356,8 @@ export default function CPQProductsCatalogPage() {
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
           <input
             type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search products by name, SKU, or category..."
             className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           />
@@ -254,7 +366,7 @@ export default function CPQProductsCatalogPage() {
 
       {/* Products Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-6">
-        {products.map((product) => (
+        {filteredProducts.map((product) => (
           <div
             key={product.id}
             className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow"
@@ -293,21 +405,24 @@ export default function CPQProductsCatalogPage() {
               </div>
 
               <div className="flex items-center gap-2">
-                <button className="flex-1 px-3 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 flex items-center justify-center gap-1 text-xs">
+                <button
+                  onClick={() => handleViewProduct(product)}
+                  className="flex-1 px-3 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 flex items-center justify-center gap-1 text-xs transition-colors"
+                >
                   <Eye className="h-3 w-3" />
                   View
                 </button>
                 <button
-                  className="px-3 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 text-xs"
+                  onClick={() => handleEditProduct(product)}
+                  className="px-3 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 text-xs transition-colors"
                   aria-label="Edit"
-                 
                 >
                   <Edit className="h-3 w-3" />
                 </button>
                 <button
-                  className="px-3 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 text-xs"
+                  onClick={() => handleCopyProduct(product)}
+                  className="px-3 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 text-xs transition-colors"
                   aria-label="Copy"
-                 
                 >
                   <Copy className="h-3 w-3" />
                 </button>
@@ -317,26 +432,73 @@ export default function CPQProductsCatalogPage() {
         ))}
       </div>
 
+      {/* No Results */}
+      {filteredProducts.length === 0 && (
+        <div className="text-center py-12 bg-white rounded-lg border border-gray-200">
+          <Package className="h-12 w-12 text-gray-400 mx-auto mb-3" />
+          <p className="text-gray-600">No products found matching your criteria</p>
+          <button
+            onClick={() => {
+              setSearchQuery('')
+              setSelectedCategory('All Categories')
+              setAppliedFilters(null)
+            }}
+            className="mt-4 px-4 py-2 text-blue-600 hover:text-blue-700 text-sm font-medium"
+          >
+            Clear all filters
+          </button>
+        </div>
+      )}
+
       {/* Pagination */}
-      <div className="flex items-center justify-between">
-        <div className="text-sm text-gray-600">
-          Showing <span className="font-medium">{products.length}</span> products
+      {filteredProducts.length > 0 && (
+        <div className="flex items-center justify-between">
+          <div className="text-sm text-gray-600">
+            Showing <span className="font-medium">{filteredProducts.length}</span> of <span className="font-medium">{products.length}</span> products
+          </div>
+          <div className="flex items-center gap-2">
+            <button className="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm transition-colors">
+              Previous
+            </button>
+            <button className="px-3 py-1 bg-blue-600 text-white rounded-lg text-sm">
+              1
+            </button>
+            <button className="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm transition-colors">
+              2
+            </button>
+            <button className="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm transition-colors">
+              Next
+            </button>
+          </div>
         </div>
-        <div className="flex items-center gap-2">
-          <button className="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
-            Previous
-          </button>
-          <button className="px-3 py-1 bg-blue-600 text-white rounded-lg text-sm">
-            1
-          </button>
-          <button className="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
-            2
-          </button>
-          <button className="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
-            Next
-          </button>
-        </div>
-      </div>
+      )}
+
+      {/* Modals */}
+      <ProductModal
+        isOpen={isProductModalOpen}
+        onClose={() => {
+          setIsProductModalOpen(false)
+          setSelectedProduct(null)
+        }}
+        onSave={handleSaveProduct}
+        product={selectedProduct}
+      />
+
+      <ViewProductModal
+        isOpen={isViewModalOpen}
+        onClose={() => {
+          setIsViewModalOpen(false)
+          setSelectedProduct(null)
+        }}
+        product={selectedProduct}
+        onEdit={handleEditProduct}
+      />
+
+      <FilterModal
+        isOpen={isFilterModalOpen}
+        onClose={() => setIsFilterModalOpen(false)}
+        onApply={handleApplyFilters}
+      />
     </div>
   )
 }

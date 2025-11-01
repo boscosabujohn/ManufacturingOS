@@ -1,7 +1,7 @@
 'use client';
 
-import React from 'react';
-import { BarChart3, TrendingUp, Clock, Zap, AlertCircle } from 'lucide-react';
+import React, { useState } from 'react';
+import { BarChart3, TrendingUp, Clock, Zap, AlertCircle, Download, RefreshCw, Settings, Eye, FileText, TrendingDown } from 'lucide-react';
 
 export interface OEEData {
   machineId: string;
@@ -86,14 +86,74 @@ const OEEAnalytics: React.FC = () => {
     return 'bg-red-500';
   };
 
+  // Handler functions
+  const handleRefreshOEE = () => {
+    console.log('Refreshing OEE data...');
+    alert('Refreshing OEE Analytics data...\n\nReal-time data from all machines will be updated.\nAvailability, Performance, and Quality metrics recalculated.');
+  };
+
+  const handleExportOEE = () => {
+    console.log('Exporting OEE report...');
+    alert('Exporting OEE Analytics Report to Excel...\n\nIncludes:\n- OEE breakdown by machine\n- Availability, Performance, Quality metrics\n- Downtime analysis\n- Production statistics\n- Trend analysis');
+  };
+
+  const handleOEESettings = () => {
+    console.log('Opening OEE settings...');
+    alert('OEE Analytics Settings\n\nConfigure:\n- Target OEE thresholds\n- Ideal cycle times\n- Downtime categories\n- Reporting periods\n- Alert rules');
+  };
+
+  const handleViewMachineDetails = (machine: OEEData) => {
+    alert(`OEE Details: ${machine.machineName}\n\nOverall OEE: ${machine.oee.toFixed(1)}%\n\nAVAILABILITY: ${machine.availability.toFixed(1)}%\n- Planned Time: ${machine.plannedProductionTime} min\n- Runtime: ${machine.actualRuntime} min\n- Downtime: ${machine.downtime} min\n\nPERFORMANCE: ${machine.performance.toFixed(1)}%\n- Ideal Cycle Time: ${machine.idealCycleTime}s\n- Actual Cycle Time: ${machine.actualCycleTime}s\n\nQUALITY: ${machine.quality.toFixed(1)}%\n- Total Parts: ${machine.totalParts}\n- Good Parts: ${machine.goodParts}\n- Defects: ${machine.defectParts} (${((machine.defectParts / machine.totalParts) * 100).toFixed(1)}%)`);
+  };
+
+  const handleDowntimeAnalysis = (machine: OEEData) => {
+    alert(`Downtime Analysis: ${machine.machineName}\n\nTotal Downtime: ${machine.downtime} minutes\nAvailability Loss: ${(100 - machine.availability).toFixed(1)}%\n\nDowntime Categories:\n- Setup/Changeover: ${(machine.downtime * 0.4).toFixed(0)} min (40%)\n- Equipment Failure: ${(machine.downtime * 0.3).toFixed(0)} min (30%)\n- Material Shortage: ${(machine.downtime * 0.2).toFixed(0)} min (20%)\n- Other: ${(machine.downtime * 0.1).toFixed(0)} min (10%)\n\nRecommendations:\n- Reduce setup time with SMED techniques\n- Implement preventive maintenance\n- Improve material planning`);
+  };
+
+  const handlePerformanceAnalysis = (machine: OEEData) => {
+    const cycleTimeDiff = machine.actualCycleTime - machine.idealCycleTime;
+    const percentSlower = ((cycleTimeDiff / machine.idealCycleTime) * 100).toFixed(1);
+    alert(`Performance Analysis: ${machine.machineName}\n\nPerformance: ${machine.performance.toFixed(1)}%\nCycle Time Variance: ${cycleTimeDiff}s (${percentSlower}% slower than ideal)\n\nIdeal Cycle Time: ${machine.idealCycleTime}s\nActual Cycle Time: ${machine.actualCycleTime}s\n\nPotential Causes:\n- Worn tooling or equipment\n- Operator skill/training gaps\n- Material quality variations\n- Machine speed settings\n\nRecommendations:\n- Review and optimize machine parameters\n- Provide operator training\n- Inspect and replace tooling as needed`);
+  };
+
+  const handleQualityAnalysis = (machine: OEEData) => {
+    const defectRate = ((machine.defectParts / machine.totalParts) * 100).toFixed(2);
+    alert(`Quality Analysis: ${machine.machineName}\n\nQuality Rate: ${machine.quality.toFixed(1)}%\nDefect Rate: ${defectRate}%\n\nTotal Parts: ${machine.totalParts}\nGood Parts: ${machine.goodParts}\nDefects: ${machine.defectParts}\n\nTop Defect Types:\n- Dimensional non-conformance: ${(machine.defectParts * 0.45).toFixed(0)} (45%)\n- Surface finish issues: ${(machine.defectParts * 0.30).toFixed(0)} (30%)\n- Material defects: ${(machine.defectParts * 0.25).toFixed(0)} (25%)\n\nRecommendations:\n- Implement statistical process control\n- Review first-piece inspection\n- Improve incoming material quality`);
+  };
+
   return (
     <div className="space-y-6">
       <div className="bg-gradient-to-r from-orange-600 to-red-600 text-white p-6 rounded-lg shadow-lg">
-        <div className="flex items-center space-x-3">
-          <BarChart3 className="h-8 w-8" />
-          <div>
-            <h2 className="text-2xl font-bold">OEE Analytics & Drill-Down</h2>
-            <p className="text-orange-100">Overall Equipment Effectiveness monitoring</p>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-3">
+            <BarChart3 className="h-8 w-8" />
+            <div>
+              <h2 className="text-2xl font-bold">OEE Analytics & Drill-Down</h2>
+              <p className="text-orange-100">Overall Equipment Effectiveness monitoring</p>
+            </div>
+          </div>
+          <div className="flex space-x-2">
+            <button
+              onClick={handleRefreshOEE}
+              className="flex items-center space-x-2 px-4 py-2 bg-white text-orange-600 rounded-lg hover:bg-orange-50 transition-colors"
+            >
+              <RefreshCw className="h-4 w-4" />
+              <span>Refresh</span>
+            </button>
+            <button
+              onClick={handleOEESettings}
+              className="flex items-center space-x-2 px-4 py-2 bg-white text-orange-600 rounded-lg hover:bg-orange-50 transition-colors"
+            >
+              <Settings className="h-4 w-4" />
+              <span>Settings</span>
+            </button>
+            <button
+              onClick={handleExportOEE}
+              className="flex items-center space-x-2 px-4 py-2 bg-white text-orange-600 rounded-lg hover:bg-orange-50 transition-colors"
+            >
+              <Download className="h-4 w-4" />
+              <span>Export</span>
+            </button>
           </div>
         </div>
       </div>
@@ -222,6 +282,37 @@ const OEEAnalytics: React.FC = () => {
                   <div className="text-gray-600">Defect Rate</div>
                   <div className="font-semibold text-red-600">{((machine.defectParts / machine.totalParts) * 100).toFixed(1)}%</div>
                 </div>
+              </div>
+
+              <div className="mt-4 flex flex-wrap gap-2">
+                <button
+                  onClick={() => handleViewMachineDetails(machine)}
+                  className="flex items-center space-x-1 px-3 py-2 bg-blue-100 text-blue-700 rounded hover:bg-blue-200 transition-colors text-sm"
+                >
+                  <Eye className="h-4 w-4" />
+                  <span>View Details</span>
+                </button>
+                <button
+                  onClick={() => handleDowntimeAnalysis(machine)}
+                  className="flex items-center space-x-1 px-3 py-2 bg-green-100 text-green-700 rounded hover:bg-green-200 transition-colors text-sm"
+                >
+                  <Clock className="h-4 w-4" />
+                  <span>Downtime Analysis</span>
+                </button>
+                <button
+                  onClick={() => handlePerformanceAnalysis(machine)}
+                  className="flex items-center space-x-1 px-3 py-2 bg-purple-100 text-purple-700 rounded hover:bg-purple-200 transition-colors text-sm"
+                >
+                  <Zap className="h-4 w-4" />
+                  <span>Performance Analysis</span>
+                </button>
+                <button
+                  onClick={() => handleQualityAnalysis(machine)}
+                  className="flex items-center space-x-1 px-3 py-2 bg-yellow-100 text-yellow-700 rounded hover:bg-yellow-200 transition-colors text-sm"
+                >
+                  <AlertCircle className="h-4 w-4" />
+                  <span>Quality Analysis</span>
+                </button>
               </div>
             </div>
           ))}

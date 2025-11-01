@@ -16,6 +16,8 @@ import {
   Download,
   RefreshCw
 } from 'lucide-react';
+import { RecalculateCostsModal } from '@/components/production/bom/BOMCostingModals';
+import { ExportCostingModal } from '@/components/production/bom/BOMExportModals';
 
 interface CostComponent {
   id: string;
@@ -47,6 +49,8 @@ export default function BOMCostingPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterCostType, setFilterCostType] = useState<'all' | 'material' | 'labor' | 'overhead' | 'subcontract'>('all');
   const [selectedProduct, setSelectedProduct] = useState('KIT-SINK-001');
+  const [isRecalculateOpen, setIsRecalculateOpen] = useState(false);
+  const [isExportOpen, setIsExportOpen] = useState(false);
 
   const products = [
     { code: 'KIT-SINK-001', name: 'Premium SS304 Kitchen Sink - Double Bowl' },
@@ -299,6 +303,27 @@ export default function BOMCostingPage() {
     return badges[costType as keyof typeof badges] || badges.material;
   };
 
+  // Modal handlers
+  const handleRecalculate = () => {
+    setIsRecalculateOpen(true);
+  };
+
+  const handleExport = () => {
+    setIsExportOpen(true);
+  };
+
+  const handleRecalculateSubmit = (options: any) => {
+    console.log('Recalculate options:', options);
+    // TODO: Implement API call to recalculate costs
+    setIsRecalculateOpen(false);
+  };
+
+  const handleExportSubmit = (config: any) => {
+    console.log('Export config:', config);
+    // TODO: Implement API call to export costing report
+    setIsExportOpen(false);
+  };
+
   const materialPercent = (costSummary.totalMaterialCost / costSummary.totalManufacturingCost) * 100;
   const laborPercent = (costSummary.totalLaborCost / costSummary.totalManufacturingCost) * 100;
   const overheadPercent = (costSummary.totalOverheadCost / costSummary.totalManufacturingCost) * 100;
@@ -323,11 +348,17 @@ export default function BOMCostingPage() {
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <button className="flex items-center gap-2 bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200">
+          <button
+            onClick={handleRecalculate}
+            className="flex items-center gap-2 bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200"
+          >
             <RefreshCw className="h-4 w-4" />
             Recalculate
           </button>
-          <button className="flex items-center gap-2 bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200">
+          <button
+            onClick={handleExport}
+            className="flex items-center gap-2 bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200"
+          >
             <Download className="h-4 w-4" />
             Export
           </button>
@@ -606,6 +637,25 @@ export default function BOMCostingPage() {
       <div className="mt-4 text-sm text-gray-600">
         Showing {filteredComponents.length} of {costComponents.length} cost components
       </div>
+
+      {/* Modals */}
+      <RecalculateCostsModal
+        isOpen={isRecalculateOpen}
+        onClose={() => setIsRecalculateOpen(false)}
+        onRecalculate={handleRecalculateSubmit}
+        currentCosts={{
+          material: costSummary.totalMaterialCost,
+          labor: costSummary.totalLaborCost,
+          overhead: costSummary.totalOverheadCost,
+          total: costSummary.totalManufacturingCost
+        }}
+      />
+
+      <ExportCostingModal
+        isOpen={isExportOpen}
+        onClose={() => setIsExportOpen(false)}
+        onExport={handleExportSubmit}
+      />
     </div>
   );
 }

@@ -36,6 +36,31 @@ interface DraftEstimate {
 export default function EstimateWorkflowDraftsPage() {
   const router = useRouter()
 
+  const handleNewDraft = () => {
+    router.push('/estimation/workflow/drafts/create')
+  }
+
+  const handleEditDraft = (draftId: string) => {
+    router.push(`/estimation/workflow/drafts/edit/${draftId}`)
+  }
+
+  const handleCopyDraft = (draftId: string) => {
+    console.log('Copying draft:', draftId)
+    // Would create a copy of the draft
+    router.push(`/estimation/workflow/drafts/create?copy=${draftId}`)
+  }
+
+  const handleDeleteDraft = (draftId: string, projectName: string) => {
+    if (confirm(`Are you sure you want to delete draft "${projectName}"? This action cannot be undone.`)) {
+      console.log('Deleting draft:', draftId)
+      // Would make API call to delete
+    }
+  }
+
+  const handleSendDraft = (draftId: string) => {
+    router.push(`/estimation/workflow/send/${draftId}`)
+  }
+
   const [drafts] = useState<DraftEstimate[]>([
     {
       id: 'DRAFT-001',
@@ -198,11 +223,10 @@ export default function EstimateWorkflowDraftsPage() {
       {/* Action Buttons */}
       <div className="mb-6 flex justify-end">
         <div className="flex items-center gap-3">
-          <button className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
-            <Filter className="h-4 w-4" />
-            Filter
-          </button>
-          <button className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 flex items-center gap-2">
+          <button
+            onClick={handleNewDraft}
+            className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 flex items-center gap-2"
+          >
             <Plus className="h-4 w-4" />
             New Draft
           </button>
@@ -327,20 +351,32 @@ export default function EstimateWorkflowDraftsPage() {
 
               {/* Actions */}
               <div className="flex items-center gap-2">
-                <button className="flex-1 px-3 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 flex items-center justify-center gap-2 text-sm">
+                <button
+                  onClick={() => handleEditDraft(draft.id)}
+                  className="flex-1 px-3 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 flex items-center justify-center gap-2 text-sm"
+                >
                   <Edit2 className="h-4 w-4" />
                   Continue Editing
                 </button>
-                <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                <button
+                  onClick={() => handleCopyDraft(draft.id)}
+                  className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm"
+                >
                   <Copy className="h-4 w-4 text-gray-600" />
                   <span className="text-gray-700">Copy</span>
                 </button>
-                <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-red-300 rounded-lg hover:bg-red-50 text-sm">
+                <button
+                  onClick={() => handleDeleteDraft(draft.id, draft.projectName)}
+                  className="inline-flex items-center gap-1.5 px-3 py-2 border border-red-300 rounded-lg hover:bg-red-50 text-sm"
+                >
                   <Trash2 className="h-4 w-4 text-red-600" />
                   <span className="text-red-600">Delete</span>
                 </button>
                 {draft.completionPercent >= 80 && (
-                  <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-green-300 rounded-lg hover:bg-green-100 text-sm">
+                  <button
+                    onClick={() => handleSendDraft(draft.id)}
+                    className="inline-flex items-center gap-1.5 px-3 py-2 border border-green-300 rounded-lg hover:bg-green-100 text-sm"
+                  >
                     <Send className="h-4 w-4 text-green-600" />
                     <span className="text-green-600">Send</span>
                   </button>

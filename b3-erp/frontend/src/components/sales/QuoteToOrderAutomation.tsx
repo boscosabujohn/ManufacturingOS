@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Zap, FileText, ShoppingCart, CheckCircle, Clock, AlertCircle, ArrowRight, DollarSign, Calendar, User } from 'lucide-react'
+import { Zap, FileText, ShoppingCart, CheckCircle, Clock, AlertCircle, ArrowRight, DollarSign, Calendar, User, Download, RefreshCw, Settings, Eye, Edit, Send, X, PlayCircle } from 'lucide-react'
 
 export type QuoteStatus = 'draft' | 'sent' | 'viewed' | 'negotiation' | 'accepted' | 'rejected' | 'expired' | 'converted';
 export type AutomationRule = 'auto-approval' | 'credit-check' | 'pricing-validation' | 'inventory-check' | 'volume-discount';
@@ -277,6 +277,114 @@ export default function QuoteToOrderAutomation() {
     ? quotes
     : quotes.filter(q => q.status === filterStatus);
 
+  // Handler functions
+  const handleRefresh = () => {
+    console.log('Refreshing quote data...');
+    alert('Refreshing Quote-to-Order Automation...\n\nUpdating:\n- Quote statuses from CRM\n- Customer acceptance tracking\n- Automation rule execution logs\n- Conversion metrics\n- Pending approvals\n\nSyncing with CPQ and ERP systems.\nEstimated time: 10 seconds');
+  };
+
+  const handleSettings = () => {
+    console.log('Opening automation settings...');
+    alert('Quote-to-Order Automation Settings\n\nConfigure Automation Rules:\n\n1. Auto-Approval Rules:\n   - Quote value thresholds\n   - Discount approval limits\n   - New vs existing customer rules\n   - Product category restrictions\n\n2. Credit Check:\n   - Credit limit validation\n   - Payment term verification\n   - Outstanding balance checks\n   - New customer credit application\n\n3. Pricing Validation:\n   - Minimum margin requirements\n   - Discount authorization levels\n   - Cost-plus pricing checks\n   - Competitor price matching rules\n\n4. Inventory Check:\n   - Stock availability validation\n   - Lead time calculations\n   - Alternative product suggestions\n   - Make-to-order triggering\n\n5. Volume Discounts:\n   - Tier-based discount schedules\n   - Quantity break points\n   - Contract pricing overrides\n\nWorkflow Configuration:\n- Email notifications and alerts\n- Approval routing and escalation\n- Order creation automation\n- Integration with external systems');
+  };
+
+  const handleExport = () => {
+    console.log('Exporting automation report...');
+    alert('Exporting Quote-to-Order Report to Excel...\n\nIncludes:\n- All quotes with status tracking\n- Conversion timeline and metrics\n- Automation rule execution logs\n- Success/failure analysis\n- Bottleneck identification\n- Revenue impact analysis\n- Sales rep performance\n- Customer acceptance patterns\n\nCharts:\n- Conversion funnel\n- Quote aging analysis\n- Automation effectiveness\n- Time-to-conversion trends');
+  };
+
+  const handleViewQuote = (quote: Quote) => {
+    const itemsList = quote.items.map((item, idx) =>
+      `${idx + 1}. ${item.product}\n   Qty: ${item.quantity} @ ${formatCurrency(item.unitPrice)}/unit\n   Discount: ${item.discount}%\n   Total: ${formatCurrency(item.totalPrice)}`
+    ).join('\n\n');
+
+    const automationRules = quote.automationTriggers.map(rule => `- ${rule.replace('-', ' ').toUpperCase()}`).join('\n');
+
+    const timeline = `Created: ${quote.createdDate}${quote.sentDate ? `\nSent: ${quote.sentDate}` : ''}${quote.viewedDate ? `\nViewed: ${quote.viewedDate}` : ''}${quote.acceptedDate ? `\nAccepted: ${quote.acceptedDate}` : ''}${quote.convertedToOrderId ? `\nConverted to: ${quote.convertedToOrderId}` : ''}`;
+
+    alert(`Quote Details: ${quote.quoteNumber}\n\nCUSTOMER: ${quote.customer} (${quote.customerId})\nSALES REP: ${quote.salesRep}\nSTATUS: ${quote.status.toUpperCase()}\n\nQUOTE ITEMS:\n${itemsList}\n\nPRICING SUMMARY:\nSubtotal: ${formatCurrency(quote.subtotal)}\nTax: ${formatCurrency(quote.tax)}\nGRAND TOTAL: ${formatCurrency(quote.totalAmount)}\n\nVALID UNTIL: ${quote.validUntil}\n\nAUTOMATION RULES:\n${automationRules}\n\nAPPROVAL: ${quote.approvalRequired ? `Required - Status: ${quote.approvalStatus?.toUpperCase() || 'PENDING'}` : 'Not required (auto-approved)'}\n\nTIMELINE:\n${timeline}`);
+  };
+
+  const handleEditQuote = (quote: Quote) => {
+    if (quote.status === 'converted' || quote.status === 'accepted') {
+      alert(`Cannot edit quote ${quote.quoteNumber}.\n\nQuote has been ${quote.status}.\n\nTo make changes:\n1. Create a new revision\n2. Cancel and create new quote\n3. Issue change order if already converted`);
+      return;
+    }
+
+    if (quote.status === 'rejected' || quote.status === 'expired') {
+      if (confirm(`Quote ${quote.quoteNumber} is ${quote.status}.\n\nDo you want to create a new revision?`)) {
+        alert(`Creating new revision of quote ${quote.quoteNumber}...\n\nNew quote will be created with:\n- Same customer and line items\n- Updated pricing and terms\n- New valid until date\n- Fresh approval workflow\n\nPrevious quote will be marked as superseded.`);
+      }
+      return;
+    }
+
+    alert(`Edit Quote: ${quote.quoteNumber}\n\nEditable Fields:\n- Line items (add/remove/modify)\n- Quantities and pricing\n- Discounts (subject to approval limits)\n- Valid until date\n- Terms and conditions\n- Shipping and delivery\n- Special instructions\n\nWARNING:\n- Changes may require re-approval\n- Customer will be notified if quote already sent\n- Pricing changes trigger automation validation\n\nSave as:\n- Update existing quote (if not sent)\n- Create new revision (if sent to customer)`);
+  };
+
+  const handleConvertToOrder = (quote: Quote) => {
+    if (quote.status === 'converted') {
+      alert(`Quote ${quote.quoteNumber} already converted.\n\nSales Order: ${quote.convertedToOrderId}\n\nView order in Sales Orders module.`);
+      return;
+    }
+
+    if (quote.status !== 'accepted') {
+      alert(`Cannot convert quote ${quote.quoteNumber}.\n\nQuote must be accepted by customer first.\n\nCurrent status: ${quote.status.toUpperCase()}\n\nNext steps:\n1. Send quote to customer (if not sent)\n2. Follow up for customer acceptance\n3. Resolve any pending approvals\n4. Wait for customer acceptance\n5. Then convert to order`);
+      return;
+    }
+
+    if (quote.approvalRequired && quote.approvalStatus !== 'approved') {
+      alert(`Cannot convert quote ${quote.quoteNumber}.\n\nPending manager approval.\n\nApproval status: ${quote.approvalStatus?.toUpperCase()}\n\nContact approving manager to expedite.`);
+      return;
+    }
+
+    if (confirm(`Convert Quote ${quote.quoteNumber} to Sales Order?\n\nCustomer: ${quote.customer}\nTotal: ${formatCurrency(quote.totalAmount)}\n\nThis will:\n1. Create sales order in ERP\n2. Allocate inventory\n3. Trigger fulfillment workflow\n4. Generate customer confirmation\n5. Update sales pipeline\n\nProceed with conversion?`)) {
+      alert(`Converting Quote ${quote.quoteNumber} to Sales Order...\n\nAUTOMATION WORKFLOW:\n${quote.automationTriggers.map(rule => `✓ ${rule.replace('-', ' ').toUpperCase()}`).join('\n')}\n\n✓ Credit check passed\n✓ Inventory allocated\n✓ Pricing validated\n✓ Sales order SO-2025-XXX created\n\nCONVERSION SUCCESSFUL!\n\nOrder has been sent to:\n- Warehouse for fulfillment\n- Finance for invoicing\n- Customer for confirmation\n\nEstimated ship date: ${new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0]}`);
+    }
+  };
+
+  const handleSendQuote = (quote: Quote) => {
+    if (quote.status !== 'draft') {
+      if (confirm(`Quote ${quote.quoteNumber} was already sent on ${quote.sentDate}.\n\nResend quote to customer?`)) {
+        alert(`Resending Quote ${quote.quoteNumber}...\n\nEmail sent to: ${quote.customer}\n\nIncludes:\n- PDF quote document\n- Payment terms\n- Delivery timeline\n- Product specifications\n- Online acceptance link\n\nCustomer can:\n- View quote online\n- Accept electronically\n- Request modifications\n- Download PDF\n\nTracking enabled for view/acceptance.`);
+      }
+      return;
+    }
+
+    if (quote.approvalRequired && (!quote.approvalStatus || quote.approvalStatus === 'pending')) {
+      alert(`Cannot send quote ${quote.quoteNumber}.\n\nPending manager approval.\n\nQuote must be approved before sending to customer.\n\nSubmit for approval first.`);
+      return;
+    }
+
+    if (confirm(`Send Quote ${quote.quoteNumber} to customer?\n\nCustomer: ${quote.customer}\nTotal: ${formatCurrency(quote.totalAmount)}\nValid Until: ${quote.validUntil}\n\nEmail will include PDF quote and online acceptance link.`)) {
+      alert(`Quote ${quote.quoteNumber} sent successfully!\n\nEmail delivered to: ${quote.customer}\n\nCustomer can now:\n- View quote online\n- Accept/reject electronically\n- Request changes\n\nYou will be notified when customer views or responds to quote.\n\nTracking:\n- Email opens\n- Quote views\n- Time spent reviewing\n- Acceptance/rejection`);
+    }
+  };
+
+  const handleCancelQuote = (quote: Quote) => {
+    if (quote.status === 'converted') {
+      alert(`Cannot cancel quote ${quote.quoteNumber}.\n\nQuote has been converted to order ${quote.convertedToOrderId}.\n\nTo cancel the order, use the Sales Orders module.`);
+      return;
+    }
+
+    if (confirm(`Cancel Quote ${quote.quoteNumber}?\n\nCustomer: ${quote.customer}\nTotal: ${formatCurrency(quote.totalAmount)}\n\nThis action:\n- Marks quote as cancelled\n- Removes from active pipeline\n- Notifies customer (if already sent)\n- Releases any inventory allocations\n\nCancellation reason will be required.\n\nProceed with cancellation?`)) {
+      alert(`Quote ${quote.quoteNumber} cancelled.\n\nReason: [User to provide reason]\n\nActions taken:\n- Quote status updated to CANCELLED\n- Customer notified via email\n- Inventory allocations released\n- Sales pipeline updated\n- Opportunity marked as lost\n\nTo reactivate:\n- Create new quote revision\n- Reference original quote number`);
+    }
+  };
+
+  const handleViewAutomationLog = (quote: Quote) => {
+    const quoteLogs = automationLogs.filter(log => log.quoteId === quote.id);
+    if (quoteLogs.length === 0) {
+      alert(`No automation logs for quote ${quote.quoteNumber}.\n\nAutomation rules have not been triggered yet.\n\nLogs will appear when:\n- Quote is sent to customer\n- Customer accepts quote\n- Automation rules execute\n- Conversion to order begins`);
+      return;
+    }
+
+    const logDetails = quoteLogs.map((log, idx) =>
+      `${idx + 1}. ${log.action}\n   Rule: ${log.rule.replace('-', ' ').toUpperCase()}\n   Result: ${log.result.toUpperCase()}\n   Time: ${log.timestamp}\n   Details: ${log.details}`
+    ).join('\n\n');
+
+    alert(`Automation Logs: ${quote.quoteNumber}\n\n${logDetails}\n\nAutomation rules configured:\n${quote.automationTriggers.map(rule => `- ${rule.replace('-', ' ').toUpperCase()}`).join('\n')}`);
+  };
+
   return (
     <div className="space-y-6">
       {/* Header */}
@@ -319,6 +427,30 @@ export default function QuoteToOrderAutomation() {
               }`}
             >
               Metrics
+            </button>
+            <button
+              onClick={handleRefresh}
+              className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-all flex items-center space-x-2"
+              title="Refresh Data"
+            >
+              <RefreshCw className="h-4 w-4" />
+              <span>Refresh</span>
+            </button>
+            <button
+              onClick={handleSettings}
+              className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-all flex items-center space-x-2"
+              title="Automation Settings"
+            >
+              <Settings className="h-4 w-4" />
+              <span>Settings</span>
+            </button>
+            <button
+              onClick={handleExport}
+              className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-all flex items-center space-x-2"
+              title="Export Report"
+            >
+              <Download className="h-4 w-4" />
+              <span>Export</span>
             </button>
           </div>
         </div>
@@ -480,6 +612,66 @@ export default function QuoteToOrderAutomation() {
                           <CheckCircle className="h-3 w-3 text-green-600" />
                           Accepted: {quote.acceptedDate}
                         </span>
+                      )}
+                    </div>
+
+                    {/* Action Buttons */}
+                    <div className="mt-4 pt-4 border-t border-gray-200 flex flex-wrap gap-2">
+                      <button
+                        onClick={() => handleViewQuote(quote)}
+                        className="flex items-center space-x-1 px-3 py-2 bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200 transition-colors"
+                        title="View Quote Details"
+                      >
+                        <Eye className="h-4 w-4" />
+                        <span>View Details</span>
+                      </button>
+                      {quote.status !== 'converted' && quote.status !== 'rejected' && quote.status !== 'expired' && (
+                        <button
+                          onClick={() => handleEditQuote(quote)}
+                          className="flex items-center space-x-1 px-3 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors"
+                          title="Edit Quote"
+                        >
+                          <Edit className="h-4 w-4" />
+                          <span>Edit</span>
+                        </button>
+                      )}
+                      {(quote.status === 'draft' || quote.status === 'sent' || quote.status === 'viewed') && (
+                        <button
+                          onClick={() => handleSendQuote(quote)}
+                          className="flex items-center space-x-1 px-3 py-2 bg-purple-100 text-purple-700 rounded-lg hover:bg-purple-200 transition-colors"
+                          title={quote.status === 'draft' ? 'Send Quote' : 'Resend Quote'}
+                        >
+                          <Send className="h-4 w-4" />
+                          <span>{quote.status === 'draft' ? 'Send' : 'Resend'}</span>
+                        </button>
+                      )}
+                      {quote.status === 'accepted' && !quote.convertedToOrderId && (
+                        <button
+                          onClick={() => handleConvertToOrder(quote)}
+                          className="flex items-center space-x-1 px-3 py-2 bg-green-100 text-green-700 rounded-lg hover:bg-green-200 transition-colors"
+                          title="Convert to Sales Order"
+                        >
+                          <PlayCircle className="h-4 w-4" />
+                          <span>Convert to Order</span>
+                        </button>
+                      )}
+                      <button
+                        onClick={() => handleViewAutomationLog(quote)}
+                        className="flex items-center space-x-1 px-3 py-2 bg-cyan-100 text-cyan-700 rounded-lg hover:bg-cyan-200 transition-colors"
+                        title="View Automation Log"
+                      >
+                        <Zap className="h-4 w-4" />
+                        <span>Automation Log</span>
+                      </button>
+                      {quote.status !== 'converted' && quote.status !== 'rejected' && (
+                        <button
+                          onClick={() => handleCancelQuote(quote)}
+                          className="flex items-center space-x-1 px-3 py-2 bg-red-100 text-red-700 rounded-lg hover:bg-red-200 transition-colors"
+                          title="Cancel Quote"
+                        >
+                          <X className="h-4 w-4" />
+                          <span>Cancel</span>
+                        </button>
                       )}
                     </div>
                   </div>

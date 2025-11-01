@@ -19,7 +19,24 @@ import {
   MoreVertical,
   Package,
   MapPin,
+  Download,
+  Copy,
+  Archive,
+  UserPlus,
+  StickyNote,
 } from 'lucide-react';
+import {
+  AdvancedFilterModal,
+  BulkUpdateModal,
+  CloneProjectModal,
+  QuickViewModal,
+  AssignManagerModal,
+  ExportProjectsModal,
+  ArchiveProjectModal,
+  ProjectTimelineModal,
+  TeamMembersModal,
+  QuickNotesModal,
+} from '@/components/project-management/ProjectListModals';
 
 interface Project {
   id: string;
@@ -267,6 +284,20 @@ export default function ProjectsListPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
+  // Modal states
+  const [showAdvancedFilter, setShowAdvancedFilter] = useState(false);
+  const [showBulkUpdate, setShowBulkUpdate] = useState(false);
+  const [showCloneProject, setShowCloneProject] = useState(false);
+  const [showQuickView, setShowQuickView] = useState(false);
+  const [showAssignManager, setShowAssignManager] = useState(false);
+  const [showExport, setShowExport] = useState(false);
+  const [showArchive, setShowArchive] = useState(false);
+  const [showTimeline, setShowTimeline] = useState(false);
+  const [showTeamMembers, setShowTeamMembers] = useState(false);
+  const [showQuickNotes, setShowQuickNotes] = useState(false);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [selectedProjects, setSelectedProjects] = useState<Project[]>([]);
+
   // Calculate statistics
   const stats = {
     total: projects.length,
@@ -331,10 +362,105 @@ export default function ProjectsListPage() {
     });
   };
 
+  // Modal handlers
+  const handleAdvancedFilter = (filters: any) => {
+    console.log('Applying filters:', filters);
+    setShowAdvancedFilter(false);
+  };
+
+  const handleBulkUpdate = (updates: any) => {
+    console.log('Bulk updating:', updates);
+    setShowBulkUpdate(false);
+  };
+
+  const handleCloneProject = (options: any) => {
+    console.log('Cloning project with options:', options);
+    setShowCloneProject(false);
+  };
+
+  const handleAssignManager = (manager: string, notes: string) => {
+    console.log('Assigning manager:', manager, notes);
+    setShowAssignManager(false);
+  };
+
+  const handleExport = (options: any) => {
+    console.log('Exporting projects:', options);
+    setShowExport(false);
+  };
+
+  const handleArchive = (reason: string, preserveData: boolean) => {
+    console.log('Archiving project:', reason, preserveData);
+    setShowArchive(false);
+  };
+
+  const handleSaveNote = (note: any) => {
+    console.log('Saving note:', note);
+  };
+
+  const openQuickView = (project: Project) => {
+    setSelectedProject(project);
+    setShowQuickView(true);
+  };
+
+  const openCloneModal = (project: Project) => {
+    setSelectedProject(project);
+    setShowCloneProject(true);
+  };
+
+  const openAssignManager = (project: Project) => {
+    setSelectedProject(project);
+    setShowAssignManager(true);
+  };
+
+  const openArchiveModal = (project: Project) => {
+    setSelectedProject(project);
+    setShowArchive(true);
+  };
+
+  const openTimelineModal = (project: Project) => {
+    setSelectedProject(project);
+    setShowTimeline(true);
+  };
+
+  const openTeamMembersModal = (project: Project) => {
+    setSelectedProject(project);
+    setShowTeamMembers(true);
+  };
+
+  const openQuickNotesModal = (project: Project) => {
+    setSelectedProject(project);
+    setShowQuickNotes(true);
+  };
+
   return (
     <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6 space-y-6">
       {/* Header Actions */}
-      <div className="flex justify-end mb-4">
+      <div className="flex justify-between items-center mb-4">
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => setShowAdvancedFilter(true)}
+            className="flex items-center gap-2 bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+          >
+            <Filter className="w-5 h-5" />
+            Advanced Filters
+          </button>
+          <button
+            onClick={() => setShowExport(true)}
+            className="flex items-center gap-2 bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+          >
+            <Download className="w-5 h-5" />
+            Export
+          </button>
+          {selectedProjects.length > 0 && (
+            <button
+              onClick={() => setShowBulkUpdate(true)}
+              className="flex items-center gap-2 bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors"
+            >
+              <Edit className="w-5 h-5" />
+              Bulk Update ({selectedProjects.length})
+            </button>
+          )}
+        </div>
         <Link
           href="/project-management/create"
           className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
@@ -563,26 +689,76 @@ export default function ProjectsListPage() {
                   </td>
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-2">
-                      <Link
-                        href={`/project-management/view/${project.id}`}
+                      <button
+                        onClick={() => openQuickView(project)}
                         className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-                       
+                        title="Quick View"
                       >
                         <Eye className="w-4 h-4" />
-                      </Link>
+                      </button>
                       <Link
                         href={`/project-management/edit/${project.id}`}
                         className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
-                       
+                        title="Edit"
                       >
                         <Edit className="w-4 h-4" />
                       </Link>
                       <button
-                        className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
-                       
+                        onClick={() => openTimelineModal(project)}
+                        className="p-2 text-purple-600 hover:bg-purple-50 rounded-lg transition-colors"
+                        title="Timeline"
                       >
-                        <MoreVertical className="w-4 h-4" />
+                        <Calendar className="w-4 h-4" />
                       </button>
+                      <button
+                        onClick={() => openTeamMembersModal(project)}
+                        className="p-2 text-orange-600 hover:bg-orange-50 rounded-lg transition-colors"
+                        title="Team"
+                      >
+                        <Users className="w-4 h-4" />
+                      </button>
+                      <button
+                        onClick={() => openQuickNotesModal(project)}
+                        className="p-2 text-yellow-600 hover:bg-yellow-50 rounded-lg transition-colors"
+                        title="Notes"
+                      >
+                        <StickyNote className="w-4 h-4" />
+                      </button>
+                      <div className="relative group">
+                        <button className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors">
+                          <MoreVertical className="w-4 h-4" />
+                        </button>
+                        <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-10">
+                          <button
+                            onClick={() => openCloneModal(project)}
+                            className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-50 flex items-center gap-2"
+                          >
+                            <Copy className="w-4 h-4" />
+                            Clone Project
+                          </button>
+                          <button
+                            onClick={() => openAssignManager(project)}
+                            className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-50 flex items-center gap-2"
+                          >
+                            <UserPlus className="w-4 h-4" />
+                            Assign Manager
+                          </button>
+                          <button
+                            onClick={() => openArchiveModal(project)}
+                            className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-50 flex items-center gap-2"
+                          >
+                            <Archive className="w-4 h-4" />
+                            Archive
+                          </button>
+                          <Link
+                            href={`/project-management/view/${project.id}`}
+                            className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-50 flex items-center gap-2"
+                          >
+                            <Eye className="w-4 h-4" />
+                            View Full Details
+                          </Link>
+                        </div>
+                      </div>
                     </div>
                   </td>
                 </tr>
@@ -615,6 +791,77 @@ export default function ProjectsListPage() {
           </div>
         </div>
       </div>
+
+      {/* Modals */}
+      <AdvancedFilterModal
+        isOpen={showAdvancedFilter}
+        onClose={() => setShowAdvancedFilter(false)}
+        onApply={handleAdvancedFilter}
+      />
+
+      <BulkUpdateModal
+        isOpen={showBulkUpdate}
+        onClose={() => setShowBulkUpdate(false)}
+        selectedProjects={selectedProjects}
+        onUpdate={handleBulkUpdate}
+      />
+
+      {selectedProject && (
+        <>
+          <CloneProjectModal
+            isOpen={showCloneProject}
+            onClose={() => setShowCloneProject(false)}
+            project={selectedProject}
+            onClone={handleCloneProject}
+          />
+
+          <QuickViewModal
+            isOpen={showQuickView}
+            onClose={() => setShowQuickView(false)}
+            project={selectedProject}
+          />
+
+          <AssignManagerModal
+            isOpen={showAssignManager}
+            onClose={() => setShowAssignManager(false)}
+            project={selectedProject}
+            onAssign={handleAssignManager}
+          />
+
+          <ArchiveProjectModal
+            isOpen={showArchive}
+            onClose={() => setShowArchive(false)}
+            project={selectedProject}
+            onArchive={handleArchive}
+          />
+
+          <ProjectTimelineModal
+            isOpen={showTimeline}
+            onClose={() => setShowTimeline(false)}
+            project={selectedProject}
+          />
+
+          <TeamMembersModal
+            isOpen={showTeamMembers}
+            onClose={() => setShowTeamMembers(false)}
+            project={selectedProject}
+          />
+
+          <QuickNotesModal
+            isOpen={showQuickNotes}
+            onClose={() => setShowQuickNotes(false)}
+            project={selectedProject}
+            onSaveNote={handleSaveNote}
+          />
+        </>
+      )}
+
+      <ExportProjectsModal
+        isOpen={showExport}
+        onClose={() => setShowExport(false)}
+        selectedProjects={filteredProjects}
+        onExport={handleExport}
+      />
     </div>
   );
 }

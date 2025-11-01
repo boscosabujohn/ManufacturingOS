@@ -2,7 +2,14 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { ArrowLeft, Download, Plus, Filter, Calendar, Package, CheckCircle, Clock, AlertTriangle } from 'lucide-react';
+import { ArrowLeft, Download, Plus, Filter, Calendar, Package, CheckCircle, Clock, AlertTriangle, Eye, ThumbsUp, ArrowRight } from 'lucide-react';
+import {
+  CreatePlannedOrderModal,
+  ViewPlannedOrderModal,
+  ApproveOrderModal,
+  ConvertToPOModal,
+  PlannedOrder as PlannedOrderType
+} from '@/components/production/PlannedOrderModals';
 
 interface PlannedOrder {
   id: string;
@@ -28,6 +35,13 @@ export default function MRPPlannedOrdersPage() {
   const router = useRouter();
   const [filterOrderType, setFilterOrderType] = useState<string>('all');
   const [filterStatus, setFilterStatus] = useState<string>('all');
+
+  // Modal state hooks
+  const [isCreateOpen, setIsCreateOpen] = useState(false);
+  const [isViewOpen, setIsViewOpen] = useState(false);
+  const [isApproveOpen, setIsApproveOpen] = useState(false);
+  const [isConvertOpen, setIsConvertOpen] = useState(false);
+  const [selectedOrder, setSelectedOrder] = useState<PlannedOrder | null>(null);
 
   // Mock data for planned orders
   const plannedOrders: PlannedOrder[] = [
@@ -273,6 +287,46 @@ export default function MRPPlannedOrdersPage() {
     }
   };
 
+  // Handler functions for modals
+  const handleCreate = () => {
+    setIsCreateOpen(true);
+  };
+
+  const handleView = (order: PlannedOrder) => {
+    setSelectedOrder(order);
+    setIsViewOpen(true);
+  };
+
+  const handleApprove = (order: PlannedOrder) => {
+    setSelectedOrder(order);
+    setIsApproveOpen(true);
+  };
+
+  const handleConvert = (order: PlannedOrder) => {
+    setSelectedOrder(order);
+    setIsConvertOpen(true);
+  };
+
+  const handleCreateSubmit = (data: any) => {
+    // TODO: Implement API call to create planned order
+    console.log('Creating planned order:', data);
+    setIsCreateOpen(false);
+  };
+
+  const handleApproveSubmit = (data: any) => {
+    // TODO: Implement API call to approve order
+    console.log('Approving order:', selectedOrder?.plannedOrderNumber, data);
+    setIsApproveOpen(false);
+    setSelectedOrder(null);
+  };
+
+  const handleConvertSubmit = (data: any) => {
+    // TODO: Implement API call to convert order to PO
+    console.log('Converting order to PO:', selectedOrder?.plannedOrderNumber, data);
+    setIsConvertOpen(false);
+    setSelectedOrder(null);
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
       {/* Inline Header */}
@@ -290,7 +344,7 @@ export default function MRPPlannedOrdersPage() {
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2">
+          <button onClick={handleCreate} className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2">
             <Plus className="w-4 h-4" />
             <span>Create Order</span>
           </button>
@@ -396,11 +450,12 @@ export default function MRPPlannedOrdersPage() {
                 <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Est. Cost</th>
                 <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Priority</th>
                 <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {filteredOrders.map((order) => (
-                <tr key={order.id} className="hover:bg-gray-50">
+                <tr key={order.id} className="hover:bg-gray-50 cursor-pointer" onClick={() => handleView(order)}>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="text-sm font-medium text-blue-600">{order.plannedOrderNumber}</div>
                   </td>
@@ -450,12 +505,77 @@ export default function MRPPlannedOrdersPage() {
                       {order.status}
                     </span>
                   </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-center" onClick={(e) => e.stopPropagation()}>
+                    <div className="flex items-center justify-center gap-2">
+                      <button
+                        onClick={() => handleView(order)}
+                        className="p-1.5 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                        title="View Details"
+                      >
+                        <Eye className="w-4 h-4" />
+                      </button>
+                      {order.status === 'pending-approval' && (
+                        <button
+                          onClick={() => handleApprove(order)}
+                          className="p-1.5 text-green-600 hover:bg-green-50 rounded-lg transition-colors"
+                          title="Approve Order"
+                        >
+                          <ThumbsUp className="w-4 h-4" />
+                        </button>
+                      )}
+                      {(order.status === 'approved' || order.status === 'released') && (
+                        <button
+                          onClick={() => handleConvert(order)}
+                          className="p-1.5 text-purple-600 hover:bg-purple-50 rounded-lg transition-colors"
+                          title="Convert to PO"
+                        >
+                          <ArrowRight className="w-4 h-4" />
+                        </button>
+                      )}
+                    </div>
+                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
       </div>
+
+      {/* Modal Components */}
+      <CreatePlannedOrderModal
+        isOpen={isCreateOpen}
+        onClose={() => setIsCreateOpen(false)}
+        onCreate={handleCreateSubmit}
+      />
+
+      <ViewPlannedOrderModal
+        isOpen={isViewOpen}
+        onClose={() => {
+          setIsViewOpen(false);
+          setSelectedOrder(null);
+        }}
+        order={selectedOrder}
+      />
+
+      <ApproveOrderModal
+        isOpen={isApproveOpen}
+        onClose={() => {
+          setIsApproveOpen(false);
+          setSelectedOrder(null);
+        }}
+        order={selectedOrder}
+        onApprove={handleApproveSubmit}
+      />
+
+      <ConvertToPOModal
+        isOpen={isConvertOpen}
+        onClose={() => {
+          setIsConvertOpen(false);
+          setSelectedOrder(null);
+        }}
+        order={selectedOrder}
+        onConvert={handleConvertSubmit}
+      />
     </div>
   );
 }

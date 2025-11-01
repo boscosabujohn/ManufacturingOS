@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { ArrowLeft, Download, AlertTriangle, Calendar, Package, DollarSign, TrendingUp, Clock } from 'lucide-react';
+import { ResolveShortageModal, CreateEmergencyPOModal, ViewImpactAnalysisModal } from '@/components/production/ShortageModals';
 
 interface MaterialShortage {
   id: string;
@@ -32,6 +33,12 @@ export default function MRPShortagePage() {
   const router = useRouter();
   const [filterCriticality, setFilterCriticality] = useState<string>('all');
   const [filterStatus, setFilterStatus] = useState<string>('all');
+
+  // Modal states
+  const [isResolveOpen, setIsResolveOpen] = useState(false);
+  const [isEmergencyPOOpen, setIsEmergencyPOOpen] = useState(false);
+  const [isImpactOpen, setIsImpactOpen] = useState(false);
+  const [selectedShortage, setSelectedShortage] = useState<MaterialShortage | null>(null);
 
   // Mock data for material shortages
   const shortages: MaterialShortage[] = [
@@ -252,6 +259,36 @@ export default function MRPShortagePage() {
     }
   };
 
+  // Handler functions
+  const handleResolve = (shortage: MaterialShortage) => {
+    setSelectedShortage(shortage);
+    setIsResolveOpen(true);
+  };
+
+  const handleEmergencyPO = (shortage: MaterialShortage) => {
+    setSelectedShortage(shortage);
+    setIsEmergencyPOOpen(true);
+  };
+
+  const handleViewImpact = (shortage: MaterialShortage) => {
+    setSelectedShortage(shortage);
+    setIsImpactOpen(true);
+  };
+
+  const handleResolveSubmit = (resolution: any) => {
+    // TODO: Integrate with API to save resolution plan
+    console.log('Resolution submitted:', resolution);
+    console.log('For shortage:', selectedShortage);
+    setIsResolveOpen(false);
+  };
+
+  const handleEmergencyPOSubmit = (po: any) => {
+    // TODO: Integrate with API to create emergency purchase order
+    console.log('Emergency PO created:', po);
+    console.log('For shortage:', selectedShortage);
+    setIsEmergencyPOOpen(false);
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
       {/* Inline Header */}
@@ -269,7 +306,13 @@ export default function MRPShortagePage() {
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <button className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors flex items-center gap-2">
+          <button
+            onClick={() => {
+              const criticalShortage = shortages.find(s => s.criticalityLevel === 'critical');
+              if (criticalShortage) handleResolve(criticalShortage);
+            }}
+            className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors flex items-center gap-2"
+          >
             <AlertTriangle className="w-4 h-4" />
             <span>Resolve Critical</span>
           </button>
@@ -435,23 +478,73 @@ export default function MRPShortagePage() {
             </div>
 
             {/* Bottom Section - Action & Status */}
-            <div className="mt-4 pt-4 border-t border-gray-200 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
-              <div className="flex-1">
-                <p className="text-sm text-gray-600 mb-1">Suggested Action</p>
-                <p className="text-sm font-medium text-gray-900">{shortage.suggestedAction}</p>
-                <p className="text-xs text-gray-500 mt-1">
-                  Preferred Supplier: {shortage.preferredSupplier} | Lead Time: {shortage.currentLeadTime} days
-                </p>
+            <div className="mt-4 pt-4 border-t border-gray-200">
+              <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3 mb-3">
+                <div className="flex-1">
+                  <p className="text-sm text-gray-600 mb-1">Suggested Action</p>
+                  <p className="text-sm font-medium text-gray-900">{shortage.suggestedAction}</p>
+                  <p className="text-xs text-gray-500 mt-1">
+                    Preferred Supplier: {shortage.preferredSupplier} | Lead Time: {shortage.currentLeadTime} days
+                  </p>
+                </div>
+                <div>
+                  <span className={`inline-flex px-4 py-2 rounded-lg text-sm font-medium ${getStatusColor(shortage.status)}`}>
+                    {shortage.status}
+                  </span>
+                </div>
               </div>
-              <div>
-                <span className={`inline-flex px-4 py-2 rounded-lg text-sm font-medium ${getStatusColor(shortage.status)}`}>
-                  {shortage.status}
-                </span>
+
+              {/* Action Buttons */}
+              <div className="flex flex-wrap gap-2">
+                <button
+                  onClick={() => handleResolve(shortage)}
+                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium flex items-center gap-2"
+                >
+                  <AlertTriangle className="w-4 h-4" />
+                  Resolve
+                </button>
+                {shortage.criticalityLevel === 'critical' && (
+                  <button
+                    onClick={() => handleEmergencyPO(shortage)}
+                    className="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors text-sm font-medium flex items-center gap-2"
+                  >
+                    <Package className="w-4 h-4" />
+                    Emergency PO
+                  </button>
+                )}
+                <button
+                  onClick={() => handleViewImpact(shortage)}
+                  className="px-4 py-2 bg-gray-100 text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-200 transition-colors text-sm font-medium flex items-center gap-2"
+                >
+                  <TrendingUp className="w-4 h-4" />
+                  View Impact
+                </button>
               </div>
             </div>
           </div>
         ))}
       </div>
+
+      {/* Modals */}
+      <ResolveShortageModal
+        isOpen={isResolveOpen}
+        onClose={() => setIsResolveOpen(false)}
+        onResolve={handleResolveSubmit}
+        shortage={selectedShortage}
+      />
+
+      <CreateEmergencyPOModal
+        isOpen={isEmergencyPOOpen}
+        onClose={() => setIsEmergencyPOOpen(false)}
+        onCreate={handleEmergencyPOSubmit}
+        shortage={selectedShortage}
+      />
+
+      <ViewImpactAnalysisModal
+        isOpen={isImpactOpen}
+        onClose={() => setIsImpactOpen(false)}
+        shortage={selectedShortage}
+      />
     </div>
   );
 }

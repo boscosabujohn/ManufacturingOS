@@ -3,6 +3,10 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { ArrowLeft, Plus, Search, Edit2, Trash2, MapPin, Package, Layers, Grid, ChevronRight } from 'lucide-react';
+import {
+  CreateBinModal,
+  BinData
+} from '@/components/inventory/InventoryWarehouseModals';
 
 interface Location {
   id: string;
@@ -29,6 +33,12 @@ export default function WarehouseLocationsPage() {
   const [filterWarehouse, setFilterWarehouse] = useState<string>('all');
   const [filterStatus, setFilterStatus] = useState<string>('all');
   const [filterType, setFilterType] = useState<string>('all');
+
+  // Modal states
+  const [isCreateBinOpen, setIsCreateBinOpen] = useState(false);
+  const [selectedLocation, setSelectedLocation] = useState<Location | null>(null);
+  const [locationList, setLocationList] = useState<Location[]>([]);
+  const [isViewBinOpen, setIsViewBinOpen] = useState(false);
 
   // Mock warehouse locations data
   const locations: Location[] = [
@@ -252,6 +262,77 @@ export default function WarehouseLocationsPage() {
     return 'text-green-600';
   };
 
+  // Convert Location to BinData
+  const convertToBinData = (location: Location): BinData => {
+    return {
+      binId: location.id,
+      binCode: location.code,
+      zoneId: 'ZONE-001', // Default zone ID
+      row: location.aisle,
+      rack: location.rack,
+      level: location.shelf,
+      capacity: location.capacity,
+      currentLoad: location.currentOccupancy,
+      status: location.status,
+      itemStored: location.itemsStored > 0 ? `${location.itemsStored} items` : undefined,
+      dimensions: undefined
+    };
+  };
+
+  // Handle bin creation
+  const handleCreateBin = (data: BinData) => {
+    // TODO: Integrate with API to create bin location
+    console.log('Creating bin:', data);
+
+    // Update local state
+    const newLocation: Location = {
+      id: data.binId,
+      code: data.binCode,
+      name: `${data.row} - ${data.rack} - ${data.level}`,
+      warehouse: 'Mumbai Central Warehouse', // Default warehouse
+      zone: 'Zone A', // Default zone
+      aisle: data.row,
+      rack: data.rack,
+      shelf: data.level,
+      bin: data.binCode,
+      locationType: 'storage',
+      capacity: data.capacity,
+      currentOccupancy: data.currentLoad,
+      utilizationPercent: data.capacity > 0 ? Math.round((data.currentLoad / data.capacity) * 100) : 0,
+      status: data.status,
+      itemsStored: 0,
+      lastUpdated: new Date().toISOString().split('T')[0]
+    };
+
+    setLocationList([...locationList, newLocation]);
+    setIsCreateBinOpen(false);
+  };
+
+  // Handle bin/location click to view details
+  const handleLocationClick = (location: Location) => {
+    setSelectedLocation(location);
+    setIsViewBinOpen(true);
+    console.log('Location clicked:', location);
+  };
+
+  // Handle bin/location edit
+  const handleEditLocation = (location: Location) => {
+    setSelectedLocation(location);
+    // Could open CreateBinModal with pre-filled data for editing
+    console.log('Edit location:', location);
+  };
+
+  // Get status-based row color for table
+  const getStatusRowColor = (status: string) => {
+    switch (status) {
+      case 'available': return 'bg-green-50';
+      case 'occupied': return 'bg-blue-50';
+      case 'reserved': return 'bg-yellow-50';
+      case 'blocked': return 'bg-red-50';
+      default: return '';
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
       {/* Inline Header */}
@@ -269,7 +350,10 @@ export default function WarehouseLocationsPage() {
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2">
+          <button
+            onClick={() => setIsCreateBinOpen(true)}
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2"
+          >
             <Plus className="w-4 h-4" />
             <span>Add Location</span>
           </button>
@@ -403,7 +487,11 @@ export default function WarehouseLocationsPage() {
             </thead>
             <tbody className="divide-y divide-gray-200">
               {filteredLocations.map((loc) => (
-                <tr key={loc.id} className="hover:bg-gray-50">
+                <tr
+                  key={loc.id}
+                  className={`hover:bg-gray-100 cursor-pointer transition-colors ${getStatusRowColor(loc.status)}`}
+                  onClick={() => handleLocationClick(loc)}
+                >
                   <td className="px-4 py-3">
                     <div className="text-sm font-mono font-bold text-gray-900">{loc.code}</div>
                     <div className="text-xs text-gray-500 mt-1">Updated: {loc.lastUpdated}</div>
@@ -444,9 +532,12 @@ export default function WarehouseLocationsPage() {
                       {loc.status}
                     </span>
                   </td>
-                  <td className="px-4 py-3">
+                  <td className="px-4 py-3" onClick={(e) => e.stopPropagation()}>
                     <div className="flex items-center justify-center gap-2">
-                      <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                      <button
+                        onClick={() => handleEditLocation(loc)}
+                        className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm"
+                      >
                         <Edit2 className="w-4 h-4 text-gray-600" />
                         <span className="text-gray-700">Edit</span>
                       </button>
@@ -468,6 +559,36 @@ export default function WarehouseLocationsPage() {
           </div>
         )}
       </div>
+
+      {/* Bin Status Legend */}
+      <div className="bg-white rounded-xl border border-gray-200 p-6">
+        <h3 className="text-sm font-semibold text-gray-700 mb-3">Status Color Legend</h3>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="flex items-center gap-2">
+            <div className="w-4 h-4 bg-green-100 border border-green-200 rounded"></div>
+            <span className="text-sm text-gray-600">Available</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-4 h-4 bg-blue-100 border border-blue-200 rounded"></div>
+            <span className="text-sm text-gray-600">Occupied</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-4 h-4 bg-yellow-100 border border-yellow-200 rounded"></div>
+            <span className="text-sm text-gray-600">Reserved</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-4 h-4 bg-red-100 border border-red-200 rounded"></div>
+            <span className="text-sm text-gray-600">Blocked</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Modals */}
+      <CreateBinModal
+        isOpen={isCreateBinOpen}
+        onClose={() => setIsCreateBinOpen(false)}
+        onSubmit={handleCreateBin}
+      />
     </div>
   );
 }

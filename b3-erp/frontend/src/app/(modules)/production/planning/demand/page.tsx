@@ -2,24 +2,29 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { ArrowLeft, Download, Plus, TrendingUp, TrendingDown, Calendar, Package, Filter, BarChart3 } from 'lucide-react';
+import { ArrowLeft, Download, Plus, TrendingUp, TrendingDown, Calendar, Package, Filter, BarChart3, Eye, Edit } from 'lucide-react';
+import { NewForecastModal, ExportForecastModal, ForecastAnalyticsModal } from '@/components/production/DemandPlanningModals';
 
 interface DemandForecast {
   id: string;
   productCode: string;
   productName: string;
   category: string;
-  currentMonth: string;
-  historicalDemand: number[];
-  forecastedDemand: number[];
-  actualDemand: number[];
-  forecastAccuracy: number;
-  trend: 'increasing' | 'decreasing' | 'stable';
+  currentMonth?: string;
+  currentDemand: number;
+  forecastedDemand: number;
+  historicalAvg: number;
+  historicalDemand?: number[];
+  actualDemand?: number[];
+  accuracy: number;
+  trend: 'up' | 'down' | 'stable';
+  lastUpdated: string;
+  forecastMethod: string;
   seasonalityFactor: number;
   safetyStock: number;
   reorderPoint: number;
-  averageLeadTime: number;
-  uom: string;
+  averageLeadTime?: number;
+  uom?: string;
 }
 
 interface MonthlyDemand {
@@ -35,19 +40,30 @@ export default function DemandPlanningPage() {
   const [filterTrend, setFilterTrend] = useState<string>('all');
   const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
 
+  // Modal states
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isExportModalOpen, setIsExportModalOpen] = useState(false);
+  const [isAnalyticsModalOpen, setIsAnalyticsModalOpen] = useState(false);
+  const [selectedForecast, setSelectedForecast] = useState<DemandForecast | null>(null);
+
   // Mock data for demand forecasts
-  const demandForecasts: DemandForecast[] = [
+  const [forecasts, setForecasts] = useState<DemandForecast[]>([
     {
       id: '1',
       productCode: 'KIT-SINK-001',
       productName: 'Premium Stainless Steel Kitchen Sink - Double Bowl',
       category: 'Kitchen Sinks',
       currentMonth: '2025-10',
+      currentDemand: 178,
+      forecastedDemand: 180,
+      historicalAvg: 155,
       historicalDemand: [145, 152, 138, 165, 158, 172],
-      forecastedDemand: [180, 185, 190, 195, 200, 205],
       actualDemand: [178, 0, 0, 0, 0, 0],
-      forecastAccuracy: 94.8,
-      trend: 'increasing',
+      accuracy: 94.8,
+      trend: 'up',
+      lastUpdated: '2024-10-18',
+      forecastMethod: 'exponential-smoothing',
       seasonalityFactor: 1.15,
       safetyStock: 45,
       reorderPoint: 120,
@@ -60,11 +76,15 @@ export default function DemandPlanningPage() {
       productName: 'Chrome Kitchen Faucet with Pull-Down Sprayer',
       category: 'Kitchen Faucets',
       currentMonth: '2025-10',
+      currentDemand: 315,
+      forecastedDemand: 320,
+      historicalAvg: 295,
       historicalDemand: [285, 298, 275, 310, 295, 305],
-      forecastedDemand: [320, 325, 330, 335, 340, 345],
       actualDemand: [315, 0, 0, 0, 0, 0],
-      forecastAccuracy: 96.2,
-      trend: 'increasing',
+      accuracy: 96.2,
+      trend: 'up',
+      lastUpdated: '2024-10-18',
+      forecastMethod: 'moving-average',
       seasonalityFactor: 1.08,
       safetyStock: 80,
       reorderPoint: 220,
@@ -77,11 +97,15 @@ export default function DemandPlanningPage() {
       productName: 'Non-Stick Cookware Set (7 Pieces)',
       category: 'Cookware',
       currentMonth: '2025-10',
+      currentDemand: 402,
+      forecastedDemand: 400,
+      historicalAvg: 415,
       historicalDemand: [420, 435, 398, 425, 410, 405],
-      forecastedDemand: [400, 395, 390, 385, 380, 375],
       actualDemand: [402, 0, 0, 0, 0, 0],
-      forecastAccuracy: 97.5,
-      trend: 'decreasing',
+      accuracy: 97.5,
+      trend: 'down',
+      lastUpdated: '2024-10-18',
+      forecastMethod: 'linear-regression',
       seasonalityFactor: 0.95,
       safetyStock: 120,
       reorderPoint: 280,
@@ -94,11 +118,15 @@ export default function DemandPlanningPage() {
       productName: 'Modular Kitchen Cabinet - Base Unit (36")',
       category: 'Kitchen Cabinets',
       currentMonth: '2025-10',
+      currentDemand: 194,
+      forecastedDemand: 195,
+      historicalAvg: 191,
       historicalDemand: [185, 192, 188, 195, 190, 193],
-      forecastedDemand: [195, 195, 195, 195, 195, 195],
       actualDemand: [194, 0, 0, 0, 0, 0],
-      forecastAccuracy: 98.9,
+      accuracy: 98.9,
       trend: 'stable',
+      lastUpdated: '2024-10-18',
+      forecastMethod: 'moving-average',
       seasonalityFactor: 1.0,
       safetyStock: 50,
       reorderPoint: 135,
@@ -111,11 +139,15 @@ export default function DemandPlanningPage() {
       productName: 'Granite Countertop - Black Galaxy (Linear Ft)',
       category: 'Countertops',
       currentMonth: '2025-10',
+      currentDemand: 575,
+      forecastedDemand: 580,
+      historicalAvg: 540,
       historicalDemand: [520, 548, 512, 565, 538, 555],
-      forecastedDemand: [580, 590, 600, 610, 620, 630],
       actualDemand: [575, 0, 0, 0, 0, 0],
-      forecastAccuracy: 95.6,
-      trend: 'increasing',
+      accuracy: 95.6,
+      trend: 'up',
+      lastUpdated: '2024-10-18',
+      forecastMethod: 'exponential-smoothing',
       seasonalityFactor: 1.12,
       safetyStock: 150,
       reorderPoint: 400,
@@ -128,11 +160,15 @@ export default function DemandPlanningPage() {
       productName: 'Built-in Kitchen Chimney (60cm)',
       category: 'Kitchen Appliances',
       currentMonth: '2025-10',
+      currentDemand: 142,
+      forecastedDemand: 145,
+      historicalAvg: 130,
       historicalDemand: [125, 132, 118, 128, 135, 140],
-      forecastedDemand: [145, 150, 155, 160, 165, 170],
       actualDemand: [142, 0, 0, 0, 0, 0],
-      forecastAccuracy: 93.1,
-      trend: 'increasing',
+      accuracy: 93.1,
+      trend: 'up',
+      lastUpdated: '2024-10-18',
+      forecastMethod: 'seasonal-decomposition',
       seasonalityFactor: 1.18,
       safetyStock: 35,
       reorderPoint: 95,
@@ -145,11 +181,15 @@ export default function DemandPlanningPage() {
       productName: 'Electric Mixer Grinder - 750W',
       category: 'Kitchen Appliances',
       currentMonth: '2025-10',
+      currentDemand: 688,
+      forecastedDemand: 690,
+      historicalAvg: 687,
       historicalDemand: [680, 695, 665, 705, 690, 685],
-      forecastedDemand: [690, 690, 690, 690, 690, 690],
       actualDemand: [688, 0, 0, 0, 0, 0],
-      forecastAccuracy: 98.2,
+      accuracy: 98.2,
       trend: 'stable',
+      lastUpdated: '2024-10-18',
+      forecastMethod: 'moving-average',
       seasonalityFactor: 1.02,
       safetyStock: 180,
       reorderPoint: 475,
@@ -162,11 +202,15 @@ export default function DemandPlanningPage() {
       productName: 'Kitchen Storage Container Set (15 Pieces)',
       category: 'Kitchen Accessories',
       currentMonth: '2025-10',
+      currentDemand: 705,
+      forecastedDemand: 700,
+      historicalAvg: 786,
       historicalDemand: [850, 820, 795, 775, 750, 725],
-      forecastedDemand: [700, 675, 650, 625, 600, 575],
       actualDemand: [705, 0, 0, 0, 0, 0],
-      forecastAccuracy: 96.8,
-      trend: 'decreasing',
+      accuracy: 96.8,
+      trend: 'down',
+      lastUpdated: '2024-10-18',
+      forecastMethod: 'linear-regression',
       seasonalityFactor: 0.88,
       safetyStock: 200,
       reorderPoint: 480,
@@ -179,11 +223,15 @@ export default function DemandPlanningPage() {
       productName: 'Range Hood with LED Lighting',
       category: 'Kitchen Appliances',
       currentMonth: '2025-10',
+      currentDemand: 118,
+      forecastedDemand: 115,
+      historicalAvg: 103,
       historicalDemand: [95, 102, 88, 98, 105, 110],
-      forecastedDemand: [115, 120, 125, 130, 135, 140],
       actualDemand: [118, 0, 0, 0, 0, 0],
-      forecastAccuracy: 91.5,
-      trend: 'increasing',
+      accuracy: 91.5,
+      trend: 'up',
+      lastUpdated: '2024-10-18',
+      forecastMethod: 'arima',
       seasonalityFactor: 1.22,
       safetyStock: 28,
       reorderPoint: 78,
@@ -196,34 +244,76 @@ export default function DemandPlanningPage() {
       productName: 'Undermount Kitchen Sink - Single Bowl',
       category: 'Kitchen Sinks',
       currentMonth: '2025-10',
+      currentDemand: 221,
+      forecastedDemand: 220,
+      historicalAvg: 218,
       historicalDemand: [215, 225, 210, 220, 218, 222],
-      forecastedDemand: [220, 220, 220, 220, 220, 220],
       actualDemand: [221, 0, 0, 0, 0, 0],
-      forecastAccuracy: 99.1,
+      accuracy: 99.1,
       trend: 'stable',
+      lastUpdated: '2024-10-18',
+      forecastMethod: 'moving-average',
       seasonalityFactor: 1.0,
       safetyStock: 60,
       reorderPoint: 155,
       averageLeadTime: 13,
       uom: 'units'
     }
-  ];
+  ]);
 
-  const filteredForecasts = demandForecasts.filter(forecast => {
+  // Handler functions
+  const handleCreateForecast = (forecastData: Partial<DemandForecast>) => {
+    const newForecast: DemandForecast = {
+      id: `DF-${String(forecasts.length + 1).padStart(3, '0')}`,
+      productCode: forecastData.productCode || '',
+      productName: forecastData.productName || '',
+      category: forecastData.category || '',
+      currentDemand: forecastData.currentDemand || 0,
+      forecastedDemand: forecastData.forecastedDemand || 0,
+      historicalAvg: forecastData.historicalAvg || 0,
+      accuracy: 0,
+      trend: forecastData.trend || 'stable',
+      lastUpdated: new Date().toISOString().split('T')[0],
+      forecastMethod: forecastData.forecastMethod || 'moving-average',
+      seasonalityFactor: forecastData.seasonalityFactor || 1.0,
+      safetyStock: forecastData.safetyStock || 0,
+      reorderPoint: forecastData.reorderPoint || 0,
+    };
+    setForecasts([...forecasts, newForecast]);
+  };
+
+  const handleEditForecast = (forecastData: Partial<DemandForecast>) => {
+    if (!selectedForecast) return;
+    setForecasts(forecasts.map((f) =>
+      f.id === selectedForecast.id ? { ...f, ...forecastData, lastUpdated: new Date().toISOString().split('T')[0] } : f
+    ));
+  };
+
+  const handleViewAnalytics = (forecast: DemandForecast) => {
+    setSelectedForecast(forecast);
+    setIsAnalyticsModalOpen(true);
+  };
+
+  const handleExport = (format: string, filters: any) => {
+    console.log('Exporting demand forecasts as:', format, 'with filters:', filters);
+    alert(`Exporting demand forecasts as ${format.toUpperCase()}`);
+  };
+
+  const filteredForecasts = forecasts.filter(forecast => {
     const categoryMatch = filterCategory === 'all' || forecast.category === filterCategory;
     const trendMatch = filterTrend === 'all' || forecast.trend === filterTrend;
     return categoryMatch && trendMatch;
   });
 
-  const totalProducts = demandForecasts.length;
-  const avgForecastAccuracy = demandForecasts.reduce((sum, f) => sum + f.forecastAccuracy, 0) / demandForecasts.length;
-  const increasingTrends = demandForecasts.filter(f => f.trend === 'increasing').length;
-  const decreasingTrends = demandForecasts.filter(f => f.trend === 'decreasing').length;
+  const totalProducts = forecasts.length;
+  const avgForecastAccuracy = forecasts.reduce((sum, f) => sum + f.accuracy, 0) / forecasts.length;
+  const increasingTrends = forecasts.filter(f => f.trend === 'up').length;
+  const decreasingTrends = forecasts.filter(f => f.trend === 'down').length;
 
   const getTrendColor = (trend: string) => {
     switch (trend) {
-      case 'increasing': return 'text-green-700 bg-green-100';
-      case 'decreasing': return 'text-red-700 bg-red-100';
+      case 'up': return 'text-green-700 bg-green-100';
+      case 'down': return 'text-red-700 bg-red-100';
       case 'stable': return 'text-blue-700 bg-blue-100';
       default: return 'text-gray-700 bg-gray-100';
     }
@@ -231,8 +321,8 @@ export default function DemandPlanningPage() {
 
   const getTrendIcon = (trend: string) => {
     switch (trend) {
-      case 'increasing': return <TrendingUp className="w-4 h-4" />;
-      case 'decreasing': return <TrendingDown className="w-4 h-4" />;
+      case 'up': return <TrendingUp className="w-4 h-4" />;
+      case 'down': return <TrendingDown className="w-4 h-4" />;
       default: return <BarChart3 className="w-4 h-4" />;
     }
   };
@@ -262,11 +352,17 @@ export default function DemandPlanningPage() {
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2">
+          <button
+            onClick={() => setIsCreateModalOpen(true)}
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2"
+          >
             <Plus className="w-4 h-4" />
             <span>New Forecast</span>
           </button>
-          <button className="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors flex items-center gap-2">
+          <button
+            onClick={() => setIsExportModalOpen(true)}
+            className="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors flex items-center gap-2"
+          >
             <Download className="w-4 h-4" />
             <span>Export</span>
           </button>
@@ -348,9 +444,9 @@ export default function DemandPlanningPage() {
             className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           >
             <option value="all">All Trends</option>
-            <option value="increasing">Increasing</option>
+            <option value="up">Increasing</option>
             <option value="stable">Stable</option>
-            <option value="decreasing">Decreasing</option>
+            <option value="down">Decreasing</option>
           </select>
         </div>
       </div>
@@ -363,19 +459,18 @@ export default function DemandPlanningPage() {
               <tr>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Product</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
-                <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Current Month</th>
                 <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Forecasted</th>
                 <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actual</th>
                 <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Accuracy</th>
                 <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Trend</th>
                 <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Seasonality</th>
                 <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Safety Stock</th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Reorder Point</th>
+                <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {filteredForecasts.map((forecast) => (
-                <tr key={forecast.id} className="hover:bg-gray-50 cursor-pointer" onClick={() => setSelectedProduct(forecast.id)}>
+                <tr key={forecast.id} className="hover:bg-gray-50">
                   <td className="px-6 py-4">
                     <div>
                       <div className="text-sm font-medium text-gray-900">{forecast.productCode}</div>
@@ -385,23 +480,17 @@ export default function DemandPlanningPage() {
                   <td className="px-6 py-4 whitespace-nowrap">
                     <span className="text-sm text-gray-700">{forecast.category}</span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-center">
-                    <div className="flex items-center justify-center gap-1 text-sm text-gray-700">
-                      <Calendar className="w-4 h-4 text-gray-400" />
-                      {forecast.currentMonth}
-                    </div>
-                  </td>
                   <td className="px-6 py-4 whitespace-nowrap text-right">
-                    <span className="text-sm font-medium text-blue-600">{forecast.forecastedDemand[0].toLocaleString()}</span>
+                    <span className="text-sm font-medium text-blue-600">{forecast.forecastedDemand.toLocaleString()}</span>
                     <span className="text-xs text-gray-500 ml-1">{forecast.uom}</span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-right">
-                    <span className="text-sm font-medium text-gray-900">{forecast.actualDemand[0].toLocaleString()}</span>
+                    <span className="text-sm font-medium text-gray-900">{forecast.currentDemand.toLocaleString()}</span>
                     <span className="text-xs text-gray-500 ml-1">{forecast.uom}</span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-center">
-                    <span className={`text-sm font-bold ${getAccuracyColor(forecast.forecastAccuracy)}`}>
-                      {forecast.forecastAccuracy.toFixed(1)}%
+                    <span className={`text-sm font-bold ${getAccuracyColor(forecast.accuracy)}`}>
+                      {forecast.accuracy.toFixed(1)}%
                     </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-center">
@@ -417,9 +506,40 @@ export default function DemandPlanningPage() {
                     <span className="text-sm text-gray-700">{forecast.safetyStock.toLocaleString()}</span>
                     <span className="text-xs text-gray-500 ml-1">{forecast.uom}</span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-right">
-                    <span className="text-sm text-gray-700">{forecast.reorderPoint.toLocaleString()}</span>
-                    <span className="text-xs text-gray-500 ml-1">{forecast.uom}</span>
+                  <td className="px-6 py-4 whitespace-nowrap text-center">
+                    <div className="flex items-center justify-center gap-2">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleViewAnalytics(forecast);
+                        }}
+                        className="p-1.5 text-purple-600 hover:bg-purple-50 rounded-lg transition-colors"
+                        aria-label="View Analytics"
+                      >
+                        <BarChart3 className="h-4 w-4" />
+                      </button>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setSelectedForecast(forecast);
+                          setIsEditModalOpen(true);
+                        }}
+                        className="p-1.5 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                        aria-label="Edit"
+                      >
+                        <Edit className="h-4 w-4" />
+                      </button>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setSelectedProduct(forecast.id);
+                        }}
+                        className="p-1.5 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
+                        aria-label="View Details"
+                      >
+                        <Eye className="h-4 w-4" />
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))}
@@ -433,7 +553,7 @@ export default function DemandPlanningPage() {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50" onClick={() => setSelectedProduct(null)}>
           <div className="bg-white rounded-xl p-6 max-w-4xl w-full max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
             {(() => {
-              const product = demandForecasts.find(f => f.id === selectedProduct);
+              const product = forecasts.find(f => f.id === selectedProduct);
               if (!product) return null;
 
               return (
@@ -451,7 +571,7 @@ export default function DemandPlanningPage() {
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
                     <div className="p-4 bg-blue-50 rounded-lg">
                       <p className="text-sm text-blue-600">Forecast Accuracy</p>
-                      <p className="text-2xl font-bold text-blue-900">{product.forecastAccuracy.toFixed(1)}%</p>
+                      <p className="text-2xl font-bold text-blue-900">{product.accuracy.toFixed(1)}%</p>
                     </div>
                     <div className="p-4 bg-green-50 rounded-lg">
                       <p className="text-sm text-green-600">Trend</p>
@@ -459,7 +579,7 @@ export default function DemandPlanningPage() {
                     </div>
                     <div className="p-4 bg-purple-50 rounded-lg">
                       <p className="text-sm text-purple-600">Lead Time</p>
-                      <p className="text-2xl font-bold text-purple-900">{product.averageLeadTime} days</p>
+                      <p className="text-2xl font-bold text-purple-900">{product.averageLeadTime || 'N/A'} {product.averageLeadTime ? 'days' : ''}</p>
                     </div>
                     <div className="p-4 bg-orange-50 rounded-lg">
                       <p className="text-sm text-orange-600">Seasonality</p>
@@ -467,51 +587,84 @@ export default function DemandPlanningPage() {
                     </div>
                   </div>
 
-                  <h4 className="text-lg font-bold text-gray-900 mb-4">6-Month Forecast</h4>
-                  <div className="overflow-x-auto">
-                    <table className="w-full">
-                      <thead className="bg-gray-50">
-                        <tr>
-                          <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Month</th>
-                          <th className="px-4 py-2 text-right text-xs font-medium text-gray-500 uppercase">Historical</th>
-                          <th className="px-4 py-2 text-right text-xs font-medium text-gray-500 uppercase">Forecasted</th>
-                          <th className="px-4 py-2 text-right text-xs font-medium text-gray-500 uppercase">Actual</th>
-                          <th className="px-4 py-2 text-right text-xs font-medium text-gray-500 uppercase">Variance</th>
-                        </tr>
-                      </thead>
-                      <tbody className="divide-y divide-gray-200">
-                        {months.map((month, idx) => {
-                          const variance = product.actualDemand[idx] > 0
-                            ? ((product.actualDemand[idx] - product.forecastedDemand[idx]) / product.forecastedDemand[idx] * 100).toFixed(1)
-                            : '-';
-                          return (
-                            <tr key={idx}>
-                              <td className="px-4 py-2 text-sm font-medium text-gray-900">{month}</td>
-                              <td className="px-4 py-2 text-sm text-gray-700 text-right">{product.historicalDemand[idx].toLocaleString()}</td>
-                              <td className="px-4 py-2 text-sm font-medium text-blue-600 text-right">{product.forecastedDemand[idx].toLocaleString()}</td>
-                              <td className="px-4 py-2 text-sm text-gray-900 text-right">
-                                {product.actualDemand[idx] > 0 ? product.actualDemand[idx].toLocaleString() : '-'}
-                              </td>
-                              <td className="px-4 py-2 text-sm text-right">
-                                {variance !== '-' && (
-                                  <span className={Number(variance) > 0 ? 'text-green-600' : 'text-red-600'}>
-                                    {Number(variance) > 0 ? '+' : ''}{variance}%
-                                  </span>
-                                )}
-                                {variance === '-' && <span className="text-gray-400">-</span>}
-                              </td>
+                  {product.historicalDemand && product.actualDemand && (
+                    <>
+                      <h4 className="text-lg font-bold text-gray-900 mb-4">6-Month Forecast</h4>
+                      <div className="overflow-x-auto">
+                        <table className="w-full">
+                          <thead className="bg-gray-50">
+                            <tr>
+                              <th className="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase">Month</th>
+                              <th className="px-4 py-2 text-right text-xs font-medium text-gray-500 uppercase">Historical</th>
+                              <th className="px-4 py-2 text-right text-xs font-medium text-gray-500 uppercase">Forecasted</th>
+                              <th className="px-4 py-2 text-right text-xs font-medium text-gray-500 uppercase">Actual</th>
+                              <th className="px-4 py-2 text-right text-xs font-medium text-gray-500 uppercase">Variance</th>
                             </tr>
-                          );
-                        })}
-                      </tbody>
-                    </table>
-                  </div>
+                          </thead>
+                          <tbody className="divide-y divide-gray-200">
+                            {months.map((month, idx) => {
+                              const variance = product.actualDemand && product.actualDemand[idx] > 0
+                                ? ((product.actualDemand[idx] - product.forecastedDemand) / product.forecastedDemand * 100).toFixed(1)
+                                : '-';
+                              return (
+                                <tr key={idx}>
+                                  <td className="px-4 py-2 text-sm font-medium text-gray-900">{month}</td>
+                                  <td className="px-4 py-2 text-sm text-gray-700 text-right">{product.historicalDemand?.[idx]?.toLocaleString() || '-'}</td>
+                                  <td className="px-4 py-2 text-sm font-medium text-blue-600 text-right">{product.forecastedDemand.toLocaleString()}</td>
+                                  <td className="px-4 py-2 text-sm text-gray-900 text-right">
+                                    {product.actualDemand && product.actualDemand[idx] > 0 ? product.actualDemand[idx].toLocaleString() : '-'}
+                                  </td>
+                                  <td className="px-4 py-2 text-sm text-right">
+                                    {variance !== '-' && (
+                                      <span className={Number(variance) > 0 ? 'text-green-600' : 'text-red-600'}>
+                                        {Number(variance) > 0 ? '+' : ''}{variance}%
+                                      </span>
+                                    )}
+                                    {variance === '-' && <span className="text-gray-400">-</span>}
+                                  </td>
+                                </tr>
+                              );
+                            })}
+                          </tbody>
+                        </table>
+                      </div>
+                    </>
+                  )}
                 </>
               );
             })()}
           </div>
         </div>
       )}
+
+      {/* Modals */}
+      <NewForecastModal
+        isOpen={isCreateModalOpen}
+        onClose={() => setIsCreateModalOpen(false)}
+        onSave={handleCreateForecast}
+      />
+      <NewForecastModal
+        isOpen={isEditModalOpen}
+        onClose={() => {
+          setIsEditModalOpen(false);
+          setSelectedForecast(null);
+        }}
+        forecast={selectedForecast}
+        onSave={handleEditForecast}
+      />
+      <ExportForecastModal
+        isOpen={isExportModalOpen}
+        onClose={() => setIsExportModalOpen(false)}
+        onExport={handleExport}
+      />
+      <ForecastAnalyticsModal
+        isOpen={isAnalyticsModalOpen}
+        onClose={() => {
+          setIsAnalyticsModalOpen(false);
+          setSelectedForecast(null);
+        }}
+        forecast={selectedForecast}
+      />
     </div>
   );
 }

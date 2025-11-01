@@ -16,25 +16,21 @@ import {
   Eye,
   MessageSquare
 } from 'lucide-react'
+import {
+  ApproveLegalModal,
+  RejectLegalModal,
+  RequestRevisionModal,
+  AddCommentModal,
+  ViewDocumentModal,
+  LegalReview as ImportedLegalReview
+} from '@/components/cpq/LegalWorkflowModals'
 
-interface LegalReview {
-  id: string
+interface LegalReview extends ImportedLegalReview {
   documentType: 'contract' | 'proposal' | 'nda' | 'amendment' | 'terms'
-  documentNumber: string
-  customerName: string
-  contractValue: number
-  requestedBy: string
-  requestDate: string
   reviewType: 'standard' | 'custom-clauses' | 'high-value' | 'international' | 'compliance'
   priority: 'low' | 'medium' | 'high' | 'urgent'
   status: 'pending' | 'in-review' | 'approved' | 'rejected' | 'revision-needed'
-  assignedTo: string
-  dueDate: string
-  issues: LegalIssue[]
-  customClauses: string[]
   riskLevel: 'low' | 'medium' | 'high' | 'critical'
-  complianceChecks: ComplianceCheck[]
-  comments: Comment[]
 }
 
 interface LegalIssue {
@@ -62,6 +58,14 @@ interface Comment {
 
 export default function CPQWorkflowLegalPage() {
   const router = useRouter()
+
+  // Modal states
+  const [isApproveOpen, setIsApproveOpen] = useState(false)
+  const [isRejectOpen, setIsRejectOpen] = useState(false)
+  const [isRevisionOpen, setIsRevisionOpen] = useState(false)
+  const [isCommentOpen, setIsCommentOpen] = useState(false)
+  const [isViewOpen, setIsViewOpen] = useState(false)
+  const [selectedReview, setSelectedReview] = useState<LegalReview | null>(null)
 
   const [reviews] = useState<LegalReview[]>([
     {
@@ -372,6 +376,56 @@ export default function CPQWorkflowLegalPage() {
   const highRisk = reviews.filter(r => r.riskLevel === 'high' || r.riskLevel === 'critical').length
   const avgReviewTime = '1.8 days'
 
+  // Modal handlers
+  const handleApprove = (review: LegalReview) => {
+    setSelectedReview(review)
+    setIsApproveOpen(true)
+  }
+
+  const handleReject = (review: LegalReview) => {
+    setSelectedReview(review)
+    setIsRejectOpen(true)
+  }
+
+  const handleRequestRevision = (review: LegalReview) => {
+    setSelectedReview(review)
+    setIsRevisionOpen(true)
+  }
+
+  const handleAddComment = (review: LegalReview) => {
+    setSelectedReview(review)
+    setIsCommentOpen(true)
+  }
+
+  const handleView = (review: LegalReview) => {
+    setSelectedReview(review)
+    setIsViewOpen(true)
+  }
+
+  const handleApproveSubmit = (data: { comments: string; conditions?: string }) => {
+    console.log('Approved:', selectedReview?.documentNumber, data)
+    // TODO: API call to approve the legal review
+    setIsApproveOpen(false)
+  }
+
+  const handleRejectSubmit = (data: { reason: string; comments: string }) => {
+    console.log('Rejected:', selectedReview?.documentNumber, data)
+    // TODO: API call to reject the legal review
+    setIsRejectOpen(false)
+  }
+
+  const handleRevisionSubmit = (data: { issues: string; recommendations: string; dueDate: string }) => {
+    console.log('Revision requested:', selectedReview?.documentNumber, data)
+    // TODO: API call to request revision
+    setIsRevisionOpen(false)
+  }
+
+  const handleCommentSubmit = (comment: string) => {
+    console.log('Comment added:', selectedReview?.documentNumber, comment)
+    // TODO: API call to add comment
+    setIsCommentOpen(false)
+  }
+
   return (
     <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
       {/* Action Buttons */}
@@ -622,25 +676,40 @@ export default function CPQWorkflowLegalPage() {
             <div className="flex items-center gap-2">
               {(review.status === 'pending' || review.status === 'in-review') && (
                 <>
-                  <button className="px-3 py-2 text-sm text-white bg-green-600 rounded-lg hover:bg-green-700 flex items-center gap-1">
+                  <button
+                    onClick={() => handleApprove(review)}
+                    className="px-3 py-2 text-sm text-white bg-green-600 rounded-lg hover:bg-green-700 flex items-center gap-1"
+                  >
                     <CheckCircle className="h-4 w-4" />
                     Approve
                   </button>
-                  <button className="px-3 py-2 text-sm text-white bg-red-600 rounded-lg hover:bg-red-700 flex items-center gap-1">
+                  <button
+                    onClick={() => handleReject(review)}
+                    className="px-3 py-2 text-sm text-white bg-red-600 rounded-lg hover:bg-red-700 flex items-center gap-1"
+                  >
                     <XCircle className="h-4 w-4" />
                     Reject
                   </button>
-                  <button className="px-3 py-2 text-sm text-white bg-orange-600 rounded-lg hover:bg-orange-700 flex items-center gap-1">
+                  <button
+                    onClick={() => handleRequestRevision(review)}
+                    className="px-3 py-2 text-sm text-white bg-orange-600 rounded-lg hover:bg-orange-700 flex items-center gap-1"
+                  >
                     <AlertTriangle className="h-4 w-4" />
                     Request Revision
                   </button>
-                  <button className="px-3 py-2 text-sm text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-1">
+                  <button
+                    onClick={() => handleAddComment(review)}
+                    className="px-3 py-2 text-sm text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-1"
+                  >
                     <MessageSquare className="h-4 w-4" />
                     Add Comment
                   </button>
                 </>
               )}
-              <button className="px-3 py-2 text-sm text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-1">
+              <button
+                onClick={() => handleView(review)}
+                className="px-3 py-2 text-sm text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-1"
+              >
                 <Eye className="h-4 w-4" />
                 View Document
               </button>
@@ -661,6 +730,41 @@ export default function CPQWorkflowLegalPage() {
           <li><strong>Risk Assessment:</strong> Low (standard terms), Medium (minor variations), High (custom clauses), Critical (major liability changes)</li>
         </ul>
       </div>
+
+      {/* Modals */}
+      <ApproveLegalModal
+        isOpen={isApproveOpen}
+        onClose={() => setIsApproveOpen(false)}
+        onApprove={handleApproveSubmit}
+        review={selectedReview}
+      />
+
+      <RejectLegalModal
+        isOpen={isRejectOpen}
+        onClose={() => setIsRejectOpen(false)}
+        onReject={handleRejectSubmit}
+        review={selectedReview}
+      />
+
+      <RequestRevisionModal
+        isOpen={isRevisionOpen}
+        onClose={() => setIsRevisionOpen(false)}
+        onRequestRevision={handleRevisionSubmit}
+        review={selectedReview}
+      />
+
+      <AddCommentModal
+        isOpen={isCommentOpen}
+        onClose={() => setIsCommentOpen(false)}
+        onAddComment={handleCommentSubmit}
+        review={selectedReview}
+      />
+
+      <ViewDocumentModal
+        isOpen={isViewOpen}
+        onClose={() => setIsViewOpen(false)}
+        review={selectedReview}
+      />
     </div>
   )
 }

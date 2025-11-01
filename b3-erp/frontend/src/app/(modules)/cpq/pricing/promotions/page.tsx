@@ -15,24 +15,12 @@ import {
   Tag,
   TrendingUp
 } from 'lucide-react'
-
-interface Promotion {
-  id: string
-  name: string
-  type: 'percentage' | 'fixed-amount' | 'bogo' | 'bundle'
-  value: string
-  startDate: string
-  endDate: string
-  applicableProducts: string[]
-  minPurchase?: number
-  status: 'active' | 'scheduled' | 'expired'
-  usageCount: number
-}
+import { PromotionModal, FilterModal, Promotion } from '@/components/cpq/PromotionModals'
 
 export default function CPQPricingPromotionsPage() {
   const router = useRouter()
 
-  const [promotions] = useState<Promotion[]>([
+  const [promotions, setPromotions] = useState<Promotion[]>([
     {
       id: 'PROMO-001',
       name: 'Festival Mega Sale',
@@ -116,6 +104,12 @@ export default function CPQPricingPromotionsPage() {
     }
   ])
 
+  const [searchQuery, setSearchQuery] = useState('')
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isFilterModalOpen, setIsFilterModalOpen] = useState(false)
+  const [selectedPromotion, setSelectedPromotion] = useState<Promotion | null>(null)
+  const [appliedFilters, setAppliedFilters] = useState<any>(null)
+
   const getTypeColor = (type: string) => {
     const colors: any = {
       percentage: 'bg-blue-100 text-blue-700 border-blue-200',
@@ -135,23 +129,111 @@ export default function CPQPricingPromotionsPage() {
     return colors[status] || colors.active
   }
 
-  const activePromotions = promotions.filter(p => p.status === 'active').length
-  const totalUsage = promotions.reduce((sum, p) => sum + p.usageCount, 0)
+  // Handlers
+  const handleAddPromotion = () => {
+    setSelectedPromotion(null)
+    setIsModalOpen(true)
+  }
+
+  const handleEditPromotion = (promotion: Promotion) => {
+    setSelectedPromotion(promotion)
+    setIsModalOpen(true)
+  }
+
+  const handleSavePromotion = (promotion: Promotion) => {
+    if (selectedPromotion) {
+      setPromotions(promotions.map(p => p.id === promotion.id ? promotion : p))
+    } else {
+      setPromotions([promotion, ...promotions])
+    }
+  }
+
+  const handleToggleStatus = (promotion: Promotion) => {
+    const newStatus = promotion.status === 'active' ? 'scheduled' : 'active'
+    setPromotions(promotions.map(p =>
+      p.id === promotion.id ? { ...p, status: newStatus as Promotion['status'] } : p
+    ))
+  }
+
+  const handleExport = () => {
+    const headers = ['ID', 'Name', 'Type', 'Value', 'Start Date', 'End Date', 'Products', 'Min Purchase', 'Usage', 'Status']
+    const csvData = filteredPromotions.map(promo => [
+      promo.id,
+      `"${promo.name}"`,
+      promo.type,
+      `"${promo.value}"`,
+      promo.startDate,
+      promo.endDate,
+      `"${promo.applicableProducts.join(', ')}"`,
+      promo.minPurchase || 0,
+      promo.usageCount,
+      promo.status
+    ])
+
+    const csv = [headers, ...csvData].map(row => row.join(',')).join('\n')
+    const blob = new Blob([csv], { type: 'text/csv' })
+    const url = window.URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `promotions-${new Date().toISOString().split('T')[0]}.csv`
+    a.click()
+    window.URL.revokeObjectURL(url)
+  }
+
+  const handleApplyFilters = (filters: any) => {
+    setAppliedFilters(filters)
+  }
+
+  // Filtering logic
+  const filteredPromotions = promotions.filter(promo => {
+    const matchesSearch = searchQuery === '' ||
+      promo.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      promo.id.toLowerCase().includes(searchQuery.toLowerCase())
+
+    let matchesFilters = true
+    if (appliedFilters) {
+      if (appliedFilters.types.length > 0 && !appliedFilters.types.includes(promo.type)) {
+        matchesFilters = false
+      }
+      if (appliedFilters.statuses.length > 0 && !appliedFilters.statuses.includes(promo.status)) {
+        matchesFilters = false
+      }
+    }
+
+    return matchesSearch && matchesFilters
+  })
+
+  const activePromotions = filteredPromotions.filter(p => p.status === 'active').length
+  const totalUsage = filteredPromotions.reduce((sum, p) => sum + p.usageCount, 0)
 
   return (
     <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
       {/* Action Buttons */}
       <div className="mb-6 flex justify-end">
         <div className="flex items-center gap-3">
-          <button className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
+          <button
+            onClick={() => setIsFilterModalOpen(true)}
+            className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2"
+          >
             <Filter className="h-4 w-4" />
             Filter
+            {appliedFilters && (appliedFilters.types.length > 0 || appliedFilters.statuses.length > 0) && (
+              <span className="px-2 py-0.5 bg-blue-100 text-blue-700 rounded-full text-xs font-semibold">
+                Active
+              </span>
+            )}
           </button>
-          <button className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
+          <button
+            onClick={handleExport}
+            className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2"
+          >
             <Download className="h-4 w-4" />
             Export
           </button>
-          <button className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 flex items-center gap-2">
+          <button
+            onClick={handleAddPromotion}
+            className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 flex items-center gap-2"
+          >
             <Plus className="h-4 w-4" />
             New Promotion
           </button>
@@ -164,8 +246,8 @@ export default function CPQPricingPromotionsPage() {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Total Promotions</p>
-              <p className="text-2xl font-bold text-blue-900 mt-1">{promotions.length}</p>
-              <p className="text-xs text-blue-700 mt-1">All time campaigns</p>
+              <p className="text-2xl font-bold text-blue-900 mt-1">{filteredPromotions.length}</p>
+              <p className="text-xs text-blue-700 mt-1">{searchQuery || appliedFilters ? 'Matching campaigns' : 'All time campaigns'}</p>
             </div>
             <Gift className="h-10 w-10 text-blue-600" />
           </div>
@@ -229,6 +311,8 @@ export default function CPQPricingPromotionsPage() {
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
           <input
             type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search promotions..."
             className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           />
@@ -252,7 +336,33 @@ export default function CPQPricingPromotionsPage() {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
-              {promotions.map((promo) => (
+              {filteredPromotions.length === 0 ? (
+                <tr>
+                  <td colSpan={8} className="px-4 py-12 text-center text-gray-500">
+                    {searchQuery || appliedFilters ? (
+                      <div>
+                        <p className="text-lg font-medium mb-2">No matching promotions found</p>
+                        <p className="text-sm">Try adjusting your search or filter criteria</p>
+                        <button
+                          onClick={() => {
+                            setSearchQuery('')
+                            setAppliedFilters(null)
+                          }}
+                          className="mt-4 px-4 py-2 text-blue-600 hover:text-blue-700 text-sm font-medium"
+                        >
+                          Clear filters
+                        </button>
+                      </div>
+                    ) : (
+                      <div>
+                        <p className="text-lg font-medium mb-2">No promotions yet</p>
+                        <p className="text-sm">Click "New Promotion" to create your first promotion</p>
+                      </div>
+                    )}
+                  </td>
+                </tr>
+              ) : (
+                filteredPromotions.map((promo) => (
                 <tr key={promo.id} className="hover:bg-gray-50 transition-colors">
                   <td className="px-4 py-4">
                     <div className="text-sm font-medium text-gray-900">{promo.name}</div>
@@ -297,19 +407,24 @@ export default function CPQPricingPromotionsPage() {
                   <td className="px-4 py-4 whitespace-nowrap text-right">
                     <div className="flex items-center justify-end gap-2">
                       <button
+                        onClick={() => handleEditPromotion(promo)}
                         className="p-1.5 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
                         aria-label="Edit"
-                       
                       >
                         <Edit className="h-4 w-4" />
                       </button>
-                      <button className="p-1.5 text-gray-600 hover:bg-gray-50 rounded-lg transition-colors">
-                        {promo.status === 'active' ? <ToggleRight className="h-4 w-4" /> : <ToggleLeft className="h-4 w-4" />}
+                      <button
+                        onClick={() => handleToggleStatus(promo)}
+                        className="p-1.5 text-gray-600 hover:bg-gray-50 rounded-lg transition-colors"
+                        title={promo.status === 'active' ? 'Deactivate' : 'Activate'}
+                      >
+                        {promo.status === 'active' ? <ToggleRight className="h-4 w-4 text-green-600" /> : <ToggleLeft className="h-4 w-4 text-gray-400" />}
                       </button>
                     </div>
                   </td>
                 </tr>
-              ))}
+                ))
+              )}
             </tbody>
           </table>
         </div>
@@ -325,6 +440,23 @@ export default function CPQPricingPromotionsPage() {
           <li><strong>Bundle:</strong> Special pricing when buying multiple products together</li>
         </ul>
       </div>
+
+      {/* Modals */}
+      <PromotionModal
+        isOpen={isModalOpen}
+        onClose={() => {
+          setIsModalOpen(false)
+          setSelectedPromotion(null)
+        }}
+        onSave={handleSavePromotion}
+        promotion={selectedPromotion}
+      />
+
+      <FilterModal
+        isOpen={isFilterModalOpen}
+        onClose={() => setIsFilterModalOpen(false)}
+        onApply={handleApplyFilters}
+      />
     </div>
   )
 }

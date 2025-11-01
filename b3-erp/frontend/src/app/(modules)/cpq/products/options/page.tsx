@@ -14,6 +14,11 @@ import {
   DollarSign,
   Tag
 } from 'lucide-react'
+import {
+  OptionModal,
+  ViewOptionModal,
+  FilterModal
+} from '@/components/cpq/OptionModals'
 
 interface ProductOption {
   id: string
@@ -29,7 +34,7 @@ interface ProductOption {
 export default function CPQProductsOptionsPage() {
   const router = useRouter()
 
-  const [productOptions] = useState<ProductOption[]>([
+  const [productOptions, setProductOptions] = useState<ProductOption[]>([
     {
       id: 'OPT-001',
       name: 'Cabinet Finish',
@@ -92,6 +97,14 @@ export default function CPQProductsOptionsPage() {
     }
   ])
 
+  // Modal states
+  const [isOptionModalOpen, setIsOptionModalOpen] = useState(false)
+  const [isViewModalOpen, setIsViewModalOpen] = useState(false)
+  const [isFilterModalOpen, setIsFilterModalOpen] = useState(false)
+  const [selectedOption, setSelectedOption] = useState<ProductOption | null>(null)
+  const [searchQuery, setSearchQuery] = useState('')
+  const [appliedFilters, setAppliedFilters] = useState<any>(null)
+
   const getTypeColor = (type: string) => {
     const colors: any = {
       dropdown: 'bg-blue-100 text-blue-700 border-blue-200',
@@ -108,20 +121,150 @@ export default function CPQProductsOptionsPage() {
       : 'bg-gray-100 text-gray-700 border-gray-200'
   }
 
+  // Handlers
+  const handleAddOption = () => {
+    setSelectedOption(null)
+    setIsOptionModalOpen(true)
+  }
+
+  const handleEditOption = (option: ProductOption) => {
+    setSelectedOption(option)
+    setIsOptionModalOpen(true)
+  }
+
+  const handleViewOption = (option: ProductOption) => {
+    setSelectedOption(option)
+    setIsViewModalOpen(true)
+  }
+
+  const handleSaveOption = (optionData: Partial<ProductOption>) => {
+    if (selectedOption) {
+      // Update existing option
+      setProductOptions(productOptions.map(o =>
+        o.id === selectedOption.id
+          ? { ...o, ...optionData }
+          : o
+      ))
+    } else {
+      // Create new option
+      const newOption: ProductOption = {
+        id: `OPT-${String(productOptions.length + 1).padStart(3, '0')}`,
+        ...optionData as ProductOption
+      }
+      setProductOptions([...productOptions, newOption])
+    }
+  }
+
+  const handleToggleStatus = (option: ProductOption) => {
+    setProductOptions(productOptions.map(o =>
+      o.id === option.id
+        ? { ...o, status: o.status === 'active' ? 'inactive' : 'active' }
+        : o
+    ))
+  }
+
+  const handleExport = () => {
+    const data = filteredOptions.map(o => ({
+      ID: o.id,
+      Name: o.name,
+      Category: o.category,
+      Type: o.type,
+      Required: o.required ? 'Yes' : 'No',
+      'Price Impact': o.priceImpact,
+      'Available Choices': o.options.join('; '),
+      Status: o.status
+    }))
+
+    const csv = [
+      Object.keys(data[0]).join(','),
+      ...data.map(row => Object.values(row).map(v =>
+        typeof v === 'string' && v.includes(',') ? `"${v}"` : v
+      ).join(','))
+    ].join('\n')
+
+    const blob = new Blob([csv], { type: 'text/csv' })
+    const url = window.URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `product-options-${new Date().toISOString().split('T')[0]}.csv`
+    a.click()
+    window.URL.revokeObjectURL(url)
+  }
+
+  const handleApplyFilters = (filters: any) => {
+    setAppliedFilters(filters)
+  }
+
+  // Filtering logic
+  const filteredOptions = productOptions.filter(option => {
+    // Search filter
+    const matchesSearch = searchQuery === '' ||
+      option.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      option.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      option.id.toLowerCase().includes(searchQuery.toLowerCase())
+
+    // Advanced filters
+    let matchesFilters = true
+    if (appliedFilters) {
+      // Categories filter
+      if (appliedFilters.categories.length > 0 && !appliedFilters.categories.includes(option.category)) {
+        matchesFilters = false
+      }
+
+      // Types filter
+      if (appliedFilters.types.length > 0 && !appliedFilters.types.includes(option.type)) {
+        matchesFilters = false
+      }
+
+      // Required filter
+      if (appliedFilters.required === 'required' && !option.required) {
+        matchesFilters = false
+      }
+      if (appliedFilters.required === 'optional' && option.required) {
+        matchesFilters = false
+      }
+
+      // Status filter
+      if (appliedFilters.status.length > 0 && !appliedFilters.status.includes(option.status)) {
+        matchesFilters = false
+      }
+
+      // Price impact filter (in thousands)
+      const priceImpactInK = option.priceImpact / 1000
+      if (appliedFilters.minPriceImpact && priceImpactInK < parseFloat(appliedFilters.minPriceImpact)) {
+        matchesFilters = false
+      }
+      if (appliedFilters.maxPriceImpact && priceImpactInK > parseFloat(appliedFilters.maxPriceImpact)) {
+        matchesFilters = false
+      }
+    }
+
+    return matchesSearch && matchesFilters
+  })
+
   return (
     <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
       {/* Action Buttons */}
       <div className="mb-6 flex justify-end">
         <div className="flex items-center gap-3">
-          <button className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
+          <button
+            onClick={() => setIsFilterModalOpen(true)}
+            className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2"
+          >
             <Filter className="h-4 w-4" />
             Filter
           </button>
-          <button className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
+          <button
+            onClick={handleExport}
+            className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2"
+          >
             <Download className="h-4 w-4" />
             Export
           </button>
-          <button className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 flex items-center gap-2">
+          <button
+            onClick={handleAddOption}
+            className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 flex items-center gap-2"
+          >
             <Plus className="h-4 w-4" />
             Add Option
           </button>
@@ -134,8 +277,10 @@ export default function CPQProductsOptionsPage() {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Total Options</p>
-              <p className="text-2xl font-bold text-blue-900 mt-1">{productOptions.length}</p>
-              <p className="text-xs text-blue-700 mt-1">Configuration fields</p>
+              <p className="text-2xl font-bold text-blue-900 mt-1">{filteredOptions.length}</p>
+              <p className="text-xs text-blue-700 mt-1">
+                {filteredOptions.length === productOptions.length ? 'Configuration fields' : `of ${productOptions.length} total`}
+              </p>
             </div>
             <Sliders className="h-10 w-10 text-blue-600" />
           </div>
@@ -146,7 +291,7 @@ export default function CPQProductsOptionsPage() {
             <div>
               <p className="text-sm font-medium text-green-600">Active Options</p>
               <p className="text-2xl font-bold text-green-900 mt-1">
-                {productOptions.filter(o => o.status === 'active').length}
+                {filteredOptions.filter(o => o.status === 'active').length}
               </p>
               <p className="text-xs text-green-700 mt-1">Currently available</p>
             </div>
@@ -159,7 +304,7 @@ export default function CPQProductsOptionsPage() {
             <div>
               <p className="text-sm font-medium text-purple-600">Required Options</p>
               <p className="text-2xl font-bold text-purple-900 mt-1">
-                {productOptions.filter(o => o.required).length}
+                {filteredOptions.filter(o => o.required).length}
               </p>
               <p className="text-xs text-purple-700 mt-1">Mandatory fields</p>
             </div>
@@ -172,7 +317,9 @@ export default function CPQProductsOptionsPage() {
             <div>
               <p className="text-sm font-medium text-orange-600">Avg Price Impact</p>
               <p className="text-2xl font-bold text-orange-900 mt-1">
-                ₹{(productOptions.reduce((sum, o) => sum + o.priceImpact, 0) / productOptions.length / 1000).toFixed(0)}K
+                ₹{filteredOptions.length > 0
+                  ? (filteredOptions.reduce((sum, o) => sum + o.priceImpact, 0) / filteredOptions.length / 1000).toFixed(0)
+                  : 0}K
               </p>
               <p className="text-xs text-orange-700 mt-1">Per option</p>
             </div>
@@ -187,6 +334,8 @@ export default function CPQProductsOptionsPage() {
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
           <input
             type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search product options..."
             className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           />
@@ -210,67 +359,119 @@ export default function CPQProductsOptionsPage() {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
-              {productOptions.map((option) => (
-                <tr key={option.id} className="hover:bg-gray-50 transition-colors">
-                  <td className="px-4 py-4 whitespace-nowrap">
-                    <div className="text-sm font-medium text-gray-900">{option.name}</div>
-                    <div className="text-xs text-gray-500">{option.id}</div>
-                  </td>
-                  <td className="px-4 py-4 whitespace-nowrap">
-                    <div className="text-sm text-gray-700">{option.category}</div>
-                  </td>
-                  <td className="px-4 py-4 whitespace-nowrap text-center">
-                    <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full border ${getTypeColor(option.type)}`}>
-                      {option.type}
-                    </span>
-                  </td>
-                  <td className="px-4 py-4 whitespace-nowrap text-center">
-                    {option.required ? (
-                      <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full border bg-red-100 text-red-700 border-red-200">
-                        Required
-                      </span>
-                    ) : (
-                      <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full border bg-gray-100 text-gray-700 border-gray-200">
-                        Optional
-                      </span>
-                    )}
-                  </td>
-                  <td className="px-4 py-4 whitespace-nowrap text-right">
-                    <span className="text-sm font-semibold text-blue-600">
-                      ₹{(option.priceImpact / 1000).toFixed(0)}K
-                    </span>
-                  </td>
-                  <td className="px-4 py-4">
-                    <div className="text-xs text-gray-700 max-w-xs">
-                      {option.options.slice(0, 2).join(', ')}
-                      {option.options.length > 2 && ` +${option.options.length - 2} more`}
-                    </div>
-                  </td>
-                  <td className="px-4 py-4 whitespace-nowrap text-center">
-                    <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full border ${getStatusColor(option.status)}`}>
-                      {option.status}
-                    </span>
-                  </td>
-                  <td className="px-4 py-4 whitespace-nowrap text-right">
-                    <div className="flex items-center justify-end gap-2">
-                      <button
-                        className="p-1.5 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-                        aria-label="Edit"
-                       
-                      >
-                        <Edit className="h-4 w-4" />
-                      </button>
-                      <button className="p-1.5 text-gray-600 hover:bg-gray-50 rounded-lg transition-colors">
-                        {option.status === 'active' ? <ToggleRight className="h-4 w-4" /> : <ToggleLeft className="h-4 w-4" />}
-                      </button>
-                    </div>
+              {filteredOptions.length === 0 ? (
+                <tr>
+                  <td colSpan={8} className="px-4 py-12 text-center">
+                    <Sliders className="h-12 w-12 mx-auto text-gray-400 mb-3" />
+                    <p className="text-gray-600 text-lg">No options found</p>
+                    <p className="text-gray-500 text-sm mt-2">
+                      {searchQuery || appliedFilters
+                        ? 'Try adjusting your search or filters'
+                        : 'Create your first product option to get started'}
+                    </p>
                   </td>
                 </tr>
-              ))}
+              ) : (
+                filteredOptions.map((option) => (
+                  <tr
+                    key={option.id}
+                    onClick={() => handleViewOption(option)}
+                    className="hover:bg-gray-50 transition-colors cursor-pointer"
+                  >
+                    <td className="px-4 py-4 whitespace-nowrap">
+                      <div className="text-sm font-medium text-gray-900">{option.name}</div>
+                      <div className="text-xs text-gray-500">{option.id}</div>
+                    </td>
+                    <td className="px-4 py-4 whitespace-nowrap">
+                      <div className="text-sm text-gray-700">{option.category}</div>
+                    </td>
+                    <td className="px-4 py-4 whitespace-nowrap text-center">
+                      <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full border ${getTypeColor(option.type)}`}>
+                        {option.type}
+                      </span>
+                    </td>
+                    <td className="px-4 py-4 whitespace-nowrap text-center">
+                      {option.required ? (
+                        <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full border bg-red-100 text-red-700 border-red-200">
+                          Required
+                        </span>
+                      ) : (
+                        <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full border bg-gray-100 text-gray-700 border-gray-200">
+                          Optional
+                        </span>
+                      )}
+                    </td>
+                    <td className="px-4 py-4 whitespace-nowrap text-right">
+                      <span className="text-sm font-semibold text-blue-600">
+                        ₹{(option.priceImpact / 1000).toFixed(0)}K
+                      </span>
+                    </td>
+                    <td className="px-4 py-4">
+                      <div className="text-xs text-gray-700 max-w-xs">
+                        {option.options.slice(0, 2).join(', ')}
+                        {option.options.length > 2 && ` +${option.options.length - 2} more`}
+                      </div>
+                    </td>
+                    <td className="px-4 py-4 whitespace-nowrap text-center">
+                      <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full border ${getStatusColor(option.status)}`}>
+                        {option.status}
+                      </span>
+                    </td>
+                    <td className="px-4 py-4 whitespace-nowrap text-right">
+                      <div className="flex items-center justify-end gap-2">
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation()
+                            handleEditOption(option)
+                          }}
+                          className="p-1.5 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                          aria-label="Edit"
+                        >
+                          <Edit className="h-4 w-4" />
+                        </button>
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation()
+                            handleToggleStatus(option)
+                          }}
+                          className="p-1.5 text-gray-600 hover:bg-gray-50 rounded-lg transition-colors"
+                          title={option.status === 'active' ? 'Deactivate' : 'Activate'}
+                        >
+                          {option.status === 'active' ? <ToggleRight className="h-4 w-4 text-green-600" /> : <ToggleLeft className="h-4 w-4 text-gray-400" />}
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>
       </div>
+
+      {/* Modals */}
+      <OptionModal
+        isOpen={isOptionModalOpen}
+        onClose={() => setIsOptionModalOpen(false)}
+        onSave={handleSaveOption}
+        option={selectedOption}
+      />
+
+      <ViewOptionModal
+        isOpen={isViewModalOpen}
+        onClose={() => setIsViewModalOpen(false)}
+        option={selectedOption}
+        onEdit={() => {
+          setIsViewModalOpen(false)
+          setIsOptionModalOpen(true)
+        }}
+      />
+
+      <FilterModal
+        isOpen={isFilterModalOpen}
+        onClose={() => setIsFilterModalOpen(false)}
+        onApply={handleApplyFilters}
+      />
     </div>
   )
 }

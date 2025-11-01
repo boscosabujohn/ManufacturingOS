@@ -18,6 +18,14 @@ import {
   Clock,
   TrendingUp
 } from 'lucide-react';
+import {
+  QuestionnaireModal,
+  QuestionBuilderModal,
+  ViewQuestionnaireModal,
+  AnalyticsModal,
+  PreviewModal,
+  Questionnaire as QuestionnaireType
+} from '@/components/cpq/QuestionnaireModals';
 
 interface Questionnaire {
   id: string;
@@ -45,7 +53,15 @@ export default function QuestionnairePage() {
   const [filterCategory, setFilterCategory] = useState<string>('all');
   const [filterStatus, setFilterStatus] = useState<'all' | 'active' | 'draft' | 'archived'>('all');
 
-  const questionnaires: Questionnaire[] = [
+  // Modal states
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isBuilderOpen, setIsBuilderOpen] = useState(false);
+  const [isViewOpen, setIsViewOpen] = useState(false);
+  const [isAnalyticsOpen, setIsAnalyticsOpen] = useState(false);
+  const [isPreviewOpen, setIsPreviewOpen] = useState(false);
+  const [selectedQuestionnaire, setSelectedQuestionnaire] = useState<Questionnaire | null>(null);
+
+  const [questionnaires, setQuestionnaires] = useState<Questionnaire[]>([
     {
       id: '1',
       questionnaireCode: 'Q-LUX-001',
@@ -274,9 +290,63 @@ export default function QuestionnairePage() {
       lastUpdated: '2025-10-18',
       description: 'Ultra-short lead qualification questionnaire to quickly identify budget range, timeline, and seriousness of kitchen project inquiries.'
     }
-  ];
+  ]);
 
   const categories = ['all', ...Array.from(new Set(questionnaires.map(q => q.category)))];
+
+  // Handlers
+  const handleAddNew = () => {
+    setSelectedQuestionnaire(null);
+    setIsModalOpen(true);
+  };
+
+  const handleEdit = (questionnaire: Questionnaire) => {
+    setSelectedQuestionnaire(questionnaire);
+    setIsModalOpen(true);
+  };
+
+  const handleView = (questionnaire: Questionnaire) => {
+    setSelectedQuestionnaire(questionnaire);
+    setIsViewOpen(true);
+  };
+
+  const handlePreview = (questionnaire: Questionnaire) => {
+    setSelectedQuestionnaire(questionnaire);
+    setIsPreviewOpen(true);
+  };
+
+  const handleBuildQuestions = (questionnaire: Questionnaire) => {
+    setSelectedQuestionnaire(questionnaire);
+    setIsBuilderOpen(true);
+  };
+
+  const handleAnalytics = (questionnaire: Questionnaire) => {
+    setSelectedQuestionnaire(questionnaire);
+    setIsAnalyticsOpen(true);
+  };
+
+  const handleCopy = (questionnaire: Questionnaire) => {
+    const copy: Questionnaire = {
+      ...questionnaire,
+      id: `Q${Date.now()}`,
+      questionnaireCode: `${questionnaire.questionnaireCode}-COPY`,
+      questionnaireName: `${questionnaire.questionnaireName} (Copy)`,
+      status: 'draft',
+      createdDate: new Date().toISOString().split('T')[0],
+      lastUpdated: new Date().toISOString().split('T')[0]
+    };
+    setQuestionnaires([copy, ...questionnaires]);
+  };
+
+  const handleSave = (questionnaire: Questionnaire) => {
+    if (selectedQuestionnaire) {
+      setQuestionnaires(questionnaires.map(q => q.id === questionnaire.id ? questionnaire : q));
+    } else {
+      setQuestionnaires([questionnaire, ...questionnaires]);
+    }
+    setIsModalOpen(false);
+    setSelectedQuestionnaire(null);
+  };
 
   const filteredQuestionnaires = questionnaires.filter(q => {
     const matchesSearch =
@@ -323,7 +393,10 @@ export default function QuestionnairePage() {
             <p className="text-sm text-gray-600">Interactive discovery tools for lead qualification</p>
           </div>
         </div>
-        <button className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+        <button
+          onClick={handleAddNew}
+          className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+        >
           <Plus className="h-4 w-4" />
           New Questionnaire
         </button>
@@ -501,32 +574,37 @@ export default function QuestionnairePage() {
                     <td className="px-4 py-4">
                       <div className="flex items-center gap-2">
                         <button
+                          onClick={() => handlePreview(q)}
                           className="text-blue-600 hover:text-blue-900"
-                         
+                          title="Preview Questionnaire"
                         >
                           <Play className="h-4 w-4" />
                         </button>
                         <button
+                          onClick={() => handleView(q)}
                           className="text-gray-600 hover:text-gray-900"
-                         
+                          title="View Details"
                         >
                           <Eye className="h-4 w-4" />
                         </button>
                         <button
+                          onClick={() => handleEdit(q)}
                           className="text-gray-600 hover:text-gray-900"
-                         
+                          title="Edit Questionnaire"
                         >
                           <Edit2 className="h-4 w-4" />
                         </button>
                         <button
+                          onClick={() => handleCopy(q)}
                           className="text-purple-600 hover:text-purple-900"
-                         
+                          title="Copy Questionnaire"
                         >
                           <Copy className="h-4 w-4" />
                         </button>
                         <button
+                          onClick={() => handleAnalytics(q)}
                           className="text-orange-600 hover:text-orange-900"
-                         
+                          title="View Analytics"
                         >
                           <BarChart3 className="h-4 w-4" />
                         </button>
@@ -544,6 +622,57 @@ export default function QuestionnairePage() {
       <div className="mt-4 text-sm text-gray-600">
         Showing {filteredQuestionnaires.length} of {totalQuestionnaires} questionnaires
       </div>
+
+      {/* Modals */}
+      <QuestionnaireModal
+        isOpen={isModalOpen}
+        onClose={() => {
+          setIsModalOpen(false);
+          setSelectedQuestionnaire(null);
+        }}
+        onSave={handleSave}
+        questionnaire={selectedQuestionnaire}
+      />
+
+      {selectedQuestionnaire && (
+        <>
+          <ViewQuestionnaireModal
+            isOpen={isViewOpen}
+            onClose={() => {
+              setIsViewOpen(false);
+              setSelectedQuestionnaire(null);
+            }}
+            questionnaire={selectedQuestionnaire}
+          />
+
+          <PreviewModal
+            isOpen={isPreviewOpen}
+            onClose={() => {
+              setIsPreviewOpen(false);
+              setSelectedQuestionnaire(null);
+            }}
+            questionnaire={selectedQuestionnaire}
+          />
+
+          <QuestionBuilderModal
+            isOpen={isBuilderOpen}
+            onClose={() => {
+              setIsBuilderOpen(false);
+              setSelectedQuestionnaire(null);
+            }}
+            questionnaire={selectedQuestionnaire}
+          />
+
+          <AnalyticsModal
+            isOpen={isAnalyticsOpen}
+            onClose={() => {
+              setIsAnalyticsOpen(false);
+              setSelectedQuestionnaire(null);
+            }}
+            questionnaire={selectedQuestionnaire}
+          />
+        </>
+      )}
     </div>
   );
 }

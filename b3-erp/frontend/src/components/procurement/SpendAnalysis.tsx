@@ -41,6 +41,12 @@ import {
   Percent
 } from 'lucide-react'
 import {
+  CreateCustomReportModal,
+  ExportReportModal,
+  ScheduleReportModal,
+  DashboardCustomizationModal
+} from '@/components/procurement/AnalyticsModals'
+import {
   LineChart,
   Line,
   AreaChart,
@@ -97,6 +103,12 @@ export default function SpendAnalysis() {
   const [selectedPeriod, setSelectedPeriod] = useState('ytd')
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [showDrillDown, setShowDrillDown] = useState(false)
+
+  // Modal states
+  const [isCreateReportModalOpen, setIsCreateReportModalOpen] = useState(false)
+  const [isExportModalOpen, setIsExportModalOpen] = useState(false)
+  const [isScheduleReportModalOpen, setIsScheduleReportModalOpen] = useState(false)
+  const [isDashboardCustomizationModalOpen, setIsDashboardCustomizationModalOpen] = useState(false)
 
   // Mock data
   const spendByCategory: SpendData[] = [
@@ -281,9 +293,33 @@ export default function SpendAnalysis() {
               <option value="month">This Month</option>
               <option value="custom">Custom Range</option>
             </select>
-            <button className="px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition flex items-center gap-2">
+            <button
+              onClick={() => setIsCreateReportModalOpen(true)}
+              className="px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition flex items-center gap-2"
+            >
+              <FileText className="w-4 h-4" />
+              Create Report
+            </button>
+            <button
+              onClick={() => setIsScheduleReportModalOpen(true)}
+              className="px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition flex items-center gap-2"
+            >
+              <Calendar className="w-4 h-4" />
+              Schedule
+            </button>
+            <button
+              onClick={() => setIsExportModalOpen(true)}
+              className="px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition flex items-center gap-2"
+            >
               <Download className="w-4 h-4" />
               Export
+            </button>
+            <button
+              onClick={() => setIsDashboardCustomizationModalOpen(true)}
+              className="px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition flex items-center gap-2"
+            >
+              <Settings className="w-4 h-4" />
+              Customize
             </button>
           </div>
         </div>
@@ -990,6 +1026,44 @@ export default function SpendAnalysis() {
           )}
         </div>
       </div>
+
+      {/* Spend Analysis Modals */}
+      <CreateCustomReportModal
+        isOpen={isCreateReportModalOpen}
+        onClose={() => setIsCreateReportModalOpen(false)}
+        onSubmit={(data) => {
+          console.log('Creating spend analysis report:', data)
+          setIsCreateReportModalOpen(false)
+        }}
+      />
+
+      <ExportReportModal
+        isOpen={isExportModalOpen}
+        onClose={() => setIsExportModalOpen(false)}
+        onSubmit={(options) => {
+          console.log('Exporting spend analysis:', options)
+          setIsExportModalOpen(false)
+        }}
+        reportName="Spend Analysis Report"
+      />
+
+      <ScheduleReportModal
+        isOpen={isScheduleReportModalOpen}
+        onClose={() => setIsScheduleReportModalOpen(false)}
+        onSubmit={(data) => {
+          console.log('Scheduling spend analysis:', data)
+          setIsScheduleReportModalOpen(false)
+        }}
+      />
+
+      <DashboardCustomizationModal
+        isOpen={isDashboardCustomizationModalOpen}
+        onClose={() => setIsDashboardCustomizationModalOpen(false)}
+        onSubmit={(data) => {
+          console.log('Customizing spend dashboard:', data)
+          setIsDashboardCustomizationModalOpen(false)
+        }}
+      />
     </div>
   )
 }

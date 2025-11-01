@@ -36,6 +36,12 @@ import {
   TrendingDown
 } from 'lucide-react'
 import {
+  CreateSourcingProjectModal,
+  AnalyzeSpendModal,
+  DevelopStrategyModal,
+  TrackImplementationModal
+} from '@/components/procurement/StrategicSourcingModals'
+import {
   LineChart,
   Line,
   AreaChart,
@@ -98,6 +104,13 @@ interface SupplierOpportunity {
 
 export default function StrategicSourcing() {
   const [activeTab, setActiveTab] = useState('overview')
+
+  // Modal states
+  const [isCreateProjectModalOpen, setIsCreateProjectModalOpen] = useState(false)
+  const [isAnalyzeSpendModalOpen, setIsAnalyzeSpendModalOpen] = useState(false)
+  const [isDevelopStrategyModalOpen, setIsDevelopStrategyModalOpen] = useState(false)
+  const [isTrackImplementationModalOpen, setIsTrackImplementationModalOpen] = useState(false)
+  const [selectedProject, setSelectedProject] = useState<any>(null)
   const [selectedStrategy, setSelectedStrategy] = useState<SourcingStrategy | null>(null)
   const [filterCategory, setFilterCategory] = useState('all')
   const [dateRange, setDateRange] = useState('quarter')
@@ -247,13 +260,33 @@ export default function StrategicSourcing() {
             <p className="text-gray-600 mt-2">Optimize procurement strategies and maximize cost savings</p>
           </div>
           <div className="flex items-center gap-3">
-            <button className="px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition flex items-center gap-2">
-              <Download className="w-4 h-4" />
-              Export Report
+            <button
+              onClick={() => setIsAnalyzeSpendModalOpen(true)}
+              className="px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition flex items-center gap-2"
+            >
+              <BarChart3 className="w-4 h-4" />
+              Analyze Spend
             </button>
-            <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition flex items-center gap-2">
+            <button
+              onClick={() => setIsDevelopStrategyModalOpen(true)}
+              className="px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition flex items-center gap-2"
+            >
+              <Award className="w-4 h-4" />
+              Develop Strategy
+            </button>
+            <button
+              onClick={() => setIsTrackImplementationModalOpen(true)}
+              className="px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition flex items-center gap-2"
+            >
+              <Activity className="w-4 h-4" />
+              Track Progress
+            </button>
+            <button
+              onClick={() => setIsCreateProjectModalOpen(true)}
+              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition flex items-center gap-2"
+            >
               <Plus className="w-4 h-4" />
-              New Strategy
+              New Project
             </button>
           </div>
         </div>
@@ -807,6 +840,44 @@ export default function StrategicSourcing() {
           )}
         </div>
       </div>
+
+      {/* Strategic Sourcing Modals */}
+      <CreateSourcingProjectModal
+        isOpen={isCreateProjectModalOpen}
+        onClose={() => setIsCreateProjectModalOpen(false)}
+        onSubmit={(data) => {
+          console.log('Create sourcing project:', data)
+          setIsCreateProjectModalOpen(false)
+        }}
+      />
+
+      <AnalyzeSpendModal
+        isOpen={isAnalyzeSpendModalOpen}
+        onClose={() => setIsAnalyzeSpendModalOpen(false)}
+        onSubmit={(data) => {
+          console.log('Analyze spend:', data)
+          setIsAnalyzeSpendModalOpen(false)
+        }}
+      />
+
+      <DevelopStrategyModal
+        isOpen={isDevelopStrategyModalOpen}
+        onClose={() => setIsDevelopStrategyModalOpen(false)}
+        onSubmit={(data) => {
+          console.log('Develop strategy:', data)
+          setIsDevelopStrategyModalOpen(false)
+        }}
+      />
+
+      <TrackImplementationModal
+        isOpen={isTrackImplementationModalOpen}
+        onClose={() => setIsTrackImplementationModalOpen(false)}
+        project={selectedProject}
+        onSubmit={(data) => {
+          console.log('Track implementation:', data)
+          setIsTrackImplementationModalOpen(false)
+        }}
+      />
     </div>
   )
 }

@@ -15,8 +15,20 @@ import {
   Download,
   Plus,
   RefreshCw,
-  BarChart3
+  BarChart3,
+  Play
 } from 'lucide-react';
+import {
+  CreateScheduleModal,
+  StartSessionModal,
+  PerformCountModal,
+  ViewSessionDetailsModal,
+  VarianceAnalysisModal,
+  CycleCountSchedule,
+  CycleCountSession,
+  CycleCountVarianceAnalysis,
+  CycleCountItem
+} from '@/components/inventory/InventoryCycleCountModals';
 
 interface CycleCount {
   id: number;
@@ -37,6 +49,17 @@ export default function CycleCountPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedStatus, setSelectedStatus] = useState('all');
   const [selectedType, setSelectedType] = useState('all');
+
+  // Modal states
+  const [isCreateScheduleModalOpen, setIsCreateScheduleModalOpen] = useState(false);
+  const [isStartSessionModalOpen, setIsStartSessionModalOpen] = useState(false);
+  const [isPerformCountModalOpen, setIsPerformCountModalOpen] = useState(false);
+  const [isViewDetailsModalOpen, setIsViewDetailsModalOpen] = useState(false);
+  const [isVarianceAnalysisModalOpen, setIsVarianceAnalysisModalOpen] = useState(false);
+
+  // Selected data
+  const [selectedSession, setSelectedSession] = useState<CycleCountSession | null>(null);
+  const [selectedVarianceAnalysis, setSelectedVarianceAnalysis] = useState<CycleCountVarianceAnalysis | null>(null);
 
   const [cycleCounts, setCycleCounts] = useState<CycleCount[]>([
     {
@@ -169,9 +192,249 @@ export default function CycleCountPage() {
                          count.zone.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesStatus = selectedStatus === 'all' || count.status === selectedStatus;
     const matchesType = selectedType === 'all' || count.countType === selectedType;
-    
+
     return matchesSearch && matchesStatus && matchesType;
   });
+
+  // Helper function to convert CycleCount to CycleCountSession
+  const convertToSession = (count: CycleCount): CycleCountSession => {
+    // Generate mock items for the session
+    const mockItems: CycleCountItem[] = Array.from({ length: count.itemsToCount }, (_, index) => ({
+      itemId: `item-${count.id}-${index + 1}`,
+      itemCode: `ITM-${String(index + 1).padStart(4, '0')}`,
+      itemName: `Item ${index + 1}`,
+      location: count.warehouse,
+      zone: count.zone,
+      bin: `BIN-${String(index + 1).padStart(3, '0')}`,
+      expectedQuantity: Math.floor(Math.random() * 100) + 10,
+      countedQuantity: index < count.itemsCounted ? Math.floor(Math.random() * 100) + 10 : 0,
+      variance: 0,
+      variancePercentage: 0,
+      status: index < count.itemsCounted ? 'counted' : 'pending',
+      countedBy: index < count.itemsCounted ? count.assignedTo : undefined,
+      countedDate: index < count.itemsCounted ? count.scheduledDate : undefined,
+      notes: ''
+    }));
+
+    // Calculate variance for counted items
+    mockItems.forEach(item => {
+      if (item.countedQuantity > 0) {
+        item.variance = item.countedQuantity - item.expectedQuantity;
+        item.variancePercentage = item.expectedQuantity > 0
+          ? (item.variance / item.expectedQuantity) * 100
+          : 0;
+        if (Math.abs(item.variancePercentage) > 5) {
+          item.status = 'discrepancy';
+        }
+      }
+    });
+
+    const sessionStatus: 'draft' | 'in-progress' | 'completed' | 'verified' =
+      count.status === 'scheduled' ? 'draft' :
+      count.status === 'in-progress' ? 'in-progress' :
+      count.status === 'completed' ? 'completed' :
+      'verified';
+
+    return {
+      sessionId: count.countNumber,
+      sessionName: `${count.zone} - ${count.countType} Count`,
+      warehouse: count.warehouse,
+      zones: [count.zone],
+      countDate: count.scheduledDate,
+      assignedTo: count.assignedTo,
+      items: mockItems,
+      status: sessionStatus,
+      progress: count.itemsToCount > 0 ? Math.round((count.itemsCounted / count.itemsToCount) * 100) : 0,
+      totalItems: count.itemsToCount,
+      countedItems: count.itemsCounted,
+      discrepancies: count.variancesFound,
+      notes: `${count.countType} type cycle count for ${count.zone}`
+    };
+  };
+
+  // Helper function to generate variance analysis
+  const generateVarianceAnalysis = (session: CycleCountSession): CycleCountVarianceAnalysis => {
+    const itemsWithVariance = session.items.filter(item => item.variance !== 0);
+    const highVarianceItems = session.items
+      .filter(item => Math.abs(item.variancePercentage) > 5)
+      .sort((a, b) => Math.abs(b.variancePercentage) - Math.abs(a.variancePercentage))
+      .slice(0, 10);
+
+    const totalVariance = session.items.reduce((sum, item) => sum + Math.abs(item.variance), 0);
+    const totalExpected = session.items.reduce((sum, item) => sum + item.expectedQuantity, 0);
+    const variancePercentage = totalExpected > 0 ? (totalVariance / totalExpected) * 100 : 0;
+
+    // Group by category (mock categories)
+    const categories = ['Raw Materials', 'Components', 'Finished Goods', 'Consumables'];
+    const varianceByCategory = categories.map(category => {
+      const categoryItems = session.items.slice(0, Math.floor(session.items.length / categories.length));
+      return {
+        category,
+        variance: categoryItems.reduce((sum, item) => sum + item.variance, 0),
+        count: categoryItems.filter(item => item.variance !== 0).length
+      };
+    });
+
+    // Group by zone
+    const varianceByZone = session.zones.map(zone => ({
+      zone,
+      variance: session.items
+        .filter(item => item.zone === zone)
+        .reduce((sum, item) => sum + item.variance, 0),
+      count: session.items
+        .filter(item => item.zone === zone && item.variance !== 0).length
+    }));
+
+    return {
+      sessionId: session.sessionId,
+      totalVariance,
+      variancePercentage,
+      itemsWithVariance: itemsWithVariance.length,
+      highVarianceItems,
+      varianceByCategory,
+      varianceByZone,
+      recommendedActions: [
+        'Review high variance items with physical verification team',
+        'Investigate potential systematic counting errors in affected zones',
+        'Update inventory records after verification',
+        'Schedule recount for items with variance > 10%',
+        'Review storage and handling procedures for affected categories'
+      ]
+    };
+  };
+
+  // Modal handlers
+  const handleCreateSchedule = (data: CycleCountSchedule) => {
+    // TODO: API call to create schedule
+    console.log('Creating schedule:', data);
+    setIsCreateScheduleModalOpen(false);
+    // Refresh data after creation
+  };
+
+  const handleStartSession = (data: CycleCountSession) => {
+    // TODO: API call to start session
+    console.log('Starting session:', data);
+
+    // Add new count to the list
+    const newCount: CycleCount = {
+      id: cycleCounts.length + 1,
+      countNumber: data.sessionId,
+      warehouse: data.warehouse,
+      zone: data.zones[0] || 'Unknown Zone',
+      countType: 'ABC', // Default, should be from form
+      scheduledDate: data.countDate,
+      assignedTo: data.assignedTo,
+      itemsToCount: data.totalItems,
+      itemsCounted: data.countedItems,
+      variancesFound: data.discrepancies,
+      status: 'in-progress',
+      accuracy: 0
+    };
+
+    setCycleCounts([...cycleCounts, newCount]);
+    setIsStartSessionModalOpen(false);
+  };
+
+  const handleUpdateCount = (itemId: string, countedQuantity: number, notes?: string) => {
+    // TODO: API call to update item count
+    console.log('Updating count:', { itemId, countedQuantity, notes });
+
+    if (selectedSession) {
+      const updatedItems = selectedSession.items.map(item => {
+        if (item.itemId === itemId) {
+          const variance = countedQuantity - item.expectedQuantity;
+          const variancePercentage = item.expectedQuantity > 0
+            ? (variance / item.expectedQuantity) * 100
+            : 0;
+
+          return {
+            ...item,
+            countedQuantity,
+            variance,
+            variancePercentage,
+            status: (Math.abs(variancePercentage) > 5 ? 'discrepancy' : 'counted') as 'pending' | 'counted' | 'verified' | 'discrepancy',
+            notes: notes || item.notes,
+            countedBy: selectedSession.assignedTo,
+            countedDate: new Date().toISOString().split('T')[0]
+          };
+        }
+        return item;
+      });
+
+      const countedItems = updatedItems.filter(item => item.countedQuantity > 0).length;
+      const discrepancies = updatedItems.filter(item => item.status === 'discrepancy').length;
+      const progress = Math.round((countedItems / updatedItems.length) * 100);
+
+      const updatedSession: CycleCountSession = {
+        ...selectedSession,
+        items: updatedItems,
+        countedItems,
+        discrepancies,
+        progress
+      };
+
+      setSelectedSession(updatedSession);
+
+      // Update the main cycleCounts array
+      setCycleCounts(cycleCounts.map(count =>
+        count.countNumber === selectedSession.sessionId
+          ? { ...count, itemsCounted: countedItems, variancesFound: discrepancies }
+          : count
+      ));
+    }
+  };
+
+  const handleViewDetails = (count: CycleCount) => {
+    const session = convertToSession(count);
+    setSelectedSession(session);
+    setIsViewDetailsModalOpen(true);
+  };
+
+  const handleCompleteSession = () => {
+    // TODO: API call to complete session
+    if (selectedSession) {
+      console.log('Completing session:', selectedSession.sessionId);
+
+      // Update the status in cycleCounts
+      setCycleCounts(cycleCounts.map(count =>
+        count.countNumber === selectedSession.sessionId
+          ? { ...count, status: 'completed' }
+          : count
+      ));
+
+      // Update selected session status
+      setSelectedSession({
+        ...selectedSession,
+        status: 'completed'
+      });
+    }
+  };
+
+  const handleViewVarianceAnalysis = () => {
+    if (selectedSession) {
+      const analysis = generateVarianceAnalysis(selectedSession);
+      setSelectedVarianceAnalysis(analysis);
+      setIsVarianceAnalysisModalOpen(true);
+    }
+  };
+
+  const handleVarianceClick = (count: CycleCount) => {
+    if (count.variancesFound > 0) {
+      const session = convertToSession(count);
+      const analysis = generateVarianceAnalysis(session);
+      setSelectedVarianceAnalysis(analysis);
+      setIsVarianceAnalysisModalOpen(true);
+    }
+  };
+
+  const handlePerformCount = (count: CycleCount) => {
+    const session = convertToSession(count);
+    setSelectedSession(session);
+    setIsPerformCountModalOpen(true);
+  };
+
+  // Check if there's an in-progress session
+  const inProgressSession = cycleCounts.find(c => c.status === 'in-progress');
 
   return (
     <div className="p-6 space-y-6">
@@ -185,6 +448,15 @@ export default function CycleCountPage() {
           <p className="text-gray-600 mt-1">Manage and track inventory cycle counting activities</p>
         </div>
         <div className="flex items-center space-x-3">
+          {inProgressSession && (
+            <button
+              onClick={() => handlePerformCount(inProgressSession)}
+              className="px-4 py-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700 flex items-center space-x-2"
+            >
+              <ClipboardList className="w-4 h-4" />
+              <span>Perform Count</span>
+            </button>
+          )}
           <button className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center space-x-2">
             <RefreshCw className="w-4 h-4" />
             <span>Refresh</span>
@@ -193,7 +465,17 @@ export default function CycleCountPage() {
             <Download className="w-4 h-4" />
             <span>Export</span>
           </button>
-          <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center space-x-2">
+          <button
+            onClick={() => setIsStartSessionModalOpen(true)}
+            className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 flex items-center space-x-2"
+          >
+            <Play className="w-4 h-4" />
+            <span>Start Session</span>
+          </button>
+          <button
+            onClick={() => setIsCreateScheduleModalOpen(true)}
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center space-x-2"
+          >
             <Plus className="w-4 h-4" />
             <span>Schedule Count</span>
           </button>
@@ -343,7 +625,11 @@ export default function CycleCountPage() {
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {filteredCounts.map((count) => (
-                <tr key={count.id} className="hover:bg-gray-50">
+                <tr
+                  key={count.id}
+                  className="hover:bg-gray-50 cursor-pointer"
+                  onClick={() => handleViewDetails(count)}
+                >
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                     {count.countNumber}
                   </td>
@@ -378,9 +664,15 @@ export default function CycleCountPage() {
                       </span>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td
+                    className="px-6 py-4 whitespace-nowrap"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleVarianceClick(count);
+                    }}
+                  >
                     {count.variancesFound > 0 ? (
-                      <span className="text-sm font-semibold text-red-600">
+                      <span className="text-sm font-semibold text-red-600 hover:text-red-800 cursor-pointer underline">
                         {count.variancesFound}
                       </span>
                     ) : (
@@ -403,7 +695,13 @@ export default function CycleCountPage() {
                     </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm">
-                    <button className="text-blue-600 hover:text-blue-800">
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleViewDetails(count);
+                      }}
+                      className="text-blue-600 hover:text-blue-800"
+                    >
                       View Details
                     </button>
                   </td>
@@ -420,6 +718,40 @@ export default function CycleCountPage() {
           </div>
         )}
       </div>
+
+      {/* Modals */}
+      <CreateScheduleModal
+        isOpen={isCreateScheduleModalOpen}
+        onClose={() => setIsCreateScheduleModalOpen(false)}
+        onSubmit={handleCreateSchedule}
+      />
+
+      <StartSessionModal
+        isOpen={isStartSessionModalOpen}
+        onClose={() => setIsStartSessionModalOpen(false)}
+        onSubmit={handleStartSession}
+      />
+
+      <PerformCountModal
+        isOpen={isPerformCountModalOpen}
+        onClose={() => setIsPerformCountModalOpen(false)}
+        session={selectedSession}
+        onUpdateCount={handleUpdateCount}
+      />
+
+      <ViewSessionDetailsModal
+        isOpen={isViewDetailsModalOpen}
+        onClose={() => setIsViewDetailsModalOpen(false)}
+        session={selectedSession}
+        onComplete={handleCompleteSession}
+        onViewVariance={handleViewVarianceAnalysis}
+      />
+
+      <VarianceAnalysisModal
+        isOpen={isVarianceAnalysisModalOpen}
+        onClose={() => setIsVarianceAnalysisModalOpen(false)}
+        analysis={selectedVarianceAnalysis}
+      />
     </div>
   );
 }

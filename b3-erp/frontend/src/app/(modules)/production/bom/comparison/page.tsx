@@ -15,6 +15,7 @@ import {
   Download,
   Package
 } from 'lucide-react';
+import { ExportComparisonModal } from '@/components/production/bom/BOMExportModals';
 
 interface BOMVersion {
   code: string;
@@ -48,6 +49,7 @@ export default function BOMComparisonPage() {
   const [selectedVersion1, setSelectedVersion1] = useState('v2.1-r3');
   const [selectedVersion2, setSelectedVersion2] = useState('v2.0-r2');
   const [filterChanges, setFilterChanges] = useState<'all' | 'changes-only'>('all');
+  const [isExportOpen, setIsExportOpen] = useState(false);
 
   const availableVersions: BOMVersion[] = [
     { code: 'v2.1-r3', version: 'v2.1', revision: 3, date: '2025-09-20' },
@@ -302,6 +304,17 @@ export default function BOMComparisonPage() {
     ? comparisons.filter(c => c.changeType !== 'unchanged')
     : comparisons;
 
+  // Handler functions
+  const handleExport = () => {
+    setIsExportOpen(true);
+  };
+
+  const handleExportSubmit = (exportConfig: any) => {
+    console.log('Export configuration:', exportConfig);
+    // TODO: Implement export API call
+    setIsExportOpen(false);
+  };
+
   const getChangeTypeInfo = (changeType: string) => {
     const types = {
       'unchanged': { color: 'bg-gray-100 text-gray-800', icon: Equal, label: 'Unchanged' },
@@ -361,7 +374,10 @@ export default function BOMComparisonPage() {
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <button className="flex items-center gap-2 bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200">
+          <button
+            onClick={handleExport}
+            className="flex items-center gap-2 bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200"
+          >
             <Download className="h-4 w-4" />
             Export Report
           </button>
@@ -597,6 +613,17 @@ export default function BOMComparisonPage() {
       <div className="mt-4 text-sm text-gray-600">
         Showing {filteredComparisons.length} of {comparisons.length} components
       </div>
+
+      {/* Modal */}
+      <ExportComparisonModal
+        isOpen={isExportOpen}
+        onClose={() => setIsExportOpen(false)}
+        onExport={handleExportSubmit}
+        dateRange={{
+          from: availableVersions.find(v => v.code === selectedVersion2)?.date || '',
+          to: availableVersions.find(v => v.code === selectedVersion1)?.date || ''
+        }}
+      />
     </div>
   );
 }

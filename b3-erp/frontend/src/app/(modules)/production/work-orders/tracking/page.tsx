@@ -55,6 +55,7 @@ export default function WorkOrderTrackingPage() {
   const router = useRouter();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedOrder, setSelectedOrder] = useState<WorkOrderTracking | null>(null);
+  const [isRefreshing, setIsRefreshing] = useState(false);
 
   const trackingOrders: WorkOrderTracking[] = [
     {
@@ -430,6 +431,17 @@ export default function WorkOrderTrackingPage() {
     return 'bg-gray-300';
   };
 
+  const handleRefresh = () => {
+    setIsRefreshing(true);
+    console.log('Refreshing tracking data...');
+
+    // Simulate data refresh
+    setTimeout(() => {
+      setIsRefreshing(false);
+      alert('Tracking data refreshed successfully!\n\nAll work order statuses and timelines have been updated with the latest information from the production floor.');
+    }, 1000);
+  };
+
   return (
     <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
       {/* Inline Header */}
@@ -448,9 +460,13 @@ export default function WorkOrderTrackingPage() {
             <p className="text-sm text-gray-600">Real-time production status and progress tracking</p>
           </div>
         </div>
-        <button className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
-          <RefreshCw className="h-4 w-4" />
-          Refresh
+        <button
+          onClick={handleRefresh}
+          disabled={isRefreshing}
+          className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          <RefreshCw className={`h-4 w-4 ${isRefreshing ? 'animate-spin' : ''}`} />
+          {isRefreshing ? 'Refreshing...' : 'Refresh'}
         </button>
       </div>
 

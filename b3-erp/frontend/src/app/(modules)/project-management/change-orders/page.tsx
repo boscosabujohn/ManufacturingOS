@@ -1,7 +1,21 @@
 'use client';
 
 import { useState } from 'react';
-import { FileEdit, Plus, CheckCircle, Clock, XCircle, AlertTriangle, DollarSign, Calendar, Eye, Download } from 'lucide-react';
+import { FileEdit, Plus, CheckCircle, Clock, XCircle, AlertTriangle, DollarSign, Calendar, Eye, Download, Edit, History, Upload, TrendingUp, Settings, Users, BarChart3 } from 'lucide-react';
+import {
+  CreateChangeOrderModal,
+  EditChangeOrderModal,
+  ApprovalModal,
+  ImpactAnalysisModal,
+  ImplementationTrackingModal,
+  ChangeOrderHistoryModal,
+  BulkChangeOrderModal,
+  AttachmentManagementModal,
+  FinancialImpactDashboardModal,
+  ScheduleImpactAnalysisModal,
+  ExportChangeOrdersModal,
+  StakeholderNotificationModal,
+} from '@/components/project-management/ChangeOrderModals';
 
 interface ChangeOrder {
   id: string;
@@ -39,6 +53,20 @@ export default function ChangeOrdersPage() {
   const [selectedOrder, setSelectedOrder] = useState<ChangeOrder | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
+
+  // Modal states
+  const [showCreateModal, setShowCreateModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [showApprovalModal, setShowApprovalModal] = useState(false);
+  const [showImpactAnalysis, setShowImpactAnalysis] = useState(false);
+  const [showImplementationTracking, setShowImplementationTracking] = useState(false);
+  const [showHistory, setShowHistory] = useState(false);
+  const [showBulkActions, setShowBulkActions] = useState(false);
+  const [showAttachments, setShowAttachments] = useState(false);
+  const [showFinancialDashboard, setShowFinancialDashboard] = useState(false);
+  const [showScheduleAnalysis, setShowScheduleAnalysis] = useState(false);
+  const [showExport, setShowExport] = useState(false);
+  const [showNotification, setShowNotification] = useState(false);
 
   const mockChangeOrders: ChangeOrder[] = [
     {
@@ -388,13 +416,120 @@ export default function ChangeOrdersPage() {
     }
   };
 
+  // Modal handlers
+  const handleCreateOrder = (data: any) => {
+    console.log('Creating change order:', data);
+    // Implementation would go here
+  };
+
+  const handleUpdateOrder = (data: any) => {
+    console.log('Updating change order:', data);
+    // Implementation would go here
+  };
+
+  const handleApproval = (data: any) => {
+    console.log('Approval decision:', data);
+    // Implementation would go here
+  };
+
+  const handleImplementationUpdate = (data: any) => {
+    console.log('Implementation update:', data);
+    // Implementation would go here
+  };
+
+  const handleBulkAction = (action: string, orders: string[]) => {
+    console.log('Bulk action:', action, orders);
+    // Implementation would go here
+  };
+
+  const handleUploadAttachments = (files: File[]) => {
+    console.log('Uploading attachments:', files);
+    // Implementation would go here
+  };
+
+  const handleExport = (format: string, options: any) => {
+    console.log('Exporting:', format, options);
+    // Implementation would go here
+  };
+
+  const handleSendNotification = (data: any) => {
+    console.log('Sending notification:', data);
+    // Implementation would go here
+  };
+
+  // Helper functions to open modals with specific order
+  const openEditModal = (order: ChangeOrder) => {
+    setSelectedOrder(order);
+    setShowEditModal(true);
+  };
+
+  const openApprovalModal = (order: ChangeOrder) => {
+    setSelectedOrder(order);
+    setShowApprovalModal(true);
+  };
+
+  const openImpactAnalysis = (order: ChangeOrder) => {
+    setSelectedOrder(order);
+    setShowImpactAnalysis(true);
+  };
+
+  const openImplementationTracking = (order: ChangeOrder) => {
+    setSelectedOrder(order);
+    setShowImplementationTracking(true);
+  };
+
+  const openHistory = (order: ChangeOrder) => {
+    setSelectedOrder(order);
+    setShowHistory(true);
+  };
+
+  const openAttachments = (order: ChangeOrder) => {
+    setSelectedOrder(order);
+    setShowAttachments(true);
+  };
+
+  const openNotification = (order: ChangeOrder) => {
+    setSelectedOrder(order);
+    setShowNotification(true);
+  };
+
   return (
     <div className="w-full h-screen overflow-y-auto overflow-x-hidden">
       <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
         {/* Header Actions */}
-        <div className="flex justify-end mb-4">
+        <div className="flex justify-between mb-4">
+          <div className="flex gap-2">
+            <button
+              onClick={() => setShowFinancialDashboard(true)}
+              className="flex items-center space-x-2 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200"
+            >
+              <BarChart3 className="h-5 w-5" />
+              <span>Financial Dashboard</span>
+            </button>
+            <button
+              onClick={() => setShowScheduleAnalysis(true)}
+              className="flex items-center space-x-2 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200"
+            >
+              <Calendar className="h-5 w-5" />
+              <span>Schedule Analysis</span>
+            </button>
+            <button
+              onClick={() => setShowBulkActions(true)}
+              className="flex items-center space-x-2 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200"
+            >
+              <FileEdit className="h-5 w-5" />
+              <span>Bulk Actions</span>
+            </button>
+            <button
+              onClick={() => setShowExport(true)}
+              className="flex items-center space-x-2 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200"
+            >
+              <Download className="h-5 w-5" />
+              <span>Export</span>
+            </button>
+          </div>
           <button
-            onClick={() => setShowAddModal(true)}
+            onClick={() => setShowCreateModal(true)}
             className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
           >
             <Plus className="h-5 w-5" />
@@ -588,12 +723,64 @@ export default function ChangeOrdersPage() {
                     </div>
                   </td>
                   <td className="px-4 py-4 text-center">
-                    <button
-                      onClick={() => setSelectedOrder(order)}
-                      className="text-blue-600 hover:text-blue-800"
-                    >
-                      <Eye className="h-5 w-5" />
-                    </button>
+                    <div className="flex items-center justify-center gap-2">
+                      <button
+                        onClick={() => setSelectedOrder(order)}
+                        className="text-blue-600 hover:text-blue-800"
+                        title="View Details"
+                      >
+                        <Eye className="h-5 w-5" />
+                      </button>
+                      <button
+                        onClick={() => openEditModal(order)}
+                        className="text-green-600 hover:text-green-800"
+                        title="Edit"
+                      >
+                        <Edit className="h-5 w-5" />
+                      </button>
+                      <button
+                        onClick={() => openApprovalModal(order)}
+                        className="text-purple-600 hover:text-purple-800"
+                        title="Approve/Reject"
+                      >
+                        <CheckCircle className="h-5 w-5" />
+                      </button>
+                      <button
+                        onClick={() => openImpactAnalysis(order)}
+                        className="text-orange-600 hover:text-orange-800"
+                        title="Impact Analysis"
+                      >
+                        <TrendingUp className="h-5 w-5" />
+                      </button>
+                      <button
+                        onClick={() => openImplementationTracking(order)}
+                        className="text-indigo-600 hover:text-indigo-800"
+                        title="Implementation"
+                      >
+                        <Settings className="h-5 w-5" />
+                      </button>
+                      <button
+                        onClick={() => openHistory(order)}
+                        className="text-teal-600 hover:text-teal-800"
+                        title="History"
+                      >
+                        <History className="h-5 w-5" />
+                      </button>
+                      <button
+                        onClick={() => openAttachments(order)}
+                        className="text-pink-600 hover:text-pink-800"
+                        title="Attachments"
+                      >
+                        <Upload className="h-5 w-5" />
+                      </button>
+                      <button
+                        onClick={() => openNotification(order)}
+                        className="text-cyan-600 hover:text-cyan-800"
+                        title="Notify Stakeholders"
+                      >
+                        <Users className="h-5 w-5" />
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))}
@@ -788,38 +975,83 @@ export default function ChangeOrdersPage() {
         </div>
       )}
 
-      {/* Add Modal - Simplified */}
-      {showAddModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl">
-            <div className="border-b border-gray-200 px-6 py-4 flex justify-between items-center">
-              <h2 className="text-xl font-bold text-gray-900">New Change Order</h2>
-              <button
-                onClick={() => setShowAddModal(false)}
-                className="text-gray-400 hover:text-gray-600"
-              >
-                ✕
-              </button>
-            </div>
-            <div className="p-6">
-              <p className="text-sm text-gray-600 mb-4">
-                Change order form - Full interface would be implemented here.
-              </p>
-              <div className="flex justify-end space-x-3">
-                <button
-                  onClick={() => setShowAddModal(false)}
-                  className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50"
-                >
-                  Cancel
-                </button>
-                <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-                  Submit Change Order
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      {/* All Modals */}
+      <CreateChangeOrderModal
+        isOpen={showCreateModal}
+        onClose={() => setShowCreateModal(false)}
+        onCreate={handleCreateOrder}
+      />
+
+      <EditChangeOrderModal
+        isOpen={showEditModal}
+        onClose={() => setShowEditModal(false)}
+        order={selectedOrder}
+        onUpdate={handleUpdateOrder}
+      />
+
+      <ApprovalModal
+        isOpen={showApprovalModal}
+        onClose={() => setShowApprovalModal(false)}
+        order={selectedOrder}
+        onApprove={handleApproval}
+      />
+
+      <ImpactAnalysisModal
+        isOpen={showImpactAnalysis}
+        onClose={() => setShowImpactAnalysis(false)}
+        order={selectedOrder}
+      />
+
+      <ImplementationTrackingModal
+        isOpen={showImplementationTracking}
+        onClose={() => setShowImplementationTracking(false)}
+        order={selectedOrder}
+        onUpdateStatus={handleImplementationUpdate}
+      />
+
+      <ChangeOrderHistoryModal
+        isOpen={showHistory}
+        onClose={() => setShowHistory(false)}
+        order={selectedOrder}
+      />
+
+      <BulkChangeOrderModal
+        isOpen={showBulkActions}
+        onClose={() => setShowBulkActions(false)}
+        onBulkAction={handleBulkAction}
+      />
+
+      <AttachmentManagementModal
+        isOpen={showAttachments}
+        onClose={() => setShowAttachments(false)}
+        order={selectedOrder}
+        onUpload={handleUploadAttachments}
+      />
+
+      <FinancialImpactDashboardModal
+        isOpen={showFinancialDashboard}
+        onClose={() => setShowFinancialDashboard(false)}
+        orders={mockChangeOrders}
+      />
+
+      <ScheduleImpactAnalysisModal
+        isOpen={showScheduleAnalysis}
+        onClose={() => setShowScheduleAnalysis(false)}
+        orders={mockChangeOrders}
+      />
+
+      <ExportChangeOrdersModal
+        isOpen={showExport}
+        onClose={() => setShowExport(false)}
+        onExport={handleExport}
+      />
+
+      <StakeholderNotificationModal
+        isOpen={showNotification}
+        onClose={() => setShowNotification(false)}
+        order={selectedOrder}
+        onSendNotification={handleSendNotification}
+      />
       </div>
     </div>
   );

@@ -378,6 +378,22 @@ export default function CompletedWorkOrdersPage() {
   const onTimeDelivery = completedOrders.filter(o => o.varianceDays <= 0).length;
   const underBudget = completedOrders.filter(o => o.costVariance <= 0).length;
 
+  const handleExportReport = () => {
+    const report = {
+      totalOrders: totalCompleted,
+      avgSuccessRate: avgSuccessRate.toFixed(1),
+      onTimeDelivery,
+      underBudget,
+      orders: filteredOrders.length,
+    };
+    console.log('Exporting completed work orders report:', report);
+    alert(`Exporting Completed Work Orders Report!\n\nTotal Orders: ${totalCompleted}\nAvg Success Rate: ${avgSuccessRate.toFixed(1)}%\nOn-Time Delivery: ${onTimeDelivery} (${((onTimeDelivery / totalCompleted) * 100).toFixed(0)}%)\nUnder Budget: ${underBudget} (${((underBudget / totalCompleted) * 100).toFixed(0)}%)\n\nExport format: Excel with detailed analytics`);
+  };
+
+  const handleViewDetails = (workOrderId: string) => {
+    router.push(`/production/work-orders/view/${workOrderId}`);
+  };
+
   return (
     <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
       {/* Inline Header */}
@@ -396,7 +412,10 @@ export default function CompletedWorkOrdersPage() {
             <p className="text-sm text-gray-600">Successfully finished production work orders</p>
           </div>
         </div>
-        <button className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+        <button
+          onClick={handleExportReport}
+          className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+        >
           <Download className="h-4 w-4" />
           Export Report
         </button>
@@ -591,7 +610,11 @@ export default function CompletedWorkOrdersPage() {
                       </span>
                     </td>
                     <td className="px-4 py-4">
-                      <button className="text-blue-600 hover:text-blue-900">
+                      <button
+                        onClick={() => handleViewDetails(order.id)}
+                        className="text-blue-600 hover:text-blue-900"
+                        title="View Details"
+                      >
                         <Eye className="h-4 w-4" />
                       </button>
                     </td>

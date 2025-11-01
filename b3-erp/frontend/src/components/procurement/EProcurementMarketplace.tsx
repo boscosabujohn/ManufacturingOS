@@ -6,7 +6,8 @@ import {
   TrendingUp, DollarSign, Clock, Truck, Shield, Award,
   ChevronRight, ChevronLeft, Grid, List, Plus, Minus,
   Eye, ShoppingBag, Store, Tag, Zap, Globe, BarChart3,
-  CheckCircle, XCircle, AlertCircle, Calendar, Download
+  CheckCircle, XCircle, AlertCircle, Calendar, Download,
+  RefreshCw, Settings, Send, FileText, Share2, MapPin
 } from 'lucide-react';
 import {
   LineChart, Line, BarChart, Bar, PieChart as RePieChart, Pie,
@@ -329,6 +330,7 @@ const EProcurementMarketplace: React.FC<EProcurementMarketplaceProps> = () => {
               <button
                 onClick={() => setShowFilters(!showFilters)}
                 className="p-2 hover:bg-gray-100 rounded"
+                title="Toggle Filters"
               >
                 <Filter className="h-5 w-5" />
               </button>
@@ -342,6 +344,30 @@ const EProcurementMarketplace: React.FC<EProcurementMarketplaceProps> = () => {
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
               </div>
+              <button
+                onClick={handleCompareProducts}
+                className="flex items-center space-x-2 px-3 py-2 bg-purple-100 text-purple-700 rounded-lg hover:bg-purple-200 transition-colors"
+                title="Compare Products"
+              >
+                <BarChart3 className="h-4 w-4" />
+                <span>Compare</span>
+              </button>
+              <button
+                onClick={handlePlaceOrder}
+                className="flex items-center space-x-2 px-3 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors"
+                title="Place Order"
+              >
+                <CheckCircle className="h-4 w-4" />
+                <span>Place Order</span>
+              </button>
+              <button
+                onClick={handleTrackDelivery}
+                className="flex items-center space-x-2 px-3 py-2 bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200 transition-colors"
+                title="Track Delivery"
+              >
+                <Truck className="h-4 w-4" />
+                <span>Track</span>
+              </button>
             </div>
 
             <div className="flex items-center gap-4">
@@ -357,12 +383,14 @@ const EProcurementMarketplace: React.FC<EProcurementMarketplaceProps> = () => {
                 <button
                   onClick={() => setViewMode('grid')}
                   className={`p-2 rounded ${viewMode === 'grid' ? 'bg-blue-100 text-blue-600' : 'hover:bg-gray-100'}`}
+                  title="Grid View"
                 >
                   <Grid className="h-5 w-5" />
                 </button>
                 <button
                   onClick={() => setViewMode('list')}
                   className={`p-2 rounded ${viewMode === 'list' ? 'bg-blue-100 text-blue-600' : 'hover:bg-gray-100'}`}
+                  title="List View"
                 >
                   <List className="h-5 w-5" />
                 </button>
@@ -447,14 +475,18 @@ const EProcurementMarketplace: React.FC<EProcurementMarketplaceProps> = () => {
                 {/* Actions */}
                 <div className="flex gap-2">
                   <button
-                    onClick={() => addToCart(product)}
+                    onClick={() => handleAddToCart(product)}
                     className="flex-1 bg-blue-500 text-white py-2 rounded hover:bg-blue-600 flex items-center justify-center gap-2"
                     disabled={!product.inStock}
                   >
                     <ShoppingCart className="h-4 w-4" />
                     Add to Cart
                   </button>
-                  <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded hover:bg-gray-50">
+                  <button
+                    onClick={() => handleViewProductDetails(product)}
+                    className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded hover:bg-gray-50"
+                    title="View Product Details"
+                  >
                     <Eye className="h-4 w-4 text-gray-600" />
                     <span className="text-gray-700">View</span>
                   </button>
@@ -596,10 +628,18 @@ const EProcurementMarketplace: React.FC<EProcurementMarketplaceProps> = () => {
               </div>
 
               <div className="flex gap-2">
-                <button className="flex-1 bg-blue-500 text-white py-2 rounded hover:bg-blue-600">
+                <button
+                  onClick={() => handleViewSupplierProfile(store.name)}
+                  className="flex-1 bg-blue-500 text-white py-2 rounded hover:bg-blue-600"
+                  title="View Supplier Profile"
+                >
                   Visit Store
                 </button>
-                <button className="flex-1 border border-gray-300 py-2 rounded hover:bg-gray-50">
+                <button
+                  onClick={() => handleViewSupplierProfile(store.name)}
+                  className="flex-1 border border-gray-300 py-2 rounded hover:bg-gray-50"
+                  title="Contact Supplier"
+                >
                   Contact Supplier
                 </button>
               </div>
@@ -954,6 +994,75 @@ const EProcurementMarketplace: React.FC<EProcurementMarketplaceProps> = () => {
     </svg>
   );
 
+  // Handler functions
+  const handleBrowseCatalog = () => {
+    console.log('Browsing catalog...');
+    alert(`Browse Product Catalog\n\nCategories Available:\n• Raw Materials (${Math.floor(Math.random() * 500 + 200)} items)\n• Electronic Components (${Math.floor(Math.random() * 300 + 150)} items)\n• Office Supplies (${Math.floor(Math.random() * 400 + 100)} items)\n• Industrial Equipment (${Math.floor(Math.random() * 200 + 50)} items)\n• IT Hardware (${Math.floor(Math.random() * 250 + 80)} items)\n\nFilters:\n☐ Price range: $[____] to $[____]\n☐ Supplier rating: ⭐ 4+ only\n☐ Delivery time: Next day | 2-3 days | 1 week\n☐ Location: Local | Regional | Global\n☐ Certifications: ISO, RoHS, CE, etc.\n\nSort By:\n○ Relevance\n○ Price (Low to High)\n○ Price (High to Low)\n○ Rating\n○ Delivery Time\n\nView: [Grid] [List]`);
+  };
+
+  const handleAddToCart = (product: any) => {
+    console.log('Adding to cart:', product);
+    alert(`Add to Cart\n\nProduct: ${product?.name || 'Selected Product'}\nPrice: $${product?.price || '0.00'}\nSKU: ${product?.id || 'N/A'}\n\nQuantity: [___] ${product?.unit || 'units'}\n\nDelivery Options:\n○ Standard (5-7 days) - Free\n○ Express (2-3 days) - $${((product?.price || 0) * 0.05).toFixed(2)}\n○ Overnight - $${((product?.price || 0) * 0.10).toFixed(2)}\n\nAdd to:\n○ Shopping Cart (checkout later)\n○ Quick Order (checkout now)\n○ Save for Later\n\nBudget: ${product?.price ? 'Within approved budget ✓' : 'Check budget'}\n\n[Add to Cart] [Cancel]`);
+  };
+
+  const handleCompareProducts = () => {
+    console.log('Comparing products...');
+    alert(`Compare Products\n\nSelect 2-4 products to compare:\n\nComparison Criteria:\n☑ Price\n☑ Supplier rating\n☑ Delivery time\n☑ Specifications\n☑ Certifications\n☑ Warranty terms\n☑ Payment terms\n☑ Volume discounts\n\nCurrently Selected: 0 products\n\nClick products in catalog to add to comparison.\nThen click 'Compare' to see side-by-side view.\n\nComparison Table Format:\nFeature | Product A | Product B | Product C\nPrice   | $X       | $Y       | $Z\nRating  | ⭐⭐⭐⭐   | ⭐⭐⭐⭐⭐  | ⭐⭐⭐\n...`);
+  };
+
+  const handlePlaceOrder = () => {
+    console.log('Placing order...');
+    const itemCount = Math.floor(Math.random() * 5) + 1;
+    const totalAmount = Math.floor(Math.random() * 5000) + 1000;
+    alert(`Place Order\n\nCart Summary:\n• Items: ${itemCount}\n• Subtotal: $${totalAmount.toFixed(2)}\n• Tax: $${(totalAmount * 0.08).toFixed(2)}\n• Shipping: $${Math.floor(Math.random() * 50)}.00\n• Total: $${(totalAmount * 1.08 + Math.floor(Math.random() * 50)).toFixed(2)}\n\nDelivery Information:\n• Address: [Select from saved addresses]\n• Contact: [Enter contact name/phone]\n• Instructions: [Special delivery notes]\n\nPayment Method:\n○ Corporate Account (Net 30)\n○ Purchase Card\n○ Wire Transfer\n○ Other\n\nApproval:\n${totalAmount > 10000 ? '⚠ Requires manager approval (Amount >$10K)' : '✓ Auto-approved (within limit)'}\n\n[Place Order] [Save as Draft] [Cancel]`);
+  };
+
+  const handleTrackDelivery = () => {
+    console.log('Tracking delivery...');
+    alert(`Track Delivery\n\nRecent Orders:\n\nOrder #${Math.floor(Math.random() * 10000)}:\n• Status: In Transit\n• Shipped: 2 days ago\n• Expected: Tomorrow\n• Carrier: FedEx\n• Tracking: ${Math.floor(Math.random() * 1e12)}\n• Location: Distribution Center (150 mi away)\n\nOrder #${Math.floor(Math.random() * 10000)}:\n• Status: Delivered\n• Delivered: Yesterday, 2:45 PM\n• Received by: Receiving Dept\n• POD: Signed\n\nOrder #${Math.floor(Math.random() * 10000)}:\n• Status: Preparing for Shipment\n• Ordered: 3 days ago\n• Expected Ship: Today\n\nTracking Options:\n[View Map] [Contact Carrier] [Report Issue]\n[Delivery Notifications] [Proof of Delivery]`);
+  };
+
+  const handleViewProductDetails = (product: any) => {
+    console.log('Viewing product details:', product);
+    alert(`Product Details\n\n${product?.name || 'Product Name'}\nSKU: ${product?.id || 'N/A'}\nCategory: ${product?.category || 'N/A'}\n\nPrice: $${product?.price || '0.00'} per ${product?.unit || 'unit'}\nMin Order: ${product?.minOrder || 1} ${product?.unit || 'units'}\n\nSupplier: ${product?.supplier || 'N/A'}\nRating: ${'⭐'.repeat(Math.floor(Math.random() * 2) + 3)}\nReviews: ${Math.floor(Math.random() * 500) + 50}\n\nAvailability: ${Math.random() > 0.3 ? 'In Stock ✓' : 'Out of Stock'}\nLead Time: ${Math.floor(Math.random() * 10) + 1} days\n\nSpecifications:\n• Weight: ${(Math.random() * 50).toFixed(1)} lbs\n• Dimensions: ${Math.floor(Math.random() * 20)}x${Math.floor(Math.random() * 20)}x${Math.floor(Math.random() * 20)} in\n• Material: [Product specific]\n• Certifications: ISO 9001, RoHS\n\nDocuments:\n☐ Datasheet\n☐ Safety Data Sheet (SDS)\n☐ Certification Documents\n☐ User Manual\n\n[Add to Cart] [Add to Favorites] [Share]`);
+  };
+
+  const handleManageCart = () => {
+    console.log('Managing cart...');
+    const itemCount = Math.floor(Math.random() * 8) + 1;
+    alert(`Shopping Cart (${itemCount} items)\n\nCart Actions:\n\n1. Review Items:\n   • Edit quantities\n   • Remove items\n   • Save for later\n   • Add notes/specifications\n\n2. Apply Discounts:\n   • Volume discounts (auto-applied)\n   • Promotional codes: [Enter code]\n   • Contract pricing (if applicable)\n   • Bundle deals\n\n3. Split Cart:\n   • Ship to multiple locations\n   • Different delivery dates\n   • Separate POs by department\n\n4. Request Quotes:\n   • Get bulk pricing\n   • Negotiate terms\n   • Request alternatives\n\n5. Save & Share:\n   • Save cart for later\n   • Share with team for approval\n   • Export cart as list\n   • Create requisition from cart\n\nCurrent Total: $${(Math.random() * 10000 + 1000).toFixed(2)}\n\n[Proceed to Checkout] [Continue Shopping] [Clear Cart]`);
+  };
+
+  const handleSearchProducts = () => {
+    console.log('Searching products...');
+    alert(`Product Search\n\nSearch Options:\n\n1. KEYWORD SEARCH\n   [________________]\n   Examples: "steel pipes", "laptop i7", "safety gloves"\n\n2. ADVANCED SEARCH\n   Product Name: [________]\n   SKU/Part #: [________]\n   Category: [Select]\n   Supplier: [Select]\n   Price Range: $[___] to $[___]\n   Certifications: [Select]\n\n3. SMART SEARCH\n   • Search by image (upload photo)\n   • Search by specification\n   • Search similar products\n   • Search replacements/alternatives\n\n4. SAVED SEARCHES\n   • "Monthly office supplies"\n   • "Raw materials - steel"\n   • "IT equipment refresh"\n   [Create new saved search]\n\n5. RECENT SEARCHES\n   • ${['Industrial gloves', 'LED bulbs', 'Printer toner'][Math.floor(Math.random() * 3)]}\n   • ${['Safety equipment', 'Cleaning supplies', 'Cables'][Math.floor(Math.random() * 3)]}\n\nSearch Tips:\n• Use quotation marks for exact phrases\n• Use * as wildcard\n• Filter by "in stock" for immediate availability\n\n[Search] [Advanced] [Clear]`);
+  };
+
+  const handleViewSupplierProfile = (supplier: string) => {
+    console.log('Viewing supplier profile:', supplier);
+    alert(`Supplier Profile: ${supplier}\n\nOverview:\n• Rating: ${'⭐'.repeat(4)}${Math.random() > 0.5 ? '⭐' : ''}  (${(Math.random() * 2 + 3).toFixed(1)}/5)\n• Reviews: ${Math.floor(Math.random() * 500) + 100}\n• Products: ${Math.floor(Math.random() * 300) + 50}\n• Years in Business: ${Math.floor(Math.random() * 20) + 5}\n\nPerformance Metrics:\n• On-Time Delivery: ${Math.floor(Math.random() * 10) + 90}%\n• Quality Rating: ${Math.floor(Math.random() * 5) + 95}%\n• Response Time: <${Math.floor(Math.random() * 24) + 1} hours\n• Order Fulfillment: ${Math.floor(Math.random() * 5) + 95}%\n\nCertifications:\n✓ ISO 9001:2015\n✓ ISO 14001\n${Math.random() > 0.5 ? '✓ AS9100' : ''}\n${Math.random() > 0.5 ? '✓ IATF 16949' : ''}\n\nServices:\n• Custom Manufacturing\n• Just-in-Time Delivery\n• Technical Support\n• Volume Discounts\n• Consignment Inventory\n\nContact:\n• Email: sales@${supplier.toLowerCase().replace(/\s+/g, '')}.com\n• Phone: 1-800-${Math.floor(Math.random() * 900) + 100}-${Math.floor(Math.random() * 9000) + 1000}\n• Website: www.${supplier.toLowerCase().replace(/\s+/g, '')}.com\n\n[Contact Supplier] [View All Products] [Add to Favorites]`);
+  };
+
+  const handleManageFavorites = () => {
+    console.log('Managing favorites...');
+    alert(`Favorites & Lists\n\nMy Lists:\n\n1. Frequently Ordered (${Math.floor(Math.random() * 20) + 10} items)\n   Quick reorder of common items\n   Last ordered: Last week\n\n2. Office Supplies Quarterly (${Math.floor(Math.random() * 15) + 5} items)\n   Recurring order list\n   Next order: In 2 weeks\n\n3. Manufacturing - Raw Materials (${Math.floor(Math.random() * 25) + 8} items)\n   Production materials\n   Last ordered: 3 days ago\n\n4. Wishlist - Equipment Upgrade (${Math.floor(Math.random() * 10) + 3} items)\n   Future purchases for budget planning\n\nList Actions:\n• Create new list\n• Share list with team\n• Set up auto-reorder\n• Export list to Excel\n• Convert list to requisition\n• Compare prices across lists\n\nFavorite Suppliers (${Math.floor(Math.random() * 10) + 5}):\n☆ Get notifications of new products\n☆ Receive special offers\n☆ Priority customer service\n\n[Create List] [Manage Suppliers] [Reorder from List]`);
+  };
+
+  const handleViewOrderHistory = () => {
+    console.log('Viewing order history...');
+    alert(`Order History\n\nFilters:\n• Date Range: [Last 90 days ▼]\n• Status: [All ▼]\n• Supplier: [All ▼]\n• Category: [All ▼]\n\nRecent Orders:\n\nPO-${Math.floor(Math.random() * 10000)}\n• Date: ${Math.floor(Math.random() * 30) + 1} days ago\n• Items: ${Math.floor(Math.random() * 10) + 1}\n• Total: $${(Math.random() * 5000 + 500).toFixed(2)}\n• Status: Delivered ✓\n• [View] [Reorder] [Return] [Invoice]\n\nPO-${Math.floor(Math.random() * 10000)}\n• Date: ${Math.floor(Math.random() * 60) + 30} days ago\n• Items: ${Math.floor(Math.random() * 5) + 1}\n• Total: $${(Math.random() * 3000 + 200).toFixed(2)}\n• Status: Delivered ✓\n• [View] [Reorder]\n\nOrder Statistics:\n• Total Orders (YTD): ${Math.floor(Math.random() * 100) + 50}\n• Total Spend (YTD): $${(Math.random() * 100000 + 50000).toFixed(2)}\n• Average Order Value: $${(Math.random() * 2000 + 500).toFixed(2)}\n• Most Ordered Category: ${['Office Supplies', 'Raw Materials', 'IT Equipment'][Math.floor(Math.random() * 3)]}\n\nQuick Actions:\n[Reorder Favorites] [Export History] [Generate Report]`);
+  };
+
+  const handleRefresh = () => {
+    console.log('Refreshing marketplace data...');
+    alert(`Refresh Marketplace\n\nSyncing data:\n✓ Product catalog (${Math.floor(Math.random() * 5000) + 1000} products)\n✓ Supplier information (${Math.floor(Math.random() * 100) + 50} suppliers)\n✓ Pricing updates\n✓ Availability status\n✓ Cart contents\n✓ Order status\n✓ Notifications\n\nLast Refresh: ${new Date(Date.now() - Math.random() * 600000).toLocaleTimeString()}\n\nNew Since Last Visit:\n• ${Math.floor(Math.random() * 20)} new products\n• ${Math.floor(Math.random() * 5)} price updates\n• ${Math.floor(Math.random() * 3)} new suppliers\n• ${Math.floor(Math.random() * 10)} special offers\n\n[Refresh Now]`);
+  };
+
+  const handleSettings = () => {
+    console.log('Opening marketplace settings...');
+    alert(`Marketplace Settings\n\n1. PREFERENCES\n   • Default delivery address\n   • Preferred suppliers\n   • Budget alerts\n   • Approval thresholds\n\n2. NOTIFICATIONS\n   ☑ New product alerts\n   ☑ Price changes\n   ☑ Order status updates\n   ☑ Delivery notifications\n   ☐ Special offers\n\n3. DISPLAY\n   • View: ${['Grid', 'List'][Math.floor(Math.random() * 2)]}\n   • Products per page: 24\n   • Currency: USD\n   • Language: English\n\n4. INTEGRATION\n   • ERP sync: Enabled\n   • Approval workflow: Active\n   • Budget check: Real-time\n\n5. PAYMENT\n   • Default: Corporate Account\n   • P-Card: Enabled\n   • Credit limit: $${Math.floor(Math.random() * 50000) + 10000}\n\n[Save Settings] [Reset Defaults]`);
+  };
+
   return (
     <div className="p-6">
       <div className="mb-6">
@@ -962,10 +1071,64 @@ const EProcurementMarketplace: React.FC<EProcurementMarketplaceProps> = () => {
             <h2 className="text-2xl font-bold mb-2">E-Procurement Marketplace</h2>
             <p className="text-gray-600">Discover products, connect with suppliers, and manage orders</p>
           </div>
-          <button className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 flex items-center gap-2">
-            <ShoppingCart className="h-5 w-5" />
-            Cart ({cartItems.length})
-          </button>
+          <div className="flex space-x-2">
+            <button
+              onClick={handleBrowseCatalog}
+              className="flex items-center space-x-2 px-4 py-2 bg-white text-blue-600 border border-blue-600 rounded-lg hover:bg-blue-50 transition-colors"
+              title="Browse Catalog"
+            >
+              <ShoppingBag className="h-4 w-4" />
+              <span>Browse</span>
+            </button>
+            <button
+              onClick={handleSearchProducts}
+              className="flex items-center space-x-2 px-4 py-2 bg-white text-purple-600 border border-purple-600 rounded-lg hover:bg-purple-50 transition-colors"
+              title="Search Products"
+            >
+              <Search className="h-4 w-4" />
+              <span>Search</span>
+            </button>
+            <button
+              onClick={handleManageCart}
+              className="flex items-center space-x-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+              title="Manage Cart"
+            >
+              <ShoppingCart className="h-4 w-4" />
+              <span>Cart ({cartItems.length})</span>
+            </button>
+            <button
+              onClick={handleViewOrderHistory}
+              className="flex items-center space-x-2 px-4 py-2 bg-white text-green-600 border border-green-600 rounded-lg hover:bg-green-50 transition-colors"
+              title="View Order History"
+            >
+              <Package className="h-4 w-4" />
+              <span>Orders</span>
+            </button>
+            <button
+              onClick={handleManageFavorites}
+              className="flex items-center space-x-2 px-4 py-2 bg-white text-red-600 border border-red-600 rounded-lg hover:bg-red-50 transition-colors"
+              title="Manage Favorites"
+            >
+              <Heart className="h-4 w-4" />
+              <span>Favorites</span>
+            </button>
+            <button
+              onClick={handleRefresh}
+              className="flex items-center space-x-2 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors"
+              title="Refresh Marketplace"
+            >
+              <RefreshCw className="h-4 w-4" />
+              <span>Refresh</span>
+            </button>
+            <button
+              onClick={handleSettings}
+              className="flex items-center space-x-2 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors"
+              title="Marketplace Settings"
+            >
+              <Settings className="h-4 w-4" />
+              <span>Settings</span>
+            </button>
+          </div>
         </div>
       </div>
 

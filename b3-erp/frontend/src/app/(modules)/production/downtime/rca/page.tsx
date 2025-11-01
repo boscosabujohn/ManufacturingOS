@@ -2,7 +2,15 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { ArrowLeft, Download, Filter, AlertTriangle, CheckCircle, Clock, FileText, Users } from 'lucide-react';
+import { ArrowLeft, Download, Filter, AlertTriangle, CheckCircle, Clock, FileText, Users, Plus } from 'lucide-react';
+import {
+  CreateRCAModal, ViewRCADetailsModal, AddRootCauseModal,
+  AddCorrectiveActionModal, AddPreventiveActionModal,
+  UpdateActionStatusModal, VerifyRCAModal,
+  CreateRCAData, RCAInvestigation as RCAInvestigationType, AddRootCauseData,
+  CorrectiveAction, PreventiveAction, UpdateActionStatusData, VerifyRCAData
+} from '@/components/production/downtime/DowntimeRCAModals';
+import { ExportRCAReportModal, ExportRCAConfig } from '@/components/production/downtime/DowntimeExportModals';
 
 interface RCAInvestigation {
   id: string;
@@ -56,7 +64,19 @@ interface PreventiveAction {
 export default function DowntimeRCAPage() {
   const router = useRouter();
   const [filterStatus, setFilterStatus] = useState<string>('all');
-  const [selectedRCA, setSelectedRCA] = useState<string | null>(null);
+  const [selectedRCAId, setSelectedRCAId] = useState<string | null>(null);
+
+  // Modal states
+  const [isCreateRCAOpen, setIsCreateRCAOpen] = useState(false);
+  const [isViewRCAOpen, setIsViewRCAOpen] = useState(false);
+  const [isAddRootCauseOpen, setIsAddRootCauseOpen] = useState(false);
+  const [isAddCorrectiveActionOpen, setIsAddCorrectiveActionOpen] = useState(false);
+  const [isAddPreventiveActionOpen, setIsAddPreventiveActionOpen] = useState(false);
+  const [isUpdateActionOpen, setIsUpdateActionOpen] = useState(false);
+  const [isVerifyRCAOpen, setIsVerifyRCAOpen] = useState(false);
+  const [isExportOpen, setIsExportOpen] = useState(false);
+  const [selectedRCA, setSelectedRCA] = useState<RCAInvestigationType | null>(null);
+  const [selectedAction, setSelectedAction] = useState<any>(null);
 
   // Mock RCA investigations
   const rcaInvestigations: RCAInvestigation[] = [
@@ -400,6 +420,138 @@ export default function DowntimeRCAPage() {
     }
   };
 
+  // Modal handlers
+  const handleCreateRCA = () => {
+    setIsCreateRCAOpen(true);
+  };
+
+  const handleCreateRCASubmit = (data: CreateRCAData) => {
+    console.log('Creating RCA:', data);
+    // TODO: Implement API call
+    setIsCreateRCAOpen(false);
+  };
+
+  const handleViewRCA = (rca: any) => {
+    // Convert to RCAInvestigation format
+    const rcaData: RCAInvestigationType = {
+      id: rca.id,
+      rcaNumber: rca.rcaNumber,
+      downtimeEvent: rca.downtimeEvent,
+      equipment: rca.equipment,
+      incidentDate: rca.incidentDate,
+      severity: rca.severity,
+      status: rca.status,
+      investigationLead: rca.investigationLead,
+      teamMembers: rca.teamMembers,
+      problemStatement: rca.problemStatement,
+      immediateActions: rca.immediateActions,
+      // Convert root causes to match modal format
+      rootCauses: rca.rootCauses.map((rc: any) => ({
+        id: rc.id,
+        whyLevels: Array(rc.whyLevel || 5).fill('').map((_, i) =>
+          i === (rc.whyLevel || 5) - 1 ? rc.cause : `Why ${i + 1}?`
+        ),
+        cause: rc.cause,
+        category: rc.category,
+        contribution: rc.contribution
+      })),
+      // Add missing fields to corrective actions
+      correctiveActions: rca.correctiveActions.map((ca: any) => ({
+        ...ca,
+        priority: 'high',
+        actualCost: null,
+        resourcesNeeded: '',
+        estimatedCost: 0,
+        completionNotes: ''
+      })),
+      // Add missing fields to preventive actions
+      preventiveActions: rca.preventiveActions.map((pa: any) => ({
+        ...pa,
+        recurrenceType: 'one-time' as const,
+        frequency: '',
+        priority: 'medium',
+        actualCost: null,
+        resourcesNeeded: ''
+      })),
+      estimatedCost: rca.estimatedCost,
+      actualCost: rca.actualCost,
+      targetCloseDate: rca.targetCloseDate,
+      actualCloseDate: rca.actualCloseDate,
+      verifiedBy: rca.verifiedBy,
+      verificationDate: rca.verificationDate,
+      effectivenessRating: rca.effectivenessRating || null,
+      lessonsLearned: rca.lessonsLearned || null
+    };
+    setSelectedRCA(rcaData);
+    setIsViewRCAOpen(true);
+  };
+
+  const handleAddRootCause = () => {
+    setIsViewRCAOpen(false);
+    setIsAddRootCauseOpen(true);
+  };
+
+  const handleAddRootCauseSubmit = (data: AddRootCauseData) => {
+    console.log('Adding root cause:', data);
+    // TODO: Implement API call
+    setIsAddRootCauseOpen(false);
+    setIsViewRCAOpen(true);
+  };
+
+  const handleAddCorrectiveAction = () => {
+    setIsViewRCAOpen(false);
+    setIsAddCorrectiveActionOpen(true);
+  };
+
+  const handleAddCorrectiveActionSubmit = (data: Partial<CorrectiveAction>) => {
+    console.log('Adding corrective action:', data);
+    // TODO: Implement API call
+  };
+
+  const handleAddPreventiveAction = () => {
+    setIsViewRCAOpen(false);
+    setIsAddPreventiveActionOpen(true);
+  };
+
+  const handleAddPreventiveActionSubmit = (data: Partial<PreventiveAction>) => {
+    console.log('Adding preventive action:', data);
+    // TODO: Implement API call
+  };
+
+  const handleUpdateActionStatus = (action: any) => {
+    setSelectedAction(action);
+    setIsViewRCAOpen(false);
+    setIsUpdateActionOpen(true);
+  };
+
+  const handleUpdateActionStatusSubmit = (data: UpdateActionStatusData) => {
+    console.log('Updating action status:', data);
+    // TODO: Implement API call
+    setIsUpdateActionOpen(false);
+    setIsViewRCAOpen(true);
+  };
+
+  const handleVerifyRCA = () => {
+    setIsViewRCAOpen(false);
+    setIsVerifyRCAOpen(true);
+  };
+
+  const handleVerifyRCASubmit = (data: VerifyRCAData) => {
+    console.log('Verifying RCA:', data);
+    // TODO: Implement API call
+    setIsVerifyRCAOpen(false);
+  };
+
+  const handleExport = () => {
+    setIsExportOpen(true);
+  };
+
+  const handleExportSubmit = (config: ExportRCAConfig) => {
+    console.log('Exporting RCA:', config);
+    // TODO: Implement API call
+    setIsExportOpen(false);
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
       {/* Inline Header */}
@@ -417,9 +569,19 @@ export default function DowntimeRCAPage() {
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <button className="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors flex items-center gap-2">
+          <button
+            onClick={handleExport}
+            className="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors flex items-center gap-2"
+          >
             <Download className="w-4 h-4" />
             <span>Export</span>
+          </button>
+          <button
+            onClick={handleCreateRCA}
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2"
+          >
+            <Plus className="w-4 h-4" />
+            <span>New RCA</span>
           </button>
         </div>
       </div>
@@ -496,7 +658,11 @@ export default function DowntimeRCAPage() {
       {/* RCA Investigations */}
       <div className="space-y-6">
         {filteredInvestigations.map((rca) => (
-          <div key={rca.id} className={`bg-white rounded-xl border-2 p-6 ${getSeverityColor(rca.severity)}`}>
+          <div
+            key={rca.id}
+            className={`bg-white rounded-xl border-2 p-6 cursor-pointer hover:shadow-lg transition-shadow ${getSeverityColor(rca.severity)}`}
+            onClick={() => handleViewRCA(rca)}
+          >
             {/* Header */}
             <div className="flex items-start justify-between mb-4">
               <div className="flex-1">
@@ -513,10 +679,13 @@ export default function DowntimeRCAPage() {
                 <p className="text-sm text-gray-600">Event: {rca.downtimeEvent} | Date: {rca.incidentDate}</p>
               </div>
               <button
-                onClick={() => setSelectedRCA(selectedRCA === rca.id ? null : rca.id)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setSelectedRCAId(selectedRCAId === rca.id ? null : rca.id);
+                }}
                 className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm"
               >
-                {selectedRCA === rca.id ? 'Hide Details' : 'View Details'}
+                {selectedRCAId === rca.id ? 'Hide Details' : 'Toggle Inline Details'}
               </button>
             </div>
 
@@ -547,7 +716,7 @@ export default function DowntimeRCAPage() {
             </div>
 
             {/* Expanded Details */}
-            {selectedRCA === rca.id && (
+            {selectedRCAId === rca.id && (
               <div className="space-y-4 pt-4 border-t border-gray-200">
                 {/* Root Causes */}
                 <div>
@@ -644,6 +813,94 @@ export default function DowntimeRCAPage() {
           </div>
         ))}
       </div>
+
+      {/* Modals */}
+      <CreateRCAModal
+        isOpen={isCreateRCAOpen}
+        onClose={() => setIsCreateRCAOpen(false)}
+        onSubmit={handleCreateRCASubmit}
+      />
+
+      <ViewRCADetailsModal
+        isOpen={isViewRCAOpen}
+        onClose={() => setIsViewRCAOpen(false)}
+        rca={selectedRCA}
+        onEdit={() => alert('Edit RCA not implemented')}
+        onAddRootCause={handleAddRootCause}
+        onAddCorrectiveAction={handleAddCorrectiveAction}
+        onAddPreventiveAction={handleAddPreventiveAction}
+        onUpdateActionStatus={handleUpdateActionStatus}
+        onVerify={handleVerifyRCA}
+        onExport={() => {
+          setIsViewRCAOpen(false);
+          handleExport();
+        }}
+      />
+
+      <AddRootCauseModal
+        isOpen={isAddRootCauseOpen}
+        onClose={() => {
+          setIsAddRootCauseOpen(false);
+          setIsViewRCAOpen(true);
+        }}
+        onSubmit={handleAddRootCauseSubmit}
+      />
+
+      <AddCorrectiveActionModal
+        isOpen={isAddCorrectiveActionOpen}
+        onClose={() => {
+          setIsAddCorrectiveActionOpen(false);
+          setIsViewRCAOpen(true);
+        }}
+        onSubmit={(data, addAnother) => {
+          handleAddCorrectiveActionSubmit(data);
+          if (!addAnother) {
+            setIsAddCorrectiveActionOpen(false);
+            setIsViewRCAOpen(true);
+          }
+        }}
+      />
+
+      <AddPreventiveActionModal
+        isOpen={isAddPreventiveActionOpen}
+        onClose={() => {
+          setIsAddPreventiveActionOpen(false);
+          setIsViewRCAOpen(true);
+        }}
+        onSubmit={(data, addAnother) => {
+          handleAddPreventiveActionSubmit(data);
+          if (!addAnother) {
+            setIsAddPreventiveActionOpen(false);
+            setIsViewRCAOpen(true);
+          }
+        }}
+      />
+
+      <UpdateActionStatusModal
+        isOpen={isUpdateActionOpen}
+        onClose={() => {
+          setIsUpdateActionOpen(false);
+          setIsViewRCAOpen(true);
+        }}
+        onSubmit={handleUpdateActionStatusSubmit}
+        action={selectedAction}
+      />
+
+      <VerifyRCAModal
+        isOpen={isVerifyRCAOpen}
+        onClose={() => {
+          setIsVerifyRCAOpen(false);
+          setIsViewRCAOpen(true);
+        }}
+        onSubmit={handleVerifyRCASubmit}
+        rca={selectedRCA}
+      />
+
+      <ExportRCAReportModal
+        isOpen={isExportOpen}
+        onClose={() => setIsExportOpen(false)}
+        onSubmit={handleExportSubmit}
+      />
     </div>
   );
 }

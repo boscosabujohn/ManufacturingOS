@@ -19,6 +19,13 @@ import {
   Award,
   BarChart3
 } from 'lucide-react';
+import {
+  PlaybookModal,
+  ViewPlaybookModal,
+  UsePlaybookModal,
+  StageBuilderModal,
+  Playbook as PlaybookType
+} from '@/components/cpq/PlaybookModals';
 
 interface Playbook {
   id: string;
@@ -46,7 +53,14 @@ export default function GuidedSellingPlaybooksPage() {
   const [filterCategory, setFilterCategory] = useState<string>('all');
   const [filterStatus, setFilterStatus] = useState<'all' | 'active' | 'draft' | 'archived'>('all');
 
-  const playbooks: Playbook[] = [
+  // Modal states
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isViewOpen, setIsViewOpen] = useState(false);
+  const [isUseOpen, setIsUseOpen] = useState(false);
+  const [isBuilderOpen, setIsBuilderOpen] = useState(false);
+  const [selectedPlaybook, setSelectedPlaybook] = useState<Playbook | null>(null);
+
+  const [playbooks, setPlaybooks] = useState<Playbook[]>([
     {
       id: '1',
       playbookCode: 'PB-PREM-001',
@@ -275,9 +289,53 @@ export default function GuidedSellingPlaybooksPage() {
       lastUpdated: '2025-10-19',
       description: 'Upselling strategy for existing customers focusing on organization solutions, premium cookware, and kitchen enhancement products.'
     }
-  ];
+  ]);
 
   const categories = ['all', ...Array.from(new Set(playbooks.map(p => p.category)))];
+
+  // Handlers
+  const handleAddNew = () => {
+    setSelectedPlaybook(null);
+    setIsModalOpen(true);
+  };
+
+  const handleEdit = (playbook: Playbook) => {
+    setSelectedPlaybook(playbook);
+    setIsModalOpen(true);
+  };
+
+  const handleView = (playbook: Playbook) => {
+    setSelectedPlaybook(playbook);
+    setIsViewOpen(true);
+  };
+
+  const handleUse = (playbook: Playbook) => {
+    setSelectedPlaybook(playbook);
+    setIsUseOpen(true);
+  };
+
+  const handleCopy = (playbook: Playbook) => {
+    const copy: Playbook = {
+      ...playbook,
+      id: `PB${Date.now()}`,
+      playbookCode: `${playbook.playbookCode}-COPY`,
+      playbookName: `${playbook.playbookName} (Copy)`,
+      status: 'draft',
+      createdDate: new Date().toISOString().split('T')[0],
+      lastUpdated: new Date().toISOString().split('T')[0]
+    };
+    setPlaybooks([copy, ...playbooks]);
+  };
+
+  const handleSave = (playbook: Playbook) => {
+    if (selectedPlaybook) {
+      setPlaybooks(playbooks.map(p => p.id === playbook.id ? playbook : p));
+    } else {
+      setPlaybooks([playbook, ...playbooks]);
+    }
+    setIsModalOpen(false);
+    setSelectedPlaybook(null);
+  };
 
   const filteredPlaybooks = playbooks.filter(playbook => {
     const matchesSearch =
@@ -324,7 +382,10 @@ export default function GuidedSellingPlaybooksPage() {
             <p className="text-sm text-gray-600">Guided selling strategies for kitchen products</p>
           </div>
         </div>
-        <button className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+        <button
+          onClick={handleAddNew}
+          className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+        >
           <Plus className="h-4 w-4" />
           New Playbook
         </button>
@@ -478,28 +539,34 @@ export default function GuidedSellingPlaybooksPage() {
 
                 {/* Actions */}
                 <div className="flex items-center gap-2">
-                  <button className="flex-1 flex items-center justify-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 text-sm">
+                  <button
+                    onClick={() => handleUse(playbook)}
+                    className="flex-1 flex items-center justify-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 text-sm"
+                  >
                     <Play className="h-4 w-4" />
                     Use Playbook
                   </button>
                   <button
+                    onClick={() => handleView(playbook)}
                     className="flex items-center justify-center gap-2 bg-gray-100 text-gray-700 px-3 py-2 rounded-lg hover:bg-gray-200"
                     aria-label="View"
-                   
+                    title="View Details"
                   >
                     <Eye className="h-4 w-4" />
                   </button>
                   <button
+                    onClick={() => handleEdit(playbook)}
                     className="flex items-center justify-center gap-2 bg-gray-100 text-gray-700 px-3 py-2 rounded-lg hover:bg-gray-200"
                     aria-label="Edit"
-                   
+                    title="Edit Playbook"
                   >
                     <Edit2 className="h-4 w-4" />
                   </button>
                   <button
+                    onClick={() => handleCopy(playbook)}
                     className="flex items-center justify-center gap-2 bg-gray-100 text-gray-700 px-3 py-2 rounded-lg hover:bg-gray-200"
                     aria-label="Copy"
-                   
+                    title="Copy Playbook"
                   >
                     <Copy className="h-4 w-4" />
                   </button>
@@ -522,6 +589,48 @@ export default function GuidedSellingPlaybooksPage() {
       <div className="mt-6 text-sm text-gray-600">
         Showing {filteredPlaybooks.length} of {totalPlaybooks} playbooks
       </div>
+
+      {/* Modals */}
+      <PlaybookModal
+        isOpen={isModalOpen}
+        onClose={() => {
+          setIsModalOpen(false);
+          setSelectedPlaybook(null);
+        }}
+        onSave={handleSave}
+        playbook={selectedPlaybook}
+      />
+
+      {selectedPlaybook && (
+        <>
+          <ViewPlaybookModal
+            isOpen={isViewOpen}
+            onClose={() => {
+              setIsViewOpen(false);
+              setSelectedPlaybook(null);
+            }}
+            playbook={selectedPlaybook}
+          />
+
+          <UsePlaybookModal
+            isOpen={isUseOpen}
+            onClose={() => {
+              setIsUseOpen(false);
+              setSelectedPlaybook(null);
+            }}
+            playbook={selectedPlaybook}
+          />
+
+          <StageBuilderModal
+            isOpen={isBuilderOpen}
+            onClose={() => {
+              setIsBuilderOpen(false);
+              setSelectedPlaybook(null);
+            }}
+            playbook={selectedPlaybook}
+          />
+        </>
+      )}
     </div>
   );
 }

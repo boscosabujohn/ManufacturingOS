@@ -2,7 +2,8 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { ArrowLeft, Download, RefreshCw, TrendingUp, AlertTriangle, CheckCircle, Package, Calendar, Filter } from 'lucide-react';
+import { ArrowLeft, Download, RefreshCw, TrendingUp, AlertTriangle, CheckCircle, Package, Calendar, Filter, Eye } from 'lucide-react';
+import { ApproveActionModal, RejectActionModal, ViewActionDetailsModal } from '@/components/production/ActionMessageModals';
 
 interface MRPRunResult {
   id: string;
@@ -40,6 +41,12 @@ export default function MRPResultsPage() {
   const [selectedRun, setSelectedRun] = useState<string>('MRP-2025-1015');
   const [filterMessageType, setFilterMessageType] = useState<string>('all');
   const [filterPriority, setFilterPriority] = useState<string>('all');
+
+  // Modal state hooks
+  const [isApproveActionOpen, setIsApproveActionOpen] = useState(false);
+  const [isRejectActionOpen, setIsRejectActionOpen] = useState(false);
+  const [isViewActionOpen, setIsViewActionOpen] = useState(false);
+  const [selectedActionMessage, setSelectedActionMessage] = useState<ActionMessage | null>(null);
 
   // Mock data for MRP runs
   const mrpRuns: MRPRunResult[] = [
@@ -282,6 +289,36 @@ export default function MRPResultsPage() {
     }
   };
 
+  // Handler functions for modals
+  const handleApproveAction = (message: ActionMessage) => {
+    setSelectedActionMessage(message);
+    setIsApproveActionOpen(true);
+  };
+
+  const handleRejectAction = (message: ActionMessage) => {
+    setSelectedActionMessage(message);
+    setIsRejectActionOpen(true);
+  };
+
+  const handleViewAction = (message: ActionMessage) => {
+    setSelectedActionMessage(message);
+    setIsViewActionOpen(true);
+  };
+
+  const handleApproveActionSubmit = (data: any) => {
+    // TODO: Integrate with API to approve action message
+    console.log('Approving action message:', selectedActionMessage?.id, data);
+    setIsApproveActionOpen(false);
+    setSelectedActionMessage(null);
+  };
+
+  const handleRejectActionSubmit = (data: any) => {
+    // TODO: Integrate with API to reject action message
+    console.log('Rejecting action message:', selectedActionMessage?.id, data);
+    setIsRejectActionOpen(false);
+    setSelectedActionMessage(null);
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
       {/* Inline Header */}
@@ -451,7 +488,11 @@ export default function MRPResultsPage() {
         {/* Action Messages List */}
         <div className="space-y-3">
           {filteredMessages.map((message) => (
-            <div key={message.id} className={`border-2 rounded-lg p-4 ${getPriorityColor(message.priority)}`}>
+            <div
+              key={message.id}
+              className={`border-2 rounded-lg p-4 cursor-pointer hover:shadow-md transition-shadow ${getPriorityColor(message.priority)}`}
+              onClick={() => handleViewAction(message)}
+            >
               <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-3">
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-2">
@@ -481,13 +522,26 @@ export default function MRPResultsPage() {
                     <span>Affected WOs: {message.affectedWOs.length}</span>
                   </div>
                 </div>
-                <div className="flex gap-2">
+                <div className="flex gap-2" onClick={(e) => e.stopPropagation()}>
+                  <button
+                    className="px-3 py-1 bg-blue-600 text-white rounded text-xs hover:bg-blue-700 flex items-center gap-1"
+                    onClick={() => handleViewAction(message)}
+                  >
+                    <Eye className="w-3 h-3" />
+                    View Details
+                  </button>
                   {message.status === 'pending' && (
                     <>
-                      <button className="px-3 py-1 bg-green-600 text-white rounded text-xs hover:bg-green-700">
+                      <button
+                        className="px-3 py-1 bg-green-600 text-white rounded text-xs hover:bg-green-700"
+                        onClick={() => handleApproveAction(message)}
+                      >
                         Approve
                       </button>
-                      <button className="px-3 py-1 bg-red-600 text-white rounded text-xs hover:bg-red-700">
+                      <button
+                        className="px-3 py-1 bg-red-600 text-white rounded text-xs hover:bg-red-700"
+                        onClick={() => handleRejectAction(message)}
+                      >
                         Reject
                       </button>
                     </>
@@ -498,6 +552,90 @@ export default function MRPResultsPage() {
           ))}
         </div>
       </div>
+
+      {/* Modal Components */}
+      <ApproveActionModal
+        isOpen={isApproveActionOpen}
+        onClose={() => {
+          setIsApproveActionOpen(false);
+          setSelectedActionMessage(null);
+        }}
+        onApprove={handleApproveActionSubmit}
+        actionMessage={selectedActionMessage ? {
+          id: selectedActionMessage.id,
+          type: selectedActionMessage.messageType === 'expedite' ? 'Expedite' :
+                selectedActionMessage.messageType === 'reschedule' ? 'Reschedule' :
+                selectedActionMessage.messageType === 'cancel' ? 'Cancel Order' :
+                selectedActionMessage.messageType === 'create-order' ? 'Purchase Order' :
+                'Transfer',
+          priority: (selectedActionMessage.priority.charAt(0).toUpperCase() + selectedActionMessage.priority.slice(1)) as 'Critical' | 'High' | 'Medium' | 'Low',
+          materialCode: selectedActionMessage.materialCode,
+          materialName: selectedActionMessage.materialName,
+          quantity: selectedActionMessage.quantity,
+          uom: selectedActionMessage.uom,
+          currentDate: selectedActionMessage.currentDate,
+          suggestedDate: selectedActionMessage.suggestedDate,
+          reason: selectedActionMessage.reason,
+          impact: `This action affects ${selectedActionMessage.affectedWOs.length} work order(s): ${selectedActionMessage.affectedWOs.join(', ')}`,
+          affectedWorkOrders: selectedActionMessage.affectedWOs,
+          currentStatus: selectedActionMessage.status
+        } : null}
+      />
+
+      <RejectActionModal
+        isOpen={isRejectActionOpen}
+        onClose={() => {
+          setIsRejectActionOpen(false);
+          setSelectedActionMessage(null);
+        }}
+        onReject={handleRejectActionSubmit}
+        actionMessage={selectedActionMessage ? {
+          id: selectedActionMessage.id,
+          type: selectedActionMessage.messageType === 'expedite' ? 'Expedite' :
+                selectedActionMessage.messageType === 'reschedule' ? 'Reschedule' :
+                selectedActionMessage.messageType === 'cancel' ? 'Cancel Order' :
+                selectedActionMessage.messageType === 'create-order' ? 'Purchase Order' :
+                'Transfer',
+          priority: (selectedActionMessage.priority.charAt(0).toUpperCase() + selectedActionMessage.priority.slice(1)) as 'Critical' | 'High' | 'Medium' | 'Low',
+          materialCode: selectedActionMessage.materialCode,
+          materialName: selectedActionMessage.materialName,
+          quantity: selectedActionMessage.quantity,
+          uom: selectedActionMessage.uom,
+          currentDate: selectedActionMessage.currentDate,
+          suggestedDate: selectedActionMessage.suggestedDate,
+          reason: selectedActionMessage.reason,
+          impact: `This action affects ${selectedActionMessage.affectedWOs.length} work order(s): ${selectedActionMessage.affectedWOs.join(', ')}`,
+          affectedWorkOrders: selectedActionMessage.affectedWOs,
+          currentStatus: selectedActionMessage.status
+        } : null}
+      />
+
+      <ViewActionDetailsModal
+        isOpen={isViewActionOpen}
+        onClose={() => {
+          setIsViewActionOpen(false);
+          setSelectedActionMessage(null);
+        }}
+        actionMessage={selectedActionMessage ? {
+          id: selectedActionMessage.id,
+          type: selectedActionMessage.messageType === 'expedite' ? 'Expedite' :
+                selectedActionMessage.messageType === 'reschedule' ? 'Reschedule' :
+                selectedActionMessage.messageType === 'cancel' ? 'Cancel Order' :
+                selectedActionMessage.messageType === 'create-order' ? 'Purchase Order' :
+                'Transfer',
+          priority: (selectedActionMessage.priority.charAt(0).toUpperCase() + selectedActionMessage.priority.slice(1)) as 'Critical' | 'High' | 'Medium' | 'Low',
+          materialCode: selectedActionMessage.materialCode,
+          materialName: selectedActionMessage.materialName,
+          quantity: selectedActionMessage.quantity,
+          uom: selectedActionMessage.uom,
+          currentDate: selectedActionMessage.currentDate,
+          suggestedDate: selectedActionMessage.suggestedDate,
+          reason: selectedActionMessage.reason,
+          impact: `This action affects ${selectedActionMessage.affectedWOs.length} work order(s): ${selectedActionMessage.affectedWOs.join(', ')}`,
+          affectedWorkOrders: selectedActionMessage.affectedWOs,
+          currentStatus: selectedActionMessage.status
+        } : null}
+      />
     </div>
   );
 }

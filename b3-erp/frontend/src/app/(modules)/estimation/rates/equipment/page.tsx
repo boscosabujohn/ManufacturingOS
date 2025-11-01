@@ -37,6 +37,18 @@ export default function EquipmentRatesPage() {
   const router = useRouter()
   const [editingId, setEditingId] = useState<string | null>(null)
 
+  const handleAddRate = () => {
+    router.push('/estimation/rates/equipment/add')
+  }
+
+  const handleExport = () => {
+    console.log('Exporting equipment rates')
+  }
+
+  const handleViewHistory = (equipmentId: string) => {
+    router.push(`/estimation/rates/equipment/history/${equipmentId}`)
+  }
+
   const [equipmentRates] = useState<EquipmentRate[]>([
     {
       id: 'EQ-R-001',
@@ -271,11 +283,15 @@ export default function EquipmentRatesPage() {
             <Filter className="h-4 w-4" />
             Filter
           </button>
-          <button className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
+          <button
+            onClick={handleExport}
+            className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
             <Download className="h-4 w-4" />
             Export
           </button>
-          <button className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 flex items-center gap-2">
+          <button
+            onClick={handleAddRate}
+            className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 flex items-center gap-2">
             <Plus className="h-4 w-4" />
             Add Rate
           </button>
@@ -432,7 +448,9 @@ export default function EquipmentRatesPage() {
                           <Edit2 className="h-4 w-4" />
                         </button>
                       )}
-                      <button className="p-2 text-gray-600 hover:bg-gray-50 rounded-lg">
+                      <button
+                        onClick={() => handleViewHistory(equipment.id)}
+                        className="p-2 text-gray-600 hover:bg-gray-50 rounded-lg">
                         <History className="h-4 w-4" />
                       </button>
                     </div>

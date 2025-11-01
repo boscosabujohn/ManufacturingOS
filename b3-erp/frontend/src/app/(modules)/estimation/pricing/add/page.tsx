@@ -131,11 +131,18 @@ export default function AddPricingPage() {
     }
   };
 
+  const handleAddManually = () => {
+    setImportSource('manual');
+    // Automatically add a new item to get started
+    handleAddItem();
+  };
+
   const handleImportFromExisting = () => {
-    // Mock data for import
+    setImportSource('existing');
+    // Mock data for import - would show modal to select price list in real implementation
     const sampleItems: PriceItem[] = [
       {
-        id: '1',
+        id: Date.now().toString(),
         itemCode: 'MK-BASE-001',
         description: 'Standard Base Cabinet 600mm - Oak Finish',
         category: 'Base Cabinets',
@@ -146,7 +153,7 @@ export default function AddPricingPage() {
         unit: 'Unit',
       },
       {
-        id: '2',
+        id: (Date.now() + 1).toString(),
         itemCode: 'MK-WALL-002',
         description: 'Wall Cabinet 800mm with Glass Door',
         category: 'Wall Cabinets',
@@ -156,11 +163,78 @@ export default function AddPricingPage() {
         finalPrice: 15800,
         unit: 'Unit',
       },
+      {
+        id: (Date.now() + 2).toString(),
+        itemCode: 'MK-TALL-003',
+        description: 'Tall Unit 2100mm with Shelves',
+        category: 'Tall Units',
+        basePrice: 28500,
+        discountPercent: 0,
+        marginPercent: 22,
+        finalPrice: 28500,
+        unit: 'Unit',
+      },
     ];
 
     setFormData(prev => ({
       ...prev,
       priceItems: sampleItems,
+    }));
+  };
+
+  const handleLinkToCatalog = () => {
+    setImportSource('catalog');
+    // Mock data for catalog items - would show modal to select from product catalog in real implementation
+    const catalogItems: PriceItem[] = [
+      {
+        id: Date.now().toString(),
+        itemCode: 'CAT-COUNTER-001',
+        description: 'Granite Countertop - Black Galaxy',
+        category: 'Countertops',
+        basePrice: 8500,
+        discountPercent: 5,
+        marginPercent: 25,
+        finalPrice: 8075,
+        unit: 'Sq.Ft',
+      },
+      {
+        id: (Date.now() + 1).toString(),
+        itemCode: 'CAT-HARD-004',
+        description: 'Soft Close Hinges - Premium',
+        category: 'Hardware',
+        basePrice: 350,
+        discountPercent: 10,
+        marginPercent: 30,
+        finalPrice: 315,
+        unit: 'Set',
+      },
+      {
+        id: (Date.now() + 2).toString(),
+        itemCode: 'CAT-ACC-007',
+        description: 'Pull-Out Basket - Chrome',
+        category: 'Accessories',
+        basePrice: 4200,
+        discountPercent: 0,
+        marginPercent: 28,
+        finalPrice: 4200,
+        unit: 'Unit',
+      },
+      {
+        id: (Date.now() + 3).toString(),
+        itemCode: 'CAT-BASE-010',
+        description: 'Corner Base Cabinet - Carousel',
+        category: 'Base Cabinets',
+        basePrice: 18900,
+        discountPercent: 0,
+        marginPercent: 20,
+        finalPrice: 18900,
+        unit: 'Unit',
+      },
+    ];
+
+    setFormData(prev => ({
+      ...prev,
+      priceItems: catalogItems,
     }));
   };
 
@@ -407,7 +481,7 @@ export default function AddPricingPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <button
                 type="button"
-                onClick={() => setImportSource('manual')}
+                onClick={handleAddManually}
                 className={`p-4 rounded-lg border-2 transition-all ${
                   importSource === 'manual'
                     ? 'border-blue-500 bg-blue-50'
@@ -421,10 +495,7 @@ export default function AddPricingPage() {
 
               <button
                 type="button"
-                onClick={() => {
-                  setImportSource('existing');
-                  handleImportFromExisting();
-                }}
+                onClick={handleImportFromExisting}
                 className={`p-4 rounded-lg border-2 transition-all ${
                   importSource === 'existing'
                     ? 'border-green-500 bg-green-50'
@@ -438,7 +509,7 @@ export default function AddPricingPage() {
 
               <button
                 type="button"
-                onClick={() => setImportSource('catalog')}
+                onClick={handleLinkToCatalog}
                 className={`p-4 rounded-lg border-2 transition-all ${
                   importSource === 'catalog'
                     ? 'border-purple-500 bg-purple-50'

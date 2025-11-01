@@ -2,7 +2,8 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { ArrowLeft, Download, Plus, Calendar, Users, Package, TrendingUp, Factory, Clock, AlertTriangle } from 'lucide-react';
+import { ArrowLeft, Download, Plus, Calendar, Users, Package, TrendingUp, Factory, Clock, AlertTriangle, BarChart3 } from 'lucide-react';
+import { NewPlanModal, ExportPlanModal, ScenarioComparisonModal } from '@/components/production/AggregatePlanningModals';
 
 interface AggregatePlan {
   id: string;
@@ -44,8 +45,15 @@ export default function AggregatePlanningPage() {
   const router = useRouter();
   const [selectedPlan, setSelectedPlan] = useState<string>('AP-2025-Q4');
 
+  // Modal states
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isExportModalOpen, setIsExportModalOpen] = useState(false);
+  const [isScenarioModalOpen, setIsScenarioModalOpen] = useState(false);
+  const [selectedPlanForEdit, setSelectedPlanForEdit] = useState<AggregatePlan | null>(null);
+
   // Mock data for aggregate plans
-  const aggregatePlans: AggregatePlan[] = [
+  const [plans, setPlans] = useState<AggregatePlan[]>([
     {
       id: '1',
       planNumber: 'AP-2025-Q4',
@@ -204,9 +212,40 @@ export default function AggregatePlanningPage() {
         }
       ]
     }
-  ];
+  ]);
 
-  const currentPlan = aggregatePlans.find(plan => plan.planNumber === selectedPlan) || aggregatePlans[0];
+  // Handler functions
+  const handleCreatePlan = (planData: Partial<AggregatePlan>) => {
+    const newPlan: AggregatePlan = {
+      id: `${plans.length + 1}`,
+      planNumber: planData.planNumber || '',
+      planName: planData.planName || '',
+      planningPeriod: planData.planningPeriod || '',
+      startDate: planData.startDate || '',
+      endDate: planData.endDate || '',
+      status: planData.status || 'draft',
+      createdBy: 'Current User',
+      createdDate: new Date().toISOString().split('T')[0],
+      months: [],
+    };
+    setPlans([...plans, newPlan]);
+    alert('Plan created successfully!');
+  };
+
+  const handleEditPlan = (planData: Partial<AggregatePlan>) => {
+    if (!selectedPlanForEdit) return;
+    setPlans(plans.map((p) =>
+      p.id === selectedPlanForEdit.id ? { ...p, ...planData } : p
+    ));
+    alert('Plan updated successfully!');
+  };
+
+  const handleExport = (format: string, options: any) => {
+    console.log('Exporting aggregate plan as:', format, 'with options:', options);
+    alert(`Exporting aggregate plan as ${format.toUpperCase()}`);
+  };
+
+  const currentPlan = plans.find(plan => plan.planNumber === selectedPlan) || plans[0];
 
   const totalDemand = currentPlan.months.reduce((sum, m) => sum + m.forecastedDemand, 0);
   const totalProduction = currentPlan.months.reduce((sum, m) => sum + m.productionPlan, 0);
@@ -241,11 +280,24 @@ export default function AggregatePlanningPage() {
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2">
+          <button
+            onClick={() => setIsScenarioModalOpen(true)}
+            className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors flex items-center gap-2"
+          >
+            <BarChart3 className="w-4 h-4" />
+            <span>Compare Scenarios</span>
+          </button>
+          <button
+            onClick={() => setIsCreateModalOpen(true)}
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2"
+          >
             <Plus className="w-4 h-4" />
             <span>New Plan</span>
           </button>
-          <button className="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors flex items-center gap-2">
+          <button
+            onClick={() => setIsExportModalOpen(true)}
+            className="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors flex items-center gap-2"
+          >
             <Download className="w-4 h-4" />
             <span>Export</span>
           </button>
@@ -262,7 +314,7 @@ export default function AggregatePlanningPage() {
               onChange={(e) => setSelectedPlan(e.target.value)}
               className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             >
-              {aggregatePlans.map(plan => (
+              {plans.map(plan => (
                 <option key={plan.id} value={plan.planNumber}>
                   {plan.planNumber} - {plan.planName}
                 </option>
@@ -524,6 +576,32 @@ export default function AggregatePlanningPage() {
           </table>
         </div>
       </div>
+
+      {/* Modals */}
+      <NewPlanModal
+        isOpen={isCreateModalOpen}
+        onClose={() => setIsCreateModalOpen(false)}
+        onSave={handleCreatePlan}
+      />
+      <NewPlanModal
+        isOpen={isEditModalOpen}
+        onClose={() => {
+          setIsEditModalOpen(false);
+          setSelectedPlanForEdit(null);
+        }}
+        plan={selectedPlanForEdit}
+        onSave={handleEditPlan}
+      />
+      <ExportPlanModal
+        isOpen={isExportModalOpen}
+        onClose={() => setIsExportModalOpen(false)}
+        onExport={handleExport}
+      />
+      <ScenarioComparisonModal
+        isOpen={isScenarioModalOpen}
+        onClose={() => setIsScenarioModalOpen(false)}
+        currentPlan={currentPlan}
+      />
     </div>
   );
 }

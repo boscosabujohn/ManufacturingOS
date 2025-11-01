@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { ExportReportModal, RequestResourcesModal, WorkCenterConfigModal } from '@/components/production/CapacityPlanningModals';
 import {
   Factory,
   Users,
@@ -147,6 +148,12 @@ const CapacityPlanningPage = () => {
   const [selectedWorkCenter, setSelectedWorkCenter] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<'capacity' | 'bottlenecks' | 'leveling' | 'overtime' | 'scenarios' | 'machine-labor'>('capacity');
   const [expandedRows, setExpandedRows] = useState<Set<string>>(new Set());
+
+  // Modal states
+  const [isExportModalOpen, setIsExportModalOpen] = useState(false);
+  const [isResourceRequestModalOpen, setIsResourceRequestModalOpen] = useState(false);
+  const [isWorkCenterConfigModalOpen, setIsWorkCenterConfigModalOpen] = useState(false);
+  const [selectedWorkCenterForConfig, setSelectedWorkCenterForConfig] = useState<any | null>(null);
   const [showSettings, setShowSettings] = useState(false);
   const [editMode, setEditMode] = useState(false);
   const [filterDepartment, setFilterDepartment] = useState<string>('all');
@@ -648,7 +655,29 @@ const CapacityPlanningPage = () => {
 
   // Export Report
   const exportReport = () => {
-    alert('Exporting Capacity Planning Report to Excel...\n\nReport will include:\n- Capacity vs Load\n- Bottleneck Analysis\n- Overtime Planning\n- Scenarios');
+    setIsExportModalOpen(true);
+  };
+
+  // Handler functions
+  const handleExport = (format: string, options: any) => {
+    console.log('Exporting capacity planning report as:', format, 'with options:', options);
+    alert(`Exporting Capacity Planning Report as ${format.toUpperCase()}!\n\nIncluded sections:\n${
+      options.includeCapacityLoad ? '✓ Capacity vs Load\n' : ''
+    }${options.includeBottlenecks ? '✓ Bottleneck Analysis\n' : ''
+    }${options.includeResourceLeveling ? '✓ Resource Leveling\n' : ''
+    }${options.includeOvertimePlan ? '✓ Overtime Planning\n' : ''
+    }${options.includeScenarios ? '✓ Scenarios\n' : ''
+    }${options.includeMachineLabor ? '✓ Machine & Labor Split\n' : ''}`);
+  };
+
+  const handleResourceRequest = (request: any) => {
+    console.log('Submitting resource request:', request);
+    alert(`Resource Request Submitted!\n\nType: ${request.resourceType}\nWork Center: ${request.workCenter}\nQuantity: ${request.quantity}\n\nYour request has been sent for approval.`);
+  };
+
+  const handleWorkCenterConfigSave = (config: any) => {
+    console.log('Saving work center config:', config);
+    alert(`Work Center Configuration Saved!\n\nNew monthly capacity: ${Math.round(config.numberOfMachines * config.shiftsPerDay * config.hoursPerShift * config.workingDaysPerWeek * 4 * (config.efficiencyFactor / 100))} hours`);
   };
 
   return (
@@ -828,12 +857,36 @@ const CapacityPlanningPage = () => {
             <Download className="h-5 w-5" />
             Export Report
           </button>
-          <button className="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium flex items-center gap-2">
+          <button
+            onClick={() => setIsResourceRequestModalOpen(true)}
+            className="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium flex items-center gap-2"
+          >
             <Send className="h-5 w-5" />
             Request Additional Resources
           </button>
         </div>
       </div>
+
+      {/* Modals */}
+      <ExportReportModal
+        isOpen={isExportModalOpen}
+        onClose={() => setIsExportModalOpen(false)}
+        onExport={handleExport}
+      />
+      <RequestResourcesModal
+        isOpen={isResourceRequestModalOpen}
+        onClose={() => setIsResourceRequestModalOpen(false)}
+        onSubmit={handleResourceRequest}
+      />
+      <WorkCenterConfigModal
+        isOpen={isWorkCenterConfigModalOpen}
+        onClose={() => {
+          setIsWorkCenterConfigModalOpen(false);
+          setSelectedWorkCenterForConfig(null);
+        }}
+        workCenter={selectedWorkCenterForConfig}
+        onSave={handleWorkCenterConfigSave}
+      />
     </div>
   );
 };

@@ -9,6 +9,12 @@ import {
   BarChart3, PieChart, Activity, Package, DollarSign
 } from 'lucide-react';
 import {
+  ShareForecastModal,
+  RequestQuotesModal,
+  CollaborateDesignModal,
+  MessageSuppliersModal
+} from '@/components/procurement/SupplierCollaborationModals';
+import {
   LineChart, Line, BarChart, Bar, PieChart as RePieChart, Pie,
   Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
   AreaChart, Area, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar
@@ -20,6 +26,12 @@ const SupplierCollaboration: React.FC<SupplierCollaborationProps> = () => {
   const [activeTab, setActiveTab] = useState('dashboard');
   const [selectedSupplier, setSelectedSupplier] = useState<any>(null);
   const [showNewProject, setShowNewProject] = useState(false);
+
+  // Modal states
+  const [isShareForecastModalOpen, setIsShareForecastModalOpen] = useState(false);
+  const [isRequestQuotesModalOpen, setIsRequestQuotesModalOpen] = useState(false);
+  const [isCollaborateDesignModalOpen, setIsCollaborateDesignModalOpen] = useState(false);
+  const [isMessageSuppliersModalOpen, setIsMessageSuppliersModalOpen] = useState(false);
 
   // Mock supplier data
   const suppliers = [
@@ -837,8 +849,42 @@ const SupplierCollaboration: React.FC<SupplierCollaborationProps> = () => {
   return (
     <div className="p-6">
       <div className="mb-6">
-        <h2 className="text-2xl font-bold mb-2">Supplier Collaboration Portal</h2>
-        <p className="text-gray-600">Enhance supplier partnerships through seamless collaboration</p>
+        <div className="flex items-center justify-between">
+          <div>
+            <h2 className="text-2xl font-bold mb-2">Supplier Collaboration Portal</h2>
+            <p className="text-gray-600">Enhance supplier partnerships through seamless collaboration</p>
+          </div>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => setIsShareForecastModalOpen(true)}
+              className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition"
+            >
+              <Share2 className="w-4 h-4" />
+              Share Forecast
+            </button>
+            <button
+              onClick={() => setIsRequestQuotesModalOpen(true)}
+              className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition"
+            >
+              <DollarSign className="w-4 h-4" />
+              Request Quotes
+            </button>
+            <button
+              onClick={() => setIsCollaborateDesignModalOpen(true)}
+              className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition"
+            >
+              <Users className="w-4 h-4" />
+              Collaborate
+            </button>
+            <button
+              onClick={() => setIsMessageSuppliersModalOpen(true)}
+              className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+            >
+              <MessageCircle className="w-4 h-4" />
+              Message
+            </button>
+          </div>
+        </div>
       </div>
 
       {/* Navigation Tabs */}
@@ -863,6 +909,47 @@ const SupplierCollaboration: React.FC<SupplierCollaborationProps> = () => {
       {activeTab === 'suppliers' && renderSuppliers()}
       {activeTab === 'communication' && renderCommunication()}
       {activeTab === 'documents' && renderDocuments()}
+
+      {/* Supplier Collaboration Modals */}
+      <ShareForecastModal
+        isOpen={isShareForecastModalOpen}
+        onClose={() => setIsShareForecastModalOpen(false)}
+        supplier={selectedSupplier}
+        onSubmit={(data) => {
+          console.log('Share forecast:', data);
+          setIsShareForecastModalOpen(false);
+        }}
+      />
+
+      <RequestQuotesModal
+        isOpen={isRequestQuotesModalOpen}
+        onClose={() => setIsRequestQuotesModalOpen(false)}
+        supplier={selectedSupplier}
+        onSubmit={(data) => {
+          console.log('Request quotes:', data);
+          setIsRequestQuotesModalOpen(false);
+        }}
+      />
+
+      <CollaborateDesignModal
+        isOpen={isCollaborateDesignModalOpen}
+        onClose={() => setIsCollaborateDesignModalOpen(false)}
+        supplier={selectedSupplier}
+        onSubmit={(data) => {
+          console.log('Start collaboration:', data);
+          setIsCollaborateDesignModalOpen(false);
+        }}
+      />
+
+      <MessageSuppliersModal
+        isOpen={isMessageSuppliersModalOpen}
+        onClose={() => setIsMessageSuppliersModalOpen(false)}
+        supplier={selectedSupplier}
+        onSubmit={(data) => {
+          console.log('Send message:', data);
+          setIsMessageSuppliersModalOpen(false);
+        }}
+      />
     </div>
   );
 };

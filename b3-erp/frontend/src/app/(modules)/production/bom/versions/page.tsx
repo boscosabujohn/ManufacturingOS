@@ -18,6 +18,12 @@ import {
   AlertTriangle,
   Calendar
 } from 'lucide-react';
+import {
+  ViewVersionDetailsModal,
+  EditVersionModal,
+  CreateVersionModal,
+  BOMVersion as ModalBOMVersion
+} from '@/components/production/bom/BOMVersionModals';
 
 interface BOMVersion {
   id: string;
@@ -343,6 +349,12 @@ export default function BOMVersionsPage() {
     return matchesSearch && matchesProduct && matchesStatus;
   });
 
+  // Modal state hooks
+  const [isViewOpen, setIsViewOpen] = useState(false);
+  const [isEditOpen, setIsEditOpen] = useState(false);
+  const [isCreateOpen, setIsCreateOpen] = useState(false);
+  const [selectedVersion, setSelectedVersion] = useState<BOMVersion | null>(null);
+
   const getStatusBadge = (status: string) => {
     const badges = {
       current: { color: 'bg-green-100 text-green-800', icon: CheckCircle2 },
@@ -372,6 +384,59 @@ export default function BOMVersionsPage() {
   const currentVersions = versions.filter(v => v.status === 'current').length;
   const totalVersions = versions.length;
   const avgRevisionsPerProduct = versions.reduce((sum, v) => sum + v.revision, 0) / totalVersions;
+
+  // Convert BOMVersion to ModalBOMVersion format
+  const convertToModalVersion = (version: BOMVersion): ModalBOMVersion => ({
+    id: version.id,
+    versionNumber: version.version,
+    revisionNumber: version.revision.toString(),
+    status: version.status,
+    effectiveFrom: version.effectiveFrom,
+    effectiveUntil: version.effectiveTo,
+    changeReason: version.changeReason,
+    changedBy: version.changedBy,
+    changedDate: version.changeDate,
+    approvedBy: version.approvedBy,
+    approvalDate: version.approvedDate,
+    totalCost: version.totalMfgCost,
+    previousCost: version.totalMfgCost + version.costChange,
+    componentCount: version.totalComponents,
+    notes: version.notes,
+    productId: version.productCode,
+    productName: version.productName
+  });
+
+  // Handler functions
+  const handleView = (version: BOMVersion) => {
+    setSelectedVersion(version);
+    setIsViewOpen(true);
+  };
+
+  const handleEdit = (version: BOMVersion) => {
+    setSelectedVersion(version);
+    setIsEditOpen(true);
+  };
+
+  const handleCreateVersion = (version: BOMVersion) => {
+    setSelectedVersion(version);
+    setIsCreateOpen(true);
+  };
+
+  const handleViewClose = () => {
+    setIsViewOpen(false);
+  };
+
+  const handleEditSubmit = (data: Partial<ModalBOMVersion>) => {
+    // TODO: Implement API call to update version
+    console.log('Edit version data:', data);
+    setIsEditOpen(false);
+  };
+
+  const handleCreateVersionSubmit = (data: Partial<ModalBOMVersion>) => {
+    // TODO: Implement API call to create new version
+    console.log('Create version data:', data);
+    setIsCreateOpen(false);
+  };
 
   return (
     <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
@@ -567,21 +632,24 @@ export default function BOMVersionsPage() {
                       <div className="flex items-center gap-2">
                         <button
                           className="text-blue-600 hover:text-blue-900"
-                         
+                          onClick={() => handleView(version)}
+                          title="View version details"
                         >
                           <Eye className="h-4 w-4" />
                         </button>
                         {version.status === 'current' && (
                           <button
                             className="text-gray-600 hover:text-gray-900"
-                           
+                            onClick={() => handleEdit(version)}
+                            title="Edit version"
                           >
                             <Edit2 className="h-4 w-4" />
                           </button>
                         )}
                         <button
                           className="text-purple-600 hover:text-purple-900"
-                         
+                          onClick={() => handleCreateVersion(version)}
+                          title="Create new version"
                         >
                           <Copy className="h-4 w-4" />
                         </button>
@@ -599,6 +667,31 @@ export default function BOMVersionsPage() {
       <div className="mt-4 text-sm text-gray-600">
         Showing {filteredVersions.length} of {totalVersions} versions
       </div>
+
+      {/* Modals */}
+      <ViewVersionDetailsModal
+        isOpen={isViewOpen}
+        onClose={handleViewClose}
+        version={selectedVersion ? convertToModalVersion(selectedVersion) : null}
+        onEdit={(version) => {
+          const originalVersion = versions.find(v => v.id === version.id);
+          if (originalVersion) handleEdit(originalVersion);
+        }}
+      />
+
+      <EditVersionModal
+        isOpen={isEditOpen}
+        onClose={() => setIsEditOpen(false)}
+        onSave={handleEditSubmit}
+        version={selectedVersion ? convertToModalVersion(selectedVersion) : null}
+      />
+
+      <CreateVersionModal
+        isOpen={isCreateOpen}
+        onClose={() => setIsCreateOpen(false)}
+        onCreate={handleCreateVersionSubmit}
+        sourceVersion={selectedVersion ? convertToModalVersion(selectedVersion) : null}
+      />
     </div>
   );
 }

@@ -1,7 +1,7 @@
 'use client';
 
-import React from 'react';
-import { ClipboardCheck, CheckCircle, XCircle, AlertTriangle, TrendingUp } from 'lucide-react';
+import React, { useState } from 'react';
+import { ClipboardCheck, CheckCircle, XCircle, AlertTriangle, TrendingUp, Download, RefreshCw, Settings, Eye, FileText, Plus, Edit } from 'lucide-react';
 
 export type InspectionStatus = 'passed' | 'failed' | 'pending' | 'conditional';
 export type InspectionType = 'first-piece' | 'in-process' | 'final' | 'dimensional' | 'visual';
@@ -76,14 +76,115 @@ const QualityChecks: React.FC = () => {
     }
   };
 
+  // Handler functions
+  const handleRefreshInspections = () => {
+    console.log('Refreshing quality inspections...');
+    alert('Refreshing quality inspection data...\n\nAll pending and recent inspections will be updated.');
+  };
+
+  const handleExportQualityReport = () => {
+    console.log('Exporting quality report...');
+    alert('Exporting Quality Inspection Report to Excel...\n\nIncludes:\n- All inspection records\n- Pass/Fail statistics\n- Specification measurements\n- Inspector details\n- Defect analysis');
+  };
+
+  const handleQualitySettings = () => {
+    console.log('Opening quality settings...');
+    alert('Quality Control Settings\n\nConfigure:\n- Inspection types and workflows\n- Acceptance criteria and tolerances\n- Inspector assignments\n- Alert thresholds\n- Documentation requirements');
+  };
+
+  const handleNewInspection = () => {
+    alert('Create New Inspection\n\nSelect inspection type:\n- First Piece Inspection\n- In-Process Inspection\n- Final Inspection\n- Dimensional Inspection\n- Visual Inspection\n\nChoose product and work order to begin.');
+  };
+
+  const handleViewInspection = (inspection: QualityInspection) => {
+    const specDetails = inspection.specifications.map(spec =>
+      `${spec.parameter}: ${spec.actual} (Target: ${spec.target} ± ${spec.tolerance}) - ${spec.status.toUpperCase()}`
+    ).join('\n');
+
+    alert(`Inspection Details: ${inspection.inspectionNumber}\n\nProduct: ${inspection.productName}\nType: ${inspection.type}\nStatus: ${inspection.status}\n\nInspector: ${inspection.inspector}\nTimestamp: ${inspection.timestamp}\n\nSamples Checked: ${inspection.samplesChecked}\nDefects Found: ${inspection.defectsFound}\n\nSpecifications:\n${specDetails || 'No specifications recorded yet'}`);
+  };
+
+  const handleEditInspection = (inspection: QualityInspection) => {
+    if (inspection.status !== 'pending') {
+      alert(`Inspection ${inspection.inspectionNumber} is ${inspection.status}.\n\nOnly pending inspections can be edited.`);
+      return;
+    }
+    alert(`Edit Inspection: ${inspection.inspectionNumber}\n\nProduct: ${inspection.productName}\nType: ${inspection.type}\n\nUpdate inspection details, measurements, and status.`);
+  };
+
+  const handleApproveInspection = (inspection: QualityInspection) => {
+    if (inspection.status !== 'pending') {
+      alert(`Inspection ${inspection.inspectionNumber} is already ${inspection.status}.`);
+      return;
+    }
+
+    if (inspection.specifications.length === 0) {
+      alert(`Cannot approve inspection ${inspection.inspectionNumber}.\n\nPlease complete all specification measurements first.`);
+      return;
+    }
+
+    const failedSpecs = inspection.specifications.filter(s => s.status === 'fail');
+    if (failedSpecs.length > 0) {
+      if (confirm(`Warning: ${failedSpecs.length} specification(s) failed:\n${failedSpecs.map(s => s.parameter).join(', ')}\n\nMark as FAILED?`)) {
+        console.log('Marking inspection as failed:', inspection);
+        alert(`Inspection ${inspection.inspectionNumber} marked as FAILED.\n\nNon-conformance report will be generated.\nProduction team notified.`);
+      }
+    } else {
+      if (confirm(`Approve inspection ${inspection.inspectionNumber}?\n\nAll specifications passed.\n\nThis will mark the inspection as PASSED.`)) {
+        console.log('Approving inspection:', inspection);
+        alert(`Inspection ${inspection.inspectionNumber} APPROVED!\n\nAll quality checks passed.\nProduct cleared for next stage.`);
+      }
+    }
+  };
+
+  const handleGenerateNCR = (inspection: QualityInspection) => {
+    if (inspection.status !== 'failed') {
+      alert(`Inspection ${inspection.inspectionNumber} has not failed.\n\nNon-conformance reports are only generated for failed inspections.`);
+      return;
+    }
+    alert(`Generate Non-Conformance Report (NCR)\n\nInspection: ${inspection.inspectionNumber}\nProduct: ${inspection.productName}\nDefects: ${inspection.defectsFound}\n\nNCR will be created and routed for corrective action.\n\nRoot cause analysis required.`);
+  };
+
   return (
     <div className="space-y-6">
       <div className="bg-gradient-to-r from-purple-600 to-pink-600 text-white p-6 rounded-lg shadow-lg">
-        <div className="flex items-center space-x-3">
-          <ClipboardCheck className="h-8 w-8" />
-          <div>
-            <h2 className="text-2xl font-bold">Quality Checks & Inspections</h2>
-            <p className="text-purple-100">In-process and final quality control workflows</p>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-3">
+            <ClipboardCheck className="h-8 w-8" />
+            <div>
+              <h2 className="text-2xl font-bold">Quality Checks & Inspections</h2>
+              <p className="text-purple-100">In-process and final quality control workflows</p>
+            </div>
+          </div>
+          <div className="flex space-x-2">
+            <button
+              onClick={handleNewInspection}
+              className="flex items-center space-x-2 px-4 py-2 bg-white text-purple-600 rounded-lg hover:bg-purple-50 transition-colors"
+            >
+              <Plus className="h-4 w-4" />
+              <span>New Inspection</span>
+            </button>
+            <button
+              onClick={handleRefreshInspections}
+              className="flex items-center space-x-2 px-4 py-2 bg-white text-purple-600 rounded-lg hover:bg-purple-50 transition-colors"
+            >
+              <RefreshCw className="h-4 w-4" />
+              <span>Refresh</span>
+            </button>
+            <button
+              onClick={handleQualitySettings}
+              className="flex items-center space-x-2 px-4 py-2 bg-white text-purple-600 rounded-lg hover:bg-purple-50 transition-colors"
+            >
+              <Settings className="h-4 w-4" />
+              <span>Settings</span>
+            </button>
+            <button
+              onClick={handleExportQualityReport}
+              className="flex items-center space-x-2 px-4 py-2 bg-white text-purple-600 rounded-lg hover:bg-purple-50 transition-colors"
+            >
+              <Download className="h-4 w-4" />
+              <span>Export</span>
+            </button>
           </div>
         </div>
       </div>
@@ -156,6 +257,44 @@ const QualityChecks: React.FC = () => {
                   <p className="text-sm text-gray-600">
                     Samples: {inspection.samplesChecked} | Defects: <span className={inspection.defectsFound > 0 ? 'text-red-600 font-bold' : 'text-green-600'}>{inspection.defectsFound}</span>
                   </p>
+                </div>
+                <div className="flex space-x-2">
+                  <button
+                    onClick={() => handleViewInspection(inspection)}
+                    className="px-3 py-2 bg-blue-100 text-blue-700 rounded hover:bg-blue-200 transition-colors"
+                    title="View Details"
+                  >
+                    <Eye className="h-4 w-4" />
+                  </button>
+                  {inspection.status === 'pending' && (
+                    <>
+                      <button
+                        onClick={() => handleEditInspection(inspection)}
+                        className="px-3 py-2 bg-gray-100 text-gray-700 rounded hover:bg-gray-200 transition-colors"
+                        title="Edit Inspection"
+                      >
+                        <Edit className="h-4 w-4" />
+                      </button>
+                      <button
+                        onClick={() => handleApproveInspection(inspection)}
+                        className="flex items-center space-x-1 px-3 py-2 bg-green-100 text-green-700 rounded hover:bg-green-200 transition-colors"
+                        title="Approve Inspection"
+                      >
+                        <CheckCircle className="h-4 w-4" />
+                        <span>Approve</span>
+                      </button>
+                    </>
+                  )}
+                  {inspection.status === 'failed' && (
+                    <button
+                      onClick={() => handleGenerateNCR(inspection)}
+                      className="flex items-center space-x-1 px-3 py-2 bg-red-100 text-red-700 rounded hover:bg-red-200 transition-colors"
+                      title="Generate Non-Conformance Report"
+                    >
+                      <FileText className="h-4 w-4" />
+                      <span>NCR</span>
+                    </button>
+                  )}
                 </div>
               </div>
 

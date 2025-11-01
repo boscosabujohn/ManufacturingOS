@@ -291,6 +291,19 @@ export default function GanttChartPage() {
     setCurrentDate(newDate);
   };
 
+  const handleFullScreen = () => {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen();
+    } else {
+      document.exitFullscreen();
+    }
+  };
+
+  const handleExport = () => {
+    console.log('Exporting Gantt Chart...');
+    alert('Exporting Gantt Chart as PDF...');
+  };
+
   // Summary stats
   const totalTasks = tasks.length;
   const inProgress = tasks.filter(t => t.status === 'in-progress').length;
@@ -316,11 +329,17 @@ export default function GanttChartPage() {
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <button className="flex items-center gap-2 bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200">
+          <button
+            onClick={handleFullScreen}
+            className="flex items-center gap-2 bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200"
+          >
             <Maximize2 className="h-4 w-4" />
             Full Screen
           </button>
-          <button className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+          <button
+            onClick={handleExport}
+            className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+          >
             <Download className="h-4 w-4" />
             Export
           </button>

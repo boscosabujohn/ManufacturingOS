@@ -15,7 +15,33 @@ import {
   User,
   Calendar,
   Shield,
+  MoreVertical,
+  MessageSquare,
+  Paperclip,
+  Link as LinkIcon,
+  ArrowUp,
+  XCircle,
+  Target,
+  FileText,
+  BarChart3,
 } from 'lucide-react';
+import {
+  LogIssueModal,
+  EditIssueModal,
+  AssignIssueModal,
+  UpdateStatusModal,
+  AddCommentModal,
+  AttachFilesModal,
+  LinkItemsModal,
+  EscalateIssueModal,
+  ResolveIssueModal,
+  CloseIssueModal,
+  ImpactAnalysisModal,
+  RootCauseModal,
+  IssueReportModal,
+  BulkUpdateModal,
+  IssueBoardModal,
+} from '@/components/project-management/IssueModals';
 
 interface IssueRisk {
   id: string;
@@ -262,6 +288,44 @@ export default function IssuesRisksPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
+  // Modal states
+  const [modals, setModals] = useState({
+    logIssue: false,
+    editIssue: false,
+    assignIssue: false,
+    updateStatus: false,
+    addComment: false,
+    attachFiles: false,
+    linkItems: false,
+    escalateIssue: false,
+    resolveIssue: false,
+    closeIssue: false,
+    impactAnalysis: false,
+    rootCause: false,
+    issueReport: false,
+    bulkUpdate: false,
+    issueBoard: false,
+  });
+
+  const [selectedIssue, setSelectedIssue] = useState<IssueRisk | null>(null);
+  const [selectedIssues, setSelectedIssues] = useState<IssueRisk[]>([]);
+  const [showIssueMenu, setShowIssueMenu] = useState<string | null>(null);
+
+  const openModal = (modalName: keyof typeof modals, issue?: IssueRisk) => {
+    if (issue) setSelectedIssue(issue);
+    setModals({ ...modals, [modalName]: true });
+  };
+
+  const closeModal = (modalName: keyof typeof modals) => {
+    setModals({ ...modals, [modalName]: false });
+    setSelectedIssue(null);
+  };
+
+  const handleModalSubmit = (modalName: string, data: any) => {
+    console.log(`${modalName} submitted:`, data);
+    // Here you would typically make an API call to save the data
+  };
+
   // Calculate statistics
   const stats = {
     total: items.length,
@@ -354,13 +418,46 @@ export default function IssuesRisksPage() {
           <h1 className="text-3xl font-bold text-gray-900">Issues & Risks</h1>
           <p className="text-gray-600 mt-1">Track and manage project issues and risks</p>
         </div>
-        <Link
-          href="/project-management/issues/create"
-          className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
-        >
-          <Plus className="w-5 h-5" />
-          Report Issue/Risk
-        </Link>
+        <div className="flex gap-2">
+          {selectedIssues.length > 0 && (
+            <>
+              <button
+                onClick={() => openModal('bulkUpdate')}
+                className="flex items-center gap-2 bg-pink-600 text-white px-4 py-2 rounded-lg hover:bg-pink-700 transition-colors"
+              >
+                <CheckCircle className="w-5 h-5" />
+                Bulk Update ({selectedIssues.length})
+              </button>
+              <button
+                onClick={() => setSelectedIssues([])}
+                className="flex items-center gap-2 bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition-colors"
+              >
+                Clear
+              </button>
+            </>
+          )}
+          <button
+            onClick={() => openModal('issueBoard')}
+            className="flex items-center gap-2 bg-slate-600 text-white px-4 py-2 rounded-lg hover:bg-slate-700 transition-colors"
+          >
+            <BarChart3 className="w-5 h-5" />
+            Board View
+          </button>
+          <button
+            onClick={() => openModal('issueReport')}
+            className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+          >
+            <FileText className="w-5 h-5" />
+            Generate Report
+          </button>
+          <button
+            onClick={() => openModal('logIssue')}
+            className="flex items-center gap-2 bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors"
+          >
+            <Plus className="w-5 h-5" />
+            Log Issue
+          </button>
+        </div>
       </div>
 
       {/* Statistics Cards */}
@@ -623,20 +720,142 @@ export default function IssuesRisksPage() {
 
                   {/* Actions */}
                   <div className="flex items-center gap-2 ml-4">
-                    <Link
-                      href={`/project-management/issues/view/${item.id}`}
-                      className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-                     
-                    >
-                      <Eye className="w-4 h-4" />
-                    </Link>
-                    <Link
-                      href={`/project-management/issues/edit/${item.id}`}
-                      className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
-                     
-                    >
-                      <Edit className="w-4 h-4" />
-                    </Link>
+                    <input
+                      type="checkbox"
+                      checked={selectedIssues.some(i => i.id === item.id)}
+                      onChange={(e) => {
+                        if (e.target.checked) {
+                          setSelectedIssues([...selectedIssues, item]);
+                        } else {
+                          setSelectedIssues(selectedIssues.filter(i => i.id !== item.id));
+                        }
+                      }}
+                      className="w-5 h-5 text-blue-600 rounded focus:ring-2 focus:ring-blue-500"
+                    />
+                    <div className="relative">
+                      <button
+                        onClick={() => setShowIssueMenu(showIssueMenu === item.id ? null : item.id)}
+                        className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
+                      >
+                        <MoreVertical className="w-4 h-4" />
+                      </button>
+                      {showIssueMenu === item.id && (
+                        <div className="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-200 z-10">
+                          <div className="py-1">
+                            <button
+                              onClick={() => {
+                                openModal('editIssue', item);
+                                setShowIssueMenu(null);
+                              }}
+                              className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 flex items-center gap-2"
+                            >
+                              <Edit className="w-4 h-4" />
+                              Edit Issue
+                            </button>
+                            <button
+                              onClick={() => {
+                                openModal('assignIssue', item);
+                                setShowIssueMenu(null);
+                              }}
+                              className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 flex items-center gap-2"
+                            >
+                              <User className="w-4 h-4" />
+                              Assign
+                            </button>
+                            <button
+                              onClick={() => {
+                                openModal('updateStatus', item);
+                                setShowIssueMenu(null);
+                              }}
+                              className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 flex items-center gap-2"
+                            >
+                              <CheckCircle className="w-4 h-4" />
+                              Update Status
+                            </button>
+                            <button
+                              onClick={() => {
+                                openModal('addComment', item);
+                                setShowIssueMenu(null);
+                              }}
+                              className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 flex items-center gap-2"
+                            >
+                              <MessageSquare className="w-4 h-4" />
+                              Add Comment
+                            </button>
+                            <button
+                              onClick={() => {
+                                openModal('attachFiles', item);
+                                setShowIssueMenu(null);
+                              }}
+                              className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 flex items-center gap-2"
+                            >
+                              <Paperclip className="w-4 h-4" />
+                              Attach Files
+                            </button>
+                            <button
+                              onClick={() => {
+                                openModal('linkItems', item);
+                                setShowIssueMenu(null);
+                              }}
+                              className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 flex items-center gap-2"
+                            >
+                              <LinkIcon className="w-4 h-4" />
+                              Link Items
+                            </button>
+                            <button
+                              onClick={() => {
+                                openModal('escalateIssue', item);
+                                setShowIssueMenu(null);
+                              }}
+                              className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 flex items-center gap-2"
+                            >
+                              <ArrowUp className="w-4 h-4" />
+                              Escalate
+                            </button>
+                            <button
+                              onClick={() => {
+                                openModal('impactAnalysis', item);
+                                setShowIssueMenu(null);
+                              }}
+                              className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 flex items-center gap-2"
+                            >
+                              <BarChart3 className="w-4 h-4" />
+                              Impact Analysis
+                            </button>
+                            <button
+                              onClick={() => {
+                                openModal('rootCause', item);
+                                setShowIssueMenu(null);
+                              }}
+                              className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 flex items-center gap-2"
+                            >
+                              <Target className="w-4 h-4" />
+                              Root Cause
+                            </button>
+                            <button
+                              onClick={() => {
+                                openModal('resolveIssue', item);
+                                setShowIssueMenu(null);
+                              }}
+                              className="w-full px-4 py-2 text-left text-sm text-green-700 hover:bg-green-50 flex items-center gap-2"
+                            >
+                              <CheckCircle className="w-4 h-4" />
+                              Resolve
+                            </button>
+                            <button
+                              onClick={() => {
+                                openModal('closeIssue', item);
+                                setShowIssueMenu(null);
+                              }}
+                              className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 flex items-center gap-2"
+                            >
+                              <XCircle className="w-4 h-4" />
+                              Close
+                            </button>
+                          </div>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -668,6 +887,112 @@ export default function IssuesRisksPage() {
           </div>
         </div>
       </div>
+
+      {/* All Modals */}
+      <LogIssueModal
+        isOpen={modals.logIssue}
+        onClose={() => closeModal('logIssue')}
+        onSubmit={(data) => handleModalSubmit('logIssue', data)}
+      />
+
+      {selectedIssue && (
+        <>
+          <EditIssueModal
+            isOpen={modals.editIssue}
+            onClose={() => closeModal('editIssue')}
+            issue={selectedIssue}
+            onSubmit={(data) => handleModalSubmit('editIssue', data)}
+          />
+
+          <AssignIssueModal
+            isOpen={modals.assignIssue}
+            onClose={() => closeModal('assignIssue')}
+            issue={selectedIssue}
+            onSubmit={(data) => handleModalSubmit('assignIssue', data)}
+          />
+
+          <UpdateStatusModal
+            isOpen={modals.updateStatus}
+            onClose={() => closeModal('updateStatus')}
+            issue={selectedIssue}
+            onSubmit={(data) => handleModalSubmit('updateStatus', data)}
+          />
+
+          <AddCommentModal
+            isOpen={modals.addComment}
+            onClose={() => closeModal('addComment')}
+            issue={selectedIssue}
+            onSubmit={(data) => handleModalSubmit('addComment', data)}
+          />
+
+          <AttachFilesModal
+            isOpen={modals.attachFiles}
+            onClose={() => closeModal('attachFiles')}
+            issue={selectedIssue}
+            onSubmit={(files) => handleModalSubmit('attachFiles', files)}
+          />
+
+          <LinkItemsModal
+            isOpen={modals.linkItems}
+            onClose={() => closeModal('linkItems')}
+            issue={selectedIssue}
+            onSubmit={(data) => handleModalSubmit('linkItems', data)}
+          />
+
+          <EscalateIssueModal
+            isOpen={modals.escalateIssue}
+            onClose={() => closeModal('escalateIssue')}
+            issue={selectedIssue}
+            onSubmit={(data) => handleModalSubmit('escalateIssue', data)}
+          />
+
+          <ResolveIssueModal
+            isOpen={modals.resolveIssue}
+            onClose={() => closeModal('resolveIssue')}
+            issue={selectedIssue}
+            onSubmit={(data) => handleModalSubmit('resolveIssue', data)}
+          />
+
+          <CloseIssueModal
+            isOpen={modals.closeIssue}
+            onClose={() => closeModal('closeIssue')}
+            issue={selectedIssue}
+            onSubmit={(data) => handleModalSubmit('closeIssue', data)}
+          />
+
+          <ImpactAnalysisModal
+            isOpen={modals.impactAnalysis}
+            onClose={() => closeModal('impactAnalysis')}
+            issue={selectedIssue}
+          />
+
+          <RootCauseModal
+            isOpen={modals.rootCause}
+            onClose={() => closeModal('rootCause')}
+            issue={selectedIssue}
+            onSubmit={(data) => handleModalSubmit('rootCause', data)}
+          />
+        </>
+      )}
+
+      <IssueReportModal
+        isOpen={modals.issueReport}
+        onClose={() => closeModal('issueReport')}
+        onSubmit={(data) => handleModalSubmit('issueReport', data)}
+      />
+
+      <BulkUpdateModal
+        isOpen={modals.bulkUpdate}
+        onClose={() => closeModal('bulkUpdate')}
+        selectedIssues={selectedIssues}
+        onSubmit={(data) => handleModalSubmit('bulkUpdate', data)}
+      />
+
+      <IssueBoardModal
+        isOpen={modals.issueBoard}
+        onClose={() => closeModal('issueBoard')}
+        issues={items}
+      />
     </div>
   );
 }

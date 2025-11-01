@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Plus, Search, Eye, Edit, Trash2, ClipboardCheck, Factory, AlertCircle, CheckCircle, Clock, TrendingUp, Calendar, ChevronLeft, ChevronRight, Download, Users } from 'lucide-react';
+import { ExportWorkOrdersModal } from '@/components/production/WorkOrderModals';
 
 interface WorkOrder {
   id: string;
@@ -192,6 +193,7 @@ export default function WorkOrdersPage() {
   const [priorityFilter, setPriorityFilter] = useState<string>('all');
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
+  const [isExportModalOpen, setIsExportModalOpen] = useState(false);
 
   const filteredWOs = workOrders.filter((wo) => {
     const matchesSearch =
@@ -223,6 +225,11 @@ export default function WorkOrdersPage() {
     if (confirm('Are you sure you want to delete this work order?')) {
       setWorkOrders(workOrders.filter((wo) => wo.id !== id));
     }
+  };
+
+  const handleExport = (format: string, options: any) => {
+    console.log('Exporting work orders as:', format, 'with options:', options);
+    alert(`Exporting Work Orders as ${format.toUpperCase()}!\n\nDate Range: ${options.dateRange}\nStatuses: ${Object.keys(options.statuses).filter(k => options.statuses[k]).join(', ')}\nSections: ${Object.keys(options.sections).filter(k => options.sections[k]).join(', ')}`);
   };
 
   return (
@@ -317,7 +324,10 @@ export default function WorkOrdersPage() {
           <option value="high">High</option>
           <option value="urgent">Urgent</option>
         </select>
-        <button className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+        <button
+          onClick={() => setIsExportModalOpen(true)}
+          className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
+        >
           <Download className="h-4 w-4" />
           <span>Export</span>
         </button>
@@ -497,6 +507,13 @@ export default function WorkOrdersPage() {
           </div>
         </div>
       </div>
+
+      {/* Export Modal */}
+      <ExportWorkOrdersModal
+        isOpen={isExportModalOpen}
+        onClose={() => setIsExportModalOpen(false)}
+        onExport={handleExport}
+      />
     </div>
   );
 }

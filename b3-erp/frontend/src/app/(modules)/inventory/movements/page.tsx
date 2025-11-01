@@ -12,8 +12,23 @@ import {
   RefreshCw,
   ArrowRightLeft,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  Package,
+  Send,
+  RotateCcw,
+  History
 } from 'lucide-react'
+import {
+  ReceiveStockModal,
+  IssueStockModal,
+  RecordReturnModal,
+  ViewMovementDetailsModal,
+  MovementHistoryModal,
+  ReceiveStockData,
+  IssueStockData,
+  ReturnStockData,
+  Movement
+} from '@/components/inventory/InventoryMovementModals'
 
 interface InventoryMovement {
   id: string
@@ -38,6 +53,14 @@ const InventoryMovementsPage = () => {
   const [locationFilter, setLocationFilter] = useState('all')
   const [currentPage, setCurrentPage] = useState(1)
   const itemsPerPage = 10
+
+  // Modal states
+  const [isReceiveOpen, setIsReceiveOpen] = useState(false)
+  const [isIssueOpen, setIsIssueOpen] = useState(false)
+  const [isReturnOpen, setIsReturnOpen] = useState(false)
+  const [isViewDetailsOpen, setIsViewDetailsOpen] = useState(false)
+  const [isHistoryOpen, setIsHistoryOpen] = useState(false)
+  const [selectedMovement, setSelectedMovement] = useState<Movement | null>(null)
 
   const movements: InventoryMovement[] = [
     {
@@ -226,6 +249,71 @@ const InventoryMovementsPage = () => {
     console.log('Exporting inventory movements report...')
   }
 
+  // Modal handlers
+  const handleReceiveStock = () => {
+    setIsReceiveOpen(true)
+  }
+
+  const handleReceiveStockSubmit = (data: ReceiveStockData) => {
+    console.log('Receiving stock:', data)
+    // TODO: Implement API call
+    setIsReceiveOpen(false)
+  }
+
+  const handleIssueStock = () => {
+    setIsIssueOpen(true)
+  }
+
+  const handleIssueStockSubmit = (data: IssueStockData) => {
+    console.log('Issuing stock:', data)
+    // TODO: Implement API call
+    setIsIssueOpen(false)
+  }
+
+  const handleRecordReturn = () => {
+    setIsReturnOpen(true)
+  }
+
+  const handleRecordReturnSubmit = (data: ReturnStockData) => {
+    console.log('Recording return:', data)
+    // TODO: Implement API call
+    setIsReturnOpen(false)
+  }
+
+  const handleViewMovement = (movement: InventoryMovement) => {
+    // Convert to Movement format
+    const movementData: Movement = {
+      id: movement.id,
+      movementNumber: movement.movementId,
+      type: movement.movementType === 'inbound' ? 'receipt' :
+            movement.movementType === 'outbound' ? 'issue' :
+            movement.movementType === 'adjustment' ? 'transfer' : 'transfer',
+      date: movement.date,
+      status: movement.status === 'completed' ? 'completed' :
+              movement.status === 'pending' ? 'draft' : 'cancelled',
+      fromLocation: movement.fromLocation,
+      toLocation: movement.toLocation,
+      supplier: movement.fromLocation.includes('Supplier') ? movement.fromLocation : undefined,
+      reference: movement.referenceDoc,
+      items: [{
+        itemCode: movement.itemCode,
+        itemName: movement.itemName,
+        quantity: movement.quantity,
+        uom: movement.unitOfMeasure,
+        location: movement.toLocation,
+        cost: 0 // TODO: Add actual cost
+      }],
+      createdBy: movement.initiatedBy,
+      createdDate: movement.date
+    }
+    setSelectedMovement(movementData)
+    setIsViewDetailsOpen(true)
+  }
+
+  const handleViewHistory = () => {
+    setIsHistoryOpen(true)
+  }
+
   return (
     <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6">
       <div className="max-w-[1600px] mx-auto space-y-6">
@@ -271,10 +359,40 @@ const InventoryMovementsPage = () => {
           })}
         </div>
 
-        <div className="flex justify-end">
+        <div className="flex justify-between items-center">
+          <div className="flex gap-3">
+            <button
+              onClick={handleReceiveStock}
+              className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+            >
+              <Package className="w-4 h-4" />
+              Receive Stock
+            </button>
+            <button
+              onClick={handleIssueStock}
+              className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              <Send className="w-4 h-4" />
+              Issue Stock
+            </button>
+            <button
+              onClick={handleRecordReturn}
+              className="flex items-center gap-2 px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors"
+            >
+              <RotateCcw className="w-4 h-4" />
+              Record Return
+            </button>
+            <button
+              onClick={handleViewHistory}
+              className="flex items-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
+            >
+              <History className="w-4 h-4" />
+              View History
+            </button>
+          </div>
           <button
             onClick={handleExport}
-            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            className="flex items-center gap-2 px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors"
           >
             <Download className="w-4 h-4" />
             Export Report
@@ -364,7 +482,11 @@ const InventoryMovementsPage = () => {
               </thead>
               <tbody className="divide-y divide-gray-200">
                 {currentMovements.map((movement) => (
-                  <tr key={movement.id} className="hover:bg-gray-50 transition-colors">
+                  <tr
+                    key={movement.id}
+                    className="hover:bg-gray-50 transition-colors cursor-pointer"
+                    onClick={() => handleViewMovement(movement)}
+                  >
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm font-medium text-gray-900">{movement.movementId}</div>
                     </td>
@@ -405,14 +527,23 @@ const InventoryMovementsPage = () => {
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center gap-2">
                         <button
+                          onClick={(e) => {
+                            e.stopPropagation()
+                            handleViewMovement(movement)
+                          }}
                           className="p-1 text-blue-600 hover:bg-blue-50 rounded transition-colors"
-                         
+                          title="View Details"
                         >
                           <Eye className="w-4 h-4" />
                         </button>
                         <button
+                          onClick={(e) => {
+                            e.stopPropagation()
+                            console.log('Edit movement:', movement.id)
+                            // TODO: Implement edit functionality
+                          }}
                           className="p-1 text-gray-600 hover:bg-gray-50 rounded transition-colors"
-                         
+                          title="Edit Movement"
                         >
                           <Edit className="w-4 h-4" />
                         </button>
@@ -465,6 +596,40 @@ const InventoryMovementsPage = () => {
           </div>
         </div>
       </div>
+
+      {/* Modals */}
+      <ReceiveStockModal
+        isOpen={isReceiveOpen}
+        onClose={() => setIsReceiveOpen(false)}
+        onSubmit={handleReceiveStockSubmit}
+      />
+
+      <IssueStockModal
+        isOpen={isIssueOpen}
+        onClose={() => setIsIssueOpen(false)}
+        onSubmit={handleIssueStockSubmit}
+      />
+
+      <RecordReturnModal
+        isOpen={isReturnOpen}
+        onClose={() => setIsReturnOpen(false)}
+        onSubmit={handleRecordReturnSubmit}
+      />
+
+      <ViewMovementDetailsModal
+        isOpen={isViewDetailsOpen}
+        onClose={() => setIsViewDetailsOpen(false)}
+        movement={selectedMovement}
+        onPrint={() => console.log('Print movement:', selectedMovement)}
+        onExport={() => console.log('Export movement:', selectedMovement)}
+      />
+
+      <MovementHistoryModal
+        isOpen={isHistoryOpen}
+        onClose={() => setIsHistoryOpen(false)}
+        onViewDetails={handleViewMovement}
+        onExport={() => console.log('Export history')}
+      />
     </div>
   )
 }

@@ -14,6 +14,7 @@ import {
   DollarSign,
   Award
 } from 'lucide-react'
+import { CustomerPricingModal, ViewCustomerModal, FilterModal } from '@/components/cpq/CustomerPricingModals'
 
 interface CustomerPricing {
   id: string
@@ -30,7 +31,15 @@ interface CustomerPricing {
 export default function CPQPricingCustomerPage() {
   const router = useRouter()
 
-  const [customerPricing] = useState<CustomerPricing[]>([
+  const [searchQuery, setSearchQuery] = useState('')
+  const [selectedTierFilter, setSelectedTierFilter] = useState<string | null>(null)
+  const [isCustomerModalOpen, setIsCustomerModalOpen] = useState(false)
+  const [isViewModalOpen, setIsViewModalOpen] = useState(false)
+  const [isFilterModalOpen, setIsFilterModalOpen] = useState(false)
+  const [selectedCustomer, setSelectedCustomer] = useState<CustomerPricing | null>(null)
+  const [appliedFilters, setAppliedFilters] = useState<any>(null)
+
+  const [customerPricing, setCustomerPricing] = useState<CustomerPricing[]>([
     {
       id: 'CP-001',
       customerName: 'Prestige Properties Ltd',
@@ -126,23 +135,118 @@ export default function CPQPricingCustomerPage() {
     return <Users className="h-4 w-4" />
   }
 
-  const totalLifetimeValue = customerPricing.reduce((sum, c) => sum + c.lifetimeValue, 0)
-  const avgDiscount = customerPricing.reduce((sum, c) => sum + c.baseDiscount, 0) / customerPricing.length
+  // Handlers
+  const handleAddCustomer = () => {
+    setSelectedCustomer(null)
+    setIsCustomerModalOpen(true)
+  }
+
+  const handleEditCustomer = (customer: CustomerPricing) => {
+    setSelectedCustomer(customer)
+    setIsCustomerModalOpen(true)
+  }
+
+  const handleViewCustomer = (customer: CustomerPricing) => {
+    setSelectedCustomer(customer)
+    setIsViewModalOpen(true)
+  }
+
+  const handleSaveCustomer = (customer: CustomerPricing) => {
+    if (selectedCustomer) {
+      // Edit existing customer
+      setCustomerPricing(customerPricing.map(c =>
+        c.id === customer.id ? customer : c
+      ))
+    } else {
+      // Add new customer
+      setCustomerPricing([...customerPricing, customer])
+    }
+    setIsCustomerModalOpen(false)
+    setSelectedCustomer(null)
+  }
+
+  const handleExport = () => {
+    const headers = ['ID', 'Customer ID', 'Customer Name', 'Tier', 'Base Discount (%)', 'Lifetime Value', 'Active Contracts', 'Special Terms', 'Last Updated']
+    const csvData = filteredCustomers.map(customer => [
+      customer.id,
+      customer.customerId,
+      `"${customer.customerName}"`,
+      customer.tier,
+      customer.baseDiscount,
+      customer.lifetimeValue,
+      customer.activeContracts,
+      `"${customer.specialTerms}"`,
+      customer.lastUpdated
+    ])
+
+    const csv = [headers, ...csvData].map(row => row.join(',')).join('\n')
+    const blob = new Blob([csv], { type: 'text/csv' })
+    const url = window.URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `customer-pricing-${new Date().toISOString().split('T')[0]}.csv`
+    a.click()
+    window.URL.revokeObjectURL(url)
+  }
+
+  const handleTierFilter = (tier: string | null) => {
+    setSelectedTierFilter(tier)
+  }
+
+  const handleApplyFilters = (filters: any) => {
+    setAppliedFilters(filters)
+  }
+
+  // Filtering logic
+  const filteredCustomers = customerPricing.filter(customer => {
+    const matchesSearch = searchQuery === '' ||
+      customer.customerName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      customer.customerId.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      customer.specialTerms.toLowerCase().includes(searchQuery.toLowerCase())
+
+    const matchesTier = selectedTierFilter === null || customer.tier === selectedTierFilter
+
+    let matchesAdvancedFilters = true
+    if (appliedFilters) {
+      if (appliedFilters.tiers.length > 0 && !appliedFilters.tiers.includes(customer.tier)) {
+        matchesAdvancedFilters = false
+      }
+      if (appliedFilters.discountRange.min > 0 && customer.baseDiscount < appliedFilters.discountRange.min) {
+        matchesAdvancedFilters = false
+      }
+      if (appliedFilters.discountRange.max > 0 && customer.baseDiscount > appliedFilters.discountRange.max) {
+        matchesAdvancedFilters = false
+      }
+      if (appliedFilters.lifetimeValueRange.min > 0 && customer.lifetimeValue < appliedFilters.lifetimeValueRange.min * 100000) {
+        matchesAdvancedFilters = false
+      }
+      if (appliedFilters.lifetimeValueRange.max > 0 && customer.lifetimeValue > appliedFilters.lifetimeValueRange.max * 100000) {
+        matchesAdvancedFilters = false
+      }
+    }
+
+    return matchesSearch && matchesTier && matchesAdvancedFilters
+  })
+
+  const totalLifetimeValue = filteredCustomers.reduce((sum, c) => sum + c.lifetimeValue, 0)
+  const avgDiscount = filteredCustomers.length > 0
+    ? filteredCustomers.reduce((sum, c) => sum + c.baseDiscount, 0) / filteredCustomers.length
+    : 0
 
   return (
     <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
       {/* Action Buttons */}
       <div className="mb-6 flex justify-end">
         <div className="flex items-center gap-3">
-          <button className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
+          <button onClick={() => setIsFilterModalOpen(true)} className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
             <Filter className="h-4 w-4" />
             Filter
           </button>
-          <button className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
+          <button onClick={handleExport} className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
             <Download className="h-4 w-4" />
             Export
           </button>
-          <button className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 flex items-center gap-2">
+          <button onClick={handleAddCustomer} className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 flex items-center gap-2">
             <Plus className="h-4 w-4" />
             Add Customer
           </button>
@@ -155,8 +259,8 @@ export default function CPQPricingCustomerPage() {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Total Customers</p>
-              <p className="text-2xl font-bold text-blue-900 mt-1">{customerPricing.length}</p>
-              <p className="text-xs text-blue-700 mt-1">With custom pricing</p>
+              <p className="text-2xl font-bold text-blue-900 mt-1">{filteredCustomers.length}</p>
+              <p className="text-xs text-blue-700 mt-1">{searchQuery || selectedTierFilter || appliedFilters ? 'Matching filter' : 'With custom pricing'}</p>
             </div>
             <Users className="h-10 w-10 text-blue-600" />
           </div>
@@ -180,7 +284,7 @@ export default function CPQPricingCustomerPage() {
             <div>
               <p className="text-sm font-medium text-purple-600">Premium Tiers</p>
               <p className="text-2xl font-bold text-purple-900 mt-1">
-                {customerPricing.filter(c => c.tier === 'platinum' || c.tier === 'gold').length}
+                {filteredCustomers.filter(c => c.tier === 'platinum' || c.tier === 'gold').length}
               </p>
               <p className="text-xs text-purple-700 mt-1">Platinum + Gold</p>
             </div>
@@ -202,19 +306,39 @@ export default function CPQPricingCustomerPage() {
 
       {/* Tier Filter */}
       <div className="mb-6 flex gap-3">
-        <button className="px-4 py-2 bg-blue-100 text-blue-700 border border-blue-200 rounded-lg hover:bg-blue-200 text-sm font-medium">
+        <button onClick={() => handleTierFilter(null)} className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+          selectedTierFilter === null
+            ? 'bg-blue-100 text-blue-700 border border-blue-200'
+            : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
+        }`}>
           All Customers ({customerPricing.length})
         </button>
-        <button className="px-4 py-2 bg-white text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+        <button onClick={() => handleTierFilter('platinum')} className={`px-4 py-2 rounded-lg text-sm transition-colors ${
+          selectedTierFilter === 'platinum'
+            ? 'bg-blue-100 text-blue-700 border border-blue-200'
+            : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
+        }`}>
           Platinum ({customerPricing.filter(c => c.tier === 'platinum').length})
         </button>
-        <button className="px-4 py-2 bg-white text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+        <button onClick={() => handleTierFilter('gold')} className={`px-4 py-2 rounded-lg text-sm transition-colors ${
+          selectedTierFilter === 'gold'
+            ? 'bg-blue-100 text-blue-700 border border-blue-200'
+            : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
+        }`}>
           Gold ({customerPricing.filter(c => c.tier === 'gold').length})
         </button>
-        <button className="px-4 py-2 bg-white text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+        <button onClick={() => handleTierFilter('silver')} className={`px-4 py-2 rounded-lg text-sm transition-colors ${
+          selectedTierFilter === 'silver'
+            ? 'bg-blue-100 text-blue-700 border border-blue-200'
+            : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
+        }`}>
           Silver ({customerPricing.filter(c => c.tier === 'silver').length})
         </button>
-        <button className="px-4 py-2 bg-white text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+        <button onClick={() => handleTierFilter('bronze')} className={`px-4 py-2 rounded-lg text-sm transition-colors ${
+          selectedTierFilter === 'bronze'
+            ? 'bg-blue-100 text-blue-700 border border-blue-200'
+            : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
+        }`}>
           Bronze ({customerPricing.filter(c => c.tier === 'bronze').length})
         </button>
       </div>
@@ -225,6 +349,8 @@ export default function CPQPricingCustomerPage() {
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
           <input
             type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search customers..."
             className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           />
@@ -248,46 +374,64 @@ export default function CPQPricingCustomerPage() {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
-              {customerPricing.map((customer) => (
-                <tr key={customer.id} className="hover:bg-gray-50 transition-colors">
-                  <td className="px-4 py-4">
-                    <div className="text-sm font-medium text-gray-900">{customer.customerName}</div>
-                    <div className="text-xs text-gray-500">{customer.customerId}</div>
-                  </td>
-                  <td className="px-4 py-4 whitespace-nowrap text-center">
-                    <span className={`px-2 py-1 inline-flex items-center gap-1 text-xs leading-5 font-semibold rounded-full border ${getTierColor(customer.tier)}`}>
-                      {getTierIcon(customer.tier)}
-                      {customer.tier}
-                    </span>
-                  </td>
-                  <td className="px-4 py-4 whitespace-nowrap text-center">
-                    <span className="text-lg font-bold text-green-700">{customer.baseDiscount}%</span>
-                  </td>
-                  <td className="px-4 py-4">
-                    <div className="text-xs text-gray-700 max-w-xs">{customer.specialTerms}</div>
-                  </td>
-                  <td className="px-4 py-4 whitespace-nowrap text-right">
-                    <span className="text-sm font-semibold text-blue-600">
-                      ₹{(customer.lifetimeValue / 100000).toFixed(1)}L
-                    </span>
-                  </td>
-                  <td className="px-4 py-4 whitespace-nowrap text-center">
-                    <span className="text-sm text-gray-700">{customer.activeContracts}</span>
-                  </td>
-                  <td className="px-4 py-4 whitespace-nowrap">
-                    <div className="text-xs text-gray-600">{customer.lastUpdated}</div>
-                  </td>
-                  <td className="px-4 py-4 whitespace-nowrap text-right">
-                    <button
-                      className="p-1.5 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-                      aria-label="Edit"
-                     
-                    >
-                      <Edit className="h-4 w-4" />
-                    </button>
+              {filteredCustomers.length === 0 ? (
+                <tr>
+                  <td colSpan={8} className="px-4 py-12 text-center text-gray-500">
+                    {searchQuery || selectedTierFilter || appliedFilters ? (
+                      <div>
+                        <p className="text-lg font-medium mb-2">No matching customers found</p>
+                        <p className="text-sm">Try adjusting your search or filter criteria</p>
+                      </div>
+                    ) : (
+                      <div>
+                        <p className="text-lg font-medium mb-2">No customer pricing records yet</p>
+                        <p className="text-sm">Click "Add Customer" to create your first customer pricing record</p>
+                      </div>
+                    )}
                   </td>
                 </tr>
-              ))}
+              ) : (
+                filteredCustomers.map((customer) => (
+                  <tr key={customer.id} onClick={() => handleViewCustomer(customer)} className="hover:bg-gray-50 transition-colors cursor-pointer">
+                    <td className="px-4 py-4">
+                      <div className="text-sm font-medium text-gray-900">{customer.customerName}</div>
+                      <div className="text-xs text-gray-500">{customer.customerId}</div>
+                    </td>
+                    <td className="px-4 py-4 whitespace-nowrap text-center">
+                      <span className={`px-2 py-1 inline-flex items-center gap-1 text-xs leading-5 font-semibold rounded-full border ${getTierColor(customer.tier)}`}>
+                        {getTierIcon(customer.tier)}
+                        {customer.tier}
+                      </span>
+                    </td>
+                    <td className="px-4 py-4 whitespace-nowrap text-center">
+                      <span className="text-lg font-bold text-green-700">{customer.baseDiscount}%</span>
+                    </td>
+                    <td className="px-4 py-4">
+                      <div className="text-xs text-gray-700 max-w-xs">{customer.specialTerms}</div>
+                    </td>
+                    <td className="px-4 py-4 whitespace-nowrap text-right">
+                      <span className="text-sm font-semibold text-blue-600">
+                        ₹{(customer.lifetimeValue / 100000).toFixed(1)}L
+                      </span>
+                    </td>
+                    <td className="px-4 py-4 whitespace-nowrap text-center">
+                      <span className="text-sm text-gray-700">{customer.activeContracts}</span>
+                    </td>
+                    <td className="px-4 py-4 whitespace-nowrap">
+                      <div className="text-xs text-gray-600">{customer.lastUpdated}</div>
+                    </td>
+                    <td className="px-4 py-4 whitespace-nowrap text-right">
+                      <button
+                        onClick={(e) => { e.stopPropagation(); handleEditCustomer(customer); }}
+                        className="p-1.5 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                        aria-label="Edit"
+                      >
+                        <Edit className="h-4 w-4" />
+                      </button>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>
@@ -307,6 +451,30 @@ export default function CPQPricingCustomerPage() {
           </div>
         </div>
       </div>
+
+      {/* Modals */}
+      <CustomerPricingModal
+        isOpen={isCustomerModalOpen}
+        onClose={() => setIsCustomerModalOpen(false)}
+        onSave={handleSaveCustomer}
+        customer={selectedCustomer}
+      />
+
+      <ViewCustomerModal
+        isOpen={isViewModalOpen}
+        onClose={() => setIsViewModalOpen(false)}
+        customer={selectedCustomer}
+        onEdit={() => {
+          setIsViewModalOpen(false)
+          setIsCustomerModalOpen(true)
+        }}
+      />
+
+      <FilterModal
+        isOpen={isFilterModalOpen}
+        onClose={() => setIsFilterModalOpen(false)}
+        onApply={handleApplyFilters}
+      />
     </div>
   )
 }

@@ -32,6 +32,7 @@ import {
   ArrowLeft,
   RefreshCw,
 } from 'lucide-react';
+import { QualityAlertModal, SupervisorCallModal, QuickDowntimeModal, QualityAlertData, SupervisorCallData, QuickDowntimeData } from '@/components/shopfloor/ShopFloorActionModals';
 
 // TypeScript Interfaces
 interface Operator {
@@ -96,6 +97,11 @@ export default function ShopfloorTerminalPage() {
   const [totalProduced, setTotalProduced] = useState(0);
   const [totalRejections, setTotalRejections] = useState(0);
   const [totalDowntime, setTotalDowntime] = useState(0);
+
+  // Modal State
+  const [isQualityAlertOpen, setIsQualityAlertOpen] = useState(false);
+  const [isSupervisorCallOpen, setIsSupervisorCallOpen] = useState(false);
+  const [isQuickDowntimeOpen, setIsQuickDowntimeOpen] = useState(false);
 
   // Options
   const workCenters = [
@@ -414,6 +420,50 @@ export default function ShopfloorTerminalPage() {
     // In real app, play actual audio files
     console.log(`Audio feedback: ${type}`);
   };
+
+  // Modal Handlers
+  const handleQualityAlert = () => {
+    setIsQualityAlertOpen(true);
+  };
+
+  const handleQualityAlertSubmit = (alertData: QualityAlertData) => {
+    console.log('Quality Alert raised:', alertData);
+    // TODO: Implement API call to create quality alert
+    setIsQualityAlertOpen(false);
+    // Show success message
+    alert('Quality Alert raised successfully. Supervisor has been notified.');
+  };
+
+  const handleCallSupervisor = () => {
+    setIsSupervisorCallOpen(true);
+  };
+
+  const handleSupervisorCallSubmit = (request: SupervisorCallData) => {
+    console.log('Supervisor requested:', request);
+    // TODO: Implement API call to request supervisor
+    setIsSupervisorCallOpen(false);
+    // Show success message
+    alert('Supervisor has been notified. Estimated response time: ' + (request.priority === 'emergency' ? '2-3 minutes' : request.priority === 'urgent' ? '5-10 minutes' : '15-30 minutes'));
+  };
+
+  const handleQuickDowntime = () => {
+    setIsQuickDowntimeOpen(true);
+  };
+
+  const handleQuickDowntimeSubmit = (downtime: QuickDowntimeData) => {
+    console.log('Quick downtime logged:', downtime);
+    // TODO: Implement API call to log downtime
+    setIsQuickDowntimeOpen(false);
+    // Show success message
+    alert('Downtime logged successfully.');
+  };
+
+  // Create context object for modals
+  const getModalContext = () => ({
+    workOrderId: activeJob?.woNumber || '',
+    operatorId: operator?.employeeId || '',
+    stationId: selectedWorkCenter || 'STATION-01' // Use selected work center
+  });
 
   // Login Screen
   if (screen === 'login') {
@@ -757,7 +807,7 @@ export default function ShopfloorTerminalPage() {
 
         <div className="grid grid-cols-2 gap-4">
           <button
-            onClick={() => alert('Quality alert sent to supervisor!')}
+            onClick={handleQualityAlert}
             className="flex items-center justify-center space-x-3 px-8 py-8 bg-purple-600 text-white rounded-xl hover:bg-purple-700 transition-colors text-2xl font-semibold shadow-lg"
           >
             <Shield className="w-10 h-10" />
@@ -765,7 +815,7 @@ export default function ShopfloorTerminalPage() {
           </button>
 
           <button
-            onClick={() => alert('Supervisor called!')}
+            onClick={handleCallSupervisor}
             className="flex items-center justify-center space-x-3 px-8 py-8 bg-orange-600 text-white rounded-xl hover:bg-orange-700 transition-colors text-2xl font-semibold shadow-lg"
           >
             <PhoneCall className="w-10 h-10" />
@@ -1066,5 +1116,29 @@ export default function ShopfloorTerminalPage() {
     );
   }
 
-  return null;
+  return (
+    <>
+      {/* Modal Components */}
+      <QualityAlertModal
+        isOpen={isQualityAlertOpen}
+        onClose={() => setIsQualityAlertOpen(false)}
+        onSubmit={handleQualityAlertSubmit}
+        context={getModalContext()}
+      />
+
+      <SupervisorCallModal
+        isOpen={isSupervisorCallOpen}
+        onClose={() => setIsSupervisorCallOpen(false)}
+        onSubmit={handleSupervisorCallSubmit}
+        context={getModalContext()}
+      />
+
+      <QuickDowntimeModal
+        isOpen={isQuickDowntimeOpen}
+        onClose={() => setIsQuickDowntimeOpen(false)}
+        onSubmit={handleQuickDowntimeSubmit}
+        context={getModalContext()}
+      />
+    </>
+  );
 }

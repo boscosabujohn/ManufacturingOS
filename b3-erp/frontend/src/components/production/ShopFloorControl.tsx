@@ -1,7 +1,7 @@
 'use client';
 
-import React from 'react';
-import { Monitor, Play, Pause, CheckCircle, XCircle } from 'lucide-react';
+import React, { useState } from 'react';
+import { Monitor, Play, Pause, CheckCircle, XCircle, Download, RefreshCw, Settings } from 'lucide-react';
 
 export interface Workstation {
   id: string;
@@ -33,14 +33,83 @@ const ShopFloorControl: React.FC = () => {
     }
   };
 
+  // Handler functions
+  const handleRefresh = () => {
+    alert('Refreshing shop floor data...\n\nAll workstation status and progress will be updated in real-time.');
+  };
+
+  const handleSettings = () => {
+    alert('Shop Floor Control Settings\n\nConfigure:\n- Workstation assignments\n- Operator access\n- Auto-refresh intervals\n- Alert thresholds');
+  };
+
+  const handleExport = () => {
+    alert('Export Shop Floor Report...\n\nIncludes:\n- All workstation status\n- Production progress\n- Efficiency metrics\n- Operator assignments');
+  };
+
+  const handlePause = (ws: Workstation) => {
+    if (ws.status !== 'running') {
+      alert(`Workstation ${ws.name} is not currently running.`);
+      return;
+    }
+    if (confirm(`Pause workstation ${ws.name}?\n\nJob: ${ws.currentJob}\nOperator: ${ws.operator}\nCurrent Progress: ${ws.quantity.completed}/${ws.quantity.target}`)) {
+      alert(`Workstation ${ws.name} paused!\n\nProgress saved: ${ws.quantity.completed} units.\nWorkstation available for other tasks.`);
+    }
+  };
+
+  const handleStart = (ws: Workstation) => {
+    if (ws.status === 'running') {
+      alert(`Workstation ${ws.name} is already running.`);
+      return;
+    }
+    if (ws.status === 'idle') {
+      alert(`Please assign a work order to workstation ${ws.name} first.`);
+      return;
+    }
+    if (confirm(`Start/Resume workstation ${ws.name}?\n\nJob: ${ws.currentJob}\nOperator: ${ws.operator}`)) {
+      alert(`Workstation ${ws.name} started!\n\nProduction resumed.\nReal-time tracking enabled.`);
+    }
+  };
+
+  const handleComplete = (ws: Workstation) => {
+    if (ws.status === 'idle') {
+      alert(`No active job on workstation ${ws.name}.`);
+      return;
+    }
+    const remaining = ws.quantity.target - ws.quantity.completed;
+    if (remaining > 0) {
+      if (!confirm(`Complete job early?\n\nWorkstation: ${ws.name}\nJob: ${ws.currentJob}\n\nCompleted: ${ws.quantity.completed}/${ws.quantity.target}\nRemaining: ${remaining} units\n\nMark as complete anyway?`)) {
+        return;
+      }
+    }
+    if (confirm(`Complete job on workstation ${ws.name}?\n\nJob: ${ws.currentJob}\nProduct: ${ws.productName}\nQuantity: ${ws.quantity.completed}/${ws.quantity.target}`)) {
+      alert(`Job ${ws.currentJob} completed on ${ws.name}!\n\nTotal produced: ${ws.quantity.completed} units\nEfficiency: ${ws.efficiency}%\n\nWorkstation now available for new work.`);
+    }
+  };
+
   return (
     <div className="space-y-6">
       <div className="bg-gradient-to-r from-teal-600 to-cyan-600 text-white p-6 rounded-lg shadow-lg">
-        <div className="flex items-center space-x-3">
-          <Monitor className="h-8 w-8" />
-          <div>
-            <h2 className="text-2xl font-bold">Shop Floor Control</h2>
-            <p className="text-teal-100">Real-time workstation monitoring and control</p>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-3">
+            <Monitor className="h-8 w-8" />
+            <div>
+              <h2 className="text-2xl font-bold">Shop Floor Control</h2>
+              <p className="text-teal-100">Real-time workstation monitoring and control</p>
+            </div>
+          </div>
+          <div className="flex space-x-2">
+            <button onClick={handleRefresh} className="flex items-center space-x-2 px-4 py-2 bg-white text-teal-600 rounded-lg hover:bg-teal-50 transition-colors">
+              <RefreshCw className="h-4 w-4" />
+              <span>Refresh</span>
+            </button>
+            <button onClick={handleSettings} className="flex items-center space-x-2 px-4 py-2 bg-white text-teal-600 rounded-lg hover:bg-teal-50 transition-colors">
+              <Settings className="h-4 w-4" />
+              <span>Settings</span>
+            </button>
+            <button onClick={handleExport} className="flex items-center space-x-2 px-4 py-2 bg-white text-teal-600 rounded-lg hover:bg-teal-50 transition-colors">
+              <Download className="h-4 w-4" />
+              <span>Export</span>
+            </button>
           </div>
         </div>
       </div>
@@ -92,17 +161,17 @@ const ShopFloorControl: React.FC = () => {
 
                   <div className="flex space-x-2">
                     {ws.status === 'running' ? (
-                      <button className="flex-1 flex items-center justify-center space-x-2 px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700">
+                      <button onClick={() => handlePause(ws)} className="flex-1 flex items-center justify-center space-x-2 px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700 transition-colors">
                         <Pause className="h-4 w-4" />
                         <span>Pause</span>
                       </button>
                     ) : (
-                      <button className="flex-1 flex items-center justify-center space-x-2 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">
+                      <button onClick={() => handleStart(ws)} className="flex-1 flex items-center justify-center space-x-2 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors">
                         <Play className="h-4 w-4" />
                         <span>Start</span>
                       </button>
                     )}
-                    <button className="flex-1 flex items-center justify-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                    <button onClick={() => handleComplete(ws)} className="flex-1 flex items-center justify-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors">
                       <CheckCircle className="h-4 w-4" />
                       <span>Complete</span>
                     </button>

@@ -1,7 +1,7 @@
 'use client';
 
-import React from 'react';
-import { GitBranch, Package, MapPin, Clock } from 'lucide-react';
+import React, { useState } from 'react';
+import { GitBranch, Package, MapPin, Clock, Download, RefreshCw, Settings, Search, FileText, Printer } from 'lucide-react';
 
 export interface TraceabilityRecord {
   serialNumber: string;
@@ -37,14 +37,65 @@ const Traceability: React.FC = () => {
     },
   ];
 
+  // Handler functions
+  const handleSearch = () => {
+    alert('Search Traceability Records\n\nSearch by:\n- Serial Number\n- Batch Number\n- Work Order\n- Product Name\n- Material Lot Number');
+  };
+
+  const handleRefresh = () => {
+    alert('Refreshing traceability data...\n\nAll product genealogy and location data will be updated.');
+  };
+
+  const handleSettings = () => {
+    alert('Traceability Settings\n\nConfigure:\n- Tracking parameters\n- Genealogy capture rules\n- Quality checkpoint requirements\n- Material lot association');
+  };
+
+  const handleExport = () => {
+    alert('Export Traceability Report...\n\nIncludes:\n- Complete product genealogy\n- Manufacturing history\n- Quality checkpoints\n- Material lots used\n- Operator records');
+  };
+
+  const handleViewGenealogy = (record: TraceabilityRecord) => {
+    const steps = record.genealogy.map(g => `${g.step} (${g.workCenter}) - ${g.operator} @ ${g.timestamp}`).join('\n');
+    const checks = record.qualityChecks.map(q => `${q.checkpoint}: ${q.result.toUpperCase()} by ${q.inspector}`).join('\n');
+    alert(`Complete Traceability Report\n\nSerial: ${record.serialNumber}\nProduct: ${record.productName}\nBatch: ${record.batchNumber}\nWork Order: ${record.workOrder}\nStatus: ${record.status}\nLocation: ${record.currentLocation}\n\nMANUFACTURING STEPS:\n${steps}\n\nQUALITY CHECKS:\n${checks}`);
+  };
+
+  const handlePrintLabel = (record: TraceabilityRecord) => {
+    alert(`Print Product Label\n\nSerial: ${record.serialNumber}\nProduct: ${record.productName}\nBatch: ${record.batchNumber}\n\nBarcode/QR code with traceability data will be printed.`);
+  };
+
+  const handleExportPDF = (record: TraceabilityRecord) => {
+    alert(`Export Genealogy Report to PDF\n\nSerial: ${record.serialNumber}\nProduct: ${record.productName}\n\nComplete traceability documentation will be generated.`);
+  };
+
   return (
     <div className="space-y-6">
       <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-6 rounded-lg shadow-lg">
-        <div className="flex items-center space-x-3">
-          <GitBranch className="h-8 w-8" />
-          <div>
-            <h2 className="text-2xl font-bold">Traceability & Genealogy</h2>
-            <p className="text-indigo-100">Complete product tracking from raw material to finished goods</p>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-3">
+            <GitBranch className="h-8 w-8" />
+            <div>
+              <h2 className="text-2xl font-bold">Traceability & Genealogy</h2>
+              <p className="text-indigo-100">Complete product tracking from raw material to finished goods</p>
+            </div>
+          </div>
+          <div className="flex space-x-2">
+            <button onClick={handleSearch} className="flex items-center space-x-2 px-4 py-2 bg-white text-indigo-600 rounded-lg hover:bg-indigo-50 transition-colors">
+              <Search className="h-4 w-4" />
+              <span>Search</span>
+            </button>
+            <button onClick={handleRefresh} className="flex items-center space-x-2 px-4 py-2 bg-white text-indigo-600 rounded-lg hover:bg-indigo-50 transition-colors">
+              <RefreshCw className="h-4 w-4" />
+              <span>Refresh</span>
+            </button>
+            <button onClick={handleSettings} className="flex items-center space-x-2 px-4 py-2 bg-white text-indigo-600 rounded-lg hover:bg-indigo-50 transition-colors">
+              <Settings className="h-4 w-4" />
+              <span>Settings</span>
+            </button>
+            <button onClick={handleExport} className="flex items-center space-x-2 px-4 py-2 bg-white text-indigo-600 rounded-lg hover:bg-indigo-50 transition-colors">
+              <Download className="h-4 w-4" />
+              <span>Export</span>
+            </button>
           </div>
         </div>
       </div>
@@ -57,9 +108,22 @@ const Traceability: React.FC = () => {
                 <h3 className="text-xl font-bold">{record.serialNumber}</h3>
                 <p className="text-sm text-indigo-100">{record.productName}</p>
               </div>
-              <div className="text-right">
-                <div className="text-sm">Work Order: {record.workOrder}</div>
-                <div className="text-sm">Batch: {record.batchNumber}</div>
+              <div className="flex items-center space-x-3">
+                <div className="text-right">
+                  <div className="text-sm">Work Order: {record.workOrder}</div>
+                  <div className="text-sm">Batch: {record.batchNumber}</div>
+                </div>
+                <div className="flex space-x-2">
+                  <button onClick={() => handleViewGenealogy(record)} className="px-3 py-2 bg-white bg-opacity-20 hover:bg-opacity-30 rounded transition-colors" title="View Full Genealogy">
+                    <FileText className="h-4 w-4" />
+                  </button>
+                  <button onClick={() => handlePrintLabel(record)} className="px-3 py-2 bg-white bg-opacity-20 hover:bg-opacity-30 rounded transition-colors" title="Print Label">
+                    <Printer className="h-4 w-4" />
+                  </button>
+                  <button onClick={() => handleExportPDF(record)} className="px-3 py-2 bg-white bg-opacity-20 hover:bg-opacity-30 rounded transition-colors" title="Export to PDF">
+                    <Download className="h-4 w-4" />
+                  </button>
+                </div>
               </div>
             </div>
           </div>
