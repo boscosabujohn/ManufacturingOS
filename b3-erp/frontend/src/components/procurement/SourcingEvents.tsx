@@ -159,8 +159,21 @@ const SourcingEvents: React.FC = () => {
       return;
     }
 
-    if (confirm(`Cancel Sourcing Event?\n\nEvent: ${event.eventNumber}\n${event.title}\n\nStatus: ${event.status}\nResponses: ${event.responsesReceived}\n\n${event.responsesReceived > 0 ? '⚠️ WARNING: ' + event.responsesReceived + ' suppliers have submitted responses.\nCancellation will require formal notification and explanation.\n\n' : ''}This action:\n- Closes the event permanently\n- Notifies all participants\n- Cannot be undone\n\nReason for cancellation required.\n\nProceed with cancellation?`)) {
+    {
+      const msg = 'Cancel Sourcing Event?\n\n'
+        + `Event: ${event.eventNumber}\n${event.title}\n\n`
+        + `Status: ${event.status}\nResponses: ${event.responsesReceived}\n\n`
+        + (event.responsesReceived > 0
+          ? `⚠️ WARNING: ${event.responsesReceived} suppliers have submitted responses.\n`
+            + 'Cancellation will require formal notification and explanation.\n\n'
+          : '')
+        + 'This action:\n- Closes the event permanently\n- Notifies all participants\n- Cannot be undone\n\n'
+        + 'Reason for cancellation required.\n\n'
+        + 'Proceed with cancellation?';
+
+      if (confirm(msg)) {
       alert(`Event Cancellation Process\n\nEvent ${event.eventNumber} marked for cancellation.\n\nREQUIRED INFORMATION:\n\n1. Cancellation Reason:\n   - Requirements changed\n   - Budget not approved\n   - Business need eliminated\n   - Insufficient responses\n   - Technical issues\n   - Other (specify)\n\n2. Impact Assessment:\n   - Suppliers to notify: ${event.responsesReceived > 0 ? event.responsesReceived + ' (submitted bids)' : event.participantsInvited + ' (invited)'}\n   - Debriefing required: ${event.responsesReceived > 0 ? 'Yes' : 'No'}\n   - Compensation due: None (standard T&Cs)\n\n3. Communication Plan:\n   ${event.responsesReceived > 0 ? '- Send formal cancellation letter\n   - Offer debriefing calls\n   - Document in supplier records\n   - Update supplier scorecard' : '- Send brief notification\n   - Update supplier portal'}\n\n4. Internal Actions:\n   - Document reason in event log\n   - Update forecast/budget\n   - Plan alternative sourcing (if needed)\n   - Lessons learned session\n\nAPPROVAL:\nCancellation requires ${event.estimatedValue > 500000 ? 'Procurement Director' : 'Category Manager'} approval.\n\nSubmit cancellation request?`);
+      }
     }
   };
 
