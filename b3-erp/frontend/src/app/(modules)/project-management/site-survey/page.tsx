@@ -1,7 +1,21 @@
 'use client';
 
 import { useState } from 'react';
-import { MapPin, Camera, Ruler, CheckCircle, AlertTriangle, Clock, Plus, Download, Eye } from 'lucide-react';
+import { MapPin, Camera, Ruler, CheckCircle, AlertTriangle, Clock, Plus, Download, Eye, Edit, FileText, Upload, Image, FileCode, ClipboardList, MessageSquare, TrendingUp, FileSpreadsheet, Filter } from 'lucide-react';
+import {
+  ScheduleSurveyModal,
+  EditSurveyModal,
+  UpdateMeasurementsModal,
+  UploadPhotosModal,
+  AddDrawingsModal,
+  RecordSiteConditionsModal,
+  AddIssuesModal,
+  AddRecommendationsModal,
+  UpdateStatusModal,
+  GenerateReportModal,
+  ExportDataModal,
+  ViewFullDetailsModal,
+} from '@/components/project-management/SiteSurveyModals';
 
 interface SiteSurvey {
   id: string;
@@ -50,6 +64,20 @@ export default function SiteSurveyPage() {
   const [selectedSurvey, setSelectedSurvey] = useState<SiteSurvey | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 8;
+
+  // Modal states
+  const [showScheduleModal, setShowScheduleModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [showMeasurementsModal, setShowMeasurementsModal] = useState(false);
+  const [showPhotosModal, setShowPhotosModal] = useState(false);
+  const [showDrawingsModal, setShowDrawingsModal] = useState(false);
+  const [showConditionsModal, setShowConditionsModal] = useState(false);
+  const [showIssuesModal, setShowIssuesModal] = useState(false);
+  const [showRecommendationsModal, setShowRecommendationsModal] = useState(false);
+  const [showStatusModal, setShowStatusModal] = useState(false);
+  const [showGenerateReportModal, setShowGenerateReportModal] = useState(false);
+  const [showExportModal, setShowExportModal] = useState(false);
+  const [showDetailsModal, setShowDetailsModal] = useState(false);
 
   const mockSurveys: SiteSurvey[] = [
     {
@@ -417,21 +445,153 @@ export default function SiteSurveyPage() {
     }
   };
 
+  // Handler functions
+  const handleScheduleSurvey = (data: any) => {
+    console.log('Schedule Survey:', data);
+    setShowScheduleModal(false);
+  };
+
+  const handleEditSurvey = (data: any) => {
+    console.log('Edit Survey:', data);
+    setShowEditModal(false);
+    setSelectedSurvey(null);
+  };
+
+  const handleUpdateMeasurements = (data: any) => {
+    console.log('Update Measurements:', data);
+    setShowMeasurementsModal(false);
+    setSelectedSurvey(null);
+  };
+
+  const handleUploadPhotos = (data: any) => {
+    console.log('Upload Photos:', data);
+    setShowPhotosModal(false);
+    setSelectedSurvey(null);
+  };
+
+  const handleAddDrawings = (data: any) => {
+    console.log('Add Drawings:', data);
+    setShowDrawingsModal(false);
+    setSelectedSurvey(null);
+  };
+
+  const handleRecordConditions = (data: any) => {
+    console.log('Record Site Conditions:', data);
+    setShowConditionsModal(false);
+    setSelectedSurvey(null);
+  };
+
+  const handleAddIssue = (data: any) => {
+    console.log('Add Issue:', data);
+    setShowIssuesModal(false);
+    setSelectedSurvey(null);
+  };
+
+  const handleAddRecommendation = (data: any) => {
+    console.log('Add Recommendation:', data);
+    setShowRecommendationsModal(false);
+    setSelectedSurvey(null);
+  };
+
+  const handleUpdateStatus = (data: any) => {
+    console.log('Update Status:', data);
+    setShowStatusModal(false);
+    setSelectedSurvey(null);
+  };
+
+  const handleGenerateReport = (data: any) => {
+    console.log('Generate Report:', data);
+    setShowGenerateReportModal(false);
+    setSelectedSurvey(null);
+  };
+
+  const handleExportData = (data: any) => {
+    console.log('Export Data:', data);
+    setShowExportModal(false);
+  };
+
+  // Helper functions to open modals with selected survey
+  const openEditModal = (survey: SiteSurvey) => {
+    setSelectedSurvey(survey);
+    setShowEditModal(true);
+  };
+
+  const openMeasurementsModal = (survey: SiteSurvey) => {
+    setSelectedSurvey(survey);
+    setShowMeasurementsModal(true);
+  };
+
+  const openPhotosModal = (survey: SiteSurvey) => {
+    setSelectedSurvey(survey);
+    setShowPhotosModal(true);
+  };
+
+  const openDrawingsModal = (survey: SiteSurvey) => {
+    setSelectedSurvey(survey);
+    setShowDrawingsModal(true);
+  };
+
+  const openConditionsModal = (survey: SiteSurvey) => {
+    setSelectedSurvey(survey);
+    setShowConditionsModal(true);
+  };
+
+  const openIssuesModal = (survey: SiteSurvey) => {
+    setSelectedSurvey(survey);
+    setShowIssuesModal(true);
+  };
+
+  const openRecommendationsModal = (survey: SiteSurvey) => {
+    setSelectedSurvey(survey);
+    setShowRecommendationsModal(true);
+  };
+
+  const openStatusModal = (survey: SiteSurvey) => {
+    setSelectedSurvey(survey);
+    setShowStatusModal(true);
+  };
+
+  const openGenerateReportModal = (survey: SiteSurvey) => {
+    setSelectedSurvey(survey);
+    setShowGenerateReportModal(true);
+  };
+
+  const openDetailsModal = (survey: SiteSurvey) => {
+    setSelectedSurvey(survey);
+    setShowDetailsModal(true);
+  };
+
   return (
     <div className="p-6 space-y-6">
       {/* Header */}
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-start">
         <div>
           <h1 className="text-3xl font-bold text-gray-900">Site Survey & Preparation</h1>
           <p className="text-gray-600 mt-1">Pre-installation site assessment and planning</p>
         </div>
-        <button
-          onClick={() => setShowAddModal(true)}
-          className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-        >
-          <Plus className="h-5 w-5" />
-          <span>New Survey</span>
-        </button>
+        <div className="flex items-center space-x-3">
+          <button
+            onClick={() => setShowGenerateReportModal(true)}
+            className="flex items-center space-x-2 px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700"
+          >
+            <FileText className="h-5 w-5" />
+            <span>Generate Report</span>
+          </button>
+          <button
+            onClick={() => setShowExportModal(true)}
+            className="flex items-center space-x-2 px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700"
+          >
+            <Download className="h-5 w-5" />
+            <span>Export Data</span>
+          </button>
+          <button
+            onClick={() => setShowScheduleModal(true)}
+            className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          >
+            <Plus className="h-5 w-5" />
+            <span>Schedule Survey</span>
+          </button>
+        </div>
       </div>
 
       {/* Statistics Cards */}
@@ -538,7 +698,7 @@ export default function SiteSurveyPage() {
                 <p className="text-sm text-gray-600 mt-1">{survey.projectId} - {survey.projectType}</p>
               </div>
               <button
-                onClick={() => setSelectedSurvey(survey)}
+                onClick={() => openDetailsModal(survey)}
                 className="text-blue-600 hover:text-blue-800"
               >
                 <Eye className="h-5 w-5" />
@@ -620,6 +780,83 @@ export default function SiteSurveyPage() {
               </div>
             )}
 
+            {/* Action Buttons */}
+            <div className="mb-4 pb-4 border-b border-gray-200">
+              <p className="text-sm font-medium text-gray-700 mb-3">Quick Actions</p>
+              <div className="grid grid-cols-4 gap-2">
+                <button
+                  onClick={() => openEditModal(survey)}
+                  className="flex items-center justify-center space-x-1 px-3 py-2 bg-green-50 text-green-700 rounded-lg hover:bg-green-100 text-xs"
+                >
+                  <Edit className="h-3.5 w-3.5" />
+                  <span>Edit</span>
+                </button>
+                <button
+                  onClick={() => openMeasurementsModal(survey)}
+                  className="flex items-center justify-center space-x-1 px-3 py-2 bg-purple-50 text-purple-700 rounded-lg hover:bg-purple-100 text-xs"
+                >
+                  <Ruler className="h-3.5 w-3.5" />
+                  <span>Measures</span>
+                </button>
+                <button
+                  onClick={() => openPhotosModal(survey)}
+                  className="flex items-center justify-center space-x-1 px-3 py-2 bg-orange-50 text-orange-700 rounded-lg hover:bg-orange-100 text-xs"
+                >
+                  <Image className="h-3.5 w-3.5" />
+                  <span>Photos</span>
+                </button>
+                <button
+                  onClick={() => openDrawingsModal(survey)}
+                  className="flex items-center justify-center space-x-1 px-3 py-2 bg-indigo-50 text-indigo-700 rounded-lg hover:bg-indigo-100 text-xs"
+                >
+                  <FileCode className="h-3.5 w-3.5" />
+                  <span>Drawings</span>
+                </button>
+                <button
+                  onClick={() => openConditionsModal(survey)}
+                  className="flex items-center justify-center space-x-1 px-3 py-2 bg-teal-50 text-teal-700 rounded-lg hover:bg-teal-100 text-xs"
+                >
+                  <ClipboardList className="h-3.5 w-3.5" />
+                  <span>Conditions</span>
+                </button>
+                <button
+                  onClick={() => openIssuesModal(survey)}
+                  className="flex items-center justify-center space-x-1 px-3 py-2 bg-red-50 text-red-700 rounded-lg hover:bg-red-100 text-xs"
+                >
+                  <AlertTriangle className="h-3.5 w-3.5" />
+                  <span>Issues</span>
+                </button>
+                <button
+                  onClick={() => openRecommendationsModal(survey)}
+                  className="flex items-center justify-center space-x-1 px-3 py-2 bg-green-50 text-green-700 rounded-lg hover:bg-green-100 text-xs"
+                >
+                  <MessageSquare className="h-3.5 w-3.5" />
+                  <span>Suggest</span>
+                </button>
+                <button
+                  onClick={() => openStatusModal(survey)}
+                  className="flex items-center justify-center space-x-1 px-3 py-2 bg-yellow-50 text-yellow-700 rounded-lg hover:bg-yellow-100 text-xs"
+                >
+                  <TrendingUp className="h-3.5 w-3.5" />
+                  <span>Status</span>
+                </button>
+                <button
+                  onClick={() => openGenerateReportModal(survey)}
+                  className="flex items-center justify-center space-x-1 px-3 py-2 bg-emerald-50 text-emerald-700 rounded-lg hover:bg-emerald-100 text-xs"
+                >
+                  <FileText className="h-3.5 w-3.5" />
+                  <span>Report</span>
+                </button>
+                <button
+                  onClick={() => openDetailsModal(survey)}
+                  className="flex items-center justify-center space-x-1 px-3 py-2 bg-slate-50 text-slate-700 rounded-lg hover:bg-slate-100 text-xs"
+                >
+                  <Eye className="h-3.5 w-3.5" />
+                  <span>Details</span>
+                </button>
+              </div>
+            </div>
+
             {/* Footer */}
             <div className="flex items-center justify-between pt-4 border-t border-gray-200">
               <div className="text-sm">
@@ -689,236 +926,117 @@ export default function SiteSurveyPage() {
         </div>
       </div>
 
-      {/* View Details Modal */}
-      {selectedSurvey && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg shadow-xl w-full max-w-6xl max-h-[90vh] overflow-y-auto">
-            <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center">
-              <div>
-                <h2 className="text-xl font-bold text-gray-900">{selectedSurvey.surveyNumber} - Survey Details</h2>
-                <p className="text-sm text-gray-600">{selectedSurvey.projectName}</p>
-              </div>
-              <button
-                onClick={() => setSelectedSurvey(null)}
-                className="text-gray-400 hover:text-gray-600"
-              >
-                ✕
-              </button>
-            </div>
+      {/* All Modals */}
+      <ScheduleSurveyModal
+        isOpen={showScheduleModal}
+        onClose={() => setShowScheduleModal(false)}
+        onSchedule={handleScheduleSurvey}
+      />
 
-            <div className="p-6 space-y-6">
-              {/* Site Information */}
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Site Information</h3>
-                <div className="grid grid-cols-2 gap-4 bg-gray-50 p-4 rounded-lg">
-                  <div>
-                    <p className="text-sm text-gray-600">Site Name</p>
-                    <p className="font-medium text-gray-900">{selectedSurvey.siteName}</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-600">Full Address</p>
-                    <p className="font-medium text-gray-900">{selectedSurvey.siteAddress}, {selectedSurvey.city}, {selectedSurvey.state}</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-600">Floor Level</p>
-                    <p className="font-medium text-gray-900">{selectedSurvey.floorLevel}</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-600">Accessibility</p>
-                    <p className={`font-medium ${getAccessibilityColor(selectedSurvey.accessibility)}`}>
-                      {selectedSurvey.accessibility}
-                    </p>
-                  </div>
-                </div>
-              </div>
+      <EditSurveyModal
+        isOpen={showEditModal}
+        onClose={() => {
+          setShowEditModal(false);
+          setSelectedSurvey(null);
+        }}
+        onEdit={handleEditSurvey}
+        survey={selectedSurvey}
+      />
 
-              {/* Physical Conditions */}
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Physical Conditions</h3>
-                <div className="grid grid-cols-1 gap-3">
-                  <div className="bg-gray-50 p-3 rounded-lg">
-                    <p className="text-sm text-gray-600">Ceiling Type</p>
-                    <p className="font-medium text-gray-900">{selectedSurvey.ceilingType}</p>
-                  </div>
-                  <div className="bg-gray-50 p-3 rounded-lg">
-                    <p className="text-sm text-gray-600">Wall Condition</p>
-                    <p className="font-medium text-gray-900">{selectedSurvey.wallCondition}</p>
-                  </div>
-                  <div className="bg-gray-50 p-3 rounded-lg">
-                    <p className="text-sm text-gray-600">Ventilation</p>
-                    <p className="font-medium text-gray-900">{selectedSurvey.ventilation}</p>
-                  </div>
-                  <div className="bg-gray-50 p-3 rounded-lg">
-                    <p className="text-sm text-gray-600">Natural Light</p>
-                    <p className="font-medium text-gray-900">{selectedSurvey.naturalLight}</p>
-                  </div>
-                </div>
-              </div>
+      <UpdateMeasurementsModal
+        isOpen={showMeasurementsModal}
+        onClose={() => {
+          setShowMeasurementsModal(false);
+          setSelectedSurvey(null);
+        }}
+        onUpdate={handleUpdateMeasurements}
+        survey={selectedSurvey}
+      />
 
-              {/* Existing Conditions */}
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Existing Conditions</h3>
-                <div className="space-y-3">
-                  <div className="bg-gray-50 p-3 rounded-lg">
-                    <p className="text-sm text-gray-600">Existing Equipment</p>
-                    <p className="text-gray-900">{selectedSurvey.existingEquipment}</p>
-                  </div>
-                  <div className="bg-gray-50 p-3 rounded-lg">
-                    <p className="text-sm text-gray-600">Obstacles</p>
-                    <p className="text-gray-900">{selectedSurvey.obstacles}</p>
-                  </div>
-                  <div className="bg-gray-50 p-3 rounded-lg">
-                    <p className="text-sm text-gray-600">Special Requirements</p>
-                    <p className="text-gray-900">{selectedSurvey.specialRequirements}</p>
-                  </div>
-                </div>
-              </div>
+      <UploadPhotosModal
+        isOpen={showPhotosModal}
+        onClose={() => {
+          setShowPhotosModal(false);
+          setSelectedSurvey(null);
+        }}
+        onUpload={handleUploadPhotos}
+        survey={selectedSurvey}
+      />
 
-              {/* Issues & Recommendations */}
-              <div className="grid grid-cols-2 gap-6">
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center space-x-2">
-                    <AlertTriangle className="h-5 w-5 text-yellow-600" />
-                    <span>Issues Identified</span>
-                  </h3>
-                  <ul className="space-y-2">
-                    {selectedSurvey.issues.map((issue, index) => (
-                      <li key={index} className="bg-yellow-50 p-3 rounded-lg text-sm text-gray-900">
-                        {index + 1}. {issue}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center space-x-2">
-                    <CheckCircle className="h-5 w-5 text-green-600" />
-                    <span>Recommendations</span>
-                  </h3>
-                  <ul className="space-y-2">
-                    {selectedSurvey.recommendations.map((rec, index) => (
-                      <li key={index} className="bg-green-50 p-3 rounded-lg text-sm text-gray-900">
-                        {index + 1}. {rec}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
+      <AddDrawingsModal
+        isOpen={showDrawingsModal}
+        onClose={() => {
+          setShowDrawingsModal(false);
+          setSelectedSurvey(null);
+        }}
+        onAdd={handleAddDrawings}
+        survey={selectedSurvey}
+      />
 
-              {/* Actions */}
-              <div className="flex justify-end space-x-3 pt-4 border-t border-gray-200">
-                <button className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 flex items-center space-x-2">
-                  <Download className="h-4 w-4" />
-                  <span>Download Report</span>
-                </button>
-                <button
-                  onClick={() => setSelectedSurvey(null)}
-                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-                >
-                  Close
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      <RecordSiteConditionsModal
+        isOpen={showConditionsModal}
+        onClose={() => {
+          setShowConditionsModal(false);
+          setSelectedSurvey(null);
+        }}
+        onRecord={handleRecordConditions}
+        survey={selectedSurvey}
+      />
 
-      {/* Add Survey Modal */}
-      {showAddModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
-            <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center">
-              <h2 className="text-xl font-bold text-gray-900">Schedule New Site Survey</h2>
-              <button
-                onClick={() => setShowAddModal(false)}
-                className="text-gray-400 hover:text-gray-600"
-              >
-                ✕
-              </button>
-            </div>
+      <AddIssuesModal
+        isOpen={showIssuesModal}
+        onClose={() => {
+          setShowIssuesModal(false);
+          setSelectedSurvey(null);
+        }}
+        onAdd={handleAddIssue}
+        survey={selectedSurvey}
+      />
 
-            <div className="p-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Project</label>
-                  <select className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
-                    <option>Select Project</option>
-                    <option>PRJ-2025-001 - Taj Hotels</option>
-                    <option>PRJ-2025-002 - BigBasket</option>
-                    <option>PRJ-2025-003 - L&T Campus</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Survey Date</label>
-                  <input
-                    type="date"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
-                <div className="md:col-span-2">
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Site Name</label>
-                  <input
-                    type="text"
-                    placeholder="e.g., Main Kitchen Area"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
-                <div className="md:col-span-2">
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Site Address</label>
-                  <input
-                    type="text"
-                    placeholder="Complete address"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">City</label>
-                  <input
-                    type="text"
-                    placeholder="City"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">State</label>
-                  <input
-                    type="text"
-                    placeholder="State"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Surveyor Name</label>
-                  <input
-                    type="text"
-                    placeholder="Site engineer name"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Contact Number</label>
-                  <input
-                    type="tel"
-                    placeholder="+91-XXXXXXXXXX"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
-              </div>
+      <AddRecommendationsModal
+        isOpen={showRecommendationsModal}
+        onClose={() => {
+          setShowRecommendationsModal(false);
+          setSelectedSurvey(null);
+        }}
+        onAdd={handleAddRecommendation}
+        survey={selectedSurvey}
+      />
 
-              <div className="flex justify-end space-x-3 mt-6">
-                <button
-                  onClick={() => setShowAddModal(false)}
-                  className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50"
-                >
-                  Cancel
-                </button>
-                <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-                  Schedule Survey
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      <UpdateStatusModal
+        isOpen={showStatusModal}
+        onClose={() => {
+          setShowStatusModal(false);
+          setSelectedSurvey(null);
+        }}
+        onUpdate={handleUpdateStatus}
+        survey={selectedSurvey}
+      />
+
+      <GenerateReportModal
+        isOpen={showGenerateReportModal}
+        onClose={() => {
+          setShowGenerateReportModal(false);
+          setSelectedSurvey(null);
+        }}
+        onGenerate={handleGenerateReport}
+        survey={selectedSurvey}
+      />
+
+      <ExportDataModal
+        isOpen={showExportModal}
+        onClose={() => setShowExportModal(false)}
+        onExport={handleExportData}
+      />
+
+      <ViewFullDetailsModal
+        isOpen={showDetailsModal}
+        onClose={() => {
+          setShowDetailsModal(false);
+          setSelectedSurvey(null);
+        }}
+        survey={selectedSurvey}
+      />
     </div>
   );
 }

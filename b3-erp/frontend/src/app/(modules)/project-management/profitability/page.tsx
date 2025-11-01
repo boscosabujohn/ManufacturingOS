@@ -14,7 +14,26 @@ import {
   Download,
   Filter,
   Eye,
+  Target,
+  Calculator,
+  AlertTriangle,
+  FileText,
+  Lock,
+  Users,
+  Plus,
 } from 'lucide-react';
+import {
+  ProfitabilityDetailsModal,
+  MarginAnalysisModal,
+  RevenueRecognitionModal,
+  ProfitForecastModal,
+  CostAllocationModal,
+  PaymentTrackingModal,
+  ProfitabilityReportModal,
+  ExportProfitabilityModal,
+  BenchmarkComparisonModal,
+  RiskAssessmentModal,
+} from '@/components/project-management/ProfitabilityModals';
 
 interface ProjectProfitability {
   id: string;
@@ -75,6 +94,19 @@ export default function ProfitabilityAnalysisPage() {
   const [selectedPeriod, setSelectedPeriod] = useState('current-year');
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
+
+  // Modal states
+  const [showProfitabilityDetailsModal, setShowProfitabilityDetailsModal] = useState(false);
+  const [showMarginAnalysisModal, setShowMarginAnalysisModal] = useState(false);
+  const [showRevenueAnalysisModal, setShowRevenueAnalysisModal] = useState(false);
+  const [showCostAnalysisModal, setShowCostAnalysisModal] = useState(false);
+  const [showRiskAssessmentModal, setShowRiskAssessmentModal] = useState(false);
+  const [showPaymentAnalysisModal, setShowPaymentAnalysisModal] = useState(false);
+  const [showComparisonModal, setShowComparisonModal] = useState(false);
+  const [showForecastModal, setShowForecastModal] = useState(false);
+  const [showReportModal, setShowReportModal] = useState(false);
+  const [showExportModal, setShowExportModal] = useState(false);
+  const [selectedProject, setSelectedProject] = useState<ProjectProfitability | null>(null);
 
   // Mock data - 10 projects
   const mockProjects: ProjectProfitability[] = [
@@ -594,6 +626,52 @@ export default function ProfitabilityAnalysisPage() {
     }
   };
 
+  // Handler functions for modals
+  const handleViewDetails = (project: ProjectProfitability) => {
+    setSelectedProject(project);
+    setShowProfitabilityDetailsModal(true);
+  };
+
+  const handleMarginAnalysis = (project: ProjectProfitability) => {
+    setSelectedProject(project);
+    setShowMarginAnalysisModal(true);
+  };
+
+  const handleCostAnalysis = (project: ProjectProfitability) => {
+    setSelectedProject(project);
+    setShowCostAnalysisModal(true);
+  };
+
+  const handleRevenueAnalysis = (project: ProjectProfitability) => {
+    setSelectedProject(project);
+    setShowRevenueAnalysisModal(true);
+  };
+
+  const handleRiskAssessment = (project: ProjectProfitability) => {
+    setSelectedProject(project);
+    setShowRiskAssessmentModal(true);
+  };
+
+  const handlePaymentAnalysis = (project: ProjectProfitability) => {
+    setSelectedProject(project);
+    setShowPaymentAnalysisModal(true);
+  };
+
+  const handleForecast = (project: ProjectProfitability) => {
+    setSelectedProject(project);
+    setShowForecastModal(true);
+  };
+
+  const handleRevenueUpdate = (data: any) => {
+    console.log('Revenue update:', data);
+    setShowRevenueAnalysisModal(false);
+  };
+
+  const handleExport = (format: string) => {
+    console.log('Exporting to:', format);
+    setShowExportModal(false);
+  };
+
   return (
     <div className="p-6 max-w-[1600px] mx-auto">
       {/* Header */}
@@ -604,6 +682,34 @@ export default function ProfitabilityAnalysisPage() {
             <p className="text-gray-600 mt-1">Project-wise financial performance and margin analysis</p>
           </div>
           <div className="flex gap-3">
+            <button
+              onClick={() => setShowMarginAnalysisModal(true)}
+              className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
+            >
+              <Target className="w-4 h-4" />
+              Margin Analysis
+            </button>
+            <button
+              onClick={() => setShowRiskAssessmentModal(true)}
+              className="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
+            >
+              <AlertTriangle className="w-4 h-4" />
+              Risk Assessment
+            </button>
+            <button
+              onClick={() => setShowComparisonModal(true)}
+              className="flex items-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700"
+            >
+              <BarChart3 className="w-4 h-4" />
+              Compare Projects
+            </button>
+            <button
+              onClick={() => setShowReportModal(true)}
+              className="flex items-center gap-2 px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700"
+            >
+              <FileText className="w-4 h-4" />
+              Generate Report
+            </button>
             <select
               value={selectedPeriod}
               onChange={(e) => setSelectedPeriod(e.target.value)}
@@ -615,9 +721,12 @@ export default function ProfitabilityAnalysisPage() {
               <option value="last-year">Last Year</option>
               <option value="all-time">All Time</option>
             </select>
-            <button className="flex items-center gap-2 px-4 py-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700">
+            <button
+              onClick={() => setShowExportModal(true)}
+              className="flex items-center gap-2 px-4 py-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700"
+            >
               <Download className="w-4 h-4" />
-              Export Report
+              Export
             </button>
           </div>
         </div>
@@ -855,13 +964,50 @@ export default function ProfitabilityAnalysisPage() {
                     </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-center">
-                    <button
-                      onClick={() => router.push(`/project-management/${project.projectId}`)}
-                      className="text-cyan-600 hover:text-cyan-800"
-                     
-                    >
-                      <Eye className="w-5 h-5" />
-                    </button>
+                    <div className="flex items-center justify-center gap-2">
+                      <button
+                        onClick={() => handleViewDetails(project)}
+                        className="text-blue-600 hover:text-blue-800 p-1 rounded hover:bg-blue-50"
+                        title="View Details"
+                      >
+                        <Eye className="w-5 h-5" />
+                      </button>
+                      <button
+                        onClick={() => handleMarginAnalysis(project)}
+                        className="text-green-600 hover:text-green-800 p-1 rounded hover:bg-green-50"
+                        title="Margin Analysis"
+                      >
+                        <Target className="w-5 h-5" />
+                      </button>
+                      <button
+                        onClick={() => handleCostAnalysis(project)}
+                        className="text-purple-600 hover:text-purple-800 p-1 rounded hover:bg-purple-50"
+                        title="Cost Analysis"
+                      >
+                        <Calculator className="w-5 h-5" />
+                      </button>
+                      <button
+                        onClick={() => handleRevenueAnalysis(project)}
+                        className="text-orange-600 hover:text-orange-800 p-1 rounded hover:bg-orange-50"
+                        title="Revenue Analysis"
+                      >
+                        <DollarSign className="w-5 h-5" />
+                      </button>
+                      <button
+                        onClick={() => handleRiskAssessment(project)}
+                        className="text-red-600 hover:text-red-800 p-1 rounded hover:bg-red-50"
+                        title="Risk Assessment"
+                      >
+                        <AlertTriangle className="w-5 h-5" />
+                      </button>
+                      <button
+                        onClick={() => handlePaymentAnalysis(project)}
+                        className="text-teal-600 hover:text-teal-800 p-1 rounded hover:bg-teal-50"
+                        title="Payment Analysis"
+                      >
+                        <DollarSign className="w-5 h-5" />
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))}
@@ -897,6 +1043,68 @@ export default function ProfitabilityAnalysisPage() {
           </div>
         )}
       </div>
+
+      {/* Modals */}
+      <ProfitabilityDetailsModal
+        isOpen={showProfitabilityDetailsModal}
+        onClose={() => setShowProfitabilityDetailsModal(false)}
+        project={selectedProject}
+      />
+
+      <MarginAnalysisModal
+        isOpen={showMarginAnalysisModal}
+        onClose={() => setShowMarginAnalysisModal(false)}
+        project={selectedProject}
+      />
+
+      <RevenueRecognitionModal
+        isOpen={showRevenueAnalysisModal}
+        onClose={() => setShowRevenueAnalysisModal(false)}
+        project={selectedProject}
+        onUpdate={handleRevenueUpdate}
+      />
+
+      <ProfitForecastModal
+        isOpen={showForecastModal}
+        onClose={() => setShowForecastModal(false)}
+        project={selectedProject}
+      />
+
+      <CostAllocationModal
+        isOpen={showCostAnalysisModal}
+        onClose={() => setShowCostAnalysisModal(false)}
+        project={selectedProject}
+      />
+
+      <PaymentTrackingModal
+        isOpen={showPaymentAnalysisModal}
+        onClose={() => setShowPaymentAnalysisModal(false)}
+        project={selectedProject}
+      />
+
+      <ProfitabilityReportModal
+        isOpen={showReportModal}
+        onClose={() => setShowReportModal(false)}
+        project={selectedProject}
+      />
+
+      <ExportProfitabilityModal
+        isOpen={showExportModal}
+        onClose={() => setShowExportModal(false)}
+        onExport={handleExport}
+      />
+
+      <BenchmarkComparisonModal
+        isOpen={showComparisonModal}
+        onClose={() => setShowComparisonModal(false)}
+        projects={mockProjects}
+      />
+
+      <RiskAssessmentModal
+        isOpen={showRiskAssessmentModal}
+        onClose={() => setShowRiskAssessmentModal(false)}
+        project={selectedProject}
+      />
     </div>
   );
 }

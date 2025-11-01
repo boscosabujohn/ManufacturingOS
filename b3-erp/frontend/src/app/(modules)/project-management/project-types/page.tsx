@@ -14,7 +14,19 @@ import {
   FileText,
   CheckCircle,
   Tag,
+  Copy,
+  Eye,
 } from 'lucide-react';
+import {
+  CreateProjectTypeModal,
+  EditProjectTypeModal,
+  DuplicateProjectTypeModal,
+  DeleteProjectTypeModal,
+  ManageCustomFieldsModal,
+  ViewTypeDetailsModal,
+  CreateCategoryModal,
+  EditCategoryModal,
+} from '@/components/project-management/ProjectTypesModals';
 
 interface ProjectType {
   id: string;
@@ -64,7 +76,88 @@ export default function ProjectTypesPage() {
   const [showCreateTypeModal, setShowCreateTypeModal] = useState(false);
   const [showCreateCategoryModal, setShowCreateCategoryModal] = useState(false);
   const [selectedType, setSelectedType] = useState<ProjectType | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<any>(null);
   const [showDetailModal, setShowDetailModal] = useState(false);
+
+  // New modal states
+  const [showEditTypeModal, setShowEditTypeModal] = useState(false);
+  const [showDuplicateTypeModal, setShowDuplicateTypeModal] = useState(false);
+  const [showDeleteTypeModal, setShowDeleteTypeModal] = useState(false);
+  const [showCustomFieldsModal, setShowCustomFieldsModal] = useState(false);
+  const [showViewDetailsModal, setShowViewDetailsModal] = useState(false);
+  const [showEditCategoryModal, setShowEditCategoryModal] = useState(false);
+
+  // Handlers for Project Types
+  const handleCreateType = (data: any) => {
+    console.log('Create type:', data);
+    setShowCreateTypeModal(false);
+  };
+
+  const handleEditType = (type: ProjectType) => {
+    setSelectedType(type);
+    setShowEditTypeModal(true);
+  };
+
+  const handleDuplicateType = (type: ProjectType) => {
+    setSelectedType(type);
+    setShowDuplicateTypeModal(true);
+  };
+
+  const handleDeleteType = (type: ProjectType) => {
+    setSelectedType(type);
+    setShowDeleteTypeModal(true);
+  };
+
+  const handleManageFields = (type: ProjectType) => {
+    setSelectedType(type);
+    setShowCustomFieldsModal(true);
+  };
+
+  const handleViewDetails = (type: ProjectType) => {
+    setSelectedType(type);
+    setShowViewDetailsModal(true);
+  };
+
+  const handleEditTypeSave = (data: any) => {
+    console.log('Edit type:', data);
+    setShowEditTypeModal(false);
+    setSelectedType(null);
+  };
+
+  const handleDuplicateSave = (data: any) => {
+    console.log('Duplicate type:', data);
+    setShowDuplicateTypeModal(false);
+    setSelectedType(null);
+  };
+
+  const handleDeleteConfirm = () => {
+    console.log('Delete type:', selectedType?.id);
+    setShowDeleteTypeModal(false);
+    setSelectedType(null);
+  };
+
+  const handleFieldsSave = (data: any) => {
+    console.log('Custom fields:', data);
+    setShowCustomFieldsModal(false);
+    setSelectedType(null);
+  };
+
+  // Handlers for Categories
+  const handleCreateCategory = (data: any) => {
+    console.log('Create category:', data);
+    setShowCreateCategoryModal(false);
+  };
+
+  const handleEditCategory = (category: any) => {
+    setSelectedCategory(category);
+    setShowEditCategoryModal(true);
+  };
+
+  const handleEditCategorySave = (data: any) => {
+    console.log('Edit category:', data);
+    setShowEditCategoryModal(false);
+    setSelectedCategory(null);
+  };
 
   // Mock project types - 8 records
   const mockProjectTypes: ProjectType[] = [
@@ -517,17 +610,6 @@ export default function ProjectTypesPage() {
                     {type.category}
                   </span>
                 </div>
-                <div className="flex gap-2">
-                  <button
-                    onClick={() => {
-                      setSelectedType(type);
-                      setShowDetailModal(true);
-                    }}
-                    className="p-2 text-cyan-600 hover:bg-cyan-50 rounded-lg"
-                  >
-                    <Settings className="w-4 h-4" />
-                  </button>
-                </div>
               </div>
 
               <p className="text-sm text-gray-600 mb-4 line-clamp-2">{type.description}</p>
@@ -567,7 +649,7 @@ export default function ProjectTypesPage() {
                 </div>
               </div>
 
-              <div className="border-t border-gray-200 pt-4">
+              <div className="border-t border-gray-200 pt-4 mb-4">
                 <div className="flex items-center justify-between text-sm mb-2">
                   <span className="text-gray-600">Total Revenue:</span>
                   <span className="font-medium text-gray-900">₹{(type.totalRevenue / 10000000).toFixed(1)}Cr</span>
@@ -576,6 +658,45 @@ export default function ProjectTypesPage() {
                   <span className="text-gray-600">Custom Fields:</span>
                   <span className="font-medium text-gray-900">{type.customFields.length} fields</span>
                 </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex flex-wrap gap-2">
+                <button
+                  onClick={() => handleViewDetails(type)}
+                  className="flex-1 min-w-[120px] inline-flex items-center justify-center gap-2 px-3 py-2 border border-cyan-600 text-cyan-600 rounded-lg hover:bg-cyan-50 text-sm"
+                >
+                  <Eye className="w-4 h-4" />
+                  View Details
+                </button>
+                <button
+                  onClick={() => handleEditType(type)}
+                  className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm"
+                  title="Edit"
+                >
+                  <Edit className="w-4 h-4 text-gray-600" />
+                </button>
+                <button
+                  onClick={() => handleDuplicateType(type)}
+                  className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm"
+                  title="Duplicate"
+                >
+                  <Copy className="w-4 h-4 text-gray-600" />
+                </button>
+                <button
+                  onClick={() => handleManageFields(type)}
+                  className="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm"
+                  title="Manage Fields"
+                >
+                  <Settings className="w-4 h-4 text-gray-600" />
+                </button>
+                <button
+                  onClick={() => handleDeleteType(type)}
+                  className="inline-flex items-center gap-2 px-3 py-2 border border-red-300 rounded-lg hover:bg-red-50 text-sm"
+                  title="Delete"
+                >
+                  <Trash2 className="w-4 h-4 text-red-600" />
+                </button>
               </div>
             </div>
           ))}
@@ -597,7 +718,10 @@ export default function ProjectTypesPage() {
                   <span className="text-xs font-mono text-gray-500">{category.categoryCode}</span>
                 </div>
                 <div className="flex gap-2">
-                  <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                  <button
+                    onClick={() => handleEditCategory(category)}
+                    className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm"
+                  >
                     <Edit className="w-4 h-4 text-gray-600" />
                     <span className="text-gray-700">Edit</span>
                   </button>
@@ -633,228 +757,77 @@ export default function ProjectTypesPage() {
         </div>
       )}
 
-      {/* Type Detail Modal */}
-      {showDetailModal && selectedType && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="p-6 border-b border-gray-200">
-              <div className="flex items-start justify-between">
-                <div>
-                  <h2 className="text-2xl font-bold text-gray-900">{selectedType.typeName}</h2>
-                  <p className="text-gray-600 mt-1">{selectedType.typeCode}</p>
-                </div>
-                <button
-                  onClick={() => {
-                    setShowDetailModal(false);
-                    setSelectedType(null);
-                  }}
-                  className="text-gray-400 hover:text-gray-600"
-                >
-                  ✕
-                </button>
-              </div>
-            </div>
+      {/* All Modals */}
+      <CreateProjectTypeModal
+        isOpen={showCreateTypeModal}
+        onClose={() => setShowCreateTypeModal(false)}
+        onCreate={handleCreateType}
+      />
 
-            <div className="p-6 space-y-6">
-              {/* Workflow */}
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Default Workflow</h3>
-                <div className="bg-gray-50 rounded-lg p-4">
-                  <p className="text-sm text-gray-700">{selectedType.defaultWorkflow}</p>
-                </div>
-              </div>
+      <EditProjectTypeModal
+        isOpen={showEditTypeModal}
+        onClose={() => {
+          setShowEditTypeModal(false);
+          setSelectedType(null);
+        }}
+        onSave={handleEditTypeSave}
+        type={selectedType}
+      />
 
-              {/* Custom Fields */}
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Custom Fields</h3>
-                <div className="space-y-2">
-                  {selectedType.customFields.map((field, idx) => (
-                    <div key={idx} className="bg-gray-50 rounded-lg p-3 flex items-center justify-between">
-                      <div className="flex-1">
-                        <div className="flex items-center gap-2">
-                          <p className="font-medium text-gray-900">{field.fieldName}</p>
-                          {field.isMandatory && (
-                            <span className="text-xs text-red-600 bg-red-50 px-2 py-0.5 rounded">Required</span>
-                          )}
-                        </div>
-                        <p className="text-xs text-gray-600 mt-1">Type: {field.fieldType}</p>
-                        {field.options && (
-                          <p className="text-xs text-gray-500 mt-1">Options: {field.options.join(', ')}</p>
-                        )}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
+      <DuplicateProjectTypeModal
+        isOpen={showDuplicateTypeModal}
+        onClose={() => {
+          setShowDuplicateTypeModal(false);
+          setSelectedType(null);
+        }}
+        onDuplicate={handleDuplicateSave}
+        type={selectedType}
+      />
 
-              {/* Statistics */}
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Performance Metrics</h3>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  <div className="bg-blue-50 rounded-lg p-3">
-                    <p className="text-2xl font-bold text-blue-600">{selectedType.projectCount}</p>
-                    <p className="text-xs text-gray-600">Total Projects</p>
-                  </div>
-                  <div className="bg-green-50 rounded-lg p-3">
-                    <p className="text-2xl font-bold text-green-600">{selectedType.activeProjects}</p>
-                    <p className="text-xs text-gray-600">Active Now</p>
-                  </div>
-                  <div className="bg-purple-50 rounded-lg p-3">
-                    <p className="text-2xl font-bold text-purple-600">{selectedType.avgSuccessRate}%</p>
-                    <p className="text-xs text-gray-600">Success Rate</p>
-                  </div>
-                  <div className="bg-cyan-50 rounded-lg p-3">
-                    <p className="text-xl font-bold text-cyan-600">₹{(selectedType.totalRevenue / 10000000).toFixed(1)}Cr</p>
-                    <p className="text-xs text-gray-600">Total Revenue</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+      <DeleteProjectTypeModal
+        isOpen={showDeleteTypeModal}
+        onClose={() => {
+          setShowDeleteTypeModal(false);
+          setSelectedType(null);
+        }}
+        onDelete={handleDeleteConfirm}
+        type={selectedType}
+      />
 
-            <div className="p-6 border-t border-gray-200 flex justify-end gap-3">
-              <button
-                onClick={() => {
-                  setShowDetailModal(false);
-                  setSelectedType(null);
-                }}
-                className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
-              >
-                Close
-              </button>
-              <button className="px-4 py-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700">
-                Edit Type
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      <ManageCustomFieldsModal
+        isOpen={showCustomFieldsModal}
+        onClose={() => {
+          setShowCustomFieldsModal(false);
+          setSelectedType(null);
+        }}
+        onSave={handleFieldsSave}
+        type={selectedType}
+      />
 
-      {/* Create Type Modal */}
-      {showCreateTypeModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="p-6 border-b border-gray-200">
-              <h2 className="text-2xl font-bold text-gray-900">Create Project Type</h2>
-              <p className="text-gray-600 mt-1">Define a new project type with custom settings</p>
-            </div>
+      <ViewTypeDetailsModal
+        isOpen={showViewDetailsModal}
+        onClose={() => {
+          setShowViewDetailsModal(false);
+          setSelectedType(null);
+        }}
+        type={selectedType}
+      />
 
-            <div className="p-6 space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Type Name</label>
-                <input
-                  type="text"
-                  placeholder="Enter project type name..."
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
-                />
-              </div>
+      <CreateCategoryModal
+        isOpen={showCreateCategoryModal}
+        onClose={() => setShowCreateCategoryModal(false)}
+        onCreate={handleCreateCategory}
+      />
 
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Type Code</label>
-                  <input
-                    type="text"
-                    placeholder="e.g., CK-FULL"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Category</label>
-                  <select className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent">
-                    <option>Manufacturing</option>
-                    <option>Service</option>
-                    <option>Hybrid</option>
-                  </select>
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Description</label>
-                <textarea
-                  rows={3}
-                  placeholder="Describe the project type..."
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
-                />
-              </div>
-            </div>
-
-            <div className="p-6 border-t border-gray-200 flex justify-end gap-3">
-              <button
-                onClick={() => setShowCreateTypeModal(false)}
-                className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
-              >
-                Cancel
-              </button>
-              <button className="px-4 py-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700">
-                Create Type
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Create Category Modal */}
-      {showCreateCategoryModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="p-6 border-b border-gray-200">
-              <h2 className="text-2xl font-bold text-gray-900">Create Category</h2>
-              <p className="text-gray-600 mt-1">Define a new project category</p>
-            </div>
-
-            <div className="p-6 space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Category Name</label>
-                <input
-                  type="text"
-                  placeholder="Enter category name..."
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
-                />
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Category Code</label>
-                  <input
-                    type="text"
-                    placeholder="e.g., CK"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Color</label>
-                  <input
-                    type="color"
-                    className="w-full h-10 px-2 py-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Description</label>
-                <textarea
-                  rows={3}
-                  placeholder="Describe the category..."
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
-                />
-              </div>
-            </div>
-
-            <div className="p-6 border-t border-gray-200 flex justify-end gap-3">
-              <button
-                onClick={() => setShowCreateCategoryModal(false)}
-                className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
-              >
-                Cancel
-              </button>
-              <button className="px-4 py-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700">
-                Create Category
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      <EditCategoryModal
+        isOpen={showEditCategoryModal}
+        onClose={() => {
+          setShowEditCategoryModal(false);
+          setSelectedCategory(null);
+        }}
+        onSave={handleEditCategorySave}
+        category={selectedCategory}
+      />
     </div>
   );
 }

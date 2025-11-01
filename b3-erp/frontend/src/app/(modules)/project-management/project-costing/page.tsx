@@ -1,7 +1,21 @@
 'use client';
 
 import { useState } from 'react';
-import { DollarSign, TrendingUp, TrendingDown, AlertTriangle, CheckCircle, BarChart3, Eye, Download } from 'lucide-react';
+import { DollarSign, TrendingUp, TrendingDown, AlertTriangle, CheckCircle, BarChart3, Eye, Download, Plus, Edit, Calculator, Target, Users, PieChart, FileText, History, Lock, Filter } from 'lucide-react';
+import {
+  CostBreakdownModal,
+  AddCostEntryModal,
+  CostVarianceModal,
+  ProfitMarginModal,
+  CostForecastModal,
+  ResourceCostModal,
+  CostComparisonModal,
+  CostReportModal,
+  ExportCostDataModal,
+  CostHistoryModal,
+  CostApprovalModal,
+  CostAlertModal,
+} from '@/components/project-management/ProjectCostingModals';
 
 interface CostBreakdown {
   category: string;
@@ -39,6 +53,20 @@ export default function ProjectCostingPage() {
   const [selectedProject, setSelectedProject] = useState<ProjectCost | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 8;
+
+  // Modal states
+  const [showCostBreakdownModal, setShowCostBreakdownModal] = useState(false);
+  const [showAddCostEntryModal, setShowAddCostEntryModal] = useState(false);
+  const [showCostVarianceModal, setShowCostVarianceModal] = useState(false);
+  const [showProfitMarginModal, setShowProfitMarginModal] = useState(false);
+  const [showCostForecastModal, setShowCostForecastModal] = useState(false);
+  const [showResourceCostModal, setShowResourceCostModal] = useState(false);
+  const [showCostComparisonModal, setShowCostComparisonModal] = useState(false);
+  const [showCostReportModal, setShowCostReportModal] = useState(false);
+  const [showExportModal, setShowExportModal] = useState(false);
+  const [showCostHistoryModal, setShowCostHistoryModal] = useState(false);
+  const [showCostApprovalModal, setShowCostApprovalModal] = useState(false);
+  const [showCostAlertModal, setShowCostAlertModal] = useState(false);
 
   const mockProjectCosts: ProjectCost[] = [
     {
@@ -306,14 +334,107 @@ export default function ProjectCostingPage() {
     }
   };
 
+  // Modal handlers
+  const handleCostBreakdown = (project: ProjectCost) => {
+    setSelectedProject(project);
+    setShowCostBreakdownModal(true);
+  };
+
+  const handleAddCost = (project: ProjectCost) => {
+    setSelectedProject(project);
+    setShowAddCostEntryModal(true);
+  };
+
+  const handleVarianceAnalysis = (project: ProjectCost) => {
+    setSelectedProject(project);
+    setShowCostVarianceModal(true);
+  };
+
+  const handleProfitMargin = (project: ProjectCost) => {
+    setSelectedProject(project);
+    setShowProfitMarginModal(true);
+  };
+
+  const handleForecast = (project: ProjectCost) => {
+    setSelectedProject(project);
+    setShowCostForecastModal(true);
+  };
+
+  const handleResourceCost = (project: ProjectCost) => {
+    setSelectedProject(project);
+    setShowResourceCostModal(true);
+  };
+
+  const handleViewHistory = (project: ProjectCost) => {
+    setSelectedProject(project);
+    setShowCostHistoryModal(true);
+  };
+
+  const handleGenerateReport = (project: ProjectCost) => {
+    setSelectedProject(project);
+    setShowCostReportModal(true);
+  };
+
+  const handleSubmitApproval = (project: ProjectCost) => {
+    setSelectedProject(project);
+    setShowCostApprovalModal(true);
+  };
+
+  const handleAddCostEntry = (entry: any) => {
+    console.log('New cost entry:', entry);
+    setShowAddCostEntryModal(false);
+  };
+
+  const handleExport = (format: string) => {
+    console.log('Exporting to:', format);
+    setShowExportModal(false);
+  };
+
+  const handleApprovalSubmit = (data: any) => {
+    console.log('Approval submitted:', data);
+    setShowCostApprovalModal(false);
+  };
+
+  const handleSaveAlerts = (data: any) => {
+    console.log('Alert settings saved:', data);
+    setShowCostAlertModal(false);
+  };
+
   return (
     <div className="w-full h-screen overflow-y-auto overflow-x-hidden">
       <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+        {/* Header Section */}
+        <div className="mb-6">
+          <h1 className="text-3xl font-bold text-gray-900">Project Costing Management</h1>
+          <p className="text-gray-600 mt-2">Track and analyze project costs, budgets, and financial performance across all projects.</p>
+        </div>
+
         {/* Header Actions */}
-        <div className="flex justify-end mb-4">
-          <button className="flex items-center space-x-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">
+        <div className="flex justify-end gap-3 mb-4">
+          <button
+            onClick={() => setShowCostComparisonModal(true)}
+            className="flex items-center space-x-2 px-4 py-2 bg-pink-600 text-white rounded-lg hover:bg-pink-700"
+          >
+            <BarChart3 className="h-5 w-5" />
+            <span>Compare Projects</span>
+          </button>
+          <button
+            onClick={() => setShowCostAlertModal(true)}
+            className="flex items-center space-x-2 px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700"
+          >
+            <AlertTriangle className="h-5 w-5" />
+            <span>Cost Alerts</span>
+          </button>
+          <button className="flex items-center space-x-2 px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700">
+            <Filter className="h-5 w-5" />
+            <span>Filter</span>
+          </button>
+          <button
+            onClick={() => setShowExportModal(true)}
+            className="flex items-center space-x-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
+          >
             <Download className="h-5 w-5" />
-            <span>Export Report</span>
+            <span>Export</span>
           </button>
         </div>
 
@@ -503,7 +624,7 @@ export default function ProjectCostingPage() {
             </div>
 
             {/* Quick Stats */}
-            <div className="grid grid-cols-3 gap-2 text-xs">
+            <div className="grid grid-cols-3 gap-2 text-xs mb-4">
               <div className="text-center p-2 bg-blue-50 rounded">
                 <p className="text-gray-600">Committed</p>
                 <p className="font-semibold text-gray-900">₹{(project.committedCost / 100000).toFixed(1)}L</p>
@@ -518,6 +639,86 @@ export default function ProjectCostingPage() {
                   ₹{(Math.abs(project.actualProfit) / 100000).toFixed(1)}L
                 </p>
               </div>
+            </div>
+
+            {/* Action Buttons - First Row */}
+            <div className="grid grid-cols-6 gap-2 mb-2">
+              <button
+                onClick={() => handleCostBreakdown(project)}
+                className="flex flex-col items-center justify-center p-2 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors"
+                title="Cost Breakdown"
+              >
+                <PieChart className="h-4 w-4 text-blue-600 mb-1" />
+                <span className="text-xs text-blue-700">Breakdown</span>
+              </button>
+              <button
+                onClick={() => handleAddCost(project)}
+                className="flex flex-col items-center justify-center p-2 bg-green-50 hover:bg-green-100 rounded-lg transition-colors"
+                title="Add Cost"
+              >
+                <Plus className="h-4 w-4 text-green-600 mb-1" />
+                <span className="text-xs text-green-700">Add Cost</span>
+              </button>
+              <button
+                onClick={() => handleVarianceAnalysis(project)}
+                className="flex flex-col items-center justify-center p-2 bg-orange-50 hover:bg-orange-100 rounded-lg transition-colors"
+                title="Variance Analysis"
+              >
+                <TrendingUp className="h-4 w-4 text-orange-600 mb-1" />
+                <span className="text-xs text-orange-700">Variance</span>
+              </button>
+              <button
+                onClick={() => handleProfitMargin(project)}
+                className="flex flex-col items-center justify-center p-2 bg-indigo-50 hover:bg-indigo-100 rounded-lg transition-colors"
+                title="Profit Margin"
+              >
+                <Target className="h-4 w-4 text-indigo-600 mb-1" />
+                <span className="text-xs text-indigo-700">Profit</span>
+              </button>
+              <button
+                onClick={() => handleForecast(project)}
+                className="flex flex-col items-center justify-center p-2 bg-purple-50 hover:bg-purple-100 rounded-lg transition-colors"
+                title="Forecast"
+              >
+                <Calculator className="h-4 w-4 text-purple-600 mb-1" />
+                <span className="text-xs text-purple-700">Forecast</span>
+              </button>
+              <button
+                onClick={() => handleResourceCost(project)}
+                className="flex flex-col items-center justify-center p-2 bg-teal-50 hover:bg-teal-100 rounded-lg transition-colors"
+                title="Resource Cost"
+              >
+                <Users className="h-4 w-4 text-teal-600 mb-1" />
+                <span className="text-xs text-teal-700">Resource</span>
+              </button>
+            </div>
+
+            {/* Action Buttons - Second Row */}
+            <div className="grid grid-cols-3 gap-2">
+              <button
+                onClick={() => handleViewHistory(project)}
+                className="flex items-center justify-center gap-1 p-2 bg-indigo-50 hover:bg-indigo-100 rounded-lg transition-colors"
+                title="View History"
+              >
+                <History className="h-4 w-4 text-indigo-600" />
+                <span className="text-xs text-indigo-700">History</span>
+              </button>
+              <button
+                onClick={() => handleGenerateReport(project)}
+                className="flex items-center justify-center gap-1 p-2 bg-gray-50 hover:bg-gray-100 rounded-lg transition-colors"
+                title="Generate Report"
+              >
+                <FileText className="h-4 w-4 text-gray-600" />
+                <span className="text-xs text-gray-700">Report</span>
+              </button>
+              <button
+                onClick={() => handleSubmitApproval(project)}
+                className="flex items-center justify-center gap-1 p-2 bg-purple-50 hover:bg-purple-100 rounded-lg transition-colors"
+                title="Submit Approval"
+              >
+                <Lock className="h-4 w-4 text-purple-600" />
+                <span className="text-xs text-purple-700">Approval</span>
+              </button>
             </div>
           </div>
         ))}
@@ -563,124 +764,79 @@ export default function ProjectCostingPage() {
         </div>
       </div>
 
-      {/* Detail Modal */}
-      {selectedProject && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg shadow-xl w-full max-w-5xl max-h-[90vh] overflow-y-auto">
-            <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center">
-              <div>
-                <h2 className="text-xl font-bold text-gray-900">{selectedProject.projectId} - Cost Breakdown</h2>
-                <p className="text-sm text-gray-600">{selectedProject.projectName}</p>
-              </div>
-              <button
-                onClick={() => setSelectedProject(null)}
-                className="text-gray-400 hover:text-gray-600"
-              >
-                ✕
-              </button>
-            </div>
+      {/* All Modals */}
+      <CostBreakdownModal
+        isOpen={showCostBreakdownModal}
+        onClose={() => setShowCostBreakdownModal(false)}
+        project={selectedProject}
+      />
 
-            <div className="p-6 space-y-6">
-              {/* Summary Cards */}
-              <div className="grid grid-cols-4 gap-4">
-                <div className="bg-blue-50 p-4 rounded-lg">
-                  <p className="text-sm text-gray-600">Total Budget</p>
-                  <p className="text-2xl font-bold text-gray-900">₹{(selectedProject.totalBudget / 100000).toFixed(2)}L</p>
-                </div>
-                <div className="bg-purple-50 p-4 rounded-lg">
-                  <p className="text-sm text-gray-600">Actual Cost</p>
-                  <p className="text-2xl font-bold text-gray-900">₹{(selectedProject.actualCost / 100000).toFixed(2)}L</p>
-                </div>
-                <div className="bg-green-50 p-4 rounded-lg">
-                  <p className="text-sm text-gray-600">Forecasted</p>
-                  <p className="text-2xl font-bold text-gray-900">₹{(selectedProject.forecastedCost / 100000).toFixed(2)}L</p>
-                </div>
-                <div className={`p-4 rounded-lg ${selectedProject.variance >= 0 ? 'bg-green-50' : 'bg-red-50'}`}>
-                  <p className="text-sm text-gray-600">Variance</p>
-                  <p className={`text-2xl font-bold ${getVarianceColor(selectedProject.variance)}`}>
-                    {selectedProject.variance > 0 ? '+' : ''}₹{(Math.abs(selectedProject.variance) / 100000).toFixed(2)}L
-                  </p>
-                </div>
-              </div>
+      <AddCostEntryModal
+        isOpen={showAddCostEntryModal}
+        onClose={() => setShowAddCostEntryModal(false)}
+        project={selectedProject}
+        onAdd={handleAddCostEntry}
+      />
 
-              {/* Cost Breakdown Table */}
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Category-wise Cost Breakdown</h3>
-                <div className="overflow-x-auto">
-                  <table className="w-full">
-                    <thead className="bg-gray-50">
-                      <tr>
-                        <th className="px-4 py-3 text-left text-sm font-medium text-gray-600">Category</th>
-                        <th className="px-4 py-3 text-right text-sm font-medium text-gray-600">Budgeted</th>
-                        <th className="px-4 py-3 text-right text-sm font-medium text-gray-600">Actual</th>
-                        <th className="px-4 py-3 text-right text-sm font-medium text-gray-600">Variance</th>
-                        <th className="px-4 py-3 text-right text-sm font-medium text-gray-600">%</th>
-                        <th className="px-4 py-3 text-center text-sm font-medium text-gray-600">Status</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-gray-200">
-                      {selectedProject.costBreakdown.map((item, index) => (
-                        <tr key={index} className="hover:bg-gray-50">
-                          <td className="px-4 py-3 text-sm font-medium text-gray-900">{item.category}</td>
-                          <td className="px-4 py-3 text-sm text-right text-gray-900">
-                            ₹{(item.budgeted / 100000).toFixed(2)}L
-                          </td>
-                          <td className="px-4 py-3 text-sm text-right text-gray-900">
-                            ₹{(item.actual / 100000).toFixed(2)}L
-                          </td>
-                          <td className={`px-4 py-3 text-sm text-right font-semibold ${getVarianceColor(item.variance)}`}>
-                            {item.variance > 0 ? '+' : ''}₹{(Math.abs(item.variance) / 100000).toFixed(2)}L
-                          </td>
-                          <td className={`px-4 py-3 text-sm text-right font-semibold ${getVarianceColor(item.variance)}`}>
-                            {item.variancePercent > 0 ? '+' : ''}{item.variancePercent.toFixed(1)}%
-                          </td>
-                          <td className="px-4 py-3 text-center">
-                            <span className={`text-sm font-medium ${getCostStatusColor(item.status)}`}>
-                              {item.status}
-                            </span>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                    <tfoot className="bg-gray-100 font-bold">
-                      <tr>
-                        <td className="px-4 py-3 text-sm text-gray-900">TOTAL</td>
-                        <td className="px-4 py-3 text-sm text-right text-gray-900">
-                          ₹{(selectedProject.totalBudget / 100000).toFixed(2)}L
-                        </td>
-                        <td className="px-4 py-3 text-sm text-right text-gray-900">
-                          ₹{(selectedProject.actualCost / 100000).toFixed(2)}L
-                        </td>
-                        <td className={`px-4 py-3 text-sm text-right ${getVarianceColor(selectedProject.variance)}`}>
-                          {selectedProject.variance > 0 ? '+' : ''}₹{(Math.abs(selectedProject.variance) / 100000).toFixed(2)}L
-                        </td>
-                        <td className={`px-4 py-3 text-sm text-right ${getVarianceColor(selectedProject.variance)}`}>
-                          {selectedProject.variancePercent > 0 ? '+' : ''}{selectedProject.variancePercent.toFixed(1)}%
-                        </td>
-                        <td></td>
-                      </tr>
-                    </tfoot>
-                  </table>
-                </div>
-              </div>
+      <CostVarianceModal
+        isOpen={showCostVarianceModal}
+        onClose={() => setShowCostVarianceModal(false)}
+        project={selectedProject}
+      />
 
-              {/* Actions */}
-              <div className="flex justify-end space-x-3 pt-4 border-t border-gray-200">
-                <button className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 flex items-center space-x-2">
-                  <Download className="h-4 w-4" />
-                  <span>Export Details</span>
-                </button>
-                <button
-                  onClick={() => setSelectedProject(null)}
-                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-                >
-                  Close
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      <ProfitMarginModal
+        isOpen={showProfitMarginModal}
+        onClose={() => setShowProfitMarginModal(false)}
+        project={selectedProject}
+      />
+
+      <CostForecastModal
+        isOpen={showCostForecastModal}
+        onClose={() => setShowCostForecastModal(false)}
+        project={selectedProject}
+      />
+
+      <ResourceCostModal
+        isOpen={showResourceCostModal}
+        onClose={() => setShowResourceCostModal(false)}
+        project={selectedProject}
+      />
+
+      <CostComparisonModal
+        isOpen={showCostComparisonModal}
+        onClose={() => setShowCostComparisonModal(false)}
+        projects={mockProjectCosts}
+      />
+
+      <CostReportModal
+        isOpen={showCostReportModal}
+        onClose={() => setShowCostReportModal(false)}
+        project={selectedProject}
+      />
+
+      <ExportCostDataModal
+        isOpen={showExportModal}
+        onClose={() => setShowExportModal(false)}
+        onExport={handleExport}
+      />
+
+      <CostHistoryModal
+        isOpen={showCostHistoryModal}
+        onClose={() => setShowCostHistoryModal(false)}
+        project={selectedProject}
+      />
+
+      <CostApprovalModal
+        isOpen={showCostApprovalModal}
+        onClose={() => setShowCostApprovalModal(false)}
+        onSubmit={handleApprovalSubmit}
+      />
+
+      <CostAlertModal
+        isOpen={showCostAlertModal}
+        onClose={() => setShowCostAlertModal(false)}
+        onSave={handleSaveAlerts}
+      />
       </div>
     </div>
   );

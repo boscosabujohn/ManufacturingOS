@@ -15,7 +15,21 @@ import {
   Download,
   Filter,
   RefreshCw,
+  Eye,
+  TrendingDown,
+  Target,
+  Sparkles,
 } from 'lucide-react';
+import {
+  ViewUtilizationModal,
+  FilterUtilizationModal,
+  ExportReportModal,
+  ComparePeriodsModal,
+  SetTargetsModal,
+  ViewTrendsModal,
+  OptimizeSuggestionsModal,
+  ViewDetailsModal,
+} from '@/components/project-management/ResourceUtilizationModals';
 
 interface ResourceUtilization {
   id: string;
@@ -70,6 +84,17 @@ export default function ResourceUtilizationPage() {
   const [availabilityFilter, setAvailabilityFilter] = useState('all');
   const [viewMode, setViewMode] = useState<'table' | 'cards'>('table');
   const [selectedPeriod, setSelectedPeriod] = useState('current-month');
+
+  // Modal states
+  const [showViewUtilizationModal, setShowViewUtilizationModal] = useState(false);
+  const [showFilterModal, setShowFilterModal] = useState(false);
+  const [showExportModal, setShowExportModal] = useState(false);
+  const [showComparePeriodsModal, setShowComparePeriodsModal] = useState(false);
+  const [showSetTargetsModal, setShowSetTargetsModal] = useState(false);
+  const [showViewTrendsModal, setShowViewTrendsModal] = useState(false);
+  const [showOptimizeSuggestionsModal, setShowOptimizeSuggestionsModal] = useState(false);
+  const [showDetailsModal, setShowDetailsModal] = useState(false);
+  const [selectedResource, setSelectedResource] = useState<ResourceUtilization | null>(null);
 
   // Mock data - 12 resource records
   const mockResources: ResourceUtilization[] = [
@@ -560,11 +585,85 @@ export default function ResourceUtilizationPage() {
     }
   };
 
+  // Modal handler functions
+  const handleViewUtilization = (resource: ResourceUtilization) => {
+    setSelectedResource(resource);
+    setShowViewUtilizationModal(true);
+  };
+
+  const handleViewDetails = (resource: ResourceUtilization) => {
+    setSelectedResource(resource);
+    setShowDetailsModal(true);
+  };
+
+  const handleViewTrends = (resource: ResourceUtilization) => {
+    setSelectedResource(resource);
+    setShowViewTrendsModal(true);
+  };
+
+  const handleApplyFilters = (filters: any) => {
+    console.log('Filters applied:', filters);
+    setShowFilterModal(false);
+  };
+
+  const handleExportReport = (options: any) => {
+    console.log('Exporting report:', options);
+    setShowExportModal(false);
+  };
+
+  const handleSetTargets = (target: any) => {
+    console.log('Target set:', target);
+    setShowSetTargetsModal(false);
+  };
+
   return (
     <div className="w-full h-screen overflow-y-auto overflow-x-hidden">
       <div className="px-4 sm:px-6 lg:px-8 py-6 max-w-[1600px] mx-auto">
+        {/* Page Header */}
+        <div className="mb-6">
+          <h1 className="text-3xl font-bold text-gray-900">Resource Utilization Analytics</h1>
+          <p className="mt-2 text-sm text-gray-600">
+            Monitor and optimize resource allocation across all departments and projects. Track utilization rates, efficiency metrics, and identify optimization opportunities.
+          </p>
+        </div>
+
         {/* Header Actions */}
-        <div className="flex justify-end gap-3 mb-4">
+        <div className="flex flex-wrap justify-end gap-3 mb-4">
+          <button
+            onClick={() => setShowFilterModal(true)}
+            className="flex items-center gap-2 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200"
+          >
+            <Filter className="w-4 h-4" />
+            Filter
+          </button>
+          <button
+            onClick={() => setShowComparePeriodsModal(true)}
+            className="flex items-center gap-2 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200"
+          >
+            <BarChart3 className="w-4 h-4" />
+            Compare Periods
+          </button>
+          <button
+            onClick={() => setShowSetTargetsModal(true)}
+            className="flex items-center gap-2 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200"
+          >
+            <Target className="w-4 h-4" />
+            Set Targets
+          </button>
+          <button
+            onClick={() => setShowViewTrendsModal(true)}
+            className="flex items-center gap-2 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200"
+          >
+            <TrendingUp className="w-4 h-4" />
+            View Trends
+          </button>
+          <button
+            onClick={() => setShowOptimizeSuggestionsModal(true)}
+            className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-yellow-500 to-orange-500 text-white rounded-lg hover:from-yellow-600 hover:to-orange-600"
+          >
+            <Sparkles className="w-4 h-4" />
+            Optimize
+          </button>
           <select
             value={selectedPeriod}
             onChange={(e) => setSelectedPeriod(e.target.value)}
@@ -580,7 +679,10 @@ export default function ResourceUtilizationPage() {
             <RefreshCw className="w-4 h-4" />
             Refresh
           </button>
-          <button className="flex items-center gap-2 px-4 py-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700">
+          <button
+            onClick={() => setShowExportModal(true)}
+            className="flex items-center gap-2 px-4 py-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700"
+          >
             <Download className="w-4 h-4" />
             Export Report
           </button>
@@ -789,6 +891,9 @@ export default function ResourceUtilizationPage() {
                   <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Status
                   </th>
+                  <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Actions
+                  </th>
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
@@ -843,6 +948,24 @@ export default function ResourceUtilizationPage() {
                       <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusColor(resource.status)}`}>
                         {resource.status}
                       </span>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-center">
+                      <div className="flex items-center justify-center gap-2">
+                        <button
+                          onClick={() => handleViewDetails(resource)}
+                          className="p-1.5 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                          title="View Details"
+                        >
+                          <Eye className="w-4 h-4" />
+                        </button>
+                        <button
+                          onClick={() => handleViewTrends(resource)}
+                          className="p-1.5 text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors"
+                          title="View Trends"
+                        >
+                          <TrendingUp className="w-4 h-4" />
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 ))}
@@ -929,6 +1052,23 @@ export default function ResourceUtilizationPage() {
                   </div>
                 </div>
               )}
+
+              <div className="mt-4 flex gap-2">
+                <button
+                  onClick={() => handleViewDetails(resource)}
+                  className="flex-1 px-3 py-2 text-sm bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 transition-colors flex items-center justify-center gap-2"
+                >
+                  <Eye className="w-4 h-4" />
+                  View Details
+                </button>
+                <button
+                  onClick={() => handleViewUtilization(resource)}
+                  className="flex-1 px-3 py-2 text-sm bg-cyan-50 text-cyan-600 rounded-lg hover:bg-cyan-100 transition-colors flex items-center justify-center gap-2"
+                >
+                  <BarChart3 className="w-4 h-4" />
+                  View Utilization
+                </button>
+              </div>
             </div>
           ))}
         </div>
@@ -943,6 +1083,52 @@ export default function ResourceUtilizationPage() {
           </div>
         )}
       </div>
+
+      {/* Modals */}
+      <ViewUtilizationModal
+        isOpen={showViewUtilizationModal}
+        onClose={() => setShowViewUtilizationModal(false)}
+        resource={selectedResource ? { name: selectedResource.resourceName } : null}
+      />
+
+      <FilterUtilizationModal
+        isOpen={showFilterModal}
+        onClose={() => setShowFilterModal(false)}
+        onApply={handleApplyFilters}
+      />
+
+      <ExportReportModal
+        isOpen={showExportModal}
+        onClose={() => setShowExportModal(false)}
+        onExport={handleExportReport}
+      />
+
+      <ComparePeriodsModal
+        isOpen={showComparePeriodsModal}
+        onClose={() => setShowComparePeriodsModal(false)}
+      />
+
+      <SetTargetsModal
+        isOpen={showSetTargetsModal}
+        onClose={() => setShowSetTargetsModal(false)}
+        onSet={handleSetTargets}
+      />
+
+      <ViewTrendsModal
+        isOpen={showViewTrendsModal}
+        onClose={() => setShowViewTrendsModal(false)}
+      />
+
+      <OptimizeSuggestionsModal
+        isOpen={showOptimizeSuggestionsModal}
+        onClose={() => setShowOptimizeSuggestionsModal(false)}
+      />
+
+      <ViewDetailsModal
+        isOpen={showDetailsModal}
+        onClose={() => setShowDetailsModal(false)}
+        data={selectedResource}
+      />
     </div>
   );
 }

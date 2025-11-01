@@ -14,7 +14,32 @@ import {
   AlertCircle,
   Save,
   RefreshCw,
+  Lock,
+  Database,
+  Cloud,
+  Code,
+  Upload,
+  Download,
+  Sliders,
+  Mail,
 } from 'lucide-react';
+import {
+  GeneralSettingsModal,
+  NotificationSettingsModal,
+  AccessControlModal,
+  IntegrationSettingsModal,
+  WorkflowSettingsModal,
+  CustomFieldsModal,
+  EmailTemplatesModal,
+  ReportSettingsModal,
+  BudgetSettingsModal,
+  SecuritySettingsModal,
+  BackupSettingsModal,
+  APISettingsModal,
+  AdvancedSettingsModal,
+  ImportExportModal,
+  ResetSettingsModal,
+} from '@/components/project-management/SettingsModals';
 
 export default function ProjectSettingsPage() {
   const [activeTab, setActiveTab] = useState<'general' | 'workflow' | 'notifications' | 'approvals' | 'integrations'>('general');
@@ -48,6 +73,23 @@ export default function ProjectSettingsPage() {
   const [financeApproval, setFinanceApproval] = useState(true);
   const [ceoApprovalThreshold, setCeoApprovalThreshold] = useState('10000000');
 
+  // Modal States
+  const [showGeneralModal, setShowGeneralModal] = useState(false);
+  const [showNotificationModal, setShowNotificationModal] = useState(false);
+  const [showAccessModal, setShowAccessModal] = useState(false);
+  const [showIntegrationModal, setShowIntegrationModal] = useState(false);
+  const [showWorkflowModal, setShowWorkflowModal] = useState(false);
+  const [showCustomFieldsModal, setShowCustomFieldsModal] = useState(false);
+  const [showEmailTemplatesModal, setShowEmailTemplatesModal] = useState(false);
+  const [showReportSettingsModal, setShowReportSettingsModal] = useState(false);
+  const [showBudgetSettingsModal, setShowBudgetSettingsModal] = useState(false);
+  const [showSecurityModal, setShowSecurityModal] = useState(false);
+  const [showBackupModal, setShowBackupModal] = useState(false);
+  const [showAPIModal, setShowAPIModal] = useState(false);
+  const [showAdvancedModal, setShowAdvancedModal] = useState(false);
+  const [showImportExportModal, setShowImportExportModal] = useState(false);
+  const [showResetModal, setShowResetModal] = useState(false);
+
   const handleSave = () => {
     // Simulate save
     setHasChanges(false);
@@ -59,31 +101,399 @@ export default function ProjectSettingsPage() {
     setHasChanges(false);
   };
 
+  // Modal Handlers
+  const handleGeneralSettings = (settings?: any) => {
+    if (settings) {
+      console.log('General settings saved:', settings);
+      // TODO: API call to save general settings
+    }
+    setShowGeneralModal(false);
+  };
+
+  const handleNotificationSettings = (settings?: any) => {
+    if (settings) {
+      console.log('Notification settings saved:', settings);
+      // TODO: API call to save notification settings
+    }
+    setShowNotificationModal(false);
+  };
+
+  const handleAccessControl = (settings?: any) => {
+    if (settings) {
+      console.log('Access control settings saved:', settings);
+      // TODO: API call to save access control settings
+    }
+    setShowAccessModal(false);
+  };
+
+  const handleIntegrationSettings = (settings?: any) => {
+    if (settings) {
+      console.log('Integration settings saved:', settings);
+      // TODO: API call to save integration settings
+    }
+    setShowIntegrationModal(false);
+  };
+
+  const handleWorkflowSettings = (settings?: any) => {
+    if (settings) {
+      console.log('Workflow settings saved:', settings);
+      // TODO: API call to save workflow settings
+    }
+    setShowWorkflowModal(false);
+  };
+
+  const handleCustomFields = (settings?: any) => {
+    if (settings) {
+      console.log('Custom fields saved:', settings);
+      // TODO: API call to save custom fields
+    }
+    setShowCustomFieldsModal(false);
+  };
+
+  const handleEmailTemplates = (settings?: any) => {
+    if (settings) {
+      console.log('Email templates saved:', settings);
+      // TODO: API call to save email templates
+    }
+    setShowEmailTemplatesModal(false);
+  };
+
+  const handleReportSettings = (settings?: any) => {
+    if (settings) {
+      console.log('Report settings saved:', settings);
+      // TODO: API call to save report settings
+    }
+    setShowReportSettingsModal(false);
+  };
+
+  const handleBudgetSettings = (settings?: any) => {
+    if (settings) {
+      console.log('Budget settings saved:', settings);
+      // TODO: API call to save budget settings
+    }
+    setShowBudgetSettingsModal(false);
+  };
+
+  const handleSecuritySettings = (settings?: any) => {
+    if (settings) {
+      console.log('Security settings saved:', settings);
+      // TODO: API call to save security settings
+    }
+    setShowSecurityModal(false);
+  };
+
+  const handleBackupSettings = (settings?: any) => {
+    if (settings) {
+      console.log('Backup settings saved:', settings);
+      // TODO: API call to save backup settings
+    }
+    setShowBackupModal(false);
+  };
+
+  const handleAPISettings = (settings?: any) => {
+    if (settings) {
+      console.log('API settings saved:', settings);
+      // TODO: API call to save API settings
+    }
+    setShowAPIModal(false);
+  };
+
+  const handleAdvancedSettings = (settings?: any) => {
+    if (settings) {
+      console.log('Advanced settings saved:', settings);
+      // TODO: API call to save advanced settings
+    }
+    setShowAdvancedModal(false);
+  };
+
+  const handleImportExport = () => {
+    setShowImportExportModal(false);
+  };
+
+  const handleResetSettings = () => {
+    console.log('Resetting all settings to default');
+    // TODO: API call to reset settings
+    setShowResetModal(false);
+    handleReset();
+  };
+
   return (
     <div className="h-screen flex flex-col overflow-hidden">
       <div className="flex-1 overflow-y-auto overflow-x-hidden">
         <div className="px-4 sm:px-6 lg:px-8 py-6 max-w-[1400px] mx-auto">
-          {/* Action Bar */}
+          {/* Header with Title and Quick Access */}
           <div className="mb-6">
-            <div className="flex items-center justify-end">
-              {hasChanges && (
-                <div className="flex gap-3">
-                  <button
-                    onClick={handleReset}
-                    className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
-                  >
-                    <RefreshCw className="w-4 h-4" />
-                    Reset
-                  </button>
-                  <button
-                    onClick={handleSave}
-                    className="flex items-center gap-2 px-4 py-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700"
-                  >
-                    <Save className="w-4 h-4" />
-                    Save Changes
-                  </button>
+            <div className="flex flex-col gap-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h1 className="text-2xl font-bold text-gray-900">Project Management Settings</h1>
+                  <p className="text-sm text-gray-600 mt-1">Configure and customize your project management module</p>
                 </div>
-              )}
+                {hasChanges && (
+                  <div className="flex gap-3">
+                    <button
+                      onClick={handleReset}
+                      className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
+                    >
+                      <RefreshCw className="w-4 h-4" />
+                      Reset
+                    </button>
+                    <button
+                      onClick={handleSave}
+                      className="flex items-center gap-2 px-4 py-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700"
+                    >
+                      <Save className="w-4 h-4" />
+                      Save Changes
+                    </button>
+                  </div>
+                )}
+              </div>
+
+              {/* Quick Access Buttons */}
+              <div className="flex flex-wrap gap-2">
+                <button
+                  onClick={() => setShowGeneralModal(true)}
+                  className="flex items-center gap-2 px-3 py-2 bg-blue-50 text-blue-700 rounded-lg hover:bg-blue-100 text-sm"
+                >
+                  <Settings className="w-4 h-4" />
+                  General
+                </button>
+                <button
+                  onClick={() => setShowNotificationModal(true)}
+                  className="flex items-center gap-2 px-3 py-2 bg-green-50 text-green-700 rounded-lg hover:bg-green-100 text-sm"
+                >
+                  <Bell className="w-4 h-4" />
+                  Notifications
+                </button>
+                <button
+                  onClick={() => setShowAccessModal(true)}
+                  className="flex items-center gap-2 px-3 py-2 bg-purple-50 text-purple-700 rounded-lg hover:bg-purple-100 text-sm"
+                >
+                  <Lock className="w-4 h-4" />
+                  Access Control
+                </button>
+                <button
+                  onClick={() => setShowSecurityModal(true)}
+                  className="flex items-center gap-2 px-3 py-2 bg-pink-50 text-pink-700 rounded-lg hover:bg-pink-100 text-sm"
+                >
+                  <Shield className="w-4 h-4" />
+                  Security
+                </button>
+                <button
+                  onClick={() => setShowBackupModal(true)}
+                  className="flex items-center gap-2 px-3 py-2 bg-amber-50 text-amber-700 rounded-lg hover:bg-amber-100 text-sm"
+                >
+                  <Database className="w-4 h-4" />
+                  Backup
+                </button>
+                <button
+                  onClick={() => setShowAPIModal(true)}
+                  className="flex items-center gap-2 px-3 py-2 bg-red-50 text-red-700 rounded-lg hover:bg-red-100 text-sm"
+                >
+                  <Code className="w-4 h-4" />
+                  API
+                </button>
+                <button
+                  onClick={() => setShowImportExportModal(true)}
+                  className="flex items-center gap-2 px-3 py-2 bg-rose-50 text-rose-700 rounded-lg hover:bg-rose-100 text-sm"
+                >
+                  <Upload className="w-4 h-4" />
+                  Import/Export
+                </button>
+                <button
+                  onClick={() => setShowAdvancedModal(true)}
+                  className="flex items-center gap-2 px-3 py-2 bg-violet-50 text-violet-700 rounded-lg hover:bg-violet-100 text-sm"
+                >
+                  <Sliders className="w-4 h-4" />
+                  Advanced
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Settings Quick Access Menu */}
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
+            <h2 className="text-lg font-semibold text-gray-900 mb-4">Settings Categories</h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+              <button
+                onClick={() => setShowGeneralModal(true)}
+                className="p-4 border-2 border-blue-200 rounded-lg hover:border-blue-400 hover:bg-blue-50 transition-all"
+              >
+                <div className="flex flex-col items-center gap-2">
+                  <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg flex items-center justify-center">
+                    <Settings className="w-6 h-6 text-white" />
+                  </div>
+                  <span className="text-sm font-medium text-gray-900">General</span>
+                </div>
+              </button>
+
+              <button
+                onClick={() => setShowNotificationModal(true)}
+                className="p-4 border-2 border-green-200 rounded-lg hover:border-green-400 hover:bg-green-50 transition-all"
+              >
+                <div className="flex flex-col items-center gap-2">
+                  <div className="w-12 h-12 bg-gradient-to-br from-green-600 to-green-700 rounded-lg flex items-center justify-center">
+                    <Bell className="w-6 h-6 text-white" />
+                  </div>
+                  <span className="text-sm font-medium text-gray-900">Notifications</span>
+                </div>
+              </button>
+
+              <button
+                onClick={() => setShowAccessModal(true)}
+                className="p-4 border-2 border-purple-200 rounded-lg hover:border-purple-400 hover:bg-purple-50 transition-all"
+              >
+                <div className="flex flex-col items-center gap-2">
+                  <div className="w-12 h-12 bg-gradient-to-br from-purple-600 to-purple-700 rounded-lg flex items-center justify-center">
+                    <Lock className="w-6 h-6 text-white" />
+                  </div>
+                  <span className="text-sm font-medium text-gray-900">Access Control</span>
+                </div>
+              </button>
+
+              <button
+                onClick={() => setShowIntegrationModal(true)}
+                className="p-4 border-2 border-orange-200 rounded-lg hover:border-orange-400 hover:bg-orange-50 transition-all"
+              >
+                <div className="flex flex-col items-center gap-2">
+                  <div className="w-12 h-12 bg-gradient-to-br from-orange-600 to-orange-700 rounded-lg flex items-center justify-center">
+                    <Cloud className="w-6 h-6 text-white" />
+                  </div>
+                  <span className="text-sm font-medium text-gray-900">Integrations</span>
+                </div>
+              </button>
+
+              <button
+                onClick={() => setShowWorkflowModal(true)}
+                className="p-4 border-2 border-teal-200 rounded-lg hover:border-teal-400 hover:bg-teal-50 transition-all"
+              >
+                <div className="flex flex-col items-center gap-2">
+                  <div className="w-12 h-12 bg-gradient-to-br from-teal-600 to-teal-700 rounded-lg flex items-center justify-center">
+                    <Workflow className="w-6 h-6 text-white" />
+                  </div>
+                  <span className="text-sm font-medium text-gray-900">Workflow</span>
+                </div>
+              </button>
+
+              <button
+                onClick={() => setShowCustomFieldsModal(true)}
+                className="p-4 border-2 border-indigo-200 rounded-lg hover:border-indigo-400 hover:bg-indigo-50 transition-all"
+              >
+                <div className="flex flex-col items-center gap-2">
+                  <div className="w-12 h-12 bg-gradient-to-br from-indigo-600 to-indigo-700 rounded-lg flex items-center justify-center">
+                    <FileText className="w-6 h-6 text-white" />
+                  </div>
+                  <span className="text-sm font-medium text-gray-900">Custom Fields</span>
+                </div>
+              </button>
+
+              <button
+                onClick={() => setShowEmailTemplatesModal(true)}
+                className="p-4 border-2 border-yellow-200 rounded-lg hover:border-yellow-400 hover:bg-yellow-50 transition-all"
+              >
+                <div className="flex flex-col items-center gap-2">
+                  <div className="w-12 h-12 bg-gradient-to-br from-yellow-600 to-yellow-700 rounded-lg flex items-center justify-center">
+                    <Mail className="w-6 h-6 text-white" />
+                  </div>
+                  <span className="text-sm font-medium text-gray-900">Email Templates</span>
+                </div>
+              </button>
+
+              <button
+                onClick={() => setShowReportSettingsModal(true)}
+                className="p-4 border-2 border-emerald-200 rounded-lg hover:border-emerald-400 hover:bg-emerald-50 transition-all"
+              >
+                <div className="flex flex-col items-center gap-2">
+                  <div className="w-12 h-12 bg-gradient-to-br from-emerald-600 to-emerald-700 rounded-lg flex items-center justify-center">
+                    <FileText className="w-6 h-6 text-white" />
+                  </div>
+                  <span className="text-sm font-medium text-gray-900">Reports</span>
+                </div>
+              </button>
+
+              <button
+                onClick={() => setShowBudgetSettingsModal(true)}
+                className="p-4 border-2 border-cyan-200 rounded-lg hover:border-cyan-400 hover:bg-cyan-50 transition-all"
+              >
+                <div className="flex flex-col items-center gap-2">
+                  <div className="w-12 h-12 bg-gradient-to-br from-cyan-600 to-cyan-700 rounded-lg flex items-center justify-center">
+                    <DollarSign className="w-6 h-6 text-white" />
+                  </div>
+                  <span className="text-sm font-medium text-gray-900">Budget</span>
+                </div>
+              </button>
+
+              <button
+                onClick={() => setShowSecurityModal(true)}
+                className="p-4 border-2 border-pink-200 rounded-lg hover:border-pink-400 hover:bg-pink-50 transition-all"
+              >
+                <div className="flex flex-col items-center gap-2">
+                  <div className="w-12 h-12 bg-gradient-to-br from-pink-600 to-pink-700 rounded-lg flex items-center justify-center">
+                    <Shield className="w-6 h-6 text-white" />
+                  </div>
+                  <span className="text-sm font-medium text-gray-900">Security</span>
+                </div>
+              </button>
+
+              <button
+                onClick={() => setShowBackupModal(true)}
+                className="p-4 border-2 border-amber-200 rounded-lg hover:border-amber-400 hover:bg-amber-50 transition-all"
+              >
+                <div className="flex flex-col items-center gap-2">
+                  <div className="w-12 h-12 bg-gradient-to-br from-amber-600 to-amber-700 rounded-lg flex items-center justify-center">
+                    <Database className="w-6 h-6 text-white" />
+                  </div>
+                  <span className="text-sm font-medium text-gray-900">Backup</span>
+                </div>
+              </button>
+
+              <button
+                onClick={() => setShowAPIModal(true)}
+                className="p-4 border-2 border-red-200 rounded-lg hover:border-red-400 hover:bg-red-50 transition-all"
+              >
+                <div className="flex flex-col items-center gap-2">
+                  <div className="w-12 h-12 bg-gradient-to-br from-red-600 to-red-700 rounded-lg flex items-center justify-center">
+                    <Code className="w-6 h-6 text-white" />
+                  </div>
+                  <span className="text-sm font-medium text-gray-900">API</span>
+                </div>
+              </button>
+
+              <button
+                onClick={() => setShowAdvancedModal(true)}
+                className="p-4 border-2 border-violet-200 rounded-lg hover:border-violet-400 hover:bg-violet-50 transition-all"
+              >
+                <div className="flex flex-col items-center gap-2">
+                  <div className="w-12 h-12 bg-gradient-to-br from-violet-600 to-violet-700 rounded-lg flex items-center justify-center">
+                    <Sliders className="w-6 h-6 text-white" />
+                  </div>
+                  <span className="text-sm font-medium text-gray-900">Advanced</span>
+                </div>
+              </button>
+
+              <button
+                onClick={() => setShowImportExportModal(true)}
+                className="p-4 border-2 border-rose-200 rounded-lg hover:border-rose-400 hover:bg-rose-50 transition-all"
+              >
+                <div className="flex flex-col items-center gap-2">
+                  <div className="w-12 h-12 bg-gradient-to-br from-rose-600 to-rose-700 rounded-lg flex items-center justify-center">
+                    <Upload className="w-6 h-6 text-white" />
+                  </div>
+                  <span className="text-sm font-medium text-gray-900">Import/Export</span>
+                </div>
+              </button>
+
+              <button
+                onClick={() => setShowResetModal(true)}
+                className="p-4 border-2 border-slate-200 rounded-lg hover:border-slate-400 hover:bg-slate-50 transition-all"
+              >
+                <div className="flex flex-col items-center gap-2">
+                  <div className="w-12 h-12 bg-gradient-to-br from-slate-600 to-slate-700 rounded-lg flex items-center justify-center">
+                    <RefreshCw className="w-6 h-6 text-white" />
+                  </div>
+                  <span className="text-sm font-medium text-gray-900">Reset</span>
+                </div>
+              </button>
             </div>
           </div>
 
@@ -327,6 +737,22 @@ export default function ProjectSettingsPage() {
               </div>
             </div>
           </div>
+
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-semibold text-gray-900">Advanced Configuration</h3>
+              <button
+                onClick={() => setShowGeneralModal(true)}
+                className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+              >
+                <Settings className="w-4 h-4" />
+                Advanced General Settings
+              </button>
+            </div>
+            <p className="text-sm text-gray-600">
+              Configure additional general settings, advanced project defaults, and system-wide preferences.
+            </p>
+          </div>
         </div>
       )}
 
@@ -484,6 +910,22 @@ export default function ProjectSettingsPage() {
               ))}
             </div>
           </div>
+
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-semibold text-gray-900">Advanced Workflow Configuration</h3>
+              <button
+                onClick={() => setShowWorkflowModal(true)}
+                className="flex items-center gap-2 px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700"
+              >
+                <Workflow className="w-4 h-4" />
+                Advanced Workflow Settings
+              </button>
+            </div>
+            <p className="text-sm text-gray-600">
+              Configure advanced approval workflows, custom stages, and automated workflow rules.
+            </p>
+          </div>
         </div>
       )}
 
@@ -630,6 +1072,22 @@ export default function ProjectSettingsPage() {
               </div>
             </div>
           </div>
+
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-semibold text-gray-900">Email Templates & Preferences</h3>
+              <button
+                onClick={() => setShowEmailTemplatesModal(true)}
+                className="flex items-center gap-2 px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700"
+              >
+                <Mail className="w-4 h-4" />
+                Manage Email Templates
+              </button>
+            </div>
+            <p className="text-sm text-gray-600">
+              Customize email notification templates, subject lines, and sender preferences.
+            </p>
+          </div>
         </div>
       )}
 
@@ -759,6 +1217,22 @@ export default function ProjectSettingsPage() {
               </div>
             </div>
           </div>
+
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-semibold text-gray-900">Access Control & Permissions</h3>
+              <button
+                onClick={() => setShowAccessModal(true)}
+                className="flex items-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700"
+              >
+                <Lock className="w-4 h-4" />
+                Manage Access Control
+              </button>
+            </div>
+            <p className="text-sm text-gray-600">
+              Configure detailed user roles, permissions, and access control settings for different approval levels.
+            </p>
+          </div>
         </div>
       )}
 
@@ -783,7 +1257,12 @@ export default function ProjectSettingsPage() {
                     <CheckCircle className="w-4 h-4" />
                     Connected
                   </span>
-                  <button className="text-sm text-cyan-600 hover:text-cyan-700">Configure</button>
+                  <button
+                    onClick={() => setShowIntegrationModal(true)}
+                    className="text-sm text-cyan-600 hover:text-cyan-700"
+                  >
+                    Configure
+                  </button>
                 </div>
               </div>
 
@@ -802,7 +1281,12 @@ export default function ProjectSettingsPage() {
                     <CheckCircle className="w-4 h-4" />
                     Connected
                   </span>
-                  <button className="text-sm text-cyan-600 hover:text-cyan-700">Configure</button>
+                  <button
+                    onClick={() => setShowIntegrationModal(true)}
+                    className="text-sm text-cyan-600 hover:text-cyan-700"
+                  >
+                    Configure
+                  </button>
                 </div>
               </div>
 
@@ -821,7 +1305,12 @@ export default function ProjectSettingsPage() {
                     <CheckCircle className="w-4 h-4" />
                     Connected
                   </span>
-                  <button className="text-sm text-cyan-600 hover:text-cyan-700">Configure</button>
+                  <button
+                    onClick={() => setShowIntegrationModal(true)}
+                    className="text-sm text-cyan-600 hover:text-cyan-700"
+                  >
+                    Configure
+                  </button>
                 </div>
               </div>
 
@@ -840,7 +1329,12 @@ export default function ProjectSettingsPage() {
                     <CheckCircle className="w-4 h-4" />
                     Connected
                   </span>
-                  <button className="text-sm text-cyan-600 hover:text-cyan-700">Configure</button>
+                  <button
+                    onClick={() => setShowIntegrationModal(true)}
+                    className="text-sm text-cyan-600 hover:text-cyan-700"
+                  >
+                    Configure
+                  </button>
                 </div>
               </div>
             </div>
@@ -854,7 +1348,12 @@ export default function ProjectSettingsPage() {
                   <p className="font-medium text-gray-900">Email Server (SMTP)</p>
                   <p className="text-sm text-gray-600">Configure email notifications</p>
                 </div>
-                <button className="text-sm text-cyan-600 hover:text-cyan-700">Configure</button>
+                <button
+                  onClick={() => setShowEmailTemplatesModal(true)}
+                  className="text-sm text-cyan-600 hover:text-cyan-700"
+                >
+                  Configure
+                </button>
               </div>
 
               <div className="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
@@ -862,7 +1361,12 @@ export default function ProjectSettingsPage() {
                   <p className="font-medium text-gray-900">SMS Gateway</p>
                   <p className="text-sm text-gray-600">Setup SMS notifications</p>
                 </div>
-                <button className="text-sm text-cyan-600 hover:text-cyan-700">Configure</button>
+                <button
+                  onClick={() => setShowIntegrationModal(true)}
+                  className="text-sm text-cyan-600 hover:text-cyan-700"
+                >
+                  Configure
+                </button>
               </div>
 
               <div className="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
@@ -870,9 +1374,30 @@ export default function ProjectSettingsPage() {
                   <p className="font-medium text-gray-900">Cloud Storage</p>
                   <p className="text-sm text-gray-600">Connect document storage</p>
                 </div>
-                <button className="text-sm text-cyan-600 hover:text-cyan-700">Configure</button>
+                <button
+                  onClick={() => setShowBackupModal(true)}
+                  className="text-sm text-cyan-600 hover:text-cyan-700"
+                >
+                  Configure
+                </button>
               </div>
             </div>
+          </div>
+
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-semibold text-gray-900">API Configuration</h3>
+              <button
+                onClick={() => setShowAPIModal(true)}
+                className="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
+              >
+                <Code className="w-4 h-4" />
+                Manage API Settings
+              </button>
+            </div>
+            <p className="text-sm text-gray-600">
+              Configure API keys, webhooks, and third-party integrations.
+            </p>
           </div>
         </div>
       )}
@@ -898,6 +1423,82 @@ export default function ProjectSettingsPage() {
       )}
         </div>
       </div>
+
+      {/* All Modals */}
+      <GeneralSettingsModal
+        isOpen={showGeneralModal}
+        onClose={() => setShowGeneralModal(false)}
+        onSave={handleGeneralSettings}
+      />
+      <NotificationSettingsModal
+        isOpen={showNotificationModal}
+        onClose={() => setShowNotificationModal(false)}
+        onSave={handleNotificationSettings}
+      />
+      <AccessControlModal
+        isOpen={showAccessModal}
+        onClose={() => setShowAccessModal(false)}
+        onSave={handleAccessControl}
+      />
+      <IntegrationSettingsModal
+        isOpen={showIntegrationModal}
+        onClose={() => setShowIntegrationModal(false)}
+        onSave={handleIntegrationSettings}
+      />
+      <WorkflowSettingsModal
+        isOpen={showWorkflowModal}
+        onClose={() => setShowWorkflowModal(false)}
+        onSave={handleWorkflowSettings}
+      />
+      <CustomFieldsModal
+        isOpen={showCustomFieldsModal}
+        onClose={() => setShowCustomFieldsModal(false)}
+        onSave={handleCustomFields}
+      />
+      <EmailTemplatesModal
+        isOpen={showEmailTemplatesModal}
+        onClose={() => setShowEmailTemplatesModal(false)}
+        onSave={handleEmailTemplates}
+      />
+      <ReportSettingsModal
+        isOpen={showReportSettingsModal}
+        onClose={() => setShowReportSettingsModal(false)}
+        onSave={handleReportSettings}
+      />
+      <BudgetSettingsModal
+        isOpen={showBudgetSettingsModal}
+        onClose={() => setShowBudgetSettingsModal(false)}
+        onSave={handleBudgetSettings}
+      />
+      <SecuritySettingsModal
+        isOpen={showSecurityModal}
+        onClose={() => setShowSecurityModal(false)}
+        onSave={handleSecuritySettings}
+      />
+      <BackupSettingsModal
+        isOpen={showBackupModal}
+        onClose={() => setShowBackupModal(false)}
+        onSave={handleBackupSettings}
+      />
+      <APISettingsModal
+        isOpen={showAPIModal}
+        onClose={() => setShowAPIModal(false)}
+        onSave={handleAPISettings}
+      />
+      <AdvancedSettingsModal
+        isOpen={showAdvancedModal}
+        onClose={() => setShowAdvancedModal(false)}
+        onSave={handleAdvancedSettings}
+      />
+      <ImportExportModal
+        isOpen={showImportExportModal}
+        onClose={handleImportExport}
+      />
+      <ResetSettingsModal
+        isOpen={showResetModal}
+        onClose={() => setShowResetModal(false)}
+        onReset={handleResetSettings}
+      />
     </div>
   );
 }

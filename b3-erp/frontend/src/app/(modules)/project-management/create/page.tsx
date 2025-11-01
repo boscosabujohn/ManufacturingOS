@@ -14,7 +14,27 @@ import {
   FileText,
   Users,
   Package,
+  Layers,
+  Copy,
+  Settings,
+  Share,
+  FileDown,
+  FileUp,
+  Archive,
+  Star,
 } from 'lucide-react';
+import {
+  CreateTemplateModal,
+  EditTemplateModal,
+  DuplicateTemplateModal,
+  DeleteTemplateModal,
+  TemplateSettingsModal,
+  ShareTemplateModal,
+  ExportTemplateModal,
+  ImportTemplateModal,
+  ArchiveTemplateModal,
+  FavoriteTemplateModal,
+} from '@/components/project-management/TemplatesModals';
 
 interface TeamMember {
   id: string;
@@ -68,6 +88,19 @@ export default function CreateProjectPage() {
   const [scope, setScope] = useState('');
   const [specialRequirements, setSpecialRequirements] = useState('');
   const [safetyRequirements, setSafetyRequirements] = useState('');
+
+  // Template Modal States
+  const [showCreateTemplateModal, setShowCreateTemplateModal] = useState(false);
+  const [showEditTemplateModal, setShowEditTemplateModal] = useState(false);
+  const [showDuplicateTemplateModal, setShowDuplicateTemplateModal] = useState(false);
+  const [showDeleteTemplateModal, setShowDeleteTemplateModal] = useState(false);
+  const [showTemplateSettingsModal, setShowTemplateSettingsModal] = useState(false);
+  const [showShareTemplateModal, setShowShareTemplateModal] = useState(false);
+  const [showExportTemplateModal, setShowExportTemplateModal] = useState(false);
+  const [showImportTemplateModal, setShowImportTemplateModal] = useState(false);
+  const [showArchiveTemplateModal, setShowArchiveTemplateModal] = useState(false);
+  const [showFavoriteTemplateModal, setShowFavoriteTemplateModal] = useState(false);
+  const [selectedTemplate, setSelectedTemplate] = useState<any | null>(null);
 
   // Functions
   const addTeamMember = () => {
@@ -157,9 +190,137 @@ export default function CreateProjectPage() {
     router.push('/project-management');
   };
 
+  // Template Modal Handlers
+  const handleCreateTemplate = (data: any) => {
+    console.log('Creating template:', data);
+    // API call would go here
+    setShowCreateTemplateModal(false);
+  };
+
+  const handleEditTemplate = (data: any) => {
+    console.log('Updating template:', data);
+    // API call would go here
+    setShowEditTemplateModal(false);
+    setSelectedTemplate(null);
+  };
+
+  const handleDuplicateTemplate = (data: any) => {
+    console.log('Duplicating template:', data);
+    // API call would go here
+    setShowDuplicateTemplateModal(false);
+    setSelectedTemplate(null);
+  };
+
+  const handleDeleteTemplate = () => {
+    console.log('Deleting template:', selectedTemplate);
+    // API call would go here
+    setShowDeleteTemplateModal(false);
+    setSelectedTemplate(null);
+  };
+
+  const handleTemplateSettings = (data: any) => {
+    console.log('Saving template settings:', data);
+    // API call would go here
+    setShowTemplateSettingsModal(false);
+    setSelectedTemplate(null);
+  };
+
+  const handleShareTemplate = (data: any) => {
+    console.log('Sharing template:', data);
+    // API call would go here
+    setShowShareTemplateModal(false);
+    setSelectedTemplate(null);
+  };
+
+  const handleExportTemplate = (data: any) => {
+    console.log('Exporting template:', data);
+    // API call would go here
+    setShowExportTemplateModal(false);
+    setSelectedTemplate(null);
+  };
+
+  const handleImportTemplate = (file: File | null) => {
+    console.log('Importing template file:', file?.name);
+    // API call would go here
+    setShowImportTemplateModal(false);
+  };
+
+  const handleArchiveTemplate = () => {
+    console.log('Archiving template:', selectedTemplate);
+    // API call would go here
+    setShowArchiveTemplateModal(false);
+    setSelectedTemplate(null);
+  };
+
+  const handleToggleFavorite = () => {
+    console.log('Toggling favorite for template:', selectedTemplate);
+    // API call would go here
+    setShowFavoriteTemplateModal(false);
+    setSelectedTemplate(null);
+  };
+
+  // Helper functions to open modals with context
+  const openEditTemplateModal = (template: any) => {
+    setSelectedTemplate(template);
+    setShowEditTemplateModal(true);
+  };
+
+  const openDuplicateTemplateModal = (template: any) => {
+    setSelectedTemplate(template);
+    setShowDuplicateTemplateModal(true);
+  };
+
   return (
     <div className="w-full h-screen overflow-y-auto overflow-x-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        {/* Page Header with Template Actions */}
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
+          <div className="flex items-center justify-between mb-4">
+            <div>
+              <h1 className="text-2xl font-bold text-gray-900">Create New Project</h1>
+              <p className="text-sm text-gray-600 mt-1">
+                Fill in the project details or start from a template to create a new project
+              </p>
+            </div>
+          </div>
+
+          {/* Template Action Buttons */}
+          <div className="flex flex-wrap gap-3">
+            <button
+              type="button"
+              onClick={() => setShowImportTemplateModal(true)}
+              className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-50 to-blue-100 text-blue-700 rounded-lg hover:from-blue-100 hover:to-blue-200 transition-all border border-blue-200"
+            >
+              <Layers className="w-4 h-4" />
+              Use Template
+            </button>
+            <button
+              type="button"
+              onClick={() => setShowCreateTemplateModal(true)}
+              className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-green-50 to-green-100 text-green-700 rounded-lg hover:from-green-100 hover:to-green-200 transition-all border border-green-200"
+            >
+              <Plus className="w-4 h-4" />
+              Create Template
+            </button>
+            <button
+              type="button"
+              onClick={() => setShowImportTemplateModal(true)}
+              className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-indigo-50 to-indigo-100 text-indigo-700 rounded-lg hover:from-indigo-100 hover:to-indigo-200 transition-all border border-indigo-200"
+            >
+              <FileUp className="w-4 h-4" />
+              Import Template
+            </button>
+            <button
+              type="button"
+              onClick={() => setShowTemplateSettingsModal(true)}
+              className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-orange-50 to-orange-100 text-orange-700 rounded-lg hover:from-orange-100 hover:to-orange-200 transition-all border border-orange-200"
+            >
+              <Settings className="w-4 h-4" />
+              Template Settings
+            </button>
+          </div>
+        </div>
+
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Basic Information */}
           <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
@@ -615,24 +776,116 @@ export default function CreateProjectPage() {
           </div>
 
           {/* Action Buttons */}
-          <div className="flex items-center justify-end gap-4 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-            <button
-              type="button"
-              onClick={handleCancel}
-              className="flex items-center gap-2 px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-            >
-              <X className="w-5 h-5" />
-              Cancel
-            </button>
-            <button
-              type="submit"
-              className="flex items-center gap-2 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-            >
-              <Save className="w-5 h-5" />
-              Create Project
-            </button>
+          <div className="flex items-center justify-between bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+            {/* Template Quick Actions */}
+            <div className="flex items-center gap-3">
+              <button
+                type="button"
+                onClick={() => setShowCreateTemplateModal(true)}
+                className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-50 to-purple-100 text-purple-700 rounded-lg hover:from-purple-100 hover:to-purple-200 transition-all border border-purple-200"
+              >
+                <FileDown className="w-4 h-4" />
+                Save as Template
+              </button>
+              <button
+                type="button"
+                onClick={() => setShowImportTemplateModal(true)}
+                className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-cyan-50 to-cyan-100 text-cyan-700 rounded-lg hover:from-cyan-100 hover:to-cyan-200 transition-all border border-cyan-200"
+              >
+                <Layers className="w-4 h-4" />
+                Use Template
+              </button>
+            </div>
+
+            {/* Main Action Buttons */}
+            <div className="flex items-center gap-4">
+              <button
+                type="button"
+                onClick={handleCancel}
+                className="flex items-center gap-2 px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                <X className="w-5 h-5" />
+                Cancel
+              </button>
+              <button
+                type="submit"
+                className="flex items-center gap-2 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              >
+                <Save className="w-5 h-5" />
+                Create Project
+              </button>
+            </div>
           </div>
         </form>
+
+        {/* Template Modals */}
+        <CreateTemplateModal
+          isOpen={showCreateTemplateModal}
+          onClose={() => setShowCreateTemplateModal(false)}
+          onCreate={handleCreateTemplate}
+        />
+
+        <EditTemplateModal
+          isOpen={showEditTemplateModal}
+          onClose={() => setShowEditTemplateModal(false)}
+          onUpdate={handleEditTemplate}
+          template={selectedTemplate}
+        />
+
+        <DuplicateTemplateModal
+          isOpen={showDuplicateTemplateModal}
+          onClose={() => setShowDuplicateTemplateModal(false)}
+          onDuplicate={handleDuplicateTemplate}
+          template={selectedTemplate}
+        />
+
+        <DeleteTemplateModal
+          isOpen={showDeleteTemplateModal}
+          onClose={() => setShowDeleteTemplateModal(false)}
+          onDelete={handleDeleteTemplate}
+          template={selectedTemplate}
+        />
+
+        <TemplateSettingsModal
+          isOpen={showTemplateSettingsModal}
+          onClose={() => setShowTemplateSettingsModal(false)}
+          onSave={handleTemplateSettings}
+          template={selectedTemplate}
+        />
+
+        <ShareTemplateModal
+          isOpen={showShareTemplateModal}
+          onClose={() => setShowShareTemplateModal(false)}
+          onShare={handleShareTemplate}
+          template={selectedTemplate}
+        />
+
+        <ExportTemplateModal
+          isOpen={showExportTemplateModal}
+          onClose={() => setShowExportTemplateModal(false)}
+          onExport={handleExportTemplate}
+          template={selectedTemplate}
+        />
+
+        <ImportTemplateModal
+          isOpen={showImportTemplateModal}
+          onClose={() => setShowImportTemplateModal(false)}
+          onImport={handleImportTemplate}
+        />
+
+        <ArchiveTemplateModal
+          isOpen={showArchiveTemplateModal}
+          onClose={() => setShowArchiveTemplateModal(false)}
+          onArchive={handleArchiveTemplate}
+          template={selectedTemplate}
+        />
+
+        <FavoriteTemplateModal
+          isOpen={showFavoriteTemplateModal}
+          onClose={() => setShowFavoriteTemplateModal(false)}
+          onToggleFavorite={handleToggleFavorite}
+          template={selectedTemplate}
+        />
       </div>
     </div>
   );

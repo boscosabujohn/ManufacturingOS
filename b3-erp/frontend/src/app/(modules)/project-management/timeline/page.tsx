@@ -11,7 +11,32 @@ import {
   Filter,
   ChevronDown,
   ChevronRight,
+  Plus,
+  Edit,
+  RefreshCw,
+  Layers,
+  CalendarRange,
+  Baseline,
+  GitCompare,
+  FileDown,
+  ZoomIn,
+  GitBranch,
+  Eye,
 } from 'lucide-react';
+import {
+  AddMilestoneModal,
+  EditMilestoneModal,
+  UpdateTimelineModal,
+  AddPhaseModal,
+  AdjustDatesModal,
+  SetBaselineModal,
+  CompareBaselinesModal,
+  ExportTimelineModal,
+  FilterTimelineModal,
+  ZoomTimelineModal,
+  AddDependencyModal,
+  ViewDetailsModal,
+} from '@/components/project-management/ScheduleTimelineModals';
 
 interface TimelineEvent {
   id: string;
@@ -262,6 +287,21 @@ export default function TimelinePage() {
   const [filterType, setFilterType] = useState('All');
   const [expandedEvents, setExpandedEvents] = useState<Set<string>>(new Set());
 
+  // Modal states
+  const [showAddMilestoneModal, setShowAddMilestoneModal] = useState(false);
+  const [showEditMilestoneModal, setShowEditMilestoneModal] = useState(false);
+  const [showUpdateTimelineModal, setShowUpdateTimelineModal] = useState(false);
+  const [showAddPhaseModal, setShowAddPhaseModal] = useState(false);
+  const [showAdjustDatesModal, setShowAdjustDatesModal] = useState(false);
+  const [showBaselineModal, setShowBaselineModal] = useState(false);
+  const [showCompareBaselinesModal, setShowCompareBaselinesModal] = useState(false);
+  const [showExportModal, setShowExportModal] = useState(false);
+  const [showFilterModal, setShowFilterModal] = useState(false);
+  const [showZoomModal, setShowZoomModal] = useState(false);
+  const [showDependencyModal, setShowDependencyModal] = useState(false);
+  const [showDetailsModal, setShowDetailsModal] = useState(false);
+  const [selectedEvent, setSelectedEvent] = useState<TimelineEvent | null>(null);
+
   const phases = Array.from(new Set(mockTimelineEvents.map((e) => e.phase)));
   const types = Array.from(new Set(mockTimelineEvents.map((e) => e.type)));
 
@@ -279,6 +319,103 @@ export default function TimelinePage() {
       newExpanded.add(eventId);
     }
     setExpandedEvents(newExpanded);
+  };
+
+  // Handler functions
+  const handleAddMilestone = (data: any) => {
+    console.log('Add Milestone:', data);
+    // TODO: API call to add milestone
+    setShowAddMilestoneModal(false);
+  };
+
+  const handleEditMilestone = (data: any) => {
+    console.log('Edit Milestone:', data);
+    // TODO: API call to edit milestone
+    setShowEditMilestoneModal(false);
+    setSelectedEvent(null);
+  };
+
+  const handleUpdateTimeline = (data: any) => {
+    console.log('Update Timeline:', data);
+    // TODO: API call to update timeline dates
+    setShowUpdateTimelineModal(false);
+  };
+
+  const handleAddPhase = (data: any) => {
+    console.log('Add Phase:', data);
+    // TODO: API call to add phase
+    setShowAddPhaseModal(false);
+  };
+
+  const handleAdjustDates = (data: any) => {
+    console.log('Adjust Dates:', data);
+    // TODO: API call to adjust dates
+    setShowAdjustDatesModal(false);
+    setSelectedEvent(null);
+  };
+
+  const handleSetBaseline = (data: any) => {
+    console.log('Set Baseline:', data);
+    // TODO: API call to set baseline
+    setShowBaselineModal(false);
+  };
+
+  const handleCompareBaselines = () => {
+    console.log('Compare Baselines');
+    // TODO: Load baseline comparison
+    setShowCompareBaselinesModal(false);
+  };
+
+  const handleExport = (data: any) => {
+    console.log('Export Timeline:', data);
+    // TODO: API call to export timeline
+    setShowExportModal(false);
+  };
+
+  const handleApplyFilters = (filters: any) => {
+    console.log('Apply Filters:', filters);
+    // TODO: Apply advanced filters
+    setShowFilterModal(false);
+  };
+
+  const handleZoom = (data: any) => {
+    console.log('Zoom Level:', data);
+    // TODO: Apply zoom level
+    setShowZoomModal(false);
+  };
+
+  const handleAddDependency = (data: any) => {
+    console.log('Add Dependency:', data);
+    // TODO: API call to add dependency
+    setShowDependencyModal(false);
+    setSelectedEvent(null);
+  };
+
+  const handleViewDetails = () => {
+    console.log('View Details');
+    setShowDetailsModal(false);
+    setSelectedEvent(null);
+  };
+
+  // Helper functions to open modals with context
+  const openEditModal = (event: TimelineEvent) => {
+    setSelectedEvent(event);
+    setShowEditMilestoneModal(true);
+  };
+
+  const openDetailsModal = (event: TimelineEvent) => {
+    setSelectedEvent(event);
+    setShowDetailsModal(true);
+  };
+
+  const openAdjustDatesModal = (event: TimelineEvent) => {
+    setSelectedEvent(event);
+    setShowAdjustDatesModal(true);
+  };
+
+  const openAddDependencyModal = (event: TimelineEvent) => {
+    setSelectedEvent(event);
+    setShowDependencyModal(true);
   };
 
   const getTypeIcon = (type: string) => {
@@ -348,12 +485,81 @@ export default function TimelinePage() {
   return (
     <div className="w-full h-screen overflow-y-auto overflow-x-hidden">
       <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
-        {/* Header Actions */}
-        <div className="flex justify-end mb-4">
-          <button className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
-            <Download className="w-5 h-5" />
-            Export
-          </button>
+        {/* Header */}
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+          <div className="mb-6">
+            <h1 className="text-2xl font-bold text-gray-900">Project Timeline</h1>
+            <p className="text-sm text-gray-600 mt-1">
+              View and manage project milestones, phases, and timeline events
+            </p>
+          </div>
+
+          {/* Action Buttons */}
+          <div className="flex flex-wrap gap-3">
+            <button
+              onClick={() => setShowAddMilestoneModal(true)}
+              className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all shadow-sm"
+            >
+              <Plus className="w-4 h-4" />
+              Add Milestone
+            </button>
+            <button
+              onClick={() => setShowAddPhaseModal(true)}
+              className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-orange-600 to-orange-700 text-white rounded-lg hover:from-orange-700 hover:to-orange-800 transition-all shadow-sm"
+            >
+              <Layers className="w-4 h-4" />
+              Add Phase
+            </button>
+            <button
+              onClick={() => setShowUpdateTimelineModal(true)}
+              className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-600 to-purple-700 text-white rounded-lg hover:from-purple-700 hover:to-purple-800 transition-all shadow-sm"
+            >
+              <RefreshCw className="w-4 h-4" />
+              Update Timeline
+            </button>
+            <button
+              onClick={() => setShowAdjustDatesModal(true)}
+              className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-teal-600 to-teal-700 text-white rounded-lg hover:from-teal-700 hover:to-teal-800 transition-all shadow-sm"
+            >
+              <CalendarRange className="w-4 h-4" />
+              Adjust Dates
+            </button>
+            <button
+              onClick={() => setShowBaselineModal(true)}
+              className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-indigo-600 to-indigo-700 text-white rounded-lg hover:from-indigo-700 hover:to-indigo-800 transition-all shadow-sm"
+            >
+              <Baseline className="w-4 h-4" />
+              Set Baseline
+            </button>
+            <button
+              onClick={() => setShowCompareBaselinesModal(true)}
+              className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-yellow-600 to-yellow-700 text-white rounded-lg hover:from-yellow-700 hover:to-yellow-800 transition-all shadow-sm"
+            >
+              <GitCompare className="w-4 h-4" />
+              Compare
+            </button>
+            <button
+              onClick={() => setShowExportModal(true)}
+              className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white rounded-lg hover:from-emerald-700 hover:to-emerald-800 transition-all shadow-sm"
+            >
+              <FileDown className="w-4 h-4" />
+              Export
+            </button>
+            <button
+              onClick={() => setShowFilterModal(true)}
+              className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-cyan-600 to-cyan-700 text-white rounded-lg hover:from-cyan-700 hover:to-cyan-800 transition-all shadow-sm"
+            >
+              <Filter className="w-4 h-4" />
+              Advanced Filters
+            </button>
+            <button
+              onClick={() => setShowZoomModal(true)}
+              className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+            >
+              <ZoomIn className="w-4 h-4" />
+              Zoom
+            </button>
+          </div>
         </div>
 
         {/* Filters */}
@@ -501,6 +707,50 @@ export default function TimelinePage() {
                         </div>
                       )}
                     </div>
+
+                    {/* Action Buttons */}
+                    <div className="px-4 pb-4 flex gap-2 border-t border-gray-200 pt-3 mt-3">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          openDetailsModal(event);
+                        }}
+                        className="flex items-center gap-1.5 px-3 py-1.5 text-sm bg-gradient-to-r from-slate-600 to-slate-700 text-white rounded-lg hover:from-slate-700 hover:to-slate-800 transition-all shadow-sm"
+                      >
+                        <Eye className="w-3.5 h-3.5" />
+                        View Details
+                      </button>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          openEditModal(event);
+                        }}
+                        className="flex items-center gap-1.5 px-3 py-1.5 text-sm bg-gradient-to-r from-green-600 to-green-700 text-white rounded-lg hover:from-green-700 hover:to-green-800 transition-all shadow-sm"
+                      >
+                        <Edit className="w-3.5 h-3.5" />
+                        Edit
+                      </button>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          openAdjustDatesModal(event);
+                        }}
+                        className="flex items-center gap-1.5 px-3 py-1.5 text-sm bg-gradient-to-r from-teal-600 to-teal-700 text-white rounded-lg hover:from-teal-700 hover:to-teal-800 transition-all shadow-sm"
+                      >
+                        <CalendarRange className="w-3.5 h-3.5" />
+                        Adjust Dates
+                      </button>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          openAddDependencyModal(event);
+                        }}
+                        className="flex items-center gap-1.5 px-3 py-1.5 text-sm bg-gradient-to-r from-amber-600 to-amber-700 text-white rounded-lg hover:from-amber-700 hover:to-amber-800 transition-all shadow-sm"
+                      >
+                        <GitBranch className="w-3.5 h-3.5" />
+                        Add Dependency
+                      </button>
+                    </div>
                   </div>
                 </div>
               );
@@ -542,6 +792,91 @@ export default function TimelinePage() {
           </p>
         </div>
       </div>
+
+      {/* Modals */}
+      <AddMilestoneModal
+        isOpen={showAddMilestoneModal}
+        onClose={() => setShowAddMilestoneModal(false)}
+        onAdd={handleAddMilestone}
+      />
+
+      <EditMilestoneModal
+        isOpen={showEditMilestoneModal}
+        onClose={() => {
+          setShowEditMilestoneModal(false);
+          setSelectedEvent(null);
+        }}
+        onEdit={handleEditMilestone}
+        milestone={selectedEvent}
+      />
+
+      <UpdateTimelineModal
+        isOpen={showUpdateTimelineModal}
+        onClose={() => setShowUpdateTimelineModal(false)}
+        onUpdate={handleUpdateTimeline}
+      />
+
+      <AddPhaseModal
+        isOpen={showAddPhaseModal}
+        onClose={() => setShowAddPhaseModal(false)}
+        onAdd={handleAddPhase}
+      />
+
+      <AdjustDatesModal
+        isOpen={showAdjustDatesModal}
+        onClose={() => {
+          setShowAdjustDatesModal(false);
+          setSelectedEvent(null);
+        }}
+        onAdjust={handleAdjustDates}
+      />
+
+      <SetBaselineModal
+        isOpen={showBaselineModal}
+        onClose={() => setShowBaselineModal(false)}
+        onSet={handleSetBaseline}
+      />
+
+      <CompareBaselinesModal
+        isOpen={showCompareBaselinesModal}
+        onClose={() => setShowCompareBaselinesModal(false)}
+      />
+
+      <ExportTimelineModal
+        isOpen={showExportModal}
+        onClose={() => setShowExportModal(false)}
+        onExport={handleExport}
+      />
+
+      <FilterTimelineModal
+        isOpen={showFilterModal}
+        onClose={() => setShowFilterModal(false)}
+        onApply={handleApplyFilters}
+      />
+
+      <ZoomTimelineModal
+        isOpen={showZoomModal}
+        onClose={() => setShowZoomModal(false)}
+        onZoom={handleZoom}
+      />
+
+      <AddDependencyModal
+        isOpen={showDependencyModal}
+        onClose={() => {
+          setShowDependencyModal(false);
+          setSelectedEvent(null);
+        }}
+        onAdd={handleAddDependency}
+      />
+
+      <ViewDetailsModal
+        isOpen={showDetailsModal}
+        onClose={() => {
+          setShowDetailsModal(false);
+          setSelectedEvent(null);
+        }}
+        item={selectedEvent}
+      />
       </div>
     </div>
   );

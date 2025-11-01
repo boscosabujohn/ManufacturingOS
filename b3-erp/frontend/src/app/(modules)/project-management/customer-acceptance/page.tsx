@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { FileCheck, CheckCircle, Clock, AlertTriangle, XCircle, Plus, Download, Eye, FileText } from 'lucide-react';
+import { FileCheck, CheckCircle, Clock, AlertTriangle, XCircle, Plus, Download, Eye, FileText, Edit, ListChecks, FileStack, Wrench, GraduationCap, Shield, PenTool, RefreshCw, Upload, FileOutput } from 'lucide-react';
+import { ScheduleAcceptanceModal, EditAcceptanceModal, UpdateCriteriaModal, UpdateDocumentationModal, AddPunchListItemsModal, UpdateTrainingStatusModal, UpdateWarrantyModal, SignAcceptanceModal, UpdateStatusModal, UploadAttachmentsModal, GenerateReportModal, ViewFullDetailsModal } from '@/components/project-management/CustomerAcceptanceModals';
 
 interface AcceptanceCriteria {
   id: string;
@@ -63,6 +64,18 @@ export default function CustomerAcceptancePage() {
   const [selectedAcceptance, setSelectedAcceptance] = useState<CustomerAcceptance | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 8;
+  const [showScheduleModal, setShowScheduleModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [showUpdateCriteriaModal, setShowUpdateCriteriaModal] = useState(false);
+  const [showUpdateDocumentationModal, setShowUpdateDocumentationModal] = useState(false);
+  const [showAddPunchListModal, setShowAddPunchListModal] = useState(false);
+  const [showUpdateTrainingModal, setShowUpdateTrainingModal] = useState(false);
+  const [showUpdateWarrantyModal, setShowUpdateWarrantyModal] = useState(false);
+  const [showSignModal, setShowSignModal] = useState(false);
+  const [showUpdateStatusModal, setShowUpdateStatusModal] = useState(false);
+  const [showUploadAttachmentsModal, setShowUploadAttachmentsModal] = useState(false);
+  const [showGenerateReportModal, setShowGenerateReportModal] = useState(false);
+  const [showViewFullDetailsModal, setShowViewFullDetailsModal] = useState(false);
 
   const mockAcceptances: CustomerAcceptance[] = [
     {
@@ -518,16 +531,39 @@ export default function CustomerAcceptancePage() {
     }
   };
 
+  const handleSchedule = (data: any) => { console.log('Schedule:', data); setShowScheduleModal(false); };
+  const handleEdit = (data: any) => { console.log('Edit:', data); setShowEditModal(false); setSelectedAcceptance(null); };
+  const handleUpdateCriteria = (data: any) => { console.log('Update Criteria:', data); setShowUpdateCriteriaModal(false); setSelectedAcceptance(null); };
+  const handleUpdateDocumentation = (data: any) => { console.log('Update Documentation:', data); setShowUpdateDocumentationModal(false); setSelectedAcceptance(null); };
+  const handleAddPunchList = (data: any) => { console.log('Add Punch List:', data); setShowAddPunchListModal(false); setSelectedAcceptance(null); };
+  const handleUpdateTraining = (data: any) => { console.log('Update Training:', data); setShowUpdateTrainingModal(false); setSelectedAcceptance(null); };
+  const handleUpdateWarranty = (data: any) => { console.log('Update Warranty:', data); setShowUpdateWarrantyModal(false); setSelectedAcceptance(null); };
+  const handleSign = (data: any) => { console.log('Sign:', data); setShowSignModal(false); setSelectedAcceptance(null); };
+  const handleUpdateStatus = (data: any) => { console.log('Update Status:', data); setShowUpdateStatusModal(false); setSelectedAcceptance(null); };
+  const handleUploadAttachments = (data: any) => { console.log('Upload Attachments:', data); setShowUploadAttachmentsModal(false); setSelectedAcceptance(null); };
+  const handleGenerateReport = (data: any) => { console.log('Generate Report:', data); setShowGenerateReportModal(false); };
+  const openEditModal = (a: CustomerAcceptance) => { setSelectedAcceptance(a); setShowEditModal(true); };
+  const openUpdateCriteriaModal = (a: CustomerAcceptance) => { setSelectedAcceptance(a); setShowUpdateCriteriaModal(true); };
+  const openUpdateDocumentationModal = (a: CustomerAcceptance) => { setSelectedAcceptance(a); setShowUpdateDocumentationModal(true); };
+  const openAddPunchListModal = (a: CustomerAcceptance) => { setSelectedAcceptance(a); setShowAddPunchListModal(true); };
+  const openUpdateTrainingModal = (a: CustomerAcceptance) => { setSelectedAcceptance(a); setShowUpdateTrainingModal(true); };
+  const openUpdateWarrantyModal = (a: CustomerAcceptance) => { setSelectedAcceptance(a); setShowUpdateWarrantyModal(true); };
+  const openSignModal = (a: CustomerAcceptance) => { setSelectedAcceptance(a); setShowSignModal(true); };
+  const openUpdateStatusModal = (a: CustomerAcceptance) => { setSelectedAcceptance(a); setShowUpdateStatusModal(true); };
+  const openUploadAttachmentsModal = (a: CustomerAcceptance) => { setSelectedAcceptance(a); setShowUploadAttachmentsModal(true); };
+  const openViewFullDetailsModal = (a: CustomerAcceptance) => { setSelectedAcceptance(a); setShowViewFullDetailsModal(true); };
+
   return (
     <div className="h-screen flex flex-col overflow-hidden">
       <div className="flex-1 overflow-y-auto overflow-x-hidden">
         <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
           {/* Action Bar */}
-          <div className="flex justify-end items-center">
-            <button
-              onClick={() => setShowAddModal(true)}
-              className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-            >
+          <div className="flex justify-end items-center space-x-3">
+            <button onClick={() => setShowGenerateReportModal(true)} className="flex items-center space-x-2 px-4 py-2 border border-gray-300 bg-white text-gray-700 rounded-lg hover:bg-gray-50">
+              <FileOutput className="h-5 w-5" />
+              <span>Generate Report</span>
+            </button>
+            <button onClick={() => setShowScheduleModal(true)} className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
               <Plus className="h-5 w-5" />
               <span>New Acceptance</span>
             </button>
@@ -790,9 +826,23 @@ export default function CustomerAcceptancePage() {
               </div>
             )}
 
-            {/* Footer */}
+            {/* Action Buttons */}
             <div className="pt-4 border-t border-gray-200">
-              <p className="text-xs text-gray-600 line-clamp-2">{acceptance.remarks}</p>
+              <div className="flex items-center justify-between mb-2">
+                <p className="text-xs text-gray-600 line-clamp-2 flex-1">{acceptance.remarks}</p>
+              </div>
+              <div className="flex items-center space-x-1 flex-wrap gap-1">
+                <button onClick={() => openViewFullDetailsModal(acceptance)} className="p-1.5 bg-gray-50 text-gray-700 rounded hover:bg-gray-100" title="View Details"><Eye className="h-4 w-4" /></button>
+                <button onClick={() => openEditModal(acceptance)} className="p-1.5 bg-green-50 text-green-700 rounded hover:bg-green-100" title="Edit"><Edit className="h-4 w-4" /></button>
+                <button onClick={() => openUpdateCriteriaModal(acceptance)} className="p-1.5 bg-purple-50 text-purple-700 rounded hover:bg-purple-100" title="Update Criteria"><ListChecks className="h-4 w-4" /></button>
+                <button onClick={() => openUpdateDocumentationModal(acceptance)} className="p-1.5 bg-orange-50 text-orange-700 rounded hover:bg-orange-100" title="Documentation"><FileStack className="h-4 w-4" /></button>
+                <button onClick={() => openAddPunchListModal(acceptance)} className="p-1.5 bg-red-50 text-red-700 rounded hover:bg-red-100" title="Punch List"><Wrench className="h-4 w-4" /></button>
+                <button onClick={() => openUpdateTrainingModal(acceptance)} className="p-1.5 bg-teal-50 text-teal-700 rounded hover:bg-teal-100" title="Training"><GraduationCap className="h-4 w-4" /></button>
+                <button onClick={() => openUpdateWarrantyModal(acceptance)} className="p-1.5 bg-indigo-50 text-indigo-700 rounded hover:bg-indigo-100" title="Warranty"><Shield className="h-4 w-4" /></button>
+                <button onClick={() => openSignModal(acceptance)} className="p-1.5 bg-emerald-50 text-emerald-700 rounded hover:bg-emerald-100" title="Sign"><PenTool className="h-4 w-4" /></button>
+                <button onClick={() => openUpdateStatusModal(acceptance)} className="p-1.5 bg-yellow-50 text-yellow-700 rounded hover:bg-yellow-100" title="Update Status"><RefreshCw className="h-4 w-4" /></button>
+                <button onClick={() => openUploadAttachmentsModal(acceptance)} className="p-1.5 bg-cyan-50 text-cyan-700 rounded hover:bg-cyan-100" title="Upload"><Upload className="h-4 w-4" /></button>
+              </div>
             </div>
           </div>
         ))}
@@ -956,38 +1006,18 @@ export default function CustomerAcceptancePage() {
         </div>
       )}
 
-      {/* Add Acceptance Modal - Simplified version */}
-      {showAddModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl">
-            <div className="border-b border-gray-200 px-6 py-4 flex justify-between items-center">
-              <h2 className="text-xl font-bold text-gray-900">New Customer Acceptance</h2>
-              <button
-                onClick={() => setShowAddModal(false)}
-                className="text-gray-400 hover:text-gray-600"
-              >
-                ✕
-              </button>
-            </div>
-            <div className="p-6">
-              <p className="text-sm text-gray-600 mb-4">
-                Customer acceptance form creation - Full interface would be implemented here.
-              </p>
-              <div className="flex justify-end space-x-3">
-                <button
-                  onClick={() => setShowAddModal(false)}
-                  className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50"
-                >
-                  Cancel
-                </button>
-                <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-                  Create Acceptance
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      <ScheduleAcceptanceModal isOpen={showScheduleModal} onClose={() => setShowScheduleModal(false)} onSchedule={handleSchedule} />
+      <EditAcceptanceModal isOpen={showEditModal} onClose={() => { setShowEditModal(false); setSelectedAcceptance(null); }} onEdit={handleEdit} acceptance={selectedAcceptance} />
+      <UpdateCriteriaModal isOpen={showUpdateCriteriaModal} onClose={() => { setShowUpdateCriteriaModal(false); setSelectedAcceptance(null); }} onUpdate={handleUpdateCriteria} acceptance={selectedAcceptance} />
+      <UpdateDocumentationModal isOpen={showUpdateDocumentationModal} onClose={() => { setShowUpdateDocumentationModal(false); setSelectedAcceptance(null); }} onUpdate={handleUpdateDocumentation} acceptance={selectedAcceptance} />
+      <AddPunchListItemsModal isOpen={showAddPunchListModal} onClose={() => { setShowAddPunchListModal(false); setSelectedAcceptance(null); }} onAdd={handleAddPunchList} acceptance={selectedAcceptance} />
+      <UpdateTrainingStatusModal isOpen={showUpdateTrainingModal} onClose={() => { setShowUpdateTrainingModal(false); setSelectedAcceptance(null); }} onUpdate={handleUpdateTraining} acceptance={selectedAcceptance} />
+      <UpdateWarrantyModal isOpen={showUpdateWarrantyModal} onClose={() => { setShowUpdateWarrantyModal(false); setSelectedAcceptance(null); }} onUpdate={handleUpdateWarranty} acceptance={selectedAcceptance} />
+      <SignAcceptanceModal isOpen={showSignModal} onClose={() => { setShowSignModal(false); setSelectedAcceptance(null); }} onSign={handleSign} acceptance={selectedAcceptance} />
+      <UpdateStatusModal isOpen={showUpdateStatusModal} onClose={() => { setShowUpdateStatusModal(false); setSelectedAcceptance(null); }} onUpdate={handleUpdateStatus} acceptance={selectedAcceptance} />
+      <UploadAttachmentsModal isOpen={showUploadAttachmentsModal} onClose={() => { setShowUploadAttachmentsModal(false); setSelectedAcceptance(null); }} onUpload={handleUploadAttachments} acceptance={selectedAcceptance} />
+      <GenerateReportModal isOpen={showGenerateReportModal} onClose={() => setShowGenerateReportModal(false)} onGenerate={handleGenerateReport} />
+      <ViewFullDetailsModal isOpen={showViewFullDetailsModal} onClose={() => { setShowViewFullDetailsModal(false); setSelectedAcceptance(null); }} acceptance={selectedAcceptance} />
         </div>
       </div>
     </div>

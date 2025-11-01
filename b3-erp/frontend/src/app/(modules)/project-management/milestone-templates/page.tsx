@@ -16,7 +16,20 @@ import {
   Users,
   AlertCircle,
   TrendingUp,
+  Settings,
+  Download,
+  Upload,
 } from 'lucide-react';
+import {
+  CreateMilestoneTemplateModal,
+  EditMilestoneTemplateModal,
+  DuplicateMilestoneTemplateModal,
+  DeleteMilestoneTemplateModal,
+  ManageMilestonesModal,
+  ViewTemplateDetailsModal,
+  ExportTemplateModal,
+  ImportTemplateModal,
+} from '@/components/project-management/MilestoneTemplatesModals';
 
 interface MilestoneTemplate {
   id: string;
@@ -52,6 +65,86 @@ export default function MilestoneTemplatesPage() {
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [selectedTemplate, setSelectedTemplate] = useState<MilestoneTemplate | null>(null);
   const [showDetailModal, setShowDetailModal] = useState(false);
+
+  // New modal states
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [showDuplicateModal, setShowDuplicateModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showManageMilestonesModal, setShowManageMilestonesModal] = useState(false);
+  const [showViewDetailsModal, setShowViewDetailsModal] = useState(false);
+  const [showExportModal, setShowExportModal] = useState(false);
+  const [showImportModal, setShowImportModal] = useState(false);
+
+  // Handlers
+  const handleCreate = (data: any) => {
+    console.log('Create template:', data);
+    setShowCreateModal(false);
+  };
+
+  const handleEdit = (template: MilestoneTemplate) => {
+    setSelectedTemplate(template);
+    setShowEditModal(true);
+  };
+
+  const handleDuplicate = (template: MilestoneTemplate) => {
+    setSelectedTemplate(template);
+    setShowDuplicateModal(true);
+  };
+
+  const handleDelete = (template: MilestoneTemplate) => {
+    setSelectedTemplate(template);
+    setShowDeleteModal(true);
+  };
+
+  const handleManageMilestones = (template: MilestoneTemplate) => {
+    setSelectedTemplate(template);
+    setShowManageMilestonesModal(true);
+  };
+
+  const handleViewDetails = (template: MilestoneTemplate) => {
+    setSelectedTemplate(template);
+    setShowViewDetailsModal(true);
+  };
+
+  const handleExport = (template: MilestoneTemplate) => {
+    setSelectedTemplate(template);
+    setShowExportModal(true);
+  };
+
+  const handleEditSave = (data: any) => {
+    console.log('Edit template:', data);
+    setShowEditModal(false);
+    setSelectedTemplate(null);
+  };
+
+  const handleDuplicateSave = (data: any) => {
+    console.log('Duplicate template:', data);
+    setShowDuplicateModal(false);
+    setSelectedTemplate(null);
+  };
+
+  const handleDeleteConfirm = () => {
+    console.log('Delete template:', selectedTemplate?.id);
+    setShowDeleteModal(false);
+    setSelectedTemplate(null);
+  };
+
+  const handleMilestonesSave = (data: any) => {
+    console.log('Milestones saved:', data);
+    setShowManageMilestonesModal(false);
+    setSelectedTemplate(null);
+  };
+
+  const handleExportSave = (data: any) => {
+    console.log('Export template:', data);
+    setShowExportModal(false);
+    setSelectedTemplate(null);
+  };
+
+  const handleImport = (data: any) => {
+    console.log('Import template:', data);
+    setShowImportModal(false);
+  };
 
   // Mock data - 8 comprehensive milestone templates
   const mockTemplates: MilestoneTemplate[] = [
@@ -1122,7 +1215,14 @@ export default function MilestoneTemplatesPage() {
         <div className="px-4 sm:px-6 lg:px-8 py-6 max-w-[1600px] mx-auto">
           {/* Action Bar */}
           <div className="mb-6">
-            <div className="flex items-center justify-end mb-4">
+            <div className="flex items-center justify-end gap-3 mb-4">
+              <button
+                onClick={() => setShowImportModal(true)}
+                className="flex items-center gap-2 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50"
+              >
+                <Upload className="w-4 h-4" />
+                Import Template
+              </button>
               <button
                 onClick={() => setShowCreateModal(true)}
                 className="flex items-center gap-2 px-4 py-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700"
@@ -1275,190 +1375,133 @@ export default function MilestoneTemplatesPage() {
               <p className="text-xs text-gray-500 mb-3">
                 Last used {new Date(template.lastUsed).toLocaleDateString('en-IN')} • Created by {template.createdBy}
               </p>
-              <div className="flex gap-2">
-                <button
-                  onClick={() => {
-                    setSelectedTemplate(template);
-                    setShowDetailModal(true);
-                  }}
-                  className="flex-1 flex items-center justify-center gap-2 px-3 py-2 border border-cyan-600 text-cyan-600 rounded-lg hover:bg-cyan-50 text-sm"
-                >
-                  <Eye className="w-4 h-4" />
-                  View Details
-                </button>
-                <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
-                  <Copy className="w-4 h-4 text-gray-600" />
-                  <span className="text-gray-700">Copy</span>
-                </button>
-                <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
-                  <Edit className="w-4 h-4 text-gray-600" />
-                  <span className="text-gray-700">Edit</span>
-                </button>
+              <div className="space-y-2">
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => handleViewDetails(template)}
+                    className="flex-1 flex items-center justify-center gap-2 px-3 py-2 border border-cyan-600 text-cyan-600 rounded-lg hover:bg-cyan-50 text-sm"
+                  >
+                    <Eye className="w-4 h-4" />
+                    View Details
+                  </button>
+                  <button
+                    onClick={() => handleDuplicate(template)}
+                    className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm"
+                    title="Duplicate"
+                  >
+                    <Copy className="w-4 h-4 text-gray-600" />
+                  </button>
+                  <button
+                    onClick={() => handleEdit(template)}
+                    className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm"
+                    title="Edit"
+                  >
+                    <Edit className="w-4 h-4 text-gray-600" />
+                  </button>
+                </div>
+
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => handleManageMilestones(template)}
+                    className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-1.5 border border-gray-300 rounded-lg hover:bg-gray-50 text-xs"
+                    title="Manage Milestones"
+                  >
+                    <Settings className="w-3.5 h-3.5 text-gray-600" />
+                    <span className="text-gray-700">Milestones</span>
+                  </button>
+                  <button
+                    onClick={() => handleExport(template)}
+                    className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-1.5 border border-gray-300 rounded-lg hover:bg-gray-50 text-xs"
+                    title="Export"
+                  >
+                    <Download className="w-3.5 h-3.5 text-gray-600" />
+                    <span className="text-gray-700">Export</span>
+                  </button>
+                  <button
+                    onClick={() => handleDelete(template)}
+                    className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 border border-red-300 rounded-lg hover:bg-red-50 text-xs"
+                    title="Delete"
+                  >
+                    <Trash2 className="w-3.5 h-3.5 text-red-600" />
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         ))}
       </div>
 
-      {/* Detail Modal */}
-      {showDetailModal && selectedTemplate && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="p-6 border-b border-gray-200">
-              <div className="flex items-start justify-between">
-                <div>
-                  <h2 className="text-2xl font-bold text-gray-900">{selectedTemplate.templateName}</h2>
-                  <p className="text-gray-600 mt-1">{selectedTemplate.description}</p>
-                </div>
-                <button
-                  onClick={() => {
-                    setShowDetailModal(false);
-                    setSelectedTemplate(null);
-                  }}
-                  className="text-gray-400 hover:text-gray-600"
-                >
-                  ✕
-                </button>
-              </div>
-            </div>
+      {/* All Modals */}
+      <CreateMilestoneTemplateModal
+        isOpen={showCreateModal}
+        onClose={() => setShowCreateModal(false)}
+        onCreate={handleCreate}
+      />
 
-            <div className="p-6">
-              <div className="space-y-4">
-                {selectedTemplate.milestones.map((milestone, idx) => (
-                  <div
-                    key={idx}
-                    className={`rounded-lg p-4 border-l-4 ${
-                      milestone.criticalMilestone ? 'bg-red-50 border-red-500' : 'bg-gray-50 border-gray-300'
-                    }`}
-                  >
-                    <div className="flex items-start justify-between mb-2">
-                      <div className="flex-1">
-                        <div className="flex items-center gap-2 mb-1">
-                          <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-cyan-600 text-white text-xs font-bold">
-                            {milestone.order}
-                          </span>
-                          <h4 className="font-semibold text-gray-900">{milestone.milestoneName}</h4>
-                          {milestone.criticalMilestone && (
-                            <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-700">
-                              Critical
-                            </span>
-                          )}
-                          {milestone.approvalRequired && (
-                            <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-yellow-100 text-yellow-700">
-                              Approval Required
-                            </span>
-                          )}
-                        </div>
-                        <p className="text-xs text-gray-600">{milestone.phase}</p>
-                      </div>
-                      <div className="text-right">
-                        <p className="text-sm font-medium text-gray-900">{milestone.duration}</p>
-                        {milestone.paymentPercentage && (
-                          <p className="text-xs text-green-600">{milestone.paymentPercentage}% payment</p>
-                        )}
-                      </div>
-                    </div>
+      <EditMilestoneTemplateModal
+        isOpen={showEditModal}
+        onClose={() => {
+          setShowEditModal(false);
+          setSelectedTemplate(null);
+        }}
+        onSave={handleEditSave}
+        template={selectedTemplate}
+      />
 
-                    <p className="text-sm text-gray-700 mb-3">{milestone.description}</p>
+      <DuplicateMilestoneTemplateModal
+        isOpen={showDuplicateModal}
+        onClose={() => {
+          setShowDuplicateModal(false);
+          setSelectedTemplate(null);
+        }}
+        onDuplicate={handleDuplicateSave}
+        template={selectedTemplate}
+      />
 
-                    {milestone.dependencies.length > 0 && (
-                      <div className="mb-2">
-                        <p className="text-xs font-semibold text-gray-700 mb-1">Dependencies:</p>
-                        <div className="flex flex-wrap gap-1">
-                          {milestone.dependencies.map((dep, depIdx) => (
-                            <span key={depIdx} className="inline-flex items-center px-2 py-0.5 rounded text-xs bg-blue-50 text-blue-700">
-                              {dep}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    )}
+      <DeleteMilestoneTemplateModal
+        isOpen={showDeleteModal}
+        onClose={() => {
+          setShowDeleteModal(false);
+          setSelectedTemplate(null);
+        }}
+        onDelete={handleDeleteConfirm}
+        template={selectedTemplate}
+      />
 
-                    <div>
-                      <p className="text-xs font-semibold text-gray-700 mb-1">Deliverables:</p>
-                      <div className="flex flex-wrap gap-1">
-                        {milestone.deliverables.map((del, delIdx) => (
-                          <span key={delIdx} className="inline-flex items-center px-2 py-0.5 rounded text-xs bg-green-50 text-green-700">
-                            {del}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+      <ManageMilestonesModal
+        isOpen={showManageMilestonesModal}
+        onClose={() => {
+          setShowManageMilestonesModal(false);
+          setSelectedTemplate(null);
+        }}
+        onSave={handleMilestonesSave}
+        template={selectedTemplate}
+      />
 
-            <div className="p-6 border-t border-gray-200 flex justify-end gap-3">
-              <button
-                onClick={() => {
-                  setShowDetailModal(false);
-                  setSelectedTemplate(null);
-                }}
-                className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
-              >
-                Close
-              </button>
-              <button className="px-4 py-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700">
-                Use This Template
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      <ViewTemplateDetailsModal
+        isOpen={showViewDetailsModal}
+        onClose={() => {
+          setShowViewDetailsModal(false);
+          setSelectedTemplate(null);
+        }}
+        template={selectedTemplate}
+      />
 
-      {/* Create Modal */}
-      {showCreateModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="p-6 border-b border-gray-200">
-              <h2 className="text-2xl font-bold text-gray-900">Create Milestone Template</h2>
-              <p className="text-gray-600 mt-1">Define a new milestone template</p>
-            </div>
+      <ExportTemplateModal
+        isOpen={showExportModal}
+        onClose={() => {
+          setShowExportModal(false);
+          setSelectedTemplate(null);
+        }}
+        onExport={handleExportSave}
+        template={selectedTemplate}
+      />
 
-            <div className="p-6 space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Template Name</label>
-                <input
-                  type="text"
-                  placeholder="Enter template name..."
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Project Type</label>
-                <select className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent">
-                  <option>Commercial Kitchen</option>
-                  <option>Cold Room</option>
-                  <option>Switchgear</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Description</label>
-                <textarea
-                  rows={3}
-                  placeholder="Describe the template..."
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
-                />
-              </div>
-            </div>
-
-            <div className="p-6 border-t border-gray-200 flex justify-end gap-3">
-              <button
-                onClick={() => setShowCreateModal(false)}
-                className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
-              >
-                Cancel
-              </button>
-              <button className="px-4 py-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700">
-                Create Template
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      <ImportTemplateModal
+        isOpen={showImportModal}
+        onClose={() => setShowImportModal(false)}
+        onImport={handleImport}
+      />
         </div>
       </div>
     </div>

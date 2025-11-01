@@ -10,7 +10,31 @@ import {
   Clock,
   Search,
   ShoppingCart,
+  Edit,
+  Eye,
+  ShoppingBag,
+  RefreshCw,
+  Truck,
+  Calendar,
+  FileDown,
+  FileUp,
+  BarChart,
+  TrendingUp,
 } from 'lucide-react';
+import {
+  AddMaterialModal,
+  EditMaterialModal,
+  ViewMaterialDetailsModal,
+  CreatePurchaseOrderModal,
+  UpdateStockModal,
+  TrackDeliveryModal,
+  ScheduleDeliveryModal,
+  MarkShortageModal,
+  ExportMRPModal,
+  ImportMaterialsModal,
+  GenerateReportModal,
+  ForecastDemandModal,
+} from '@/components/project-management/MRPModals';
 
 interface Material {
   id: string;
@@ -198,6 +222,21 @@ export default function MRPPage() {
   const [statusFilter, setStatusFilter] = useState('All');
   const [categoryFilter, setCategoryFilter] = useState('All');
 
+  // Modal states
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [showDetailsModal, setShowDetailsModal] = useState(false);
+  const [showPurchaseOrderModal, setShowPurchaseOrderModal] = useState(false);
+  const [showUpdateStockModal, setShowUpdateStockModal] = useState(false);
+  const [showTrackDeliveryModal, setShowTrackDeliveryModal] = useState(false);
+  const [showScheduleDeliveryModal, setShowScheduleDeliveryModal] = useState(false);
+  const [showMarkShortageModal, setShowMarkShortageModal] = useState(false);
+  const [showExportModal, setShowExportModal] = useState(false);
+  const [showImportModal, setShowImportModal] = useState(false);
+  const [showReportModal, setShowReportModal] = useState(false);
+  const [showForecastModal, setShowForecastModal] = useState(false);
+  const [selectedMaterial, setSelectedMaterial] = useState<Material | null>(null);
+
   // Statistics
   const stats = {
     total: materials.length,
@@ -256,22 +295,153 @@ export default function MRPPage() {
     });
   };
 
+  // Modal handlers
+  const handleAddMaterial = (data: any) => {
+    console.log('Adding material:', data);
+    setShowAddModal(false);
+  };
+
+  const handleEditMaterial = (data: any) => {
+    console.log('Editing material:', data);
+    setShowEditModal(false);
+    setSelectedMaterial(null);
+  };
+
+  const handleViewDetails = () => {
+    // View only, no action needed
+  };
+
+  const handleCreatePO = (data: any) => {
+    console.log('Creating purchase order:', data);
+    setShowPurchaseOrderModal(false);
+    setSelectedMaterial(null);
+  };
+
+  const handleUpdateStock = (data: any) => {
+    console.log('Updating stock:', data);
+    setShowUpdateStockModal(false);
+    setSelectedMaterial(null);
+  };
+
+  const handleTrackDelivery = () => {
+    // View only, no action needed
+  };
+
+  const handleScheduleDelivery = (data: any) => {
+    console.log('Scheduling delivery:', data);
+    setShowScheduleDeliveryModal(false);
+    setSelectedMaterial(null);
+  };
+
+  const handleMarkShortage = (data: any) => {
+    console.log('Marking shortage:', data);
+    setShowMarkShortageModal(false);
+    setSelectedMaterial(null);
+  };
+
+  const handleExport = (data: any) => {
+    console.log('Exporting MRP:', data);
+    setShowExportModal(false);
+  };
+
+  const handleImport = (data: any) => {
+    console.log('Importing materials:', data);
+    setShowImportModal(false);
+  };
+
+  const handleGenerateReport = (data: any) => {
+    console.log('Generating report:', data);
+    setShowReportModal(false);
+  };
+
+  const handleForecast = (data: any) => {
+    console.log('Forecasting demand:', data);
+    setShowForecastModal(false);
+  };
+
+  // Helper functions to open modals with material context
+  const openEditModal = (material: Material) => {
+    setSelectedMaterial(material);
+    setShowEditModal(true);
+  };
+
+  const openDetailsModal = (material: Material) => {
+    setSelectedMaterial(material);
+    setShowDetailsModal(true);
+  };
+
+  const openPurchaseOrderModal = (material: Material) => {
+    setSelectedMaterial(material);
+    setShowPurchaseOrderModal(true);
+  };
+
+  const openUpdateStockModal = (material: Material) => {
+    setSelectedMaterial(material);
+    setShowUpdateStockModal(true);
+  };
+
+  const openTrackDeliveryModal = (material: Material) => {
+    setSelectedMaterial(material);
+    setShowTrackDeliveryModal(true);
+  };
+
+  const openScheduleDeliveryModal = (material: Material) => {
+    setSelectedMaterial(material);
+    setShowScheduleDeliveryModal(true);
+  };
+
+  const openMarkShortageModal = (material: Material) => {
+    setSelectedMaterial(material);
+    setShowMarkShortageModal(true);
+  };
+
   return (
     <div className="p-6 space-y-6">
       {/* Header */}
-      <div className="flex justify-between items-center">
-        <div>
-          <h1 className="text-3xl font-bold text-gray-900">Material Requirements Planning (MRP)</h1>
-          <p className="text-gray-600 mt-1">Track material requirements and procurement status</p>
+      <div className="space-y-4">
+        <div className="flex justify-between items-center">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900">Material Requirements Planning (MRP)</h1>
+            <p className="text-gray-600 mt-1">Track material requirements and procurement status</p>
+          </div>
         </div>
-        <div className="flex gap-3">
-          <button className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
-            <Download className="w-5 h-5" />
+
+        {/* Action Buttons */}
+        <div className="flex flex-wrap gap-3">
+          <button
+            onClick={() => setShowAddModal(true)}
+            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          >
+            <Plus className="w-4 h-4" />
+            Add Material
+          </button>
+          <button
+            onClick={() => setShowImportModal(true)}
+            className="flex items-center gap-2 px-4 py-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700 transition-colors"
+          >
+            <FileUp className="w-4 h-4" />
+            Import Materials
+          </button>
+          <button
+            onClick={() => setShowExportModal(true)}
+            className="flex items-center gap-2 px-4 py-2 bg-pink-600 text-white rounded-lg hover:bg-pink-700 transition-colors"
+          >
+            <FileDown className="w-4 h-4" />
             Export MRP
           </button>
-          <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-            <Plus className="w-5 h-5" />
-            Add Material
+          <button
+            onClick={() => setShowReportModal(true)}
+            className="flex items-center gap-2 px-4 py-2 bg-violet-600 text-white rounded-lg hover:bg-violet-700 transition-colors"
+          >
+            <BarChart className="w-4 h-4" />
+            Generate Report
+          </button>
+          <button
+            onClick={() => setShowForecastModal(true)}
+            className="flex items-center gap-2 px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors"
+          >
+            <TrendingUp className="w-4 h-4" />
+            Forecast Demand
           </button>
         </div>
       </div>
@@ -401,6 +571,9 @@ export default function MRPPage() {
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Cost
                 </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Actions
+                </th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
@@ -458,12 +631,168 @@ export default function MRPPage() {
                     <p className="text-sm font-medium text-gray-900">{formatCurrency(material.totalCost)}</p>
                     <p className="text-xs text-gray-500">{formatCurrency(material.unitCost)}/unit</p>
                   </td>
+                  <td className="px-6 py-4">
+                    <div className="space-y-2">
+                      <div className="flex gap-2">
+                        <button
+                          onClick={() => openDetailsModal(material)}
+                          className="p-1.5 text-purple-600 hover:bg-purple-50 rounded transition-colors"
+                          title="View Details"
+                        >
+                          <Eye className="w-4 h-4" />
+                        </button>
+                        <button
+                          onClick={() => openEditModal(material)}
+                          className="p-1.5 text-green-600 hover:bg-green-50 rounded transition-colors"
+                          title="Edit Material"
+                        >
+                          <Edit className="w-4 h-4" />
+                        </button>
+                        <button
+                          onClick={() => openPurchaseOrderModal(material)}
+                          className="p-1.5 text-orange-600 hover:bg-orange-50 rounded transition-colors"
+                          title="Create Purchase Order"
+                        >
+                          <ShoppingCart className="w-4 h-4" />
+                        </button>
+                        <button
+                          onClick={() => openUpdateStockModal(material)}
+                          className="p-1.5 text-indigo-600 hover:bg-indigo-50 rounded transition-colors"
+                          title="Update Stock"
+                        >
+                          <RefreshCw className="w-4 h-4" />
+                        </button>
+                      </div>
+                      <div className="flex gap-2">
+                        <button
+                          onClick={() => openTrackDeliveryModal(material)}
+                          className="p-1.5 text-teal-600 hover:bg-teal-50 rounded transition-colors"
+                          title="Track Delivery"
+                        >
+                          <Truck className="w-4 h-4" />
+                        </button>
+                        <button
+                          onClick={() => openScheduleDeliveryModal(material)}
+                          className="p-1.5 text-yellow-600 hover:bg-yellow-50 rounded transition-colors"
+                          title="Schedule Delivery"
+                        >
+                          <Calendar className="w-4 h-4" />
+                        </button>
+                        <button
+                          onClick={() => openMarkShortageModal(material)}
+                          className="p-1.5 text-red-600 hover:bg-red-50 rounded transition-colors"
+                          title="Mark Shortage"
+                        >
+                          <AlertTriangle className="w-4 h-4" />
+                        </button>
+                      </div>
+                    </div>
+                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
       </div>
+
+      {/* Modals */}
+      <AddMaterialModal
+        isOpen={showAddModal}
+        onClose={() => setShowAddModal(false)}
+        onAdd={handleAddMaterial}
+      />
+
+      <EditMaterialModal
+        isOpen={showEditModal}
+        onClose={() => {
+          setShowEditModal(false);
+          setSelectedMaterial(null);
+        }}
+        onSave={handleEditMaterial}
+        material={selectedMaterial}
+      />
+
+      <ViewMaterialDetailsModal
+        isOpen={showDetailsModal}
+        onClose={() => {
+          setShowDetailsModal(false);
+          setSelectedMaterial(null);
+        }}
+        material={selectedMaterial}
+      />
+
+      <CreatePurchaseOrderModal
+        isOpen={showPurchaseOrderModal}
+        onClose={() => {
+          setShowPurchaseOrderModal(false);
+          setSelectedMaterial(null);
+        }}
+        onCreate={handleCreatePO}
+        material={selectedMaterial}
+      />
+
+      <UpdateStockModal
+        isOpen={showUpdateStockModal}
+        onClose={() => {
+          setShowUpdateStockModal(false);
+          setSelectedMaterial(null);
+        }}
+        onUpdate={handleUpdateStock}
+        material={selectedMaterial}
+      />
+
+      <TrackDeliveryModal
+        isOpen={showTrackDeliveryModal}
+        onClose={() => {
+          setShowTrackDeliveryModal(false);
+          setSelectedMaterial(null);
+        }}
+        material={selectedMaterial}
+      />
+
+      <ScheduleDeliveryModal
+        isOpen={showScheduleDeliveryModal}
+        onClose={() => {
+          setShowScheduleDeliveryModal(false);
+          setSelectedMaterial(null);
+        }}
+        onSchedule={handleScheduleDelivery}
+        material={selectedMaterial}
+      />
+
+      <MarkShortageModal
+        isOpen={showMarkShortageModal}
+        onClose={() => {
+          setShowMarkShortageModal(false);
+          setSelectedMaterial(null);
+        }}
+        onMark={handleMarkShortage}
+        material={selectedMaterial}
+      />
+
+      <ExportMRPModal
+        isOpen={showExportModal}
+        onClose={() => setShowExportModal(false)}
+        onExport={handleExport}
+      />
+
+      <ImportMaterialsModal
+        isOpen={showImportModal}
+        onClose={() => setShowImportModal(false)}
+        onImport={handleImport}
+      />
+
+      <GenerateReportModal
+        isOpen={showReportModal}
+        onClose={() => setShowReportModal(false)}
+        onGenerate={handleGenerateReport}
+      />
+
+      <ForecastDemandModal
+        isOpen={showForecastModal}
+        onClose={() => setShowForecastModal(false)}
+        onForecast={handleForecast}
+      />
     </div>
   );
 }

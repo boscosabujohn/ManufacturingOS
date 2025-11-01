@@ -14,9 +14,36 @@ import {
   Package,
   BarChart3,
   ArrowRight,
+  Filter,
+  RefreshCw,
+  Layout,
+  Download,
+  Bell,
+  Zap,
 } from 'lucide-react';
+import {
+  CreateProjectModal,
+  QuickActionsModal,
+  FilterDashboardModal,
+  CustomizeWidgetsModal,
+  ExportDashboardModal,
+  ViewAlertsModal,
+  RefreshDashboardModal,
+  ViewDetailsModal,
+} from '@/components/project-management/DashboardModals';
 
 export default function ProjectDashboardPage() {
+  // Modal states
+  const [showCreateModal, setShowCreateModal] = useState(false);
+  const [showQuickActionsModal, setShowQuickActionsModal] = useState(false);
+  const [showFilterModal, setShowFilterModal] = useState(false);
+  const [showCustomizeModal, setShowCustomizeModal] = useState(false);
+  const [showExportModal, setShowExportModal] = useState(false);
+  const [showAlertsModal, setShowAlertsModal] = useState(false);
+  const [showRefreshModal, setShowRefreshModal] = useState(false);
+  const [showDetailsModal, setShowDetailsModal] = useState(false);
+  const [selectedProject, setSelectedProject] = useState<any>(null);
+
   // Statistics
   const stats = {
     totalProjects: 10,
@@ -120,22 +147,105 @@ export default function ProjectDashboardPage() {
     }
   };
 
+  // Handler functions
+  const handleCreateProject = (data: any) => {
+    console.log('Create Project:', data);
+    setShowCreateModal(false);
+  };
+
+  const handleQuickAction = (action: string) => {
+    console.log('Quick Action:', action);
+    setShowQuickActionsModal(false);
+  };
+
+  const handleApplyFilters = (filters: any) => {
+    console.log('Apply Filters:', filters);
+    setShowFilterModal(false);
+  };
+
+  const handleSaveWidgets = (widgets: any) => {
+    console.log('Save Widgets:', widgets);
+    setShowCustomizeModal(false);
+  };
+
+  const handleExport = (settings: any) => {
+    console.log('Export Dashboard:', settings);
+    setShowExportModal(false);
+  };
+
+  const handleRefresh = () => {
+    console.log('Refresh Dashboard');
+    setShowRefreshModal(false);
+  };
+
+  const openDetailsModal = (project: any) => {
+    setSelectedProject(project);
+    setShowDetailsModal(true);
+  };
+
   return (
     <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6 space-y-6">
       {/* Header Actions */}
-      <div className="flex justify-end items-start gap-3 mb-4">
-        <Link
-          href="/project-management"
-          className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-        >
-          View All Projects
-        </Link>
-        <Link
-          href="/project-management/create"
-          className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-        >
-          Create Project
-        </Link>
+      <div className="flex justify-between items-start gap-3 mb-4">
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => setShowQuickActionsModal(true)}
+            className="flex items-center space-x-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+          >
+            <Zap className="h-5 w-5" />
+            <span>Quick Actions</span>
+          </button>
+          <button
+            onClick={() => setShowFilterModal(true)}
+            className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+          >
+            <Filter className="h-5 w-5" />
+            <span>Filter</span>
+          </button>
+          <button
+            onClick={() => setShowAlertsModal(true)}
+            className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors relative"
+          >
+            <Bell className="h-5 w-5" />
+            <span>Alerts</span>
+            <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">3</span>
+          </button>
+        </div>
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => setShowCustomizeModal(true)}
+            className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+          >
+            <Layout className="h-5 w-5" />
+            <span>Customize</span>
+          </button>
+          <button
+            onClick={() => setShowExportModal(true)}
+            className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+          >
+            <Download className="h-5 w-5" />
+            <span>Export</span>
+          </button>
+          <button
+            onClick={() => setShowRefreshModal(true)}
+            className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+          >
+            <RefreshCw className="h-5 w-5" />
+            <span>Refresh</span>
+          </button>
+          <Link
+            href="/project-management"
+            className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+          >
+            View All Projects
+          </Link>
+          <button
+            onClick={() => setShowCreateModal(true)}
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          >
+            Create Project
+          </button>
+        </div>
       </div>
 
       {/* Key Metrics */}
@@ -386,6 +496,57 @@ export default function ProjectDashboardPage() {
           </Link>
         </div>
       </div>
+
+      {/* All Modals */}
+      <CreateProjectModal
+        isOpen={showCreateModal}
+        onClose={() => setShowCreateModal(false)}
+        onCreate={handleCreateProject}
+      />
+
+      <QuickActionsModal
+        isOpen={showQuickActionsModal}
+        onClose={() => setShowQuickActionsModal(false)}
+        onAction={handleQuickAction}
+      />
+
+      <FilterDashboardModal
+        isOpen={showFilterModal}
+        onClose={() => setShowFilterModal(false)}
+        onApply={handleApplyFilters}
+      />
+
+      <CustomizeWidgetsModal
+        isOpen={showCustomizeModal}
+        onClose={() => setShowCustomizeModal(false)}
+        onSave={handleSaveWidgets}
+      />
+
+      <ExportDashboardModal
+        isOpen={showExportModal}
+        onClose={() => setShowExportModal(false)}
+        onExport={handleExport}
+      />
+
+      <ViewAlertsModal
+        isOpen={showAlertsModal}
+        onClose={() => setShowAlertsModal(false)}
+      />
+
+      <RefreshDashboardModal
+        isOpen={showRefreshModal}
+        onClose={() => setShowRefreshModal(false)}
+        onRefresh={handleRefresh}
+      />
+
+      <ViewDetailsModal
+        isOpen={showDetailsModal}
+        onClose={() => {
+          setShowDetailsModal(false);
+          setSelectedProject(null);
+        }}
+        project={selectedProject}
+      />
     </div>
   );
 }

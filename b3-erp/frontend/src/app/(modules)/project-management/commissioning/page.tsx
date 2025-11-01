@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { PlayCircle, CheckCircle, Clock, AlertCircle, Calendar, FileText, Users, Eye, Plus } from 'lucide-react';
+import { PlayCircle, CheckCircle, Clock, AlertCircle, Calendar, FileText, Users, Eye, Plus, Edit, Settings, ClipboardList, MessageSquare, Upload, RefreshCw, Award, UserPlus, PlusCircle, Download, CalendarClock, Network } from 'lucide-react';
+import { ScheduleCommissioningModal, EditActivityModal, UpdateTestParametersModal, UpdateChecklistModal, AddObservationsModal, UploadDocumentsModal, UpdateStatusModal, IssueCertificateModal, AssignEngineerModal, AddTestParameterModal, GenerateReportModal, ExportDataModal, RescheduleModal, AddDependenciesModal, ViewFullDetailsModal } from '@/components/project-management/CommissioningModals';
 
 interface CommissioningActivity {
   id: string;
@@ -51,6 +52,21 @@ export default function CommissioningPage() {
   const [selectedActivity, setSelectedActivity] = useState<CommissioningActivity | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
+  const [showScheduleModal, setShowScheduleModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [showUpdateTestParametersModal, setShowUpdateTestParametersModal] = useState(false);
+  const [showUpdateChecklistModal, setShowUpdateChecklistModal] = useState(false);
+  const [showAddObservationsModal, setShowAddObservationsModal] = useState(false);
+  const [showUploadDocumentsModal, setShowUploadDocumentsModal] = useState(false);
+  const [showUpdateStatusModal, setShowUpdateStatusModal] = useState(false);
+  const [showIssueCertificateModal, setShowIssueCertificateModal] = useState(false);
+  const [showAssignEngineerModal, setShowAssignEngineerModal] = useState(false);
+  const [showAddTestParameterModal, setShowAddTestParameterModal] = useState(false);
+  const [showGenerateReportModal, setShowGenerateReportModal] = useState(false);
+  const [showExportDataModal, setShowExportDataModal] = useState(false);
+  const [showRescheduleModal, setShowRescheduleModal] = useState(false);
+  const [showAddDependenciesModal, setShowAddDependenciesModal] = useState(false);
+  const [showViewFullDetailsModal, setShowViewFullDetailsModal] = useState(false);
 
   const mockActivities: CommissioningActivity[] = [
     {
@@ -417,6 +433,33 @@ export default function CommissioningPage() {
     }
   };
 
+  const handleSchedule = (data: any) => { console.log('Schedule:', data); setShowScheduleModal(false); };
+  const handleEdit = (data: any) => { console.log('Edit:', data); setShowEditModal(false); setSelectedActivity(null); };
+  const handleUpdateTestParameters = (data: any) => { console.log('Update Test Parameters:', data); setShowUpdateTestParametersModal(false); setSelectedActivity(null); };
+  const handleUpdateChecklist = (data: any) => { console.log('Update Checklist:', data); setShowUpdateChecklistModal(false); setSelectedActivity(null); };
+  const handleAddObservations = (data: any) => { console.log('Add Observations:', data); setShowAddObservationsModal(false); setSelectedActivity(null); };
+  const handleUploadDocuments = (data: any) => { console.log('Upload Documents:', data); setShowUploadDocumentsModal(false); setSelectedActivity(null); };
+  const handleUpdateStatus = (data: any) => { console.log('Update Status:', data); setShowUpdateStatusModal(false); setSelectedActivity(null); };
+  const handleIssueCertificate = (data: any) => { console.log('Issue Certificate:', data); setShowIssueCertificateModal(false); setSelectedActivity(null); };
+  const handleAssignEngineer = (data: any) => { console.log('Assign Engineer:', data); setShowAssignEngineerModal(false); setSelectedActivity(null); };
+  const handleAddTestParameter = (data: any) => { console.log('Add Test Parameter:', data); setShowAddTestParameterModal(false); setSelectedActivity(null); };
+  const handleGenerateReport = (data: any) => { console.log('Generate Report:', data); setShowGenerateReportModal(false); };
+  const handleExportData = (data: any) => { console.log('Export Data:', data); setShowExportDataModal(false); };
+  const handleReschedule = (data: any) => { console.log('Reschedule:', data); setShowRescheduleModal(false); setSelectedActivity(null); };
+  const handleAddDependencies = (data: any) => { console.log('Add Dependencies:', data); setShowAddDependenciesModal(false); setSelectedActivity(null); };
+  const openEditModal = (a: CommissioningActivity) => { setSelectedActivity(a); setShowEditModal(true); };
+  const openUpdateTestParametersModal = (a: CommissioningActivity) => { setSelectedActivity(a); setShowUpdateTestParametersModal(true); };
+  const openUpdateChecklistModal = (a: CommissioningActivity) => { setSelectedActivity(a); setShowUpdateChecklistModal(true); };
+  const openAddObservationsModal = (a: CommissioningActivity) => { setSelectedActivity(a); setShowAddObservationsModal(true); };
+  const openUploadDocumentsModal = (a: CommissioningActivity) => { setSelectedActivity(a); setShowUploadDocumentsModal(true); };
+  const openUpdateStatusModal = (a: CommissioningActivity) => { setSelectedActivity(a); setShowUpdateStatusModal(true); };
+  const openIssueCertificateModal = (a: CommissioningActivity) => { setSelectedActivity(a); setShowIssueCertificateModal(true); };
+  const openAssignEngineerModal = (a: CommissioningActivity) => { setSelectedActivity(a); setShowAssignEngineerModal(true); };
+  const openAddTestParameterModal = (a: CommissioningActivity) => { setSelectedActivity(a); setShowAddTestParameterModal(true); };
+  const openRescheduleModal = (a: CommissioningActivity) => { setSelectedActivity(a); setShowRescheduleModal(true); };
+  const openAddDependenciesModal = (a: CommissioningActivity) => { setSelectedActivity(a); setShowAddDependenciesModal(true); };
+  const openViewFullDetailsModal = (a: CommissioningActivity) => { setSelectedActivity(a); setShowViewFullDetailsModal(true); };
+
   return (
     <div className="p-6 space-y-6">
       {/* Header */}
@@ -425,10 +468,20 @@ export default function CommissioningPage() {
           <h1 className="text-3xl font-bold text-gray-900">Commissioning Schedule</h1>
           <p className="text-gray-600 mt-1">Equipment and system commissioning tracking</p>
         </div>
-        <button className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-          <Plus className="h-5 w-5" />
-          <span>Schedule Activity</span>
-        </button>
+        <div className="flex space-x-3">
+          <button onClick={() => setShowGenerateReportModal(true)} className="flex items-center space-x-2 px-4 py-2 border border-gray-300 bg-white text-gray-700 rounded-lg hover:bg-gray-50">
+            <FileText className="h-5 w-5" />
+            <span>Generate Report</span>
+          </button>
+          <button onClick={() => setShowExportDataModal(true)} className="flex items-center space-x-2 px-4 py-2 border border-gray-300 bg-white text-gray-700 rounded-lg hover:bg-gray-50">
+            <Download className="h-5 w-5" />
+            <span>Export Data</span>
+          </button>
+          <button onClick={() => setShowScheduleModal(true)} className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+            <Plus className="h-5 w-5" />
+            <span>Schedule Activity</span>
+          </button>
+        </div>
       </div>
 
       {/* Statistics Cards */}
@@ -630,13 +683,19 @@ export default function CommissioningPage() {
                       </div>
                     )}
                   </td>
-                  <td className="px-4 py-4 text-center">
-                    <button
-                      onClick={() => setSelectedActivity(activity)}
-                      className="text-blue-600 hover:text-blue-800"
-                    >
-                      <Eye className="h-5 w-5" />
-                    </button>
+                  <td className="px-4 py-4">
+                    <div className="flex items-center justify-center space-x-1">
+                      <button onClick={() => openViewFullDetailsModal(activity)} className="p-1.5 bg-gray-50 text-gray-700 rounded hover:bg-gray-100" title="View Details"><Eye className="h-4 w-4" /></button>
+                      <button onClick={() => openEditModal(activity)} className="p-1.5 bg-green-50 text-green-700 rounded hover:bg-green-100" title="Edit"><Edit className="h-4 w-4" /></button>
+                      <button onClick={() => openUpdateTestParametersModal(activity)} className="p-1.5 bg-purple-50 text-purple-700 rounded hover:bg-purple-100" title="Test Parameters"><Settings className="h-4 w-4" /></button>
+                      <button onClick={() => openUpdateChecklistModal(activity)} className="p-1.5 bg-orange-50 text-orange-700 rounded hover:bg-orange-100" title="Checklist"><ClipboardList className="h-4 w-4" /></button>
+                      <button onClick={() => openAddObservationsModal(activity)} className="p-1.5 bg-teal-50 text-teal-700 rounded hover:bg-teal-100" title="Observations"><MessageSquare className="h-4 w-4" /></button>
+                      <button onClick={() => openUploadDocumentsModal(activity)} className="p-1.5 bg-indigo-50 text-indigo-700 rounded hover:bg-indigo-100" title="Upload Documents"><Upload className="h-4 w-4" /></button>
+                      <button onClick={() => openUpdateStatusModal(activity)} className="p-1.5 bg-yellow-50 text-yellow-700 rounded hover:bg-yellow-100" title="Update Status"><RefreshCw className="h-4 w-4" /></button>
+                      <button onClick={() => openIssueCertificateModal(activity)} className="p-1.5 bg-emerald-50 text-emerald-700 rounded hover:bg-emerald-100" title="Issue Certificate"><Award className="h-4 w-4" /></button>
+                      <button onClick={() => openAssignEngineerModal(activity)} className="p-1.5 bg-cyan-50 text-cyan-700 rounded hover:bg-cyan-100" title="Assign Engineer"><UserPlus className="h-4 w-4" /></button>
+                      <button onClick={() => openRescheduleModal(activity)} className="p-1.5 bg-rose-50 text-rose-700 rounded hover:bg-rose-100" title="Reschedule"><CalendarClock className="h-4 w-4" /></button>
+                    </div>
                   </td>
                 </tr>
               ))}
@@ -685,126 +744,21 @@ export default function CommissioningPage() {
         </div>
       </div>
 
-      {/* Details Modal */}
-      {selectedActivity && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg shadow-xl w-full max-w-5xl max-h-[90vh] overflow-y-auto">
-            <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center">
-              <div>
-                <h2 className="text-xl font-bold text-gray-900">{selectedActivity.activityNumber}</h2>
-                <p className="text-sm text-gray-600">{selectedActivity.equipmentSystem}</p>
-              </div>
-              <button
-                onClick={() => setSelectedActivity(null)}
-                className="text-gray-400 hover:text-gray-600"
-              >
-                ✕
-              </button>
-            </div>
-
-            <div className="p-6 space-y-6">
-              {/* Status & Type */}
-              <div className="flex items-center space-x-4">
-                <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${getStatusColor(selectedActivity.status)}`}>
-                  {selectedActivity.status}
-                </span>
-                <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${getTypeColor(selectedActivity.commissioningType)}`}>
-                  {selectedActivity.commissioningType}
-                </span>
-                {selectedActivity.certificateIssued && (
-                  <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
-                    <FileText className="h-4 w-4 mr-1" />
-                    {selectedActivity.certificateNumber}
-                  </span>
-                )}
-              </div>
-
-              {/* Team */}
-              <div className="grid grid-cols-2 gap-4 bg-gray-50 p-4 rounded-lg">
-                <div>
-                  <p className="text-sm text-gray-600">Commissioning Engineer</p>
-                  <p className="font-medium text-gray-900">{selectedActivity.engineer}</p>
-                </div>
-                <div>
-                  <p className="text-sm text-gray-600">Client Representative</p>
-                  <p className="font-medium text-gray-900">{selectedActivity.clientRep}</p>
-                </div>
-              </div>
-
-              {/* Test Parameters */}
-              <div>
-                <h4 className="text-sm font-semibold text-gray-900 mb-3">Test Parameters</h4>
-                <div className="overflow-x-auto">
-                  <table className="w-full text-sm">
-                    <thead className="bg-gray-50">
-                      <tr>
-                        <th className="px-4 py-2 text-left">Parameter</th>
-                        <th className="px-4 py-2 text-left">Specification</th>
-                        <th className="px-4 py-2 text-left">Actual Value</th>
-                        <th className="px-4 py-2 text-center">Result</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-gray-200">
-                      {selectedActivity.testParameters.map((param, index) => (
-                        <tr key={index}>
-                          <td className="px-4 py-2">{param.parameter}</td>
-                          <td className="px-4 py-2">{param.specification}</td>
-                          <td className="px-4 py-2">{param.actualValue || '-'}</td>
-                          <td className="px-4 py-2 text-center">
-                            <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium ${
-                              param.result === 'Pass' ? 'bg-green-100 text-green-800' :
-                              param.result === 'Fail' ? 'bg-red-100 text-red-800' :
-                              'bg-gray-100 text-gray-800'
-                            }`}>
-                              {param.result}
-                            </span>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-
-              {/* Observations */}
-              {selectedActivity.observations && (
-                <div className="bg-blue-50 border border-blue-200 p-4 rounded-lg">
-                  <p className="text-sm font-semibold text-gray-900 mb-1">Observations:</p>
-                  <p className="text-sm text-gray-700">{selectedActivity.observations}</p>
-                </div>
-              )}
-
-              {/* Recommendations */}
-              {selectedActivity.recommendations && (
-                <div className={`border p-4 rounded-lg ${
-                  selectedActivity.status === 'Failed' ? 'bg-red-50 border-red-200' : 'bg-green-50 border-green-200'
-                }`}>
-                  <p className="text-sm font-semibold text-gray-900 mb-1">Recommendations:</p>
-                  <p className="text-sm text-gray-700">{selectedActivity.recommendations}</p>
-                </div>
-              )}
-
-              {/* Actions */}
-              <div className="flex justify-end space-x-3 pt-4 border-t border-gray-200">
-                <button className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">
-                  View Attachments ({selectedActivity.attachments})
-                </button>
-                {selectedActivity.certificateIssued && (
-                  <button className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">
-                    Download Certificate
-                  </button>
-                )}
-                <button
-                  onClick={() => setSelectedActivity(null)}
-                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-                >
-                  Close
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      <ScheduleCommissioningModal isOpen={showScheduleModal} onClose={() => setShowScheduleModal(false)} onSchedule={handleSchedule} />
+      <EditActivityModal isOpen={showEditModal} onClose={() => { setShowEditModal(false); setSelectedActivity(null); }} onEdit={handleEdit} activity={selectedActivity} />
+      <UpdateTestParametersModal isOpen={showUpdateTestParametersModal} onClose={() => { setShowUpdateTestParametersModal(false); setSelectedActivity(null); }} onUpdate={handleUpdateTestParameters} activity={selectedActivity} />
+      <UpdateChecklistModal isOpen={showUpdateChecklistModal} onClose={() => { setShowUpdateChecklistModal(false); setSelectedActivity(null); }} onUpdate={handleUpdateChecklist} activity={selectedActivity} />
+      <AddObservationsModal isOpen={showAddObservationsModal} onClose={() => { setShowAddObservationsModal(false); setSelectedActivity(null); }} onAdd={handleAddObservations} activity={selectedActivity} />
+      <UploadDocumentsModal isOpen={showUploadDocumentsModal} onClose={() => { setShowUploadDocumentsModal(false); setSelectedActivity(null); }} onUpload={handleUploadDocuments} activity={selectedActivity} />
+      <UpdateStatusModal isOpen={showUpdateStatusModal} onClose={() => { setShowUpdateStatusModal(false); setSelectedActivity(null); }} onUpdate={handleUpdateStatus} activity={selectedActivity} />
+      <IssueCertificateModal isOpen={showIssueCertificateModal} onClose={() => { setShowIssueCertificateModal(false); setSelectedActivity(null); }} onIssue={handleIssueCertificate} activity={selectedActivity} />
+      <AssignEngineerModal isOpen={showAssignEngineerModal} onClose={() => { setShowAssignEngineerModal(false); setSelectedActivity(null); }} onAssign={handleAssignEngineer} activity={selectedActivity} />
+      <AddTestParameterModal isOpen={showAddTestParameterModal} onClose={() => { setShowAddTestParameterModal(false); setSelectedActivity(null); }} onAdd={handleAddTestParameter} activity={selectedActivity} />
+      <GenerateReportModal isOpen={showGenerateReportModal} onClose={() => setShowGenerateReportModal(false)} onGenerate={handleGenerateReport} />
+      <ExportDataModal isOpen={showExportDataModal} onClose={() => setShowExportDataModal(false)} onExport={handleExportData} />
+      <RescheduleModal isOpen={showRescheduleModal} onClose={() => { setShowRescheduleModal(false); setSelectedActivity(null); }} onReschedule={handleReschedule} activity={selectedActivity} />
+      <AddDependenciesModal isOpen={showAddDependenciesModal} onClose={() => { setShowAddDependenciesModal(false); setSelectedActivity(null); }} onAdd={handleAddDependencies} activity={selectedActivity} />
+      <ViewFullDetailsModal isOpen={showViewFullDetailsModal} onClose={() => { setShowViewFullDetailsModal(false); setSelectedActivity(null); }} activity={selectedActivity} />
     </div>
   );
 }

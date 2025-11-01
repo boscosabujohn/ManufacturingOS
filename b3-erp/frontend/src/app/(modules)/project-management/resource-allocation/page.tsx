@@ -10,7 +10,28 @@ import {
   TrendingUp,
   Calendar,
   Search,
+  Edit,
+  RefreshCw,
+  Eye,
+  Filter,
+  Download,
+  Trash2,
+  UserCheck,
+  Activity,
+  Settings,
 } from 'lucide-react';
+import {
+  AllocateResourceModal,
+  EditAllocationModal,
+  ReassignResourceModal,
+  BulkAllocateModal,
+  ViewWorkloadModal,
+  SetCapacityModal,
+  FilterAllocationModal,
+  ExportAllocationModal,
+  DeleteAllocationModal,
+  ViewDetailsModal,
+} from '@/components/project-management/ResourceAllocationModals';
 
 interface Resource {
   id: string;
@@ -67,6 +88,20 @@ export default function ResourceAllocationPage() {
     endDate: '',
     allocation: 0,
   });
+
+  // Modal states for all 10 modals
+  const [showAllocateModal, setShowAllocateModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [showReassignModal, setShowReassignModal] = useState(false);
+  const [showBulkAllocateModal, setShowBulkAllocateModal] = useState(false);
+  const [showWorkloadModal, setShowWorkloadModal] = useState(false);
+  const [showCapacityModal, setShowCapacityModal] = useState(false);
+  const [showFilterModal, setShowFilterModal] = useState(false);
+  const [showExportModal, setShowExportModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showDetailsModal, setShowDetailsModal] = useState(false);
+  const [selectedAllocation, setSelectedAllocation] = useState<Allocation | null>(null);
+  const [selectedResourceForWorkload, setSelectedResourceForWorkload] = useState<Resource | null>(null);
 
   const filteredResources = resources.filter(r =>
     r.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -138,13 +173,127 @@ export default function ResourceAllocationPage() {
     return 'text-red-600';
   };
 
+  // Handler functions for all modals
+  const handleAllocate = (data: any) => {
+    console.log('Allocate:', data);
+    setShowAllocateModal(false);
+  };
+
+  const handleEdit = (data: any) => {
+    console.log('Edit:', data);
+    setShowEditModal(false);
+    setSelectedAllocation(null);
+  };
+
+  const handleReassign = (data: any) => {
+    console.log('Reassign:', data);
+    setShowReassignModal(false);
+    setSelectedAllocation(null);
+  };
+
+  const handleBulkAllocate = (data: any) => {
+    console.log('Bulk Allocate:', data);
+    setShowBulkAllocateModal(false);
+  };
+
+  const handleSetCapacity = (data: any) => {
+    console.log('Set Capacity:', data);
+    setShowCapacityModal(false);
+  };
+
+  const handleApplyFilter = (filters: any) => {
+    console.log('Apply Filters:', filters);
+    setShowFilterModal(false);
+  };
+
+  const handleExport = (data: any) => {
+    console.log('Export:', data);
+    setShowExportModal(false);
+  };
+
+  const handleDelete = () => {
+    console.log('Delete allocation:', selectedAllocation);
+    if (selectedAllocation) {
+      setAllocations(allocations.filter(a => a.id !== selectedAllocation.id));
+    }
+    setShowDeleteModal(false);
+    setSelectedAllocation(null);
+  };
+
+  // Helper functions to open modals with context
+  const openEditModal = (allocation: Allocation) => {
+    setSelectedAllocation(allocation);
+    setShowEditModal(true);
+  };
+
+  const openReassignModal = (allocation: Allocation) => {
+    setSelectedAllocation(allocation);
+    setShowReassignModal(true);
+  };
+
+  const openDetailsModal = (allocation: Allocation) => {
+    setSelectedAllocation(allocation);
+    setShowDetailsModal(true);
+  };
+
+  const openDeleteModal = (allocation: Allocation) => {
+    setSelectedAllocation(allocation);
+    setShowDeleteModal(true);
+  };
+
+  const openWorkloadModal = (resource: Resource) => {
+    setSelectedResourceForWorkload(resource);
+    setShowWorkloadModal(true);
+  };
+
+  const openAllocateModalForResource = (resource: Resource) => {
+    setSelectedResource(resource.id);
+    setShowAllocateModal(true);
+  };
+
   return (
     <div className="w-full h-screen overflow-y-auto overflow-x-hidden">
       <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+      {/* Enhanced Header */}
+      <div className="mb-6">
+        <h1 className="text-3xl font-bold text-gray-900 mb-2">Resource Allocation</h1>
+        <p className="text-gray-600">Manage and allocate resources across project phases and tasks</p>
+      </div>
+
       {/* Header Actions */}
-      <div className="flex justify-end mb-4">
+      <div className="flex justify-between items-center mb-4">
+        <div className="flex gap-3">
+          <button
+            onClick={() => setShowFilterModal(true)}
+            className="flex items-center gap-2 px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 transition-colors"
+          >
+            <Filter className="w-5 h-5" />
+            Filter
+          </button>
+          <button
+            onClick={() => setShowCapacityModal(true)}
+            className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
+          >
+            <Settings className="w-5 h-5" />
+            Set Capacity
+          </button>
+          <button
+            onClick={() => setShowBulkAllocateModal(true)}
+            className="flex items-center gap-2 px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors"
+          >
+            <Users className="w-5 h-5" />
+            Bulk Allocate
+          </button>
+          <button
+            onClick={() => setShowExportModal(true)}
+            className="flex items-center gap-2 px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors"
+          >
+            <Download className="w-5 h-5" />
+            Export
+          </button>
+        </div>
         <button
-          onClick={() => setShowAddModal(true)}
+          onClick={() => setShowAllocateModal(true)}
           className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
         >
           <Plus className="w-5 h-5" />
@@ -235,6 +384,9 @@ export default function ResourceAllocationPage() {
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Cost Rate
                 </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Actions
+                </th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
@@ -286,6 +438,24 @@ export default function ResourceAllocationPage() {
                   </td>
                   <td className="px-6 py-4">
                     <p className="text-sm text-gray-900">{formatCurrency(resource.costRate)}/day</p>
+                  </td>
+                  <td className="px-6 py-4">
+                    <div className="flex items-center gap-2">
+                      <button
+                        onClick={() => openWorkloadModal(resource)}
+                        className="flex items-center gap-1 px-3 py-1.5 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors text-sm"
+                      >
+                        <Activity className="w-4 h-4" />
+                        Workload
+                      </button>
+                      <button
+                        onClick={() => openAllocateModalForResource(resource)}
+                        className="flex items-center gap-1 px-3 py-1.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm"
+                      >
+                        <UserCheck className="w-4 h-4" />
+                        Allocate
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))}
@@ -345,9 +515,36 @@ export default function ResourceAllocationPage() {
                     </div>
                   </div>
 
-                  <button className="text-red-600 hover:bg-red-50 p-2 rounded-lg transition-colors">
-                    Remove
-                  </button>
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => openEditModal(allocation)}
+                      className="flex items-center gap-1 px-3 py-1.5 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm"
+                    >
+                      <Edit className="w-4 h-4" />
+                      Edit
+                    </button>
+                    <button
+                      onClick={() => openReassignModal(allocation)}
+                      className="flex items-center gap-1 px-3 py-1.5 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors text-sm"
+                    >
+                      <RefreshCw className="w-4 h-4" />
+                      Reassign
+                    </button>
+                    <button
+                      onClick={() => openDetailsModal(allocation)}
+                      className="flex items-center gap-1 px-3 py-1.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm"
+                    >
+                      <Eye className="w-4 h-4" />
+                      Details
+                    </button>
+                    <button
+                      onClick={() => openDeleteModal(allocation)}
+                      className="flex items-center gap-1 px-3 py-1.5 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors text-sm"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                      Delete
+                    </button>
+                  </div>
                 </div>
               </div>
             );
@@ -456,6 +653,83 @@ export default function ResourceAllocationPage() {
           </div>
         </div>
       )}
+
+      {/* All 10 Modal Components */}
+      <AllocateResourceModal
+        isOpen={showAllocateModal}
+        onClose={() => setShowAllocateModal(false)}
+        onAllocate={handleAllocate}
+      />
+
+      <EditAllocationModal
+        isOpen={showEditModal}
+        onClose={() => {
+          setShowEditModal(false);
+          setSelectedAllocation(null);
+        }}
+        onEdit={handleEdit}
+        allocation={selectedAllocation}
+      />
+
+      <ReassignResourceModal
+        isOpen={showReassignModal}
+        onClose={() => {
+          setShowReassignModal(false);
+          setSelectedAllocation(null);
+        }}
+        onReassign={handleReassign}
+      />
+
+      <BulkAllocateModal
+        isOpen={showBulkAllocateModal}
+        onClose={() => setShowBulkAllocateModal(false)}
+        onAllocate={handleBulkAllocate}
+      />
+
+      <ViewWorkloadModal
+        isOpen={showWorkloadModal}
+        onClose={() => {
+          setShowWorkloadModal(false);
+          setSelectedResourceForWorkload(null);
+        }}
+        resource={selectedResourceForWorkload}
+      />
+
+      <SetCapacityModal
+        isOpen={showCapacityModal}
+        onClose={() => setShowCapacityModal(false)}
+        onSet={handleSetCapacity}
+      />
+
+      <FilterAllocationModal
+        isOpen={showFilterModal}
+        onClose={() => setShowFilterModal(false)}
+        onApply={handleApplyFilter}
+      />
+
+      <ExportAllocationModal
+        isOpen={showExportModal}
+        onClose={() => setShowExportModal(false)}
+        onExport={handleExport}
+      />
+
+      <DeleteAllocationModal
+        isOpen={showDeleteModal}
+        onClose={() => {
+          setShowDeleteModal(false);
+          setSelectedAllocation(null);
+        }}
+        onDelete={handleDelete}
+      />
+
+      <ViewDetailsModal
+        isOpen={showDetailsModal}
+        onClose={() => {
+          setShowDetailsModal(false);
+          setSelectedAllocation(null);
+        }}
+        allocation={selectedAllocation}
+      />
       </div>
     </div>
   );

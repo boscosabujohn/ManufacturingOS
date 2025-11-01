@@ -13,7 +13,36 @@ import {
   CheckCircle,
   Filter,
   Eye,
+  Edit,
+  Users,
+  RefreshCw,
+  FolderTree,
+  Link2,
+  MessageSquare,
+  Paperclip,
+  Bell,
+  Copy,
+  FolderInput,
+  Trash2,
+  MoreHorizontal,
 } from 'lucide-react';
+import {
+  CreateTaskModal,
+  EditTaskModal,
+  AssignTaskModal,
+  UpdateStatusModal,
+  AddSubtasksModal,
+  AddDependenciesModal,
+  AddCommentsModal,
+  UploadAttachmentsModal,
+  SetReminderModal,
+  CloneTaskModal,
+  MoveTaskModal,
+  DeleteTaskModal,
+  FilterTasksModal,
+  BulkUpdateModal,
+  ViewDetailsModal,
+} from '@/components/project-management/TasksModals';
 
 interface Task {
   id: string;
@@ -218,6 +247,24 @@ export default function TasksListPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
+  // Modal states
+  const [showCreateModal, setShowCreateModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [showAssignModal, setShowAssignModal] = useState(false);
+  const [showStatusModal, setShowStatusModal] = useState(false);
+  const [showSubtasksModal, setShowSubtasksModal] = useState(false);
+  const [showDependenciesModal, setShowDependenciesModal] = useState(false);
+  const [showCommentsModal, setShowCommentsModal] = useState(false);
+  const [showAttachmentsModal, setShowAttachmentsModal] = useState(false);
+  const [showReminderModal, setShowReminderModal] = useState(false);
+  const [showCloneModal, setShowCloneModal] = useState(false);
+  const [showMoveModal, setShowMoveModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showFilterModal, setShowFilterModal] = useState(false);
+  const [showBulkUpdateModal, setShowBulkUpdateModal] = useState(false);
+  const [showDetailsModal, setShowDetailsModal] = useState(false);
+  const [selectedTask, setSelectedTask] = useState<Task | null>(null);
+
   // Calculate statistics
   const stats = {
     total: tasks.length,
@@ -276,17 +323,176 @@ export default function TasksListPage() {
     return new Date(dueDate) < new Date();
   };
 
+  // Handler functions
+  const handleCreateTask = (data: any) => {
+    console.log('Create Task:', data);
+    setShowCreateModal(false);
+  };
+
+  const handleEditTask = (data: any) => {
+    console.log('Edit Task:', data);
+    setShowEditModal(false);
+    setSelectedTask(null);
+  };
+
+  const handleAssignTask = (data: any) => {
+    console.log('Assign Task:', data);
+    setShowAssignModal(false);
+    setSelectedTask(null);
+  };
+
+  const handleUpdateStatus = (data: any) => {
+    console.log('Update Status:', data);
+    setShowStatusModal(false);
+    setSelectedTask(null);
+  };
+
+  const handleAddSubtasks = (data: any) => {
+    console.log('Add Subtasks:', data);
+    setShowSubtasksModal(false);
+    setSelectedTask(null);
+  };
+
+  const handleAddDependencies = (data: any) => {
+    console.log('Add Dependencies:', data);
+    setShowDependenciesModal(false);
+    setSelectedTask(null);
+  };
+
+  const handleAddComment = (data: any) => {
+    console.log('Add Comment:', data);
+    setShowCommentsModal(false);
+    setSelectedTask(null);
+  };
+
+  const handleUploadAttachment = (data: any) => {
+    console.log('Upload Attachment:', data);
+    setShowAttachmentsModal(false);
+    setSelectedTask(null);
+  };
+
+  const handleSetReminder = (data: any) => {
+    console.log('Set Reminder:', data);
+    setShowReminderModal(false);
+    setSelectedTask(null);
+  };
+
+  const handleCloneTask = (data: any) => {
+    console.log('Clone Task:', data);
+    setShowCloneModal(false);
+    setSelectedTask(null);
+  };
+
+  const handleMoveTask = (data: any) => {
+    console.log('Move Task:', data);
+    setShowMoveModal(false);
+    setSelectedTask(null);
+  };
+
+  const handleDeleteTask = () => {
+    console.log('Delete Task:', selectedTask);
+    setShowDeleteModal(false);
+    setSelectedTask(null);
+  };
+
+  const handleApplyFilters = (filters: any) => {
+    console.log('Apply Filters:', filters);
+    setShowFilterModal(false);
+  };
+
+  const handleBulkUpdate = (data: any) => {
+    console.log('Bulk Update:', data);
+    setShowBulkUpdateModal(false);
+  };
+
+  // Helper functions to open modals with selected task
+  const openEditModal = (task: Task) => {
+    setSelectedTask(task);
+    setShowEditModal(true);
+  };
+
+  const openAssignModal = (task: Task) => {
+    setSelectedTask(task);
+    setShowAssignModal(true);
+  };
+
+  const openStatusModal = (task: Task) => {
+    setSelectedTask(task);
+    setShowStatusModal(true);
+  };
+
+  const openSubtasksModal = (task: Task) => {
+    setSelectedTask(task);
+    setShowSubtasksModal(true);
+  };
+
+  const openDependenciesModal = (task: Task) => {
+    setSelectedTask(task);
+    setShowDependenciesModal(true);
+  };
+
+  const openCommentsModal = (task: Task) => {
+    setSelectedTask(task);
+    setShowCommentsModal(true);
+  };
+
+  const openAttachmentsModal = (task: Task) => {
+    setSelectedTask(task);
+    setShowAttachmentsModal(true);
+  };
+
+  const openReminderModal = (task: Task) => {
+    setSelectedTask(task);
+    setShowReminderModal(true);
+  };
+
+  const openCloneModal = (task: Task) => {
+    setSelectedTask(task);
+    setShowCloneModal(true);
+  };
+
+  const openMoveModal = (task: Task) => {
+    setSelectedTask(task);
+    setShowMoveModal(true);
+  };
+
+  const openDeleteModal = (task: Task) => {
+    setSelectedTask(task);
+    setShowDeleteModal(true);
+  };
+
+  const openDetailsModal = (task: Task) => {
+    setSelectedTask(task);
+    setShowDetailsModal(true);
+  };
+
   return (
     <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6 space-y-6">
       {/* Header Actions */}
-      <div className="flex justify-end mb-4">
-        <Link
-          href="/project-management/tasks/create"
+      <div className="flex justify-between items-center mb-4">
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => setShowFilterModal(true)}
+            className="flex items-center gap-2 border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+          >
+            <Filter className="w-5 h-5" />
+            Advanced Filters
+          </button>
+          <button
+            onClick={() => setShowBulkUpdateModal(true)}
+            className="flex items-center gap-2 border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+          >
+            <RefreshCw className="w-5 h-5" />
+            Bulk Update
+          </button>
+        </div>
+        <button
+          onClick={() => setShowCreateModal(true)}
           className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
         >
           <Plus className="w-5 h-5" />
-          Add Task
-        </Link>
+          Create Task
+        </button>
       </div>
 
       {/* Statistics Cards */}
@@ -494,13 +700,68 @@ export default function TasksListPage() {
 
                   {/* Actions */}
                   <div className="flex items-center gap-2 ml-4">
-                    <Link
-                      href={`/project-management/tasks/view/${task.id}`}
+                    <button
+                      onClick={() => openEditModal(task)}
+                      className="p-2 text-green-600 hover:bg-green-50 rounded-lg transition-colors"
+                      title="Edit Task"
+                    >
+                      <Edit className="w-4 h-4" />
+                    </button>
+                    <button
+                      onClick={() => openAssignModal(task)}
+                      className="p-2 text-purple-600 hover:bg-purple-50 rounded-lg transition-colors"
+                      title="Assign Task"
+                    >
+                      <Users className="w-4 h-4" />
+                    </button>
+                    <button
+                      onClick={() => openStatusModal(task)}
+                      className="p-2 text-orange-600 hover:bg-orange-50 rounded-lg transition-colors"
+                      title="Update Status"
+                    >
+                      <RefreshCw className="w-4 h-4" />
+                    </button>
+                    <button
+                      onClick={() => openDetailsModal(task)}
                       className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-                     
+                      title="View Details"
                     >
                       <Eye className="w-4 h-4" />
-                    </Link>
+                    </button>
+                    <div className="relative group">
+                      <button
+                        className="p-2 text-gray-600 hover:bg-gray-50 rounded-lg transition-colors"
+                        title="More Actions"
+                      >
+                        <MoreHorizontal className="w-4 h-4" />
+                      </button>
+                      <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-1 hidden group-hover:block z-10">
+                        <button onClick={() => openSubtasksModal(task)} className="w-full px-4 py-2 text-left text-sm hover:bg-gray-50 flex items-center gap-2">
+                          <FolderTree className="w-4 h-4" /> Subtasks
+                        </button>
+                        <button onClick={() => openDependenciesModal(task)} className="w-full px-4 py-2 text-left text-sm hover:bg-gray-50 flex items-center gap-2">
+                          <Link2 className="w-4 h-4" /> Dependencies
+                        </button>
+                        <button onClick={() => openCommentsModal(task)} className="w-full px-4 py-2 text-left text-sm hover:bg-gray-50 flex items-center gap-2">
+                          <MessageSquare className="w-4 h-4" /> Comments
+                        </button>
+                        <button onClick={() => openAttachmentsModal(task)} className="w-full px-4 py-2 text-left text-sm hover:bg-gray-50 flex items-center gap-2">
+                          <Paperclip className="w-4 h-4" /> Attachments
+                        </button>
+                        <button onClick={() => openReminderModal(task)} className="w-full px-4 py-2 text-left text-sm hover:bg-gray-50 flex items-center gap-2">
+                          <Bell className="w-4 h-4" /> Set Reminder
+                        </button>
+                        <button onClick={() => openCloneModal(task)} className="w-full px-4 py-2 text-left text-sm hover:bg-gray-50 flex items-center gap-2">
+                          <Copy className="w-4 h-4" /> Clone Task
+                        </button>
+                        <button onClick={() => openMoveModal(task)} className="w-full px-4 py-2 text-left text-sm hover:bg-gray-50 flex items-center gap-2">
+                          <FolderInput className="w-4 h-4" /> Move Task
+                        </button>
+                        <button onClick={() => openDeleteModal(task)} className="w-full px-4 py-2 text-left text-sm hover:bg-gray-50 text-red-600 flex items-center gap-2">
+                          <Trash2 className="w-4 h-4" /> Delete
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -532,6 +793,144 @@ export default function TasksListPage() {
           </div>
         </div>
       </div>
+
+      {/* All Modals */}
+      <CreateTaskModal
+        isOpen={showCreateModal}
+        onClose={() => setShowCreateModal(false)}
+        onCreate={handleCreateTask}
+      />
+
+      <EditTaskModal
+        isOpen={showEditModal}
+        onClose={() => {
+          setShowEditModal(false);
+          setSelectedTask(null);
+        }}
+        onEdit={handleEditTask}
+        task={selectedTask}
+      />
+
+      <AssignTaskModal
+        isOpen={showAssignModal}
+        onClose={() => {
+          setShowAssignModal(false);
+          setSelectedTask(null);
+        }}
+        onAssign={handleAssignTask}
+        task={selectedTask}
+      />
+
+      <UpdateStatusModal
+        isOpen={showStatusModal}
+        onClose={() => {
+          setShowStatusModal(false);
+          setSelectedTask(null);
+        }}
+        onUpdate={handleUpdateStatus}
+        task={selectedTask}
+      />
+
+      <AddSubtasksModal
+        isOpen={showSubtasksModal}
+        onClose={() => {
+          setShowSubtasksModal(false);
+          setSelectedTask(null);
+        }}
+        onAdd={handleAddSubtasks}
+        task={selectedTask}
+      />
+
+      <AddDependenciesModal
+        isOpen={showDependenciesModal}
+        onClose={() => {
+          setShowDependenciesModal(false);
+          setSelectedTask(null);
+        }}
+        onAdd={handleAddDependencies}
+        task={selectedTask}
+      />
+
+      <AddCommentsModal
+        isOpen={showCommentsModal}
+        onClose={() => {
+          setShowCommentsModal(false);
+          setSelectedTask(null);
+        }}
+        onAdd={handleAddComment}
+        task={selectedTask}
+      />
+
+      <UploadAttachmentsModal
+        isOpen={showAttachmentsModal}
+        onClose={() => {
+          setShowAttachmentsModal(false);
+          setSelectedTask(null);
+        }}
+        onUpload={handleUploadAttachment}
+        task={selectedTask}
+      />
+
+      <SetReminderModal
+        isOpen={showReminderModal}
+        onClose={() => {
+          setShowReminderModal(false);
+          setSelectedTask(null);
+        }}
+        onSet={handleSetReminder}
+        task={selectedTask}
+      />
+
+      <CloneTaskModal
+        isOpen={showCloneModal}
+        onClose={() => {
+          setShowCloneModal(false);
+          setSelectedTask(null);
+        }}
+        onClone={handleCloneTask}
+        task={selectedTask}
+      />
+
+      <MoveTaskModal
+        isOpen={showMoveModal}
+        onClose={() => {
+          setShowMoveModal(false);
+          setSelectedTask(null);
+        }}
+        onMove={handleMoveTask}
+        task={selectedTask}
+      />
+
+      <DeleteTaskModal
+        isOpen={showDeleteModal}
+        onClose={() => {
+          setShowDeleteModal(false);
+          setSelectedTask(null);
+        }}
+        onDelete={handleDeleteTask}
+        task={selectedTask}
+      />
+
+      <FilterTasksModal
+        isOpen={showFilterModal}
+        onClose={() => setShowFilterModal(false)}
+        onApply={handleApplyFilters}
+      />
+
+      <BulkUpdateModal
+        isOpen={showBulkUpdateModal}
+        onClose={() => setShowBulkUpdateModal(false)}
+        onUpdate={handleBulkUpdate}
+      />
+
+      <ViewDetailsModal
+        isOpen={showDetailsModal}
+        onClose={() => {
+          setShowDetailsModal(false);
+          setSelectedTask(null);
+        }}
+        task={selectedTask}
+      />
     </div>
   );
 }

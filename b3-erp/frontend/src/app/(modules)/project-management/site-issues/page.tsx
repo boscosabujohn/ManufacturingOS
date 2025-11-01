@@ -1,7 +1,21 @@
 'use client';
 
 import { useState } from 'react';
-import { AlertTriangle, CheckCircle, Clock, XCircle, TrendingUp, Calendar, Users, Eye, Plus, Download } from 'lucide-react';
+import { AlertTriangle, CheckCircle, Clock, XCircle, TrendingUp, Calendar, Users, Eye, Plus, Download, Edit, FileText, Upload, MessageSquare, Shield } from 'lucide-react';
+import {
+  ReportIssueModal,
+  EditIssueModal,
+  AssignIssueModal,
+  UpdateStatusModal,
+  AddRootCauseModal,
+  AddSolutionModal,
+  AddResolutionModal,
+  AddPreventiveMeasuresModal,
+  UploadAttachmentsModal,
+  AddCommentsModal,
+  GenerateReportModal,
+  ViewFullDetailsModal,
+} from '@/components/project-management/SiteIssuesModals';
 
 interface SiteIssue {
   id: string;
@@ -41,6 +55,20 @@ export default function SiteIssuesPage() {
   const [selectedIssue, setSelectedIssue] = useState<SiteIssue | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
+
+  // Modal states
+  const [showReportModal, setShowReportModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [showAssignModal, setShowAssignModal] = useState(false);
+  const [showStatusModal, setShowStatusModal] = useState(false);
+  const [showRootCauseModal, setShowRootCauseModal] = useState(false);
+  const [showSolutionModal, setShowSolutionModal] = useState(false);
+  const [showResolutionModal, setShowResolutionModal] = useState(false);
+  const [showPreventiveModal, setShowPreventiveModal] = useState(false);
+  const [showAttachmentsModal, setShowAttachmentsModal] = useState(false);
+  const [showCommentsModal, setShowCommentsModal] = useState(false);
+  const [showGenerateReportModal, setShowGenerateReportModal] = useState(false);
+  const [showDetailsModal, setShowDetailsModal] = useState(false);
 
   const mockIssues: SiteIssue[] = [
     {
@@ -397,21 +425,147 @@ export default function SiteIssuesPage() {
     }
   };
 
+  // Handler functions
+  const handleReportIssue = (data: any) => {
+    console.log('Report Issue:', data);
+    setShowReportModal(false);
+  };
+
+  const handleEditIssue = (data: any) => {
+    console.log('Edit Issue:', data);
+    setShowEditModal(false);
+    setSelectedIssue(null);
+  };
+
+  const handleAssignIssue = (data: any) => {
+    console.log('Assign Issue:', data);
+    setShowAssignModal(false);
+    setSelectedIssue(null);
+  };
+
+  const handleUpdateStatus = (data: any) => {
+    console.log('Update Status:', data);
+    setShowStatusModal(false);
+    setSelectedIssue(null);
+  };
+
+  const handleAddRootCause = (data: any) => {
+    console.log('Add Root Cause:', data);
+    setShowRootCauseModal(false);
+    setSelectedIssue(null);
+  };
+
+  const handleAddSolution = (data: any) => {
+    console.log('Add Solution:', data);
+    setShowSolutionModal(false);
+    setSelectedIssue(null);
+  };
+
+  const handleAddResolution = (data: any) => {
+    console.log('Add Resolution:', data);
+    setShowResolutionModal(false);
+    setSelectedIssue(null);
+  };
+
+  const handleAddPreventive = (data: any) => {
+    console.log('Add Preventive Measures:', data);
+    setShowPreventiveModal(false);
+    setSelectedIssue(null);
+  };
+
+  const handleUploadAttachments = (data: any) => {
+    console.log('Upload Attachments:', data);
+    setShowAttachmentsModal(false);
+    setSelectedIssue(null);
+  };
+
+  const handleAddComment = (data: any) => {
+    console.log('Add Comment:', data);
+    setShowCommentsModal(false);
+    setSelectedIssue(null);
+  };
+
+  const handleGenerateReport = (data: any) => {
+    console.log('Generate Report:', data);
+    setShowGenerateReportModal(false);
+    setSelectedIssue(null);
+  };
+
+  // Helper functions to open modals with selected issue
+  const openEditModal = (issue: SiteIssue) => {
+    setSelectedIssue(issue);
+    setShowEditModal(true);
+  };
+
+  const openAssignModal = (issue: SiteIssue) => {
+    setSelectedIssue(issue);
+    setShowAssignModal(true);
+  };
+
+  const openStatusModal = (issue: SiteIssue) => {
+    setSelectedIssue(issue);
+    setShowStatusModal(true);
+  };
+
+  const openRootCauseModal = (issue: SiteIssue) => {
+    setSelectedIssue(issue);
+    setShowRootCauseModal(true);
+  };
+
+  const openSolutionModal = (issue: SiteIssue) => {
+    setSelectedIssue(issue);
+    setShowSolutionModal(true);
+  };
+
+  const openResolutionModal = (issue: SiteIssue) => {
+    setSelectedIssue(issue);
+    setShowResolutionModal(true);
+  };
+
+  const openPreventiveModal = (issue: SiteIssue) => {
+    setSelectedIssue(issue);
+    setShowPreventiveModal(true);
+  };
+
+  const openAttachmentsModal = (issue: SiteIssue) => {
+    setSelectedIssue(issue);
+    setShowAttachmentsModal(true);
+  };
+
+  const openCommentsModal = (issue: SiteIssue) => {
+    setSelectedIssue(issue);
+    setShowCommentsModal(true);
+  };
+
+  const openDetailsModal = (issue: SiteIssue) => {
+    setSelectedIssue(issue);
+    setShowDetailsModal(true);
+  };
+
   return (
     <div className="p-6 space-y-6">
       {/* Header */}
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-start">
         <div>
           <h1 className="text-3xl font-bold text-gray-900">Site Issue Tracking</h1>
           <p className="text-gray-600 mt-1">Real-time tracking and resolution of site issues</p>
         </div>
-        <button
-          onClick={() => setShowAddModal(true)}
-          className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-        >
-          <Plus className="h-5 w-5" />
-          <span>Report Issue</span>
-        </button>
+        <div className="flex items-center space-x-3">
+          <button
+            onClick={() => setShowGenerateReportModal(true)}
+            className="flex items-center space-x-2 px-4 py-2 bg-pink-600 text-white rounded-lg hover:bg-pink-700"
+          >
+            <FileText className="h-5 w-5" />
+            <span>Generate Report</span>
+          </button>
+          <button
+            onClick={() => setShowReportModal(true)}
+            className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          >
+            <Plus className="h-5 w-5" />
+            <span>Report Issue</span>
+          </button>
+        </div>
       </div>
 
       {/* Statistics Cards */}
@@ -621,13 +775,79 @@ export default function SiteIssuesPage() {
                       </span>
                     </div>
                   </td>
-                  <td className="px-4 py-4 text-center">
-                    <button
-                      onClick={() => setSelectedIssue(issue)}
-                      className="text-blue-600 hover:text-blue-800"
-                    >
-                      <Eye className="h-5 w-5" />
-                    </button>
+                  <td className="px-4 py-4">
+                    <div className="flex flex-wrap gap-1">
+                      <button
+                        onClick={() => openDetailsModal(issue)}
+                        className="p-1.5 bg-slate-50 text-slate-700 rounded hover:bg-slate-100"
+                        title="View Details"
+                      >
+                        <Eye className="h-4 w-4" />
+                      </button>
+                      <button
+                        onClick={() => openEditModal(issue)}
+                        className="p-1.5 bg-green-50 text-green-700 rounded hover:bg-green-100"
+                        title="Edit"
+                      >
+                        <Edit className="h-4 w-4" />
+                      </button>
+                      <button
+                        onClick={() => openAssignModal(issue)}
+                        className="p-1.5 bg-purple-50 text-purple-700 rounded hover:bg-purple-100"
+                        title="Assign"
+                      >
+                        <Users className="h-4 w-4" />
+                      </button>
+                      <button
+                        onClick={() => openStatusModal(issue)}
+                        className="p-1.5 bg-orange-50 text-orange-700 rounded hover:bg-orange-100"
+                        title="Update Status"
+                      >
+                        <TrendingUp className="h-4 w-4" />
+                      </button>
+                      <button
+                        onClick={() => openRootCauseModal(issue)}
+                        className="p-1.5 bg-red-50 text-red-700 rounded hover:bg-red-100"
+                        title="Root Cause"
+                      >
+                        <AlertTriangle className="h-4 w-4" />
+                      </button>
+                      <button
+                        onClick={() => openSolutionModal(issue)}
+                        className="p-1.5 bg-teal-50 text-teal-700 rounded hover:bg-teal-100"
+                        title="Add Solution"
+                      >
+                        <CheckCircle className="h-4 w-4" />
+                      </button>
+                      <button
+                        onClick={() => openResolutionModal(issue)}
+                        className="p-1.5 bg-indigo-50 text-indigo-700 rounded hover:bg-indigo-100"
+                        title="Add Resolution"
+                      >
+                        <CheckCircle className="h-4 w-4" />
+                      </button>
+                      <button
+                        onClick={() => openPreventiveModal(issue)}
+                        className="p-1.5 bg-emerald-50 text-emerald-700 rounded hover:bg-emerald-100"
+                        title="Preventive Measures"
+                      >
+                        <Shield className="h-4 w-4" />
+                      </button>
+                      <button
+                        onClick={() => openAttachmentsModal(issue)}
+                        className="p-1.5 bg-amber-50 text-amber-700 rounded hover:bg-amber-100"
+                        title="Upload Files"
+                      >
+                        <Upload className="h-4 w-4" />
+                      </button>
+                      <button
+                        onClick={() => openCommentsModal(issue)}
+                        className="p-1.5 bg-cyan-50 text-cyan-700 rounded hover:bg-cyan-100"
+                        title="Add Comment"
+                      >
+                        <MessageSquare className="h-4 w-4" />
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))}
@@ -676,138 +896,121 @@ export default function SiteIssuesPage() {
         </div>
       </div>
 
-      {/* Issue Details Modal */}
-      {selectedIssue && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
-            <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center">
-              <div>
-                <h2 className="text-xl font-bold text-gray-900">{selectedIssue.issueNumber}</h2>
-                <p className="text-sm text-gray-600">{selectedIssue.issueTitle}</p>
-              </div>
-              <button
-                onClick={() => setSelectedIssue(null)}
-                className="text-gray-400 hover:text-gray-600"
-              >
-                ✕
-              </button>
-            </div>
+      {/* All Modals */}
+      <ReportIssueModal
+        isOpen={showReportModal}
+        onClose={() => setShowReportModal(false)}
+        onReport={handleReportIssue}
+      />
 
-            <div className="p-6 space-y-6">
-              {/* Status & Severity */}
-              <div className="flex items-center space-x-4">
-                {getStatusIcon(selectedIssue.status)}
-                <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${getStatusColor(selectedIssue.status)}`}>
-                  {selectedIssue.status}
-                </span>
-                <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${getSeverityColor(selectedIssue.severity)}`}>
-                  {selectedIssue.severity} Severity
-                </span>
-                <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
-                  {selectedIssue.issueType}
-                </span>
-              </div>
+      <EditIssueModal
+        isOpen={showEditModal}
+        onClose={() => {
+          setShowEditModal(false);
+          setSelectedIssue(null);
+        }}
+        onEdit={handleEditIssue}
+        issue={selectedIssue}
+      />
 
-              {/* Description */}
-              <div className="bg-gray-50 p-4 rounded-lg">
-                <h4 className="text-sm font-semibold text-gray-900 mb-2">Description</h4>
-                <p className="text-sm text-gray-700">{selectedIssue.description}</p>
-              </div>
+      <AssignIssueModal
+        isOpen={showAssignModal}
+        onClose={() => {
+          setShowAssignModal(false);
+          setSelectedIssue(null);
+        }}
+        onAssign={handleAssignIssue}
+        issue={selectedIssue}
+      />
 
-              {/* Impact */}
-              <div className="bg-yellow-50 border border-yellow-200 p-4 rounded-lg">
-                <h4 className="text-sm font-semibold text-gray-900 mb-2">Impact on Work</h4>
-                <p className="text-sm text-gray-700 mb-2">{selectedIssue.impactOnWork}</p>
-                <div className="grid grid-cols-2 gap-4 mt-3">
-                  <div>
-                    <p className="text-xs text-gray-600">Cost Impact</p>
-                    <p className="text-sm font-semibold text-red-600">₹{selectedIssue.costImpact.toLocaleString('en-IN')}</p>
-                  </div>
-                  <div>
-                    <p className="text-xs text-gray-600">Schedule Impact</p>
-                    <p className="text-sm font-semibold text-orange-600">{selectedIssue.scheduleImpact} days</p>
-                  </div>
-                </div>
-              </div>
+      <UpdateStatusModal
+        isOpen={showStatusModal}
+        onClose={() => {
+          setShowStatusModal(false);
+          setSelectedIssue(null);
+        }}
+        onUpdate={handleUpdateStatus}
+        issue={selectedIssue}
+      />
 
-              {/* Root Cause & Solution */}
-              <div className="grid grid-cols-2 gap-4">
-                <div className="bg-red-50 border border-red-200 p-4 rounded-lg">
-                  <h4 className="text-sm font-semibold text-red-900 mb-2">Root Cause</h4>
-                  <p className="text-sm text-gray-700">{selectedIssue.rootCause}</p>
-                </div>
-                <div className="bg-green-50 border border-green-200 p-4 rounded-lg">
-                  <h4 className="text-sm font-semibold text-green-900 mb-2">Proposed Solution</h4>
-                  <p className="text-sm text-gray-700">{selectedIssue.proposedSolution}</p>
-                </div>
-              </div>
+      <AddRootCauseModal
+        isOpen={showRootCauseModal}
+        onClose={() => {
+          setShowRootCauseModal(false);
+          setSelectedIssue(null);
+        }}
+        onAdd={handleAddRootCause}
+        issue={selectedIssue}
+      />
 
-              {/* Resolution */}
-              {selectedIssue.resolutionDetails && (
-                <div className="bg-blue-50 border border-blue-200 p-4 rounded-lg">
-                  <h4 className="text-sm font-semibold text-blue-900 mb-2">Resolution Details</h4>
-                  <p className="text-sm text-gray-700">{selectedIssue.resolutionDetails}</p>
-                </div>
-              )}
+      <AddSolutionModal
+        isOpen={showSolutionModal}
+        onClose={() => {
+          setShowSolutionModal(false);
+          setSelectedIssue(null);
+        }}
+        onAdd={handleAddSolution}
+        issue={selectedIssue}
+      />
 
-              {/* Preventive Measures */}
-              {selectedIssue.preventiveMeasures && (
-                <div className="bg-purple-50 border border-purple-200 p-4 rounded-lg">
-                  <h4 className="text-sm font-semibold text-purple-900 mb-2">Preventive Measures</h4>
-                  <p className="text-sm text-gray-700">{selectedIssue.preventiveMeasures}</p>
-                </div>
-              )}
+      <AddResolutionModal
+        isOpen={showResolutionModal}
+        onClose={() => {
+          setShowResolutionModal(false);
+          setSelectedIssue(null);
+        }}
+        onAdd={handleAddResolution}
+        issue={selectedIssue}
+      />
 
-              {/* Actions */}
-              <div className="flex justify-end space-x-3 pt-4 border-t border-gray-200">
-                <button className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 flex items-center space-x-2">
-                  <Download className="h-4 w-4" />
-                  <span>Attachments ({selectedIssue.attachments})</span>
-                </button>
-                <button
-                  onClick={() => setSelectedIssue(null)}
-                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-                >
-                  Close
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      <AddPreventiveMeasuresModal
+        isOpen={showPreventiveModal}
+        onClose={() => {
+          setShowPreventiveModal(false);
+          setSelectedIssue(null);
+        }}
+        onAdd={handleAddPreventive}
+        issue={selectedIssue}
+      />
 
-      {/* Add Issue Modal - Simplified */}
-      {showAddModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl">
-            <div className="border-b border-gray-200 px-6 py-4 flex justify-between items-center">
-              <h2 className="text-xl font-bold text-gray-900">Report New Issue</h2>
-              <button
-                onClick={() => setShowAddModal(false)}
-                className="text-gray-400 hover:text-gray-600"
-              >
-                ✕
-              </button>
-            </div>
-            <div className="p-6">
-              <p className="text-sm text-gray-600 mb-4">
-                Issue reporting form - Full interface would be implemented here.
-              </p>
-              <div className="flex justify-end space-x-3">
-                <button
-                  onClick={() => setShowAddModal(false)}
-                  className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50"
-                >
-                  Cancel
-                </button>
-                <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-                  Submit Issue
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      <UploadAttachmentsModal
+        isOpen={showAttachmentsModal}
+        onClose={() => {
+          setShowAttachmentsModal(false);
+          setSelectedIssue(null);
+        }}
+        onUpload={handleUploadAttachments}
+        issue={selectedIssue}
+      />
+
+      <AddCommentsModal
+        isOpen={showCommentsModal}
+        onClose={() => {
+          setShowCommentsModal(false);
+          setSelectedIssue(null);
+        }}
+        onAdd={handleAddComment}
+        issue={selectedIssue}
+      />
+
+      <GenerateReportModal
+        isOpen={showGenerateReportModal}
+        onClose={() => {
+          setShowGenerateReportModal(false);
+          setSelectedIssue(null);
+        }}
+        onGenerate={handleGenerateReport}
+        issue={selectedIssue}
+      />
+
+      <ViewFullDetailsModal
+        isOpen={showDetailsModal}
+        onClose={() => {
+          setShowDetailsModal(false);
+          setSelectedIssue(null);
+        }}
+        issue={selectedIssue}
+      />
     </div>
   );
 }

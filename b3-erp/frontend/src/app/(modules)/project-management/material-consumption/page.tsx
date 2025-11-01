@@ -1,7 +1,21 @@
 'use client';
 
 import { useState } from 'react';
-import { Package, TrendingUp, AlertTriangle, CheckCircle, Plus, Filter, Download, Calendar } from 'lucide-react';
+import { Package, TrendingUp, AlertTriangle, CheckCircle, Plus, Filter, Download, Calendar, Edit, Eye, BarChart2, CheckSquare, XCircle, Upload, FileDown, RotateCcw, Sliders, MessageSquare, FileBarChart } from 'lucide-react';
+import {
+  AddConsumptionModal,
+  EditConsumptionModal,
+  ViewDetailsModal,
+  VarianceAnalysisModal,
+  ApproveConsumptionModal,
+  RejectConsumptionModal,
+  BulkUploadModal,
+  ExportReportModal,
+  MaterialReturnModal,
+  AdjustQuantityModal,
+  AddCommentsModal,
+  GenerateVarianceReportModal,
+} from '@/components/project-management/MaterialConsumptionModals';
 
 interface MaterialConsumption {
   id: string;
@@ -31,9 +45,23 @@ export default function MaterialConsumptionPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [filterStatus, setFilterStatus] = useState<string>('all');
   const [filterProject, setFilterProject] = useState<string>('all');
-  const [showAddModal, setShowAddModal] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
+
+  // Modal states
+  const [showAddConsumptionModal, setShowAddConsumptionModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [showDetailsModal, setShowDetailsModal] = useState(false);
+  const [showVarianceModal, setShowVarianceModal] = useState(false);
+  const [showApproveModal, setShowApproveModal] = useState(false);
+  const [showRejectModal, setShowRejectModal] = useState(false);
+  const [showBulkUploadModal, setShowBulkUploadModal] = useState(false);
+  const [showExportModal, setShowExportModal] = useState(false);
+  const [showReturnModal, setShowReturnModal] = useState(false);
+  const [showAdjustModal, setShowAdjustModal] = useState(false);
+  const [showCommentsModal, setShowCommentsModal] = useState(false);
+  const [showVarianceReportModal, setShowVarianceReportModal] = useState(false);
+  const [selectedConsumption, setSelectedConsumption] = useState<MaterialConsumption | null>(null);
 
   const mockConsumptions: MaterialConsumption[] = [
     {
@@ -293,6 +321,122 @@ export default function MaterialConsumptionPage() {
 
   const uniqueProjects = Array.from(new Set(mockConsumptions.map(m => m.projectId)));
 
+  // Handler functions
+  const handleAddConsumption = (data: any) => {
+    console.log('Adding consumption:', data);
+    setShowAddConsumptionModal(false);
+    // API call would go here
+  };
+
+  const handleEditConsumption = (data: any) => {
+    console.log('Editing consumption:', data);
+    setShowEditModal(false);
+    setSelectedConsumption(null);
+    // API call would go here
+  };
+
+  const handleViewDetails = (consumption: MaterialConsumption) => {
+    console.log('Viewing details:', consumption);
+  };
+
+  const handleVarianceAnalysis = (consumption: MaterialConsumption) => {
+    console.log('Analyzing variance:', consumption);
+  };
+
+  const handleApprove = (data: any) => {
+    console.log('Approving consumption:', selectedConsumption?.id, data);
+    setShowApproveModal(false);
+    setSelectedConsumption(null);
+    // API call would go here
+  };
+
+  const handleReject = (data: any) => {
+    console.log('Rejecting consumption:', selectedConsumption?.id, data);
+    setShowRejectModal(false);
+    setSelectedConsumption(null);
+    // API call would go here
+  };
+
+  const handleBulkUpload = (data: any) => {
+    console.log('Bulk uploading:', data);
+    setShowBulkUploadModal(false);
+    // API call would go here
+  };
+
+  const handleExport = (data: any) => {
+    console.log('Exporting report:', data);
+    setShowExportModal(false);
+    // API call would go here
+  };
+
+  const handleReturn = (data: any) => {
+    console.log('Processing return:', selectedConsumption?.id, data);
+    setShowReturnModal(false);
+    setSelectedConsumption(null);
+    // API call would go here
+  };
+
+  const handleAdjustQuantity = (data: any) => {
+    console.log('Adjusting quantity:', selectedConsumption?.id, data);
+    setShowAdjustModal(false);
+    setSelectedConsumption(null);
+    // API call would go here
+  };
+
+  const handleAddComments = (data: any) => {
+    console.log('Adding comments:', selectedConsumption?.id, data);
+    setShowCommentsModal(false);
+    setSelectedConsumption(null);
+    // API call would go here
+  };
+
+  const handleGenerateVarianceReport = (data: any) => {
+    console.log('Generating variance report:', data);
+    setShowVarianceReportModal(false);
+    // API call would go here
+  };
+
+  // Helper functions to open modals with context
+  const openEditModal = (consumption: MaterialConsumption) => {
+    setSelectedConsumption(consumption);
+    setShowEditModal(true);
+  };
+
+  const openDetailsModal = (consumption: MaterialConsumption) => {
+    setSelectedConsumption(consumption);
+    setShowDetailsModal(true);
+  };
+
+  const openVarianceModal = (consumption: MaterialConsumption) => {
+    setSelectedConsumption(consumption);
+    setShowVarianceModal(true);
+  };
+
+  const openApproveModal = (consumption: MaterialConsumption) => {
+    setSelectedConsumption(consumption);
+    setShowApproveModal(true);
+  };
+
+  const openRejectModal = (consumption: MaterialConsumption) => {
+    setSelectedConsumption(consumption);
+    setShowRejectModal(true);
+  };
+
+  const openReturnModal = (consumption: MaterialConsumption) => {
+    setSelectedConsumption(consumption);
+    setShowReturnModal(true);
+  };
+
+  const openAdjustModal = (consumption: MaterialConsumption) => {
+    setSelectedConsumption(consumption);
+    setShowAdjustModal(true);
+  };
+
+  const openCommentsModal = (consumption: MaterialConsumption) => {
+    setSelectedConsumption(consumption);
+    setShowCommentsModal(true);
+  };
+
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'Within Budget':
@@ -315,18 +459,51 @@ export default function MaterialConsumptionPage() {
   return (
     <div className="p-6 space-y-6">
       {/* Header */}
-      <div className="flex justify-between items-center">
-        <div>
-          <h1 className="text-3xl font-bold text-gray-900">Material Consumption Tracking</h1>
-          <p className="text-gray-600 mt-1">Track material usage vs planned quantities</p>
+      <div className="space-y-4">
+        <div className="flex justify-between items-center">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900">Material Consumption Tracking</h1>
+            <p className="text-gray-600 mt-1">Track material usage vs planned quantities</p>
+          </div>
         </div>
-        <button
-          onClick={() => setShowAddModal(true)}
-          className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-        >
-          <Plus className="h-5 w-5" />
-          <span>Add Consumption</span>
-        </button>
+
+        {/* Action Buttons */}
+        <div className="flex flex-wrap gap-3">
+          <button
+            onClick={() => setShowAddConsumptionModal(true)}
+            className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg hover:from-blue-700 hover:to-blue-800 shadow-sm"
+          >
+            <Plus className="h-4 w-4" />
+            <span>Add Consumption</span>
+          </button>
+          <button
+            onClick={() => setShowBulkUploadModal(true)}
+            className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-indigo-600 to-indigo-700 text-white rounded-lg hover:from-indigo-700 hover:to-indigo-800 shadow-sm"
+          >
+            <Upload className="h-4 w-4" />
+            <span>Bulk Upload</span>
+          </button>
+          <button
+            onClick={() => setShowExportModal(true)}
+            className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-teal-600 to-teal-700 text-white rounded-lg hover:from-teal-700 hover:to-teal-800 shadow-sm"
+          >
+            <FileDown className="h-4 w-4" />
+            <span>Export Report</span>
+          </button>
+          <button
+            onClick={() => setShowVarianceReportModal(true)}
+            className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-violet-600 to-violet-700 text-white rounded-lg hover:from-violet-700 hover:to-violet-800 shadow-sm"
+          >
+            <FileBarChart className="h-4 w-4" />
+            <span>Generate Variance Report</span>
+          </button>
+          <button
+            className="flex items-center space-x-2 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 shadow-sm"
+          >
+            <Sliders className="h-4 w-4" />
+            <span>More Filters</span>
+          </button>
+        </div>
       </div>
 
       {/* Statistics Cards */}
@@ -391,7 +568,7 @@ export default function MaterialConsumptionPage() {
 
       {/* Filters */}
       <div className="bg-white p-4 rounded-lg border border-gray-200">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Search</label>
             <input
@@ -430,16 +607,6 @@ export default function MaterialConsumptionPage() {
               ))}
             </select>
           </div>
-          <div className="flex items-end space-x-2">
-            <button className="flex items-center space-x-2 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 h-10">
-              <Filter className="h-4 w-4" />
-              <span>More Filters</span>
-            </button>
-            <button className="flex items-center space-x-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 h-10">
-              <Download className="h-4 w-4" />
-              <span>Export</span>
-            </button>
-          </div>
         </div>
       </div>
 
@@ -472,6 +639,9 @@ export default function MaterialConsumptionPage() {
                 </th>
                 <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Status
+                </th>
+                <th className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Actions
                 </th>
               </tr>
             </thead>
@@ -528,6 +698,72 @@ export default function MaterialConsumptionPage() {
                       {consumption.status}
                     </span>
                   </td>
+                  <td className="px-4 py-4">
+                    <div className="flex flex-col gap-2">
+                      {/* Row 1: View Details, Edit, Variance Analysis, Approve */}
+                      <div className="flex gap-1 justify-center">
+                        <button
+                          onClick={() => openDetailsModal(consumption)}
+                          className="p-1.5 bg-purple-50 text-purple-600 rounded hover:bg-purple-100"
+                          title="View Details"
+                        >
+                          <Eye className="h-3.5 w-3.5" />
+                        </button>
+                        <button
+                          onClick={() => openEditModal(consumption)}
+                          className="p-1.5 bg-green-50 text-green-600 rounded hover:bg-green-100"
+                          title="Edit"
+                        >
+                          <Edit className="h-3.5 w-3.5" />
+                        </button>
+                        <button
+                          onClick={() => openVarianceModal(consumption)}
+                          className="p-1.5 bg-orange-50 text-orange-600 rounded hover:bg-orange-100"
+                          title="Variance Analysis"
+                        >
+                          <BarChart2 className="h-3.5 w-3.5" />
+                        </button>
+                        <button
+                          onClick={() => openApproveModal(consumption)}
+                          className="p-1.5 bg-teal-50 text-teal-600 rounded hover:bg-teal-100"
+                          title="Approve"
+                        >
+                          <CheckSquare className="h-3.5 w-3.5" />
+                        </button>
+                      </div>
+                      {/* Row 2: Reject, Return Material, Adjust Qty, Add Comments */}
+                      <div className="flex gap-1 justify-center">
+                        <button
+                          onClick={() => openRejectModal(consumption)}
+                          className="p-1.5 bg-red-50 text-red-600 rounded hover:bg-red-100"
+                          title="Reject"
+                        >
+                          <XCircle className="h-3.5 w-3.5" />
+                        </button>
+                        <button
+                          onClick={() => openReturnModal(consumption)}
+                          className="p-1.5 bg-yellow-50 text-yellow-600 rounded hover:bg-yellow-100"
+                          title="Return Material"
+                        >
+                          <RotateCcw className="h-3.5 w-3.5" />
+                        </button>
+                        <button
+                          onClick={() => openAdjustModal(consumption)}
+                          className="p-1.5 bg-cyan-50 text-cyan-600 rounded hover:bg-cyan-100"
+                          title="Adjust Quantity"
+                        >
+                          <Sliders className="h-3.5 w-3.5" />
+                        </button>
+                        <button
+                          onClick={() => openCommentsModal(consumption)}
+                          className="p-1.5 bg-pink-50 text-pink-600 rounded hover:bg-pink-100"
+                          title="Add Comments"
+                        >
+                          <MessageSquare className="h-3.5 w-3.5" />
+                        </button>
+                      </div>
+                    </div>
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -575,164 +811,108 @@ export default function MaterialConsumptionPage() {
         </div>
       </div>
 
-      {/* Add Consumption Modal */}
-      {showAddModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
-            <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center">
-              <h2 className="text-xl font-bold text-gray-900">Add Material Consumption</h2>
-              <button
-                onClick={() => setShowAddModal(false)}
-                className="text-gray-400 hover:text-gray-600"
-              >
-                ✕
-              </button>
-            </div>
+      {/* All Modals */}
+      <AddConsumptionModal
+        isOpen={showAddConsumptionModal}
+        onClose={() => setShowAddConsumptionModal(false)}
+        onAdd={handleAddConsumption}
+      />
 
-            <div className="p-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Date</label>
-                  <input
-                    type="date"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Project</label>
-                  <select className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
-                    <option>Select Project</option>
-                    <option>PRJ-2025-001 - Taj Hotels</option>
-                    <option>PRJ-2025-002 - BigBasket</option>
-                    <option>PRJ-2025-003 - L&T Campus</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Work Package</label>
-                  <input
-                    type="text"
-                    placeholder="e.g., WP-001 - Equipment Installation"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Material Code</label>
-                  <input
-                    type="text"
-                    placeholder="e.g., MAT-CK-001"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
-                <div className="md:col-span-2">
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Material Name</label>
-                  <input
-                    type="text"
-                    placeholder="e.g., Stainless Steel Sheet 304 Grade"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Category</label>
-                  <select className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
-                    <option>Raw Materials</option>
-                    <option>Insulation Materials</option>
-                    <option>Plumbing Materials</option>
-                    <option>Electrical Materials</option>
-                    <option>Civil Materials</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Unit</label>
-                  <select className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
-                    <option>KG</option>
-                    <option>MTR</option>
-                    <option>SQM</option>
-                    <option>SFT</option>
-                    <option>BAG</option>
-                    <option>NOS</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Planned Quantity</label>
-                  <input
-                    type="number"
-                    placeholder="e.g., 500"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Consumed Quantity</label>
-                  <input
-                    type="number"
-                    placeholder="e.g., 520"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Unit Cost (₹)</label>
-                  <input
-                    type="number"
-                    placeholder="e.g., 450"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Source</label>
-                  <select className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
-                    <option>Stock</option>
-                    <option>Direct Purchase</option>
-                    <option>Subcontractor</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Issued By</label>
-                  <input
-                    type="text"
-                    placeholder="Store keeper name"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Received By</label>
-                  <input
-                    type="text"
-                    placeholder="Site engineer name"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Warehouse Location</label>
-                  <input
-                    type="text"
-                    placeholder="e.g., WH-MUM-01"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
-                <div className="md:col-span-2">
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Remarks</label>
-                  <textarea
-                    rows={3}
-                    placeholder="Any additional notes..."
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
-              </div>
+      <EditConsumptionModal
+        isOpen={showEditModal}
+        onClose={() => {
+          setShowEditModal(false);
+          setSelectedConsumption(null);
+        }}
+        onSave={handleEditConsumption}
+        consumption={selectedConsumption}
+      />
 
-              <div className="flex justify-end space-x-3 mt-6">
-                <button
-                  onClick={() => setShowAddModal(false)}
-                  className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50"
-                >
-                  Cancel
-                </button>
-                <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-                  Save Consumption Record
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      <ViewDetailsModal
+        isOpen={showDetailsModal}
+        onClose={() => {
+          setShowDetailsModal(false);
+          setSelectedConsumption(null);
+        }}
+        consumption={selectedConsumption}
+      />
+
+      <VarianceAnalysisModal
+        isOpen={showVarianceModal}
+        onClose={() => {
+          setShowVarianceModal(false);
+          setSelectedConsumption(null);
+        }}
+        consumption={selectedConsumption}
+      />
+
+      <ApproveConsumptionModal
+        isOpen={showApproveModal}
+        onClose={() => {
+          setShowApproveModal(false);
+          setSelectedConsumption(null);
+        }}
+        onApprove={handleApprove}
+        consumption={selectedConsumption}
+      />
+
+      <RejectConsumptionModal
+        isOpen={showRejectModal}
+        onClose={() => {
+          setShowRejectModal(false);
+          setSelectedConsumption(null);
+        }}
+        onReject={handleReject}
+        consumption={selectedConsumption}
+      />
+
+      <BulkUploadModal
+        isOpen={showBulkUploadModal}
+        onClose={() => setShowBulkUploadModal(false)}
+        onUpload={handleBulkUpload}
+      />
+
+      <ExportReportModal
+        isOpen={showExportModal}
+        onClose={() => setShowExportModal(false)}
+        onExport={handleExport}
+      />
+
+      <MaterialReturnModal
+        isOpen={showReturnModal}
+        onClose={() => {
+          setShowReturnModal(false);
+          setSelectedConsumption(null);
+        }}
+        onReturn={handleReturn}
+        consumption={selectedConsumption}
+      />
+
+      <AdjustQuantityModal
+        isOpen={showAdjustModal}
+        onClose={() => {
+          setShowAdjustModal(false);
+          setSelectedConsumption(null);
+        }}
+        onAdjust={handleAdjustQuantity}
+        consumption={selectedConsumption}
+      />
+
+      <AddCommentsModal
+        isOpen={showCommentsModal}
+        onClose={() => {
+          setShowCommentsModal(false);
+          setSelectedConsumption(null);
+        }}
+        onAdd={handleAddComments}
+        consumption={selectedConsumption}
+      />
+
+      <GenerateVarianceReportModal
+        isOpen={showVarianceReportModal}
+        onClose={() => setShowVarianceReportModal(false)}
+        onGenerate={handleGenerateVarianceReport}
+      />
     </div>
   );
 }

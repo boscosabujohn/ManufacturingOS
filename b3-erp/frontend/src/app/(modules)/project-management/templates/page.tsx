@@ -18,7 +18,23 @@ import {
   Settings,
   Star,
   TrendingUp,
+  Share2,
+  Download,
+  Upload,
+  Archive,
 } from 'lucide-react';
+import {
+  CreateTemplateModal,
+  EditTemplateModal,
+  DuplicateTemplateModal,
+  DeleteTemplateModal,
+  TemplateSettingsModal,
+  ShareTemplateModal,
+  ExportTemplateModal,
+  ImportTemplateModal,
+  ArchiveTemplateModal,
+  FavoriteTemplateModal,
+} from '@/components/project-management/TemplatesModals';
 
 interface ProjectTemplate {
   id: string;
@@ -69,6 +85,116 @@ export default function ProjectTemplatesPage() {
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [selectedTemplate, setSelectedTemplate] = useState<ProjectTemplate | null>(null);
   const [showDetailModal, setShowDetailModal] = useState(false);
+
+  // Modal states for new modals
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [showDuplicateModal, setShowDuplicateModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showSettingsModal, setShowSettingsModal] = useState(false);
+  const [showShareModal, setShowShareModal] = useState(false);
+  const [showExportModal, setShowExportModal] = useState(false);
+  const [showImportModal, setShowImportModal] = useState(false);
+  const [showArchiveModal, setShowArchiveModal] = useState(false);
+  const [showFavoriteModal, setShowFavoriteModal] = useState(false);
+
+  // Handlers
+  const handleEdit = (template: ProjectTemplate) => {
+    setSelectedTemplate(template);
+    setShowEditModal(true);
+  };
+
+  const handleDuplicate = (template: ProjectTemplate) => {
+    setSelectedTemplate(template);
+    setShowDuplicateModal(true);
+  };
+
+  const handleDelete = (template: ProjectTemplate) => {
+    setSelectedTemplate(template);
+    setShowDeleteModal(true);
+  };
+
+  const handleSettings = (template: ProjectTemplate) => {
+    setSelectedTemplate(template);
+    setShowSettingsModal(true);
+  };
+
+  const handleShare = (template: ProjectTemplate) => {
+    setSelectedTemplate(template);
+    setShowShareModal(true);
+  };
+
+  const handleExport = (template: ProjectTemplate) => {
+    setSelectedTemplate(template);
+    setShowExportModal(true);
+  };
+
+  const handleArchive = (template: ProjectTemplate) => {
+    setSelectedTemplate(template);
+    setShowArchiveModal(true);
+  };
+
+  const handleFavorite = (template: ProjectTemplate) => {
+    setSelectedTemplate(template);
+    setShowFavoriteModal(true);
+  };
+
+  const handleCreate = (data: any) => {
+    console.log('Create template:', data);
+    setShowCreateModal(false);
+  };
+
+  const handleEditSave = (data: any) => {
+    console.log('Edit template:', data);
+    setShowEditModal(false);
+    setSelectedTemplate(null);
+  };
+
+  const handleDuplicateSave = (data: any) => {
+    console.log('Duplicate template:', data);
+    setShowDuplicateModal(false);
+    setSelectedTemplate(null);
+  };
+
+  const handleDeleteConfirm = () => {
+    console.log('Delete template:', selectedTemplate?.id);
+    setShowDeleteModal(false);
+    setSelectedTemplate(null);
+  };
+
+  const handleSettingsSave = (data: any) => {
+    console.log('Settings saved:', data);
+    setShowSettingsModal(false);
+    setSelectedTemplate(null);
+  };
+
+  const handleShareSave = (data: any) => {
+    console.log('Share template:', data);
+    setShowShareModal(false);
+    setSelectedTemplate(null);
+  };
+
+  const handleExportSave = (data: any) => {
+    console.log('Export template:', data);
+    setShowExportModal(false);
+    setSelectedTemplate(null);
+  };
+
+  const handleImportSave = (data: any) => {
+    console.log('Import template:', data);
+    setShowImportModal(false);
+  };
+
+  const handleArchiveSave = () => {
+    console.log('Archive template:', selectedTemplate?.id);
+    setShowArchiveModal(false);
+    setSelectedTemplate(null);
+  };
+
+  const handleFavoriteSave = () => {
+    console.log('Toggle favorite:', selectedTemplate?.id);
+    setShowFavoriteModal(false);
+    setSelectedTemplate(null);
+  };
 
   // Mock data - 10 comprehensive templates
   const mockTemplates: ProjectTemplate[] = [
@@ -474,7 +600,14 @@ export default function ProjectTemplatesPage() {
         <div className="px-4 sm:px-6 lg:px-8 py-6 max-w-[1600px] mx-auto">
           {/* Action Bar */}
           <div className="mb-6">
-            <div className="flex items-center justify-end mb-4">
+            <div className="flex items-center justify-end gap-3 mb-4">
+              <button
+                onClick={() => setShowImportModal(true)}
+                className="flex items-center gap-2 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50"
+              >
+                <Upload className="w-4 h-4" />
+                Import Template
+              </button>
               <button
                 onClick={() => setShowCreateModal(true)}
                 className="flex items-center gap-2 px-4 py-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700"
@@ -660,25 +793,78 @@ export default function ProjectTemplatesPage() {
               </div>
             </div>
 
-            <div className="flex gap-2">
-              <button
-                onClick={() => {
-                  setSelectedTemplate(template);
-                  setShowDetailModal(true);
-                }}
-                className="flex-1 flex items-center justify-center gap-2 px-3 py-2 border border-cyan-600 text-cyan-600 rounded-lg hover:bg-cyan-50 text-sm"
-              >
-                <Eye className="w-4 h-4" />
-                View Details
-              </button>
-              <button className="inline-flex items-center gap-1.5 px-3 py-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700 text-sm">
-                <Copy className="w-4 h-4" />
-                <span>Copy</span>
-              </button>
-              <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
-                <Edit className="w-4 h-4 text-gray-600" />
-                <span className="text-gray-700">Edit</span>
-              </button>
+            <div className="space-y-2">
+              <div className="flex gap-2">
+                <button
+                  onClick={() => {
+                    setSelectedTemplate(template);
+                    setShowDetailModal(true);
+                  }}
+                  className="flex-1 flex items-center justify-center gap-2 px-3 py-2 border border-cyan-600 text-cyan-600 rounded-lg hover:bg-cyan-50 text-sm"
+                >
+                  <Eye className="w-4 h-4" />
+                  View Details
+                </button>
+                <button
+                  onClick={() => handleDuplicate(template)}
+                  className="inline-flex items-center gap-1.5 px-3 py-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700 text-sm"
+                >
+                  <Copy className="w-4 h-4" />
+                </button>
+                <button
+                  onClick={() => handleEdit(template)}
+                  className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm"
+                >
+                  <Edit className="w-4 h-4 text-gray-600" />
+                </button>
+              </div>
+
+              <div className="flex gap-2">
+                <button
+                  onClick={() => handleShare(template)}
+                  className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-1.5 border border-gray-300 rounded-lg hover:bg-gray-50 text-xs"
+                  title="Share"
+                >
+                  <Share2 className="w-3.5 h-3.5 text-gray-600" />
+                  <span className="text-gray-700">Share</span>
+                </button>
+                <button
+                  onClick={() => handleExport(template)}
+                  className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-1.5 border border-gray-300 rounded-lg hover:bg-gray-50 text-xs"
+                  title="Export"
+                >
+                  <Download className="w-3.5 h-3.5 text-gray-600" />
+                  <span className="text-gray-700">Export</span>
+                </button>
+                <button
+                  onClick={() => handleSettings(template)}
+                  className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-1.5 border border-gray-300 rounded-lg hover:bg-gray-50 text-xs"
+                  title="Settings"
+                >
+                  <Settings className="w-3.5 h-3.5 text-gray-600" />
+                </button>
+                <button
+                  onClick={() => handleFavorite(template)}
+                  className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-1.5 border border-gray-300 rounded-lg hover:bg-gray-50 text-xs"
+                  title="Favorite"
+                >
+                  <Star className={`w-3.5 h-3.5 ${template.isFavorite ? 'text-yellow-500 fill-yellow-500' : 'text-gray-600'}`} />
+                </button>
+                <button
+                  onClick={() => handleArchive(template)}
+                  className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-1.5 border border-gray-300 rounded-lg hover:bg-gray-50 text-xs"
+                  title="Archive"
+                >
+                  <Archive className="w-3.5 h-3.5 text-gray-600" />
+                </button>
+                <button
+                  onClick={() => handleDelete(template)}
+                  className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-1.5 border border-red-300 rounded-lg hover:bg-red-50 text-xs"
+                  title="Delete"
+                >
+                  <Trash2 className="w-3.5 h-3.5 text-red-600" />
+                </button>
+              </div>
             </div>
           </div>
         ))}
@@ -797,89 +983,98 @@ export default function ProjectTemplatesPage() {
         </div>
       )}
 
-      {/* Create Template Modal */}
-      {showCreateModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="p-6 border-b border-gray-200">
-              <h2 className="text-2xl font-bold text-gray-900">Create New Template</h2>
-              <p className="text-gray-600 mt-1">Define a reusable project template</p>
-            </div>
+      {/* All Modals */}
+      <CreateTemplateModal
+        isOpen={showCreateModal}
+        onClose={() => setShowCreateModal(false)}
+        onCreate={handleCreate}
+      />
 
-            <div className="p-6 space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Template Name</label>
-                <input
-                  type="text"
-                  placeholder="Enter template name..."
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
-                />
-              </div>
+      <EditTemplateModal
+        isOpen={showEditModal}
+        onClose={() => {
+          setShowEditModal(false);
+          setSelectedTemplate(null);
+        }}
+        onSave={handleEditSave}
+        template={selectedTemplate}
+      />
 
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Project Type</label>
-                  <select className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent">
-                    <option>Commercial Kitchen</option>
-                    <option>Cold Room</option>
-                    <option>Switchgear</option>
-                  </select>
-                </div>
+      <DuplicateTemplateModal
+        isOpen={showDuplicateModal}
+        onClose={() => {
+          setShowDuplicateModal(false);
+          setSelectedTemplate(null);
+        }}
+        onDuplicate={handleDuplicateSave}
+        template={selectedTemplate}
+      />
 
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Complexity</label>
-                  <select className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent">
-                    <option>Simple</option>
-                    <option>Medium</option>
-                    <option>Complex</option>
-                  </select>
-                </div>
-              </div>
+      <DeleteTemplateModal
+        isOpen={showDeleteModal}
+        onClose={() => {
+          setShowDeleteModal(false);
+          setSelectedTemplate(null);
+        }}
+        onDelete={handleDeleteConfirm}
+        template={selectedTemplate}
+      />
 
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Description</label>
-                <textarea
-                  rows={3}
-                  placeholder="Describe the template purpose and use case..."
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
-                />
-              </div>
+      <TemplateSettingsModal
+        isOpen={showSettingsModal}
+        onClose={() => {
+          setShowSettingsModal(false);
+          setSelectedTemplate(null);
+        }}
+        onSave={handleSettingsSave}
+        template={selectedTemplate}
+      />
 
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Estimated Duration</label>
-                  <input
-                    type="text"
-                    placeholder="e.g., 3-4 months"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
-                  />
-                </div>
+      <ShareTemplateModal
+        isOpen={showShareModal}
+        onClose={() => {
+          setShowShareModal(false);
+          setSelectedTemplate(null);
+        }}
+        onShare={handleShareSave}
+        template={selectedTemplate}
+      />
 
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Estimated Budget</label>
-                  <input
-                    type="text"
-                    placeholder="e.g., ₹50L - ₹1Cr"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
-                  />
-                </div>
-              </div>
-            </div>
+      <ExportTemplateModal
+        isOpen={showExportModal}
+        onClose={() => {
+          setShowExportModal(false);
+          setSelectedTemplate(null);
+        }}
+        onExport={handleExportSave}
+        template={selectedTemplate}
+      />
 
-            <div className="p-6 border-t border-gray-200 flex justify-end gap-3">
-              <button
-                onClick={() => setShowCreateModal(false)}
-                className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
-              >
-                Cancel
-              </button>
-              <button className="px-4 py-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700">
-                Create Template
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      <ImportTemplateModal
+        isOpen={showImportModal}
+        onClose={() => setShowImportModal(false)}
+        onImport={handleImportSave}
+      />
+
+      <ArchiveTemplateModal
+        isOpen={showArchiveModal}
+        onClose={() => {
+          setShowArchiveModal(false);
+          setSelectedTemplate(null);
+        }}
+        onArchive={handleArchiveSave}
+        template={selectedTemplate}
+      />
+
+      <FavoriteTemplateModal
+        isOpen={showFavoriteModal}
+        onClose={() => {
+          setShowFavoriteModal(false);
+          setSelectedTemplate(null);
+        }}
+        onToggleFavorite={handleFavoriteSave}
+        template={selectedTemplate}
+      />
         </div>
       </div>
     </div>

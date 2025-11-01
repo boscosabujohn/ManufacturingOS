@@ -12,7 +12,30 @@ import {
   FileText,
   CheckCircle,
   AlertCircle,
+  TrendingUp,
+  BarChart,
+  Target,
+  Filter,
+  Download,
+  Share2,
+  Eye,
+  Image,
+  Edit3,
 } from 'lucide-react';
+import {
+  UpdateProgressModal,
+  AddMilestoneProgressModal,
+  LogActivityModal,
+  ViewProgressReportModal,
+  CompareProgressModal,
+  SetKPIsModal,
+  FilterProgressModal,
+  ExportProgressModal,
+  AddPhotoModal,
+  ViewTimelineModal,
+  ShareProgressModal,
+  ViewDetailsModal,
+} from '@/components/project-management/ProgressModals';
 
 interface ProgressEntry {
   id: string;
@@ -151,6 +174,21 @@ export default function DailyProgressPage() {
     safetyIncidents: 0,
   });
 
+  // Modal states
+  const [showUpdateModal, setShowUpdateModal] = useState(false);
+  const [showAddMilestoneModal, setShowAddMilestoneModal] = useState(false);
+  const [showLogActivityModal, setShowLogActivityModal] = useState(false);
+  const [showViewReportModal, setShowViewReportModal] = useState(false);
+  const [showCompareModal, setShowCompareModal] = useState(false);
+  const [showSetKPIsModal, setShowSetKPIsModal] = useState(false);
+  const [showFilterModal, setShowFilterModal] = useState(false);
+  const [showExportModal, setShowExportModal] = useState(false);
+  const [showAddPhotoModal, setShowAddPhotoModal] = useState(false);
+  const [showTimelineModal, setShowTimelineModal] = useState(false);
+  const [showShareModal, setShowShareModal] = useState(false);
+  const [showDetailsModal, setShowDetailsModal] = useState(false);
+  const [selectedEntry, setSelectedEntry] = useState<ProgressEntry | null>(null);
+
   // Calculate statistics
   const todayEntries = entries.filter(e => e.date === new Date().toISOString().split('T')[0]);
   const stats = {
@@ -179,18 +217,162 @@ export default function DailyProgressPage() {
     }
   };
 
+  // Modal handlers
+  const handleUpdateProgress = (data: any) => {
+    console.log('Update progress:', data);
+    setShowUpdateModal(false);
+  };
+
+  const handleAddMilestone = (data: any) => {
+    console.log('Add milestone:', data);
+    setShowAddMilestoneModal(false);
+  };
+
+  const handleLogActivity = (data: any) => {
+    console.log('Log activity:', data);
+    setShowLogActivityModal(false);
+  };
+
+  const handleViewReport = () => {
+    console.log('View report');
+  };
+
+  const handleCompareProgress = () => {
+    console.log('Compare progress');
+  };
+
+  const handleSetKPIs = (data: any) => {
+    console.log('Set KPIs:', data);
+    setShowSetKPIsModal(false);
+  };
+
+  const handleFilterProgress = (data: any) => {
+    console.log('Filter progress:', data);
+    setShowFilterModal(false);
+  };
+
+  const handleExportProgress = (data: any) => {
+    console.log('Export progress:', data);
+    setShowExportModal(false);
+  };
+
+  const handleAddPhoto = () => {
+    console.log('Add photo for entry:', selectedEntry?.id);
+    setShowAddPhotoModal(false);
+  };
+
+  const handleViewTimeline = () => {
+    console.log('View timeline');
+  };
+
+  const handleShareProgress = (data: any) => {
+    console.log('Share progress:', data);
+    setShowShareModal(false);
+  };
+
+  const handleViewDetails = () => {
+    console.log('View details for entry:', selectedEntry?.id);
+  };
+
+  // Helper functions to open modals with context
+  const openUpdateModal = (entry: ProgressEntry) => {
+    setSelectedEntry(entry);
+    setShowUpdateModal(true);
+  };
+
+  const openDetailsModal = (entry: ProgressEntry) => {
+    setSelectedEntry(entry);
+    setShowDetailsModal(true);
+  };
+
+  const openAddPhotoModal = (entry: ProgressEntry) => {
+    setSelectedEntry(entry);
+    setShowAddPhotoModal(true);
+  };
+
+  const openShareModal = (entry: ProgressEntry) => {
+    setSelectedEntry(entry);
+    setShowShareModal(true);
+  };
+
   return (
     <div className="w-full h-screen overflow-y-auto overflow-x-hidden">
       <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
-        {/* Header Actions */}
-        <div className="flex justify-end mb-4">
-          <button
-            onClick={() => setShowAddModal(true)}
-            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-          >
-            <Plus className="w-5 h-5" />
-            Add Entry
-          </button>
+        {/* Enhanced Header Section */}
+        <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg shadow-lg p-6 mb-6">
+          <div className="flex items-center justify-between mb-4">
+            <div>
+              <h1 className="text-2xl font-bold text-white mb-1">Daily Progress Tracking</h1>
+              <p className="text-blue-100">Monitor and manage daily project progress with comprehensive tracking</p>
+            </div>
+          </div>
+
+          {/* Action Buttons */}
+          <div className="flex flex-wrap gap-2">
+            <button
+              onClick={() => setShowAddModal(true)}
+              className="flex items-center gap-2 px-4 py-2 bg-white text-blue-600 rounded-lg hover:bg-blue-50 transition-colors shadow-sm"
+            >
+              <Plus className="w-4 h-4" />
+              <span className="text-sm font-medium">Add Entry</span>
+            </button>
+            <button
+              onClick={() => setShowAddMilestoneModal(true)}
+              className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors shadow-sm"
+            >
+              <Target className="w-4 h-4" />
+              <span className="text-sm font-medium">Add Milestone</span>
+            </button>
+            <button
+              onClick={() => setShowLogActivityModal(true)}
+              className="flex items-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors shadow-sm"
+            >
+              <Edit3 className="w-4 h-4" />
+              <span className="text-sm font-medium">Log Activity</span>
+            </button>
+            <button
+              onClick={() => setShowViewReportModal(true)}
+              className="flex items-center gap-2 px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors shadow-sm"
+            >
+              <FileText className="w-4 h-4" />
+              <span className="text-sm font-medium">View Report</span>
+            </button>
+            <button
+              onClick={() => setShowCompareModal(true)}
+              className="flex items-center gap-2 px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors shadow-sm"
+            >
+              <BarChart className="w-4 h-4" />
+              <span className="text-sm font-medium">Compare</span>
+            </button>
+            <button
+              onClick={() => setShowSetKPIsModal(true)}
+              className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors shadow-sm"
+            >
+              <Target className="w-4 h-4" />
+              <span className="text-sm font-medium">Set KPIs</span>
+            </button>
+            <button
+              onClick={() => setShowFilterModal(true)}
+              className="flex items-center gap-2 px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 transition-colors shadow-sm"
+            >
+              <Filter className="w-4 h-4" />
+              <span className="text-sm font-medium">Filter</span>
+            </button>
+            <button
+              onClick={() => setShowExportModal(true)}
+              className="flex items-center gap-2 px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors shadow-sm"
+            >
+              <Download className="w-4 h-4" />
+              <span className="text-sm font-medium">Export</span>
+            </button>
+            <button
+              onClick={() => setShowTimelineModal(true)}
+              className="flex items-center gap-2 px-4 py-2 bg-pink-600 text-white rounded-lg hover:bg-pink-700 transition-colors shadow-sm"
+            >
+              <TrendingUp className="w-4 h-4" />
+              <span className="text-sm font-medium">Timeline</span>
+            </button>
+          </div>
         </div>
 
         {/* Statistics Cards */}
@@ -353,8 +535,8 @@ export default function DailyProgressPage() {
                 </div>
               )}
 
-              <div className="flex items-center justify-between pt-4 border-t border-gray-200">
-                <div className="flex items-center gap-6 text-sm">
+              <div className="pt-4 border-t border-gray-200">
+                <div className="flex items-center gap-6 text-sm mb-4">
                   <div>
                     <span className="text-gray-600">Weather: </span>
                     <span className="font-medium text-gray-900">{entry.weather}</span>
@@ -370,12 +552,43 @@ export default function DailyProgressPage() {
                     <span className="font-medium text-gray-900">{entry.reportedBy}</span>
                   </div>
                 </div>
-                <div className="flex items-center gap-2">
-                  <button className="px-3 py-1 text-sm border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+
+                {/* Enhanced Action Buttons */}
+                <div className="flex flex-wrap items-center gap-2">
+                  <button
+                    onClick={() => openDetailsModal(entry)}
+                    className="flex items-center gap-1.5 px-3 py-1.5 text-sm bg-blue-50 text-blue-700 border border-blue-200 rounded-lg hover:bg-blue-100 transition-colors"
+                  >
+                    <Eye className="w-4 h-4" />
+                    View Details
+                  </button>
+                  <button
+                    onClick={() => openAddPhotoModal(entry)}
+                    className="flex items-center gap-1.5 px-3 py-1.5 text-sm bg-purple-50 text-purple-700 border border-purple-200 rounded-lg hover:bg-purple-100 transition-colors"
+                  >
+                    <Camera className="w-4 h-4" />
                     View Photos
                   </button>
-                  <button className="px-3 py-1 text-sm border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+                  <button
+                    onClick={() => openUpdateModal(entry)}
+                    className="flex items-center gap-1.5 px-3 py-1.5 text-sm bg-green-50 text-green-700 border border-green-200 rounded-lg hover:bg-green-100 transition-colors"
+                  >
+                    <Edit3 className="w-4 h-4" />
                     Edit
+                  </button>
+                  <button
+                    onClick={() => openAddPhotoModal(entry)}
+                    className="flex items-center gap-1.5 px-3 py-1.5 text-sm bg-cyan-50 text-cyan-700 border border-cyan-200 rounded-lg hover:bg-cyan-100 transition-colors"
+                  >
+                    <Image className="w-4 h-4" />
+                    Add Photo
+                  </button>
+                  <button
+                    onClick={() => openShareModal(entry)}
+                    className="flex items-center gap-1.5 px-3 py-1.5 text-sm bg-amber-50 text-amber-700 border border-amber-200 rounded-lg hover:bg-amber-100 transition-colors"
+                  >
+                    <Share2 className="w-4 h-4" />
+                    Share
                   </button>
                 </div>
               </div>
@@ -531,6 +744,76 @@ export default function DailyProgressPage() {
           </div>
         </div>
       )}
+
+      {/* All 12 Progress Modals */}
+      <UpdateProgressModal
+        isOpen={showUpdateModal}
+        onClose={() => setShowUpdateModal(false)}
+        onUpdate={handleUpdateProgress}
+      />
+
+      <AddMilestoneProgressModal
+        isOpen={showAddMilestoneModal}
+        onClose={() => setShowAddMilestoneModal(false)}
+        onAdd={handleAddMilestone}
+      />
+
+      <LogActivityModal
+        isOpen={showLogActivityModal}
+        onClose={() => setShowLogActivityModal(false)}
+        onLog={handleLogActivity}
+      />
+
+      <ViewProgressReportModal
+        isOpen={showViewReportModal}
+        onClose={() => setShowViewReportModal(false)}
+      />
+
+      <CompareProgressModal
+        isOpen={showCompareModal}
+        onClose={() => setShowCompareModal(false)}
+      />
+
+      <SetKPIsModal
+        isOpen={showSetKPIsModal}
+        onClose={() => setShowSetKPIsModal(false)}
+        onSet={handleSetKPIs}
+      />
+
+      <FilterProgressModal
+        isOpen={showFilterModal}
+        onClose={() => setShowFilterModal(false)}
+        onApply={handleFilterProgress}
+      />
+
+      <ExportProgressModal
+        isOpen={showExportModal}
+        onClose={() => setShowExportModal(false)}
+        onExport={handleExportProgress}
+      />
+
+      <AddPhotoModal
+        isOpen={showAddPhotoModal}
+        onClose={() => setShowAddPhotoModal(false)}
+        onAdd={handleAddPhoto}
+      />
+
+      <ViewTimelineModal
+        isOpen={showTimelineModal}
+        onClose={() => setShowTimelineModal(false)}
+      />
+
+      <ShareProgressModal
+        isOpen={showShareModal}
+        onClose={() => setShowShareModal(false)}
+        onShare={handleShareProgress}
+      />
+
+      <ViewDetailsModal
+        isOpen={showDetailsModal}
+        onClose={() => setShowDetailsModal(false)}
+        progress={selectedEntry}
+      />
       </div>
     </div>
   );

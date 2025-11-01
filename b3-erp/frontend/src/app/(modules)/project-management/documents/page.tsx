@@ -1,7 +1,23 @@
 'use client';
 
 import { useState } from 'react';
-import { FileText, Folder, Upload, Download, Eye, Trash2, Search, Filter, Calendar, User } from 'lucide-react';
+import { FileText, Folder, Upload, Download, Eye, Trash2, Search, Filter, Calendar, User, Edit, Share2, FolderInput, Lock, Clock, Archive, Tag, FileSearch } from 'lucide-react';
+import {
+  UploadDocumentModal,
+  EditDocumentModal,
+  ShareDocumentModal,
+  MoveDocumentModal,
+  CreateFolderModal,
+  SetPermissionsModal,
+  VersionHistoryModal,
+  BulkDownloadModal,
+  FilterDocumentsModal,
+  SearchDocumentsModal,
+  TagDocumentsModal,
+  DeleteDocumentModal,
+  PreviewDocumentModal,
+  ViewDetailsModal,
+} from '@/components/project-management/DocumentsModals';
 
 interface Document {
   id: string;
@@ -37,6 +53,22 @@ export default function DocumentsPage() {
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('list');
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 12;
+
+  // Modal states
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [showShareModal, setShowShareModal] = useState(false);
+  const [showMoveModal, setShowMoveModal] = useState(false);
+  const [showCreateFolderModal, setShowCreateFolderModal] = useState(false);
+  const [showPermissionsModal, setShowPermissionsModal] = useState(false);
+  const [showVersionHistoryModal, setShowVersionHistoryModal] = useState(false);
+  const [showBulkDownloadModal, setShowBulkDownloadModal] = useState(false);
+  const [showFilterModal, setShowFilterModal] = useState(false);
+  const [showSearchModal, setShowSearchModal] = useState(false);
+  const [showTagModal, setShowTagModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showPreviewModal, setShowPreviewModal] = useState(false);
+  const [showDetailsModal, setShowDetailsModal] = useState(false);
+  const [selectedDocuments, setSelectedDocuments] = useState<Document[]>([]);
 
   const mockDocuments: Document[] = [
     {
@@ -401,18 +433,185 @@ export default function DocumentsPage() {
     }
   };
 
+  // Handler functions
+  const handleUpload = (data: any) => {
+    console.log('Uploading document:', data);
+    setShowUploadModal(false);
+  };
+
+  const handleEdit = (data: any) => {
+    console.log('Editing document:', selectedDocument?.id, data);
+    setShowEditModal(false);
+    setSelectedDocument(null);
+  };
+
+  const handleShare = (data: any) => {
+    console.log('Sharing document:', selectedDocument?.id, data);
+    setShowShareModal(false);
+    setSelectedDocument(null);
+  };
+
+  const handleMove = (data: any) => {
+    console.log('Moving document:', selectedDocument?.id, data);
+    setShowMoveModal(false);
+    setSelectedDocument(null);
+  };
+
+  const handleCreateFolder = (data: any) => {
+    console.log('Creating folder:', data);
+    setShowCreateFolderModal(false);
+  };
+
+  const handleSetPermissions = (data: any) => {
+    console.log('Setting permissions:', selectedDocument?.id, data);
+    setShowPermissionsModal(false);
+    setSelectedDocument(null);
+  };
+
+  const handleVersionHistory = () => {
+    console.log('Version history for:', selectedDocument?.id);
+    setShowVersionHistoryModal(false);
+    setSelectedDocument(null);
+  };
+
+  const handleBulkDownload = () => {
+    console.log('Bulk downloading:', selectedDocuments.length, 'documents');
+    setShowBulkDownloadModal(false);
+  };
+
+  const handleFilterDocuments = (data: any) => {
+    console.log('Applying filters:', data);
+    setShowFilterModal(false);
+  };
+
+  const handleSearchDocuments = (data: any) => {
+    console.log('Searching documents:', data);
+    setShowSearchModal(false);
+  };
+
+  const handleTagDocuments = (data: any) => {
+    console.log('Tagging documents:', selectedDocuments.length, data);
+    setShowTagModal(false);
+  };
+
+  const handleDelete = () => {
+    console.log('Deleting document:', selectedDocument?.id);
+    setShowDeleteModal(false);
+    setSelectedDocument(null);
+  };
+
+  const handlePreview = () => {
+    console.log('Previewing document:', selectedDocument?.id);
+  };
+
+  const handleViewDetails = () => {
+    console.log('Viewing details:', selectedDocument?.id);
+  };
+
+  // Helper functions to open modals with context
+  const openEditModal = (doc: Document) => {
+    setSelectedDocument(doc);
+    setShowEditModal(true);
+  };
+
+  const openShareModal = (doc: Document) => {
+    setSelectedDocument(doc);
+    setShowShareModal(true);
+  };
+
+  const openMoveModal = (doc: Document) => {
+    setSelectedDocument(doc);
+    setShowMoveModal(true);
+  };
+
+  const openPermissionsModal = (doc: Document) => {
+    setSelectedDocument(doc);
+    setShowPermissionsModal(true);
+  };
+
+  const openVersionHistoryModal = (doc: Document) => {
+    setSelectedDocument(doc);
+    setShowVersionHistoryModal(true);
+  };
+
+  const openPreviewModal = (doc: Document) => {
+    setSelectedDocument(doc);
+    setShowPreviewModal(true);
+  };
+
+  const openDeleteModal = (doc: Document) => {
+    setSelectedDocument(doc);
+    setShowDeleteModal(true);
+  };
+
+  const openDetailsModal = (doc: Document) => {
+    setSelectedDocument(doc);
+    setShowDetailsModal(true);
+  };
+
   return (
     <div className="w-full h-screen overflow-y-auto overflow-x-hidden">
       <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
-        {/* Header Actions */}
-        <div className="flex justify-end mb-4">
-          <button
-            onClick={() => setShowUploadModal(true)}
-            className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-          >
-            <Upload className="h-5 w-5" />
-            <span>Upload Document</span>
-          </button>
+        {/* Professional Header */}
+        <div className="bg-white rounded-lg border border-gray-200 p-6">
+          <div className="flex justify-between items-start mb-6">
+            <div>
+              <h1 className="text-3xl font-bold text-gray-900">Document Management</h1>
+              <p className="text-sm text-gray-600 mt-1">Manage and organize all project documents in one place</p>
+            </div>
+          </div>
+
+          {/* Action Buttons Row */}
+          <div className="flex flex-wrap gap-3">
+            <button
+              onClick={() => setShowUploadModal(true)}
+              className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              <Upload className="h-4 w-4" />
+              <span>Upload</span>
+            </button>
+            <button
+              onClick={() => setShowCreateFolderModal(true)}
+              className="flex items-center space-x-2 px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors"
+            >
+              <FolderInput className="h-4 w-4" />
+              <span>Create Folder</span>
+            </button>
+            <button
+              onClick={() => setShowSearchModal(true)}
+              className="flex items-center space-x-2 px-4 py-2 bg-pink-600 text-white rounded-lg hover:bg-pink-700 transition-colors"
+            >
+              <FileSearch className="h-4 w-4" />
+              <span>Advanced Search</span>
+            </button>
+            <button
+              onClick={() => setShowFilterModal(true)}
+              className="flex items-center space-x-2 px-4 py-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700 transition-colors"
+            >
+              <Filter className="h-4 w-4" />
+              <span>Filter</span>
+            </button>
+            <button
+              onClick={() => setShowBulkDownloadModal(true)}
+              className="flex items-center space-x-2 px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors"
+            >
+              <Archive className="h-4 w-4" />
+              <span>Bulk Download</span>
+            </button>
+            <button
+              onClick={() => setShowTagModal(true)}
+              className="flex items-center space-x-2 px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition-colors"
+            >
+              <Tag className="h-4 w-4" />
+              <span>Tag Selected</span>
+            </button>
+            <button
+              className="flex items-center space-x-2 px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors"
+            >
+              <Download className="h-4 w-4" />
+              <span>Export</span>
+            </button>
+          </div>
         </div>
 
         {/* Statistics Cards */}
@@ -613,27 +812,76 @@ export default function DocumentsPage() {
                         {doc.accessLevel}
                       </div>
                     </td>
-                    <td className="px-4 py-4 text-center">
-                      <div className="flex items-center justify-center space-x-2">
-                        <button
-                          onClick={() => setSelectedDocument(doc)}
-                          className="text-blue-600 hover:text-blue-800"
-                         
-                        >
-                          <Eye className="h-5 w-5" />
-                        </button>
-                        <button
-                          className="text-green-600 hover:text-green-800"
-                         
-                        >
-                          <Download className="h-5 w-5" />
-                        </button>
-                        <button
-                          className="text-red-600 hover:text-red-800"
-                         
-                        >
-                          <Trash2 className="h-5 w-5" />
-                        </button>
+                    <td className="px-4 py-4">
+                      <div className="flex flex-col items-center space-y-2">
+                        {/* First row - 5 buttons */}
+                        <div className="flex items-center space-x-1">
+                          <button
+                            onClick={() => openPreviewModal(doc)}
+                            className="p-1.5 rounded hover:bg-violet-50 text-violet-600 hover:text-violet-800 transition-colors"
+                            title="Preview"
+                          >
+                            <Eye className="h-4 w-4" />
+                          </button>
+                          <button
+                            onClick={() => openDetailsModal(doc)}
+                            className="p-1.5 rounded hover:bg-slate-50 text-slate-600 hover:text-slate-800 transition-colors"
+                            title="View Details"
+                          >
+                            <FileText className="h-4 w-4" />
+                          </button>
+                          <button
+                            onClick={() => openEditModal(doc)}
+                            className="p-1.5 rounded hover:bg-green-50 text-green-600 hover:text-green-800 transition-colors"
+                            title="Edit"
+                          >
+                            <Edit className="h-4 w-4" />
+                          </button>
+                          <button
+                            onClick={() => openShareModal(doc)}
+                            className="p-1.5 rounded hover:bg-purple-50 text-purple-600 hover:text-purple-800 transition-colors"
+                            title="Share"
+                          >
+                            <Share2 className="h-4 w-4" />
+                          </button>
+                          <button
+                            className="p-1.5 rounded hover:bg-blue-50 text-blue-600 hover:text-blue-800 transition-colors"
+                            title="Download"
+                          >
+                            <Download className="h-4 w-4" />
+                          </button>
+                        </div>
+                        {/* Second row - 4 buttons */}
+                        <div className="flex items-center space-x-1">
+                          <button
+                            onClick={() => openMoveModal(doc)}
+                            className="p-1.5 rounded hover:bg-orange-50 text-orange-600 hover:text-orange-800 transition-colors"
+                            title="Move"
+                          >
+                            <FolderInput className="h-4 w-4" />
+                          </button>
+                          <button
+                            onClick={() => openPermissionsModal(doc)}
+                            className="p-1.5 rounded hover:bg-indigo-50 text-indigo-600 hover:text-indigo-800 transition-colors"
+                            title="Permissions"
+                          >
+                            <Lock className="h-4 w-4" />
+                          </button>
+                          <button
+                            onClick={() => openVersionHistoryModal(doc)}
+                            className="p-1.5 rounded hover:bg-yellow-50 text-yellow-600 hover:text-yellow-800 transition-colors"
+                            title="Version History"
+                          >
+                            <Clock className="h-4 w-4" />
+                          </button>
+                          <button
+                            onClick={() => openDeleteModal(doc)}
+                            className="p-1.5 rounded hover:bg-red-50 text-red-600 hover:text-red-800 transition-colors"
+                            title="Delete"
+                          >
+                            <Trash2 className="h-4 w-4" />
+                          </button>
+                        </div>
                       </div>
                     </td>
                   </tr>
@@ -699,17 +947,56 @@ export default function DocumentsPage() {
                   </span>
                   <p className="text-xs text-gray-500">{doc.fileSize} • {doc.fileFormat}</p>
                   <p className="text-xs text-gray-500">v{doc.version}</p>
-                  <div className="flex items-center justify-center space-x-2 mt-3">
-                    <button
-                      onClick={() => setSelectedDocument(doc)}
-                      className="p-1 text-blue-600 hover:text-blue-800"
-                    >
-                      <Eye className="h-4 w-4" />
-                    </button>
-                    <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
-                      <Download className="h-4 w-4 text-gray-600" />
-                      <span className="text-gray-700">Download</span>
-                    </button>
+
+                  {/* Action Buttons */}
+                  <div className="flex flex-col items-center space-y-2 mt-4 w-full">
+                    {/* First row - 3 buttons */}
+                    <div className="flex items-center space-x-1">
+                      <button
+                        onClick={() => openPreviewModal(doc)}
+                        className="p-2 rounded hover:bg-violet-50 text-violet-600 hover:text-violet-800 transition-colors"
+                        title="Preview"
+                      >
+                        <Eye className="h-4 w-4" />
+                      </button>
+                      <button
+                        className="p-2 rounded hover:bg-blue-50 text-blue-600 hover:text-blue-800 transition-colors"
+                        title="Download"
+                      >
+                        <Download className="h-4 w-4" />
+                      </button>
+                      <button
+                        onClick={() => openShareModal(doc)}
+                        className="p-2 rounded hover:bg-purple-50 text-purple-600 hover:text-purple-800 transition-colors"
+                        title="Share"
+                      >
+                        <Share2 className="h-4 w-4" />
+                      </button>
+                    </div>
+                    {/* Second row - 3 buttons */}
+                    <div className="flex items-center space-x-1">
+                      <button
+                        onClick={() => openEditModal(doc)}
+                        className="p-2 rounded hover:bg-green-50 text-green-600 hover:text-green-800 transition-colors"
+                        title="Edit"
+                      >
+                        <Edit className="h-4 w-4" />
+                      </button>
+                      <button
+                        onClick={() => openMoveModal(doc)}
+                        className="p-2 rounded hover:bg-orange-50 text-orange-600 hover:text-orange-800 transition-colors"
+                        title="Move"
+                      >
+                        <FolderInput className="h-4 w-4" />
+                      </button>
+                      <button
+                        onClick={() => openDeleteModal(doc)}
+                        className="p-2 rounded hover:bg-red-50 text-red-600 hover:text-red-800 transition-colors"
+                        title="Delete"
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -751,140 +1038,97 @@ export default function DocumentsPage() {
         </div>
       )}
 
-      {/* Document Details Modal */}
-      {selectedDocument && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
-            <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center">
-              <div>
-                <h2 className="text-xl font-bold text-gray-900">{selectedDocument.documentName}</h2>
-                <p className="text-sm text-gray-600">{selectedDocument.documentNumber}</p>
-              </div>
-              <button
-                onClick={() => setSelectedDocument(null)}
-                className="text-gray-400 hover:text-gray-600"
-              >
-                ✕
-              </button>
-            </div>
+      {/* All Modals */}
+      <UploadDocumentModal
+        isOpen={showUploadModal}
+        onClose={() => setShowUploadModal(false)}
+        onUpload={handleUpload}
+      />
 
-            <div className="p-6 space-y-6">
-              {/* Basic Info */}
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <p className="text-sm text-gray-600">Document Type</p>
-                  <p className="font-medium text-gray-900">{selectedDocument.documentType}</p>
-                </div>
-                <div>
-                  <p className="text-sm text-gray-600">Category</p>
-                  <p className="font-medium text-gray-900">{selectedDocument.category}</p>
-                </div>
-                <div>
-                  <p className="text-sm text-gray-600">Version</p>
-                  <p className="font-medium text-gray-900">v{selectedDocument.version}</p>
-                </div>
-                <div>
-                  <p className="text-sm text-gray-600">Status</p>
-                  <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusColor(selectedDocument.status)}`}>
-                    {selectedDocument.status}
-                  </span>
-                </div>
-                <div>
-                  <p className="text-sm text-gray-600">File Size</p>
-                  <p className="font-medium text-gray-900">{selectedDocument.fileSize} ({selectedDocument.fileFormat})</p>
-                </div>
-                <div>
-                  <p className="text-sm text-gray-600">Access Level</p>
-                  <p className={`font-medium ${getAccessLevelColor(selectedDocument.accessLevel)}`}>
-                    {selectedDocument.accessLevel}
-                  </p>
-                </div>
-              </div>
+      <EditDocumentModal
+        isOpen={showEditModal}
+        onClose={() => setShowEditModal(false)}
+        onEdit={handleEdit}
+        doc={selectedDocument}
+      />
 
-              {/* Description */}
-              <div>
-                <p className="text-sm text-gray-600 mb-1">Description</p>
-                <p className="text-gray-900">{selectedDocument.description}</p>
-              </div>
+      <ShareDocumentModal
+        isOpen={showShareModal}
+        onClose={() => setShowShareModal(false)}
+        onShare={handleShare}
+        doc={selectedDocument}
+      />
 
-              {/* Tags */}
-              <div>
-                <p className="text-sm text-gray-600 mb-2">Tags</p>
-                <div className="flex flex-wrap gap-2">
-                  {selectedDocument.tags.map((tag, index) => (
-                    <span key={index} className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
+      <MoveDocumentModal
+        isOpen={showMoveModal}
+        onClose={() => setShowMoveModal(false)}
+        onMove={handleMove}
+        doc={selectedDocument}
+      />
 
-              {/* Upload & Approval Info */}
-              <div className="grid grid-cols-2 gap-4 bg-gray-50 p-4 rounded-lg">
-                <div>
-                  <p className="text-sm text-gray-600">Uploaded By</p>
-                  <p className="font-medium text-gray-900">{selectedDocument.uploadedBy}</p>
-                  <p className="text-xs text-gray-500">{selectedDocument.uploadDate}</p>
-                </div>
-                {selectedDocument.approvedBy && (
-                  <div>
-                    <p className="text-sm text-gray-600">Approved By</p>
-                    <p className="font-medium text-gray-900">{selectedDocument.approvedBy}</p>
-                    <p className="text-xs text-gray-500">{selectedDocument.approvalDate}</p>
-                  </div>
-                )}
-              </div>
+      <CreateFolderModal
+        isOpen={showCreateFolderModal}
+        onClose={() => setShowCreateFolderModal(false)}
+        onCreate={handleCreateFolder}
+      />
 
-              {/* Actions */}
-              <div className="flex justify-end space-x-3 pt-4 border-t border-gray-200">
-                <button className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 flex items-center space-x-2">
-                  <Download className="h-4 w-4" />
-                  <span>Download</span>
-                </button>
-                <button
-                  onClick={() => setSelectedDocument(null)}
-                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-                >
-                  Close
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      <SetPermissionsModal
+        isOpen={showPermissionsModal}
+        onClose={() => setShowPermissionsModal(false)}
+        onSet={handleSetPermissions}
+        doc={selectedDocument}
+      />
 
-      {/* Upload Modal - Simplified */}
-      {showUploadModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl">
-            <div className="border-b border-gray-200 px-6 py-4 flex justify-between items-center">
-              <h2 className="text-xl font-bold text-gray-900">Upload Document</h2>
-              <button
-                onClick={() => setShowUploadModal(false)}
-                className="text-gray-400 hover:text-gray-600"
-              >
-                ✕
-              </button>
-            </div>
-            <div className="p-6">
-              <p className="text-sm text-gray-600 mb-4">
-                Document upload form - Full interface would be implemented here.
-              </p>
-              <div className="flex justify-end space-x-3">
-                <button
-                  onClick={() => setShowUploadModal(false)}
-                  className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50"
-                >
-                  Cancel
-                </button>
-                <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-                  Upload
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      <VersionHistoryModal
+        isOpen={showVersionHistoryModal}
+        onClose={() => setShowVersionHistoryModal(false)}
+        doc={selectedDocument}
+      />
+
+      <BulkDownloadModal
+        isOpen={showBulkDownloadModal}
+        onClose={() => setShowBulkDownloadModal(false)}
+        onDownload={handleBulkDownload}
+        selectedDocs={selectedDocuments}
+      />
+
+      <FilterDocumentsModal
+        isOpen={showFilterModal}
+        onClose={() => setShowFilterModal(false)}
+        onApply={handleFilterDocuments}
+      />
+
+      <SearchDocumentsModal
+        isOpen={showSearchModal}
+        onClose={() => setShowSearchModal(false)}
+        onSearch={handleSearchDocuments}
+      />
+
+      <TagDocumentsModal
+        isOpen={showTagModal}
+        onClose={() => setShowTagModal(false)}
+        onTag={handleTagDocuments}
+        selectedDocs={selectedDocuments}
+      />
+
+      <DeleteDocumentModal
+        isOpen={showDeleteModal}
+        onClose={() => setShowDeleteModal(false)}
+        onDelete={handleDelete}
+        doc={selectedDocument}
+      />
+
+      <PreviewDocumentModal
+        isOpen={showPreviewModal}
+        onClose={() => setShowPreviewModal(false)}
+        doc={selectedDocument}
+      />
+
+      <ViewDetailsModal
+        isOpen={showDetailsModal}
+        onClose={() => setShowDetailsModal(false)}
+        doc={selectedDocument}
+      />
       </div>
     </div>
   );

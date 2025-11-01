@@ -1,7 +1,24 @@
 {
   "permissions": {
     "allow": [
-      "Bash(test:*)"
+      "Bash(test:*)",
+      "Bash(tail:*)",
+      "Bash(find:*)",
+      "Bash(for dir in */)",
+      "Bash(do if [ -f \"$dir/page.tsx\" ])",
+      "Bash(then if grep -q \"from ''''@/components/project-management/\" \"$dir/page.tsx\")",
+      "Bash(then echo \"✓ INTEGRATED: $dir\")",
+      "Bash(else echo \"✗ NOT INTEGRATED: $dir\")",
+      "Bash(done)",
+      "Bash(while read dir)",
+      "Bash(do dir_name=\"$dir%/\")",
+      "Bash(if [ -f \"$dir_name/page.tsx\" ])",
+      "Bash(then if ! grep -q \"from ''''@/components/project-management/\" \"$dir_name/page.tsx\")",
+      "Bash(then echo \"$dir_name\")",
+      "Bash(do if [ -f \"$dirpage.tsx\" ])",
+      "Bash(! grep -q \"from ''@/components/project-management/\" \"$dirpage.tsx\")",
+      "Bash(then echo \"$dir%/\")",
+      "Bash(do if [ ! -f \"$dirpage.tsx\" ])"
     ],
     "deny": [],
     "ask": []

@@ -1,7 +1,24 @@
 'use client';
 
 import { useState } from 'react';
-import { Users, Clock, TrendingUp, AlertTriangle, DollarSign, Calendar, Plus, Download, Filter } from 'lucide-react';
+import { Users, Clock, TrendingUp, AlertTriangle, DollarSign, Calendar, Plus, Download, Filter, Upload, FileText, CheckCircle, XCircle, Activity, Calculator, UserPlus, PieChart, FileBarChart, ClipboardCheck } from 'lucide-react';
+import {
+  AddLaborEntryModal,
+  EditLaborEntryModal,
+  ViewLaborDetailsModal,
+  ApproveHoursModal,
+  RejectHoursModal,
+  CalculateEfficiencyModal,
+  BulkUploadModal,
+  ExportReportModal,
+  AssignWorkersModal,
+  CalculateCostModal,
+  ShiftScheduleModal,
+  OvertimeAnalysisModal,
+  GenerateTimesheetModal,
+  LaborProductivityReportModal,
+  MarkAttendanceModal,
+} from '@/components/project-management/LaborTrackingModals';
 
 interface LaborEntry {
   id: string;
@@ -31,9 +48,26 @@ export default function LaborTrackingPage() {
   const [filterProject, setFilterProject] = useState<string>('all');
   const [filterCategory, setFilterCategory] = useState<string>('all');
   const [filterDate, setFilterDate] = useState<string>('');
-  const [showAddModal, setShowAddModal] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
+
+  // Modal states
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [showViewModal, setShowViewModal] = useState(false);
+  const [showApproveModal, setShowApproveModal] = useState(false);
+  const [showRejectModal, setShowRejectModal] = useState(false);
+  const [showEfficiencyModal, setShowEfficiencyModal] = useState(false);
+  const [showBulkUploadModal, setShowBulkUploadModal] = useState(false);
+  const [showExportModal, setShowExportModal] = useState(false);
+  const [showAssignWorkersModal, setShowAssignWorkersModal] = useState(false);
+  const [showCalculateCostModal, setShowCalculateCostModal] = useState(false);
+  const [showShiftScheduleModal, setShowShiftScheduleModal] = useState(false);
+  const [showOvertimeAnalysisModal, setShowOvertimeAnalysisModal] = useState(false);
+  const [showTimesheetModal, setShowTimesheetModal] = useState(false);
+  const [showProductivityReportModal, setShowProductivityReportModal] = useState(false);
+  const [showAttendanceModal, setShowAttendanceModal] = useState(false);
+  const [selectedEntry, setSelectedEntry] = useState<LaborEntry | null>(null);
 
   const mockLaborEntries: LaborEntry[] = [
     {
@@ -359,6 +393,105 @@ export default function LaborTrackingPage() {
     return 'text-green-600';
   };
 
+  // Handler functions
+  const handleAddEntry = (data: any) => {
+    console.log('Adding labor entry:', data);
+    setShowAddModal(false);
+  };
+
+  const handleEditEntry = (data: any) => {
+    console.log('Editing labor entry:', data);
+    setShowEditModal(false);
+    setSelectedEntry(null);
+  };
+
+  const handleApproveHours = (data: any) => {
+    console.log('Approving hours:', data);
+    setShowApproveModal(false);
+    setSelectedEntry(null);
+  };
+
+  const handleRejectHours = (reason: string) => {
+    console.log('Rejecting hours:', reason);
+    setShowRejectModal(false);
+    setSelectedEntry(null);
+  };
+
+  const handleCalculateEfficiency = () => {
+    setShowEfficiencyModal(false);
+    setSelectedEntry(null);
+  };
+
+  const handleBulkUpload = (file: File) => {
+    console.log('Uploading file:', file.name);
+    setShowBulkUploadModal(false);
+  };
+
+  const handleExportReport = (data: any) => {
+    console.log('Exporting report:', data);
+    setShowExportModal(false);
+  };
+
+  const handleAssignWorkers = (data: any) => {
+    console.log('Assigning workers:', data);
+    setShowAssignWorkersModal(false);
+  };
+
+  const handleCalculateCost = () => {
+    setShowCalculateCostModal(false);
+    setSelectedEntry(null);
+  };
+
+  const handleShiftSchedule = (data: any) => {
+    console.log('Creating shift schedule:', data);
+    setShowShiftScheduleModal(false);
+  };
+
+  const handleGenerateTimesheet = (data: any) => {
+    console.log('Generating timesheet:', data);
+    setShowTimesheetModal(false);
+  };
+
+  const handleProductivityReport = (data: any) => {
+    console.log('Generating productivity report:', data);
+    setShowProductivityReportModal(false);
+  };
+
+  const handleMarkAttendance = (data: any) => {
+    console.log('Marking attendance:', data);
+    setShowAttendanceModal(false);
+  };
+
+  const openEditModal = (entry: LaborEntry) => {
+    setSelectedEntry(entry);
+    setShowEditModal(true);
+  };
+
+  const openViewModal = (entry: LaborEntry) => {
+    setSelectedEntry(entry);
+    setShowViewModal(true);
+  };
+
+  const openApproveModal = (entry: LaborEntry) => {
+    setSelectedEntry(entry);
+    setShowApproveModal(true);
+  };
+
+  const openRejectModal = (entry: LaborEntry) => {
+    setSelectedEntry(entry);
+    setShowRejectModal(true);
+  };
+
+  const openEfficiencyModal = (entry: LaborEntry) => {
+    setSelectedEntry(entry);
+    setShowEfficiencyModal(true);
+  };
+
+  const openCalculateCostModal = (entry: LaborEntry) => {
+    setSelectedEntry(entry);
+    setShowCalculateCostModal(true);
+  };
+
   return (
     <div className="p-6 space-y-6">
       {/* Header */}
@@ -367,13 +500,43 @@ export default function LaborTrackingPage() {
           <h1 className="text-3xl font-bold text-gray-900">Labor & Manhours Tracking</h1>
           <p className="text-gray-600 mt-1">Track workforce deployment and productivity across projects</p>
         </div>
-        <button
-          onClick={() => setShowAddModal(true)}
-          className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-        >
-          <Plus className="h-5 w-5" />
-          <span>Add Entry</span>
-        </button>
+        <div className="flex flex-wrap gap-3">
+          <button
+            onClick={() => setShowAttendanceModal(true)}
+            className="flex items-center space-x-2 px-4 py-2 bg-rose-600 text-white rounded-lg hover:bg-rose-700"
+          >
+            <ClipboardCheck className="h-5 w-5" />
+            <span>Mark Attendance</span>
+          </button>
+          <button
+            onClick={() => setShowBulkUploadModal(true)}
+            className="flex items-center space-x-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700"
+          >
+            <Upload className="h-5 w-5" />
+            <span>Bulk Upload</span>
+          </button>
+          <button
+            onClick={() => setShowShiftScheduleModal(true)}
+            className="flex items-center space-x-2 px-4 py-2 bg-pink-600 text-white rounded-lg hover:bg-pink-700"
+          >
+            <Calendar className="h-5 w-5" />
+            <span>Shift Schedule</span>
+          </button>
+          <button
+            onClick={() => setShowOvertimeAnalysisModal(true)}
+            className="flex items-center space-x-2 px-4 py-2 bg-violet-600 text-white rounded-lg hover:bg-violet-700"
+          >
+            <PieChart className="h-5 w-5" />
+            <span>Overtime Analysis</span>
+          </button>
+          <button
+            onClick={() => setShowAddModal(true)}
+            className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          >
+            <Plus className="h-5 w-5" />
+            <span>Add Entry</span>
+          </button>
+        </div>
       </div>
 
       {/* Statistics Cards */}
@@ -498,11 +661,31 @@ export default function LaborTrackingPage() {
             />
           </div>
           <div className="flex items-end space-x-2">
-            <button className="flex items-center space-x-2 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 h-10">
-              <Filter className="h-4 w-4" />
-              <span>More Filters</span>
+            <button
+              onClick={() => setShowAssignWorkersModal(true)}
+              className="flex items-center space-x-2 px-4 py-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700 h-10"
+            >
+              <UserPlus className="h-4 w-4" />
+              <span>Assign Workers</span>
             </button>
-            <button className="flex items-center space-x-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 h-10">
+            <button
+              onClick={() => setShowTimesheetModal(true)}
+              className="flex items-center space-x-2 px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 h-10"
+            >
+              <FileText className="h-4 w-4" />
+              <span>Timesheet</span>
+            </button>
+            <button
+              onClick={() => setShowProductivityReportModal(true)}
+              className="flex items-center space-x-2 px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700 h-10"
+            >
+              <FileBarChart className="h-4 w-4" />
+              <span>Productivity</span>
+            </button>
+            <button
+              onClick={() => setShowExportModal(true)}
+              className="flex items-center space-x-2 px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 h-10"
+            >
               <Download className="h-4 w-4" />
               <span>Export</span>
             </button>
@@ -539,6 +722,9 @@ export default function LaborTrackingPage() {
                 </th>
                 <th className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Efficiency
+                </th>
+                <th className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Actions
                 </th>
               </tr>
             </thead>
@@ -595,6 +781,56 @@ export default function LaborTrackingPage() {
                     </div>
                     <div className="text-xs text-gray-500">{entry.supervisor}</div>
                   </td>
+                  <td className="px-4 py-4">
+                    <div className="flex flex-col gap-1">
+                      <div className="flex items-center justify-center gap-1">
+                        <button
+                          onClick={() => openViewModal(entry)}
+                          className="p-1.5 text-purple-600 hover:bg-purple-50 rounded"
+                          title="View Details"
+                        >
+                          <FileText className="h-4 w-4" />
+                        </button>
+                        <button
+                          onClick={() => openEditModal(entry)}
+                          className="p-1.5 text-green-600 hover:bg-green-50 rounded"
+                          title="Edit Entry"
+                        >
+                          <FileText className="h-4 w-4" />
+                        </button>
+                        <button
+                          onClick={() => openApproveModal(entry)}
+                          className="p-1.5 text-green-600 hover:bg-green-50 rounded"
+                          title="Approve Hours"
+                        >
+                          <CheckCircle className="h-4 w-4" />
+                        </button>
+                        <button
+                          onClick={() => openRejectModal(entry)}
+                          className="p-1.5 text-red-600 hover:bg-red-50 rounded"
+                          title="Reject Hours"
+                        >
+                          <XCircle className="h-4 w-4" />
+                        </button>
+                      </div>
+                      <div className="flex items-center justify-center gap-1">
+                        <button
+                          onClick={() => openEfficiencyModal(entry)}
+                          className="p-1.5 text-orange-600 hover:bg-orange-50 rounded"
+                          title="Calculate Efficiency"
+                        >
+                          <Activity className="h-4 w-4" />
+                        </button>
+                        <button
+                          onClick={() => openCalculateCostModal(entry)}
+                          className="p-1.5 text-yellow-600 hover:bg-yellow-50 rounded"
+                          title="Calculate Cost"
+                        >
+                          <Calculator className="h-4 w-4" />
+                        </button>
+                      </div>
+                    </div>
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -642,145 +878,120 @@ export default function LaborTrackingPage() {
         </div>
       </div>
 
-      {/* Add Entry Modal */}
-      {showAddModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
-            <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center">
-              <h2 className="text-xl font-bold text-gray-900">Add Labor Entry</h2>
-              <button
-                onClick={() => setShowAddModal(false)}
-                className="text-gray-400 hover:text-gray-600"
-              >
-                ✕
-              </button>
-            </div>
+      {/* Modals */}
+      <AddLaborEntryModal
+        isOpen={showAddModal}
+        onClose={() => setShowAddModal(false)}
+        onAdd={handleAddEntry}
+      />
 
-            <div className="p-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Date</label>
-                  <input
-                    type="date"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Project</label>
-                  <select className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
-                    <option>Select Project</option>
-                    <option>PRJ-2025-001 - Taj Hotels</option>
-                    <option>PRJ-2025-002 - BigBasket</option>
-                    <option>PRJ-2025-003 - L&T Campus</option>
-                  </select>
-                </div>
-                <div className="md:col-span-2">
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Work Package</label>
-                  <input
-                    type="text"
-                    placeholder="e.g., WP-001 - Equipment Installation"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Labor Category</label>
-                  <select className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
-                    <option>Engineer</option>
-                    <option>Skilled</option>
-                    <option>Semi-Skilled</option>
-                    <option>Supervisor</option>
-                    <option>Unskilled</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Shift</label>
-                  <select className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
-                    <option>Day</option>
-                    <option>Night</option>
-                    <option>General</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Workers Deployed</label>
-                  <input
-                    type="number"
-                    placeholder="e.g., 8"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Hours Worked</label>
-                  <input
-                    type="number"
-                    placeholder="e.g., 64"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Overtime Hours</label>
-                  <input
-                    type="number"
-                    placeholder="e.g., 8"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Planned Manhours</label>
-                  <input
-                    type="number"
-                    placeholder="e.g., 64"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Hourly Rate (₹)</label>
-                  <input
-                    type="number"
-                    placeholder="e.g., 450"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Supervisor</label>
-                  <input
-                    type="text"
-                    placeholder="Supervisor name"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
-                <div className="md:col-span-2">
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Work Description</label>
-                  <textarea
-                    rows={2}
-                    placeholder="Brief description of work performed..."
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
-                <div className="md:col-span-2">
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Remarks</label>
-                  <textarea
-                    rows={2}
-                    placeholder="Any additional notes..."
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
-              </div>
+      {selectedEntry && (
+        <>
+          <EditLaborEntryModal
+            isOpen={showEditModal}
+            onClose={() => {
+              setShowEditModal(false);
+              setSelectedEntry(null);
+            }}
+            onEdit={handleEditEntry}
+            entry={selectedEntry}
+          />
 
-              <div className="flex justify-end space-x-3 mt-6">
-                <button
-                  onClick={() => setShowAddModal(false)}
-                  className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50"
-                >
-                  Cancel
-                </button>
-                <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-                  Save Labor Entry
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+          <ViewLaborDetailsModal
+            isOpen={showViewModal}
+            onClose={() => {
+              setShowViewModal(false);
+              setSelectedEntry(null);
+            }}
+            entry={selectedEntry}
+          />
+
+          <ApproveHoursModal
+            isOpen={showApproveModal}
+            onClose={() => {
+              setShowApproveModal(false);
+              setSelectedEntry(null);
+            }}
+            onApprove={handleApproveHours}
+            entry={selectedEntry}
+          />
+
+          <RejectHoursModal
+            isOpen={showRejectModal}
+            onClose={() => {
+              setShowRejectModal(false);
+              setSelectedEntry(null);
+            }}
+            onReject={handleRejectHours}
+            entry={selectedEntry}
+          />
+
+          <CalculateEfficiencyModal
+            isOpen={showEfficiencyModal}
+            onClose={() => {
+              setShowEfficiencyModal(false);
+              setSelectedEntry(null);
+            }}
+            entry={selectedEntry}
+          />
+
+          <CalculateCostModal
+            isOpen={showCalculateCostModal}
+            onClose={() => {
+              setShowCalculateCostModal(false);
+              setSelectedEntry(null);
+            }}
+            entry={selectedEntry}
+          />
+        </>
       )}
+
+      <BulkUploadModal
+        isOpen={showBulkUploadModal}
+        onClose={() => setShowBulkUploadModal(false)}
+        onUpload={handleBulkUpload}
+      />
+
+      <ExportReportModal
+        isOpen={showExportModal}
+        onClose={() => setShowExportModal(false)}
+        onExport={handleExportReport}
+      />
+
+      <AssignWorkersModal
+        isOpen={showAssignWorkersModal}
+        onClose={() => setShowAssignWorkersModal(false)}
+        onAssign={handleAssignWorkers}
+      />
+
+      <ShiftScheduleModal
+        isOpen={showShiftScheduleModal}
+        onClose={() => setShowShiftScheduleModal(false)}
+        onSchedule={handleShiftSchedule}
+      />
+
+      <OvertimeAnalysisModal
+        isOpen={showOvertimeAnalysisModal}
+        onClose={() => setShowOvertimeAnalysisModal(false)}
+      />
+
+      <GenerateTimesheetModal
+        isOpen={showTimesheetModal}
+        onClose={() => setShowTimesheetModal(false)}
+        onGenerate={handleGenerateTimesheet}
+      />
+
+      <LaborProductivityReportModal
+        isOpen={showProductivityReportModal}
+        onClose={() => setShowProductivityReportModal(false)}
+        onGenerate={handleProductivityReport}
+      />
+
+      <MarkAttendanceModal
+        isOpen={showAttendanceModal}
+        onClose={() => setShowAttendanceModal(false)}
+        onMark={handleMarkAttendance}
+      />
     </div>
   );
 }

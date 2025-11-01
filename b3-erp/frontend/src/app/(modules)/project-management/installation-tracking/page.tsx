@@ -1,7 +1,24 @@
 'use client';
 
 import { useState } from 'react';
-import { Wrench, CheckCircle, Clock, AlertTriangle, TrendingUp, Calendar, Users, Eye } from 'lucide-react';
+import { Wrench, CheckCircle, Clock, AlertTriangle, TrendingUp, Calendar, Users, Eye, Plus, Edit, Upload, Package, Link, FileText, Download } from 'lucide-react';
+import {
+  AddInstallationActivityModal,
+  EditInstallationActivityModal,
+  UpdateProgressModal,
+  UploadPhotosModal,
+  MarkSafetyChecklistModal,
+  MarkQualityCheckpointModal,
+  ReportIssueModal,
+  UpdateStatusModal,
+  AssignTeamModal,
+  ScheduleActivityModal,
+  UpdateMaterialsModal,
+  AddDependenciesModal,
+  GenerateReportModal,
+  ExportDataModal,
+  ViewFullDetailsModal,
+} from '@/components/project-management/InstallationTrackingModals';
 
 interface InstallationActivity {
   id: string;
@@ -41,6 +58,23 @@ export default function InstallationTrackingPage() {
   const [selectedActivity, setSelectedActivity] = useState<InstallationActivity | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
+
+  // Modal states
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [showProgressModal, setShowProgressModal] = useState(false);
+  const [showPhotosModal, setShowPhotosModal] = useState(false);
+  const [showSafetyModal, setShowSafetyModal] = useState(false);
+  const [showQualityModal, setShowQualityModal] = useState(false);
+  const [showIssueModal, setShowIssueModal] = useState(false);
+  const [showStatusModal, setShowStatusModal] = useState(false);
+  const [showTeamModal, setShowTeamModal] = useState(false);
+  const [showScheduleModal, setShowScheduleModal] = useState(false);
+  const [showMaterialsModal, setShowMaterialsModal] = useState(false);
+  const [showDependenciesModal, setShowDependenciesModal] = useState(false);
+  const [showReportModal, setShowReportModal] = useState(false);
+  const [showExportModal, setShowExportModal] = useState(false);
+  const [showDetailsModal, setShowDetailsModal] = useState(false);
 
   const mockActivities: InstallationActivity[] = [
     {
@@ -464,6 +498,148 @@ export default function InstallationTrackingPage() {
     }
   };
 
+  // Handler functions
+  const handleAddActivity = (data: any) => {
+    console.log('Adding activity:', data);
+    setShowAddModal(false);
+  };
+
+  const handleEditActivity = (data: any) => {
+    console.log('Editing activity:', data);
+    setShowEditModal(false);
+    setSelectedActivity(null);
+  };
+
+  const handleUpdateProgress = (data: any) => {
+    console.log('Updating progress:', data);
+    setShowProgressModal(false);
+    setSelectedActivity(null);
+  };
+
+  const handleUploadPhotos = (files: FileList) => {
+    console.log('Uploading photos:', files.length);
+    setShowPhotosModal(false);
+    setSelectedActivity(null);
+  };
+
+  const handleMarkSafety = (data: any) => {
+    console.log('Marking safety checklist:', data);
+    setShowSafetyModal(false);
+    setSelectedActivity(null);
+  };
+
+  const handleMarkQuality = (data: any) => {
+    console.log('Marking quality checkpoint:', data);
+    setShowQualityModal(false);
+    setSelectedActivity(null);
+  };
+
+  const handleReportIssue = (data: any) => {
+    console.log('Reporting issue:', data);
+    setShowIssueModal(false);
+    setSelectedActivity(null);
+  };
+
+  const handleUpdateStatus = (data: any) => {
+    console.log('Updating status:', data);
+    setShowStatusModal(false);
+    setSelectedActivity(null);
+  };
+
+  const handleAssignTeam = (data: any) => {
+    console.log('Assigning team:', data);
+    setShowTeamModal(false);
+    setSelectedActivity(null);
+  };
+
+  const handleScheduleActivity = (data: any) => {
+    console.log('Scheduling activity:', data);
+    setShowScheduleModal(false);
+    setSelectedActivity(null);
+  };
+
+  const handleUpdateMaterials = (data: any) => {
+    console.log('Updating materials:', data);
+    setShowMaterialsModal(false);
+    setSelectedActivity(null);
+  };
+
+  const handleAddDependencies = (data: any) => {
+    console.log('Adding dependencies:', data);
+    setShowDependenciesModal(false);
+    setSelectedActivity(null);
+  };
+
+  const handleGenerateReport = (data: any) => {
+    console.log('Generating report:', data);
+    setShowReportModal(false);
+  };
+
+  const handleExportData = (data: any) => {
+    console.log('Exporting data:', data);
+    setShowExportModal(false);
+  };
+
+  const openEditModal = (activity: InstallationActivity) => {
+    setSelectedActivity(activity);
+    setShowEditModal(true);
+  };
+
+  const openProgressModal = (activity: InstallationActivity) => {
+    setSelectedActivity(activity);
+    setShowProgressModal(true);
+  };
+
+  const openPhotosModal = (activity: InstallationActivity) => {
+    setSelectedActivity(activity);
+    setShowPhotosModal(true);
+  };
+
+  const openSafetyModal = (activity: InstallationActivity) => {
+    setSelectedActivity(activity);
+    setShowSafetyModal(true);
+  };
+
+  const openQualityModal = (activity: InstallationActivity) => {
+    setSelectedActivity(activity);
+    setShowQualityModal(true);
+  };
+
+  const openIssueModal = (activity: InstallationActivity) => {
+    setSelectedActivity(activity);
+    setShowIssueModal(true);
+  };
+
+  const openStatusModal = (activity: InstallationActivity) => {
+    setSelectedActivity(activity);
+    setShowStatusModal(true);
+  };
+
+  const openTeamModal = (activity: InstallationActivity) => {
+    setSelectedActivity(activity);
+    setShowTeamModal(true);
+  };
+
+  const openScheduleModal = (activity: InstallationActivity) => {
+    setSelectedActivity(activity);
+    setShowScheduleModal(true);
+  };
+
+  const openMaterialsModal = (activity: InstallationActivity) => {
+    setSelectedActivity(activity);
+    setShowMaterialsModal(true);
+  };
+
+  const openDependenciesModal = (activity: InstallationActivity) => {
+    setSelectedActivity(activity);
+    setShowDependenciesModal(true);
+  };
+
+  const openDetailsModal = (activity: InstallationActivity) => {
+    setSelectedActivity(activity);
+    setShowDetailsModal(true);
+  };
+
   return (
     <div className="p-6 space-y-6">
       {/* Header */}
@@ -471,6 +647,29 @@ export default function InstallationTrackingPage() {
         <div>
           <h1 className="text-3xl font-bold text-gray-900">Installation Tracking</h1>
           <p className="text-gray-600 mt-1">Real-time equipment installation progress monitoring</p>
+        </div>
+        <div className="flex flex-wrap gap-3">
+          <button
+            onClick={() => setShowReportModal(true)}
+            className="flex items-center space-x-2 px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700"
+          >
+            <FileText className="h-5 w-5" />
+            <span>Generate Report</span>
+          </button>
+          <button
+            onClick={() => setShowExportModal(true)}
+            className="flex items-center space-x-2 px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700"
+          >
+            <Download className="h-5 w-5" />
+            <span>Export</span>
+          </button>
+          <button
+            onClick={() => setShowAddModal(true)}
+            className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          >
+            <Plus className="h-5 w-5" />
+            <span>Add Activity</span>
+          </button>
         </div>
       </div>
 
@@ -676,13 +875,99 @@ export default function InstallationTrackingPage() {
                       </div>
                     )}
                   </td>
-                  <td className="px-4 py-4 text-center">
-                    <button
-                      onClick={() => setSelectedActivity(activity)}
-                      className="text-blue-600 hover:text-blue-800"
-                    >
-                      <Eye className="h-5 w-5" />
-                    </button>
+                  <td className="px-4 py-4">
+                    <div className="flex flex-col gap-1">
+                      <div className="flex items-center justify-center gap-1">
+                        <button
+                          onClick={() => openDetailsModal(activity)}
+                          className="p-1.5 text-slate-600 hover:bg-slate-50 rounded"
+                          title="View Details"
+                        >
+                          <Eye className="h-4 w-4" />
+                        </button>
+                        <button
+                          onClick={() => openEditModal(activity)}
+                          className="p-1.5 text-green-600 hover:bg-green-50 rounded"
+                          title="Edit Activity"
+                        >
+                          <Edit className="h-4 w-4" />
+                        </button>
+                        <button
+                          onClick={() => openProgressModal(activity)}
+                          className="p-1.5 text-purple-600 hover:bg-purple-50 rounded"
+                          title="Update Progress"
+                        >
+                          <TrendingUp className="h-4 w-4" />
+                        </button>
+                        <button
+                          onClick={() => openPhotosModal(activity)}
+                          className="p-1.5 text-orange-600 hover:bg-orange-50 rounded"
+                          title="Upload Photos"
+                        >
+                          <Upload className="h-4 w-4" />
+                        </button>
+                      </div>
+                      <div className="flex items-center justify-center gap-1">
+                        <button
+                          onClick={() => openSafetyModal(activity)}
+                          className="p-1.5 text-green-600 hover:bg-green-50 rounded"
+                          title="Safety Checklist"
+                        >
+                          <CheckCircle className="h-4 w-4" />
+                        </button>
+                        <button
+                          onClick={() => openQualityModal(activity)}
+                          className="p-1.5 text-indigo-600 hover:bg-indigo-50 rounded"
+                          title="Quality Check"
+                        >
+                          <CheckCircle className="h-4 w-4" />
+                        </button>
+                        <button
+                          onClick={() => openIssueModal(activity)}
+                          className="p-1.5 text-red-600 hover:bg-red-50 rounded"
+                          title="Report Issue"
+                        >
+                          <AlertTriangle className="h-4 w-4" />
+                        </button>
+                        <button
+                          onClick={() => openStatusModal(activity)}
+                          className="p-1.5 text-yellow-600 hover:bg-yellow-50 rounded"
+                          title="Update Status"
+                        >
+                          <AlertTriangle className="h-4 w-4" />
+                        </button>
+                      </div>
+                      <div className="flex items-center justify-center gap-1">
+                        <button
+                          onClick={() => openTeamModal(activity)}
+                          className="p-1.5 text-cyan-600 hover:bg-cyan-50 rounded"
+                          title="Assign Team"
+                        >
+                          <Users className="h-4 w-4" />
+                        </button>
+                        <button
+                          onClick={() => openScheduleModal(activity)}
+                          className="p-1.5 text-pink-600 hover:bg-pink-50 rounded"
+                          title="Schedule"
+                        >
+                          <Calendar className="h-4 w-4" />
+                        </button>
+                        <button
+                          onClick={() => openMaterialsModal(activity)}
+                          className="p-1.5 text-teal-600 hover:bg-teal-50 rounded"
+                          title="Materials"
+                        >
+                          <Package className="h-4 w-4" />
+                        </button>
+                        <button
+                          onClick={() => openDependenciesModal(activity)}
+                          className="p-1.5 text-violet-600 hover:bg-violet-50 rounded"
+                          title="Dependencies"
+                        >
+                          <Link className="h-4 w-4" />
+                        </button>
+                      </div>
+                    </div>
                   </td>
                 </tr>
               ))}
@@ -731,176 +1016,147 @@ export default function InstallationTrackingPage() {
         </div>
       </div>
 
-      {/* Details Modal */}
+      {/* Modals */}
+      <AddInstallationActivityModal
+        isOpen={showAddModal}
+        onClose={() => setShowAddModal(false)}
+        onAdd={handleAddActivity}
+      />
+
       {selectedActivity && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
-            <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center">
-              <div>
-                <h2 className="text-xl font-bold text-gray-900">{selectedActivity.activityNumber}</h2>
-                <p className="text-sm text-gray-600">{selectedActivity.equipmentItem}</p>
-              </div>
-              <button
-                onClick={() => setSelectedActivity(null)}
-                className="text-gray-400 hover:text-gray-600"
-              >
-                ✕
-              </button>
-            </div>
+        <>
+          <EditInstallationActivityModal
+            isOpen={showEditModal}
+            onClose={() => {
+              setShowEditModal(false);
+              setSelectedActivity(null);
+            }}
+            onEdit={handleEditActivity}
+            activity={selectedActivity}
+          />
 
-            <div className="p-6 space-y-6">
-              {/* Status & Progress */}
-              <div className="flex items-center space-x-4">
-                {getStatusIcon(selectedActivity.status)}
-                <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${getStatusColor(selectedActivity.status)}`}>
-                  {selectedActivity.status}
-                </span>
-                <div className="flex-1">
-                  <div className="flex justify-between text-sm mb-1">
-                    <span className="text-gray-600">Progress</span>
-                    <span className="font-semibold">{selectedActivity.progress}%</span>
-                  </div>
-                  <div className="w-full bg-gray-200 rounded-full h-3">
-                    <div
-                      className="bg-blue-600 h-3 rounded-full"
-                      style={{ width: `${selectedActivity.progress}%` }}
-                    ></div>
-                  </div>
-                </div>
-              </div>
+          <UpdateProgressModal
+            isOpen={showProgressModal}
+            onClose={() => {
+              setShowProgressModal(false);
+              setSelectedActivity(null);
+            }}
+            onUpdate={handleUpdateProgress}
+            activity={selectedActivity}
+          />
 
-              {/* Basic Details */}
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <p className="text-sm text-gray-600">Equipment Code</p>
-                  <p className="font-medium text-gray-900">{selectedActivity.equipmentCode}</p>
-                </div>
-                <div>
-                  <p className="text-sm text-gray-600">Installation Type</p>
-                  <p className="font-medium text-gray-900">{selectedActivity.installationType}</p>
-                </div>
-                <div>
-                  <p className="text-sm text-gray-600">Location</p>
-                  <p className="font-medium text-gray-900">{selectedActivity.location}</p>
-                </div>
-                <div>
-                  <p className="text-sm text-gray-600">Zone</p>
-                  <p className="font-medium text-gray-900">{selectedActivity.zone}</p>
-                </div>
-              </div>
+          <UploadPhotosModal
+            isOpen={showPhotosModal}
+            onClose={() => {
+              setShowPhotosModal(false);
+              setSelectedActivity(null);
+            }}
+            onUpload={handleUploadPhotos}
+            activity={selectedActivity}
+          />
 
-              {/* Team & Supervisor */}
-              <div className="bg-gray-50 p-4 rounded-lg">
-                <h4 className="text-sm font-semibold text-gray-900 mb-3">Assigned Team</h4>
-                <div className="grid grid-cols-3 gap-4">
-                  <div>
-                    <p className="text-sm text-gray-600">Team</p>
-                    <p className="font-medium text-gray-900">{selectedActivity.assignedTeam}</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-600">Team Size</p>
-                    <p className="font-medium text-gray-900">{selectedActivity.teamSize} members</p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-600">Supervisor</p>
-                    <p className="font-medium text-gray-900">{selectedActivity.supervisor}</p>
-                  </div>
-                </div>
-              </div>
+          <MarkSafetyChecklistModal
+            isOpen={showSafetyModal}
+            onClose={() => {
+              setShowSafetyModal(false);
+              setSelectedActivity(null);
+            }}
+            onMark={handleMarkSafety}
+            activity={selectedActivity}
+          />
 
-              {/* Timeline */}
-              <div>
-                <h4 className="text-sm font-semibold text-gray-900 mb-3">Timeline</h4>
-                <div className="space-y-2">
-                  <div className="flex justify-between text-sm">
-                    <span className="text-gray-600">Planned Start:</span>
-                    <span className="font-medium">{selectedActivity.plannedStartDate}</span>
-                  </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-gray-600">Planned End:</span>
-                    <span className="font-medium">{selectedActivity.plannedEndDate}</span>
-                  </div>
-                  {selectedActivity.actualStartDate && (
-                    <>
-                      <div className="flex justify-between text-sm">
-                        <span className="text-gray-600">Actual Start:</span>
-                        <span className="font-medium text-blue-600">{selectedActivity.actualStartDate}</span>
-                      </div>
-                      {selectedActivity.actualEndDate && (
-                        <div className="flex justify-between text-sm">
-                          <span className="text-gray-600">Actual End:</span>
-                          <span className="font-medium text-green-600">{selectedActivity.actualEndDate}</span>
-                        </div>
-                      )}
-                    </>
-                  )}
-                </div>
-              </div>
+          <MarkQualityCheckpointModal
+            isOpen={showQualityModal}
+            onClose={() => {
+              setShowQualityModal(false);
+              setSelectedActivity(null);
+            }}
+            onMark={handleMarkQuality}
+            activity={selectedActivity}
+          />
 
-              {/* Checklist Status */}
-              <div className="grid grid-cols-3 gap-4">
-                <div className={`p-3 rounded-lg ${selectedActivity.prerequisitesCompleted ? 'bg-green-50' : 'bg-red-50'}`}>
-                  <p className="text-sm text-gray-600">Prerequisites</p>
-                  <p className={`font-semibold ${selectedActivity.prerequisitesCompleted ? 'text-green-600' : 'text-red-600'}`}>
-                    {selectedActivity.prerequisitesCompleted ? 'Completed' : 'Pending'}
-                  </p>
-                </div>
-                <div className={`p-3 rounded-lg ${selectedActivity.safetyChecklist ? 'bg-green-50' : 'bg-red-50'}`}>
-                  <p className="text-sm text-gray-600">Safety Checklist</p>
-                  <p className={`font-semibold ${selectedActivity.safetyChecklist ? 'text-green-600' : 'text-red-600'}`}>
-                    {selectedActivity.safetyChecklist ? 'Completed' : 'Pending'}
-                  </p>
-                </div>
-                <div className={`p-3 rounded-lg ${selectedActivity.qualityCheckpoint ? 'bg-green-50' : 'bg-yellow-50'}`}>
-                  <p className="text-sm text-gray-600">Quality Check</p>
-                  <p className={`font-semibold ${selectedActivity.qualityCheckpoint ? 'text-green-600' : 'text-yellow-600'}`}>
-                    {selectedActivity.qualityCheckpoint ? 'Passed' : 'Pending'}
-                  </p>
-                </div>
-              </div>
+          <ReportIssueModal
+            isOpen={showIssueModal}
+            onClose={() => {
+              setShowIssueModal(false);
+              setSelectedActivity(null);
+            }}
+            onReport={handleReportIssue}
+            activity={selectedActivity}
+          />
 
-              {/* Issues */}
-              {selectedActivity.issues.length > 0 && (
-                <div className="bg-red-50 border border-red-200 p-4 rounded-lg">
-                  <h4 className="text-sm font-semibold text-red-900 mb-2 flex items-center">
-                    <AlertTriangle className="h-4 w-4 mr-2" />
-                    Issues ({selectedActivity.issues.length})
-                  </h4>
-                  <ul className="space-y-1">
-                    {selectedActivity.issues.map((issue, index) => (
-                      <li key={index} className="text-sm text-red-700">• {issue}</li>
-                    ))}
-                  </ul>
-                  {selectedActivity.delayReason && (
-                    <p className="text-sm text-red-700 mt-2">
-                      <span className="font-semibold">Delay Reason:</span> {selectedActivity.delayReason}
-                    </p>
-                  )}
-                </div>
-              )}
+          <UpdateStatusModal
+            isOpen={showStatusModal}
+            onClose={() => {
+              setShowStatusModal(false);
+              setSelectedActivity(null);
+            }}
+            onUpdate={handleUpdateStatus}
+            activity={selectedActivity}
+          />
 
-              {/* Remarks */}
-              <div className="bg-blue-50 border border-blue-200 p-4 rounded-lg">
-                <p className="text-sm font-semibold text-gray-900 mb-1">Remarks:</p>
-                <p className="text-sm text-gray-700">{selectedActivity.remarks}</p>
-              </div>
+          <AssignTeamModal
+            isOpen={showTeamModal}
+            onClose={() => {
+              setShowTeamModal(false);
+              setSelectedActivity(null);
+            }}
+            onAssign={handleAssignTeam}
+            activity={selectedActivity}
+          />
 
-              {/* Actions */}
-              <div className="flex justify-end space-x-3 pt-4 border-t border-gray-200">
-                <button className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">
-                  View Photos ({selectedActivity.photos})
-                </button>
-                <button
-                  onClick={() => setSelectedActivity(null)}
-                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-                >
-                  Close
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+          <ScheduleActivityModal
+            isOpen={showScheduleModal}
+            onClose={() => {
+              setShowScheduleModal(false);
+              setSelectedActivity(null);
+            }}
+            onSchedule={handleScheduleActivity}
+            activity={selectedActivity}
+          />
+
+          <UpdateMaterialsModal
+            isOpen={showMaterialsModal}
+            onClose={() => {
+              setShowMaterialsModal(false);
+              setSelectedActivity(null);
+            }}
+            onUpdate={handleUpdateMaterials}
+            activity={selectedActivity}
+          />
+
+          <AddDependenciesModal
+            isOpen={showDependenciesModal}
+            onClose={() => {
+              setShowDependenciesModal(false);
+              setSelectedActivity(null);
+            }}
+            onAdd={handleAddDependencies}
+            activity={selectedActivity}
+          />
+
+          <ViewFullDetailsModal
+            isOpen={showDetailsModal}
+            onClose={() => {
+              setShowDetailsModal(false);
+              setSelectedActivity(null);
+            }}
+            activity={selectedActivity}
+          />
+        </>
       )}
+
+      <GenerateReportModal
+        isOpen={showReportModal}
+        onClose={() => setShowReportModal(false)}
+        onGenerate={handleGenerateReport}
+      />
+
+      <ExportDataModal
+        isOpen={showExportModal}
+        onClose={() => setShowExportModal(false)}
+        onExport={handleExportData}
+      />
     </div>
   );
 }

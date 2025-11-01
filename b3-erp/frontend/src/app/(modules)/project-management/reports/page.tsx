@@ -20,7 +20,30 @@ import {
   FileBarChart,
   FilePieChart,
   Layout,
+  Mail,
+  Bell,
+  Share2,
+  Copy,
+  Trash2,
+  Plus,
+  Edit,
+  Save,
+  Settings,
 } from 'lucide-react';
+import {
+  GenerateReportModal,
+  ScheduleReportModal,
+  CustomizeTemplateModal,
+  ReportPreviewModal,
+  ShareReportModal,
+  ExportMultipleReportsModal,
+  ReportComparisonModal,
+  AdvancedFilterModal,
+  ReportAnalyticsModal,
+  CreateTemplateModal,
+  ReportHistoryModal,
+  NotificationSettingsModal,
+} from '@/components/project-management/ReportsModals';
 
 interface Report {
   id: string;
@@ -58,6 +81,24 @@ export default function ProjectReportsPage() {
   const [frequencyFilter, setFrequencyFilter] = useState('all');
   const [showGenerateModal, setShowGenerateModal] = useState(false);
   const [selectedTemplate, setSelectedTemplate] = useState<ReportTemplate | null>(null);
+
+  // Modal states
+  const [showScheduleModal, setShowScheduleModal] = useState(false);
+  const [showCustomizeModal, setShowCustomizeModal] = useState(false);
+  const [showPreviewModal, setShowPreviewModal] = useState(false);
+  const [showShareModal, setShowShareModal] = useState(false);
+  const [showExportMultipleModal, setShowExportMultipleModal] = useState(false);
+  const [showComparisonModal, setShowComparisonModal] = useState(false);
+  const [showAdvancedFilterModal, setShowAdvancedFilterModal] = useState(false);
+  const [showAnalyticsModal, setShowAnalyticsModal] = useState(false);
+  const [showCreateTemplateModal, setShowCreateTemplateModal] = useState(false);
+  const [showHistoryModal, setShowHistoryModal] = useState(false);
+  const [showNotificationModal, setShowNotificationModal] = useState(false);
+
+  // Context states
+  const [selectedReport, setSelectedReport] = useState<Report | null>(null);
+  const [selectedReports, setSelectedReports] = useState<Report[]>([]);
+  const [selectedTemplateForCustomize, setSelectedTemplateForCustomize] = useState<ReportTemplate | null>(null);
 
   // Mock recent reports - 12 records
   const mockReports: Report[] = [
@@ -398,19 +439,161 @@ export default function ProjectReportsPage() {
     }
   };
 
+  // Handler functions
+  const handleGenerate = (data: any) => {
+    console.log('Generate report:', data);
+    // API call would go here
+  };
+
+  const handleSchedule = (data: any) => {
+    console.log('Schedule report:', data);
+    // API call would go here
+  };
+
+  const handleCustomizeTemplate = (data: any) => {
+    console.log('Customize template:', data);
+    // API call would go here
+  };
+
+  const handlePreview = (report: Report) => {
+    console.log('Preview report:', report);
+    // API call would go here
+  };
+
+  const handleShare = (data: any) => {
+    console.log('Share report:', data);
+    // API call would go here
+  };
+
+  const handleExportMultiple = (data: any) => {
+    console.log('Export multiple reports:', data);
+    // API call would go here
+  };
+
+  const handleCompareReports = () => {
+    console.log('Compare reports:', selectedReports);
+    // API call would go here
+  };
+
+  const handleAdvancedFilter = (filters: any) => {
+    console.log('Apply advanced filters:', filters);
+    // API call would go here
+  };
+
+  const handleViewAnalytics = () => {
+    console.log('View analytics');
+    // API call would go here
+  };
+
+  const handleCreateTemplate = (data: any) => {
+    console.log('Create template:', data);
+    // API call would go here
+  };
+
+  const handleViewHistory = (report: Report) => {
+    console.log('View history for report:', report);
+    // API call would go here
+  };
+
+  const handleNotificationSettings = (data: any) => {
+    console.log('Save notification settings:', data);
+    // API call would go here
+  };
+
+  const handleDeleteReport = (report: Report) => {
+    console.log('Delete report:', report);
+    // API call would go here
+  };
+
+  // Helper functions to open modals with context
+  const openPreviewModal = (report: Report) => {
+    setSelectedReport(report);
+    setShowPreviewModal(true);
+  };
+
+  const openShareModal = (report: Report) => {
+    setSelectedReport(report);
+    setShowShareModal(true);
+  };
+
+  const openHistoryModal = (report: Report) => {
+    setSelectedReport(report);
+    setShowHistoryModal(true);
+  };
+
+  const openScheduleModal = (report: Report) => {
+    setSelectedReport(report);
+    setShowScheduleModal(true);
+  };
+
+  const openCustomizeModal = (template: ReportTemplate) => {
+    setSelectedTemplateForCustomize(template);
+    setShowCustomizeModal(true);
+  };
+
   return (
     <div className="h-screen flex flex-col overflow-hidden">
       <div className="flex-1 overflow-y-auto overflow-x-hidden">
         <div className="px-4 sm:px-6 lg:px-8 py-6 max-w-[1600px] mx-auto">
-          {/* Action Bar */}
+          {/* Header Section */}
           <div className="mb-6">
-            <div className="flex items-center justify-end mb-4">
+            <div className="flex items-center justify-between mb-4">
+              <div>
+                <h1 className="text-2xl font-bold text-gray-900">Reports & Analytics</h1>
+                <p className="text-gray-600 mt-1">Generate, schedule, and analyze project reports</p>
+              </div>
+            </div>
+
+            {/* Action Buttons Row */}
+            <div className="flex flex-wrap gap-2 mb-4">
               <button
                 onClick={() => setShowGenerateModal(true)}
-                className="flex items-center gap-2 px-4 py-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700"
+                className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
               >
                 <FileText className="w-4 h-4" />
-                Generate New Report
+                Generate Report
+              </button>
+              <button
+                onClick={() => setShowScheduleModal(true)}
+                className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+              >
+                <Calendar className="w-4 h-4" />
+                Schedule
+              </button>
+              <button
+                onClick={() => setShowCreateTemplateModal(true)}
+                className="flex items-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
+              >
+                <Plus className="w-4 h-4" />
+                Create Template
+              </button>
+              <button
+                onClick={() => setShowAdvancedFilterModal(true)}
+                className="flex items-center gap-2 px-4 py-2 bg-pink-600 text-white rounded-lg hover:bg-pink-700 transition-colors"
+              >
+                <Filter className="w-4 h-4" />
+                Advanced Filter
+              </button>
+              <button
+                onClick={() => setShowAnalyticsModal(true)}
+                className="flex items-center gap-2 px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors"
+              >
+                <BarChart3 className="w-4 h-4" />
+                Analytics
+              </button>
+              <button
+                onClick={() => setShowExportMultipleModal(true)}
+                className="flex items-center gap-2 px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors"
+              >
+                <Download className="w-4 h-4" />
+                Export Multiple
+              </button>
+              <button
+                onClick={() => setShowNotificationModal(true)}
+                className="flex items-center gap-2 px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition-colors"
+              >
+                <Bell className="w-4 h-4" />
+                Notifications
               </button>
             </div>
 
@@ -585,15 +768,52 @@ export default function ProjectReportsPage() {
                     <p className="text-xs text-gray-500 mb-3">
                       Generated on {new Date(report.lastGenerated).toLocaleDateString('en-IN')} by {report.generatedBy}
                     </p>
-                    <div className="flex gap-2">
-                      <button className="flex-1 flex items-center justify-center gap-2 px-3 py-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700 text-sm">
-                        <Download className="w-4 h-4" />
-                        Download
-                      </button>
-                      <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
-                        <Eye className="w-4 h-4 text-gray-600" />
-                        <span className="text-gray-700">View</span>
-                      </button>
+                    <div className="space-y-2">
+                      {/* First row of actions */}
+                      <div className="flex gap-2">
+                        <button
+                          onClick={() => openPreviewModal(report)}
+                          className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 text-sm transition-colors"
+                        >
+                          <Eye className="w-4 h-4" />
+                          Preview
+                        </button>
+                        <button className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700 text-sm transition-colors">
+                          <Download className="w-4 h-4" />
+                          Download
+                        </button>
+                        <button
+                          onClick={() => openShareModal(report)}
+                          className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm transition-colors"
+                        >
+                          <Share2 className="w-4 h-4" />
+                          Share
+                        </button>
+                      </div>
+                      {/* Second row of actions */}
+                      <div className="flex gap-2">
+                        <button
+                          onClick={() => openScheduleModal(report)}
+                          className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 border border-green-300 text-green-700 rounded-lg hover:bg-green-50 text-sm transition-colors"
+                        >
+                          <Calendar className="w-4 h-4" />
+                          Schedule
+                        </button>
+                        <button
+                          onClick={() => openHistoryModal(report)}
+                          className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 border border-purple-300 text-purple-700 rounded-lg hover:bg-purple-50 text-sm transition-colors"
+                        >
+                          <Clock className="w-4 h-4" />
+                          History
+                        </button>
+                        <button
+                          onClick={() => handleDeleteReport(report)}
+                          className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 border border-red-300 text-red-700 rounded-lg hover:bg-red-50 text-sm transition-colors"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                          Delete
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -659,120 +879,128 @@ export default function ProjectReportsPage() {
                   </div>
                 </div>
 
-                <button
-                  onClick={() => {
-                    setSelectedTemplate(template);
-                    setShowGenerateModal(true);
-                  }}
-                  className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700"
-                >
-                  <FileText className="w-4 h-4" />
-                  Generate Report
-                </button>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => {
+                      setSelectedTemplate(template);
+                      setShowGenerateModal(true);
+                    }}
+                    className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                  >
+                    <FileText className="w-4 h-4" />
+                    Generate Report
+                  </button>
+                  <button
+                    onClick={() => openCustomizeModal(template)}
+                    className="flex-1 flex items-center justify-center gap-2 px-4 py-2 border border-purple-300 text-purple-700 rounded-lg hover:bg-purple-50 transition-colors"
+                  >
+                    <Edit className="w-4 h-4" />
+                    Customize
+                  </button>
+                </div>
               </div>
             );
           })}
         </div>
       )}
 
-      {/* Generate Report Modal */}
-      {showGenerateModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="p-6 border-b border-gray-200">
-              <h2 className="text-2xl font-bold text-gray-900">Generate New Report</h2>
-              <p className="text-gray-600 mt-1">Configure and generate a custom report</p>
-            </div>
+      {/* All Modals */}
+      <GenerateReportModal
+        isOpen={showGenerateModal}
+        onClose={() => {
+          setShowGenerateModal(false);
+          setSelectedTemplate(null);
+        }}
+        onGenerate={handleGenerate}
+        template={selectedTemplate}
+      />
 
-            <div className="p-6 space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Report Template
-                </label>
-                <select className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent">
-                  <option>Executive Dashboard</option>
-                  <option>Financial Performance Report</option>
-                  <option>Project Progress Report</option>
-                  <option>Resource Allocation Report</option>
-                  <option>Quality & Compliance Report</option>
-                  <option>Risk & Issues Dashboard</option>
-                  <option>Cost Variance Analysis</option>
-                  <option>Material Consumption Report</option>
-                </select>
-              </div>
+      <ScheduleReportModal
+        isOpen={showScheduleModal}
+        onClose={() => {
+          setShowScheduleModal(false);
+          setSelectedReport(null);
+        }}
+        onSchedule={handleSchedule}
+      />
 
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Report Name
-                </label>
-                <input
-                  type="text"
-                  placeholder="Enter report name..."
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
-                />
-              </div>
+      <CustomizeTemplateModal
+        isOpen={showCustomizeModal}
+        onClose={() => {
+          setShowCustomizeModal(false);
+          setSelectedTemplateForCustomize(null);
+        }}
+        template={selectedTemplateForCustomize}
+        onSave={handleCustomizeTemplate}
+      />
 
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Date Range
-                  </label>
-                  <select className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent">
-                    <option>Current Month</option>
-                    <option>Current Quarter</option>
-                    <option>Current Year</option>
-                    <option>Last Month</option>
-                    <option>Last Quarter</option>
-                    <option>Custom Range</option>
-                  </select>
-                </div>
+      <ReportPreviewModal
+        isOpen={showPreviewModal}
+        onClose={() => {
+          setShowPreviewModal(false);
+          setSelectedReport(null);
+        }}
+        report={selectedReport}
+      />
 
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Output Format
-                  </label>
-                  <select className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent">
-                    <option>PDF</option>
-                    <option>Excel</option>
-                    <option>PowerPoint</option>
-                    <option>CSV</option>
-                  </select>
-                </div>
-              </div>
+      <ShareReportModal
+        isOpen={showShareModal}
+        onClose={() => {
+          setShowShareModal(false);
+          setSelectedReport(null);
+        }}
+        report={selectedReport}
+        onShare={handleShare}
+      />
 
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Project Scope
-                </label>
-                <select className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent">
-                  <option>All Projects</option>
-                  <option>Active Projects Only</option>
-                  <option>Completed Projects</option>
-                  <option>Commercial Kitchen Projects</option>
-                  <option>Cold Room Projects</option>
-                  <option>Switchgear Projects</option>
-                  <option>Select Specific Projects...</option>
-                </select>
-              </div>
-            </div>
+      <ExportMultipleReportsModal
+        isOpen={showExportMultipleModal}
+        onClose={() => setShowExportMultipleModal(false)}
+        reports={mockReports}
+        onExport={handleExportMultiple}
+      />
 
-            <div className="p-6 border-t border-gray-200 flex justify-end gap-3">
-              <button
-                onClick={() => {
-                  setShowGenerateModal(false);
-                  setSelectedTemplate(null);
-                }}
-                className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
-              >
-                Cancel
-              </button>
-              <button className="px-4 py-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700">
-                Generate Report
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      <ReportComparisonModal
+        isOpen={showComparisonModal}
+        onClose={() => {
+          setShowComparisonModal(false);
+          setSelectedReports([]);
+        }}
+        reports={mockReports}
+      />
+
+      <AdvancedFilterModal
+        isOpen={showAdvancedFilterModal}
+        onClose={() => setShowAdvancedFilterModal(false)}
+        onApplyFilters={handleAdvancedFilter}
+      />
+
+      <ReportAnalyticsModal
+        isOpen={showAnalyticsModal}
+        onClose={() => setShowAnalyticsModal(false)}
+        reports={mockReports}
+      />
+
+      <CreateTemplateModal
+        isOpen={showCreateTemplateModal}
+        onClose={() => setShowCreateTemplateModal(false)}
+        onSave={handleCreateTemplate}
+      />
+
+      <ReportHistoryModal
+        isOpen={showHistoryModal}
+        onClose={() => {
+          setShowHistoryModal(false);
+          setSelectedReport(null);
+        }}
+        report={selectedReport}
+      />
+
+      <NotificationSettingsModal
+        isOpen={showNotificationModal}
+        onClose={() => setShowNotificationModal(false)}
+        onSave={handleNotificationSettings}
+      />
         </div>
       </div>
     </div>

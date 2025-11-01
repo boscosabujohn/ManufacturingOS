@@ -1,7 +1,24 @@
 'use client';
 
 import { useState } from 'react';
-import { ClipboardCheck, CheckCircle, XCircle, AlertTriangle, Plus, Download, Eye, Camera } from 'lucide-react';
+import { ClipboardCheck, CheckCircle, XCircle, AlertTriangle, Plus, Download, Eye, Camera, Edit, FileText, Upload, Users, TrendingUp, Calendar, Shield } from 'lucide-react';
+import {
+  ScheduleInspectionModal,
+  EditInspectionModal,
+  UpdateChecklistModal,
+  AddDefectModal,
+  UploadPhotosModal,
+  SignOffModal,
+  UpdateStatusModal,
+  AssignInspectorModal,
+  AddChecklistItemModal,
+  GenerateReportModal,
+  ExportDataModal,
+  ScheduleReInspectionModal,
+  ViewFullDetailsModal,
+  AddCorrectiveActionModal,
+  ScheduleNextInspectionModal,
+} from '@/components/project-management/QualityInspectionModals';
 
 interface InspectionItem {
   id: string;
@@ -47,6 +64,23 @@ export default function QualityInspectionPage() {
   const [selectedInspection, setSelectedInspection] = useState<QualityInspection | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
+
+  // Modal states
+  const [showScheduleModal, setShowScheduleModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [showChecklistModal, setShowChecklistModal] = useState(false);
+  const [showDefectModal, setShowDefectModal] = useState(false);
+  const [showPhotosModal, setShowPhotosModal] = useState(false);
+  const [showSignOffModal, setShowSignOffModal] = useState(false);
+  const [showStatusModal, setShowStatusModal] = useState(false);
+  const [showAssignModal, setShowAssignModal] = useState(false);
+  const [showAddItemModal, setShowAddItemModal] = useState(false);
+  const [showReportModal, setShowReportModal] = useState(false);
+  const [showExportModal, setShowExportModal] = useState(false);
+  const [showReInspectionModal, setShowReInspectionModal] = useState(false);
+  const [showDetailsModal, setShowDetailsModal] = useState(false);
+  const [showCorrectiveModal, setShowCorrectiveModal] = useState(false);
+  const [showNextInspectionModal, setShowNextInspectionModal] = useState(false);
 
   const mockInspections: QualityInspection[] = [
     {
@@ -451,21 +485,68 @@ export default function QualityInspectionPage() {
     }
   };
 
+  // Handler functions for all modals
+  const handleSchedule = (data: any) => { console.log('Schedule:', data); setShowScheduleModal(false); };
+  const handleEdit = (data: any) => { console.log('Edit:', data); setShowEditModal(false); setSelectedInspection(null); };
+  const handleUpdateChecklist = (data: any) => { console.log('Update Checklist:', data); setShowChecklistModal(false); setSelectedInspection(null); };
+  const handleAddDefect = (data: any) => { console.log('Add Defect:', data); setShowDefectModal(false); setSelectedInspection(null); };
+  const handleUploadPhotos = (data: any) => { console.log('Upload Photos:', data); setShowPhotosModal(false); setSelectedInspection(null); };
+  const handleSignOff = (data: any) => { console.log('Sign Off:', data); setShowSignOffModal(false); setSelectedInspection(null); };
+  const handleUpdateStatus = (data: any) => { console.log('Update Status:', data); setShowStatusModal(false); setSelectedInspection(null); };
+  const handleAssignInspector = (data: any) => { console.log('Assign:', data); setShowAssignModal(false); setSelectedInspection(null); };
+  const handleAddItem = (data: any) => { console.log('Add Item:', data); setShowAddItemModal(false); setSelectedInspection(null); };
+  const handleGenerateReport = (data: any) => { console.log('Report:', data); setShowReportModal(false); setSelectedInspection(null); };
+  const handleExport = (data: any) => { console.log('Export:', data); setShowExportModal(false); };
+  const handleScheduleReInspection = (data: any) => { console.log('Re-Inspection:', data); setShowReInspectionModal(false); setSelectedInspection(null); };
+  const handleAddCorrective = (data: any) => { console.log('Corrective:', data); setShowCorrectiveModal(false); setSelectedInspection(null); };
+  const handleScheduleNext = (data: any) => { console.log('Next:', data); setShowNextInspectionModal(false); setSelectedInspection(null); };
+
+  // Helper functions to open modals
+  const openEditModal = (i: QualityInspection) => { setSelectedInspection(i); setShowEditModal(true); };
+  const openChecklistModal = (i: QualityInspection) => { setSelectedInspection(i); setShowChecklistModal(true); };
+  const openDefectModal = (i: QualityInspection) => { setSelectedInspection(i); setShowDefectModal(true); };
+  const openPhotosModal = (i: QualityInspection) => { setSelectedInspection(i); setShowPhotosModal(true); };
+  const openSignOffModal = (i: QualityInspection) => { setSelectedInspection(i); setShowSignOffModal(true); };
+  const openStatusModal = (i: QualityInspection) => { setSelectedInspection(i); setShowStatusModal(true); };
+  const openAssignModal = (i: QualityInspection) => { setSelectedInspection(i); setShowAssignModal(true); };
+  const openAddItemModal = (i: QualityInspection) => { setSelectedInspection(i); setShowAddItemModal(true); };
+  const openReportModal = (i: QualityInspection) => { setSelectedInspection(i); setShowReportModal(true); };
+  const openReInspectionModal = (i: QualityInspection) => { setSelectedInspection(i); setShowReInspectionModal(true); };
+  const openDetailsModal = (i: QualityInspection) => { setSelectedInspection(i); setShowDetailsModal(true); };
+  const openCorrectiveModal = (i: QualityInspection) => { setSelectedInspection(i); setShowCorrectiveModal(true); };
+  const openNextModal = (i: QualityInspection) => { setSelectedInspection(i); setShowNextInspectionModal(true); };
+
   return (
     <div className="p-6 space-y-6">
       {/* Header */}
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-start">
         <div>
           <h1 className="text-3xl font-bold text-gray-900">Quality Inspection Checklist</h1>
           <p className="text-gray-600 mt-1">Project quality assurance and compliance tracking</p>
         </div>
-        <button
-          onClick={() => setShowAddModal(true)}
-          className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-        >
-          <Plus className="h-5 w-5" />
-          <span>New Inspection</span>
-        </button>
+        <div className="flex items-center space-x-3">
+          <button
+            onClick={() => setShowReportModal(true)}
+            className="flex items-center space-x-2 px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700"
+          >
+            <FileText className="h-5 w-5" />
+            <span>Generate Report</span>
+          </button>
+          <button
+            onClick={() => setShowExportModal(true)}
+            className="flex items-center space-x-2 px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700"
+          >
+            <Download className="h-5 w-5" />
+            <span>Export</span>
+          </button>
+          <button
+            onClick={() => setShowScheduleModal(true)}
+            className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          >
+            <Plus className="h-5 w-5" />
+            <span>Schedule Inspection</span>
+          </button>
+        </div>
       </div>
 
       {/* Statistics Cards */}
@@ -845,6 +926,23 @@ export default function QualityInspectionPage() {
           </div>
         </div>
       )}
+
+      {/* All Modals */}
+      <ScheduleInspectionModal isOpen={showScheduleModal} onClose={() => setShowScheduleModal(false)} onSchedule={handleSchedule} />
+      <EditInspectionModal isOpen={showEditModal} onClose={() => { setShowEditModal(false); setSelectedInspection(null); }} onEdit={handleEdit} inspection={selectedInspection} />
+      <UpdateChecklistModal isOpen={showChecklistModal} onClose={() => { setShowChecklistModal(false); setSelectedInspection(null); }} onUpdate={handleUpdateChecklist} inspection={selectedInspection} />
+      <AddDefectModal isOpen={showDefectModal} onClose={() => { setShowDefectModal(false); setSelectedInspection(null); }} onAdd={handleAddDefect} inspection={selectedInspection} />
+      <UploadPhotosModal isOpen={showPhotosModal} onClose={() => { setShowPhotosModal(false); setSelectedInspection(null); }} onUpload={handleUploadPhotos} inspection={selectedInspection} />
+      <SignOffModal isOpen={showSignOffModal} onClose={() => { setShowSignOffModal(false); setSelectedInspection(null); }} onSignOff={handleSignOff} inspection={selectedInspection} />
+      <UpdateStatusModal isOpen={showStatusModal} onClose={() => { setShowStatusModal(false); setSelectedInspection(null); }} onUpdate={handleUpdateStatus} inspection={selectedInspection} />
+      <AssignInspectorModal isOpen={showAssignModal} onClose={() => { setShowAssignModal(false); setSelectedInspection(null); }} onAssign={handleAssignInspector} inspection={selectedInspection} />
+      <AddChecklistItemModal isOpen={showAddItemModal} onClose={() => { setShowAddItemModal(false); setSelectedInspection(null); }} onAdd={handleAddItem} inspection={selectedInspection} />
+      <GenerateReportModal isOpen={showReportModal} onClose={() => { setShowReportModal(false); setSelectedInspection(null); }} onGenerate={handleGenerateReport} inspection={selectedInspection} />
+      <ExportDataModal isOpen={showExportModal} onClose={() => setShowExportModal(false)} onExport={handleExport} />
+      <ScheduleReInspectionModal isOpen={showReInspectionModal} onClose={() => { setShowReInspectionModal(false); setSelectedInspection(null); }} onSchedule={handleScheduleReInspection} inspection={selectedInspection} />
+      <ViewFullDetailsModal isOpen={showDetailsModal} onClose={() => { setShowDetailsModal(false); setSelectedInspection(null); }} inspection={selectedInspection} />
+      <AddCorrectiveActionModal isOpen={showCorrectiveModal} onClose={() => { setShowCorrectiveModal(false); setSelectedInspection(null); }} onAdd={handleAddCorrective} inspection={selectedInspection} />
+      <ScheduleNextInspectionModal isOpen={showNextInspectionModal} onClose={() => { setShowNextInspectionModal(false); setSelectedInspection(null); }} onSchedule={handleScheduleNext} inspection={selectedInspection} />
 
       {/* Add Inspection Modal */}
       {showAddModal && (
