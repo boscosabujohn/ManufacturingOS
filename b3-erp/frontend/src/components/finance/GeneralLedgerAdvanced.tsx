@@ -21,6 +21,7 @@ import {
   FileText,
   BarChart3
 } from 'lucide-react';
+import { CreateJournalEntryModal } from './accounting/JournalEntryModals';
 
 // ============================================================================
 // TYPES & INTERFACES
@@ -674,6 +675,16 @@ export default function GeneralLedgerAdvanced({
           </div>
         </div>
       )}
+
+      {/* Create Journal Entry Modal */}
+      <CreateJournalEntryModal
+        isOpen={showCreateModal}
+        onClose={() => setShowCreateModal(false)}
+        onSave={(data: any) => {
+          console.log('Creating journal entry:', data);
+          setShowCreateModal(false);
+        }}
+      />
     </div>
   );
 }

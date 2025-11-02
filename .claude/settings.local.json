@@ -18,7 +18,20 @@
       "Bash(do if [ -f \"$dirpage.tsx\" ])",
       "Bash(! grep -q \"from ''@/components/project-management/\" \"$dirpage.tsx\")",
       "Bash(then echo \"$dir%/\")",
-      "Bash(do if [ ! -f \"$dirpage.tsx\" ])"
+      "Bash(do if [ ! -f \"$dirpage.tsx\" ])",
+      "Bash(ls:*)",
+      "Bash(npm run build:*)",
+      "Bash(timeout 15 npm run dev)",
+      "Bash(npx tsc:*)",
+      "Bash(grep:*)",
+      "Bash(cd:*)",
+      "Bash(npm run dev:*)",
+      "Bash(for file in ComplianceTracking.tsx OnboardingWorkflow.tsx PerformanceReview.tsx PolicyManagement.tsx TalentAnalytics.tsx)",
+      "Bash(do sed -i 's/<div className=\"\"max-w-7xl mx-auto\"\">/<div>/g' \"$file\")",
+      "Bash(timeout 5 npm run dev)",
+      "Bash(timeout 10 npm run dev)",
+      "Bash(timeout 10 npm run build)",
+      "Bash(pkill:*)"
     ],
     "deny": [],
     "ask": []

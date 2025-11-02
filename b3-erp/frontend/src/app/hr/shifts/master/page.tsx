@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Clock, Plus, Edit, Trash2, Sun, Moon, Sunrise, Sunset, Users, Coffee, CheckCircle, AlertCircle } from 'lucide-react';
 import StatusBadge from '@/components/StatusBadge';
+import { CreateShiftModal } from '@/components/hr/CreateShiftModal';
 
 interface Shift {
   id: string;
@@ -24,6 +25,7 @@ interface Shift {
 
 export default function ShiftMasterPage() {
   const [selectedShift, setSelectedShift] = useState<Shift | null>(null);
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
 
   const mockShifts: Shift[] = [
     {
@@ -163,7 +165,10 @@ export default function ShiftMasterPage() {
       <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
         <div className="flex justify-between items-center">
           <h2 className="text-lg font-semibold text-gray-700">All Shift Templates</h2>
-          <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+          <button
+            onClick={() => setIsCreateModalOpen(true)}
+            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          >
             <Plus className="h-4 w-4" />
             Create New Shift
           </button>
@@ -338,6 +343,17 @@ export default function ShiftMasterPage() {
           </div>
         </div>
       )}
+
+      {/* Create Shift Modal */}
+      <CreateShiftModal
+        isOpen={isCreateModalOpen}
+        onClose={() => setIsCreateModalOpen(false)}
+        onSubmit={(data) => {
+          console.log('Create shift:', data);
+          setIsCreateModalOpen(false);
+          // TODO: Implement actual shift creation logic
+        }}
+      />
     </div>
   );
 }

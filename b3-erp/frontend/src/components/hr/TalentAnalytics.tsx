@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Users, TrendingUp, TrendingDown, Award, Target, Activity, BarChart3, PieChart, Calendar, DollarSign } from 'lucide-react';
+import { AddComplianceRuleModal, CreateAnalyticsReportModal, CreateOnboardingWorkflowModal, InitiateReviewCycleModal, CreatePolicyModal } from './HRAdvancedModals';
 
 export default function TalentAnalytics() {
   const metrics = {
@@ -18,7 +19,7 @@ export default function TalentAnalytics() {
 
   return (
     <div className="w-full h-full bg-gradient-to-br from-gray-50 via-indigo-50 to-purple-50 p-6">
-      <div className="max-w-7xl mx-auto">
+      <div>
         <div className="mb-6">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Talent Analytics & Insights</h1>
           <p className="text-gray-600">Data-driven insights on workforce trends and performance</p>

@@ -4,6 +4,7 @@ import React, { useState, useMemo } from 'react';
 import { Building2, Plus, Users, TrendingUp, Search, Filter, X, MapPin, Phone, Mail, Edit, Trash2 } from 'lucide-react';
 import { DataTable, Column } from '@/components/ui/DataTable';
 import { StatusBadge } from '@/components/ui/StatusBadge';
+import { AddDepartmentModal } from '@/components/hr/AddDepartmentModal';
 
 interface Department {
   id: string;
@@ -77,6 +78,7 @@ export default function DepartmentsPage() {
   const [filterStatus, setFilterStatus] = useState<string>('all');
   const [showFilters, setShowFilters] = useState(false);
   const [viewMode, setViewMode] = useState<'grid' | 'table'>('grid');
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
   const filteredData = useMemo(() => {
     return departments.filter(dept => {
@@ -221,7 +223,10 @@ export default function DepartmentsPage() {
           </h1>
           <p className="text-gray-600 mt-1">Manage organizational departments and structure</p>
         </div>
-        <button className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700">
+        <button
+          onClick={() => setIsAddModalOpen(true)}
+          className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700"
+        >
           <Plus className="w-4 h-4" />
           Add Department
         </button>
@@ -350,6 +355,16 @@ export default function DepartmentsPage() {
           <li>✓ Grid and table view modes for flexible data visualization</li>
         </ul>
       </div>
+
+      <AddDepartmentModal
+        isOpen={isAddModalOpen}
+        onClose={() => setIsAddModalOpen(false)}
+        onSubmit={(data) => {
+          console.log('New department data:', data);
+          setIsAddModalOpen(false);
+          alert(`Department Created Successfully!\n\nDepartment: ${data.name} (${data.code})\nHead: ${data.headOfDepartment}\nLocation: ${data.location}\nCost Center: ${data.costCenter}`);
+        }}
+      />
     </div>
   );
 }

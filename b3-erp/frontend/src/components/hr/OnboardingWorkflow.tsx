@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { UserPlus, CheckCircle, Clock, FileText, Briefcase, GraduationCap, Key, Mail } from 'lucide-react';
+import { AddComplianceRuleModal, CreateAnalyticsReportModal, CreateOnboardingWorkflowModal, InitiateReviewCycleModal, CreatePolicyModal } from './HRAdvancedModals';
 
 export type OnboardingStage = 'pre-joining' | 'day-1' | 'week-1' | 'month-1' | 'completed';
 export type TaskStatus = 'pending' | 'in-progress' | 'completed' | 'overdue';
@@ -69,7 +70,7 @@ export default function OnboardingWorkflow() {
 
   return (
     <div className="w-full h-full bg-gradient-to-br from-gray-50 via-blue-50 to-cyan-50 p-6">
-      <div className="max-w-7xl mx-auto">
+      <div>
         <div className="mb-6">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Employee Onboarding Workflow</h1>
           <p className="text-gray-600">Streamlined onboarding process for new hires</p>

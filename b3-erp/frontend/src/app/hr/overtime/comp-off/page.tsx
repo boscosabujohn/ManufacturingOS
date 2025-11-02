@@ -4,6 +4,7 @@ import { useState, useMemo } from 'react';
 import { Calendar, Plus, Search, Filter, Clock, CheckCircle, XCircle, AlertCircle, TrendingUp } from 'lucide-react';
 import DataTable from '@/components/DataTable';
 import StatusBadge from '@/components/StatusBadge';
+import { ApplyCompOffModal } from '@/components/hr/ApplyCompOffModal';
 
 interface CompOff {
   id: string;
@@ -22,6 +23,7 @@ export default function CompensatoryOffPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedStatus, setSelectedStatus] = useState('all');
   const [showFilters, setShowFilters] = useState(false);
+  const [isApplyModalOpen, setIsApplyModalOpen] = useState(false);
 
   const mockCompOffs: CompOff[] = [
     {
@@ -265,7 +267,10 @@ export default function CompensatoryOffPage() {
             <Filter className="h-4 w-4" />
             Filters
           </button>
-          <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+          <button
+            onClick={() => setIsApplyModalOpen(true)}
+            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          >
             <Plus className="h-4 w-4" />
             Apply Comp-Off
           </button>
@@ -310,6 +315,26 @@ export default function CompensatoryOffPage() {
           <li>• Unutilized comp-off will not be encashed</li>
         </ul>
       </div>
+
+      {/* Apply Comp-Off Modal */}
+      <ApplyCompOffModal
+        isOpen={isApplyModalOpen}
+        onClose={() => setIsApplyModalOpen(false)}
+        onSubmit={(data) => {
+          console.log('Apply comp-off:', data);
+          setIsApplyModalOpen(false);
+          // TODO: Implement actual comp-off application logic
+        }}
+        availableCredits={mockCompOffs
+          .filter(c => c.status === 'available' || c.status === 'expiring_soon')
+          .map(c => ({
+            id: c.id,
+            earnedDate: c.earnedDate,
+            reason: c.reason,
+            daysAvailable: c.balance,
+            expiryDate: c.expiryDate
+          }))}
+      />
     </div>
   );
 }

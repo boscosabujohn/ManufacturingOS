@@ -4,6 +4,7 @@ import { useState, useMemo } from 'react';
 import { User, Search, Plus, Edit, Eye, Mail, Phone, MapPin, Calendar, Briefcase, Filter, Download, Upload, Building2, Users, Award, Clock, X } from 'lucide-react';
 import DataTable from '@/components/DataTable';
 import StatusBadge, { BadgeStatus } from '@/components/StatusBadge';
+import { AddEmployeeProfileModal } from '@/components/hr/AddEmployeeProfileModal';
 
 interface EmployeeProfile {
   id: string;
@@ -65,6 +66,7 @@ export default function EmployeeProfilesPage() {
   const [selectedStatus, setSelectedStatus] = useState('all');
   const [showFilters, setShowFilters] = useState(false);
   const [selectedProfile, setSelectedProfile] = useState<EmployeeProfile | null>(null);
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
   // Mock data for employee profiles
   const mockProfiles: EmployeeProfile[] = [
@@ -510,7 +512,10 @@ export default function EmployeeProfilesPage() {
               <Upload className="h-4 w-4" />
               Import
             </button>
-            <button className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700">
+            <button
+              onClick={() => setIsAddModalOpen(true)}
+              className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700"
+            >
               <Plus className="h-4 w-4" />
               Add Profile
             </button>
@@ -876,6 +881,19 @@ export default function EmployeeProfilesPage() {
           </div>
         </div>
       )}
+
+      {/* Add Employee Profile Modal */}
+      <AddEmployeeProfileModal
+        isOpen={isAddModalOpen}
+        onClose={() => setIsAddModalOpen(false)}
+        onSubmit={(data) => {
+          console.log('New employee profile data:', data);
+          setIsAddModalOpen(false);
+
+          // Show success message
+          alert(`Employee Profile Created Successfully!\n\nEmployee Code: ${data.employeeCode}\nName: ${data.firstName} ${data.lastName}\nDepartment: ${data.department}\nDesignation: ${data.designation}\n\nThe employee profile has been added to the system.`);
+        }}
+      />
     </div>
   );
 }

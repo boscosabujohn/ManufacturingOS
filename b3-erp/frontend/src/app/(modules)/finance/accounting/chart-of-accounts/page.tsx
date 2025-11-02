@@ -8,6 +8,17 @@ import {
   CheckCircle, Eye, Filter, Download, XCircle, Power, PowerOff, FileText,
   Copy, Archive, BarChart3, ArrowUpCircle, ArrowDownCircle
 } from 'lucide-react';
+import {
+  AddAccountModal,
+  ViewAccountDetailsModal,
+  EditAccountModal,
+  ToggleAccountStatusModal,
+  BulkImportAccountsModal
+} from '@/components/finance/accounting/ChartOfAccountsModals';
+import {
+  ExportChartModal,
+  AccountHierarchyModal
+} from '@/components/finance/accounting/ChartOfAccountsModals2';
 
 // TypeScript Interfaces
 interface Account {
@@ -114,6 +125,15 @@ export default function ChartOfAccountsPage() {
   const [typeFilter, setTypeFilter] = useState<string>('all');
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [expandedNodes, setExpandedNodes] = useState<Set<string>>(new Set(['1000', '2000', '3000', '4000', '5000']));
+
+  // Modal states
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [isViewModalOpen, setIsViewModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isToggleStatusModalOpen, setIsToggleStatusModalOpen] = useState(false);
+  const [isBulkImportModalOpen, setIsBulkImportModalOpen] = useState(false);
+  const [isExportModalOpen, setIsExportModalOpen] = useState(false);
+  const [selectedAccount, setSelectedAccount] = useState<Account | null>(null);
 
   // Build tree structure
   const buildTree = (accounts: Account[]): Account[] => {
@@ -255,33 +275,36 @@ export default function ChartOfAccountsPage() {
 
             <div className="flex items-center space-x-1">
               <button
-                onClick={() => router.push(`/finance/accounting/ledger-report?account=${account.code}`)}
+                onClick={() => {
+                  setSelectedAccount(account);
+                  setIsViewModalOpen(true);
+                }}
                 className="p-1.5 text-blue-600 hover:bg-blue-50 rounded transition-colors"
-               
+                title="View Account Details"
               >
                 <Eye className="h-4 w-4" />
               </button>
               <button
+                onClick={() => {
+                  setSelectedAccount(account);
+                  setIsEditModalOpen(true);
+                }}
                 className="p-1.5 text-green-600 hover:bg-green-50 rounded transition-colors"
-               
+                title="Edit Account"
               >
                 <Edit className="h-4 w-4" />
               </button>
               {account.level > 0 && (
-                <>
-                  <button
-                    className="p-1.5 text-purple-600 hover:bg-purple-50 rounded transition-colors"
-                   
-                  >
-                    {account.isActive ? <PowerOff className="h-4 w-4" /> : <Power className="h-4 w-4" />}
-                  </button>
-                  <button
-                    className="p-1.5 text-red-600 hover:bg-red-50 rounded transition-colors"
-                   
-                  >
-                    <Trash2 className="h-4 w-4" />
-                  </button>
-                </>
+                <button
+                  onClick={() => {
+                    setSelectedAccount(account);
+                    setIsToggleStatusModalOpen(true);
+                  }}
+                  className="p-1.5 text-purple-600 hover:bg-purple-50 rounded transition-colors"
+                  title={account.isActive ? 'Deactivate Account' : 'Activate Account'}
+                >
+                  {account.isActive ? <PowerOff className="h-4 w-4" /> : <Power className="h-4 w-4" />}
+                </button>
               )}
             </div>
           </div>
@@ -304,7 +327,7 @@ export default function ChartOfAccountsPage() {
           <div className="mb-6">
             <div className="flex items-center justify-end mb-4">
               <button
-                onClick={() => alert('Add New Account functionality')}
+                onClick={() => setIsAddModalOpen(true)}
                 className="flex items-center space-x-2 px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
               >
                 <Plus className="h-5 w-5" />
@@ -434,7 +457,7 @@ export default function ChartOfAccountsPage() {
             <span>Collapse All</span>
           </button>
           <button
-            onClick={() => alert('Export functionality')}
+            onClick={() => setIsExportModalOpen(true)}
             className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
           >
             <Download className="h-4 w-4" />
@@ -468,6 +491,61 @@ export default function ChartOfAccountsPage() {
           </div>
         </div>
       </div>
+
+      {/* Modals */}
+      <AddAccountModal
+        isOpen={isAddModalOpen}
+        onClose={() => setIsAddModalOpen(false)}
+        onCreate={(data: any) => {
+          console.log('Creating account:', data);
+          setIsAddModalOpen(false);
+        }}
+      />
+
+      <ViewAccountDetailsModal
+        isOpen={isViewModalOpen}
+        onClose={() => setIsViewModalOpen(false)}
+        account={selectedAccount}
+      />
+
+      <EditAccountModal
+        isOpen={isEditModalOpen}
+        onClose={() => setIsEditModalOpen(false)}
+        account={selectedAccount}
+        onSave={(data: any) => {
+          console.log('Updating account:', data);
+          setIsEditModalOpen(false);
+        }}
+      />
+
+      <ToggleAccountStatusModal
+        isOpen={isToggleStatusModalOpen}
+        onClose={() => setIsToggleStatusModalOpen(false)}
+        account={selectedAccount}
+        currentStatus={selectedAccount?.isActive ?? true}
+        onConfirm={() => {
+          console.log('Toggling account status');
+          setIsToggleStatusModalOpen(false);
+        }}
+      />
+
+      <BulkImportAccountsModal
+        isOpen={isBulkImportModalOpen}
+        onClose={() => setIsBulkImportModalOpen(false)}
+        onImport={(data: any) => {
+          console.log('Importing accounts:', data);
+          setIsBulkImportModalOpen(false);
+        }}
+      />
+
+      <ExportChartModal
+        isOpen={isExportModalOpen}
+        onClose={() => setIsExportModalOpen(false)}
+        onExport={(data: any) => {
+          console.log('Exporting accounts:', data);
+          setIsExportModalOpen(false);
+        }}
+      />
     </div>
   );
 }

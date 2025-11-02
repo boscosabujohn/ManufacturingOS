@@ -2,8 +2,8 @@
 
 import React, { useState, useMemo } from 'react';
 import { UserX, Search, Filter, X, Download, Calendar, Mail, Phone, Building, Briefcase } from 'lucide-react';
-import { DataTable, Column } from '@/components/ui/DataTable';
-import { StatusBadge } from '@/components/ui/StatusBadge';
+import DataTable, { Column } from '@/components/DataTable';
+import StatusBadge from '@/components/StatusBadge';
 
 interface InactiveEmployee {
   id: string;
@@ -98,16 +98,16 @@ export default function InactiveEmployeesPage() {
   }, [employees, searchTerm, filterDepartment, filterSeparationType]);
 
   const getSeparationTypeBadge = (type: string) => {
-    const typeMap: Record<string, { status: string; text: string }> = {
-      'resignation': { status: 'info', text: 'Resignation' },
+    const typeMap: Record<string, { status: 'success' | 'error' | 'warning' | 'inactive'; text: string }> = {
+      'resignation': { status: 'warning', text: 'Resignation' },
       'termination': { status: 'error', text: 'Termination' },
       'retirement': { status: 'success', text: 'Retirement' },
       'absconding': { status: 'error', text: 'Absconding' },
-      'death': { status: 'default', text: 'Death' },
-      'contract_end': { status: 'active', text: 'Contract End' }
+      'death': { status: 'inactive', text: 'Death' },
+      'contract_end': { status: 'inactive', text: 'Contract End' }
     };
-    const config = typeMap[type] || { status: 'default', text: type };
-    return <StatusBadge status={config.status as any} text={config.text} />;
+    const config = typeMap[type] || { status: 'inactive' as const, text: type };
+    return <StatusBadge status={config.status} text={config.text} />;
   };
 
   const columns: Column<InactiveEmployee>[] = [

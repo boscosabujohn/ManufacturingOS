@@ -22,6 +22,20 @@ import {
   DollarSign,
   TrendingUp
 } from 'lucide-react';
+import {
+  CreateInvoiceModal,
+  ViewInvoiceModal,
+  SendInvoiceModal
+} from '@/components/finance/ar/InvoicesModals';
+import {
+  RecordPaymentModal,
+  VoidInvoiceModal,
+  DuplicateInvoiceModal,
+  InvoiceAdjustmentModal,
+  PrintInvoiceOptionsModal,
+  PaymentReminderModal,
+  InvoiceHistoryModal
+} from '@/components/finance/ar/InvoicesModals2';
 
 interface Invoice {
   id: string;
@@ -59,6 +73,17 @@ export default function InvoicesPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
   const [dateFilter, setDateFilter] = useState('all');
+
+  // Modal states
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const [isViewModalOpen, setIsViewModalOpen] = useState(false);
+  const [isSendModalOpen, setIsSendModalOpen] = useState(false);
+  const [isRecordPaymentModalOpen, setIsRecordPaymentModalOpen] = useState(false);
+  const [isVoidModalOpen, setIsVoidModalOpen] = useState(false);
+  const [isDuplicateModalOpen, setIsDuplicateModalOpen] = useState(false);
+  const [isPrintModalOpen, setIsPrintModalOpen] = useState(false);
+  const [isHistoryModalOpen, setIsHistoryModalOpen] = useState(false);
+  const [selectedInvoice, setSelectedInvoice] = useState<Invoice | null>(null);
 
   // Sample invoices data
   const invoices: Invoice[] = [
@@ -261,7 +286,7 @@ export default function InvoicesPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-green-900 to-gray-900 p-6">
-      <div className="max-w-7xl mx-auto space-y-6">
+      <div className="space-y-6">
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
@@ -269,7 +294,14 @@ export default function InvoicesPage() {
             <p className="text-gray-400">Manage customer invoices and receivables</p>
           </div>
           <div className="flex gap-3">
-            <button className="flex items-center gap-2 px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors shadow-lg">
+            <button
+              onClick={() => {
+                console.log('Create Invoice button clicked');
+                setIsCreateModalOpen(true);
+                console.log('Modal state set to true');
+              }}
+              className="flex items-center gap-2 px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors shadow-lg"
+            >
               <Plus className="w-5 h-5" />
               Create Invoice
             </button>
@@ -437,23 +469,51 @@ export default function InvoicesPage() {
                       </td>
                       <td className="px-6 py-4">
                         <div className="flex items-center justify-center gap-2">
-                          <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors">
+                          <button
+                            onClick={() => {
+                              setSelectedInvoice(invoice);
+                              setIsViewModalOpen(true);
+                            }}
+                            className="p-2 hover:bg-gray-700 rounded-lg transition-colors"
+                            title="View Invoice"
+                          >
                             <Eye className="w-4 h-4 text-blue-400" />
                           </button>
                           {invoice.status === 'Draft' && (
-                            <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors">
+                            <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors" title="Edit Invoice">
                               <Edit className="w-4 h-4 text-green-400" />
                             </button>
                           )}
-                          <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors">
+                          <button
+                            onClick={() => {
+                              setSelectedInvoice(invoice);
+                              setIsPrintModalOpen(true);
+                            }}
+                            className="p-2 hover:bg-gray-700 rounded-lg transition-colors"
+                            title="Print Invoice"
+                          >
                             <Printer className="w-4 h-4 text-purple-400" />
                           </button>
                           {invoice.status !== 'Sent' && invoice.status !== 'Paid' && (
-                            <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors">
+                            <button
+                              onClick={() => {
+                                setSelectedInvoice(invoice);
+                                setIsSendModalOpen(true);
+                              }}
+                              className="p-2 hover:bg-gray-700 rounded-lg transition-colors"
+                              title="Send Invoice"
+                            >
                               <Send className="w-4 h-4 text-cyan-400" />
                             </button>
                           )}
-                          <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors">
+                          <button
+                            onClick={() => {
+                              setSelectedInvoice(invoice);
+                              setIsDuplicateModalOpen(true);
+                            }}
+                            className="p-2 hover:bg-gray-700 rounded-lg transition-colors"
+                            title="Duplicate Invoice"
+                          >
                             <Copy className="w-4 h-4 text-yellow-400" />
                           </button>
                         </div>
@@ -493,6 +553,54 @@ export default function InvoicesPage() {
           </div>
         )}
       </div>
+
+      {/* Modals */}
+      <CreateInvoiceModal
+        isOpen={isCreateModalOpen}
+        onClose={() => setIsCreateModalOpen(false)}
+      />
+
+      <ViewInvoiceModal
+        isOpen={isViewModalOpen}
+        onClose={() => setIsViewModalOpen(false)}
+        invoice={selectedInvoice}
+      />
+
+      <SendInvoiceModal
+        isOpen={isSendModalOpen}
+        onClose={() => setIsSendModalOpen(false)}
+        invoice={selectedInvoice}
+      />
+
+      <RecordPaymentModal
+        isOpen={isRecordPaymentModalOpen}
+        onClose={() => setIsRecordPaymentModalOpen(false)}
+        invoice={selectedInvoice}
+      />
+
+      <VoidInvoiceModal
+        isOpen={isVoidModalOpen}
+        onClose={() => setIsVoidModalOpen(false)}
+        invoice={selectedInvoice}
+      />
+
+      <DuplicateInvoiceModal
+        isOpen={isDuplicateModalOpen}
+        onClose={() => setIsDuplicateModalOpen(false)}
+        invoice={selectedInvoice}
+      />
+
+      <PrintInvoiceOptionsModal
+        isOpen={isPrintModalOpen}
+        onClose={() => setIsPrintModalOpen(false)}
+        invoice={selectedInvoice}
+      />
+
+      <InvoiceHistoryModal
+        isOpen={isHistoryModalOpen}
+        onClose={() => setIsHistoryModalOpen(false)}
+        invoice={selectedInvoice}
+      />
     </div>
   );
 }

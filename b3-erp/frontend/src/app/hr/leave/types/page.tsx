@@ -5,6 +5,7 @@ import { Plus, Search, Download, Filter, X, Calendar, Check, Banknote } from 'lu
 import { DataTable, Column } from '@/components/ui/DataTable';
 import { StatusBadge } from '@/components/ui/StatusBadge';
 import { mockLeaveTypes, LeaveType } from '@/data/hr/leave-types';
+import { AddLeaveTypeModal } from '@/components/hr/AddLeaveTypeModal';
 
 export default function LeaveTypesPage() {
   const [leaveTypes, setLeaveTypes] = useState<LeaveType[]>(mockLeaveTypes);
@@ -13,6 +14,8 @@ export default function LeaveTypesPage() {
   const [filterEncashable, setFilterEncashable] = useState<string>('all');
   const [filterCarryForward, setFilterCarryForward] = useState<string>('all');
   const [showFilters, setShowFilters] = useState(false);
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [editingLeaveType, setEditingLeaveType] = useState<LeaveType | null>(null);
 
   // Filtered data
   const filteredData = useMemo(() => {
@@ -161,7 +164,7 @@ export default function LeaveTypesPage() {
             className="text-blue-600 hover:text-blue-800 text-sm font-medium"
             onClick={(e) => {
               e.stopPropagation();
-              console.log('Edit leave type:', row);
+              setEditingLeaveType(row);
             }}
           >
             Edit
@@ -187,6 +190,26 @@ export default function LeaveTypesPage() {
     setFilterPaidLeave('all');
     setFilterEncashable('all');
     setFilterCarryForward('all');
+  };
+
+  const handleAddLeaveType = (data: any) => {
+    const newLeaveType: LeaveType = {
+      ...data,
+      id: `LT${(leaveTypes.length + 1).toString().padStart(3, '0')}`,
+      createdDate: new Date().toISOString().split('T')[0],
+      modifiedDate: new Date().toISOString().split('T')[0]
+    };
+    setLeaveTypes([...leaveTypes, newLeaveType]);
+    setIsAddModalOpen(false);
+  };
+
+  const handleEditLeaveType = (data: any) => {
+    setLeaveTypes(leaveTypes.map(lt =>
+      lt.id === editingLeaveType?.id
+        ? { ...lt, ...data, modifiedDate: new Date().toISOString().split('T')[0] }
+        : lt
+    ));
+    setEditingLeaveType(null);
   };
 
   const activeFilterCount = [
@@ -216,7 +239,7 @@ export default function LeaveTypesPage() {
             <span>Export</span>
           </button>
           <button
-            onClick={() => console.log('Add Leave Type')}
+            onClick={() => setIsAddModalOpen(true)}
             className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
           >
             <Plus className="w-4 h-4" />
@@ -376,6 +399,21 @@ export default function LeaveTypesPage() {
           <li>✓ Compensatory Off for overtime/holiday work</li>
         </ul>
       </div>
+
+      {/* Add Leave Type Modal */}
+      <AddLeaveTypeModal
+        isOpen={isAddModalOpen}
+        onClose={() => setIsAddModalOpen(false)}
+        onSubmit={handleAddLeaveType}
+      />
+
+      {/* Edit Leave Type Modal */}
+      <AddLeaveTypeModal
+        isOpen={editingLeaveType !== null}
+        onClose={() => setEditingLeaveType(null)}
+        onSubmit={handleEditLeaveType}
+        editData={editingLeaveType}
+      />
     </div>
   );
 }

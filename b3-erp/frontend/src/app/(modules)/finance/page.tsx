@@ -45,7 +45,8 @@ import {
   LineChart,
   Monitor,
   Smartphone,
-  Tablet
+  Tablet,
+  Search
 } from 'lucide-react';
 import { KPICard, CardSkeleton } from '@/components/ui';
 import {
@@ -65,6 +66,19 @@ import {
   Bar,
   Line
 } from 'recharts';
+import {
+  ViewCashPositionModal,
+  ViewReceivablesModal,
+  ViewPayablesModal,
+  ViewProfitModal,
+  SearchTransactionsModal,
+  RecentActivitiesModal
+} from '@/components/finance/FinanceMainModals';
+import {
+  QuickJournalEntryModal,
+  QuickPaymentModal,
+  QuickReceiptModal
+} from '@/components/finance/FinanceDashboardModals';
 
 export default function FinanceDashboard() {
   const [isLoading, setIsLoading] = useState(false);
@@ -78,6 +92,38 @@ export default function FinanceDashboard() {
     payables: true,
     profitability: true
   });
+
+  // Modal states
+  const [modals, setModals] = useState({
+    viewCashPosition: false,
+    viewReceivables: false,
+    viewPayables: false,
+    viewProfit: false,
+    searchTransactions: false,
+    recentActivities: false,
+    quickJournal: false,
+    quickPayment: false,
+    quickReceipt: false
+  });
+
+  const openModal = (modalName: string) => {
+    setModals({ ...modals, [modalName]: true });
+  };
+
+  const closeModal = (modalName: string) => {
+    setModals({ ...modals, [modalName]: false });
+  };
+
+  const handleModalAction = (action: string, data: any) => {
+    console.log(`Action: ${action}`, data);
+    // Here you would typically make API calls
+    // For now, we'll just close the modal
+    Object.keys(modals).forEach(key => {
+      if (modals[key as keyof typeof modals]) {
+        closeModal(key);
+      }
+    });
+  };
 
   // Enhanced mock data with time series and analytics
   const dashboardData = {
@@ -168,20 +214,59 @@ export default function FinanceDashboard() {
       <div className="flex-1 overflow-y-auto overflow-x-hidden">
         <div className="px-4 sm:px-6 lg:px-8 py-6">
           {/* Header Actions */}
-          <div className="mb-6 flex items-center justify-end gap-3">
-            <div className="bg-white rounded-lg shadow-sm border border-gray-200 px-4 py-2">
-              <div className="flex items-center gap-2 text-sm text-gray-600">
-                <Calendar className="w-4 h-4" />
-                <span>October 2025</span>
-              </div>
+          <div className="mb-6 flex items-center justify-between gap-3">
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => openModal('quickJournal')}
+                className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors shadow-md"
+              >
+                <Plus className="w-5 h-5" />
+                <span>Journal Entry</span>
+              </button>
+              <button
+                onClick={() => openModal('quickPayment')}
+                className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition-colors shadow-md"
+              >
+                <Plus className="w-5 h-5" />
+                <span>Record Payment</span>
+              </button>
+              <button
+                onClick={() => openModal('quickReceipt')}
+                className="flex items-center gap-2 bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-lg transition-colors shadow-md"
+              >
+                <Plus className="w-5 h-5" />
+                <span>Record Receipt</span>
+              </button>
             </div>
-            <Link
-              href="/finance/settings"
-              className="flex items-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg transition-colors"
-            >
-              <Settings className="w-5 h-5" />
-              <span>Settings</span>
-            </Link>
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => openModal('searchTransactions')}
+                className="flex items-center gap-2 bg-white hover:bg-gray-50 text-gray-700 px-4 py-2 rounded-lg transition-colors border border-gray-300"
+              >
+                <Search className="w-5 h-5" />
+                <span>Search</span>
+              </button>
+              <button
+                onClick={() => openModal('recentActivities')}
+                className="flex items-center gap-2 bg-white hover:bg-gray-50 text-gray-700 px-4 py-2 rounded-lg transition-colors border border-gray-300"
+              >
+                <Clock className="w-5 h-5" />
+                <span>Activities</span>
+              </button>
+              <div className="bg-white rounded-lg shadow-sm border border-gray-200 px-4 py-2">
+                <div className="flex items-center gap-2 text-sm text-gray-600">
+                  <Calendar className="w-4 h-4" />
+                  <span>October 2025</span>
+                </div>
+              </div>
+              <Link
+                href="/finance/settings"
+                className="flex items-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg transition-colors"
+              >
+                <Settings className="w-5 h-5" />
+                <span>Settings</span>
+              </Link>
+            </div>
           </div>
 
       {/* Key Metrics - Top Row */}
@@ -195,42 +280,74 @@ export default function FinanceDashboard() {
           </>
         ) : (
           <>
-            <KPICard
-             
-              value={formatCurrency(dashboardData.cashPosition.totalCash)}
-              icon={Wallet}
-              color="blue"
-              trend={{
-                value: dashboardData.cashPosition.change,
-                isPositive: dashboardData.cashPosition.change > 0,
-                label: 'vs last month'
-              }}
-            />
-            <KPICard
-             
-              value={formatCurrency(dashboardData.accountsReceivable.total)}
-              icon={TrendingUp}
-              color="green"
-              description={`Current: ${formatCurrency(dashboardData.accountsReceivable.current)}`}
-            />
-            <KPICard
-             
-              value={formatCurrency(dashboardData.accountsPayable.total)}
-              icon={TrendingDown}
-              color="red"
-              description={`Current: ${formatCurrency(dashboardData.accountsPayable.current)}`}
-            />
-            <KPICard
-             
-              value={formatCurrency(dashboardData.netProfit.amount)}
-              icon={PieChart}
-              color="purple"
-              trend={{
-                value: dashboardData.netProfit.change,
-                isPositive: true
-              }}
-              description={`${dashboardData.netProfit.margin}% Margin`}
-            />
+            <div className="relative group">
+              <KPICard
+                value={formatCurrency(dashboardData.cashPosition.totalCash)}
+                icon={Wallet}
+                color="blue"
+                trend={{
+                  value: dashboardData.cashPosition.change,
+                  isPositive: dashboardData.cashPosition.change > 0,
+                  label: 'vs last month'
+                }}
+              />
+              <button
+                onClick={() => openModal('viewCashPosition')}
+                className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity bg-white/90 hover:bg-white text-blue-600 px-3 py-1.5 rounded-lg text-sm font-medium shadow-md flex items-center gap-1"
+              >
+                <Eye className="w-4 h-4" />
+                View Details
+              </button>
+            </div>
+            <div className="relative group">
+              <KPICard
+                value={formatCurrency(dashboardData.accountsReceivable.total)}
+                icon={TrendingUp}
+                color="green"
+                description={`Current: ${formatCurrency(dashboardData.accountsReceivable.current)}`}
+              />
+              <button
+                onClick={() => openModal('viewReceivables')}
+                className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity bg-white/90 hover:bg-white text-green-600 px-3 py-1.5 rounded-lg text-sm font-medium shadow-md flex items-center gap-1"
+              >
+                <Eye className="w-4 h-4" />
+                View Details
+              </button>
+            </div>
+            <div className="relative group">
+              <KPICard
+                value={formatCurrency(dashboardData.accountsPayable.total)}
+                icon={TrendingDown}
+                color="red"
+                description={`Current: ${formatCurrency(dashboardData.accountsPayable.current)}`}
+              />
+              <button
+                onClick={() => openModal('viewPayables')}
+                className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity bg-white/90 hover:bg-white text-red-600 px-3 py-1.5 rounded-lg text-sm font-medium shadow-md flex items-center gap-1"
+              >
+                <Eye className="w-4 h-4" />
+                View Details
+              </button>
+            </div>
+            <div className="relative group">
+              <KPICard
+                value={formatCurrency(dashboardData.netProfit.amount)}
+                icon={PieChart}
+                color="purple"
+                trend={{
+                  value: dashboardData.netProfit.change,
+                  isPositive: true
+                }}
+                description={`${dashboardData.netProfit.margin}% Margin`}
+              />
+              <button
+                onClick={() => openModal('viewProfit')}
+                className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity bg-white/90 hover:bg-white text-purple-600 px-3 py-1.5 rounded-lg text-sm font-medium shadow-md flex items-center gap-1"
+              >
+                <Eye className="w-4 h-4" />
+                View Details
+              </button>
+            </div>
           </>
         )}
       </div>
@@ -463,6 +580,48 @@ export default function FinanceDashboard() {
         </div>
       </div>
       </div>
+
+      {/* Modal Components */}
+      <ViewCashPositionModal
+        isOpen={modals.viewCashPosition}
+        onClose={() => closeModal('viewCashPosition')}
+      />
+      <ViewReceivablesModal
+        isOpen={modals.viewReceivables}
+        onClose={() => closeModal('viewReceivables')}
+      />
+      <ViewPayablesModal
+        isOpen={modals.viewPayables}
+        onClose={() => closeModal('viewPayables')}
+      />
+      <ViewProfitModal
+        isOpen={modals.viewProfit}
+        onClose={() => closeModal('viewProfit')}
+      />
+      <SearchTransactionsModal
+        isOpen={modals.searchTransactions}
+        onClose={() => closeModal('searchTransactions')}
+        onSearch={(criteria) => handleModalAction('search', criteria)}
+      />
+      <RecentActivitiesModal
+        isOpen={modals.recentActivities}
+        onClose={() => closeModal('recentActivities')}
+      />
+      <QuickJournalEntryModal
+        isOpen={modals.quickJournal}
+        onClose={() => closeModal('quickJournal')}
+        onCreate={(data) => handleModalAction('createJournal', data)}
+      />
+      <QuickPaymentModal
+        isOpen={modals.quickPayment}
+        onClose={() => closeModal('quickPayment')}
+        onCreate={(data) => handleModalAction('createPayment', data)}
+      />
+      <QuickReceiptModal
+        isOpen={modals.quickReceipt}
+        onClose={() => closeModal('quickReceipt')}
+        onCreate={(data) => handleModalAction('createReceipt', data)}
+      />
     </div>
   );
 }

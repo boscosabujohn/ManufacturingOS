@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { FileText, Plus, Edit, Eye, Clock, Calendar, AlertCircle, CheckCircle, Users, Settings } from 'lucide-react';
 import StatusBadge from '@/components/StatusBadge';
+import { CreatePolicyModal } from '@/components/hr/CreatePolicyModal';
 
 interface AttendancePolicy {
   id: string;
@@ -19,8 +20,9 @@ interface AttendancePolicy {
 
 export default function AttendancePoliciesPage() {
   const [selectedPolicy, setSelectedPolicy] = useState<AttendancePolicy | null>(null);
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
 
-  const mockPolicies: AttendancePolicy[] = [
+  const initialPolicies: AttendancePolicy[] = [
     {
       id: 'POL001',
       name: 'Regular Working Hours Policy',
@@ -161,6 +163,20 @@ export default function AttendancePoliciesPage() {
     }
   ];
 
+  const [policies, setPolicies] = useState<AttendancePolicy[]>(initialPolicies);
+
+  const handleCreatePolicy = (policyData: Omit<AttendancePolicy, 'id' | 'createdBy' | 'lastModified'>) => {
+    const newPolicy: AttendancePolicy = {
+      ...policyData,
+      id: `POL${String(policies.length + 1).padStart(3, '0')}`,
+      createdBy: 'HR Admin',
+      lastModified: new Date().toISOString().split('T')[0]
+    };
+    setPolicies([...policies, newPolicy]);
+    console.log('New policy created:', newPolicy);
+    // TODO: API call to save policy
+  };
+
   const getTypeIcon = (type: string) => {
     const icons = {
       working_hours: <Clock className="w-5 h-5 text-blue-600" />,
@@ -201,7 +217,7 @@ export default function AttendancePoliciesPage() {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Policies</p>
-              <p className="text-2xl font-bold text-blue-600">{mockPolicies.length}</p>
+              <p className="text-2xl font-bold text-blue-600">{policies.length}</p>
             </div>
             <FileText className="h-8 w-8 text-blue-400" />
           </div>
@@ -211,7 +227,7 @@ export default function AttendancePoliciesPage() {
             <div>
               <p className="text-sm text-gray-600">Active Policies</p>
               <p className="text-2xl font-bold text-green-600">
-                {mockPolicies.filter(p => p.status === 'active').length}
+                {policies.filter(p => p.status === 'active').length}
               </p>
             </div>
             <CheckCircle className="h-8 w-8 text-green-400" />
@@ -222,7 +238,7 @@ export default function AttendancePoliciesPage() {
             <div>
               <p className="text-sm text-gray-600">Draft Policies</p>
               <p className="text-2xl font-bold text-yellow-600">
-                {mockPolicies.filter(p => p.status === 'draft').length}
+                {policies.filter(p => p.status === 'draft').length}
               </p>
             </div>
             <Edit className="h-8 w-8 text-yellow-400" />
@@ -244,7 +260,10 @@ export default function AttendancePoliciesPage() {
       <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
         <div className="flex justify-between items-center">
           <h2 className="text-lg font-semibold text-gray-700">All Policies</h2>
-          <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+          <button
+            onClick={() => setIsCreateModalOpen(true)}
+            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          >
             <Plus className="h-4 w-4" />
             Create New Policy
           </button>
@@ -253,7 +272,7 @@ export default function AttendancePoliciesPage() {
 
       {/* Policies Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {mockPolicies.map((policy) => (
+        {policies.map((policy) => (
           <div
             key={policy.id}
             className="bg-white rounded-lg shadow-sm border-2 border-gray-200 p-6 hover:shadow-md transition-all hover:border-blue-300"
@@ -402,6 +421,13 @@ export default function AttendancePoliciesPage() {
           </div>
         </div>
       )}
+
+      {/* Create Policy Modal */}
+      <CreatePolicyModal
+        isOpen={isCreateModalOpen}
+        onClose={() => setIsCreateModalOpen(false)}
+        onSubmit={handleCreatePolicy}
+      />
     </div>
   );
 }

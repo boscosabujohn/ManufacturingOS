@@ -273,7 +273,7 @@ export default function GeneralLedgerPage() {
     <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900">
       <div className="flex-1 overflow-y-auto overflow-x-hidden">
         <div className="px-4 sm:px-6 lg:px-8 py-6">
-          <div className="max-w-7xl mx-auto space-y-6">
+          <div className="space-y-6">
             {/* Action Bar */}
             <div className="flex items-center justify-end">
               <div className="flex gap-3">

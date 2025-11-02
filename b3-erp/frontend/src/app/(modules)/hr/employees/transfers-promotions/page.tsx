@@ -4,6 +4,8 @@ import { useState, useMemo } from 'react';
 import { TrendingUp, Search, Filter, Plus, ArrowRight, Award, Building2, Calendar, CheckCircle, Clock, XCircle } from 'lucide-react';
 import DataTable, { Column } from '@/components/DataTable';
 import StatusBadge, { BadgeStatus } from '@/components/StatusBadge';
+import { NewTransferPromotionModal } from '@/components/hr/NewTransferPromotionModal';
+import { TransferPromotionWorkflowModal } from '@/components/hr/TransferPromotionWorkflowModal';
 
 interface TransferPromotion {
   id: string;
@@ -30,6 +32,9 @@ export default function TransfersPromotionsPage() {
   const [selectedType, setSelectedType] = useState('all');
   const [selectedStatus, setSelectedStatus] = useState('all');
   const [showFilters, setShowFilters] = useState(false);
+  const [isNewRequestModalOpen, setIsNewRequestModalOpen] = useState(false);
+  const [isWorkflowModalOpen, setIsWorkflowModalOpen] = useState(false);
+  const [selectedRequest, setSelectedRequest] = useState<TransferPromotion | null>(null);
 
   const mockTransfersPromotions: TransferPromotion[] = [
     { id: 'TP001', employeeCode: 'KMF2018001', name: 'Rajesh Kumar', type: 'promotion',
@@ -142,6 +147,19 @@ export default function TransfersPromotionsPage() {
     },
     { id: 'status', accessor: 'status', label: 'Status', sortable: true,
       render: (v: string) => <StatusBadge status={v as BadgeStatus} />
+    },
+    { id: 'actions', label: 'Actions',
+      render: (_: any, row: TransferPromotion) => (
+        <button
+          onClick={() => {
+            setSelectedRequest(row);
+            setIsWorkflowModalOpen(true);
+          }}
+          className="px-3 py-1.5 bg-indigo-600 text-white text-sm rounded-lg hover:bg-indigo-700 transition-colors"
+        >
+          View Workflow
+        </button>
+      )
     }
   ];
 
@@ -181,8 +199,12 @@ export default function TransfersPromotionsPage() {
             <h2 className="text-lg font-semibold text-gray-700">All Transfers & Promotions</h2>
             <span className="text-sm text-gray-500">({filteredData.length} records)</span>
           </div>
-          <button className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">
-            <Plus className="h-4 w-4" />New Request
+          <button
+            onClick={() => setIsNewRequestModalOpen(true)}
+            className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
+          >
+            <Plus className="h-4 w-4" />
+            New Request
           </button>
         </div>
       </div>
@@ -216,6 +238,40 @@ export default function TransfersPromotionsPage() {
       </div>
 
       <DataTable data={filteredData} columns={columns} />
+
+      {/* New Transfer/Promotion Request Modal */}
+      <NewTransferPromotionModal
+        isOpen={isNewRequestModalOpen}
+        onClose={() => setIsNewRequestModalOpen(false)}
+        onSubmit={(data) => {
+          console.log('New transfer/promotion request:', data);
+          setIsNewRequestModalOpen(false);
+          alert(`Request Submitted Successfully!\n\nEmployee: ${data.employeeName} (${data.employeeCode})\nType: ${data.type.toUpperCase()}\nFrom: ${data.fromDesignation} → To: ${data.toDesignation}\nEffective Date: ${data.effectiveDate}\n${data.salaryIncrement ? `Increment: +${data.salaryIncrement}%` : ''}\n\nStatus: Pending Approval`);
+        }}
+      />
+
+      {/* Workflow Modal */}
+      {selectedRequest && (
+        <TransferPromotionWorkflowModal
+          isOpen={isWorkflowModalOpen}
+          onClose={() => {
+            setIsWorkflowModalOpen(false);
+            setSelectedRequest(null);
+          }}
+          requestData={{
+            id: selectedRequest.id,
+            employeeCode: selectedRequest.employeeCode,
+            employeeName: selectedRequest.name,
+            type: selectedRequest.type,
+            fromDesignation: selectedRequest.fromDesignation,
+            toDesignation: selectedRequest.toDesignation,
+            fromDepartment: selectedRequest.fromDepartment,
+            toDepartment: selectedRequest.toDepartment,
+            effectiveDate: selectedRequest.effectiveDate,
+            salaryIncrement: selectedRequest.salaryIncrement
+          }}
+        />
+      )}
     </div>
   );
 }

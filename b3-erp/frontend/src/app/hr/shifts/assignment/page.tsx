@@ -4,6 +4,8 @@ import { useState, useMemo } from 'react';
 import { UserCheck, Search, Filter, Plus, Edit, Users, Clock, CheckCircle } from 'lucide-react';
 import DataTable from '@/components/DataTable';
 import StatusBadge, { BadgeStatus } from '@/components/StatusBadge';
+import { BulkAssignShiftModal } from '@/components/hr/BulkAssignShiftModal';
+import { ChangeShiftModal } from '@/components/hr/ChangeShiftModal';
 
 interface ShiftAssignment {
   id: string;
@@ -22,6 +24,9 @@ export default function ShiftAssignmentPage() {
   const [selectedDepartment, setSelectedDepartment] = useState('all');
   const [selectedShiftType, setSelectedShiftType] = useState('all');
   const [showFilters, setShowFilters] = useState(false);
+  const [isBulkAssignModalOpen, setIsBulkAssignModalOpen] = useState(false);
+  const [isChangeShiftModalOpen, setIsChangeShiftModalOpen] = useState(false);
+  const [selectedEmployeeForChange, setSelectedEmployeeForChange] = useState<ShiftAssignment | null>(null);
 
   const mockAssignments: ShiftAssignment[] = [
     { id: '1', employeeCode: 'KMF2020001', employeeName: 'Rajesh Kumar', department: 'Production',
@@ -48,6 +53,14 @@ export default function ShiftAssignmentPage() {
     { id: '8', employeeCode: 'KMF2021008', employeeName: 'Kavita Desai', department: 'HR',
       designation: 'Executive', currentShift: 'General Day Shift', shiftType: 'day',
       effectiveFrom: '2024-01-01', status: 'active' }
+  ];
+
+  const availableShifts = [
+    { id: 'SH001', name: 'General Day Shift', code: 'GEN-DAY', type: 'day' as const, startTime: '09:00 AM', endTime: '06:00 PM', workingHours: 9 },
+    { id: 'SH002', name: 'Night Shift', code: 'NIGHT', type: 'night' as const, startTime: '10:00 PM', endTime: '07:00 AM', workingHours: 9 },
+    { id: 'SH003', name: 'Morning Shift', code: 'MORN', type: 'morning' as const, startTime: '06:00 AM', endTime: '03:00 PM', workingHours: 9 },
+    { id: 'SH004', name: 'Evening Shift', code: 'EVE', type: 'evening' as const, startTime: '03:00 PM', endTime: '12:00 AM', workingHours: 9 },
+    { id: 'SH005', name: 'Flexible Shift', code: 'FLEX', type: 'flexible' as const, startTime: '08:00 AM', endTime: '10:00 PM', workingHours: 9 }
   ];
 
   const filteredData = useMemo(() => {
@@ -121,8 +134,14 @@ export default function ShiftAssignmentPage() {
       render: (v: string) => <StatusBadge status={v as BadgeStatus} />
     },
     { key: 'id', label: 'Actions', sortable: false,
-      render: () => (
-        <button className="flex items-center gap-1 text-blue-600 hover:text-blue-800 font-medium text-sm">
+      render: (_: unknown, row: ShiftAssignment) => (
+        <button
+          onClick={() => {
+            setSelectedEmployeeForChange(row);
+            setIsChangeShiftModalOpen(true);
+          }}
+          className="flex items-center gap-1 text-blue-600 hover:text-blue-800 font-medium text-sm"
+        >
           <Edit className="w-4 h-4" />
           Change Shift
         </button>
@@ -202,7 +221,10 @@ export default function ShiftAssignmentPage() {
             <Filter className="h-4 w-4" />
             Filters
           </button>
-          <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+          <button
+            onClick={() => setIsBulkAssignModalOpen(true)}
+            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          >
             <Plus className="h-4 w-4" />
             Bulk Assign
           </button>
@@ -247,6 +269,50 @@ export default function ShiftAssignmentPage() {
 
       {/* Assignment Table */}
       <DataTable data={filteredData} columns={columns} />
+
+      {/* Bulk Assign Shift Modal */}
+      <BulkAssignShiftModal
+        isOpen={isBulkAssignModalOpen}
+        onClose={() => setIsBulkAssignModalOpen(false)}
+        onSubmit={(data) => {
+          console.log('Bulk assign shift:', data);
+          setIsBulkAssignModalOpen(false);
+          // TODO: Implement actual shift assignment logic
+        }}
+        availableEmployees={mockAssignments.map(a => ({
+          code: a.employeeCode,
+          name: a.employeeName,
+          department: a.department,
+          currentShift: a.currentShift
+        }))}
+        availableShifts={availableShifts}
+      />
+
+      {/* Change Shift Modal */}
+      {selectedEmployeeForChange && (
+        <ChangeShiftModal
+          isOpen={isChangeShiftModalOpen}
+          onClose={() => {
+            setIsChangeShiftModalOpen(false);
+            setSelectedEmployeeForChange(null);
+          }}
+          onSubmit={(data) => {
+            console.log('Change shift:', data);
+            setIsChangeShiftModalOpen(false);
+            setSelectedEmployeeForChange(null);
+            // TODO: Implement actual shift change logic
+          }}
+          employee={{
+            code: selectedEmployeeForChange.employeeCode,
+            name: selectedEmployeeForChange.employeeName,
+            department: selectedEmployeeForChange.department,
+            designation: selectedEmployeeForChange.designation,
+            currentShift: selectedEmployeeForChange.currentShift,
+            currentShiftType: selectedEmployeeForChange.shiftType
+          }}
+          availableShifts={availableShifts}
+        />
+      )}
     </div>
   );
 }

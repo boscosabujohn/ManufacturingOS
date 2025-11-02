@@ -1,13 +1,25 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
-import { Send, Calendar, AlertCircle, CheckCircle, Info, X } from 'lucide-react';
+import { Send, Calendar, AlertCircle, CheckCircle, Info, X, User, Briefcase, Mail, Phone } from 'lucide-react';
 import { mockMyLeaveBalances } from '@/data/hr/leave-balances';
 import { mockLeaveTypes } from '@/data/hr/leave-types';
 
 export default function ApplyLeavePage() {
   const [leaveBalances] = useState(mockMyLeaveBalances);
   const [leaveTypes] = useState(mockLeaveTypes);
+
+  // Mock employee data - in real app, this would come from auth/context
+  const currentEmployee = {
+    code: 'KMF2021005',
+    name: 'Priya Sharma',
+    designation: 'Senior HR Executive',
+    department: 'Human Resources',
+    email: 'priya.sharma@kitchenmanufacturing.com',
+    phone: '+91 98765 43210',
+    reportingManager: 'Rajesh Kumar (HR Manager)',
+    joiningDate: '2021-03-15'
+  };
 
   // Form state
   const [selectedLeaveType, setSelectedLeaveType] = useState('');
@@ -120,6 +132,70 @@ export default function ApplyLeavePage() {
           </button>
         </div>
       )}
+
+      {/* Employee Information Card */}
+      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-lg p-6">
+        <div className="flex items-start justify-between mb-4">
+          <div>
+            <h2 className="text-sm font-semibold text-gray-700 uppercase tracking-wide mb-2">Employee Information</h2>
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-lg">
+                {currentEmployee.name.split(' ').map(n => n[0]).join('')}
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-gray-900">{currentEmployee.name}</h3>
+                <p className="text-sm text-gray-600">{currentEmployee.designation}</p>
+              </div>
+            </div>
+          </div>
+          <div className="bg-blue-600 text-white px-4 py-2 rounded-lg">
+            <div className="text-xs font-medium">Employee Code</div>
+            <div className="text-lg font-bold font-mono">{currentEmployee.code}</div>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-lg bg-white flex items-center justify-center">
+              <Briefcase className="w-5 h-5 text-blue-600" />
+            </div>
+            <div>
+              <div className="text-xs text-gray-600">Department</div>
+              <div className="font-semibold text-gray-900">{currentEmployee.department}</div>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-lg bg-white flex items-center justify-center">
+              <User className="w-5 h-5 text-blue-600" />
+            </div>
+            <div>
+              <div className="text-xs text-gray-600">Reporting To</div>
+              <div className="font-semibold text-gray-900 text-sm">{currentEmployee.reportingManager}</div>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-lg bg-white flex items-center justify-center">
+              <Mail className="w-5 h-5 text-blue-600" />
+            </div>
+            <div>
+              <div className="text-xs text-gray-600">Email</div>
+              <div className="font-semibold text-gray-900 text-sm truncate">{currentEmployee.email}</div>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-lg bg-white flex items-center justify-center">
+              <Phone className="w-5 h-5 text-blue-600" />
+            </div>
+            <div>
+              <div className="text-xs text-gray-600">Phone</div>
+              <div className="font-semibold text-gray-900">{currentEmployee.phone}</div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* Leave Balance Summary */}
       <div>

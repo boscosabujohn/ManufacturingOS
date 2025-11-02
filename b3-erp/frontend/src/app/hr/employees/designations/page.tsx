@@ -4,6 +4,7 @@ import { useState, useMemo } from 'react';
 import { Briefcase, Plus, Search, Filter, TrendingUp, Users, Award, DollarSign, BarChart3 } from 'lucide-react';
 import DataTable from '@/components/DataTable';
 import StatusBadge, { BadgeStatus } from '@/components/StatusBadge';
+import { AddDesignationModal } from '@/components/hr/AddDesignationModal';
 
 interface Designation {
   id: string;
@@ -27,6 +28,7 @@ export default function DesignationsPage() {
   const [selectedDepartment, setSelectedDepartment] = useState('all');
   const [selectedLevel, setSelectedLevel] = useState('all');
   const [showFilters, setShowFilters] = useState(false);
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
   const mockDesignations: Designation[] = [
     {
@@ -198,8 +200,12 @@ export default function DesignationsPage() {
             <h2 className="text-lg font-semibold text-gray-700">All Designations</h2>
             <span className="text-sm text-gray-500">({filteredData.length} designations)</span>
           </div>
-          <button className="flex items-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700">
-            <Plus className="h-4 w-4" />Add Designation
+          <button
+            onClick={() => setIsAddModalOpen(true)}
+            className="flex items-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700"
+          >
+            <Plus className="h-4 w-4" />
+            Add Designation
           </button>
         </div>
       </div>
@@ -233,6 +239,17 @@ export default function DesignationsPage() {
       </div>
 
       <DataTable data={filteredData} columns={columns} />
+
+      {/* Add Designation Modal */}
+      <AddDesignationModal
+        isOpen={isAddModalOpen}
+        onClose={() => setIsAddModalOpen(false)}
+        onSubmit={(data) => {
+          console.log('New designation data:', data);
+          setIsAddModalOpen(false);
+          alert(`Designation Created Successfully!\n\nTitle: ${data.title}\nCode: ${data.code}\nDepartment: ${data.department}\nLevel: ${data.level.toUpperCase()}\nGrade: ${data.grade}\nLabour Category: ${data.labourCategory}\nLabour Grade (GCC): ${data.labourGrade}\nSalary Range: ₹${(Number(data.minSalary)/100000).toFixed(1)}L - ₹${(Number(data.maxSalary)/100000).toFixed(1)}L`);
+        }}
+      />
     </div>
   );
 }

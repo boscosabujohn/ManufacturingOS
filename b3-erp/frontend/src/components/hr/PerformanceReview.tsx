@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { Award, Target, TrendingUp, Star, MessageSquare, FileText, Calendar, CheckCircle, Clock } from 'lucide-react';
+import { AddComplianceRuleModal, CreateAnalyticsReportModal, CreateOnboardingWorkflowModal, InitiateReviewCycleModal, CreatePolicyModal } from './HRAdvancedModals';
 
 export type ReviewStatus = 'not-started' | 'self-assessment' | 'manager-review' | 'calibration' | 'completed';
 export type Rating = 1 | 2 | 3 | 4 | 5;
@@ -71,7 +72,7 @@ export default function PerformanceReview() {
 
   return (
     <div className="w-full h-full bg-gradient-to-br from-gray-50 via-orange-50 to-amber-50 p-6">
-      <div className="max-w-7xl mx-auto">
+      <div>
         <div className="mb-6">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Performance Review Management</h1>
           <p className="text-gray-600">Goal-based performance reviews and feedback</p>

@@ -4,6 +4,7 @@ import { useState, useMemo } from 'react';
 import { Clock, Plus, Search, Filter, Calendar, AlertCircle, CheckCircle, XCircle, TrendingUp } from 'lucide-react';
 import DataTable from '@/components/DataTable';
 import StatusBadge, { BadgeStatus } from '@/components/StatusBadge';
+import { NewOvertimeRequestModal } from '@/components/hr/NewOvertimeRequestModal';
 
 interface OvertimeRequest {
   id: string;
@@ -331,6 +332,17 @@ export default function OvertimeRequestsPage() {
 
       {/* Requests Table */}
       <DataTable data={filteredData} columns={columns} />
+
+      {/* New Overtime Request Modal */}
+      <NewOvertimeRequestModal
+        isOpen={showRequestModal}
+        onClose={() => setShowRequestModal(false)}
+        onSubmit={(data) => {
+          console.log('New OT request:', data);
+          setShowRequestModal(false);
+          // TODO: Implement actual OT request submission logic
+        }}
+      />
     </div>
   );
 }

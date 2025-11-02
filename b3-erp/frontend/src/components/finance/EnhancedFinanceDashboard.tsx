@@ -16,6 +16,18 @@ import {
   PieChart as RechartsPieChart, Cell, XAxis, YAxis, CartesianGrid,
   Tooltip, Legend, ResponsiveContainer, Area, Bar, Line
 } from 'recharts';
+import {
+  QuickJournalEntryModal,
+  QuickPaymentModal,
+  QuickReceiptModal,
+  FilterDashboardModal,
+  CustomizeWidgetsModal,
+  ExportDashboardModal,
+  ViewAlertsModal,
+  RefreshDataModal,
+  PeriodSelectorModal,
+  ViewTransactionDetailsModal
+} from './FinanceDashboardModals';
 
 export default function EnhancedFinanceDashboard() {
   const [isLoading, setIsLoading] = useState(false);
@@ -28,6 +40,38 @@ export default function EnhancedFinanceDashboard() {
     payables: true,
     profitability: true
   });
+
+  // Modal states
+  const [modals, setModals] = useState({
+    quickJournal: false,
+    quickPayment: false,
+    quickReceipt: false,
+    filterDashboard: false,
+    customizeWidgets: false,
+    exportDashboard: false,
+    viewAlerts: false,
+    refreshData: false,
+    periodSelector: false,
+    viewTransaction: false
+  });
+
+  const openModal = (modalName: string) => {
+    setModals({ ...modals, [modalName]: true });
+  };
+
+  const closeModal = (modalName: string) => {
+    setModals({ ...modals, [modalName]: false });
+  };
+
+  const handleModalAction = (action: string, data: any) => {
+    console.log(`Action: ${action}`, data);
+    // Close all modals after action
+    Object.keys(modals).forEach(key => {
+      if (modals[key as keyof typeof modals]) {
+        closeModal(key);
+      }
+    });
+  };
 
   // Enhanced mock data with time series and analytics
   const dashboardData = {
@@ -251,27 +295,39 @@ export default function EnhancedFinanceDashboard() {
             </p>
           </div>
           <div className="flex items-center space-x-3">
-            <select
-              value={selectedPeriod}
-              onChange={(e) => setSelectedPeriod(e.target.value)}
-              className="px-4 py-2 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-              <option value="current-month">Current Month</option>
-              <option value="current-quarter">Current Quarter</option>
-              <option value="current-year">Current Year</option>
-              <option value="last-month">Last Month</option>
-              <option value="last-quarter">Last Quarter</option>
-              <option value="last-year">Last Year</option>
-            </select>
             <button
-              onClick={refreshData}
+              onClick={() => openModal('periodSelector')}
+              className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-lg bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-amber-500"
+            >
+              <Calendar className="h-4 w-4 mr-2" />
+              {selectedPeriod.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())}
+            </button>
+            <button
+              onClick={() => openModal('filterDashboard')}
+              className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-lg bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-violet-500"
+            >
+              <Filter className="h-4 w-4 mr-2" />
+              Filter
+            </button>
+            <button
+              onClick={() => openModal('refreshData')}
               disabled={isLoading}
-              className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-lg bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50"
+              className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-lg bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 disabled:opacity-50"
             >
               <RefreshCw className={`h-4 w-4 mr-2 ${isLoading ? 'animate-spin' : ''}`} />
               Refresh
             </button>
-            <button className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <button
+              onClick={() => openModal('customizeWidgets')}
+              className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-lg bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-purple-500"
+            >
+              <Settings className="h-4 w-4 mr-2" />
+              Customize
+            </button>
+            <button
+              onClick={() => openModal('exportDashboard')}
+              className="inline-flex items-center px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+            >
               <Download className="h-4 w-4 mr-2" />
               Export
             </button>
@@ -286,6 +342,12 @@ export default function EnhancedFinanceDashboard() {
                 <Bell className="h-5 w-5 mr-2 text-blue-600" />
                 Recent Alerts ({alerts.length})
               </h3>
+              <button
+                onClick={() => openModal('viewAlerts')}
+                className="text-sm text-blue-600 hover:text-blue-700 font-medium"
+              >
+                View All →
+              </button>
             </div>
             <div className="space-y-2">
               {alerts.slice(0, 3).map((alert) => (
@@ -338,9 +400,12 @@ export default function EnhancedFinanceDashboard() {
           <p className="text-3xl font-bold mb-2">{formatCurrency(dashboardData.cashPosition.totalCash)}</p>
           <div className="flex items-center justify-between">
             <span className="text-blue-100 text-sm">+{dashboardData.cashPosition.change}% this month</span>
-            <button className="inline-flex items-center gap-1.5 px-3 py-2 bg-white/20 rounded-lg hover:bg-white/30 text-sm">
-              <Eye className="h-4 w-4" />
-              <span>View</span>
+            <button
+              onClick={() => openModal('quickPayment')}
+              className="inline-flex items-center gap-1.5 px-3 py-2 bg-white/20 rounded-lg hover:bg-white/30 text-sm"
+            >
+              <Plus className="h-4 w-4" />
+              <span>Record</span>
             </button>
           </div>
         </div>
@@ -551,15 +616,39 @@ export default function EnhancedFinanceDashboard() {
           Quick Actions
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
-          {quickActions.map((action) => (
+          <button
+            onClick={() => openModal('quickJournal')}
+            className="group p-4 rounded-lg border-2 border-transparent hover:border-blue-200 bg-blue-50 hover:bg-blue-100 transition-all duration-200 text-center"
+          >
+            <FileText className="h-8 w-8 mx-auto mb-2 text-blue-600 group-hover:text-blue-700" />
+            <p className="font-medium text-blue-900 text-sm mb-1">Journal Entry</p>
+            <p className="text-xs text-blue-600">Create accounting entries</p>
+          </button>
+          <button
+            onClick={() => openModal('quickPayment')}
+            className="group p-4 rounded-lg border-2 border-transparent hover:border-green-200 bg-green-50 hover:bg-green-100 transition-all duration-200 text-center"
+          >
+            <Receipt className="h-8 w-8 mx-auto mb-2 text-green-600 group-hover:text-green-700" />
+            <p className="font-medium text-green-900 text-sm mb-1">Record Payment</p>
+            <p className="text-xs text-green-600">Process receipts</p>
+          </button>
+          <button
+            onClick={() => openModal('quickReceipt')}
+            className="group p-4 rounded-lg border-2 border-transparent hover:border-purple-200 bg-purple-50 hover:bg-purple-100 transition-all duration-200 text-center"
+          >
+            <Banknote className="h-8 w-8 mx-auto mb-2 text-purple-600 group-hover:text-purple-700" />
+            <p className="font-medium text-purple-900 text-sm mb-1">Create Invoice</p>
+            <p className="text-xs text-purple-600">Generate customer invoices</p>
+          </button>
+          {quickActions.slice(3).map((action) => (
             <Link
               key={action.label}
               href={action.href}
-              className={`group p-4 rounded-lg border-2 border-transparent hover:border-${action.color}-200 bg-${action.color}-50 hover:bg-${action.color}-100 transition-all duration-200 text-center`}
+              className="group p-4 rounded-lg border-2 border-transparent hover:border-gray-200 bg-gray-50 hover:bg-gray-100 transition-all duration-200 text-center"
             >
-              <action.icon className={`h-8 w-8 mx-auto mb-2 text-${action.color}-600 group-hover:text-${action.color}-700`} />
-              <p className={`font-medium text-${action.color}-900 text-sm mb-1`}>{action.label}</p>
-              <p className={`text-xs text-${action.color}-600`}>{action.description}</p>
+              <action.icon className="h-8 w-8 mx-auto mb-2 text-gray-600 group-hover:text-gray-700" />
+              <p className="font-medium text-gray-900 text-sm mb-1">{action.label}</p>
+              <p className="text-xs text-gray-600">{action.description}</p>
             </Link>
           ))}
         </div>
@@ -718,6 +807,63 @@ export default function EnhancedFinanceDashboard() {
           )}
         </div>
       </div>
+
+      {/* Modal Components */}
+      <QuickJournalEntryModal
+        isOpen={modals.quickJournal}
+        onClose={() => closeModal('quickJournal')}
+        onCreate={(data) => handleModalAction('createJournal', data)}
+      />
+      <QuickPaymentModal
+        isOpen={modals.quickPayment}
+        onClose={() => closeModal('quickPayment')}
+        onCreate={(data) => handleModalAction('createPayment', data)}
+      />
+      <QuickReceiptModal
+        isOpen={modals.quickReceipt}
+        onClose={() => closeModal('quickReceipt')}
+        onCreate={(data) => handleModalAction('createReceipt', data)}
+      />
+      <FilterDashboardModal
+        isOpen={modals.filterDashboard}
+        onClose={() => closeModal('filterDashboard')}
+        onApply={(filters) => handleModalAction('applyFilters', filters)}
+      />
+      <CustomizeWidgetsModal
+        isOpen={modals.customizeWidgets}
+        onClose={() => closeModal('customizeWidgets')}
+        onSave={(widgets) => handleModalAction('saveWidgets', widgets)}
+      />
+      <ExportDashboardModal
+        isOpen={modals.exportDashboard}
+        onClose={() => closeModal('exportDashboard')}
+        onExport={(settings) => handleModalAction('export', settings)}
+      />
+      <ViewAlertsModal
+        isOpen={modals.viewAlerts}
+        onClose={() => closeModal('viewAlerts')}
+      />
+      <RefreshDataModal
+        isOpen={modals.refreshData}
+        onClose={() => closeModal('refreshData')}
+        onRefresh={() => {
+          refreshData();
+          closeModal('refreshData');
+        }}
+      />
+      <PeriodSelectorModal
+        isOpen={modals.periodSelector}
+        onClose={() => closeModal('periodSelector')}
+        onSelect={(period) => {
+          setSelectedPeriod(period.type === 'custom' ? 'custom' : period.type);
+          handleModalAction('selectPeriod', period);
+        }}
+      />
+      <ViewTransactionDetailsModal
+        isOpen={modals.viewTransaction}
+        onClose={() => closeModal('viewTransaction')}
+        transaction={null}
+      />
     </div>
   );
 }

@@ -21,6 +21,14 @@ import {
   ArrowUpRight,
   AlertCircle
 } from 'lucide-react'
+import {
+  CreditHoldModal,
+  ReleaseCreditHoldModal,
+  CreditReviewModal,
+  AgingAlertSettingsModal,
+  CreditApprovalRequestModal,
+  ApproveRejectCreditModal
+} from '@/components/finance/ar/CreditManagementModals'
 
 interface CreditCustomer {
   id: string
@@ -46,6 +54,15 @@ export default function CreditManagementPage() {
   const [searchQuery, setSearchQuery] = useState('')
   const [statusFilter, setStatusFilter] = useState('all')
   const [riskFilter, setRiskFilter] = useState('all')
+
+  // Modal states
+  const [isCreditReviewModalOpen, setIsCreditReviewModalOpen] = useState(false)
+  const [isCreditHoldModalOpen, setIsCreditHoldModalOpen] = useState(false)
+  const [isReleaseCreditHoldModalOpen, setIsReleaseCreditHoldModalOpen] = useState(false)
+  const [isAgingAlertModalOpen, setIsAgingAlertModalOpen] = useState(false)
+  const [isCreditApprovalModalOpen, setIsCreditApprovalModalOpen] = useState(false)
+  const [isApproveRejectModalOpen, setIsApproveRejectModalOpen] = useState(false)
+  const [selectedCustomer, setSelectedCustomer] = useState<CreditCustomer | null>(null)
 
   const [customers] = useState<CreditCustomer[]>([
     {
@@ -216,14 +233,17 @@ export default function CreditManagementPage() {
 
   return (
     <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="max-w-7xl mx-auto space-y-6">
+      <div className="space-y-6">
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">Credit Management</h1>
             <p className="text-gray-600 mt-1">Monitor customer credit limits, utilization, and payment behavior</p>
           </div>
-          <button className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all shadow-md">
+          <button
+            onClick={() => setIsCreditReviewModalOpen(true)}
+            className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all shadow-md"
+          >
             <Plus className="h-5 w-5" />
             New Credit Review
           </button>
@@ -452,18 +472,49 @@ export default function CreditManagementPage() {
 
                 {/* Actions */}
                 <div className="flex items-center justify-end gap-2 pt-4 border-t border-gray-200">
-                  <button className="flex items-center gap-2 px-4 py-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors">
+                  <button
+                    onClick={() => {
+                      setSelectedCustomer(customer)
+                      setIsCreditReviewModalOpen(true)
+                    }}
+                    className="flex items-center gap-2 px-4 py-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                  >
                     <Eye className="h-4 w-4" />
                     View Details
                   </button>
-                  <button className="flex items-center gap-2 px-4 py-2 text-green-600 hover:bg-green-50 rounded-lg transition-colors">
+                  <button
+                    onClick={() => {
+                      setSelectedCustomer(customer)
+                      setIsCreditApprovalModalOpen(true)
+                    }}
+                    className="flex items-center gap-2 px-4 py-2 text-green-600 hover:bg-green-50 rounded-lg transition-colors"
+                  >
                     <Edit className="h-4 w-4" />
                     Adjust Limit
                   </button>
-                  <button className="flex items-center gap-2 px-4 py-2 text-purple-600 hover:bg-purple-50 rounded-lg transition-colors">
-                    <BarChart3 className="h-4 w-4" />
-                    Payment History
-                  </button>
+                  {customer.status === 'critical' || customer.status === 'blocked' ? (
+                    <button
+                      onClick={() => {
+                        setSelectedCustomer(customer)
+                        setIsCreditHoldModalOpen(true)
+                      }}
+                      className="flex items-center gap-2 px-4 py-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                    >
+                      <AlertTriangle className="h-4 w-4" />
+                      Credit Hold
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => {
+                        setSelectedCustomer(customer)
+                        setIsCreditReviewModalOpen(true)
+                      }}
+                      className="flex items-center gap-2 px-4 py-2 text-purple-600 hover:bg-purple-50 rounded-lg transition-colors"
+                    >
+                      <BarChart3 className="h-4 w-4" />
+                      Review Credit
+                    </button>
+                  )}
                 </div>
               </div>
             </div>
@@ -478,6 +529,42 @@ export default function CreditManagementPage() {
           </div>
         )}
       </div>
+
+      {/* Modals */}
+      <CreditReviewModal
+        isOpen={isCreditReviewModalOpen}
+        onClose={() => setIsCreditReviewModalOpen(false)}
+        customer={selectedCustomer}
+      />
+
+      <CreditHoldModal
+        isOpen={isCreditHoldModalOpen}
+        onClose={() => setIsCreditHoldModalOpen(false)}
+        customer={selectedCustomer}
+      />
+
+      <ReleaseCreditHoldModal
+        isOpen={isReleaseCreditHoldModalOpen}
+        onClose={() => setIsReleaseCreditHoldModalOpen(false)}
+        customer={selectedCustomer}
+      />
+
+      <AgingAlertSettingsModal
+        isOpen={isAgingAlertModalOpen}
+        onClose={() => setIsAgingAlertModalOpen(false)}
+      />
+
+      <CreditApprovalRequestModal
+        isOpen={isCreditApprovalModalOpen}
+        onClose={() => setIsCreditApprovalModalOpen(false)}
+        customer={selectedCustomer}
+      />
+
+      <ApproveRejectCreditModal
+        isOpen={isApproveRejectModalOpen}
+        onClose={() => setIsApproveRejectModalOpen(false)}
+        request={null}
+      />
     </div>
   )
 }

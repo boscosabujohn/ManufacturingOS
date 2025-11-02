@@ -4,6 +4,7 @@ import { useState, useMemo } from 'react';
 import { RefreshCw, Plus, Check, X, AlertCircle, CheckCircle, XCircle, Clock } from 'lucide-react';
 import DataTable from '@/components/DataTable';
 import StatusBadge, { BadgeStatus } from '@/components/StatusBadge';
+import { RequestShiftSwapModal } from '@/components/hr/RequestShiftSwapModal';
 
 interface ShiftSwap {
   id: string;
@@ -22,6 +23,7 @@ interface ShiftSwap {
 
 export default function ShiftSwapsPage() {
   const [selectedStatus, setSelectedStatus] = useState('all');
+  const [isRequestSwapModalOpen, setIsRequestSwapModalOpen] = useState(false);
 
   const mockSwaps: ShiftSwap[] = [
     {
@@ -88,6 +90,27 @@ export default function ShiftSwapsPage() {
       reason: 'Health checkup', requestDate: '2024-11-19',
       status: 'pending'
     }
+  ];
+
+  // Mock current employee for demonstration (in real app, get from auth context)
+  const currentEmployee = {
+    code: 'KMF2020001',
+    name: 'Rajesh Kumar',
+    department: 'Production',
+    designation: 'Manager',
+    currentShift: 'General Day Shift',
+    shiftType: 'day' as const
+  };
+
+  // Mock available employees for swap
+  const availableEmployees = [
+    { code: 'KMF2019002', name: 'Meera Nair', department: 'Quality', designation: 'QC Head', currentShift: 'Morning Shift', shiftType: 'morning' as const },
+    { code: 'KMF2021003', name: 'Arun Patel', department: 'IT', designation: 'Sr. Engineer', currentShift: 'Flexible Shift', shiftType: 'flexible' as const },
+    { code: 'KMF2022004', name: 'Vikram Singh', department: 'Production', designation: 'Supervisor', currentShift: 'Night Shift', shiftType: 'night' as const },
+    { code: 'KMF2020005', name: 'Priya Menon', department: 'Finance', designation: 'Accountant', currentShift: 'General Day Shift', shiftType: 'day' as const },
+    { code: 'KMF2018006', name: 'Suresh Babu', department: 'Logistics', designation: 'Manager', currentShift: 'Evening Shift', shiftType: 'evening' as const },
+    { code: 'KMF2019007', name: 'Anjali Reddy', department: 'Marketing', designation: 'Executive', currentShift: 'General Day Shift', shiftType: 'day' as const },
+    { code: 'KMF2021008', name: 'Kavita Desai', department: 'HR', designation: 'Executive', currentShift: 'General Day Shift', shiftType: 'day' as const }
   ];
 
   const filteredData = useMemo(() => {
@@ -275,7 +298,10 @@ export default function ShiftSwapsPage() {
               Rejected ({stats.rejected})
             </button>
           </div>
-          <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+          <button
+            onClick={() => setIsRequestSwapModalOpen(true)}
+            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          >
             <Plus className="h-4 w-4" />
             Request Swap
           </button>
@@ -284,6 +310,19 @@ export default function ShiftSwapsPage() {
 
       {/* Swap Requests Table */}
       <DataTable data={filteredData} columns={columns} />
+
+      {/* Request Shift Swap Modal */}
+      <RequestShiftSwapModal
+        isOpen={isRequestSwapModalOpen}
+        onClose={() => setIsRequestSwapModalOpen(false)}
+        onSubmit={(data) => {
+          console.log('Shift swap request:', data);
+          setIsRequestSwapModalOpen(false);
+          // TODO: Implement actual swap request logic
+        }}
+        currentEmployee={currentEmployee}
+        availableEmployees={availableEmployees}
+      />
     </div>
   );
 }

@@ -4,6 +4,7 @@ import { useState, useMemo } from 'react';
 import { UserX, Search, Filter, Calendar, CheckCircle, XCircle, AlertCircle, TrendingDown, Users } from 'lucide-react';
 import DataTable, { Column } from '@/components/DataTable';
 import StatusBadge, { BadgeStatus } from '@/components/StatusBadge';
+import { SeparationWorkflowModal } from '@/components/hr/SeparationWorkflowModal';
 
 interface Separation {
   id: string;
@@ -31,6 +32,8 @@ export default function SeparationsPage() {
   const [selectedType, setSelectedType] = useState('all');
   const [selectedClearance, setSelectedClearance] = useState('all');
   const [showFilters, setShowFilters] = useState(false);
+  const [isWorkflowModalOpen, setIsWorkflowModalOpen] = useState(false);
+  const [selectedSeparation, setSelectedSeparation] = useState<Separation | null>(null);
 
   const mockSeparations: Separation[] = [
     { id: 'SEP001', employeeCode: 'KMF2018005', name: 'Ramesh Gupta', designation: 'Senior Engineer', department: 'Production',
@@ -134,6 +137,19 @@ export default function SeparationsPage() {
       ) : (
         <div className="flex items-center gap-1 text-red-600"><XCircle className="w-4 h-4" />Not Eligible</div>
       )
+    },
+    { id: 'actions', accessor: 'id' as keyof Separation, label: 'Actions', sortable: false,
+      render: (_: any, row: Separation) => (
+        <button
+          onClick={() => {
+            setSelectedSeparation(row);
+            setIsWorkflowModalOpen(true);
+          }}
+          className="px-3 py-1.5 bg-red-600 text-white text-sm rounded-lg hover:bg-red-700 transition-colors"
+        >
+          View Workflow
+        </button>
+      )
     }
   ];
 
@@ -206,6 +222,29 @@ export default function SeparationsPage() {
       </div>
 
       <DataTable data={filteredData} columns={columns} />
+
+      {/* Separation Workflow Modal */}
+      {selectedSeparation && (
+        <SeparationWorkflowModal
+          isOpen={isWorkflowModalOpen}
+          onClose={() => {
+            setIsWorkflowModalOpen(false);
+            setSelectedSeparation(null);
+          }}
+          separationData={{
+            id: selectedSeparation.id,
+            employeeCode: selectedSeparation.employeeCode,
+            employeeName: selectedSeparation.name,
+            designation: selectedSeparation.designation,
+            department: selectedSeparation.department,
+            separationType: selectedSeparation.separationType,
+            reason: selectedSeparation.reason,
+            resignationDate: selectedSeparation.resignationDate,
+            lastWorkingDay: selectedSeparation.lastWorkingDay,
+            noticePeriod: selectedSeparation.noticePeriod
+          }}
+        />
+      )}
     </div>
   );
 }

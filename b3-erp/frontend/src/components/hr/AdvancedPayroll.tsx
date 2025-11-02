@@ -29,6 +29,11 @@ import {
   Eye,
   Send,
 } from 'lucide-react';
+import {
+  CreatePayrollRunModal,
+  ProcessPayrollModal,
+  GeneratePayrollReportModal
+} from './HRAdvancedModals';
 
 // Type Definitions
 export type PayrollStatus = 'draft' | 'calculated' | 'approved' | 'processed' | 'paid' | 'cancelled';
@@ -130,6 +135,12 @@ export interface PayrollAudit {
 export default function AdvancedPayroll() {
   const [activeTab, setActiveTab] = useState<'runs' | 'calculation' | 'tax' | 'compliance' | 'audit' | 'reports'>('runs');
   const [selectedRun, setSelectedRun] = useState<string | null>(null);
+
+  // Modal states
+  const [isCreatePayrollModalOpen, setIsCreatePayrollModalOpen] = useState(false);
+  const [isProcessPayrollModalOpen, setIsProcessPayrollModalOpen] = useState(false);
+  const [isGenerateReportModalOpen, setIsGenerateReportModalOpen] = useState(false);
+  const [selectedPayrollForProcess, setSelectedPayrollForProcess] = useState<any>(null);
 
   // Mock Data
   const payrollRuns: PayrollRun[] = [
@@ -292,7 +303,7 @@ export default function AdvancedPayroll() {
 
   return (
     <div className="w-full h-full bg-gradient-to-br from-gray-50 via-purple-50 to-pink-50 p-6">
-      <div className="max-w-7xl mx-auto">
+      <div>
         {/* Header */}
         <div className="mb-6">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Advanced Payroll Management</h1>
@@ -328,7 +339,10 @@ export default function AdvancedPayroll() {
             <div className="space-y-6">
               <div className="flex items-center justify-between">
                 <h2 className="text-2xl font-bold text-gray-900">Payroll Runs</h2>
-                <button className="flex items-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors">
+                <button
+                  onClick={() => setIsCreatePayrollModalOpen(true)}
+                  className="flex items-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
+                >
                   <Plus className="w-4 h-4" />
                   Create New Payroll Run
                 </button>
@@ -677,7 +691,10 @@ export default function AdvancedPayroll() {
                     <div key={index} className={`bg-gradient-to-br from-${report.color}-50 to-${report.color}-100 rounded-lg p-6 border border-${report.color}-200 hover:shadow-lg transition-shadow cursor-pointer`}>
                       <Icon className={`w-8 h-8 text-${report.color}-600 mb-3`} />
                       <h3 className="font-semibold text-gray-900 mb-2">{report.name}</h3>
-                      <button className="flex items-center gap-2 text-sm text-blue-600 hover:text-blue-700 font-medium">
+                      <button
+                        onClick={() => setIsGenerateReportModalOpen(true)}
+                        className="flex items-center gap-2 text-sm text-blue-600 hover:text-blue-700 font-medium"
+                      >
                         <Download className="w-4 h-4" />
                         Generate Report
                       </button>
@@ -689,6 +706,37 @@ export default function AdvancedPayroll() {
           )}
         </div>
       </div>
+
+      {/* Modals */}
+      <CreatePayrollRunModal
+        isOpen={isCreatePayrollModalOpen}
+        onClose={() => setIsCreatePayrollModalOpen(false)}
+        onSubmit={(data: any) => {
+          console.log('Creating payroll run:', data);
+          setIsCreatePayrollModalOpen(false);
+          alert('Payroll run created successfully!');
+        }}
+      />
+
+      <ProcessPayrollModal
+        isOpen={isProcessPayrollModalOpen}
+        onClose={() => setIsProcessPayrollModalOpen(false)}
+        payrollRun={selectedPayrollForProcess}
+        onConfirm={(run: any) => {
+          console.log('Processing payroll:', run);
+          alert(`Payroll for ${run.period} processed successfully!`);
+        }}
+      />
+
+      <GeneratePayrollReportModal
+        isOpen={isGenerateReportModalOpen}
+        onClose={() => setIsGenerateReportModalOpen(false)}
+        onGenerate={(data: any) => {
+          console.log('Generating payroll report:', data);
+          setIsGenerateReportModalOpen(false);
+          alert('Payroll report generated successfully!');
+        }}
+      />
     </div>
   );
 }

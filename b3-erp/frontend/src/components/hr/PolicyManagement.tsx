@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { FileText, BookOpen, CheckCircle, Clock, AlertTriangle, Download, Eye, Edit, Users, Calendar } from 'lucide-react';
+import { AddComplianceRuleModal, CreateAnalyticsReportModal, CreateOnboardingWorkflowModal, InitiateReviewCycleModal, CreatePolicyModal } from './HRAdvancedModals';
 
 export type PolicyStatus = 'draft' | 'active' | 'under-review' | 'archived';
 export type PolicyCategory = 'hr' | 'it' | 'compliance' | 'security' | 'general';
@@ -132,7 +133,7 @@ export default function PolicyManagement() {
 
   return (
     <div className="w-full h-full bg-gradient-to-br from-gray-50 via-pink-50 to-rose-50 p-6">
-      <div className="max-w-7xl mx-auto">
+      <div>
         <div className="mb-6">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Policy Management System</h1>
           <p className="text-gray-600">Centralized policy documentation and employee acknowledgments</p>

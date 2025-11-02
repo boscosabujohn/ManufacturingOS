@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Plus, Search, Eye, Edit, Trash2, User, Users, Briefcase, Calendar, Mail, Phone, MapPin, TrendingUp, Download, ChevronLeft, ChevronRight, Award, Clock } from 'lucide-react';
+import { ExportEmployeesModal } from '@/components/hr/EmployeeDirectoryModals';
 
 interface Employee {
   id: string;
@@ -178,6 +179,9 @@ export default function EmployeesPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
+  // Modal states
+  const [isExportModalOpen, setIsExportModalOpen] = useState(false);
+
   const filteredEmployees = employees.filter((emp) => {
     const matchesSearch =
       emp.firstName.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -303,7 +307,10 @@ export default function EmployeesPage() {
           <option value="inactive">Inactive</option>
           <option value="terminated">Terminated</option>
         </select>
-        <button className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+        <button
+          onClick={() => setIsExportModalOpen(true)}
+          className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
+        >
           <Download className="h-4 w-4" />
           <span>Export</span>
         </button>
@@ -469,6 +476,20 @@ export default function EmployeesPage() {
           </div>
         </div>
       </div>
+
+      {/* Export Modal */}
+      <ExportEmployeesModal
+        isOpen={isExportModalOpen}
+        onClose={() => setIsExportModalOpen(false)}
+        onExport={(data: any) => {
+          console.log('Exporting employees with config:', data);
+          setIsExportModalOpen(false);
+
+          // Simulate export
+          const filename = `employees_export_${new Date().toISOString().split('T')[0]}.${data.format}`;
+          alert(`Employee data exported successfully!\n\nFile: ${filename}\nFormat: ${data.format.toUpperCase()}\nScope: ${data.scope}\nFields: ${Object.values(data.includeFields).filter(Boolean).length} of 6`);
+        }}
+      />
     </div>
   );
 }

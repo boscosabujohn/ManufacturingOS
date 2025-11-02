@@ -1,7 +1,7 @@
 import React from 'react';
 import { CheckCircle, Clock, AlertCircle, XCircle, Hammer } from 'lucide-react';
 
-export type BadgeStatus = 'implemented' | 'in-progress' | 'planned' | 'deprecated' | 'coming-soon' | 'active' | 'inactive' | 'pending' | 'approved' | 'rejected' | 'draft' | 'error' | 'success' | 'warning' | 'cancelled' | 'withdrawn' | 'on_hold' | 'on_leave' | 'upcoming' | 'excellent' | 'good' | 'average' | 'needs_improvement';
+export type BadgeStatus = 'implemented' | 'in-progress' | 'in_progress' | 'planned' | 'deprecated' | 'coming-soon' | 'active' | 'inactive' | 'pending' | 'approved' | 'rejected' | 'draft' | 'error' | 'success' | 'warning' | 'cancelled' | 'withdrawn' | 'on_hold' | 'on_leave' | 'upcoming' | 'completed' | 'excellent' | 'good' | 'average' | 'needs_improvement' | 'ongoing' | 'review_due' | 'confirmed' | 'extended' | 'terminated' | 'expiring_soon' | 'expired' | 'renewed' | 'present' | 'absent' | 'late' | 'half_day' | 'week_off';
 
 export interface StatusBadgeProps {
   status: BadgeStatus;
@@ -20,6 +20,12 @@ const statusConfig = {
     iconClassName: 'text-green-600'
   },
   'in-progress': {
+    label: 'In Progress',
+    icon: Hammer,
+    className: 'bg-blue-100 text-blue-700 border-blue-200',
+    iconClassName: 'text-blue-600'
+  },
+  in_progress: {
     label: 'In Progress',
     icon: Hammer,
     className: 'bg-blue-100 text-blue-700 border-blue-200',
@@ -63,6 +69,12 @@ const statusConfig = {
   },
   approved: {
     label: 'Approved',
+    icon: CheckCircle,
+    className: 'bg-green-100 text-green-700 border-green-200',
+    iconClassName: 'text-green-600'
+  },
+  completed: {
+    label: 'Completed',
     icon: CheckCircle,
     className: 'bg-green-100 text-green-700 border-green-200',
     iconClassName: 'text-green-600'
@@ -150,6 +162,84 @@ const statusConfig = {
     icon: AlertCircle,
     className: 'bg-orange-100 text-orange-700 border-orange-200',
     iconClassName: 'text-orange-600'
+  },
+  ongoing: {
+    label: 'Ongoing',
+    icon: Clock,
+    className: 'bg-blue-100 text-blue-700 border-blue-200',
+    iconClassName: 'text-blue-600'
+  },
+  review_due: {
+    label: 'Review Due',
+    icon: AlertCircle,
+    className: 'bg-yellow-100 text-yellow-700 border-yellow-200',
+    iconClassName: 'text-yellow-600'
+  },
+  confirmed: {
+    label: 'Confirmed',
+    icon: CheckCircle,
+    className: 'bg-green-100 text-green-700 border-green-200',
+    iconClassName: 'text-green-600'
+  },
+  extended: {
+    label: 'Extended',
+    icon: Clock,
+    className: 'bg-orange-100 text-orange-700 border-orange-200',
+    iconClassName: 'text-orange-600'
+  },
+  terminated: {
+    label: 'Terminated',
+    icon: XCircle,
+    className: 'bg-red-100 text-red-700 border-red-200',
+    iconClassName: 'text-red-600'
+  },
+  expiring_soon: {
+    label: 'Expiring Soon',
+    icon: AlertCircle,
+    className: 'bg-orange-100 text-orange-700 border-orange-200',
+    iconClassName: 'text-orange-600'
+  },
+  expired: {
+    label: 'Expired',
+    icon: XCircle,
+    className: 'bg-red-100 text-red-700 border-red-200',
+    iconClassName: 'text-red-600'
+  },
+  renewed: {
+    label: 'Renewed',
+    icon: CheckCircle,
+    className: 'bg-blue-100 text-blue-700 border-blue-200',
+    iconClassName: 'text-blue-600'
+  },
+  present: {
+    label: 'Present',
+    icon: CheckCircle,
+    className: 'bg-green-100 text-green-700 border-green-200',
+    iconClassName: 'text-green-600'
+  },
+  absent: {
+    label: 'Absent',
+    icon: XCircle,
+    className: 'bg-red-100 text-red-700 border-red-200',
+    iconClassName: 'text-red-600'
+  },
+  late: {
+    label: 'Late',
+    icon: Clock,
+    className: 'bg-orange-100 text-orange-700 border-orange-200',
+    iconClassName: 'text-orange-600'
+  },
+  half_day: {
+    label: 'Half Day',
+    icon: Clock,
+    className: 'bg-yellow-100 text-yellow-700 border-yellow-200',
+    iconClassName: 'text-yellow-600'
+  },
+  week_off: {
+    label: 'Week Off',
+    icon: AlertCircle,
+    className: 'bg-gray-100 text-gray-700 border-gray-200',
+    iconClassName: 'text-gray-600'
   }
 };
 

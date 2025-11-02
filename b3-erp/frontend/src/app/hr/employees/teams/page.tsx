@@ -4,6 +4,7 @@ import { useState, useMemo } from 'react';
 import { Users, Plus, UserPlus, Search, Filter, TrendingUp, TrendingDown, Target, Award, Mail, Phone, LayoutGrid, List } from 'lucide-react';
 import DataTable from '@/components/DataTable';
 import StatusBadge, { BadgeStatus } from '@/components/StatusBadge';
+import { CreateTeamModal } from '@/components/hr/CreateTeamModal';
 
 interface TeamMember {
   id: string;
@@ -42,6 +43,7 @@ export default function TeamsPage() {
   const [showFilters, setShowFilters] = useState(false);
   const [viewMode, setViewMode] = useState<'grid' | 'table'>('grid');
   const [selectedTeam, setSelectedTeam] = useState<Team | null>(null);
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
 
   // Mock data for teams
   const mockTeams: Team[] = [
@@ -459,7 +461,10 @@ export default function TeamsPage() {
             <span className="text-sm text-gray-500">({filteredData.length} teams)</span>
           </div>
           <div className="flex items-center gap-2">
-            <button className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700">
+            <button
+              onClick={() => setIsCreateModalOpen(true)}
+              className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700"
+            >
               <Plus className="h-4 w-4" />
               Create Team
             </button>
@@ -730,6 +735,17 @@ export default function TeamsPage() {
           </div>
         </div>
       )}
+
+      {/* Create Team Modal */}
+      <CreateTeamModal
+        isOpen={isCreateModalOpen}
+        onClose={() => setIsCreateModalOpen(false)}
+        onSubmit={(data) => {
+          console.log('New team data:', data);
+          setIsCreateModalOpen(false);
+          alert(`Team Created Successfully!\n\nTeam: ${data.name} (${data.code})\nDepartment: ${data.department}\nTeam Lead: ${data.teamLeadName}\nLocation: ${data.location}\nShift: ${data.shift}`);
+        }}
+      />
     </div>
   );
 }

@@ -33,6 +33,13 @@ import {
   Target,
   Activity,
 } from 'lucide-react';
+import {
+  ApplyLeaveModal,
+  UploadDocumentModal,
+  NewServiceRequestModal,
+  BrowseCoursesModal,
+  DownloadPayslipModal
+} from './EmployeeSelfServiceModals';
 
 // Type Definitions
 export type LeaveType = 'annual' | 'sick' | 'casual' | 'maternity' | 'paternity' | 'unpaid';
@@ -139,6 +146,14 @@ export interface TrainingRecord {
 export default function EmployeeSelfService() {
   const [activeTab, setActiveTab] = useState<'profile' | 'leave' | 'payroll' | 'documents' | 'requests' | 'benefits' | 'training'>('profile');
   const [isEditing, setIsEditing] = useState(false);
+
+  // Modal states
+  const [isApplyLeaveModalOpen, setIsApplyLeaveModalOpen] = useState(false);
+  const [isUploadDocModalOpen, setIsUploadDocModalOpen] = useState(false);
+  const [isNewRequestModalOpen, setIsNewRequestModalOpen] = useState(false);
+  const [isBrowseCoursesModalOpen, setIsBrowseCoursesModalOpen] = useState(false);
+  const [isDownloadPayslipModalOpen, setIsDownloadPayslipModalOpen] = useState(false);
+  const [selectedPayslip, setSelectedPayslip] = useState<PayslipRecord | null>(null);
 
   // Mock Data
   const employeeProfile: EmployeeProfile = {
@@ -325,7 +340,7 @@ export default function EmployeeSelfService() {
 
   return (
     <div className="w-full h-full bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50 p-6">
-      <div className="max-w-7xl mx-auto">
+      <div>
         {/* Header */}
         <div className="mb-6">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Employee Self-Service Portal</h1>
@@ -515,7 +530,10 @@ export default function EmployeeSelfService() {
               <div>
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="text-lg font-semibold text-gray-900">Leave History</h3>
-                  <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                  <button
+                    onClick={() => setIsApplyLeaveModalOpen(true)}
+                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                  >
                     Apply Leave
                   </button>
                 </div>
@@ -594,7 +612,13 @@ export default function EmployeeSelfService() {
                             <p className="text-sm text-gray-600">Net Pay: {formatCurrency(payslip.netPay)}</p>
                           </div>
                         </div>
-                        <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                        <button
+                          onClick={() => {
+                            setSelectedPayslip(payslip);
+                            setIsDownloadPayslipModalOpen(true);
+                          }}
+                          className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                        >
                           <Download className="w-4 h-4" />
                           Download
                         </button>
@@ -610,7 +634,10 @@ export default function EmployeeSelfService() {
             <div className="space-y-6">
               <div className="flex items-center justify-between">
                 <h2 className="text-2xl font-bold text-gray-900">My Documents</h2>
-                <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                <button
+                  onClick={() => setIsUploadDocModalOpen(true)}
+                  className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                >
                   <Upload className="w-4 h-4" />
                   Upload Document
                 </button>
@@ -644,7 +671,10 @@ export default function EmployeeSelfService() {
             <div className="space-y-6">
               <div className="flex items-center justify-between">
                 <h2 className="text-2xl font-bold text-gray-900">Service Requests</h2>
-                <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                <button
+                  onClick={() => setIsNewRequestModalOpen(true)}
+                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                >
                   New Request
                 </button>
               </div>
@@ -708,7 +738,10 @@ export default function EmployeeSelfService() {
             <div className="space-y-6">
               <div className="flex items-center justify-between">
                 <h2 className="text-2xl font-bold text-gray-900">Training & Development</h2>
-                <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                <button
+                  onClick={() => setIsBrowseCoursesModalOpen(true)}
+                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                >
                   Browse Courses
                 </button>
               </div>
@@ -744,6 +777,57 @@ export default function EmployeeSelfService() {
             </div>
           )}
         </div>
+
+        {/* Modals */}
+        <ApplyLeaveModal
+          isOpen={isApplyLeaveModalOpen}
+          onClose={() => setIsApplyLeaveModalOpen(false)}
+          onSubmit={(data: any) => {
+            console.log('Leave application submitted:', data);
+            setIsApplyLeaveModalOpen(false);
+            // Show success message
+            alert('Leave application submitted successfully!');
+          }}
+        />
+
+        <UploadDocumentModal
+          isOpen={isUploadDocModalOpen}
+          onClose={() => setIsUploadDocModalOpen(false)}
+          onUpload={(data: any) => {
+            console.log('Document uploaded:', data);
+            setIsUploadDocModalOpen(false);
+            alert('Document uploaded successfully!');
+          }}
+        />
+
+        <NewServiceRequestModal
+          isOpen={isNewRequestModalOpen}
+          onClose={() => setIsNewRequestModalOpen(false)}
+          onSubmit={(data: any) => {
+            console.log('Service request submitted:', data);
+            setIsNewRequestModalOpen(false);
+            alert('Service request submitted successfully!');
+          }}
+        />
+
+        <BrowseCoursesModal
+          isOpen={isBrowseCoursesModalOpen}
+          onClose={() => setIsBrowseCoursesModalOpen(false)}
+          onEnroll={(course: any) => {
+            console.log('Enrolled in course:', course);
+            alert(`Successfully enrolled in ${course.name}!`);
+          }}
+        />
+
+        <DownloadPayslipModal
+          isOpen={isDownloadPayslipModalOpen}
+          onClose={() => setIsDownloadPayslipModalOpen(false)}
+          payslip={selectedPayslip}
+          onConfirm={(payslip: any) => {
+            console.log('Downloading payslip:', payslip);
+            alert(`Payslip for ${payslip.month} ${payslip.year} downloaded!`);
+          }}
+        />
       </div>
     </div>
   );

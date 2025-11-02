@@ -13,6 +13,8 @@ import {
   Mail,
   Phone
 } from 'lucide-react'
+import { ViewInvoiceModal } from '@/components/finance/ar/InvoicesModals'
+import { SendCustomerStatementModal } from '@/components/finance/ar/CustomerManagementModals'
 
 interface ARAgingRecord {
   id: string
@@ -169,6 +171,11 @@ export default function ARAgingPage() {
   const [searchTerm, setSearchTerm] = useState('')
   const [ageFilter, setAgeFilter] = useState<string>('all')
 
+  // Modal states
+  const [isViewInvoiceModalOpen, setIsViewInvoiceModalOpen] = useState(false)
+  const [isStatementModalOpen, setIsStatementModalOpen] = useState(false)
+  const [selectedCustomer, setSelectedCustomer] = useState<ARAgingRecord | null>(null)
+
   const filteredData = useMemo(() => {
     let data = mockARData.filter(record =>
       record.customerName.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -215,7 +222,7 @@ export default function ARAgingPage() {
   }
 
   return (
-    <div className="p-6 max-w-7xl mx-auto">
+    <div className="p-6">
       <div className="mb-6">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">Accounts Receivable Aging Report</h1>
         <p className="text-gray-600">Track overdue customer invoices by aging buckets</p>
@@ -359,11 +366,23 @@ export default function ARAgingPage() {
                 </div>
 
                 <div className="flex items-center gap-2">
-                  <button className="px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 flex items-center gap-2 text-sm">
+                  <button
+                    onClick={() => {
+                      setSelectedCustomer(record)
+                      setIsViewInvoiceModalOpen(true)
+                    }}
+                    className="px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 flex items-center gap-2 text-sm"
+                  >
                     <FileText className="h-4 w-4" />
                     View Invoices
                   </button>
-                  <button className="px-3 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 flex items-center gap-2 text-sm">
+                  <button
+                    onClick={() => {
+                      setSelectedCustomer(record)
+                      setIsStatementModalOpen(true)
+                    }}
+                    className="px-3 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 flex items-center gap-2 text-sm"
+                  >
                     <Download className="h-4 w-4" />
                     Statement
                   </button>
@@ -494,6 +513,28 @@ export default function ARAgingPage() {
           </div>
         </div>
       </div>
+
+      {/* Modals */}
+      <ViewInvoiceModal
+        isOpen={isViewInvoiceModalOpen}
+        onClose={() => setIsViewInvoiceModalOpen(false)}
+        invoice={selectedCustomer ? {
+          invoiceNumber: selectedCustomer.oldestInvoice,
+          customerName: selectedCustomer.customerName,
+          totalAmount: selectedCustomer.totalOutstanding,
+          balanceAmount: selectedCustomer.totalOutstanding
+        } : null}
+      />
+
+      <SendCustomerStatementModal
+        isOpen={isStatementModalOpen}
+        onClose={() => setIsStatementModalOpen(false)}
+        customer={selectedCustomer ? {
+          customerCode: selectedCustomer.customerCode,
+          customerName: selectedCustomer.customerName,
+          email: selectedCustomer.email
+        } : null}
+      />
     </div>
   )
 }
