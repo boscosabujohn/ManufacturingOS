@@ -234,9 +234,9 @@ export default function FinanceDashboard() {
       description: 'Financial reports and insights',
       icon: <BarChart3 className="h-8 w-8" />,
       color: 'from-orange-500 to-orange-600',
-      stats: '25+ Reports',
+      stats: '12 Reports',
       link: '/finance/reports',
-      available: false
+      available: true
     }
   ];
 
