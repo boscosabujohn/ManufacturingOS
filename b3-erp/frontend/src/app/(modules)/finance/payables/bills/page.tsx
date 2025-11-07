@@ -59,6 +59,7 @@ export default function VendorBillsPage() {
   const [showFilters, setShowFilters] = useState(false);
   const [selectedBills, setSelectedBills] = useState<string[]>([]);
   const [expandedBill, setExpandedBill] = useState<string | null>(null);
+  const [isExporting, setIsExporting] = useState(false);
 
   // Mock data
   const billStats = {
@@ -288,6 +289,51 @@ export default function VendorBillsPage() {
     }
   };
 
+  const handleExportBills = () => {
+    setIsExporting(true);
+    setTimeout(() => {
+      const headers = ['Bill Number', 'Vendor Name', 'Bill Date', 'Due Date', 'PO Number', 'GRN Number', 'Subtotal', 'Tax', 'Total', 'Paid', 'Balance', 'Status', 'Category', 'Payment Terms', 'Created By', 'Created Date'];
+      const rows = filteredBills.map(b => [
+        b.billNumber,
+        b.vendorName,
+        b.billDate,
+        b.dueDate,
+        b.poNumber || '',
+        b.grnNumber || '',
+        b.subtotal,
+        b.taxAmount,
+        b.totalAmount,
+        b.paidAmount,
+        b.balanceAmount,
+        b.status,
+        b.category,
+        b.paymentTerms,
+        b.createdBy,
+        b.createdDate
+      ]);
+
+      const csvContent = [headers, ...rows].map(row => row.join(',')).join('\n');
+      const blob = new Blob([csvContent], { type: 'text/csv' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `Vendor_Bills_${new Date().toISOString().split('T')[0]}.csv`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      setIsExporting(false);
+    }, 500);
+  };
+
+  const handleDeleteBill = (billId: string, billNumber: string) => {
+    const confirmDelete = confirm(`Are you sure you want to delete bill ${billNumber}?\n\nThis action cannot be undone. The bill will be permanently removed from the system.`);
+    if (confirmDelete) {
+      alert(`Bill ${billNumber} would be deleted.\n\nNote: This is a demo. In production, this would:\n- Mark the bill as deleted in the database\n- Update related transactions\n- Log the deletion in audit trail\n- Send notifications if configured`);
+    }
+  };
+
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 via-green-50 to-blue-50">
       <div className="flex-1 overflow-y-auto overflow-x-hidden">
@@ -312,9 +358,13 @@ export default function VendorBillsPage() {
                 <Filter className="h-4 w-4" />
                 <span>Filters</span>
               </button>
-              <button className="flex items-center space-x-2 px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">
+              <button
+                onClick={handleExportBills}
+                disabled={isExporting}
+                className="flex items-center space-x-2 px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              >
                 <Download className="h-4 w-4" />
-                <span>Export</span>
+                <span>{isExporting ? 'Exporting...' : 'Export'}</span>
               </button>
               <button 
                 onClick={() => router.push('/finance/payables/add')}
@@ -531,7 +581,11 @@ export default function VendorBillsPage() {
                             >
                               <Edit className="h-4 w-4" />
                             </button>
-                            <button className="text-red-600 hover:text-red-800">
+                            <button
+                              onClick={() => handleDeleteBill(bill.billId, bill.billNumber)}
+                              className="text-red-600 hover:text-red-800"
+                              title="Delete bill"
+                            >
                               <Trash2 className="h-4 w-4" />
                             </button>
                           </div>

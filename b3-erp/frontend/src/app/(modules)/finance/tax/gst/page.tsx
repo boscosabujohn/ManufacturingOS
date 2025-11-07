@@ -59,6 +59,8 @@ export default function GSTManagementPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [typeFilter, setTypeFilter] = useState('all');
   const [periodFilter, setPeriodFilter] = useState('2025-01');
+  const [isExporting, setIsExporting] = useState(false);
+  const [isImporting, setIsImporting] = useState(false);
 
   // Sample GST transactions
   const gstTransactions: GSTTransaction[] = [
@@ -291,6 +293,77 @@ export default function GSTManagementPage() {
     );
   };
 
+  const handleImportGSTR2A = () => {
+    setIsImporting(true);
+    setTimeout(() => {
+      alert('Import GSTR-2A\n\nThis will open a file upload dialog to import GSTR-2A data from the GST portal.\n\nSupported formats:\n- JSON (from GST Portal)\n- Excel (.xlsx)\n\nThe system will:\n- Validate GSTIN\n- Match with purchase records\n- Identify mismatches\n- Auto-reconcile matched entries');
+      setIsImporting(false);
+    }, 500);
+  };
+
+  const handleNewTransaction = () => {
+    alert('New GST Transaction\n\nThis will open a form to manually add a GST transaction.\n\nYou can enter:\n- Transaction type (Sale/Purchase/Return)\n- Party details and GSTIN\n- Invoice details\n- Taxable amount and GST rates\n- HSN/SAC codes\n- Place of supply\n\nThe system will auto-calculate:\n- CGST, SGST, or IGST based on place of supply\n- Total tax and invoice amount');
+  };
+
+  const handleExportGST = () => {
+    setIsExporting(true);
+    setTimeout(() => {
+      const headers = ['Date', 'Invoice Number', 'Party Name', 'GSTIN', 'Type', 'Taxable Amount', 'CGST', 'SGST', 'IGST', 'CESS', 'Total Tax', 'Total Amount', 'GST Rate', 'Place of Supply', 'HSN', 'Return Period', 'Filed'];
+      const rows = filteredTransactions.map(t => [
+        t.date,
+        t.invoiceNumber,
+        t.partyName,
+        t.gstin,
+        t.transactionType,
+        t.taxableAmount,
+        t.cgst,
+        t.sgst,
+        t.igst,
+        t.cess,
+        t.totalTax,
+        t.totalAmount,
+        t.gstRate,
+        t.placeOfSupply,
+        t.hsn || '',
+        t.returnPeriod,
+        t.filed ? 'Yes' : 'No'
+      ]);
+
+      const csvContent = [headers, ...rows].map(row => row.join(',')).join('\n');
+      const blob = new Blob([csvContent], { type: 'text/csv' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `GST_Transactions_${periodFilter}_${new Date().toISOString().split('T')[0]}.csv`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      setIsExporting(false);
+    }, 500);
+  };
+
+  const handleViewTransaction = (txn: GSTTransaction) => {
+    alert(`GST Transaction Details\n\nInvoice: ${txn.invoiceNumber}\nDate: ${txn.date}\nParty: ${txn.partyName}\nGSTIN: ${txn.gstin}\nType: ${txn.transactionType}\n\nTaxable Amount: ${formatCurrency(txn.taxableAmount)}\nCGST: ${formatCurrency(txn.cgst)}\nSGST: ${formatCurrency(txn.sgst)}\nIGST: ${formatCurrency(txn.igst)}\nTotal Tax: ${formatCurrency(txn.totalTax)}\nTotal Amount: ${formatCurrency(txn.totalAmount)}\n\nGST Rate: ${txn.gstRate}%\nPlace of Supply: ${txn.placeOfSupply}\nHSN: ${txn.hsn || 'N/A'}\nReturn Period: ${txn.returnPeriod}\nFiled: ${txn.filed ? 'Yes' : 'No'}`);
+  };
+
+  const handleViewReturn = (ret: GSTReturn) => {
+    alert(`GST Return Details\n\nReturn Type: ${ret.returnType}\nPeriod: ${ret.period}\nDue Date: ${ret.dueDate}\nStatus: ${ret.status}\n${ret.filedDate ? `\nFiled Date: ${ret.filedDate}` : ''}${ret.arn ? `\nARN: ${ret.arn}` : ''}\n\nTotal Sales: ${formatCurrency(ret.totalSales)}\nTotal Purchases: ${formatCurrency(ret.totalPurchases)}\nOutput Tax: ${formatCurrency(ret.outputTax)}\nInput Tax: ${formatCurrency(ret.inputTax)}\nNet Tax: ${formatCurrency(ret.netTax)}\n\n${ret.netTax >= 0 ? 'Tax Payable' : 'Tax Refund'}`);
+  };
+
+  const handleFileReturn = (ret: GSTReturn) => {
+    const confirm = window.confirm(`File ${ret.returnType} for ${ret.period}?\n\nNet Tax: ${formatCurrency(ret.netTax)}\nDue Date: ${ret.dueDate}\n\nThis will:\n- Validate all transactions\n- Generate JSON for GST portal\n- Mark return as filed\n- Generate ARN\n\nDo you want to continue?`);
+
+    if (confirm) {
+      alert(`Filing ${ret.returnType} for ${ret.period}\n\nIn production, this would:\n- Upload to GST portal API\n- Receive ARN\n- Update filing status\n- Send email confirmation\n- Update compliance dashboard\n\nDemo: Return filed successfully!\nARN: AA${new Date().getFullYear()}${(Math.random() * 1000000).toFixed(0)}X`);
+    }
+  };
+
+  const handleDownloadReturn = (ret: GSTReturn) => {
+    alert(`Download ${ret.returnType} for ${ret.period}\n\nAvailable formats:\n1. JSON - For GST portal upload\n2. PDF - Summary report\n3. Excel - Detailed transactions\n\nSelect format:\n- JSON: Direct upload to GST portal\n- PDF: For records and review\n- Excel: For analysis and reconciliation`);
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-green-900 to-gray-900 p-6">
       <div className="max-w-7xl mx-auto space-y-6">
@@ -301,17 +374,28 @@ export default function GSTManagementPage() {
             <p className="text-gray-400">Manage GST transactions and returns</p>
           </div>
           <div className="flex gap-3">
-            <button className="flex items-center gap-2 px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors">
+            <button
+              onClick={handleImportGSTR2A}
+              disabled={isImporting}
+              className="flex items-center gap-2 px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            >
               <Upload className="w-4 h-4" />
-              Import GSTR-2A
+              {isImporting ? 'Importing...' : 'Import GSTR-2A'}
             </button>
-            <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors">
+            <button
+              onClick={handleNewTransaction}
+              className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
+            >
               <Plus className="w-4 h-4" />
               New Transaction
             </button>
-            <button className="flex items-center gap-2 px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded-lg transition-colors">
+            <button
+              onClick={handleExportGST}
+              disabled={isExporting}
+              className="flex items-center gap-2 px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            >
               <Download className="w-4 h-4" />
-              Export
+              {isExporting ? 'Exporting...' : 'Export'}
             </button>
           </div>
         </div>
@@ -502,7 +586,11 @@ export default function GSTManagementPage() {
                         </td>
                         <td className="px-6 py-4">
                           <div className="flex items-center justify-center gap-2">
-                            <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors">
+                            <button
+                              onClick={() => handleViewTransaction(txn)}
+                              className="p-2 hover:bg-gray-700 rounded-lg transition-colors"
+                              title="View transaction details"
+                            >
                               <Eye className="w-4 h-4 text-blue-400" />
                             </button>
                           </div>
@@ -567,15 +655,27 @@ export default function GSTManagementPage() {
                       </td>
                       <td className="px-6 py-4">
                         <div className="flex items-center justify-center gap-2">
-                          <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors">
+                          <button
+                            onClick={() => handleViewReturn(ret)}
+                            className="p-2 hover:bg-gray-700 rounded-lg transition-colors"
+                            title="View return details"
+                          >
                             <Eye className="w-4 h-4 text-blue-400" />
                           </button>
                           {ret.status !== 'Filed' && (
-                            <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors">
+                            <button
+                              onClick={() => handleFileReturn(ret)}
+                              className="p-2 hover:bg-gray-700 rounded-lg transition-colors"
+                              title="File return to GST portal"
+                            >
                               <Send className="w-4 h-4 text-green-400" />
                             </button>
                           )}
-                          <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors">
+                          <button
+                            onClick={() => handleDownloadReturn(ret)}
+                            className="p-2 hover:bg-gray-700 rounded-lg transition-colors"
+                            title="Download return in various formats"
+                          >
                             <Download className="w-4 h-4 text-purple-400" />
                           </button>
                         </div>

@@ -204,6 +204,20 @@ export default function Page() {
     });
   };
 
+  const handleCommentPost = (postId: string) => {
+    toast({
+      title: "Comments",
+      description: "Comment feature coming soon! You can view and add comments here."
+    });
+  };
+
+  const handleSharePost = (postId: string) => {
+    toast({
+      title: "Share Post",
+      description: "Post sharing options will appear here"
+    });
+  };
+
   const handlePostJob = () => {
     toast({
       title: "Job Posted",
@@ -363,11 +377,17 @@ export default function Page() {
                   <Heart className="h-5 w-5" />
                   <span className="text-sm font-medium">{post.likes}</span>
                 </button>
-                <button className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors">
+                <button
+                  onClick={() => handleCommentPost(post.id)}
+                  className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors"
+                >
                   <MessageCircle className="h-5 w-5" />
                   <span className="text-sm font-medium">{post.comments}</span>
                 </button>
-                <button className="flex items-center gap-2 text-gray-600 hover:text-green-600 transition-colors">
+                <button
+                  onClick={() => handleSharePost(post.id)}
+                  className="flex items-center gap-2 text-gray-600 hover:text-green-600 transition-colors"
+                >
                   <Share2 className="h-5 w-5" />
                   <span className="text-sm font-medium">{post.shares}</span>
                 </button>

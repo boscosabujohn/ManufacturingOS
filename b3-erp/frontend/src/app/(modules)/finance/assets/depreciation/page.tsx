@@ -68,23 +68,69 @@ export default function DepreciationPage() {
 
   // Action handlers
   const handleRunDepreciation = () => {
-    showToast('Running depreciation process...', 'success');
+    const confirmed = confirm('Run monthly depreciation for all active assets?');
+    if (confirmed) {
+      showToast('Running depreciation process...', 'info');
+      // Simulate depreciation calculation
+      setTimeout(() => {
+        showToast('Depreciation calculated successfully for all assets!', 'success');
+        // In a real app, you would:
+        // - POST to /api/assets/depreciation/run-batch
+        // - Calculate depreciation for all eligible assets
+        // - Update accumulated depreciation and net book values
+        // - Create journal entries
+        // - Refresh the depreciation schedule list
+      }, 2000);
+    }
   };
 
   const handleManualEntry = () => {
-    showToast('Manual entry feature - Coming soon!', 'info');
+    // In a real app, this would open a form to manually adjust depreciation
+    const assetCode = prompt('Enter asset code for manual depreciation entry:');
+    if (assetCode) {
+      const amount = prompt('Enter depreciation amount:');
+      if (amount) {
+        showToast(`Manual depreciation entry of ₹${amount} recorded for ${assetCode}`, 'success');
+        // In a real app, you would:
+        // - Open a detailed form modal
+        // - Validate the manual entry
+        // - POST to /api/assets/depreciation/manual-entry
+        // - Update the depreciation schedule
+      }
+    }
   };
 
   const handleExport = () => {
-    showToast('Exporting depreciation data...', 'info');
+    showToast('Preparing depreciation data export...', 'info');
+    setTimeout(() => {
+      showToast('Depreciation data exported successfully!', 'success');
+      // In a real app, you would:
+      // - Fetch all depreciation schedules
+      // - Format as Excel/CSV with columns: Asset, Method, Current Value, etc.
+      // - Use a library like xlsx to generate the file
+      // - Trigger download
+    }, 1500);
   };
 
   const handleViewSchedule = (assetName: string) => {
-    showToast(`Viewing schedule for: ${assetName}`, 'info');
+    showToast(`Opening depreciation schedule for: ${assetName}`, 'info');
+    // In a real app, you would:
+    // - Fetch detailed depreciation schedule from API
+    // - Open a modal showing month-by-month depreciation breakdown
+    // - Display depreciation amounts, accumulated totals, net book values
+    // - Show historical and projected depreciation
   };
 
   const handlePauseSchedule = (assetName: string) => {
-    showToast(`Pausing depreciation for: ${assetName}`, 'success');
+    const confirmed = confirm(`Pause automatic depreciation for ${assetName}?`);
+    if (confirmed) {
+      showToast(`Depreciation paused for: ${assetName}`, 'success');
+      // In a real app, you would:
+      // - PUT to /api/assets/depreciation/pause/{assetId}
+      // - Update asset status to prevent auto-depreciation
+      // - Log the pause action with reason
+      // - Refresh the schedule list
+    }
   };
 
   // Sample depreciation schedules

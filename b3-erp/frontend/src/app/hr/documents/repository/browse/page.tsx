@@ -6,6 +6,16 @@ import { Folder, File, Download, Eye, FolderOpen } from 'lucide-react';
 export default function BrowseRepositoryPage() {
   const [currentPath, setCurrentPath] = useState(['Documents']);
 
+  const navigateToPath = (index: number) => {
+    // Navigate to a specific path level
+    setCurrentPath(currentPath.slice(0, index + 1));
+  };
+
+  const navigateToFolder = (folderName: string) => {
+    // Navigate into a folder
+    setCurrentPath([...currentPath, folderName]);
+  };
+
   const folders = [
     { id: 1, name: 'HR Policies', fileCount: 12, lastModified: '2025-01-15' },
     { id: 2, name: 'Employee Handbooks', fileCount: 5, lastModified: '2025-01-10' },
@@ -33,7 +43,12 @@ export default function BrowseRepositoryPage() {
           {currentPath.map((path, index) => (
             <div key={index} className="flex items-center gap-2">
               {index > 0 && <span>/</span>}
-              <button className="hover:text-blue-600 font-medium">{path}</button>
+              <button
+                onClick={() => navigateToPath(index)}
+                className="hover:text-blue-600 font-medium transition-colors"
+              >
+                {path}
+              </button>
             </div>
           ))}
         </div>
@@ -43,7 +58,11 @@ export default function BrowseRepositoryPage() {
         <h2 className="text-lg font-semibold text-gray-900 mb-4">Folders</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {folders.map((folder) => (
-            <div key={folder.id} className="flex items-center gap-3 p-4 bg-blue-50 rounded-lg border border-blue-200 hover:border-blue-400 cursor-pointer transition-colors">
+            <div
+              key={folder.id}
+              onClick={() => navigateToFolder(folder.name)}
+              className="flex items-center gap-3 p-4 bg-blue-50 rounded-lg border border-blue-200 hover:border-blue-400 hover:shadow-md cursor-pointer transition-all"
+            >
               <FolderOpen className="h-8 w-8 text-blue-600 flex-shrink-0" />
               <div className="flex-1 min-w-0">
                 <h3 className="font-semibold text-gray-900 truncate">{folder.name}</h3>

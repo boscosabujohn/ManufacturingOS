@@ -52,6 +52,8 @@ export default function TDSManagementPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [sectionFilter, setSectionFilter] = useState('all');
   const [quarterFilter, setQuarterFilter] = useState('Q4-2024-25');
+  const [isExporting, setIsExporting] = useState(false);
+  const [isDownloading, setIsDownloading] = useState(false);
 
   // Sample TDS transactions
   const tdsTransactions: TDSTransaction[] = [
@@ -270,6 +272,94 @@ export default function TDSManagementPage() {
     );
   };
 
+  const handleNewTDSEntry = () => {
+    alert('New TDS Entry\n\nThis will open a form to record a new TDS deduction.\n\nYou can enter:\n- Deductee details (Name, PAN)\n- Section code (192/194C/194J/194I/etc.)\n- Gross payment amount\n- TDS rate and amount\n- Payment reference\n- Quarter\n\nThe system will:\n- Auto-calculate TDS based on section\n- Validate PAN format\n- Check for duplicate entries\n- Update pending deposit amount');
+  };
+
+  const handleDownloadForm16A = () => {
+    setIsDownloading(true);
+    setTimeout(() => {
+      alert('Download Form 16A\n\nGenerate TDS certificates for all deductees.\n\nOptions:\n- Individual Form 16A for each deductee\n- Consolidated ZIP file\n- Quarter selection\n\nThe form includes:\n- Deductor details (TAN)\n- Deductee details (PAN)\n- Payment and deduction details\n- Challan information\n- Digital signature\n\nNote: Only for deposited TDS transactions');
+      setIsDownloading(false);
+    }, 500);
+  };
+
+  const handleExportTDS = () => {
+    setIsExporting(true);
+    setTimeout(() => {
+      const headers = ['Date', 'Payment Ref', 'Deductee', 'PAN', 'Section', 'Gross Amount', 'TDS Rate', 'TDS Amount', 'Net Payment', 'Quarter', 'Challan Number', 'Challan Date', 'Deposited'];
+      const rows = filteredTransactions.map(t => [
+        t.date,
+        t.paymentRef,
+        t.deductee,
+        t.pan,
+        t.section,
+        t.grossAmount,
+        t.tdsRate,
+        t.tdsAmount,
+        t.netPayment,
+        t.quarter,
+        t.challanNumber || '',
+        t.challanDate || '',
+        t.deposited ? 'Yes' : 'No'
+      ]);
+
+      const csvContent = [headers, ...rows].map(row => row.join(',')).join('\n');
+      const blob = new Blob([csvContent], { type: 'text/csv' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `TDS_Transactions_${quarterFilter}_${new Date().toISOString().split('T')[0]}.csv`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      setIsExporting(false);
+    }, 500);
+  };
+
+  const handleViewTransaction = (txn: TDSTransaction) => {
+    alert(`TDS Transaction Details\n\nPayment Ref: ${txn.paymentRef}\nDate: ${txn.date}\nDeductee: ${txn.deductee}\nPAN: ${txn.pan}\nSection: ${txn.section}\n\nGross Amount: ${formatCurrency(txn.grossAmount)}\nTDS Rate: ${txn.tdsRate}%\nTDS Amount: ${formatCurrency(txn.tdsAmount)}\nNet Payment: ${formatCurrency(txn.netPayment)}\n\nQuarter: ${txn.quarter}\n${txn.challanNumber ? `Challan: ${txn.challanNumber}\nChallan Date: ${txn.challanDate}` : 'Challan: Not deposited yet'}\nStatus: ${txn.deposited ? 'Deposited' : 'Pending Deposit'}`);
+  };
+
+  const handleDownloadTransactionCertificate = (txn: TDSTransaction) => {
+    if (!txn.deposited) {
+      alert('Certificate Not Available\n\nForm 16A can only be generated for deposited TDS.\n\nPlease deposit the TDS first using a challan.');
+      return;
+    }
+    alert(`Download Form 16A for ${txn.deductee}\n\nThis will generate Form 16A certificate with:\n- Deductor TAN and details\n- Deductee PAN: ${txn.pan}\n- Payment date: ${txn.date}\n- Gross Amount: ${formatCurrency(txn.grossAmount)}\n- TDS Amount: ${formatCurrency(txn.tdsAmount)}\n- Challan: ${txn.challanNumber}\n- Challan Date: ${txn.challanDate}\n\nFormat: PDF with digital signature`);
+  };
+
+  const handleViewReturn = (ret: TDSReturn) => {
+    alert(`TDS Return Details\n\nForm: ${ret.formType}\nQuarter: ${ret.quarter}\nDue Date: ${ret.dueDate}\nStatus: ${ret.status}\n${ret.filedDate ? `\nFiled Date: ${ret.filedDate}` : ''}${ret.acknowledgementNumber ? `\nAcknowledgement: ${ret.acknowledgementNumber}` : ''}\n\nTotal Deductions: ${formatCurrency(ret.totalDeductions)}\nTotal Deposited: ${formatCurrency(ret.totalDeposited)}\nNumber of Deductees: ${ret.deducteeCount}\n\n${ret.totalDeductions === ret.totalDeposited ? 'All TDS deposited ✓' : 'Pending deposit: ' + formatCurrency(ret.totalDeductions - ret.totalDeposited)}`);
+  };
+
+  const handleFileReturn = (ret: TDSReturn) => {
+    if (ret.totalDeductions !== ret.totalDeposited) {
+      alert(`Cannot File Return\n\nAll TDS must be deposited before filing.\n\nPending Deposit: ${formatCurrency(ret.totalDeductions - ret.totalDeposited)}\n\nPlease deposit the pending amount first.`);
+      return;
+    }
+
+    const confirm = window.confirm(`File ${ret.formType} for ${ret.quarter}?\n\nTotal Deductions: ${formatCurrency(ret.totalDeductions)}\nDeductees: ${ret.deducteeCount}\nDue Date: ${ret.dueDate}\n\nThis will:\n- Validate all transactions\n- Generate return file\n- Upload to TRACES portal\n- Generate acknowledgement\n\nDo you want to continue?`);
+
+    if (confirm) {
+      alert(`Filing ${ret.formType} for ${ret.quarter}\n\nIn production, this would:\n- Validate PAN and TAN\n- Generate FVU file\n- Upload to TRACES\n- Receive token number\n- Send confirmation email\n\nDemo: Return filed successfully!\nAcknowledgement: ACK${new Date().getFullYear()}${(Math.random() * 100000000).toFixed(0).padStart(8, '0')}`);
+    }
+  };
+
+  const handleDownloadReturn = (ret: TDSReturn) => {
+    alert(`Download ${ret.formType} for ${ret.quarter}\n\nAvailable formats:\n\n1. FVU File - For TRACES upload\n   (.txt format, ready to upload)\n\n2. PDF Summary - Consolidated report\n   (All transactions, challans, totals)\n\n3. Excel Workbook - Detailed analysis\n   (Transaction-wise breakdown)\n\n4. Justification Report - For review\n   (Annexures and supporting docs)\n\nSelect the format based on your requirement.`);
+  };
+
+  const handleViewChallan = (challan: any) => {
+    alert(`Challan Details\n\nChallan Number: ${challan.challanNumber}\nDate: ${challan.date}\nAmount: ${formatCurrency(challan.amount)}\nSection: ${challan.section}\nBank: ${challan.bankName}\nStatus: ${challan.status}\n\nThis challan covers TDS deposits made for the specified section and period.`);
+  };
+
+  const handleDownloadChallan = (challan: any) => {
+    alert(`Download Challan Receipt\n\nChallan: ${challan.challanNumber}\n\nThis will download:\n- Original bank challan copy\n- BSR code details\n- Challan date and amount\n- Section-wise breakup\n\nFormat: PDF\n\nRequired for TDS return filing and deductee certificates.`);
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 p-6">
       <div className="max-w-7xl mx-auto space-y-6">
@@ -280,17 +370,28 @@ export default function TDSManagementPage() {
             <p className="text-gray-400">Manage TDS deductions and returns</p>
           </div>
           <div className="flex gap-3">
-            <button className="flex items-center gap-2 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors">
+            <button
+              onClick={handleNewTDSEntry}
+              className="flex items-center gap-2 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors"
+            >
               <Plus className="w-4 h-4" />
               New TDS Entry
             </button>
-            <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors">
+            <button
+              onClick={handleDownloadForm16A}
+              disabled={isDownloading}
+              className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            >
               <Download className="w-4 h-4" />
-              Download Form 16A
+              {isDownloading ? 'Downloading...' : 'Download Form 16A'}
             </button>
-            <button className="flex items-center gap-2 px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded-lg transition-colors">
+            <button
+              onClick={handleExportTDS}
+              disabled={isExporting}
+              className="flex items-center gap-2 px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            >
               <Download className="w-4 h-4" />
-              Export
+              {isExporting ? 'Exporting...' : 'Export'}
             </button>
           </div>
         </div>
@@ -503,10 +604,18 @@ export default function TDSManagementPage() {
                         </td>
                         <td className="px-6 py-4">
                           <div className="flex items-center justify-center gap-2">
-                            <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors">
+                            <button
+                              onClick={() => handleViewTransaction(txn)}
+                              className="p-2 hover:bg-gray-700 rounded-lg transition-colors"
+                              title="View transaction details"
+                            >
                               <Eye className="w-4 h-4 text-blue-400" />
                             </button>
-                            <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors">
+                            <button
+                              onClick={() => handleDownloadTransactionCertificate(txn)}
+                              className="p-2 hover:bg-gray-700 rounded-lg transition-colors"
+                              title="Download Form 16A certificate"
+                            >
                               <Download className="w-4 h-4 text-green-400" />
                             </button>
                           </div>
@@ -567,15 +676,27 @@ export default function TDSManagementPage() {
                       </td>
                       <td className="px-6 py-4">
                         <div className="flex items-center justify-center gap-2">
-                          <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors">
+                          <button
+                            onClick={() => handleViewReturn(ret)}
+                            className="p-2 hover:bg-gray-700 rounded-lg transition-colors"
+                            title="View return details"
+                          >
                             <Eye className="w-4 h-4 text-blue-400" />
                           </button>
                           {ret.status !== 'Filed' && (
-                            <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors">
+                            <button
+                              onClick={() => handleFileReturn(ret)}
+                              className="p-2 hover:bg-gray-700 rounded-lg transition-colors"
+                              title="File return to TRACES portal"
+                            >
                               <Send className="w-4 h-4 text-green-400" />
                             </button>
                           )}
-                          <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors">
+                          <button
+                            onClick={() => handleDownloadReturn(ret)}
+                            className="p-2 hover:bg-gray-700 rounded-lg transition-colors"
+                            title="Download return in various formats"
+                          >
                             <Download className="w-4 h-4 text-purple-400" />
                           </button>
                         </div>
@@ -619,10 +740,18 @@ export default function TDSManagementPage() {
                       </td>
                       <td className="px-6 py-4">
                         <div className="flex items-center justify-center gap-2">
-                          <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors">
+                          <button
+                            onClick={() => handleViewChallan(challan)}
+                            className="p-2 hover:bg-gray-700 rounded-lg transition-colors"
+                            title="View challan details"
+                          >
                             <Eye className="w-4 h-4 text-blue-400" />
                           </button>
-                          <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors">
+                          <button
+                            onClick={() => handleDownloadChallan(challan)}
+                            className="p-2 hover:bg-gray-700 rounded-lg transition-colors"
+                            title="Download challan receipt"
+                          >
                             <Download className="w-4 h-4 text-purple-400" />
                           </button>
                         </div>
