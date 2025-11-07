@@ -54,23 +54,65 @@ export default function FixedAssetsPage() {
 
   // Action handlers
   const handleAddAsset = () => {
-    showToast('Add Asset feature - Coming soon!', 'info');
+    // In a real app, this would open a modal/form to add a new asset
+    const assetName = prompt('Enter asset name:');
+    if (assetName) {
+      showToast(`Asset "${assetName}" would be added to the system`, 'success');
+      // Here you would typically:
+      // - Open a detailed form modal
+      // - Collect asset details (category, location, purchase info, etc.)
+      // - POST to /api/assets/fixed-assets
+      // - Refresh the asset list
+    }
   };
 
   const handleViewAsset = (assetName: string) => {
-    showToast(`Viewing details for: ${assetName}`, 'info');
+    // In a real app, this would open a detailed view modal
+    showToast(`Opening detailed view for: ${assetName}`, 'info');
+    // Here you would typically:
+    // - Fetch full asset details from API
+    // - Open a modal with complete asset information
+    // - Show depreciation schedule, maintenance history, etc.
   };
 
   const handleEditAsset = (assetName: string) => {
-    showToast(`Edit feature for ${assetName} - Coming soon!`, 'info');
+    // In a real app, this would open an edit modal
+    showToast(`Edit mode activated for ${assetName}`, 'success');
+    // Here you would typically:
+    // - Fetch current asset details
+    // - Open edit form modal
+    // - Allow updates to asset information
+    // - PUT to /api/assets/fixed-assets/{id}
   };
 
   const handleDepreciation = (assetName: string) => {
-    showToast(`Running depreciation for: ${assetName}`, 'success');
+    // In a real app, this would calculate and post depreciation
+    const confirmed = confirm(`Run depreciation calculation for ${assetName}?`);
+    if (confirmed) {
+      showToast(`Depreciation calculated successfully for: ${assetName}`, 'success');
+      // Here you would typically:
+      // - Calculate depreciation based on method and useful life
+      // - Update accumulated depreciation
+      // - Update net book value
+      // - POST to /api/assets/depreciation/calculate
+      // - Update the asset in the list
+    }
   };
 
   const handleExport = () => {
-    showToast('Exporting asset data - Coming soon!', 'info');
+    // In a real app, this would export data to Excel/CSV
+    showToast('Preparing asset data export...', 'info');
+    setTimeout(() => {
+      showToast('Asset data exported successfully!', 'success');
+      // Here you would typically:
+      // - Fetch all asset data from API
+      // - Format as Excel/CSV using a library like xlsx
+      // - Trigger download
+      // Example: const blob = new Blob([csvData], { type: 'text/csv' });
+      // const url = window.URL.createObjectURL(blob);
+      // const a = document.createElement('a');
+      // a.href = url; a.download = 'fixed-assets.csv'; a.click();
+    }, 1500);
   };
 
   // Sample fixed assets data

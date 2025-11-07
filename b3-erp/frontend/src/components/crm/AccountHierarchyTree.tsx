@@ -249,7 +249,12 @@ const TreeNode: React.FC<TreeNodeProps> = ({
                   </div>
                   <div className="flex items-center gap-2 text-blue-600">
                     <Mail className="w-4 h-4 flex-shrink-0" />
-                    <span className="truncate hover:underline cursor-pointer">{node.email}</span>
+                    <span
+                      onClick={() => window.location.href = `mailto:${node.email}`}
+                      className="truncate hover:underline cursor-pointer"
+                    >
+                      {node.email}
+                    </span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-600">
                     <Phone className="w-4 h-4 flex-shrink-0" />
@@ -258,7 +263,12 @@ const TreeNode: React.FC<TreeNodeProps> = ({
                   {node.website && (
                     <div className="flex items-center gap-2 text-blue-600 col-span-2">
                       <Globe className="w-4 h-4 flex-shrink-0" />
-                      <span className="truncate hover:underline cursor-pointer">{node.website}</span>
+                      <span
+                        onClick={() => window.open(node.website.startsWith('http') ? node.website : `https://${node.website}`, '_blank')}
+                        className="truncate hover:underline cursor-pointer"
+                      >
+                        {node.website}
+                      </span>
                     </div>
                   )}
                 </div>

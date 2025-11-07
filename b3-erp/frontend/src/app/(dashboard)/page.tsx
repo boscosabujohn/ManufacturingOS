@@ -146,6 +146,8 @@ const modules = [
 export default function DashboardPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const [showNotifications, setShowNotifications] = useState(false);
+  const [showUserMenu, setShowUserMenu] = useState(false);
 
   const filteredModules = modules.filter((module) => {
     const matchesSearch = module.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -190,15 +192,108 @@ export default function DashboardPage() {
 
             {/* User Actions */}
             <div className="flex items-center space-x-4">
-              <button className="relative inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
-                <Bell className="h-5 w-5 text-gray-600" />
-                <span className="text-gray-700">Notifications</span>
-                <span className="absolute top-0 right-0 block h-2 w-2 rounded-full bg-red-500 ring-2 ring-white"></span>
-              </button>
-              <button className="flex items-center space-x-2 p-2 text-gray-700 hover:text-gray-900">
-                <User className="h-6 w-6" />
-                <span className="hidden md:block">Admin</span>
-              </button>
+              <div className="relative">
+                <button
+                  onClick={() => setShowNotifications(!showNotifications)}
+                  className="relative inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm"
+                >
+                  <Bell className="h-5 w-5 text-gray-600" />
+                  <span className="text-gray-700">Notifications</span>
+                  <span className="absolute top-0 right-0 block h-2 w-2 rounded-full bg-red-500 ring-2 ring-white"></span>
+                </button>
+
+                {/* Notifications Dropdown */}
+                {showNotifications && (
+                  <div className="absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-lg border border-gray-200 z-50">
+                    <div className="p-4 border-b border-gray-200">
+                      <h3 className="font-semibold text-gray-900">Notifications</h3>
+                    </div>
+                    <div className="max-h-96 overflow-y-auto">
+                      <div className="p-4 hover:bg-gray-50 border-b border-gray-100 cursor-pointer">
+                        <div className="flex items-start gap-3">
+                          <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
+                          <div className="flex-1">
+                            <p className="text-sm font-medium text-gray-900">New order received</p>
+                            <p className="text-xs text-gray-600 mt-1">Order #1234 has been placed</p>
+                            <p className="text-xs text-gray-400 mt-1">2 hours ago</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="p-4 hover:bg-gray-50 border-b border-gray-100 cursor-pointer">
+                        <div className="flex items-start gap-3">
+                          <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
+                          <div className="flex-1">
+                            <p className="text-sm font-medium text-gray-900">Production completed</p>
+                            <p className="text-xs text-gray-600 mt-1">Batch #567 is ready for shipment</p>
+                            <p className="text-xs text-gray-400 mt-1">5 hours ago</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="p-4 hover:bg-gray-50 cursor-pointer">
+                        <div className="flex items-start gap-3">
+                          <div className="w-2 h-2 bg-yellow-500 rounded-full mt-2"></div>
+                          <div className="flex-1">
+                            <p className="text-sm font-medium text-gray-900">Low stock alert</p>
+                            <p className="text-xs text-gray-600 mt-1">Item #789 stock below threshold</p>
+                            <p className="text-xs text-gray-400 mt-1">1 day ago</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="p-3 border-t border-gray-200 text-center">
+                      <Link href="/notifications" className="text-sm text-blue-600 hover:text-blue-700 font-medium">
+                        View all notifications
+                      </Link>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              <div className="relative">
+                <button
+                  onClick={() => setShowUserMenu(!showUserMenu)}
+                  className="flex items-center space-x-2 p-2 text-gray-700 hover:text-gray-900"
+                >
+                  <User className="h-6 w-6" />
+                  <span className="hidden md:block">Admin</span>
+                </button>
+
+                {/* User Menu Dropdown */}
+                {showUserMenu && (
+                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 z-50">
+                    <div className="p-2">
+                      <Link
+                        href="/profile"
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded"
+                      >
+                        Profile
+                      </Link>
+                      <Link
+                        href="/settings"
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded"
+                      >
+                        Settings
+                      </Link>
+                      <Link
+                        href="/preferences"
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded"
+                      >
+                        Preferences
+                      </Link>
+                      <div className="border-t border-gray-200 my-1"></div>
+                      <button
+                        onClick={() => {
+                          // Add logout logic here
+                          console.log('Logout clicked');
+                        }}
+                        className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 rounded"
+                      >
+                        Logout
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
