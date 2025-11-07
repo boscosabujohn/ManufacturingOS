@@ -191,7 +191,7 @@ export default function FinanceDashboard() {
       color: 'from-green-500 to-green-600',
       stats: '₹45.2L Outstanding',
       link: '/finance/receivables/aging',
-      available: false
+      available: true
     },
     {
       title: 'Accounts Payable',
