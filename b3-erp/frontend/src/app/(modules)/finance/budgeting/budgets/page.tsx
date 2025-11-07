@@ -46,6 +46,10 @@ export default function BudgetsPage() {
   const [typeFilter, setTypeFilter] = useState('all');
   const [statusFilter, setStatusFilter] = useState('all');
   const [departmentFilter, setDepartmentFilter] = useState('all');
+  const [isExporting, setIsExporting] = useState(false);
+  const [isCreating, setIsCreating] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
 
   // Sample budgets data
   const budgets: Budget[] = [
@@ -219,6 +223,243 @@ export default function BudgetsPage() {
     }
   ];
 
+  // Handler Functions
+  const handleCreateBudget = () => {
+    setIsCreating(true);
+    setTimeout(() => {
+      setIsCreating(false);
+      alert(
+        'Create Budget Dialog\n\n' +
+        'In production, this would open a dialog/form to create a new budget with fields:\n' +
+        '- Budget Code (auto-generated)\n' +
+        '- Budget Name\n' +
+        '- Fiscal Year\n' +
+        '- Department & Cost Center\n' +
+        '- Budget Type (Operating/Capital/Project/Department/Revenue)\n' +
+        '- Total Budget Amount\n' +
+        '- Start Date & End Date\n' +
+        '- Description\n' +
+        '- Budget Line Items\n\n' +
+        'The new budget would be created with "Draft" status for review and approval.'
+      );
+    }, 300);
+  };
+
+  const handleExportBudgets = () => {
+    setIsExporting(true);
+    setTimeout(() => {
+      // Prepare CSV data with all budget fields
+      const csvHeaders = [
+        'Budget Code',
+        'Budget Name',
+        'Fiscal Year',
+        'Department',
+        'Cost Center',
+        'Budget Type',
+        'Total Budget',
+        'Allocated',
+        'Spent',
+        'Remaining',
+        'Variance',
+        'Variance %',
+        'Status',
+        'Start Date',
+        'End Date',
+        'Approved By',
+        'Approved Date',
+        'Revisions',
+        'Utilization %'
+      ].join(',');
+
+      const csvRows = filteredBudgets.map(budget => [
+        budget.budgetCode,
+        `"${budget.budgetName}"`,
+        budget.fiscalYear,
+        `"${budget.department}"`,
+        budget.costCenter,
+        budget.budgetType,
+        budget.totalBudget,
+        budget.allocated,
+        budget.spent,
+        budget.remaining,
+        budget.variance,
+        budget.variancePercent,
+        budget.status,
+        budget.startDate,
+        budget.endDate,
+        budget.approvedBy || 'N/A',
+        budget.approvedDate || 'N/A',
+        budget.revisions,
+        ((budget.spent / budget.totalBudget) * 100).toFixed(2)
+      ].join(','));
+
+      const csvContent = [csvHeaders, ...csvRows].join('\n');
+
+      // Create and download the CSV file
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement('a');
+      const url = URL.createObjectURL(blob);
+      link.setAttribute('href', url);
+      link.setAttribute('download', `budgets_export_${new Date().toISOString().split('T')[0]}.csv`);
+      link.style.visibility = 'hidden';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      setIsExporting(false);
+      alert(`Successfully exported ${filteredBudgets.length} budget(s) to CSV file with all fields including:\n- Budget details\n- Financial data\n- Variance analysis\n- Status information\n- Approval details`);
+    }, 500);
+  };
+
+  const handleViewBudget = (budget: Budget) => {
+    alert(
+      `View Budget Details\n\n` +
+      `Budget: ${budget.budgetName}\n` +
+      `Code: ${budget.budgetCode}\n` +
+      `Type: ${budget.budgetType}\n` +
+      `Department: ${budget.department}\n` +
+      `Status: ${budget.status}\n\n` +
+      `Financial Summary:\n` +
+      `- Total Budget: ${formatCurrency(budget.totalBudget)}\n` +
+      `- Allocated: ${formatCurrency(budget.allocated)}\n` +
+      `- Spent: ${formatCurrency(budget.spent)}\n` +
+      `- Remaining: ${formatCurrency(budget.remaining)}\n` +
+      `- Variance: ${formatCurrency(budget.variance)} (${budget.variancePercent}%)\n\n` +
+      `Period: ${new Date(budget.startDate).toLocaleDateString()} - ${new Date(budget.endDate).toLocaleDateString()}\n` +
+      `Approved By: ${budget.approvedBy || 'Pending'}\n` +
+      `Revisions: ${budget.revisions}\n\n` +
+      `In production, this would open a detailed view showing:\n` +
+      `- Budget line items breakdown\n` +
+      `- Spending history and timeline\n` +
+      `- Approval workflow\n` +
+      `- Variance analysis charts\n` +
+      `- Transaction details\n` +
+      `- Revision history`
+    );
+  };
+
+  const handleEditBudget = (budget: Budget) => {
+    if (budget.status === 'Locked' || budget.status === 'Closed') {
+      alert(
+        `Cannot Edit Budget\n\n` +
+        `Budget "${budget.budgetName}" is ${budget.status.toLowerCase()} and cannot be edited.\n\n` +
+        `To make changes:\n` +
+        `- For Locked budgets: Unlock the budget first\n` +
+        `- For Closed budgets: Create a new budget or contact admin`
+      );
+      return;
+    }
+
+    alert(
+      `Edit Budget\n\n` +
+      `Editing: ${budget.budgetName}\n` +
+      `Current Status: ${budget.status}\n\n` +
+      `In production, this would:\n` +
+      `- Navigate to edit form (/finance/budgeting/budgets/${budget.id}/edit)\n` +
+      `- Or open an edit dialog with all budget fields\n` +
+      `- Allow modification of budget amounts and line items\n` +
+      `- Create a new revision (Rev ${budget.revisions + 1})\n` +
+      `- Require re-approval if significantly changed\n` +
+      `- Track all changes in audit log`
+    );
+  };
+
+  const handleCopyBudget = (budget: Budget) => {
+    const confirmed = window.confirm(
+      `Copy Budget\n\n` +
+      `Do you want to create a copy of "${budget.budgetName}"?\n\n` +
+      `This will create a new budget with:\n` +
+      `- Same structure and line items\n` +
+      `- Same budget amounts and allocations\n` +
+      `- New budget code (auto-generated)\n` +
+      `- Status: Draft\n` +
+      `- Current dates updated\n\n` +
+      `You can then modify the copied budget as needed.`
+    );
+
+    if (confirmed) {
+      setTimeout(() => {
+        alert(
+          `Budget Copied Successfully\n\n` +
+          `Original: ${budget.budgetCode}\n` +
+          `New Copy: BUD-${new Date().getFullYear()}-COPY-${String(Math.floor(Math.random() * 1000)).padStart(3, '0')}\n\n` +
+          `The new budget has been created with "Draft" status.\n` +
+          `You can now edit it to adjust amounts, dates, and other details.`
+        );
+      }, 300);
+    }
+  };
+
+  const handleLockBudget = (budget: Budget) => {
+    const confirmed = window.confirm(
+      `Lock Budget\n\n` +
+      `Are you sure you want to lock "${budget.budgetName}"?\n\n` +
+      `Locking the budget will:\n` +
+      `- Prevent any further modifications\n` +
+      `- Freeze all budget amounts\n` +
+      `- Require unlock to make changes\n` +
+      `- Continue tracking spending\n\n` +
+      `This is typically done at period-end or when budget is finalized.`
+    );
+
+    if (confirmed) {
+      setTimeout(() => {
+        alert(
+          `Budget Locked\n\n` +
+          `Budget "${budget.budgetName}" has been locked successfully.\n\n` +
+          `Status changed: ${budget.status} → Locked\n` +
+          `Locked by: Current User\n` +
+          `Locked on: ${new Date().toLocaleString()}\n\n` +
+          `The budget is now read-only. Use the unlock action to allow modifications.`
+        );
+      }, 300);
+    }
+  };
+
+  const handleUnlockBudget = (budget: Budget) => {
+    const confirmed = window.confirm(
+      `Unlock Budget\n\n` +
+      `Are you sure you want to unlock "${budget.budgetName}"?\n\n` +
+      `Unlocking the budget will:\n` +
+      `- Allow modifications to budget amounts\n` +
+      `- Enable editing of line items\n` +
+      `- Change status from Locked to Active\n` +
+      `- Log the unlock action\n\n` +
+      `Note: This action requires appropriate permissions.`
+    );
+
+    if (confirmed) {
+      setTimeout(() => {
+        alert(
+          `Budget Unlocked\n\n` +
+          `Budget "${budget.budgetName}" has been unlocked successfully.\n\n` +
+          `Status changed: Locked → Active\n` +
+          `Unlocked by: Current User\n` +
+          `Unlocked on: ${new Date().toLocaleString()}\n\n` +
+          `The budget can now be modified. Changes will create a new revision.`
+        );
+      }, 300);
+    }
+  };
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      handlePageChange(currentPage - 1);
+    }
+  };
+
+  const handleNextPage = () => {
+    const totalPages = Math.ceil(filteredBudgets.length / itemsPerPage);
+    if (currentPage < totalPages) {
+      handlePageChange(currentPage + 1);
+    }
+  };
+
   const filteredBudgets = budgets.filter(budget => {
     const matchesSearch =
       budget.budgetName.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -318,9 +559,13 @@ export default function BudgetsPage() {
             <h1 className="text-3xl font-bold text-white mb-2">Budget Management</h1>
             <p className="text-gray-400">Create, track, and manage organizational budgets</p>
           </div>
-          <button className="flex items-center gap-2 px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors shadow-lg">
+          <button
+            onClick={handleCreateBudget}
+            disabled={isCreating}
+            className="flex items-center gap-2 px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+          >
             <Plus className="w-5 h-5" />
-            Create Budget
+            {isCreating ? 'Creating...' : 'Create Budget'}
           </button>
         </div>
 
@@ -438,9 +683,13 @@ export default function BudgetsPage() {
               </select>
             </div>
 
-            <button className="flex items-center gap-2 px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded-lg transition-colors">
+            <button
+              onClick={handleExportBudgets}
+              disabled={isExporting}
+              className="flex items-center gap-2 px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            >
               <Download className="w-4 h-4" />
-              Export
+              {isExporting ? 'Exporting...' : 'Export'}
             </button>
           </div>
         </div>
@@ -529,21 +778,41 @@ export default function BudgetsPage() {
                       </td>
                       <td className="px-6 py-4">
                         <div className="flex items-center justify-center gap-2">
-                          <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors">
+                          <button
+                            onClick={() => handleViewBudget(budget)}
+                            className="p-2 hover:bg-gray-700 rounded-lg transition-colors"
+                            title="View Budget Details"
+                          >
                             <Eye className="w-4 h-4 text-blue-400" />
                           </button>
-                          <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors">
+                          <button
+                            onClick={() => handleEditBudget(budget)}
+                            className="p-2 hover:bg-gray-700 rounded-lg transition-colors"
+                            title="Edit Budget"
+                          >
                             <Edit className="w-4 h-4 text-green-400" />
                           </button>
-                          <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors">
+                          <button
+                            onClick={() => handleCopyBudget(budget)}
+                            className="p-2 hover:bg-gray-700 rounded-lg transition-colors"
+                            title="Copy Budget"
+                          >
                             <Copy className="w-4 h-4 text-purple-400" />
                           </button>
                           {budget.status === 'Active' ? (
-                            <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors">
+                            <button
+                              onClick={() => handleLockBudget(budget)}
+                              className="p-2 hover:bg-gray-700 rounded-lg transition-colors"
+                              title="Lock Budget"
+                            >
                               <Unlock className="w-4 h-4 text-orange-400" />
                             </button>
                           ) : (
-                            <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors">
+                            <button
+                              onClick={() => handleUnlockBudget(budget)}
+                              className="p-2 hover:bg-gray-700 rounded-lg transition-colors"
+                              title="Unlock Budget"
+                            >
                               <Lock className="w-4 h-4 text-gray-400" />
                             </button>
                           )}
@@ -569,14 +838,34 @@ export default function BudgetsPage() {
         {filteredBudgets.length > 0 && (
           <div className="flex items-center justify-between bg-gray-800/50 backdrop-blur-sm rounded-xl p-4 border border-gray-700">
             <div className="text-gray-400 text-sm">
-              Showing {filteredBudgets.length} of {budgets.length} budgets
+              Showing {Math.min((currentPage - 1) * itemsPerPage + 1, filteredBudgets.length)} - {Math.min(currentPage * itemsPerPage, filteredBudgets.length)} of {filteredBudgets.length} budgets
             </div>
             <div className="flex gap-2">
-              <button className="px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+              <button
+                onClick={handlePreviousPage}
+                disabled={currentPage === 1}
+                className="px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              >
                 Previous
               </button>
-              <button className="px-4 py-2 bg-green-600 text-white rounded-lg">1</button>
-              <button className="px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded-lg transition-colors">
+              {Array.from({ length: Math.ceil(filteredBudgets.length / itemsPerPage) }, (_, i) => i + 1).map(page => (
+                <button
+                  key={page}
+                  onClick={() => handlePageChange(page)}
+                  className={`px-4 py-2 rounded-lg transition-colors ${
+                    currentPage === page
+                      ? 'bg-green-600 text-white'
+                      : 'bg-gray-700 hover:bg-gray-600 text-white'
+                  }`}
+                >
+                  {page}
+                </button>
+              ))}
+              <button
+                onClick={handleNextPage}
+                disabled={currentPage === Math.ceil(filteredBudgets.length / itemsPerPage)}
+                className="px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              >
                 Next
               </button>
             </div>

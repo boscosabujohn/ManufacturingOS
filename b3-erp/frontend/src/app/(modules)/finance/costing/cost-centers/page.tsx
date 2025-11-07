@@ -41,6 +41,9 @@ export default function CostCentersPage() {
   const [typeFilter, setTypeFilter] = useState('all');
   const [statusFilter, setStatusFilter] = useState('all');
   const [departmentFilter, setDepartmentFilter] = useState('all');
+  const [isExporting, setIsExporting] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(10);
 
   // Sample cost centers data
   const costCenters: CostCenter[] = [
@@ -284,6 +287,305 @@ export default function CostCentersPage() {
     );
   };
 
+  // Handler Functions
+  const handleAddCostCenter = () => {
+    alert(
+      '🏢 Add Cost Center\n\n' +
+      'This will open a dialog to create a new cost center with the following fields:\n\n' +
+      '• Cost Center Code (auto-generated or manual)\n' +
+      '• Cost Center Name\n' +
+      '• Type (Production/Service/Administrative/Sales/R&D)\n' +
+      '• Department\n' +
+      '• Manager Assignment\n' +
+      '• Budget Allocation\n' +
+      '• Number of Employees\n' +
+      '• Opening Date\n' +
+      '• Description\n' +
+      '• Status (Active/Inactive)\n\n' +
+      'In production, this would:\n' +
+      '1. Open a modal/dialog form\n' +
+      '2. Validate all required fields\n' +
+      '3. Submit to API endpoint: POST /api/finance/cost-centers\n' +
+      '4. Refresh the cost centers list\n' +
+      '5. Show success notification'
+    );
+  };
+
+  const handleExportCostCenters = () => {
+    setIsExporting(true);
+
+    try {
+      // Prepare CSV data with ALL fields
+      const csvHeaders = [
+        'Cost Center ID',
+        'Code',
+        'Name',
+        'Type',
+        'Department',
+        'Manager',
+        'Status',
+        'Budget Allocated',
+        'Actual Cost',
+        'Variance Amount',
+        'Variance %',
+        'Utilization %',
+        'Employee Count',
+        'Opening Date',
+        'Description'
+      ];
+
+      const csvRows = filteredCostCenters.map(cc => {
+        const utilizationPercent = (cc.actualCost / cc.budgetAllocated) * 100;
+        return [
+          cc.id,
+          cc.code,
+          cc.name,
+          cc.type,
+          cc.department,
+          cc.manager,
+          cc.status,
+          cc.budgetAllocated.toString(),
+          cc.actualCost.toString(),
+          cc.variance.toString(),
+          cc.variancePercent.toFixed(2),
+          utilizationPercent.toFixed(2),
+          cc.employeeCount.toString(),
+          cc.openingDate,
+          `"${cc.description}"`
+        ];
+      });
+
+      const csvContent = [
+        csvHeaders.join(','),
+        ...csvRows.map(row => row.join(','))
+      ].join('\n');
+
+      // Create blob and download
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement('a');
+      const url = URL.createObjectURL(blob);
+
+      link.setAttribute('href', url);
+      link.setAttribute('download', `cost_centers_export_${new Date().toISOString().split('T')[0]}.csv`);
+      link.style.visibility = 'hidden';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      setTimeout(() => {
+        alert(
+          '✅ Export Successful!\n\n' +
+          `Exported ${filteredCostCenters.length} cost center(s) to CSV.\n\n` +
+          'The file includes all fields:\n' +
+          '• Cost Center ID & Code\n' +
+          '• Name, Type, Department\n' +
+          '• Manager & Status\n' +
+          '• Budget, Actual Cost, Variance\n' +
+          '• Utilization & Employee Count\n' +
+          '• Opening Date & Description\n\n' +
+          'File name: cost_centers_export_' + new Date().toISOString().split('T')[0] + '.csv'
+        );
+        setIsExporting(false);
+      }, 500);
+    } catch (error) {
+      alert('❌ Export failed: ' + (error as Error).message);
+      setIsExporting(false);
+    }
+  };
+
+  const handleViewCostCenter = (center: CostCenter) => {
+    const utilizationPercent = (center.actualCost / center.budgetAllocated) * 100;
+    const allocationPercent = (center.budgetAllocated / totalBudget) * 100;
+
+    alert(
+      `📊 Cost Center Details: ${center.name}\n\n` +
+      `━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+      `BASIC INFORMATION\n` +
+      `━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+      `Code: ${center.code}\n` +
+      `Name: ${center.name}\n` +
+      `Type: ${center.type}\n` +
+      `Department: ${center.department}\n` +
+      `Manager: ${center.manager}\n` +
+      `Status: ${center.status}\n` +
+      `Opening Date: ${center.openingDate}\n` +
+      `Employees: ${center.employeeCount}\n\n` +
+      `━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+      `FINANCIAL DETAILS\n` +
+      `━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+      `Budget Allocated: ${formatCurrency(center.budgetAllocated)}\n` +
+      `Actual Cost: ${formatCurrency(center.actualCost)}\n` +
+      `Variance: ${center.variance >= 0 ? '+' : ''}${formatCurrency(center.variance)} (${center.variancePercent >= 0 ? '+' : ''}${center.variancePercent.toFixed(1)}%)\n` +
+      `Utilization: ${utilizationPercent.toFixed(1)}%\n` +
+      `Budget Allocation: ${allocationPercent.toFixed(1)}% of total budget\n\n` +
+      `━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+      `DESCRIPTION\n` +
+      `━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+      `${center.description}\n\n` +
+      `━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+      `COST ALLOCATIONS\n` +
+      `━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+      `In production, this would show:\n` +
+      `• Monthly cost breakdown\n` +
+      `• Cost categories (Labor, Materials, Overhead)\n` +
+      `• Historical spending trends\n` +
+      `• Budget vs Actual comparison charts\n` +
+      `• Employee allocation details\n` +
+      `• Associated projects/activities\n\n` +
+      `In production, this would:\n` +
+      `1. Fetch from: GET /api/finance/cost-centers/${center.id}\n` +
+      `2. Display in a detailed modal/drawer\n` +
+      `3. Show interactive charts and graphs\n` +
+      `4. Include download/print options`
+    );
+  };
+
+  const handleEditCostCenter = (center: CostCenter) => {
+    alert(
+      `✏️ Edit Cost Center: ${center.name}\n\n` +
+      `This will open an edit dialog pre-populated with:\n\n` +
+      `━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+      `CURRENT VALUES\n` +
+      `━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+      `Code: ${center.code}\n` +
+      `Name: ${center.name}\n` +
+      `Type: ${center.type}\n` +
+      `Department: ${center.department}\n` +
+      `Manager: ${center.manager}\n` +
+      `Status: ${center.status}\n` +
+      `Budget: ${formatCurrency(center.budgetAllocated)}\n` +
+      `Employees: ${center.employeeCount}\n` +
+      `Opening Date: ${center.openingDate}\n` +
+      `Description: ${center.description}\n\n` +
+      `━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+      `EDITABLE FIELDS\n` +
+      `━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+      `• Cost Center Name\n` +
+      `• Type & Department\n` +
+      `• Manager Assignment\n` +
+      `• Budget Allocation (requires approval)\n` +
+      `• Employee Count\n` +
+      `• Status (Active/Inactive)\n` +
+      `• Description\n\n` +
+      `In production, this would:\n` +
+      `1. Open a modal/dialog with edit form\n` +
+      `2. Load current data from: GET /api/finance/cost-centers/${center.id}\n` +
+      `3. Validate changes and permissions\n` +
+      `4. Submit updates to: PUT /api/finance/cost-centers/${center.id}\n` +
+      `5. Log audit trail of changes\n` +
+      `6. Send notifications to affected users\n` +
+      `7. Refresh the cost centers list\n` +
+      `8. Show success notification\n\n` +
+      `Note: Budget changes may require approval workflow`
+    );
+  };
+
+  const handleViewAnalytics = (center: CostCenter) => {
+    const utilizationPercent = (center.actualCost / center.budgetAllocated) * 100;
+    const monthlyAverage = center.actualCost / 12;
+    const costPerEmployee = center.actualCost / center.employeeCount;
+    const remainingBudget = center.budgetAllocated - center.actualCost;
+    const runwayMonths = remainingBudget > 0 ? (remainingBudget / monthlyAverage).toFixed(1) : '0';
+
+    alert(
+      `📈 Analytics Dashboard: ${center.name}\n\n` +
+      `━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+      `KEY PERFORMANCE INDICATORS\n` +
+      `━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+      `Budget Utilization: ${utilizationPercent.toFixed(1)}%\n` +
+      `Variance: ${center.variance >= 0 ? '+' : ''}${formatCurrency(center.variance)} (${center.variancePercent >= 0 ? '+' : ''}${center.variancePercent.toFixed(1)}%)\n` +
+      `Monthly Avg Spend: ${formatCurrency(monthlyAverage)}\n` +
+      `Cost per Employee: ${formatCurrency(costPerEmployee)}\n` +
+      `Remaining Budget: ${formatCurrency(remainingBudget)}\n` +
+      `Budget Runway: ${runwayMonths} months\n\n` +
+      `━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+      `SPENDING TRENDS (YTD)\n` +
+      `━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+      `Total Spent: ${formatCurrency(center.actualCost)}\n` +
+      `vs Budget: ${utilizationPercent.toFixed(1)}%\n` +
+      `Trend: ${center.variance >= 0 ? '📉 Under Budget' : '📈 Over Budget'}\n` +
+      `Status: ${utilizationPercent > 100 ? '⚠️ OVER BUDGET' : utilizationPercent > 90 ? '⚠️ CRITICAL' : '✅ HEALTHY'}\n\n` +
+      `━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+      `COST BREAKDOWN (Estimated)\n` +
+      `━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+      `Labor Costs: ${formatCurrency(center.actualCost * 0.60)} (60%)\n` +
+      `Operating Expenses: ${formatCurrency(center.actualCost * 0.25)} (25%)\n` +
+      `Materials/Resources: ${formatCurrency(center.actualCost * 0.10)} (10%)\n` +
+      `Other Expenses: ${formatCurrency(center.actualCost * 0.05)} (5%)\n\n` +
+      `━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+      `EFFICIENCY METRICS\n` +
+      `━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+      `Employees: ${center.employeeCount}\n` +
+      `Cost per Employee: ${formatCurrency(costPerEmployee)}\n` +
+      `Budget per Employee: ${formatCurrency(center.budgetAllocated / center.employeeCount)}\n\n` +
+      `━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+      `COMPARATIVE ANALYSIS\n` +
+      `━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+      `In production, this would show:\n` +
+      `• Month-over-month trends (line charts)\n` +
+      `• Year-over-year comparison\n` +
+      `• Budget vs Actual comparison (bar charts)\n` +
+      `• Cost category breakdown (pie charts)\n` +
+      `• Benchmark against similar cost centers\n` +
+      `• Forecasting and projections\n` +
+      `• Alert thresholds and notifications\n` +
+      `• Drill-down into expense categories\n` +
+      `• Export analytics reports\n\n` +
+      `━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+      `RECOMMENDATIONS\n` +
+      `━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+      (utilizationPercent > 100
+        ? `⚠️ IMMEDIATE ACTION REQUIRED\n• Cost center is over budget\n• Review and reduce expenses\n• Consider budget reallocation\n• Implement cost control measures`
+        : utilizationPercent > 90
+        ? `⚠️ MONITOR CLOSELY\n• Approaching budget limit\n• Review remaining expenses\n• Prepare for potential overage\n• Consider spending freeze`
+        : `✅ PERFORMING WELL\n• Budget utilization healthy\n• Continue current operations\n• Monitor for any anomalies\n• Maintain cost efficiency`
+      ) +
+      `\n\n` +
+      `In production, this would:\n` +
+      `1. Fetch analytics from: GET /api/finance/cost-centers/${center.id}/analytics\n` +
+      `2. Display interactive dashboard with charts\n` +
+      `3. Allow date range selection\n` +
+      `4. Export analytics reports (PDF/Excel)\n` +
+      `5. Set up custom alerts and thresholds\n` +
+      `6. Compare with other cost centers\n` +
+      `7. Show predictive analytics and forecasts`
+    );
+  };
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    alert(
+      `📄 Page Navigation\n\n` +
+      `Navigating to page ${page}\n\n` +
+      `In production, this would:\n` +
+      `1. Update currentPage state to: ${page}\n` +
+      `2. Calculate offset: ${(page - 1) * itemsPerPage}\n` +
+      `3. Fetch data from API with pagination:\n` +
+      `   GET /api/finance/cost-centers?page=${page}&limit=${itemsPerPage}\n` +
+      `4. Update the displayed cost centers\n` +
+      `5. Scroll to top of table\n` +
+      `6. Update pagination UI\n\n` +
+      `Current settings:\n` +
+      `• Items per page: ${itemsPerPage}\n` +
+      `• Total items: ${filteredCostCenters.length}\n` +
+      `• Total pages: ${Math.ceil(filteredCostCenters.length / itemsPerPage)}`
+    );
+  };
+
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      handlePageChange(currentPage - 1);
+    }
+  };
+
+  const handleNextPage = () => {
+    const totalPages = Math.ceil(filteredCostCenters.length / itemsPerPage);
+    if (currentPage < totalPages) {
+      handlePageChange(currentPage + 1);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-indigo-900 to-gray-900 p-6">
       <div className="max-w-7xl mx-auto space-y-6">
@@ -293,7 +595,10 @@ export default function CostCentersPage() {
             <h1 className="text-3xl font-bold text-white mb-2">Cost Centers</h1>
             <p className="text-gray-400">Manage and monitor departmental cost centers</p>
           </div>
-          <button className="flex items-center gap-2 px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition-colors shadow-lg">
+          <button
+            onClick={handleAddCostCenter}
+            className="flex items-center gap-2 px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition-colors shadow-lg"
+          >
             <Plus className="w-5 h-5" />
             Add Cost Center
           </button>
@@ -420,9 +725,13 @@ export default function CostCentersPage() {
               </select>
             </div>
 
-            <button className="flex items-center gap-2 px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded-lg transition-colors">
+            <button
+              onClick={handleExportCostCenters}
+              disabled={isExporting}
+              className="flex items-center gap-2 px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            >
               <Download className="w-4 h-4" />
-              Export
+              {isExporting ? 'Exporting...' : 'Export'}
             </button>
           </div>
         </div>
@@ -515,13 +824,25 @@ export default function CostCentersPage() {
                       </td>
                       <td className="px-6 py-4">
                         <div className="flex items-center justify-center gap-2">
-                          <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors">
+                          <button
+                            onClick={() => handleViewCostCenter(cc)}
+                            className="p-2 hover:bg-gray-700 rounded-lg transition-colors"
+                            title="View Details"
+                          >
                             <Eye className="w-4 h-4 text-blue-400" />
                           </button>
-                          <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors">
+                          <button
+                            onClick={() => handleEditCostCenter(cc)}
+                            className="p-2 hover:bg-gray-700 rounded-lg transition-colors"
+                            title="Edit Cost Center"
+                          >
                             <Edit className="w-4 h-4 text-green-400" />
                           </button>
-                          <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors">
+                          <button
+                            onClick={() => handleViewAnalytics(cc)}
+                            className="p-2 hover:bg-gray-700 rounded-lg transition-colors"
+                            title="View Analytics"
+                          >
                             <BarChart3 className="w-4 h-4 text-purple-400" />
                           </button>
                         </div>
@@ -549,11 +870,28 @@ export default function CostCentersPage() {
               Showing {filteredCostCenters.length} of {costCenters.length} cost centers
             </div>
             <div className="flex gap-2">
-              <button className="px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+              <button
+                onClick={handlePreviousPage}
+                disabled={currentPage === 1}
+                className="px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              >
                 Previous
               </button>
-              <button className="px-4 py-2 bg-indigo-600 text-white rounded-lg">1</button>
-              <button className="px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded-lg transition-colors">
+              <button
+                onClick={() => handlePageChange(1)}
+                className={`px-4 py-2 rounded-lg transition-colors ${
+                  currentPage === 1
+                    ? 'bg-indigo-600 text-white'
+                    : 'bg-gray-700 hover:bg-gray-600 text-white'
+                }`}
+              >
+                1
+              </button>
+              <button
+                onClick={handleNextPage}
+                disabled={currentPage >= Math.ceil(filteredCostCenters.length / itemsPerPage)}
+                className="px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              >
                 Next
               </button>
             </div>
