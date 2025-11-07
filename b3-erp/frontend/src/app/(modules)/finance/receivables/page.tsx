@@ -172,6 +172,7 @@ export default function ReceivablesPage() {
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [agingFilter, setAgingFilter] = useState<string>('all');
   const [currentPage, setCurrentPage] = useState(1);
+  const [isExporting, setIsExporting] = useState(false);
   const itemsPerPage = 10;
 
   const filteredReceivables = receivables.filter((receivable) => {
@@ -205,6 +206,45 @@ export default function ReceivablesPage() {
         return collectionDate.getMonth() === currentMonth && r.collectedAmount > 0;
       })
       .reduce((sum, r) => sum + r.collectedAmount, 0),
+  };
+
+  const handleExport = () => {
+    setIsExporting(true);
+    setTimeout(() => {
+      const headers = ['Receivable Number', 'Customer Name', 'Customer ID', 'Invoice Number', 'Invoice Date', 'Due Date', 'Amount', 'Tax', 'Total', 'Collected', 'Balance', 'Status', 'Aging Bucket', 'Aging Days', 'Payment Terms', 'Sales Order', 'Collection Agent'];
+      const rows = filteredReceivables.map(r => [
+        r.receivableNumber,
+        r.customerName,
+        r.customerId,
+        r.invoiceNumber,
+        r.invoiceDate,
+        r.dueDate,
+        r.amount,
+        r.taxAmount,
+        r.totalAmount,
+        r.collectedAmount,
+        r.totalAmount - r.collectedAmount,
+        statusLabels[r.status],
+        r.agingBucket,
+        r.agingDays,
+        r.paymentTerms,
+        r.salesOrder,
+        r.collectionAgent
+      ]);
+
+      const csvContent = [headers, ...rows].map(row => row.join(',')).join('\n');
+      const blob = new Blob([csvContent], { type: 'text/csv' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `Receivables_${new Date().toISOString().split('T')[0]}.csv`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      setIsExporting(false);
+    }, 500);
   };
 
   return (
@@ -361,9 +401,13 @@ export default function ReceivablesPage() {
           <option value="61-90">61-90 Days</option>
           <option value="90+">90+ Days</option>
         </select>
-        <button className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+        <button
+          onClick={handleExport}
+          disabled={isExporting}
+          className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+        >
           <Download className="h-4 w-4" />
-          <span>Export</span>
+          <span>{isExporting ? 'Exporting...' : 'Export'}</span>
         </button>
       </div>
 
