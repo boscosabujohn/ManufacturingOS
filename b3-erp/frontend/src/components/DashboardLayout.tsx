@@ -25,12 +25,12 @@ export default function DashboardLayout({ children, pageTitle }: DashboardLayout
   ];
 
   return (
-    <div className="h-screen flex flex-col bg-white overflow-hidden">
+    <div className="h-screen flex bg-white overflow-hidden">
       {/* Sidebar */}
       <Sidebar isOpen={sidebarOpen} onToggle={() => setSidebarOpen(!sidebarOpen)} />
 
       {/* Main Content Area */}
-      <div className={`flex-1 flex flex-col transition-all duration-300 ${sidebarOpen ? 'lg:ml-72' : 'lg:ml-20'}`}>
+      <div className={`flex-1 flex flex-col transition-all duration-300 ${sidebarOpen ? 'lg:ml-72' : 'lg:ml-20'} overflow-hidden`}>
         {/* Header */}
         <header className="bg-white/95 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-40 shadow-sm flex-shrink-0">
           <div className="w-full px-4 sm:px-6 lg:px-8">
@@ -111,7 +111,7 @@ export default function DashboardLayout({ children, pageTitle }: DashboardLayout
         </header>
 
         {/* Main Content - Scrollable */}
-        <main className="flex-1 overflow-y-auto">
+        <main className="flex-1 overflow-y-auto overflow-x-hidden bg-gray-50">
           <div className="px-6 pt-4">
             <Breadcrumbs />
           </div>

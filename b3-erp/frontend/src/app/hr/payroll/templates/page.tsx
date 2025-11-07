@@ -29,8 +29,10 @@ interface SalaryTemplate {
 export default function PayrollTemplatesPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedGrade, setSelectedGrade] = useState('all');
+  const [showModal, setShowModal] = useState(false);
+  const [editingTemplate, setEditingTemplate] = useState<SalaryTemplate | null>(null);
 
-  const mockTemplates: SalaryTemplate[] = [
+  const initialTemplates: SalaryTemplate[] = [
     {
       id: '1',
       templateCode: 'TPL-MFG-A',
@@ -96,19 +98,72 @@ export default function PayrollTemplatesPage() {
     }
   ];
 
+  const [templates, setTemplates] = useState<SalaryTemplate[]>(initialTemplates);
+
+  const handleAdd = () => {
+    setEditingTemplate(null);
+    setShowModal(true);
+  };
+
+  const handleEdit = (template: SalaryTemplate) => {
+    setEditingTemplate(template);
+    setShowModal(true);
+  };
+
+  const handleCopy = (template: SalaryTemplate) => {
+    const newTemplate = {
+      ...template,
+      id: String(templates.length + 1),
+      templateCode: template.templateCode + '-COPY',
+      templateName: template.templateName + ' (Copy)',
+      assignedCount: 0,
+      createdBy: 'HR Admin',
+      createdOn: new Date().toISOString().split('T')[0]
+    };
+    setTemplates([...templates, newTemplate]);
+  };
+
+  const handleDelete = (id: string) => {
+    const template = templates.find(t => t.id === id);
+    if (template && template.assignedCount > 0) {
+      alert(`Cannot delete template "${template.templateName}" as it is assigned to ${template.assignedCount} employees.`);
+      return;
+    }
+    if (confirm('Are you sure you want to delete this template?')) {
+      setTemplates(templates.filter(t => t.id !== id));
+    }
+  };
+
+  const handleSave = (template: SalaryTemplate) => {
+    if (editingTemplate) {
+      setTemplates(templates.map(t => t.id === template.id ? template : t));
+    } else {
+      const newTemplate = {
+        ...template,
+        id: String(templates.length + 1),
+        assignedCount: 0,
+        createdBy: 'HR Admin',
+        createdOn: new Date().toISOString().split('T')[0]
+      };
+      setTemplates([...templates, newTemplate]);
+    }
+    setShowModal(false);
+    setEditingTemplate(null);
+  };
+
   const filteredTemplates = useMemo(() => {
-    return mockTemplates.filter(template => {
+    return templates.filter(template => {
       const matchesSearch = template.templateName.toLowerCase().includes(searchTerm.toLowerCase()) ||
                            template.templateCode.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesGrade = selectedGrade === 'all' || template.grade === selectedGrade;
       return matchesSearch && matchesGrade;
     });
-  }, [searchTerm, selectedGrade]);
+  }, [templates, searchTerm, selectedGrade]);
 
   const stats = {
-    total: mockTemplates.length,
-    active: mockTemplates.filter(t => t.status === 'active').length,
-    totalAssigned: mockTemplates.reduce((sum, t) => sum + t.assignedCount, 0)
+    total: templates.length,
+    active: templates.filter(t => t.status === 'active').length,
+    totalAssigned: templates.reduce((sum, t) => sum + t.assignedCount, 0)
   };
 
   return (
@@ -172,7 +227,10 @@ export default function PayrollTemplatesPage() {
             <option value="B">Grade B</option>
             <option value="C">Grade C</option>
           </select>
-          <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+          <button
+            onClick={handleAdd}
+            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          >
             <Plus className="h-4 w-4" />
             New Template
           </button>
@@ -199,13 +257,25 @@ export default function PayrollTemplatesPage() {
                 </p>
               </div>
               <div className="flex gap-2">
-                <button className="p-2 text-blue-600 hover:bg-blue-50 rounded">
+                <button
+                  onClick={() => handleEdit(template)}
+                  className="p-2 text-blue-600 hover:bg-blue-50 rounded"
+                  title="Edit Template"
+                >
                   <Edit className="h-4 w-4" />
                 </button>
-                <button className="p-2 text-purple-600 hover:bg-purple-50 rounded">
+                <button
+                  onClick={() => handleCopy(template)}
+                  className="p-2 text-purple-600 hover:bg-purple-50 rounded"
+                  title="Copy Template"
+                >
                   <Copy className="h-4 w-4" />
                 </button>
-                <button className="p-2 text-red-600 hover:bg-red-50 rounded">
+                <button
+                  onClick={() => handleDelete(template.id)}
+                  className="p-2 text-red-600 hover:bg-red-50 rounded"
+                  title="Delete Template"
+                >
                   <Trash2 className="h-4 w-4" />
                 </button>
               </div>
@@ -261,6 +331,296 @@ export default function PayrollTemplatesPage() {
           <li>• Templates are assigned to employees based on their grade and designation</li>
           <li>• Changes to templates do not affect existing employee assignments</li>
         </ul>
+      </div>
+
+      {showModal && (
+        <TemplateModal
+          template={editingTemplate}
+          onClose={() => {
+            setShowModal(false);
+            setEditingTemplate(null);
+          }}
+          onSave={handleSave}
+        />
+      )}
+    </div>
+  );
+}
+
+interface TemplateModalProps {
+  template: SalaryTemplate | null;
+  onClose: () => void;
+  onSave: (template: SalaryTemplate) => void;
+}
+
+function TemplateModal({ template, onClose, onSave }: TemplateModalProps) {
+  const [formData, setFormData] = useState<Partial<SalaryTemplate>>(
+    template || {
+      templateCode: '',
+      templateName: '',
+      grade: '',
+      employmentType: 'permanent',
+      ctcRange: '',
+      status: 'active',
+      components: []
+    }
+  );
+
+  const [newComponent, setNewComponent] = useState<Partial<SalaryComponent>>({
+    componentCode: '',
+    componentName: '',
+    type: 'earning',
+    calculationType: 'flat',
+    value: 0,
+    baseComponent: ''
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.templateCode || !formData.templateName || !formData.grade || !formData.ctcRange) {
+      alert('Please fill all required fields');
+      return;
+    }
+    if (!formData.components || formData.components.length === 0) {
+      alert('Please add at least one component');
+      return;
+    }
+    onSave(formData as SalaryTemplate);
+  };
+
+  const addComponent = () => {
+    if (!newComponent.componentCode || !newComponent.componentName) {
+      alert('Please fill component code and name');
+      return;
+    }
+    setFormData({
+      ...formData,
+      components: [...(formData.components || []), newComponent as SalaryComponent]
+    });
+    setNewComponent({
+      componentCode: '',
+      componentName: '',
+      type: 'earning',
+      calculationType: 'flat',
+      value: 0,
+      baseComponent: ''
+    });
+  };
+
+  const removeComponent = (index: number) => {
+    const newComponents = [...(formData.components || [])];
+    newComponents.splice(index, 1);
+    setFormData({ ...formData, components: newComponents });
+  };
+
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+      <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-blue-700 text-white p-6 rounded-t-lg">
+          <h2 className="text-2xl font-bold">
+            {template ? 'Edit Salary Template' : 'New Salary Template'}
+          </h2>
+          <p className="text-blue-100 text-sm mt-1">
+            Define salary structure with components
+          </p>
+        </div>
+
+        <form onSubmit={handleSubmit} className="p-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Template Code *
+              </label>
+              <input
+                type="text"
+                value={formData.templateCode || ''}
+                onChange={(e) => setFormData({ ...formData, templateCode: e.target.value })}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                placeholder="e.g., TPL-MFG-A"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Template Name *
+              </label>
+              <input
+                type="text"
+                value={formData.templateName || ''}
+                onChange={(e) => setFormData({ ...formData, templateName: e.target.value })}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                placeholder="e.g., Manufacturing - Grade A"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Grade *
+              </label>
+              <input
+                type="text"
+                value={formData.grade || ''}
+                onChange={(e) => setFormData({ ...formData, grade: e.target.value })}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                placeholder="e.g., A"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Employment Type *
+              </label>
+              <select
+                value={formData.employmentType || 'permanent'}
+                onChange={(e) => setFormData({ ...formData, employmentType: e.target.value as 'permanent' | 'contract' | 'temporary' })}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+              >
+                <option value="permanent">Permanent</option>
+                <option value="contract">Contract</option>
+                <option value="temporary">Temporary</option>
+              </select>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                CTC Range *
+              </label>
+              <input
+                type="text"
+                value={formData.ctcRange || ''}
+                onChange={(e) => setFormData({ ...formData, ctcRange: e.target.value })}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                placeholder="e.g., ₹6-8L"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Status *
+              </label>
+              <select
+                value={formData.status || 'active'}
+                onChange={(e) => setFormData({ ...formData, status: e.target.value as 'active' | 'inactive' })}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+              >
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="border-t border-gray-200 pt-6 mb-6">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">Salary Components</h3>
+
+            {formData.components && formData.components.length > 0 && (
+              <div className="mb-4 space-y-2">
+                {formData.components.map((comp, index) => (
+                  <div key={index} className="flex items-center gap-2 p-3 bg-gray-50 rounded-lg">
+                    <div className="flex-1 grid grid-cols-4 gap-2 text-sm">
+                      <div>
+                        <span className="font-medium">{comp.componentCode}</span>
+                        <span className="text-gray-600 ml-2">{comp.componentName}</span>
+                      </div>
+                      <div>
+                        <span className={`px-2 py-1 text-xs rounded ${comp.type === 'earning' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
+                          {comp.type}
+                        </span>
+                      </div>
+                      <div className="text-gray-700">
+                        {comp.calculationType === 'flat'
+                          ? `₹${comp.value.toLocaleString('en-IN')}`
+                          : `${comp.value}% of ${comp.baseComponent}`}
+                      </div>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => removeComponent(index)}
+                      className="p-1 text-red-600 hover:bg-red-50 rounded"
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <h4 className="text-sm font-semibold text-blue-900 mb-3">Add Component</h4>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                <input
+                  type="text"
+                  value={newComponent.componentCode || ''}
+                  onChange={(e) => setNewComponent({ ...newComponent, componentCode: e.target.value })}
+                  className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                  placeholder="Code (e.g., BASIC)"
+                />
+                <input
+                  type="text"
+                  value={newComponent.componentName || ''}
+                  onChange={(e) => setNewComponent({ ...newComponent, componentName: e.target.value })}
+                  className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                  placeholder="Name (e.g., Basic Salary)"
+                />
+                <select
+                  value={newComponent.type || 'earning'}
+                  onChange={(e) => setNewComponent({ ...newComponent, type: e.target.value as 'earning' | 'deduction' })}
+                  className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                >
+                  <option value="earning">Earning</option>
+                  <option value="deduction">Deduction</option>
+                </select>
+                <select
+                  value={newComponent.calculationType || 'flat'}
+                  onChange={(e) => setNewComponent({ ...newComponent, calculationType: e.target.value as 'flat' | 'percentage' })}
+                  className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                >
+                  <option value="flat">Flat Amount</option>
+                  <option value="percentage">Percentage</option>
+                </select>
+                <input
+                  type="number"
+                  value={newComponent.value || 0}
+                  onChange={(e) => setNewComponent({ ...newComponent, value: parseFloat(e.target.value) || 0 })}
+                  className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                  placeholder="Value"
+                />
+                {newComponent.calculationType === 'percentage' && (
+                  <input
+                    type="text"
+                    value={newComponent.baseComponent || ''}
+                    onChange={(e) => setNewComponent({ ...newComponent, baseComponent: e.target.value })}
+                    className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                    placeholder="Base (e.g., CTC, BASIC)"
+                  />
+                )}
+                <button
+                  type="button"
+                  onClick={addComponent}
+                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center justify-center gap-2"
+                >
+                  <Plus className="h-4 w-4" />
+                  Add
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex gap-3 justify-end pt-4 border-t border-gray-200">
+            <button
+              type="button"
+              onClick={onClose}
+              className="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+            >
+              {template ? 'Update Template' : 'Create Template'}
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );

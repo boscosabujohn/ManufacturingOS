@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { Network, Users, Calendar, MessageCircle, Heart, Share2, Eye, TrendingUp, Award, Briefcase, MapPin } from 'lucide-react';
+import { Network, Users, Calendar, MessageCircle, Heart, Share2, Eye, TrendingUp, Award, Briefcase, MapPin, X, UserPlus } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
 
 interface AlumniEvent {
   id: string;
@@ -32,7 +33,22 @@ interface AlumniPost {
 }
 
 export default function Page() {
+  const { toast } = useToast();
   const [selectedTab, setSelectedTab] = useState<'feed' | 'events' | 'opportunities'>('feed');
+  const [showEventDetailsModal, setShowEventDetailsModal] = useState(false);
+  const [showPostJobModal, setShowPostJobModal] = useState(false);
+  const [selectedEvent, setSelectedEvent] = useState<AlumniEvent | null>(null);
+  const [postContent, setPostContent] = useState('');
+  const [jobFormData, setJobFormData] = useState({
+    title: '',
+    company: '',
+    location: '',
+    jobType: 'full_time' as 'full_time' | 'part_time' | 'contract' | 'internship',
+    experience: '',
+    description: '',
+    skills: '',
+    applyLink: ''
+  });
 
   const mockEvents: AlumniEvent[] = [
     {
@@ -152,6 +168,60 @@ export default function Page() {
     networking: 'bg-pink-100 text-pink-700'
   };
 
+  const handleViewEventDetails = (event: AlumniEvent) => {
+    setSelectedEvent(event);
+    setShowEventDetailsModal(true);
+  };
+
+  const handleRegisterEvent = (event: AlumniEvent) => {
+    toast({
+      title: "Registration Successful",
+      description: `You have successfully registered for ${event.title}`
+    });
+    setShowEventDetailsModal(false);
+  };
+
+  const handlePostUpdate = () => {
+    if (!postContent.trim()) {
+      toast({
+        title: "Error",
+        description: "Please enter some content to post",
+        variant: "destructive"
+      });
+      return;
+    }
+    toast({
+      title: "Post Published",
+      description: "Your update has been shared with the alumni network"
+    });
+    setPostContent('');
+  };
+
+  const handleLikePost = (postId: string) => {
+    toast({
+      title: "Post Liked",
+      description: "You liked this post"
+    });
+  };
+
+  const handlePostJob = () => {
+    toast({
+      title: "Job Posted",
+      description: "Your job opportunity has been posted to the alumni network"
+    });
+    setShowPostJobModal(false);
+    setJobFormData({
+      title: '',
+      company: '',
+      location: '',
+      jobType: 'full_time',
+      experience: '',
+      description: '',
+      skills: '',
+      applyLink: ''
+    });
+  };
+
   return (
     <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
       {/* Header */}
@@ -245,12 +315,17 @@ export default function Page() {
           {/* Create Post */}
           <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
             <textarea
+              value={postContent}
+              onChange={(e) => setPostContent(e.target.value)}
               placeholder="Share an update with the alumni network..."
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
               rows={3}
             />
             <div className="flex justify-end mt-3">
-              <button className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+              <button
+                onClick={handlePostUpdate}
+                className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+              >
                 Post Update
               </button>
             </div>
@@ -281,15 +356,18 @@ export default function Page() {
 
               {/* Post Actions */}
               <div className="flex items-center gap-6 pt-4 border-t border-gray-200">
-                <button className="flex items-center gap-2 text-gray-600 hover:text-blue-600">
+                <button
+                  onClick={() => handleLikePost(post.id)}
+                  className="flex items-center gap-2 text-gray-600 hover:text-red-600 transition-colors"
+                >
                   <Heart className="h-5 w-5" />
                   <span className="text-sm font-medium">{post.likes}</span>
                 </button>
-                <button className="flex items-center gap-2 text-gray-600 hover:text-blue-600">
+                <button className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors">
                   <MessageCircle className="h-5 w-5" />
                   <span className="text-sm font-medium">{post.comments}</span>
                 </button>
-                <button className="flex items-center gap-2 text-gray-600 hover:text-blue-600">
+                <button className="flex items-center gap-2 text-gray-600 hover:text-green-600 transition-colors">
                   <Share2 className="h-5 w-5" />
                   <span className="text-sm font-medium">{post.shares}</span>
                 </button>
@@ -341,9 +419,21 @@ export default function Page() {
                 />
               </div>
 
-              <button className="w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium">
-                Register Now
-              </button>
+              <div className="flex gap-2">
+                <button
+                  onClick={() => handleViewEventDetails(event)}
+                  className="flex-1 px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 font-medium flex items-center justify-center gap-2"
+                >
+                  <Eye className="h-4 w-4" />
+                  View Details
+                </button>
+                <button
+                  onClick={() => handleRegisterEvent(event)}
+                  className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium"
+                >
+                  Register Now
+                </button>
+              </div>
             </div>
           ))}
         </div>
@@ -356,9 +446,356 @@ export default function Page() {
           <p className="text-gray-600 mb-6">
             Browse and share job opportunities within the alumni network
           </p>
-          <button className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium">
+          <button
+            onClick={() => setShowPostJobModal(true)}
+            className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium flex items-center gap-2 mx-auto"
+          >
+            <UserPlus className="h-4 w-4" />
             Post an Opportunity
           </button>
+        </div>
+      )}
+
+      {/* Event Details Modal */}
+      {showEventDetailsModal && selectedEvent && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
+            {/* Modal Header */}
+            <div className="sticky top-0 bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-6 py-4 flex items-center justify-between rounded-t-lg">
+              <div>
+                <h2 className="text-xl font-bold">{selectedEvent.title}</h2>
+                <p className="text-sm text-purple-100 mt-1">Event Details</p>
+              </div>
+              <button
+                onClick={() => setShowEventDetailsModal(false)}
+                className="text-white hover:bg-white/20 rounded-lg p-2"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+
+            {/* Modal Body */}
+            <div className="p-6 space-y-6">
+              {/* Event Type and Mode */}
+              <div className="flex items-center gap-3">
+                <span className={`px-4 py-2 text-sm font-semibold rounded-full ${eventTypeColors[selectedEvent.type]}`}>
+                  {selectedEvent.type.charAt(0).toUpperCase() + selectedEvent.type.slice(1)}
+                </span>
+                <span className={`px-4 py-2 text-sm font-semibold rounded-full ${
+                  selectedEvent.mode === 'online' ? 'bg-blue-100 text-blue-700' :
+                  selectedEvent.mode === 'offline' ? 'bg-green-100 text-green-700' :
+                  'bg-purple-100 text-purple-700'
+                }`}>
+                  {selectedEvent.mode.charAt(0).toUpperCase() + selectedEvent.mode.slice(1)}
+                </span>
+                <span className={`px-4 py-2 text-sm font-semibold rounded-full ${
+                  selectedEvent.status === 'upcoming' ? 'bg-yellow-100 text-yellow-700' :
+                  selectedEvent.status === 'ongoing' ? 'bg-green-100 text-green-700' :
+                  'bg-gray-100 text-gray-700'
+                }`}>
+                  {selectedEvent.status.charAt(0).toUpperCase() + selectedEvent.status.slice(1)}
+                </span>
+              </div>
+
+              {/* Event Description */}
+              <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                <h3 className="font-bold text-gray-900 mb-2">About This Event</h3>
+                <p className="text-gray-700">{selectedEvent.description}</p>
+              </div>
+
+              {/* Event Details Grid */}
+              <div className="grid grid-cols-2 gap-4">
+                <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+                  <div className="flex items-start gap-3">
+                    <Calendar className="h-5 w-5 text-blue-600 mt-0.5" />
+                    <div>
+                      <p className="text-sm font-medium text-blue-600">Date & Time</p>
+                      <p className="font-semibold text-blue-900">{selectedEvent.date}</p>
+                      <p className="text-sm text-blue-700">{selectedEvent.time}</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+                  <div className="flex items-start gap-3">
+                    <MapPin className="h-5 w-5 text-green-600 mt-0.5" />
+                    <div>
+                      <p className="text-sm font-medium text-green-600">Location</p>
+                      <p className="font-semibold text-green-900">{selectedEvent.location}</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-purple-50 rounded-lg p-4 border border-purple-200">
+                  <div className="flex items-start gap-3">
+                    <Users className="h-5 w-5 text-purple-600 mt-0.5" />
+                    <div>
+                      <p className="text-sm font-medium text-purple-600">Registrations</p>
+                      <p className="font-semibold text-purple-900">
+                        {selectedEvent.registrations} / {selectedEvent.capacity}
+                      </p>
+                      <div className="w-full bg-gray-200 rounded-full h-2 mt-2">
+                        <div
+                          className="bg-purple-600 h-2 rounded-full"
+                          style={{ width: `${(selectedEvent.registrations / selectedEvent.capacity) * 100}%` }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-orange-50 rounded-lg p-4 border border-orange-200">
+                  <div className="flex items-start gap-3">
+                    <Briefcase className="h-5 w-5 text-orange-600 mt-0.5" />
+                    <div>
+                      <p className="text-sm font-medium text-orange-600">Organized By</p>
+                      <p className="font-semibold text-orange-900">{selectedEvent.organizer}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Registration Info */}
+              {selectedEvent.registrations < selectedEvent.capacity && (
+                <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                  <div className="flex items-start gap-3">
+                    <Users className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="text-sm font-semibold text-green-900 mb-1">Seats Available</p>
+                      <p className="text-sm text-green-800">
+                        {selectedEvent.capacity - selectedEvent.registrations} seats remaining. Register now to confirm your participation!
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {selectedEvent.registrations >= selectedEvent.capacity && (
+                <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                  <div className="flex items-start gap-3">
+                    <Users className="h-5 w-5 text-red-600 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="text-sm font-semibold text-red-900 mb-1">Event Full</p>
+                      <p className="text-sm text-red-800">
+                        This event has reached maximum capacity. Join the waitlist to be notified if seats become available.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Modal Footer */}
+            <div className="sticky bottom-0 bg-gray-50 px-6 py-4 flex justify-end gap-3 rounded-b-lg border-t">
+              <button
+                onClick={() => setShowEventDetailsModal(false)}
+                className="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-medium"
+              >
+                Close
+              </button>
+              {selectedEvent.registrations < selectedEvent.capacity ? (
+                <button
+                  onClick={() => handleRegisterEvent(selectedEvent)}
+                  className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium flex items-center gap-2"
+                >
+                  <UserPlus className="h-4 w-4" />
+                  Register for Event
+                </button>
+              ) : (
+                <button
+                  onClick={() => {
+                    toast({
+                      title: "Added to Waitlist",
+                      description: "You've been added to the waitlist for this event"
+                    });
+                    setShowEventDetailsModal(false);
+                  }}
+                  className="px-6 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 font-medium flex items-center gap-2"
+                >
+                  <Users className="h-4 w-4" />
+                  Join Waitlist
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Post Job Modal */}
+      {showPostJobModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
+            {/* Modal Header */}
+            <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-4 flex items-center justify-between rounded-t-lg">
+              <div>
+                <h2 className="text-xl font-bold">Post Job Opportunity</h2>
+                <p className="text-sm text-blue-100 mt-1">Share opportunities with the alumni network</p>
+              </div>
+              <button
+                onClick={() => setShowPostJobModal(false)}
+                className="text-white hover:bg-white/20 rounded-lg p-2"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+
+            {/* Modal Body */}
+            <div className="p-6 space-y-4">
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Job Title <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    value={jobFormData.title}
+                    onChange={(e) => setJobFormData({...jobFormData, title: e.target.value})}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="e.g., Senior Production Manager"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Company <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    value={jobFormData.company}
+                    onChange={(e) => setJobFormData({...jobFormData, company: e.target.value})}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="e.g., Tata Motors"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Location <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    value={jobFormData.location}
+                    onChange={(e) => setJobFormData({...jobFormData, location: e.target.value})}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="e.g., Pune, Maharashtra"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Job Type <span className="text-red-500">*</span>
+                  </label>
+                  <select
+                    value={jobFormData.jobType}
+                    onChange={(e) => setJobFormData({...jobFormData, jobType: e.target.value as any})}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    required
+                  >
+                    <option value="full_time">Full Time</option>
+                    <option value="part_time">Part Time</option>
+                    <option value="contract">Contract</option>
+                    <option value="internship">Internship</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Experience Required <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  value={jobFormData.experience}
+                  onChange={(e) => setJobFormData({...jobFormData, experience: e.target.value})}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  placeholder="e.g., 5-7 years"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Job Description <span className="text-red-500">*</span>
+                </label>
+                <textarea
+                  value={jobFormData.description}
+                  onChange={(e) => setJobFormData({...jobFormData, description: e.target.value})}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  rows={4}
+                  placeholder="Describe the role, responsibilities, and requirements..."
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Required Skills <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  value={jobFormData.skills}
+                  onChange={(e) => setJobFormData({...jobFormData, skills: e.target.value})}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  placeholder="e.g., Lean Manufacturing, Six Sigma, AutoCAD"
+                  required
+                />
+                <p className="text-xs text-gray-500 mt-1">Separate multiple skills with commas</p>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Application Link <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="url"
+                  value={jobFormData.applyLink}
+                  onChange={(e) => setJobFormData({...jobFormData, applyLink: e.target.value})}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  placeholder="https://..."
+                  required
+                />
+                <p className="text-xs text-gray-500 mt-1">Link where candidates can apply</p>
+              </div>
+
+              {/* Info Box */}
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <div className="flex items-start gap-3">
+                  <Briefcase className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                  <div>
+                    <p className="text-sm font-semibold text-blue-900 mb-1">Posting Guidelines</p>
+                    <ul className="text-sm text-blue-800 space-y-1">
+                      <li>• Only post legitimate job opportunities</li>
+                      <li>• Provide accurate and complete information</li>
+                      <li>• Include a direct application link</li>
+                      <li>• Posts will be visible to all alumni network members</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Modal Footer */}
+            <div className="sticky bottom-0 bg-gray-50 px-6 py-4 flex justify-end gap-3 rounded-b-lg border-t">
+              <button
+                onClick={() => setShowPostJobModal(false)}
+                className="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-medium"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handlePostJob}
+                className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium flex items-center gap-2"
+              >
+                <UserPlus className="h-4 w-4" />
+                Post Opportunity
+              </button>
+            </div>
+          </div>
         </div>
       )}
     </div>

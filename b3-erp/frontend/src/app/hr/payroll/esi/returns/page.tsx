@@ -2,6 +2,18 @@
 
 import { useState } from 'react';
 import { FileText, Download, Upload, CheckCircle, Clock, AlertCircle, Calendar, Heart } from 'lucide-react';
+import { toast } from '@/hooks/use-toast';
+import FileUploadModal from '@/components/payroll/FileUploadModal';
+import ConfirmationModal from '@/components/payroll/ConfirmationModal';
+import StatusCheckModal from '@/components/payroll/StatusCheckModal';
+import {
+  generateESIReturnTemplate,
+  generateESIChallan,
+  generateESIReceipt,
+  generateESIDraft,
+  parseESIReturnFile,
+  type ESIReturn as ESIReturnType
+} from '@/lib/payroll/esiFileGenerator';
 
 interface ESIReturn {
   id: string;
@@ -24,6 +36,11 @@ interface ESIReturn {
 
 export default function ESIReturnsPage() {
   const [selectedYear, setSelectedYear] = useState('2025');
+  const [showUploadModal, setShowUploadModal] = useState(false);
+  const [showFileModal, setShowFileModal] = useState(false);
+  const [showStatusModal, setShowStatusModal] = useState(false);
+  const [selectedReturn, setSelectedReturn] = useState<ESIReturn | null>(null);
+  const [returns, setReturns] = useState<ESIReturn[]>([]);
 
   const mockReturns: ESIReturn[] = [
     {
@@ -96,9 +113,211 @@ export default function ESIReturnsPage() {
     }
   ];
 
-  const filteredReturns = mockReturns.filter(ret =>
+  // Initialize returns state
+  useState(() => {
+    setReturns(mockReturns);
+  });
+
+  const filteredReturns = (returns.length > 0 ? returns : mockReturns).filter(ret =>
     ret.returnPeriod.includes(selectedYear)
   );
+
+  // Handler: Download Template
+  const handleDownloadTemplate = async () => {
+    try {
+      await generateESIReturnTemplate();
+      toast({
+        title: "Success",
+        description: "ESI return template downloaded successfully",
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to download template. Please try again.",
+        variant: "destructive",
+      });
+    }
+  };
+
+  // Handler: Upload Return
+  const handleUploadReturn = async (file: File) => {
+    try {
+      const result = await parseESIReturnFile(file);
+
+      if (result.success && result.data) {
+        // Here you would typically send the data to your backend
+        // For now, we'll just show a success message
+        return {
+          success: true,
+          message: `Successfully validated ${result.data.length} employee records`
+        };
+      } else {
+        return {
+          success: false,
+          errors: result.errors || ['Unknown error occurred']
+        };
+      }
+    } catch (error) {
+      return {
+        success: false,
+        errors: ['Failed to process file. Please try again.']
+      };
+    }
+  };
+
+  // Handler: File Return
+  const handleFileReturn = async (returnId: string) => {
+    setSelectedReturn(filteredReturns.find(r => r.id === returnId) || null);
+    setShowFileModal(true);
+  };
+
+  const confirmFileReturn = async () => {
+    if (!selectedReturn) return;
+
+    try {
+      // Simulate API call to file return
+      await new Promise(resolve => setTimeout(resolve, 2000));
+
+      // Update local state
+      const updatedReturns = returns.map(ret =>
+        ret.id === selectedReturn.id
+          ? {
+              ...ret,
+              status: 'filed' as const,
+              filedOn: new Date().toISOString(),
+              filedBy: 'Current User'
+            }
+          : ret
+      );
+
+      setReturns(updatedReturns);
+
+      toast({
+        title: "Success",
+        description: "Return filed successfully with ESIC portal",
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to file return. Please try again.",
+        variant: "destructive",
+      });
+    }
+  };
+
+  // Handler: Download Draft
+  const handleDownloadDraft = async (returnData: ESIReturn) => {
+    try {
+      await generateESIDraft(returnData);
+      toast({
+        title: "Success",
+        description: "Draft return downloaded successfully",
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to download draft. Please try again.",
+        variant: "destructive",
+      });
+    }
+  };
+
+  // Handler: Check Status
+  const handleCheckStatus = (returnId: string) => {
+    const returnData = filteredReturns.find(r => r.id === returnId);
+    if (returnData) {
+      setSelectedReturn(returnData);
+      setShowStatusModal(true);
+    }
+  };
+
+  const handleRefreshStatus = async () => {
+    if (!selectedReturn) {
+      return {
+        status: 'pending' as const,
+        message: 'No return selected'
+      };
+    }
+
+    try {
+      // Simulate API call to check status
+      await new Promise(resolve => setTimeout(resolve, 1500));
+
+      // Mock status update
+      const newStatus = selectedReturn.status === 'filed' ? 'accepted' : selectedReturn.status;
+      const acknowledgeNumber = newStatus === 'accepted' ? `ESI-ACK-${Date.now()}` : undefined;
+
+      if (newStatus !== selectedReturn.status) {
+        const updatedReturns = returns.map(ret =>
+          ret.id === selectedReturn.id
+            ? { ...ret, status: newStatus, acknowledgeNumber }
+            : ret
+        );
+        setReturns(updatedReturns);
+      }
+
+      return {
+        status: newStatus,
+        acknowledgeNumber,
+        message: newStatus === 'accepted'
+          ? 'Return has been accepted by ESIC'
+          : 'Return is being processed by ESIC portal',
+        history: [
+          {
+            status: 'Filed',
+            timestamp: selectedReturn.filedOn || new Date().toISOString(),
+            description: 'Return filed with ESIC portal',
+            user: selectedReturn.filedBy
+          },
+          ...(newStatus === 'accepted' ? [{
+            status: 'Accepted',
+            timestamp: new Date().toISOString(),
+            description: 'Return accepted by ESIC',
+            user: 'ESIC System'
+          }] : [])
+        ]
+      };
+    } catch (error) {
+      return {
+        status: selectedReturn.status,
+        message: 'Failed to fetch status. Please try again.'
+      };
+    }
+  };
+
+  // Handler: Download Challan
+  const handleDownloadChallan = async (returnData: ESIReturn) => {
+    try {
+      await generateESIChallan(returnData);
+      toast({
+        title: "Success",
+        description: "ESI challan downloaded successfully",
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to download challan. Please try again.",
+        variant: "destructive",
+      });
+    }
+  };
+
+  // Handler: View Receipt
+  const handleViewReceipt = async (returnData: ESIReturn) => {
+    try {
+      await generateESIReceipt(returnData);
+      toast({
+        title: "Success",
+        description: "Receipt downloaded successfully",
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to generate receipt. Please try again.",
+        variant: "destructive",
+      });
+    }
+  };
 
   const stats = {
     total: filteredReturns.length,
@@ -189,11 +408,17 @@ export default function ESIReturnsPage() {
             </select>
           </div>
           <div className="flex gap-2">
-            <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+            <button
+              onClick={handleDownloadTemplate}
+              className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+            >
               <Download className="h-4 w-4" />
               Download Template
             </button>
-            <button className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">
+            <button
+              onClick={() => setShowUploadModal(true)}
+              className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
+            >
               <Upload className="h-4 w-4" />
               Upload Return
             </button>
@@ -337,28 +562,43 @@ export default function ESIReturnsPage() {
             <div className="flex gap-2">
               {returnData.status === 'pending' && (
                 <>
-                  <button className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium text-sm">
+                  <button
+                    onClick={() => handleFileReturn(returnData.id)}
+                    className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium text-sm"
+                  >
                     <Upload className="inline h-4 w-4 mr-2" />
                     File Return
                   </button>
-                  <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium text-sm">
+                  <button
+                    onClick={() => handleDownloadDraft(returnData)}
+                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium text-sm"
+                  >
                     <Download className="inline h-4 w-4 mr-2" />
                     Download Draft
                   </button>
                 </>
               )}
               {returnData.status === 'filed' && (
-                <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium text-sm">
+                <button
+                  onClick={() => handleCheckStatus(returnData.id)}
+                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium text-sm"
+                >
                   Check Status
                 </button>
               )}
               {returnData.status === 'accepted' && (
                 <>
-                  <button className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium text-sm">
+                  <button
+                    onClick={() => handleDownloadChallan(returnData)}
+                    className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium text-sm"
+                  >
                     <Download className="inline h-4 w-4 mr-2" />
                     Download Challan
                   </button>
-                  <button className="px-4 py-2 bg-pink-600 text-white rounded-lg hover:bg-pink-700 font-medium text-sm">
+                  <button
+                    onClick={() => handleViewReceipt(returnData)}
+                    className="px-4 py-2 bg-pink-600 text-white rounded-lg hover:bg-pink-700 font-medium text-sm"
+                  >
                     <FileText className="inline h-4 w-4 mr-2" />
                     View Receipt
                   </button>
@@ -382,6 +622,50 @@ export default function ESIReturnsPage() {
           <li>• <strong>Acknowledgement:</strong> Return acknowledgement generated after successful filing</li>
         </ul>
       </div>
+
+      {/* Modals */}
+      <FileUploadModal
+        isOpen={showUploadModal}
+        onClose={() => setShowUploadModal(false)}
+        onUpload={handleUploadReturn}
+        title="Upload ESI Return"
+        acceptedFormats=".xlsx,.xls,.csv"
+      />
+
+      {selectedReturn && (
+        <>
+          <ConfirmationModal
+            isOpen={showFileModal}
+            onClose={() => {
+              setShowFileModal(false);
+              setSelectedReturn(null);
+            }}
+            onConfirm={confirmFileReturn}
+            title="File ESI Return"
+            message="Are you sure you want to file this ESI return with the ESIC portal? This action cannot be undone."
+            confirmText="File Return"
+            variant="warning"
+            details={[
+              { label: 'Return ID', value: selectedReturn.id },
+              { label: 'Period', value: selectedReturn.returnPeriod },
+              { label: 'Employees', value: selectedReturn.employeeCount },
+              { label: 'Total Due', value: `₹${selectedReturn.totalDue.toLocaleString('en-IN')}` },
+              { label: 'Due Date', value: new Date(selectedReturn.dueDate).toLocaleDateString('en-IN') }
+            ]}
+          />
+
+          <StatusCheckModal
+            isOpen={showStatusModal}
+            onClose={() => {
+              setShowStatusModal(false);
+              setSelectedReturn(null);
+            }}
+            returnId={selectedReturn.id}
+            currentStatus={selectedReturn.status}
+            onRefreshStatus={handleRefreshStatus}
+          />
+        </>
+      )}
     </div>
   );
 }

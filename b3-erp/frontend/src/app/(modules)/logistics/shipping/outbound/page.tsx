@@ -283,7 +283,7 @@ export default function OutboundShippingPage() {
             <div>
               <p className="text-sm font-medium text-purple-600">Total Value</p>
               <p className="text-3xl font-bold text-purple-900 mt-1">
-                ¹{(outboundShipments.reduce((sum, s) => sum + s.totalValue, 0) / 1000).toFixed(0)}K
+                Rs.{(outboundShipments.reduce((sum, s) => sum + s.totalValue, 0) / 1000).toFixed(0)}K
               </p>
             </div>
             <Package className="w-6 h-6 text-purple-700" />
@@ -365,7 +365,7 @@ export default function OutboundShippingPage() {
                       <MapPin className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
                       <div>
                         <div className="text-xs text-gray-700">{shipment.origin}</div>
-                        <div className="text-xs text-gray-400 my-1">“</div>
+                        <div className="text-xs text-gray-400 my-1">-></div>
                         <div className="text-xs font-semibold text-gray-900">{shipment.destination}</div>
                       </div>
                     </div>
@@ -386,7 +386,7 @@ export default function OutboundShippingPage() {
                   </td>
                   <td className="px-4 py-3 text-right">
                     <div className="text-sm font-bold text-blue-600">
-                      ¹{shipment.totalValue.toLocaleString()}
+                      Rs.{shipment.totalValue.toLocaleString()}
                     </div>
                   </td>
                   <td className="px-4 py-3">

@@ -1,13 +1,25 @@
 'use client';
 
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { Calendar, TrendingUp, Clock, CheckCircle, AlertCircle, Plus, Download, History } from 'lucide-react';
 import { mockMyLeaveBalances, mockLeaveTransactions, LeaveBalance, LeaveTransaction } from '@/data/hr/leave-balances';
 import { StatusBadge } from '@/components/ui/StatusBadge';
 
 export default function MyLeaveBalancePage() {
+  const router = useRouter();
   const [leaveBalances] = useState<LeaveBalance[]>(mockMyLeaveBalances);
   const [transactions] = useState<LeaveTransaction[]>(mockLeaveTransactions);
+
+  // Consistent date formatter to avoid hydration errors
+  const formatDate = (dateString: string, includeYear = false) => {
+    const date = new Date(dateString);
+    const day = date.getDate().toString().padStart(2, '0');
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const month = months[date.getMonth()];
+    const year = date.getFullYear();
+    return includeYear ? `${day} ${month} ${year}` : `${day} ${month}`;
+  };
 
   // Calculate totals
   const totalEntitlement = leaveBalances.reduce((sum, lb) => sum + lb.totalEntitlement, 0);
@@ -39,7 +51,10 @@ export default function MyLeaveBalancePage() {
             <span>Download Report</span>
           </button>
           <button
-            onClick={() => console.log('Apply Leave')}
+            onClick={() => {
+              console.log('Navigating to apply leave page...');
+              router.push('/hr/leave/apply');
+            }}
             className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
           >
             <Plus className="w-4 h-4" />
@@ -227,9 +242,9 @@ export default function MyLeaveBalancePage() {
                   </td>
                   <td className="px-4 py-3 whitespace-nowrap">
                     <div className="text-sm text-gray-900">
-                      {new Date(transaction.fromDate).toLocaleDateString('en-GB', { day: '2-digit', month: 'short' })}
+                      {formatDate(transaction.fromDate)}
                       {transaction.fromDate !== transaction.toDate && (
-                        <> - {new Date(transaction.toDate).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}</>
+                        <> - {formatDate(transaction.toDate, true)}</>
                       )}
                       {transaction.fromDate === transaction.toDate && (
                         <> {new Date(transaction.fromDate).getFullYear()}</>
@@ -246,7 +261,7 @@ export default function MyLeaveBalancePage() {
                   </td>
                   <td className="px-4 py-3 whitespace-nowrap">
                     <div className="text-sm text-gray-500">
-                      {new Date(transaction.appliedOn).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}
+                      {formatDate(transaction.appliedOn, true)}
                     </div>
                   </td>
                   <td className="px-4 py-3 whitespace-nowrap text-center">

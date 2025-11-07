@@ -253,16 +253,18 @@ export default function AnticipatedPaymentsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-orange-50 p-6">
-      {/* Header */}
-      <div className="mb-6">
-        <div className="flex items-center justify-between mb-4">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
-              <ArrowDownCircle className="w-8 h-8 text-orange-600" />
-              Anticipated Payments
-            </h1>
-            <p className="text-gray-600 mt-1">Schedule and track upcoming vendor payments</p>
+    <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 via-orange-50 to-red-50">
+      <div className="flex-1 overflow-y-auto overflow-x-hidden">
+        <div className="px-4 sm:px-6 lg:px-8 py-6">
+          {/* Header */}
+          <div className="mb-6">
+            <div className="flex items-center justify-between mb-4">
+              <div>
+                <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
+                  <ArrowDownCircle className="w-8 h-8 text-orange-600" />
+                  Anticipated Payments
+                </h1>
+                <p className="text-gray-600 mt-1">Schedule and track upcoming vendor payments</p>
           </div>
           <Link
             href="/finance/cash/anticipated-payments/create"
@@ -560,6 +562,8 @@ export default function AnticipatedPaymentsPage() {
               <ChevronRight className="w-4 h-4" />
             </button>
           </div>
+        </div>
+      </div>
         </div>
       </div>
     </div>

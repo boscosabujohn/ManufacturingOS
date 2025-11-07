@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { ShoppingCart, Clock, CheckCircle, XCircle, AlertCircle } from 'lucide-react';
+import { ShoppingCart, Clock, CheckCircle, XCircle, AlertCircle, X, Eye, Package, User, Calendar as CalendarIcon } from 'lucide-react';
+import { toast } from '@/hooks/use-toast';
 
 interface AssetRequest {
   id: string;
@@ -30,6 +31,24 @@ export default function Page() {
   const [selectedStatus, setSelectedStatus] = useState('all');
   const [selectedDepartment, setSelectedDepartment] = useState('all');
   const [selectedPriority, setSelectedPriority] = useState('all');
+  const [showDetailsModal, setShowDetailsModal] = useState(false);
+  const [showApproveModal, setShowApproveModal] = useState(false);
+  const [showRejectModal, setShowRejectModal] = useState(false);
+  const [showFulfillModal, setShowFulfillModal] = useState(false);
+  const [selectedRequest, setSelectedRequest] = useState<AssetRequest | null>(null);
+  const [approveFormData, setApproveFormData] = useState({
+    approvedBy: '',
+    remarks: ''
+  });
+  const [rejectFormData, setRejectFormData] = useState({
+    reason: '',
+    remarks: ''
+  });
+  const [fulfillFormData, setFulfillFormData] = useState({
+    assetTags: '',
+    fulfilledDate: new Date().toISOString().split('T')[0],
+    notes: ''
+  });
 
   const mockRequests: AssetRequest[] = [
     {
@@ -188,6 +207,60 @@ export default function Page() {
     printer: 'bg-pink-100 text-pink-700',
     furniture: 'bg-orange-100 text-orange-700',
     other: 'bg-gray-100 text-gray-700'
+  };
+
+  const handleViewDetails = (request: AssetRequest) => {
+    setSelectedRequest(request);
+    setShowDetailsModal(true);
+  };
+
+  const handleApprove = (request: AssetRequest) => {
+    setSelectedRequest(request);
+    setApproveFormData({ approvedBy: '', remarks: '' });
+    setShowApproveModal(true);
+  };
+
+  const handleReject = (request: AssetRequest) => {
+    setSelectedRequest(request);
+    setRejectFormData({ reason: '', remarks: '' });
+    setShowRejectModal(true);
+  };
+
+  const handleFulfill = (request: AssetRequest) => {
+    setSelectedRequest(request);
+    setFulfillFormData({
+      assetTags: '',
+      fulfilledDate: new Date().toISOString().split('T')[0],
+      notes: ''
+    });
+    setShowFulfillModal(true);
+  };
+
+  const handleSubmitApprove = (e: React.FormEvent) => {
+    e.preventDefault();
+    toast({
+      title: "Request Approved",
+      description: `Asset request ${selectedRequest?.requestId} has been approved.`
+    });
+    setShowApproveModal(false);
+  };
+
+  const handleSubmitReject = (e: React.FormEvent) => {
+    e.preventDefault();
+    toast({
+      title: "Request Rejected",
+      description: `Asset request ${selectedRequest?.requestId} has been rejected.`
+    });
+    setShowRejectModal(false);
+  };
+
+  const handleSubmitFulfill = (e: React.FormEvent) => {
+    e.preventDefault();
+    toast({
+      title: "Request Fulfilled",
+      description: `Asset request ${selectedRequest?.requestId} has been marked as fulfilled.`
+    });
+    setShowFulfillModal(false);
   };
 
   return (
@@ -380,21 +453,37 @@ export default function Page() {
             )}
 
             <div className="flex gap-2">
-              <button className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium text-sm">
+              <button
+                onClick={() => handleViewDetails(request)}
+                className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium text-sm"
+              >
+                <Eye className="inline h-4 w-4 mr-1" />
                 View Details
               </button>
               {request.status === 'pending' && (
                 <>
-                  <button className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium text-sm">
+                  <button
+                    onClick={() => handleApprove(request)}
+                    className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium text-sm"
+                  >
+                    <CheckCircle className="inline h-4 w-4 mr-1" />
                     Approve
                   </button>
-                  <button className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 font-medium text-sm">
+                  <button
+                    onClick={() => handleReject(request)}
+                    className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 font-medium text-sm"
+                  >
+                    <XCircle className="inline h-4 w-4 mr-1" />
                     Reject
                   </button>
                 </>
               )}
               {request.status === 'approved' && (
-                <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium text-sm">
+                <button
+                  onClick={() => handleFulfill(request)}
+                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium text-sm"
+                >
+                  <Package className="inline h-4 w-4 mr-1" />
                   Mark as Fulfilled
                 </button>
               )}
@@ -402,6 +491,457 @@ export default function Page() {
           </div>
         ))}
       </div>
+
+      {/* View Details Modal */}
+      {showDetailsModal && selectedRequest && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
+            <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-4 flex items-center justify-between rounded-t-xl z-10">
+              <div className="flex items-center gap-3">
+                <Eye className="h-6 w-6" />
+                <h2 className="text-xl font-bold">Asset Request Details</h2>
+              </div>
+              <button onClick={() => setShowDetailsModal(false)} className="text-white hover:bg-white/20 rounded-lg p-1">
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+
+            <div className="p-6">
+              <div className="mb-6 flex items-start justify-between">
+                <div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">{selectedRequest.assetType}</h3>
+                  <p className="text-gray-600">Request ID: {selectedRequest.requestId}</p>
+                </div>
+                <span className={`px-4 py-2 text-sm font-semibold rounded-full ${statusColors[selectedRequest.status]}`}>
+                  {selectedRequest.status.toUpperCase()}
+                </span>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div className="bg-gray-50 rounded-lg p-5 border border-gray-200">
+                  <h4 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                    <User className="h-5 w-5 text-gray-600" />
+                    Requestor Information
+                  </h4>
+                  <div className="space-y-3">
+                    <div>
+                      <p className="text-xs text-gray-500">Name</p>
+                      <p className="font-medium text-gray-900">{selectedRequest.requestedBy}</p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-gray-500">Employee Code</p>
+                      <p className="font-medium text-gray-900">{selectedRequest.employeeCode}</p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-gray-500">Department</p>
+                      <p className="font-medium text-gray-900">{selectedRequest.department}</p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-gray-500">Designation</p>
+                      <p className="font-medium text-gray-900">{selectedRequest.designation}</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-blue-50 rounded-lg p-5 border border-blue-200">
+                  <h4 className="font-semibold text-blue-900 mb-4 flex items-center gap-2">
+                    <Package className="h-5 w-5 text-blue-600" />
+                    Asset Information
+                  </h4>
+                  <div className="space-y-3">
+                    <div>
+                      <p className="text-xs text-blue-600">Category</p>
+                      <p className="font-medium text-blue-900 capitalize">{selectedRequest.assetCategory}</p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-blue-600">Type/Model</p>
+                      <p className="font-medium text-blue-900">{selectedRequest.assetType}</p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-blue-600">Quantity</p>
+                      <p className="font-medium text-blue-900">{selectedRequest.quantity} unit(s)</p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-blue-600">Estimated Cost</p>
+                      <p className="font-medium text-blue-900 text-xl">₹{selectedRequest.estimatedCost?.toLocaleString('en-IN')}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mb-6 bg-gray-50 rounded-lg p-5 border border-gray-200">
+                <h4 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                  <CalendarIcon className="h-5 w-5 text-gray-600" />
+                  Timeline & Priority
+                </h4>
+                <div className="grid grid-cols-3 gap-4">
+                  <div>
+                    <p className="text-xs text-gray-500">Request Date</p>
+                    <p className="font-medium text-gray-900">
+                      {new Date(selectedRequest.requestDate).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-gray-500">Required By</p>
+                    <p className="font-medium text-gray-900">
+                      {new Date(selectedRequest.requiredBy).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-gray-500">Priority</p>
+                    <span className={`px-3 py-1 text-xs font-semibold rounded ${priorityColors[selectedRequest.priority]}`}>
+                      {selectedRequest.priority.toUpperCase()}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mb-6 bg-yellow-50 rounded-lg p-5 border border-yellow-200">
+                <h4 className="font-semibold text-yellow-900 mb-3">Business Justification</h4>
+                <p className="text-sm text-yellow-800">{selectedRequest.businessJustification}</p>
+              </div>
+
+              {selectedRequest.approvedBy && (
+                <div className="mb-6 bg-green-50 rounded-lg p-4 border border-green-200">
+                  <h4 className="font-semibold text-green-900 mb-2 flex items-center gap-2">
+                    <CheckCircle className="h-5 w-5 text-green-600" />
+                    Approval Information
+                  </h4>
+                  <p className="text-sm text-green-800">
+                    Approved by {selectedRequest.approvedBy} on {selectedRequest.approvalDate && new Date(selectedRequest.approvalDate).toLocaleDateString('en-IN')}
+                  </p>
+                </div>
+              )}
+
+              {selectedRequest.assignedAssets && selectedRequest.assignedAssets.length > 0 && (
+                <div className="mb-6 bg-blue-50 rounded-lg p-4 border border-blue-200">
+                  <h4 className="font-semibold text-blue-900 mb-3">Assigned Assets</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {selectedRequest.assignedAssets.map((asset, idx) => (
+                      <span key={idx} className="px-3 py-1 bg-white text-blue-700 text-sm font-semibold rounded border border-blue-300">
+                        {asset}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              <div className="flex gap-3">
+                <button
+                  onClick={() => setShowDetailsModal(false)}
+                  className="flex-1 bg-gray-600 text-white py-3 rounded-lg hover:bg-gray-700 font-semibold"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Approve Modal */}
+      {showApproveModal && selectedRequest && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+            <div className="sticky top-0 bg-gradient-to-r from-green-600 to-green-700 text-white px-6 py-4 flex items-center justify-between rounded-t-xl z-10">
+              <div className="flex items-center gap-3">
+                <CheckCircle className="h-6 w-6" />
+                <h2 className="text-xl font-bold">Approve Asset Request</h2>
+              </div>
+              <button onClick={() => setShowApproveModal(false)} className="text-white hover:bg-white/20 rounded-lg p-1">
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+
+            <div className="p-6">
+              <div className="mb-6 p-4 bg-green-50 rounded-lg border border-green-200">
+                <h3 className="font-bold text-green-900 mb-2">{selectedRequest.assetType}</h3>
+                <p className="text-sm text-green-700">Request ID: {selectedRequest.requestId}</p>
+                <p className="text-sm text-green-700">Requested by: {selectedRequest.requestedBy} ({selectedRequest.department})</p>
+              </div>
+
+              <div className="mb-6 p-5 bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg border-2 border-blue-300">
+                <p className="text-sm font-medium text-gray-700 mb-2">Estimated Cost</p>
+                <p className="text-4xl font-bold text-blue-700">₹{selectedRequest.estimatedCost?.toLocaleString('en-IN')}</p>
+                <p className="text-xs text-gray-600 mt-2">
+                  {selectedRequest.quantity} unit(s) of {selectedRequest.assetType}
+                </p>
+              </div>
+
+              <form onSubmit={handleSubmitApprove} className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Approved By <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    value={approveFormData.approvedBy}
+                    onChange={(e) => setApproveFormData({...approveFormData, approvedBy: e.target.value})}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    placeholder="e.g., John Doe - IT Manager"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Approval Remarks
+                  </label>
+                  <textarea
+                    value={approveFormData.remarks}
+                    onChange={(e) => setApproveFormData({...approveFormData, remarks: e.target.value})}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    rows={3}
+                    placeholder="Any additional notes or conditions..."
+                  />
+                </div>
+
+                <div className="p-3 bg-green-50 rounded-lg border border-green-200">
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="text-sm font-semibold text-green-900">Approval Confirmation</p>
+                      <p className="text-xs text-green-800 mt-1">
+                        By approving this request, you authorize the procurement/allocation of the specified asset(s).
+                        The request will move to fulfillment stage.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex gap-3 pt-4">
+                  <button
+                    type="submit"
+                    className="flex-1 bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 font-semibold"
+                  >
+                    Approve Request
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setShowApproveModal(false)}
+                    className="px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 font-semibold"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Reject Modal */}
+      {showRejectModal && selectedRequest && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+            <div className="sticky top-0 bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-4 flex items-center justify-between rounded-t-xl z-10">
+              <div className="flex items-center gap-3">
+                <XCircle className="h-6 w-6" />
+                <h2 className="text-xl font-bold">Reject Asset Request</h2>
+              </div>
+              <button onClick={() => setShowRejectModal(false)} className="text-white hover:bg-white/20 rounded-lg p-1">
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+
+            <div className="p-6">
+              <div className="mb-6 p-4 bg-red-50 rounded-lg border border-red-200">
+                <h3 className="font-bold text-red-900 mb-2">{selectedRequest.assetType}</h3>
+                <p className="text-sm text-red-700">Request ID: {selectedRequest.requestId}</p>
+                <p className="text-sm text-red-700">Requested by: {selectedRequest.requestedBy} ({selectedRequest.department})</p>
+              </div>
+
+              <form onSubmit={handleSubmitReject} className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Rejection Reason <span className="text-red-500">*</span>
+                  </label>
+                  <select
+                    value={rejectFormData.reason}
+                    onChange={(e) => setRejectFormData({...rejectFormData, reason: e.target.value})}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                    required
+                  >
+                    <option value="">Select rejection reason</option>
+                    <option value="budget_constraints">Budget Constraints</option>
+                    <option value="duplicate_request">Duplicate Request</option>
+                    <option value="insufficient_justification">Insufficient Business Justification</option>
+                    <option value="alternative_available">Alternative Asset Available</option>
+                    <option value="policy_violation">Policy Violation</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Detailed Remarks <span className="text-red-500">*</span>
+                  </label>
+                  <textarea
+                    value={rejectFormData.remarks}
+                    onChange={(e) => setRejectFormData({...rejectFormData, remarks: e.target.value})}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                    rows={4}
+                    placeholder="Provide detailed explanation for rejection..."
+                    required
+                  />
+                </div>
+
+                <div className="p-3 bg-red-50 rounded-lg border border-red-200">
+                  <div className="flex items-start gap-2">
+                    <AlertCircle className="h-5 w-5 text-red-600 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="text-sm font-semibold text-red-900">Rejection Notice</p>
+                      <p className="text-xs text-red-800 mt-1">
+                        The requestor will be notified of this rejection along with the reason and remarks provided.
+                        They may resubmit the request with additional justification if applicable.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex gap-3 pt-4">
+                  <button
+                    type="submit"
+                    className="flex-1 bg-red-600 text-white py-3 rounded-lg hover:bg-red-700 font-semibold"
+                  >
+                    Reject Request
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setShowRejectModal(false)}
+                    className="px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 font-semibold"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Fulfill Modal */}
+      {showFulfillModal && selectedRequest && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+            <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-4 flex items-center justify-between rounded-t-xl z-10">
+              <div className="flex items-center gap-3">
+                <Package className="h-6 w-6" />
+                <h2 className="text-xl font-bold">Fulfill Asset Request</h2>
+              </div>
+              <button onClick={() => setShowFulfillModal(false)} className="text-white hover:bg-white/20 rounded-lg p-1">
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+
+            <div className="p-6">
+              <div className="mb-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                <h3 className="font-bold text-blue-900 mb-2">{selectedRequest.assetType}</h3>
+                <p className="text-sm text-blue-700">Request ID: {selectedRequest.requestId}</p>
+                <p className="text-sm text-blue-700">Assign to: {selectedRequest.requestedBy} ({selectedRequest.employeeCode})</p>
+              </div>
+
+              <div className="mb-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                <h4 className="font-semibold text-gray-900 mb-3">Request Details</h4>
+                <div className="grid grid-cols-2 gap-3 text-sm">
+                  <div>
+                    <p className="text-gray-600">Asset Category</p>
+                    <p className="font-medium text-gray-900 capitalize">{selectedRequest.assetCategory}</p>
+                  </div>
+                  <div>
+                    <p className="text-gray-600">Quantity Requested</p>
+                    <p className="font-medium text-gray-900">{selectedRequest.quantity} unit(s)</p>
+                  </div>
+                  <div>
+                    <p className="text-gray-600">Department</p>
+                    <p className="font-medium text-gray-900">{selectedRequest.department}</p>
+                  </div>
+                  <div>
+                    <p className="text-gray-600">Priority</p>
+                    <span className={`px-2 py-1 text-xs font-semibold rounded ${priorityColors[selectedRequest.priority]}`}>
+                      {selectedRequest.priority.toUpperCase()}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <form onSubmit={handleSubmitFulfill} className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Asset Tag(s) / Serial Number(s) <span className="text-red-500">*</span>
+                  </label>
+                  <textarea
+                    value={fulfillFormData.assetTags}
+                    onChange={(e) => setFulfillFormData({...fulfillFormData, assetTags: e.target.value})}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    rows={3}
+                    placeholder="Enter asset tags separated by commas (e.g., LAP-2024-001, LAP-2024-002)"
+                    required
+                  />
+                  <p className="text-xs text-gray-500 mt-1">
+                    For multiple assets, enter all asset tags/serial numbers separated by commas
+                  </p>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Fulfillment Date <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="date"
+                    value={fulfillFormData.fulfilledDate}
+                    onChange={(e) => setFulfillFormData({...fulfillFormData, fulfilledDate: e.target.value})}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Fulfillment Notes
+                  </label>
+                  <textarea
+                    value={fulfillFormData.notes}
+                    onChange={(e) => setFulfillFormData({...fulfillFormData, notes: e.target.value})}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    rows={3}
+                    placeholder="Any additional notes, delivery instructions, or conditions..."
+                  />
+                </div>
+
+                <div className="p-3 bg-blue-50 rounded-lg border border-blue-200">
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="text-sm font-semibold text-blue-900">Fulfillment Confirmation</p>
+                      <p className="text-xs text-blue-800 mt-1">
+                        By marking this request as fulfilled, you confirm that the specified asset(s) have been allocated
+                        and delivered to the requestor. The assets will be assigned to the employee in the system.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex gap-3 pt-4">
+                  <button
+                    type="submit"
+                    className="flex-1 bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 font-semibold"
+                  >
+                    Mark as Fulfilled
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setShowFulfillModal(false)}
+                    className="px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 font-semibold"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

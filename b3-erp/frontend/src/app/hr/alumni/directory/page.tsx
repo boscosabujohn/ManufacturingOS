@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { Search, MapPin, Briefcase, Calendar, Mail, Phone, Linkedin, Award, Building2, Users, TrendingUp, Download, Filter } from 'lucide-react';
+import { Search, MapPin, Briefcase, Calendar, Mail, Phone, Linkedin, Award, Building2, Users, TrendingUp, Download, Filter, X, Eye, MessageCircle, UserCheck } from 'lucide-react';
+import { toast } from '@/hooks/use-toast';
 
 interface AlumniMember {
   id: string;
@@ -33,6 +34,8 @@ export default function Page() {
   const [selectedLocation, setSelectedLocation] = useState('all');
   const [selectedStatus, setSelectedStatus] = useState('all');
   const [showFilters, setShowFilters] = useState(false);
+  const [showProfileModal, setShowProfileModal] = useState(false);
+  const [selectedMember, setSelectedMember] = useState<AlumniMember | null>(null);
 
   const mockAlumni: AlumniMember[] = [
     {
@@ -179,6 +182,32 @@ export default function Page() {
   const departments = ['all', ...Array.from(new Set(mockAlumni.map(m => m.department)))];
   const locations = ['all', 'Pune', 'Mumbai', 'Bangalore', 'Hyderabad', 'Ahmedabad'];
 
+  const handleViewProfile = (member: AlumniMember) => {
+    setSelectedMember(member);
+    setShowProfileModal(true);
+  };
+
+  const handleExport = () => {
+    toast({
+      title: "Exporting Alumni Directory",
+      description: `Exporting ${filteredAlumni.length} alumni records to Excel...`
+    });
+  };
+
+  const handleSendMessage = (member: AlumniMember) => {
+    toast({
+      title: "Message Sent",
+      description: `Your message has been sent to ${member.name}.`
+    });
+  };
+
+  const handleRequestMentorship = (member: AlumniMember) => {
+    toast({
+      title: "Mentorship Request Sent",
+      description: `Your mentorship request has been sent to ${member.name}.`
+    });
+  };
+
   return (
     <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
       {/* Header */}
@@ -250,7 +279,10 @@ export default function Page() {
             <Filter className="h-4 w-4" />
             Filters
           </button>
-          <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+          <button
+            onClick={handleExport}
+            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          >
             <Download className="h-4 w-4" />
             Export
           </button>
@@ -360,32 +392,40 @@ export default function Page() {
               )}
 
               {/* Contact Actions */}
-              <div className="flex gap-2 pt-4 border-t border-gray-200">
-                <a
-                  href={`mailto:${member.email}`}
-                  className="flex items-center justify-center gap-2 flex-1 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm font-medium text-gray-700"
+              <div className="space-y-2 pt-4 border-t border-gray-200">
+                <button
+                  onClick={() => handleViewProfile(member)}
+                  className="w-full flex items-center justify-center gap-2 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm font-medium"
                 >
-                  <Mail className="h-4 w-4" />
-                  Email
-                </a>
-                <a
-                  href={`tel:${member.phone}`}
-                  className="flex items-center justify-center gap-2 flex-1 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm font-medium text-gray-700"
-                >
-                  <Phone className="h-4 w-4" />
-                  Call
-                </a>
-                {member.linkedinUrl && (
+                  <Eye className="h-4 w-4" />
+                  View Full Profile
+                </button>
+                <div className="flex gap-2">
                   <a
-                    href={member.linkedinUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 flex-1 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm font-medium"
+                    href={`mailto:${member.email}`}
+                    className="flex items-center justify-center gap-2 flex-1 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm font-medium text-gray-700"
                   >
-                    <Linkedin className="h-4 w-4" />
-                    LinkedIn
+                    <Mail className="h-4 w-4" />
+                    Email
                   </a>
-                )}
+                  <a
+                    href={`tel:${member.phone}`}
+                    className="flex items-center justify-center gap-2 flex-1 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm font-medium text-gray-700"
+                  >
+                    <Phone className="h-4 w-4" />
+                    Call
+                  </a>
+                  {member.linkedinUrl && (
+                    <a
+                      href={member.linkedinUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-2 flex-1 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm font-medium text-gray-700"
+                    >
+                      <Linkedin className="h-4 w-4" />
+                    </a>
+                  )}
+                </div>
               </div>
             </div>
           </div>
@@ -397,6 +437,240 @@ export default function Page() {
           <Users className="h-12 w-12 text-gray-400 mx-auto mb-4" />
           <h3 className="text-lg font-semibold text-gray-900 mb-2">No alumni found</h3>
           <p className="text-gray-600">Try adjusting your search or filters</p>
+        </div>
+      )}
+
+      {/* View Profile Modal */}
+      {showProfileModal && selectedMember && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+            <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-700 text-white px-6 py-4 flex items-center justify-between rounded-t-xl z-10">
+              <div className="flex items-center gap-3">
+                <UserCheck className="h-6 w-6" />
+                <h2 className="text-xl font-bold">Alumni Profile</h2>
+              </div>
+              <button onClick={() => setShowProfileModal(false)} className="text-white hover:bg-white/20 rounded-lg p-1">
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+
+            <div className="p-6">
+              {/* Profile Header */}
+              <div className="mb-6 flex items-start justify-between">
+                <div className="flex items-start gap-4">
+                  <div className="h-24 w-24 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center text-white text-3xl font-bold">
+                    {selectedMember.name.split(' ').map(n => n[0]).join('')}
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-1">{selectedMember.name}</h3>
+                    <p className="text-gray-600">{selectedMember.currentDesignation}</p>
+                    <p className="text-gray-600 font-semibold">{selectedMember.currentCompany}</p>
+                    <p className="text-sm text-gray-500 mt-1">Employee Code: {selectedMember.employeeCode}</p>
+                  </div>
+                </div>
+                <div className="flex gap-2">
+                  {selectedMember.willingToMentor && (
+                    <span className="px-3 py-1 bg-green-100 text-green-700 text-sm font-semibold rounded-full flex items-center gap-1">
+                      <Award className="h-4 w-4" />
+                      Mentor Available
+                    </span>
+                  )}
+                  {selectedMember.availableForRehire && (
+                    <span className="px-3 py-1 bg-blue-100 text-blue-700 text-sm font-semibold rounded-full">
+                      Rehire Eligible
+                    </span>
+                  )}
+                </div>
+              </div>
+
+              {/* Quick Contact */}
+              <div className="mb-6 grid grid-cols-1 md:grid-cols-3 gap-3">
+                <a
+                  href={`mailto:${selectedMember.email}`}
+                  className="flex items-center gap-2 px-4 py-3 border-2 border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                >
+                  <Mail className="h-5 w-5 text-gray-600" />
+                  <div>
+                    <p className="text-xs text-gray-500">Email</p>
+                    <p className="text-sm font-medium text-gray-900">{selectedMember.email}</p>
+                  </div>
+                </a>
+                <a
+                  href={`tel:${selectedMember.phone}`}
+                  className="flex items-center gap-2 px-4 py-3 border-2 border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                >
+                  <Phone className="h-5 w-5 text-gray-600" />
+                  <div>
+                    <p className="text-xs text-gray-500">Phone</p>
+                    <p className="text-sm font-medium text-gray-900">{selectedMember.phone}</p>
+                  </div>
+                </a>
+                {selectedMember.linkedinUrl && (
+                  <a
+                    href={selectedMember.linkedinUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-4 py-3 border-2 border-blue-300 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"
+                  >
+                    <Linkedin className="h-5 w-5 text-blue-600" />
+                    <div>
+                      <p className="text-xs text-blue-600">LinkedIn</p>
+                      <p className="text-sm font-medium text-blue-900">View Profile</p>
+                    </div>
+                  </a>
+                )}
+              </div>
+
+              {/* Two Column Layout */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                {/* Previous Role at Company */}
+                <div className="bg-gray-50 rounded-lg p-5 border border-gray-200">
+                  <h4 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                    <Briefcase className="h-5 w-5 text-gray-600" />
+                    Previous Role with Us
+                  </h4>
+                  <div className="space-y-3">
+                    <div>
+                      <p className="text-xs text-gray-500">Designation</p>
+                      <p className="font-medium text-gray-900">{selectedMember.designation}</p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-gray-500">Department</p>
+                      <p className="font-medium text-gray-900">{selectedMember.department}</p>
+                    </div>
+                    <div className="grid grid-cols-2 gap-3">
+                      <div>
+                        <p className="text-xs text-gray-500">Join Date</p>
+                        <p className="font-medium text-gray-900">
+                          {new Date(selectedMember.joinDate).toLocaleDateString('en-IN', {
+                            day: 'numeric',
+                            month: 'short',
+                            year: 'numeric'
+                          })}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-xs text-gray-500">Exit Date</p>
+                        <p className="font-medium text-gray-900">
+                          {new Date(selectedMember.exitDate).toLocaleDateString('en-IN', {
+                            day: 'numeric',
+                            month: 'short',
+                            year: 'numeric'
+                          })}
+                        </p>
+                      </div>
+                    </div>
+                    <div>
+                      <p className="text-xs text-gray-500">Tenure</p>
+                      <p className="font-medium text-green-700">{selectedMember.tenure}</p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-gray-500">Reason for Leaving</p>
+                      <p className="font-medium text-gray-900 capitalize">{selectedMember.reasonForLeaving.replace('_', ' ')}</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Current Role */}
+                <div className="bg-blue-50 rounded-lg p-5 border border-blue-200">
+                  <h4 className="font-semibold text-blue-900 mb-4 flex items-center gap-2">
+                    <Building2 className="h-5 w-5 text-blue-600" />
+                    Current Role
+                  </h4>
+                  <div className="space-y-3">
+                    <div>
+                      <p className="text-xs text-blue-600">Designation</p>
+                      <p className="font-medium text-blue-900">{selectedMember.currentDesignation}</p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-blue-600">Company</p>
+                      <p className="font-medium text-blue-900">{selectedMember.currentCompany}</p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-blue-600">Location</p>
+                      <p className="font-medium text-blue-900 flex items-center gap-1">
+                        <MapPin className="h-4 w-4" />
+                        {selectedMember.location}
+                      </p>
+                    </div>
+                    {selectedMember.lastContactDate && (
+                      <div>
+                        <p className="text-xs text-blue-600">Last Contact</p>
+                        <p className="font-medium text-blue-900">
+                          {new Date(selectedMember.lastContactDate).toLocaleDateString('en-IN', {
+                            day: 'numeric',
+                            month: 'long',
+                            year: 'numeric'
+                          })}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              {/* Achievements */}
+              {selectedMember.achievements.length > 0 && (
+                <div className="mb-6 bg-green-50 rounded-lg p-5 border border-green-200">
+                  <h4 className="font-semibold text-green-900 mb-3 flex items-center gap-2">
+                    <Award className="h-5 w-5 text-green-600" />
+                    Key Achievements
+                  </h4>
+                  <ul className="space-y-2">
+                    {selectedMember.achievements.map((achievement, idx) => (
+                      <li key={idx} className="flex items-start gap-2 text-sm text-green-800">
+                        <span className="text-green-600 mt-0.5">✓</span>
+                        {achievement}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {/* Industry Expertise */}
+              {selectedMember.industryExpertise.length > 0 && (
+                <div className="mb-6">
+                  <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                    <TrendingUp className="h-5 w-5 text-gray-600" />
+                    Industry Expertise & Skills
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    {selectedMember.industryExpertise.map((skill, idx) => (
+                      <span key={idx} className="px-3 py-2 bg-blue-100 text-blue-700 text-sm font-medium rounded-lg">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Action Buttons */}
+              <div className="flex gap-3 pt-6 border-t border-gray-200">
+                {selectedMember.willingToMentor && (
+                  <button
+                    onClick={() => handleRequestMentorship(selectedMember)}
+                    className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 font-semibold"
+                  >
+                    <UserCheck className="h-5 w-5" />
+                    Request Mentorship
+                  </button>
+                )}
+                <button
+                  onClick={() => handleSendMessage(selectedMember)}
+                  className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-semibold"
+                >
+                  <MessageCircle className="h-5 w-5" />
+                  Send Message
+                </button>
+                <button
+                  onClick={() => setShowProfileModal(false)}
+                  className="px-6 py-3 border-2 border-gray-300 rounded-lg hover:bg-gray-50 font-semibold"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       )}
     </div>

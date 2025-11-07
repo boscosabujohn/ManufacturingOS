@@ -24,8 +24,10 @@ export default function ComponentsPage() {
   const [selectedType, setSelectedType] = useState('all');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [showFilters, setShowFilters] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [editingComponent, setEditingComponent] = useState<SalaryComponent | null>(null);
 
-  const mockComponents: SalaryComponent[] = [
+  const initialComponents: SalaryComponent[] = [
     {
       id: '1', code: 'BASIC', name: 'Basic Salary', type: 'earning', category: 'fixed',
       calculationType: 'flat', taxable: true, pfApplicable: true, esiApplicable: true,
@@ -98,8 +100,39 @@ export default function ComponentsPage() {
     }
   ];
 
+  const [components, setComponents] = useState<SalaryComponent[]>(initialComponents);
+
+  const handleAdd = () => {
+    setEditingComponent(null);
+    setShowModal(true);
+  };
+
+  const handleEdit = (component: SalaryComponent) => {
+    setEditingComponent(component);
+    setShowModal(true);
+  };
+
+  const handleDelete = (id: string) => {
+    if (confirm('Are you sure you want to delete this component?')) {
+      setComponents(components.filter(c => c.id !== id));
+    }
+  };
+
+  const handleSave = (component: SalaryComponent) => {
+    if (editingComponent) {
+      // Update existing
+      setComponents(components.map(c => c.id === component.id ? component : c));
+    } else {
+      // Add new
+      const newComponent = { ...component, id: String(components.length + 1) };
+      setComponents([...components, newComponent]);
+    }
+    setShowModal(false);
+    setEditingComponent(null);
+  };
+
   const filteredData = useMemo(() => {
-    return mockComponents.filter(component => {
+    return components.filter(component => {
       const matchesSearch = component.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                            component.code.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesType = selectedType === 'all' || component.type === selectedType;
@@ -109,10 +142,10 @@ export default function ComponentsPage() {
   }, [searchTerm, selectedType, selectedCategory]);
 
   const stats = {
-    total: mockComponents.length,
-    earnings: mockComponents.filter(c => c.type === 'earning').length,
-    deductions: mockComponents.filter(c => c.type === 'deduction').length,
-    statutory: mockComponents.filter(c => c.category === 'statutory').length
+    total: components.length,
+    earnings: components.filter(c => c.type === 'earning').length,
+    deductions: components.filter(c => c.type === 'deduction').length,
+    statutory: components.filter(c => c.category === 'statutory').length
   };
 
   const getTypeColor = (type: string) => {
@@ -177,12 +210,20 @@ export default function ComponentsPage() {
       render: (v: string) => <StatusBadge status={v as BadgeStatus} />
     },
     { key: 'id', label: 'Actions', sortable: false,
-      render: () => (
+      render: (_: any, row: SalaryComponent) => (
         <div className="flex gap-2">
-          <button className="p-2 text-blue-600 hover:bg-blue-50 rounded transition-colors">
+          <button
+            onClick={() => handleEdit(row)}
+            className="p-2 text-blue-600 hover:bg-blue-50 rounded transition-colors"
+            title="Edit Component"
+          >
             <Edit className="h-4 w-4" />
           </button>
-          <button className="p-2 text-red-600 hover:bg-red-50 rounded transition-colors">
+          <button
+            onClick={() => handleDelete(row.id)}
+            className="p-2 text-red-600 hover:bg-red-50 rounded transition-colors"
+            title="Delete Component"
+          >
             <Trash2 className="h-4 w-4" />
           </button>
         </div>
@@ -262,7 +303,10 @@ export default function ComponentsPage() {
             <Filter className="h-4 w-4" />
             Filters
           </button>
-          <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+          <button
+            onClick={handleAdd}
+            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          >
             <Plus className="h-4 w-4" />
             Add Component
           </button>
@@ -316,6 +360,235 @@ export default function ComponentsPage() {
           <li>• <strong>Statutory:</strong> Mandatory deductions as per law (PF, ESI, PT, TDS)</li>
           <li>• <strong>Calculation Types:</strong> Flat (fixed amount), Percentage (% of base), Formula (custom calculation)</li>
         </ul>
+      </div>
+
+      {/* Add/Edit Modal */}
+      {showModal && (
+        <ComponentModal
+          component={editingComponent}
+          onClose={() => {
+            setShowModal(false);
+            setEditingComponent(null);
+          }}
+          onSave={handleSave}
+        />
+      )}
+    </div>
+  );
+}
+
+// Component Modal
+function ComponentModal({
+  component,
+  onClose,
+  onSave
+}: {
+  component: SalaryComponent | null;
+  onClose: () => void;
+  onSave: (component: SalaryComponent) => void;
+}) {
+  const [formData, setFormData] = useState<SalaryComponent>(
+    component || {
+      id: '',
+      code: '',
+      name: '',
+      type: 'earning',
+      category: 'fixed',
+      calculationType: 'flat',
+      taxable: true,
+      pfApplicable: false,
+      esiApplicable: false,
+      displayOrder: 1,
+      status: 'active'
+    }
+  );
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    onSave(formData);
+  };
+
+  const handleChange = (field: keyof SalaryComponent, value: any) => {
+    setFormData({ ...formData, [field]: value });
+  };
+
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+      <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
+        {/* Modal Header */}
+        <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-6 rounded-t-lg">
+          <h2 className="text-2xl font-bold">
+            {component ? 'Edit' : 'Add New'} Salary Component
+          </h2>
+          <p className="text-blue-100 mt-1">
+            {component ? `Editing: ${component.name}` : 'Create a new salary component'}
+          </p>
+        </div>
+
+        {/* Modal Content */}
+        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+          {/* Component Code and Name */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Component Code <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                value={formData.code}
+                onChange={(e) => handleChange('code', e.target.value.toUpperCase())}
+                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="e.g., BASIC, HRA"
+                required
+                maxLength={10}
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Component Name <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                value={formData.name}
+                onChange={(e) => handleChange('name', e.target.value)}
+                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="e.g., Basic Salary"
+                required
+              />
+            </div>
+          </div>
+
+          {/* Type, Category, Calculation Type */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Type <span className="text-red-500">*</span>
+              </label>
+              <select
+                value={formData.type}
+                onChange={(e) => handleChange('type', e.target.value)}
+                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                required
+              >
+                <option value="earning">Earning</option>
+                <option value="deduction">Deduction</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Category <span className="text-red-500">*</span>
+              </label>
+              <select
+                value={formData.category}
+                onChange={(e) => handleChange('category', e.target.value)}
+                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                required
+              >
+                <option value="fixed">Fixed</option>
+                <option value="variable">Variable</option>
+                <option value="statutory">Statutory</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Calculation Type <span className="text-red-500">*</span>
+              </label>
+              <select
+                value={formData.calculationType}
+                onChange={(e) => handleChange('calculationType', e.target.value)}
+                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                required
+              >
+                <option value="flat">Flat Amount</option>
+                <option value="percentage">Percentage</option>
+                <option value="formula">Formula</option>
+              </select>
+            </div>
+          </div>
+
+          {/* Checkboxes */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-3">
+              <label className="flex items-center space-x-2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={formData.taxable}
+                  onChange={(e) => handleChange('taxable', e.target.checked)}
+                  className="w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                />
+                <span className="text-sm font-medium text-gray-700">Taxable</span>
+              </label>
+              <label className="flex items-center space-x-2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={formData.pfApplicable}
+                  onChange={(e) => handleChange('pfApplicable', e.target.checked)}
+                  className="w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                />
+                <span className="text-sm font-medium text-gray-700">PF Applicable</span>
+              </label>
+            </div>
+            <div className="space-y-3">
+              <label className="flex items-center space-x-2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={formData.esiApplicable}
+                  onChange={(e) => handleChange('esiApplicable', e.target.checked)}
+                  className="w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                />
+                <span className="text-sm font-medium text-gray-700">ESI Applicable</span>
+              </label>
+            </div>
+          </div>
+
+          {/* Display Order and Status */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Display Order <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="number"
+                value={formData.displayOrder}
+                onChange={(e) => handleChange('displayOrder', parseInt(e.target.value))}
+                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                min="1"
+                required
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Status <span className="text-red-500">*</span>
+              </label>
+              <select
+                value={formData.status}
+                onChange={(e) => handleChange('status', e.target.value)}
+                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                required
+              >
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+              </select>
+            </div>
+          </div>
+
+          {/* Action Buttons */}
+          <div className="flex items-center gap-3 pt-4 border-t border-gray-200">
+            <button
+              type="submit"
+              className="flex-1 px-4 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium transition-colors"
+            >
+              {component ? 'Update' : 'Create'} Component
+            </button>
+            <button
+              type="button"
+              onClick={onClose}
+              className="px-4 py-2.5 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 font-medium transition-colors"
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );

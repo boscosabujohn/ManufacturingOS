@@ -1,327 +1,657 @@
 'use client';
 
-import { useState } from 'react';
-import { Building, MapPin, Calendar, Users, Star, Wifi, Coffee, Car, Dumbbell, IndianRupee, Search } from 'lucide-react';
+import { useState, useMemo } from 'react';
+import { Building, Plus, Calendar, IndianRupee, User, MapPin, Edit2, Trash2, X, Save, AlertCircle, Download, Star, Bed } from 'lucide-react';
+import { toast } from '@/hooks/use-toast';
 
-interface HotelOption {
+interface HotelBooking {
   id: string;
-  name: string;
-  chain: string;
+  bookingReference: string;
+  travelRequestId: string;
+  employeeCode: string;
+  employeeName: string;
+  department: string;
+  hotelName: string;
+  hotelChain?: string;
+  confirmationNumber: string;
   location: string;
   address: string;
-  rating: number;
-  reviews: number;
-  roomType: string;
-  pricePerNight: number;
-  totalPrice: number;
+  roomType: 'standard' | 'deluxe' | 'executive' | 'suite';
+  checkInDate: string;
+  checkOutDate: string;
   nights: number;
-  amenities: string[];
-  images: number;
-  availability: number;
-  distance: string;
-  checkIn: string;
-  checkOut: string;
+  guests: number;
+  ratePerNight: number;
+  taxes: number;
+  totalAmount: number;
+  bookingDate: string;
+  bookingSource: 'corporate-agent' | 'hotel-direct' | 'online-portal' | 'other';
+  agencyName?: string;
+  bookingStatus: 'confirmed' | 'pending' | 'cancelled' | 'checked-in' | 'checked-out';
+  mealPlan: 'room-only' | 'breakfast' | 'half-board' | 'full-board';
+  specialRequests?: string;
+  cancellationPolicy: string;
+  remarks?: string;
 }
 
-export default function Page() {
-  const [searchLocation, setSearchLocation] = useState('Mumbai');
-  const [checkInDate, setCheckInDate] = useState('2025-11-15');
-  const [checkOutDate, setCheckOutDate] = useState('2025-11-17');
-  const [guests, setGuests] = useState('1');
-  const [roomType, setRoomType] = useState('deluxe');
-
-  const calculateNights = (checkIn: string, checkOut: string) => {
-    const start = new Date(checkIn);
-    const end = new Date(checkOut);
-    return Math.ceil((end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24));
-  };
-
-  const nights = calculateNights(checkInDate, checkOutDate);
-
-  const mockHotels: HotelOption[] = [
+export default function HotelBookingPage() {
+  const [bookings, setBookings] = useState<HotelBooking[]>([
     {
       id: '1',
-      name: 'Taj Hotel',
-      chain: 'Taj Hotels',
-      location: 'Colaba, Mumbai',
-      address: 'Apollo Bunder, Mumbai 400001',
-      rating: 4.8,
-      reviews: 1250,
-      roomType: 'Deluxe Room',
-      pricePerNight: 8500,
-      totalPrice: 8500 * nights,
-      nights: nights,
-      amenities: ['Free WiFi', 'Pool', 'Spa', 'Gym', 'Restaurant', 'Room Service'],
-      images: 24,
-      availability: 5,
-      distance: '2.5 km from BOM Airport',
-      checkIn: checkInDate,
-      checkOut: checkOutDate
+      bookingReference: 'HTL-2025-001',
+      travelRequestId: 'TR-2025-002',
+      employeeCode: 'EMP456',
+      employeeName: 'Priya Sharma',
+      department: 'Engineering',
+      hotelName: 'ITC Grand Central',
+      hotelChain: 'ITC Hotels',
+      confirmationNumber: 'ITC123456',
+      location: 'Bangalore',
+      address: 'MG Road, Bangalore 560001',
+      roomType: 'deluxe',
+      checkInDate: '2025-11-10',
+      checkOutDate: '2025-11-15',
+      nights: 5,
+      guests: 1,
+      ratePerNight: 6500,
+      taxes: 3900,
+      totalAmount: 36400,
+      bookingDate: '2025-10-20',
+      bookingSource: 'corporate-agent',
+      agencyName: 'MakeMyTrip Corporate',
+      bookingStatus: 'confirmed',
+      mealPlan: 'breakfast',
+      specialRequests: 'High floor, non-smoking room',
+      cancellationPolicy: 'Free cancellation up to 24 hours before check-in',
+      remarks: 'Corporate rate applied - 20% discount'
     },
     {
       id: '2',
-      name: 'ITC Grand Central',
-      chain: 'ITC Hotels',
-      location: 'Parel, Mumbai',
-      address: 'Dr. Babasaheb Ambedkar Road, Mumbai 400012',
-      rating: 4.6,
-      reviews: 890,
-      roomType: 'Executive Room',
-      pricePerNight: 7200,
-      totalPrice: 7200 * nights,
-      nights: nights,
-      amenities: ['Free WiFi', 'Pool', 'Spa', 'Gym', 'Restaurant', 'Business Center'],
-      images: 18,
-      availability: 8,
-      distance: '8 km from BOM Airport',
-      checkIn: checkInDate,
-      checkOut: checkOutDate
+      bookingReference: 'HTL-2025-002',
+      travelRequestId: 'TR-2025-003',
+      employeeCode: 'EMP789',
+      employeeName: 'Amit Patel',
+      department: 'Quality',
+      hotelName: 'Marina Bay Sands',
+      confirmationNumber: 'MBS789012',
+      location: 'Singapore',
+      address: '10 Bayfront Avenue, Singapore 018956',
+      roomType: 'executive',
+      checkInDate: '2025-12-01',
+      checkOutDate: '2025-12-07',
+      nights: 6,
+      guests: 1,
+      ratePerNight: 18000,
+      taxes: 19440,
+      totalAmount: 127440,
+      bookingDate: '2025-10-25',
+      bookingSource: 'hotel-direct',
+      bookingStatus: 'confirmed',
+      mealPlan: 'breakfast',
+      specialRequests: 'City view room, late check-out if possible',
+      cancellationPolicy: 'Non-refundable. Changes allowed with fee',
+      remarks: 'International business travel - upgraded to executive room'
     },
     {
       id: '3',
-      name: 'The Oberoi',
-      chain: 'Oberoi Hotels',
-      location: 'Nariman Point, Mumbai',
-      address: 'Nariman Point, Mumbai 400021',
-      rating: 4.9,
-      reviews: 1450,
-      roomType: 'Premier Room',
-      pricePerNight: 12000,
-      totalPrice: 12000 * nights,
-      nights: nights,
-      amenities: ['Free WiFi', 'Pool', 'Spa', 'Gym', 'Fine Dining', 'Butler Service'],
-      images: 32,
-      availability: 3,
-      distance: '18 km from BOM Airport',
-      checkIn: checkInDate,
-      checkOut: checkOutDate
+      bookingReference: 'HTL-2025-003',
+      travelRequestId: 'TR-2025-001',
+      employeeCode: 'EMP234',
+      employeeName: 'Rajesh Kumar',
+      department: 'Sales',
+      hotelName: 'The Westin Pune',
+      hotelChain: 'Marriott',
+      confirmationNumber: 'MAR456789',
+      location: 'Pune',
+      address: 'Koregaon Park, Pune 411001',
+      roomType: 'deluxe',
+      checkInDate: '2025-11-05',
+      checkOutDate: '2025-11-07',
+      nights: 2,
+      guests: 1,
+      ratePerNight: 5200,
+      taxes: 1872,
+      totalAmount: 12272,
+      bookingDate: '2025-10-22',
+      bookingSource: 'online-portal',
+      agencyName: 'Booking.com Corporate',
+      bookingStatus: 'confirmed',
+      mealPlan: 'breakfast',
+      cancellationPolicy: 'Free cancellation up to 48 hours before check-in',
+      remarks: 'Client meeting accommodation'
     },
     {
       id: '4',
-      name: 'Lemon Tree Premier',
-      chain: 'Lemon Tree Hotels',
-      location: 'Andheri, Mumbai',
-      address: 'Andheri Kurla Road, Mumbai 400059',
-      rating: 4.2,
-      reviews: 650,
-      roomType: 'Superior Room',
-      pricePerNight: 4500,
-      totalPrice: 4500 * nights,
-      nights: nights,
-      amenities: ['Free WiFi', 'Gym', 'Restaurant', 'Parking', 'Room Service'],
-      images: 15,
-      availability: 12,
-      distance: '3 km from BOM Airport',
-      checkIn: checkInDate,
-      checkOut: checkOutDate
-    },
-    {
-      id: '5',
-      name: 'Novotel Mumbai',
-      chain: 'Accor Hotels',
-      location: 'Juhu Beach, Mumbai',
-      address: 'Balraj Sahani Marg, Mumbai 400049',
-      rating: 4.4,
-      reviews: 780,
-      roomType: 'Standard Room',
-      pricePerNight: 6000,
-      totalPrice: 6000 * nights,
-      nights: nights,
-      amenities: ['Free WiFi', 'Pool', 'Gym', 'Restaurant', 'Beach Access'],
-      images: 20,
-      availability: 10,
-      distance: '6 km from BOM Airport',
-      checkIn: checkInDate,
-      checkOut: checkOutDate
+      bookingReference: 'HTL-2025-004',
+      travelRequestId: 'TR-2025-005',
+      employeeCode: 'EMP567',
+      employeeName: 'Sneha Reddy',
+      department: 'Production',
+      hotelName: 'Taj Coromandel',
+      hotelChain: 'Taj Hotels',
+      confirmationNumber: 'TAJ987654',
+      location: 'Chennai',
+      address: 'Nungambakkam, Chennai 600034',
+      roomType: 'standard',
+      checkInDate: '2025-11-08',
+      checkOutDate: '2025-11-11',
+      nights: 3,
+      guests: 1,
+      ratePerNight: 4800,
+      taxes: 2592,
+      totalAmount: 16992,
+      bookingDate: '2025-10-28',
+      bookingSource: 'corporate-agent',
+      agencyName: 'TravelBuddy Corporate',
+      bookingStatus: 'pending',
+      mealPlan: 'room-only',
+      cancellationPolicy: 'Free cancellation up to 24 hours before check-in',
+      remarks: 'Pending confirmation from hotel'
     }
-  ];
+  ]);
 
-  const stats = {
-    cheapest: Math.min(...mockHotels.map(h => h.pricePerNight)),
-    highest: Math.max(...mockHotels.map(h => h.rating)),
-    total: mockHotels.length
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [selectedBooking, setSelectedBooking] = useState<HotelBooking | null>(null);
+  const [filterStatus, setFilterStatus] = useState<string>('all');
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const filteredBookings = useMemo(() => {
+    let filtered = bookings;
+
+    if (filterStatus !== 'all') {
+      filtered = filtered.filter(b => b.bookingStatus === filterStatus);
+    }
+
+    if (searchQuery) {
+      filtered = filtered.filter(b =>
+        b.employeeName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        b.bookingReference.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        b.confirmationNumber.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        b.hotelName.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+
+    return filtered.sort((a, b) => b.bookingDate.localeCompare(a.bookingDate));
+  }, [bookings, filterStatus, searchQuery]);
+
+  const stats = useMemo(() => ({
+    total: bookings.length,
+    confirmed: bookings.filter(b => b.bookingStatus === 'confirmed').length,
+    pending: bookings.filter(b => b.bookingStatus === 'pending').length,
+    cancelled: bookings.filter(b => b.bookingStatus === 'cancelled').length,
+    totalSpent: bookings.filter(b => b.bookingStatus === 'confirmed').reduce((sum, b) => sum + b.totalAmount, 0),
+    totalNights: bookings.filter(b => b.bookingStatus === 'confirmed').reduce((sum, b) => sum + b.nights, 0)
+  }), [bookings]);
+
+  const getStatusColor = (status: string) => {
+    const colors = {
+      confirmed: 'bg-green-100 text-green-800',
+      pending: 'bg-yellow-100 text-yellow-800',
+      cancelled: 'bg-red-100 text-red-800',
+      'checked-in': 'bg-blue-100 text-blue-800',
+      'checked-out': 'bg-gray-100 text-gray-800'
+    };
+    return colors[status as keyof typeof colors] || 'bg-gray-100 text-gray-800';
   };
 
-  const getAmenityIcon = (amenity: string) => {
-    if (amenity.toLowerCase().includes('wifi')) return <Wifi className="h-4 w-4" />;
-    if (amenity.toLowerCase().includes('gym')) return <Dumbbell className="h-4 w-4" />;
-    if (amenity.toLowerCase().includes('parking')) return <Car className="h-4 w-4" />;
-    if (amenity.toLowerCase().includes('restaurant') || amenity.toLowerCase().includes('dining')) return <Coffee className="h-4 w-4" />;
-    return <Star className="h-4 w-4" />;
+  const getRoomTypeColor = (roomType: string) => {
+    const colors = {
+      'standard': 'bg-gray-100 text-gray-800',
+      'deluxe': 'bg-blue-100 text-blue-800',
+      'executive': 'bg-purple-100 text-purple-800',
+      'suite': 'bg-amber-100 text-amber-800'
+    };
+    return colors[roomType as keyof typeof colors] || 'bg-gray-100 text-gray-800';
+  };
+
+  const handleDelete = (booking: HotelBooking) => {
+    setSelectedBooking(booking);
+    setShowDeleteModal(true);
+  };
+
+  const handleConfirmDelete = () => {
+    if (!selectedBooking) return;
+    setBookings(bookings.filter(b => b.id !== selectedBooking.id));
+    setShowDeleteModal(false);
+    toast({
+      title: "Booking Deleted",
+      description: `${selectedBooking.bookingReference} has been removed`
+    });
+    setSelectedBooking(null);
+  };
+
+  const handleDownloadVoucher = (booking: HotelBooking) => {
+    toast({
+      title: "Downloading Voucher",
+      description: `Hotel voucher for ${booking.bookingReference} is being downloaded`
+    });
   };
 
   return (
     <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-gray-900">Hotel Booking</h1>
-        <p className="text-sm text-gray-600 mt-1">Search and book hotel accommodation for business travel</p>
+        <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
+          <Building className="h-7 w-7 text-blue-600" />
+          Hotel Bookings
+        </h1>
+        <p className="text-sm text-gray-600 mt-1">Manage and track hotel bookings for employee travel</p>
       </div>
 
-      {/* Search Card */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-4">
+      {/* Info Alert */}
+      <div className="mb-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+        <div className="flex items-start gap-2">
+          <AlertCircle className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Location</label>
-            <input
-              type="text"
-              value={searchLocation}
-              onChange={(e) => setSearchLocation(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
+            <h3 className="text-sm font-semibold text-blue-900 mb-1">Booking Management</h3>
+            <p className="text-sm text-blue-800">
+              Record hotel bookings made through corporate travel agents, hotel chains, or online portals.
+              Keep track of confirmation numbers, room details, and booking status for reporting.
+            </p>
           </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Check-in</label>
-            <input
-              type="date"
-              value={checkInDate}
-              onChange={(e) => setCheckInDate(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Check-out</label>
-            <input
-              type="date"
-              value={checkOutDate}
-              onChange={(e) => setCheckOutDate(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Guests</label>
+        </div>
+      </div>
+
+      {/* Statistics */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4 mb-6">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+          <div className="text-sm text-gray-600 mb-1">Total Bookings</div>
+          <div className="text-2xl font-bold text-gray-900">{stats.total}</div>
+        </div>
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+          <div className="text-sm text-gray-600 mb-1">Confirmed</div>
+          <div className="text-2xl font-bold text-green-600">{stats.confirmed}</div>
+        </div>
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+          <div className="text-sm text-gray-600 mb-1">Pending</div>
+          <div className="text-2xl font-bold text-yellow-600">{stats.pending}</div>
+        </div>
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+          <div className="text-sm text-gray-600 mb-1">Cancelled</div>
+          <div className="text-2xl font-bold text-red-600">{stats.cancelled}</div>
+        </div>
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+          <div className="text-sm text-gray-600 mb-1">Total Nights</div>
+          <div className="text-2xl font-bold text-purple-600">{stats.totalNights}</div>
+        </div>
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+          <div className="text-sm text-gray-600 mb-1">Total Spent</div>
+          <div className="text-2xl font-bold text-blue-600">₹{(stats.totalSpent / 100000).toFixed(1)}L</div>
+        </div>
+      </div>
+
+      {/* Filters and Actions */}
+      <div className="mb-6 flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
+        <div className="flex flex-col sm:flex-row gap-3 items-start sm:items-center flex-1">
+          <div className="flex gap-2 items-center">
+            <label className="text-sm font-medium text-gray-700">Status:</label>
             <select
-              value={guests}
-              onChange={(e) => setGuests(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              value={filterStatus}
+              onChange={(e) => setFilterStatus(e.target.value)}
+              className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 bg-white"
             >
-              <option value="1">1 Guest</option>
-              <option value="2">2 Guests</option>
-              <option value="3">3 Guests</option>
-              <option value="4">4 Guests</option>
+              <option value="all">All Status</option>
+              <option value="confirmed">Confirmed</option>
+              <option value="pending">Pending</option>
+              <option value="cancelled">Cancelled</option>
+              <option value="checked-in">Checked In</option>
+              <option value="checked-out">Checked Out</option>
             </select>
           </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Room Type</label>
-            <select
-              value={roomType}
-              onChange={(e) => setRoomType(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-              <option value="standard">Standard</option>
-              <option value="deluxe">Deluxe</option>
-              <option value="executive">Executive</option>
-              <option value="suite">Suite</option>
-            </select>
-          </div>
+          <input
+            type="text"
+            placeholder="Search by employee, hotel, confirmation..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 w-full sm:w-80"
+          />
         </div>
-
-        <div className="flex items-center justify-between">
-          <p className="text-sm text-gray-600">
-            <span className="font-semibold text-gray-900">{nights}</span> night{nights > 1 ? 's' : ''} • {guests} guest{guests !== '1' ? 's' : ''}
-          </p>
-          <button className="flex items-center gap-2 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium">
-            <Search className="h-4 w-4" />
-            Search Hotels
-          </button>
-        </div>
+        <button
+          onClick={() => setShowAddModal(true)}
+          className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2 font-medium"
+        >
+          <Plus className="h-4 w-4" />
+          Add Booking
+        </button>
       </div>
 
-      {/* Quick Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
-          <p className="text-sm font-medium text-green-600">Cheapest Hotel</p>
-          <p className="text-2xl font-bold text-green-900 mt-1">₹{stats.cheapest.toLocaleString('en-IN')}/night</p>
-        </div>
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
-          <p className="text-sm font-medium text-yellow-600">Highest Rated</p>
-          <div className="flex items-center gap-2 mt-1">
-            <p className="text-2xl font-bold text-yellow-900">{stats.highest}</p>
-            <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
-          </div>
-        </div>
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
-          <p className="text-sm font-medium text-purple-600">Hotels Available</p>
-          <p className="text-2xl font-bold text-purple-900 mt-1">{stats.total}</p>
-        </div>
-      </div>
-
-      {/* Hotel Results */}
+      {/* Bookings List */}
       <div className="space-y-4">
-        {mockHotels.map(hotel => (
-          <div key={hotel.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
-            <div className="flex items-start justify-between mb-4">
-              <div className="flex-1">
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="h-12 w-12 bg-purple-100 rounded-lg flex items-center justify-center">
-                    <Building className="h-6 w-6 text-purple-600" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-bold text-gray-900">{hotel.name}</h3>
-                    <p className="text-sm text-gray-600">{hotel.chain}</p>
-                  </div>
+        {filteredBookings.map((booking) => (
+          <div key={booking.id} className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+            <div className="px-6 py-4 bg-gradient-to-r from-blue-50 to-blue-100 border-b border-gray-200 flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="p-2 bg-blue-600 rounded-lg">
+                  <Building className="h-5 w-5 text-white" />
                 </div>
-                <div className="flex items-center gap-4 text-sm text-gray-600 mb-3">
-                  <span className="flex items-center gap-1">
-                    <MapPin className="h-4 w-4" />
-                    {hotel.location}
-                  </span>
-                  <span className="text-gray-400">•</span>
-                  <span>{hotel.distance}</span>
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900">{booking.bookingReference}</h3>
+                  <p className="text-sm text-gray-600">{booking.hotelName} • Confirmation: {booking.confirmationNumber}</p>
                 </div>
-                <div className="flex items-center gap-2">
-                  <div className="flex items-center gap-1 bg-blue-50 px-2 py-1 rounded">
-                    <Star className="h-4 w-4 fill-blue-600 text-blue-600" />
-                    <span className="font-semibold text-blue-900">{hotel.rating}</span>
-                  </div>
-                  <span className="text-sm text-gray-600">({hotel.reviews} reviews)</span>
-                  <span className="text-gray-400">•</span>
-                  <span className="text-sm text-gray-600">{hotel.images} photos</span>
-                </div>
+                <span className={`px-3 py-1 text-xs font-medium rounded-full ${getStatusColor(booking.bookingStatus)}`}>
+                  {booking.bookingStatus.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')}
+                </span>
+                <span className={`px-3 py-1 text-xs font-medium rounded ${getRoomTypeColor(booking.roomType)}`}>
+                  {booking.roomType.charAt(0).toUpperCase() + booking.roomType.slice(1)}
+                </span>
               </div>
               <div className="text-right">
-                <p className="text-xs text-gray-500 uppercase mb-1">Total for {nights} night{nights > 1 ? 's' : ''}</p>
-                <p className="text-3xl font-bold text-blue-600">₹{hotel.totalPrice.toLocaleString('en-IN')}</p>
-                <p className="text-sm text-gray-600 mt-1">₹{hotel.pricePerNight.toLocaleString('en-IN')}/night</p>
-                <p className="text-xs text-green-600 font-medium mt-1">{hotel.availability} rooms left</p>
+                <div className="text-2xl font-bold text-blue-900">₹{booking.totalAmount.toLocaleString('en-IN')}</div>
+                <div className="text-xs text-gray-600">₹{booking.ratePerNight.toLocaleString('en-IN')}/night × {booking.nights} nights</div>
               </div>
             </div>
 
-            <div className="border-t border-gray-200 pt-4 mb-4">
-              <p className="text-sm font-semibold text-gray-900 mb-2">{hotel.roomType}</p>
-              <div className="flex flex-wrap gap-2">
-                {hotel.amenities.map((amenity, idx) => (
-                  <span key={idx} className="flex items-center gap-1 px-3 py-1 bg-gray-50 text-gray-700 text-xs rounded-full border border-gray-200">
-                    {getAmenityIcon(amenity)}
-                    {amenity}
-                  </span>
-                ))}
-              </div>
-            </div>
+            <div className="p-6">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-4">
+                {/* Employee Info */}
+                <div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <User className="h-4 w-4 text-gray-400" />
+                    <span className="text-xs text-gray-500 uppercase font-medium">Guest</span>
+                  </div>
+                  <p className="font-semibold text-gray-900">{booking.employeeName}</p>
+                  <p className="text-sm text-gray-600">{booking.employeeCode}</p>
+                  <p className="text-xs text-gray-500">{booking.department}</p>
+                  <p className="text-xs text-gray-500 mt-1">{booking.guests} Guest{booking.guests !== 1 ? 's' : ''}</p>
+                </div>
 
-            <div className="flex items-center justify-between pt-4 border-t border-gray-200">
-              <div className="flex items-center gap-4 text-sm text-gray-600">
-                <span className="flex items-center gap-1">
-                  <Calendar className="h-4 w-4" />
-                  Check-in: {new Date(hotel.checkIn).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' })}
-                </span>
-                <span>→</span>
-                <span className="flex items-center gap-1">
-                  <Calendar className="h-4 w-4" />
-                  Check-out: {new Date(hotel.checkOut).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' })}
-                </span>
+                {/* Hotel & Location */}
+                <div className="md:col-span-2">
+                  <div className="flex items-center gap-2 mb-2">
+                    <MapPin className="h-4 w-4 text-gray-400" />
+                    <span className="text-xs text-gray-500 uppercase font-medium">Hotel & Location</span>
+                  </div>
+                  <p className="font-semibold text-gray-900">{booking.hotelName}</p>
+                  {booking.hotelChain && <p className="text-sm text-gray-600">{booking.hotelChain}</p>}
+                  <p className="text-sm text-gray-600">{booking.location}</p>
+                  <p className="text-xs text-gray-500">{booking.address}</p>
+                </div>
+
+                {/* Stay Details */}
+                <div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <Calendar className="h-4 w-4 text-gray-400" />
+                    <span className="text-xs text-gray-500 uppercase font-medium">Stay Period</span>
+                  </div>
+                  <p className="text-sm text-gray-900">Check-in: {booking.checkInDate}</p>
+                  <p className="text-sm text-gray-900">Check-out: {booking.checkOutDate}</p>
+                  <p className="text-xs text-gray-500 mt-1">{booking.nights} night{booking.nights !== 1 ? 's' : ''}</p>
+                  <p className="text-xs text-blue-600 font-medium capitalize">{booking.mealPlan.replace('-', ' ')}</p>
+                </div>
               </div>
-              <div className="flex gap-2">
-                <button className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium text-sm">
-                  View Details
-                </button>
-                <button className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium text-sm">
-                  Book Now
-                </button>
+
+              {/* Booking Info Row */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                <div className="bg-gray-50 rounded-lg p-3">
+                  <p className="text-xs text-gray-500 mb-1">Booked On</p>
+                  <p className="text-sm font-semibold text-gray-900">{booking.bookingDate}</p>
+                  <p className="text-xs text-gray-600 capitalize">{booking.bookingSource.replace('-', ' ')}</p>
+                  {booking.agencyName && <p className="text-xs text-gray-500">{booking.agencyName}</p>}
+                </div>
+                <div className="bg-gray-50 rounded-lg p-3">
+                  <p className="text-xs text-gray-500 mb-1">Cancellation Policy</p>
+                  <p className="text-sm text-gray-900">{booking.cancellationPolicy}</p>
+                </div>
+                {(booking.specialRequests || booking.remarks) && (
+                  <div className="bg-gray-50 rounded-lg p-3">
+                    <p className="text-xs text-gray-500 mb-1">Notes</p>
+                    {booking.specialRequests && <p className="text-sm text-gray-900">{booking.specialRequests}</p>}
+                    {booking.remarks && <p className="text-xs text-gray-600 mt-1">{booking.remarks}</p>}
+                  </div>
+                )}
+              </div>
+
+              {/* Actions */}
+              <div className="flex items-center justify-between pt-4 border-t border-gray-200">
+                <div className="text-xs text-gray-500">
+                  Travel Request: <span className="text-blue-600 font-medium">{booking.travelRequestId}</span>
+                </div>
+                <div className="flex gap-2">
+                  {booking.bookingStatus === 'confirmed' && (
+                    <button
+                      onClick={() => handleDownloadVoucher(booking)}
+                      className="px-3 py-1.5 bg-green-100 text-green-700 rounded-lg hover:bg-green-200 text-sm font-medium flex items-center gap-1"
+                    >
+                      <Download className="h-3.5 w-3.5" />
+                      Voucher
+                    </button>
+                  )}
+                  <button
+                    onClick={() => handleDelete(booking)}
+                    className="p-1.5 bg-red-100 text-red-700 rounded-lg hover:bg-red-200"
+                    title="Delete"
+                  >
+                    <Trash2 className="h-4 w-4" />
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         ))}
       </div>
+
+      {filteredBookings.length === 0 && (
+        <div className="text-center py-12 bg-white rounded-lg shadow-sm border border-gray-200">
+          <Building className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+          <h3 className="text-lg font-semibold text-gray-900 mb-2">No bookings found</h3>
+          <p className="text-gray-600">No hotel bookings match your search criteria</p>
+        </div>
+      )}
+
+      {/* Add Booking Modal */}
+      {showAddModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="p-6 border-b border-gray-200 flex items-center justify-between sticky top-0 bg-white z-10">
+              <h2 className="text-xl font-bold text-gray-900">Add Hotel Booking</h2>
+              <button onClick={() => setShowAddModal(false)} className="p-2 hover:bg-gray-100 rounded-lg">
+                <X className="h-5 w-5 text-gray-500" />
+              </button>
+            </div>
+
+            <div className="p-6">
+              <form className="space-y-6">
+                {/* Employee & Travel Request */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Travel Request ID</label>
+                    <input type="text" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="TR-2025-XXX" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Employee Code</label>
+                    <input type="text" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="EMPXXX" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Employee Name</label>
+                    <input type="text" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" />
+                  </div>
+                </div>
+
+                {/* Hotel Details */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Hotel Name</label>
+                    <input type="text" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="ITC Grand Central" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Hotel Chain (Optional)</label>
+                    <input type="text" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="ITC Hotels" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Confirmation Number</label>
+                    <input type="text" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="ITC123456" />
+                  </div>
+                </div>
+
+                {/* Location */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Location (City)</label>
+                    <input type="text" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="Bangalore" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Full Address</label>
+                    <input type="text" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="MG Road, Bangalore 560001" />
+                  </div>
+                </div>
+
+                {/* Stay Details */}
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Check-in Date</label>
+                    <input type="date" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Check-out Date</label>
+                    <input type="date" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Number of Nights</label>
+                    <input type="number" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="1" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Number of Guests</label>
+                    <input type="number" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="1" />
+                  </div>
+                </div>
+
+                {/* Pricing */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Rate Per Night (₹)</label>
+                    <input type="number" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="0" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Taxes & Fees (₹)</label>
+                    <input type="number" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="0" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Total Amount (₹)</label>
+                    <input type="number" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="0" />
+                  </div>
+                </div>
+
+                {/* Booking Details */}
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Room Type</label>
+                    <select className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                      <option value="standard">Standard</option>
+                      <option value="deluxe">Deluxe</option>
+                      <option value="executive">Executive</option>
+                      <option value="suite">Suite</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Meal Plan</label>
+                    <select className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                      <option value="room-only">Room Only</option>
+                      <option value="breakfast">Breakfast Included</option>
+                      <option value="half-board">Half Board</option>
+                      <option value="full-board">Full Board</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Booking Source</label>
+                    <select className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                      <option value="corporate-agent">Corporate Agent</option>
+                      <option value="hotel-direct">Hotel Direct</option>
+                      <option value="online-portal">Online Portal</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Booking Status</label>
+                    <select className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                      <option value="confirmed">Confirmed</option>
+                      <option value="pending">Pending</option>
+                      <option value="cancelled">Cancelled</option>
+                    </select>
+                  </div>
+                </div>
+
+                {/* Additional Info */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Agency Name (Optional)</label>
+                    <input type="text" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="MakeMyTrip Corporate" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Cancellation Policy</label>
+                    <input type="text" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="Free cancellation up to 24 hours" />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">Special Requests</label>
+                  <textarea className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" rows={2} placeholder="High floor, non-smoking room, etc."></textarea>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">Remarks</label>
+                  <textarea className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" rows={2} placeholder="Any additional notes..."></textarea>
+                </div>
+              </form>
+            </div>
+
+            <div className="p-6 border-t border-gray-200 flex justify-end gap-3 sticky bottom-0 bg-white">
+              <button onClick={() => setShowAddModal(false)} className="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-medium">
+                Cancel
+              </button>
+              <button
+                onClick={() => {
+                  toast({ title: "Booking Added", description: "Hotel booking has been recorded successfully" });
+                  setShowAddModal(false);
+                }}
+                className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium flex items-center gap-2"
+              >
+                <Save className="h-4 w-4" />
+                Save Booking
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Delete Confirmation Modal */}
+      {showDeleteModal && selectedBooking && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
+            <div className="p-6">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="p-3 bg-red-100 rounded-full">
+                  <AlertCircle className="h-6 w-6 text-red-600" />
+                </div>
+                <h2 className="text-xl font-bold text-gray-900">Delete Booking?</h2>
+              </div>
+              <p className="text-gray-600 mb-2">
+                Are you sure you want to delete booking <strong>{selectedBooking.bookingReference}</strong>?
+              </p>
+              <p className="text-sm text-gray-500">
+                This action cannot be undone. All booking details will be permanently removed.
+              </p>
+            </div>
+            <div className="p-6 border-t border-gray-200 flex justify-end gap-2">
+              <button
+                onClick={() => {
+                  setShowDeleteModal(false);
+                  setSelectedBooking(null);
+                }}
+                className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-medium"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleConfirmDelete}
+                className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 font-medium flex items-center gap-2"
+              >
+                <Trash2 className="h-4 w-4" />
+                Delete Booking
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

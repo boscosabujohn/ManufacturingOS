@@ -48,6 +48,16 @@ export default function EncashmentRequestsPage() {
   const [showFilters, setShowFilters] = useState(false);
   const [showNewRequestModal, setShowNewRequestModal] = useState(false);
 
+  // Consistent date formatter to avoid hydration errors
+  const formatDate = (dateString: string, includeYear = false) => {
+    const date = new Date(dateString);
+    const day = date.getDate().toString().padStart(2, '0');
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const month = months[date.getMonth()];
+    const year = date.getFullYear();
+    return includeYear ? `${day} ${month} ${year}` : `${day}/${month.substring(0, 3).toUpperCase()}/${year}`;
+  };
+
   const filteredData = useMemo(() => {
     return requests.filter(req => {
       const matchesSearch = req.id.toLowerCase().includes(searchTerm.toLowerCase()) || req.leaveType.toLowerCase().includes(searchTerm.toLowerCase());
@@ -59,14 +69,14 @@ export default function EncashmentRequestsPage() {
 
   const getStatusBadge = (status: string) => {
     const statusMap: Record<string, { status: string; text: string }> = {
-      'draft': { status: 'default', text: 'Draft' },
-      'submitted': { status: 'info', text: 'Submitted' },
+      'draft': { status: 'draft', text: 'Draft' },
+      'submitted': { status: 'pending', text: 'Submitted' },
       'pending_approval': { status: 'warning', text: 'Pending Approval' },
-      'approved': { status: 'success', text: 'Approved' },
-      'rejected': { status: 'error', text: 'Rejected' },
-      'processed': { status: 'active', text: 'Processed' }
+      'approved': { status: 'approved', text: 'Approved' },
+      'rejected': { status: 'rejected', text: 'Rejected' },
+      'processed': { status: 'completed', text: 'Processed' }
     };
-    const config = statusMap[status] || { status: 'default', text: status };
+    const config = statusMap[status] || { status: 'draft', text: status };
     return <StatusBadge status={config.status as any} text={config.text} />;
   };
 
@@ -79,7 +89,7 @@ export default function EncashmentRequestsPage() {
       render: (v, row) => (
         <div>
           <div className="font-mono font-semibold text-blue-600">{v}</div>
-          <div className="text-xs text-gray-500">{new Date(row.requestDate).toLocaleDateString()}</div>
+          <div className="text-xs text-gray-500">{formatDate(row.requestDate, true)}</div>
         </div>
       )
     },
@@ -132,7 +142,7 @@ export default function EncashmentRequestsPage() {
       render: (v, row) => (
         <div>
           {getStatusBadge(v)}
-          {row.submittedOn && <div className="text-xs text-gray-500 mt-1">Submitted: {new Date(row.submittedOn).toLocaleDateString()}</div>}
+          {row.submittedOn && <div className="text-xs text-gray-500 mt-1">Submitted: {formatDate(row.submittedOn, true)}</div>}
           {row.rejectionReason && <div className="text-xs text-red-600 mt-1">{row.rejectionReason}</div>}
         </div>
       )
@@ -147,10 +157,10 @@ export default function EncashmentRequestsPage() {
           {v && (
             <>
               <div className="text-gray-900">{v}</div>
-              {row.approvedOn && <div className="text-gray-500">{new Date(row.approvedOn).toLocaleDateString()}</div>}
+              {row.approvedOn && <div className="text-gray-500">{formatDate(row.approvedOn, true)}</div>}
             </>
           )}
-          {row.processedOn && <div className="text-green-600 mt-1">Processed: {new Date(row.processedOn).toLocaleDateString()}</div>}
+          {row.processedOn && <div className="text-green-600 mt-1">Processed: {formatDate(row.processedOn, true)}</div>}
           {row.paymentMode && <div className="text-blue-600 capitalize">{row.paymentMode.replace('_', ' ')}</div>}
         </div>
       )
@@ -307,6 +317,377 @@ export default function EncashmentRequestsPage() {
           <li>✓ Finance processing with salary or separate bank transfer</li>
           <li>✓ Real-time tracking of request status and payment processing</li>
         </ul>
+      </div>
+
+      {/* New Encashment Request Modal */}
+      {showNewRequestModal && <NewEncashmentRequestModal onClose={() => setShowNewRequestModal(false)} />}
+    </div>
+  );
+}
+
+// New Encashment Request Modal Component
+function NewEncashmentRequestModal({ onClose }: { onClose: () => void }) {
+  const [isHRMode, setIsHRMode] = useState(false); // Toggle between HR and self-service mode
+  const [selectedEmployee, setSelectedEmployee] = useState('');
+  const [selectedLeaveType, setSelectedLeaveType] = useState('');
+  const [requestedDays, setRequestedDays] = useState('');
+  const [remarks, setRemarks] = useState('');
+  const [searchEmployee, setSearchEmployee] = useState('');
+
+  // Mock current user - in real app, get from auth context
+  const currentUser = {
+    id: 'EMP001',
+    code: 'EMP001',
+    name: 'Rajesh Kumar',
+    designation: 'Production Supervisor',
+    department: 'Production',
+    isHR: true // Set to true if user is HR, false for regular employee
+  };
+
+  // Mock employee list for HR selection - in real app, fetch from API
+  const allEmployees = [
+    { id: 'EMP001', code: 'EMP001', name: 'Rajesh Kumar', designation: 'Production Supervisor', department: 'Production' },
+    { id: 'EMP002', code: 'EMP002', name: 'Priya Sharma', designation: 'Assembly Line Operator', department: 'Production' },
+    { id: 'EMP003', code: 'EMP003', name: 'Amit Patel', designation: 'Quality Inspector', department: 'Quality Control' },
+    { id: 'EMP004', code: 'EMP004', name: 'Sunita Devi', designation: 'Machine Operator', department: 'Production' },
+    { id: 'EMP005', code: 'EMP005', name: 'Ramesh Singh', designation: 'Assembly Line Operator', department: 'Production' }
+  ];
+
+  // Filter employees based on search
+  const filteredEmployees = allEmployees.filter(emp =>
+    emp.name.toLowerCase().includes(searchEmployee.toLowerCase()) ||
+    emp.code.toLowerCase().includes(searchEmployee.toLowerCase()) ||
+    emp.department.toLowerCase().includes(searchEmployee.toLowerCase())
+  );
+
+  // Mock leave balance data - in real app, fetch from API based on selected employee
+  const availableLeaveBalances = [
+    { code: 'EL', name: 'Earned Leave', balance: 15, encashable: 7, perDayRate: 1200 },
+    { code: 'PL', name: 'Privilege Leave', balance: 10, encashable: 5, perDayRate: 1200 },
+    { code: 'CO', name: 'Comp Off', balance: 3, encashable: 3, perDayRate: 1200 }
+  ];
+
+  // Set default employee for self-service mode
+  React.useEffect(() => {
+    if (!isHRMode) {
+      setSelectedEmployee(currentUser.id);
+    } else {
+      setSelectedEmployee('');
+    }
+  }, [isHRMode]);
+
+  const selectedEmployeeData = allEmployees.find(emp => emp.id === selectedEmployee);
+
+  const selectedLeave = availableLeaveBalances.find(l => l.code === selectedLeaveType);
+  const daysNum = parseInt(requestedDays) || 0;
+  const calculatedAmount = selectedLeave ? daysNum * selectedLeave.perDayRate : 0;
+  const exceedsBalance = selectedLeave ? daysNum > selectedLeave.encashable : false;
+  const canSubmit = selectedEmployee && selectedLeaveType && daysNum > 0 && !exceedsBalance;
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!canSubmit) return;
+
+    // In real app, submit to API
+    console.log('Submitting encashment request:', {
+      employeeId: selectedEmployee,
+      employeeName: selectedEmployeeData?.name,
+      leaveType: selectedLeaveType,
+      days: daysNum,
+      amount: calculatedAmount,
+      remarks,
+      requestedBy: isHRMode ? 'HR' : 'Self'
+    });
+
+    alert(`Encashment request submitted successfully!\n\nEmployee: ${selectedEmployeeData?.name} (${selectedEmployeeData?.code})\nLeave Type: ${selectedLeave?.name}\nDays: ${daysNum}\nAmount: ₹${calculatedAmount.toLocaleString()}`);
+    onClose();
+  };
+
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+      <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+        {/* Modal Header */}
+        <div className="sticky top-0 bg-gradient-to-r from-green-600 to-emerald-600 text-white p-6 rounded-t-lg flex items-center justify-between">
+          <div>
+            <h2 className="text-2xl font-bold">New Encashment Request</h2>
+            <p className="text-green-100 mt-1">Submit a request to encash your leave balance</p>
+          </div>
+          <button
+            onClick={onClose}
+            className="p-2 hover:bg-white/20 rounded-lg transition-colors"
+          >
+            <X className="w-6 h-6" />
+          </button>
+        </div>
+
+        {/* Modal Content */}
+        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+          {/* Mode Toggle (Only show if user is HR) */}
+          {currentUser.isHR && (
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <div className="flex items-center justify-between mb-2">
+                <div>
+                  <h3 className="text-sm font-semibold text-blue-900">Request Mode</h3>
+                  <p className="text-xs text-blue-700 mt-1">
+                    {isHRMode ? 'HR Mode: Select employee for encashment' : 'Self Service: Request for yourself'}
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setIsHRMode(!isHRMode)}
+                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                    isHRMode ? 'bg-blue-600' : 'bg-gray-300'
+                  }`}
+                >
+                  <span
+                    className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                      isHRMode ? 'translate-x-6' : 'translate-x-1'
+                    }`}
+                  />
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* Employee Selection */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Employee <span className="text-red-500">*</span>
+            </label>
+
+            {!isHRMode ? (
+              // Self-service mode: Show current user (read-only)
+              <div className="bg-gray-50 border-2 border-gray-300 rounded-lg p-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-lg">
+                    {currentUser.name.split(' ').map(n => n[0]).join('')}
+                  </div>
+                  <div>
+                    <div className="font-semibold text-gray-900">{currentUser.name}</div>
+                    <div className="text-sm text-gray-600">{currentUser.code} • {currentUser.designation}</div>
+                    <div className="text-xs text-gray-500">{currentUser.department}</div>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              // HR mode: Employee search and selection
+              <div className="space-y-3">
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <input
+                    type="text"
+                    placeholder="Search by name, code, or department..."
+                    value={searchEmployee}
+                    onChange={(e) => setSearchEmployee(e.target.value)}
+                    className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  />
+                </div>
+
+                {searchEmployee && (
+                  <div className="max-h-48 overflow-y-auto border border-gray-200 rounded-lg">
+                    {filteredEmployees.length > 0 ? (
+                      filteredEmployees.map((emp) => (
+                        <button
+                          key={emp.id}
+                          type="button"
+                          onClick={() => {
+                            setSelectedEmployee(emp.id);
+                            setSearchEmployee('');
+                          }}
+                          className="w-full p-3 hover:bg-gray-50 border-b border-gray-100 last:border-0 text-left transition-colors"
+                        >
+                          <div className="font-medium text-gray-900">{emp.name}</div>
+                          <div className="text-sm text-gray-600">{emp.code} • {emp.designation}</div>
+                          <div className="text-xs text-gray-500">{emp.department}</div>
+                        </button>
+                      ))
+                    ) : (
+                      <div className="p-4 text-center text-gray-500 text-sm">
+                        No employees found
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {selectedEmployeeData && !searchEmployee && (
+                  <div className="bg-green-50 border-2 border-green-300 rounded-lg p-4">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className="w-12 h-12 rounded-full bg-green-600 flex items-center justify-center text-white font-bold text-lg">
+                          {selectedEmployeeData.name.split(' ').map(n => n[0]).join('')}
+                        </div>
+                        <div>
+                          <div className="font-semibold text-gray-900">{selectedEmployeeData.name}</div>
+                          <div className="text-sm text-gray-600">{selectedEmployeeData.code} • {selectedEmployeeData.designation}</div>
+                          <div className="text-xs text-gray-500">{selectedEmployeeData.department}</div>
+                        </div>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => setSelectedEmployee('')}
+                        className="p-2 hover:bg-green-100 rounded-lg transition-colors"
+                      >
+                        <X className="w-5 h-5 text-green-700" />
+                      </button>
+                    </div>
+                  </div>
+                )}
+
+                {!selectedEmployeeData && !searchEmployee && (
+                  <div className="text-sm text-gray-500 text-center py-2">
+                    Click the search box above to find and select an employee
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+
+          {/* Available Leave Balances */}
+          <div>
+            <h3 className="text-sm font-semibold text-gray-700 mb-3 uppercase tracking-wide">
+              Available Leave Balances for Encashment
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+              {availableLeaveBalances.map((leave) => (
+                <div
+                  key={leave.code}
+                  onClick={() => setSelectedLeaveType(leave.code)}
+                  className={`p-4 rounded-lg border-2 cursor-pointer transition-all ${
+                    selectedLeaveType === leave.code
+                      ? 'border-green-500 bg-green-50'
+                      : 'border-gray-200 bg-white hover:border-gray-300'
+                  }`}
+                >
+                  <div className="text-xs text-gray-500 mb-1">{leave.name}</div>
+                  <div className="text-2xl font-bold text-gray-900">{leave.encashable}</div>
+                  <div className="text-xs text-gray-600">of {leave.balance} days</div>
+                  <div className="text-xs text-green-600 mt-2">₹{leave.perDayRate}/day</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Leave Type Selection */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Leave Type <span className="text-red-500">*</span>
+            </label>
+            <select
+              value={selectedLeaveType}
+              onChange={(e) => setSelectedLeaveType(e.target.value)}
+              className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+              required
+            >
+              <option value="">Select Leave Type</option>
+              {availableLeaveBalances.map((leave) => (
+                <option key={leave.code} value={leave.code}>
+                  {leave.name} ({leave.code}) - {leave.encashable} days available
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Number of Days */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Number of Days to Encash <span className="text-red-500">*</span>
+            </label>
+            <input
+              type="number"
+              min="1"
+              max={selectedLeave?.encashable || 0}
+              value={requestedDays}
+              onChange={(e) => setRequestedDays(e.target.value)}
+              className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+              placeholder="Enter number of days"
+              required
+            />
+            {selectedLeave && (
+              <p className="text-xs text-gray-500 mt-1">
+                Maximum encashable: {selectedLeave.encashable} days
+              </p>
+            )}
+            {exceedsBalance && (
+              <p className="text-xs text-red-600 mt-1 flex items-center gap-1">
+                <AlertCircle className="w-3 h-3" />
+                Exceeds available encashable balance
+              </p>
+            )}
+          </div>
+
+          {/* Amount Calculation */}
+          {daysNum > 0 && selectedLeave && (
+            <div className={`p-4 rounded-lg border-2 ${exceedsBalance ? 'bg-red-50 border-red-200' : 'bg-green-50 border-green-200'}`}>
+              <div className="flex items-center justify-between mb-2">
+                <span className={`text-sm font-medium ${exceedsBalance ? 'text-red-700' : 'text-green-700'}`}>
+                  Encashment Amount
+                </span>
+                <DollarSign className={`w-5 h-5 ${exceedsBalance ? 'text-red-600' : 'text-green-600'}`} />
+              </div>
+              <div className={`text-3xl font-bold ${exceedsBalance ? 'text-red-900' : 'text-green-900'}`}>
+                ₹{calculatedAmount.toLocaleString()}
+              </div>
+              <div className={`text-xs mt-2 ${exceedsBalance ? 'text-red-700' : 'text-green-700'}`}>
+                {daysNum} day{daysNum !== 1 ? 's' : ''} × ₹{selectedLeave.perDayRate}
+              </div>
+              {!exceedsBalance && (
+                <div className="text-xs text-green-600 mt-1">
+                  ✓ Remaining encashable balance: {selectedLeave.encashable - daysNum} days
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Remarks */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Remarks (Optional)
+            </label>
+            <textarea
+              value={remarks}
+              onChange={(e) => setRemarks(e.target.value)}
+              rows={3}
+              className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+              placeholder="Add any additional notes or comments..."
+            />
+          </div>
+
+          {/* Important Notice */}
+          <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
+            <h4 className="text-sm font-semibold text-amber-900 mb-2 flex items-center gap-2">
+              <AlertCircle className="w-4 h-4" />
+              Important Notice
+            </h4>
+            <ul className="text-xs text-amber-800 space-y-1 ml-5">
+              <li>• Encashment is subject to manager and HR approval</li>
+              <li>• Amount will be processed in next salary cycle or via bank transfer</li>
+              <li>• Tax deductions (TDS) will apply as per Income Tax Act</li>
+              <li>• Encashed days will be deducted from your leave balance immediately upon approval</li>
+            </ul>
+          </div>
+
+          {/* Action Buttons */}
+          <div className="flex items-center gap-3 pt-4 border-t border-gray-200">
+            <button
+              type="submit"
+              disabled={!canSubmit}
+              className={`flex-1 px-4 py-2.5 rounded-lg font-medium transition-colors ${
+                canSubmit
+                  ? 'bg-green-600 text-white hover:bg-green-700'
+                  : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+              }`}
+            >
+              Submit Request
+            </button>
+            <button
+              type="button"
+              onClick={onClose}
+              className="px-4 py-2.5 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 font-medium transition-colors"
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );

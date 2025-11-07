@@ -1,20 +1,651 @@
 'use client';
 
-import { CheckCircle } from 'lucide-react';
+import { useState, useMemo } from 'react';
+import { CheckCircle, User, Wallet, Calendar, TrendingUp, Download, Eye, Search, XCircle } from 'lucide-react';
+import DataTable from '@/components/DataTable';
+import { toast } from '@/hooks/use-toast';
+
+interface PaidReimbursement {
+  id: string;
+  employeeCode: string;
+  employeeName: string;
+  department: string;
+  designation: string;
+  claimNumber: string;
+  claimType: 'Medical' | 'Education' | 'Conveyance' | 'Relocation' | 'Uniform' | 'Mobile' | 'Internet' | 'Other';
+  amount: number;
+  submittedDate: string;
+  approvedDate: string;
+  paidDate: string;
+  paymentMode: 'bank_transfer' | 'cheque' | 'cash';
+  transactionReference: string;
+  description: string;
+  fiscalYear: string;
+  quarter: string;
+}
 
 export default function Page() {
+  const [selectedYear, setSelectedYear] = useState('2024-25');
+  const [selectedType, setSelectedType] = useState('all');
+  const [searchTerm, setSearchTerm] = useState('');
+  const [showDetailsModal, setShowDetailsModal] = useState(false);
+  const [selectedClaim, setSelectedClaim] = useState<PaidReimbursement | null>(null);
+
+  const mockReimbursements: PaidReimbursement[] = [
+    {
+      id: '1', employeeCode: 'KMF-2024-101', employeeName: 'Rajesh Kumar', department: 'Manufacturing',
+      designation: 'Production Manager', claimNumber: 'REIMB-2024-101', claimType: 'Medical',
+      amount: 14500, submittedDate: '2024-08-10', approvedDate: '2024-08-15', paidDate: '2024-08-25',
+      paymentMode: 'bank_transfer', transactionReference: 'TXN-2024-001',
+      description: 'Medical expenses - hospitalization', fiscalYear: '2024-25', quarter: 'Q2'
+    },
+    {
+      id: '2', employeeCode: 'KMF-2024-102', employeeName: 'Priya Sharma', department: 'Human Resources',
+      designation: 'HR Manager', claimNumber: 'REIMB-2024-102', claimType: 'Education',
+      amount: 20000, submittedDate: '2024-07-05', approvedDate: '2024-07-10', paidDate: '2024-07-25',
+      paymentMode: 'bank_transfer', transactionReference: 'TXN-2024-002',
+      description: 'Child education - school fees', fiscalYear: '2024-25', quarter: 'Q1'
+    },
+    {
+      id: '3', employeeCode: 'KMF-2024-103', employeeName: 'Amit Singh', department: 'Warehouse & Logistics',
+      designation: 'Warehouse Manager', claimNumber: 'REIMB-2024-103', claimType: 'Conveyance',
+      amount: 3000, submittedDate: '2024-08-20', approvedDate: '2024-08-22', paidDate: '2024-08-25',
+      paymentMode: 'bank_transfer', transactionReference: 'TXN-2024-003',
+      description: 'Monthly conveyance allowance', fiscalYear: '2024-25', quarter: 'Q2'
+    },
+    {
+      id: '4', employeeCode: 'KMF-2024-104', employeeName: 'Meena Rao', department: 'Quality Assurance',
+      designation: 'QA Manager', claimNumber: 'REIMB-2024-104', claimType: 'Mobile',
+      amount: 1500, submittedDate: '2024-08-18', approvedDate: '2024-08-20', paidDate: '2024-08-25',
+      paymentMode: 'bank_transfer', transactionReference: 'TXN-2024-004',
+      description: 'Mobile bill reimbursement', fiscalYear: '2024-25', quarter: 'Q2'
+    },
+    {
+      id: '5', employeeCode: 'KMF-2024-105', employeeName: 'Suresh Patel', department: 'Maintenance',
+      designation: 'Maintenance Head', claimNumber: 'REIMB-2024-105', claimType: 'Uniform',
+      amount: 4200, submittedDate: '2024-07-12', approvedDate: '2024-07-15', paidDate: '2024-07-25',
+      paymentMode: 'bank_transfer', transactionReference: 'TXN-2024-005',
+      description: 'Safety gear and uniform', fiscalYear: '2024-25', quarter: 'Q1'
+    },
+    {
+      id: '6', employeeCode: 'KMF-2024-106', employeeName: 'Anil Verma', department: 'IT',
+      designation: 'IT Manager', claimNumber: 'REIMB-2024-106', claimType: 'Internet',
+      amount: 2000, submittedDate: '2024-08-01', approvedDate: '2024-08-05', paidDate: '2024-08-25',
+      paymentMode: 'bank_transfer', transactionReference: 'TXN-2024-006',
+      description: 'Home internet reimbursement', fiscalYear: '2024-25', quarter: 'Q2'
+    },
+    {
+      id: '7', employeeCode: 'KMF-2024-107', employeeName: 'Kavita Nair', department: 'Sales',
+      designation: 'Sales Manager', claimNumber: 'REIMB-2024-107', claimType: 'Relocation',
+      amount: 35000, submittedDate: '2024-06-10', approvedDate: '2024-06-15', paidDate: '2024-06-25',
+      paymentMode: 'bank_transfer', transactionReference: 'TXN-2024-007',
+      description: 'Relocation expenses - Mumbai', fiscalYear: '2024-25', quarter: 'Q1'
+    },
+    {
+      id: '8', employeeCode: 'KMF-2024-108', employeeName: 'Deepak Joshi', department: 'Finance',
+      designation: 'Accounts Manager', claimNumber: 'REIMB-2024-108', claimType: 'Medical',
+      amount: 11000, submittedDate: '2024-08-08', approvedDate: '2024-08-12', paidDate: '2024-08-25',
+      paymentMode: 'bank_transfer', transactionReference: 'TXN-2024-008',
+      description: 'Medical consultation and tests', fiscalYear: '2024-25', quarter: 'Q2'
+    },
+    {
+      id: '9', employeeCode: 'KMF-2024-109', employeeName: 'Vikram Reddy', department: 'Production',
+      designation: 'Supervisor', claimNumber: 'REIMB-2024-109', claimType: 'Conveyance',
+      amount: 2800, submittedDate: '2024-07-22', approvedDate: '2024-07-24', paidDate: '2024-07-25',
+      paymentMode: 'bank_transfer', transactionReference: 'TXN-2024-009',
+      description: 'Local travel expenses', fiscalYear: '2024-25', quarter: 'Q1'
+    },
+    {
+      id: '10', employeeCode: 'KMF-2024-110', employeeName: 'Sunita Kapoor', department: 'Quality',
+      designation: 'Quality Engineer', claimNumber: 'REIMB-2024-110', claimType: 'Education',
+      amount: 18000, submittedDate: '2024-08-05', approvedDate: '2024-08-09', paidDate: '2024-08-25',
+      paymentMode: 'bank_transfer', transactionReference: 'TXN-2024-010',
+      description: 'Children school fees', fiscalYear: '2024-25', quarter: 'Q2'
+    }
+  ];
+
+  const filteredReimbursements = useMemo(() => {
+    return mockReimbursements.filter(reimb => {
+      const matchesYear = selectedYear === 'all' || reimb.fiscalYear === selectedYear;
+      const matchesType = selectedType === 'all' || reimb.claimType === selectedType;
+      const matchesSearch = searchTerm === '' ||
+        reimb.employeeName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        reimb.claimNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        reimb.employeeCode.toLowerCase().includes(searchTerm.toLowerCase());
+      return matchesYear && matchesType && matchesSearch;
+    });
+  }, [selectedYear, selectedType, searchTerm]);
+
+  const stats = {
+    totalClaims: mockReimbursements.length,
+    totalAmount: mockReimbursements.reduce((sum, r) => sum + r.amount, 0),
+    currentMonth: mockReimbursements.filter(r => {
+      const paidDate = new Date(r.paidDate);
+      const now = new Date();
+      return paidDate.getMonth() === now.getMonth() && paidDate.getFullYear() === now.getFullYear();
+    }).length,
+    currentMonthAmount: mockReimbursements.filter(r => {
+      const paidDate = new Date(r.paidDate);
+      const now = new Date();
+      return paidDate.getMonth() === now.getMonth() && paidDate.getFullYear() === now.getFullYear();
+    }).reduce((sum, r) => sum + r.amount, 0),
+    avgClaimAmount: Math.round(mockReimbursements.reduce((sum, r) => sum + r.amount, 0) / mockReimbursements.length),
+    bankTransfers: mockReimbursements.filter(r => r.paymentMode === 'bank_transfer').length
+  };
+
+  const getPaymentModeLabel = (mode: string) => {
+    const labels = {
+      bank_transfer: 'Bank Transfer',
+      cheque: 'Cheque',
+      cash: 'Cash'
+    };
+    return labels[mode as keyof typeof labels];
+  };
+
+  const handleViewDetails = (claim: PaidReimbursement) => {
+    setSelectedClaim(claim);
+    setShowDetailsModal(true);
+  };
+
+  const handleDownloadReceipt = (claim: PaidReimbursement) => {
+    toast({
+      title: "Downloading Receipt",
+      description: `Downloading payment receipt for claim ${claim.claimNumber}`
+    });
+  };
+
+  const handleExportToExcel = () => {
+    const headers = ['Claim No.', 'Employee', 'Employee Code', 'Department', 'Type', 'Amount', 'Submitted Date', 'Approved Date', 'Paid Date', 'Payment Mode', 'Transaction Ref', 'Fiscal Year', 'Quarter', 'Description'];
+    const csvData = filteredReimbursements.map(r => [
+      r.claimNumber,
+      r.employeeName,
+      r.employeeCode,
+      r.department,
+      r.claimType,
+      r.amount,
+      r.submittedDate,
+      r.approvedDate,
+      r.paidDate,
+      getPaymentModeLabel(r.paymentMode),
+      r.transactionReference,
+      r.fiscalYear,
+      r.quarter,
+      r.description
+    ]);
+
+    const csv = [headers, ...csvData].map(row => row.join(',')).join('\n');
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `paid_reimbursements_${new Date().toISOString().split('T')[0]}.csv`;
+    a.click();
+
+    toast({
+      title: "Export Successful",
+      description: "Paid reimbursements exported to Excel format"
+    });
+  };
+
+  const handleExportToPDF = () => {
+    toast({
+      title: "Generating PDF",
+      description: "PDF report is being generated. Download will start shortly."
+    });
+
+    setTimeout(() => {
+      toast({
+        title: "PDF Ready",
+        description: "Your PDF report has been downloaded"
+      });
+    }, 2000);
+  };
+
+  const columns = [
+    { key: 'claimNumber', label: 'Claim No.', sortable: true,
+      render: (v: string) => <div className="font-semibold text-gray-900">{v}</div>
+    },
+    { key: 'employeeName', label: 'Employee', sortable: true,
+      render: (v: string, row: PaidReimbursement) => (
+        <div>
+          <div className="font-medium text-gray-900">{v}</div>
+          <div className="text-xs text-gray-500">{row.employeeCode} - {row.designation}</div>
+        </div>
+      )
+    },
+    { key: 'department', label: 'Department', sortable: true },
+    { key: 'claimType', label: 'Type', sortable: true,
+      render: (v: string) => (
+        <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+          {v}
+        </span>
+      )
+    },
+    { key: 'description', label: 'Description', sortable: true,
+      render: (v: string) => <div className="text-sm text-gray-900">{v}</div>
+    },
+    { key: 'amount', label: 'Amount', sortable: true,
+      render: (v: number) => <div className="text-sm font-semibold text-gray-900">₹{v.toLocaleString('en-IN')}</div>
+    },
+    { key: 'paidDate', label: 'Paid Date', sortable: true,
+      render: (v: string) => (
+        <div className="text-sm text-gray-700">
+          {new Date(v).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}
+        </div>
+      )
+    },
+    { key: 'paymentMode', label: 'Payment Mode', sortable: true,
+      render: (v: string) => (
+        <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+          {getPaymentModeLabel(v)}
+        </span>
+      )
+    },
+    { key: 'transactionReference', label: 'Transaction Ref', sortable: true,
+      render: (v: string) => <div className="text-sm font-mono text-gray-700">{v}</div>
+    },
+    { key: 'actions', label: 'Actions', sortable: false,
+      render: (_: any, row: PaidReimbursement) => (
+        <div className="flex gap-2">
+          <button
+            onClick={() => handleViewDetails(row)}
+            className="p-1 hover:bg-gray-100 rounded"
+            title="View details"
+          >
+            <Eye className="h-4 w-4 text-gray-600" />
+          </button>
+          <button
+            onClick={() => handleDownloadReceipt(row)}
+            className="p-1 hover:bg-blue-100 rounded"
+            title="Download receipt"
+          >
+            <Download className="h-4 w-4 text-blue-600" />
+          </button>
+        </div>
+      )
+    }
+  ];
+
   return (
     <div className="p-6">
       <div className="mb-6">
         <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
-          <CheckCircle className="h-8 w-8 text-purple-600" />
-          Paid Claims
+          <CheckCircle className="h-8 w-8 text-green-600" />
+          Paid Reimbursements
         </h1>
-        <p className="text-gray-600 mt-2">Completed payments</p>
+        <p className="text-gray-600 mt-2">View completed reimbursement payments</p>
       </div>
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <p className="text-gray-600">This page is under construction. Full functionality coming soon.</p>
+
+      {/* Stats */}
+      <div className="grid grid-cols-1 md:grid-cols-6 gap-4 mb-6">
+        <div className="bg-white border-2 border-green-200 rounded-lg p-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm text-gray-600">Total Paid</p>
+              <p className="text-2xl font-bold text-green-600">{stats.totalClaims}</p>
+            </div>
+            <CheckCircle className="h-10 w-10 text-green-400" />
+          </div>
+        </div>
+        <div className="bg-white border-2 border-indigo-200 rounded-lg p-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm text-gray-600">Total Amount</p>
+              <p className="text-xl font-bold text-indigo-600">₹{(stats.totalAmount / 100000).toFixed(2)}L</p>
+            </div>
+            <Wallet className="h-10 w-10 text-indigo-400" />
+          </div>
+        </div>
+        <div className="bg-white border-2 border-blue-200 rounded-lg p-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm text-gray-600">This Month</p>
+              <p className="text-2xl font-bold text-blue-600">{stats.currentMonth}</p>
+            </div>
+            <Calendar className="h-10 w-10 text-blue-400" />
+          </div>
+        </div>
+        <div className="bg-white border-2 border-purple-200 rounded-lg p-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm text-gray-600">Month Amount</p>
+              <p className="text-xl font-bold text-purple-600">₹{(stats.currentMonthAmount / 1000).toFixed(1)}k</p>
+            </div>
+            <Wallet className="h-10 w-10 text-purple-400" />
+          </div>
+        </div>
+        <div className="bg-white border-2 border-orange-200 rounded-lg p-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm text-gray-600">Avg Amount</p>
+              <p className="text-xl font-bold text-orange-600">₹{(stats.avgClaimAmount / 1000).toFixed(1)}k</p>
+            </div>
+            <TrendingUp className="h-10 w-10 text-orange-400" />
+          </div>
+        </div>
+        <div className="bg-white border-2 border-teal-200 rounded-lg p-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm text-gray-600">Bank Transfers</p>
+              <p className="text-2xl font-bold text-teal-600">{stats.bankTransfers}</p>
+            </div>
+            <User className="h-10 w-10 text-teal-400" />
+          </div>
+        </div>
       </div>
+
+      {/* Filters */}
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Filter by Fiscal Year:</label>
+            <select
+              value={selectedYear}
+              onChange={(e) => setSelectedYear(e.target.value)}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+            >
+              <option value="all">All Years</option>
+              <option value="2024-25">2024-25</option>
+              <option value="2023-24">2023-24</option>
+              <option value="2022-23">2022-23</option>
+            </select>
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Filter by Type:</label>
+            <select
+              value={selectedType}
+              onChange={(e) => setSelectedType(e.target.value)}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+            >
+              <option value="all">All Types</option>
+              <option value="Medical">Medical</option>
+              <option value="Education">Education</option>
+              <option value="Conveyance">Conveyance</option>
+              <option value="Relocation">Relocation</option>
+              <option value="Uniform">Uniform</option>
+              <option value="Mobile">Mobile</option>
+              <option value="Internet">Internet</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Search:</label>
+            <div className="relative">
+              <input
+                type="text"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                placeholder="Search by name, claim #, emp code..."
+                className="w-full px-3 py-2 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+              />
+              <Search className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Export Actions */}
+      <div className="mb-6 flex justify-end gap-3">
+        <button
+          onClick={handleExportToExcel}
+          className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium text-sm"
+        >
+          <Download className="h-4 w-4" />
+          Export to Excel
+        </button>
+        <button
+          onClick={handleExportToPDF}
+          className="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 font-medium text-sm"
+        >
+          <Download className="h-4 w-4" />
+          Export to PDF
+        </button>
+      </div>
+
+      {/* Reimbursements Table */}
+      <DataTable data={filteredReimbursements} columns={columns} />
+
+      {/* Payment Summary by Type */}
+      <div className="mt-6 bg-white border border-gray-200 rounded-lg p-6">
+        <h3 className="text-lg font-semibold text-gray-900 mb-4">Payment Summary by Category</h3>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div className="p-4 bg-blue-50 rounded-lg">
+            <h4 className="font-semibold text-gray-900 mb-2">Medical</h4>
+            <p className="text-2xl font-bold text-blue-600">
+              ₹{(mockReimbursements.filter(r => r.claimType === 'Medical').reduce((sum, r) => sum + r.amount, 0) / 1000).toFixed(1)}k
+            </p>
+            <p className="text-xs text-gray-600 mt-1">
+              {mockReimbursements.filter(r => r.claimType === 'Medical').length} claims
+            </p>
+          </div>
+          <div className="p-4 bg-green-50 rounded-lg">
+            <h4 className="font-semibold text-gray-900 mb-2">Education</h4>
+            <p className="text-2xl font-bold text-green-600">
+              ₹{(mockReimbursements.filter(r => r.claimType === 'Education').reduce((sum, r) => sum + r.amount, 0) / 1000).toFixed(1)}k
+            </p>
+            <p className="text-xs text-gray-600 mt-1">
+              {mockReimbursements.filter(r => r.claimType === 'Education').length} claims
+            </p>
+          </div>
+          <div className="p-4 bg-purple-50 rounded-lg">
+            <h4 className="font-semibold text-gray-900 mb-2">Conveyance</h4>
+            <p className="text-2xl font-bold text-purple-600">
+              ₹{(mockReimbursements.filter(r => r.claimType === 'Conveyance').reduce((sum, r) => sum + r.amount, 0) / 1000).toFixed(1)}k
+            </p>
+            <p className="text-xs text-gray-600 mt-1">
+              {mockReimbursements.filter(r => r.claimType === 'Conveyance').length} claims
+            </p>
+          </div>
+          <div className="p-4 bg-orange-50 rounded-lg">
+            <h4 className="font-semibold text-gray-900 mb-2">Relocation</h4>
+            <p className="text-2xl font-bold text-orange-600">
+              ₹{(mockReimbursements.filter(r => r.claimType === 'Relocation').reduce((sum, r) => sum + r.amount, 0) / 1000).toFixed(1)}k
+            </p>
+            <p className="text-xs text-gray-600 mt-1">
+              {mockReimbursements.filter(r => r.claimType === 'Relocation').length} claims
+            </p>
+          </div>
+          <div className="p-4 bg-teal-50 rounded-lg">
+            <h4 className="font-semibold text-gray-900 mb-2">Uniform</h4>
+            <p className="text-2xl font-bold text-teal-600">
+              ₹{(mockReimbursements.filter(r => r.claimType === 'Uniform').reduce((sum, r) => sum + r.amount, 0) / 1000).toFixed(1)}k
+            </p>
+            <p className="text-xs text-gray-600 mt-1">
+              {mockReimbursements.filter(r => r.claimType === 'Uniform').length} claims
+            </p>
+          </div>
+          <div className="p-4 bg-indigo-50 rounded-lg">
+            <h4 className="font-semibold text-gray-900 mb-2">Mobile</h4>
+            <p className="text-2xl font-bold text-indigo-600">
+              ₹{(mockReimbursements.filter(r => r.claimType === 'Mobile').reduce((sum, r) => sum + r.amount, 0) / 1000).toFixed(1)}k
+            </p>
+            <p className="text-xs text-gray-600 mt-1">
+              {mockReimbursements.filter(r => r.claimType === 'Mobile').length} claims
+            </p>
+          </div>
+          <div className="p-4 bg-pink-50 rounded-lg">
+            <h4 className="font-semibold text-gray-900 mb-2">Internet</h4>
+            <p className="text-2xl font-bold text-pink-600">
+              ₹{(mockReimbursements.filter(r => r.claimType === 'Internet').reduce((sum, r) => sum + r.amount, 0) / 1000).toFixed(1)}k
+            </p>
+            <p className="text-xs text-gray-600 mt-1">
+              {mockReimbursements.filter(r => r.claimType === 'Internet').length} claims
+            </p>
+          </div>
+          <div className="p-4 bg-gray-50 rounded-lg">
+            <h4 className="font-semibold text-gray-900 mb-2">Other</h4>
+            <p className="text-2xl font-bold text-gray-600">
+              ₹{(mockReimbursements.filter(r => r.claimType === 'Other').reduce((sum, r) => sum + r.amount, 0) / 1000).toFixed(1)}k
+            </p>
+            <p className="text-xs text-gray-600 mt-1">
+              {mockReimbursements.filter(r => r.claimType === 'Other').length} claims
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Info Box */}
+      <div className="mt-6 bg-green-50 border border-green-200 rounded-lg p-4">
+        <h3 className="text-sm font-semibold text-green-900 mb-2">Payment Records</h3>
+        <ul className="text-sm text-green-800 space-y-1">
+          <li>• All payments are processed on the 25th of every month</li>
+          <li>• Transaction references can be used to track payments in bank statements</li>
+          <li>• Payment receipts are automatically emailed to employees</li>
+          <li>• Historical records are maintained for 7 years as per compliance requirements</li>
+          <li>• Export options available for audit and reporting purposes</li>
+        </ul>
+      </div>
+
+      {/* View Details Modal */}
+      {showDetailsModal && selectedClaim && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="p-6 border-b border-gray-200 flex justify-between items-center sticky top-0 bg-white z-10">
+              <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
+                <CheckCircle className="h-6 w-6 text-green-600" />
+                Payment Details
+              </h2>
+              <button
+                onClick={() => setShowDetailsModal(false)}
+                className="text-gray-400 hover:text-gray-600"
+              >
+                <XCircle className="h-6 w-6" />
+              </button>
+            </div>
+
+            <div className="p-6 space-y-6">
+              {/* Payment Confirmation Banner */}
+              <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                <div className="flex items-center gap-2 text-green-800">
+                  <CheckCircle className="h-5 w-5" />
+                  <p className="font-semibold">Payment Completed Successfully</p>
+                </div>
+                <p className="text-sm text-green-700 mt-1">
+                  This reimbursement has been paid to the employee
+                </p>
+              </div>
+
+              {/* Basic Info */}
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <p className="text-sm text-gray-600">Claim Number</p>
+                  <p className="font-semibold text-gray-900">{selectedClaim.claimNumber}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-600">Claim Type</p>
+                  <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                    {selectedClaim.claimType}
+                  </span>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-600">Employee</p>
+                  <p className="font-semibold text-gray-900">{selectedClaim.employeeName}</p>
+                  <p className="text-xs text-gray-500">{selectedClaim.employeeCode}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-600">Department</p>
+                  <p className="font-semibold text-gray-900">{selectedClaim.department}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-600">Designation</p>
+                  <p className="font-semibold text-gray-900">{selectedClaim.designation}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-600">Amount Paid</p>
+                  <p className="text-lg font-bold text-green-600">₹{selectedClaim.amount.toLocaleString('en-IN')}</p>
+                </div>
+              </div>
+
+              {/* Description */}
+              <div>
+                <p className="text-sm text-gray-600">Description</p>
+                <p className="font-semibold text-gray-900">{selectedClaim.description}</p>
+              </div>
+
+              {/* Payment Information */}
+              <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+                <h3 className="font-semibold text-gray-900 mb-3">Payment Information</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-sm text-gray-600">Payment Mode</p>
+                    <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                      {getPaymentModeLabel(selectedClaim.paymentMode)}
+                    </span>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-600">Transaction Reference</p>
+                    <p className="font-mono font-semibold text-gray-900">{selectedClaim.transactionReference}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-600">Paid Date</p>
+                    <p className="font-semibold text-gray-900">
+                      {new Date(selectedClaim.paidDate).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-600">Fiscal Year / Quarter</p>
+                    <p className="font-semibold text-gray-900">{selectedClaim.fiscalYear} / {selectedClaim.quarter}</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Timeline */}
+              <div className="bg-gray-50 rounded-lg p-4">
+                <h3 className="font-semibold text-gray-900 mb-3">Payment Timeline</h3>
+                <div className="space-y-3">
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 rounded-full bg-gray-400 mt-1.5"></div>
+                    <div>
+                      <p className="text-sm font-semibold text-gray-900">Submitted</p>
+                      <p className="text-xs text-gray-600">
+                        {new Date(selectedClaim.submittedDate).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 rounded-full bg-yellow-400 mt-1.5"></div>
+                    <div>
+                      <p className="text-sm font-semibold text-gray-900">Approved</p>
+                      <p className="text-xs text-gray-600">
+                        {new Date(selectedClaim.approvedDate).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 rounded-full bg-green-400 mt-1.5"></div>
+                    <div>
+                      <p className="text-sm font-semibold text-green-900">Paid</p>
+                      <p className="text-xs text-green-700">
+                        {new Date(selectedClaim.paidDate).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Actions */}
+              <div className="flex gap-3 pt-4 border-t border-gray-200">
+                <button
+                  onClick={() => setShowDetailsModal(false)}
+                  className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium"
+                >
+                  Close
+                </button>
+                <button
+                  onClick={() => {
+                    handleDownloadReceipt(selectedClaim);
+                    setShowDetailsModal(false);
+                  }}
+                  className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium flex items-center justify-center gap-2"
+                >
+                  <Download className="h-4 w-4" />
+                  Download Receipt
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

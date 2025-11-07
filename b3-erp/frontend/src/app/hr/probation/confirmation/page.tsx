@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { CheckCircle, Users, Clock, XCircle, FileText, Calendar } from 'lucide-react';
+import { CheckCircle, Users, Clock, XCircle, FileText, Calendar, X, ThumbsUp, ThumbsDown } from 'lucide-react';
+import { toast } from '@/hooks/use-toast';
 
 interface ConfirmationRequest {
   id: string;
@@ -22,6 +23,17 @@ interface ConfirmationRequest {
 
 export default function Page() {
   const [selectedStatus, setSelectedStatus] = useState('all');
+  const [showApproveModal, setShowApproveModal] = useState(false);
+  const [showRejectModal, setShowRejectModal] = useState(false);
+  const [selectedRequest, setSelectedRequest] = useState<ConfirmationRequest | null>(null);
+  const [approveFormData, setApproveFormData] = useState({
+    confirmationDate: '',
+    remarks: ''
+  });
+  const [rejectFormData, setRejectFormData] = useState({
+    reason: '',
+    remarks: ''
+  });
 
   const mockRequests: ConfirmationRequest[] = [
     {
@@ -92,6 +104,44 @@ export default function Page() {
     confirm: 'bg-green-100 text-green-700',
     extend: 'bg-orange-100 text-orange-700',
     terminate: 'bg-red-100 text-red-700'
+  };
+
+  const handleApprove = (request: ConfirmationRequest) => {
+    setSelectedRequest(request);
+    setApproveFormData({
+      confirmationDate: new Date().toISOString().split('T')[0],
+      remarks: ''
+    });
+    setShowApproveModal(true);
+  };
+
+  const handleReject = (request: ConfirmationRequest) => {
+    setSelectedRequest(request);
+    setRejectFormData({
+      reason: '',
+      remarks: ''
+    });
+    setShowRejectModal(true);
+  };
+
+  const handleSubmitApprove = (e: React.FormEvent) => {
+    e.preventDefault();
+    toast({
+      title: "Confirmation Approved",
+      description: `${selectedRequest?.name} has been successfully confirmed and will receive a confirmation letter.`
+    });
+    setShowApproveModal(false);
+    setSelectedRequest(null);
+  };
+
+  const handleSubmitReject = (e: React.FormEvent) => {
+    e.preventDefault();
+    toast({
+      title: "Confirmation Rejected",
+      description: `Confirmation request for ${selectedRequest?.name} has been rejected. HR will be notified.`
+    });
+    setShowRejectModal(false);
+    setSelectedRequest(null);
   };
 
   return (
@@ -208,10 +258,18 @@ export default function Page() {
 
             {request.status === 'pending' && (
               <div className="flex gap-2">
-                <button className="flex-1 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium text-sm">
+                <button
+                  onClick={() => handleApprove(request)}
+                  className="flex-1 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium text-sm inline-flex items-center justify-center gap-2"
+                >
+                  <ThumbsUp className="h-4 w-4" />
                   Approve
                 </button>
-                <button className="flex-1 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 font-medium text-sm">
+                <button
+                  onClick={() => handleReject(request)}
+                  className="flex-1 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 font-medium text-sm inline-flex items-center justify-center gap-2"
+                >
+                  <ThumbsDown className="h-4 w-4" />
                   Reject
                 </button>
               </div>
@@ -219,6 +277,243 @@ export default function Page() {
           </div>
         ))}
       </div>
+
+      {/* Approve Confirmation Modal */}
+      {showApproveModal && selectedRequest && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full">
+            <div className="bg-green-50 border-b border-green-200 px-6 py-4 flex items-center justify-between rounded-t-lg">
+              <div className="flex items-center gap-3">
+                <CheckCircle className="h-6 w-6 text-green-600" />
+                <div>
+                  <h2 className="text-xl font-bold text-green-900">Approve Confirmation</h2>
+                  <p className="text-sm text-green-700 mt-1">{selectedRequest.name} • {selectedRequest.employeeCode}</p>
+                </div>
+              </div>
+              <button
+                onClick={() => setShowApproveModal(false)}
+                className="text-green-600 hover:text-green-800"
+              >
+                <X className="h-6 w-6" />
+              </button>
+            </div>
+
+            <form onSubmit={handleSubmitApprove} className="p-6 space-y-6">
+              {/* Employee Summary */}
+              <div className="bg-gray-50 rounded-lg p-4 space-y-3">
+                <h3 className="text-sm font-semibold text-gray-900 mb-3">Confirmation Summary</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-xs text-gray-600">Designation</p>
+                    <p className="text-sm font-semibold text-gray-900">{selectedRequest.designation}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-gray-600">Department</p>
+                    <p className="text-sm font-semibold text-gray-900">{selectedRequest.department}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-gray-600">Joining Date</p>
+                    <p className="text-sm font-semibold text-gray-900">{selectedRequest.joiningDate}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-gray-600">Probation End Date</p>
+                    <p className="text-sm font-semibold text-gray-900">{selectedRequest.probationEndDate}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-gray-600">Review Score</p>
+                    <p className="text-sm font-semibold text-green-600">{selectedRequest.reviewScore}%</p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-gray-600">Attendance</p>
+                    <p className="text-sm font-semibold text-blue-600">{selectedRequest.attendance}%</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Confirmation Date */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-900 mb-2">
+                  Confirmation Date <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="date"
+                  value={approveFormData.confirmationDate}
+                  onChange={(e) => setApproveFormData({...approveFormData, confirmationDate: e.target.value})}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                  required
+                />
+              </div>
+
+              {/* Remarks */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-900 mb-2">
+                  Confirmation Remarks
+                </label>
+                <textarea
+                  value={approveFormData.remarks}
+                  onChange={(e) => setApproveFormData({...approveFormData, remarks: e.target.value})}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                  rows={4}
+                  placeholder="Enter any remarks or notes about the confirmation..."
+                />
+              </div>
+
+              {/* Info Box */}
+              <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+                <div className="flex gap-3">
+                  <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <p className="text-sm font-semibold text-green-900">Confirmation Actions</p>
+                    <ul className="text-xs text-green-800 mt-2 space-y-1 list-disc list-inside">
+                      <li>Employee will receive a confirmation letter via email</li>
+                      <li>Employment status will be updated to "Confirmed"</li>
+                      <li>HR records will be automatically updated</li>
+                      <li>Reporting manager will be notified</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex gap-3 pt-4 border-t border-gray-200">
+                <button
+                  type="button"
+                  onClick={() => setShowApproveModal(false)}
+                  className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 font-medium"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="flex-1 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium inline-flex items-center justify-center gap-2"
+                >
+                  <CheckCircle className="h-4 w-4" />
+                  Confirm Approval
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* Reject Confirmation Modal */}
+      {showRejectModal && selectedRequest && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full">
+            <div className="bg-red-50 border-b border-red-200 px-6 py-4 flex items-center justify-between rounded-t-lg">
+              <div className="flex items-center gap-3">
+                <XCircle className="h-6 w-6 text-red-600" />
+                <div>
+                  <h2 className="text-xl font-bold text-red-900">Reject Confirmation</h2>
+                  <p className="text-sm text-red-700 mt-1">{selectedRequest.name} • {selectedRequest.employeeCode}</p>
+                </div>
+              </div>
+              <button
+                onClick={() => setShowRejectModal(false)}
+                className="text-red-600 hover:text-red-800"
+              >
+                <X className="h-6 w-6" />
+              </button>
+            </div>
+
+            <form onSubmit={handleSubmitReject} className="p-6 space-y-6">
+              {/* Employee Summary */}
+              <div className="bg-gray-50 rounded-lg p-4 space-y-3">
+                <h3 className="text-sm font-semibold text-gray-900 mb-3">Employee Details</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-xs text-gray-600">Designation</p>
+                    <p className="text-sm font-semibold text-gray-900">{selectedRequest.designation}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-gray-600">Department</p>
+                    <p className="text-sm font-semibold text-gray-900">{selectedRequest.department}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-gray-600">Review Score</p>
+                    <p className="text-sm font-semibold text-gray-900">{selectedRequest.reviewScore}%</p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-gray-600">Manager's Recommendation</p>
+                    <p className={`text-sm font-semibold px-2 py-0.5 rounded inline-block ${recommendationColors[selectedRequest.recommendation]}`}>
+                      {selectedRequest.recommendation.charAt(0).toUpperCase() + selectedRequest.recommendation.slice(1)}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Rejection Reason */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-900 mb-2">
+                  Rejection Reason <span className="text-red-500">*</span>
+                </label>
+                <select
+                  value={rejectFormData.reason}
+                  onChange={(e) => setRejectFormData({...rejectFormData, reason: e.target.value})}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                  required
+                >
+                  <option value="">Select rejection reason</option>
+                  <option value="performance">Inadequate Performance</option>
+                  <option value="attendance">Attendance Issues</option>
+                  <option value="behavior">Behavioral Concerns</option>
+                  <option value="skillgap">Skill Gap</option>
+                  <option value="other">Other Reasons</option>
+                </select>
+              </div>
+
+              {/* Additional Remarks */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-900 mb-2">
+                  Detailed Remarks <span className="text-red-500">*</span>
+                </label>
+                <textarea
+                  value={rejectFormData.remarks}
+                  onChange={(e) => setRejectFormData({...rejectFormData, remarks: e.target.value})}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                  rows={4}
+                  placeholder="Provide detailed explanation for the rejection decision..."
+                  required
+                />
+              </div>
+
+              {/* Warning Box */}
+              <div className="bg-red-50 rounded-lg p-4 border border-red-200">
+                <div className="flex gap-3">
+                  <XCircle className="h-5 w-5 text-red-600 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <p className="text-sm font-semibold text-red-900">Rejection Consequences</p>
+                    <ul className="text-xs text-red-800 mt-2 space-y-1 list-disc list-inside">
+                      <li>Employment will be terminated as per company policy</li>
+                      <li>Employee will be notified via official communication</li>
+                      <li>Exit process will be initiated automatically</li>
+                      <li>HR and reporting manager will be informed</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex gap-3 pt-4 border-t border-gray-200">
+                <button
+                  type="button"
+                  onClick={() => setShowRejectModal(false)}
+                  className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 font-medium"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="flex-1 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 font-medium inline-flex items-center justify-center gap-2"
+                >
+                  <XCircle className="h-4 w-4" />
+                  Confirm Rejection
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

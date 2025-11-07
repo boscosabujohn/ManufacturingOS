@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { Plane, MapPin, Calendar, IndianRupee, Users, Clock, CheckCircle, XCircle, AlertCircle } from 'lucide-react';
+import { Plane, MapPin, Calendar, IndianRupee, Users, Clock, CheckCircle, XCircle, AlertCircle, X } from 'lucide-react';
+import { toast } from '@/hooks/use-toast';
 
 interface TravelRequest {
   id: string;
@@ -339,6 +340,165 @@ export default function Page() {
           <Plane className="h-12 w-12 text-gray-400 mx-auto mb-4" />
           <h3 className="text-lg font-semibold text-gray-900 mb-2">No travel requests found</h3>
           <p className="text-gray-600">No requests match the selected filter</p>
+        </div>
+      )}
+
+      {/* New Request Modal */}
+      {showAddModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="p-6 border-b border-gray-200 flex items-center justify-between sticky top-0 bg-white z-10">
+              <h2 className="text-xl font-bold text-gray-900">New Travel Request</h2>
+              <button
+                onClick={() => setShowAddModal(false)}
+                className="p-2 hover:bg-gray-100 rounded-lg"
+              >
+                <X className="h-5 w-5 text-gray-500" />
+              </button>
+            </div>
+
+            <div className="p-6">
+              <form className="space-y-6">
+                {/* Travel Type */}
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">Travel Type</label>
+                  <div className="flex gap-4">
+                    <label className="flex items-center gap-2 cursor-pointer">
+                      <input type="radio" name="travelType" value="domestic" defaultChecked className="w-4 h-4 text-blue-600" />
+                      <span className="text-sm text-gray-700">Domestic</span>
+                    </label>
+                    <label className="flex items-center gap-2 cursor-pointer">
+                      <input type="radio" name="travelType" value="international" className="w-4 h-4 text-blue-600" />
+                      <span className="text-sm text-gray-700">International</span>
+                    </label>
+                  </div>
+                </div>
+
+                {/* Purpose */}
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">Purpose of Travel</label>
+                  <textarea
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    rows={3}
+                    placeholder="Describe the purpose of your travel..."
+                  />
+                </div>
+
+                {/* Locations */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">From Location</label>
+                    <input
+                      type="text"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      placeholder="Starting location"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">To Location</label>
+                    <input
+                      type="text"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      placeholder="Destination"
+                    />
+                  </div>
+                </div>
+
+                {/* Dates */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Start Date</label>
+                    <input
+                      type="date"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">End Date</label>
+                    <input
+                      type="date"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    />
+                  </div>
+                </div>
+
+                {/* Transport Mode */}
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">Transport Mode</label>
+                  <select className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    <option value="flight">Flight</option>
+                    <option value="train">Train</option>
+                    <option value="bus">Bus</option>
+                    <option value="car">Car</option>
+                    <option value="multiple">Multiple Modes</option>
+                  </select>
+                </div>
+
+                {/* Estimated Cost */}
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">Estimated Cost (₹)</label>
+                  <input
+                    type="number"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="0"
+                  />
+                </div>
+
+                {/* Additional Options */}
+                <div className="space-y-3">
+                  <label className="flex items-center gap-2 cursor-pointer">
+                    <input type="checkbox" className="w-4 h-4 text-blue-600 rounded" />
+                    <span className="text-sm text-gray-700">Accommodation Required</span>
+                  </label>
+                  <label className="flex items-center gap-2 cursor-pointer">
+                    <input type="checkbox" className="w-4 h-4 text-blue-600 rounded" />
+                    <span className="text-sm text-gray-700">Advance Required</span>
+                  </label>
+                </div>
+
+                {/* Advance Amount (conditional) */}
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">Advance Amount (₹)</label>
+                  <input
+                    type="number"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="0"
+                  />
+                </div>
+
+                {/* Additional Notes */}
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">Additional Notes</label>
+                  <textarea
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    rows={3}
+                    placeholder="Any additional information..."
+                  />
+                </div>
+              </form>
+            </div>
+
+            <div className="p-6 border-t border-gray-200 flex justify-end gap-3 sticky bottom-0 bg-white">
+              <button
+                onClick={() => setShowAddModal(false)}
+                className="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-medium"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={() => {
+                  toast({
+                    title: "Request Submitted",
+                    description: "Your travel request has been submitted for approval"
+                  });
+                  setShowAddModal(false);
+                }}
+                className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium"
+              >
+                Submit Request
+              </button>
+            </div>
+          </div>
         </div>
       )}
     </div>

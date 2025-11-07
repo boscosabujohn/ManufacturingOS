@@ -188,11 +188,13 @@ export default function BankReconciliationPage() {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 p-6">
-      <div className="max-w-7xl mx-auto space-y-6">
-        {/* Header */}
-        <div className="flex items-center justify-between">
-          <div>
+    <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 via-purple-50 to-indigo-50">
+      <div className="flex-1 overflow-y-auto overflow-x-hidden">
+        <div className="px-4 sm:px-6 lg:px-8 py-6">
+          <div className="max-w-7xl mx-auto space-y-6">
+            {/* Header */}
+            <div className="flex items-center justify-between">
+              <div>
             <h1 className="text-3xl font-bold text-white mb-2">Bank Reconciliation</h1>
             <p className="text-gray-400">Reconcile bank statements with ERP transactions</p>
           </div>
@@ -610,6 +612,8 @@ export default function BankReconciliationPage() {
                 <span className="text-white font-bold">{formatCurrency(15626500)}</span>
               </div>
             </div>
+          </div>
+        </div>
           </div>
         </div>
       </div>

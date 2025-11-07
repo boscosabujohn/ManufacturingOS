@@ -198,16 +198,18 @@ export default function AssetDisposalPage() {
   const pendingApprovals = disposals.filter(d => d.status === 'pending').length
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-orange-50 to-red-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="max-w-7xl mx-auto space-y-6">
-        {/* Header */}
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900">Asset Disposal Management</h1>
-            <p className="text-gray-600 mt-1">Track and manage disposal of fixed assets</p>
-          </div>
-          <button className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-orange-600 to-red-600 text-white rounded-lg hover:from-orange-700 hover:to-red-700 transition-all shadow-md">
-            <Plus className="h-5 w-5" />
+    <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 via-orange-50 to-red-50">
+      <div className="flex-1 overflow-y-auto overflow-x-hidden">
+        <div className="px-4 sm:px-6 lg:px-8 py-6">
+          <div className="max-w-7xl mx-auto space-y-6">
+            {/* Header */}
+            <div className="flex items-center justify-between">
+              <div>
+                <h1 className="text-3xl font-bold text-gray-900">Asset Disposal Management</h1>
+                <p className="text-gray-600 mt-1">Track and manage disposal of fixed assets</p>
+              </div>
+              <button className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-orange-600 to-red-600 text-white rounded-lg hover:from-orange-700 hover:to-red-700 transition-all shadow-md">
+                <Plus className="h-5 w-5" />
             Initiate Disposal
           </button>
         </div>
@@ -457,6 +459,8 @@ export default function AssetDisposalPage() {
             <p className="text-gray-600">Try adjusting your filters or search query</p>
           </div>
         )}
+          </div>
+        </div>
       </div>
     </div>
   )

@@ -44,6 +44,34 @@ export default function FixedAssetsPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [categoryFilter, setCategoryFilter] = useState('all');
   const [statusFilter, setStatusFilter] = useState('all');
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' | 'info' } | null>(null);
+
+  // Toast notification handler
+  const showToast = (message: string, type: 'success' | 'error' | 'info' = 'success') => {
+    setToast({ message, type });
+    setTimeout(() => setToast(null), 3000);
+  };
+
+  // Action handlers
+  const handleAddAsset = () => {
+    showToast('Add Asset feature - Coming soon!', 'info');
+  };
+
+  const handleViewAsset = (assetName: string) => {
+    showToast(`Viewing details for: ${assetName}`, 'info');
+  };
+
+  const handleEditAsset = (assetName: string) => {
+    showToast(`Edit feature for ${assetName} - Coming soon!`, 'info');
+  };
+
+  const handleDepreciation = (assetName: string) => {
+    showToast(`Running depreciation for: ${assetName}`, 'success');
+  };
+
+  const handleExport = () => {
+    showToast('Exporting asset data - Coming soon!', 'info');
+  };
 
   // Sample fixed assets data
   const fixedAssets: FixedAsset[] = [
@@ -252,17 +280,37 @@ export default function FixedAssetsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 p-6">
-      <div className="max-w-7xl mx-auto space-y-6">
-        {/* Header */}
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold text-white mb-2">Fixed Assets Register</h1>
-            <p className="text-gray-400">Track and manage fixed assets and depreciation</p>
-          </div>
-          <button className="flex items-center gap-2 px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors shadow-lg">
-            <Plus className="w-5 h-5" />
-            Add Asset
+    <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50">
+      <div className="flex-1 overflow-y-auto overflow-x-hidden">
+        <div className="px-4 sm:px-6 lg:px-8 py-6">
+          <div className="max-w-7xl mx-auto space-y-6">
+            {/* Toast Notification */}
+            {toast && (
+              <div className={`fixed top-4 right-4 z-50 px-6 py-4 rounded-lg shadow-lg border-l-4 animate-slide-in ${
+                toast.type === 'success' ? 'bg-green-50 border-green-500 text-green-800' :
+                toast.type === 'error' ? 'bg-red-50 border-red-500 text-red-800' :
+                'bg-blue-50 border-blue-500 text-blue-800'
+              }`}>
+                <div className="flex items-center gap-3">
+                  {toast.type === 'success' && <CheckCircle className="w-5 h-5 text-green-600" />}
+                  {toast.type === 'error' && <XCircle className="w-5 h-5 text-red-600" />}
+                  {toast.type === 'info' && <AlertCircle className="w-5 h-5 text-blue-600" />}
+                  <span className="font-medium">{toast.message}</span>
+                </div>
+              </div>
+            )}
+
+            {/* Header */}
+            <div className="flex items-center justify-between">
+              <div>
+                <h1 className="text-3xl font-bold text-gray-900 mb-2">Fixed Assets Register</h1>
+                <p className="text-gray-600">Track and manage fixed assets and depreciation</p>
+              </div>
+              <button 
+                onClick={handleAddAsset}
+                className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-lg transition-colors shadow-lg">
+                <Plus className="w-5 h-5" />
+                Add Asset
           </button>
         </div>
 
@@ -312,7 +360,7 @@ export default function FixedAssetsPage() {
         </div>
 
         {/* Filters */}
-        <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
+        <div className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
           <div className="flex flex-wrap items-center gap-4">
             <div className="flex-1 min-w-[300px]">
               <div className="relative">
@@ -322,7 +370,7 @@ export default function FixedAssetsPage() {
                   placeholder="Search by asset name, code, or location..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                  className="w-full pl-10 pr-4 py-2 bg-white border border-gray-300 rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />
               </div>
             </div>
@@ -332,7 +380,7 @@ export default function FixedAssetsPage() {
               <select
                 value={categoryFilter}
                 onChange={(e) => setCategoryFilter(e.target.value)}
-                className="px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+                className="px-4 py-2 bg-white border border-gray-300 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               >
                 <option value="all">All Categories</option>
                 <option value="Land & Building">Land & Building</option>
@@ -349,7 +397,7 @@ export default function FixedAssetsPage() {
               <select
                 value={statusFilter}
                 onChange={(e) => setStatusFilter(e.target.value)}
-                className="px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+                className="px-4 py-2 bg-white border border-gray-300 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               >
                 <option value="all">All Status</option>
                 <option value="Active">Active</option>
@@ -359,7 +407,9 @@ export default function FixedAssetsPage() {
               </select>
             </div>
 
-            <button className="flex items-center gap-2 px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded-lg transition-colors">
+            <button 
+              onClick={handleExport}
+              className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 rounded-lg transition-colors shadow-sm">
               <Download className="w-4 h-4" />
               Export
             </button>
@@ -367,28 +417,28 @@ export default function FixedAssetsPage() {
         </div>
 
         {/* Fixed Assets Table */}
-        <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl border border-gray-700 overflow-hidden">
+        <div className="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm">
           <div className="overflow-x-auto">
             <table className="w-full">
-              <thead className="bg-gray-900/50">
+              <thead className="bg-gray-50 border-b border-gray-200">
                 <tr>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Asset Details</th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Category</th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Location</th>
-                  <th className="px-6 py-4 text-right text-sm font-semibold text-gray-300">Purchase Value</th>
-                  <th className="px-6 py-4 text-right text-sm font-semibold text-gray-300">Depreciation</th>
-                  <th className="px-6 py-4 text-right text-sm font-semibold text-gray-300">Net Book Value</th>
-                  <th className="px-6 py-4 text-center text-sm font-semibold text-gray-300">Status</th>
-                  <th className="px-6 py-4 text-center text-sm font-semibold text-gray-300">Actions</th>
+                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Asset Details</th>
+                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Category</th>
+                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Location</th>
+                  <th className="px-6 py-4 text-right text-sm font-semibold text-gray-700">Purchase Value</th>
+                  <th className="px-6 py-4 text-right text-sm font-semibold text-gray-700">Depreciation</th>
+                  <th className="px-6 py-4 text-right text-sm font-semibold text-gray-700">Net Book Value</th>
+                  <th className="px-6 py-4 text-center text-sm font-semibold text-gray-700">Status</th>
+                  <th className="px-6 py-4 text-center text-sm font-semibold text-gray-700">Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {filteredAssets.map((asset, index) => (
-                  <tr key={asset.id} className="border-b border-gray-700 hover:bg-gray-800/50 transition-colors">
+                  <tr key={asset.id} className="border-b border-gray-200 hover:bg-gray-50 transition-colors">
                     <td className="px-6 py-4">
                       <div>
-                        <div className="font-medium text-white">{asset.assetName}</div>
-                        <div className="text-sm text-gray-400 font-mono">{asset.assetCode}</div>
+                        <div className="font-medium text-gray-900">{asset.assetName}</div>
+                        <div className="text-sm text-gray-600 font-mono">{asset.assetCode}</div>
                         <div className="text-xs text-gray-500 mt-1">
                           Purchased: {new Date(asset.purchaseDate).toLocaleDateString()}
                         </div>
@@ -398,19 +448,19 @@ export default function FixedAssetsPage() {
                       <span className={`px-2 py-1 rounded-full text-xs font-medium ${getCategoryColor(asset.category)}`}>
                         {asset.category}
                       </span>
-                      <div className="text-xs text-gray-500 mt-1">{asset.depreciationMethod}</div>
+                      <div className="text-xs text-gray-600 mt-1">{asset.depreciationMethod}</div>
                     </td>
-                    <td className="px-6 py-4 text-gray-300 text-sm">{asset.location}</td>
+                    <td className="px-6 py-4 text-gray-700 text-sm">{asset.location}</td>
                     <td className="px-6 py-4 text-right">
-                      <div className="text-white font-medium">{formatCurrency(asset.purchaseValue)}</div>
-                      <div className="text-xs text-gray-400 mt-1">Life: {asset.usefulLife} years</div>
+                      <div className="text-gray-900 font-medium">{formatCurrency(asset.purchaseValue)}</div>
+                      <div className="text-xs text-gray-600 mt-1">Life: {asset.usefulLife} years</div>
                     </td>
                     <td className="px-6 py-4 text-right">
-                      <div className="text-orange-400 font-medium">{formatCurrency(asset.accumulatedDepreciation)}</div>
-                      <div className="text-xs text-gray-400 mt-1">
+                      <div className="text-orange-600 font-medium">{formatCurrency(asset.accumulatedDepreciation)}</div>
+                      <div className="text-xs text-gray-600 mt-1">
                         {getDepreciationPercentage(asset.accumulatedDepreciation, asset.purchaseValue)}%
                       </div>
-                      <div className="mt-1 w-full bg-gray-700 rounded-full h-1.5">
+                      <div className="mt-1 w-full bg-gray-200 rounded-full h-1.5">
                         <div
                           className="bg-orange-500 h-1.5 rounded-full"
                           style={{
@@ -420,15 +470,15 @@ export default function FixedAssetsPage() {
                       </div>
                     </td>
                     <td className="px-6 py-4 text-right">
-                      <div className="text-green-400 font-medium">{formatCurrency(asset.netBookValue)}</div>
-                      <div className="text-xs text-gray-400 mt-1">
+                      <div className="text-green-600 font-medium">{formatCurrency(asset.netBookValue)}</div>
+                      <div className="text-xs text-gray-600 mt-1">
                         Salvage: {formatCurrency(asset.salvageValue)}
                       </div>
                     </td>
                     <td className="px-6 py-4 text-center">
                       {getStatusBadge(asset.status)}
                       {asset.warrantyExpiry && (
-                        <div className="text-xs text-gray-400 mt-1">
+                        <div className="text-xs text-gray-600 mt-1">
                           Warranty: {new Date(asset.warrantyExpiry).toLocaleDateString()}
                         </div>
                       )}
@@ -436,28 +486,31 @@ export default function FixedAssetsPage() {
                     <td className="px-6 py-4">
                       <div className="flex items-center justify-center gap-2">
                         <button
-                          className="p-2 hover:bg-gray-700 rounded-lg transition-colors"
-                         
+                          onClick={() => handleViewAsset(asset.assetName)}
+                          className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                          title="View Details"
                         >
-                          <Eye className="w-4 h-4 text-blue-400" />
+                          <Eye className="w-4 h-4 text-blue-600" />
                         </button>
                         <button
-                          className="p-2 hover:bg-gray-700 rounded-lg transition-colors"
-                         
+                          onClick={() => handleEditAsset(asset.assetName)}
+                          className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                          title="Edit Asset"
                         >
-                          <Edit className="w-4 h-4 text-green-400" />
+                          <Edit className="w-4 h-4 text-green-600" />
                         </button>
                         <button
-                          className="p-2 hover:bg-gray-700 rounded-lg transition-colors"
-                         
+                          onClick={() => handleDepreciation(asset.assetName)}
+                          className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                          title="Run Depreciation"
                         >
-                          <TrendingDown className="w-4 h-4 text-orange-400" />
+                          <TrendingDown className="w-4 h-4 text-orange-600" />
                         </button>
                         <button
-                          className="p-2 hover:bg-gray-700 rounded-lg transition-colors"
-                         
+                          className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                          title="More Options"
                         >
-                          <MoreVertical className="w-4 h-4 text-gray-400" />
+                          <MoreVertical className="w-4 h-4 text-gray-600" />
                         </button>
                       </div>
                     </td>
@@ -469,8 +522,8 @@ export default function FixedAssetsPage() {
 
           {filteredAssets.length === 0 && (
             <div className="text-center py-12">
-              <Package className="w-16 h-16 text-gray-600 mx-auto mb-4" />
-              <p className="text-gray-400 text-lg">No fixed assets found</p>
+              <Package className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+              <p className="text-gray-600 text-lg">No fixed assets found</p>
               <p className="text-gray-500 text-sm mt-2">Try adjusting your search or filters</p>
             </div>
           )}
@@ -478,21 +531,23 @@ export default function FixedAssetsPage() {
 
         {/* Pagination */}
         {filteredAssets.length > 0 && (
-          <div className="flex items-center justify-between bg-gray-800/50 backdrop-blur-sm rounded-xl p-4 border border-gray-700">
-            <div className="text-gray-400 text-sm">
+          <div className="flex items-center justify-between bg-white rounded-xl p-4 border border-gray-200 shadow-sm">
+            <div className="text-gray-600 text-sm">
               Showing {filteredAssets.length} of {fixedAssets.length} assets
             </div>
             <div className="flex gap-2">
-              <button className="px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+              <button className="px-4 py-2 bg-white hover:bg-gray-50 text-gray-700 border border-gray-300 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
                 Previous
               </button>
-              <button className="px-4 py-2 bg-purple-600 text-white rounded-lg">1</button>
-              <button className="px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded-lg transition-colors">
+              <button className="px-4 py-2 bg-blue-600 text-white rounded-lg">1</button>
+              <button className="px-4 py-2 bg-white hover:bg-gray-50 text-gray-700 border border-gray-300 rounded-lg transition-colors">
                 Next
               </button>
             </div>
           </div>
         )}
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { Send, CheckCircle, Clock, Download, FileText, Building2, DollarSign, Calendar, AlertCircle } from 'lucide-react';
+import { Send, CheckCircle, Clock, Download, FileText, Building2, DollarSign, Calendar, AlertCircle, X, Printer, Mail } from 'lucide-react';
 
 interface EmployeeDisbursement {
   id: string;
@@ -41,6 +41,12 @@ interface DisbursementBatch {
 export default function PayrollDisbursementPage() {
   const [selectedBank, setSelectedBank] = useState('all');
   const [selectedStatus, setSelectedStatus] = useState('all');
+  const [showReceiptModal, setShowReceiptModal] = useState(false);
+  const [showBankFileModal, setShowBankFileModal] = useState(false);
+  const [showPaymentReportModal, setShowPaymentReportModal] = useState(false);
+  const [showProcessPaymentModal, setShowProcessPaymentModal] = useState(false);
+  const [showUpdateBankModal, setShowUpdateBankModal] = useState(false);
+  const [selectedRecord, setSelectedRecord] = useState<EmployeeDisbursement | null>(null);
 
   const mockBatch: DisbursementBatch = {
     id: 'DISB-2025-11',
@@ -195,6 +201,34 @@ export default function PayrollDisbursementPage() {
     return 'XXXX' + accountNumber.slice(-4);
   };
 
+  const handleDownloadReceipt = (record: EmployeeDisbursement) => {
+    setSelectedRecord(record);
+    setShowReceiptModal(true);
+  };
+
+  const handleDownloadBankFile = () => {
+    setShowBankFileModal(true);
+  };
+
+  const handlePaymentReport = () => {
+    setShowPaymentReportModal(true);
+  };
+
+  const handleProcessPayment = (record: EmployeeDisbursement) => {
+    setSelectedRecord(record);
+    setShowProcessPaymentModal(true);
+  };
+
+  const handleUpdateBankDetails = (record: EmployeeDisbursement) => {
+    setSelectedRecord(record);
+    setShowUpdateBankModal(true);
+  };
+
+  const handleRetryPayment = (record: EmployeeDisbursement) => {
+    alert(`Retrying payment for ${record.employeeName}`);
+    // Implementation for retry payment
+  };
+
   return (
     <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
       <div className="mb-6">
@@ -342,11 +376,17 @@ export default function PayrollDisbursementPage() {
               <option value="failed">Failed</option>
             </select>
           </div>
-          <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+          <button
+            onClick={handleDownloadBankFile}
+            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          >
             <Download className="h-4 w-4" />
             Download Bank File
           </button>
-          <button className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">
+          <button
+            onClick={handlePaymentReport}
+            className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
+          >
             <FileText className="h-4 w-4" />
             Payment Report
           </button>
@@ -464,23 +504,35 @@ export default function PayrollDisbursementPage() {
 
             <div className="flex gap-2 mt-4">
               {record.disbursementStatus === 'pending' && (
-                <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium text-sm">
+                <button
+                  onClick={() => handleProcessPayment(record)}
+                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium text-sm"
+                >
                   <Send className="inline h-4 w-4 mr-2" />
                   Process Payment
                 </button>
               )}
               {record.disbursementStatus === 'failed' && (
                 <>
-                  <button className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium text-sm">
+                  <button
+                    onClick={() => handleRetryPayment(record)}
+                    className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium text-sm"
+                  >
                     Retry Payment
                   </button>
-                  <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium text-sm">
+                  <button
+                    onClick={() => handleUpdateBankDetails(record)}
+                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium text-sm"
+                  >
                     Update Bank Details
                   </button>
                 </>
               )}
               {record.disbursementStatus === 'completed' && (
-                <button className="px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg font-medium text-sm border border-gray-300">
+                <button
+                  onClick={() => handleDownloadReceipt(record)}
+                  className="px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg font-medium text-sm border border-gray-300"
+                >
                   <Download className="inline h-4 w-4 mr-2" />
                   Download Receipt
                 </button>
@@ -530,6 +582,519 @@ export default function PayrollDisbursementPage() {
           <li>• Payment receipts are generated automatically for completed transactions</li>
           <li>• Maintain transaction IDs for audit and reconciliation purposes</li>
         </ul>
+      </div>
+
+      {/* Receipt Modal */}
+      {showReceiptModal && selectedRecord && (
+        <ReceiptModal
+          record={selectedRecord}
+          onClose={() => {
+            setShowReceiptModal(false);
+            setSelectedRecord(null);
+          }}
+          formatCurrency={formatCurrency}
+        />
+      )}
+
+      {/* Bank File Modal */}
+      {showBankFileModal && (
+        <BankFileModal
+          batch={mockBatch}
+          onClose={() => setShowBankFileModal(false)}
+        />
+      )}
+
+      {/* Payment Report Modal */}
+      {showPaymentReportModal && (
+        <PaymentReportModal
+          batch={mockBatch}
+          onClose={() => setShowPaymentReportModal(false)}
+          formatCurrency={formatCurrency}
+        />
+      )}
+
+      {/* Process Payment Modal */}
+      {showProcessPaymentModal && selectedRecord && (
+        <ProcessPaymentModal
+          record={selectedRecord}
+          onClose={() => {
+            setShowProcessPaymentModal(false);
+            setSelectedRecord(null);
+          }}
+          formatCurrency={formatCurrency}
+        />
+      )}
+
+      {/* Update Bank Details Modal */}
+      {showUpdateBankModal && selectedRecord && (
+        <UpdateBankModal
+          record={selectedRecord}
+          onClose={() => {
+            setShowUpdateBankModal(false);
+            setSelectedRecord(null);
+          }}
+        />
+      )}
+    </div>
+  );
+}
+
+// Receipt Modal Component
+interface ReceiptModalProps {
+  record: EmployeeDisbursement;
+  onClose: () => void;
+  formatCurrency: (amount: number) => string;
+}
+
+function ReceiptModal({ record, onClose, formatCurrency }: ReceiptModalProps) {
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+      <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full">
+        <div className="bg-gradient-to-r from-green-600 to-emerald-600 px-6 py-4 flex items-center justify-between">
+          <h2 className="text-xl font-bold text-white">Payment Receipt</h2>
+          <button onClick={onClose} className="text-white hover:text-gray-200">
+            <X className="h-6 w-6" />
+          </button>
+        </div>
+
+        <div className="p-6" id="receipt-content">
+          {/* Company Header */}
+          <div className="text-center mb-6 pb-4 border-b-2 border-gray-200">
+            <h1 className="text-2xl font-bold text-gray-900">B3 MACBIS</h1>
+            <p className="text-sm text-gray-600">Kitchen Manufacturing ERP System</p>
+            <p className="text-xs text-gray-500 mt-1">Salary Payment Receipt</p>
+          </div>
+
+          {/* Receipt Details */}
+          <div className="grid grid-cols-2 gap-4 mb-6">
+            <div>
+              <p className="text-xs text-gray-600">Transaction ID</p>
+              <p className="font-semibold text-gray-900">{record.transactionId}</p>
+            </div>
+            <div>
+              <p className="text-xs text-gray-600">Payment Date</p>
+              <p className="font-semibold text-gray-900">
+                {record.disbursedOn && new Date(record.disbursedOn).toLocaleDateString('en-IN')}
+              </p>
+            </div>
+            <div>
+              <p className="text-xs text-gray-600">Employee ID</p>
+              <p className="font-semibold text-gray-900">{record.employeeId}</p>
+            </div>
+            <div>
+              <p className="text-xs text-gray-600">Employee Name</p>
+              <p className="font-semibold text-gray-900">{record.employeeName}</p>
+            </div>
+          </div>
+
+          {/* Bank Details */}
+          <div className="bg-blue-50 rounded-lg p-4 mb-6">
+            <h3 className="font-semibold text-blue-900 mb-3">Bank Details</h3>
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <p className="text-xs text-blue-700">Bank Name</p>
+                <p className="text-sm font-medium text-blue-900">{record.bankName}</p>
+              </div>
+              <div>
+                <p className="text-xs text-blue-700">Account Number</p>
+                <p className="text-sm font-medium text-blue-900">{record.accountNumber}</p>
+              </div>
+              <div>
+                <p className="text-xs text-blue-700">IFSC Code</p>
+                <p className="text-sm font-medium text-blue-900">{record.ifscCode}</p>
+              </div>
+              <div>
+                <p className="text-xs text-blue-700">Payment Mode</p>
+                <p className="text-sm font-medium text-blue-900">NEFT</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Amount Details */}
+          <div className="bg-green-50 rounded-lg p-4 mb-6">
+            <div className="flex justify-between items-center">
+              <div>
+                <p className="text-sm text-green-700">Net Salary Paid</p>
+                <p className="text-xs text-green-600 mt-1">For the month of November 2025</p>
+              </div>
+              <p className="text-3xl font-bold text-green-900">{formatCurrency(record.netSalary)}</p>
+            </div>
+          </div>
+
+          {/* Footer */}
+          <div className="text-center text-xs text-gray-500 pt-4 border-t border-gray-200">
+            <p>This is a computer-generated receipt and does not require a signature.</p>
+            <p className="mt-1">For queries, contact HR Department</p>
+          </div>
+        </div>
+
+        <div className="px-6 py-4 bg-gray-50 flex justify-end gap-3">
+          <button
+            onClick={() => window.print()}
+            className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100 flex items-center gap-2"
+          >
+            <Printer className="h-4 w-4" />
+            Print
+          </button>
+          <button
+            onClick={onClose}
+            className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 flex items-center gap-2"
+          >
+            <Download className="h-4 w-4" />
+            Download PDF
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Bank File Modal Component
+interface BankFileModalProps {
+  batch: DisbursementBatch;
+  onClose: () => void;
+}
+
+function BankFileModal({ batch, onClose }: BankFileModalProps) {
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+      <div className="bg-white rounded-lg shadow-xl max-w-lg w-full">
+        <div className="bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-4 flex items-center justify-between">
+          <h2 className="text-xl font-bold text-white">Download Bank File</h2>
+          <button onClick={onClose} className="text-white hover:text-gray-200">
+            <X className="h-6 w-6" />
+          </button>
+        </div>
+
+        <div className="p-6">
+          <p className="text-sm text-gray-600 mb-6">
+            Select the format for your bank's bulk payment processing system
+          </p>
+
+          <div className="space-y-3">
+            <button className="w-full p-4 border-2 border-blue-200 rounded-lg hover:bg-blue-50 transition-colors text-left">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="font-semibold text-gray-900">NEFT Format (CSV)</p>
+                  <p className="text-xs text-gray-600 mt-1">Compatible with HDFC, ICICI, SBI</p>
+                </div>
+                <Download className="h-5 w-5 text-blue-600" />
+              </div>
+            </button>
+
+            <button className="w-full p-4 border-2 border-blue-200 rounded-lg hover:bg-blue-50 transition-colors text-left">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="font-semibold text-gray-900">RTGS Format (Excel)</p>
+                  <p className="text-xs text-gray-600 mt-1">For high-value transactions</p>
+                </div>
+                <Download className="h-5 w-5 text-blue-600" />
+              </div>
+            </button>
+
+            <button className="w-full p-4 border-2 border-blue-200 rounded-lg hover:bg-blue-50 transition-colors text-left">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="font-semibold text-gray-900">Generic Format (TXT)</p>
+                  <p className="text-xs text-gray-600 mt-1">Universal format for all banks</p>
+                </div>
+                <Download className="h-5 w-5 text-blue-600" />
+              </div>
+            </button>
+          </div>
+
+          <div className="mt-6 bg-yellow-50 border border-yellow-200 rounded-lg p-3">
+            <p className="text-xs text-yellow-800">
+              <strong>Note:</strong> Ensure you have sufficient balance before uploading to your bank portal
+            </p>
+          </div>
+        </div>
+
+        <div className="px-6 py-4 bg-gray-50 flex justify-end">
+          <button
+            onClick={onClose}
+            className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Payment Report Modal Component
+interface PaymentReportModalProps {
+  batch: DisbursementBatch;
+  onClose: () => void;
+  formatCurrency: (amount: number) => string;
+}
+
+function PaymentReportModal({ batch, onClose, formatCurrency }: PaymentReportModalProps) {
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+      <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
+        <div className="bg-gradient-to-r from-green-600 to-emerald-600 px-6 py-4 flex items-center justify-between sticky top-0">
+          <h2 className="text-xl font-bold text-white">Payment Summary Report</h2>
+          <button onClick={onClose} className="text-white hover:text-gray-200">
+            <X className="h-6 w-6" />
+          </button>
+        </div>
+
+        <div className="p-6">
+          {/* Report Header */}
+          <div className="text-center mb-6">
+            <h1 className="text-2xl font-bold text-gray-900">B3 MACBIS</h1>
+            <p className="text-sm text-gray-600">Salary Disbursement Report</p>
+            <p className="text-xs text-gray-500 mt-1">{batch.monthYear}</p>
+          </div>
+
+          {/* Summary Stats */}
+          <div className="grid grid-cols-4 gap-4 mb-6">
+            <div className="bg-blue-50 rounded-lg p-3 text-center">
+              <p className="text-xs text-blue-700">Total Employees</p>
+              <p className="text-2xl font-bold text-blue-900">{batch.employeeCount}</p>
+            </div>
+            <div className="bg-green-50 rounded-lg p-3 text-center">
+              <p className="text-xs text-green-700">Completed</p>
+              <p className="text-2xl font-bold text-green-900">{batch.completedCount}</p>
+            </div>
+            <div className="bg-yellow-50 rounded-lg p-3 text-center">
+              <p className="text-xs text-yellow-700">Processing</p>
+              <p className="text-2xl font-bold text-yellow-900">{batch.processingCount}</p>
+            </div>
+            <div className="bg-red-50 rounded-lg p-3 text-center">
+              <p className="text-xs text-red-700">Failed</p>
+              <p className="text-2xl font-bold text-red-900">{batch.failedCount}</p>
+            </div>
+          </div>
+
+          {/* Payment Details Table */}
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="bg-gray-100 border-b">
+                  <th className="text-left p-3 font-semibold text-gray-700">Employee</th>
+                  <th className="text-left p-3 font-semibold text-gray-700">Bank</th>
+                  <th className="text-right p-3 font-semibold text-gray-700">Amount</th>
+                  <th className="text-center p-3 font-semibold text-gray-700">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {batch.records.map(record => (
+                  <tr key={record.id} className="border-b hover:bg-gray-50">
+                    <td className="p-3">
+                      <p className="font-medium text-gray-900">{record.employeeName}</p>
+                      <p className="text-xs text-gray-600">{record.employeeId}</p>
+                    </td>
+                    <td className="p-3 text-gray-700">{record.bankName}</td>
+                    <td className="p-3 text-right font-semibold text-gray-900">
+                      {formatCurrency(record.netSalary)}
+                    </td>
+                    <td className="p-3 text-center">
+                      <span className={`px-2 py-1 text-xs font-semibold rounded-full ${
+                        record.disbursementStatus === 'completed' ? 'bg-green-100 text-green-700' :
+                        record.disbursementStatus === 'processing' ? 'bg-blue-100 text-blue-700' :
+                        record.disbursementStatus === 'failed' ? 'bg-red-100 text-red-700' :
+                        'bg-yellow-100 text-yellow-700'
+                      }`}>
+                        {record.disbursementStatus.toUpperCase()}
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+              <tfoot>
+                <tr className="bg-gray-100 font-bold">
+                  <td colSpan={2} className="p-3 text-gray-900">Total Amount Disbursed</td>
+                  <td className="p-3 text-right text-green-900">{formatCurrency(batch.totalAmount)}</td>
+                  <td></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+
+        <div className="px-6 py-4 bg-gray-50 flex justify-end gap-3">
+          <button
+            onClick={() => window.print()}
+            className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100 flex items-center gap-2"
+          >
+            <Printer className="h-4 w-4" />
+            Print
+          </button>
+          <button
+            onClick={onClose}
+            className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 flex items-center gap-2"
+          >
+            <Download className="h-4 w-4" />
+            Export to Excel
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Process Payment Modal Component
+interface ProcessPaymentModalProps {
+  record: EmployeeDisbursement;
+  onClose: () => void;
+  formatCurrency: (amount: number) => string;
+}
+
+function ProcessPaymentModal({ record, onClose, formatCurrency }: ProcessPaymentModalProps) {
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+      <div className="bg-white rounded-lg shadow-xl max-w-lg w-full">
+        <div className="bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-4 flex items-center justify-between">
+          <h2 className="text-xl font-bold text-white">Process Payment</h2>
+          <button onClick={onClose} className="text-white hover:text-gray-200">
+            <X className="h-6 w-6" />
+          </button>
+        </div>
+
+        <div className="p-6">
+          <div className="mb-6">
+            <h3 className="font-semibold text-gray-900 mb-2">{record.employeeName}</h3>
+            <p className="text-sm text-gray-600">{record.designation} • {record.department}</p>
+          </div>
+
+          <div className="bg-blue-50 rounded-lg p-4 mb-6">
+            <h4 className="font-semibold text-blue-900 mb-3">Payment Details</h4>
+            <div className="space-y-2">
+              <div className="flex justify-between">
+                <span className="text-sm text-blue-700">Amount</span>
+                <span className="font-bold text-blue-900">{formatCurrency(record.netSalary)}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-sm text-blue-700">Bank</span>
+                <span className="font-medium text-blue-900">{record.bankName}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-sm text-blue-700">Account</span>
+                <span className="font-medium text-blue-900">{record.accountNumber}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-sm text-blue-700">IFSC</span>
+                <span className="font-medium text-blue-900">{record.ifscCode}</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 mb-6">
+            <p className="text-xs text-yellow-800">
+              <strong>Confirm:</strong> Please verify all details before processing the payment. This action cannot be undone.
+            </p>
+          </div>
+        </div>
+
+        <div className="px-6 py-4 bg-gray-50 flex justify-end gap-3">
+          <button
+            onClick={onClose}
+            className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100"
+          >
+            Cancel
+          </button>
+          <button
+            onClick={() => {
+              alert(`Payment of ${formatCurrency(record.netSalary)} initiated for ${record.employeeName}`);
+              onClose();
+            }}
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2"
+          >
+            <Send className="h-4 w-4" />
+            Process Payment
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Update Bank Details Modal Component
+interface UpdateBankModalProps {
+  record: EmployeeDisbursement;
+  onClose: () => void;
+}
+
+function UpdateBankModal({ record, onClose }: UpdateBankModalProps) {
+  const [bankName, setBankName] = useState(record.bankName);
+  const [accountNumber, setAccountNumber] = useState(record.accountNumber);
+  const [ifscCode, setIfscCode] = useState(record.ifscCode);
+
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+      <div className="bg-white rounded-lg shadow-xl max-w-lg w-full">
+        <div className="bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-4 flex items-center justify-between">
+          <h2 className="text-xl font-bold text-white">Update Bank Details</h2>
+          <button onClick={onClose} className="text-white hover:text-gray-200">
+            <X className="h-6 w-6" />
+          </button>
+        </div>
+
+        <div className="p-6">
+          <div className="mb-6">
+            <h3 className="font-semibold text-gray-900 mb-2">{record.employeeName}</h3>
+            <p className="text-sm text-gray-600">{record.employeeId}</p>
+          </div>
+
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Bank Name</label>
+              <input
+                type="text"
+                value={bankName}
+                onChange={(e) => setBankName(e.target.value)}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Account Number</label>
+              <input
+                type="text"
+                value={accountNumber}
+                onChange={(e) => setAccountNumber(e.target.value)}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">IFSC Code</label>
+              <input
+                type="text"
+                value={ifscCode}
+                onChange={(e) => setIfscCode(e.target.value.toUpperCase())}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+          </div>
+
+          <div className="mt-6 bg-yellow-50 border border-yellow-200 rounded-lg p-3">
+            <p className="text-xs text-yellow-800">
+              <strong>Note:</strong> Changes will be saved immediately and reflected in the next payment.
+            </p>
+          </div>
+        </div>
+
+        <div className="px-6 py-4 bg-gray-50 flex justify-end gap-3">
+          <button
+            onClick={onClose}
+            className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100"
+          >
+            Cancel
+          </button>
+          <button
+            onClick={() => {
+              alert(`Bank details updated for ${record.employeeName}`);
+              onClose();
+            }}
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          >
+            Save Changes
+          </button>
+        </div>
       </div>
     </div>
   );

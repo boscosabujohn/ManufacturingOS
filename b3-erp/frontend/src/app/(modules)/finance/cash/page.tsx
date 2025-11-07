@@ -16,6 +16,7 @@ import {
   BarChart3,
   ArrowUpRight,
   ArrowDownRight,
+  ArrowRight,
   GitCompare
 } from 'lucide-react'
 
@@ -200,46 +201,77 @@ export default function CashManagementDashboard() {
             </div>
 
             {/* Quick Access Menu */}
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Access</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3">
                 <Link
                   href="/finance/cash/bank-accounts"
-                  className="flex items-center gap-2 p-3 rounded-lg border border-gray-200 hover:border-emerald-500 hover:bg-emerald-50 transition-all group"
+                  className="group flex items-center gap-3 p-3 rounded-lg border border-gray-200 hover:border-blue-500 hover:bg-blue-50 transition-all duration-200"
                 >
-                  <Building2 className="h-5 w-5 text-gray-600 group-hover:text-emerald-600" />
-                  <span className="text-sm font-medium text-gray-700 group-hover:text-emerald-700">Bank Accounts</span>
+                  <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center group-hover:bg-blue-200 transition-colors">
+                    <Building2 className="h-5 w-5 text-blue-600" />
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="text-sm font-medium text-gray-900 group-hover:text-blue-600">Bank Accounts</h4>
+                    <p className="text-xs text-gray-500">Manage accounts</p>
+                  </div>
+                  <ArrowRight className="h-4 w-4 text-gray-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all" />
                 </Link>
                 
                 <Link
                   href="/finance/cash/bank-reconciliation"
-                  className="flex items-center gap-2 p-3 rounded-lg border border-gray-200 hover:border-emerald-500 hover:bg-emerald-50 transition-all group"
+                  className="group flex items-center gap-3 p-3 rounded-lg border border-gray-200 hover:border-purple-500 hover:bg-purple-50 transition-all duration-200"
                 >
-                  <GitCompare className="h-5 w-5 text-gray-600 group-hover:text-emerald-600" />
-                  <span className="text-sm font-medium text-gray-700 group-hover:text-emerald-700">Reconciliation</span>
+                  <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center group-hover:bg-purple-200 transition-colors">
+                    <GitCompare className="h-5 w-5 text-purple-600" />
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="text-sm font-medium text-gray-900 group-hover:text-purple-600">Reconciliation</h4>
+                    <p className="text-xs text-gray-500">Match statements</p>
+                  </div>
+                  <ArrowRight className="h-4 w-4 text-gray-400 group-hover:text-purple-600 group-hover:translate-x-1 transition-all" />
                 </Link>
                 
                 <Link
                   href="/finance/cash/cash-flow-forecast"
-                  className="flex items-center gap-2 p-3 rounded-lg border border-gray-200 hover:border-emerald-500 hover:bg-emerald-50 transition-all group"
+                  className="group flex items-center gap-3 p-3 rounded-lg border border-gray-200 hover:border-cyan-500 hover:bg-cyan-50 transition-all duration-200"
                 >
-                  <TrendingUp className="h-5 w-5 text-gray-600 group-hover:text-emerald-600" />
-                  <span className="text-sm font-medium text-gray-700 group-hover:text-emerald-700">Cash Forecast</span>
+                  <div className="w-10 h-10 bg-cyan-100 rounded-lg flex items-center justify-center group-hover:bg-cyan-200 transition-colors">
+                    <TrendingUp className="h-5 w-5 text-cyan-600" />
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="text-sm font-medium text-gray-900 group-hover:text-cyan-600">Cash Forecast</h4>
+                    <p className="text-xs text-gray-500">Cash projections</p>
+                  </div>
+                  <ArrowRight className="h-4 w-4 text-gray-400 group-hover:text-cyan-600 group-hover:translate-x-1 transition-all" />
                 </Link>
                 
                 <Link
                   href="/finance/cash/anticipated-receipts"
-                  className="flex items-center gap-2 p-3 rounded-lg border border-gray-200 hover:border-emerald-500 hover:bg-emerald-50 transition-all group"
+                  className="group flex items-center gap-3 p-3 rounded-lg border border-gray-200 hover:border-green-500 hover:bg-green-50 transition-all duration-200"
                 >
-                  <ArrowDownCircle className="h-5 w-5 text-gray-600 group-hover:text-emerald-600" />
-                  <span className="text-sm font-medium text-gray-700 group-hover:text-emerald-700">Anticipated Receipts</span>
+                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center group-hover:bg-green-200 transition-colors">
+                    <ArrowDownCircle className="h-5 w-5 text-green-600" />
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="text-sm font-medium text-gray-900 group-hover:text-green-600">Receipts</h4>
+                    <p className="text-xs text-gray-500">Expected inflows</p>
+                  </div>
+                  <ArrowRight className="h-4 w-4 text-gray-400 group-hover:text-green-600 group-hover:translate-x-1 transition-all" />
                 </Link>
                 
                 <Link
                   href="/finance/cash/anticipated-payments"
-                  className="flex items-center gap-2 p-3 rounded-lg border border-gray-200 hover:border-emerald-500 hover:bg-emerald-50 transition-all group"
+                  className="group flex items-center gap-3 p-3 rounded-lg border border-gray-200 hover:border-orange-500 hover:bg-orange-50 transition-all duration-200"
                 >
-                  <ArrowUpCircle className="h-5 w-5 text-gray-600 group-hover:text-emerald-600" />
-                  <span className="text-sm font-medium text-gray-700 group-hover:text-emerald-700">Anticipated Payments</span>
+                  <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center group-hover:bg-orange-200 transition-colors">
+                    <ArrowUpCircle className="h-5 w-5 text-orange-600" />
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="text-sm font-medium text-gray-900 group-hover:text-orange-600">Payments</h4>
+                    <p className="text-xs text-gray-500">Expected outflows</p>
+                  </div>
+                  <ArrowRight className="h-4 w-4 text-gray-400 group-hover:text-orange-600 group-hover:translate-x-1 transition-all" />
                 </Link>
               </div>
             </div>

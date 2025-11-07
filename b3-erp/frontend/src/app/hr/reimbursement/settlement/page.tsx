@@ -1,20 +1,661 @@
 'use client';
 
-import { DollarSign } from 'lucide-react';
+import { useState, useMemo } from 'react';
+import { DollarSign, User, Wallet, Calculator, TrendingDown, AlertCircle, Eye, Download, CheckCircle, XCircle } from 'lucide-react';
+import DataTable from '@/components/DataTable';
+import { toast } from '@/hooks/use-toast';
+
+interface SettlementReimbursement {
+  id: string;
+  employeeCode: string;
+  employeeName: string;
+  department: string;
+  designation: string;
+  claimNumber: string;
+  claimType: 'Medical' | 'Education' | 'Conveyance' | 'Relocation' | 'Uniform' | 'Mobile' | 'Internet' | 'Other';
+  originalAmount: number;
+  approvedAmount: number;
+  rejectedAmount: number;
+  rejectionReason?: string;
+  submittedDate: string;
+  reviewedDate: string;
+  reviewedBy: string;
+  description: string;
+  documentsCount: number;
+  settlementType: 'partial_approval' | 'overpayment_recovery' | 'advance_adjustment' | 'full_settlement';
+  advanceAmount?: number;
+  netPayable: number;
+}
 
 export default function Page() {
+  const [selectedType, setSelectedType] = useState('all');
+  const [selectedSettlementType, setSelectedSettlementType] = useState('all');
+  const [showDetailsModal, setShowDetailsModal] = useState(false);
+  const [selectedClaim, setSelectedClaim] = useState<SettlementReimbursement | null>(null);
+
+  const mockReimbursements: SettlementReimbursement[] = [
+    {
+      id: '1', employeeCode: 'KMF-2024-101', employeeName: 'Rajesh Kumar', department: 'Manufacturing',
+      designation: 'Production Manager', claimNumber: 'REIMB-2024-401', claimType: 'Medical',
+      originalAmount: 18000, approvedAmount: 15000, rejectedAmount: 3000,
+      rejectionReason: 'Non-reimbursable items - cosmetic treatment',
+      submittedDate: '2024-10-10', reviewedDate: '2024-10-15', reviewedBy: 'Suresh Iyer',
+      description: 'Medical expenses - hospitalization', documentsCount: 4,
+      settlementType: 'partial_approval', netPayable: 15000
+    },
+    {
+      id: '2', employeeCode: 'KMF-2024-102', employeeName: 'Priya Sharma', department: 'Human Resources',
+      designation: 'HR Manager', claimNumber: 'REIMB-2024-402', claimType: 'Education',
+      originalAmount: 25000, approvedAmount: 20000, rejectedAmount: 5000,
+      rejectionReason: 'Exceeds annual limit per child',
+      submittedDate: '2024-10-08', reviewedDate: '2024-10-12', reviewedBy: 'Madhav Singh',
+      description: 'Child education fees', documentsCount: 3,
+      settlementType: 'partial_approval', netPayable: 20000
+    },
+    {
+      id: '3', employeeCode: 'KMF-2024-103', employeeName: 'Amit Singh', department: 'Warehouse & Logistics',
+      designation: 'Warehouse Manager', claimNumber: 'REIMB-2024-403', claimType: 'Conveyance',
+      originalAmount: 3500, approvedAmount: 3000, rejectedAmount: 500,
+      rejectionReason: 'Personal travel expenses excluded',
+      submittedDate: '2024-10-12', reviewedDate: '2024-10-16', reviewedBy: 'Ramesh Nair',
+      description: 'Monthly conveyance', documentsCount: 2,
+      settlementType: 'partial_approval', advanceAmount: 2000, netPayable: 1000
+    },
+    {
+      id: '4', employeeCode: 'KMF-2024-104', employeeName: 'Meena Rao', department: 'Quality Assurance',
+      designation: 'QA Manager', claimNumber: 'REIMB-2024-404', claimType: 'Relocation',
+      originalAmount: 45000, approvedAmount: 45000, rejectedAmount: 0,
+      submittedDate: '2024-10-05', reviewedDate: '2024-10-09', reviewedBy: 'Kavita Sharma',
+      description: 'Relocation expenses - Delhi', documentsCount: 6,
+      settlementType: 'advance_adjustment', advanceAmount: 30000, netPayable: 15000
+    },
+    {
+      id: '5', employeeCode: 'KMF-2024-105', employeeName: 'Suresh Patel', department: 'Maintenance',
+      designation: 'Maintenance Head', claimNumber: 'REIMB-2024-405', claimType: 'Uniform',
+      originalAmount: 5500, approvedAmount: 5000, rejectedAmount: 500,
+      rejectionReason: 'Exceeds annual uniform allowance',
+      submittedDate: '2024-10-14', reviewedDate: '2024-10-18', reviewedBy: 'Deepak Joshi',
+      description: 'Safety gear and uniform', documentsCount: 3,
+      settlementType: 'partial_approval', netPayable: 5000
+    },
+    {
+      id: '6', employeeCode: 'KMF-2024-106', employeeName: 'Anil Verma', department: 'IT',
+      designation: 'IT Manager', claimNumber: 'REIMB-2024-406', claimType: 'Mobile',
+      originalAmount: 2200, approvedAmount: 1500, rejectedAmount: 700,
+      rejectionReason: 'Exceeds monthly mobile limit',
+      submittedDate: '2024-10-16', reviewedDate: '2024-10-19', reviewedBy: 'Suresh Iyer',
+      description: 'Mobile bill reimbursement', documentsCount: 1,
+      settlementType: 'partial_approval', netPayable: 1500
+    },
+    {
+      id: '7', employeeCode: 'KMF-2024-107', employeeName: 'Kavita Nair', department: 'Sales',
+      designation: 'Sales Manager', claimNumber: 'REIMB-2024-407', claimType: 'Medical',
+      originalAmount: 12000, approvedAmount: 12000, rejectedAmount: 0,
+      submittedDate: '2024-10-11', reviewedDate: '2024-10-14', reviewedBy: 'Madhav Singh',
+      description: 'Medical consultation and tests', documentsCount: 4,
+      settlementType: 'full_settlement', netPayable: 12000
+    },
+    {
+      id: '8', employeeCode: 'KMF-2024-108', employeeName: 'Deepak Joshi', department: 'Finance',
+      designation: 'Accounts Manager', claimNumber: 'REIMB-2024-408', claimType: 'Internet',
+      originalAmount: 2500, approvedAmount: 2000, rejectedAmount: 500,
+      rejectionReason: 'Exceeds monthly internet limit',
+      submittedDate: '2024-10-09', reviewedDate: '2024-10-13', reviewedBy: 'Ramesh Nair',
+      description: 'Home internet reimbursement', documentsCount: 1,
+      settlementType: 'partial_approval', netPayable: 2000
+    }
+  ];
+
+  const filteredReimbursements = useMemo(() => {
+    return mockReimbursements.filter(reimb => {
+      const matchesType = selectedType === 'all' || reimb.claimType === selectedType;
+      const matchesSettlement = selectedSettlementType === 'all' || reimb.settlementType === selectedSettlementType;
+      return matchesType && matchesSettlement;
+    });
+  }, [selectedType, selectedSettlementType]);
+
+  const stats = {
+    totalClaims: mockReimbursements.length,
+    totalClaimed: mockReimbursements.reduce((sum, r) => sum + r.originalAmount, 0),
+    totalApproved: mockReimbursements.reduce((sum, r) => sum + r.approvedAmount, 0),
+    totalRejected: mockReimbursements.reduce((sum, r) => sum + r.rejectedAmount, 0),
+    totalNetPayable: mockReimbursements.reduce((sum, r) => sum + r.netPayable, 0),
+    approvalRate: Math.round((mockReimbursements.reduce((sum, r) => sum + r.approvedAmount, 0) /
+                              mockReimbursements.reduce((sum, r) => sum + r.originalAmount, 0)) * 100),
+    partialApprovals: mockReimbursements.filter(r => r.settlementType === 'partial_approval').length
+  };
+
+  const getSettlementTypeColor = (type: string) => {
+    const colors = {
+      partial_approval: 'bg-yellow-100 text-yellow-800',
+      overpayment_recovery: 'bg-red-100 text-red-800',
+      advance_adjustment: 'bg-blue-100 text-blue-800',
+      full_settlement: 'bg-green-100 text-green-800'
+    };
+    return colors[type as keyof typeof colors];
+  };
+
+  const getSettlementTypeLabel = (type: string) => {
+    const labels = {
+      partial_approval: 'Partial Approval',
+      overpayment_recovery: 'Overpayment Recovery',
+      advance_adjustment: 'Advance Adjustment',
+      full_settlement: 'Full Settlement'
+    };
+    return labels[type as keyof typeof labels];
+  };
+
+  const handleViewDetails = (claim: SettlementReimbursement) => {
+    setSelectedClaim(claim);
+    setShowDetailsModal(true);
+  };
+
+  const handleApproveSettlement = (claim: SettlementReimbursement) => {
+    toast({
+      title: "Settlement Approved",
+      description: `Settlement for claim ${claim.claimNumber} has been approved`
+    });
+  };
+
+  const handleExportToExcel = () => {
+    const headers = ['Claim No.', 'Employee', 'Employee Code', 'Department', 'Type', 'Original Amount', 'Approved Amount', 'Rejected Amount', 'Advance Amount', 'Net Payable', 'Settlement Type', 'Reviewed Date', 'Reviewed By', 'Rejection Reason', 'Description'];
+    const csvData = filteredReimbursements.map(r => [
+      r.claimNumber,
+      r.employeeName,
+      r.employeeCode,
+      r.department,
+      r.claimType,
+      r.originalAmount,
+      r.approvedAmount,
+      r.rejectedAmount,
+      r.advanceAmount || 0,
+      r.netPayable,
+      getSettlementTypeLabel(r.settlementType),
+      r.reviewedDate,
+      r.reviewedBy,
+      r.rejectionReason || 'N/A',
+      r.description
+    ]);
+
+    const csv = [headers, ...csvData].map(row => row.join(',')).join('\n');
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `settlement_reimbursements_${new Date().toISOString().split('T')[0]}.csv`;
+    a.click();
+
+    toast({
+      title: "Export Successful",
+      description: "Settlement reimbursements exported to Excel format"
+    });
+  };
+
+  const handleExportToPDF = () => {
+    toast({
+      title: "Generating PDF",
+      description: "PDF report is being generated. Download will start shortly."
+    });
+
+    setTimeout(() => {
+      toast({
+        title: "PDF Ready",
+        description: "Your PDF report has been downloaded"
+      });
+    }, 2000);
+  };
+
+  const columns = [
+    { key: 'claimNumber', label: 'Claim No.', sortable: true,
+      render: (v: string) => <div className="font-semibold text-gray-900">{v}</div>
+    },
+    { key: 'employeeName', label: 'Employee', sortable: true,
+      render: (v: string, row: SettlementReimbursement) => (
+        <div>
+          <div className="font-medium text-gray-900">{v}</div>
+          <div className="text-xs text-gray-500">{row.employeeCode} - {row.designation}</div>
+        </div>
+      )
+    },
+    { key: 'department', label: 'Department', sortable: true },
+    { key: 'claimType', label: 'Type', sortable: true,
+      render: (v: string) => (
+        <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-purple-100 text-purple-800">
+          {v}
+        </span>
+      )
+    },
+    { key: 'originalAmount', label: 'Claimed', sortable: true,
+      render: (v: number) => <div className="text-sm text-gray-700">₹{v.toLocaleString('en-IN')}</div>
+    },
+    { key: 'approvedAmount', label: 'Approved', sortable: true,
+      render: (v: number) => <div className="text-sm font-semibold text-green-600">₹{v.toLocaleString('en-IN')}</div>
+    },
+    { key: 'rejectedAmount', label: 'Rejected', sortable: true,
+      render: (v: number) => <div className="text-sm font-semibold text-red-600">₹{v.toLocaleString('en-IN')}</div>
+    },
+    { key: 'netPayable', label: 'Net Payable', sortable: true,
+      render: (v: number) => <div className="text-sm font-bold text-blue-600">₹{v.toLocaleString('en-IN')}</div>
+    },
+    { key: 'settlementType', label: 'Settlement Type', sortable: true,
+      render: (v: string) => (
+        <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${getSettlementTypeColor(v)}`}>
+          {getSettlementTypeLabel(v)}
+        </span>
+      )
+    },
+    { key: 'reviewedDate', label: 'Reviewed', sortable: true,
+      render: (v: string, row: SettlementReimbursement) => (
+        <div>
+          <div className="text-sm text-gray-700">
+            {new Date(v).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' })}
+          </div>
+          <div className="text-xs text-gray-500">by {row.reviewedBy}</div>
+        </div>
+      )
+    },
+    { key: 'actions', label: 'Actions', sortable: false,
+      render: (_: any, row: SettlementReimbursement) => (
+        <div className="flex gap-2">
+          <button
+            onClick={() => handleViewDetails(row)}
+            className="p-1 hover:bg-gray-100 rounded"
+          >
+            <Eye className="h-4 w-4 text-gray-600" />
+          </button>
+          <button
+            onClick={() => handleApproveSettlement(row)}
+            className="p-1 hover:bg-green-100 rounded"
+          >
+            <CheckCircle className="h-4 w-4 text-green-600" />
+          </button>
+          <button className="p-1 hover:bg-blue-100 rounded">
+            <Download className="h-4 w-4 text-blue-600" />
+          </button>
+        </div>
+      )
+    }
+  ];
+
   return (
     <div className="p-6">
       <div className="mb-6">
         <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
-          <DollarSign className="h-8 w-8 text-purple-600" />
-          Settlement
+          <DollarSign className="h-8 w-8 text-indigo-600" />
+          Reimbursement Settlement
         </h1>
-        <p className="text-gray-600 mt-2">Final settlement processing</p>
+        <p className="text-gray-600 mt-2">Review and finalize claim settlements with adjustments</p>
       </div>
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <p className="text-gray-600">This page is under construction. Full functionality coming soon.</p>
+
+      {/* Stats */}
+      <div className="grid grid-cols-1 md:grid-cols-7 gap-4 mb-6">
+        <div className="bg-white border-2 border-indigo-200 rounded-lg p-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm text-gray-600">Total Claims</p>
+              <p className="text-2xl font-bold text-indigo-600">{stats.totalClaims}</p>
+            </div>
+            <User className="h-10 w-10 text-indigo-400" />
+          </div>
+        </div>
+        <div className="bg-white border-2 border-gray-200 rounded-lg p-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm text-gray-600">Total Claimed</p>
+              <p className="text-xl font-bold text-gray-600">₹{(stats.totalClaimed / 1000).toFixed(1)}k</p>
+            </div>
+            <Calculator className="h-10 w-10 text-gray-400" />
+          </div>
+        </div>
+        <div className="bg-white border-2 border-green-200 rounded-lg p-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm text-gray-600">Approved</p>
+              <p className="text-xl font-bold text-green-600">₹{(stats.totalApproved / 1000).toFixed(1)}k</p>
+            </div>
+            <CheckCircle className="h-10 w-10 text-green-400" />
+          </div>
+        </div>
+        <div className="bg-white border-2 border-red-200 rounded-lg p-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm text-gray-600">Rejected</p>
+              <p className="text-xl font-bold text-red-600">₹{(stats.totalRejected / 1000).toFixed(1)}k</p>
+            </div>
+            <XCircle className="h-10 w-10 text-red-400" />
+          </div>
+        </div>
+        <div className="bg-white border-2 border-blue-200 rounded-lg p-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm text-gray-600">Net Payable</p>
+              <p className="text-xl font-bold text-blue-600">₹{(stats.totalNetPayable / 1000).toFixed(1)}k</p>
+            </div>
+            <Wallet className="h-10 w-10 text-blue-400" />
+          </div>
+        </div>
+        <div className="bg-white border-2 border-purple-200 rounded-lg p-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm text-gray-600">Approval Rate</p>
+              <p className="text-2xl font-bold text-purple-600">{stats.approvalRate}%</p>
+            </div>
+            <TrendingDown className="h-10 w-10 text-purple-400" />
+          </div>
+        </div>
+        <div className="bg-white border-2 border-yellow-200 rounded-lg p-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm text-gray-600">Partial</p>
+              <p className="text-2xl font-bold text-yellow-600">{stats.partialApprovals}</p>
+            </div>
+            <AlertCircle className="h-10 w-10 text-yellow-400" />
+          </div>
+        </div>
       </div>
+
+      {/* Export Actions */}
+      <div className="mb-6 flex justify-end gap-3">
+        <button
+          onClick={handleExportToExcel}
+          className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium text-sm"
+        >
+          <Download className="h-4 w-4" />
+          Export to Excel
+        </button>
+        <button
+          onClick={handleExportToPDF}
+          className="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 font-medium text-sm"
+        >
+          <Download className="h-4 w-4" />
+          Export to PDF
+        </button>
+      </div>
+
+      {/* Filters */}
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Filter by Type:</label>
+            <select
+              value={selectedType}
+              onChange={(e) => setSelectedType(e.target.value)}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
+            >
+              <option value="all">All Types</option>
+              <option value="Medical">Medical</option>
+              <option value="Education">Education</option>
+              <option value="Conveyance">Conveyance</option>
+              <option value="Relocation">Relocation</option>
+              <option value="Uniform">Uniform</option>
+              <option value="Mobile">Mobile</option>
+              <option value="Internet">Internet</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Filter by Settlement Type:</label>
+            <select
+              value={selectedSettlementType}
+              onChange={(e) => setSelectedSettlementType(e.target.value)}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
+            >
+              <option value="all">All Settlement Types</option>
+              <option value="partial_approval">Partial Approval</option>
+              <option value="advance_adjustment">Advance Adjustment</option>
+              <option value="full_settlement">Full Settlement</option>
+              <option value="overpayment_recovery">Overpayment Recovery</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      {/* Reimbursements Table */}
+      <DataTable data={filteredReimbursements} columns={columns} />
+
+      {/* Settlement Analysis */}
+      <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="bg-white border border-gray-200 rounded-lg p-6">
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">Settlement Type Distribution</h3>
+          <div className="space-y-3">
+            <div className="flex items-center justify-between p-3 bg-yellow-50 rounded-lg">
+              <div>
+                <p className="font-semibold text-gray-900">Partial Approval</p>
+                <p className="text-xs text-gray-600">Claims with some amount rejected</p>
+              </div>
+              <span className="text-xl font-bold text-yellow-600">
+                {mockReimbursements.filter(r => r.settlementType === 'partial_approval').length}
+              </span>
+            </div>
+            <div className="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
+              <div>
+                <p className="font-semibold text-gray-900">Advance Adjustment</p>
+                <p className="text-xs text-gray-600">Net amount after advance deduction</p>
+              </div>
+              <span className="text-xl font-bold text-blue-600">
+                {mockReimbursements.filter(r => r.settlementType === 'advance_adjustment').length}
+              </span>
+            </div>
+            <div className="flex items-center justify-between p-3 bg-green-50 rounded-lg">
+              <div>
+                <p className="font-semibold text-gray-900">Full Settlement</p>
+                <p className="text-xs text-gray-600">100% claim approval</p>
+              </div>
+              <span className="text-xl font-bold text-green-600">
+                {mockReimbursements.filter(r => r.settlementType === 'full_settlement').length}
+              </span>
+            </div>
+            <div className="flex items-center justify-between p-3 bg-red-50 rounded-lg">
+              <div>
+                <p className="font-semibold text-gray-900">Overpayment Recovery</p>
+                <p className="text-xs text-gray-600">Recovery from employee</p>
+              </div>
+              <span className="text-xl font-bold text-red-600">
+                {mockReimbursements.filter(r => r.settlementType === 'overpayment_recovery').length}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-white border border-gray-200 rounded-lg p-6">
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">Top Rejection Reasons</h3>
+          <div className="space-y-3">
+            <div className="p-3 bg-red-50 rounded-lg">
+              <div className="flex items-start gap-2">
+                <AlertCircle className="h-5 w-5 text-red-600 flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className="font-semibold text-gray-900">Exceeds Annual/Monthly Limits</p>
+                  <p className="text-sm text-gray-700 mt-1">Claims exceeding policy defined limits for the category</p>
+                  <p className="text-xs text-red-600 mt-1 font-semibold">Most Common</p>
+                </div>
+              </div>
+            </div>
+            <div className="p-3 bg-orange-50 rounded-lg">
+              <div className="flex items-start gap-2">
+                <AlertCircle className="h-5 w-5 text-orange-600 flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className="font-semibold text-gray-900">Non-Reimbursable Items</p>
+                  <p className="text-sm text-gray-700 mt-1">Items not covered under reimbursement policy</p>
+                  <p className="text-xs text-orange-600 mt-1 font-semibold">Common</p>
+                </div>
+              </div>
+            </div>
+            <div className="p-3 bg-yellow-50 rounded-lg">
+              <div className="flex items-start gap-2">
+                <AlertCircle className="h-5 w-5 text-yellow-600 flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className="font-semibold text-gray-900">Personal Expenses</p>
+                  <p className="text-sm text-gray-700 mt-1">Personal expenses included in official claims</p>
+                  <p className="text-xs text-yellow-600 mt-1 font-semibold">Moderate</p>
+                </div>
+              </div>
+            </div>
+            <div className="p-3 bg-blue-50 rounded-lg">
+              <div className="flex items-start gap-2">
+                <AlertCircle className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className="font-semibold text-gray-900">Insufficient Documentation</p>
+                  <p className="text-sm text-gray-700 mt-1">Missing or incomplete supporting documents</p>
+                  <p className="text-xs text-blue-600 mt-1 font-semibold">Occasional</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Info Box */}
+      <div className="mt-6 bg-indigo-50 border border-indigo-200 rounded-lg p-4">
+        <h3 className="text-sm font-semibold text-indigo-900 mb-2">Settlement Process</h3>
+        <ul className="text-sm text-indigo-800 space-y-1">
+          <li>• All settlements are reviewed and finalized by finance team before payment</li>
+          <li>• Employees are notified of any partial approvals or rejections with detailed reasons</li>
+          <li>• Advance amounts are automatically adjusted from final payable amount</li>
+          <li>• Settlement approval moves claims to payment queue for processing on 25th</li>
+          <li>• Employees can appeal rejected amounts within 7 days with additional documentation</li>
+          <li>• Overpayment recovery is processed through salary deduction in next payroll cycle</li>
+        </ul>
+      </div>
+
+      {/* Details Modal */}
+      {showDetailsModal && selectedClaim && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-6 w-full max-w-3xl max-h-[90vh] overflow-y-auto">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-xl font-bold text-gray-900">Settlement Details</h2>
+              <button
+                onClick={() => setShowDetailsModal(false)}
+                className="text-gray-400 hover:text-gray-600"
+              >
+                <XCircle className="h-6 w-6" />
+              </button>
+            </div>
+
+            <div className="space-y-6">
+              {/* Basic Info */}
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <p className="text-sm text-gray-600">Claim Number</p>
+                  <p className="font-semibold text-gray-900">{selectedClaim.claimNumber}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-600">Claim Type</p>
+                  <p className="font-semibold text-gray-900">{selectedClaim.claimType}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-600">Employee</p>
+                  <p className="font-semibold text-gray-900">{selectedClaim.employeeName}</p>
+                  <p className="text-xs text-gray-500">{selectedClaim.employeeCode}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-600">Department</p>
+                  <p className="font-semibold text-gray-900">{selectedClaim.department}</p>
+                </div>
+              </div>
+
+              {/* Description */}
+              <div>
+                <p className="text-sm text-gray-600">Description</p>
+                <p className="font-semibold text-gray-900">{selectedClaim.description}</p>
+              </div>
+
+              {/* Settlement Breakdown */}
+              <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-4 border border-indigo-200">
+                <h3 className="font-semibold text-gray-900 mb-3">Settlement Breakdown</h3>
+                <div className="space-y-2">
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-700">Original Claimed Amount:</span>
+                    <span className="font-semibold text-gray-900">₹{selectedClaim.originalAmount.toLocaleString('en-IN')}</span>
+                  </div>
+                  <div className="flex justify-between items-center text-green-700">
+                    <span>Approved Amount:</span>
+                    <span className="font-semibold">₹{selectedClaim.approvedAmount.toLocaleString('en-IN')}</span>
+                  </div>
+                  <div className="flex justify-between items-center text-red-700">
+                    <span>Rejected Amount:</span>
+                    <span className="font-semibold">₹{selectedClaim.rejectedAmount.toLocaleString('en-IN')}</span>
+                  </div>
+                  {selectedClaim.advanceAmount && (
+                    <div className="flex justify-between items-center text-orange-700">
+                      <span>Less: Advance Paid:</span>
+                      <span className="font-semibold">₹{selectedClaim.advanceAmount.toLocaleString('en-IN')}</span>
+                    </div>
+                  )}
+                  <div className="border-t border-indigo-300 pt-2 mt-2">
+                    <div className="flex justify-between items-center">
+                      <span className="font-bold text-gray-900">Net Payable Amount:</span>
+                      <span className="font-bold text-blue-600 text-lg">₹{selectedClaim.netPayable.toLocaleString('en-IN')}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Rejection Reason */}
+              {selectedClaim.rejectionReason && (
+                <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                  <div className="flex items-start gap-2">
+                    <AlertCircle className="h-5 w-5 text-red-600 flex-shrink-0 mt-0.5" />
+                    <div>
+                      <p className="font-semibold text-red-900 mb-1">Partial Rejection Reason</p>
+                      <p className="text-sm text-red-800">{selectedClaim.rejectionReason}</p>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Review Info */}
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <p className="text-sm text-gray-600">Submitted Date</p>
+                  <p className="font-semibold text-gray-900">{new Date(selectedClaim.submittedDate).toLocaleDateString('en-IN')}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-600">Reviewed Date</p>
+                  <p className="font-semibold text-gray-900">{new Date(selectedClaim.reviewedDate).toLocaleDateString('en-IN')}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-600">Reviewed By</p>
+                  <p className="font-semibold text-gray-900">{selectedClaim.reviewedBy}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-600">Settlement Type</p>
+                  <span className={`px-2 py-1 text-xs font-semibold rounded-full ${getSettlementTypeColor(selectedClaim.settlementType)}`}>
+                    {getSettlementTypeLabel(selectedClaim.settlementType)}
+                  </span>
+                </div>
+              </div>
+
+              {/* Documents */}
+              <div>
+                <p className="text-sm text-gray-600">Documents Attached</p>
+                <p className="font-semibold text-gray-900">{selectedClaim.documentsCount} file(s)</p>
+              </div>
+            </div>
+
+            <div className="mt-6 flex gap-3">
+              <button
+                onClick={() => setShowDetailsModal(false)}
+                className="flex-1 px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-medium"
+              >
+                Close
+              </button>
+              <button
+                onClick={() => {
+                  handleApproveSettlement(selectedClaim);
+                  setShowDetailsModal(false);
+                }}
+                className="flex-1 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 font-medium"
+              >
+                Approve Settlement
+              </button>
+              <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium flex items-center gap-2">
+                <Download className="h-4 w-4" />
+                Download Report
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

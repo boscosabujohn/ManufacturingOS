@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { File, Search, Download, CheckCircle, Clock, AlertCircle, FileText, User, Calendar } from 'lucide-react';
+import { File, Search, Download, CheckCircle, Clock, AlertCircle, FileText, User, Calendar, X, Mail, Printer, Eye, Send } from 'lucide-react';
 
 interface Form16Record {
   id: string;
@@ -29,6 +29,13 @@ export default function Form16Page() {
   const [selectedDepartment, setSelectedDepartment] = useState('all');
   const [selectedStatus, setSelectedStatus] = useState('all');
   const [selectedFinancialYear, setSelectedFinancialYear] = useState('2024-25');
+  const [showDetailsModal, setShowDetailsModal] = useState(false);
+  const [showEmailModal, setShowEmailModal] = useState(false);
+  const [showBulkDownloadModal, setShowBulkDownloadModal] = useState(false);
+  const [showGenerateModal, setShowGenerateModal] = useState(false);
+  const [showIssueModal, setShowIssueModal] = useState(false);
+  const [showDownloadModal, setShowDownloadModal] = useState(false);
+  const [selectedRecord, setSelectedRecord] = useState<Form16Record | null>(null);
 
   const mockForm16Records: Form16Record[] = [
     {
@@ -192,6 +199,35 @@ export default function Form16Page() {
     totalTDS: filteredRecords.reduce((sum, r) => sum + r.totalTDS, 0)
   };
 
+  const handleGenerateForm16 = (record: Form16Record) => {
+    setSelectedRecord(record);
+    setShowGenerateModal(true);
+  };
+
+  const handleIssueToEmployee = (record: Form16Record) => {
+    setSelectedRecord(record);
+    setShowIssueModal(true);
+  };
+
+  const handleDownloadPDF = (record: Form16Record) => {
+    setSelectedRecord(record);
+    setShowDownloadModal(true);
+  };
+
+  const handleSendEmail = (record: Form16Record) => {
+    setSelectedRecord(record);
+    setShowEmailModal(true);
+  };
+
+  const handleViewDetails = (record: Form16Record) => {
+    setSelectedRecord(record);
+    setShowDetailsModal(true);
+  };
+
+  const handleBulkDownload = () => {
+    setShowBulkDownloadModal(true);
+  };
+
   return (
     <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
       <div className="mb-6">
@@ -296,7 +332,10 @@ export default function Form16Page() {
               </option>
             ))}
           </select>
-          <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+          <button
+            onClick={handleBulkDownload}
+            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          >
             <Download className="h-4 w-4" />
             Bulk Download
           </button>
@@ -407,27 +446,42 @@ export default function Form16Page() {
                   <h4 className="text-xs font-semibold text-orange-900 mb-3">Actions</h4>
                   <div className="space-y-2">
                     {record.status === 'draft' && (
-                      <button className="w-full px-3 py-2 text-xs bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                      <button
+                        onClick={() => handleGenerateForm16(record)}
+                        className="w-full px-3 py-2 text-xs bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                      >
                         Generate Form 16
                       </button>
                     )}
                     {record.status === 'generated' && (
-                      <button className="w-full px-3 py-2 text-xs bg-green-600 text-white rounded-lg hover:bg-green-700">
+                      <button
+                        onClick={() => handleIssueToEmployee(record)}
+                        className="w-full px-3 py-2 text-xs bg-green-600 text-white rounded-lg hover:bg-green-700"
+                      >
                         Issue to Employee
                       </button>
                     )}
                     {['issued', 'downloaded'].includes(record.status) && (
                       <>
-                        <button className="w-full px-3 py-2 text-xs bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center justify-center gap-1">
+                        <button
+                          onClick={() => handleDownloadPDF(record)}
+                          className="w-full px-3 py-2 text-xs bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center justify-center gap-1"
+                        >
                           <Download className="h-3 w-3" />
                           Download PDF
                         </button>
-                        <button className="w-full px-3 py-2 text-xs border border-blue-300 text-blue-700 rounded-lg hover:bg-blue-50">
+                        <button
+                          onClick={() => handleSendEmail(record)}
+                          className="w-full px-3 py-2 text-xs border border-blue-300 text-blue-700 rounded-lg hover:bg-blue-50"
+                        >
                           Send via Email
                         </button>
                       </>
                     )}
-                    <button className="w-full px-3 py-2 text-xs border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50">
+                    <button
+                      onClick={() => handleViewDetails(record)}
+                      className="w-full px-3 py-2 text-xs border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50"
+                    >
                       View Details
                     </button>
                   </div>
@@ -450,6 +504,824 @@ export default function Form16Page() {
           <li>• <strong>Verification:</strong> Employees should verify Form 26AS or AIS to match TDS credits with Form 16</li>
           <li>• <strong>Revised Form 16:</strong> If corrections needed, issue revised Form 16 with original certificate number</li>
         </ul>
+      </div>
+
+      {/* View Details Modal */}
+      {showDetailsModal && selectedRecord && (
+        <Form16DetailsModal
+          record={selectedRecord}
+          onClose={() => {
+            setShowDetailsModal(false);
+            setSelectedRecord(null);
+          }}
+          formatCurrency={formatCurrency}
+        />
+      )}
+
+      {/* Email Modal */}
+      {showEmailModal && selectedRecord && (
+        <EmailForm16Modal
+          record={selectedRecord}
+          onClose={() => {
+            setShowEmailModal(false);
+            setSelectedRecord(null);
+          }}
+        />
+      )}
+
+      {/* Bulk Download Modal */}
+      {showBulkDownloadModal && (
+        <BulkDownloadModal
+          records={filteredRecords}
+          onClose={() => setShowBulkDownloadModal(false)}
+        />
+      )}
+
+      {/* Generate Form 16 Modal */}
+      {showGenerateModal && selectedRecord && (
+        <GenerateForm16Modal
+          record={selectedRecord}
+          onClose={() => {
+            setShowGenerateModal(false);
+            setSelectedRecord(null);
+          }}
+          formatCurrency={formatCurrency}
+        />
+      )}
+
+      {/* Issue to Employee Modal */}
+      {showIssueModal && selectedRecord && (
+        <IssueForm16Modal
+          record={selectedRecord}
+          onClose={() => {
+            setShowIssueModal(false);
+            setSelectedRecord(null);
+          }}
+        />
+      )}
+
+      {/* Download PDF Modal */}
+      {showDownloadModal && selectedRecord && (
+        <DownloadPDFModal
+          record={selectedRecord}
+          onClose={() => {
+            setShowDownloadModal(false);
+            setSelectedRecord(null);
+          }}
+        />
+      )}
+    </div>
+  );
+}
+
+// Form 16 Details Modal
+interface Form16DetailsModalProps {
+  record: Form16Record;
+  onClose: () => void;
+  formatCurrency: (amount: number) => string;
+}
+
+function Form16DetailsModal({ record, onClose, formatCurrency }: Form16DetailsModalProps) {
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+      <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+        <div className="bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-4 flex items-center justify-between sticky top-0">
+          <h2 className="text-xl font-bold text-white">Form 16 - Complete Details</h2>
+          <button onClick={onClose} className="text-white hover:text-gray-200">
+            <X className="h-6 w-6" />
+          </button>
+        </div>
+
+        <div className="p-6">
+          {/* Header Section */}
+          <div className="text-center mb-6 pb-4 border-b-2 border-gray-200">
+            <h1 className="text-2xl font-bold text-gray-900">B3 MACBIS</h1>
+            <p className="text-sm text-gray-600">Kitchen Manufacturing ERP System</p>
+            <p className="text-xs text-gray-500 mt-1">TDS Certificate - Form 16</p>
+            <p className="text-xs text-gray-500">Financial Year: {record.financialYear}</p>
+          </div>
+
+          {/* Certificate Details */}
+          <div className="bg-blue-50 rounded-lg p-4 mb-6">
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <p className="text-xs text-blue-700">Certificate Number</p>
+                <p className="font-semibold text-blue-900">{record.form16Number}</p>
+              </div>
+              <div>
+                <p className="text-xs text-blue-700">Status</p>
+                <p className="font-semibold text-blue-900">{record.status.toUpperCase()}</p>
+              </div>
+              <div>
+                <p className="text-xs text-blue-700">Generated Date</p>
+                <p className="font-semibold text-blue-900">
+                  {record.generatedDate && new Date(record.generatedDate).toLocaleDateString('en-IN')}
+                </p>
+              </div>
+              {record.issuedDate && (
+                <div>
+                  <p className="text-xs text-blue-700">Issued Date</p>
+                  <p className="font-semibold text-blue-900">
+                    {new Date(record.issuedDate).toLocaleDateString('en-IN')}
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Part A - Deductor & Deductee Details */}
+          <div className="mb-6">
+            <h3 className="text-lg font-bold text-gray-900 mb-3 bg-gray-100 px-4 py-2 rounded">
+              Part A - Certificate Details
+            </h3>
+
+            <div className="grid grid-cols-2 gap-6">
+              {/* Deductor (Employer) Details */}
+              <div className="bg-green-50 rounded-lg p-4">
+                <h4 className="font-semibold text-green-900 mb-3">Deductor (Employer) Details</h4>
+                <div className="space-y-2 text-sm">
+                  <div>
+                    <p className="text-xs text-green-700">Name</p>
+                    <p className="font-medium text-green-900">B3 MACBIS Private Limited</p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-green-700">TAN Number</p>
+                    <p className="font-medium text-green-900">{record.tanNumber}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-green-700">Address</p>
+                    <p className="font-medium text-green-900">Bangalore, Karnataka - 560001</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Deductee (Employee) Details */}
+              <div className="bg-purple-50 rounded-lg p-4">
+                <h4 className="font-semibold text-purple-900 mb-3">Deductee (Employee) Details</h4>
+                <div className="space-y-2 text-sm">
+                  <div>
+                    <p className="text-xs text-purple-700">Name</p>
+                    <p className="font-medium text-purple-900">{record.employeeName}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-purple-700">PAN Number</p>
+                    <p className="font-medium text-purple-900">{record.pan}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-purple-700">Designation</p>
+                    <p className="font-medium text-purple-900">{record.designation}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-purple-700">Department</p>
+                    <p className="font-medium text-purple-900">{record.department}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Part B - Income & Tax Computation */}
+          <div className="mb-6">
+            <h3 className="text-lg font-bold text-gray-900 mb-3 bg-gray-100 px-4 py-2 rounded">
+              Part B - Salary Details & Tax Computation
+            </h3>
+
+            {/* Income Details */}
+            <div className="bg-blue-50 rounded-lg p-4 mb-4">
+              <h4 className="font-semibold text-blue-900 mb-3">Income from Salary</h4>
+              <div className="space-y-2">
+                <div className="flex justify-between text-sm">
+                  <span className="text-blue-700">Gross Salary</span>
+                  <span className="font-bold text-blue-900">{formatCurrency(record.totalIncome)}</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-blue-700">Less: Deductions under Chapter VI-A</span>
+                  <span className="font-medium text-blue-800">({formatCurrency(record.totalDeductions)})</span>
+                </div>
+                <div className="pt-2 border-t border-blue-300">
+                  <div className="flex justify-between">
+                    <span className="font-bold text-blue-900">Total Taxable Income</span>
+                    <span className="font-bold text-blue-900">{formatCurrency(record.taxableIncome)}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Tax Computation */}
+            <div className="bg-green-50 rounded-lg p-4">
+              <h4 className="font-semibold text-green-900 mb-3">Tax Computation</h4>
+              <div className="space-y-2">
+                <div className="flex justify-between text-sm">
+                  <span className="text-green-700">Total TDS Deducted</span>
+                  <span className="font-bold text-green-900">{formatCurrency(record.totalTDS)}</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-green-700">Tax Relief u/s 89(1)</span>
+                  <span className="font-medium text-green-800">{formatCurrency(record.taxRelief)}</span>
+                </div>
+                <div className="pt-2 border-t border-green-300">
+                  <div className="flex justify-between">
+                    <span className="font-bold text-green-900">Net Tax Payable</span>
+                    <span className="font-bold text-green-900">{formatCurrency(record.netTaxPayable)}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Quarterly TDS Summary */}
+          <div className="mb-6">
+            <h3 className="text-lg font-bold text-gray-900 mb-3 bg-gray-100 px-4 py-2 rounded">
+              Quarterly TDS Summary
+            </h3>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="bg-gray-100 border-b">
+                    <th className="text-left p-3">Quarter</th>
+                    <th className="text-right p-3">Receipt Number</th>
+                    <th className="text-right p-3">TDS Deposited</th>
+                    <th className="text-center p-3">Date of Deposit</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-b">
+                    <td className="p-3">Q1 (Apr-Jun)</td>
+                    <td className="p-3 text-right">BSR001234567</td>
+                    <td className="p-3 text-right font-semibold">{formatCurrency(record.totalTDS * 0.25)}</td>
+                    <td className="p-3 text-center">15-Jul-2024</td>
+                  </tr>
+                  <tr className="border-b">
+                    <td className="p-3">Q2 (Jul-Sep)</td>
+                    <td className="p-3 text-right">BSR001234568</td>
+                    <td className="p-3 text-right font-semibold">{formatCurrency(record.totalTDS * 0.25)}</td>
+                    <td className="p-3 text-center">15-Oct-2024</td>
+                  </tr>
+                  <tr className="border-b">
+                    <td className="p-3">Q3 (Oct-Dec)</td>
+                    <td className="p-3 text-right">BSR001234569</td>
+                    <td className="p-3 text-right font-semibold">{formatCurrency(record.totalTDS * 0.25)}</td>
+                    <td className="p-3 text-center">15-Jan-2025</td>
+                  </tr>
+                  <tr className="border-b bg-gray-50">
+                    <td className="p-3">Q4 (Jan-Mar)</td>
+                    <td className="p-3 text-right">BSR001234570</td>
+                    <td className="p-3 text-right font-semibold">{formatCurrency(record.totalTDS * 0.25)}</td>
+                    <td className="p-3 text-center">15-Apr-2025</td>
+                  </tr>
+                  <tr className="bg-gray-100 font-bold">
+                    <td colSpan={2} className="p-3">Total TDS</td>
+                    <td className="p-3 text-right text-green-900">{formatCurrency(record.totalTDS)}</td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          {/* Verification */}
+          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+            <p className="text-xs text-yellow-800 text-center">
+              <strong>Verification:</strong> I, on behalf of B3 MACBIS Private Limited, hereby certify that the information given above is true and correct and is based on the books of account, documents, TDS statements, and other available records.
+            </p>
+            <p className="text-xs text-yellow-700 text-center mt-2">
+              This certificate is digitally signed and does not require a physical signature.
+            </p>
+          </div>
+        </div>
+
+        <div className="px-6 py-4 bg-gray-50 flex justify-end gap-3">
+          <button
+            onClick={() => window.print()}
+            className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100 flex items-center gap-2"
+          >
+            <Printer className="h-4 w-4" />
+            Print
+          </button>
+          <button
+            onClick={onClose}
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2"
+          >
+            <Download className="h-4 w-4" />
+            Download PDF
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Email Form 16 Modal
+interface EmailForm16ModalProps {
+  record: Form16Record;
+  onClose: () => void;
+}
+
+function EmailForm16Modal({ record, onClose }: EmailForm16ModalProps) {
+  const [emailAddress, setEmailAddress] = useState('');
+  const [ccAddress, setCcAddress] = useState('');
+  const [message, setMessage] = useState(`Dear ${record.employeeName},\n\nPlease find attached your Form 16 for Financial Year ${record.financialYear}.\n\nThis is a digitally signed certificate and can be used for filing your Income Tax Return.\n\nRegards,\nHR Department\nB3 MACBIS`);
+
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+      <div className="bg-white rounded-lg shadow-xl max-w-lg w-full">
+        <div className="bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-4 flex items-center justify-between">
+          <h2 className="text-xl font-bold text-white">Send Form 16 via Email</h2>
+          <button onClick={onClose} className="text-white hover:text-gray-200">
+            <X className="h-6 w-6" />
+          </button>
+        </div>
+
+        <div className="p-6">
+          <div className="mb-4">
+            <h3 className="font-semibold text-gray-900 mb-2">{record.employeeName}</h3>
+            <p className="text-sm text-gray-600">{record.form16Number} • FY {record.financialYear}</p>
+          </div>
+
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                To Email Address *
+              </label>
+              <input
+                type="email"
+                value={emailAddress}
+                onChange={(e) => setEmailAddress(e.target.value)}
+                placeholder="employee@example.com"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                CC (Optional)
+              </label>
+              <input
+                type="email"
+                value={ccAddress}
+                onChange={(e) => setCcAddress(e.target.value)}
+                placeholder="cc@example.com"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Message
+              </label>
+              <textarea
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                rows={6}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
+              <p className="text-xs text-blue-800">
+                <strong>Attachment:</strong> Form16_{record.employeeId}_{record.financialYear}.pdf (Digitally Signed)
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="px-6 py-4 bg-gray-50 flex justify-end gap-3">
+          <button
+            onClick={onClose}
+            className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100"
+          >
+            Cancel
+          </button>
+          <button
+            onClick={() => {
+              alert(`Form 16 sent to ${emailAddress || 'employee email'}`);
+              onClose();
+            }}
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2"
+          >
+            <Send className="h-4 w-4" />
+            Send Email
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Bulk Download Modal
+interface BulkDownloadModalProps {
+  records: Form16Record[];
+  onClose: () => void;
+}
+
+function BulkDownloadModal({ records, onClose }: BulkDownloadModalProps) {
+  const issuedRecords = records.filter(r => ['issued', 'downloaded'].includes(r.status));
+
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+      <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full">
+        <div className="bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-4 flex items-center justify-between">
+          <h2 className="text-xl font-bold text-white">Bulk Download Form 16</h2>
+          <button onClick={onClose} className="text-white hover:text-gray-200">
+            <X className="h-6 w-6" />
+          </button>
+        </div>
+
+        <div className="p-6">
+          <p className="text-sm text-gray-600 mb-6">
+            Download Form 16 for multiple employees in a single ZIP file
+          </p>
+
+          <div className="bg-blue-50 rounded-lg p-4 mb-6">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-sm font-medium text-blue-900">Available for Download</span>
+              <span className="text-2xl font-bold text-blue-900">{issuedRecords.length}</span>
+            </div>
+            <p className="text-xs text-blue-700">
+              Only issued/downloaded Form 16 certificates can be included in bulk download
+            </p>
+          </div>
+
+          <div className="max-h-64 overflow-y-auto border border-gray-200 rounded-lg">
+            <table className="w-full text-sm">
+              <thead className="bg-gray-50 sticky top-0">
+                <tr>
+                  <th className="text-left p-3">Employee</th>
+                  <th className="text-left p-3">Certificate No.</th>
+                  <th className="text-center p-3">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {issuedRecords.map(record => (
+                  <tr key={record.id} className="border-b hover:bg-gray-50">
+                    <td className="p-3">
+                      <p className="font-medium text-gray-900">{record.employeeName}</p>
+                      <p className="text-xs text-gray-600">{record.employeeId}</p>
+                    </td>
+                    <td className="p-3 text-gray-700">{record.form16Number}</td>
+                    <td className="p-3 text-center">
+                      <CheckCircle className="h-4 w-4 text-green-600 mx-auto" />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <div className="mt-6 bg-yellow-50 border border-yellow-200 rounded-lg p-3">
+            <p className="text-xs text-yellow-800">
+              <strong>Note:</strong> Downloaded file will be a password-protected ZIP containing all Form 16 PDFs
+            </p>
+          </div>
+        </div>
+
+        <div className="px-6 py-4 bg-gray-50 flex justify-end gap-3">
+          <button
+            onClick={onClose}
+            className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100"
+          >
+            Cancel
+          </button>
+          <button
+            onClick={() => {
+              alert(`Downloading ${issuedRecords.length} Form 16 certificates...`);
+              onClose();
+            }}
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2"
+          >
+            <Download className="h-4 w-4" />
+            Download ZIP ({issuedRecords.length} files)
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Generate Form 16 Modal
+interface GenerateForm16ModalProps {
+  record: Form16Record;
+  onClose: () => void;
+  formatCurrency: (amount: number) => string;
+}
+
+function GenerateForm16Modal({ record, onClose, formatCurrency }: GenerateForm16ModalProps) {
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+      <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full">
+        <div className="bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-4 flex items-center justify-between">
+          <h2 className="text-xl font-bold text-white">Generate Form 16</h2>
+          <button onClick={onClose} className="text-white hover:text-gray-200">
+            <X className="h-6 w-6" />
+          </button>
+        </div>
+
+        <div className="p-6">
+          <div className="mb-6">
+            <h3 className="font-semibold text-gray-900 mb-2">{record.employeeName}</h3>
+            <p className="text-sm text-gray-600">{record.employeeId} • {record.designation}</p>
+          </div>
+
+          <div className="bg-blue-50 rounded-lg p-4 mb-6">
+            <h4 className="font-semibold text-blue-900 mb-3">Form 16 Summary</h4>
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <p className="text-xs text-blue-700">Financial Year</p>
+                <p className="font-semibold text-blue-900">{record.financialYear}</p>
+              </div>
+              <div>
+                <p className="text-xs text-blue-700">PAN Number</p>
+                <p className="font-semibold text-blue-900">{record.pan}</p>
+              </div>
+              <div>
+                <p className="text-xs text-blue-700">Total Income</p>
+                <p className="font-semibold text-blue-900">{formatCurrency(record.totalIncome)}</p>
+              </div>
+              <div>
+                <p className="text-xs text-blue-700">Total TDS</p>
+                <p className="font-semibold text-green-900">{formatCurrency(record.totalTDS)}</p>
+              </div>
+              <div>
+                <p className="text-xs text-blue-700">Taxable Income</p>
+                <p className="font-semibold text-blue-900">{formatCurrency(record.taxableIncome)}</p>
+              </div>
+              <div>
+                <p className="text-xs text-blue-700">Net Tax Payable</p>
+                <p className="font-semibold text-blue-900">{formatCurrency(record.netTaxPayable)}</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-green-50 rounded-lg p-4 mb-6">
+            <h4 className="font-semibold text-green-900 mb-3">Generation Process</h4>
+            <div className="space-y-2 text-sm">
+              <div className="flex items-center gap-2">
+                <CheckCircle className="h-4 w-4 text-green-600" />
+                <span className="text-green-800">Salary data verification complete</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="h-4 w-4 text-green-600" />
+                <span className="text-green-800">TDS calculation verified</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="h-4 w-4 text-green-600" />
+                <span className="text-green-800">Deductions (Chapter VI-A) validated</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="h-4 w-4 text-green-600" />
+                <span className="text-green-800">Quarterly TDS deposit records available</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
+            <p className="text-xs text-yellow-800">
+              <strong>Note:</strong> Once generated, the Form 16 will be digitally signed and a unique certificate number will be assigned. This action cannot be undone.
+            </p>
+          </div>
+        </div>
+
+        <div className="px-6 py-4 bg-gray-50 flex justify-end gap-3">
+          <button
+            onClick={onClose}
+            className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100"
+          >
+            Cancel
+          </button>
+          <button
+            onClick={() => {
+              alert('Form 16 generated successfully!');
+              onClose();
+            }}
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2"
+          >
+            <FileText className="h-4 w-4" />
+            Generate Form 16
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Issue Form 16 Modal
+interface IssueForm16ModalProps {
+  record: Form16Record;
+  onClose: () => void;
+}
+
+function IssueForm16Modal({ record, onClose }: IssueForm16ModalProps) {
+  const [issueMethod, setIssueMethod] = useState<'email' | 'portal'>('email');
+  const [emailAddress, setEmailAddress] = useState('');
+
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+      <div className="bg-white rounded-lg shadow-xl max-w-lg w-full">
+        <div className="bg-gradient-to-r from-green-600 to-emerald-600 px-6 py-4 flex items-center justify-between">
+          <h2 className="text-xl font-bold text-white">Issue Form 16 to Employee</h2>
+          <button onClick={onClose} className="text-white hover:text-gray-200">
+            <X className="h-6 w-6" />
+          </button>
+        </div>
+
+        <div className="p-6">
+          <div className="mb-6">
+            <h3 className="font-semibold text-gray-900 mb-2">{record.employeeName}</h3>
+            <p className="text-sm text-gray-600">{record.form16Number} • FY {record.financialYear}</p>
+          </div>
+
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-3">
+                Issue Method
+              </label>
+              <div className="space-y-2">
+                <label className="flex items-center p-3 border-2 border-gray-200 rounded-lg cursor-pointer hover:bg-blue-50 transition-colors">
+                  <input
+                    type="radio"
+                    name="issueMethod"
+                    value="email"
+                    checked={issueMethod === 'email'}
+                    onChange={(e) => setIssueMethod(e.target.value as 'email')}
+                    className="mr-3"
+                  />
+                  <div className="flex-1">
+                    <p className="font-medium text-gray-900">Send via Email</p>
+                    <p className="text-xs text-gray-600">Employee will receive Form 16 in their registered email</p>
+                  </div>
+                  <Mail className="h-5 w-5 text-blue-600" />
+                </label>
+
+                <label className="flex items-center p-3 border-2 border-gray-200 rounded-lg cursor-pointer hover:bg-blue-50 transition-colors">
+                  <input
+                    type="radio"
+                    name="issueMethod"
+                    value="portal"
+                    checked={issueMethod === 'portal'}
+                    onChange={(e) => setIssueMethod(e.target.value as 'portal')}
+                    className="mr-3"
+                  />
+                  <div className="flex-1">
+                    <p className="font-medium text-gray-900">Make Available on Employee Portal</p>
+                    <p className="text-xs text-gray-600">Employee can download from their self-service portal</p>
+                  </div>
+                  <User className="h-5 w-5 text-blue-600" />
+                </label>
+              </div>
+            </div>
+
+            {issueMethod === 'email' && (
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Email Address
+                </label>
+                <input
+                  type="email"
+                  value={emailAddress}
+                  onChange={(e) => setEmailAddress(e.target.value)}
+                  placeholder="employee@example.com"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+            )}
+
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
+              <p className="text-xs text-blue-800">
+                <strong>Document:</strong> Digitally signed Form 16 (PDF)
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="px-6 py-4 bg-gray-50 flex justify-end gap-3">
+          <button
+            onClick={onClose}
+            className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100"
+          >
+            Cancel
+          </button>
+          <button
+            onClick={() => {
+              alert(`Form 16 issued to employee ${issueMethod === 'email' ? 'via email' : 'on portal'}`);
+              onClose();
+            }}
+            className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 flex items-center gap-2"
+          >
+            <Send className="h-4 w-4" />
+            Issue Form 16
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Download PDF Modal
+interface DownloadPDFModalProps {
+  record: Form16Record;
+  onClose: () => void;
+}
+
+function DownloadPDFModal({ record, onClose }: DownloadPDFModalProps) {
+  const [includeAnnexure, setIncludeAnnexure] = useState(true);
+  const [includeWatermark, setIncludeWatermark] = useState(false);
+
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+      <div className="bg-white rounded-lg shadow-xl max-w-lg w-full">
+        <div className="bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-4 flex items-center justify-between">
+          <h2 className="text-xl font-bold text-white">Download Form 16 PDF</h2>
+          <button onClick={onClose} className="text-white hover:text-gray-200">
+            <X className="h-6 w-6" />
+          </button>
+        </div>
+
+        <div className="p-6">
+          <div className="mb-6">
+            <h3 className="font-semibold text-gray-900 mb-2">{record.employeeName}</h3>
+            <p className="text-sm text-gray-600">{record.form16Number} • FY {record.financialYear}</p>
+          </div>
+
+          <div className="bg-blue-50 rounded-lg p-4 mb-6">
+            <h4 className="font-semibold text-blue-900 mb-3">Download Options</h4>
+            <div className="space-y-3">
+              <label className="flex items-center">
+                <input
+                  type="checkbox"
+                  checked={includeAnnexure}
+                  onChange={(e) => setIncludeAnnexure(e.target.checked)}
+                  className="mr-3"
+                />
+                <div>
+                  <p className="text-sm font-medium text-blue-900">Include Part A (Annexure)</p>
+                  <p className="text-xs text-blue-700">Contains TDS deposit details and quarterly summary</p>
+                </div>
+              </label>
+
+              <label className="flex items-center">
+                <input
+                  type="checkbox"
+                  checked={includeWatermark}
+                  onChange={(e) => setIncludeWatermark(e.target.checked)}
+                  className="mr-3"
+                />
+                <div>
+                  <p className="text-sm font-medium text-blue-900">Add 'Copy' Watermark</p>
+                  <p className="text-xs text-blue-700">For duplicate/reference copies only</p>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <div className="bg-green-50 rounded-lg p-4 mb-6">
+            <h4 className="font-semibold text-green-900 mb-2">PDF Contents</h4>
+            <div className="space-y-1 text-xs text-green-800">
+              <div className="flex items-center gap-2">
+                <CheckCircle className="h-3 w-3" />
+                <span>Part B - Salary details and tax computation</span>
+              </div>
+              {includeAnnexure && (
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="h-3 w-3" />
+                  <span>Part A - Annexure with quarterly TDS details</span>
+                </div>
+              )}
+              <div className="flex items-center gap-2">
+                <CheckCircle className="h-3 w-3" />
+                <span>Digital signature and certificate number</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="h-3 w-3" />
+                <span>Employer and employee details</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
+            <p className="text-xs text-yellow-800">
+              <strong>File:</strong> Form16_{record.employeeId}_{record.financialYear}.pdf (Password Protected)
+            </p>
+          </div>
+        </div>
+
+        <div className="px-6 py-4 bg-gray-50 flex justify-end gap-3">
+          <button
+            onClick={onClose}
+            className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100"
+          >
+            Cancel
+          </button>
+          <button
+            onClick={() => {
+              alert('Downloading Form 16 PDF...');
+              onClose();
+            }}
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2"
+          >
+            <Download className="h-4 w-4" />
+            Download PDF
+          </button>
+        </div>
       </div>
     </div>
   );

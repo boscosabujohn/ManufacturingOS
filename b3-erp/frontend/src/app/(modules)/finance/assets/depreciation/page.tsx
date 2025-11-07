@@ -58,6 +58,34 @@ export default function DepreciationPage() {
   const [statusFilter, setStatusFilter] = useState('all');
   const [activeTab, setActiveTab] = useState<'schedule' | 'entries'>('schedule');
   const [expandedAsset, setExpandedAsset] = useState<string | null>(null);
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' | 'info' } | null>(null);
+
+  // Toast notification handler
+  const showToast = (message: string, type: 'success' | 'error' | 'info' = 'success') => {
+    setToast({ message, type });
+    setTimeout(() => setToast(null), 3000);
+  };
+
+  // Action handlers
+  const handleRunDepreciation = () => {
+    showToast('Running depreciation process...', 'success');
+  };
+
+  const handleManualEntry = () => {
+    showToast('Manual entry feature - Coming soon!', 'info');
+  };
+
+  const handleExport = () => {
+    showToast('Exporting depreciation data...', 'info');
+  };
+
+  const handleViewSchedule = (assetName: string) => {
+    showToast(`Viewing schedule for: ${assetName}`, 'info');
+  };
+
+  const handlePauseSchedule = (assetName: string) => {
+    showToast(`Pausing depreciation for: ${assetName}`, 'success');
+  };
 
   // Sample depreciation schedules
   const depreciationSchedules: DepreciationSchedule[] = [
@@ -263,27 +291,51 @@ export default function DepreciationPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-orange-900 to-gray-900 p-6">
-      <div className="max-w-7xl mx-auto space-y-6">
-        {/* Header */}
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold text-white mb-2">Depreciation Management</h1>
-            <p className="text-gray-400">Track and process asset depreciation</p>
-          </div>
-          <div className="flex gap-3">
-            <button className="flex items-center gap-2 px-4 py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-lg transition-colors">
-              <Play className="w-4 h-4" />
-              Run Depreciation
-            </button>
-            <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors">
-              <Plus className="w-4 h-4" />
-              Manual Entry
-            </button>
-            <button className="flex items-center gap-2 px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded-lg transition-colors">
-              <Download className="w-4 h-4" />
-              Export
-            </button>
+    <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 via-orange-50 to-red-50">
+      <div className="flex-1 overflow-y-auto overflow-x-hidden">
+        <div className="px-4 sm:px-6 lg:px-8 py-6">
+          <div className="max-w-7xl mx-auto space-y-6">
+            {/* Toast Notification */}
+            {toast && (
+              <div className={`fixed top-4 right-4 z-50 px-6 py-4 rounded-lg shadow-lg border-l-4 animate-slide-in ${
+                toast.type === 'success' ? 'bg-green-50 border-green-500 text-green-800' :
+                toast.type === 'error' ? 'bg-red-50 border-red-500 text-red-800' :
+                'bg-blue-50 border-blue-500 text-blue-800'
+              }`}>
+                <div className="flex items-center gap-3">
+                  {toast.type === 'success' && <CheckCircle className="w-5 h-5 text-green-600" />}
+                  {toast.type === 'error' && <AlertTriangle className="w-5 h-5 text-red-600" />}
+                  {toast.type === 'info' && <Play className="w-5 h-5 text-blue-600" />}
+                  <span className="font-medium">{toast.message}</span>
+                </div>
+              </div>
+            )}
+
+            {/* Header */}
+            <div className="flex items-center justify-between">
+              <div>
+                <h1 className="text-3xl font-bold text-gray-900 mb-2">Depreciation Management</h1>
+                <p className="text-gray-600">Track and process asset depreciation</p>
+              </div>
+              <div className="flex gap-3">
+                <button 
+                  onClick={handleRunDepreciation}
+                  className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white rounded-lg transition-colors shadow-md">
+                  <Play className="w-4 h-4" />
+                  Run Depreciation
+                </button>
+                <button 
+                  onClick={handleManualEntry}
+                  className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors">
+                  <Plus className="w-4 h-4" />
+                  Manual Entry
+                </button>
+                <button 
+                  onClick={handleExport}
+                  className="flex items-center gap-2 px-4 py-2 bg-white hover:bg-gray-50 text-gray-700 border border-gray-300 rounded-lg transition-colors">
+                  <Download className="w-4 h-4" />
+                  Export
+                </button>
           </div>
         </div>
 
@@ -331,7 +383,7 @@ export default function DepreciationPage() {
         </div>
 
         {/* Filters */}
-        <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700">
+        <div className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
           <div className="flex flex-wrap items-center gap-4">
             <div className="flex-1 min-w-[300px]">
               <div className="relative">
@@ -341,7 +393,7 @@ export default function DepreciationPage() {
                   placeholder="Search by asset name or code..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  className="w-full pl-10 pr-4 py-2 bg-white border border-gray-300 rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500"
                 />
               </div>
             </div>
@@ -351,7 +403,7 @@ export default function DepreciationPage() {
               <select
                 value={methodFilter}
                 onChange={(e) => setMethodFilter(e.target.value)}
-                className="px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-orange-500"
+                className="px-4 py-2 bg-white border border-gray-300 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-orange-500"
               >
                 <option value="all">All Methods</option>
                 <option value="Straight Line">Straight Line</option>
@@ -366,7 +418,7 @@ export default function DepreciationPage() {
               <select
                 value={statusFilter}
                 onChange={(e) => setStatusFilter(e.target.value)}
-                className="px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-orange-500"
+                className="px-4 py-2 bg-white border border-gray-300 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-orange-500"
               >
                 <option value="all">All Status</option>
                 <option value="Active">Active</option>
@@ -378,14 +430,14 @@ export default function DepreciationPage() {
         </div>
 
         {/* Tabs */}
-        <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl border border-gray-700 overflow-hidden">
-          <div className="flex border-b border-gray-700">
+        <div className="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm">
+          <div className="flex border-b border-gray-200">
             <button
               onClick={() => setActiveTab('schedule')}
               className={`flex-1 px-6 py-4 font-medium transition-colors ${
                 activeTab === 'schedule'
                   ? 'bg-orange-600 text-white'
-                  : 'text-gray-400 hover:text-white hover:bg-gray-700/50'
+                  : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
               }`}
             >
               <div className="flex items-center justify-center gap-2">
@@ -398,7 +450,7 @@ export default function DepreciationPage() {
               className={`flex-1 px-6 py-4 font-medium transition-colors ${
                 activeTab === 'entries'
                   ? 'bg-orange-600 text-white'
-                  : 'text-gray-400 hover:text-white hover:bg-gray-700/50'
+                  : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
               }`}
             >
               <div className="flex items-center justify-center gap-2">
@@ -412,59 +464,59 @@ export default function DepreciationPage() {
           {activeTab === 'schedule' && (
             <div className="overflow-x-auto">
               <table className="w-full">
-                <thead className="bg-gray-900/50">
+                <thead className="bg-gray-50 border-b border-gray-200">
                   <tr>
-                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Asset Details</th>
-                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Method</th>
-                    <th className="px-6 py-4 text-right text-sm font-semibold text-gray-300">Purchase Value</th>
-                    <th className="px-6 py-4 text-right text-sm font-semibold text-gray-300">Monthly Depreciation</th>
-                    <th className="px-6 py-4 text-right text-sm font-semibold text-gray-300">Accumulated</th>
-                    <th className="px-6 py-4 text-right text-sm font-semibold text-gray-300">Net Book Value</th>
-                    <th className="px-6 py-4 text-center text-sm font-semibold text-gray-300">Remaining Life</th>
-                    <th className="px-6 py-4 text-center text-sm font-semibold text-gray-300">Status</th>
-                    <th className="px-6 py-4 text-center text-sm font-semibold text-gray-300">Actions</th>
+                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Asset Details</th>
+                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Method</th>
+                    <th className="px-6 py-4 text-right text-sm font-semibold text-gray-700">Purchase Value</th>
+                    <th className="px-6 py-4 text-right text-sm font-semibold text-gray-700">Monthly Depreciation</th>
+                    <th className="px-6 py-4 text-right text-sm font-semibold text-gray-700">Accumulated</th>
+                    <th className="px-6 py-4 text-right text-sm font-semibold text-gray-700">Net Book Value</th>
+                    <th className="px-6 py-4 text-center text-sm font-semibold text-gray-700">Remaining Life</th>
+                    <th className="px-6 py-4 text-center text-sm font-semibold text-gray-700">Status</th>
+                    <th className="px-6 py-4 text-center text-sm font-semibold text-gray-700">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
                   {filteredSchedules.map((schedule) => (
                     <React.Fragment key={schedule.id}>
-                      <tr className="border-b border-gray-700 hover:bg-gray-800/50 transition-colors">
+                      <tr className="border-b border-gray-200 hover:bg-gray-50 transition-colors">
                         <td className="px-6 py-4">
                           <div className="flex items-center gap-2">
                             <button
                               onClick={() => toggleAssetExpansion(schedule.assetId)}
-                              className="p-1 hover:bg-gray-700 rounded transition-colors"
+                              className="p-1 hover:bg-gray-100 rounded transition-colors"
                             >
                               {expandedAsset === schedule.assetId ? (
-                                <ChevronDown className="w-4 h-4 text-gray-400" />
+                                <ChevronDown className="w-4 h-4 text-gray-600" />
                               ) : (
-                                <ChevronRight className="w-4 h-4 text-gray-400" />
+                                <ChevronRight className="w-4 h-4 text-gray-600" />
                               )}
                             </button>
                             <div>
-                              <div className="font-medium text-white">{schedule.assetName}</div>
-                              <div className="text-sm text-gray-400 font-mono">{schedule.assetCode}</div>
+                              <div className="font-medium text-gray-900">{schedule.assetName}</div>
+                              <div className="text-sm text-gray-600 font-mono">{schedule.assetCode}</div>
                               <div className="text-xs text-gray-500">{schedule.category}</div>
                             </div>
                           </div>
                         </td>
                         <td className="px-6 py-4">
-                          <div className="text-white text-sm">{schedule.depreciationMethod}</div>
-                          <div className="text-xs text-gray-400">{schedule.usefulLife} years</div>
+                          <div className="text-gray-900 text-sm">{schedule.depreciationMethod}</div>
+                          <div className="text-xs text-gray-600">{schedule.usefulLife} years</div>
                         </td>
-                        <td className="px-6 py-4 text-right text-white font-medium">
+                        <td className="px-6 py-4 text-right text-gray-900 font-medium">
                           {formatCurrency(schedule.purchaseValue)}
                         </td>
-                        <td className="px-6 py-4 text-right text-orange-400 font-medium">
+                        <td className="px-6 py-4 text-right text-orange-600 font-medium">
                           {formatCurrency(schedule.monthlyDepreciation)}
                         </td>
-                        <td className="px-6 py-4 text-right text-red-400 font-medium">
+                        <td className="px-6 py-4 text-right text-red-600 font-medium">
                           {formatCurrency(schedule.accumulatedDepreciation)}
                         </td>
-                        <td className="px-6 py-4 text-right text-green-400 font-medium">
+                        <td className="px-6 py-4 text-right text-green-600 font-medium">
                           {formatCurrency(schedule.netBookValue)}
                         </td>
-                        <td className="px-6 py-4 text-center text-white">
+                        <td className="px-6 py-4 text-center text-gray-900">
                           {schedule.remainingLife.toFixed(1)} years
                         </td>
                         <td className="px-6 py-4 text-center">
@@ -472,66 +524,72 @@ export default function DepreciationPage() {
                         </td>
                         <td className="px-6 py-4">
                           <div className="flex items-center justify-center gap-2">
-                            <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors">
-                              <Eye className="w-4 h-4 text-blue-400" />
+                            <button 
+                              onClick={() => handleViewSchedule(schedule.assetName)}
+                              className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                              title="View Schedule">
+                              <Eye className="w-4 h-4 text-blue-600" />
                             </button>
-                            <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors">
-                              <Pause className="w-4 h-4 text-orange-400" />
+                            <button 
+                              onClick={() => handlePauseSchedule(schedule.assetName)}
+                              className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                              title="Pause Depreciation">
+                              <Pause className="w-4 h-4 text-orange-600" />
                             </button>
                           </div>
                         </td>
                       </tr>
                       {expandedAsset === schedule.assetId && (
-                        <tr className="bg-gray-900/50 border-b border-gray-700">
+                        <tr className="bg-gray-50 border-b border-gray-200">
                           <td colSpan={9} className="px-6 py-4">
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                               <div className="space-y-2">
-                                <div className="text-sm font-semibold text-gray-400">Schedule Details</div>
+                                <div className="text-sm font-semibold text-gray-700">Schedule Details</div>
                                 <div className="flex justify-between text-sm">
-                                  <span className="text-gray-500">Start Date:</span>
-                                  <span className="text-white">{new Date(schedule.startDate).toLocaleDateString()}</span>
+                                  <span className="text-gray-600">Start Date:</span>
+                                  <span className="text-gray-900">{new Date(schedule.startDate).toLocaleDateString()}</span>
                                 </div>
                                 <div className="flex justify-between text-sm">
-                                  <span className="text-gray-500">End Date:</span>
-                                  <span className="text-white">{new Date(schedule.endDate).toLocaleDateString()}</span>
+                                  <span className="text-gray-600">End Date:</span>
+                                  <span className="text-gray-900">{new Date(schedule.endDate).toLocaleDateString()}</span>
                                 </div>
                                 <div className="flex justify-between text-sm">
-                                  <span className="text-gray-500">Salvage Value:</span>
-                                  <span className="text-white">{formatCurrency(schedule.salvageValue)}</span>
+                                  <span className="text-gray-600">Salvage Value:</span>
+                                  <span className="text-gray-900">{formatCurrency(schedule.salvageValue)}</span>
                                 </div>
                               </div>
                               <div className="space-y-2">
-                                <div className="text-sm font-semibold text-gray-400">Depreciation Rates</div>
+                                <div className="text-sm font-semibold text-gray-700">Depreciation Rates</div>
                                 <div className="flex justify-between text-sm">
-                                  <span className="text-gray-500">Annual:</span>
-                                  <span className="text-white">{formatCurrency(schedule.annualDepreciation)}</span>
+                                  <span className="text-gray-600">Annual:</span>
+                                  <span className="text-gray-900">{formatCurrency(schedule.annualDepreciation)}</span>
                                 </div>
                                 <div className="flex justify-between text-sm">
-                                  <span className="text-gray-500">Monthly:</span>
-                                  <span className="text-white">{formatCurrency(schedule.monthlyDepreciation)}</span>
+                                  <span className="text-gray-600">Monthly:</span>
+                                  <span className="text-gray-900">{formatCurrency(schedule.monthlyDepreciation)}</span>
                                 </div>
                                 <div className="flex justify-between text-sm">
-                                  <span className="text-gray-500">Rate:</span>
-                                  <span className="text-white">
+                                  <span className="text-gray-600">Rate:</span>
+                                  <span className="text-gray-900">
                                     {((schedule.annualDepreciation / schedule.purchaseValue) * 100).toFixed(2)}%
                                   </span>
                                 </div>
                               </div>
                               <div className="space-y-2">
-                                <div className="text-sm font-semibold text-gray-400">Current Status</div>
+                                <div className="text-sm font-semibold text-gray-700">Current Status</div>
                                 <div className="flex justify-between text-sm">
-                                  <span className="text-gray-500">Depreciated:</span>
-                                  <span className="text-white">
+                                  <span className="text-gray-600">Depreciated:</span>
+                                  <span className="text-gray-900">
                                     {((schedule.accumulatedDepreciation / schedule.purchaseValue) * 100).toFixed(1)}%
                                   </span>
                                 </div>
                                 <div className="flex justify-between text-sm">
-                                  <span className="text-gray-500">Remaining:</span>
-                                  <span className="text-white">
+                                  <span className="text-gray-600">Remaining:</span>
+                                  <span className="text-gray-900">
                                     {(((schedule.purchaseValue - schedule.accumulatedDepreciation) / schedule.purchaseValue) * 100).toFixed(1)}%
                                   </span>
                                 </div>
-                                <div className="w-full bg-gray-700 rounded-full h-2 mt-2">
+                                <div className="w-full bg-gray-200 rounded-full h-2 mt-2">
                                   <div
                                     className="bg-orange-500 h-2 rounded-full"
                                     style={{
@@ -555,46 +613,46 @@ export default function DepreciationPage() {
           {activeTab === 'entries' && (
             <div className="overflow-x-auto">
               <table className="w-full">
-                <thead className="bg-gray-900/50">
+                <thead className="bg-gray-50 border-b border-gray-200">
                   <tr>
-                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Date</th>
-                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Asset Name</th>
-                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Period</th>
-                    <th className="px-6 py-4 text-right text-sm font-semibold text-gray-300">Depreciation Amount</th>
-                    <th className="px-6 py-4 text-right text-sm font-semibold text-gray-300">Accumulated</th>
-                    <th className="px-6 py-4 text-right text-sm font-semibold text-gray-300">Net Book Value</th>
-                    <th className="px-6 py-4 text-center text-sm font-semibold text-gray-300">Journal Entry</th>
-                    <th className="px-6 py-4 text-center text-sm font-semibold text-gray-300">Status</th>
+                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Date</th>
+                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Asset Name</th>
+                    <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Period</th>
+                    <th className="px-6 py-4 text-right text-sm font-semibold text-gray-700">Depreciation Amount</th>
+                    <th className="px-6 py-4 text-right text-sm font-semibold text-gray-700">Accumulated</th>
+                    <th className="px-6 py-4 text-right text-sm font-semibold text-gray-700">Net Book Value</th>
+                    <th className="px-6 py-4 text-center text-sm font-semibold text-gray-700">Journal Entry</th>
+                    <th className="px-6 py-4 text-center text-sm font-semibold text-gray-700">Status</th>
                   </tr>
                 </thead>
                 <tbody>
                   {filteredEntries.map((entry) => (
-                    <tr key={entry.id} className="border-b border-gray-700 hover:bg-gray-800/50 transition-colors">
-                      <td className="px-6 py-4 text-white text-sm">
+                    <tr key={entry.id} className="border-b border-gray-200 hover:bg-gray-50 transition-colors">
+                      <td className="px-6 py-4 text-gray-900 text-sm">
                         {new Date(entry.date).toLocaleDateString()}
                       </td>
-                      <td className="px-6 py-4 text-gray-300 text-sm">{entry.assetName}</td>
-                      <td className="px-6 py-4 text-gray-400 text-sm">{entry.period}</td>
-                      <td className="px-6 py-4 text-right text-orange-400 font-medium">
+                      <td className="px-6 py-4 text-gray-700 text-sm">{entry.assetName}</td>
+                      <td className="px-6 py-4 text-gray-600 text-sm">{entry.period}</td>
+                      <td className="px-6 py-4 text-right text-orange-600 font-medium">
                         {formatCurrency(entry.depreciationAmount)}
                       </td>
-                      <td className="px-6 py-4 text-right text-red-400 font-medium">
+                      <td className="px-6 py-4 text-right text-red-600 font-medium">
                         {formatCurrency(entry.accumulatedDepreciation)}
                       </td>
-                      <td className="px-6 py-4 text-right text-green-400 font-medium">
+                      <td className="px-6 py-4 text-right text-green-600 font-medium">
                         {formatCurrency(entry.netBookValue)}
                       </td>
-                      <td className="px-6 py-4 text-center text-gray-400 text-sm font-mono">
+                      <td className="px-6 py-4 text-center text-gray-600 text-sm font-mono">
                         {entry.journalEntryId || '-'}
                       </td>
                       <td className="px-6 py-4 text-center">
                         {entry.posted ? (
-                          <span className="inline-flex items-center gap-1 px-2 py-1 bg-green-500/20 text-green-400 rounded-full text-xs">
+                          <span className="inline-flex items-center gap-1 px-2 py-1 bg-green-100 text-green-700 rounded-full text-xs">
                             <CheckCircle className="w-3 h-3" />
                             Posted
                           </span>
                         ) : (
-                          <span className="inline-flex items-center gap-1 px-2 py-1 bg-yellow-500/20 text-yellow-400 rounded-full text-xs">
+                          <span className="inline-flex items-center gap-1 px-2 py-1 bg-yellow-100 text-yellow-700 rounded-full text-xs">
                             <AlertTriangle className="w-3 h-3" />
                             Pending
                           </span>
@@ -606,6 +664,8 @@ export default function DepreciationPage() {
               </table>
             </div>
           )}
+        </div>
+          </div>
         </div>
       </div>
     </div>

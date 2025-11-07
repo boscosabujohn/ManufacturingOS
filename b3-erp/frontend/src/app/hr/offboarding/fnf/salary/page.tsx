@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { Calculator, CheckCircle, Clock, AlertCircle, IndianRupee } from 'lucide-react';
+import { Calculator, CheckCircle, Clock, AlertCircle, IndianRupee, X, Eye, Edit } from 'lucide-react';
+import { toast } from '@/hooks/use-toast';
 
 interface FNFSalarySettlement {
   id: string;
@@ -39,6 +40,21 @@ interface FNFSalarySettlement {
 
 export default function FNFSalaryPage() {
   const [selectedTab, setSelectedTab] = useState<'pending' | 'calculated' | 'approved' | 'processed'>('pending');
+  const [showCalculateModal, setShowCalculateModal] = useState(false);
+  const [showApproveModal, setShowApproveModal] = useState(false);
+  const [showViewModal, setShowViewModal] = useState(false);
+  const [selectedSettlement, setSelectedSettlement] = useState<FNFSalarySettlement | null>(null);
+  const [calculateFormData, setCalculateFormData] = useState({
+    daysWorked: 0,
+    noticePeriodBuyout: 0,
+    loanRecovery: 0,
+    advanceRecovery: 0,
+    otherDeductions: 0,
+    pendingReimbursements: 0,
+    bonus: 0,
+    incentives: 0
+  });
+  const [approvalRemarks, setApprovalRemarks] = useState('');
 
   const mockSettlements: FNFSalarySettlement[] = [
     {
@@ -162,6 +178,59 @@ export default function FNFSalaryPage() {
 
   const calculateTotalAdditions = (additions: FNFSalarySettlement['additions']) => {
     return Object.values(additions).reduce((sum, val) => sum + (val || 0), 0);
+  };
+
+  const handleCalculate = (settlement: FNFSalarySettlement) => {
+    setSelectedSettlement(settlement);
+    setCalculateFormData({
+      daysWorked: settlement.daysWorked,
+      noticePeriodBuyout: settlement.deductions.noticePeriodBuyout || 0,
+      loanRecovery: settlement.deductions.loanRecovery || 0,
+      advanceRecovery: settlement.deductions.advanceRecovery || 0,
+      otherDeductions: settlement.deductions.otherDeductions || 0,
+      pendingReimbursements: settlement.additions.pendingReimbursements || 0,
+      bonus: settlement.additions.bonus || 0,
+      incentives: settlement.additions.incentives || 0
+    });
+    setShowCalculateModal(true);
+  };
+
+  const handleApprove = (settlement: FNFSalarySettlement) => {
+    setSelectedSettlement(settlement);
+    setApprovalRemarks('');
+    setShowApproveModal(true);
+  };
+
+  const handleView = (settlement: FNFSalarySettlement) => {
+    setSelectedSettlement(settlement);
+    setShowViewModal(true);
+  };
+
+  const handleSubmitCalculation = (e: React.FormEvent) => {
+    e.preventDefault();
+    toast({
+      title: "Salary Calculated",
+      description: `FNF salary for ${selectedSettlement?.employeeName} has been calculated successfully.`
+    });
+    setShowCalculateModal(false);
+    setSelectedSettlement(null);
+  };
+
+  const handleSubmitApproval = (e: React.FormEvent) => {
+    e.preventDefault();
+    toast({
+      title: "Salary Approved",
+      description: `FNF salary for ${selectedSettlement?.employeeName} has been approved and is ready for processing.`
+    });
+    setShowApproveModal(false);
+    setSelectedSettlement(null);
+  };
+
+  const handleMarkProcessed = (settlement: FNFSalarySettlement) => {
+    toast({
+      title: "Marked as Processed",
+      description: `FNF salary for ${settlement.employeeName} has been marked as processed.`
+    });
   };
 
   return (
@@ -452,25 +521,64 @@ export default function FNFSalaryPage() {
 
               <div className="flex gap-2 mt-4">
                 {settlement.status === 'pending' && (
-                  <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium text-sm">
-                    <Calculator className="inline h-4 w-4 mr-2" />
+                  <button
+                    onClick={() => handleCalculate(settlement)}
+                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium text-sm inline-flex items-center gap-2"
+                  >
+                    <Calculator className="h-4 w-4" />
                     Calculate Salary
                   </button>
                 )}
                 {settlement.status === 'calculated' && (
                   <>
-                    <button className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium text-sm">
-                      <CheckCircle className="inline h-4 w-4 mr-2" />
+                    <button
+                      onClick={() => handleApprove(settlement)}
+                      className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium text-sm inline-flex items-center gap-2"
+                    >
+                      <CheckCircle className="h-4 w-4" />
                       Approve Calculation
                     </button>
-                    <button className="px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg font-medium text-sm border border-gray-300">
+                    <button
+                      onClick={() => handleCalculate(settlement)}
+                      className="px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg font-medium text-sm border border-gray-300 inline-flex items-center gap-2"
+                    >
+                      <Edit className="h-4 w-4" />
                       Recalculate
+                    </button>
+                    <button
+                      onClick={() => handleView(settlement)}
+                      className="px-4 py-2 text-blue-600 hover:bg-blue-50 rounded-lg font-medium text-sm border border-blue-300 inline-flex items-center gap-2"
+                    >
+                      <Eye className="h-4 w-4" />
+                      View Details
                     </button>
                   </>
                 )}
                 {settlement.status === 'approved' && (
-                  <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium text-sm">
-                    Mark as Processed
+                  <>
+                    <button
+                      onClick={() => handleMarkProcessed(settlement)}
+                      className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium text-sm inline-flex items-center gap-2"
+                    >
+                      <CheckCircle className="h-4 w-4" />
+                      Mark as Processed
+                    </button>
+                    <button
+                      onClick={() => handleView(settlement)}
+                      className="px-4 py-2 text-blue-600 hover:bg-blue-50 rounded-lg font-medium text-sm border border-blue-300 inline-flex items-center gap-2"
+                    >
+                      <Eye className="h-4 w-4" />
+                      View Details
+                    </button>
+                  </>
+                )}
+                {settlement.status === 'processed' && (
+                  <button
+                    onClick={() => handleView(settlement)}
+                    className="px-4 py-2 text-blue-600 hover:bg-blue-50 rounded-lg font-medium text-sm border border-blue-300 inline-flex items-center gap-2"
+                  >
+                    <Eye className="h-4 w-4" />
+                    View Details
                   </button>
                 )}
               </div>
@@ -478,6 +586,162 @@ export default function FNFSalaryPage() {
           );
         })}
       </div>
+
+      {/* Calculate Salary Modal */}
+      {showCalculateModal && selectedSettlement && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="sticky top-0 bg-blue-50 border-b border-blue-200 px-6 py-4 flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <Calculator className="h-6 w-6 text-blue-600" />
+                <div>
+                  <h2 className="text-xl font-bold text-blue-900">Calculate FNF Salary</h2>
+                  <p className="text-sm text-blue-700 mt-1">{selectedSettlement.employeeName} • {selectedSettlement.employeeId}</p>
+                </div>
+              </div>
+              <button onClick={() => setShowCalculateModal(false)} className="text-blue-600 hover:text-blue-800">
+                <X className="h-6 w-6" />
+              </button>
+            </div>
+
+            <form onSubmit={handleSubmitCalculation} className="p-6 space-y-6">
+              {/* Salary Details */}
+              <div className="bg-gray-50 rounded-lg p-4">
+                <h3 className="font-semibold text-gray-900 mb-3">Monthly Salary Components</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div><span className="text-sm text-gray-600">Basic: </span><span className="font-semibold">{formatCurrency(selectedSettlement.basicSalary)}</span></div>
+                  <div><span className="text-sm text-gray-600">HRA: </span><span className="font-semibold">{formatCurrency(selectedSettlement.hra)}</span></div>
+                  <div><span className="text-sm text-gray-600">Special Allowance: </span><span className="font-semibold">{formatCurrency(selectedSettlement.specialAllowance)}</span></div>
+                  <div><span className="text-sm text-gray-600">Other: </span><span className="font-semibold">{formatCurrency(selectedSettlement.otherAllowances)}</span></div>
+                  <div className="col-span-2 pt-2 border-t border-gray-300"><span className="text-sm text-gray-600">Gross Salary: </span><span className="font-bold text-blue-600">{formatCurrency(selectedSettlement.grossSalary)}</span></div>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-semibold text-gray-900 mb-2">Days Worked <span className="text-red-500">*</span></label>
+                  <input type="number" value={calculateFormData.daysWorked} onChange={(e) => setCalculateFormData({...calculateFormData, daysWorked: Number(e.target.value)})} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required min="0" max={selectedSettlement.workingDays} />
+                  <p className="text-xs text-gray-500 mt-1">Out of {selectedSettlement.workingDays} working days</p>
+                </div>
+                <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
+                  <p className="text-xs text-blue-600 mb-1">Prorated Salary</p>
+                  <p className="text-2xl font-bold text-blue-900">{formatCurrency((selectedSettlement.grossSalary / selectedSettlement.workingDays) * calculateFormData.daysWorked)}</p>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                  <span className="text-red-600">Deductions</span>
+                </h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Notice Period Buyout</label>
+                    <input type="number" value={calculateFormData.noticePeriodBuyout} onChange={(e) => setCalculateFormData({...calculateFormData, noticePeriodBuyout: Number(e.target.value)})} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" min="0" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Loan Recovery</label>
+                    <input type="number" value={calculateFormData.loanRecovery} onChange={(e) => setCalculateFormData({...calculateFormData, loanRecovery: Number(e.target.value)})} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" min="0" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Advance Recovery</label>
+                    <input type="number" value={calculateFormData.advanceRecovery} onChange={(e) => setCalculateFormData({...calculateFormData, advanceRecovery: Number(e.target.value)})} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" min="0" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Other Deductions</label>
+                    <input type="number" value={calculateFormData.otherDeductions} onChange={(e) => setCalculateFormData({...calculateFormData, otherDeductions: Number(e.target.value)})} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" min="0" />
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                  <span className="text-green-600">Additions</span>
+                </h3>
+                <div className="grid grid-cols-3 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Pending Reimbursements</label>
+                    <input type="number" value={calculateFormData.pendingReimbursements} onChange={(e) => setCalculateFormData({...calculateFormData, pendingReimbursements: Number(e.target.value)})} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" min="0" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Bonus</label>
+                    <input type="number" value={calculateFormData.bonus} onChange={(e) => setCalculateFormData({...calculateFormData, bonus: Number(e.target.value)})} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" min="0" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Incentives</label>
+                    <input type="number" value={calculateFormData.incentives} onChange={(e) => setCalculateFormData({...calculateFormData, incentives: Number(e.target.value)})} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" min="0" />
+                  </div>
+                </div>
+              </div>
+
+              {/* Summary */}
+              <div className="bg-gray-100 rounded-lg p-4 border-2 border-gray-300">
+                <h3 className="font-bold text-gray-900 mb-3">Calculation Summary</h3>
+                <div className="space-y-2 text-sm">
+                  <div className="flex justify-between"><span>Prorated Salary:</span><span className="font-semibold">+{formatCurrency((selectedSettlement.grossSalary / selectedSettlement.workingDays) * calculateFormData.daysWorked)}</span></div>
+                  <div className="flex justify-between text-green-700"><span>Total Additions:</span><span className="font-semibold">+{formatCurrency(calculateFormData.pendingReimbursements + calculateFormData.bonus + calculateFormData.incentives)}</span></div>
+                  <div className="flex justify-between text-red-700"><span>Total Deductions:</span><span className="font-semibold">-{formatCurrency(calculateFormData.noticePeriodBuyout + calculateFormData.loanRecovery + calculateFormData.advanceRecovery + calculateFormData.otherDeductions)}</span></div>
+                  <div className="flex justify-between pt-2 border-t-2 border-gray-400 text-lg font-bold">
+                    <span>Net Salary Component:</span>
+                    <span className={(((selectedSettlement.grossSalary / selectedSettlement.workingDays) * calculateFormData.daysWorked) + calculateFormData.pendingReimbursements + calculateFormData.bonus + calculateFormData.incentives - calculateFormData.noticePeriodBuyout - calculateFormData.loanRecovery - calculateFormData.advanceRecovery - calculateFormData.otherDeductions) >= 0 ? 'text-green-600' : 'text-red-600'}>
+                      {formatCurrency(((selectedSettlement.grossSalary / selectedSettlement.workingDays) * calculateFormData.daysWorked) + calculateFormData.pendingReimbursements + calculateFormData.bonus + calculateFormData.incentives - calculateFormData.noticePeriodBuyout - calculateFormData.loanRecovery - calculateFormData.advanceRecovery - calculateFormData.otherDeductions)}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex gap-3 pt-4 border-t border-gray-200">
+                <button type="button" onClick={() => setShowCalculateModal(false)} className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 font-medium">Cancel</button>
+                <button type="submit" className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium inline-flex items-center justify-center gap-2">
+                  <Calculator className="h-4 w-4" />
+                  Save Calculation
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* Approve Modal */}
+      {showApproveModal && selectedSettlement && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full">
+            <div className="bg-green-50 border-b border-green-200 px-6 py-4 flex items-center justify-between rounded-t-lg">
+              <div className="flex items-center gap-3">
+                <CheckCircle className="h-6 w-6 text-green-600" />
+                <div>
+                  <h2 className="text-xl font-bold text-green-900">Approve FNF Salary</h2>
+                  <p className="text-sm text-green-700 mt-1">{selectedSettlement.employeeName}</p>
+                </div>
+              </div>
+              <button onClick={() => setShowApproveModal(false)} className="text-green-600 hover:text-green-800">
+                <X className="h-6 w-6" />
+              </button>
+            </div>
+
+            <form onSubmit={handleSubmitApproval} className="p-6 space-y-6">
+              <div className="bg-gray-50 rounded-lg p-4">
+                <h3 className="font-semibold text-gray-900 mb-2">Calculated Amount</h3>
+                <p className={`text-3xl font-bold ${selectedSettlement.netSalaryComponent >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                  {selectedSettlement.netSalaryComponent >= 0 ? '+' : '-'}{formatCurrency(selectedSettlement.netSalaryComponent)}
+                </p>
+                {selectedSettlement.netSalaryComponent < 0 && (
+                  <p className="text-xs text-red-600 mt-2">Employee owes this amount to company</p>
+                )}
+              </div>
+
+              <div>
+                <label className="block text-sm font-semibold text-gray-900 mb-2">Approval Remarks</label>
+                <textarea value={approvalRemarks} onChange={(e) => setApprovalRemarks(e.target.value)} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" rows={4} placeholder="Enter approval remarks..." />
+              </div>
+
+              <div className="flex gap-3 pt-4 border-t border-gray-200">
+                <button type="button" onClick={() => setShowApproveModal(false)} className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 font-medium">Cancel</button>
+                <button type="submit" className="flex-1 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium">Approve & Forward to Payment</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

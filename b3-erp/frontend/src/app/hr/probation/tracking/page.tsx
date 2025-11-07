@@ -1,7 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { Clock, Users, CheckCircle, AlertTriangle, Calendar, TrendingUp, User, Briefcase } from 'lucide-react';
+import { Clock, Users, CheckCircle, AlertTriangle, Calendar, TrendingUp, User, Briefcase, X, Eye, FileText, MessageSquare } from 'lucide-react';
+import { toast } from '@/hooks/use-toast';
+import { useRouter } from 'next/navigation';
 
 interface ProbationEmployee {
   id: string;
@@ -25,8 +27,11 @@ interface ProbationEmployee {
 }
 
 export default function Page() {
+  const router = useRouter();
   const [selectedStatus, setSelectedStatus] = useState('all');
   const [selectedDepartment, setSelectedDepartment] = useState('all');
+  const [showDetailsModal, setShowDetailsModal] = useState(false);
+  const [selectedEmployee, setSelectedEmployee] = useState<ProbationEmployee | null>(null);
 
   const mockEmployees: ProbationEmployee[] = [
     {
@@ -166,6 +171,27 @@ export default function Page() {
     if (score >= 70) return 'text-blue-600';
     if (score >= 60) return 'text-orange-600';
     return 'text-red-600';
+  };
+
+  const handleViewDetails = (employee: ProbationEmployee) => {
+    setSelectedEmployee(employee);
+    setShowDetailsModal(true);
+  };
+
+  const handleScheduleReview = (employee: ProbationEmployee) => {
+    toast({
+      title: "Navigating to Reviews",
+      description: `Opening review schedule for ${employee.name}`
+    });
+    router.push('/hr/probation/reviews');
+  };
+
+  const handleRequestFeedback = (employee: ProbationEmployee) => {
+    toast({
+      title: "Navigating to Feedback",
+      description: `Opening feedback collection for ${employee.name}`
+    });
+    router.push('/hr/probation/feedback');
   };
 
   return (
@@ -379,7 +405,11 @@ export default function Page() {
                     </span>
                   </td>
                   <td className="px-6 py-4">
-                    <button className="text-blue-600 hover:text-blue-800 font-medium text-sm">
+                    <button
+                      onClick={() => handleViewDetails(emp)}
+                      className="text-blue-600 hover:text-blue-800 font-medium text-sm inline-flex items-center gap-1"
+                    >
+                      <Eye className="h-4 w-4" />
                       View Details
                     </button>
                   </td>
@@ -395,6 +425,223 @@ export default function Page() {
           <Users className="h-12 w-12 text-gray-400 mx-auto mb-4" />
           <h3 className="text-lg font-semibold text-gray-900 mb-2">No employees found</h3>
           <p className="text-gray-600">No employees match the selected filters</p>
+        </div>
+      )}
+
+      {/* Employee Details Modal */}
+      {showDetailsModal && selectedEmployee && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            {/* Modal Header */}
+            <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <User className="h-6 w-6 text-blue-600" />
+                <div>
+                  <h2 className="text-xl font-bold text-gray-900">{selectedEmployee.name}</h2>
+                  <p className="text-sm text-gray-600">{selectedEmployee.designation} • {selectedEmployee.department}</p>
+                </div>
+              </div>
+              <button
+                onClick={() => setShowDetailsModal(false)}
+                className="text-gray-400 hover:text-gray-600 transition-colors"
+              >
+                <X className="h-6 w-6" />
+              </button>
+            </div>
+
+            {/* Modal Content */}
+            <div className="p-6 space-y-6">
+              {/* Status Banner */}
+              <div className={`rounded-lg p-4 ${
+                selectedEmployee.status === 'overdue' ? 'bg-red-50 border border-red-200' :
+                selectedEmployee.status === 'due_soon' ? 'bg-yellow-50 border border-yellow-200' :
+                selectedEmployee.status === 'completed' ? 'bg-green-50 border border-green-200' :
+                selectedEmployee.status === 'extended' ? 'bg-purple-50 border border-purple-200' :
+                'bg-blue-50 border border-blue-200'
+              }`}>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className={`text-sm font-semibold ${
+                      selectedEmployee.status === 'overdue' ? 'text-red-700' :
+                      selectedEmployee.status === 'due_soon' ? 'text-yellow-700' :
+                      selectedEmployee.status === 'completed' ? 'text-green-700' :
+                      selectedEmployee.status === 'extended' ? 'text-purple-700' :
+                      'text-blue-700'
+                    }`}>
+                      Probation Status: {
+                        selectedEmployee.status === 'due_soon' ? 'Due Soon' :
+                        selectedEmployee.status.charAt(0).toUpperCase() + selectedEmployee.status.slice(1)
+                      }
+                    </p>
+                    <p className={`text-xs mt-1 ${
+                      selectedEmployee.status === 'overdue' ? 'text-red-600' :
+                      selectedEmployee.status === 'due_soon' ? 'text-yellow-600' :
+                      selectedEmployee.status === 'completed' ? 'text-green-600' :
+                      selectedEmployee.status === 'extended' ? 'text-purple-600' :
+                      'text-blue-600'
+                    }`}>
+                      {selectedEmployee.daysRemaining < 0
+                        ? `${Math.abs(selectedEmployee.daysRemaining)} days overdue`
+                        : selectedEmployee.daysRemaining === 0
+                        ? 'Ends today'
+                        : `${selectedEmployee.daysRemaining} days remaining`
+                      }
+                    </p>
+                  </div>
+                  <span className={`px-4 py-2 text-lg font-bold rounded-lg ${
+                    selectedEmployee.status === 'overdue' ? 'bg-red-100 text-red-700' :
+                    selectedEmployee.status === 'due_soon' ? 'bg-yellow-100 text-yellow-700' :
+                    selectedEmployee.status === 'completed' ? 'bg-green-100 text-green-700' :
+                    selectedEmployee.status === 'extended' ? 'bg-purple-100 text-purple-700' :
+                    'bg-blue-100 text-blue-700'
+                  }`}>
+                    {selectedEmployee.completionPercentage}%
+                  </span>
+                </div>
+              </div>
+
+              {/* Employee Information */}
+              <div>
+                <h3 className="text-sm font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                  <Briefcase className="h-4 w-4 text-gray-600" />
+                  Employee Information
+                </h3>
+                <div className="grid grid-cols-2 gap-4 bg-gray-50 rounded-lg p-4">
+                  <div>
+                    <p className="text-xs text-gray-600">Employee Code</p>
+                    <p className="text-sm font-semibold text-gray-900">{selectedEmployee.employeeCode}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-gray-600">Designation</p>
+                    <p className="text-sm font-semibold text-gray-900">{selectedEmployee.designation}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-gray-600">Department</p>
+                    <p className="text-sm font-semibold text-gray-900">{selectedEmployee.department}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-gray-600">Reporting Manager</p>
+                    <p className="text-sm font-semibold text-gray-900">{selectedEmployee.reportingManager}</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Probation Timeline */}
+              <div>
+                <h3 className="text-sm font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                  <Calendar className="h-4 w-4 text-gray-600" />
+                  Probation Timeline
+                </h3>
+                <div className="grid grid-cols-3 gap-4 bg-gray-50 rounded-lg p-4">
+                  <div>
+                    <p className="text-xs text-gray-600">Joining Date</p>
+                    <p className="text-sm font-semibold text-gray-900">{selectedEmployee.joiningDate}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-gray-600">Probation End Date</p>
+                    <p className="text-sm font-semibold text-gray-900">{selectedEmployee.probationEndDate}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-gray-600">Probation Period</p>
+                    <p className="text-sm font-semibold text-gray-900">{selectedEmployee.probationPeriod} months</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Performance Summary */}
+              <div>
+                <h3 className="text-sm font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                  <TrendingUp className="h-4 w-4 text-gray-600" />
+                  Performance Summary
+                </h3>
+                <div className="bg-gray-50 rounded-lg p-4 space-y-4">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <p className="text-xs text-gray-600">Reviews Completed</p>
+                      <div className="flex items-center gap-2 mt-1">
+                        <p className="text-2xl font-bold text-gray-900">
+                          {selectedEmployee.reviewsCompleted}/{selectedEmployee.totalReviews}
+                        </p>
+                        <div className="flex-1 bg-gray-200 rounded-full h-2">
+                          <div
+                            className={`h-2 rounded-full ${
+                              selectedEmployee.reviewsCompleted === selectedEmployee.totalReviews ? 'bg-green-600' :
+                              selectedEmployee.reviewsCompleted >= selectedEmployee.totalReviews * 0.66 ? 'bg-blue-600' :
+                              'bg-yellow-600'
+                            }`}
+                            style={{ width: `${(selectedEmployee.reviewsCompleted / selectedEmployee.totalReviews) * 100}%` }}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <p className="text-xs text-gray-600">Performance Score</p>
+                      <p className={`text-2xl font-bold mt-1 ${getPerformanceColor(selectedEmployee.performanceScore)}`}>
+                        {selectedEmployee.performanceScore}%
+                      </p>
+                    </div>
+                  </div>
+
+                  {selectedEmployee.lastReviewDate && (
+                    <div className="grid grid-cols-2 gap-4 pt-4 border-t border-gray-200">
+                      <div>
+                        <p className="text-xs text-gray-600">Last Review Date</p>
+                        <p className="text-sm font-semibold text-gray-900">{selectedEmployee.lastReviewDate}</p>
+                      </div>
+                      {selectedEmployee.nextReviewDate && (
+                        <div>
+                          <p className="text-xs text-gray-600">Next Review Date</p>
+                          <p className="text-sm font-semibold text-blue-600">{selectedEmployee.nextReviewDate}</p>
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  {selectedEmployee.recommendation && (
+                    <div className="pt-4 border-t border-gray-200">
+                      <p className="text-xs text-gray-600 mb-2">Recommendation</p>
+                      <span className={`inline-block px-3 py-1.5 text-sm font-semibold rounded ${recommendationColors[selectedEmployee.recommendation]}`}>
+                        {selectedEmployee.recommendation === 'confirm' ? '✓ Confirm Employment' :
+                         selectedEmployee.recommendation === 'extend' ? '⏱ Extend Probation' :
+                         selectedEmployee.recommendation === 'terminate' ? '✗ Terminate' :
+                         '⏳ Pending Decision'}
+                      </span>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex gap-3 pt-4 border-t border-gray-200">
+                <button
+                  onClick={() => setShowDetailsModal(false)}
+                  className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 font-medium transition-colors"
+                >
+                  Close
+                </button>
+                <button
+                  onClick={() => {
+                    setShowDetailsModal(false);
+                    handleScheduleReview(selectedEmployee);
+                  }}
+                  className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium transition-colors inline-flex items-center justify-center gap-2"
+                >
+                  <FileText className="h-4 w-4" />
+                  Schedule Review
+                </button>
+                <button
+                  onClick={() => {
+                    setShowDetailsModal(false);
+                    handleRequestFeedback(selectedEmployee);
+                  }}
+                  className="flex-1 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium transition-colors inline-flex items-center justify-center gap-2"
+                >
+                  <MessageSquare className="h-4 w-4" />
+                  Request Feedback
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       )}
     </div>

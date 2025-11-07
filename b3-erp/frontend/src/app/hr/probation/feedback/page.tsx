@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { MessageSquare, Star, ThumbsUp, AlertCircle, TrendingUp, Users } from 'lucide-react';
+import { MessageSquare, Star, ThumbsUp, AlertCircle, TrendingUp, Users, Plus, X, Send } from 'lucide-react';
+import { toast } from '@/hooks/use-toast';
 
 interface Feedback {
   id: string;
@@ -27,6 +28,15 @@ interface Feedback {
 
 export default function Page() {
   const [selectedType, setSelectedType] = useState('all');
+  const [showRequestModal, setShowRequestModal] = useState(false);
+  const [requestFormData, setRequestFormData] = useState({
+    employeeCode: '',
+    employeeName: '',
+    feedbackFrom: '',
+    feedbackType: '',
+    dueDate: '',
+    message: ''
+  });
 
   const mockFeedback: Feedback[] = [
     {
@@ -112,11 +122,41 @@ export default function Page() {
     return 'text-red-600';
   };
 
+  const handleRequestFeedback = () => {
+    setRequestFormData({
+      employeeCode: '',
+      employeeName: '',
+      feedbackFrom: '',
+      feedbackType: '',
+      dueDate: '',
+      message: ''
+    });
+    setShowRequestModal(true);
+  };
+
+  const handleSubmitRequest = (e: React.FormEvent) => {
+    e.preventDefault();
+    toast({
+      title: "Feedback Request Sent",
+      description: `Feedback request has been sent to ${requestFormData.feedbackFrom} for ${requestFormData.employeeName}.`
+    });
+    setShowRequestModal(false);
+  };
+
   return (
     <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6">
-        <h1 className="text-2xl font-bold text-gray-900">Probation Feedback</h1>
-        <p className="text-sm text-gray-600 mt-1">Review feedback collected during probation period</p>
+      <div className="mb-6 flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl font-bold text-gray-900">Probation Feedback</h1>
+          <p className="text-sm text-gray-600 mt-1">Review feedback collected during probation period</p>
+        </div>
+        <button
+          onClick={handleRequestFeedback}
+          className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium inline-flex items-center gap-2"
+        >
+          <Plus className="h-4 w-4" />
+          Request Feedback
+        </button>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
@@ -251,6 +291,153 @@ export default function Page() {
           </div>
         ))}
       </div>
+
+      {/* Request Feedback Modal */}
+      {showRequestModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+              <div>
+                <h2 className="text-xl font-bold text-gray-900">Request Probation Feedback</h2>
+                <p className="text-sm text-gray-600 mt-1">Request feedback for an employee on probation</p>
+              </div>
+              <button
+                onClick={() => setShowRequestModal(false)}
+                className="text-gray-400 hover:text-gray-600"
+              >
+                <X className="h-6 w-6" />
+              </button>
+            </div>
+
+            <form onSubmit={handleSubmitRequest} className="p-6 space-y-6">
+              {/* Employee Information */}
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-semibold text-gray-900 mb-2">
+                    Employee Code <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    value={requestFormData.employeeCode}
+                    onChange={(e) => setRequestFormData({...requestFormData, employeeCode: e.target.value})}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="EMP001"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold text-gray-900 mb-2">
+                    Employee Name <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    value={requestFormData.employeeName}
+                    onChange={(e) => setRequestFormData({...requestFormData, employeeName: e.target.value})}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="John Doe"
+                    required
+                  />
+                </div>
+              </div>
+
+              {/* Feedback Details */}
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-semibold text-gray-900 mb-2">
+                    Request Feedback From <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    value={requestFormData.feedbackFrom}
+                    onChange={(e) => setRequestFormData({...requestFormData, feedbackFrom: e.target.value})}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="Reviewer name"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold text-gray-900 mb-2">
+                    Feedback Type <span className="text-red-500">*</span>
+                  </label>
+                  <select
+                    value={requestFormData.feedbackType}
+                    onChange={(e) => setRequestFormData({...requestFormData, feedbackType: e.target.value})}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    required
+                  >
+                    <option value="">Select type</option>
+                    <option value="manager">Manager Feedback</option>
+                    <option value="peer">Peer Feedback</option>
+                    <option value="self">Self Assessment</option>
+                  </select>
+                </div>
+              </div>
+
+              {/* Due Date */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-900 mb-2">
+                  Due Date <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="date"
+                  value={requestFormData.dueDate}
+                  onChange={(e) => setRequestFormData({...requestFormData, dueDate: e.target.value})}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  required
+                />
+              </div>
+
+              {/* Message */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-900 mb-2">
+                  Message (Optional)
+                </label>
+                <textarea
+                  value={requestFormData.message}
+                  onChange={(e) => setRequestFormData({...requestFormData, message: e.target.value})}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  rows={4}
+                  placeholder="Add any additional instructions or context for the feedback request..."
+                />
+              </div>
+
+              {/* Info Box */}
+              <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+                <div className="flex gap-3">
+                  <AlertCircle className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <p className="text-sm font-semibold text-blue-900">Feedback Request Guidelines</p>
+                    <ul className="text-xs text-blue-800 mt-2 space-y-1 list-disc list-inside">
+                      <li>The reviewer will receive an email notification with the feedback form</li>
+                      <li>They will be asked to rate the employee on multiple criteria</li>
+                      <li>Feedback should be constructive and specific</li>
+                      <li>All feedback is confidential and used for probation assessment only</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex gap-3 pt-4 border-t border-gray-200">
+                <button
+                  type="button"
+                  onClick={() => setShowRequestModal(false)}
+                  className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 font-medium"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium inline-flex items-center justify-center gap-2"
+                >
+                  <Send className="h-4 w-4" />
+                  Send Request
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

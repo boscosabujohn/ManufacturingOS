@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { Calendar, Clock, Users, CheckCircle, AlertCircle, TrendingUp } from 'lucide-react';
+import { Calendar, Clock, Users, CheckCircle, AlertCircle, TrendingUp, X, FileText, Edit, Plus } from 'lucide-react';
+import { toast } from '@/hooks/use-toast';
 
 interface Review {
   id: string;
@@ -24,6 +25,17 @@ interface Review {
 
 export default function Page() {
   const [selectedStatus, setSelectedStatus] = useState('all');
+  const [showConductModal, setShowConductModal] = useState(false);
+  const [showRescheduleModal, setShowRescheduleModal] = useState(false);
+  const [selectedReview, setSelectedReview] = useState<Review | null>(null);
+  const [conductFormData, setConductFormData] = useState({
+    performanceRating: '',
+    areasStrength: '',
+    areasImprovement: '',
+    recommendation: '',
+    comments: ''
+  });
+  const [rescheduleDate, setRescheduleDate] = useState('');
 
   const mockReviews: Review[] = [
     {
@@ -116,6 +128,44 @@ export default function Page() {
     '3_month': '3 Month Review',
     '6_month': '6 Month Review',
     'final': 'Final Review'
+  };
+
+  const handleConductReview = (review: Review) => {
+    setSelectedReview(review);
+    setConductFormData({
+      performanceRating: '',
+      areasStrength: '',
+      areasImprovement: '',
+      recommendation: '',
+      comments: ''
+    });
+    setShowConductModal(true);
+  };
+
+  const handleSubmitReview = (e: React.FormEvent) => {
+    e.preventDefault();
+    toast({
+      title: "Review Submitted",
+      description: `Performance review for ${selectedReview?.employeeName} has been completed and saved.`
+    });
+    setShowConductModal(false);
+    setSelectedReview(null);
+  };
+
+  const handleReschedule = (review: Review) => {
+    setSelectedReview(review);
+    setRescheduleDate(review.scheduledDate);
+    setShowRescheduleModal(true);
+  };
+
+  const handleSubmitReschedule = (e: React.FormEvent) => {
+    e.preventDefault();
+    toast({
+      title: "Review Rescheduled",
+      description: `Review for ${selectedReview?.employeeName} has been rescheduled to ${rescheduleDate}.`
+    });
+    setShowRescheduleModal(false);
+    setSelectedReview(null);
   };
 
   return (
@@ -273,10 +323,18 @@ export default function Page() {
 
             {review.status === 'scheduled' && (
               <div className="flex gap-2 mt-4">
-                <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium text-sm">
+                <button
+                  onClick={() => handleConductReview(review)}
+                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium text-sm inline-flex items-center gap-2"
+                >
+                  <FileText className="h-4 w-4" />
                   Conduct Review
                 </button>
-                <button className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium text-sm">
+                <button
+                  onClick={() => handleReschedule(review)}
+                  className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium text-sm inline-flex items-center gap-2"
+                >
+                  <Calendar className="h-4 w-4" />
                   Reschedule
                 </button>
               </div>
@@ -284,6 +342,207 @@ export default function Page() {
           </div>
         ))}
       </div>
+
+      {/* Conduct Review Modal */}
+      {showConductModal && selectedReview && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+              <div>
+                <h2 className="text-xl font-bold text-gray-900">Conduct Performance Review</h2>
+                <p className="text-sm text-gray-600 mt-1">
+                  {selectedReview.employeeName} • {selectedReview.designation} • {reviewTypeLabels[selectedReview.reviewType]}
+                </p>
+              </div>
+              <button
+                onClick={() => setShowConductModal(false)}
+                className="text-gray-400 hover:text-gray-600"
+              >
+                <X className="h-6 w-6" />
+              </button>
+            </div>
+
+            <form onSubmit={handleSubmitReview} className="p-6 space-y-6">
+              {/* Review Information */}
+              <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+                <div className="grid grid-cols-3 gap-4">
+                  <div>
+                    <p className="text-xs text-blue-600 font-medium">Review Number</p>
+                    <p className="text-sm font-semibold text-blue-900">
+                      {selectedReview.reviewNumber}/{selectedReview.totalReviews}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-blue-600 font-medium">Scheduled Date</p>
+                    <p className="text-sm font-semibold text-blue-900">{selectedReview.scheduledDate}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-blue-600 font-medium">Reviewer</p>
+                    <p className="text-sm font-semibold text-blue-900">{selectedReview.reviewer}</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Performance Rating */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-900 mb-2">
+                  Performance Rating (0-100) <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="number"
+                  min="0"
+                  max="100"
+                  value={conductFormData.performanceRating}
+                  onChange={(e) => setConductFormData({...conductFormData, performanceRating: e.target.value})}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="Enter rating (e.g., 85)"
+                  required
+                />
+              </div>
+
+              {/* Areas of Strength */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-900 mb-2">
+                  Areas of Strength <span className="text-red-500">*</span>
+                </label>
+                <textarea
+                  value={conductFormData.areasStrength}
+                  onChange={(e) => setConductFormData({...conductFormData, areasStrength: e.target.value})}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  rows={3}
+                  placeholder="Enter comma-separated strengths (e.g., Communication, Team Collaboration, Learning Agility)"
+                  required
+                />
+                <p className="text-xs text-gray-500 mt-1">Separate multiple items with commas</p>
+              </div>
+
+              {/* Areas for Improvement */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-900 mb-2">
+                  Areas for Improvement <span className="text-red-500">*</span>
+                </label>
+                <textarea
+                  value={conductFormData.areasImprovement}
+                  onChange={(e) => setConductFormData({...conductFormData, areasImprovement: e.target.value})}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  rows={3}
+                  placeholder="Enter comma-separated areas (e.g., Time Management, Initiative)"
+                  required
+                />
+                <p className="text-xs text-gray-500 mt-1">Separate multiple items with commas</p>
+              </div>
+
+              {/* Recommendation */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-900 mb-2">
+                  Recommendation <span className="text-red-500">*</span>
+                </label>
+                <select
+                  value={conductFormData.recommendation}
+                  onChange={(e) => setConductFormData({...conductFormData, recommendation: e.target.value})}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  required
+                >
+                  <option value="">Select recommendation</option>
+                  <option value="confirm">Confirm Employment</option>
+                  <option value="extend">Extend Probation</option>
+                  <option value="terminate">Terminate Employment</option>
+                </select>
+              </div>
+
+              {/* Additional Comments */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-900 mb-2">
+                  Additional Comments
+                </label>
+                <textarea
+                  value={conductFormData.comments}
+                  onChange={(e) => setConductFormData({...conductFormData, comments: e.target.value})}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  rows={4}
+                  placeholder="Enter any additional comments or observations..."
+                />
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex gap-3 pt-4 border-t border-gray-200">
+                <button
+                  type="button"
+                  onClick={() => setShowConductModal(false)}
+                  className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 font-medium"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium"
+                >
+                  Submit Review
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* Reschedule Modal */}
+      {showRescheduleModal && selectedReview && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
+            <div className="bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between rounded-t-lg">
+              <div>
+                <h2 className="text-xl font-bold text-gray-900">Reschedule Review</h2>
+                <p className="text-sm text-gray-600 mt-1">{selectedReview.employeeName}</p>
+              </div>
+              <button
+                onClick={() => setShowRescheduleModal(false)}
+                className="text-gray-400 hover:text-gray-600"
+              >
+                <X className="h-6 w-6" />
+              </button>
+            </div>
+
+            <form onSubmit={handleSubmitReschedule} className="p-6 space-y-6">
+              {/* Current Schedule */}
+              <div className="bg-gray-50 rounded-lg p-4">
+                <p className="text-xs text-gray-600 mb-1">Current Scheduled Date</p>
+                <p className="text-sm font-semibold text-gray-900">{selectedReview.scheduledDate}</p>
+              </div>
+
+              {/* New Date */}
+              <div>
+                <label className="block text-sm font-semibold text-gray-900 mb-2">
+                  New Scheduled Date <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="date"
+                  value={rescheduleDate}
+                  onChange={(e) => setRescheduleDate(e.target.value)}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  required
+                />
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex gap-3">
+                <button
+                  type="button"
+                  onClick={() => setShowRescheduleModal(false)}
+                  className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 font-medium"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium"
+                >
+                  Reschedule
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -1,8 +1,9 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { Clock, CheckCircle, User, Wallet, TrendingUp, AlertTriangle, Eye, Check, X } from 'lucide-react';
+import { Clock, CheckCircle, User, Wallet, TrendingUp, AlertTriangle, Eye, Check, X, XCircle } from 'lucide-react';
 import DataTable from '@/components/DataTable';
+import { toast } from '@/hooks/use-toast';
 
 interface PendingReimbursement {
   id: string;
@@ -24,6 +25,11 @@ interface PendingReimbursement {
 export default function Page() {
   const [selectedDepartment, setSelectedDepartment] = useState('all');
   const [selectedType, setSelectedType] = useState('all');
+  const [showDetailsModal, setShowDetailsModal] = useState(false);
+  const [showApproveModal, setShowApproveModal] = useState(false);
+  const [showRejectModal, setShowRejectModal] = useState(false);
+  const [selectedClaim, setSelectedClaim] = useState<PendingReimbursement | null>(null);
+  const [rejectionReason, setRejectionReason] = useState('');
 
   const mockReimbursements: PendingReimbursement[] = [
     {
@@ -102,6 +108,95 @@ export default function Page() {
     return colors[priority as keyof typeof colors];
   };
 
+  const handleViewDetails = (claim: PendingReimbursement) => {
+    setSelectedClaim(claim);
+    setShowDetailsModal(true);
+  };
+
+  const handleApproveClaim = (claim: PendingReimbursement) => {
+    setSelectedClaim(claim);
+    setShowApproveModal(true);
+  };
+
+  const handleRejectClaim = (claim: PendingReimbursement) => {
+    setSelectedClaim(claim);
+    setRejectionReason('');
+    setShowRejectModal(true);
+  };
+
+  const confirmApprove = () => {
+    toast({
+      title: "Claim Approved",
+      description: `Claim ${selectedClaim?.claimNumber} has been approved and moved to processing`
+    });
+    setShowApproveModal(false);
+    setSelectedClaim(null);
+  };
+
+  const confirmReject = () => {
+    if (!rejectionReason.trim()) {
+      toast({
+        title: "Rejection Reason Required",
+        description: "Please provide a reason for rejecting this claim",
+        variant: "destructive"
+      });
+      return;
+    }
+    toast({
+      title: "Claim Rejected",
+      description: `Claim ${selectedClaim?.claimNumber} has been rejected`
+    });
+    setShowRejectModal(false);
+    setSelectedClaim(null);
+    setRejectionReason('');
+  };
+
+  const handleExportToExcel = () => {
+    // Convert filtered data to CSV format
+    const headers = ['Claim No.', 'Employee', 'Employee Code', 'Department', 'Type', 'Amount', 'Bill Date', 'Submitted Date', 'Pending Days', 'Priority', 'Description'];
+    const csvData = filteredReimbursements.map(r => [
+      r.claimNumber,
+      r.employeeName,
+      r.employeeCode,
+      r.department,
+      r.claimType,
+      r.amount,
+      r.billDate,
+      r.submittedDate,
+      r.pendingDays,
+      r.priority,
+      r.description
+    ]);
+
+    const csv = [headers, ...csvData].map(row => row.join(',')).join('\n');
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `pending_reimbursements_${new Date().toISOString().split('T')[0]}.csv`;
+    a.click();
+
+    toast({
+      title: "Export Successful",
+      description: "Pending reimbursements exported to Excel format"
+    });
+  };
+
+  const handleExportToPDF = () => {
+    toast({
+      title: "Generating PDF",
+      description: "PDF report is being generated. Download will start shortly."
+    });
+
+    // In production, this would call a backend API to generate PDF
+    setTimeout(() => {
+      toast({
+        title: "PDF Ready",
+        description: "Your PDF report has been downloaded"
+      });
+    }, 2000);
+  };
+
   const columns = [
     { key: 'claimNumber', label: 'Claim No.', sortable: true,
       render: (v: string) => <div className="font-semibold text-gray-900">{v}</div>
@@ -153,13 +248,25 @@ export default function Page() {
     { key: 'actions', label: 'Actions', sortable: false,
       render: (_: any, row: PendingReimbursement) => (
         <div className="flex gap-2">
-          <button className="p-1 hover:bg-gray-100 rounded">
+          <button
+            onClick={() => handleViewDetails(row)}
+            className="p-1 hover:bg-gray-100 rounded"
+            title="View details"
+          >
             <Eye className="h-4 w-4 text-gray-600" />
           </button>
-          <button className="p-1 hover:bg-green-100 rounded">
+          <button
+            onClick={() => handleApproveClaim(row)}
+            className="p-1 hover:bg-green-100 rounded"
+            title="Approve claim"
+          >
             <Check className="h-4 w-4 text-green-600" />
           </button>
-          <button className="p-1 hover:bg-red-100 rounded">
+          <button
+            onClick={() => handleRejectClaim(row)}
+            className="p-1 hover:bg-red-100 rounded"
+            title="Reject claim"
+          >
             <X className="h-4 w-4 text-red-600" />
           </button>
         </div>
@@ -233,6 +340,24 @@ export default function Page() {
             <TrendingUp className="h-10 w-10 text-rose-400" />
           </div>
         </div>
+      </div>
+
+      {/* Export Actions */}
+      <div className="mb-6 flex justify-end gap-3">
+        <button
+          onClick={handleExportToExcel}
+          className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium text-sm"
+        >
+          <Download className="h-4 w-4" />
+          Export to Excel
+        </button>
+        <button
+          onClick={handleExportToPDF}
+          className="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 font-medium text-sm"
+        >
+          <Download className="h-4 w-4" />
+          Export to PDF
+        </button>
       </div>
 
       {/* Filters */}
@@ -329,6 +454,218 @@ export default function Page() {
           <li>• Claims older than 90 days require special approval from Finance Head</li>
         </ul>
       </div>
+
+      {/* View Details Modal */}
+      {showDetailsModal && selectedClaim && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="p-6 border-b border-gray-200 flex justify-between items-center sticky top-0 bg-white z-10">
+              <h2 className="text-2xl font-bold text-gray-900">Claim Details</h2>
+              <button
+                onClick={() => setShowDetailsModal(false)}
+                className="text-gray-400 hover:text-gray-600"
+              >
+                <XCircle className="h-6 w-6" />
+              </button>
+            </div>
+
+            <div className="p-6 space-y-4">
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <p className="text-sm text-gray-600">Claim Number</p>
+                  <p className="font-semibold text-gray-900">{selectedClaim.claimNumber}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-600">Claim Type</p>
+                  <p className="font-semibold text-gray-900">{selectedClaim.claimType}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-600">Employee</p>
+                  <p className="font-semibold text-gray-900">{selectedClaim.employeeName}</p>
+                  <p className="text-xs text-gray-500">{selectedClaim.employeeCode}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-600">Department</p>
+                  <p className="font-semibold text-gray-900">{selectedClaim.department}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-600">Designation</p>
+                  <p className="font-semibold text-gray-900">{selectedClaim.designation}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-600">Amount</p>
+                  <p className="font-semibold text-gray-900">₹{selectedClaim.amount.toLocaleString('en-IN')}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-600">Bill Date</p>
+                  <p className="font-semibold text-gray-900">{new Date(selectedClaim.billDate).toLocaleDateString('en-IN')}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-600">Submitted Date</p>
+                  <p className="font-semibold text-gray-900">{new Date(selectedClaim.submittedDate).toLocaleDateString('en-IN')}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-600">Pending Days</p>
+                  <p className={`font-semibold ${selectedClaim.pendingDays > 7 ? 'text-red-600' : 'text-gray-900'}`}>
+                    {selectedClaim.pendingDays} days
+                  </p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-600">Priority</p>
+                  <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${getPriorityColor(selectedClaim.priority)}`}>
+                    {selectedClaim.priority.toUpperCase()}
+                  </span>
+                </div>
+              </div>
+
+              <div>
+                <p className="text-sm text-gray-600">Description</p>
+                <p className="font-semibold text-gray-900">{selectedClaim.description}</p>
+              </div>
+
+              <div>
+                <p className="text-sm text-gray-600">Documents Attached</p>
+                <p className="font-semibold text-gray-900">{selectedClaim.documentsCount} file(s)</p>
+              </div>
+
+              <div className="flex gap-3 pt-4 border-t border-gray-200">
+                <button
+                  onClick={() => setShowDetailsModal(false)}
+                  className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium"
+                >
+                  Close
+                </button>
+                <button
+                  onClick={() => {
+                    setShowDetailsModal(false);
+                    handleApproveClaim(selectedClaim);
+                  }}
+                  className="flex-1 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium"
+                >
+                  Approve Claim
+                </button>
+                <button
+                  onClick={() => {
+                    setShowDetailsModal(false);
+                    handleRejectClaim(selectedClaim);
+                  }}
+                  className="flex-1 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 font-medium"
+                >
+                  Reject Claim
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Approve Modal */}
+      {showApproveModal && selectedClaim && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
+            <div className="p-6 border-b border-gray-200">
+              <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
+                <CheckCircle className="h-6 w-6 text-green-600" />
+                Approve Claim
+              </h2>
+            </div>
+
+            <div className="p-6 space-y-4">
+              <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                <p className="text-sm text-green-900">
+                  Are you sure you want to approve this reimbursement claim?
+                </p>
+                <div className="mt-3 space-y-1 text-sm text-green-800">
+                  <p><strong>Claim Number:</strong> {selectedClaim.claimNumber}</p>
+                  <p><strong>Employee:</strong> {selectedClaim.employeeName}</p>
+                  <p><strong>Amount:</strong> ₹{selectedClaim.amount.toLocaleString('en-IN')}</p>
+                  <p><strong>Type:</strong> {selectedClaim.claimType}</p>
+                </div>
+              </div>
+
+              <p className="text-sm text-gray-600">
+                This claim will be moved to the processing queue and the employee will be notified.
+              </p>
+
+              <div className="flex gap-3 pt-4">
+                <button
+                  onClick={() => setShowApproveModal(false)}
+                  className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={confirmApprove}
+                  className="flex-1 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium"
+                >
+                  Confirm Approval
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Reject Modal */}
+      {showRejectModal && selectedClaim && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
+            <div className="p-6 border-b border-gray-200">
+              <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
+                <XCircle className="h-6 w-6 text-red-600" />
+                Reject Claim
+              </h2>
+            </div>
+
+            <div className="p-6 space-y-4">
+              <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                <p className="text-sm text-red-900">
+                  You are about to reject this reimbursement claim:
+                </p>
+                <div className="mt-3 space-y-1 text-sm text-red-800">
+                  <p><strong>Claim Number:</strong> {selectedClaim.claimNumber}</p>
+                  <p><strong>Employee:</strong> {selectedClaim.employeeName}</p>
+                  <p><strong>Amount:</strong> ₹{selectedClaim.amount.toLocaleString('en-IN')}</p>
+                  <p><strong>Type:</strong> {selectedClaim.claimType}</p>
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Rejection Reason *
+                </label>
+                <textarea
+                  value={rejectionReason}
+                  onChange={(e) => setRejectionReason(e.target.value)}
+                  rows={4}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500"
+                  placeholder="Please provide a detailed reason for rejecting this claim..."
+                  required
+                />
+              </div>
+
+              <p className="text-xs text-gray-600">
+                The employee will be notified with this rejection reason. Please be clear and specific.
+              </p>
+
+              <div className="flex gap-3 pt-4">
+                <button
+                  onClick={() => setShowRejectModal(false)}
+                  className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={confirmReject}
+                  className="flex-1 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 font-medium"
+                >
+                  Confirm Rejection
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

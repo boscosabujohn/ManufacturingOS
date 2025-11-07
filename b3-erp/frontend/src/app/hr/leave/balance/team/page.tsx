@@ -1,18 +1,37 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
+import { useRouter } from 'next/navigation';
 import { Users, Search, Filter, X, Download, Calendar, AlertCircle, TrendingUp, UserCheck } from 'lucide-react';
 import { DataTable, Column } from '@/components/ui/DataTable';
 import { StatusBadge } from '@/components/ui/StatusBadge';
 import { mockTeamLeaveSummary, TeamMemberLeaveSummary } from '@/data/hr/leave-balances';
 
 export default function TeamLeaveBalancePage() {
+  const router = useRouter();
   const [teamMembers] = useState<TeamMemberLeaveSummary[]>(mockTeamLeaveSummary);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterShift, setFilterShift] = useState<string>('all');
   const [filterStatus, setFilterStatus] = useState<string>('all');
   const [filterDesignation, setFilterDesignation] = useState<string>('all');
   const [showFilters, setShowFilters] = useState(false);
+  const [selectedMember, setSelectedMember] = useState<TeamMemberLeaveSummary | null>(null);
+  const [isClient, setIsClient] = useState(false);
+
+  // Fix hydration issues with date formatting
+  React.useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  // Consistent date formatter
+  const formatDate = (dateString: string, includeYear = false) => {
+    const date = new Date(dateString);
+    const day = date.getDate().toString().padStart(2, '0');
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const month = months[date.getMonth()];
+    const year = date.getFullYear();
+    return includeYear ? `${day} ${month} ${year}` : `${day} ${month}`;
+  };
 
   // Get unique filter options
   const shifts = useMemo(() => {
@@ -165,7 +184,7 @@ export default function TeamLeaveBalancePage() {
       sortable: true,
       render: (value) => value ? (
         <span className="text-sm text-gray-600">
-          {new Date(value).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}
+          {formatDate(value, true)}
         </span>
       ) : (
         <span className="text-gray-400">-</span>
@@ -179,9 +198,9 @@ export default function TeamLeaveBalancePage() {
       render: (value) => value ? (
         <div className="text-xs">
           <div className="font-medium text-gray-900">
-            {new Date(value.fromDate).toLocaleDateString('en-GB', { day: '2-digit', month: 'short' })}
+            {formatDate(value.fromDate)}
             {value.fromDate !== value.toDate && (
-              <> - {new Date(value.toDate).toLocaleDateString('en-GB', { day: '2-digit', month: 'short' })}</>
+              <> - {formatDate(value.toDate)}</>
             )}
           </div>
           <div className="text-gray-500 flex items-center gap-1">
@@ -222,10 +241,10 @@ export default function TeamLeaveBalancePage() {
       render: (_, row) => (
         <div className="flex items-center justify-end gap-2">
           <button
-            className="text-blue-600 hover:text-blue-800 text-sm font-medium"
+            className="text-blue-600 hover:text-blue-800 text-sm font-medium hover:underline"
             onClick={(e) => {
               e.stopPropagation();
-              console.log('View details:', row);
+              setSelectedMember(row);
             }}
           >
             View Details
@@ -450,6 +469,184 @@ export default function TeamLeaveBalancePage() {
           <li>• Average leave utilization for the team is {avgUtilization}%</li>
         </ul>
       </div>
+
+      {/* Team Member Detail Modal */}
+      {selectedMember && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
+            {/* Modal Header */}
+            <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-6 rounded-t-lg flex items-center justify-between">
+              <div>
+                <h2 className="text-2xl font-bold">{selectedMember.employeeName}</h2>
+                <p className="text-blue-100 mt-1">
+                  {selectedMember.employeeCode} • {selectedMember.designation}
+                </p>
+              </div>
+              <button
+                onClick={() => setSelectedMember(null)}
+                className="p-2 hover:bg-white/20 rounded-lg transition-colors"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+
+            {/* Modal Content */}
+            <div className="p-6 space-y-6">
+              {/* Employee Information */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="bg-gray-50 rounded-lg p-3">
+                  <div className="text-xs text-gray-500 mb-1">Department</div>
+                  <div className="font-semibold text-gray-900">{selectedMember.department}</div>
+                </div>
+                <div className="bg-gray-50 rounded-lg p-3">
+                  <div className="text-xs text-gray-500 mb-1">Designation</div>
+                  <div className="font-semibold text-gray-900">{selectedMember.designation}</div>
+                </div>
+                {selectedMember.shift && (
+                  <div className="bg-gray-50 rounded-lg p-3">
+                    <div className="text-xs text-gray-500 mb-1">Shift</div>
+                    <div className="font-semibold text-gray-900">Shift {selectedMember.shift}</div>
+                  </div>
+                )}
+                <div className="bg-gray-50 rounded-lg p-3">
+                  <div className="text-xs text-gray-500 mb-1">Status</div>
+                  <div className="font-semibold text-gray-900 capitalize">
+                    {selectedMember.status.replace('-', ' ')}
+                  </div>
+                </div>
+              </div>
+
+              {/* Leave Summary Stats */}
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">Leave Balance Summary</h3>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg border border-blue-200 p-4">
+                    <div className="text-sm text-blue-700 font-medium mb-2">Total Entitlement</div>
+                    <div className="text-3xl font-bold text-blue-900">{selectedMember.totalEntitlement}</div>
+                    <div className="text-xs text-blue-600 mt-1">days per year</div>
+                  </div>
+
+                  <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg border border-red-200 p-4">
+                    <div className="text-sm text-red-700 font-medium mb-2">Taken</div>
+                    <div className="text-3xl font-bold text-red-900">{selectedMember.totalTaken}</div>
+                    <div className="text-xs text-red-600 mt-1">days used</div>
+                  </div>
+
+                  <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg border border-yellow-200 p-4">
+                    <div className="text-sm text-yellow-700 font-medium mb-2">Pending</div>
+                    <div className="text-3xl font-bold text-yellow-900">{selectedMember.totalPending}</div>
+                    <div className="text-xs text-yellow-600 mt-1">awaiting approval</div>
+                  </div>
+
+                  <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg border border-green-200 p-4">
+                    <div className="text-sm text-green-700 font-medium mb-2">Available</div>
+                    <div className="text-3xl font-bold text-green-900">{selectedMember.totalBalance}</div>
+                    <div className="text-xs text-green-600 mt-1">days remaining</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Utilization Chart */}
+              <div className="bg-gray-50 rounded-lg p-4">
+                <h4 className="text-sm font-semibold text-gray-700 mb-3">Leave Utilization</h4>
+                <div className="relative">
+                  <div className="h-4 bg-gray-200 rounded-full overflow-hidden">
+                    <div
+                      className="h-full bg-gradient-to-r from-blue-500 to-blue-600 rounded-full transition-all"
+                      style={{
+                        width: `${selectedMember.totalEntitlement > 0
+                          ? Math.round((selectedMember.totalTaken / selectedMember.totalEntitlement) * 100)
+                          : 0}%`
+                      }}
+                    />
+                  </div>
+                  <div className="flex items-center justify-between text-sm text-gray-600 mt-2">
+                    <span>
+                      {selectedMember.totalEntitlement > 0
+                        ? Math.round((selectedMember.totalTaken / selectedMember.totalEntitlement) * 100)
+                        : 0}% utilized
+                    </span>
+                    <span>{selectedMember.totalTaken} / {selectedMember.totalEntitlement} days</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Leave History */}
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">Leave Information</h3>
+                <div className="space-y-3">
+                  {selectedMember.lastLeaveDate && (
+                    <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                      <div className="flex items-center gap-3">
+                        <Calendar className="w-5 h-5 text-gray-500" />
+                        <div>
+                          <div className="text-sm font-medium text-gray-900">Last Leave Date</div>
+                          <div className="text-xs text-gray-600">Most recent leave taken</div>
+                        </div>
+                      </div>
+                      <div className="text-sm font-semibold text-gray-900">
+                        {formatDate(selectedMember.lastLeaveDate, true)}
+                      </div>
+                    </div>
+                  )}
+
+                  {selectedMember.upcomingLeave && (
+                    <div className="flex items-start justify-between p-3 bg-amber-50 border border-amber-200 rounded-lg">
+                      <div className="flex items-start gap-3">
+                        <AlertCircle className="w-5 h-5 text-amber-600 mt-0.5" />
+                        <div>
+                          <div className="text-sm font-medium text-amber-900">Upcoming Leave</div>
+                          <div className="text-xs text-amber-700 mt-1">
+                            {formatDate(selectedMember.upcomingLeave.fromDate)}
+                            {selectedMember.upcomingLeave.fromDate !== selectedMember.upcomingLeave.toDate && (
+                              <> - {formatDate(selectedMember.upcomingLeave.toDate, true)}</>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <div className="text-sm font-semibold text-amber-900">
+                          {selectedMember.upcomingLeave.days} day{selectedMember.upcomingLeave.days !== 1 ? 's' : ''}
+                        </div>
+                        <div className="text-xs text-amber-700 font-mono">
+                          {selectedMember.upcomingLeave.leaveType}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {!selectedMember.lastLeaveDate && !selectedMember.upcomingLeave && (
+                    <div className="text-center py-8 text-gray-500">
+                      <Calendar className="w-12 h-12 text-gray-300 mx-auto mb-2" />
+                      <p className="text-sm">No recent leave history</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex items-center gap-3 pt-4 border-t border-gray-200">
+                <button
+                  onClick={() => {
+                    setSelectedMember(null);
+                    // Navigate to employee profile or detailed leave view
+                    router.push(`/hr/employees/${selectedMember.employeeId}`);
+                  }}
+                  className="flex-1 px-4 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium transition-colors"
+                >
+                  View Employee Profile
+                </button>
+                <button
+                  onClick={() => setSelectedMember(null)}
+                  className="px-4 py-2.5 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 font-medium transition-colors"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

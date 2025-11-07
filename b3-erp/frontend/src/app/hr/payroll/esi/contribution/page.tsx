@@ -2,6 +2,12 @@
 
 import { useState, useMemo } from 'react';
 import { Heart, Search, Download, FileText, Users, DollarSign, TrendingUp } from 'lucide-react';
+import { toast } from '@/hooks/use-toast';
+import {
+  generateESIContributionReturn,
+  generateESIChallan,
+  type ESIContributionMonth as ESIContributionMonthType
+} from '@/lib/payroll/esiFileGenerator';
 
 interface EmployeeESIContribution {
   id: string;
@@ -148,6 +154,40 @@ export default function ESIContributionPage() {
 
   const departments = ['all', 'Production', 'Quality', 'Maintenance', 'Logistics', 'HR'];
 
+  // Handler: Download Return
+  const handleDownloadReturn = async () => {
+    try {
+      await generateESIContributionReturn(mockESIMonth);
+      toast({
+        title: "Success",
+        description: "ESI contribution return downloaded successfully",
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to download return. Please try again.",
+        variant: "destructive",
+      });
+    }
+  };
+
+  // Handler: Generate Challan
+  const handleGenerateChallan = async () => {
+    try {
+      await generateESIChallan(mockESIMonth);
+      toast({
+        title: "Success",
+        description: "ESI challan generated successfully",
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to generate challan. Please try again.",
+        variant: "destructive",
+      });
+    }
+  };
+
   const formatCurrency = (amount: number) => {
     return `₹${amount.toLocaleString('en-IN')}`;
   };
@@ -268,11 +308,17 @@ export default function ESIContributionPage() {
               </option>
             ))}
           </select>
-          <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+          <button
+            onClick={handleDownloadReturn}
+            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          >
             <Download className="h-4 w-4" />
             Download Return
           </button>
-          <button className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">
+          <button
+            onClick={handleGenerateChallan}
+            className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
+          >
             <FileText className="h-4 w-4" />
             ESI Challan
           </button>

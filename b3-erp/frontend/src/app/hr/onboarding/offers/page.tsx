@@ -1,8 +1,10 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { FileText, CheckCircle, Clock, XCircle, Send, Eye, Download, Plus } from 'lucide-react';
+import { FileText, CheckCircle, Clock, XCircle, Send, Eye, Download, Plus, Edit, AlertCircle } from 'lucide-react';
 import DataTable from '@/components/DataTable';
+import { toast } from '@/hooks/use-toast';
+import { useRouter } from 'next/navigation';
 
 interface OfferLetter {
   id: string;
@@ -24,8 +26,12 @@ interface OfferLetter {
 }
 
 export default function Page() {
+  const router = useRouter();
   const [selectedStatus, setSelectedStatus] = useState('all');
   const [showAddModal, setShowAddModal] = useState(false);
+  const [showDetailsModal, setShowDetailsModal] = useState(false);
+  const [showSendModal, setShowSendModal] = useState(false);
+  const [selectedOffer, setSelectedOffer] = useState<OfferLetter | null>(null);
 
   const mockOffers: OfferLetter[] = [
     {
@@ -117,6 +123,32 @@ export default function Page() {
     return <Icon className="h-4 w-4" />;
   };
 
+  const handleViewDetails = (offer: OfferLetter) => {
+    setSelectedOffer(offer);
+    setShowDetailsModal(true);
+  };
+
+  const handleDownload = (offer: OfferLetter) => {
+    toast({
+      title: "Downloading Offer Letter",
+      description: `Downloading ${offer.offerNumber} for ${offer.candidateName}`
+    });
+  };
+
+  const handleSendOffer = (offer: OfferLetter) => {
+    setSelectedOffer(offer);
+    setShowSendModal(true);
+  };
+
+  const confirmSendOffer = () => {
+    toast({
+      title: "Offer Letter Sent",
+      description: `Offer letter ${selectedOffer?.offerNumber} has been sent to ${selectedOffer?.candidateName}`
+    });
+    setShowSendModal(false);
+    setSelectedOffer(null);
+  };
+
   const columns = [
     { key: 'offerNumber', label: 'Offer No.', sortable: true,
       render: (v: string) => <div className="font-semibold text-gray-900">{v}</div>
@@ -172,15 +204,27 @@ export default function Page() {
     { key: 'actions', label: 'Actions', sortable: false,
       render: (_: any, row: OfferLetter) => (
         <div className="flex gap-2">
-          <button className="p-1 hover:bg-gray-100 rounded">
+          <button
+            onClick={() => handleViewDetails(row)}
+            className="p-1 hover:bg-gray-100 rounded"
+            title="View details"
+          >
             <Eye className="h-4 w-4 text-gray-600" />
           </button>
-          <button className="p-1 hover:bg-gray-100 rounded">
-            <Download className="h-4 w-4 text-gray-600" />
+          <button
+            onClick={() => handleDownload(row)}
+            className="p-1 hover:bg-blue-100 rounded"
+            title="Download offer letter"
+          >
+            <Download className="h-4 w-4 text-blue-600" />
           </button>
           {row.status === 'draft' && (
-            <button className="p-1 hover:bg-gray-100 rounded">
-              <Send className="h-4 w-4 text-blue-600" />
+            <button
+              onClick={() => handleSendOffer(row)}
+              className="p-1 hover:bg-green-100 rounded"
+              title="Send offer letter"
+            >
+              <Send className="h-4 w-4 text-green-600" />
             </button>
           )}
         </div>
@@ -310,6 +354,213 @@ export default function Page() {
           <li>• Candidates can accept/reject offers through the candidate portal</li>
         </ul>
       </div>
+
+      {/* View Details Modal */}
+      {showDetailsModal && selectedOffer && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="p-6 border-b border-gray-200 flex justify-between items-center sticky top-0 bg-white z-10">
+              <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
+                <FileText className="h-6 w-6 text-blue-600" />
+                Offer Letter Details
+              </h2>
+              <button
+                onClick={() => setShowDetailsModal(false)}
+                className="text-gray-400 hover:text-gray-600"
+              >
+                <XCircle className="h-6 w-6" />
+              </button>
+            </div>
+
+            <div className="p-6 space-y-6">
+              {/* Status Banner */}
+              <div className={`rounded-lg p-4 ${
+                selectedOffer.status === 'accepted' ? 'bg-green-50 border border-green-200' :
+                selectedOffer.status === 'rejected' ? 'bg-red-50 border border-red-200' :
+                selectedOffer.status === 'expired' ? 'bg-orange-50 border border-orange-200' :
+                selectedOffer.status === 'sent' ? 'bg-blue-50 border border-blue-200' :
+                'bg-gray-50 border border-gray-200'
+              }`}>
+                <div className="flex items-center gap-2">
+                  {getStatusIcon(selectedOffer.status)}
+                  <span className="font-semibold">
+                    Status: {selectedOffer.status.toUpperCase()}
+                  </span>
+                </div>
+              </div>
+
+              {/* Offer Details */}
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <p className="text-sm text-gray-600">Offer Number</p>
+                  <p className="font-semibold text-gray-900">{selectedOffer.offerNumber}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-600">Offer Date</p>
+                  <p className="font-semibold text-gray-900">
+                    {new Date(selectedOffer.offerDate).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-600">Candidate Name</p>
+                  <p className="font-semibold text-gray-900">{selectedOffer.candidateName}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-600">Designation</p>
+                  <p className="font-semibold text-gray-900">{selectedOffer.designation}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-600">Department</p>
+                  <p className="font-semibold text-gray-900">{selectedOffer.department}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-600">Reporting To</p>
+                  <p className="font-semibold text-gray-900">{selectedOffer.reportingTo}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-600">Location</p>
+                  <p className="font-semibold text-gray-900">{selectedOffer.location}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-600">Employment Type</p>
+                  <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-purple-100 text-purple-800">
+                    {selectedOffer.employmentType.toUpperCase()}
+                  </span>
+                </div>
+              </div>
+
+              {/* Compensation */}
+              <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+                <h3 className="font-semibold text-gray-900 mb-3">Compensation</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-sm text-gray-600">Annual CTC</p>
+                    <p className="text-2xl font-bold text-green-600">₹{(selectedOffer.ctc / 100000).toFixed(2)}L</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-600">Monthly Gross (Approx)</p>
+                    <p className="text-xl font-bold text-green-600">₹{(selectedOffer.ctc / 12).toLocaleString('en-IN')}</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Important Dates */}
+              <div className="bg-blue-50 rounded-lg p-4">
+                <h3 className="font-semibold text-gray-900 mb-3">Important Dates</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-sm text-gray-600">Joining Date</p>
+                    <p className="font-semibold text-gray-900">
+                      {new Date(selectedOffer.joiningDate).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-600">Valid Till</p>
+                    <p className="font-semibold text-gray-900">
+                      {new Date(selectedOffer.validTill).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}
+                    </p>
+                  </div>
+                  {selectedOffer.sentDate && (
+                    <div>
+                      <p className="text-sm text-gray-600">Sent Date</p>
+                      <p className="font-semibold text-gray-900">
+                        {new Date(selectedOffer.sentDate).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}
+                      </p>
+                    </div>
+                  )}
+                  {selectedOffer.respondedDate && (
+                    <div>
+                      <p className="text-sm text-gray-600">Responded Date</p>
+                      <p className="font-semibold text-gray-900">
+                        {new Date(selectedOffer.respondedDate).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Actions */}
+              <div className="flex gap-3 pt-4 border-t border-gray-200">
+                <button
+                  onClick={() => setShowDetailsModal(false)}
+                  className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium"
+                >
+                  Close
+                </button>
+                <button
+                  onClick={() => {
+                    handleDownload(selectedOffer);
+                    setShowDetailsModal(false);
+                  }}
+                  className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium flex items-center justify-center gap-2"
+                >
+                  <Download className="h-4 w-4" />
+                  Download Letter
+                </button>
+                {selectedOffer.status === 'draft' && (
+                  <button
+                    onClick={() => {
+                      setShowDetailsModal(false);
+                      handleSendOffer(selectedOffer);
+                    }}
+                    className="flex-1 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium flex items-center justify-center gap-2"
+                  >
+                    <Send className="h-4 w-4" />
+                    Send Offer
+                  </button>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Send Offer Confirmation Modal */}
+      {showSendModal && selectedOffer && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
+            <div className="p-6 border-b border-gray-200">
+              <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
+                <Send className="h-6 w-6 text-green-600" />
+                Send Offer Letter
+              </h2>
+            </div>
+
+            <div className="p-6 space-y-4">
+              <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                <p className="text-sm text-green-900">
+                  Are you sure you want to send this offer letter?
+                </p>
+                <div className="mt-3 space-y-1 text-sm text-green-800">
+                  <p><strong>Offer Number:</strong> {selectedOffer.offerNumber}</p>
+                  <p><strong>Candidate:</strong> {selectedOffer.candidateName}</p>
+                  <p><strong>Designation:</strong> {selectedOffer.designation}</p>
+                  <p><strong>CTC:</strong> ₹{(selectedOffer.ctc / 100000).toFixed(2)}L</p>
+                </div>
+              </div>
+
+              <p className="text-sm text-gray-600">
+                The candidate will receive the offer letter via email and can accept/reject through the candidate portal.
+              </p>
+
+              <div className="flex gap-3 pt-4">
+                <button
+                  onClick={() => setShowSendModal(false)}
+                  className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={confirmSendOffer}
+                  className="flex-1 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium"
+                >
+                  Send Offer
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

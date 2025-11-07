@@ -27,8 +27,12 @@ export default function PayrollAssignmentsPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedDepartment, setSelectedDepartment] = useState('all');
   const [selectedStatus, setSelectedStatus] = useState('all');
+  const [showBreakdownModal, setShowBreakdownModal] = useState(false);
+  const [showReviseModal, setShowReviseModal] = useState(false);
+  const [showHistoryModal, setShowHistoryModal] = useState(false);
+  const [selectedAssignment, setSelectedAssignment] = useState<EmployeeAssignment | null>(null);
 
-  const mockAssignments: EmployeeAssignment[] = [
+  const initialAssignments: EmployeeAssignment[] = [
     {
       id: 'ASN-001',
       employeeId: 'EMP001',
@@ -152,8 +156,50 @@ export default function PayrollAssignmentsPage() {
     }
   ];
 
+  const [assignments, setAssignments] = useState<EmployeeAssignment[]>(initialAssignments);
+
+  const handleViewBreakdown = (assignment: EmployeeAssignment) => {
+    setSelectedAssignment(assignment);
+    setShowBreakdownModal(true);
+  };
+
+  const handleReviseSalary = (assignment: EmployeeAssignment) => {
+    setSelectedAssignment(assignment);
+    setShowReviseModal(true);
+  };
+
+  const handleViewHistory = (assignment: EmployeeAssignment) => {
+    setSelectedAssignment(assignment);
+    setShowHistoryModal(true);
+  };
+
+  const handleApprove = (assignmentId: string) => {
+    setAssignments(assignments.map(a =>
+      a.id === assignmentId ? { ...a, status: 'active' as const } : a
+    ));
+  };
+
+  const handleSaveRevision = (newCTC: number, effectiveFrom: string) => {
+    if (selectedAssignment) {
+      setAssignments(assignments.map(a =>
+        a.id === selectedAssignment.id
+          ? {
+              ...a,
+              previousCTC: a.ctcAmount,
+              ctcAmount: newCTC,
+              effectiveFrom,
+              status: 'revised' as const,
+              revisionDate: effectiveFrom
+            }
+          : a
+      ));
+      setShowReviseModal(false);
+      setSelectedAssignment(null);
+    }
+  };
+
   const filteredAssignments = useMemo(() => {
-    return mockAssignments.filter(assignment => {
+    return assignments.filter(assignment => {
       const matchesSearch =
         assignment.employeeName.toLowerCase().includes(searchTerm.toLowerCase()) ||
         assignment.employeeId.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -162,13 +208,13 @@ export default function PayrollAssignmentsPage() {
       const matchesStatus = selectedStatus === 'all' || assignment.status === selectedStatus;
       return matchesSearch && matchesDepartment && matchesStatus;
     });
-  }, [searchTerm, selectedDepartment, selectedStatus]);
+  }, [assignments, searchTerm, selectedDepartment, selectedStatus]);
 
   const stats = {
-    total: mockAssignments.length,
-    active: mockAssignments.filter(a => a.status === 'active').length,
-    pending: mockAssignments.filter(a => a.status === 'pending').length,
-    revised: mockAssignments.filter(a => a.status === 'revised').length
+    total: assignments.length,
+    active: assignments.filter(a => a.status === 'active').length,
+    pending: assignments.filter(a => a.status === 'pending').length,
+    revised: assignments.filter(a => a.status === 'revised').length
   };
 
   const departments = ['all', 'Production', 'Quality', 'Maintenance', 'Logistics', 'HR'];
@@ -351,24 +397,44 @@ export default function PayrollAssignmentsPage() {
                 </div>
                 <div className="flex gap-2">
                   {assignment.status === 'pending' && (
-                    <button className="px-3 py-1 text-xs bg-green-600 text-white rounded hover:bg-green-700">
+                    <button
+                      onClick={() => handleApprove(assignment.id)}
+                      className="px-3 py-1 text-xs bg-green-600 text-white rounded hover:bg-green-700"
+                    >
                       Approve Assignment
                     </button>
                   )}
                   {assignment.status === 'active' && (
                     <>
-                      <button className="px-3 py-1 text-xs bg-blue-600 text-white rounded hover:bg-blue-700">
+                      <button
+                        onClick={() => handleReviseSalary(assignment)}
+                        className="px-3 py-1 text-xs bg-blue-600 text-white rounded hover:bg-blue-700"
+                      >
                         Revise Salary
                       </button>
-                      <button className="px-3 py-1 text-xs bg-purple-600 text-white rounded hover:bg-purple-700">
+                      <button
+                        onClick={() => handleViewBreakdown(assignment)}
+                        className="px-3 py-1 text-xs bg-purple-600 text-white rounded hover:bg-purple-700"
+                      >
                         View Breakdown
                       </button>
                     </>
                   )}
                   {assignment.status === 'revised' && (
-                    <button className="px-3 py-1 text-xs bg-gray-600 text-white rounded hover:bg-gray-700">
-                      View Revision History
-                    </button>
+                    <>
+                      <button
+                        onClick={() => handleViewHistory(assignment)}
+                        className="px-3 py-1 text-xs bg-gray-600 text-white rounded hover:bg-gray-700"
+                      >
+                        View Revision History
+                      </button>
+                      <button
+                        onClick={() => handleViewBreakdown(assignment)}
+                        className="px-3 py-1 text-xs bg-purple-600 text-white rounded hover:bg-purple-700"
+                      >
+                        View Breakdown
+                      </button>
+                    </>
                   )}
                 </div>
               </div>
@@ -387,6 +453,406 @@ export default function PayrollAssignmentsPage() {
           <li>• Changes take effect from the specified effective date</li>
           <li>• Bulk assignment allows assigning templates to multiple employees at once</li>
         </ul>
+      </div>
+
+      {showBreakdownModal && selectedAssignment && (
+        <SalaryBreakdownModal
+          assignment={selectedAssignment}
+          onClose={() => {
+            setShowBreakdownModal(false);
+            setSelectedAssignment(null);
+          }}
+        />
+      )}
+
+      {showReviseModal && selectedAssignment && (
+        <ReviseSalaryModal
+          assignment={selectedAssignment}
+          onClose={() => {
+            setShowReviseModal(false);
+            setSelectedAssignment(null);
+          }}
+          onSave={handleSaveRevision}
+        />
+      )}
+
+      {showHistoryModal && selectedAssignment && (
+        <RevisionHistoryModal
+          assignment={selectedAssignment}
+          onClose={() => {
+            setShowHistoryModal(false);
+            setSelectedAssignment(null);
+          }}
+        />
+      )}
+    </div>
+  );
+}
+
+interface SalaryBreakdownModalProps {
+  assignment: EmployeeAssignment;
+  onClose: () => void;
+}
+
+function SalaryBreakdownModal({ assignment, onClose }: SalaryBreakdownModalProps) {
+  const formatCurrency = (amount: number) => `₹${amount.toLocaleString('en-IN')}`;
+
+  // Mock salary breakdown based on template
+  const breakdown = {
+    earnings: [
+      { code: 'BASIC', name: 'Basic Salary', calculation: '50% of CTC', amount: assignment.ctcAmount * 0.5 },
+      { code: 'HRA', name: 'House Rent Allowance', calculation: '40% of Basic', amount: assignment.ctcAmount * 0.5 * 0.4 },
+      { code: 'DA', name: 'Dearness Allowance', calculation: '10% of Basic', amount: assignment.ctcAmount * 0.5 * 0.1 },
+      { code: 'CONV', name: 'Conveyance Allowance', calculation: 'Flat', amount: 19200 },
+      { code: 'MED', name: 'Medical Allowance', calculation: 'Flat', amount: 15000 }
+    ],
+    deductions: [
+      { code: 'PF_EMP', name: 'PF (Employee)', calculation: '12% of Basic', amount: assignment.ctcAmount * 0.5 * 0.12 },
+      { code: 'ESI_EMP', name: 'ESI (Employee)', calculation: '0.75% of Gross', amount: assignment.ctcAmount * 0.0075 },
+      { code: 'PT', name: 'Professional Tax', calculation: 'Flat', amount: 2400 }
+    ]
+  };
+
+  const totalEarnings = breakdown.earnings.reduce((sum, item) => sum + item.amount, 0);
+  const totalDeductions = breakdown.deductions.reduce((sum, item) => sum + item.amount, 0);
+  const netPay = totalEarnings - totalDeductions;
+  const monthlyNet = netPay / 12;
+
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+      <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
+        <div className="sticky top-0 bg-gradient-to-r from-purple-600 to-purple-700 text-white p-6 rounded-t-lg">
+          <h2 className="text-2xl font-bold">Salary Breakdown</h2>
+          <p className="text-purple-100 text-sm mt-1">
+            {assignment.employeeName} ({assignment.employeeId})
+          </p>
+        </div>
+
+        <div className="p-6">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <p className="text-sm text-blue-600 font-medium">Template</p>
+                <p className="text-lg font-bold text-blue-900">{assignment.templateName}</p>
+                <p className="text-xs text-blue-700">{assignment.templateCode}</p>
+              </div>
+              <div>
+                <p className="text-sm text-blue-600 font-medium">Annual CTC</p>
+                <p className="text-lg font-bold text-blue-900">{formatCurrency(assignment.ctcAmount)}</p>
+                <p className="text-xs text-blue-700">Effective from: {new Date(assignment.effectiveFrom).toLocaleDateString('en-IN')}</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="space-y-4">
+            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+              <h3 className="font-semibold text-green-900 mb-3 flex items-center justify-between">
+                <span>Earnings</span>
+                <span className="text-lg">{formatCurrency(totalEarnings)}</span>
+              </h3>
+              <div className="space-y-2">
+                {breakdown.earnings.map((item, idx) => (
+                  <div key={idx} className="flex items-center justify-between text-sm">
+                    <div className="flex-1">
+                      <span className="font-medium text-green-700">{item.name}</span>
+                      <span className="text-green-600 ml-2 text-xs">({item.calculation})</span>
+                    </div>
+                    <span className="font-bold text-green-900">{formatCurrency(item.amount)}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+              <h3 className="font-semibold text-red-900 mb-3 flex items-center justify-between">
+                <span>Deductions</span>
+                <span className="text-lg">{formatCurrency(totalDeductions)}</span>
+              </h3>
+              <div className="space-y-2">
+                {breakdown.deductions.map((item, idx) => (
+                  <div key={idx} className="flex items-center justify-between text-sm">
+                    <div className="flex-1">
+                      <span className="font-medium text-red-700">{item.name}</span>
+                      <span className="text-red-600 ml-2 text-xs">({item.calculation})</span>
+                    </div>
+                    <span className="font-bold text-red-900">{formatCurrency(item.amount)}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-r from-purple-50 to-purple-100 border border-purple-200 rounded-lg p-4">
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <p className="text-sm text-purple-600 font-medium">Annual Net Pay</p>
+                  <p className="text-2xl font-bold text-purple-900">{formatCurrency(netPay)}</p>
+                </div>
+                <div>
+                  <p className="text-sm text-purple-600 font-medium">Monthly Net Pay</p>
+                  <p className="text-2xl font-bold text-purple-900">{formatCurrency(monthlyNet)}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex justify-end pt-4 mt-4 border-t border-gray-200">
+            <button
+              onClick={onClose}
+              className="px-6 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+interface ReviseSalaryModalProps {
+  assignment: EmployeeAssignment;
+  onClose: () => void;
+  onSave: (newCTC: number, effectiveFrom: string) => void;
+}
+
+function ReviseSalaryModal({ assignment, onClose, onSave }: ReviseSalaryModalProps) {
+  const [newCTC, setNewCTC] = useState(assignment.ctcAmount);
+  const [effectiveFrom, setEffectiveFrom] = useState('');
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!effectiveFrom) {
+      alert('Please select effective date');
+      return;
+    }
+    if (newCTC <= 0) {
+      alert('Please enter valid CTC amount');
+      return;
+    }
+    onSave(newCTC, effectiveFrom);
+  };
+
+  const increment = newCTC - assignment.ctcAmount;
+  const incrementPercentage = ((increment / assignment.ctcAmount) * 100).toFixed(2);
+
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+      <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl">
+        <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-6 rounded-t-lg">
+          <h2 className="text-2xl font-bold">Revise Salary</h2>
+          <p className="text-blue-100 text-sm mt-1">
+            {assignment.employeeName} ({assignment.employeeId})
+          </p>
+        </div>
+
+        <form onSubmit={handleSubmit} className="p-6">
+          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 mb-6">
+            <h3 className="font-semibold text-gray-900 mb-3">Current Details</h3>
+            <div className="grid grid-cols-2 gap-4 text-sm">
+              <div>
+                <p className="text-gray-600">Current CTC</p>
+                <p className="font-bold text-gray-900">₹{(assignment.ctcAmount / 100000).toFixed(2)}L</p>
+              </div>
+              <div>
+                <p className="text-gray-600">Template</p>
+                <p className="font-bold text-gray-900">{assignment.templateName}</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="space-y-4 mb-6">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                New CTC (Annual) *
+              </label>
+              <input
+                type="number"
+                value={newCTC}
+                onChange={(e) => setNewCTC(parseFloat(e.target.value) || 0)}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                placeholder="Enter new CTC amount"
+                step="1000"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Effective From *
+              </label>
+              <input
+                type="date"
+                value={effectiveFrom}
+                onChange={(e) => setEffectiveFrom(e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+          </div>
+
+          {increment !== 0 && (
+            <div className={`rounded-lg p-4 mb-6 ${increment > 0 ? 'bg-green-50 border border-green-200' : 'bg-red-50 border border-red-200'}`}>
+              <h3 className={`font-semibold mb-2 ${increment > 0 ? 'text-green-900' : 'text-red-900'}`}>
+                Revision Summary
+              </h3>
+              <div className="grid grid-cols-3 gap-4 text-sm">
+                <div>
+                  <p className={increment > 0 ? 'text-green-600' : 'text-red-600'}>Increment/Decrement</p>
+                  <p className={`font-bold ${increment > 0 ? 'text-green-900' : 'text-red-900'}`}>
+                    {increment > 0 ? '+' : ''}₹{(increment / 100000).toFixed(2)}L
+                  </p>
+                </div>
+                <div>
+                  <p className={increment > 0 ? 'text-green-600' : 'text-red-600'}>Percentage</p>
+                  <p className={`font-bold ${increment > 0 ? 'text-green-900' : 'text-red-900'}`}>
+                    {incrementPercentage > '0' ? '+' : ''}{incrementPercentage}%
+                  </p>
+                </div>
+                <div>
+                  <p className={increment > 0 ? 'text-green-600' : 'text-red-600'}>New CTC</p>
+                  <p className={`font-bold ${increment > 0 ? 'text-green-900' : 'text-red-900'}`}>
+                    ₹{(newCTC / 100000).toFixed(2)}L
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
+
+          <div className="flex gap-3 justify-end pt-4 border-t border-gray-200">
+            <button
+              type="button"
+              onClick={onClose}
+              className="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+            >
+              Save Revision
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+}
+
+interface RevisionHistoryModalProps {
+  assignment: EmployeeAssignment;
+  onClose: () => void;
+}
+
+function RevisionHistoryModal({ assignment, onClose }: RevisionHistoryModalProps) {
+  const formatCurrency = (amount: number) => `₹${(amount / 100000).toFixed(2)}L`;
+
+  // Mock revision history
+  const history = [
+    {
+      date: assignment.revisionDate || assignment.effectiveFrom,
+      previousCTC: assignment.previousCTC || 0,
+      newCTC: assignment.ctcAmount,
+      increment: assignment.ctcAmount - (assignment.previousCTC || 0),
+      percentage: assignment.previousCTC ? ((assignment.ctcAmount - assignment.previousCTC) / assignment.previousCTC * 100).toFixed(2) : '0',
+      reason: 'Annual increment',
+      approvedBy: 'HR Manager'
+    },
+    {
+      date: assignment.joiningDate,
+      previousCTC: 0,
+      newCTC: assignment.previousCTC || assignment.ctcAmount,
+      increment: assignment.previousCTC || assignment.ctcAmount,
+      percentage: '100',
+      reason: 'Initial assignment',
+      approvedBy: 'HR Admin'
+    }
+  ];
+
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+      <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
+        <div className="sticky top-0 bg-gradient-to-r from-gray-600 to-gray-700 text-white p-6 rounded-t-lg">
+          <h2 className="text-2xl font-bold">Salary Revision History</h2>
+          <p className="text-gray-100 text-sm mt-1">
+            {assignment.employeeName} ({assignment.employeeId})
+          </p>
+        </div>
+
+        <div className="p-6">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+            <div className="grid grid-cols-3 gap-4 text-sm">
+              <div>
+                <p className="text-blue-600">Current CTC</p>
+                <p className="font-bold text-blue-900">{formatCurrency(assignment.ctcAmount)}</p>
+              </div>
+              <div>
+                <p className="text-blue-600">Previous CTC</p>
+                <p className="font-bold text-blue-900">{formatCurrency(assignment.previousCTC || 0)}</p>
+              </div>
+              <div>
+                <p className="text-blue-600">Last Revision</p>
+                <p className="font-bold text-blue-900">
+                  {assignment.revisionDate ? new Date(assignment.revisionDate).toLocaleDateString('en-IN') : 'N/A'}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="space-y-4">
+            {history.map((item, idx) => (
+              <div key={idx} className="bg-white border border-gray-200 rounded-lg p-4">
+                <div className="flex items-start justify-between mb-3">
+                  <div>
+                    <p className="font-semibold text-gray-900">
+                      {new Date(item.date).toLocaleDateString('en-IN', {
+                        day: 'numeric',
+                        month: 'long',
+                        year: 'numeric'
+                      })}
+                    </p>
+                    <p className="text-sm text-gray-600">{item.reason}</p>
+                  </div>
+                  <span className={`px-3 py-1 text-xs font-semibold rounded-full ${
+                    item.increment > 0 ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-700'
+                  }`}>
+                    {item.increment > 0 ? `+${item.percentage}%` : 'Initial'}
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-3 gap-4 text-sm">
+                  {item.previousCTC > 0 && (
+                    <div>
+                      <p className="text-gray-600">Previous CTC</p>
+                      <p className="font-bold text-gray-900">{formatCurrency(item.previousCTC)}</p>
+                    </div>
+                  )}
+                  <div>
+                    <p className="text-gray-600">New CTC</p>
+                    <p className="font-bold text-gray-900">{formatCurrency(item.newCTC)}</p>
+                  </div>
+                  {item.increment > 0 && item.previousCTC > 0 && (
+                    <div>
+                      <p className="text-gray-600">Increment</p>
+                      <p className="font-bold text-green-700">+{formatCurrency(item.increment)}</p>
+                    </div>
+                  )}
+                </div>
+
+                <div className="mt-3 pt-3 border-t border-gray-200 text-xs text-gray-500">
+                  Approved by: {item.approvedBy}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="flex justify-end pt-4 mt-4 border-t border-gray-200">
+            <button
+              onClick={onClose}
+              className="px-6 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700"
+            >
+              Close
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

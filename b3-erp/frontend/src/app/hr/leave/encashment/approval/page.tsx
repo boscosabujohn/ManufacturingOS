@@ -83,7 +83,8 @@ export default function EncashmentApprovalPage() {
   const [filterDepartment, setFilterDepartment] = useState<string>('All Departments');
   const [filterStatus, setFilterStatus] = useState<string>('pending_approval');
   const [showFilters, setShowFilters] = useState(false);
-  const [selectedRequest, setSelectedRequest] = useState<string | null>(null);
+  const [selectedRequest, setSelectedRequest] = useState<EncashmentApproval | null>(null);
+  const [approvalAction, setApprovalAction] = useState<'approve' | 'reject' | null>(null);
 
   const filteredData = useMemo(() => {
     return approvalQueue.filter(req => {
@@ -188,15 +189,35 @@ export default function EncashmentApprovalPage() {
         <div className="flex items-center justify-end gap-2">
           {row.status === 'pending_approval' && (
             <>
-              <button onClick={(e) => { e.stopPropagation(); }} className="text-green-600 hover:text-green-800 text-sm font-medium">
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setSelectedRequest(row);
+                  setApprovalAction('approve');
+                }}
+                className="text-green-600 hover:text-green-800 text-sm font-medium"
+              >
                 Approve
               </button>
-              <button onClick={(e) => { e.stopPropagation(); }} className="text-red-600 hover:text-red-800 text-sm font-medium">
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setSelectedRequest(row);
+                  setApprovalAction('reject');
+                }}
+                className="text-red-600 hover:text-red-800 text-sm font-medium"
+              >
                 Reject
               </button>
             </>
           )}
-          <button onClick={(e) => { e.stopPropagation(); }} className="text-blue-600 hover:text-blue-800 text-sm font-medium">
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setSelectedRequest(row);
+            }}
+            className="text-blue-600 hover:text-blue-800 text-sm font-medium"
+          >
             View
           </button>
         </div>
@@ -335,6 +356,245 @@ export default function EncashmentApprovalPage() {
           <li>✓ Approved requests forwarded to Finance for processing</li>
           <li>✓ Rejection notifications sent to employee with explanation</li>
         </ul>
+      </div>
+
+      {/* Approval/Rejection Modal */}
+      {selectedRequest && approvalAction && (
+        <ApprovalActionModal
+          request={selectedRequest}
+          action={approvalAction}
+          onClose={() => {
+            setSelectedRequest(null);
+            setApprovalAction(null);
+          }}
+          onConfirm={(comments, paymentMode) => {
+            // Update the approval queue
+            setApprovalQueue(approvalQueue.map(req =>
+              req.id === selectedRequest.id
+                ? {
+                    ...req,
+                    status: approvalAction === 'approve' ? 'approved' : 'rejected',
+                    approvedBy: 'Current User',
+                    approvedOn: new Date().toISOString(),
+                    rejectionReason: approvalAction === 'reject' ? comments : undefined,
+                    paymentMode: approvalAction === 'approve' ? paymentMode : undefined
+                  }
+                : req
+            ));
+            setSelectedRequest(null);
+            setApprovalAction(null);
+          }}
+        />
+      )}
+    </div>
+  );
+}
+
+// Approval Action Modal Component
+function ApprovalActionModal({
+  request,
+  action,
+  onClose,
+  onConfirm
+}: {
+  request: EncashmentApproval;
+  action: 'approve' | 'reject';
+  onClose: () => void;
+  onConfirm: (comments: string, paymentMode?: 'salary' | 'cheque' | 'bank_transfer') => void;
+}) {
+  const [comments, setComments] = useState('');
+  const [paymentMode, setPaymentMode] = useState<'salary' | 'cheque' | 'bank_transfer'>('salary');
+  const [currentStep, setCurrentStep] = useState(1);
+
+  const isApprove = action === 'approve';
+
+  const handleConfirm = () => {
+    if (action === 'reject' && !comments.trim()) {
+      alert('Please provide a reason for rejection');
+      return;
+    }
+    onConfirm(comments, isApprove ? paymentMode : undefined);
+  };
+
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+      <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
+        {/* Modal Header */}
+        <div className={`sticky top-0 p-6 rounded-t-lg flex items-center justify-between ${
+          isApprove ? 'bg-gradient-to-r from-green-600 to-emerald-600' : 'bg-gradient-to-r from-red-600 to-rose-600'
+        } text-white`}>
+          <div>
+            <h2 className="text-2xl font-bold">
+              {isApprove ? 'Approve' : 'Reject'} Encashment Request
+            </h2>
+            <p className={`mt-1 ${isApprove ? 'text-green-100' : 'text-red-100'}`}>
+              Request ID: {request.id}
+            </p>
+          </div>
+          <button
+            onClick={onClose}
+            className="p-2 hover:bg-white/20 rounded-lg transition-colors"
+          >
+            <X className="w-6 h-6" />
+          </button>
+        </div>
+
+        {/* Modal Content */}
+        <div className="p-6 space-y-6">
+          {/* Workflow Progress */}
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <div className="flex items-center justify-between mb-3">
+              <h3 className="text-sm font-semibold text-blue-900">Approval Workflow</h3>
+              <span className="text-xs text-blue-700">Step {currentStep} of 3</span>
+            </div>
+            <div className="flex items-center gap-2">
+              {['Manager', 'HR', 'Finance'].map((step, index) => (
+                <React.Fragment key={step}>
+                  <div className={`flex-1 flex items-center gap-2 px-3 py-2 rounded-lg ${
+                    index + 1 === currentStep
+                      ? 'bg-blue-600 text-white'
+                      : index + 1 < currentStep
+                      ? 'bg-green-100 text-green-800'
+                      : 'bg-gray-100 text-gray-600'
+                  }`}>
+                    {index + 1 < currentStep && <CheckCircle className="w-4 h-4" />}
+                    <span className="text-xs font-medium">{step}</span>
+                  </div>
+                  {index < 2 && <ArrowRight className="w-4 h-4 text-gray-400" />}
+                </React.Fragment>
+              ))}
+            </div>
+          </div>
+
+          {/* Employee & Request Details */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="bg-gray-50 rounded-lg p-4">
+              <h4 className="text-sm font-semibold text-gray-700 mb-3">Employee Details</h4>
+              <div className="space-y-2 text-sm">
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Name:</span>
+                  <span className="font-medium text-gray-900">{request.employeeName}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Code:</span>
+                  <span className="font-medium text-gray-900">{request.employeeCode}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Department:</span>
+                  <span className="font-medium text-gray-900">{request.department}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Designation:</span>
+                  <span className="font-medium text-gray-900">{request.designation}</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-gray-50 rounded-lg p-4">
+              <h4 className="text-sm font-semibold text-gray-700 mb-3">Request Details</h4>
+              <div className="space-y-2 text-sm">
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Leave Type:</span>
+                  <span className="font-medium text-gray-900">{request.leaveType}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Available:</span>
+                  <span className="font-medium text-gray-900">{request.availableBalance} days</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Requested:</span>
+                  <span className="font-medium text-blue-600">{request.requestedDays} days</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Amount:</span>
+                  <span className="font-semibold text-green-600 text-lg">₹{request.totalAmount.toLocaleString()}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Eligibility Check */}
+          <div className={`rounded-lg p-4 border-2 ${
+            request.eligibility.isEligible
+              ? 'bg-green-50 border-green-200'
+              : 'bg-red-50 border-red-200'
+          }`}>
+            <h4 className={`text-sm font-semibold mb-2 flex items-center gap-2 ${
+              request.eligibility.isEligible ? 'text-green-900' : 'text-red-900'
+            }`}>
+              {request.eligibility.isEligible ? (
+                <><CheckCircle className="w-5 h-5" /> Eligibility: Passed</>
+              ) : (
+                <><AlertCircle className="w-5 h-5" /> Eligibility: Failed</>
+              )}
+            </h4>
+            {request.eligibility.issues && request.eligibility.issues.length > 0 && (
+              <ul className={`text-sm space-y-1 ml-7 ${request.eligibility.isEligible ? 'text-green-800' : 'text-red-800'}`}>
+                {request.eligibility.issues.map((issue, index) => (
+                  <li key={index}>• {issue}</li>
+                ))}
+              </ul>
+            )}
+            {request.eligibility.isEligible && (
+              <p className="text-sm text-green-800 ml-7">
+                Max allowed: {request.eligibility.maxAllowed} days | Min retention: {request.eligibility.minRetention} days
+              </p>
+            )}
+          </div>
+
+          {/* Payment Mode (for approval) */}
+          {isApprove && (
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Payment Mode <span className="text-red-500">*</span>
+              </label>
+              <select
+                value={paymentMode}
+                onChange={(e) => setPaymentMode(e.target.value as any)}
+                className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+              >
+                <option value="salary">With Salary</option>
+                <option value="bank_transfer">Direct Bank Transfer</option>
+                <option value="cheque">Cheque</option>
+              </select>
+            </div>
+          )}
+
+          {/* Comments */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              {isApprove ? 'Comments (Optional)' : 'Rejection Reason'} {!isApprove && <span className="text-red-500">*</span>}
+            </label>
+            <textarea
+              value={comments}
+              onChange={(e) => setComments(e.target.value)}
+              rows={4}
+              className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              placeholder={isApprove ? 'Add any notes or instructions...' : 'Provide a clear reason for rejection...'}
+              required={!isApprove}
+            />
+          </div>
+
+          {/* Action Buttons */}
+          <div className="flex items-center gap-3 pt-4 border-t border-gray-200">
+            <button
+              onClick={handleConfirm}
+              className={`flex-1 px-4 py-2.5 rounded-lg font-medium transition-colors ${
+                isApprove
+                  ? 'bg-green-600 text-white hover:bg-green-700'
+                  : 'bg-red-600 text-white hover:bg-red-700'
+              }`}
+            >
+              {isApprove ? 'Confirm Approval' : 'Confirm Rejection'}
+            </button>
+            <button
+              onClick={onClose}
+              className="px-4 py-2.5 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 font-medium transition-colors"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

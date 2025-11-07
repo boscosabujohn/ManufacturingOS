@@ -1354,10 +1354,11 @@ const menuItems: MenuItem[] = [
         href: '#',
         description: 'Customer invoices & payments',
         subItems: [
+          { id: 'ar-dashboard', name: 'Receivables Dashboard', href: '/finance/receivables', description: 'AR overview' },
           { id: 'ar-invoices', name: 'Customer Invoices', href: '/finance/receivables/invoices', description: 'Sales invoices' },
-          { id: 'ar-payments', name: 'Customer Payments', href: '/finance/receivables', description: 'Payment receipts' },
+          { id: 'ar-collections', name: 'Collections', href: '/finance/receivables/collections', description: 'Payment collections' },
           { id: 'credit-management', name: 'Credit Management', href: '/finance/receivables/credit-management', description: 'Credit limits' },
-          { id: 'aging-report', name: 'Aging Report', href: '/finance/receivables/aging', description: 'AR aging' },
+          { id: 'aging-report', name: 'Aging Report', href: '/finance/receivables/aging', description: 'AR aging analysis' },
         ],
       },
       {
@@ -1366,9 +1367,11 @@ const menuItems: MenuItem[] = [
         href: '#',
         description: 'Vendor bills & payments',
         subItems: [
-          { id: 'ap-bills', name: 'Vendor Bills', href: '/finance/payables', description: 'Purchase bills' },
+          { id: 'ap-dashboard', name: 'Payables Dashboard', href: '/finance/payables', description: 'AP overview' },
+          { id: 'vendor-bills', name: 'Vendor Bills', href: '/finance/payables/bills', description: 'Manage vendor invoices' },
           { id: 'ap-payments', name: 'Vendor Payments', href: '/finance/payables/payments', description: 'Payment processing' },
-          { id: 'aging-payables', name: 'Aging Report', href: '/finance/payables/aging', description: 'AP aging' },
+          { id: 'vendor-management', name: 'Vendor Management', href: '/finance/payables/vendor-management', description: 'Vendor credit & terms' },
+          { id: 'aging-payables', name: 'Aging Report', href: '/finance/payables/aging', description: 'AP aging analysis' },
         ],
       },
       {
@@ -1377,6 +1380,7 @@ const menuItems: MenuItem[] = [
         href: '#',
         description: 'Cash flow & banking',
         subItems: [
+          { id: 'cash-dashboard', name: 'Cash Dashboard', href: '/finance/cash', description: 'Cash overview' },
           { id: 'bank-accounts', name: 'Bank Accounts', href: '/finance/cash/bank-accounts', description: 'Bank account setup' },
           { id: 'bank-reconciliation', name: 'Bank Reconciliation', href: '/finance/cash/bank-reconciliation', description: 'Reconcile statements' },
           { id: 'cash-flow-forecast', name: 'Cash Flow Forecast', href: '/finance/cash/cash-flow-forecast', description: 'Cash projections' },
@@ -1390,6 +1394,7 @@ const menuItems: MenuItem[] = [
         href: '#',
         description: 'Asset management',
         subItems: [
+          { id: 'assets-dashboard', name: 'Assets Dashboard', href: '/finance/assets', description: 'Asset overview' },
           { id: 'asset-register', name: 'Asset Register', href: '/finance/assets/fixed-assets', description: 'Asset list' },
           { id: 'depreciation', name: 'Depreciation', href: '/finance/assets/depreciation', description: 'Calculate depreciation' },
           { id: 'asset-disposal', name: 'Asset Disposal', href: '/finance/assets/asset-disposal', description: 'Dispose assets' },
@@ -1689,6 +1694,7 @@ const menuItems: MenuItem[] = [
             subItems: [
               { id: 'encashment-requests', name: 'Encashment Requests', href: '/hr/leave/encashment/requests', description: 'Apply for encashment' },
               { id: 'encashment-approval', name: 'Encashment Approval', href: '/hr/leave/encashment/approval', description: 'Approve requests' },
+              { id: 'encashment-workflow', name: 'Approval Workflow', href: '/hr/leave/encashment/workflow', description: 'Configure workflows' },
               { id: 'encashment-history', name: 'Encashment History', href: '/hr/leave/encashment/history', description: 'Past encashments' },
             ],
           },
@@ -1871,6 +1877,27 @@ const menuItems: MenuItem[] = [
                 ],
               },
               { id: 'travel-advances', name: 'Travel Advances', href: '/hr/travel/advances', description: 'Travel advance' },
+              {
+                id: 'travel-expenses',
+                name: 'Travel Expenses',
+                href: '#',
+                description: 'Expense management',
+                subItems: [
+                  { id: 'expenses-list', name: 'My Expenses', href: '/hr/travel/expenses', description: 'View all expenses' },
+                  { id: 'submit-expenses', name: 'Submit Expenses', href: '/hr/travel/expenses/submit', description: 'Submit new expense' },
+                ],
+              },
+              {
+                id: 'corporate-cards',
+                name: 'Corporate Cards',
+                href: '#',
+                description: 'Card management',
+                subItems: [
+                  { id: 'card-management', name: 'Card Management', href: '/hr/travel/cards', description: 'Manage cards' },
+                  { id: 'card-transactions', name: 'Transactions', href: '/hr/travel/cards/transactions', description: 'Card transactions' },
+                ],
+              },
+              { id: 'travel-reports', name: 'Travel Analytics', href: '/hr/travel/reports', description: 'Travel insights' },
               { id: 'travel-history', name: 'Travel History', href: '/hr/travel/history', description: 'Past travels' },
             ],
           },
@@ -1884,17 +1911,6 @@ const menuItems: MenuItem[] = [
               { id: 'processing-claims', name: 'Processing', href: '/hr/reimbursement/processing', description: 'In progress' },
               { id: 'paid-claims', name: 'Paid Claims', href: '/hr/reimbursement/paid', description: 'Completed payments' },
               { id: 'settlement', name: 'Settlement', href: '/hr/reimbursement/settlement', description: 'Final settlement' },
-            ],
-          },
-          {
-            id: 'corporate-cards',
-            name: 'Corporate Cards',
-            href: '#',
-            description: 'Card management',
-            subItems: [
-              { id: 'card-management', name: 'Card Management', href: '/hr/cards/management', description: 'Manage cards' },
-              { id: 'card-transactions', name: 'Transactions', href: '/hr/cards/transactions', description: 'Card transactions' },
-              { id: 'card-reconciliation', name: 'Reconciliation', href: '/hr/cards/reconciliation', description: 'Reconcile expenses' },
             ],
           },
           {
@@ -1935,6 +1951,7 @@ const menuItems: MenuItem[] = [
             href: '#',
             description: 'New joiners',
             subItems: [
+              { id: 'onboarding-dashboard', name: '📊 Onboarding Dashboard', href: '/hr/onboarding', description: 'Overview & tracking' },
               {
                 id: 'pre-joining',
                 name: 'Pre-joining',
@@ -1980,6 +1997,7 @@ const menuItems: MenuItem[] = [
             href: '#',
             description: 'Probation period',
             subItems: [
+              { id: 'probation-dashboard', name: '📊 Probation Dashboard', href: '/hr/probation', description: 'Overview & tracking' },
               { id: 'probation-tracking', name: 'Probation Tracking', href: '/hr/probation/tracking', description: 'Monitor probation' },
               { id: 'review-schedule', name: 'Review Schedule', href: '/hr/probation/reviews', description: 'Performance reviews' },
               { id: 'feedback-collection', name: 'Feedback Collection', href: '/hr/probation/feedback', description: 'Gather feedback' },
@@ -1992,6 +2010,7 @@ const menuItems: MenuItem[] = [
             href: '#',
             description: 'Employee exit',
             subItems: [
+              { id: 'offboarding-dashboard', name: '📊 Offboarding Dashboard', href: '/hr/offboarding', description: 'Overview & tracking' },
               {
                 id: 'resignations',
                 name: 'Resignations',

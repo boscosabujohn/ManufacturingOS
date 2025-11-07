@@ -324,7 +324,7 @@ export default function InboundShippingPage() {
                       <MapPin className="w-4 h-4 text-blue-500 flex-shrink-0 mt-0.5" />
                       <div>
                         <div className="text-xs text-gray-700">{shipment.origin}</div>
-                        <div className="text-xs text-gray-400 my-1">“</div>
+                        <div className="text-xs text-gray-400 my-1">â†’</div>
                         <div className="text-xs font-semibold text-gray-900">{shipment.destination}</div>
                       </div>
                     </div>
@@ -335,7 +335,7 @@ export default function InboundShippingPage() {
                   </td>
                   <td className="px-4 py-3 text-right">
                     <div className="text-sm font-bold text-blue-600">
-                      ¹{shipment.totalValue.toLocaleString()}
+                      Rs.{shipment.totalValue.toLocaleString()}
                     </div>
                   </td>
                   <td className="px-4 py-3">

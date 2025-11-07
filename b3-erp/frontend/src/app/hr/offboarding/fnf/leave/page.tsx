@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { Calendar, CheckCircle, Clock, IndianRupee, AlertCircle } from 'lucide-react';
+import { Calendar, CheckCircle, Clock, IndianRupee, AlertCircle, X, Eye, Calculator } from 'lucide-react';
+import { toast } from '@/hooks/use-toast';
 
 interface FNFLeaveEncashment {
   id: string;
@@ -35,6 +36,21 @@ interface FNFLeaveEncashment {
 
 export default function FNFLeavePage() {
   const [selectedTab, setSelectedTab] = useState<'pending' | 'calculated' | 'approved' | 'processed'>('pending');
+  const [showCalculateModal, setShowCalculateModal] = useState(false);
+  const [showApproveModal, setShowApproveModal] = useState(false);
+  const [showViewModal, setShowViewModal] = useState(false);
+  const [selectedEncashment, setSelectedEncashment] = useState<FNFLeaveEncashment | null>(null);
+  const [calculateFormData, setCalculateFormData] = useState({
+    encashableEL: 0,
+    encashablePL: 0,
+    dailyRate: 0,
+    calculatedBy: '',
+    remarks: ''
+  });
+  const [approveFormData, setApproveFormData] = useState({
+    approvedBy: '',
+    remarks: ''
+  });
 
   const mockEncashments: FNFLeaveEncashment[] = [
     {
@@ -156,6 +172,64 @@ export default function FNFLeavePage() {
 
   const calculateTotalLeaves = (balance: FNFLeaveEncashment['leaveBalance']) => {
     return Object.values(balance).reduce((sum, val) => sum + val, 0);
+  };
+
+  const handleCalculate = (encashment: FNFLeaveEncashment) => {
+    setSelectedEncashment(encashment);
+    const maxEncashableDays = encashment.leavePolicy.maxEncashableDays || 999;
+    const encashableEL = encashment.leavePolicy.earnedLeaveEncashable ? encashment.leaveBalance.earnedLeave : 0;
+    const encashablePL = encashment.leavePolicy.privilegeLeaveEncashable ? encashment.leaveBalance.privilegeLeave : 0;
+    const totalEncashable = Math.min(encashableEL + encashablePL, maxEncashableDays);
+
+    setCalculateFormData({
+      encashableEL: encashableEL,
+      encashablePL: encashablePL,
+      dailyRate: encashment.dailyRate || 0,
+      calculatedBy: '',
+      remarks: ''
+    });
+    setShowCalculateModal(true);
+  };
+
+  const handleApprove = (encashment: FNFLeaveEncashment) => {
+    setSelectedEncashment(encashment);
+    setApproveFormData({
+      approvedBy: '',
+      remarks: ''
+    });
+    setShowApproveModal(true);
+  };
+
+  const handleView = (encashment: FNFLeaveEncashment) => {
+    setSelectedEncashment(encashment);
+    setShowViewModal(true);
+  };
+
+  const handleMarkProcessed = (encashment: FNFLeaveEncashment) => {
+    toast({
+      title: "Marked as Processed",
+      description: `Leave encashment for ${encashment.employeeName} has been marked as processed and added to FNF settlement.`
+    });
+  };
+
+  const handleSubmitCalculation = (e: React.FormEvent) => {
+    e.preventDefault();
+    const totalDays = calculateFormData.encashableEL + calculateFormData.encashablePL;
+    const amount = totalDays * calculateFormData.dailyRate;
+    toast({
+      title: "Encashment Calculated",
+      description: `Leave encashment of ${formatCurrency(amount)} (${totalDays} days) calculated for ${selectedEncashment?.employeeName}.`
+    });
+    setShowCalculateModal(false);
+  };
+
+  const handleSubmitApproval = (e: React.FormEvent) => {
+    e.preventDefault();
+    toast({
+      title: "Encashment Approved",
+      description: `Leave encashment for ${selectedEncashment?.employeeName} has been approved and will be added to FNF settlement.`
+    });
+    setShowApproveModal(false);
   };
 
   return (
@@ -383,25 +457,73 @@ export default function FNFLeavePage() {
 
               <div className="flex gap-2 mt-4">
                 {encashment.status === 'pending' && (
-                  <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium text-sm">
-                    <Calendar className="inline h-4 w-4 mr-2" />
-                    Calculate Encashment
-                  </button>
+                  <>
+                    <button
+                      onClick={() => handleCalculate(encashment)}
+                      className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium text-sm"
+                    >
+                      <Calculator className="inline h-4 w-4 mr-2" />
+                      Calculate Encashment
+                    </button>
+                    <button
+                      onClick={() => handleView(encashment)}
+                      className="px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg font-medium text-sm border border-gray-300"
+                    >
+                      <Eye className="inline h-4 w-4 mr-2" />
+                      View Details
+                    </button>
+                  </>
                 )}
                 {encashment.status === 'calculated' && (
                   <>
-                    <button className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium text-sm">
+                    <button
+                      onClick={() => handleApprove(encashment)}
+                      className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium text-sm"
+                    >
                       <CheckCircle className="inline h-4 w-4 mr-2" />
                       Approve Calculation
                     </button>
-                    <button className="px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg font-medium text-sm border border-gray-300">
+                    <button
+                      onClick={() => handleCalculate(encashment)}
+                      className="px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg font-medium text-sm border border-gray-300"
+                    >
+                      <Calculator className="inline h-4 w-4 mr-2" />
                       Recalculate
+                    </button>
+                    <button
+                      onClick={() => handleView(encashment)}
+                      className="px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg font-medium text-sm border border-gray-300"
+                    >
+                      <Eye className="inline h-4 w-4 mr-2" />
+                      View Details
                     </button>
                   </>
                 )}
                 {encashment.status === 'approved' && (
-                  <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium text-sm">
-                    Mark as Processed
+                  <>
+                    <button
+                      onClick={() => handleMarkProcessed(encashment)}
+                      className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium text-sm"
+                    >
+                      <CheckCircle className="inline h-4 w-4 mr-2" />
+                      Mark as Processed
+                    </button>
+                    <button
+                      onClick={() => handleView(encashment)}
+                      className="px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg font-medium text-sm border border-gray-300"
+                    >
+                      <Eye className="inline h-4 w-4 mr-2" />
+                      View Details
+                    </button>
+                  </>
+                )}
+                {encashment.status === 'processed' && (
+                  <button
+                    onClick={() => handleView(encashment)}
+                    className="px-4 py-2 text-gray-600 hover:bg-gray-50 rounded-lg font-medium text-sm border border-gray-300"
+                  >
+                    <Eye className="inline h-4 w-4 mr-2" />
+                    View Details
                   </button>
                 )}
               </div>
@@ -409,6 +531,580 @@ export default function FNFLeavePage() {
           );
         })}
       </div>
+
+      {/* Calculate Encashment Modal */}
+      {showCalculateModal && selectedEncashment && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
+            <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-4 flex items-center justify-between rounded-t-xl z-10">
+              <div className="flex items-center gap-3">
+                <Calculator className="h-6 w-6" />
+                <h2 className="text-xl font-bold">Calculate Leave Encashment</h2>
+              </div>
+              <button onClick={() => setShowCalculateModal(false)} className="text-white hover:bg-white/20 rounded-lg p-1">
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+
+            <div className="p-6">
+              <div className="mb-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                <h3 className="font-bold text-blue-900 mb-2">{selectedEncashment.employeeName}</h3>
+                <p className="text-sm text-blue-700">
+                  {selectedEncashment.designation} • {selectedEncashment.department}
+                </p>
+                <p className="text-xs text-blue-600 mt-1">Employee ID: {selectedEncashment.employeeId}</p>
+              </div>
+
+              <div className="mb-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                  <h4 className="font-semibold text-gray-900 mb-3">Leave Balance</h4>
+                  <div className="space-y-2 text-sm">
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Earned Leave (EL)</span>
+                      <span className={`font-medium ${selectedEncashment.leavePolicy.earnedLeaveEncashable ? 'text-green-600' : 'text-gray-400'}`}>
+                        {selectedEncashment.leaveBalance.earnedLeave} days {selectedEncashment.leavePolicy.earnedLeaveEncashable ? '✓' : '✗'}
+                      </span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Privilege Leave (PL)</span>
+                      <span className={`font-medium ${selectedEncashment.leavePolicy.privilegeLeaveEncashable ? 'text-green-600' : 'text-gray-400'}`}>
+                        {selectedEncashment.leaveBalance.privilegeLeave} days {selectedEncashment.leavePolicy.privilegeLeaveEncashable ? '✓' : '✗'}
+                      </span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Casual Leave (CL)</span>
+                      <span className={`font-medium ${selectedEncashment.leavePolicy.casualLeaveEncashable ? 'text-green-600' : 'text-gray-400'}`}>
+                        {selectedEncashment.leaveBalance.casualLeave} days {selectedEncashment.leavePolicy.casualLeaveEncashable ? '✓' : '✗'}
+                      </span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Sick Leave (SL)</span>
+                      <span className={`font-medium ${selectedEncashment.leavePolicy.sickLeaveEncashable ? 'text-green-600' : 'text-gray-400'}`}>
+                        {selectedEncashment.leaveBalance.sickLeave} days {selectedEncashment.leavePolicy.sickLeaveEncashable ? '✓' : '✗'}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="mt-3 p-2 bg-blue-50 rounded border border-blue-200">
+                    <p className="text-xs text-blue-700">✓ = Encashable  •  ✗ = Non-encashable</p>
+                  </div>
+                </div>
+
+                <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                  <h4 className="font-semibold text-gray-900 mb-3">Leave Policy</h4>
+                  <div className="space-y-2 text-sm">
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Tenure</span>
+                      <span className="font-medium text-gray-900">
+                        {Math.floor((new Date(selectedEncashment.lastWorkingDay).getTime() - new Date(selectedEncashment.joiningDate).getTime()) / (1000 * 60 * 60 * 24 * 365.25))} years
+                      </span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Joining Date</span>
+                      <span className="font-medium text-gray-900">
+                        {new Date(selectedEncashment.joiningDate).toLocaleDateString('en-IN')}
+                      </span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Last Working Day</span>
+                      <span className="font-medium text-gray-900">
+                        {new Date(selectedEncashment.lastWorkingDay).toLocaleDateString('en-IN')}
+                      </span>
+                    </div>
+                    {selectedEncashment.leavePolicy.maxEncashableDays && (
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Max Encashable</span>
+                        <span className="font-medium text-orange-600">
+                          {selectedEncashment.leavePolicy.maxEncashableDays} days limit
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              <form onSubmit={handleSubmitCalculation} className="space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Encashable EL Days <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="number"
+                      value={calculateFormData.encashableEL}
+                      onChange={(e) => setCalculateFormData({...calculateFormData, encashableEL: Number(e.target.value)})}
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      max={selectedEncashment.leaveBalance.earnedLeave}
+                      min={0}
+                      required
+                      disabled={!selectedEncashment.leavePolicy.earnedLeaveEncashable}
+                    />
+                    {!selectedEncashment.leavePolicy.earnedLeaveEncashable && (
+                      <p className="text-xs text-gray-500 mt-1">Earned Leave not encashable as per policy</p>
+                    )}
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Encashable PL Days <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="number"
+                      value={calculateFormData.encashablePL}
+                      onChange={(e) => setCalculateFormData({...calculateFormData, encashablePL: Number(e.target.value)})}
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      max={selectedEncashment.leaveBalance.privilegeLeave}
+                      min={0}
+                      required
+                      disabled={!selectedEncashment.leavePolicy.privilegeLeaveEncashable}
+                    />
+                    {!selectedEncashment.leavePolicy.privilegeLeaveEncashable && (
+                      <p className="text-xs text-gray-500 mt-1">Privilege Leave not encashable as per policy</p>
+                    )}
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Daily Rate (Per Day Salary) <span className="text-red-500">*</span>
+                  </label>
+                  <div className="relative">
+                    <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">₹</span>
+                    <input
+                      type="number"
+                      value={calculateFormData.dailyRate}
+                      onChange={(e) => setCalculateFormData({...calculateFormData, dailyRate: Number(e.target.value)})}
+                      className="w-full pl-8 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      placeholder="0"
+                      min={0}
+                      required
+                    />
+                  </div>
+                  <p className="text-xs text-gray-500 mt-1">
+                    Usually calculated as: Monthly Gross Salary ÷ 30 days
+                  </p>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Calculated By <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    value={calculateFormData.calculatedBy}
+                    onChange={(e) => setCalculateFormData({...calculateFormData, calculatedBy: e.target.value})}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="e.g., John Doe - HR Manager"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Remarks / Notes
+                  </label>
+                  <textarea
+                    value={calculateFormData.remarks}
+                    onChange={(e) => setCalculateFormData({...calculateFormData, remarks: e.target.value})}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    rows={2}
+                    placeholder="Any special notes or adjustments..."
+                  />
+                </div>
+
+                <div className="bg-gray-100 rounded-lg p-4 border-2 border-gray-300">
+                  <h3 className="font-bold text-gray-900 mb-3">Calculation Summary</h3>
+                  <div className="space-y-2 text-sm">
+                    <div className="flex justify-between">
+                      <span>Total Encashable Days:</span>
+                      <span className="font-semibold">
+                        {calculateFormData.encashableEL + calculateFormData.encashablePL} days
+                      </span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>Daily Rate:</span>
+                      <span className="font-semibold">{formatCurrency(calculateFormData.dailyRate)}</span>
+                    </div>
+                    {selectedEncashment.leavePolicy.maxEncashableDays &&
+                     (calculateFormData.encashableEL + calculateFormData.encashablePL) > selectedEncashment.leavePolicy.maxEncashableDays && (
+                      <div className="p-2 bg-yellow-50 rounded border border-yellow-200">
+                        <div className="flex items-start gap-2">
+                          <AlertCircle className="h-4 w-4 text-yellow-600 mt-0.5 flex-shrink-0" />
+                          <p className="text-xs text-yellow-700">
+                            Total days exceed policy limit of {selectedEncashment.leavePolicy.maxEncashableDays} days.
+                            Will be capped at {selectedEncashment.leavePolicy.maxEncashableDays} days.
+                          </p>
+                        </div>
+                      </div>
+                    )}
+                    <div className="flex justify-between pt-2 border-t-2 border-gray-400 text-lg font-bold">
+                      <span>Encashment Amount:</span>
+                      <span className="text-green-600">
+                        {formatCurrency(
+                          Math.min(
+                            calculateFormData.encashableEL + calculateFormData.encashablePL,
+                            selectedEncashment.leavePolicy.maxEncashableDays || 999
+                          ) * calculateFormData.dailyRate
+                        )}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="p-3 bg-blue-50 rounded-lg border border-blue-200">
+                  <div className="flex items-start gap-2">
+                    <AlertCircle className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="text-sm font-semibold text-blue-900">Calculation Note</p>
+                      <p className="text-xs text-blue-800 mt-1">
+                        This calculated amount will be added to the employee's FNF settlement.
+                        Only encashable leave types as per company policy are included in the calculation.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex gap-3 pt-4">
+                  <button
+                    type="submit"
+                    className="flex-1 bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 font-semibold"
+                  >
+                    Calculate & Save
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setShowCalculateModal(false)}
+                    className="px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 font-semibold"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Approve Encashment Modal */}
+      {showApproveModal && selectedEncashment && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+            <div className="sticky top-0 bg-gradient-to-r from-green-600 to-green-700 text-white px-6 py-4 flex items-center justify-between rounded-t-xl z-10">
+              <div className="flex items-center gap-3">
+                <CheckCircle className="h-6 w-6" />
+                <h2 className="text-xl font-bold">Approve Leave Encashment</h2>
+              </div>
+              <button onClick={() => setShowApproveModal(false)} className="text-white hover:bg-white/20 rounded-lg p-1">
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+
+            <div className="p-6">
+              <div className="mb-6 p-4 bg-green-50 rounded-lg border border-green-200">
+                <h3 className="font-bold text-green-900 mb-2">{selectedEncashment.employeeName}</h3>
+                <p className="text-sm text-green-700">
+                  {selectedEncashment.designation} • {selectedEncashment.department}
+                </p>
+                <p className="text-xs text-green-600 mt-1">Employee ID: {selectedEncashment.employeeId}</p>
+              </div>
+
+              <div className="mb-6 p-5 bg-gradient-to-r from-green-50 to-green-100 rounded-lg border-2 border-green-300">
+                <p className="text-sm font-medium text-gray-700 mb-2">Leave Encashment Amount</p>
+                <p className="text-4xl font-bold text-green-700">
+                  {formatCurrency(selectedEncashment.encashmentAmount)}
+                </p>
+                <p className="text-xs text-gray-600 mt-2">
+                  {selectedEncashment.encashableDays} days × {formatCurrency(selectedEncashment.dailyRate)} per day
+                </p>
+              </div>
+
+              <div className="mb-6 space-y-4">
+                <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                  <h4 className="font-semibold text-gray-900 mb-3">Encashment Breakdown</h4>
+                  <div className="space-y-2 text-sm">
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Total Encashable Days</span>
+                      <span className="font-medium text-gray-900">{selectedEncashment.encashableDays} days</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Daily Rate</span>
+                      <span className="font-medium text-gray-900">{formatCurrency(selectedEncashment.dailyRate)}</span>
+                    </div>
+                    {selectedEncashment.calculatedBy && (
+                      <div className="pt-2 border-t border-gray-300">
+                        <p className="text-xs text-gray-500">
+                          Calculated by: {selectedEncashment.calculatedBy}
+                        </p>
+                        {selectedEncashment.calculatedOn && (
+                          <p className="text-xs text-gray-500">
+                            on {new Date(selectedEncashment.calculatedOn).toLocaleDateString('en-IN')}
+                          </p>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+                  <h4 className="font-semibold text-blue-900 mb-2">Leave Balance Used</h4>
+                  <div className="space-y-2 text-sm">
+                    {selectedEncashment.leavePolicy.earnedLeaveEncashable && (
+                      <div className="flex justify-between">
+                        <span className="text-blue-700">Earned Leave (EL)</span>
+                        <span className="font-medium text-blue-900">{selectedEncashment.leaveBalance.earnedLeave} days</span>
+                      </div>
+                    )}
+                    {selectedEncashment.leavePolicy.privilegeLeaveEncashable && (
+                      <div className="flex justify-between">
+                        <span className="text-blue-700">Privilege Leave (PL)</span>
+                        <span className="font-medium text-blue-900">{selectedEncashment.leaveBalance.privilegeLeave} days</span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              <form onSubmit={handleSubmitApproval} className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Approving Authority <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    value={approveFormData.approvedBy}
+                    onChange={(e) => setApproveFormData({...approveFormData, approvedBy: e.target.value})}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    placeholder="e.g., John Doe - CFO"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Approval Remarks
+                  </label>
+                  <textarea
+                    value={approveFormData.remarks}
+                    onChange={(e) => setApproveFormData({...approveFormData, remarks: e.target.value})}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    rows={3}
+                    placeholder="Any additional notes or remarks..."
+                  />
+                </div>
+
+                <div className="p-3 bg-green-50 rounded-lg border border-green-200">
+                  <div className="flex items-start gap-2">
+                    <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="text-sm font-semibold text-green-900">Approval Confirmation</p>
+                      <p className="text-xs text-green-800 mt-1">
+                        By approving this leave encashment, you confirm that the calculation is accurate and this amount
+                        will be added to the employee's FNF settlement for payment processing.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex gap-3 pt-4">
+                  <button
+                    type="submit"
+                    className="flex-1 bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 font-semibold"
+                  >
+                    Approve Encashment
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setShowApproveModal(false)}
+                    className="px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 font-semibold"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* View Details Modal */}
+      {showViewModal && selectedEncashment && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+            <div className="sticky top-0 bg-gradient-to-r from-gray-700 to-gray-800 text-white px-6 py-4 flex items-center justify-between rounded-t-xl z-10">
+              <div className="flex items-center gap-3">
+                <Eye className="h-6 w-6" />
+                <h2 className="text-xl font-bold">Leave Encashment Details</h2>
+              </div>
+              <button onClick={() => setShowViewModal(false)} className="text-white hover:bg-white/20 rounded-lg p-1">
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+
+            <div className="p-6">
+              <div className="mb-6 flex items-start justify-between">
+                <div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">{selectedEncashment.employeeName}</h3>
+                  <p className="text-gray-600">{selectedEncashment.designation} • {selectedEncashment.department}</p>
+                  <p className="text-sm text-gray-500 mt-1">Employee ID: {selectedEncashment.employeeId}</p>
+                </div>
+                <div className="text-right">
+                  <span className={`px-4 py-2 text-sm font-semibold rounded-full ${statusColors[selectedEncashment.status]}`}>
+                    {selectedEncashment.status.toUpperCase()}
+                  </span>
+                  <p className="text-sm text-gray-500 mt-2">ID: {selectedEncashment.id}</p>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                <div className="bg-gray-50 rounded-lg p-5 border border-gray-200">
+                  <h4 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                    <Calendar className="h-5 w-5 text-gray-600" />
+                    Service Details
+                  </h4>
+                  <div className="space-y-3">
+                    <div>
+                      <p className="text-xs text-gray-500">Joining Date</p>
+                      <p className="font-medium text-gray-900">
+                        {new Date(selectedEncashment.joiningDate).toLocaleDateString('en-IN', {
+                          day: 'numeric',
+                          month: 'long',
+                          year: 'numeric'
+                        })}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-gray-500">Last Working Day</p>
+                      <p className="font-medium text-gray-900">
+                        {new Date(selectedEncashment.lastWorkingDay).toLocaleDateString('en-IN', {
+                          day: 'numeric',
+                          month: 'long',
+                          year: 'numeric'
+                        })}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-gray-500">Total Tenure</p>
+                      <p className="font-medium text-gray-900">
+                        {Math.floor((new Date(selectedEncashment.lastWorkingDay).getTime() - new Date(selectedEncashment.joiningDate).getTime()) / (1000 * 60 * 60 * 24 * 365.25))} years
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-gray-50 rounded-lg p-5 border border-gray-200">
+                  <h4 className="font-semibold text-gray-900 mb-4">Complete Leave Balance</h4>
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm text-gray-600">Earned Leave (EL)</span>
+                      <span className={`font-medium ${selectedEncashment.leavePolicy.earnedLeaveEncashable ? 'text-green-600' : 'text-gray-400'}`}>
+                        {selectedEncashment.leaveBalance.earnedLeave} days {selectedEncashment.leavePolicy.earnedLeaveEncashable ? '✓' : '✗'}
+                      </span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm text-gray-600">Privilege Leave (PL)</span>
+                      <span className={`font-medium ${selectedEncashment.leavePolicy.privilegeLeaveEncashable ? 'text-green-600' : 'text-gray-400'}`}>
+                        {selectedEncashment.leaveBalance.privilegeLeave} days {selectedEncashment.leavePolicy.privilegeLeaveEncashable ? '✓' : '✗'}
+                      </span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm text-gray-600">Casual Leave (CL)</span>
+                      <span className={`font-medium ${selectedEncashment.leavePolicy.casualLeaveEncashable ? 'text-green-600' : 'text-gray-400'}`}>
+                        {selectedEncashment.leaveBalance.casualLeave} days {selectedEncashment.leavePolicy.casualLeaveEncashable ? '✓' : '✗'}
+                      </span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm text-gray-600">Sick Leave (SL)</span>
+                      <span className={`font-medium ${selectedEncashment.leavePolicy.sickLeaveEncashable ? 'text-green-600' : 'text-gray-400'}`}>
+                        {selectedEncashment.leaveBalance.sickLeave} days {selectedEncashment.leavePolicy.sickLeaveEncashable ? '✓' : '✗'}
+                      </span>
+                    </div>
+                    <div className="pt-3 border-t border-gray-300 flex justify-between items-center">
+                      <span className="font-semibold text-gray-900">Total Leave Balance</span>
+                      <span className="font-bold text-gray-900">{calculateTotalLeaves(selectedEncashment.leaveBalance)} days</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mb-6 bg-blue-50 rounded-lg p-5 border border-blue-200">
+                <h4 className="font-semibold text-blue-900 mb-4">Encashment Calculation</h4>
+                <div className="space-y-3">
+                  <div className="flex justify-between items-center">
+                    <span className="text-blue-700">Encashable Days (as per policy)</span>
+                    <span className="font-bold text-blue-900">{selectedEncashment.encashableDays} days</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-blue-700">Daily Rate</span>
+                    <span className="font-bold text-blue-900">{formatCurrency(selectedEncashment.dailyRate)}</span>
+                  </div>
+                  {selectedEncashment.leavePolicy.maxEncashableDays && (
+                    <div className="flex justify-between items-center">
+                      <span className="text-blue-700">Policy Limit</span>
+                      <span className="font-medium text-orange-600">Max {selectedEncashment.leavePolicy.maxEncashableDays} days</span>
+                    </div>
+                  )}
+                  <div className="pt-3 mt-3 border-t-2 border-blue-300 flex justify-between items-center">
+                    <span className="font-bold text-blue-900 text-lg">Calculation</span>
+                    <span className="font-bold text-blue-900">
+                      {selectedEncashment.encashableDays} × {formatCurrency(selectedEncashment.dailyRate)}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="p-6 bg-gradient-to-r from-green-50 to-green-100 rounded-xl border-2 border-green-400 mb-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-medium text-gray-700 mb-2">Total Leave Encashment Amount</p>
+                    <p className="text-5xl font-bold text-green-700">
+                      {formatCurrency(selectedEncashment.encashmentAmount)}
+                    </p>
+                    <p className="text-sm text-gray-600 mt-2">
+                      To be added to FNF settlement
+                    </p>
+                  </div>
+                  <IndianRupee className="h-16 w-16 text-green-600" />
+                </div>
+              </div>
+
+              {(selectedEncashment.calculatedBy || selectedEncashment.approvedBy) && (
+                <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                  <h4 className="font-semibold text-gray-900 mb-3">Approval History</h4>
+                  <div className="space-y-2 text-sm">
+                    {selectedEncashment.calculatedBy && (
+                      <div>
+                        <p className="text-gray-600">Calculated by: <span className="font-medium text-gray-900">{selectedEncashment.calculatedBy}</span></p>
+                        {selectedEncashment.calculatedOn && (
+                          <p className="text-xs text-gray-500">
+                            on {new Date(selectedEncashment.calculatedOn).toLocaleDateString('en-IN', {
+                              day: 'numeric',
+                              month: 'long',
+                              year: 'numeric'
+                            })}
+                          </p>
+                        )}
+                      </div>
+                    )}
+                    {selectedEncashment.approvedBy && (
+                      <div className="pt-2 border-t border-gray-300">
+                        <p className="text-gray-600">Approved by: <span className="font-medium text-green-700">{selectedEncashment.approvedBy}</span></p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+
+              <div className="flex gap-3 mt-6">
+                <button
+                  onClick={() => setShowViewModal(false)}
+                  className="flex-1 bg-gray-600 text-white py-3 rounded-lg hover:bg-gray-700 font-semibold"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { CheckCircle, AlertTriangle, Search, Eye, Download, FileText, Users, DollarSign, TrendingUp } from 'lucide-react';
+import { CheckCircle, AlertTriangle, Search, Eye, Download, FileText, Users, DollarSign, TrendingUp, UserPlus, UserMinus, TrendingDown, ArrowRight, ChevronDown, ChevronUp } from 'lucide-react';
 
 interface EmployeePayrollRecord {
   id: string;
@@ -47,10 +47,53 @@ interface PayrollVerificationBatch {
   records: EmployeePayrollRecord[];
 }
 
+interface ReconciliationEmployee {
+  employeeId: string;
+  name: string;
+  designation: string;
+  department: string;
+  basicSalary: number;
+  hra: number;
+  da: number;
+  conveyance: number;
+  medical: number;
+  grossSalary: number;
+  pfEmployee: number;
+  esiEmployee: number;
+  professionalTax: number;
+  tds: number;
+  totalDeductions: number;
+  netSalary: number;
+}
+
+interface ReconciliationData {
+  newEmployees: Array<ReconciliationEmployee & { joiningDate: string }>;
+  exitedEmployees: Array<ReconciliationEmployee & { exitDate: string; reason: string }>;
+  revisedSalaries: Array<{
+    employeeId: string;
+    name: string;
+    designation: string;
+    department: string;
+    oldBasicSalary: number;
+    newBasicSalary: number;
+    oldGrossSalary: number;
+    newGrossSalary: number;
+    oldNetSalary: number;
+    newNetSalary: number;
+    revisionDate: string;
+    reason: string;
+    oldBreakdown: { hra: number; da: number; conveyance: number; medical: number };
+    newBreakdown: { hra: number; da: number; conveyance: number; medical: number };
+  }>;
+  previousPayroll: { totalBasic: number; totalNet: number; employeeCount: number };
+  currentPayroll: { totalBasic: number; totalNet: number; employeeCount: number };
+}
+
 export default function PayrollVerificationPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedDepartment, setSelectedDepartment] = useState('all');
   const [selectedStatus, setSelectedStatus] = useState('all');
+  const [showReconciliation, setShowReconciliation] = useState(false);
 
   const mockBatch: PayrollVerificationBatch = {
     id: 'VER-2025-11',
@@ -225,6 +268,135 @@ export default function PayrollVerificationPage() {
     ]
   };
 
+  const reconciliationData: ReconciliationData = {
+    newEmployees: [
+      {
+        employeeId: 'EMP006',
+        name: 'Kavita Mehta',
+        designation: 'HR Executive',
+        department: 'HR',
+        basicSalary: 20833,
+        hra: 8333,
+        da: 2083,
+        conveyance: 1600,
+        medical: 0,
+        grossSalary: 32849,
+        pfEmployee: 2500,
+        esiEmployee: 246,
+        professionalTax: 200,
+        tds: 650,
+        totalDeductions: 3596,
+        netSalary: 29253,
+        joiningDate: '2025-11-01'
+      },
+      {
+        employeeId: 'EMP005',
+        name: 'Vikram Desai',
+        designation: 'Logistics Coordinator',
+        department: 'Logistics',
+        basicSalary: 20000,
+        hra: 8000,
+        da: 2000,
+        conveyance: 1600,
+        medical: 0,
+        grossSalary: 31600,
+        pfEmployee: 2400,
+        esiEmployee: 237,
+        professionalTax: 200,
+        tds: 600,
+        totalDeductions: 3437,
+        netSalary: 28163,
+        joiningDate: '2025-11-15'
+      }
+    ],
+    exitedEmployees: [
+      {
+        employeeId: 'EMP007',
+        name: 'Suresh Nair',
+        designation: 'Production Operator',
+        department: 'Production',
+        basicSalary: 18000,
+        hra: 7200,
+        da: 1800,
+        conveyance: 1600,
+        medical: 0,
+        grossSalary: 28600,
+        pfEmployee: 2160,
+        esiEmployee: 214,
+        professionalTax: 200,
+        tds: 450,
+        totalDeductions: 3024,
+        netSalary: 25576,
+        exitDate: '2025-10-31',
+        reason: 'Resigned'
+      },
+      {
+        employeeId: 'EMP008',
+        name: 'Anita Rao',
+        designation: 'Quality Inspector',
+        department: 'Quality',
+        basicSalary: 15000,
+        hra: 6000,
+        da: 1500,
+        conveyance: 0,
+        medical: 0,
+        grossSalary: 22500,
+        pfEmployee: 1800,
+        esiEmployee: 169,
+        professionalTax: 200,
+        tds: 0,
+        totalDeductions: 2169,
+        netSalary: 20331,
+        exitDate: '2025-10-20',
+        reason: 'Terminated'
+      }
+    ],
+    revisedSalaries: [
+      {
+        employeeId: 'EMP001',
+        name: 'Rajesh Kumar',
+        designation: 'Senior Production Manager',
+        department: 'Production',
+        oldBasicSalary: 30000,
+        newBasicSalary: 31250,
+        oldGrossSalary: 47700,
+        newGrossSalary: 49725,
+        oldNetSalary: 42100,
+        newNetSalary: 43902,
+        revisionDate: '2025-11-01',
+        reason: 'Annual increment (4.17%)',
+        oldBreakdown: { hra: 12000, da: 3000, conveyance: 1600, medical: 1100 },
+        newBreakdown: { hra: 12500, da: 3125, conveyance: 1600, medical: 1250 }
+      },
+      {
+        employeeId: 'EMP002',
+        name: 'Priya Sharma',
+        designation: 'Quality Control Supervisor',
+        department: 'Quality',
+        oldBasicSalary: 22000,
+        newBasicSalary: 22917,
+        oldGrossSalary: 34540,
+        newGrossSalary: 35976,
+        oldNetSalary: 30500,
+        newNetSalary: 31956,
+        revisionDate: '2025-11-01',
+        reason: 'Promotion to Senior QC Supervisor (4.17%)',
+        oldBreakdown: { hra: 8800, da: 2200, conveyance: 1600, medical: 0 },
+        newBreakdown: { hra: 9167, da: 2292, conveyance: 1600, medical: 0 }
+      }
+    ],
+    previousPayroll: {
+      totalBasic: 135000,
+      totalNet: 187100,
+      employeeCount: 6
+    },
+    currentPayroll: {
+      totalBasic: 131250,
+      totalNet: 181879,
+      employeeCount: 6
+    }
+  };
+
   const filteredRecords = useMemo(() => {
     return mockBatch.records.filter(record => {
       const matchesSearch =
@@ -260,7 +432,7 @@ export default function PayrollVerificationPage() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
+    <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-gray-900">Payroll Verification</h1>
         <p className="text-sm text-gray-600 mt-1">Verify salary calculations before approval and disbursement</p>
@@ -386,12 +558,29 @@ export default function PayrollVerificationPage() {
             <option value="verified">Verified</option>
             <option value="flagged">Flagged</option>
           </select>
+          <button
+            onClick={() => setShowReconciliation(!showReconciliation)}
+            className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium ${
+              showReconciliation
+                ? 'bg-purple-600 text-white hover:bg-purple-700'
+                : 'bg-white text-purple-600 border-2 border-purple-600 hover:bg-purple-50'
+            }`}
+          >
+            <FileText className="h-4 w-4" />
+            {showReconciliation ? 'Hide' : 'View'} Reconciliation
+          </button>
           <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
             <Download className="h-4 w-4" />
             Export Report
           </button>
         </div>
       </div>
+
+      {showReconciliation && (
+        <div className="mb-6">
+          <PayrollReconciliation data={reconciliationData} formatCurrency={formatCurrency} />
+        </div>
+      )}
 
       <div className="space-y-4">
         {filteredRecords.map(record => (
@@ -583,6 +772,624 @@ export default function PayrollVerificationPage() {
           <li>• All flagged records must be resolved before batch approval</li>
           <li>• Cross-check total payable amount with budget allocation</li>
         </ul>
+      </div>
+    </div>
+  );
+}
+
+interface PayrollReconciliationProps {
+  data: ReconciliationData;
+  formatCurrency: (amount: number) => string;
+}
+
+function PayrollReconciliation({ data, formatCurrency }: PayrollReconciliationProps) {
+  const [expandedNew, setExpandedNew] = useState<string[]>([]);
+  const [expandedExited, setExpandedExited] = useState<string[]>([]);
+  const [expandedRevised, setExpandedRevised] = useState<string[]>([]);
+
+  const toggleExpanded = (id: string, type: 'new' | 'exited' | 'revised') => {
+    if (type === 'new') {
+      setExpandedNew(prev => prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]);
+    } else if (type === 'exited') {
+      setExpandedExited(prev => prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]);
+    } else {
+      setExpandedRevised(prev => prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]);
+    }
+  };
+
+  const additionsTotal = useMemo(() => {
+    return data.newEmployees.reduce((sum, emp) => sum + emp.netSalary, 0);
+  }, [data.newEmployees]);
+
+  const deductionsTotal = useMemo(() => {
+    return data.exitedEmployees.reduce((sum, emp) => sum + emp.netSalary, 0);
+  }, [data.exitedEmployees]);
+
+  const revisionsImpact = useMemo(() => {
+    return data.revisedSalaries.reduce((sum, emp) => sum + (emp.newNetSalary - emp.oldNetSalary), 0);
+  }, [data.revisedSalaries]);
+
+  const calculatedCurrent = data.previousPayroll.totalNet + additionsTotal - deductionsTotal + revisionsImpact;
+  const variance = data.currentPayroll.totalNet - calculatedCurrent;
+
+  return (
+    <div className="mb-6 space-y-4">
+      {/* Debug info */}
+      <div className="bg-yellow-50 border border-yellow-300 rounded-lg p-3 mb-2">
+        <p className="text-xs text-yellow-900">
+          📊 Reconciliation Data: {data.newEmployees.length} new, {data.exitedEmployees.length} exited, {data.revisedSalaries.length} revised
+        </p>
+      </div>
+
+      {/* Reconciliation Formula */}
+      <div className="bg-gradient-to-r from-purple-50 to-indigo-50 rounded-lg shadow-sm border-2 border-purple-200 p-6">
+        <h2 className="text-xl font-bold text-purple-900 mb-4 flex items-center gap-2">
+          <FileText className="h-6 w-6" />
+          Payroll Reconciliation
+        </h2>
+
+        <div className="bg-blue-50 border border-blue-300 rounded-lg p-3 mb-4">
+          <p className="text-sm text-blue-900">
+            <strong>💡 Tip:</strong> Scroll down to see detailed employee information. Click on employee cards below to expand full salary breakdowns.
+          </p>
+        </div>
+
+        <div className="bg-white rounded-lg p-6 border border-purple-200">
+          <h3 className="text-sm font-semibold text-gray-700 mb-4">Reconciliation Formula (Excluding Variable Dues & Deductions)</h3>
+
+          <div className="flex flex-wrap items-center gap-3 text-sm">
+            <div className="bg-blue-100 px-4 py-3 rounded-lg border border-blue-300">
+              <p className="text-xs text-blue-700 font-medium mb-1">Previous Payroll</p>
+              <p className="text-lg font-bold text-blue-900">{formatCurrency(data.previousPayroll.totalNet)}</p>
+              <p className="text-xs text-blue-600 mt-1">{data.previousPayroll.employeeCount} employees</p>
+            </div>
+
+            <ArrowRight className="h-5 w-5 text-gray-400" />
+
+            <div className="bg-green-100 px-4 py-3 rounded-lg border border-green-300">
+              <p className="text-xs text-green-700 font-medium mb-1">+ New Employees</p>
+              <p className="text-lg font-bold text-green-900">{formatCurrency(additionsTotal)}</p>
+              <p className="text-xs text-green-600 mt-1">{data.newEmployees.length} added</p>
+            </div>
+
+            <ArrowRight className="h-5 w-5 text-gray-400" />
+
+            <div className="bg-red-100 px-4 py-3 rounded-lg border border-red-300">
+              <p className="text-xs text-red-700 font-medium mb-1">- Exited Employees</p>
+              <p className="text-lg font-bold text-red-900">{formatCurrency(deductionsTotal)}</p>
+              <p className="text-xs text-red-600 mt-1">{data.exitedEmployees.length} exited</p>
+            </div>
+
+            <ArrowRight className="h-5 w-5 text-gray-400" />
+
+            <div className={`px-4 py-3 rounded-lg border ${revisionsImpact >= 0 ? 'bg-emerald-100 border-emerald-300' : 'bg-orange-100 border-orange-300'}`}>
+              <p className={`text-xs font-medium mb-1 ${revisionsImpact >= 0 ? 'text-emerald-700' : 'text-orange-700'}`}>
+                {revisionsImpact >= 0 ? '+' : ''} Salary Revisions
+              </p>
+              <p className={`text-lg font-bold ${revisionsImpact >= 0 ? 'text-emerald-900' : 'text-orange-900'}`}>
+                {formatCurrency(Math.abs(revisionsImpact))}
+              </p>
+              <p className={`text-xs mt-1 ${revisionsImpact >= 0 ? 'text-emerald-600' : 'text-orange-600'}`}>
+                {data.revisedSalaries.length} revised
+              </p>
+            </div>
+
+            <div className="text-2xl font-bold text-gray-600">=</div>
+
+            <div className="bg-purple-100 px-4 py-3 rounded-lg border-2 border-purple-400">
+              <p className="text-xs text-purple-700 font-medium mb-1">Current Payroll</p>
+              <p className="text-lg font-bold text-purple-900">{formatCurrency(data.currentPayroll.totalNet)}</p>
+              <p className="text-xs text-purple-600 mt-1">{data.currentPayroll.employeeCount} employees</p>
+            </div>
+          </div>
+
+          {Math.abs(variance) > 0.01 && (
+            <div className={`mt-4 p-3 rounded-lg border ${Math.abs(variance) > 1000 ? 'bg-red-50 border-red-300' : 'bg-yellow-50 border-yellow-300'}`}>
+              <p className={`text-sm font-semibold ${Math.abs(variance) > 1000 ? 'text-red-900' : 'text-yellow-900'}`}>
+                ⚠️ Variance Detected: {formatCurrency(Math.abs(variance))}
+              </p>
+              <p className={`text-xs mt-1 ${Math.abs(variance) > 1000 ? 'text-red-700' : 'text-yellow-700'}`}>
+                This may be due to variable components, pro-rata adjustments, or rounding differences.
+              </p>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* New Employees */}
+      {data.newEmployees.length > 0 && (
+        <div className="bg-white rounded-lg shadow-sm border-2 border-green-200 p-6">
+          <h3 className="text-lg font-bold text-green-900 mb-4 flex items-center gap-2">
+            <UserPlus className="h-5 w-5" />
+            New Employees Added ({data.newEmployees.length})
+          </h3>
+          <div className="space-y-3">
+            {data.newEmployees.map((emp) => {
+              const isExpanded = expandedNew.includes(emp.employeeId);
+              return (
+                <div key={emp.employeeId} className="border-2 border-green-200 rounded-lg overflow-hidden">
+                  <div
+                    className="bg-green-50 p-4 cursor-pointer hover:bg-green-100 transition-colors"
+                    onClick={() => toggleExpanded(emp.employeeId, 'new')}
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex-1">
+                        <div className="flex items-center gap-3 mb-1">
+                          <span className="font-bold text-gray-900">{emp.name}</span>
+                          <span className="px-2 py-1 text-xs font-semibold rounded bg-gray-200 text-gray-700">
+                            {emp.employeeId}
+                          </span>
+                          <span className="px-2 py-1 text-xs font-medium rounded bg-green-200 text-green-800">
+                            Joined: {new Date(emp.joiningDate).toLocaleDateString('en-IN')}
+                          </span>
+                        </div>
+                        <p className="text-sm text-gray-600">
+                          {emp.designation} • {emp.department}
+                        </p>
+                      </div>
+                      <div className="flex items-center gap-4">
+                        <div className="text-right">
+                          <p className="text-xs text-gray-600">Net Salary</p>
+                          <p className="text-lg font-bold text-green-900">{formatCurrency(emp.netSalary)}</p>
+                        </div>
+                        {isExpanded ? (
+                          <ChevronUp className="h-5 w-5 text-green-700" />
+                        ) : (
+                          <ChevronDown className="h-5 w-5 text-green-700" />
+                        )}
+                      </div>
+                    </div>
+                  </div>
+
+                  {isExpanded && (
+                    <div className="p-4 bg-white border-t border-green-200">
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+                          <h4 className="font-semibold text-green-900 mb-3 text-sm">Earnings</h4>
+                          <div className="space-y-2">
+                            <div className="flex justify-between text-xs">
+                              <span className="text-green-700">Basic Salary</span>
+                              <span className="font-medium text-green-900">{formatCurrency(emp.basicSalary)}</span>
+                            </div>
+                            <div className="flex justify-between text-xs">
+                              <span className="text-green-700">HRA</span>
+                              <span className="font-medium text-green-900">{formatCurrency(emp.hra)}</span>
+                            </div>
+                            <div className="flex justify-between text-xs">
+                              <span className="text-green-700">DA</span>
+                              <span className="font-medium text-green-900">{formatCurrency(emp.da)}</span>
+                            </div>
+                            <div className="flex justify-between text-xs">
+                              <span className="text-green-700">Conveyance</span>
+                              <span className="font-medium text-green-900">{formatCurrency(emp.conveyance)}</span>
+                            </div>
+                            {emp.medical > 0 && (
+                              <div className="flex justify-between text-xs">
+                                <span className="text-green-700">Medical</span>
+                                <span className="font-medium text-green-900">{formatCurrency(emp.medical)}</span>
+                              </div>
+                            )}
+                            <div className="flex justify-between text-xs pt-2 border-t border-green-300">
+                              <span className="font-bold text-green-900">Gross Salary</span>
+                              <span className="font-bold text-green-900">{formatCurrency(emp.grossSalary)}</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="bg-red-50 rounded-lg p-4 border border-red-200">
+                          <h4 className="font-semibold text-red-900 mb-3 text-sm">Deductions</h4>
+                          <div className="space-y-2">
+                            <div className="flex justify-between text-xs">
+                              <span className="text-red-700">PF (Employee)</span>
+                              <span className="font-medium text-red-900">{formatCurrency(emp.pfEmployee)}</span>
+                            </div>
+                            <div className="flex justify-between text-xs">
+                              <span className="text-red-700">ESI (Employee)</span>
+                              <span className="font-medium text-red-900">{formatCurrency(emp.esiEmployee)}</span>
+                            </div>
+                            <div className="flex justify-between text-xs">
+                              <span className="text-red-700">Professional Tax</span>
+                              <span className="font-medium text-red-900">{formatCurrency(emp.professionalTax)}</span>
+                            </div>
+                            {emp.tds > 0 && (
+                              <div className="flex justify-between text-xs">
+                                <span className="text-red-700">TDS</span>
+                                <span className="font-medium text-red-900">{formatCurrency(emp.tds)}</span>
+                              </div>
+                            )}
+                            <div className="flex justify-between text-xs pt-2 border-t border-red-300">
+                              <span className="font-bold text-red-900">Total Deductions</span>
+                              <span className="font-bold text-red-900">{formatCurrency(emp.totalDeductions)}</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+                          <h4 className="font-semibold text-blue-900 mb-3 text-sm">Net Payment</h4>
+                          <div className="text-center py-4">
+                            <p className="text-xs text-blue-700 mb-2">Net Salary</p>
+                            <p className="text-3xl font-bold text-blue-900">{formatCurrency(emp.netSalary)}</p>
+                          </div>
+                          <div className="mt-4 space-y-2">
+                            <div className="flex justify-between text-xs">
+                              <span className="text-blue-700">Gross</span>
+                              <span className="text-blue-900">{formatCurrency(emp.grossSalary)}</span>
+                            </div>
+                            <div className="flex justify-between text-xs">
+                              <span className="text-blue-700">Deductions</span>
+                              <span className="text-blue-900">-{formatCurrency(emp.totalDeductions)}</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+            <div className="bg-green-100 rounded-lg p-4 border-2 border-green-300">
+              <div className="flex justify-between items-center">
+                <span className="font-bold text-green-900 text-lg">Total Addition to Payroll</span>
+                <span className="text-2xl font-bold text-green-900">{formatCurrency(additionsTotal)}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Exited Employees */}
+      {data.exitedEmployees.length > 0 && (
+        <div className="bg-white rounded-lg shadow-sm border-2 border-red-200 p-6">
+          <h3 className="text-lg font-bold text-red-900 mb-4 flex items-center gap-2">
+            <UserMinus className="h-5 w-5" />
+            Exited Employees ({data.exitedEmployees.length})
+          </h3>
+          <div className="space-y-3">
+            {data.exitedEmployees.map((emp) => {
+              const isExpanded = expandedExited.includes(emp.employeeId);
+              return (
+                <div key={emp.employeeId} className="border-2 border-red-200 rounded-lg overflow-hidden">
+                  <div
+                    className="bg-red-50 p-4 cursor-pointer hover:bg-red-100 transition-colors"
+                    onClick={() => toggleExpanded(emp.employeeId, 'exited')}
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex-1">
+                        <div className="flex items-center gap-3 mb-1">
+                          <span className="font-bold text-gray-900">{emp.name}</span>
+                          <span className="px-2 py-1 text-xs font-semibold rounded bg-gray-200 text-gray-700">
+                            {emp.employeeId}
+                          </span>
+                          <span className={`px-2 py-1 text-xs font-medium rounded ${
+                            emp.reason === 'Resigned' ? 'bg-orange-200 text-orange-800' : 'bg-red-200 text-red-800'
+                          }`}>
+                            {emp.reason}: {new Date(emp.exitDate).toLocaleDateString('en-IN')}
+                          </span>
+                        </div>
+                        <p className="text-sm text-gray-600">
+                          {emp.designation} • {emp.department}
+                        </p>
+                      </div>
+                      <div className="flex items-center gap-4">
+                        <div className="text-right">
+                          <p className="text-xs text-gray-600">Net Salary</p>
+                          <p className="text-lg font-bold text-red-900">{formatCurrency(emp.netSalary)}</p>
+                        </div>
+                        {isExpanded ? (
+                          <ChevronUp className="h-5 w-5 text-red-700" />
+                        ) : (
+                          <ChevronDown className="h-5 w-5 text-red-700" />
+                        )}
+                      </div>
+                    </div>
+                  </div>
+
+                  {isExpanded && (
+                    <div className="p-4 bg-white border-t border-red-200">
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+                          <h4 className="font-semibold text-green-900 mb-3 text-sm">Earnings</h4>
+                          <div className="space-y-2">
+                            <div className="flex justify-between text-xs">
+                              <span className="text-green-700">Basic Salary</span>
+                              <span className="font-medium text-green-900">{formatCurrency(emp.basicSalary)}</span>
+                            </div>
+                            <div className="flex justify-between text-xs">
+                              <span className="text-green-700">HRA</span>
+                              <span className="font-medium text-green-900">{formatCurrency(emp.hra)}</span>
+                            </div>
+                            <div className="flex justify-between text-xs">
+                              <span className="text-green-700">DA</span>
+                              <span className="font-medium text-green-900">{formatCurrency(emp.da)}</span>
+                            </div>
+                            <div className="flex justify-between text-xs">
+                              <span className="text-green-700">Conveyance</span>
+                              <span className="font-medium text-green-900">{formatCurrency(emp.conveyance)}</span>
+                            </div>
+                            {emp.medical > 0 && (
+                              <div className="flex justify-between text-xs">
+                                <span className="text-green-700">Medical</span>
+                                <span className="font-medium text-green-900">{formatCurrency(emp.medical)}</span>
+                              </div>
+                            )}
+                            <div className="flex justify-between text-xs pt-2 border-t border-green-300">
+                              <span className="font-bold text-green-900">Gross Salary</span>
+                              <span className="font-bold text-green-900">{formatCurrency(emp.grossSalary)}</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="bg-red-50 rounded-lg p-4 border border-red-200">
+                          <h4 className="font-semibold text-red-900 mb-3 text-sm">Deductions</h4>
+                          <div className="space-y-2">
+                            <div className="flex justify-between text-xs">
+                              <span className="text-red-700">PF (Employee)</span>
+                              <span className="font-medium text-red-900">{formatCurrency(emp.pfEmployee)}</span>
+                            </div>
+                            <div className="flex justify-between text-xs">
+                              <span className="text-red-700">ESI (Employee)</span>
+                              <span className="font-medium text-red-900">{formatCurrency(emp.esiEmployee)}</span>
+                            </div>
+                            <div className="flex justify-between text-xs">
+                              <span className="text-red-700">Professional Tax</span>
+                              <span className="font-medium text-red-900">{formatCurrency(emp.professionalTax)}</span>
+                            </div>
+                            {emp.tds > 0 && (
+                              <div className="flex justify-between text-xs">
+                                <span className="text-red-700">TDS</span>
+                                <span className="font-medium text-red-900">{formatCurrency(emp.tds)}</span>
+                              </div>
+                            )}
+                            <div className="flex justify-between text-xs pt-2 border-t border-red-300">
+                              <span className="font-bold text-red-900">Total Deductions</span>
+                              <span className="font-bold text-red-900">{formatCurrency(emp.totalDeductions)}</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+                          <h4 className="font-semibold text-blue-900 mb-3 text-sm">Net Payment</h4>
+                          <div className="text-center py-4">
+                            <p className="text-xs text-blue-700 mb-2">Net Salary</p>
+                            <p className="text-3xl font-bold text-blue-900">{formatCurrency(emp.netSalary)}</p>
+                          </div>
+                          <div className="mt-4 space-y-2">
+                            <div className="flex justify-between text-xs">
+                              <span className="text-blue-700">Gross</span>
+                              <span className="text-blue-900">{formatCurrency(emp.grossSalary)}</span>
+                            </div>
+                            <div className="flex justify-between text-xs">
+                              <span className="text-blue-700">Deductions</span>
+                              <span className="text-blue-900">-{formatCurrency(emp.totalDeductions)}</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+            <div className="bg-red-100 rounded-lg p-4 border-2 border-red-300">
+              <div className="flex justify-between items-center">
+                <span className="font-bold text-red-900 text-lg">Total Deduction from Payroll</span>
+                <span className="text-2xl font-bold text-red-900">{formatCurrency(deductionsTotal)}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Salary Revisions */}
+      {data.revisedSalaries.length > 0 && (
+        <div className="bg-white rounded-lg shadow-sm border-2 border-blue-200 p-6">
+          <h3 className="text-lg font-bold text-blue-900 mb-4 flex items-center gap-2">
+            <TrendingUp className="h-5 w-5" />
+            Salary Revisions ({data.revisedSalaries.length})
+          </h3>
+          <div className="space-y-3">
+            {data.revisedSalaries.map((emp) => {
+              const isExpanded = expandedRevised.includes(emp.employeeId);
+              const impact = emp.newNetSalary - emp.oldNetSalary;
+              const impactPercent = ((impact / emp.oldNetSalary) * 100).toFixed(2);
+              return (
+                <div key={emp.employeeId} className="border-2 border-blue-200 rounded-lg overflow-hidden">
+                  <div
+                    className="bg-blue-50 p-4 cursor-pointer hover:bg-blue-100 transition-colors"
+                    onClick={() => toggleExpanded(emp.employeeId, 'revised')}
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex-1">
+                        <div className="flex items-center gap-3 mb-1">
+                          <span className="font-bold text-gray-900">{emp.name}</span>
+                          <span className="px-2 py-1 text-xs font-semibold rounded bg-gray-200 text-gray-700">
+                            {emp.employeeId}
+                          </span>
+                          <span className="px-2 py-1 text-xs font-medium rounded bg-blue-200 text-blue-800">
+                            Effective: {new Date(emp.revisionDate).toLocaleDateString('en-IN')}
+                          </span>
+                        </div>
+                        <p className="text-sm text-gray-600 mb-1">
+                          {emp.designation} • {emp.department}
+                        </p>
+                        <p className="text-xs text-blue-700">{emp.reason}</p>
+                      </div>
+                      <div className="flex items-center gap-4">
+                        <div className="text-right">
+                          <p className="text-xs text-gray-600 mb-1">
+                            {formatCurrency(emp.oldNetSalary)} → {formatCurrency(emp.newNetSalary)}
+                          </p>
+                          <p className={`text-lg font-bold ${impact >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                            {impact >= 0 ? '+' : ''}{formatCurrency(impact)} ({impactPercent}%)
+                          </p>
+                        </div>
+                        {isExpanded ? (
+                          <ChevronUp className="h-5 w-5 text-blue-700" />
+                        ) : (
+                          <ChevronDown className="h-5 w-5 text-blue-700" />
+                        )}
+                      </div>
+                    </div>
+                  </div>
+
+                  {isExpanded && (
+                    <div className="p-4 bg-white border-t border-blue-200">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        {/* Old Salary Structure */}
+                        <div className="bg-gray-50 rounded-lg p-4 border-2 border-gray-300">
+                          <h4 className="font-bold text-gray-900 mb-3 text-center">Previous Salary Structure</h4>
+
+                          <div className="bg-green-50 rounded p-3 mb-3 border border-green-200">
+                            <p className="text-xs font-medium text-green-700 mb-2">Earnings</p>
+                            <div className="space-y-1">
+                              <div className="flex justify-between text-xs">
+                                <span className="text-green-700">Basic</span>
+                                <span className="font-medium text-green-900">{formatCurrency(emp.oldBasicSalary)}</span>
+                              </div>
+                              <div className="flex justify-between text-xs">
+                                <span className="text-green-700">HRA</span>
+                                <span className="font-medium text-green-900">{formatCurrency(emp.oldBreakdown.hra)}</span>
+                              </div>
+                              <div className="flex justify-between text-xs">
+                                <span className="text-green-700">DA</span>
+                                <span className="font-medium text-green-900">{formatCurrency(emp.oldBreakdown.da)}</span>
+                              </div>
+                              <div className="flex justify-between text-xs">
+                                <span className="text-green-700">Conveyance</span>
+                                <span className="font-medium text-green-900">{formatCurrency(emp.oldBreakdown.conveyance)}</span>
+                              </div>
+                              {emp.oldBreakdown.medical > 0 && (
+                                <div className="flex justify-between text-xs">
+                                  <span className="text-green-700">Medical</span>
+                                  <span className="font-medium text-green-900">{formatCurrency(emp.oldBreakdown.medical)}</span>
+                                </div>
+                              )}
+                              <div className="flex justify-between text-xs pt-2 border-t border-green-300">
+                                <span className="font-bold text-green-900">Gross</span>
+                                <span className="font-bold text-green-900">{formatCurrency(emp.oldGrossSalary)}</span>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="text-center py-2 bg-blue-50 rounded border border-blue-200">
+                            <p className="text-xs text-blue-700">Previous Net Salary</p>
+                            <p className="text-xl font-bold text-blue-900">{formatCurrency(emp.oldNetSalary)}</p>
+                          </div>
+                        </div>
+
+                        {/* New Salary Structure */}
+                        <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-4 border-2 border-green-400">
+                          <h4 className="font-bold text-green-900 mb-3 text-center">Revised Salary Structure</h4>
+
+                          <div className="bg-green-100 rounded p-3 mb-3 border-2 border-green-300">
+                            <p className="text-xs font-medium text-green-800 mb-2">Earnings</p>
+                            <div className="space-y-1">
+                              <div className="flex justify-between text-xs">
+                                <span className="text-green-700">Basic</span>
+                                <span className="font-medium text-green-900">{formatCurrency(emp.newBasicSalary)}</span>
+                              </div>
+                              <div className="flex justify-between text-xs">
+                                <span className="text-green-700">HRA</span>
+                                <span className="font-medium text-green-900">{formatCurrency(emp.newBreakdown.hra)}</span>
+                              </div>
+                              <div className="flex justify-between text-xs">
+                                <span className="text-green-700">DA</span>
+                                <span className="font-medium text-green-900">{formatCurrency(emp.newBreakdown.da)}</span>
+                              </div>
+                              <div className="flex justify-between text-xs">
+                                <span className="text-green-700">Conveyance</span>
+                                <span className="font-medium text-green-900">{formatCurrency(emp.newBreakdown.conveyance)}</span>
+                              </div>
+                              {emp.newBreakdown.medical > 0 && (
+                                <div className="flex justify-between text-xs">
+                                  <span className="text-green-700">Medical</span>
+                                  <span className="font-medium text-green-900">{formatCurrency(emp.newBreakdown.medical)}</span>
+                                </div>
+                              )}
+                              <div className="flex justify-between text-xs pt-2 border-t border-green-400">
+                                <span className="font-bold text-green-900">Gross</span>
+                                <span className="font-bold text-green-900">{formatCurrency(emp.newGrossSalary)}</span>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="text-center py-2 bg-green-200 rounded border-2 border-green-400">
+                            <p className="text-xs text-green-800">Revised Net Salary</p>
+                            <p className="text-xl font-bold text-green-900">{formatCurrency(emp.newNetSalary)}</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Impact Summary */}
+                      <div className={`p-3 rounded-lg border-2 ${impact >= 0 ? 'bg-green-50 border-green-300' : 'bg-red-50 border-red-300'}`}>
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <p className={`text-sm font-semibold ${impact >= 0 ? 'text-green-900' : 'text-red-900'}`}>
+                              Net Salary Impact
+                            </p>
+                            <p className="text-xs text-gray-600 mt-1">
+                              Basic: {formatCurrency(emp.oldBasicSalary)} → {formatCurrency(emp.newBasicSalary)}
+                              ({impact >= 0 ? '+' : ''}{formatCurrency(emp.newBasicSalary - emp.oldBasicSalary)})
+                            </p>
+                          </div>
+                          <div className="text-right">
+                            <p className={`text-2xl font-bold ${impact >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                              {impact >= 0 ? '+' : ''}{formatCurrency(impact)}
+                            </p>
+                            <p className={`text-sm font-medium ${impact >= 0 ? 'text-green-700' : 'text-red-700'}`}>
+                              {impactPercent}% {impact >= 0 ? 'increase' : 'decrease'}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+            <div className={`rounded-lg p-4 border-2 ${revisionsImpact >= 0 ? 'bg-green-100 border-green-300' : 'bg-red-100 border-red-300'}`}>
+              <div className="flex justify-between items-center">
+                <span className={`font-bold text-lg ${revisionsImpact >= 0 ? 'text-green-900' : 'text-red-900'}`}>
+                  Total Revision Impact on Payroll
+                </span>
+                <span className={`text-2xl font-bold ${revisionsImpact >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                  {revisionsImpact >= 0 ? '+' : ''}{formatCurrency(revisionsImpact)}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Summary */}
+      <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-lg border-2 border-indigo-300 p-6">
+        <h3 className="text-lg font-bold text-indigo-900 mb-4">Reconciliation Summary</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="bg-white rounded-lg p-4 border border-indigo-200">
+            <p className="text-sm text-gray-600 mb-2">Employee Count Change</p>
+            <p className="text-2xl font-bold text-gray-900">
+              {data.previousPayroll.employeeCount} → {data.currentPayroll.employeeCount}
+              <span className={`ml-2 text-lg ${
+                data.currentPayroll.employeeCount > data.previousPayroll.employeeCount ? 'text-green-600' : 'text-red-600'
+              }`}>
+                ({data.currentPayroll.employeeCount >= data.previousPayroll.employeeCount ? '+' : ''}
+                {data.currentPayroll.employeeCount - data.previousPayroll.employeeCount})
+              </span>
+            </p>
+          </div>
+          <div className="bg-white rounded-lg p-4 border border-indigo-200">
+            <p className="text-sm text-gray-600 mb-2">Net Payroll Change</p>
+            <p className="text-2xl font-bold text-gray-900">
+              {formatCurrency(data.previousPayroll.totalNet)} → {formatCurrency(data.currentPayroll.totalNet)}
+              <span className={`ml-2 text-lg ${
+                data.currentPayroll.totalNet > data.previousPayroll.totalNet ? 'text-green-600' : 'text-red-600'
+              }`}>
+                ({data.currentPayroll.totalNet >= data.previousPayroll.totalNet ? '+' : ''}
+                {formatCurrency(data.currentPayroll.totalNet - data.previousPayroll.totalNet)})
+              </span>
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );

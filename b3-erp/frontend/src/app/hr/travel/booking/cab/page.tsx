@@ -1,361 +1,640 @@
 'use client';
 
-import { useState } from 'react';
-import { Car, MapPin, Calendar, Clock, Users, IndianRupee, Navigation, Shield, Star, Search } from 'lucide-react';
+import { useState, useMemo } from 'react';
+import { Car, Plus, Calendar, IndianRupee, User, MapPin, Edit2, Trash2, X, Save, AlertCircle, Download, Navigation } from 'lucide-react';
+import { toast } from '@/hooks/use-toast';
 
-interface CabOption {
+interface CabBooking {
   id: string;
-  provider: string;
+  bookingReference: string;
+  travelRequestId: string;
+  employeeCode: string;
+  employeeName: string;
+  department: string;
+  provider: 'ola' | 'uber' | 'meru' | 'corporate-taxi' | 'other';
+  bookingNumber: string;
   cabType: 'sedan' | 'suv' | 'hatchback' | 'luxury';
-  model: string;
-  capacity: number;
-  fareType: 'per_km' | 'fixed' | 'hourly';
+  vehicleModel?: string;
+  driverName?: string;
+  driverContact?: string;
+  pickupLocation: string;
+  dropLocation: string;
+  pickupDate: string;
+  pickupTime: string;
+  tripType: 'one-way' | 'round-trip' | 'hourly' | 'multi-city';
+  distance: number;
+  duration: string;
   baseFare: number;
-  perKmRate?: number;
-  estimatedFare: number;
-  estimatedTime: string;
-  distance: string;
-  rating: number;
-  trips: number;
-  features: string[];
-  availability: 'immediate' | 'scheduled';
-  waitingTime?: string;
+  taxes: number;
+  totalAmount: number;
+  bookingDate: string;
+  bookingSource: 'app' | 'corporate-agent' | 'phone' | 'other';
+  bookingStatus: 'confirmed' | 'pending' | 'completed' | 'cancelled';
+  paymentMethod: 'corporate-account' | 'employee-paid' | 'cash';
+  remarks?: string;
 }
 
-export default function Page() {
-  const [tripType, setTripType] = useState<'oneway' | 'roundtrip' | 'hourly'>('oneway');
-  const [pickupLocation, setPickupLocation] = useState('Andheri Office');
-  const [dropLocation, setDropLocation] = useState('BKC Corporate Park');
-  const [pickupDate, setPickupDate] = useState('2025-11-15');
-  const [pickupTime, setPickupTime] = useState('09:00');
-  const [cabType, setCabType] = useState('sedan');
-
-  const mockCabs: CabOption[] = [
+export default function CabBookingPage() {
+  const [bookings, setBookings] = useState<CabBooking[]>([
     {
       id: '1',
-      provider: 'Ola',
+      bookingReference: 'CAB-2025-001',
+      travelRequestId: 'TR-2025-002',
+      employeeCode: 'EMP456',
+      employeeName: 'Priya Sharma',
+      department: 'Engineering',
+      provider: 'ola',
+      bookingNumber: 'OLA123456',
       cabType: 'sedan',
-      model: 'Honda City, Maruti Ciaz',
-      capacity: 4,
-      fareType: 'per_km',
-      baseFare: 50,
-      perKmRate: 12,
-      estimatedFare: 245,
-      estimatedTime: '25 mins',
-      distance: '15 km',
-      rating: 4.5,
-      trips: 1250,
-      features: ['AC', 'GPS Tracking', 'Clean & Sanitized'],
-      availability: 'immediate',
-      waitingTime: '5 mins'
+      vehicleModel: 'Honda City',
+      driverName: 'Rajesh Kumar',
+      driverContact: '+91 98765 43210',
+      pickupLocation: 'Pune Airport (PNQ)',
+      dropLocation: 'ITC Grand Central, Bangalore',
+      pickupDate: '2025-11-10',
+      pickupTime: '08:00',
+      tripType: 'one-way',
+      distance: 15,
+      duration: '30 mins',
+      baseFare: 420,
+      taxes: 80,
+      totalAmount: 500,
+      bookingDate: '2025-11-09',
+      bookingSource: 'app',
+      bookingStatus: 'confirmed',
+      paymentMethod: 'corporate-account',
+      remarks: 'Airport pickup - confirmed driver details'
     },
     {
       id: '2',
-      provider: 'Uber',
+      bookingReference: 'CAB-2025-002',
+      travelRequestId: 'TR-2025-003',
+      employeeCode: 'EMP789',
+      employeeName: 'Amit Patel',
+      department: 'Quality',
+      provider: 'uber',
+      bookingNumber: 'UBR789012',
       cabType: 'sedan',
-      model: 'Toyota Etios, Hyundai Xcent',
-      capacity: 4,
-      fareType: 'per_km',
-      baseFare: 55,
-      perKmRate: 11,
-      estimatedFare: 230,
-      estimatedTime: '22 mins',
-      distance: '15 km',
-      rating: 4.6,
-      trips: 2100,
-      features: ['AC', 'GPS Tracking', 'Verified Driver'],
-      availability: 'immediate',
-      waitingTime: '3 mins'
+      vehicleModel: 'Toyota Etios',
+      pickupLocation: 'Office - Pune',
+      dropLocation: 'Mumbai Airport (BOM)',
+      pickupDate: '2025-11-30',
+      pickupTime: '23:00',
+      tripType: 'one-way',
+      distance: 150,
+      duration: '3 hours',
+      baseFare: 3200,
+      taxes: 480,
+      totalAmount: 3680,
+      bookingDate: '2025-11-25',
+      bookingSource: 'app',
+      bookingStatus: 'confirmed',
+      paymentMethod: 'corporate-account',
+      remarks: 'Night travel for early morning international flight'
     },
     {
       id: '3',
-      provider: 'Ola',
+      bookingReference: 'CAB-2025-003',
+      travelRequestId: 'TR-2025-001',
+      employeeCode: 'EMP234',
+      employeeName: 'Rajesh Kumar',
+      department: 'Sales',
+      provider: 'corporate-taxi',
+      bookingNumber: 'CORP456789',
       cabType: 'suv',
-      model: 'Toyota Innova, Mahindra XUV',
-      capacity: 6,
-      fareType: 'per_km',
-      baseFare: 80,
-      perKmRate: 18,
-      estimatedFare: 380,
-      estimatedTime: '25 mins',
-      distance: '15 km',
-      rating: 4.7,
-      trips: 850,
-      features: ['AC', 'GPS Tracking', 'Spacious', 'Luggage Space'],
-      availability: 'immediate',
-      waitingTime: '8 mins'
+      vehicleModel: 'Toyota Innova',
+      driverName: 'Suresh Patil',
+      driverContact: '+91 98123 45678',
+      pickupLocation: 'Mumbai Office',
+      dropLocation: 'Client Office - Pune',
+      pickupDate: '2025-11-05',
+      pickupTime: '09:00',
+      tripType: 'round-trip',
+      distance: 300,
+      duration: '6 hours (round-trip)',
+      baseFare: 5500,
+      taxes: 825,
+      totalAmount: 6325,
+      bookingDate: '2025-11-03',
+      bookingSource: 'corporate-agent',
+      bookingStatus: 'completed',
+      paymentMethod: 'corporate-account',
+      remarks: 'Round trip for client meeting - completed successfully'
     },
     {
       id: '4',
-      provider: 'Meru',
+      bookingReference: 'CAB-2025-004',
+      travelRequestId: 'TR-2025-005',
+      employeeCode: 'EMP567',
+      employeeName: 'Sneha Reddy',
+      department: 'Production',
+      provider: 'ola',
+      bookingNumber: 'OLA987654',
       cabType: 'sedan',
-      model: 'Dzire, Etios',
-      capacity: 4,
-      fareType: 'per_km',
-      baseFare: 60,
-      perKmRate: 13,
-      estimatedFare: 270,
-      estimatedTime: '28 mins',
-      distance: '15 km',
-      rating: 4.4,
-      trips: 1800,
-      features: ['AC', 'Professional Driver', 'Clean & Sanitized'],
-      availability: 'immediate',
-      waitingTime: '6 mins'
-    },
-    {
-      id: '5',
-      provider: 'Uber',
-      cabType: 'luxury',
-      model: 'Honda Accord, Toyota Camry',
-      capacity: 4,
-      fareType: 'per_km',
-      baseFare: 120,
-      perKmRate: 25,
-      estimatedFare: 570,
-      estimatedTime: '20 mins',
-      distance: '15 km',
-      rating: 4.9,
-      trips: 450,
-      features: ['AC', 'Premium Interior', 'Professional Chauffeur', 'Water Bottles'],
-      availability: 'scheduled'
-    },
-    {
-      id: '6',
-      provider: 'Ola',
-      cabType: 'hatchback',
-      model: 'Swift, Wagon R',
-      capacity: 4,
-      fareType: 'per_km',
-      baseFare: 40,
-      perKmRate: 9,
-      estimatedFare: 175,
-      estimatedTime: '30 mins',
-      distance: '15 km',
-      rating: 4.3,
-      trips: 1600,
-      features: ['AC', 'GPS Tracking', 'Budget Friendly'],
-      availability: 'immediate',
-      waitingTime: '4 mins'
+      pickupLocation: 'Hotel - Chennai',
+      dropLocation: 'Supplier Factory - Chennai Outskirts',
+      pickupDate: '2025-11-08',
+      pickupTime: '10:00',
+      tripType: 'hourly',
+      distance: 80,
+      duration: '4 hours',
+      baseFare: 1800,
+      taxes: 270,
+      totalAmount: 2070,
+      bookingDate: '2025-11-07',
+      bookingSource: 'app',
+      bookingStatus: 'pending',
+      paymentMethod: 'corporate-account',
+      remarks: 'Hourly rental for supplier visit - pending confirmation'
     }
-  ];
+  ]);
 
-  const stats = {
-    cheapest: Math.min(...mockCabs.map(c => c.estimatedFare)),
-    fastest: mockCabs.sort((a, b) => parseInt(a.estimatedTime) - parseInt(b.estimatedTime))[0].estimatedTime,
-    available: mockCabs.filter(c => c.availability === 'immediate').length
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [selectedBooking, setSelectedBooking] = useState<CabBooking | null>(null);
+  const [filterStatus, setFilterStatus] = useState<string>('all');
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const filteredBookings = useMemo(() => {
+    let filtered = bookings;
+
+    if (filterStatus !== 'all') {
+      filtered = filtered.filter(b => b.bookingStatus === filterStatus);
+    }
+
+    if (searchQuery) {
+      filtered = filtered.filter(b =>
+        b.employeeName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        b.bookingReference.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        b.bookingNumber.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        b.pickupLocation.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+
+    return filtered.sort((a, b) => b.bookingDate.localeCompare(a.bookingDate));
+  }, [bookings, filterStatus, searchQuery]);
+
+  const stats = useMemo(() => ({
+    total: bookings.length,
+    confirmed: bookings.filter(b => b.bookingStatus === 'confirmed').length,
+    pending: bookings.filter(b => b.bookingStatus === 'pending').length,
+    completed: bookings.filter(b => b.bookingStatus === 'completed').length,
+    cancelled: bookings.filter(b => b.bookingStatus === 'cancelled').length,
+    totalSpent: bookings.filter(b => ['confirmed', 'completed'].includes(b.bookingStatus)).reduce((sum, b) => sum + b.totalAmount, 0)
+  }), [bookings]);
+
+  const getStatusColor = (status: string) => {
+    const colors = {
+      confirmed: 'bg-green-100 text-green-800',
+      pending: 'bg-yellow-100 text-yellow-800',
+      completed: 'bg-blue-100 text-blue-800',
+      cancelled: 'bg-red-100 text-red-800'
+    };
+    return colors[status as keyof typeof colors] || 'bg-gray-100 text-gray-800';
   };
 
-  const getCabTypeColor = (type: string) => {
-    switch (type) {
-      case 'hatchback': return 'bg-gray-100 text-gray-700';
-      case 'sedan': return 'bg-blue-100 text-blue-700';
-      case 'suv': return 'bg-green-100 text-green-700';
-      case 'luxury': return 'bg-purple-100 text-purple-700';
-      default: return 'bg-gray-100 text-gray-700';
-    }
+  const getCabTypeColor = (cabType: string) => {
+    const colors = {
+      'hatchback': 'bg-gray-100 text-gray-800',
+      'sedan': 'bg-blue-100 text-blue-800',
+      'suv': 'bg-purple-100 text-purple-800',
+      'luxury': 'bg-amber-100 text-amber-800'
+    };
+    return colors[cabType as keyof typeof colors] || 'bg-gray-100 text-gray-800';
+  };
+
+  const handleDelete = (booking: CabBooking) => {
+    setSelectedBooking(booking);
+    setShowDeleteModal(true);
+  };
+
+  const handleConfirmDelete = () => {
+    if (!selectedBooking) return;
+    setBookings(bookings.filter(b => b.id !== selectedBooking.id));
+    setShowDeleteModal(false);
+    toast({
+      title: "Booking Deleted",
+      description: `${selectedBooking.bookingReference} has been removed`
+    });
+    setSelectedBooking(null);
+  };
+
+  const handleDownloadReceipt = (booking: CabBooking) => {
+    toast({
+      title: "Downloading Receipt",
+      description: `Cab receipt for ${booking.bookingReference} is being downloaded`
+    });
   };
 
   return (
     <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-gray-900">Cab Booking</h1>
-        <p className="text-sm text-gray-600 mt-1">Book cab services for business travel</p>
+        <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
+          <Car className="h-7 w-7 text-blue-600" />
+          Cab Bookings
+        </h1>
+        <p className="text-sm text-gray-600 mt-1">Manage and track cab bookings for employee travel</p>
       </div>
 
-      {/* Search Card */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-        <div className="flex gap-4 mb-4">
-          <button
-            onClick={() => setTripType('oneway')}
-            className={`px-4 py-2 rounded-lg font-medium text-sm ${
-              tripType === 'oneway' ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-700'
-            }`}
-          >
-            One Way
-          </button>
-          <button
-            onClick={() => setTripType('roundtrip')}
-            className={`px-4 py-2 rounded-lg font-medium text-sm ${
-              tripType === 'roundtrip' ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-700'
-            }`}
-          >
-            Round Trip
-          </button>
-          <button
-            onClick={() => setTripType('hourly')}
-            className={`px-4 py-2 rounded-lg font-medium text-sm ${
-              tripType === 'hourly' ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-700'
-            }`}
-          >
-            Hourly Rental
-          </button>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+      {/* Info Alert */}
+      <div className="mb-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+        <div className="flex items-start gap-2">
+          <AlertCircle className="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" />
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Pickup Location</label>
-            <input
-              type="text"
-              value={pickupLocation}
-              onChange={(e) => setPickupLocation(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Drop Location</label>
-            <input
-              type="text"
-              value={dropLocation}
-              onChange={(e) => setDropLocation(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
+            <h3 className="text-sm font-semibold text-blue-900 mb-1">Booking Management</h3>
+            <p className="text-sm text-blue-800">
+              Record cab bookings made through ride-hailing apps, corporate taxi services, or travel agents.
+              Track booking details, driver information, and trip status for expense reporting.
+            </p>
           </div>
         </div>
+      </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Pickup Date</label>
-            <input
-              type="date"
-              value={pickupDate}
-              onChange={(e) => setPickupDate(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Pickup Time</label>
-            <input
-              type="time"
-              value={pickupTime}
-              onChange={(e) => setPickupTime(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Cab Type</label>
+      {/* Statistics */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4 mb-6">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+          <div className="text-sm text-gray-600 mb-1">Total Bookings</div>
+          <div className="text-2xl font-bold text-gray-900">{stats.total}</div>
+        </div>
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+          <div className="text-sm text-gray-600 mb-1">Confirmed</div>
+          <div className="text-2xl font-bold text-green-600">{stats.confirmed}</div>
+        </div>
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+          <div className="text-sm text-gray-600 mb-1">Pending</div>
+          <div className="text-2xl font-bold text-yellow-600">{stats.pending}</div>
+        </div>
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+          <div className="text-sm text-gray-600 mb-1">Completed</div>
+          <div className="text-2xl font-bold text-blue-600">{stats.completed}</div>
+        </div>
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+          <div className="text-sm text-gray-600 mb-1">Cancelled</div>
+          <div className="text-2xl font-bold text-red-600">{stats.cancelled}</div>
+        </div>
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+          <div className="text-sm text-gray-600 mb-1">Total Spent</div>
+          <div className="text-2xl font-bold text-blue-600">₹{(stats.totalSpent / 1000).toFixed(1)}K</div>
+        </div>
+      </div>
+
+      {/* Filters and Actions */}
+      <div className="mb-6 flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
+        <div className="flex flex-col sm:flex-row gap-3 items-start sm:items-center flex-1">
+          <div className="flex gap-2 items-center">
+            <label className="text-sm font-medium text-gray-700">Status:</label>
             <select
-              value={cabType}
-              onChange={(e) => setCabType(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              value={filterStatus}
+              onChange={(e) => setFilterStatus(e.target.value)}
+              className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 bg-white"
             >
-              <option value="all">All Types</option>
-              <option value="hatchback">Hatchback</option>
-              <option value="sedan">Sedan</option>
-              <option value="suv">SUV</option>
-              <option value="luxury">Luxury</option>
+              <option value="all">All Status</option>
+              <option value="confirmed">Confirmed</option>
+              <option value="pending">Pending</option>
+              <option value="completed">Completed</option>
+              <option value="cancelled">Cancelled</option>
             </select>
           </div>
+          <input
+            type="text"
+            placeholder="Search by employee, booking ref, location..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 w-full sm:w-80"
+          />
         </div>
-
-        <button className="flex items-center gap-2 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium">
-          <Search className="h-4 w-4" />
-          Search Cabs
+        <button
+          onClick={() => setShowAddModal(true)}
+          className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2 font-medium"
+        >
+          <Plus className="h-4 w-4" />
+          Add Booking
         </button>
       </div>
 
-      {/* Quick Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
-          <p className="text-sm font-medium text-green-600">Cheapest Fare</p>
-          <p className="text-2xl font-bold text-green-900 mt-1">₹{stats.cheapest}</p>
-        </div>
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
-          <p className="text-sm font-medium text-blue-600">Fastest ETA</p>
-          <p className="text-2xl font-bold text-blue-900 mt-1">{stats.fastest}</p>
-        </div>
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
-          <p className="text-sm font-medium text-purple-600">Available Now</p>
-          <p className="text-2xl font-bold text-purple-900 mt-1">{stats.available}</p>
-        </div>
-      </div>
-
-      {/* Cab Results */}
+      {/* Bookings List */}
       <div className="space-y-4">
-        {mockCabs.map(cab => (
-          <div key={cab.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
-            <div className="flex items-start justify-between mb-4">
-              <div className="flex items-center gap-4">
-                <div className="h-16 w-16 bg-gray-100 rounded-lg flex items-center justify-center">
-                  <Car className="h-8 w-8 text-gray-600" />
+        {filteredBookings.map((booking) => (
+          <div key={booking.id} className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+            <div className="px-6 py-4 bg-gradient-to-r from-blue-50 to-blue-100 border-b border-gray-200 flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="p-2 bg-blue-600 rounded-lg">
+                  <Car className="h-5 w-5 text-white" />
                 </div>
                 <div>
-                  <div className="flex items-center gap-2 mb-1">
-                    <h3 className="text-lg font-bold text-gray-900">{cab.provider}</h3>
-                    <span className={`px-2 py-1 text-xs font-semibold rounded ${getCabTypeColor(cab.cabType)}`}>
-                      {cab.cabType.charAt(0).toUpperCase() + cab.cabType.slice(1)}
-                    </span>
+                  <h3 className="text-lg font-semibold text-gray-900">{booking.bookingReference}</h3>
+                  <p className="text-sm text-gray-600 capitalize">{booking.provider} • {booking.bookingNumber}</p>
+                </div>
+                <span className={`px-3 py-1 text-xs font-medium rounded-full ${getStatusColor(booking.bookingStatus)}`}>
+                  {booking.bookingStatus.charAt(0).toUpperCase() + booking.bookingStatus.slice(1)}
+                </span>
+                <span className={`px-3 py-1 text-xs font-medium rounded ${getCabTypeColor(booking.cabType)}`}>
+                  {booking.cabType.toUpperCase()}
+                </span>
+              </div>
+              <div className="text-right">
+                <div className="text-2xl font-bold text-blue-900">₹{booking.totalAmount.toLocaleString('en-IN')}</div>
+                <div className="text-xs text-gray-600">{booking.distance}km • {booking.duration}</div>
+              </div>
+            </div>
+
+            <div className="p-6">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-4">
+                {/* Employee Info */}
+                <div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <User className="h-4 w-4 text-gray-400" />
+                    <span className="text-xs text-gray-500 uppercase font-medium">Passenger</span>
                   </div>
-                  <p className="text-sm text-gray-600 mb-1">{cab.model}</p>
-                  <div className="flex items-center gap-3 text-sm text-gray-600">
-                    <span className="flex items-center gap-1">
-                      <Users className="h-4 w-4" />
-                      {cab.capacity} seats
-                    </span>
-                    <span className="text-gray-400">•</span>
-                    <div className="flex items-center gap-1">
-                      <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                      <span className="font-semibold text-gray-900">{cab.rating}</span>
-                      <span className="text-gray-500">({cab.trips} trips)</span>
+                  <p className="font-semibold text-gray-900">{booking.employeeName}</p>
+                  <p className="text-sm text-gray-600">{booking.employeeCode}</p>
+                  <p className="text-xs text-gray-500">{booking.department}</p>
+                </div>
+
+                {/* Route */}
+                <div className="md:col-span-2">
+                  <div className="flex items-center gap-2 mb-2">
+                    <MapPin className="h-4 w-4 text-gray-400" />
+                    <span className="text-xs text-gray-500 uppercase font-medium">Route</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="flex-1">
+                      <p className="text-sm font-semibold text-gray-900">From:</p>
+                      <p className="text-sm text-gray-600">{booking.pickupLocation}</p>
+                    </div>
+                    <Navigation className="h-4 w-4 text-blue-600 rotate-90" />
+                    <div className="flex-1">
+                      <p className="text-sm font-semibold text-gray-900">To:</p>
+                      <p className="text-sm text-gray-600">{booking.dropLocation}</p>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div className="text-right">
-                <p className="text-3xl font-bold text-blue-600">₹{cab.estimatedFare}</p>
-                <p className="text-xs text-gray-500 mt-1">
-                  {cab.fareType === 'per_km' && `Base: ₹${cab.baseFare} + ₹${cab.perKmRate}/km`}
-                  {cab.fareType === 'fixed' && 'Fixed Fare'}
-                  {cab.fareType === 'hourly' && 'Hourly Rate'}
-                </p>
-              </div>
-            </div>
 
-            <div className="grid grid-cols-3 gap-4 mb-4 py-4 border-y border-gray-200">
-              <div>
-                <p className="text-xs text-gray-500 uppercase font-medium mb-1">Distance</p>
-                <p className="text-sm font-semibold text-gray-900 flex items-center gap-1">
-                  <Navigation className="h-4 w-4" />
-                  {cab.distance}
-                </p>
+                {/* Trip Details */}
+                <div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <Calendar className="h-4 w-4 text-gray-400" />
+                    <span className="text-xs text-gray-500 uppercase font-medium">Trip Details</span>
+                  </div>
+                  <p className="text-sm text-gray-900">{booking.pickupDate} • {booking.pickupTime}</p>
+                  <p className="text-xs text-gray-600 capitalize">{booking.tripType.replace('-', ' ')}</p>
+                  {booking.vehicleModel && <p className="text-xs text-gray-500 mt-1">{booking.vehicleModel}</p>}
+                </div>
               </div>
-              <div>
-                <p className="text-xs text-gray-500 uppercase font-medium mb-1">Estimated Time</p>
-                <p className="text-sm font-semibold text-gray-900 flex items-center gap-1">
-                  <Clock className="h-4 w-4" />
-                  {cab.estimatedTime}
-                </p>
-              </div>
-              <div>
-                <p className="text-xs text-gray-500 uppercase font-medium mb-1">Availability</p>
-                {cab.availability === 'immediate' ? (
-                  <span className="inline-flex items-center gap-1 px-2 py-1 bg-green-100 text-green-700 text-xs font-semibold rounded">
-                    <Shield className="h-3 w-3" />
-                    Ready in {cab.waitingTime}
-                  </span>
-                ) : (
-                  <span className="px-2 py-1 bg-orange-100 text-orange-700 text-xs font-semibold rounded">
-                    Schedule Only
-                  </span>
-                )}
-              </div>
-            </div>
 
-            <div className="flex items-center justify-between">
-              <div className="flex flex-wrap gap-2">
-                {cab.features.map((feature, idx) => (
-                  <span key={idx} className="px-2 py-1 bg-gray-50 text-gray-700 text-xs rounded border border-gray-200">
-                    {feature}
-                  </span>
-                ))}
+              {/* Additional Details */}
+              {(booking.driverName || booking.remarks) && (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                  {booking.driverName && (
+                    <div className="bg-gray-50 rounded-lg p-3">
+                      <p className="text-xs text-gray-500 mb-1">Driver Details</p>
+                      <p className="text-sm font-semibold text-gray-900">{booking.driverName}</p>
+                      {booking.driverContact && <p className="text-xs text-gray-600">{booking.driverContact}</p>}
+                    </div>
+                  )}
+                  {booking.remarks && (
+                    <div className="bg-gray-50 rounded-lg p-3">
+                      <p className="text-xs text-gray-500 mb-1">Remarks</p>
+                      <p className="text-sm text-gray-900">{booking.remarks}</p>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Actions */}
+              <div className="flex items-center justify-between pt-4 border-t border-gray-200">
+                <div className="text-xs text-gray-500">
+                  Travel Request: <span className="text-blue-600 font-medium">{booking.travelRequestId}</span>
+                  {' • '}
+                  Payment: <span className="text-gray-900 capitalize">{booking.paymentMethod.replace('-', ' ')}</span>
+                </div>
+                <div className="flex gap-2">
+                  {(booking.bookingStatus === 'confirmed' || booking.bookingStatus === 'completed') && (
+                    <button
+                      onClick={() => handleDownloadReceipt(booking)}
+                      className="px-3 py-1.5 bg-green-100 text-green-700 rounded-lg hover:bg-green-200 text-sm font-medium flex items-center gap-1"
+                    >
+                      <Download className="h-3.5 w-3.5" />
+                      Receipt
+                    </button>
+                  )}
+                  <button
+                    onClick={() => handleDelete(booking)}
+                    className="p-1.5 bg-red-100 text-red-700 rounded-lg hover:bg-red-200"
+                    title="Delete"
+                  >
+                    <Trash2 className="h-4 w-4" />
+                  </button>
+                </div>
               </div>
-              <button className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium text-sm">
-                Book Now
-              </button>
             </div>
           </div>
         ))}
       </div>
+
+      {filteredBookings.length === 0 && (
+        <div className="text-center py-12 bg-white rounded-lg shadow-sm border border-gray-200">
+          <Car className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+          <h3 className="text-lg font-semibold text-gray-900 mb-2">No bookings found</h3>
+          <p className="text-gray-600">No cab bookings match your search criteria</p>
+        </div>
+      )}
+
+      {/* Add Booking Modal */}
+      {showAddModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="p-6 border-b border-gray-200 flex items-center justify-between sticky top-0 bg-white z-10">
+              <h2 className="text-xl font-bold text-gray-900">Add Cab Booking</h2>
+              <button onClick={() => setShowAddModal(false)} className="p-2 hover:bg-gray-100 rounded-lg">
+                <X className="h-5 w-5 text-gray-500" />
+              </button>
+            </div>
+
+            <div className="p-6">
+              <form className="space-y-6">
+                {/* Employee & Travel Request */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Travel Request ID</label>
+                    <input type="text" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="TR-2025-XXX" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Employee Code</label>
+                    <input type="text" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="EMPXXX" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Employee Name</label>
+                    <input type="text" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" />
+                  </div>
+                </div>
+
+                {/* Provider & Booking Details */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Provider</label>
+                    <select className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                      <option value="ola">Ola</option>
+                      <option value="uber">Uber</option>
+                      <option value="meru">Meru</option>
+                      <option value="corporate-taxi">Corporate Taxi</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Booking Number</label>
+                    <input type="text" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="OLA123456" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Cab Type</label>
+                    <select className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                      <option value="hatchback">Hatchback</option>
+                      <option value="sedan">Sedan</option>
+                      <option value="suv">SUV</option>
+                      <option value="luxury">Luxury</option>
+                    </select>
+                  </div>
+                </div>
+
+                {/* Route */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Pickup Location</label>
+                    <input type="text" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="Office / Airport" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Drop Location</label>
+                    <input type="text" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="Destination" />
+                  </div>
+                </div>
+
+                {/* Trip Details */}
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Pickup Date</label>
+                    <input type="date" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Pickup Time</label>
+                    <input type="time" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Trip Type</label>
+                    <select className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                      <option value="one-way">One Way</option>
+                      <option value="round-trip">Round Trip</option>
+                      <option value="hourly">Hourly Rental</option>
+                      <option value="multi-city">Multi-City</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Distance (km)</label>
+                    <input type="number" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="0" />
+                  </div>
+                </div>
+
+                {/* Pricing */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Base Fare (₹)</label>
+                    <input type="number" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="0" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Taxes (₹)</label>
+                    <input type="number" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="0" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Total Amount (₹)</label>
+                    <input type="number" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="0" />
+                  </div>
+                </div>
+
+                {/* Additional Details */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Booking Status</label>
+                    <select className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                      <option value="confirmed">Confirmed</option>
+                      <option value="pending">Pending</option>
+                      <option value="completed">Completed</option>
+                      <option value="cancelled">Cancelled</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Payment Method</label>
+                    <select className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                      <option value="corporate-account">Corporate Account</option>
+                      <option value="employee-paid">Employee Paid</option>
+                      <option value="cash">Cash</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">Remarks</label>
+                  <textarea className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" rows={3} placeholder="Any additional notes..."></textarea>
+                </div>
+              </form>
+            </div>
+
+            <div className="p-6 border-t border-gray-200 flex justify-end gap-3 sticky bottom-0 bg-white">
+              <button onClick={() => setShowAddModal(false)} className="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-medium">
+                Cancel
+              </button>
+              <button
+                onClick={() => {
+                  toast({ title: "Booking Added", description: "Cab booking has been recorded successfully" });
+                  setShowAddModal(false);
+                }}
+                className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium flex items-center gap-2"
+              >
+                <Save className="h-4 w-4" />
+                Save Booking
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Delete Confirmation Modal */}
+      {showDeleteModal && selectedBooking && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
+            <div className="p-6">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="p-3 bg-red-100 rounded-full">
+                  <AlertCircle className="h-6 w-6 text-red-600" />
+                </div>
+                <h2 className="text-xl font-bold text-gray-900">Delete Booking?</h2>
+              </div>
+              <p className="text-gray-600 mb-2">
+                Are you sure you want to delete booking <strong>{selectedBooking.bookingReference}</strong>?
+              </p>
+              <p className="text-sm text-gray-500">
+                This action cannot be undone. All booking details will be permanently removed.
+              </p>
+            </div>
+            <div className="p-6 border-t border-gray-200 flex justify-end gap-2">
+              <button
+                onClick={() => {
+                  setShowDeleteModal(false);
+                  setSelectedBooking(null);
+                }}
+                className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-medium"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleConfirmDelete}
+                className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 font-medium flex items-center gap-2"
+              >
+                <Trash2 className="h-4 w-4" />
+                Delete Booking
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

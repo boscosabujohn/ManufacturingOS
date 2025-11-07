@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Plus, Search, Eye, Edit, Download, Building, Calendar, DollarSign, TrendingUp, AlertCircle, CheckCircle, Clock, ChevronLeft, ChevronRight, FileText, User, BarChart3 } from 'lucide-react';
+import Link from 'next/link';
+import { Plus, Search, Eye, Edit, Download, Building, Calendar, DollarSign, TrendingUp, AlertCircle, CheckCircle, Clock, ChevronLeft, ChevronRight, FileText, User, BarChart3, CreditCard, ArrowRight } from 'lucide-react';
 
 interface Receivable {
   id: string;
@@ -207,15 +208,17 @@ export default function ReceivablesPage() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
-      {/* Stats */}
-      <div className="mb-6 flex items-start gap-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 flex-1">
-          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-blue-600">Total Receivables</p>
-                <p className="text-2xl font-bold text-blue-900 mt-1">${(stats.totalReceivables / 1000).toFixed(0)}K</p>
+    <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50">
+      <div className="flex-1 overflow-y-auto overflow-x-hidden">
+        <div className="px-4 sm:px-6 lg:px-8 py-6">
+          {/* Stats */}
+          <div className="mb-6 flex items-start gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 flex-1">
+              <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-medium text-blue-600">Total Receivables</p>
+                    <p className="text-2xl font-bold text-blue-900 mt-1">₹{(stats.totalReceivables / 1000).toFixed(0)}K</p>
               </div>
               <TrendingUp className="h-8 w-8 text-blue-600" />
             </div>
@@ -225,7 +228,7 @@ export default function ReceivablesPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-green-600">Collected This Month</p>
-                <p className="text-2xl font-bold text-green-900 mt-1">${(stats.collectedThisMonth / 1000).toFixed(0)}K</p>
+                <p className="text-2xl font-bold text-green-900 mt-1">₹{(stats.collectedThisMonth / 1000).toFixed(0)}K</p>
               </div>
               <CheckCircle className="h-8 w-8 text-green-600" />
             </div>
@@ -235,7 +238,7 @@ export default function ReceivablesPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-yellow-600">Due This Week</p>
-                <p className="text-2xl font-bold text-yellow-900 mt-1">${(stats.dueThisWeek / 1000).toFixed(0)}K</p>
+                <p className="text-2xl font-bold text-yellow-900 mt-1">₹{(stats.dueThisWeek / 1000).toFixed(0)}K</p>
               </div>
               <Clock className="h-8 w-8 text-yellow-600" />
             </div>
@@ -245,7 +248,7 @@ export default function ReceivablesPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-red-600">Overdue</p>
-                <p className="text-2xl font-bold text-red-900 mt-1">${(stats.overdue / 1000).toFixed(0)}K</p>
+                <p className="text-2xl font-bold text-red-900 mt-1">₹{(stats.overdue / 1000).toFixed(0)}K</p>
               </div>
               <AlertCircle className="h-8 w-8 text-red-600" />
             </div>
@@ -259,6 +262,68 @@ export default function ReceivablesPage() {
           <Plus className="h-5 w-5" />
           <span>Add Receivable</span>
         </button>
+      </div>
+
+      {/* Quick Access Navigation */}
+      <div className="mb-6 bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <h3 className="text-sm font-semibold text-gray-700 mb-3">Accounts Receivable Modules</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+          <Link
+            href="/finance/receivables/aging"
+            className="group flex items-center gap-3 p-3 rounded-lg border border-gray-200 hover:border-blue-500 hover:bg-blue-50 transition-all"
+          >
+            <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center group-hover:bg-blue-200 transition-colors">
+              <Clock className="h-5 w-5 text-blue-600" />
+            </div>
+            <div className="flex-1">
+              <h4 className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">Aging Report</h4>
+              <p className="text-xs text-gray-600">Analyze customer payment aging</p>
+            </div>
+            <ArrowRight className="h-4 w-4 text-gray-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all" />
+          </Link>
+
+          <Link
+            href="/finance/receivables/credit-management"
+            className="group flex items-center gap-3 p-3 rounded-lg border border-gray-200 hover:border-green-500 hover:bg-green-50 transition-all"
+          >
+            <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center group-hover:bg-green-200 transition-colors">
+              <CreditCard className="h-5 w-5 text-green-600" />
+            </div>
+            <div className="flex-1">
+              <h4 className="font-semibold text-gray-900 group-hover:text-green-600 transition-colors">Credit Management</h4>
+              <p className="text-xs text-gray-600">Manage customer credit limits</p>
+            </div>
+            <ArrowRight className="h-4 w-4 text-gray-400 group-hover:text-green-600 group-hover:translate-x-1 transition-all" />
+          </Link>
+
+          <Link
+            href="/finance/receivables/invoices"
+            className="group flex items-center gap-3 p-3 rounded-lg border border-gray-200 hover:border-purple-500 hover:bg-purple-50 transition-all"
+          >
+            <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center group-hover:bg-purple-200 transition-colors">
+              <FileText className="h-5 w-5 text-purple-600" />
+            </div>
+            <div className="flex-1">
+              <h4 className="font-semibold text-gray-900 group-hover:text-purple-600 transition-colors">Invoices</h4>
+              <p className="text-xs text-gray-600">View and manage AR invoices</p>
+            </div>
+            <ArrowRight className="h-4 w-4 text-gray-400 group-hover:text-purple-600 group-hover:translate-x-1 transition-all" />
+          </Link>
+
+          <Link
+            href="/finance/receivables/collections"
+            className="group flex items-center gap-3 p-3 rounded-lg border border-gray-200 hover:border-emerald-500 hover:bg-emerald-50 transition-all"
+          >
+            <div className="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center group-hover:bg-emerald-200 transition-colors">
+              <BarChart3 className="h-5 w-5 text-emerald-600" />
+            </div>
+            <div className="flex-1">
+              <h4 className="font-semibold text-gray-900 group-hover:text-emerald-600 transition-colors">Collections</h4>
+              <p className="text-xs text-gray-600">Track payment collections</p>
+            </div>
+            <ArrowRight className="h-4 w-4 text-gray-400 group-hover:text-emerald-600 group-hover:translate-x-1 transition-all" />
+          </Link>
+        </div>
       </div>
 
       {/* Filters */}
@@ -372,12 +437,12 @@ export default function ReceivablesPage() {
                       </div>
                     </td>
                     <td className="px-6 py-4">
-                      <div className="font-bold text-gray-900">${receivable.totalAmount.toLocaleString()}</div>
-                      <div className="text-xs text-gray-500">Base: ${receivable.amount.toLocaleString()}</div>
-                      <div className="text-xs text-gray-500">Tax: ${receivable.taxAmount.toLocaleString()}</div>
+                      <div className="font-bold text-gray-900">₹{receivable.totalAmount.toLocaleString()}</div>
+                      <div className="text-xs text-gray-500">Base: ₹{receivable.amount.toLocaleString()}</div>
+                      <div className="text-xs text-gray-500">Tax: ₹{receivable.taxAmount.toLocaleString()}</div>
                     </td>
                     <td className="px-6 py-4">
-                      <div className="font-semibold text-green-700">${receivable.collectedAmount.toLocaleString()}</div>
+                      <div className="font-semibold text-green-700">₹{receivable.collectedAmount.toLocaleString()}</div>
                       {receivable.collectedAmount > 0 && (
                         <div className="text-xs text-gray-500">
                           {((receivable.collectedAmount / receivable.totalAmount) * 100).toFixed(0)}% collected
@@ -386,7 +451,7 @@ export default function ReceivablesPage() {
                     </td>
                     <td className="px-6 py-4">
                       <div className={`font-bold ${balance > 0 ? 'text-orange-700' : 'text-green-700'}`}>
-                        ${balance.toLocaleString()}
+                        ₹{balance.toLocaleString()}
                       </div>
                       {balance > 0 && isOverdue && (
                         <div className="text-xs text-red-600 font-semibold">Collection Overdue</div>
@@ -469,6 +534,8 @@ export default function ReceivablesPage() {
               <ChevronRight className="h-4 w-4" />
             </button>
           </div>
+        </div>
+      </div>
         </div>
       </div>
     </div>

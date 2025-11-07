@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { Calendar, CheckCircle, Clock, AlertCircle, Plus } from 'lucide-react';
+import { Calendar, CheckCircle, Clock, AlertCircle, Plus, X } from 'lucide-react';
 
 interface PayrollCalendarEvent {
   id: string;
@@ -18,8 +18,10 @@ interface PayrollCalendarEvent {
 
 export default function PayrollCalendarPage() {
   const [selectedYear, setSelectedYear] = useState('2025');
+  const [showModal, setShowModal] = useState(false);
+  const [editingEvent, setEditingEvent] = useState<PayrollCalendarEvent | null>(null);
 
-  const mockCalendar: PayrollCalendarEvent[] = [
+  const initialCalendar: PayrollCalendarEvent[] = [
     {
       id: 'CAL-2025-12',
       monthYear: 'December 2025',
@@ -67,15 +69,41 @@ export default function PayrollCalendarPage() {
     }
   ];
 
+  const [calendar, setCalendar] = useState<PayrollCalendarEvent[]>(initialCalendar);
+
+  const handleAdd = () => {
+    setEditingEvent(null);
+    setShowModal(true);
+  };
+
+  const handleEdit = (event: PayrollCalendarEvent) => {
+    setEditingEvent(event);
+    setShowModal(true);
+  };
+
+  const handleSave = (event: PayrollCalendarEvent) => {
+    if (editingEvent) {
+      setCalendar(calendar.map(e => e.id === event.id ? event : e));
+    } else {
+      const newEvent = {
+        ...event,
+        id: `CAL-${event.monthYear.replace(' ', '-')}`
+      };
+      setCalendar([newEvent, ...calendar]);
+    }
+    setShowModal(false);
+    setEditingEvent(null);
+  };
+
   const filteredCalendar = useMemo(() => {
-    return mockCalendar.filter(event => event.monthYear.includes(selectedYear));
-  }, [selectedYear]);
+    return calendar.filter(event => event.monthYear.includes(selectedYear));
+  }, [calendar, selectedYear]);
 
   const stats = {
-    upcoming: mockCalendar.filter(e => e.status === 'upcoming').length,
-    inProgress: mockCalendar.filter(e => e.status === 'in_progress').length,
-    completed: mockCalendar.filter(e => e.status === 'completed').length,
-    nextDisbursement: mockCalendar.find(e => e.status === 'upcoming')?.disbursementDate
+    upcoming: calendar.filter(e => e.status === 'upcoming').length,
+    inProgress: calendar.filter(e => e.status === 'in_progress').length,
+    completed: calendar.filter(e => e.status === 'completed').length,
+    nextDisbursement: calendar.find(e => e.status === 'upcoming')?.disbursementDate
   };
 
   const statusColors = {
@@ -155,7 +183,10 @@ export default function PayrollCalendarPage() {
               <option value="2023">2023</option>
             </select>
           </div>
-          <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium flex items-center gap-2">
+          <button
+            onClick={handleAdd}
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium flex items-center gap-2"
+          >
             <Plus className="h-4 w-4" />
             Add Calendar Entry
           </button>
@@ -236,7 +267,10 @@ export default function PayrollCalendarPage() {
                 </div>
                 <div className="flex gap-2">
                   {event.status === 'upcoming' && (
-                    <button className="px-3 py-1 text-xs bg-blue-600 text-white rounded hover:bg-blue-700">
+                    <button
+                      onClick={() => handleEdit(event)}
+                      className="px-3 py-1 text-xs bg-blue-600 text-white rounded hover:bg-blue-700"
+                    >
                       Edit Schedule
                     </button>
                   )}
@@ -262,6 +296,214 @@ export default function PayrollCalendarPage() {
           <li>• <strong>Day 29:</strong> Approval deadline - Management approves payroll</li>
           <li>• <strong>Day 30/31:</strong> Disbursement - Salaries credited to employee accounts</li>
         </ul>
+      </div>
+
+      {showModal && (
+        <CalendarEntryModal
+          event={editingEvent}
+          onSave={handleSave}
+          onClose={() => {
+            setShowModal(false);
+            setEditingEvent(null);
+          }}
+        />
+      )}
+    </div>
+  );
+}
+
+interface CalendarEntryModalProps {
+  event: PayrollCalendarEvent | null;
+  onSave: (event: PayrollCalendarEvent) => void;
+  onClose: () => void;
+}
+
+function CalendarEntryModal({ event, onSave, onClose }: CalendarEntryModalProps) {
+  const [formData, setFormData] = useState<PayrollCalendarEvent>(
+    event || {
+      id: '',
+      monthYear: '',
+      cutoffDate: '',
+      attendanceFreeze: '',
+      salaryProcessing: '',
+      verificationDeadline: '',
+      approvalDeadline: '',
+      disbursementDate: '',
+      status: 'upcoming',
+      notes: ''
+    }
+  );
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    onSave(formData);
+  };
+
+  const handleChange = (field: keyof PayrollCalendarEvent, value: string) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+  };
+
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+      <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
+        <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+          <h2 className="text-xl font-bold text-gray-900">
+            {event ? 'Edit Calendar Entry' : 'Add Calendar Entry'}
+          </h2>
+          <button
+            onClick={onClose}
+            className="text-gray-400 hover:text-gray-600 transition-colors"
+          >
+            <X className="h-6 w-6" />
+          </button>
+        </div>
+
+        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Month/Year *
+              </label>
+              <input
+                type="text"
+                required
+                placeholder="e.g., January 2025"
+                value={formData.monthYear}
+                onChange={(e) => handleChange('monthYear', e.target.value)}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Status *
+              </label>
+              <select
+                required
+                value={formData.status}
+                onChange={(e) => handleChange('status', e.target.value as PayrollCalendarEvent['status'])}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              >
+                <option value="upcoming">Upcoming</option>
+                <option value="in_progress">In Progress</option>
+                <option value="completed">Completed</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="border-t border-gray-200 pt-4">
+            <h3 className="text-sm font-semibold text-gray-900 mb-4">Important Dates</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Attendance Cutoff Date *
+                </label>
+                <input
+                  type="date"
+                  required
+                  value={formData.cutoffDate}
+                  onChange={(e) => handleChange('cutoffDate', e.target.value)}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Attendance Freeze Date *
+                </label>
+                <input
+                  type="date"
+                  required
+                  value={formData.attendanceFreeze}
+                  onChange={(e) => handleChange('attendanceFreeze', e.target.value)}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Salary Processing Date *
+                </label>
+                <input
+                  type="date"
+                  required
+                  value={formData.salaryProcessing}
+                  onChange={(e) => handleChange('salaryProcessing', e.target.value)}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Verification Deadline *
+                </label>
+                <input
+                  type="date"
+                  required
+                  value={formData.verificationDeadline}
+                  onChange={(e) => handleChange('verificationDeadline', e.target.value)}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Approval Deadline *
+                </label>
+                <input
+                  type="date"
+                  required
+                  value={formData.approvalDeadline}
+                  onChange={(e) => handleChange('approvalDeadline', e.target.value)}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Disbursement Date *
+                </label>
+                <input
+                  type="date"
+                  required
+                  value={formData.disbursementDate}
+                  onChange={(e) => handleChange('disbursementDate', e.target.value)}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Notes (Optional)
+            </label>
+            <textarea
+              value={formData.notes || ''}
+              onChange={(e) => handleChange('notes', e.target.value)}
+              placeholder="Any additional information about this payroll cycle..."
+              rows={3}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
+          </div>
+
+          <div className="border-t border-gray-200 pt-4 flex items-center justify-end gap-3">
+            <button
+              type="button"
+              onClick={onClose}
+              className="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium transition-colors"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium transition-colors flex items-center gap-2"
+            >
+              <Calendar className="h-4 w-4" />
+              {event ? 'Update Entry' : 'Create Entry'}
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { Wallet, Search, Download, FileText, Users, DollarSign, TrendingUp, Calendar } from 'lucide-react';
+import { Wallet, Search, Download, FileText, Users, DollarSign, TrendingUp, Calendar, X, CheckCircle, AlertCircle, Building2, Mail } from 'lucide-react';
 
 interface EmployeePFContribution {
   id: string;
@@ -40,9 +40,381 @@ interface PFContributionMonth {
   records: EmployeePFContribution[];
 }
 
+// Modal Components
+function DownloadECRModal({ pfMonth, onClose, formatCurrency }: { pfMonth: PFContributionMonth; onClose: () => void; formatCurrency: (amount: number) => string }) {
+  const [format, setFormat] = useState<'text' | 'excel'>('text');
+
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+      <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
+        <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center">
+          <div>
+            <h3 className="text-xl font-bold text-gray-900">Download ECR File</h3>
+            <p className="text-sm text-gray-600 mt-1">Electronic Challan cum Return - {pfMonth.monthYear}</p>
+          </div>
+          <button
+            onClick={onClose}
+            className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+          >
+            <X className="h-5 w-5 text-gray-500" />
+          </button>
+        </div>
+
+        <div className="p-6 space-y-6">
+          {/* ECR Summary */}
+          <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+            <h4 className="font-semibold text-blue-900 mb-3 flex items-center gap-2">
+              <FileText className="h-5 w-5" />
+              ECR File Details
+            </h4>
+            <div className="grid grid-cols-2 gap-4 text-sm">
+              <div>
+                <p className="text-blue-700 mb-1">Wage Month</p>
+                <p className="font-semibold text-blue-900">{pfMonth.monthYear}</p>
+              </div>
+              <div>
+                <p className="text-blue-700 mb-1">Total Employees</p>
+                <p className="font-semibold text-blue-900">{pfMonth.employeeCount}</p>
+              </div>
+              <div>
+                <p className="text-blue-700 mb-1">Employee Share</p>
+                <p className="font-semibold text-blue-900">{formatCurrency(pfMonth.totalEmployeeContribution)}</p>
+              </div>
+              <div>
+                <p className="text-blue-700 mb-1">Employer Share</p>
+                <p className="font-semibold text-blue-900">{formatCurrency(pfMonth.totalEmployerContribution)}</p>
+              </div>
+              <div>
+                <p className="text-blue-700 mb-1">EPS Contribution</p>
+                <p className="font-semibold text-blue-900">{formatCurrency(pfMonth.totalPensionFund)}</p>
+              </div>
+              <div>
+                <p className="text-blue-700 mb-1">Total Payable</p>
+                <p className="font-semibold text-blue-900">{formatCurrency(pfMonth.totalPayable)}</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Format Selection */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-3">Select ECR Format</label>
+            <div className="space-y-3">
+              <label className="flex items-start gap-3 p-4 border-2 border-gray-200 rounded-lg hover:border-blue-500 cursor-pointer transition-colors">
+                <input
+                  type="radio"
+                  value="text"
+                  checked={format === 'text'}
+                  onChange={(e) => setFormat(e.target.value as 'text')}
+                  className="mt-1 w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500"
+                />
+                <div className="flex-1">
+                  <p className="font-semibold text-gray-900">Text Format (.txt)</p>
+                  <p className="text-sm text-gray-600 mt-1">Standard ECR text file format for EPFO Unified Portal. This is the most commonly used format.</p>
+                  <div className="mt-2 text-xs text-gray-500 bg-gray-50 rounded p-2">
+                    <p className="font-mono">Format: Fixed width text file with header and member records</p>
+                  </div>
+                </div>
+              </label>
+
+              <label className="flex items-start gap-3 p-4 border-2 border-gray-200 rounded-lg hover:border-blue-500 cursor-pointer transition-colors">
+                <input
+                  type="radio"
+                  value="excel"
+                  checked={format === 'excel'}
+                  onChange={(e) => setFormat(e.target.value as 'excel')}
+                  className="mt-1 w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500"
+                />
+                <div className="flex-1">
+                  <p className="font-semibold text-gray-900">Excel Format (.xlsx)</p>
+                  <p className="text-sm text-gray-600 mt-1">Excel workbook with formatted columns for easy review before uploading to EPFO portal.</p>
+                  <div className="mt-2 text-xs text-gray-500 bg-gray-50 rounded p-2">
+                    <p className="font-mono">Format: Spreadsheet with columns for UAN, Name, Wages, Contributions, etc.</p>
+                  </div>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          {/* ECR Contents Preview */}
+          <div>
+            <h4 className="font-semibold text-gray-900 mb-3">ECR File Contents</h4>
+            <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+              <div className="space-y-3 text-sm">
+                <div className="flex items-start gap-2">
+                  <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <p className="font-medium text-gray-900">Header Information</p>
+                    <p className="text-gray-600 text-xs">Establishment ID, Return Month, Number of Members</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-2">
+                  <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <p className="font-medium text-gray-900">Member Records ({pfMonth.employeeCount} employees)</p>
+                    <p className="text-gray-600 text-xs">UAN, Name, Wages, EPF Contribution, EPS Contribution, EDLI, Admin Charges</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-2">
+                  <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <p className="font-medium text-gray-900">Summary Totals</p>
+                    <p className="text-gray-600 text-xs">Total wages, contributions, and payable amounts</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Important Notes */}
+          <div className="bg-yellow-50 rounded-lg p-4 border border-yellow-200">
+            <div className="flex items-start gap-3">
+              <AlertCircle className="h-5 w-5 text-yellow-600 flex-shrink-0 mt-0.5" />
+              <div className="text-sm text-yellow-800">
+                <p className="font-semibold mb-2">Important Instructions</p>
+                <ul className="space-y-1 list-disc list-inside">
+                  <li>Download this file and upload it to the EPFO Unified Portal</li>
+                  <li>ECR must be filed by the 15th of the following month</li>
+                  <li>Ensure all UAN numbers are correct before filing</li>
+                  <li>Payment must be made along with ECR filing</li>
+                  <li>Keep a copy of the filed ECR for your records</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* Actions */}
+          <div className="flex gap-3 pt-4 border-t border-gray-200">
+            <button
+              onClick={onClose}
+              className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+            >
+              Cancel
+            </button>
+            <button
+              onClick={() => {
+                // Handle download logic
+                console.log(`Downloading ECR in ${format} format`);
+                onClose();
+              }}
+              className="flex-1 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center gap-2"
+            >
+              <Download className="h-4 w-4" />
+              Download {format === 'text' ? 'Text' : 'Excel'} File
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function PFChallanModal({ pfMonth, onClose, formatCurrency }: { pfMonth: PFContributionMonth; onClose: () => void; formatCurrency: (amount: number) => string }) {
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 overflow-y-auto">
+      <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+        <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center">
+          <div>
+            <h3 className="text-xl font-bold text-gray-900">PF Challan</h3>
+            <p className="text-sm text-gray-600 mt-1">Payment Details for {pfMonth.monthYear}</p>
+          </div>
+          <button
+            onClick={onClose}
+            className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+          >
+            <X className="h-5 w-5 text-gray-500" />
+          </button>
+        </div>
+
+        <div className="p-6 space-y-6">
+          {/* Company Header */}
+          <div className="text-center border-b border-gray-200 pb-6">
+            <div className="flex items-center justify-center gap-3 mb-3">
+              <Building2 className="h-8 w-8 text-blue-600" />
+              <div>
+                <h2 className="text-2xl font-bold text-gray-900">B3 MACBIS Manufacturing Pvt. Ltd.</h2>
+                <p className="text-sm text-gray-600">Provident Fund Payment Challan</p>
+              </div>
+            </div>
+            <div className="text-sm text-gray-600 space-y-1">
+              <p>Industrial Area, Bangalore - 560001</p>
+              <p>PF Establishment Code: KA/BLR/0012345</p>
+              <p>LIN: 1234567890</p>
+            </div>
+          </div>
+
+          {/* Challan Details */}
+          <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+            <h4 className="font-semibold text-blue-900 mb-3">Challan Details</h4>
+            <div className="grid grid-cols-2 gap-4 text-sm">
+              <div>
+                <p className="text-blue-700">Wage Month</p>
+                <p className="font-semibold text-blue-900">{pfMonth.monthYear}</p>
+              </div>
+              <div>
+                <p className="text-blue-700">Due Date</p>
+                <p className="font-semibold text-blue-900">{new Date(pfMonth.dueDate).toLocaleDateString('en-IN')}</p>
+              </div>
+              <div>
+                <p className="text-blue-700">Total Employees</p>
+                <p className="font-semibold text-blue-900">{pfMonth.employeeCount}</p>
+              </div>
+              <div>
+                <p className="text-blue-700">Challan Number</p>
+                <p className="font-semibold text-blue-900">CH-{pfMonth.id}</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Contribution Breakdown */}
+          <div>
+            <h4 className="font-semibold text-gray-900 mb-4">Contribution Breakdown</h4>
+            <div className="bg-gray-50 rounded-lg overflow-hidden border border-gray-200">
+              <table className="w-full">
+                <thead className="bg-gray-100">
+                  <tr>
+                    <th className="px-4 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Component</th>
+                    <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase">Percentage</th>
+                    <th className="px-4 py-3 text-right text-xs font-semibold text-gray-700 uppercase">Amount</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-200">
+                  <tr className="bg-green-50">
+                    <td className="px-4 py-3 text-sm font-medium text-gray-900">Employee's EPF Contribution (A)</td>
+                    <td className="px-4 py-3 text-sm text-gray-700 text-right">12%</td>
+                    <td className="px-4 py-3 text-sm font-semibold text-gray-900 text-right">{formatCurrency(pfMonth.totalEmployeeContribution)}</td>
+                  </tr>
+                  <tr>
+                    <td className="px-4 py-3 text-sm font-medium text-gray-900 pl-8">Employer's EPS Contribution</td>
+                    <td className="px-4 py-3 text-sm text-gray-700 text-right">8.33%</td>
+                    <td className="px-4 py-3 text-sm text-gray-900 text-right">{formatCurrency(pfMonth.totalPensionFund)}</td>
+                  </tr>
+                  <tr>
+                    <td className="px-4 py-3 text-sm font-medium text-gray-900 pl-8">Employer's EPF Contribution</td>
+                    <td className="px-4 py-3 text-sm text-gray-700 text-right">3.67%</td>
+                    <td className="px-4 py-3 text-sm text-gray-900 text-right">{formatCurrency(pfMonth.totalEPF)}</td>
+                  </tr>
+                  <tr className="bg-purple-50">
+                    <td className="px-4 py-3 text-sm font-medium text-gray-900">Employer's Total Contribution (B)</td>
+                    <td className="px-4 py-3 text-sm text-gray-700 text-right">12%</td>
+                    <td className="px-4 py-3 text-sm font-semibold text-gray-900 text-right">{formatCurrency(pfMonth.totalEmployerContribution)}</td>
+                  </tr>
+                  <tr>
+                    <td className="px-4 py-3 text-sm font-medium text-gray-900">EDLI Contribution</td>
+                    <td className="px-4 py-3 text-sm text-gray-700 text-right">0.5%</td>
+                    <td className="px-4 py-3 text-sm text-gray-900 text-right">{formatCurrency(pfMonth.totalEDLI)}</td>
+                  </tr>
+                  <tr>
+                    <td className="px-4 py-3 text-sm font-medium text-gray-900">Admin Charges (EPFO)</td>
+                    <td className="px-4 py-3 text-sm text-gray-700 text-right">0.5%</td>
+                    <td className="px-4 py-3 text-sm text-gray-900 text-right">{formatCurrency(pfMonth.totalAdminCharges)}</td>
+                  </tr>
+                  <tr className="bg-blue-100 border-t-2 border-blue-300">
+                    <td className="px-4 py-4 text-base font-bold text-blue-900">Total Amount Payable (A + B + Charges)</td>
+                    <td className="px-4 py-4 text-base font-bold text-blue-900 text-right"></td>
+                    <td className="px-4 py-4 text-xl font-bold text-blue-900 text-right">{formatCurrency(pfMonth.totalPayable)}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          {/* Bank Details */}
+          <div>
+            <h4 className="font-semibold text-gray-900 mb-3">Payment Instructions</h4>
+            <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+              <div className="space-y-3 text-sm text-green-900">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-green-700 font-medium">Payable To</p>
+                    <p className="font-semibold">EPFO - Regional PF Commissioner</p>
+                  </div>
+                  <div>
+                    <p className="text-green-700 font-medium">Payment Mode</p>
+                    <p className="font-semibold">Online through EPFO Portal</p>
+                  </div>
+                </div>
+                <div>
+                  <p className="text-green-700 font-medium mb-1">Payment Account Details</p>
+                  <div className="bg-white rounded p-3 space-y-1">
+                    <p><span className="font-medium">Account Name:</span> Regional PF Commissioner, Bangalore</p>
+                    <p><span className="font-medium">Account Number:</span> XXXX-XXXX-XXXX-1234</p>
+                    <p><span className="font-medium">IFSC Code:</span> SBIN0001234</p>
+                    <p><span className="font-medium">Bank:</span> State Bank of India</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Important Notes */}
+          <div className="bg-yellow-50 rounded-lg p-4 border border-yellow-200">
+            <div className="flex items-start gap-3">
+              <AlertCircle className="h-5 w-5 text-yellow-600 flex-shrink-0 mt-0.5" />
+              <div className="text-sm text-yellow-800">
+                <p className="font-semibold mb-2">Payment Instructions</p>
+                <ul className="space-y-1 list-disc list-inside">
+                  <li>Payment must be made by {new Date(pfMonth.dueDate).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}</li>
+                  <li>Pay online through EPFO Unified Portal for instant reconciliation</li>
+                  <li>Ensure ECR is filed along with the payment</li>
+                  <li>Late payment attracts 12% per annum interest and penalties</li>
+                  <li>Keep transaction reference number for reconciliation</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* Declaration */}
+          <div className="border-t border-gray-200 pt-4">
+            <div className="space-y-4 text-sm text-gray-700">
+              <p>
+                <strong>Declaration:</strong> I hereby declare that the particulars given above are true and correct to the best of my knowledge and belief.
+              </p>
+              <div className="flex justify-between items-end pt-8">
+                <div>
+                  <p className="text-xs text-gray-500">Generated on: {new Date().toLocaleDateString('en-IN')}</p>
+                </div>
+                <div className="text-right">
+                  <div className="border-t border-gray-400 pt-2 w-48">
+                    <p className="font-medium">Authorized Signatory</p>
+                    <p className="text-xs text-gray-500">HR/Accounts Department</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Actions */}
+          <div className="flex gap-3 pt-4 border-t border-gray-200">
+            <button
+              onClick={onClose}
+              className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+            >
+              Close
+            </button>
+            <button
+              className="flex-1 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors flex items-center justify-center gap-2"
+            >
+              <Download className="h-4 w-4" />
+              Download PDF
+            </button>
+            <button
+              className="flex-1 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center gap-2"
+            >
+              <Mail className="h-4 w-4" />
+              Email Challan
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function PFContributionPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedDepartment, setSelectedDepartment] = useState('all');
+  const [showECRModal, setShowECRModal] = useState(false);
+  const [showChallanModal, setShowChallanModal] = useState(false);
 
   const mockPFMonth: PFContributionMonth = {
     id: 'PF-2025-11',
@@ -327,11 +699,17 @@ export default function PFContributionPage() {
               </option>
             ))}
           </select>
-          <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+          <button
+            onClick={() => setShowECRModal(true)}
+            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          >
             <Download className="h-4 w-4" />
             Download ECR
           </button>
-          <button className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">
+          <button
+            onClick={() => setShowChallanModal(true)}
+            className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
+          >
             <FileText className="h-4 w-4" />
             PF Challan
           </button>
@@ -449,6 +827,23 @@ export default function PFContributionPage() {
           <li>• <strong>ECR Filing:</strong> Electronic Challan cum Return to be filed online</li>
         </ul>
       </div>
+
+      {/* Modals */}
+      {showECRModal && (
+        <DownloadECRModal
+          pfMonth={mockPFMonth}
+          onClose={() => setShowECRModal(false)}
+          formatCurrency={formatCurrency}
+        />
+      )}
+
+      {showChallanModal && (
+        <PFChallanModal
+          pfMonth={mockPFMonth}
+          onClose={() => setShowChallanModal(false)}
+          formatCurrency={formatCurrency}
+        />
+      )}
     </div>
   );
 }
