@@ -34,6 +34,9 @@ export default function FreightBookingPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [modeFilter, setModeFilter] = useState<string>('all');
+  const [isCreatingBooking, setIsCreatingBooking] = useState(false);
+  const [isViewingDetails, setIsViewingDetails] = useState(false);
+  const [isTracking, setIsTracking] = useState(false);
 
   const bookings: FreightBooking[] = [
     {
@@ -274,6 +277,526 @@ export default function FreightBookingPage() {
     }
   };
 
+  const handleNewBooking = () => {
+    setIsCreatingBooking(true);
+
+    const formData = `
+NEW FREIGHT BOOKING FORM
+========================
+
+ROUTE INFORMATION:
+------------------
+Origin Location: [Port/Airport/City]
+Origin Address: [Full address with postal code]
+Origin Contact: [Name & Phone]
+Destination Location: [Port/Airport/City]
+Destination Address: [Full address with postal code]
+Destination Contact: [Name & Phone]
+
+CARGO DETAILS:
+--------------
+Cargo Type: [Electronics/Machinery/Textiles/Chemicals/FMCG/Pharmaceuticals/etc.]
+Description: [Detailed cargo description]
+HS Code: [Harmonized System Code]
+Weight: [Total weight in KG]
+Volume: [Total volume in CBM]
+Dimensions: [Length x Width x Height in CM]
+Number of Packages: [Count]
+Packaging Type: [Pallets/Crates/Cartons/Drums/Bulk]
+Commodity Value: [INR amount for customs & insurance]
+Dangerous Goods: [Yes/No - if yes, specify UN number & class]
+
+SERVICE SELECTION:
+------------------
+Transport Mode:
+  [ ] Air Freight (Fast delivery, higher cost)
+  [ ] Sea Freight (Economical for bulk cargo)
+  [ ] Road Transport (Door-to-door delivery)
+  [ ] Rail Transport (Cost-effective for domestic)
+  [ ] Multimodal (Combined modes)
+
+Service Level:
+  [ ] Express (Priority handling)
+  [ ] Standard (Regular service)
+  [ ] Economy (Cost-optimized)
+
+CARRIER SELECTION:
+------------------
+Preferred Carrier: [Select from list or enter name]
+Air: Emirates SkyCargo, Lufthansa Cargo, Qatar Airways Cargo, Air India Cargo
+Sea: Maersk Line, MSC, COSCO Shipping, CMA CGM, Hapag-Lloyd
+Road: VRL Logistics, Gati Ltd, TCI, DTDC, Delhivery
+Rail: Indian Railways - Container Corporation (CONCOR)
+
+Alternative Carrier (if primary unavailable): [Carrier name]
+
+SCHEDULE DETAILS:
+-----------------
+Pickup Date: [DD/MM/YYYY]
+Pickup Time Window: [HH:MM - HH:MM]
+Preferred Delivery Date: [DD/MM/YYYY]
+Delivery Time Window: [HH:MM - HH:MM]
+Transit Time Required: [Days]
+Delivery Instructions: [Special delivery requirements]
+
+INSURANCE COVERAGE:
+-------------------
+Insurance Required: [ ] Yes  [ ] No
+Coverage Type:
+  [ ] All Risk Coverage
+  [ ] Named Perils Only
+  [ ] War & Strike Coverage
+Declared Value: [INR amount]
+Special Coverage: [Theft/Damage/Loss/Delay]
+
+CUSTOMS & DOCUMENTATION:
+------------------------
+Export/Import License No: [License number]
+IEC Code: [Import Export Code]
+GST Number: [GSTIN]
+Country of Origin: [Country]
+Incoterms: [FOB/CIF/CFR/DAP/DDP/EXW]
+
+Required Documents:
+  [✓] Commercial Invoice
+  [✓] Packing List
+  [✓] Bill of Lading / Airway Bill
+  [✓] Certificate of Origin
+  [ ] Phytosanitary Certificate
+  [ ] Fumigation Certificate
+  [ ] Test/Analysis Certificate
+  [ ] Dangerous Goods Declaration
+  [ ] Insurance Certificate
+  [ ] Letter of Credit
+  [ ] Import/Export Permit
+
+Customs Clearance:
+  [ ] Shipper Handles
+  [ ] Carrier Handles
+  [ ] Freight Forwarder Handles
+
+SPECIAL REQUIREMENTS:
+---------------------
+Temperature Control:
+  [ ] Refrigerated (Specify temp: ___°C)
+  [ ] Frozen (Specify temp: ___°C)
+  [ ] Climate Controlled
+
+Handling Requirements:
+  [ ] Fragile - Handle with Care
+  [ ] This Side Up
+  [ ] Keep Dry
+  [ ] No Stacking
+  [ ] Hazardous Material (Specify: _______)
+
+Additional Services:
+  [ ] Cargo Inspection
+  [ ] Fumigation
+  [ ] Palletization
+  [ ] Shrink Wrapping
+  [ ] Warehousing (Days: ___)
+  [ ] Customs Brokerage
+  [ ] Door-to-Door Delivery
+  [ ] Tail Lift Required
+  [ ] Inside Delivery
+
+PAYMENT & BILLING:
+------------------
+Payment Terms: [Prepaid/Collect/Credit Account]
+Billing Party: [Shipper/Consignee/Third Party]
+Credit Terms: [Days]
+Cost Estimate:
+  - Base Freight: INR _______
+  - Fuel Surcharge: INR _______
+  - Handling Charges: INR _______
+  - Insurance: INR _______
+  - Customs Clearance: INR _______
+  - Documentation: INR _______
+  - Other Charges: INR _______
+  Total Estimated Cost: INR _______
+
+CONTACT INFORMATION:
+--------------------
+Shipper Name: [Company/Individual]
+Shipper Contact Person: [Name]
+Shipper Phone: [+91-XXXXXXXXXX]
+Shipper Email: [email@domain.com]
+Shipper Address: [Complete address]
+
+Consignee Name: [Company/Individual]
+Consignee Contact Person: [Name]
+Consignee Phone: [International/Domestic]
+Consignee Email: [email@domain.com]
+Consignee Address: [Complete address]
+
+Notify Party (if different): [Name & Contact]
+
+BOOKING NOTES:
+--------------
+Special Instructions: [Any specific requirements or notes]
+Reference Numbers: [PO Number, Invoice Number, etc.]
+Booking Priority: [ ] Urgent  [ ] Standard
+Internal Notes: [For office use]
+
+========================
+CONFIRMATION PROCESS:
+========================
+Once submitted, this booking will:
+1. Generate a unique Booking Number (FB-2025-XXXX)
+2. Send confirmation to carrier for capacity check
+3. Generate quote with freight charges breakdown
+4. Create pickup order with logistics team
+5. Generate Bill of Lading / Airway Bill
+6. Setup customs clearance workflow
+7. Enable real-time tracking
+8. Send notifications at each milestone
+
+Estimated Confirmation Time: 2-4 hours
+Priority Booking Confirmation: 30 minutes
+
+[Submit Booking]  [Save as Draft]  [Cancel]
+    `;
+
+    alert(formData);
+    setIsCreatingBooking(false);
+  };
+
+  const handleViewDetails = (booking: FreightBooking) => {
+    setIsViewingDetails(true);
+
+    const details = `
+FREIGHT BOOKING DETAILS
+========================
+
+BOOKING INFORMATION:
+--------------------
+Booking Number: ${booking.bookingNo}
+Booking Date: ${booking.bookingDate}
+Status: ${booking.status.toUpperCase()}
+Customer: ${booking.customerName}
+Booking Amount: INR ${booking.bookingAmount.toLocaleString()}
+
+ROUTE & TRANSPORT:
+------------------
+Origin: ${booking.origin}
+Destination: ${booking.destination}
+Transport Mode: ${booking.transportMode.toUpperCase()}
+Carrier: ${booking.carrier}
+${booking.transportMode === 'air' ? 'Flight Number' : booking.transportMode === 'sea' ? 'Vessel Name' : 'Vehicle'}: ${booking.vesselFlight}
+Container/Vehicle No: ${booking.containerNo}
+
+CARGO MANIFEST:
+---------------
+Cargo Type: ${booking.cargoType}
+Total Weight: ${booking.weight.toLocaleString()} KG
+Total Volume: ${booking.volume} CBM
+Commodity Description: ${booking.cargoType} - Industrial/Commercial goods
+Number of Packages: ${Math.ceil(booking.volume / 2)} units
+Packaging Type: ${booking.transportMode === 'sea' ? 'Containerized' : 'Palletized'}
+HS Code: ${booking.transportMode === 'air' ? '8471.30' : '8479.89'}
+Commodity Value: INR ${(booking.bookingAmount * 5).toLocaleString()}
+
+DOCUMENTATION:
+--------------
+Bill of Lading/AWB: ${booking.billOfLading}
+Commercial Invoice: INV-${booking.id}-2025
+Packing List: PKL-${booking.id}-2025
+Certificate of Origin: COO-${booking.id}-IND
+Customs Declaration: CD-${booking.id}-2025
+${booking.customsStatus !== 'not-required' ? `Customs Status: ${booking.customsStatus.toUpperCase()}` : 'Customs: Not Required (Domestic)'}
+${booking.customsStatus === 'cleared' ? 'Customs Clearance Date: ' + booking.pickupDate : ''}
+
+SCHEDULE & TIMELINE:
+--------------------
+Pickup Date: ${booking.pickupDate}
+Expected Delivery: ${booking.expectedDelivery}
+Pickup Time: 09:00 AM - 12:00 PM
+Delivery Time: 02:00 PM - 05:00 PM
+Transit Time: ${Math.ceil((new Date(booking.expectedDelivery).getTime() - new Date(booking.pickupDate).getTime()) / (1000 * 60 * 60 * 24))} days
+Current Status: ${booking.status === 'delivered' ? 'Delivered Successfully' : booking.status === 'in-transit' ? 'In Transit' : booking.status === 'confirmed' ? 'Confirmed - Awaiting Pickup' : booking.status === 'pending' ? 'Pending Confirmation' : 'Cancelled'}
+
+CHARGES BREAKDOWN:
+------------------
+Base Freight Charges: INR ${(booking.bookingAmount * 0.65).toLocaleString()}
+Fuel Surcharge (${booking.transportMode === 'air' ? '18%' : booking.transportMode === 'sea' ? '12%' : '15%'}): INR ${(booking.bookingAmount * 0.15).toLocaleString()}
+Handling Charges: INR ${(booking.bookingAmount * 0.08).toLocaleString()}
+${booking.customsStatus !== 'not-required' ? `Customs Clearance: INR ${(booking.bookingAmount * 0.05).toLocaleString()}` : ''}
+Documentation Fee: INR ${(booking.bookingAmount * 0.03).toLocaleString()}
+Insurance (All Risk): INR ${(booking.bookingAmount * 0.04).toLocaleString()}
+Terminal Handling (${booking.transportMode === 'sea' ? 'THC' : 'THC'}): INR ${(booking.bookingAmount * 0.05).toLocaleString()}
+--------------------------------------------------
+Total Amount: INR ${booking.bookingAmount.toLocaleString()}
+GST @18%: INR ${(booking.bookingAmount * 0.18).toLocaleString()}
+--------------------------------------------------
+Grand Total: INR ${(booking.bookingAmount * 1.18).toLocaleString()}
+
+Payment Status: ${booking.status === 'cancelled' ? 'Refunded' : booking.status === 'delivered' ? 'Paid' : 'Pending'}
+Payment Method: Credit Account (30 Days Net)
+Invoice Number: FI-${booking.bookingNo}
+
+CARRIER INFORMATION:
+--------------------
+Carrier Name: ${booking.carrier}
+${booking.transportMode === 'air' ? 'IATA Code' : booking.transportMode === 'sea' ? 'SCAC Code' : 'Fleet Code'}: ${booking.transportMode === 'air' ? 'EK/LH' : booking.transportMode === 'sea' ? 'MAEU/MSCU' : 'VRL001'}
+Service Type: ${booking.transportMode === 'air' ? 'Express Air Cargo' : booking.transportMode === 'sea' ? 'FCL Container Service' : booking.transportMode === 'road' ? 'FTL Truck Service' : 'Dedicated Rail Service'}
+Tracking URL: ${booking.trackingUrl || 'Not Available'}
+Carrier Contact: 1800-XXX-XXXX
+Agent Reference: AGT-${booking.id}-2025
+
+CONTACT DETAILS:
+----------------
+Shipper: ${booking.customerName}
+Contact Person: ${booking.contactPerson}
+Phone: ${booking.contactPhone}
+Email: ${booking.contactPerson.toLowerCase().replace(' ', '.')}@${booking.customerName.toLowerCase().split(' ')[0]}.com
+
+Consignee: ${booking.destination.includes('Port') ? 'International Buyer' : 'Domestic Warehouse'}
+Consignee Phone: ${booking.transportMode === 'air' ? '+971-XXX-XXXX' : '+65-XXX-XXXX'}
+Notify Party: Same as Consignee
+
+INSURANCE DETAILS:
+------------------
+Insurance Required: Yes
+Coverage Type: All Risk Coverage
+Sum Insured: INR ${(booking.bookingAmount * 5).toLocaleString()}
+Policy Number: POL-${booking.bookingNo}-2025
+Insurance Company: National Insurance Co. Ltd
+Coverage: Loss/Damage/Theft during transit
+Deductible: 1% of cargo value
+Valid From: ${booking.pickupDate}
+Valid Until: ${booking.expectedDelivery}
+
+SPECIAL INSTRUCTIONS:
+---------------------
+${booking.cargoType === 'Pharmaceuticals' ? 'Temperature Controlled: 2-8°C\nHandle with Care - Temperature Sensitive' : ''}
+${booking.cargoType === 'Electronics' ? 'Fragile - Handle with Care\nKeep Dry - Moisture Sensitive\nNo Stacking Beyond 3 Levels' : ''}
+${booking.cargoType === 'Industrial Machinery' ? 'Heavy Equipment - Use Proper Lifting Equipment\nSecure Lashing Required' : ''}
+${booking.transportMode === 'air' ? 'Priority Handling Required\nExpress Customs Clearance' : ''}
+Delivery Instructions: ${booking.transportMode === 'road' ? 'Door-to-door delivery with tail lift' : 'Port to port delivery'}
+Proof of Delivery Required: Yes
+
+MILESTONE TRACKING:
+-------------------
+${booking.status === 'delivered' ? '✓' : booking.status === 'cancelled' ? '✗' : '○'} Booking Created - ${booking.bookingDate}
+${booking.status === 'delivered' || booking.status === 'in-transit' ? '✓' : booking.status === 'confirmed' ? '○' : '✗'} Confirmed by Carrier - ${booking.status !== 'pending' && booking.status !== 'cancelled' ? booking.bookingDate : 'Pending'}
+${booking.status === 'delivered' || booking.status === 'in-transit' ? '✓' : '○'} Cargo Picked Up - ${booking.status === 'delivered' || booking.status === 'in-transit' ? booking.pickupDate : 'Scheduled: ' + booking.pickupDate}
+${booking.status === 'delivered' || booking.status === 'in-transit' ? '✓' : '○'} In Transit - ${booking.status === 'in-transit' || booking.status === 'delivered' ? 'Current' : 'Upcoming'}
+${booking.customsStatus !== 'not-required' && booking.status === 'delivered' ? '✓' : booking.customsStatus === 'cleared' ? '✓' : '○'} Customs Cleared - ${booking.customsStatus === 'cleared' ? booking.pickupDate : booking.customsStatus === 'in-process' ? 'In Process' : booking.customsStatus === 'pending' ? 'Pending' : 'N/A'}
+${booking.status === 'delivered' ? '✓' : '○'} Out for Delivery - ${booking.status === 'delivered' ? booking.expectedDelivery : 'Scheduled: ' + booking.expectedDelivery}
+${booking.status === 'delivered' ? '✓' : '○'} Delivered - ${booking.status === 'delivered' ? booking.expectedDelivery : 'Expected: ' + booking.expectedDelivery}
+
+ACTIONS AVAILABLE:
+------------------
+${booking.trackingUrl ? '→ Track Shipment in Real-time' : ''}
+${booking.status !== 'cancelled' && booking.status !== 'delivered' ? '→ Modify Booking Details' : ''}
+${booking.status === 'pending' || booking.status === 'confirmed' ? '→ Cancel Booking' : ''}
+→ Download Documents (PDF)
+→ Print Bill of Lading
+→ Share Tracking Link
+→ Contact Carrier Support
+${booking.status === 'delivered' ? '→ Download Proof of Delivery' : ''}
+${booking.customsStatus === 'cleared' ? '→ Download Customs Clearance Certificate' : ''}
+→ Generate Invoice
+→ Send Email Updates
+→ Download Booking Summary
+
+========================
+For assistance, contact: freight@manufacturingos.com | +91-1800-XXX-XXXX
+    `;
+
+    alert(details);
+    setIsViewingDetails(false);
+  };
+
+  const handleTrackShipment = (booking: FreightBooking) => {
+    setIsTracking(true);
+
+    const currentDate = new Date();
+    const pickupDate = new Date(booking.pickupDate);
+    const deliveryDate = new Date(booking.expectedDelivery);
+    const transitDays = Math.ceil((deliveryDate.getTime() - pickupDate.getTime()) / (1000 * 60 * 60 * 24));
+    const daysSincePickup = Math.ceil((currentDate.getTime() - pickupDate.getTime()) / (1000 * 60 * 60 * 24));
+
+    const getLocationBasedOnStatus = () => {
+      if (booking.status === 'delivered') return booking.destination;
+      if (booking.status === 'pending' || booking.status === 'confirmed') return booking.origin;
+      if (booking.status === 'cancelled') return 'Booking Cancelled';
+
+      // In-transit - calculate intermediate location
+      if (booking.transportMode === 'sea') {
+        if (booking.origin.includes('Chennai') && booking.destination.includes('Singapore')) {
+          return 'Bay of Bengal - 250 NM from Singapore';
+        }
+        if (booking.origin.includes('Visakhapatnam') && booking.destination.includes('Hong Kong')) {
+          return 'South China Sea - 180 NM from Hong Kong';
+        }
+        return 'High Seas - En Route';
+      } else if (booking.transportMode === 'air') {
+        return `In Flight - ${booking.vesselFlight}`;
+      } else if (booking.transportMode === 'road') {
+        if (booking.origin.includes('Bangalore') && booking.destination.includes('Delhi')) {
+          return 'Madhya Pradesh - Near Bhopal';
+        }
+        if (booking.origin.includes('Hyderabad') && booking.destination.includes('Mumbai')) {
+          return 'Maharashtra - Near Pune';
+        }
+        return 'In Transit - Highway';
+      } else {
+        return 'Railway Transit - En Route';
+      }
+    };
+
+    const getETAStatus = () => {
+      if (booking.status === 'delivered') return 'Delivered On Time';
+      if (booking.status === 'cancelled') return 'N/A - Cancelled';
+      if (booking.status === 'pending' || booking.status === 'confirmed') {
+        return `Pickup scheduled on ${booking.pickupDate}`;
+      }
+
+      const daysRemaining = Math.ceil((deliveryDate.getTime() - currentDate.getTime()) / (1000 * 60 * 60 * 24));
+      if (daysRemaining < 0) return 'Delayed - Investigation in Progress';
+      if (daysRemaining === 0) return 'Arriving Today';
+      if (daysRemaining === 1) return 'Arriving Tomorrow';
+      return `${daysRemaining} days remaining`;
+    };
+
+    const trackingInfo = `
+SHIPMENT TRACKING - REAL-TIME STATUS
+=====================================
+
+BOOKING REFERENCE:
+------------------
+Booking No: ${booking.bookingNo}
+Bill of Lading/AWB: ${booking.billOfLading}
+Container/Vehicle: ${booking.containerNo}
+Carrier: ${booking.carrier}
+${booking.transportMode === 'air' ? 'Flight' : booking.transportMode === 'sea' ? 'Vessel' : 'Vehicle'}: ${booking.vesselFlight}
+
+CURRENT STATUS:
+---------------
+Status: ${booking.status.toUpperCase()}
+Current Location: ${getLocationBasedOnStatus()}
+Last Updated: ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })} IST
+GPS Coordinates: ${booking.transportMode === 'sea' ? '13.0827°N, 80.2707°E' : booking.transportMode === 'air' ? 'Flight Level 350' : '22.7196°N, 75.8577°E'}
+${booking.status === 'in-transit' ? `Movement Status: ${booking.transportMode === 'air' ? 'In Flight' : booking.transportMode === 'sea' ? 'Under Sail' : 'On Road'}` : ''}
+
+ESTIMATED TIME OF ARRIVAL:
+--------------------------
+Original ETA: ${booking.expectedDelivery}
+Current ETA: ${getETAStatus()}
+${booking.status === 'in-transit' ? `Progress: ${Math.min(100, Math.floor((daysSincePickup / transitDays) * 100))}% complete` : ''}
+${booking.status === 'in-transit' && booking.transportMode === 'sea' ? `Distance Remaining: ${Math.max(0, (transitDays - daysSincePickup) * 450)} NM` : ''}
+${booking.status === 'in-transit' && booking.transportMode === 'road' ? `Distance Remaining: ${Math.max(0, (transitDays - daysSincePickup) * 600)} KM` : ''}
+
+ROUTE & CHECKPOINTS:
+--------------------
+Origin: ${booking.origin}
+${booking.status !== 'pending' && booking.status !== 'cancelled' ? '  ✓ Cargo Picked Up - ' + booking.pickupDate + ' 10:30 AM' : '  ○ Pickup Scheduled - ' + booking.pickupDate}
+${booking.status === 'in-transit' || booking.status === 'delivered' ? '  ✓ Departed Origin - ' + booking.pickupDate + ' 14:00 PM' : '  ○ Departure Pending'}
+
+${booking.transportMode === 'sea' && (booking.status === 'in-transit' || booking.status === 'delivered') ?
+`Checkpoint 1: Port of Loading
+  ✓ Container Loaded - ${booking.pickupDate} 18:00 PM
+  ✓ Vessel Departed - ${booking.pickupDate} 23:59 PM
+${booking.status === 'delivered' ? '  ✓ Crossed International Waters' : '  → Currently in International Waters'}
+${booking.status === 'delivered' ? '  ✓ Approaching Destination Port' : '  → En Route to Destination Port'}` : ''}
+
+${booking.transportMode === 'air' && (booking.status === 'in-transit' || booking.status === 'delivered') ?
+`Checkpoint 1: Origin Airport
+  ✓ Cargo Checked In - ${booking.pickupDate} 11:00 AM
+  ✓ Loaded on Aircraft - ${booking.pickupDate} 13:30 PM
+  ✓ Flight Departed - ${booking.pickupDate} 15:00 PM
+${booking.status === 'delivered' ? '  ✓ Flight Arrived - ' + booking.expectedDelivery : '  → In Flight - ETA: ' + booking.expectedDelivery}` : ''}
+
+${booking.transportMode === 'road' && (booking.status === 'in-transit' || booking.status === 'delivered') ?
+`Checkpoint 1: Highway Toll - Outer Ring Road
+  ✓ Passed at ${booking.pickupDate} 16:00 PM
+Checkpoint 2: State Border Checkpoint
+  ${booking.status === 'delivered' ? '✓' : '→'} ${booking.status === 'delivered' ? 'Crossed' : 'Approaching'} - ${booking.status === 'delivered' ? booking.pickupDate : 'Expected in 6 hours'}
+Checkpoint 3: Midway Hub
+  ${booking.status === 'delivered' ? '✓ Passed' : '○ Pending'}` : ''}
+
+${booking.customsStatus !== 'not-required' ?
+`Customs Checkpoint:
+  ${booking.customsStatus === 'cleared' ? '✓ Customs Cleared' : booking.customsStatus === 'in-process' ? '→ Under Customs Inspection' : '○ Awaiting Customs'} - ${booking.customsStatus === 'cleared' ? booking.pickupDate : 'In Progress'}
+  ${booking.customsStatus === 'cleared' ? 'Clearance Reference: CC-' + booking.id + '-2025' : ''}` : ''}
+
+Destination: ${booking.destination}
+${booking.status === 'delivered' ? '  ✓ Arrived at Destination - ' + booking.expectedDelivery + ' 15:30 PM' : '  ○ Expected Arrival - ' + booking.expectedDelivery}
+${booking.status === 'delivered' ? '  ✓ Delivered Successfully - ' + booking.expectedDelivery + ' 17:00 PM' : '  ○ Delivery Pending'}
+${booking.status === 'delivered' ? '  ✓ POD Obtained - Signed by ' + booking.contactPerson : ''}
+
+DELAYS & EXCEPTIONS:
+--------------------
+${booking.status === 'cancelled' ? '⚠ BOOKING CANCELLED\nReason: Customer Request\nCancelled Date: ' + booking.bookingDate : ''}
+${booking.status === 'pending' ? '⚠ PENDING CARRIER CONFIRMATION\nReason: Awaiting capacity allocation\nExpected Confirmation: Within 2-4 hours' : ''}
+${booking.status === 'in-transit' && booking.transportMode === 'sea' ? 'Weather Conditions: Favorable\nSea State: Calm\nNo delays reported' : ''}
+${booking.status === 'in-transit' && booking.transportMode === 'air' ? 'Flight Status: On Time\nWeather: Clear\nNo delays reported' : ''}
+${booking.status === 'in-transit' && booking.transportMode === 'road' ? 'Traffic Conditions: Normal\nRoad Conditions: Good\nNo delays reported' : ''}
+${booking.customsStatus === 'in-process' ? '⚠ Customs inspection in progress\nExpected clearance: 24-48 hours' : ''}
+${booking.status === 'confirmed' || booking.status === 'delivered' ? '✓ No exceptions reported\n✓ Shipment proceeding as planned' : ''}
+
+SHIPMENT DETAILS:
+-----------------
+Cargo: ${booking.cargoType}
+Weight: ${booking.weight.toLocaleString()} KG
+Volume: ${booking.volume} CBM
+Temperature: ${booking.cargoType === 'Pharmaceuticals' ? 'Controlled (2-8°C) - Currently at 4°C ✓' : 'Ambient'}
+${booking.cargoType === 'Pharmaceuticals' && booking.status === 'in-transit' ? 'Temperature Monitoring: Active\nLast Reading: 4.2°C at ' + new Date().toLocaleTimeString() : ''}
+Security Seal: ${booking.status !== 'pending' ? 'Intact - Seal #SL' + booking.id + '2025' : 'To be applied at pickup'}
+Condition: ${booking.status === 'delivered' ? 'Excellent - No damage reported' : 'Good - No issues detected'}
+
+CARRIER UPDATES:
+----------------
+${booking.status === 'confirmed' ? '→ Pickup crew assigned\n→ Vehicle/Container ready\n→ Scheduled for pickup on ' + booking.pickupDate : ''}
+${booking.status === 'in-transit' && booking.transportMode === 'sea' ? '→ Vessel on schedule\n→ Weather conditions favorable\n→ Expected to dock on ' + booking.expectedDelivery : ''}
+${booking.status === 'in-transit' && booking.transportMode === 'air' ? '→ Flight cruising at optimal altitude\n→ On-time arrival expected\n→ Customs pre-clearance initiated' : ''}
+${booking.status === 'in-transit' && booking.transportMode === 'road' ? '→ Driver: Amit Kumar (License: DL-1420110012345)\n→ Vehicle: ' + booking.containerNo + '\n→ Next checkpoint: 85 KM ahead' : ''}
+${booking.status === 'delivered' ? '✓ Delivery completed successfully\n✓ POD signed and uploaded\n✓ No damages or shortages reported' : ''}
+
+CONTACT & SUPPORT:
+------------------
+Carrier Customer Service: 1800-${booking.carrier.substring(0, 3).toUpperCase()}-TRACK
+Email Support: track@${booking.carrier.toLowerCase().replace(' ', '')}.com
+Online Tracking: ${booking.trackingUrl || 'Portal access pending'}
+Emergency Contact: +91-98XX-FREIGHT
+
+NOTIFICATIONS:
+--------------
+${booking.status !== 'pending' && booking.status !== 'cancelled' ? '✓ Pickup confirmation sent - ' + booking.pickupDate : ''}
+${booking.status === 'in-transit' || booking.status === 'delivered' ? '✓ In-transit update sent - ' + booking.pickupDate : ''}
+${booking.customsStatus === 'cleared' ? '✓ Customs clearance notification sent' : ''}
+${booking.status === 'delivered' ? '✓ Delivery confirmation sent - ' + booking.expectedDelivery : ''}
+${booking.status === 'in-transit' ? '→ ETA updates enabled (Daily)' : ''}
+
+DOCUMENTS AVAILABLE:
+--------------------
+${booking.status !== 'pending' ? '✓ Bill of Lading: ' + booking.billOfLading : ''}
+${booking.status !== 'pending' ? '✓ Cargo Manifest' : ''}
+${booking.customsStatus === 'cleared' ? '✓ Customs Clearance Certificate' : ''}
+${booking.status === 'delivered' ? '✓ Proof of Delivery' : ''}
+${booking.status === 'delivered' ? '✓ Delivery Receipt (Signed)' : ''}
+
+TRACKING OPTIONS:
+-----------------
+→ Enable SMS Updates (+91 ${booking.contactPhone})
+→ Enable Email Alerts
+→ Enable Push Notifications
+→ Share Tracking Link with Customer
+→ Download Tracking Report (PDF)
+→ View on Map (Real-time GPS)
+${booking.trackingUrl ? '→ Carrier Website: ' + booking.trackingUrl : ''}
+
+========================
+Tracking as of: ${new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })} IST
+Next Update: Auto-refresh every 30 minutes
+For real-time updates, enable notifications above.
+    `;
+
+    alert(trackingInfo);
+    setIsTracking(false);
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
       <div className="mb-6 flex items-center justify-between">
@@ -286,9 +809,13 @@ export default function FreightBookingPage() {
             <p className="text-sm text-gray-500 mt-1">Manage freight bookings and shipments</p>
           </div>
         </div>
-        <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium flex items-center gap-2">
+        <button
+          onClick={handleNewBooking}
+          disabled={isCreatingBooking}
+          className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+        >
           <Plus className="w-4 h-4" />
-          New Booking
+          {isCreatingBooking ? 'Creating...' : 'New Booking'}
         </button>
       </div>
 
@@ -344,7 +871,7 @@ export default function FreightBookingPage() {
         <div className="bg-gradient-to-br from-purple-500 to-purple-600 text-white rounded-xl p-4 shadow-sm">
           <div className="flex items-center justify-between mb-2">
             <FileText className="w-7 h-7 opacity-80" />
-            <span className="text-lg font-bold">�{(bookingStats.totalValue / 1000000).toFixed(1)}M</span>
+            <span className="text-lg font-bold">�{(bookingStats.totalValue / 1000000).toFixed(1)}M</span>
           </div>
           <p className="text-xs font-medium opacity-90">Total Value</p>
         </div>
@@ -422,7 +949,7 @@ export default function FreightBookingPage() {
 
               <div className="text-right">
                 <p className="text-xs text-gray-500 mb-0.5">Booking Amount</p>
-                <p className="text-2xl font-bold text-indigo-600">�{booking.bookingAmount.toLocaleString()}</p>
+                <p className="text-2xl font-bold text-indigo-600">�{booking.bookingAmount.toLocaleString()}</p>
                 <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium mt-1 ${getCustomsColor(booking.customsStatus)}`}>
                   Customs: {booking.customsStatus}
                 </span>
@@ -433,7 +960,7 @@ export default function FreightBookingPage() {
               <div className="bg-blue-50 rounded-lg p-3">
                 <p className="text-xs text-blue-600 font-medium mb-1">Route</p>
                 <p className="text-sm font-semibold text-blue-900">{booking.origin}</p>
-                <p className="text-xs text-blue-700 my-0.5">�</p>
+                <p className="text-xs text-blue-700 my-0.5">�</p>
                 <p className="text-sm font-semibold text-blue-900">{booking.destination}</p>
               </div>
 
@@ -467,12 +994,20 @@ export default function FreightBookingPage() {
             <div className="flex items-center justify-between pt-3 border-t border-gray-200">
               <p className="text-xs text-gray-500">Booked on {booking.bookingDate} " Container: {booking.containerNo}</p>
               <div className="flex gap-2">
-                <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium text-sm">
-                  View Details
+                <button
+                  onClick={() => handleViewDetails(booking)}
+                  disabled={isViewingDetails}
+                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isViewingDetails ? 'Loading...' : 'View Details'}
                 </button>
                 {booking.trackingUrl && (
-                  <button className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 font-medium text-sm">
-                    Track Shipment
+                  <button
+                    onClick={() => handleTrackShipment(booking)}
+                    disabled={isTracking}
+                    className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 font-medium text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {isTracking ? 'Loading...' : 'Track Shipment'}
                   </button>
                 )}
               </div>

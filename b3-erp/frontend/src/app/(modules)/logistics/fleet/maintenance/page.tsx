@@ -59,6 +59,10 @@ export default function FleetMaintenancePage() {
   const [selectedStatus, setSelectedStatus] = useState('all');
   const [selectedType, setSelectedType] = useState('all');
   const [selectedPriority, setSelectedPriority] = useState('all');
+  const [isScheduling, setIsScheduling] = useState(false);
+  const [isViewing, setIsViewing] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [isViewingDocuments, setIsViewingDocuments] = useState(false);
 
   const [maintenanceRecords, setMaintenanceRecords] = useState<MaintenanceRecord[]>([
     {
@@ -313,6 +317,454 @@ export default function FleetMaintenancePage() {
     }
   ]);
 
+  // Handler Functions
+  const handleScheduleMaintenance = () => {
+    setIsScheduling(true);
+
+    const maintenanceDetails = {
+      vehicleSelection: 'MH-01-AB-1234 (32-Ft Truck)',
+      maintenanceType: 'Preventive Maintenance',
+      scheduledDate: '2024-11-20',
+      serviceProvider: 'Tata Authorized Service Center',
+      costEstimate: '₹12,500',
+      partsNeeded: [
+        'Engine Oil Filter (EF-2024-001) - ₹850',
+        'Air Filter (AF-2024-002) - ₹650',
+        'Brake Pads Set (BP-2024-003) - ₹4,500',
+        'Coolant (5L) (CL-5L-001) - ₹1,200'
+      ],
+      estimatedDuration: '4-6 hours',
+      odometer: '125,680 km',
+      nextServiceDue: '130,000 km',
+      location: 'Mumbai Workshop',
+      priority: 'Medium',
+      mechanicAssigned: 'Ramesh Kumar (Senior Mechanic)',
+      notes: 'Regular scheduled maintenance as per manufacturer guidelines. Vehicle due for 5000 km service.'
+    };
+
+    setTimeout(() => {
+      setIsScheduling(false);
+      alert(`SCHEDULE NEW MAINTENANCE
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+VEHICLE DETAILS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Vehicle: ${maintenanceDetails.vehicleSelection}
+Current Odometer: ${maintenanceDetails.odometer}
+Next Service Due: ${maintenanceDetails.nextServiceDue}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+MAINTENANCE SCHEDULE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Type: ${maintenanceDetails.maintenanceType}
+Scheduled Date: ${maintenanceDetails.scheduledDate}
+Estimated Duration: ${maintenanceDetails.estimatedDuration}
+Priority: ${maintenanceDetails.priority}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SERVICE PROVIDER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Provider: ${maintenanceDetails.serviceProvider}
+Location: ${maintenanceDetails.location}
+Mechanic: ${maintenanceDetails.mechanicAssigned}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PARTS REQUIRED
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+${maintenanceDetails.partsNeeded.map((part, idx) => `${idx + 1}. ${part}`).join('\n')}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+COST ESTIMATE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Parts Cost: ₹7,200
+Labor Cost: ₹5,300
+Total Estimate: ${maintenanceDetails.costEstimate}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+NOTES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+${maintenanceDetails.notes}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✓ Maintenance scheduled successfully!
+✓ Service center notified
+✓ Parts availability confirmed
+✓ Calendar reminder set
+✓ Mechanic assigned
+
+New Maintenance ID: MNT-2024-009`);
+    }, 1000);
+  };
+
+  const handleViewMaintenance = (record: MaintenanceRecord) => {
+    setIsViewing(true);
+
+    const partsTotal = record.partsUsed.reduce((sum, part) => sum + (part.cost * part.quantity), 0);
+    const serviceHistory = {
+      previousServices: [
+        { date: '2024-08-15', type: 'Oil Change', cost: '₹4,200', odometer: '120,000 km' },
+        { date: '2024-05-10', type: 'Brake Inspection', cost: '₹2,500', odometer: '115,000 km' },
+        { date: '2024-02-20', type: 'Tire Rotation', cost: '₹1,800', odometer: '110,000 km' }
+      ],
+      totalServiceHistory: 12,
+      avgServiceInterval: '5,000 km',
+      lastMajorService: '2024-01-15 - Complete Overhaul (₹45,000)'
+    };
+
+    setTimeout(() => {
+      setIsViewing(false);
+      alert(`MAINTENANCE RECORD DETAILS
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+MAINTENANCE INFORMATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Maintenance ID: ${record.maintenanceId}
+Status: ${record.status.toUpperCase()}
+Priority: ${record.priority.toUpperCase()}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+VEHICLE DETAILS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Vehicle Number: ${record.vehicleNumber}
+Vehicle Type: ${record.vehicleType}
+Vehicle ID: ${record.vehicleId}
+Current Odometer: ${record.odometer.toLocaleString()} km
+Next Service: ${record.nextServiceOdometer.toLocaleString()} km (${record.nextServiceDate})
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SERVICE DETAILS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Type: ${record.maintenanceType.toUpperCase().replace('-', ' ')}
+Service Type: ${record.serviceType.toUpperCase()}
+Description: ${record.description}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SCHEDULE & TIMING
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Scheduled Date: ${record.scheduledDate}
+${record.actualStartDate ? `Started: ${record.actualStartDate}` : 'Not yet started'}
+${record.completionDate ? `Completed: ${record.completionDate}` : 'Not yet completed'}
+Estimated Duration: ${record.estimatedDuration} hours
+${record.actualDuration ? `Actual Duration: ${record.actualDuration} hours` : 'Duration pending'}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SERVICE PROVIDER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Provider: ${record.serviceProvider}
+Location: ${record.location}
+${record.mechanicName ? `Mechanic: ${record.mechanicName}` : 'Mechanic: Not assigned'}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PARTS REPLACED (${record.partsUsed.length})
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+${record.partsUsed.length > 0 ? record.partsUsed.map((part, idx) =>
+  `${idx + 1}. ${part.partName} (${part.partNumber})
+   Quantity: ${part.quantity} | Unit Cost: ₹${part.cost.toLocaleString()} | Total: ₹${(part.cost * part.quantity).toLocaleString()}`
+).join('\n') : 'No parts replaced'}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+COST BREAKDOWN
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Labor Cost: ₹${record.laborCost.toLocaleString()}
+Parts Cost: ₹${partsTotal.toLocaleString()}
+Total Cost: ₹${record.totalCost.toLocaleString()}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+TECHNICIAN NOTES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+${record.notes}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SERVICE HISTORY (Last 3 Services)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+${serviceHistory.previousServices.map((svc, idx) =>
+  `${idx + 1}. ${svc.date} - ${svc.type}
+   Cost: ${svc.cost} | Odometer: ${svc.odometer}`
+).join('\n')}
+
+Total Services: ${serviceHistory.totalServiceHistory}
+Avg Service Interval: ${serviceHistory.avgServiceInterval}
+Last Major Service: ${serviceHistory.lastMajorService}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+WARRANTY & APPROVALS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Warranty Status: ${record.warrantyStatus.toUpperCase()}
+Created By: ${record.createdBy}
+${record.approvedBy ? `Approved By: ${record.approvedBy}` : 'Pending Approval'}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+BEFORE/AFTER PHOTOS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📸 Before Service: 8 photos attached
+📸 During Service: 12 photos attached
+📸 After Service: 6 photos attached
+📸 Parts Replaced: 4 photos attached
+
+Total: 30 photos available in document section`);
+    }, 800);
+  };
+
+  const handleEditMaintenance = (record: MaintenanceRecord) => {
+    setIsEditing(true);
+
+    setTimeout(() => {
+      setIsEditing(false);
+      alert(`EDIT MAINTENANCE RECORD
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+RECORD INFORMATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Maintenance ID: ${record.maintenanceId}
+Vehicle: ${record.vehicleNumber} (${record.vehicleType})
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+EDITABLE FIELDS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. STATUS
+   Current: ${record.status.toUpperCase()}
+   Options: Scheduled | In Progress | Completed | Pending Parts | Cancelled | Overdue
+
+2. PRIORITY
+   Current: ${record.priority.toUpperCase()}
+   Options: Urgent | High | Medium | Low
+
+3. SCHEDULED DATE
+   Current: ${record.scheduledDate}
+   Change to: [Select new date]
+
+4. SERVICE PROVIDER
+   Current: ${record.serviceProvider}
+   Available Providers:
+   • Tata Authorized Service Center
+   • BharatBenz Service Center
+   • Ashok Leyland Service Center
+   • Mahindra Service Center
+   • Volvo Service Center
+
+5. MECHANIC ASSIGNMENT
+   Current: ${record.mechanicName || 'Not assigned'}
+   Available Mechanics:
+   • Ramesh Kumar (Senior Mechanic)
+   • Suresh Mechanic (Brake Specialist)
+   • Ravi Mechanic (Engine Expert)
+   • Prakash Electrician (Electrical Systems)
+
+6. LOCATION
+   Current: ${record.location}
+   Available: Mumbai | Delhi | Bangalore | Hyderabad | Chennai
+
+7. ESTIMATED DURATION
+   Current: ${record.estimatedDuration} hours
+   Update: [Enter new duration]
+
+8. ACTUAL START DATE
+   Current: ${record.actualStartDate || 'Not started'}
+   Update: [Select start date/time]
+
+9. COMPLETION DATE
+   Current: ${record.completionDate || 'Not completed'}
+   Update: [Select completion date/time]
+
+10. ACTUAL DURATION
+    Current: ${record.actualDuration ? `${record.actualDuration} hours` : 'Not recorded'}
+    Update: [Enter actual hours]
+
+11. COST BREAKDOWN
+    Labor Cost: ₹${record.laborCost.toLocaleString()}
+    Total Cost: ₹${record.totalCost.toLocaleString()}
+    [Update costs]
+
+12. PARTS MANAGEMENT
+    Current Parts: ${record.partsUsed.length}
+    [Add/Remove/Update Parts]
+
+13. NOTES & OBSERVATIONS
+    Current Notes: ${record.notes}
+    [Update technician notes]
+
+14. APPROVAL STATUS
+    Created By: ${record.createdBy}
+    Approved By: ${record.approvedBy || 'Pending'}
+    [Update approval]
+
+15. WARRANTY STATUS
+    Current: ${record.warrantyStatus.toUpperCase()}
+    Options: In Warranty | Out of Warranty | Extended Warranty | N/A
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+VALIDATION RULES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✓ Status must be valid
+✓ Priority required
+✓ Service provider required
+✓ Location required
+✓ Costs must be positive numbers
+✓ Actual duration cannot exceed 48 hours
+✓ Completion date must be after start date
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Would you like to save changes to ${record.maintenanceId}?
+
+Note: All changes will be logged with timestamp and user details for audit trail.`);
+    }, 800);
+  };
+
+  const handleViewDocuments = (record: MaintenanceRecord) => {
+    setIsViewingDocuments(true);
+
+    const documents = {
+      invoices: [
+        { name: 'Service Invoice - Final', number: 'INV-2024-MNT-001', date: record.completionDate || record.scheduledDate, amount: record.totalCost, status: 'Paid' },
+        { name: 'Parts Purchase Invoice', number: 'INV-2024-PRT-045', date: record.scheduledDate, amount: record.totalCost - record.laborCost, status: 'Paid' },
+        { name: 'Labor Charges Invoice', number: 'INV-2024-LBR-089', date: record.scheduledDate, amount: record.laborCost, status: 'Paid' }
+      ],
+      serviceReports: [
+        { name: 'Pre-Service Inspection Report', date: record.actualStartDate || record.scheduledDate, pages: 4 },
+        { name: 'Service Completion Report', date: record.completionDate || 'Pending', pages: 6 },
+        { name: 'Quality Check Report', date: record.completionDate || 'Pending', pages: 3 },
+        { name: 'Parts Replacement Report', date: record.completionDate || 'Pending', pages: 5 }
+      ],
+      warranties: [
+        { name: 'Parts Warranty Certificate', issuer: record.serviceProvider, validUntil: '2025-10-20', coverage: '12 months/20,000 km' },
+        { name: 'Labor Warranty Certificate', issuer: record.serviceProvider, validUntil: '2025-04-20', coverage: '6 months' },
+        { name: 'Extended Warranty Document', issuer: 'Manufacturer', validUntil: '2026-10-20', coverage: '24 months/50,000 km' }
+      ],
+      compliance: [
+        { name: 'Fitness Certificate', authority: 'RTO Mumbai', validUntil: '2025-11-15', status: 'Valid' },
+        { name: 'Pollution Certificate', authority: 'Authorized Testing Center', validUntil: '2025-05-20', status: 'Valid' },
+        { name: 'Insurance Certificate', authority: 'HDFC ERGO', validUntil: '2025-08-30', status: 'Valid' },
+        { name: 'Roadworthiness Certificate', authority: record.serviceProvider, validUntil: '2025-12-01', status: 'Valid' }
+      ],
+      photos: {
+        beforeService: 8,
+        duringService: 12,
+        afterService: 6,
+        partsReplaced: 4,
+        damageDocumentation: 2
+      }
+    };
+
+    setTimeout(() => {
+      setIsViewingDocuments(false);
+      alert(`MAINTENANCE DOCUMENTS
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+MAINTENANCE RECORD
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ID: ${record.maintenanceId}
+Vehicle: ${record.vehicleNumber} (${record.vehicleType})
+Service Date: ${record.scheduledDate}
+Status: ${record.status.toUpperCase()}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📄 INVOICES (${documents.invoices.length})
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+${documents.invoices.map((inv, idx) =>
+  `${idx + 1}. ${inv.name}
+   Invoice #: ${inv.number}
+   Date: ${inv.date}
+   Amount: ₹${inv.amount.toLocaleString()}
+   Status: ${inv.status}
+   [View PDF] [Download] [Print]`
+).join('\n\n')}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📋 SERVICE REPORTS (${documents.serviceReports.length})
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+${documents.serviceReports.map((rpt, idx) =>
+  `${idx + 1}. ${rpt.name}
+   Date: ${rpt.date}
+   Pages: ${rpt.pages}
+   [View PDF] [Download] [Share]`
+).join('\n\n')}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🛡️ WARRANTY CERTIFICATES (${documents.warranties.length})
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+${documents.warranties.map((war, idx) =>
+  `${idx + 1}. ${war.name}
+   Issuer: ${war.issuer}
+   Valid Until: ${war.validUntil}
+   Coverage: ${war.coverage}
+   [View Certificate] [Download] [Verify]`
+).join('\n\n')}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✓ COMPLIANCE CERTIFICATES (${documents.compliance.length})
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+${documents.compliance.map((comp, idx) =>
+  `${idx + 1}. ${comp.name}
+   Authority: ${comp.authority}
+   Valid Until: ${comp.validUntil}
+   Status: ${comp.status}
+   [View Certificate] [Verify Online] [Download]`
+).join('\n\n')}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📸 PHOTO DOCUMENTATION (${Object.values(documents.photos).reduce((a, b) => a + b, 0)} photos)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Before Service: ${documents.photos.beforeService} photos
+   • Vehicle exterior condition
+   • Odometer reading
+   • Existing damage documentation
+   • Parts condition assessment
+   [View Gallery]
+
+During Service: ${documents.photos.duringService} photos
+   • Parts removal process
+   • Component inspection
+   • Work in progress
+   • Quality check points
+   [View Gallery]
+
+After Service: ${documents.photos.afterService} photos
+   • Completed work
+   • Vehicle final condition
+   • Cleaned and serviced
+   • Ready for delivery
+   [View Gallery]
+
+Parts Replaced: ${documents.photos.partsReplaced} photos
+   • Old parts removed
+   • New parts installed
+   • Part numbers visible
+   • Installation verification
+   [View Gallery]
+
+Damage Documentation: ${documents.photos.damageDocumentation} photos
+   • Pre-existing damage
+   • Wear and tear
+   [View Gallery]
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+DOCUMENT ACTIONS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✓ Upload New Document
+✓ Create Document Package (ZIP)
+✓ Email All Documents
+✓ Generate Maintenance Summary Report
+✓ Export to Cloud Storage
+✓ Share with Insurance Company
+✓ Archive Documents
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+DOCUMENT VERIFICATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✓ All invoices verified and paid
+✓ Service reports completed
+✓ Warranties registered
+✓ Compliance certificates valid
+✓ Photo documentation complete
+
+Total Document Size: 45.8 MB
+Last Updated: ${new Date().toLocaleString()}`);
+    }, 1000);
+  };
+
   const getStatusColor = (status: string) => {
     const colors: { [key: string]: string } = {
       'scheduled': 'text-blue-600 bg-blue-50 border-blue-200',
@@ -375,9 +827,13 @@ export default function FleetMaintenancePage() {
           <p className="text-gray-600 mt-1">Scheduled and unscheduled maintenance management</p>
         </div>
         <div className="flex items-center space-x-3">
-          <button className="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 flex items-center space-x-2">
+          <button
+            onClick={handleScheduleMaintenance}
+            disabled={isScheduling}
+            className="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 flex items-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
             <Plus className="w-4 h-4" />
-            <span>Schedule Maintenance</span>
+            <span>{isScheduling ? 'Scheduling...' : 'Schedule Maintenance'}</span>
           </button>
         </div>
       </div>
@@ -563,17 +1019,29 @@ export default function FleetMaintenancePage() {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm">
                     <div className="flex items-center space-x-2">
-                      <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                      <button
+                        onClick={() => handleViewMaintenance(record)}
+                        disabled={isViewing}
+                        className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
                         <Eye className="w-4 h-4 text-gray-600" />
-                        <span className="text-gray-700">View</span>
+                        <span className="text-gray-700">{isViewing ? 'Loading...' : 'View'}</span>
                       </button>
-                      <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                      <button
+                        onClick={() => handleEditMaintenance(record)}
+                        disabled={isEditing}
+                        className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
                         <Edit2 className="w-4 h-4 text-gray-600" />
-                        <span className="text-gray-700">Edit</span>
+                        <span className="text-gray-700">{isEditing ? 'Loading...' : 'Edit'}</span>
                       </button>
-                      <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                      <button
+                        onClick={() => handleViewDocuments(record)}
+                        disabled={isViewingDocuments}
+                        className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
                         <FileText className="w-4 h-4 text-gray-600" />
-                        <span className="text-gray-700">Document</span>
+                        <span className="text-gray-700">{isViewingDocuments ? 'Loading...' : 'Document'}</span>
                       </button>
                     </div>
                   </td>

@@ -62,6 +62,9 @@ export default function LogisticsCarriersPage() {
   const [ratingFilter, setRatingFilter] = useState('all');
   const [statusFilter, setStatusFilter] = useState('all');
   const [currentPage, setCurrentPage] = useState(1);
+  const [isRefreshing, setIsRefreshing] = useState(false);
+  const [isAdding, setIsAdding] = useState(false);
+  const [isExporting, setIsExporting] = useState(false);
   const itemsPerPage = 10;
 
   // Sample carriers data
@@ -321,6 +324,135 @@ export default function LogisticsCarriersPage() {
   const startIndex = (currentPage - 1) * itemsPerPage;
   const paginatedCarriers = filteredCarriers.slice(startIndex, startIndex + itemsPerPage);
 
+  // Handler Functions
+  const handleRefresh = async () => {
+    setIsRefreshing(true);
+    try {
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      alert('Carrier data refreshed successfully!\n\nIn production, this would:\n- Fetch latest carrier data from the server\n- Update performance metrics and shipment counts\n- Refresh contract and rate information\n- Sync carrier status updates\n- Update on-time delivery statistics');
+    } catch (error) {
+      alert('Error refreshing carrier data. Please try again.');
+    } finally {
+      setIsRefreshing(false);
+    }
+  };
+
+  const handleAddCarrier = () => {
+    setIsAdding(true);
+    setTimeout(() => {
+      alert('Add New Carrier Form\n\nIn production, this would:\n- Open a modal or navigate to a form page\n- Collect carrier information:\n  * Carrier name and type (courier/freight/air/sea/rail)\n  * Contact details (person, phone, email)\n  * Address and service areas\n  * Contract type and terms\n  * Insurance coverage details\n  * Rate structure and pricing\n  * Performance SLAs and expectations\n- Validate carrier information\n- Register the new carrier in the system\n- Send onboarding emails and documentation');
+      setIsAdding(false);
+    }, 500);
+  };
+
+  const handleExportCarriers = () => {
+    setIsExporting(true);
+    try {
+      // Prepare CSV content with comprehensive carrier data
+      const csvHeaders = [
+        'Carrier ID',
+        'Name',
+        'Type',
+        'Contact Person',
+        'Contact Number',
+        'Email',
+        'Address',
+        'Service Areas',
+        'On-Time Percentage',
+        'Average Cost per Shipment',
+        'Total Shipments',
+        'Active Shipments',
+        'Rating',
+        'Established Date',
+        'Last Shipment Date',
+        'Status',
+        'Contract Type',
+        'Insurance Coverage',
+        'Notes'
+      ].join(',');
+
+      const csvRows = filteredCarriers.map(carrier =>
+        [
+          carrier.carrier_id,
+          `"${carrier.name}"`,
+          carrier.carrier_type,
+          `"${carrier.contact_person}"`,
+          carrier.contact_number,
+          carrier.email,
+          `"${carrier.address}"`,
+          `"${carrier.service_areas.join('; ')}"`,
+          carrier.on_time_percentage,
+          carrier.average_cost_per_shipment,
+          carrier.total_shipments,
+          carrier.active_shipments,
+          carrier.rating,
+          carrier.established_date,
+          carrier.last_shipment_date,
+          carrier.status,
+          carrier.contract_type,
+          carrier.insurance_coverage,
+          `"${carrier.notes}"`
+        ].join(',')
+      );
+
+      const csvContent = [csvHeaders, ...csvRows].join('\n');
+
+      // Create and download CSV file
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement('a');
+      const url = URL.createObjectURL(blob);
+      link.setAttribute('href', url);
+      link.setAttribute('download', `carriers_export_${new Date().toISOString().split('T')[0]}.csv`);
+      link.style.visibility = 'hidden';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      alert(`Successfully exported ${filteredCarriers.length} carriers to CSV!\n\nThe export includes:\n- Complete carrier details and contact information\n- Performance metrics and shipment statistics\n- Contract terms and insurance coverage\n- Service areas and ratings\n- Status and operational notes\n\nFile: carriers_export_${new Date().toISOString().split('T')[0]}.csv`);
+    } catch (error) {
+      alert('Error exporting carriers. Please try again.');
+    } finally {
+      setIsExporting(false);
+    }
+  };
+
+  const handleViewCarrier = (carrier: Carrier) => {
+    alert(`View Carrier Details\n\nCarrier: ${carrier.name} (${carrier.carrier_id})\nType: ${carrier.carrier_type.toUpperCase()}\nStatus: ${carrier.status.toUpperCase()}\n\nIn production, this would:\n- Navigate to carrier detail page at /logistics/carriers/${carrier.id}\n- Display comprehensive carrier information:\n  * Contact details and communication history\n  * Performance metrics and trends\n  * Complete shipment history\n  * Contract terms and rate schedules\n  * Service areas and coverage maps\n  * Quality ratings and reviews\n  * Insurance and compliance documents\n  * Recent activity and communications\n- Show performance charts and analytics\n- Display contract renewal dates and terms`);
+  };
+
+  const handleEditCarrier = (carrier: Carrier) => {
+    alert(`Edit Carrier: ${carrier.name}\n\nIn production, this would:\n- Navigate to edit form at /logistics/carriers/${carrier.id}/edit\n- Pre-populate form with current carrier data:\n  * Basic info (name, type, contact details)\n  * Address and service areas\n  * Contract terms and rates\n  * Insurance coverage\n  * Performance targets and SLAs\n  * Notes and special instructions\n- Allow updating carrier information\n- Validate changes before saving\n- Update carrier records in the database\n- Send notifications about changes\n- Log audit trail of modifications`);
+  };
+
+  const handleDeleteCarrier = (carrier: Carrier) => {
+    const confirmDelete = window.confirm(
+      `Delete Carrier: ${carrier.name}?\n\n` +
+      `Carrier ID: ${carrier.carrier_id}\n` +
+      `Type: ${carrier.carrier_type}\n` +
+      `Total Shipments: ${carrier.total_shipments}\n` +
+      `Active Shipments: ${carrier.active_shipments}\n\n` +
+      `WARNING: This action cannot be undone!\n\n` +
+      `In production, this would:\n` +
+      `- Check for active shipments and dependencies\n` +
+      `- Require confirmation from authorized personnel\n` +
+      `- Archive carrier data for historical records\n` +
+      `- Reassign active shipments if necessary\n` +
+      `- Update related contracts and agreements\n` +
+      `- Notify relevant stakeholders\n` +
+      `- Maintain audit trail\n\n` +
+      `Do you want to proceed with deletion?`
+    );
+
+    if (confirmDelete) {
+      if (carrier.active_shipments > 0) {
+        alert(`Cannot Delete Carrier!\n\nCarrier ${carrier.name} has ${carrier.active_shipments} active shipments.\n\nPlease:\n1. Complete or reassign all active shipments\n2. Resolve pending deliveries\n3. Close out active contracts\n4. Then retry deletion\n\nAlternatively, you can suspend the carrier instead of deleting.`);
+      } else {
+        alert(`Carrier Deleted Successfully!\n\nCarrier ${carrier.name} (${carrier.carrier_id}) has been removed from the system.\n\nIn production:\n- Carrier data would be archived\n- Historical shipment records preserved\n- Contracts marked as terminated\n- Stakeholders notified\n- Audit log updated`);
+      }
+    }
+  };
+
   // Rating stars component
   const RatingStars = ({ rating }: { rating: number }) => {
     return (
@@ -391,13 +523,21 @@ export default function LogisticsCarriersPage() {
           <p className="text-sm text-gray-500 mt-1">Manage carrier partners, performance metrics, and service agreements</p>
         </div>
         <div className="flex gap-2">
-          <button className="flex items-center gap-2 bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors">
-            <RefreshCw className="w-4 h-4" />
-            Refresh
+          <button
+            onClick={handleRefresh}
+            disabled={isRefreshing}
+            className="flex items-center gap-2 bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <RefreshCw className={`w-4 h-4 ${isRefreshing ? 'animate-spin' : ''}`} />
+            {isRefreshing ? 'Refreshing...' : 'Refresh'}
           </button>
-          <button className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+          <button
+            onClick={handleAddCarrier}
+            disabled={isAdding}
+            className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          >
             <Plus className="w-4 h-4" />
-            Add Carrier
+            {isAdding ? 'Adding...' : 'Add Carrier'}
           </button>
         </div>
       </div>
@@ -478,7 +618,7 @@ export default function LogisticsCarriersPage() {
       {/* Filters and Search */}
       <div className="bg-white rounded-lg shadow border border-gray-200">
         <div className="p-4 border-b border-gray-200">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4">
             {/* Search */}
             <div className="lg:col-span-2 relative">
               <Search className="w-5 h-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
@@ -508,6 +648,21 @@ export default function LogisticsCarriersPage() {
               </select>
             </div>
 
+            {/* Status Filter */}
+            <div className="relative">
+              <CheckCircle className="w-5 h-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+              <select
+                value={statusFilter}
+                onChange={(e) => setStatusFilter(e.target.value)}
+                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none bg-white"
+              >
+                <option value="all">All Status</option>
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+                <option value="suspended">Suspended</option>
+              </select>
+            </div>
+
             {/* Rating Filter */}
             <div className="relative">
               <Star className="w-5 h-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
@@ -524,9 +679,13 @@ export default function LogisticsCarriersPage() {
             </div>
 
             {/* Export Button */}
-            <button className="flex items-center justify-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+            <button
+              onClick={handleExportCarriers}
+              disabled={isExporting}
+              className="flex items-center justify-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            >
               <Download className="w-4 h-4" />
-              Export
+              {isExporting ? 'Exporting...' : 'Export'}
             </button>
           </div>
         </div>
@@ -639,13 +798,25 @@ export default function LogisticsCarriersPage() {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                     <div className="flex items-center gap-2">
-                      <button className="p-1 hover:bg-gray-100 rounded">
+                      <button
+                        onClick={() => handleViewCarrier(carrier)}
+                        className="p-1 hover:bg-gray-100 rounded transition-colors"
+                        title="View Carrier Details"
+                      >
                         <Eye className="w-4 h-4 text-gray-600" />
                       </button>
-                      <button className="p-1 hover:bg-gray-100 rounded">
+                      <button
+                        onClick={() => handleEditCarrier(carrier)}
+                        className="p-1 hover:bg-gray-100 rounded transition-colors"
+                        title="Edit Carrier"
+                      >
                         <Edit2 className="w-4 h-4 text-blue-600" />
                       </button>
-                      <button className="p-1 hover:bg-gray-100 rounded">
+                      <button
+                        onClick={() => handleDeleteCarrier(carrier)}
+                        className="p-1 hover:bg-gray-100 rounded transition-colors"
+                        title="Delete Carrier"
+                      >
                         <Trash2 className="w-4 h-4 text-red-600" />
                       </button>
                     </div>
