@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useMemo } from 'react';
-import { FileText, Search, Eye, Edit, Trash2, Plus, Calendar, User, Tag, ThumbsUp, MessageSquare, TrendingUp, Filter, ChevronRight } from 'lucide-react';
+import { useState, useMemo, useEffect } from 'react';
+import { FileText, Search, Eye, Edit, Trash2, Plus, Calendar, User, Tag, ThumbsUp, MessageSquare, TrendingUp, Filter, ChevronRight, X, CheckCircle, AlertTriangle, BarChart3, Clock, Star } from 'lucide-react';
 
 interface Article {
   id: string;
@@ -156,6 +156,47 @@ export default function ArticlesPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [selectedStatus, setSelectedStatus] = useState<string>('published');
   const [sortBy, setSortBy] = useState<'recent' | 'views' | 'likes'>('recent');
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'info' | 'error' } | null>(null);
+  const [showAnalyticsModal, setShowAnalyticsModal] = useState(false);
+  const [selectedArticle, setSelectedArticle] = useState<Article | null>(null);
+
+  // Toast auto-dismiss
+  useEffect(() => {
+    if (toast) {
+      const timer = setTimeout(() => setToast(null), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [toast]);
+
+  const handleStatsCardClick = (type: string) => {
+    switch (type) {
+      case 'total':
+        setSelectedCategory('all');
+        setSelectedStatus('published');
+        setToast({ message: `Showing all ${stats.total} articles`, type: 'info' });
+        break;
+      case 'published':
+        setSelectedStatus('published');
+        setToast({ message: `${stats.published} published articles`, type: 'success' });
+        break;
+      case 'drafts':
+        setSelectedStatus('draft');
+        setToast({ message: `${stats.draft} draft articles`, type: 'info' });
+        break;
+      case 'featured':
+        setToast({ message: `${stats.featured} featured articles`, type: 'info' });
+        break;
+    }
+  };
+
+  const handleArticleClick = (article: Article) => {
+    setSelectedArticle(article);
+  };
+
+  const handleDelete = (article: Article, e: React.MouseEvent) => {
+    e.stopPropagation();
+    setToast({ message: `Article "${article.title}" deleted`, type: 'success' });
+  };
 
   const categories = ['Maintenance', 'Troubleshooting', 'Warranty', 'Installation', 'Optimization', 'Service Plans'];
 
@@ -189,6 +230,20 @@ export default function ArticlesPage() {
 
   return (
     <div className="min-h-screen bg-gray-50 p-6">
+      {/* Toast Notification */}
+      {toast && (
+        <div className={`fixed top-4 right-4 z-50 flex items-center gap-2 px-4 py-3 rounded-lg shadow-lg ${
+          toast.type === 'success' ? 'bg-green-50 text-green-800 border border-green-200' :
+          toast.type === 'error' ? 'bg-red-50 text-red-800 border border-red-200' :
+          'bg-blue-50 text-blue-800 border border-blue-200'
+        }`}>
+          {toast.type === 'success' && <CheckCircle className="w-5 h-5" />}
+          {toast.type === 'info' && <AlertTriangle className="w-5 h-5" />}
+          {toast.type === 'error' && <X className="w-5 h-5" />}
+          <span className="font-medium">{toast.message}</span>
+        </div>
+      )}
+
       {/* Header */}
       <div className="mb-6 flex items-center justify-between">
         <div>
@@ -198,61 +253,86 @@ export default function ArticlesPage() {
           </h1>
           <p className="text-gray-600 mt-1">Browse and manage service knowledge articles</p>
         </div>
-        <button className="bg-emerald-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-emerald-700 transition-colors flex items-center gap-2 shadow-md">
-          <Plus className="h-5 w-5" />
-          New Article
-        </button>
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => setShowAnalyticsModal(true)}
+            className="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors flex items-center gap-2 shadow-md"
+          >
+            <BarChart3 className="h-5 w-5" />
+            View Analytics
+          </button>
+          <button className="bg-emerald-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-emerald-700 transition-colors flex items-center gap-2 shadow-md">
+            <Plus className="h-5 w-5" />
+            New Article
+          </button>
+        </div>
       </div>
 
       {/* Statistics */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
-        <div className="bg-white rounded-lg border border-gray-200 p-5 shadow-sm">
+        <button
+          onClick={() => handleStatsCardClick('total')}
+          className="bg-white rounded-lg border-2 border-gray-200 p-5 shadow-sm hover:shadow-lg hover:border-blue-500 transition-all text-left"
+        >
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Total Articles</p>
               <p className="text-3xl font-bold text-gray-900 mt-2">{stats.total}</p>
+              <p className="text-xs text-blue-600 mt-1">Click to view all</p>
             </div>
             <div className="bg-blue-100 p-3 rounded-lg">
               <FileText className="h-6 w-6 text-blue-600" />
             </div>
           </div>
-        </div>
+        </button>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-5 shadow-sm">
+        <button
+          onClick={() => handleStatsCardClick('published')}
+          className="bg-white rounded-lg border-2 border-gray-200 p-5 shadow-sm hover:shadow-lg hover:border-green-500 transition-all text-left"
+        >
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Published</p>
               <p className="text-3xl font-bold text-green-600 mt-2">{stats.published}</p>
+              <p className="text-xs text-green-600 mt-1">Click to filter</p>
             </div>
             <div className="bg-green-100 p-3 rounded-lg">
               <Tag className="h-6 w-6 text-green-600" />
             </div>
           </div>
-        </div>
+        </button>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-5 shadow-sm">
+        <button
+          onClick={() => handleStatsCardClick('drafts')}
+          className="bg-white rounded-lg border-2 border-gray-200 p-5 shadow-sm hover:shadow-lg hover:border-yellow-500 transition-all text-left"
+        >
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Drafts</p>
               <p className="text-3xl font-bold text-yellow-600 mt-2">{stats.draft}</p>
+              <p className="text-xs text-yellow-600 mt-1">Click to filter</p>
             </div>
             <div className="bg-yellow-100 p-3 rounded-lg">
               <Edit className="h-6 w-6 text-yellow-600" />
             </div>
           </div>
-        </div>
+        </button>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-5 shadow-sm">
+        <button
+          onClick={() => handleStatsCardClick('featured')}
+          className="bg-white rounded-lg border-2 border-gray-200 p-5 shadow-sm hover:shadow-lg hover:border-purple-500 transition-all text-left"
+        >
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Featured</p>
               <p className="text-3xl font-bold text-purple-600 mt-2">{stats.featured}</p>
+              <p className="text-xs text-purple-600 mt-1">Click for info</p>
             </div>
             <div className="bg-purple-100 p-3 rounded-lg">
               <TrendingUp className="h-6 w-6 text-purple-600" />
             </div>
           </div>
-        </div>
+        </button>
       </div>
 
       {/* Search and Filters */}
@@ -322,7 +402,11 @@ export default function ArticlesPage() {
       {/* Articles List */}
       <div className="space-y-4">
         {filteredArticles.map((article) => (
-          <div key={article.id} className="bg-white rounded-lg border border-gray-200 p-6 shadow-sm hover:shadow-md transition-shadow">
+          <div
+            key={article.id}
+            onClick={() => handleArticleClick(article)}
+            className="bg-white rounded-lg border-2 border-gray-200 p-6 shadow-sm hover:shadow-lg hover:border-emerald-500 transition-all cursor-pointer"
+          >
             <div className="flex items-start justify-between mb-4">
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
@@ -377,23 +461,32 @@ export default function ArticlesPage() {
 
               <div className="flex items-center gap-2 ml-6">
                 <button
-                  className="p-2 hover:bg-gray-100 rounded-lg transition-colors text-blue-600 hover:text-blue-700"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleArticleClick(article);
+                  }}
+                  className="p-2 hover:bg-blue-100 rounded-lg transition-colors text-blue-600 hover:text-blue-700"
                   aria-label="View"
-                 
+                  title="View Article"
                 >
                   <Eye className="h-5 w-5" />
                 </button>
                 <button
-                  className="p-2 hover:bg-gray-100 rounded-lg transition-colors text-amber-600 hover:text-amber-700"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setToast({ message: `Editing "${article.title}"`, type: 'info' });
+                  }}
+                  className="p-2 hover:bg-amber-100 rounded-lg transition-colors text-amber-600 hover:text-amber-700"
                   aria-label="Edit"
-                 
+                  title="Edit Article"
                 >
                   <Edit className="h-5 w-5" />
                 </button>
                 <button
-                  className="p-2 hover:bg-gray-100 rounded-lg transition-colors text-red-600 hover:text-red-700"
+                  onClick={(e) => handleDelete(article, e)}
+                  className="p-2 hover:bg-red-100 rounded-lg transition-colors text-red-600 hover:text-red-700"
                   aria-label="Delete"
-                 
+                  title="Delete Article"
                 >
                   <Trash2 className="h-5 w-5" />
                 </button>

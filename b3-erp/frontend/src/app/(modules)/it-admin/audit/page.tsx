@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import { Search, Download, Eye } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Search, Download, Eye, CheckCircle, XCircle, AlertCircle } from 'lucide-react';
 
 interface AuditLog {
   id: string;
@@ -133,6 +133,26 @@ export default function AuditPage() {
   const [severityFilter, setSeverityFilter] = useState('all');
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' | 'info' } | null>(null);
+
+  useEffect(() => {
+    if (toast) {
+      const timer = setTimeout(() => setToast(null), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [toast]);
+
+  const showToast = (message: string, type: 'success' | 'error' | 'info') => {
+    setToast({ message, type });
+  };
+
+  const handleExport = () => {
+    showToast('Exporting audit logs report...', 'info');
+  };
+
+  const handleViewDetails = (logId: string) => {
+    showToast(`Viewing details for log: ${logId}`, 'info');
+  };
 
   const filteredLogs = auditLogs.filter(log => {
     const matchesSearch =
@@ -198,19 +218,43 @@ export default function AuditPage() {
     }
   };
 
-  const handleExport = () => {
-    console.log('Exporting audit logs...');
-  };
-
-  const handleViewDetails = (logId: string) => {
-    console.log('Viewing log details:', logId);
-  };
-
   return (
-    <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6 space-y-6">
-      {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl shadow-sm p-4 text-blue-700">
+    <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 via-lime-50 to-yellow-50">
+      {/* Toast Notification */}
+      {toast && (
+        <div className={`fixed top-4 right-4 z-50 flex items-center gap-2 px-4 py-3 rounded-lg shadow-lg ${
+          toast.type === 'success' ? 'bg-green-50 text-green-800 border border-green-200' :
+          toast.type === 'error' ? 'bg-red-50 text-red-800 border border-red-200' :
+          'bg-blue-50 text-blue-800 border border-blue-200'
+        }`}>
+          {toast.type === 'success' && <CheckCircle className="w-5 h-5" />}
+          {toast.type === 'error' && <XCircle className="w-5 h-5" />}
+          {toast.type === 'info' && <AlertCircle className="w-5 h-5" />}
+          <span className="font-medium">{toast.message}</span>
+        </div>
+      )}
+
+      {/* Header Section */}
+      <div className="flex-none p-6 pb-4 space-y-4">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-800">Audit Logs</h1>
+            <p className="text-gray-600 mt-1">Track and monitor all system activities</p>
+          </div>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={handleExport}
+              className="flex items-center gap-2 px-4 py-2 bg-white border border-lime-300 text-lime-700 rounded-lg hover:bg-lime-50 transition-colors"
+            >
+              <Download className="w-4 h-4" />
+              Export
+            </button>
+          </div>
+        </div>
+
+        {/* Stats Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-xl shadow-sm p-4 text-blue-700">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-blue-600 text-sm font-medium">Total Logs</p>
@@ -271,95 +315,91 @@ export default function AuditPage() {
         </div>
       </div>
 
-      {/* Filters and Search */}
-      <div className="bg-white rounded-lg shadow-md p-6">
-        <div className="flex flex-col lg:flex-row gap-4">
-          <div className="flex-1 relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-            <input
-              type="text"
-              placeholder="Search by Log ID, User, Module, or Description..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            />
+      {/* Scrollable Content Area */}
+      <div className="flex-1 overflow-hidden px-6">
+        <div className="h-full flex flex-col bg-white rounded-lg border border-gray-200 overflow-hidden">
+          {/* Filters Section */}
+          <div className="flex-none p-4 border-b border-gray-200">
+            <div className="flex flex-col lg:flex-row gap-4">
+              <div className="flex-1 relative">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                <input
+                  type="text"
+                  placeholder="Search by Log ID, User, Module, or Description..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-lime-500 focus:border-transparent"
+                />
           </div>
 
-          <select
-            value={eventTypeFilter}
-            onChange={(e) => setEventTypeFilter(e.target.value)}
-            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          >
-            <option value="all">All Events</option>
-            <option value="login">Login</option>
-            <option value="logout">Logout</option>
-            <option value="create">Create</option>
-            <option value="update">Update</option>
-            <option value="delete">Delete</option>
-            <option value="export">Export</option>
-            <option value="approve">Approve</option>
-            <option value="reject">Reject</option>
-          </select>
+                        </div>
 
-          <select
-            value={severityFilter}
-            onChange={(e) => setSeverityFilter(e.target.value)}
-            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          >
-            <option value="all">All Severity</option>
-            <option value="low">Low</option>
-            <option value="medium">Medium</option>
-            <option value="high">High</option>
-            <option value="critical">Critical</option>
-          </select>
+              <select
+                value={eventTypeFilter}
+                onChange={(e) => setEventTypeFilter(e.target.value)}
+                className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-lime-500 focus:border-transparent"
+              >
+                <option value="all">All Events</option>
+                <option value="login">Login</option>
+                <option value="logout">Logout</option>
+                <option value="create">Create</option>
+                <option value="update">Update</option>
+                <option value="delete">Delete</option>
+                <option value="export">Export</option>
+                <option value="approve">Approve</option>
+                <option value="reject">Reject</option>
+              </select>
 
-          <button
-            onClick={handleExport}
-            className="flex items-center gap-2 px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
-          >
-            <Download className="w-5 h-5" />
-            Export Report
-          </button>
-        </div>
-      </div>
+              <select
+                value={severityFilter}
+                onChange={(e) => setSeverityFilter(e.target.value)}
+                className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-lime-500 focus:border-transparent"
+              >
+                <option value="all">All Severity</option>
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+                <option value="critical">Critical</option>
+              </select>
+            </div>
+          </div>
 
-      {/* Audit Logs Table */}
-      <div className="bg-white rounded-lg shadow-md overflow-hidden">
-        <div className="overflow-x-auto">
-          <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gray-50">
-              <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Log ID
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Timestamp
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  User
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Action Type
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Module
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Description
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  IP Address
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Severity
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Actions
-                </th>
-              </tr>
-            </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
-              {currentLogs.map((log) => (
+          {/* DataTable - Scrollable */}
+          <div className="flex-1 overflow-auto">
+            <table className="min-w-full divide-y divide-gray-200">
+              <thead className="bg-gray-50 sticky top-0">
+                <tr>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Log ID
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Timestamp
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    User
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Action
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Module
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Description
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Severity
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Status
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Actions
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="bg-white divide-y divide-gray-200">
+                {currentLogs.map((log) => (
                 <tr key={log.id} className="hover:bg-gray-50">
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                     {log.id}
@@ -399,49 +439,50 @@ export default function AuditPage() {
                     </button>
                   </td>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-
-        {/* Pagination */}
-        <div className="bg-white px-6 py-4 border-t border-gray-200">
-          <div className="flex items-center justify-between">
-            <div className="text-sm text-gray-700">
-              Showing <span className="font-medium">{startIndex + 1}</span> to{' '}
-              <span className="font-medium">{Math.min(endIndex, filteredLogs.length)}</span> of{' '}
-              <span className="font-medium">{filteredLogs.length}</span> logs
-            </div>
-            <div className="flex gap-2">
-              <button
-                onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-                disabled={currentPage === 1}
-                className="px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                Previous
-              </button>
-              <div className="flex gap-1">
-                {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
-                  <button
-                    key={page}
-                    onClick={() => setCurrentPage(page)}
-                    className={`px-4 py-2 border rounded-lg text-sm font-medium ${
-                      currentPage === page
-                        ? 'bg-blue-600 text-white border-blue-600'
-                        : 'border-gray-300 text-gray-700 bg-white hover:bg-gray-50'
-                    }`}
-                  >
-                    {page}
-                  </button>
                 ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Pagination */}
+          <div className="flex-none bg-white px-6 py-4 border-t border-gray-200">
+            <div className="flex items-center justify-between">
+              <div className="text-sm text-gray-700">
+                Showing <span className="font-medium">{startIndex + 1}</span> to{' '}
+                <span className="font-medium">{Math.min(endIndex, filteredLogs.length)}</span> of{' '}
+                <span className="font-medium">{filteredLogs.length}</span> logs
               </div>
-              <button
-                onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-                disabled={currentPage === totalPages}
-                className="px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                Next
-              </button>
+              <div className="flex gap-2">
+                <button
+                  onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                  disabled={currentPage === 1}
+                  className="px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  Previous
+                </button>
+                <div className="flex gap-1">
+                  {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+                    <button
+                      key={page}
+                      onClick={() => setCurrentPage(page)}
+                      className={`px-4 py-2 border rounded-lg text-sm font-medium ${
+                        currentPage === page
+                          ? 'bg-lime-600 text-white border-lime-600'
+                          : 'border-gray-300 text-gray-700 bg-white hover:bg-gray-50'
+                      }`}
+                    >
+                      {page}
+                    </button>
+                  ))}
+                </div>
+                <button
+                  onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                  disabled={currentPage === totalPages}
+                  className="px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  Next
+                </button>
+              </div>
             </div>
           </div>
         </div>

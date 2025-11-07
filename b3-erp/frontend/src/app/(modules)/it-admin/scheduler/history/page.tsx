@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import { History, CheckCircle2, XCircle, AlertTriangle, Clock, Calendar, Filter, Download, Eye, Search, TrendingUp, BarChart3 } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { History, CheckCircle2, XCircle, AlertTriangle, Clock, Calendar, Filter, Download, Eye, Search, TrendingUp, BarChart3, X, PieChart } from 'lucide-react';
 
 interface ExecutionHistory {
   id: string;
@@ -35,6 +35,15 @@ const SchedulerHistoryPage = () => {
   const [dateRange, setDateRange] = useState('today');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedExecution, setSelectedExecution] = useState<ExecutionHistory | null>(null);
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'info' | 'error' } | null>(null);
+  const [showAnalyticsModal, setShowAnalyticsModal] = useState(false);
+
+  useEffect(() => {
+    if (toast) {
+      const timer = setTimeout(() => setToast(null), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [toast]);
 
   const [history] = useState<ExecutionHistory[]>([
     {
@@ -270,7 +279,32 @@ const SchedulerHistoryPage = () => {
   };
 
   const handleExport = () => {
-    alert('Exporting execution history...');
+    setToast({ message: 'Exporting execution history...', type: 'info' });
+  };
+
+  const handleStatsCardClick = (type: string) => {
+    switch (type) {
+      case 'total':
+        setFilterStatus('all');
+        setFilterType('all');
+        setToast({ message: 'Showing all executions', type: 'info' });
+        break;
+      case 'success':
+        setFilterStatus('Success');
+        setToast({ message: 'Showing successful executions', type: 'success' });
+        break;
+      case 'failed':
+        setFilterStatus('Failed');
+        setToast({ message: 'Showing failed executions', type: 'error' });
+        break;
+      case 'warning':
+        setFilterStatus('Warning');
+        setToast({ message: 'Showing executions with warnings', type: 'info' });
+        break;
+      case 'analytics':
+        setShowAnalyticsModal(true);
+        break;
+    }
   };
 
   return (
@@ -297,41 +331,80 @@ const SchedulerHistoryPage = () => {
         </div>
       </div>
 
+      {/* Toast Notification */}
+      {toast && (
+        <div className="fixed top-4 right-4 z-50 animate-fade-in">
+          <div className={`rounded-lg shadow-lg p-4 flex items-center gap-3 ${
+            toast.type === 'success' ? 'bg-green-50 border-2 border-green-500' :
+            toast.type === 'error' ? 'bg-red-50 border-2 border-red-500' :
+            'bg-blue-50 border-2 border-blue-500'
+          }`}>
+            {toast.type === 'success' && <CheckCircle2 className="w-5 h-5 text-green-600" />}
+            {toast.type === 'error' && <XCircle className="w-5 h-5 text-red-600" />}
+            {toast.type === 'info' && <AlertTriangle className="w-5 h-5 text-blue-600" />}
+            <p className={`font-medium ${
+              toast.type === 'success' ? 'text-green-900' :
+              toast.type === 'error' ? 'text-red-900' :
+              'text-blue-900'
+            }`}>{toast.message}</p>
+            <button onClick={() => setToast(null)} className="ml-2">
+              <X className="w-4 h-4 text-gray-500 hover:text-gray-700" />
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Statistics Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-6">
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <button
+          onClick={() => handleStatsCardClick('total')}
+          className="bg-white rounded-xl shadow-sm border-2 border-gray-200 p-4 hover:border-indigo-500 hover:shadow-lg transition-all text-left"
+        >
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Total</span>
             <History className="w-4 h-4 text-gray-600" />
           </div>
           <div className="text-2xl font-bold text-gray-900">{stats.totalExecutions}</div>
-        </div>
+          <p className="text-xs text-indigo-600 mt-1">Click to view all</p>
+        </button>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <button
+          onClick={() => handleStatsCardClick('success')}
+          className="bg-white rounded-xl shadow-sm border-2 border-gray-200 p-4 hover:border-green-500 hover:shadow-lg transition-all text-left"
+        >
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Successful</span>
             <CheckCircle2 className="w-4 h-4 text-green-600" />
           </div>
           <div className="text-2xl font-bold text-green-600">{stats.successful}</div>
-        </div>
+          <p className="text-xs text-green-600 mt-1">Click to filter</p>
+        </button>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <button
+          onClick={() => handleStatsCardClick('failed')}
+          className="bg-white rounded-xl shadow-sm border-2 border-gray-200 p-4 hover:border-red-500 hover:shadow-lg transition-all text-left"
+        >
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Failed</span>
             <XCircle className="w-4 h-4 text-red-600" />
           </div>
           <div className="text-2xl font-bold text-red-600">{stats.failed}</div>
-        </div>
+          <p className="text-xs text-red-600 mt-1">Click to filter</p>
+        </button>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <button
+          onClick={() => handleStatsCardClick('warning')}
+          className="bg-white rounded-xl shadow-sm border-2 border-gray-200 p-4 hover:border-yellow-500 hover:shadow-lg transition-all text-left"
+        >
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Warnings</span>
             <AlertTriangle className="w-4 h-4 text-yellow-600" />
           </div>
           <div className="text-2xl font-bold text-yellow-600">{stats.warnings}</div>
-        </div>
+          <p className="text-xs text-yellow-600 mt-1">Click to filter</p>
+        </button>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-xl shadow-sm border-2 border-gray-200 p-4">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Avg Duration</span>
             <TrendingUp className="w-4 h-4 text-blue-600" />
@@ -339,13 +412,17 @@ const SchedulerHistoryPage = () => {
           <div className="text-2xl font-bold text-blue-600">{stats.averageDuration}</div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <button
+          onClick={() => handleStatsCardClick('analytics')}
+          className="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-xl shadow-sm border-2 border-purple-200 p-4 hover:border-purple-500 hover:shadow-lg transition-all text-left"
+        >
           <div className="flex items-center justify-between mb-2">
-            <span className="text-sm text-gray-600">Longest</span>
-            <BarChart3 className="w-4 h-4 text-purple-600" />
+            <span className="text-sm text-purple-600 font-medium">Analytics</span>
+            <PieChart className="w-4 h-4 text-purple-600" />
           </div>
-          <div className="text-2xl font-bold text-purple-600">{stats.longestDuration}</div>
-        </div>
+          <div className="text-sm font-semibold text-purple-900">View Insights</div>
+          <p className="text-xs text-purple-600 mt-1">Click for details</p>
+        </button>
       </div>
 
       {/* Filters */}
@@ -422,7 +499,11 @@ const SchedulerHistoryPage = () => {
             </thead>
             <tbody>
               {filteredHistory.map((item) => (
-                <tr key={item.id} className="border-b border-gray-100 hover:bg-gray-50">
+                <tr
+                  key={item.id}
+                  onClick={() => handleViewDetails(item)}
+                  className="border-b border-gray-100 hover:bg-indigo-50 cursor-pointer transition-colors"
+                >
                   <td className="py-3 px-4">
                     <div>
                       <div className="font-medium text-gray-900">{item.jobName}</div>
@@ -464,9 +545,12 @@ const SchedulerHistoryPage = () => {
                   </td>
                   <td className="py-3 px-4 text-right">
                     <button
-                      onClick={() => handleViewDetails(item)}
-                      className="text-indigo-600 hover:text-indigo-700 p-1"
-                     
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleViewDetails(item);
+                      }}
+                      className="text-indigo-600 hover:text-indigo-700 p-1 hover:bg-indigo-100 rounded transition-colors"
+                      title="View Details"
                     >
                       <Eye className="w-4 h-4" />
                     </button>
@@ -485,18 +569,202 @@ const SchedulerHistoryPage = () => {
         )}
       </div>
 
+      {/* Analytics Modal */}
+      {showAnalyticsModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-xl shadow-xl max-w-6xl w-full max-h-[90vh] overflow-auto">
+            <div className="bg-gradient-to-r from-purple-600 to-indigo-600 p-6 sticky top-0 z-10">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 bg-white bg-opacity-20 rounded-lg">
+                    <BarChart3 className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-white">Execution Analytics</h3>
+                    <p className="text-sm text-purple-100">Comprehensive performance insights</p>
+                  </div>
+                </div>
+                <button
+                  onClick={() => setShowAnalyticsModal(false)}
+                  className="text-white hover:bg-white hover:bg-opacity-20 p-2 rounded-lg transition-colors"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+            </div>
+
+            <div className="p-6">
+              {/* Performance Metrics */}
+              <div className="mb-6">
+                <h4 className="text-lg font-bold text-gray-900 mb-4">Performance Overview</h4>
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                  <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+                    <div className="flex items-center gap-2 mb-2">
+                      <CheckCircle2 className="w-5 h-5 text-green-600" />
+                      <p className="text-sm font-medium text-green-900">Success Rate</p>
+                    </div>
+                    <p className="text-2xl font-bold text-green-700">
+                      {((stats.successful / stats.totalExecutions) * 100).toFixed(1)}%
+                    </p>
+                  </div>
+
+                  <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-4 border border-red-200">
+                    <div className="flex items-center gap-2 mb-2">
+                      <XCircle className="w-5 h-5 text-red-600" />
+                      <p className="text-sm font-medium text-red-900">Failure Rate</p>
+                    </div>
+                    <p className="text-2xl font-bold text-red-700">
+                      {((stats.failed / stats.totalExecutions) * 100).toFixed(1)}%
+                    </p>
+                  </div>
+
+                  <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
+                    <div className="flex items-center gap-2 mb-2">
+                      <AlertTriangle className="w-5 h-5 text-yellow-600" />
+                      <p className="text-sm font-medium text-yellow-900">Warning Rate</p>
+                    </div>
+                    <p className="text-2xl font-bold text-yellow-700">
+                      {((stats.warnings / stats.totalExecutions) * 100).toFixed(1)}%
+                    </p>
+                  </div>
+
+                  <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Clock className="w-5 h-5 text-blue-600" />
+                      <p className="text-sm font-medium text-blue-900">Avg Duration</p>
+                    </div>
+                    <p className="text-2xl font-bold text-blue-700">{stats.averageDuration}</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Job Type Analysis */}
+              <div className="mb-6">
+                <h4 className="text-lg font-bold text-gray-900 mb-4">Job Type Breakdown</h4>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  {['Backup', 'Report', 'Data Sync', 'Monitoring', 'Cleanup', 'Archive'].map((type) => {
+                    const typeCount = history.filter(h => h.jobType === type).length;
+                    const typeSuccess = history.filter(h => h.jobType === type && h.status === 'Success').length;
+                    return typeCount > 0 ? (
+                      <div key={type} className="bg-white border border-gray-200 rounded-lg p-4">
+                        <p className="text-sm font-medium text-gray-700 mb-2">{type}</p>
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-2xl font-bold text-gray-900">{typeCount}</span>
+                          <span className="text-sm text-green-600 font-medium">
+                            {typeCount > 0 ? ((typeSuccess / typeCount) * 100).toFixed(0) : 0}% success
+                          </span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-2">
+                          <div
+                            className="bg-green-500 h-2 rounded-full"
+                            style={{ width: `${typeCount > 0 ? (typeSuccess / typeCount) * 100 : 0}%` }}
+                          />
+                        </div>
+                      </div>
+                    ) : null;
+                  })}
+                </div>
+              </div>
+
+              {/* Recent Trends */}
+              <div className="mb-6">
+                <h4 className="text-lg font-bold text-gray-900 mb-4">Recent Executions Timeline</h4>
+                <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                  <div className="space-y-3">
+                    {history.slice(0, 5).map((exec) => (
+                      <div key={exec.id} className="flex items-center gap-4 bg-white p-3 rounded-lg border border-gray-200">
+                        <div className="flex-shrink-0">
+                          {getStatusIcon(exec.status)}
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p className="text-sm font-medium text-gray-900 truncate">{exec.jobName}</p>
+                          <p className="text-xs text-gray-500">{exec.executionTime}</p>
+                        </div>
+                        <div className="flex-shrink-0">
+                          <span className="text-xs font-medium text-gray-600">{exec.duration}</span>
+                        </div>
+                        <div className="flex-shrink-0">
+                          <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(exec.status)}`}>
+                            {exec.status}
+                          </span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Key Insights */}
+              <div>
+                <h4 className="text-lg font-bold text-gray-900 mb-4">Key Insights</h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                    <h5 className="font-semibold text-blue-900 mb-2">Most Reliable Job</h5>
+                    <p className="text-sm text-blue-700">System Health Check - 100% success rate</p>
+                  </div>
+                  <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                    <h5 className="font-semibold text-purple-900 mb-2">Longest Running Job</h5>
+                    <p className="text-sm text-purple-700">Data Archive - {stats.longestDuration}</p>
+                  </div>
+                  <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
+                    <h5 className="font-semibold text-orange-900 mb-2">Total Records Processed</h5>
+                    <p className="text-sm text-orange-700">
+                      {history.reduce((sum, h) => sum + (h.recordsProcessed || 0), 0).toLocaleString()} records
+                    </p>
+                  </div>
+                  <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                    <h5 className="font-semibold text-green-900 mb-2">System Reliability</h5>
+                    <p className="text-sm text-green-700">
+                      {stats.successful} of {stats.totalExecutions} jobs completed successfully
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex justify-end gap-3 p-6 border-t border-gray-200 bg-gray-50">
+              <button
+                onClick={() => setShowAnalyticsModal(false)}
+                className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors font-medium"
+              >
+                Close
+              </button>
+              <button
+                onClick={() => {
+                  setToast({ message: 'Exporting analytics report...', type: 'info' });
+                  setShowAnalyticsModal(false);
+                }}
+                className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors font-medium flex items-center gap-2"
+              >
+                <Download className="w-4 h-4" />
+                Export Report
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Details Modal */}
       {selectedExecution && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-xl shadow-xl max-w-4xl w-full max-h-[90vh] overflow-auto">
-            <div className="flex items-center justify-between p-6 border-b border-gray-200">
-              <h3 className="text-xl font-bold text-gray-900">Execution Details</h3>
-              <button
-                onClick={handleCloseDetails}
-                className="text-gray-400 hover:text-gray-600"
-              >
-                <XCircle className="w-6 h-6" />
-              </button>
+            <div className={`p-6 sticky top-0 z-10 bg-gradient-to-r ${
+              selectedExecution.status === 'Success' ? 'from-green-600 to-emerald-600' :
+              selectedExecution.status === 'Failed' ? 'from-red-600 to-rose-600' :
+              'from-yellow-600 to-orange-600'
+            }`}>
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="text-xl font-bold text-white">Execution Details</h3>
+                  <p className="text-sm text-white text-opacity-90">{selectedExecution.jobName}</p>
+                </div>
+                <button
+                  onClick={handleCloseDetails}
+                  className="text-white hover:bg-white hover:bg-opacity-20 p-2 rounded-lg transition-colors"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
             </div>
 
             <div className="p-6">

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { MapPin, Navigation, Clock, Phone, User, CheckCircle, AlertTriangle, Battery, Wifi, RefreshCw, Search, Filter, Calendar, Truck, Wrench, Home, Building2, Zap, TrendingUp } from 'lucide-react';
+import { MapPin, Navigation, Clock, Phone, User, CheckCircle, AlertTriangle, Battery, Wifi, RefreshCw, Search, Filter, Calendar, Truck, Wrench, Home, Building2, Zap, TrendingUp, X, Eye, BarChart3, Mail } from 'lucide-react';
 
 interface TechnicianLocation {
   id: string;
@@ -245,6 +245,9 @@ export default function TechnicianTrackingPage() {
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [selectedTechnician, setSelectedTechnician] = useState<TechnicianLocation | null>(null);
   const [currentTime, setCurrentTime] = useState(new Date());
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'info' | 'error' } | null>(null);
+  const [showAnalyticsModal, setShowAnalyticsModal] = useState(false);
+  const [selectedMapTech, setSelectedMapTech] = useState<TechnicianLocation | null>(null);
 
   // Update current time every minute
   useEffect(() => {
@@ -253,6 +256,48 @@ export default function TechnicianTrackingPage() {
     }, 60000);
     return () => clearInterval(timer);
   }, []);
+
+  // Toast notification auto-dismiss
+  useEffect(() => {
+    if (toast) {
+      const timer = setTimeout(() => setToast(null), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [toast]);
+
+  // Handler functions
+  const handleStatsCardClick = (type: string) => {
+    switch (type) {
+      case 'total':
+        setStatusFilter('all');
+        setToast({ message: 'Showing all technicians', type: 'info' });
+        break;
+      case 'active':
+        setStatusFilter('all');
+        const activeList = mockTechnicians.filter(t => t.currentStatus === 'on_job' || t.currentStatus === 'in_transit');
+        setToast({ message: `${activeList.length} active technicians found`, type: 'info' });
+        break;
+      case 'available':
+        setStatusFilter('available');
+        setToast({ message: `${availableTechnicians} technicians available for assignment`, type: 'success' });
+        break;
+      case 'jobs':
+        setToast({ message: `${totalJobsToday} jobs scheduled for today`, type: 'info' });
+        break;
+      case 'completed':
+        setToast({ message: `${completedJobsToday} jobs completed today`, type: 'success' });
+        break;
+      case 'response':
+        setToast({ message: `Average response time: ${avgResponseTime} minutes`, type: 'info' });
+        break;
+    }
+  };
+
+  const handleMapTechClick = (tech: TechnicianLocation, e: React.MouseEvent) => {
+    e.stopPropagation();
+    setSelectedMapTech(tech);
+    setSelectedTechnician(tech);
+  };
 
   // Filter technicians
   const filteredTechnicians = mockTechnicians.filter(tech => {
@@ -310,88 +355,135 @@ export default function TechnicianTrackingPage() {
 
   return (
     <div className="min-h-screen bg-gray-50 p-6">
+      {/* Toast Notification */}
+      {toast && (
+        <div className={`fixed top-4 right-4 z-50 flex items-center gap-2 px-4 py-3 rounded-lg shadow-lg ${
+          toast.type === 'success' ? 'bg-green-50 text-green-800 border border-green-200' :
+          toast.type === 'error' ? 'bg-red-50 text-red-800 border border-red-200' :
+          'bg-blue-50 text-blue-800 border border-blue-200'
+        }`}>
+          {toast.type === 'success' && <CheckCircle className="w-5 h-5" />}
+          {toast.type === 'info' && <AlertTriangle className="w-5 h-5" />}
+          {toast.type === 'error' && <X className="w-5 h-5" />}
+          <span className="font-medium">{toast.message}</span>
+        </div>
+      )}
+
       {/* Header */}
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
-          <Navigation className="h-8 w-8 text-emerald-600" />
-          Technician Tracking
-        </h1>
-        <p className="text-gray-600 mt-1">Real-time GPS tracking and monitoring of field technicians</p>
+      <div className="mb-6 flex items-center justify-between">
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
+            <Navigation className="h-8 w-8 text-emerald-600" />
+            Technician Tracking
+          </h1>
+          <p className="text-gray-600 mt-1">Real-time GPS tracking and monitoring of field technicians</p>
+        </div>
+        <button
+          onClick={() => setShowAnalyticsModal(true)}
+          className="bg-emerald-600 text-white px-6 py-3 rounded-lg hover:bg-emerald-700 transition-colors flex items-center gap-2 shadow-lg"
+        >
+          <BarChart3 className="w-5 h-5" />
+          View Analytics
+        </button>
       </div>
 
       {/* Statistics Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6 mb-6">
-        <div className="bg-white rounded-lg border border-gray-200 p-5 shadow-sm hover:shadow-md transition-shadow">
+        <button
+          onClick={() => handleStatsCardClick('total')}
+          className="bg-white rounded-lg border-2 border-gray-200 p-5 shadow-sm hover:shadow-lg hover:border-blue-500 transition-all text-left"
+        >
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Total Technicians</p>
               <p className="text-3xl font-bold text-gray-900 mt-2">{totalTechnicians}</p>
+              <p className="text-xs text-blue-600 mt-1">Click to view all</p>
             </div>
             <div className="bg-blue-100 p-3 rounded-lg">
               <User className="h-6 w-6 text-blue-600" />
             </div>
           </div>
-        </div>
+        </button>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-5 shadow-sm hover:shadow-md transition-shadow">
+        <button
+          onClick={() => handleStatsCardClick('active')}
+          className="bg-white rounded-lg border-2 border-gray-200 p-5 shadow-sm hover:shadow-lg hover:border-blue-500 transition-all text-left"
+        >
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Active</p>
               <p className="text-3xl font-bold text-blue-600 mt-2">{activeTechnicians}</p>
+              <p className="text-xs text-blue-600 mt-1">On job/in transit</p>
             </div>
             <div className="bg-blue-100 p-3 rounded-lg">
               <Zap className="h-6 w-6 text-blue-600" />
             </div>
           </div>
-        </div>
+        </button>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-5 shadow-sm hover:shadow-md transition-shadow">
+        <button
+          onClick={() => handleStatsCardClick('available')}
+          className="bg-white rounded-lg border-2 border-gray-200 p-5 shadow-sm hover:shadow-lg hover:border-green-500 transition-all text-left"
+        >
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Available</p>
               <p className="text-3xl font-bold text-green-600 mt-2">{availableTechnicians}</p>
+              <p className="text-xs text-green-600 mt-1">Click to filter</p>
             </div>
             <div className="bg-green-100 p-3 rounded-lg">
               <CheckCircle className="h-6 w-6 text-green-600" />
             </div>
           </div>
-        </div>
+        </button>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-5 shadow-sm hover:shadow-md transition-shadow">
+        <button
+          onClick={() => handleStatsCardClick('jobs')}
+          className="bg-white rounded-lg border-2 border-gray-200 p-5 shadow-sm hover:shadow-lg hover:border-purple-500 transition-all text-left"
+        >
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Jobs Today</p>
               <p className="text-3xl font-bold text-gray-900 mt-2">{totalJobsToday}</p>
+              <p className="text-xs text-purple-600 mt-1">Click for details</p>
             </div>
             <div className="bg-purple-100 p-3 rounded-lg">
               <Wrench className="h-6 w-6 text-purple-600" />
             </div>
           </div>
-        </div>
+        </button>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-5 shadow-sm hover:shadow-md transition-shadow">
+        <button
+          onClick={() => handleStatsCardClick('completed')}
+          className="bg-white rounded-lg border-2 border-gray-200 p-5 shadow-sm hover:shadow-lg hover:border-emerald-500 transition-all text-left"
+        >
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Completed</p>
               <p className="text-3xl font-bold text-emerald-600 mt-2">{completedJobsToday}</p>
+              <p className="text-xs text-emerald-600 mt-1">Click for summary</p>
             </div>
             <div className="bg-emerald-100 p-3 rounded-lg">
               <CheckCircle className="h-6 w-6 text-emerald-600" />
             </div>
           </div>
-        </div>
+        </button>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-5 shadow-sm hover:shadow-md transition-shadow">
+        <button
+          onClick={() => handleStatsCardClick('response')}
+          className="bg-white rounded-lg border-2 border-gray-200 p-5 shadow-sm hover:shadow-lg hover:border-orange-500 transition-all text-left"
+        >
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Avg Response</p>
               <p className="text-3xl font-bold text-orange-600 mt-2">{avgResponseTime}m</p>
+              <p className="text-xs text-orange-600 mt-1">Team average</p>
             </div>
             <div className="bg-orange-100 p-3 rounded-lg">
               <Clock className="h-6 w-6 text-orange-600" />
             </div>
           </div>
-        </div>
+        </button>
       </div>
 
       {/* Search and Filters */}
@@ -452,16 +544,21 @@ export default function TechnicianTrackingPage() {
                 <p className="text-gray-600 mb-4">Integrate with Google Maps, Mapbox, or OpenStreetMap</p>
                 <div className="grid grid-cols-3 gap-4 max-w-md mx-auto">
                   {mockTechnicians.slice(0, 6).map((tech) => (
-                    <div key={tech.id} className="bg-white p-3 rounded-lg border border-gray-200 shadow-sm">
+                    <button
+                      key={tech.id}
+                      onClick={(e) => handleMapTechClick(tech, e)}
+                      className="bg-white p-3 rounded-lg border-2 border-gray-200 shadow-sm hover:border-emerald-500 hover:shadow-lg transition-all text-left"
+                    >
                       <div className="flex items-center gap-2 mb-2">
                         {getStatusIcon(tech.currentStatus)}
                         <span className="text-xs font-medium text-gray-900">{tech.technicianName.split(' ')[0]}</span>
+                        <Eye className="w-3 h-3 text-gray-400 ml-auto" />
                       </div>
                       <div className="text-xs text-gray-600">{tech.location.split(',')[0]}</div>
                       <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium mt-2 ${getStatusColor(tech.currentStatus)}`}>
                         {tech.currentStatus.replace('_', ' ').toUpperCase()}
                       </span>
-                    </div>
+                    </button>
                   ))}
                 </div>
               </div>
@@ -550,17 +647,17 @@ export default function TechnicianTrackingPage() {
       {/* Detailed Technician Info Modal */}
       {selectedTechnician && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+          <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
+            <div className={`sticky top-0 bg-gradient-to-r from-emerald-600 to-teal-600 px-6 py-4 flex items-center justify-between`}>
               <div>
-                <h2 className="text-xl font-bold text-gray-900">{selectedTechnician.technicianName}</h2>
-                <p className="text-sm text-gray-600">{selectedTechnician.technicianId}</p>
+                <h2 className="text-xl font-bold text-white">{selectedTechnician.technicianName}</h2>
+                <p className="text-sm text-emerald-100">{selectedTechnician.technicianId}</p>
               </div>
               <button
                 onClick={() => setSelectedTechnician(null)}
-                className="text-gray-400 hover:text-gray-600 transition-colors"
+                className="text-white hover:text-gray-200 transition-colors"
               >
-                <AlertTriangle className="h-6 w-6" />
+                <X className="h-6 w-6" />
               </button>
             </div>
 
@@ -711,6 +808,309 @@ export default function TechnicianTrackingPage() {
                   className="px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors"
                 >
                   View Full Profile
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Analytics Modal */}
+      {showAnalyticsModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-lg max-w-6xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
+            <div className="sticky top-0 bg-gradient-to-r from-emerald-600 to-teal-600 px-6 py-4 flex items-center justify-between">
+              <div>
+                <h2 className="text-2xl font-bold text-white flex items-center gap-2">
+                  <BarChart3 className="h-7 w-7" />
+                  Team Analytics & Performance
+                </h2>
+                <p className="text-sm text-emerald-100 mt-1">Comprehensive insights into field technician operations</p>
+              </div>
+              <button
+                onClick={() => setShowAnalyticsModal(false)}
+                className="text-white hover:text-gray-200 transition-colors"
+              >
+                <X className="h-6 w-6" />
+              </button>
+            </div>
+
+            <div className="p-6 space-y-6">
+              {/* Overview Stats */}
+              <div className="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-lg p-6 border border-emerald-200">
+                <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                  <TrendingUp className="h-5 w-5 text-emerald-600" />
+                  Team Overview
+                </h3>
+                <div className="grid grid-cols-4 gap-4">
+                  <div className="bg-white rounded-lg p-4 border border-emerald-200">
+                    <div className="text-sm text-gray-600 mb-1">Total Technicians</div>
+                    <div className="text-3xl font-bold text-gray-900">{totalTechnicians}</div>
+                    <div className="text-xs text-emerald-600 mt-1">Active team members</div>
+                  </div>
+                  <div className="bg-white rounded-lg p-4 border border-blue-200">
+                    <div className="text-sm text-gray-600 mb-1">Total Distance</div>
+                    <div className="text-3xl font-bold text-blue-600">
+                      {mockTechnicians.reduce((sum, t) => sum + t.totalDistance, 0).toFixed(1)} km
+                    </div>
+                    <div className="text-xs text-blue-600 mt-1">Covered today</div>
+                  </div>
+                  <div className="bg-white rounded-lg p-4 border border-purple-200">
+                    <div className="text-sm text-gray-600 mb-1">Working Hours</div>
+                    <div className="text-3xl font-bold text-purple-600">
+                      {mockTechnicians.reduce((sum, t) => sum + t.workingHours, 0).toFixed(1)}h
+                    </div>
+                    <div className="text-xs text-purple-600 mt-1">Total logged today</div>
+                  </div>
+                  <div className="bg-white rounded-lg p-4 border border-orange-200">
+                    <div className="text-sm text-gray-600 mb-1">Avg Rating</div>
+                    <div className="text-3xl font-bold text-orange-600">
+                      {(mockTechnicians.reduce((sum, t) => sum + t.rating, 0) / totalTechnicians).toFixed(1)}
+                    </div>
+                    <div className="text-xs text-orange-600 mt-1">Out of 5.0</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Status Distribution */}
+              <div className="bg-white rounded-lg border border-gray-200 p-6">
+                <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                  <User className="h-5 w-5 text-emerald-600" />
+                  Status Distribution
+                </h3>
+                <div className="grid grid-cols-5 gap-4">
+                  {[
+                    { status: 'available', label: 'Available', count: mockTechnicians.filter(t => t.currentStatus === 'available').length, color: 'green' },
+                    { status: 'on_job', label: 'On Job', count: mockTechnicians.filter(t => t.currentStatus === 'on_job').length, color: 'blue' },
+                    { status: 'in_transit', label: 'In Transit', count: mockTechnicians.filter(t => t.currentStatus === 'in_transit').length, color: 'yellow' },
+                    { status: 'on_break', label: 'On Break', count: mockTechnicians.filter(t => t.currentStatus === 'on_break').length, color: 'orange' },
+                    { status: 'offline', label: 'Offline', count: mockTechnicians.filter(t => t.currentStatus === 'offline').length, color: 'gray' },
+                  ].map((item) => (
+                    <div key={item.status} className="bg-gray-50 rounded-lg p-4 text-center">
+                      <div className={`text-3xl font-bold text-${item.color}-600 mb-1`}>{item.count}</div>
+                      <div className="text-sm text-gray-600">{item.label}</div>
+                      <div className="w-full bg-gray-200 rounded-full h-2 mt-3">
+                        <div
+                          className={`bg-${item.color}-600 h-2 rounded-full transition-all`}
+                          style={{ width: `${(item.count / totalTechnicians) * 100}%` }}
+                        ></div>
+                      </div>
+                      <div className="text-xs text-gray-500 mt-1">
+                        {((item.count / totalTechnicians) * 100).toFixed(0)}%
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Performance Metrics */}
+              <div className="grid grid-cols-2 gap-6">
+                <div className="bg-white rounded-lg border border-gray-200 p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                    <Wrench className="h-5 w-5 text-emerald-600" />
+                    Job Completion Analysis
+                  </h3>
+                  <div className="space-y-4">
+                    <div>
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="text-sm font-medium text-gray-700">Completed Jobs</span>
+                        <span className="text-sm font-bold text-emerald-600">{completedJobsToday} / {totalJobsToday}</span>
+                      </div>
+                      <div className="w-full bg-gray-200 rounded-full h-3">
+                        <div
+                          className="bg-emerald-600 h-3 rounded-full transition-all"
+                          style={{ width: `${(completedJobsToday / totalJobsToday) * 100}%` }}
+                        ></div>
+                      </div>
+                      <div className="text-xs text-gray-500 mt-1">
+                        {((completedJobsToday / totalJobsToday) * 100).toFixed(1)}% completion rate
+                      </div>
+                    </div>
+
+                    <div>
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="text-sm font-medium text-gray-700">Pending Jobs</span>
+                        <span className="text-sm font-bold text-blue-600">
+                          {mockTechnicians.reduce((sum, t) => sum + t.pendingJobs, 0)}
+                        </span>
+                      </div>
+                      <div className="w-full bg-gray-200 rounded-full h-3">
+                        <div
+                          className="bg-blue-600 h-3 rounded-full transition-all"
+                          style={{ width: `${(mockTechnicians.reduce((sum, t) => sum + t.pendingJobs, 0) / totalJobsToday) * 100}%` }}
+                        ></div>
+                      </div>
+                    </div>
+
+                    <div className="bg-emerald-50 rounded-lg p-4 border border-emerald-200 mt-4">
+                      <div className="text-sm font-medium text-gray-700 mb-2">Top Performers Today</div>
+                      {mockTechnicians
+                        .sort((a, b) => b.completedJobs - a.completedJobs)
+                        .slice(0, 3)
+                        .map((tech, index) => (
+                          <div key={tech.id} className="flex items-center justify-between py-2">
+                            <div className="flex items-center gap-2">
+                              <span className={`text-lg font-bold ${index === 0 ? 'text-yellow-600' : index === 1 ? 'text-gray-400' : 'text-orange-600'}`}>
+                                #{index + 1}
+                              </span>
+                              <span className="text-sm font-medium text-gray-900">{tech.technicianName}</span>
+                            </div>
+                            <span className="text-sm font-bold text-emerald-600">{tech.completedJobs} jobs</span>
+                          </div>
+                        ))}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-white rounded-lg border border-gray-200 p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                    <Clock className="h-5 w-5 text-emerald-600" />
+                    Response Time Analysis
+                  </h3>
+                  <div className="space-y-4">
+                    <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+                      <div className="text-sm text-gray-600 mb-1">Team Average</div>
+                      <div className="text-3xl font-bold text-blue-600">{avgResponseTime} min</div>
+                      <div className="text-xs text-blue-600 mt-1">Average response time</div>
+                    </div>
+
+                    <div>
+                      <div className="text-sm font-medium text-gray-700 mb-3">Response Time Distribution</div>
+                      {[
+                        { range: '< 15 min', count: mockTechnicians.filter(t => t.responseTime < 15).length, color: 'green' },
+                        { range: '15-20 min', count: mockTechnicians.filter(t => t.responseTime >= 15 && t.responseTime <= 20).length, color: 'yellow' },
+                        { range: '> 20 min', count: mockTechnicians.filter(t => t.responseTime > 20).length, color: 'red' },
+                      ].map((item) => (
+                        <div key={item.range} className="mb-3">
+                          <div className="flex items-center justify-between mb-1">
+                            <span className="text-sm text-gray-600">{item.range}</span>
+                            <span className="text-sm font-bold text-gray-900">{item.count} techs</span>
+                          </div>
+                          <div className="w-full bg-gray-200 rounded-full h-2">
+                            <div
+                              className={`bg-${item.color}-600 h-2 rounded-full transition-all`}
+                              style={{ width: `${(item.count / totalTechnicians) * 100}%` }}
+                            ></div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="bg-orange-50 rounded-lg p-4 border border-orange-200 mt-4">
+                      <div className="text-sm font-medium text-gray-700 mb-2">Fastest Responders</div>
+                      {mockTechnicians
+                        .sort((a, b) => a.responseTime - b.responseTime)
+                        .slice(0, 3)
+                        .map((tech, index) => (
+                          <div key={tech.id} className="flex items-center justify-between py-2">
+                            <div className="flex items-center gap-2">
+                              <CheckCircle className="h-4 w-4 text-emerald-600" />
+                              <span className="text-sm font-medium text-gray-900">{tech.technicianName}</span>
+                            </div>
+                            <span className="text-sm font-bold text-orange-600">{tech.responseTime}m</span>
+                          </div>
+                        ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Distance & Skills Analysis */}
+              <div className="grid grid-cols-2 gap-6">
+                <div className="bg-white rounded-lg border border-gray-200 p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                    <Navigation className="h-5 w-5 text-emerald-600" />
+                    Distance Traveled
+                  </h3>
+                  <div className="space-y-3">
+                    {mockTechnicians
+                      .sort((a, b) => b.totalDistance - a.totalDistance)
+                      .map((tech) => (
+                        <div key={tech.id} className="flex items-center justify-between">
+                          <div className="flex-1">
+                            <div className="text-sm font-medium text-gray-900 mb-1">{tech.technicianName}</div>
+                            <div className="w-full bg-gray-200 rounded-full h-2">
+                              <div
+                                className="bg-gradient-to-r from-emerald-600 to-teal-600 h-2 rounded-full transition-all"
+                                style={{ width: `${(tech.totalDistance / Math.max(...mockTechnicians.map(t => t.totalDistance))) * 100}%` }}
+                              ></div>
+                            </div>
+                          </div>
+                          <span className="text-sm font-bold text-emerald-600 ml-4">{tech.totalDistance.toFixed(1)} km</span>
+                        </div>
+                      ))}
+                  </div>
+                </div>
+
+                <div className="bg-white rounded-lg border border-gray-200 p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                    <Wrench className="h-5 w-5 text-emerald-600" />
+                    Skills Distribution
+                  </h3>
+                  <div className="space-y-3">
+                    {Array.from(new Set(mockTechnicians.flatMap(t => t.skillSet))).map((skill) => {
+                      const count = mockTechnicians.filter(t => t.skillSet.includes(skill)).length;
+                      return (
+                        <div key={skill} className="flex items-center justify-between">
+                          <div className="flex-1">
+                            <div className="text-sm font-medium text-gray-900 mb-1">{skill}</div>
+                            <div className="w-full bg-gray-200 rounded-full h-2">
+                              <div
+                                className="bg-gradient-to-r from-purple-600 to-pink-600 h-2 rounded-full transition-all"
+                                style={{ width: `${(count / totalTechnicians) * 100}%` }}
+                              ></div>
+                            </div>
+                          </div>
+                          <span className="text-sm font-bold text-purple-600 ml-4">{count} techs</span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+
+              {/* Technician Ratings */}
+              <div className="bg-white rounded-lg border border-gray-200 p-6">
+                <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                  <TrendingUp className="h-5 w-5 text-emerald-600" />
+                  Technician Ratings
+                </h3>
+                <div className="grid grid-cols-4 gap-4">
+                  {mockTechnicians
+                    .sort((a, b) => b.rating - a.rating)
+                    .map((tech) => (
+                      <div key={tech.id} className="bg-gradient-to-br from-gray-50 to-emerald-50 rounded-lg p-4 border border-gray-200">
+                        <div className="text-sm font-medium text-gray-900 mb-2 truncate">{tech.technicianName}</div>
+                        <div className="flex items-center gap-2 mb-2">
+                          <div className="text-2xl font-bold text-emerald-600">{tech.rating}</div>
+                          <div className="text-xs text-gray-600">/ 5.0</div>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-2">
+                          <div
+                            className="bg-gradient-to-r from-emerald-600 to-teal-600 h-2 rounded-full transition-all"
+                            style={{ width: `${(tech.rating / 5) * 100}%` }}
+                          ></div>
+                        </div>
+                        <div className="text-xs text-gray-600 mt-2">{tech.completedJobs} jobs completed</div>
+                      </div>
+                    ))}
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex justify-end gap-3 pt-4 border-t border-gray-200">
+                <button
+                  onClick={() => setShowAnalyticsModal(false)}
+                  className="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                >
+                  Close
+                </button>
+                <button
+                  onClick={() => setToast({ message: 'Export feature coming soon', type: 'info' })}
+                  className="px-6 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors flex items-center gap-2"
+                >
+                  <BarChart3 className="h-4 w-4" />
+                  Export Report
                 </button>
               </div>
             </div>

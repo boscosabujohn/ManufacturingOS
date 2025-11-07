@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import { Gauge, TrendingUp, TrendingDown, Activity, Zap, Clock, Database, Cpu, HardDrive, Globe, Filter, Download, Calendar, BarChart3 } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Gauge, TrendingUp, TrendingDown, Activity, Zap, Clock, Database, Cpu, HardDrive, Globe, Filter, Download, Calendar, BarChart3, X, CheckCircle, AlertTriangle, Eye, AlertCircle, XCircle } from 'lucide-react';
 
 interface PerformanceMetric {
   id: string;
@@ -39,6 +39,28 @@ const PerformanceMonitoringPage = () => {
   const [timeRange, setTimeRange] = useState('1hour');
   const [filterCategory, setFilterCategory] = useState('all');
   const [filterStatus, setFilterStatus] = useState('all');
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'info' | 'error' } | null>(null);
+  const [selectedMetric, setSelectedMetric] = useState<PerformanceMetric | null>(null);
+
+  // Toast auto-dismiss
+  useEffect(() => {
+    if (toast) {
+      const timer = setTimeout(() => setToast(null), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [toast]);
+
+  const showToast = (message: string, type: 'success' | 'info' | 'error') => {
+    setToast({ message, type });
+  };
+
+  const handleExport = () => {
+    showToast('Exporting performance report...', 'info');
+  };
+
+  const handleViewDetails = (metricId: string) => {
+    showToast(`Viewing details for metric: ${metricId}`, 'info');
+  };
 
   const [metrics] = useState<PerformanceMetric[]>([
     {
@@ -245,18 +267,28 @@ const PerformanceMonitoringPage = () => {
     return 'bg-red-600';
   };
 
-  const handleExport = () => {
-    alert('Exporting performance report...');
-  };
-
   return (
-    <div className="p-6 max-w-[1600px] mx-auto">
-      {/* Header */}
-      <div className="mb-6">
-        <div className="flex items-center justify-between mb-2">
+    <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 via-rose-50 to-red-50">
+      {/* Toast Notification */}
+      {toast && (
+        <div className={`fixed top-4 right-4 z-50 flex items-center gap-2 px-4 py-3 rounded-lg shadow-lg ${
+          toast.type === 'success' ? 'bg-green-50 text-green-800 border border-green-200' :
+          toast.type === 'error' ? 'bg-red-50 text-red-800 border border-red-200' :
+          'bg-blue-50 text-blue-800 border border-blue-200'
+        }`}>
+          {toast.type === 'success' && <CheckCircle className="w-5 h-5" />}
+          {toast.type === 'error' && <XCircle className="w-5 h-5" />}
+          {toast.type === 'info' && <AlertCircle className="w-5 h-5" />}
+          <span className="font-medium">{toast.message}</span>
+        </div>
+      )}
+
+      {/* Header Section */}
+      <div className="flex-none p-6 pb-4 space-y-4">
+        <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="p-2 bg-blue-100 rounded-lg">
-              <Gauge className="w-6 h-6 text-blue-600" />
+            <div className="p-2 bg-rose-100 rounded-lg">
+              <Gauge className="w-6 h-6 text-rose-600" />
             </div>
             <div>
               <h1 className="text-3xl font-bold text-gray-900">Performance Monitoring</h1>
@@ -265,16 +297,15 @@ const PerformanceMonitoringPage = () => {
           </div>
           <button
             onClick={handleExport}
-            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            className="flex items-center gap-2 px-4 py-2 bg-white border border-rose-300 text-rose-700 rounded-lg hover:bg-rose-50 transition-colors"
           >
             <Download className="w-4 h-4" />
-            Export Report
+            Export
           </button>
         </div>
-      </div>
 
-      {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-6">
+        {/* Statistics Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Avg CPU</span>
@@ -323,15 +354,20 @@ const PerformanceMonitoringPage = () => {
           <div className="text-2xl font-bold text-indigo-600">{stats.avgThroughput}</div>
         </div>
       </div>
+    </div>
 
+      {/* Scrollable Content Area */}
+      <div className="flex-1 overflow-hidden px-6">
+        <div className="h-full overflow-auto space-y-6">
+      
       {/* Performance Chart */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
+      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-lg font-semibold text-gray-900">Performance Trends</h3>
           <select
             value={timeRange}
             onChange={(e) => setTimeRange(e.target.value)}
-            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-transparent"
           >
             <option value="1hour">Last Hour</option>
             <option value="6hours">Last 6 Hours</option>
@@ -423,16 +459,16 @@ const PerformanceMonitoringPage = () => {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 mb-6">
+      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
         <div className="flex items-center gap-3 mb-4">
-          <Filter className="w-5 h-5 text-gray-600" />
+          <Filter className="w-5 h-5 text-rose-600" />
           <h3 className="font-semibold text-gray-900">Filters</h3>
         </div>
         <div className="flex flex-wrap gap-4">
           <select
             value={filterCategory}
             onChange={(e) => setFilterCategory(e.target.value)}
-            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-transparent"
           >
             <option value="all">All Categories</option>
             <option value="System">System</option>
@@ -444,7 +480,7 @@ const PerformanceMonitoringPage = () => {
           <select
             value={filterStatus}
             onChange={(e) => setFilterStatus(e.target.value)}
-            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-transparent"
           >
             <option value="all">All Status</option>
             <option value="optimal">Optimal</option>
@@ -531,6 +567,8 @@ const PerformanceMonitoringPage = () => {
           <p className="text-gray-600">No metrics found matching your criteria</p>
         </div>
       )}
+        </div>
+      </div>
     </div>
   );
 };

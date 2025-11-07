@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import { Activity, Server, Database, Cpu, HardDrive, Globe, Zap, TrendingUp, AlertTriangle, CheckCircle2, XCircle, RefreshCw, Filter, Download, Eye, Calendar } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Activity, Server, Database, Cpu, HardDrive, Globe, Zap, TrendingUp, AlertTriangle, CheckCircle2, XCircle, RefreshCw, Filter, Download, Eye, Calendar, CheckCircle, AlertCircle } from 'lucide-react';
 
 interface SystemHealthMetric {
   id: string;
@@ -45,6 +45,30 @@ const SystemHealthPage = () => {
   const [filterCategory, setFilterCategory] = useState('all');
   const [autoRefresh, setAutoRefresh] = useState(true);
   const [selectedItem, setSelectedItem] = useState<SystemHealthMetric | ServerHealth | null>(null);
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' | 'info' } | null>(null);
+
+  useEffect(() => {
+    if (toast) {
+      const timer = setTimeout(() => setToast(null), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [toast]);
+
+  const showToast = (message: string, type: 'success' | 'error' | 'info') => {
+    setToast({ message, type });
+  };
+
+  const handleExport = () => {
+    showToast('Exporting health report...', 'info');
+  };
+
+  const handleRefresh = () => {
+    showToast('Refreshing health metrics...', 'info');
+  };
+
+  const handleViewDetails = (itemId: string) => {
+    showToast(`Viewing details for: ${itemId}`, 'info');
+  };
 
   const [services] = useState<SystemHealthMetric[]>([
     {
@@ -313,30 +337,40 @@ const SystemHealthPage = () => {
     return 'bg-red-600';
   };
 
-  const handleRefresh = () => {
-    alert('Refreshing health metrics...');
-  };
-
-  const handleExport = () => {
-    alert('Exporting health report...');
-  };
-
-  const handleViewDetails = (item: SystemHealthMetric | ServerHealth) => {
-    setSelectedItem(item);
-  };
-
   const handleCloseDetails = () => {
     setSelectedItem(null);
   };
 
+  const handleRefreshClick = () => {
+    handleRefresh();
+  };
+
+  const handleExportClick = () => {
+    handleExport();
+  };
+
   return (
-    <div className="p-6 max-w-[1600px] mx-auto">
-      {/* Header */}
-      <div className="mb-6">
-        <div className="flex items-center justify-between mb-2">
+    <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 via-sky-50 to-blue-50">
+      {/* Toast Notification */}
+      {toast && (
+        <div className={`fixed top-4 right-4 z-50 flex items-center gap-2 px-4 py-3 rounded-lg shadow-lg ${
+          toast.type === 'success' ? 'bg-green-50 text-green-800 border border-green-200' :
+          toast.type === 'error' ? 'bg-red-50 text-red-800 border border-red-200' :
+          'bg-blue-50 text-blue-800 border border-blue-200'
+        }`}>
+          {toast.type === 'success' && <CheckCircle className="w-5 h-5" />}
+          {toast.type === 'error' && <XCircle className="w-5 h-5" />}
+          {toast.type === 'info' && <AlertCircle className="w-5 h-5" />}
+          <span className="font-medium">{toast.message}</span>
+        </div>
+      )}
+
+      {/* Header Section */}
+      <div className="flex-none p-6 pb-4 space-y-4">
+        <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="p-2 bg-green-100 rounded-lg">
-              <Activity className="w-6 h-6 text-green-600" />
+            <div className="p-2 bg-sky-100 rounded-lg">
+              <Activity className="w-6 h-6 text-sky-600" />
             </div>
             <div>
               <h1 className="text-3xl font-bold text-gray-900">System Health Monitoring</h1>
@@ -345,10 +379,13 @@ const SystemHealthPage = () => {
           </div>
           <div className="flex gap-3">
             <button
-              onClick={() => setAutoRefresh(!autoRefresh)}
+              onClick={() => {
+                setAutoRefresh(!autoRefresh);
+                showToast(autoRefresh ? 'Auto refresh disabled' : 'Auto refresh enabled', 'info');
+              }}
               className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
                 autoRefresh
-                  ? 'bg-green-600 text-white hover:bg-green-700'
+                  ? 'bg-sky-600 text-white hover:bg-sky-700'
                   : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
               }`}
             >
@@ -356,41 +393,40 @@ const SystemHealthPage = () => {
               Auto Refresh
             </button>
             <button
-              onClick={handleRefresh}
-              className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              onClick={handleRefreshClick}
+              className="flex items-center gap-2 px-4 py-2 bg-white border border-sky-300 text-sky-700 rounded-lg hover:bg-sky-50 transition-colors"
             >
               <RefreshCw className="w-4 h-4" />
-              Refresh Now
+              Refresh
             </button>
             <button
-              onClick={handleExport}
-              className="flex items-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
+              onClick={handleExportClick}
+              className="flex items-center gap-2 px-4 py-2 bg-white border border-sky-300 text-sky-700 rounded-lg hover:bg-sky-50 transition-colors"
             >
               <Download className="w-4 h-4" />
-              Export Report
+              Export
             </button>
           </div>
         </div>
-      </div>
 
-      {/* Overall Health Score */}
-      <div className="bg-gradient-to-r from-green-500 to-emerald-600 rounded-xl shadow-lg p-6 mb-6 text-white">
-        <div className="flex items-center justify-between">
-          <div>
-            <h2 className="text-lg font-semibold mb-2 opacity-90">Overall System Health</h2>
-            <div className="text-5xl font-bold mb-2">{stats.overallHealth}%</div>
-            <p className="text-sm opacity-90">All systems operational</p>
-          </div>
-          <div className="text-right">
-            <div className="text-sm opacity-90 mb-1">Average Uptime</div>
-            <div className="text-3xl font-bold">{stats.totalUptime}%</div>
-            <div className="text-sm opacity-90 mt-2">Last 30 days</div>
+        {/* Overall Health Score */}
+        <div className="bg-gradient-to-r from-sky-500 to-blue-600 rounded-xl shadow-lg p-6 text-white">
+          <div className="flex items-center justify-between">
+            <div>
+              <h2 className="text-lg font-semibold mb-2 opacity-90">Overall System Health</h2>
+              <div className="text-5xl font-bold mb-2">{stats.overallHealth}%</div>
+              <p className="text-sm opacity-90">All systems operational</p>
+            </div>
+            <div className="text-right">
+              <div className="text-sm opacity-90 mb-1">Average Uptime</div>
+              <div className="text-3xl font-bold">{stats.totalUptime}%</div>
+              <div className="text-sm opacity-90 mt-2">Last 30 days</div>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-6">
+        {/* Statistics Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Healthy</span>
@@ -441,15 +477,19 @@ const SystemHealthPage = () => {
           <div className="text-2xl font-bold text-gray-900">{servers.length}</div>
         </div>
       </div>
+    </div>
 
+      {/* Scrollable Content Area */}
+      <div className="flex-1 overflow-hidden px-6">
+        <div className="h-full flex flex-col bg-white rounded-lg border border-gray-200">
       {/* Tabs */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-6">
-        <div className="flex border-b border-gray-200">
+      <div className="flex-none border-b border-gray-200">
+        <div className="flex">
           <button
             onClick={() => setActiveTab('services')}
             className={`flex-1 px-6 py-3 text-sm font-medium transition-colors ${
               activeTab === 'services'
-                ? 'text-green-600 border-b-2 border-green-600 bg-green-50'
+                ? 'text-sky-600 border-b-2 border-sky-600 bg-sky-50'
                 : 'text-gray-600 hover:text-gray-900'
             }`}
           >
@@ -462,7 +502,7 @@ const SystemHealthPage = () => {
             onClick={() => setActiveTab('servers')}
             className={`flex-1 px-6 py-3 text-sm font-medium transition-colors ${
               activeTab === 'servers'
-                ? 'text-green-600 border-b-2 border-green-600 bg-green-50'
+                ? 'text-sky-600 border-b-2 border-sky-600 bg-sky-50'
                 : 'text-gray-600 hover:text-gray-900'
             }`}
           >
@@ -474,17 +514,19 @@ const SystemHealthPage = () => {
         </div>
       </div>
 
+      {/* Content Area */}
+      <div className="flex-1 overflow-auto p-4">
       {/* Filters */}
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 mb-6">
         <div className="flex items-center gap-3 mb-4">
-          <Filter className="w-5 h-5 text-gray-600" />
+          <Filter className="w-5 h-5 text-sky-600" />
           <h3 className="font-semibold text-gray-900">Filters</h3>
         </div>
         <div className="flex flex-wrap gap-4">
           <select
             value={filterStatus}
             onChange={(e) => setFilterStatus(e.target.value)}
-            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-transparent"
           >
             <option value="all">All Status</option>
             <option value="Healthy">Healthy</option>
@@ -496,7 +538,7 @@ const SystemHealthPage = () => {
             <select
               value={filterCategory}
               onChange={(e) => setFilterCategory(e.target.value)}
-              className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+              className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-transparent"
             >
               <option value="all">All Categories</option>
               <option value="Application">Application</option>
@@ -584,9 +626,11 @@ const SystemHealthPage = () => {
                     </td>
                     <td className="py-3 px-4 text-right">
                       <button
-                        onClick={() => handleViewDetails(service)}
-                        className="text-green-600 hover:text-green-700 p-1"
-                       
+                        onClick={() => {
+                          setSelectedItem(service);
+                          handleViewDetails(service.id);
+                        }}
+                        className="text-sky-600 hover:text-sky-700 p-1"
                       >
                         <Eye className="w-4 h-4" />
                       </button>
@@ -692,9 +736,11 @@ const SystemHealthPage = () => {
                     </td>
                     <td className="py-3 px-4 text-right">
                       <button
-                        onClick={() => handleViewDetails(server)}
-                        className="text-green-600 hover:text-green-700 p-1"
-                       
+                        onClick={() => {
+                          setSelectedItem(server);
+                          handleViewDetails(server.id);
+                        }}
+                        className="text-sky-600 hover:text-sky-700 p-1"
                       >
                         <Eye className="w-4 h-4" />
                       </button>
@@ -713,6 +759,9 @@ const SystemHealthPage = () => {
           )}
         </div>
       )}
+      </div>
+        </div>
+      </div>
 
       {/* Details Modal */}
       {selectedItem && (

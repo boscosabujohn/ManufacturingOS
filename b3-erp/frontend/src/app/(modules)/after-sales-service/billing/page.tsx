@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Plus, Search, Eye, Edit, FileText, Send, DollarSign, AlertCircle, CheckCircle, Clock, XCircle, Download, TrendingUp, CreditCard } from 'lucide-react';
+import { Plus, Search, Eye, Edit, FileText, Send, DollarSign, AlertCircle, CheckCircle, Clock, XCircle, Download, TrendingUp, CreditCard, X, User, Calendar, Package } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
 
 interface ServiceInvoice {
   id: string;
@@ -268,10 +269,14 @@ const invoiceTypeColors = {
 
 export default function ServiceBillingPage() {
   const router = useRouter();
+  const { toast } = useToast();
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [typeFilter, setTypeFilter] = useState<string>('all');
   const [currentPage, setCurrentPage] = useState(1);
+  const [showDetailsModal, setShowDetailsModal] = useState(false);
+  const [showSendModal, setShowSendModal] = useState(false);
+  const [selectedInvoice, setSelectedInvoice] = useState<ServiceInvoice | null>(null);
   const itemsPerPage = 10;
 
   // Filter invoices
@@ -311,6 +316,32 @@ export default function ServiceBillingPage() {
     }).format(amount);
   };
 
+  const handleViewDetails = (invoice: ServiceInvoice) => {
+    setSelectedInvoice(invoice);
+    setShowDetailsModal(true);
+  };
+
+  const handleSendInvoice = (invoice: ServiceInvoice) => {
+    setSelectedInvoice(invoice);
+    setShowSendModal(true);
+  };
+
+  const handleConfirmSend = () => {
+    toast({
+      title: "Invoice Sent",
+      description: `Invoice ${selectedInvoice?.invoiceNumber} has been sent to the customer.`,
+    });
+    setShowSendModal(false);
+    setSelectedInvoice(null);
+  };
+
+  const handleExport = () => {
+    toast({
+      title: "Report Exported",
+      description: "Invoice report has been exported successfully.",
+    });
+  };
+
   return (
     <div className="p-6 max-w-[1600px] mx-auto">
       {/* Header */}
@@ -321,55 +352,60 @@ export default function ServiceBillingPage() {
 
       {/* Statistics Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-8 gap-4 mb-6">
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <button onClick={() => setStatusFilter('all')} className="bg-white rounded-lg border-2 border-gray-200 p-4 hover:border-blue-500 transition-all text-left">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total</p>
               <p className="text-2xl font-bold text-gray-900">{stats.totalInvoices}</p>
+              <p className="text-xs text-blue-600 mt-1">Click to view all</p>
             </div>
             <FileText className="h-8 w-8 text-blue-600" />
           </div>
-        </div>
+        </button>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <button onClick={() => setStatusFilter('draft')} className="bg-white rounded-lg border-2 border-gray-200 p-4 hover:border-gray-500 transition-all text-left">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Draft</p>
               <p className="text-2xl font-bold text-gray-600">{stats.draftInvoices}</p>
+              <p className="text-xs text-gray-600 mt-1">Click to filter</p>
             </div>
             <Clock className="h-8 w-8 text-gray-600" />
           </div>
-        </div>
+        </button>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <button onClick={() => setStatusFilter('sent')} className="bg-white rounded-lg border-2 border-gray-200 p-4 hover:border-blue-500 transition-all text-left">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Sent</p>
               <p className="text-2xl font-bold text-blue-600">{stats.sentInvoices}</p>
+              <p className="text-xs text-blue-600 mt-1">Click to filter</p>
             </div>
             <Send className="h-8 w-8 text-blue-600" />
           </div>
-        </div>
+        </button>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <button onClick={() => setStatusFilter('paid')} className="bg-white rounded-lg border-2 border-gray-200 p-4 hover:border-green-500 transition-all text-left">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Paid</p>
               <p className="text-2xl font-bold text-green-600">{stats.paidInvoices}</p>
+              <p className="text-xs text-green-600 mt-1">Click to filter</p>
             </div>
             <CheckCircle className="h-8 w-8 text-green-600" />
           </div>
-        </div>
+        </button>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <button onClick={() => setStatusFilter('overdue')} className="bg-white rounded-lg border-2 border-gray-200 p-4 hover:border-red-500 transition-all text-left">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Overdue</p>
               <p className="text-2xl font-bold text-red-600">{stats.overdueInvoices}</p>
+              <p className="text-xs text-red-600 mt-1">Click to filter</p>
             </div>
             <AlertCircle className="h-8 w-8 text-red-600" />
           </div>
-        </div>
+        </button>
 
         <div className="bg-white rounded-lg border border-gray-200 p-4 col-span-1 lg:col-span-3">
           <div className="grid grid-cols-3 gap-4 h-full">
@@ -443,7 +479,7 @@ export default function ServiceBillingPage() {
               <CreditCard className="h-4 w-4" />
               Payments
             </button>
-            <button className="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors flex items-center gap-2">
+            <button onClick={handleExport} className="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors flex items-center gap-2">
               <Download className="h-4 w-4" />
               Export
             </button>
@@ -571,9 +607,9 @@ export default function ServiceBillingPage() {
                     <td className="px-6 py-4 text-right">
                       <div className="flex items-center justify-end gap-2">
                         <button
-                          onClick={() => router.push(`/after-sales-service/billing/view/${invoice.id}`)}
+                          onClick={() => handleViewDetails(invoice)}
                           className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-                         
+                          title="View Details"
                         >
                           <Eye className="h-4 w-4" />
                         </button>
@@ -581,15 +617,16 @@ export default function ServiceBillingPage() {
                           <button
                             onClick={() => router.push(`/after-sales-service/billing/edit/${invoice.id}`)}
                             className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
-                           
+                            title="Edit Invoice"
                           >
                             <Edit className="h-4 w-4" />
                           </button>
                         )}
                         {(invoice.status === 'draft' || invoice.status === 'sent') && (
                           <button
-                            className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-                           
+                            onClick={() => handleSendInvoice(invoice)}
+                            className="p-2 text-emerald-600 hover:bg-emerald-50 rounded-lg transition-colors"
+                            title="Send Invoice"
                           >
                             <Send className="h-4 w-4" />
                           </button>
@@ -628,6 +665,253 @@ export default function ServiceBillingPage() {
           </div>
         )}
       </div>
+
+      {/* Invoice Details Modal */}
+      {showDetailsModal && selectedInvoice && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            {/* Modal Header */}
+            <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-4 flex items-center justify-between">
+              <div>
+                <h2 className="text-xl font-bold">{selectedInvoice.invoiceNumber}</h2>
+                <p className="text-blue-100 text-sm">Invoice Details & Summary</p>
+              </div>
+              <button onClick={() => setShowDetailsModal(false)} className="text-white hover:bg-white hover:bg-opacity-20 p-2 rounded-lg transition-colors">
+                <X className="h-6 w-6" />
+              </button>
+            </div>
+
+            {/* Modal Body */}
+            <div className="p-6 space-y-6">
+              {/* Status Banner */}
+              <div className={`rounded-lg p-4 border-2 ${
+                selectedInvoice.status === 'paid' ? 'bg-green-50 border-green-200' :
+                selectedInvoice.status === 'overdue' ? 'bg-red-50 border-red-200' :
+                selectedInvoice.status === 'sent' ? 'bg-blue-50 border-blue-200' :
+                selectedInvoice.status === 'partial_paid' ? 'bg-yellow-50 border-yellow-200' :
+                'bg-gray-50 border-gray-200'
+              }`}>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    {selectedInvoice.status === 'paid' && <CheckCircle className="h-8 w-8 text-green-600" />}
+                    {selectedInvoice.status === 'overdue' && <AlertCircle className="h-8 w-8 text-red-600" />}
+                    {selectedInvoice.status === 'sent' && <Send className="h-8 w-8 text-blue-600" />}
+                    {selectedInvoice.status === 'partial_paid' && <DollarSign className="h-8 w-8 text-yellow-600" />}
+                    {selectedInvoice.status === 'draft' && <Clock className="h-8 w-8 text-gray-600" />}
+                    <div>
+                      <h3 className={`text-lg font-bold ${
+                        selectedInvoice.status === 'paid' ? 'text-green-900' :
+                        selectedInvoice.status === 'overdue' ? 'text-red-900' :
+                        selectedInvoice.status === 'sent' ? 'text-blue-900' :
+                        selectedInvoice.status === 'partial_paid' ? 'text-yellow-900' :
+                        'text-gray-900'
+                      }`}>
+                        {selectedInvoice.status === 'paid' ? 'Fully Paid' :
+                         selectedInvoice.status === 'overdue' ? `Overdue (${selectedInvoice.overdueDays} days)` :
+                         selectedInvoice.status === 'sent' ? 'Sent to Customer' :
+                         selectedInvoice.status === 'partial_paid' ? 'Partially Paid' :
+                         'Draft Invoice'}
+                      </h3>
+                      <p className={`text-sm ${
+                        selectedInvoice.status === 'paid' ? 'text-green-700' :
+                        selectedInvoice.status === 'overdue' ? 'text-red-700' :
+                        selectedInvoice.status === 'sent' ? 'text-blue-700' :
+                        selectedInvoice.status === 'partial_paid' ? 'text-yellow-700' :
+                        'text-gray-700'
+                      }`}>
+                        {selectedInvoice.paymentTerms}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${invoiceTypeColors[selectedInvoice.invoiceType]}`}>
+                      {selectedInvoice.invoiceType}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Customer & Date Information */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="bg-purple-50 rounded-lg p-4 border border-purple-200">
+                  <h4 className="font-bold text-purple-900 mb-3 flex items-center gap-2">
+                    <User className="h-5 w-5" />
+                    Customer Information
+                  </h4>
+                  <div className="space-y-2">
+                    <div>
+                      <p className="text-xs text-purple-700 font-medium">Customer Name</p>
+                      <p className="text-sm text-gray-900 font-semibold">{selectedInvoice.customerName}</p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-purple-700 font-medium">Customer ID</p>
+                      <p className="text-sm text-gray-900 font-semibold">{selectedInvoice.customerId}</p>
+                    </div>
+                    {selectedInvoice.serviceJobId && (
+                      <div>
+                        <p className="text-xs text-purple-700 font-medium">Service Job</p>
+                        <p className="text-sm text-blue-600 font-semibold">{selectedInvoice.serviceJobId}</p>
+                      </div>
+                    )}
+                    {selectedInvoice.contractId && (
+                      <div>
+                        <p className="text-xs text-purple-700 font-medium">Contract</p>
+                        <p className="text-sm text-purple-600 font-semibold">{selectedInvoice.contractId}</p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+                  <h4 className="font-bold text-blue-900 mb-3 flex items-center gap-2">
+                    <Calendar className="h-5 w-5" />
+                    Date Information
+                  </h4>
+                  <div className="space-y-2">
+                    <div>
+                      <p className="text-xs text-blue-700 font-medium">Invoice Date</p>
+                      <p className="text-sm text-gray-900 font-semibold">
+                        {new Date(selectedInvoice.invoiceDate).toLocaleDateString('en-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-blue-700 font-medium">Due Date</p>
+                      <p className={`text-sm font-semibold ${selectedInvoice.status === 'overdue' ? 'text-red-600' : 'text-gray-900'}`}>
+                        {new Date(selectedInvoice.dueDate).toLocaleDateString('en-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-blue-700 font-medium">Payment Terms</p>
+                      <p className="text-sm text-gray-900 font-semibold">{selectedInvoice.paymentTerms}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Amount Breakdown */}
+              <div className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-lg p-5 border border-emerald-200">
+                <h4 className="font-bold text-emerald-900 mb-4 flex items-center gap-2">
+                  <DollarSign className="h-5 w-5" />
+                  Amount Breakdown
+                </h4>
+                <div className="space-y-3">
+                  <div className="flex justify-between items-center pb-2 border-b border-emerald-200">
+                    <span className="text-sm text-gray-700 font-medium">Subtotal</span>
+                    <span className="text-lg font-semibold text-gray-900">{formatCurrency(selectedInvoice.subtotal)}</span>
+                  </div>
+                  <div className="flex justify-between items-center pb-2 border-b border-emerald-200">
+                    <span className="text-sm text-gray-700 font-medium">Total Tax (18% GST)</span>
+                    <span className="text-lg font-semibold text-gray-900">{formatCurrency(selectedInvoice.totalTax)}</span>
+                  </div>
+                  <div className="flex justify-between items-center pb-2 border-b-2 border-emerald-400">
+                    <span className="text-base text-gray-900 font-bold">Total Amount</span>
+                    <span className="text-2xl font-bold text-emerald-600">{formatCurrency(selectedInvoice.totalAmount)}</span>
+                  </div>
+                  {selectedInvoice.paidAmount > 0 && (
+                    <div className="flex justify-between items-center pb-2 border-b border-emerald-200">
+                      <span className="text-sm text-gray-700 font-medium">Paid Amount</span>
+                      <span className="text-lg font-semibold text-green-600">{formatCurrency(selectedInvoice.paidAmount)}</span>
+                    </div>
+                  )}
+                  <div className="flex justify-between items-center">
+                    <span className="text-base text-gray-900 font-bold">Balance Due</span>
+                    <span className={`text-2xl font-bold ${selectedInvoice.balanceAmount > 0 ? 'text-red-600' : 'text-green-600'}`}>
+                      {selectedInvoice.balanceAmount > 0 ? formatCurrency(selectedInvoice.balanceAmount) : 'Fully Paid'}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Payment Status */}
+              <div className="bg-orange-50 rounded-lg p-4 border border-orange-200">
+                <h4 className="font-bold text-orange-900 mb-3">Payment Status</h4>
+                <div className="space-y-2">
+                  <div className="flex justify-between text-sm">
+                    <span className="text-gray-700 font-medium">Payment Progress</span>
+                    <span className="font-bold text-orange-600">
+                      {((selectedInvoice.paidAmount / selectedInvoice.totalAmount) * 100).toFixed(1)}%
+                    </span>
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-3">
+                    <div
+                      className={`h-3 rounded-full ${
+                        selectedInvoice.paymentStatus === 'paid' ? 'bg-gradient-to-r from-green-500 to-emerald-500' :
+                        selectedInvoice.paymentStatus === 'partial' ? 'bg-gradient-to-r from-yellow-500 to-orange-500' :
+                        'bg-gray-300'
+                      }`}
+                      style={{ width: `${(selectedInvoice.paidAmount / selectedInvoice.totalAmount) * 100}%` }}
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Modal Footer */}
+            <div className="bg-gray-50 px-6 py-4 flex justify-end gap-3 border-t">
+              <button onClick={() => setShowDetailsModal(false)} className="px-6 py-2 bg-gray-200 text-gray-800 rounded-lg font-medium hover:bg-gray-300 transition-colors">
+                Close
+              </button>
+              <button className="px-6 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors flex items-center gap-2">
+                <Download className="h-4 w-4" />
+                Download PDF
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Send Invoice Modal */}
+      {showSendModal && selectedInvoice && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
+            {/* Modal Header */}
+            <div className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-6 py-4 rounded-t-lg">
+              <h2 className="text-xl font-bold flex items-center gap-2">
+                <Send className="h-6 w-6" />
+                Send Invoice
+              </h2>
+            </div>
+
+            {/* Modal Body */}
+            <div className="p-6">
+              <p className="text-gray-700 mb-4">
+                Are you sure you want to send invoice <strong>{selectedInvoice.invoiceNumber}</strong> to <strong>{selectedInvoice.customerName}</strong>?
+              </p>
+              <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+                <p className="text-sm text-blue-900 mb-2"><strong>Invoice Details:</strong></p>
+                <ul className="text-sm text-blue-800 space-y-1">
+                  <li>• Amount: {formatCurrency(selectedInvoice.totalAmount)}</li>
+                  <li>• Type: {selectedInvoice.invoiceType}</li>
+                  <li>• Due Date: {new Date(selectedInvoice.dueDate).toLocaleDateString('en-IN')}</li>
+                </ul>
+              </div>
+              <p className="text-xs text-gray-600 mt-4">
+                The invoice will be sent via email to the customer's registered email address.
+              </p>
+            </div>
+
+            {/* Modal Footer */}
+            <div className="bg-gray-50 px-6 py-4 flex justify-end gap-3 border-t rounded-b-lg">
+              <button
+                onClick={() => {
+                  setShowSendModal(false);
+                  setSelectedInvoice(null);
+                }}
+                className="px-6 py-2 bg-gray-200 text-gray-800 rounded-lg font-medium hover:bg-gray-300 transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleConfirmSend}
+                className="px-6 py-2 bg-emerald-600 text-white rounded-lg font-medium hover:bg-emerald-700 transition-colors flex items-center gap-2"
+              >
+                <Send className="h-4 w-4" />
+                Confirm & Send
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

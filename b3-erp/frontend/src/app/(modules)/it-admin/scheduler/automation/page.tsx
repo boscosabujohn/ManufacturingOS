@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import { Zap, Play, Pause, Plus, Edit, Trash2, Eye, Filter, Download, XCircle, CheckCircle2, AlertTriangle, ArrowRight } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Zap, Play, Pause, Plus, Edit, Trash2, Eye, Filter, Download, XCircle, CheckCircle2, AlertTriangle, ArrowRight, AlertCircle } from 'lucide-react';
 
 interface AutomationRule {
   id: string;
@@ -39,6 +39,18 @@ const SchedulerAutomationPage = () => {
   const [filterCategory, setFilterCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedRule, setSelectedRule] = useState<AutomationRule | null>(null);
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' | 'info' } | null>(null);
+
+  useEffect(() => {
+    if (toast) {
+      const timer = setTimeout(() => setToast(null), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [toast]);
+
+  const showToast = (message: string, type: 'success' | 'error' | 'info') => {
+    setToast({ message, type });
+  };
 
   const [rules, setRules] = useState<AutomationRule[]>([
     {
@@ -266,10 +278,13 @@ const SchedulerAutomationPage = () => {
     setRules(rules.map(rule => 
       rule.id === ruleId ? { ...rule, enabled: !rule.enabled, status: !rule.enabled ? 'Active' : 'Paused' } : rule
     ));
+    const rule = rules.find(r => r.id === ruleId);
+    showToast(`Rule "${rule?.name}" ${rule?.enabled ? 'paused' : 'activated'}`, 'success');
   };
 
   const handleViewDetails = (rule: AutomationRule) => {
     setSelectedRule(rule);
+    showToast(`Viewing details for "${rule.name}"`, 'info');
   };
 
   const handleCloseDetails = () => {
@@ -277,41 +292,56 @@ const SchedulerAutomationPage = () => {
   };
 
   const handleExport = () => {
-    alert('Exporting automation rules...');
+    showToast('Exporting automation rules...', 'info');
   };
 
   return (
-    <div className="p-6 max-w-[1600px] mx-auto">
-      {/* Header */}
-      <div className="mb-6">
-        <div className="flex items-center justify-between mb-2">
+    <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 via-pink-50 to-rose-50">
+      {/* Toast Notification */}
+      {toast && (
+        <div className={`fixed top-4 right-4 z-50 flex items-center gap-2 px-4 py-3 rounded-lg shadow-lg ${
+          toast.type === 'success' ? 'bg-green-50 text-green-800 border border-green-200' :
+          toast.type === 'error' ? 'bg-red-50 text-red-800 border border-red-200' :
+          'bg-blue-50 text-blue-800 border border-blue-200'
+        }`}>
+          {toast.type === 'success' && <CheckCircle2 className="w-5 h-5" />}
+          {toast.type === 'error' && <XCircle className="w-5 h-5" />}
+          {toast.type === 'info' && <AlertCircle className="w-5 h-5" />}
+          <span className="font-medium">{toast.message}</span>
+        </div>
+      )}
+
+      {/* Header Section */}
+      <div className="flex-none p-6 pb-4 space-y-4">
+        <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="p-2 bg-purple-100 rounded-lg">
-              <Zap className="w-6 h-6 text-purple-600" />
+            <div className="p-2 bg-pink-100 rounded-lg">
+              <Zap className="w-6 h-6 text-pink-600" />
             </div>
             <div>
               <h1 className="text-3xl font-bold text-gray-900">Automation Rules</h1>
-              <p className="text-gray-600">Configure automated workflows and business rules</p>
+              <p className="text-gray-600">Create automated workflows and triggers</p>
             </div>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex gap-3">
             <button
               onClick={handleExport}
-              className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+              className="flex items-center gap-2 px-4 py-2 bg-white border border-pink-300 text-pink-700 rounded-lg hover:bg-pink-50 transition-colors"
             >
               <Download className="w-4 h-4" />
               Export
             </button>
-            <button className="flex items-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors">
+            <button
+              className="flex items-center gap-2 px-4 py-2 bg-white border border-rose-300 text-rose-700 rounded-lg hover:bg-rose-50 transition-colors"
+            >
               <Plus className="w-4 h-4" />
               Create Rule
             </button>
           </div>
         </div>
-      </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Total Rules</span>
@@ -360,9 +390,13 @@ const SchedulerAutomationPage = () => {
           <div className="text-2xl font-bold text-red-600">{stats.failedToday}</div>
         </div>
       </div>
+      </div>
 
+      {/* Scrollable Content */}
+      <div className="flex-1 overflow-hidden px-6">
+        <div className="h-full overflow-auto">
       {/* Filters */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 mb-6">
+      <div className="bg-white rounded-lg border border-gray-200 p-4 mb-6">
         <div className="flex items-center gap-3 mb-4">
           <Filter className="w-5 h-5 text-gray-600" />
           <h3 className="font-semibold text-gray-900">Filters</h3>
@@ -374,13 +408,13 @@ const SchedulerAutomationPage = () => {
               placeholder="Search automation rules..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent"
             />
           </div>
           <select
             value={filterStatus}
             onChange={(e) => setFilterStatus(e.target.value)}
-            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent"
           >
             <option value="all">All Status</option>
             <option value="active">Active</option>
@@ -389,7 +423,7 @@ const SchedulerAutomationPage = () => {
           <select
             value={filterCategory}
             onChange={(e) => setFilterCategory(e.target.value)}
-            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-transparent"
           >
             <option value="all">All Categories</option>
             <option value="Support">Support</option>
@@ -653,6 +687,8 @@ const SchedulerAutomationPage = () => {
           </div>
         </div>
       )}
+        </div>
+      </div>
     </div>
   );
 };

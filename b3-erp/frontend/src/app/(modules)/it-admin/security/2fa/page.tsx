@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import { Shield, Smartphone, Key, QrCode, CheckCircle2, XCircle, Clock, AlertTriangle, Mail, MessageSquare, Settings, Users, TrendingUp, Download } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Shield, Smartphone, Key, QrCode, CheckCircle2, XCircle, Clock, AlertTriangle, Mail, MessageSquare, Settings, Users, Download, X, BarChart3, Eye, AlertCircle } from 'lucide-react';
 
 interface TwoFactorSettings {
   enabled: boolean;
@@ -69,6 +69,16 @@ interface TwoFactorStats {
 const TwoFactorAuthPage = () => {
   const [activeTab, setActiveTab] = useState('settings');
   const [showQRCode, setShowQRCode] = useState(false);
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'info' | 'error' } | null>(null);
+  const [showAnalyticsModal, setShowAnalyticsModal] = useState(false);
+  const [selectedUser, setSelectedUser] = useState<UserTwoFactorStatus | null>(null);
+
+  useEffect(() => {
+    if (toast) {
+      const timer = setTimeout(() => setToast(null), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [toast]);
 
   const [settings, setSettings] = useState<TwoFactorSettings>({
     enabled: true,
@@ -269,35 +279,81 @@ const TwoFactorAuthPage = () => {
   };
 
   const handleSaveSettings = () => {
-    alert('2FA settings saved successfully!');
+    setToast({ message: '2FA settings saved successfully!', type: 'success' });
   };
 
   const handleSendReminder = (userId: string) => {
-    alert(`Enrollment reminder sent to user ${userId}`);
+    const user = userStatuses.find(u => u.userId === userId);
+    setToast({ message: `Enrollment reminder sent to ${user?.userName}`, type: 'info' });
   };
 
   const handleResetTwoFactor = (userId: string) => {
-    if (confirm(`Are you sure you want to reset 2FA for user ${userId}? This will require them to re-enroll.`)) {
-      alert(`2FA reset for user ${userId}`);
-    }
+    const user = userStatuses.find(u => u.userId === userId);
+    setToast({ message: `2FA reset for ${user?.userName}. They will need to re-enroll.`, type: 'success' });
   };
 
   const handleGenerateBackupCodes = (userId: string) => {
-    alert(`New backup codes generated for user ${userId}`);
+    const user = userStatuses.find(u => u.userId === userId);
+    setToast({ message: `New backup codes generated for ${user?.userName}`, type: 'success' });
   };
 
   const handleExportReport = () => {
-    alert('Exporting 2FA enrollment report...');
+    setToast({ message: 'Exporting 2FA enrollment report...', type: 'info' });
+  };
+
+  const handleStatsCardClick = (type: string) => {
+    switch (type) {
+      case 'total':
+        setActiveTab('users');
+        setToast({ message: 'Showing all users', type: 'info' });
+        break;
+      case 'enrolled':
+        setActiveTab('users');
+        setToast({ message: 'Showing enrolled users', type: 'success' });
+        break;
+      case 'pending':
+        setActiveTab('users');
+        setToast({ message: 'Showing pending users', type: 'info' });
+        break;
+      case 'not-enrolled':
+        setActiveTab('users');
+        setToast({ message: 'Showing not enrolled users', type: 'error' });
+        break;
+      case 'analytics':
+        setShowAnalyticsModal(true);
+        break;
+    }
+  };
+
+  const handleViewUserDetails = (user: UserTwoFactorStatus) => {
+    setSelectedUser(user);
   };
 
   return (
-    <div className="p-6 max-w-[1600px] mx-auto">
-      {/* Header */}
-      <div className="mb-6">
-        <div className="flex items-center justify-between mb-2">
+    <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 via-teal-50 to-cyan-50">
+      {/* Toast Notification */}
+      {toast && (
+        <div className={`fixed top-4 right-4 z-50 ${
+          toast.type === 'success' ? 'bg-green-50 text-green-800 border border-green-200' :
+          toast.type === 'error' ? 'bg-red-50 text-red-800 border border-red-200' :
+          'bg-blue-50 text-blue-800 border border-blue-200'
+        } rounded-lg px-4 py-3 flex items-center gap-2 shadow-lg`}>
+          {toast.type === 'success' && <CheckCircle2 className="w-5 h-5" />}
+          {toast.type === 'error' && <XCircle className="w-5 h-5" />}
+          {toast.type === 'info' && <AlertCircle className="w-5 h-5" />}
+          <span className="font-medium">{toast.message}</span>
+          <button onClick={() => setToast(null)} className="ml-2">
+            <X className="w-4 h-4 text-gray-500 hover:text-gray-700" />
+          </button>
+        </div>
+      )}
+
+      {/* Header Section */}
+      <div className="flex-none p-6 pb-4 space-y-4">
+        <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="p-2 bg-blue-100 rounded-lg">
-              <Shield className="w-6 h-6 text-blue-600" />
+            <div className="p-2 bg-teal-100 rounded-lg">
+              <Shield className="w-6 h-6 text-teal-600" />
             </div>
             <div>
               <h1 className="text-3xl font-bold text-gray-900">Two-Factor Authentication</h1>
@@ -306,49 +362,64 @@ const TwoFactorAuthPage = () => {
           </div>
           <button
             onClick={handleExportReport}
-            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            className="flex items-center gap-2 px-4 py-2 bg-white border border-teal-300 text-teal-700 rounded-lg hover:bg-teal-50 transition-colors"
           >
             <Download className="w-4 h-4" />
             Export Report
           </button>
         </div>
-      </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4 mb-6">
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4">
+        <button
+          onClick={() => handleStatsCardClick('total')}
+          className="bg-white rounded-xl shadow-sm border-2 border-gray-200 p-4 hover:border-blue-500 hover:shadow-lg transition-all text-left"
+        >
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Total Users</span>
             <Users className="w-4 h-4 text-blue-600" />
           </div>
           <div className="text-2xl font-bold text-gray-900">{stats.totalUsers}</div>
-        </div>
+          <p className="text-xs text-blue-600 mt-1">Click to view all</p>
+        </button>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <button
+          onClick={() => handleStatsCardClick('enrolled')}
+          className="bg-white rounded-xl shadow-sm border-2 border-gray-200 p-4 hover:border-green-500 hover:shadow-lg transition-all text-left"
+        >
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Enrolled</span>
             <CheckCircle2 className="w-4 h-4 text-green-600" />
           </div>
           <div className="text-2xl font-bold text-green-600">{stats.enrolled}</div>
-        </div>
+          <p className="text-xs text-green-600 mt-1">Click to filter</p>
+        </button>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <button
+          onClick={() => handleStatsCardClick('pending')}
+          className="bg-white rounded-xl shadow-sm border-2 border-gray-200 p-4 hover:border-yellow-500 hover:shadow-lg transition-all text-left"
+        >
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Pending</span>
             <Clock className="w-4 h-4 text-yellow-600" />
           </div>
           <div className="text-2xl font-bold text-yellow-600">{stats.pending}</div>
-        </div>
+          <p className="text-xs text-yellow-600 mt-1">Click to filter</p>
+        </button>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <button
+          onClick={() => handleStatsCardClick('not-enrolled')}
+          className="bg-white rounded-xl shadow-sm border-2 border-gray-200 p-4 hover:border-red-500 hover:shadow-lg transition-all text-left"
+        >
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Not Enrolled</span>
             <XCircle className="w-4 h-4 text-red-600" />
           </div>
           <div className="text-2xl font-bold text-red-600">{stats.notEnrolled}</div>
-        </div>
+          <p className="text-xs text-red-600 mt-1">Click to filter</p>
+        </button>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <div className="bg-white rounded-xl shadow-sm border-2 border-gray-200 p-4">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Mandatory Users</span>
             <AlertTriangle className="w-4 h-4 text-orange-600" />
@@ -356,13 +427,17 @@ const TwoFactorAuthPage = () => {
           <div className="text-2xl font-bold text-orange-600">{stats.mandatoryUsers}</div>
         </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <button
+          onClick={() => handleStatsCardClick('analytics')}
+          className="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-xl shadow-sm border-2 border-purple-200 p-4 hover:border-purple-500 hover:shadow-lg transition-all text-left"
+        >
           <div className="flex items-center justify-between mb-2">
-            <span className="text-sm text-gray-600">Enrollment Rate</span>
-            <TrendingUp className="w-4 h-4 text-purple-600" />
+            <span className="text-sm text-purple-600 font-medium">Analytics</span>
+            <BarChart3 className="w-4 h-4 text-purple-600" />
           </div>
-          <div className="text-2xl font-bold text-purple-600">{enrollmentRate}%</div>
-        </div>
+          <div className="text-sm font-semibold text-purple-900">{enrollmentRate}% Rate</div>
+          <p className="text-xs text-purple-600 mt-1">View insights</p>
+        </button>
       </div>
 
       {/* Enrollment Progress */}
@@ -377,90 +452,97 @@ const TwoFactorAuthPage = () => {
             style={{ width: `${enrollmentRate}%` }}
           />
         </div>
+
+        {/* Methods Distribution */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="p-2 bg-purple-100 rounded-lg">
+                <Smartphone className="w-5 h-5 text-purple-600" />
+              </div>
+              <div>
+                <div className="text-sm text-gray-600">Authenticator App</div>
+                <div className="text-2xl font-bold text-gray-900">{stats.byMethod.app}</div>
+              </div>
+            </div>
+            <div className="text-sm text-gray-500">Most secure method</div>
+          </div>
+
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="p-2 bg-blue-100 rounded-lg">
+                <MessageSquare className="w-5 h-5 text-blue-600" />
+              </div>
+              <div>
+                <div className="text-sm text-gray-600">SMS</div>
+                <div className="text-2xl font-bold text-gray-900">{stats.byMethod.sms}</div>
+              </div>
+            </div>
+            <div className="text-sm text-gray-500">Phone number required</div>
+          </div>
+
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="p-2 bg-green-100 rounded-lg">
+                <Mail className="w-5 h-5 text-green-600" />
+              </div>
+              <div>
+                <div className="text-sm text-gray-600">Email</div>
+                <div className="text-2xl font-bold text-gray-900">{stats.byMethod.email}</div>
+              </div>
+            </div>
+            <div className="text-sm text-gray-500">Least secure method</div>
+          </div>
+        </div>
+      </div>
       </div>
 
-      {/* Methods Distribution */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
-          <div className="flex items-center gap-3 mb-3">
-            <div className="p-2 bg-purple-100 rounded-lg">
-              <Smartphone className="w-5 h-5 text-purple-600" />
-            </div>
-            <div>
-              <div className="text-sm text-gray-600">Authenticator App</div>
-              <div className="text-2xl font-bold text-gray-900">{stats.byMethod.app}</div>
+      {/* Scrollable Content */}
+      <div className="flex-1 overflow-hidden px-6">
+        <div className="h-full flex flex-col bg-white rounded-lg border border-gray-200">
+          
+          {/* Tabs */}
+          <div className="flex-none border-b border-gray-200">
+            <div className="flex gap-4 px-6">
+              <button
+                onClick={() => setActiveTab('settings')}
+                className={`py-4 px-2 border-b-2 font-medium text-sm transition-colors ${
+                  activeTab === 'settings'
+                    ? 'border-teal-500 text-teal-600'
+                    : 'border-transparent text-gray-600 hover:text-gray-900'
+                }`}
+              >
+                2FA Settings
+              </button>
+              <button
+                onClick={() => setActiveTab('users')}
+                className={`py-4 px-2 border-b-2 font-medium text-sm transition-colors ${
+                  activeTab === 'users'
+                    ? 'border-teal-500 text-teal-600'
+                    : 'border-transparent text-gray-600 hover:text-gray-900'
+                }`}
+              >
+                User Status
+              </button>
+              <button
+                onClick={() => setActiveTab('setup')}
+                className={`py-4 px-2 border-b-2 font-medium text-sm transition-colors ${
+                  activeTab === 'setup'
+                    ? 'border-teal-500 text-teal-600'
+                    : 'border-transparent text-gray-600 hover:text-gray-900'
+                }`}
+              >
+                Setup Guide
+              </button>
             </div>
           </div>
-          <div className="text-sm text-gray-500">Most secure method</div>
-        </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
-          <div className="flex items-center gap-3 mb-3">
-            <div className="p-2 bg-blue-100 rounded-lg">
-              <MessageSquare className="w-5 h-5 text-blue-600" />
-            </div>
-            <div>
-              <div className="text-sm text-gray-600">SMS</div>
-              <div className="text-2xl font-bold text-gray-900">{stats.byMethod.sms}</div>
-            </div>
-          </div>
-          <div className="text-sm text-gray-500">Phone number required</div>
-        </div>
+          {/* Tab Content */}
+          <div className="flex-1 overflow-auto">
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
-          <div className="flex items-center gap-3 mb-3">
-            <div className="p-2 bg-green-100 rounded-lg">
-              <Mail className="w-5 h-5 text-green-600" />
-            </div>
-            <div>
-              <div className="text-sm text-gray-600">Email</div>
-              <div className="text-2xl font-bold text-gray-900">{stats.byMethod.email}</div>
-            </div>
-          </div>
-          <div className="text-sm text-gray-500">Least secure method</div>
-        </div>
-      </div>
-
-      {/* Tabs */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-6">
-        <div className="border-b border-gray-200">
-          <div className="flex gap-4 px-6">
-            <button
-              onClick={() => setActiveTab('settings')}
-              className={`py-4 px-2 border-b-2 font-medium text-sm transition-colors ${
-                activeTab === 'settings'
-                  ? 'border-blue-600 text-blue-600'
-                  : 'border-transparent text-gray-600 hover:text-gray-900'
-              }`}
-            >
-              2FA Settings
-            </button>
-            <button
-              onClick={() => setActiveTab('users')}
-              className={`py-4 px-2 border-b-2 font-medium text-sm transition-colors ${
-                activeTab === 'users'
-                  ? 'border-blue-600 text-blue-600'
-                  : 'border-transparent text-gray-600 hover:text-gray-900'
-              }`}
-            >
-              User Status
-            </button>
-            <button
-              onClick={() => setActiveTab('setup')}
-              className={`py-4 px-2 border-b-2 font-medium text-sm transition-colors ${
-                activeTab === 'setup'
-                  ? 'border-blue-600 text-blue-600'
-                  : 'border-transparent text-gray-600 hover:text-gray-900'
-              }`}
-            >
-              Setup Guide
-            </button>
-          </div>
-        </div>
-
-        {/* Settings Tab */}
-        {activeTab === 'settings' && (
-          <div className="p-6">
+            {/* Settings Tab */}
+            {activeTab === 'settings' && (
+              <div className="p-6">
             <div className="space-y-6">
               {/* Global Settings */}
               <div className="bg-gray-50 rounded-lg p-4">
@@ -779,7 +861,11 @@ const TwoFactorAuthPage = () => {
                 </thead>
                 <tbody>
                   {userStatuses.map((user) => (
-                    <tr key={user.id} className="border-b border-gray-100 hover:bg-gray-50">
+                    <tr
+                      key={user.id}
+                      onClick={() => handleViewUserDetails(user)}
+                      className="border-b border-gray-100 hover:bg-blue-50 cursor-pointer transition-colors"
+                    >
                       <td className="py-3 px-4">
                         <div>
                           <div className="font-medium text-gray-900">{user.userName}</div>
@@ -810,24 +896,43 @@ const TwoFactorAuthPage = () => {
                       <td className="py-3 px-4 text-sm text-gray-600">{user.deviceCount > 0 ? user.deviceCount : '-'}</td>
                       <td className="py-3 px-4 text-right">
                         <div className="flex items-center justify-end gap-2">
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleViewUserDetails(user);
+                            }}
+                            className="p-1 text-blue-600 hover:text-blue-700 hover:bg-blue-100 rounded transition-colors"
+                            title="View Details"
+                          >
+                            <Eye className="w-4 h-4" />
+                          </button>
                           {user.status === 'Pending' || user.status === 'Not Enrolled' ? (
                             <button
-                              onClick={() => handleSendReminder(user.userId)}
-                              className="text-sm text-blue-600 hover:text-blue-700 font-medium"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleSendReminder(user.userId);
+                              }}
+                              className="text-sm text-blue-600 hover:text-blue-700 font-medium px-2 py-1 hover:bg-blue-100 rounded transition-colors"
                             >
                               Send Reminder
                             </button>
                           ) : (
                             <>
                               <button
-                                onClick={() => handleGenerateBackupCodes(user.userId)}
-                                className="text-sm text-green-600 hover:text-green-700 font-medium"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  handleGenerateBackupCodes(user.userId);
+                                }}
+                                className="text-sm text-green-600 hover:text-green-700 font-medium px-2 py-1 hover:bg-green-100 rounded transition-colors"
                               >
                                 Backup Codes
                               </button>
                               <button
-                                onClick={() => handleResetTwoFactor(user.userId)}
-                                className="text-sm text-red-600 hover:text-red-700 font-medium"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  handleResetTwoFactor(user.userId);
+                                }}
+                                className="text-sm text-red-600 hover:text-red-700 font-medium px-2 py-1 hover:bg-red-100 rounded transition-colors"
                               >
                                 Reset
                               </button>
@@ -986,6 +1091,9 @@ const TwoFactorAuthPage = () => {
             </div>
           </div>
         )}
+
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { ArrowLeft, Users, ChevronRight, Shield, Crown, Star, UserCog, Eye, Edit, Trash2 } from 'lucide-react';
+import { ArrowLeft, Users, ChevronRight, Shield, Crown, Star, UserCog, Eye, Edit, Trash2, CheckCircle, XCircle, AlertCircle } from 'lucide-react';
 
 interface RoleNode {
   id: string;
@@ -20,6 +20,26 @@ interface RoleNode {
 export default function RoleHierarchyPage() {
   const router = useRouter();
   const [selectedRole, setSelectedRole] = useState<string>('admin');
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' | 'info' } | null>(null);
+
+  useEffect(() => {
+    if (toast) {
+      const timer = setTimeout(() => setToast(null), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [toast]);
+
+  const showToast = (message: string, type: 'success' | 'error' | 'info') => {
+    setToast({ message, type });
+  };
+
+  const handleEdit = (roleName: string) => {
+    showToast(`Opening editor for ${roleName}`, 'info');
+  };
+
+  const handleDelete = (roleName: string) => {
+    showToast(`Delete action for ${roleName}`, 'error');
+  };
 
   const hierarchy: RoleNode[] = [
     {
@@ -186,17 +206,42 @@ export default function RoleHierarchyPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6 flex items-center gap-4">
-        <button onClick={() => router.back()} className="p-2 hover:bg-gray-100 rounded-lg">
-          <ArrowLeft className="w-5 h-5 text-gray-600" />
-        </button>
-        <div>
-          <h1 className="text-2xl font-bold text-gray-900">Role Hierarchy</h1>
-          <p className="text-sm text-gray-500 mt-1">Visualize role relationships and reporting structure</p>
+    <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 via-amber-50 to-yellow-50">
+      {/* Toast Notification */}
+      {toast && (
+        <div className={`fixed top-4 right-4 z-50 flex items-center gap-2 px-4 py-3 rounded-lg shadow-lg ${
+          toast.type === 'success' ? 'bg-green-50 text-green-800 border border-green-200' :
+          toast.type === 'error' ? 'bg-red-50 text-red-800 border border-red-200' :
+          'bg-blue-50 text-blue-800 border border-blue-200'
+        }`}>
+          {toast.type === 'success' && <CheckCircle className="w-5 h-5" />}
+          {toast.type === 'error' && <XCircle className="w-5 h-5" />}
+          {toast.type === 'info' && <AlertCircle className="w-5 h-5" />}
+          <span className="font-medium">{toast.message}</span>
+        </div>
+      )}
+
+      {/* Header Section */}
+      <div className="flex-none px-6 py-4">
+        <div className="flex items-center gap-4">
+          <button onClick={() => router.back()} className="p-2 bg-white rounded-lg border border-amber-200 hover:bg-amber-50 transition-colors">
+            <ArrowLeft className="w-5 h-5 text-amber-600" />
+          </button>
+          <div className="flex items-center gap-3">
+            <div className="p-2 bg-amber-100 rounded-lg">
+              <Users className="w-6 h-6 text-amber-600" />
+            </div>
+            <div>
+              <h1 className="text-3xl font-bold text-gray-900">Role Hierarchy</h1>
+              <p className="text-gray-600">Visualize role relationships and reporting structure</p>
+            </div>
+          </div>
         </div>
       </div>
 
+      {/* Scrollable Content Area */}
+      <div className="flex-1 overflow-hidden px-6">
+        <div className="h-full overflow-auto">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Hierarchy Visualization */}
         <div className="lg:col-span-2 bg-white rounded-xl border border-gray-200 p-6">
@@ -224,11 +269,17 @@ export default function RoleHierarchyPage() {
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-lg font-bold text-gray-900">Role Details</h2>
               <div className="flex gap-2">
-                <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
-                  <Edit className="w-4 h-4 text-gray-600" />
-                  <span className="text-gray-700">Edit</span>
+                <button 
+                  onClick={() => selectedRoleData && handleEdit(selectedRoleData.name)}
+                  className="inline-flex items-center gap-1.5 px-3 py-2 border border-amber-300 rounded-lg hover:bg-amber-50 text-sm"
+                >
+                  <Edit className="w-4 h-4 text-amber-600" />
+                  <span className="text-amber-700">Edit</span>
                 </button>
-                <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-red-300 rounded-lg hover:bg-red-50 text-sm">
+                <button 
+                  onClick={() => selectedRoleData && handleDelete(selectedRoleData.name)}
+                  className="inline-flex items-center gap-1.5 px-3 py-2 border border-red-300 rounded-lg hover:bg-red-50 text-sm"
+                >
                   <Trash2 className="w-4 h-4 text-red-600" />
                   <span className="text-red-600">Delete</span>
                 </button>
@@ -341,6 +392,8 @@ export default function RoleHierarchyPage() {
               </div>
             </div>
           </div>
+        </div>
+      </div>
         </div>
       </div>
     </div>

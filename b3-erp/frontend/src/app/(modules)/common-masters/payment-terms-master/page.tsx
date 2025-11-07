@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
-import { Plus, Search, Download, Filter, X, CreditCard, Users, TrendingUp } from 'lucide-react';
+import React, { useState, useMemo, useEffect } from 'react';
+import { Plus, Search, Download, Filter, X, CreditCard, Users, TrendingUp, CheckCircle, XCircle, AlertCircle } from 'lucide-react';
 import { DataTable, Column } from '@/components/ui/DataTable';
 import { StatusBadge } from '@/components/ui/StatusBadge';
 import { mockPaymentTerms, PaymentTerm, getPaymentTermStats } from '@/data/common-masters/payment-terms';
@@ -12,6 +12,27 @@ export default function PaymentTermsMasterPage() {
   const [filterApplicability, setFilterApplicability] = useState<string>('all');
   const [filterMethod, setFilterMethod] = useState<string>('all');
   const [showFilters, setShowFilters] = useState(false);
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' | 'info' } | null>(null);
+
+  // Auto-dismiss toast after 3 seconds
+  useEffect(() => {
+    if (toast) {
+      const timer = setTimeout(() => setToast(null), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [toast]);
+
+  const showToast = (message: string, type: 'success' | 'error' | 'info') => {
+    setToast({ message, type });
+  };
+
+  const handleExport = () => {
+    showToast('Exporting payment terms data...', 'success');
+  };
+
+  const handleAddTerm = () => {
+    showToast('Opening add payment term form...', 'info');
+  };
 
   const filteredData = useMemo(() => {
     return terms.filter(term => {
@@ -165,21 +186,37 @@ export default function PaymentTermsMasterPage() {
   const stats = useMemo(() => getPaymentTermStats(), [terms]);
 
   return (
-    <div className="p-6 space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
-            <CreditCard className="w-7 h-7 text-blue-600" />
-            Payment Terms Master
-          </h1>
-          <p className="text-gray-600 mt-1">Manage payment terms and credit conditions</p>
-        </div>
+    <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 via-emerald-50 to-teal-50">
+      <div className="flex-1 overflow-y-auto">
+        <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+          {/* Toast Notification */}
+          {toast && (
+            <div className={`fixed top-4 right-4 z-50 flex items-center gap-2 px-4 py-3 rounded-lg shadow-lg ${
+              toast.type === 'success' ? 'bg-green-50 text-green-800 border border-green-200' :
+              toast.type === 'error' ? 'bg-red-50 text-red-800 border border-red-200' :
+              'bg-blue-50 text-blue-800 border border-blue-200'
+            }`}>
+              {toast.type === 'success' && <CheckCircle className="w-5 h-5" />}
+              {toast.type === 'error' && <XCircle className="w-5 h-5" />}
+              {toast.type === 'info' && <AlertCircle className="w-5 h-5" />}
+              <span className="font-medium">{toast.message}</span>
+            </div>
+          )}
+
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
+                <CreditCard className="w-7 h-7 text-blue-600" />
+                Payment Terms Master
+              </h1>
+              <p className="text-gray-600 mt-1">Manage payment terms and credit conditions</p>
+            </div>
         <div className="flex items-center gap-3">
-          <button onClick={() => console.log('Export')} className="inline-flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+          <button onClick={handleExport} className="inline-flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
             <Download className="w-4 h-4" />
             <span>Export</span>
           </button>
-          <button onClick={() => console.log('Add')} className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+          <button onClick={handleAddTerm} className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
             <Plus className="w-4 h-4" />
             <span>Add Term</span>
           </button>
@@ -277,6 +314,8 @@ export default function PaymentTermsMasterPage() {
           <li>✓ Default terms by customer/vendor category with approval workflows</li>
           <li>✓ Usage analytics: transaction count, total amount, and outstanding tracking</li>
         </ul>
+      </div>
+        </div>
       </div>
     </div>
   );

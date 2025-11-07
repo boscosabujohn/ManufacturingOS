@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { Search, Filter, Users, Star, TrendingUp, Calendar, MapPin, CheckCircle, Award, BarChart3, Download } from 'lucide-react';
+import { Search, Filter, Users, Star, TrendingUp, Calendar, MapPin, CheckCircle, Award, BarChart3, Download, X, Clock, Wrench, Target } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
 
 interface Technician {
   id: string;
@@ -184,10 +185,13 @@ const mockTechnicians: Technician[] = [
 ];
 
 export default function TechniciansAnalyticsPage() {
+  const { toast } = useToast();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedRegion, setSelectedRegion] = useState<string>('all');
   const [selectedStatus, setSelectedStatus] = useState<string>('active');
   const [sortBy, setSortBy] = useState<'rating' | 'ftfRate' | 'services' | 'experience'>('rating');
+  const [showDetailsModal, setShowDetailsModal] = useState(false);
+  const [selectedTechnician, setSelectedTechnician] = useState<Technician | null>(null);
 
   const regions = ['Mumbai', 'Pune', 'Bangalore', 'Delhi', 'Chennai', 'Ahmedabad', 'Hyderabad', 'Kolkata', 'Lucknow'];
 
@@ -242,6 +246,18 @@ export default function TechniciansAnalyticsPage() {
     return 'text-orange-600';
   };
 
+  const handleViewDetails = (tech: Technician) => {
+    setSelectedTechnician(tech);
+    setShowDetailsModal(true);
+  };
+
+  const handleExport = () => {
+    toast({
+      title: "Report Exported",
+      description: "Technician analytics report has been exported successfully.",
+    });
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 p-6">
       {/* Header */}
@@ -254,7 +270,7 @@ export default function TechniciansAnalyticsPage() {
             </h1>
             <p className="text-gray-600 mt-1">Monitor technician metrics, ratings, and service history</p>
           </div>
-          <button className="bg-emerald-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-emerald-700 transition-colors flex items-center gap-2 shadow-md">
+          <button onClick={handleExport} className="bg-emerald-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-emerald-700 transition-colors flex items-center gap-2 shadow-md">
             <Download className="h-5 w-5" />
             Export Report
           </button>
@@ -499,8 +515,8 @@ export default function TechniciansAnalyticsPage() {
               </div>
 
               {/* View Details Button */}
-              <button className="w-full mt-4 py-2 rounded-lg border border-emerald-200 text-emerald-600 hover:bg-emerald-50 transition-colors text-sm font-medium">
-                View Details
+              <button onClick={() => handleViewDetails(tech)} className="w-full mt-4 py-2 rounded-lg border-2 border-emerald-200 text-emerald-600 hover:bg-emerald-50 transition-colors text-sm font-medium">
+                View Full Profile
               </button>
             </div>
           );
@@ -512,6 +528,231 @@ export default function TechniciansAnalyticsPage() {
           <Users className="h-12 w-12 text-gray-300 mx-auto mb-4" />
           <p className="text-gray-600 font-medium">No technicians found</p>
           <p className="text-gray-500 text-sm">Try adjusting your filters</p>
+        </div>
+      )}
+
+      {/* Technician Details Modal */}
+      {showDetailsModal && selectedTechnician && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            {/* Modal Header */}
+            <div className="sticky top-0 bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-6 py-4 flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <div className="bg-white text-emerald-600 rounded-full w-16 h-16 flex items-center justify-center font-bold text-2xl">
+                  {selectedTechnician.name.split(' ').map(n => n[0]).join('')}
+                </div>
+                <div>
+                  <h2 className="text-xl font-bold">{selectedTechnician.name}</h2>
+                  <p className="text-emerald-100 text-sm">{selectedTechnician.employeeId} • Technician Profile</p>
+                </div>
+              </div>
+              <button onClick={() => setShowDetailsModal(false)} className="text-white hover:bg-white hover:bg-opacity-20 p-2 rounded-lg transition-colors">
+                <X className="h-6 w-6" />
+              </button>
+            </div>
+
+            {/* Modal Body */}
+            <div className="p-6 space-y-6">
+              {/* Status & Rating Banner */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border-2 border-yellow-200">
+                  <div className="flex items-center justify-between mb-2">
+                    <p className="text-sm font-medium text-yellow-800">Performance Rating</p>
+                    <Star className="h-5 w-5 text-yellow-600" />
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-1">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className={`h-5 w-5 ${i < Math.floor(selectedTechnician.rating) ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'}`}
+                        />
+                      ))}
+                    </div>
+                    <span className="text-2xl font-bold text-yellow-900">{selectedTechnician.rating.toFixed(1)}</span>
+                  </div>
+                </div>
+
+                <div className={`rounded-lg p-4 border-2 ${selectedTechnician.status === 'active' ? 'bg-green-50 border-green-200' : selectedTechnician.status === 'on-leave' ? 'bg-yellow-50 border-yellow-200' : 'bg-gray-50 border-gray-200'}`}>
+                  <p className={`text-sm font-medium mb-2 ${selectedTechnician.status === 'active' ? 'text-green-800' : selectedTechnician.status === 'on-leave' ? 'text-yellow-800' : 'text-gray-800'}`}>Current Status</p>
+                  <p className={`text-2xl font-bold ${selectedTechnician.status === 'active' ? 'text-green-900' : selectedTechnician.status === 'on-leave' ? 'text-yellow-900' : 'text-gray-900'}`}>
+                    {selectedTechnician.status.charAt(0).toUpperCase() + selectedTechnician.status.slice(1).replace('-', ' ')}
+                  </p>
+                </div>
+
+                <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border-2 border-blue-200">
+                  <div className="flex items-center justify-between mb-2">
+                    <p className="text-sm font-medium text-blue-800">Experience</p>
+                    <Award className="h-5 w-5 text-blue-600" />
+                  </div>
+                  <p className="text-2xl font-bold text-blue-900">{selectedTechnician.experience} Years</p>
+                  <p className="text-xs text-blue-700 mt-1">Since {new Date(selectedTechnician.joiningDate).toLocaleDateString('en-IN', { month: 'short', year: 'numeric' })}</p>
+                </div>
+              </div>
+
+              {/* Performance Metrics */}
+              <div className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-lg p-5 border border-emerald-200">
+                <h4 className="font-bold text-emerald-900 mb-4 flex items-center gap-2">
+                  <Target className="h-5 w-5" />
+                  Performance Metrics
+                </h4>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  <div className="bg-white bg-opacity-80 rounded-lg p-3">
+                    <p className="text-xs text-gray-600 mb-1">Total Services</p>
+                    <p className="text-2xl font-bold text-gray-900">{selectedTechnician.totalServices}</p>
+                  </div>
+                  <div className="bg-white bg-opacity-80 rounded-lg p-3">
+                    <p className="text-xs text-gray-600 mb-1">First Time Fix</p>
+                    <p className="text-2xl font-bold text-green-600">{selectedTechnician.ftfCount}</p>
+                    <p className="text-xs text-green-600 font-semibold">{((selectedTechnician.ftfCount / selectedTechnician.totalServices) * 100).toFixed(1)}%</p>
+                  </div>
+                  <div className="bg-white bg-opacity-80 rounded-lg p-3">
+                    <p className="text-xs text-gray-600 mb-1">Avg Resolution</p>
+                    <p className="text-2xl font-bold text-blue-600">{selectedTechnician.avgResolutionTime}</p>
+                    <p className="text-xs text-gray-600">minutes</p>
+                  </div>
+                  <div className="bg-white bg-opacity-80 rounded-lg p-3">
+                    <p className="text-xs text-gray-600 mb-1">Completion Rate</p>
+                    <p className="text-2xl font-bold text-emerald-600">{selectedTechnician.completionRate}%</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Location & Basic Info */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="bg-purple-50 rounded-lg p-4 border border-purple-200">
+                  <h4 className="font-bold text-purple-900 mb-3 flex items-center gap-2">
+                    <MapPin className="h-5 w-5" />
+                    Location & Assignment
+                  </h4>
+                  <div className="space-y-2">
+                    <div>
+                      <p className="text-xs text-purple-700 font-medium">Service Region</p>
+                      <p className="text-sm text-gray-900 font-semibold">{selectedTechnician.region}</p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-purple-700 font-medium">Employee ID</p>
+                      <p className="text-sm text-gray-900 font-semibold">{selectedTechnician.employeeId}</p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-purple-700 font-medium">Joining Date</p>
+                      <p className="text-sm text-gray-900 font-semibold">{new Date(selectedTechnician.joiningDate).toLocaleDateString('en-IN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-indigo-50 rounded-lg p-4 border border-indigo-200">
+                  <h4 className="font-bold text-indigo-900 mb-3 flex items-center gap-2">
+                    <Clock className="h-5 w-5" />
+                    Work Statistics
+                  </h4>
+                  <div className="space-y-2">
+                    <div className="flex justify-between items-center">
+                      <p className="text-xs text-indigo-700 font-medium">Services Completed</p>
+                      <p className="text-sm text-gray-900 font-semibold">{selectedTechnician.totalServices}</p>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <p className="text-xs text-indigo-700 font-medium">Successful FTF</p>
+                      <p className="text-sm text-green-600 font-semibold">{selectedTechnician.ftfCount} / {selectedTechnician.totalServices}</p>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <p className="text-xs text-indigo-700 font-medium">Failed FTF</p>
+                      <p className="text-sm text-red-600 font-semibold">{selectedTechnician.totalServices - selectedTechnician.ftfCount} / {selectedTechnician.totalServices}</p>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <p className="text-xs text-indigo-700 font-medium">Avg Time per Service</p>
+                      <p className="text-sm text-gray-900 font-semibold">{selectedTechnician.avgResolutionTime} min</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Specializations */}
+              <div className="bg-orange-50 rounded-lg p-4 border border-orange-200">
+                <h4 className="font-bold text-orange-900 mb-3 flex items-center gap-2">
+                  <Wrench className="h-5 w-5" />
+                  Technical Specializations
+                </h4>
+                <div className="flex flex-wrap gap-2">
+                  {selectedTechnician.specializations.map((spec, idx) => (
+                    <span key={idx} className="bg-orange-100 text-orange-800 px-4 py-2 rounded-lg text-sm font-medium">
+                      {spec}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Certifications */}
+              <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+                <h4 className="font-bold text-blue-900 mb-3 flex items-center gap-2">
+                  <Award className="h-5 w-5" />
+                  Professional Certifications
+                </h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                  {selectedTechnician.certifications.map((cert, idx) => (
+                    <div key={idx} className="flex items-center gap-2 bg-blue-100 text-blue-800 px-4 py-2 rounded-lg">
+                      <CheckCircle className="h-4 w-4 text-blue-600 flex-shrink-0" />
+                      <span className="text-sm font-medium">{cert}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Performance Analysis */}
+              <div className="bg-gradient-to-r from-gray-50 to-slate-50 rounded-lg p-4 border border-gray-200">
+                <h4 className="font-bold text-gray-900 mb-3">Performance Analysis</h4>
+                <div className="space-y-3">
+                  <div>
+                    <div className="flex justify-between text-sm mb-1">
+                      <span className="text-gray-700 font-medium">First Time Fix Rate</span>
+                      <span className="font-bold text-green-600">{((selectedTechnician.ftfCount / selectedTechnician.totalServices) * 100).toFixed(1)}%</span>
+                    </div>
+                    <div className="w-full bg-gray-200 rounded-full h-3">
+                      <div
+                        className="bg-gradient-to-r from-green-500 to-emerald-500 h-3 rounded-full"
+                        style={{ width: `${(selectedTechnician.ftfCount / selectedTechnician.totalServices) * 100}%` }}
+                      ></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div className="flex justify-between text-sm mb-1">
+                      <span className="text-gray-700 font-medium">Completion Rate</span>
+                      <span className="font-bold text-blue-600">{selectedTechnician.completionRate}%</span>
+                    </div>
+                    <div className="w-full bg-gray-200 rounded-full h-3">
+                      <div
+                        className="bg-gradient-to-r from-blue-500 to-indigo-500 h-3 rounded-full"
+                        style={{ width: `${selectedTechnician.completionRate}%` }}
+                      ></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div className="flex justify-between text-sm mb-1">
+                      <span className="text-gray-700 font-medium">Customer Rating</span>
+                      <span className="font-bold text-yellow-600">{selectedTechnician.rating.toFixed(1)} / 5.0</span>
+                    </div>
+                    <div className="w-full bg-gray-200 rounded-full h-3">
+                      <div
+                        className="bg-gradient-to-r from-yellow-400 to-yellow-500 h-3 rounded-full"
+                        style={{ width: `${(selectedTechnician.rating / 5) * 100}%` }}
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Modal Footer */}
+            <div className="bg-gray-50 px-6 py-4 flex justify-end gap-3 border-t">
+              <button onClick={() => setShowDetailsModal(false)} className="px-6 py-2 bg-gray-200 text-gray-800 rounded-lg font-medium hover:bg-gray-300 transition-colors">
+                Close
+              </button>
+              <button className="px-6 py-2 bg-emerald-600 text-white rounded-lg font-medium hover:bg-emerald-700 transition-colors flex items-center gap-2">
+                <Download className="h-4 w-4" />
+                Export Profile
+              </button>
+            </div>
+          </div>
         </div>
       )}
     </div>

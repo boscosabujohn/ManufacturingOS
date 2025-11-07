@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import { Clock, Play, Pause, Calendar, AlertCircle, CheckCircle2, XCircle, RefreshCw, Plus, Edit, Trash2, Eye, Filter, Download } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Clock, Play, Pause, Calendar, AlertCircle, CheckCircle2, XCircle, RefreshCw, Plus, Edit, Trash2, Eye, Filter, Download, X, BarChart3, TrendingUp } from 'lucide-react';
 
 interface ScheduledJob {
   id: string;
@@ -38,6 +38,15 @@ const SchedulerJobsPage = () => {
   const [filterType, setFilterType] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedJob, setSelectedJob] = useState<ScheduledJob | null>(null);
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'info' | 'error' } | null>(null);
+  const [showAnalyticsModal, setShowAnalyticsModal] = useState(false);
+
+  useEffect(() => {
+    if (toast) {
+      const timer = setTimeout(() => setToast(null), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [toast]);
 
   const [jobs, setJobs] = useState<ScheduledJob[]>([
     {
@@ -269,13 +278,19 @@ const SchedulerJobsPage = () => {
   };
 
   const handleRunNow = (jobId: string) => {
-    alert(`Running job ${jobId} immediately...`);
+    const job = jobs.find(j => j.id === jobId);
+    setToast({ message: `Running "${job?.name}" immediately...`, type: 'info' });
   };
 
   const handleToggleStatus = (jobId: string) => {
-    setJobs(jobs.map(job => 
+    setJobs(jobs.map(job =>
       job.id === jobId ? { ...job, enabled: !job.enabled, status: !job.enabled ? 'Active' : 'Paused' } : job
     ));
+    const job = jobs.find(j => j.id === jobId);
+    setToast({
+      message: `Job "${job?.name}" ${job?.enabled ? 'paused' : 'activated'} successfully`,
+      type: 'success'
+    });
   };
 
   const handleViewDetails = (job: ScheduledJob) => {
@@ -287,92 +302,177 @@ const SchedulerJobsPage = () => {
   };
 
   const handleExport = () => {
-    alert('Exporting scheduled jobs...');
+    setToast({ message: 'Exporting scheduled jobs...', type: 'info' });
+  };
+
+  const handleStatsCardClick = (type: string) => {
+    switch (type) {
+      case 'total':
+        setFilterStatus('all');
+        setFilterType('all');
+        setToast({ message: 'Showing all jobs', type: 'info' });
+        break;
+      case 'active':
+        setFilterStatus('active');
+        setToast({ message: 'Showing active jobs', type: 'success' });
+        break;
+      case 'paused':
+        setFilterStatus('paused');
+        setToast({ message: 'Showing paused jobs', type: 'info' });
+        break;
+      case 'completed':
+        setToast({ message: 'Showing completed jobs today', type: 'success' });
+        break;
+      case 'failed':
+        setToast({ message: 'Showing failed jobs today', type: 'error' });
+        break;
+      case 'analytics':
+        setShowAnalyticsModal(true);
+        break;
+    }
+  };
+
+  const handleEdit = (jobId: string) => {
+    const job = jobs.find(j => j.id === jobId);
+    setToast({ message: `Editing "${job?.name}"...`, type: 'info' });
+  };
+
+  const handleDelete = (jobId: string) => {
+    const job = jobs.find(j => j.id === jobId);
+    setToast({ message: `Deleting "${job?.name}"...`, type: 'error' });
+  };
+
+  const handleCreateJob = () => {
+    setToast({ message: 'Opening job creation form...', type: 'info' });
   };
 
   return (
-    <div className="p-6 max-w-[1600px] mx-auto">
-      {/* Header */}
-      <div className="mb-6">
-        <div className="flex items-center justify-between mb-2">
+    <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 via-indigo-50 to-blue-50">
+      {/* Toast Notification */}
+      {toast && (
+        <div className={`fixed top-4 right-4 z-50 flex items-center gap-2 px-4 py-3 rounded-lg shadow-lg ${
+          toast.type === 'success' ? 'bg-green-50 text-green-800 border border-green-200' :
+          toast.type === 'error' ? 'bg-red-50 text-red-800 border border-red-200' :
+          'bg-blue-50 text-blue-800 border border-blue-200'
+        }`}>
+          {toast.type === 'success' && <CheckCircle2 className="w-5 h-5" />}
+          {toast.type === 'error' && <XCircle className="w-5 h-5" />}
+          {toast.type === 'info' && <AlertCircle className="w-5 h-5" />}
+          <span className="font-medium">{toast.message}</span>
+        </div>
+      )}
+
+      {/* Header Section */}
+      <div className="flex-none p-6 pb-4 space-y-4">
+        <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="p-2 bg-blue-100 rounded-lg">
-              <Clock className="w-6 h-6 text-blue-600" />
+            <div className="p-2 bg-indigo-100 rounded-lg">
+              <Clock className="w-6 h-6 text-indigo-600" />
             </div>
             <div>
               <h1 className="text-3xl font-bold text-gray-900">Scheduled Jobs</h1>
-              <p className="text-gray-600">Manage automated tasks and scheduled processes</p>
+              <p className="text-gray-600">Manage automated tasks and schedules</p>
             </div>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex gap-3">
+            <button
+              onClick={handleCreateJob}
+              className="flex items-center gap-2 px-4 py-2 bg-white border border-indigo-300 text-indigo-700 rounded-lg hover:bg-indigo-50 transition-colors"
+            >
+              <Plus className="w-4 h-4" />
+              Create Job
+            </button>
             <button
               onClick={handleExport}
-              className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+              className="flex items-center gap-2 px-4 py-2 bg-white border border-blue-300 text-blue-700 rounded-lg hover:bg-blue-50 transition-colors"
             >
               <Download className="w-4 h-4" />
               Export
             </button>
-            <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-              <Plus className="w-4 h-4" />
-              Create Job
-            </button>
           </div>
         </div>
-      </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-6">
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        <button
+          onClick={() => handleStatsCardClick('total')}
+          className="bg-white rounded-xl shadow-sm border-2 border-gray-200 p-4 hover:border-blue-500 hover:shadow-lg transition-all text-left"
+        >
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Total Jobs</span>
             <Clock className="w-4 h-4 text-gray-600" />
           </div>
           <div className="text-2xl font-bold text-gray-900">{stats.totalJobs}</div>
-        </div>
+          <p className="text-xs text-blue-600 mt-1">Click to view all</p>
+        </button>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <button
+          onClick={() => handleStatsCardClick('active')}
+          className="bg-white rounded-xl shadow-sm border-2 border-gray-200 p-4 hover:border-green-500 hover:shadow-lg transition-all text-left"
+        >
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Active</span>
             <CheckCircle2 className="w-4 h-4 text-green-600" />
           </div>
           <div className="text-2xl font-bold text-green-600">{stats.activeJobs}</div>
-        </div>
+          <p className="text-xs text-green-600 mt-1">Click to filter</p>
+        </button>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <button
+          onClick={() => handleStatsCardClick('paused')}
+          className="bg-white rounded-xl shadow-sm border-2 border-gray-200 p-4 hover:border-gray-500 hover:shadow-lg transition-all text-left"
+        >
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Paused</span>
             <Pause className="w-4 h-4 text-gray-600" />
           </div>
           <div className="text-2xl font-bold text-gray-600">{stats.pausedJobs}</div>
-        </div>
+          <p className="text-xs text-gray-600 mt-1">Click to filter</p>
+        </button>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <button
+          onClick={() => handleStatsCardClick('completed')}
+          className="bg-white rounded-xl shadow-sm border-2 border-gray-200 p-4 hover:border-green-500 hover:shadow-lg transition-all text-left"
+        >
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Completed</span>
             <CheckCircle2 className="w-4 h-4 text-green-600" />
           </div>
           <div className="text-2xl font-bold text-green-600">{stats.completedToday}</div>
-        </div>
+          <p className="text-xs text-green-600 mt-1">Today</p>
+        </button>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <button
+          onClick={() => handleStatsCardClick('failed')}
+          className="bg-white rounded-xl shadow-sm border-2 border-gray-200 p-4 hover:border-red-500 hover:shadow-lg transition-all text-left"
+        >
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Failed</span>
             <XCircle className="w-4 h-4 text-red-600" />
           </div>
           <div className="text-2xl font-bold text-red-600">{stats.failedToday}</div>
-        </div>
+          <p className="text-xs text-red-600 mt-1">Today</p>
+        </button>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
+        <button
+          onClick={() => handleStatsCardClick('analytics')}
+          className="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-xl shadow-sm border-2 border-purple-200 p-4 hover:border-purple-500 hover:shadow-lg transition-all text-left"
+        >
           <div className="flex items-center justify-between mb-2">
-            <span className="text-sm text-gray-600">Scheduled</span>
-            <Calendar className="w-4 h-4 text-blue-600" />
+            <span className="text-sm text-purple-600 font-medium">Analytics</span>
+            <BarChart3 className="w-4 h-4 text-purple-600" />
           </div>
-          <div className="text-2xl font-bold text-blue-600">{stats.scheduledNext}</div>
-        </div>
+          <div className="text-sm font-semibold text-purple-900">View Insights</div>
+          <p className="text-xs text-purple-600 mt-1">Click for details</p>
+        </button>
+      </div>
       </div>
 
-      {/* Filters */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 mb-6">
+      {/* Scrollable Content */}
+      <div className="flex-1 overflow-hidden px-6">
+        <div className="h-full flex flex-col bg-white rounded-lg border border-gray-200">
+          {/* Filters */}
+          <div className="flex-none p-4 border-b border-gray-200">
         <div className="flex items-center gap-3 mb-4">
           <Filter className="w-5 h-5 text-gray-600" />
           <h3 className="font-semibold text-gray-900">Filters</h3>
@@ -384,13 +484,13 @@ const SchedulerJobsPage = () => {
               placeholder="Search jobs..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
             />
           </div>
           <select
             value={filterStatus}
             onChange={(e) => setFilterStatus(e.target.value)}
-            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
           >
             <option value="all">All Status</option>
             <option value="active">Active</option>
@@ -399,7 +499,7 @@ const SchedulerJobsPage = () => {
           <select
             value={filterType}
             onChange={(e) => setFilterType(e.target.value)}
-            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
           >
             <option value="all">All Types</option>
             <option value="Backup">Backup</option>
@@ -414,11 +514,10 @@ const SchedulerJobsPage = () => {
       </div>
 
       {/* Jobs Table */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200">
-        <div className="overflow-x-auto">
+      <div className="flex-1 overflow-auto">
           <table className="w-full">
-            <thead>
-              <tr className="border-b border-gray-200 bg-gray-50">
+            <thead className="sticky top-0 bg-gray-50 z-10">
+              <tr className="border-b border-gray-200">
                 <th className="text-left py-3 px-4 text-sm font-semibold text-gray-900">Job Name</th>
                 <th className="text-left py-3 px-4 text-sm font-semibold text-gray-900">Type</th>
                 <th className="text-left py-3 px-4 text-sm font-semibold text-gray-900">Schedule</th>
@@ -431,7 +530,11 @@ const SchedulerJobsPage = () => {
             </thead>
             <tbody>
               {filteredJobs.map((job) => (
-                <tr key={job.id} className="border-b border-gray-100 hover:bg-gray-50">
+                <tr
+                  key={job.id}
+                  onClick={() => handleViewDetails(job)}
+                  className="border-b border-gray-100 hover:bg-blue-50 cursor-pointer transition-colors"
+                >
                   <td className="py-3 px-4">
                     <div>
                       <div className="flex items-center gap-2">
@@ -478,9 +581,9 @@ const SchedulerJobsPage = () => {
                     <div>
                       <div className="flex items-center gap-2 mb-1">
                         <div className="flex-1 bg-gray-200 rounded-full h-2">
-                          <div 
+                          <div
                             className={`h-2 rounded-full ${
-                              job.successRate >= 95 ? 'bg-green-500' : 
+                              job.successRate >= 95 ? 'bg-green-500' :
                               job.successRate >= 80 ? 'bg-yellow-500' : 'bg-red-500'
                             }`}
                             style={{ width: `${job.successRate}%` }}
@@ -499,30 +602,53 @@ const SchedulerJobsPage = () => {
                   <td className="py-3 px-4 text-right">
                     <div className="flex items-center justify-end gap-2">
                       <button
-                        onClick={() => handleRunNow(job.id)}
-                        className="text-blue-600 hover:text-blue-700 p-1"
-                       
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleRunNow(job.id);
+                        }}
+                        className="text-indigo-600 hover:text-indigo-700 p-1 hover:bg-indigo-100 rounded transition-colors"
+                        title="Run Now"
                       >
                         <Play className="w-4 h-4" />
                       </button>
                       <button
-                        onClick={() => handleToggleStatus(job.id)}
-                        className="text-gray-600 hover:text-gray-700 p-1"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleToggleStatus(job.id);
+                        }}
+                        className="text-gray-600 hover:text-gray-700 p-1 hover:bg-gray-100 rounded transition-colors"
                         title={job.enabled ? "Pause" : "Resume"}
                       >
                         {job.enabled ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
                       </button>
                       <button
-                        onClick={() => handleViewDetails(job)}
-                        className="text-gray-600 hover:text-gray-700 p-1"
-                       
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleViewDetails(job);
+                        }}
+                        className="text-gray-600 hover:text-gray-700 p-1 hover:bg-gray-100 rounded transition-colors"
+                        title="View Details"
                       >
                         <Eye className="w-4 h-4" />
                       </button>
-                      <button className="text-blue-600 hover:text-blue-700 p-1">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleEdit(job.id);
+                        }}
+                        className="text-indigo-600 hover:text-indigo-700 p-1 hover:bg-indigo-100 rounded transition-colors"
+                        title="Edit"
+                      >
                         <Edit className="w-4 h-4" />
                       </button>
-                      <button className="text-red-600 hover:text-red-700 p-1">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleDelete(job.id);
+                        }}
+                        className="text-red-600 hover:text-red-700 p-1 hover:bg-red-100 rounded transition-colors"
+                        title="Delete"
+                      >
                         <Trash2 className="w-4 h-4" />
                       </button>
                     </div>
@@ -531,7 +657,6 @@ const SchedulerJobsPage = () => {
               ))}
             </tbody>
           </table>
-        </div>
 
         {filteredJobs.length === 0 && (
           <div className="text-center py-12">
@@ -539,6 +664,8 @@ const SchedulerJobsPage = () => {
             <p className="text-gray-600">No scheduled jobs found</p>
           </div>
         )}
+      </div>
+        </div>
       </div>
 
       {/* Details Modal */}

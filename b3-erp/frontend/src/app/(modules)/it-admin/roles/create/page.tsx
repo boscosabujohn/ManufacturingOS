@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { ArrowLeft, Save, Shield, Users, CheckSquare, Square, Copy } from 'lucide-react';
+import { ArrowLeft, Save, Shield, Users, CheckSquare, Square, Copy, Eye, X, CheckCircle, AlertTriangle } from 'lucide-react';
 
 interface PermissionAction {
   create: boolean;

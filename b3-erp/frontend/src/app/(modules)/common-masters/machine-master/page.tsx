@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
-import { Plus, Search, Download, Filter, X, Settings, Activity, AlertCircle, TrendingUp } from 'lucide-react';
+import React, { useState, useMemo, useEffect } from 'react';
+import { Plus, Search, Download, Filter, X, Settings, Activity, AlertCircle, TrendingUp, CheckCircle, XCircle } from 'lucide-react';
 import { DataTable, Column } from '@/components/ui/DataTable';
 import { StatusBadge } from '@/components/ui/StatusBadge';
 import { mockMachines, Machine, getMachineStats } from '@/data/common-masters/machines';
@@ -13,6 +13,39 @@ export default function MachineMasterPage() {
   const [filterStatus, setFilterStatus] = useState<string>('all');
   const [filterLocation, setFilterLocation] = useState<string>('all');
   const [showFilters, setShowFilters] = useState(false);
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' | 'info' } | null>(null);
+
+  // Auto-dismiss toast after 3 seconds
+  useEffect(() => {
+    if (toast) {
+      const timer = setTimeout(() => setToast(null), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [toast]);
+
+  const showToast = (message: string, type: 'success' | 'error' | 'info') => {
+    setToast({ message, type });
+  };
+
+  const handleViewMachine = (machine: Machine) => {
+    showToast(`Viewing machine: ${machine.machineName}`, 'info');
+  };
+
+  const handleEditMachine = (machine: Machine) => {
+    showToast(`Editing machine: ${machine.machineName}`, 'info');
+  };
+
+  const handleScheduleMaintenance = (machine: Machine) => {
+    showToast(`Scheduling maintenance for: ${machine.machineName}`, 'info');
+  };
+
+  const handleExport = () => {
+    showToast('Exporting machines data...', 'success');
+  };
+
+  const handleAddMachine = () => {
+    showToast('Opening add machine form...', 'info');
+  };
 
   // Get unique locations
   const locations = useMemo(() => {
@@ -180,7 +213,7 @@ export default function MachineMasterPage() {
             className="text-blue-600 hover:text-blue-800 text-sm font-medium"
             onClick={(e) => {
               e.stopPropagation();
-              console.log('View machine:', row);
+              handleViewMachine(row);
             }}
           >
             View
@@ -189,7 +222,7 @@ export default function MachineMasterPage() {
             className="text-green-600 hover:text-green-800 text-sm font-medium"
             onClick={(e) => {
               e.stopPropagation();
-              console.log('Edit machine:', row);
+              handleEditMachine(row);
             }}
           >
             Edit
@@ -198,7 +231,7 @@ export default function MachineMasterPage() {
             className="text-orange-600 hover:text-orange-800 text-sm font-medium"
             onClick={(e) => {
               e.stopPropagation();
-              console.log('Schedule maintenance:', row);
+              handleScheduleMaintenance(row);
             }}
           >
             Maintain
@@ -226,26 +259,42 @@ export default function MachineMasterPage() {
   const stats = useMemo(() => getMachineStats(), [machines]);
 
   return (
-    <div className="p-6 space-y-6">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
-            <Settings className="w-7 h-7 text-blue-600" />
-            Machine Master
-          </h1>
-          <p className="text-gray-600 mt-1">Manage production machines, capacity, and maintenance schedules</p>
-        </div>
+    <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 via-slate-50 to-blue-50">
+      <div className="flex-1 overflow-y-auto">
+        <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+          {/* Toast Notification */}
+          {toast && (
+            <div className={`fixed top-4 right-4 z-50 flex items-center gap-2 px-4 py-3 rounded-lg shadow-lg ${
+              toast.type === 'success' ? 'bg-green-50 text-green-800 border border-green-200' :
+              toast.type === 'error' ? 'bg-red-50 text-red-800 border border-red-200' :
+              'bg-blue-50 text-blue-800 border border-blue-200'
+            }`}>
+              {toast.type === 'success' && <CheckCircle className="w-5 h-5" />}
+              {toast.type === 'error' && <XCircle className="w-5 h-5" />}
+              {toast.type === 'info' && <AlertCircle className="w-5 h-5" />}
+              <span className="font-medium">{toast.message}</span>
+            </div>
+          )}
+
+          {/* Header */}
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
+                <Settings className="w-7 h-7 text-blue-600" />
+                Machine Master
+              </h1>
+              <p className="text-gray-600 mt-1">Manage production machines, capacity, and maintenance schedules</p>
+            </div>
         <div className="flex items-center gap-3">
           <button
-            onClick={() => console.log('Export machines')}
+            onClick={handleExport}
             className="inline-flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
           >
             <Download className="w-4 h-4" />
             <span>Export</span>
           </button>
           <button
-            onClick={() => console.log('Add machine')}
+            onClick={handleAddMachine}
             className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
           >
             <Plus className="w-4 h-4" />
@@ -417,6 +466,8 @@ export default function MachineMasterPage() {
           <li>✓ Safety inspections mandatory before operation of critical equipment</li>
           <li>✓ Machine depreciation calculated using straight-line method</li>
         </ul>
+      </div>
+        </div>
       </div>
     </div>
   );

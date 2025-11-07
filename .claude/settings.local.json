@@ -40,7 +40,8 @@
       "Bash(npm run type-check:*)",
       "Bash(node_modules/.bin/tsc:*)",
       "Bash(wc:*)",
-      "Bash(file:*)"
+      "Bash(file:*)",
+      "Bash(timeout 60 npm run build)"
     ],
     "deny": [],
     "ask": []

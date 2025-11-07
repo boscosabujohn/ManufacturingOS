@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import { History, Database, User, Settings, FileText, Shield, Edit, Trash2, Filter, Download, Eye, Search, XCircle, CheckCircle2, AlertTriangle, Calendar } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { History, Database, User, Settings, FileText, Shield, Edit, Trash2, Filter, Download, Eye, Search, XCircle, CheckCircle2, AlertTriangle, Calendar, CheckCircle, AlertCircle } from 'lucide-react';
 
 interface SystemChangeLog {
   id: string;
@@ -47,6 +47,18 @@ const SystemChangesAuditPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [dateRange, setDateRange] = useState('today');
   const [selectedChange, setSelectedChange] = useState<SystemChangeLog | null>(null);
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' | 'info' } | null>(null);
+
+  useEffect(() => {
+    if (toast) {
+      const timer = setTimeout(() => setToast(null), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [toast]);
+
+  const showToast = (message: string, type: 'success' | 'error' | 'info') => {
+    setToast({ message, type });
+  };
 
   const [changes] = useState<SystemChangeLog[]>([
     {
@@ -382,10 +394,11 @@ const SystemChangesAuditPage = () => {
 
   const handleViewDetails = (change: SystemChangeLog) => {
     setSelectedChange(change);
+    showToast(`Viewing change details: ${change.changeId}`, 'info');
   };
 
   const handleExport = () => {
-    alert('Exporting system changes audit logs...');
+    showToast('Exporting system changes audit logs...', 'info');
   };
 
   const handleCloseDetails = () => {
@@ -393,13 +406,27 @@ const SystemChangesAuditPage = () => {
   };
 
   return (
-    <div className="p-6 max-w-[1600px] mx-auto">
-      {/* Header */}
-      <div className="mb-6">
-        <div className="flex items-center justify-between mb-2">
+    <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 via-cyan-50 to-blue-50">
+      {/* Toast Notification */}
+      {toast && (
+        <div className={`fixed top-4 right-4 z-50 flex items-center gap-2 px-4 py-3 rounded-lg shadow-lg ${
+          toast.type === 'success' ? 'bg-green-50 text-green-800 border border-green-200' :
+          toast.type === 'error' ? 'bg-red-50 text-red-800 border border-red-200' :
+          'bg-blue-50 text-blue-800 border border-blue-200'
+        }`}>
+          {toast.type === 'success' && <CheckCircle className="w-5 h-5" />}
+          {toast.type === 'error' && <XCircle className="w-5 h-5" />}
+          {toast.type === 'info' && <AlertCircle className="w-5 h-5" />}
+          <span className="font-medium">{toast.message}</span>
+        </div>
+      )}
+
+      {/* Header Section */}
+      <div className="flex-none p-6 pb-4 space-y-4">
+        <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="p-2 bg-purple-100 rounded-lg">
-              <History className="w-6 h-6 text-purple-600" />
+            <div className="p-2 bg-cyan-100 rounded-lg">
+              <History className="w-6 h-6 text-cyan-600" />
             </div>
             <div>
               <h1 className="text-3xl font-bold text-gray-900">System Changes Audit</h1>
@@ -408,16 +435,15 @@ const SystemChangesAuditPage = () => {
           </div>
           <button
             onClick={handleExport}
-            className="flex items-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
+            className="flex items-center gap-2 px-4 py-2 bg-white border border-cyan-300 text-cyan-700 rounded-lg hover:bg-cyan-50 transition-colors"
           >
             <Download className="w-4 h-4" />
             Export Logs
           </button>
         </div>
-      </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Total Changes</span>
@@ -466,9 +492,13 @@ const SystemChangesAuditPage = () => {
           <div className="text-2xl font-bold text-red-600">{stats.criticalChanges}</div>
         </div>
       </div>
+      </div>
 
-      {/* Filters */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 mb-6">
+      {/* Scrollable Content */}
+      <div className="flex-1 overflow-hidden px-6">
+        <div className="h-full flex flex-col bg-white rounded-lg border border-gray-200">
+          {/* Filters */}
+          <div className="flex-none p-4 border-b border-gray-200">
         <div className="flex items-center gap-3 mb-4">
           <Filter className="w-5 h-5 text-gray-600" />
           <h3 className="font-semibold text-gray-900">Filters</h3>
@@ -482,14 +512,14 @@ const SystemChangesAuditPage = () => {
                 placeholder="Search by user, entity, or change ID..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
               />
             </div>
           </div>
           <select
             value={dateRange}
             onChange={(e) => setDateRange(e.target.value)}
-            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
           >
             <option value="today">Today</option>
             <option value="yesterday">Yesterday</option>
@@ -500,7 +530,7 @@ const SystemChangesAuditPage = () => {
           <select
             value={filterCategory}
             onChange={(e) => setFilterCategory(e.target.value)}
-            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
           >
             <option value="all">All Categories</option>
             <option value="User Management">User Management</option>
@@ -511,7 +541,7 @@ const SystemChangesAuditPage = () => {
           <select
             value={filterType}
             onChange={(e) => setFilterType(e.target.value)}
-            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
           >
             <option value="all">All Types</option>
             <option value="Role Assignment">Role Assignment</option>
@@ -524,7 +554,7 @@ const SystemChangesAuditPage = () => {
           <select
             value={filterImpact}
             onChange={(e) => setFilterImpact(e.target.value)}
-            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
           >
             <option value="all">All Impact</option>
             <option value="Critical">Critical</option>
@@ -535,7 +565,7 @@ const SystemChangesAuditPage = () => {
           <select
             value={filterApproval}
             onChange={(e) => setFilterApproval(e.target.value)}
-            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
           >
             <option value="all">All Status</option>
             <option value="Approved">Approved</option>
@@ -546,11 +576,10 @@ const SystemChangesAuditPage = () => {
       </div>
 
       {/* Audit Logs Table */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200">
-        <div className="overflow-x-auto">
+      <div className="flex-1 overflow-auto">
           <table className="w-full">
-            <thead>
-              <tr className="border-b border-gray-200 bg-gray-50">
+            <thead className="sticky top-0 bg-gray-50 z-10">
+              <tr className="border-b border-gray-200">
                 <th className="text-left py-3 px-4 text-sm font-semibold text-gray-900">Change ID</th>
                 <th className="text-left py-3 px-4 text-sm font-semibold text-gray-900">Timestamp</th>
                 <th className="text-left py-3 px-4 text-sm font-semibold text-gray-900">User</th>
@@ -610,7 +639,7 @@ const SystemChangesAuditPage = () => {
                   <td className="py-3 px-4 text-right">
                     <button
                       onClick={() => handleViewDetails(change)}
-                      className="text-purple-600 hover:text-purple-700 p-1"
+                      className="text-cyan-600 hover:text-cyan-700 p-1"
                      
                     >
                       <Eye className="w-4 h-4" />
@@ -620,7 +649,6 @@ const SystemChangesAuditPage = () => {
               ))}
             </tbody>
           </table>
-        </div>
 
         {filteredChanges.length === 0 && (
           <div className="text-center py-12">
@@ -628,6 +656,8 @@ const SystemChangesAuditPage = () => {
             <p className="text-gray-600">No change logs found matching your criteria</p>
           </div>
         )}
+      </div>
+        </div>
       </div>
 
       {/* Details Modal */}

@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import { Shield, FileCheck, AlertTriangle, CheckCircle2, XCircle, TrendingUp, BarChart3, Filter, Download, Eye, Search, Calendar, Award, Target, Clock } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Shield, FileCheck, AlertTriangle, CheckCircle2, XCircle, TrendingUp, BarChart3, Filter, Download, Eye, Search, Calendar, Award, Target, Clock, CheckCircle, AlertCircle } from 'lucide-react';
 
 interface ComplianceRequirement {
   id: string;
@@ -51,6 +51,18 @@ const ComplianceAuditPage = () => {
   const [filterSeverity, setFilterSeverity] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedItem, setSelectedItem] = useState<ComplianceRequirement | ComplianceViolation | null>(null);
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' | 'info' } | null>(null);
+
+  useEffect(() => {
+    if (toast) {
+      const timer = setTimeout(() => setToast(null), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [toast]);
+
+  const showToast = (message: string, type: 'success' | 'error' | 'info') => {
+    setToast({ message, type });
+  };
 
   const [requirements] = useState<ComplianceRequirement[]>([
     {
@@ -368,10 +380,11 @@ const ComplianceAuditPage = () => {
 
   const handleViewDetails = (item: ComplianceRequirement | ComplianceViolation) => {
     setSelectedItem(item);
+    showToast('Viewing compliance details', 'info');
   };
 
   const handleExport = () => {
-    alert('Exporting compliance audit report...');
+    showToast('Exporting compliance audit report...', 'info');
   };
 
   const handleCloseDetails = () => {
@@ -379,17 +392,31 @@ const ComplianceAuditPage = () => {
   };
 
   const handleGenerateReport = () => {
-    alert('Generating comprehensive compliance report...');
+    showToast('Generating comprehensive compliance report...', 'info');
   };
 
   return (
-    <div className="p-6 max-w-[1600px] mx-auto">
-      {/* Header */}
-      <div className="mb-6">
-        <div className="flex items-center justify-between mb-2">
+    <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 via-orange-50 to-red-50">
+      {/* Toast Notification */}
+      {toast && (
+        <div className={`fixed top-4 right-4 z-50 flex items-center gap-2 px-4 py-3 rounded-lg shadow-lg ${
+          toast.type === 'success' ? 'bg-green-50 text-green-800 border border-green-200' :
+          toast.type === 'error' ? 'bg-red-50 text-red-800 border border-red-200' :
+          'bg-blue-50 text-blue-800 border border-blue-200'
+        }`}>
+          {toast.type === 'success' && <CheckCircle className="w-5 h-5" />}
+          {toast.type === 'error' && <XCircle className="w-5 h-5" />}
+          {toast.type === 'info' && <AlertCircle className="w-5 h-5" />}
+          <span className="font-medium">{toast.message}</span>
+        </div>
+      )}
+
+      {/* Header Section */}
+      <div className="flex-none p-6 pb-4 space-y-4">
+        <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="p-2 bg-green-100 rounded-lg">
-              <Shield className="w-6 h-6 text-green-600" />
+            <div className="p-2 bg-orange-100 rounded-lg">
+              <Shield className="w-6 h-6 text-orange-600" />
             </div>
             <div>
               <h1 className="text-3xl font-bold text-gray-900">Compliance Audit</h1>
@@ -399,24 +426,23 @@ const ComplianceAuditPage = () => {
           <div className="flex gap-3">
             <button
               onClick={handleGenerateReport}
-              className="flex items-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
+              className="flex items-center gap-2 px-4 py-2 bg-white border border-orange-300 text-orange-700 rounded-lg hover:bg-orange-50 transition-colors"
             >
               <FileCheck className="w-4 h-4" />
               Generate Report
             </button>
             <button
               onClick={handleExport}
-              className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+              className="flex items-center gap-2 px-4 py-2 bg-white border border-red-300 text-red-700 rounded-lg hover:bg-red-50 transition-colors"
             >
               <Download className="w-4 h-4" />
               Export Data
             </button>
           </div>
         </div>
-      </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-7 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-7 gap-4">
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Overall Score</span>
@@ -475,15 +501,19 @@ const ComplianceAuditPage = () => {
           <div className="text-2xl font-bold text-red-600">{stats.criticalViolations}</div>
         </div>
       </div>
+      </div>
 
-      {/* Tabs */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-6">
-        <div className="flex border-b border-gray-200">
+      {/* Scrollable Content */}
+      <div className="flex-1 overflow-hidden px-6">
+        <div className="h-full flex flex-col bg-white rounded-lg border border-gray-200">
+          {/* Tabs */}
+          <div className="flex-none border-b border-gray-200">
+        <div className="flex">
           <button
             onClick={() => setActiveTab('overview')}
             className={`flex-1 px-6 py-3 text-sm font-medium transition-colors ${
               activeTab === 'overview'
-                ? 'text-green-600 border-b-2 border-green-600 bg-green-50'
+                ? 'text-orange-600 border-b-2 border-orange-600 bg-orange-50'
                 : 'text-gray-600 hover:text-gray-900'
             }`}
           >
@@ -496,7 +526,7 @@ const ComplianceAuditPage = () => {
             onClick={() => setActiveTab('requirements')}
             className={`flex-1 px-6 py-3 text-sm font-medium transition-colors ${
               activeTab === 'requirements'
-                ? 'text-green-600 border-b-2 border-green-600 bg-green-50'
+                ? 'text-orange-600 border-b-2 border-orange-600 bg-orange-50'
                 : 'text-gray-600 hover:text-gray-900'
             }`}
           >
@@ -509,7 +539,7 @@ const ComplianceAuditPage = () => {
             onClick={() => setActiveTab('violations')}
             className={`flex-1 px-6 py-3 text-sm font-medium transition-colors ${
               activeTab === 'violations'
-                ? 'text-green-600 border-b-2 border-green-600 bg-green-50'
+                ? 'text-orange-600 border-b-2 border-orange-600 bg-orange-50'
                 : 'text-gray-600 hover:text-gray-900'
             }`}
           >
@@ -521,8 +551,10 @@ const ComplianceAuditPage = () => {
         </div>
       </div>
 
+          {/* Content Area */}
+          <div className="flex-1 overflow-auto p-4">
       {/* Filters */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 mb-6">
+      <div className="bg-gray-50 rounded-lg p-4 mb-6">
         <div className="flex items-center gap-3 mb-4">
           <Filter className="w-5 h-5 text-gray-600" />
           <h3 className="font-semibold text-gray-900">Filters</h3>
@@ -536,14 +568,14 @@ const ComplianceAuditPage = () => {
                 placeholder="Search..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
               />
             </div>
           </div>
           <select
             value={filterCategory}
             onChange={(e) => setFilterCategory(e.target.value)}
-            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
           >
             <option value="all">All Categories</option>
             <option value="GDPR">GDPR</option>
@@ -556,7 +588,7 @@ const ComplianceAuditPage = () => {
             <select
               value={filterStatus}
               onChange={(e) => setFilterStatus(e.target.value)}
-              className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+              className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
             >
               <option value="all">All Status</option>
               <option value="Compliant">Compliant</option>
@@ -569,7 +601,7 @@ const ComplianceAuditPage = () => {
               <select
                 value={filterSeverity}
                 onChange={(e) => setFilterSeverity(e.target.value)}
-                className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
               >
                 <option value="all">All Severity</option>
                 <option value="Critical">Critical</option>
@@ -580,7 +612,7 @@ const ComplianceAuditPage = () => {
               <select
                 value={filterStatus}
                 onChange={(e) => setFilterStatus(e.target.value)}
-                className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
               >
                 <option value="all">All Status</option>
                 <option value="Open">Open</option>
@@ -722,7 +754,7 @@ const ComplianceAuditPage = () => {
                     <td className="py-3 px-4 text-right">
                       <button
                         onClick={() => handleViewDetails(req)}
-                        className="text-green-600 hover:text-green-700 p-1"
+                        className="text-orange-600 hover:text-orange-700 p-1"
                        
                       >
                         <Eye className="w-4 h-4" />
@@ -799,7 +831,7 @@ const ComplianceAuditPage = () => {
                     <td className="py-3 px-4 text-right">
                       <button
                         onClick={() => handleViewDetails(vio)}
-                        className="text-green-600 hover:text-green-700 p-1"
+                        className="text-orange-600 hover:text-orange-700 p-1"
                        
                       >
                         <Eye className="w-4 h-4" />
@@ -932,6 +964,9 @@ const ComplianceAuditPage = () => {
           </div>
         </div>
       )}
+      </div>
+        </div>
+      </div>
     </div>
   );
 };

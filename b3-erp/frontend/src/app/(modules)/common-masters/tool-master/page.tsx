@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
-import { Plus, Search, Download, Filter, X, Wrench, AlertCircle, Package, Calendar } from 'lucide-react';
+import React, { useState, useMemo, useEffect } from 'react';
+import { Plus, Search, Download, Filter, X, Wrench, AlertCircle, Package, Calendar, CheckCircle, XCircle } from 'lucide-react';
 import { DataTable, Column } from '@/components/ui/DataTable';
 import { StatusBadge } from '@/components/ui/StatusBadge';
 import { mockTools, Tool, getToolStats, getLowStockTools } from '@/data/common-masters/tools';
@@ -13,6 +13,34 @@ export default function ToolMasterPage() {
   const [filterCategory, setFilterCategory] = useState<string>('all');
   const [filterStatus, setFilterStatus] = useState<string>('all');
   const [showFilters, setShowFilters] = useState(false);
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' | 'info' } | null>(null);
+
+  useEffect(() => {
+    if (toast) {
+      const timer = setTimeout(() => setToast(null), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [toast]);
+
+  const showToast = (message: string, type: 'success' | 'error' | 'info') => {
+    setToast({ message, type });
+  };
+
+  const handleViewTool = (tool: Tool) => {
+    showToast(`Viewing tool: ${tool.toolName}`, 'info');
+  };
+
+  const handleEditTool = (tool: Tool) => {
+    showToast(`Editing tool: ${tool.toolName}`, 'info');
+  };
+
+  const handleExport = () => {
+    showToast('Exporting tools...', 'success');
+  };
+
+  const handleAddTool = () => {
+    showToast('Opening Add Tool form...', 'info');
+  };
 
   // Filtered data
   const filteredData = useMemo(() => {
@@ -201,7 +229,7 @@ export default function ToolMasterPage() {
             className="text-blue-600 hover:text-blue-800 text-sm font-medium"
             onClick={(e) => {
               e.stopPropagation();
-              console.log('View tool:', row);
+              handleViewTool(row);
             }}
           >
             View
@@ -210,7 +238,7 @@ export default function ToolMasterPage() {
             className="text-green-600 hover:text-green-800 text-sm font-medium"
             onClick={(e) => {
               e.stopPropagation();
-              console.log('Edit tool:', row);
+              handleEditTool(row);
             }}
           >
             Edit
@@ -239,37 +267,50 @@ export default function ToolMasterPage() {
   const lowStockCount = useMemo(() => getLowStockTools().length, [tools]);
 
   return (
-    <div className="p-6 space-y-6">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
-            <Wrench className="w-7 h-7 text-blue-600" />
-            Tool Master
-          </h1>
-          <p className="text-gray-600 mt-1">Manage manufacturing tools, equipment, and inventory</p>
+    <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 via-orange-50 to-amber-50">
+      {/* Toast Notification */}
+      {toast && (
+        <div className="fixed top-4 right-4 z-50 flex items-center gap-2 bg-white px-4 py-3 rounded-lg shadow-lg border-l-4 animate-slide-in"
+             style={{ 
+               borderLeftColor: toast.type === 'success' ? '#10b981' : toast.type === 'error' ? '#ef4444' : '#3b82f6',
+               minWidth: '300px'
+             }}>
+          {toast.type === 'success' && <CheckCircle className="w-5 h-5 text-green-500" />}
+          {toast.type === 'error' && <XCircle className="w-5 h-5 text-red-500" />}
+          {toast.type === 'info' && <AlertCircle className="w-5 h-5 text-blue-500" />}
+          <span className="text-sm text-gray-700">{toast.message}</span>
         </div>
-        <div className="flex items-center gap-3">
-          <button
-            onClick={() => console.log('Export tools')}
-            className="inline-flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-          >
-            <Download className="w-4 h-4" />
-            <span>Export</span>
-          </button>
-          <button
-            onClick={() => console.log('Add tool')}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-          >
-            <Plus className="w-4 h-4" />
-            <span>Add Tool</span>
-          </button>
+      )}
+      
+      <div className="flex-none p-6 pb-4 space-y-4">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
+              <Wrench className="w-7 h-7 text-orange-600" />
+              Tool Master
+            </h1>
+            <p className="text-gray-600 mt-1">Manage manufacturing tools, equipment, and inventory</p>
+          </div>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={handleExport}
+              className="inline-flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+            >
+              <Download className="w-4 h-4" />
+              <span>Export</span>
+            </button>
+            <button
+              onClick={handleAddTool}
+              className="inline-flex items-center gap-2 px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors"
+            >
+              <Plus className="w-4 h-4" />
+              <span>Add Tool</span>
+            </button>
+          </div>
         </div>
-      </div>
 
-      {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
+          <div className="bg-white rounded-lg border border-gray-200 p-4">
           <div className="text-sm text-gray-600 mb-1">Total Tools</div>
           <div className="text-2xl font-bold text-gray-900">{stats.total}</div>
         </div>
@@ -295,33 +336,35 @@ export default function ToolMasterPage() {
         </div>
         <div className="bg-white rounded-lg border border-gray-200 p-4">
           <div className="text-sm text-gray-600 mb-1">Total Value</div>
-          <div className="text-2xl font-bold text-blue-600">₹{(stats.totalValue / 1000).toFixed(0)}K</div>
+          <div className="text-2xl font-bold text-orange-600">₹{(stats.totalValue / 1000).toFixed(0)}K</div>
         </div>
       </div>
+      </div>
 
-      {/* Search and Filters */}
-      <div className="bg-white rounded-lg border border-gray-200 p-4">
-        <div className="flex items-center gap-4">
-          <div className="flex-1 relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-            <input
-              type="text"
-              placeholder="Search by tool name, code, manufacturer..."
+      <div className="flex-1 overflow-hidden px-6">
+        <div className="h-full flex flex-col bg-white rounded-lg border border-gray-200 overflow-hidden">
+          <div className="flex-none p-4 border-b border-gray-200">
+            <div className="flex items-center gap-4">
+              <div className="flex-1 relative">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                <input
+                  type="text"
+                  placeholder="Search by tool name, code, manufacturer..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
             />
           </div>
           <button
             onClick={() => setShowFilters(!showFilters)}
             className={`inline-flex items-center gap-2 px-4 py-2 border rounded-lg transition-colors ${
-              showFilters ? 'bg-blue-50 border-blue-300 text-blue-700' : 'border-gray-300 hover:bg-gray-50'
+              showFilters ? 'bg-orange-50 border-orange-300 text-orange-700' : 'border-gray-300 hover:bg-gray-50'
             }`}
           >
             <Filter className="w-4 h-4" />
             <span>Filters</span>
             {activeFilterCount > 0 && (
-              <span className="inline-flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-blue-600 rounded-full">
+              <span className="inline-flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-orange-600 rounded-full">
                 {activeFilterCount}
               </span>
             )}
@@ -347,7 +390,7 @@ export default function ToolMasterPage() {
               <select
                 value={filterType}
                 onChange={(e) => setFilterType(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
               >
                 <option value="all">All Types</option>
                 <option value="cutting">Cutting</option>
@@ -366,7 +409,7 @@ export default function ToolMasterPage() {
               <select
                 value={filterCategory}
                 onChange={(e) => setFilterCategory(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
               >
                 <option value="all">All Categories</option>
                 <option value="consumable">Consumable</option>
@@ -381,7 +424,7 @@ export default function ToolMasterPage() {
               <select
                 value={filterStatus}
                 onChange={(e) => setFilterStatus(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
               >
                 <option value="all">All Status</option>
                 <option value="available">Available</option>
@@ -393,13 +436,13 @@ export default function ToolMasterPage() {
             </div>
           </div>
         )}
-      </div>
+        </div>
 
-      {/* Data Table */}
-      <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
-        <DataTable
-          data={filteredData}
-          columns={columns}
+        {/* Data Table */}
+        <div className="flex-1 overflow-auto">
+          <DataTable
+            data={filteredData}
+            columns={columns}
           pagination={{
             enabled: true,
             pageSize: 10
@@ -411,22 +454,8 @@ export default function ToolMasterPage() {
           emptyMessage="No tools found"
           emptyDescription="Try adjusting your search or filters to find what you're looking for."
         />
+        </div>
       </div>
-
-      {/* Information Panel */}
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-        <h3 className="font-semibold text-blue-900 mb-2 flex items-center gap-2">
-          <Package className="w-5 h-5" />
-          Tool Management & Calibration
-        </h3>
-        <ul className="text-sm text-blue-800 space-y-1 ml-7">
-          <li>✓ Precision instruments require annual calibration with NABL-certified labs</li>
-          <li>✓ Consumable tools automatically trigger reorder when stock reaches reorder level</li>
-          <li>✓ Tool lifecycle tracking helps predict replacement needs and budget planning</li>
-          <li>✓ Serial number tracking for high-value and calibrated tools ensures accountability</li>
-          <li>✓ Safety equipment must meet Indian Standards (IS) specifications</li>
-          <li>✓ Regular condition assessments ensure tool reliability and quality output</li>
-        </ul>
       </div>
     </div>
   );

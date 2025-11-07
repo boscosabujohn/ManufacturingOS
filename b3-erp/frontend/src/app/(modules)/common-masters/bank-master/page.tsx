@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
-import { Plus, Search, Download, Filter, X, Building2, CreditCard, TrendingUp, RefreshCw } from 'lucide-react';
+import React, { useState, useMemo, useEffect } from 'react';
+import { Plus, Search, Download, Filter, X, Building2, CreditCard, TrendingUp, RefreshCw, CheckCircle, XCircle, AlertCircle } from 'lucide-react';
 import { DataTable, Column } from '@/components/ui/DataTable';
 import { StatusBadge } from '@/components/ui/StatusBadge';
 import { mockBanks, Bank, getBankStats } from '@/data/common-masters/banks';
@@ -12,6 +12,24 @@ export default function BankMasterPage() {
   const [filterType, setFilterType] = useState<string>('all');
   const [filterPurpose, setFilterPurpose] = useState<string>('all');
   const [showFilters, setShowFilters] = useState(false);
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' | 'info' } | null>(null);
+
+  useEffect(() => {
+    if (toast) {
+      const timer = setTimeout(() => setToast(null), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [toast]);
+
+  const showToast = (message: string, type: 'success' | 'error' | 'info') => {
+    setToast({ message, type });
+  };
+
+  const handleAddBank = () => showToast('Add bank functionality will be implemented', 'info');
+  const handleViewBank = (bank: Bank) => showToast(`Viewing bank: ${bank.bankName}`, 'info');
+  const handleEditBank = (bank: Bank) => showToast(`Editing bank: ${bank.bankName}`, 'info');
+  const handleExport = () => showToast('Exporting banks data...', 'success');
+  const handleSync = () => showToast('Syncing bank data...', 'success');
 
   const filteredData = useMemo(() => {
     return banks.filter(bank => {
@@ -148,10 +166,10 @@ export default function BankMasterPage() {
       align: 'right',
       render: (_, row) => (
         <div className="flex items-center justify-end gap-2">
-          <button className="text-blue-600 hover:text-blue-800 text-sm font-medium" onClick={(e) => { e.stopPropagation(); console.log('View bank:', row); }}>
+          <button className="text-blue-600 hover:text-blue-800 text-sm font-medium" onClick={(e) => { e.stopPropagation(); handleViewBank(row); }}>
             View
           </button>
-          <button className="text-green-600 hover:text-green-800 text-sm font-medium" onClick={(e) => { e.stopPropagation(); console.log('Edit bank:', row); }}>
+          <button className="text-green-600 hover:text-green-800 text-sm font-medium" onClick={(e) => { e.stopPropagation(); handleEditBank(row); }}>
             Edit
           </button>
         </div>
@@ -169,25 +187,42 @@ export default function BankMasterPage() {
   const stats = useMemo(() => getBankStats(), [banks]);
 
   return (
-    <div className="p-6 space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
-            <Building2 className="w-7 h-7 text-blue-600" />
-            Bank Master
-          </h1>
-          <p className="text-gray-600 mt-1">Manage bank accounts and payment processing</p>
-        </div>
-        <div className="flex items-center gap-3">
-          <button onClick={() => console.log('Sync banks')} className="inline-flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+    <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 via-green-50 to-emerald-50">
+      <div className="flex-1 overflow-y-auto overflow-x-hidden">
+        <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+          {toast && (
+            <div className="fixed top-4 right-4 z-50 animate-in slide-in-from-top-5">
+              <div className={`rounded-lg px-4 py-3 shadow-lg flex items-center gap-3 ${
+                toast.type === 'success' ? 'bg-green-50 text-green-800 border border-green-200' :
+                toast.type === 'error' ? 'bg-red-50 text-red-800 border border-red-200' :
+                'bg-blue-50 text-blue-800 border border-blue-200'
+              }`}>
+                {toast.type === 'success' && <CheckCircle className="w-5 h-5" />}
+                {toast.type === 'error' && <XCircle className="w-5 h-5" />}
+                {toast.type === 'info' && <AlertCircle className="w-5 h-5" />}
+                <span className="font-medium">{toast.message}</span>
+              </div>
+            </div>
+          )}
+
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
+                <Building2 className="w-7 h-7 text-blue-600" />
+                Bank Master
+              </h1>
+              <p className="text-gray-600 mt-1">Manage bank accounts and payment processing</p>
+            </div>
+            <div className="flex items-center gap-3">
+              <button onClick={handleSync} className="inline-flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
             <RefreshCw className="w-4 h-4" />
-            <span>Sync All</span>
+            <span>Sync</span>
           </button>
-          <button onClick={() => console.log('Export banks')} className="inline-flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+          <button onClick={handleExport} className="inline-flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
             <Download className="w-4 h-4" />
             <span>Export</span>
           </button>
-          <button onClick={() => console.log('Add bank')} className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+          <button onClick={handleAddBank} className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
             <Plus className="w-4 h-4" />
             <span>Add Bank</span>
           </button>
@@ -290,6 +325,8 @@ export default function BankMasterPage() {
           <li>✓ Internet banking integration with API endpoints for automated processing</li>
           <li>✓ GST registration and TDS account designation for tax compliance</li>
         </ul>
+      </div>
+        </div>
       </div>
     </div>
   );

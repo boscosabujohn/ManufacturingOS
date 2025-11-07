@@ -3,7 +3,8 @@
 import React, { useState, useMemo } from 'react';
 import {
   Sparkles, Plus, Search, Edit2, Trash2, CheckCircle2,
-  XCircle, Palette, Droplet, Shield, DollarSign
+  XCircle, Palette, Droplet, Shield, DollarSign, X, Eye,
+  BarChart3, Package, Clock, AlertCircle, TrendingUp, Info
 } from 'lucide-react';
 
 interface Finish {
@@ -160,6 +161,20 @@ export default function FinishMaster() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterCategory, setFilterCategory] = useState<string>('All');
+  const [showDetailsModal, setShowDetailsModal] = useState(false);
+  const [showAnalyticsModal, setShowAnalyticsModal] = useState(false);
+  const [selectedFinishForDetails, setSelectedFinishForDetails] = useState<Finish | null>(null);
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'info' | 'error' } | null>(null);
+
+  const showToast = (message: string, type: 'success' | 'info' | 'error' = 'info') => {
+    setToast({ message, type });
+    setTimeout(() => setToast(null), 3000);
+  };
+
+  const handleViewDetails = (finish: Finish) => {
+    setSelectedFinishForDetails(finish);
+    setShowDetailsModal(true);
+  };
 
   const handleEdit = (finish: Finish) => {
     setSelectedFinish(finish);
@@ -210,11 +225,96 @@ export default function FinishMaster() {
     });
   }, [finishes, searchTerm, filterCategory]);
 
+  // Calculate stats
+  const stats = {
+    total: finishes.length,
+    active: finishes.filter(f => f.status === 'Active').length,
+    categories: new Set(finishes.map(f => f.category)).size,
+    avgPrice: Math.round(finishes.reduce((sum, f) => sum + f.pricePerUnit, 0) / finishes.length)
+  };
+
   return (
     <div className="p-6 max-w-7xl mx-auto">
-      <div className="mb-6">
-        <h2 className="text-2xl font-bold mb-2">Finish Master</h2>
-        <p className="text-gray-600">Manage surface treatments, coatings, and finishing options</p>
+      {/* Toast Notification */}
+      {toast && (
+        <div className={`fixed top-4 right-4 z-50 flex items-center gap-2 px-4 py-3 rounded-lg shadow-lg ${
+          toast.type === 'success' ? 'bg-green-50 text-green-800 border border-green-200' :
+          toast.type === 'error' ? 'bg-red-50 text-red-800 border border-red-200' :
+          'bg-blue-50 text-blue-800 border border-blue-200'
+        }`}>
+          {toast.type === 'success' && <CheckCircle2 className="w-5 h-5" />}
+          {toast.type === 'error' && <X className="w-5 h-5" />}
+          {toast.type === 'info' && <AlertCircle className="w-5 h-5" />}
+          <span className="font-medium">{toast.message}</span>
+        </div>
+      )}
+
+      <div className="mb-6 flex items-center justify-between">
+        <div>
+          <h2 className="text-2xl font-bold mb-2">Finish Master</h2>
+          <p className="text-gray-600">Manage surface treatments, coatings, and finishing options</p>
+        </div>
+        <button
+          onClick={() => setShowAnalyticsModal(true)}
+          className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+        >
+          <BarChart3 className="w-4 h-4" />
+          <span>View Analytics</span>
+        </button>
+      </div>
+
+      {/* Stats Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+        <button
+          onClick={() => setFilterCategory('All')}
+          className="bg-white rounded-lg border-2 border-gray-200 p-5 hover:border-blue-500 hover:shadow-lg transition-all text-left"
+        >
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-sm text-gray-600 font-medium">Total Finishes</span>
+            <Sparkles className="w-5 h-5 text-blue-600" />
+          </div>
+          <div className="text-3xl font-bold text-gray-900">{stats.total}</div>
+          <div className="text-xs text-blue-600 mt-1">Click to view all</div>
+        </button>
+
+        <button
+          onClick={() => {
+            setFilterCategory('All');
+            showToast(`${stats.active} active finishes available`, 'info');
+          }}
+          className="bg-white rounded-lg border-2 border-gray-200 p-5 hover:border-green-500 hover:shadow-lg transition-all text-left"
+        >
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-sm text-gray-600 font-medium">Active Finishes</span>
+            <CheckCircle2 className="w-5 h-5 text-green-600" />
+          </div>
+          <div className="text-3xl font-bold text-green-600">{stats.active}</div>
+          <div className="text-xs text-green-600 mt-1">Currently available</div>
+        </button>
+
+        <button
+          onClick={() => showToast(`${stats.categories} finish categories available`, 'info')}
+          className="bg-white rounded-lg border-2 border-gray-200 p-5 hover:border-purple-500 hover:shadow-lg transition-all text-left"
+        >
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-sm text-gray-600 font-medium">Categories</span>
+            <Package className="w-5 h-5 text-purple-600" />
+          </div>
+          <div className="text-3xl font-bold text-purple-600">{stats.categories}</div>
+          <div className="text-xs text-purple-600 mt-1">Different types</div>
+        </button>
+
+        <button
+          onClick={() => showToast(`Average price: ₹${stats.avgPrice} per unit`, 'info')}
+          className="bg-white rounded-lg border-2 border-gray-200 p-5 hover:border-orange-500 hover:shadow-lg transition-all text-left"
+        >
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-sm text-gray-600 font-medium">Avg Price</span>
+            <DollarSign className="w-5 h-5 text-orange-600" />
+          </div>
+          <div className="text-3xl font-bold text-orange-600">₹{stats.avgPrice}</div>
+          <div className="text-xs text-orange-600 mt-1">Per unit</div>
+        </button>
       </div>
 
       <div className="bg-white rounded-lg shadow">
@@ -288,10 +388,17 @@ export default function FinishMaster() {
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {filteredFinishes.map((finish) => (
-                <tr key={finish.id} className="hover:bg-gray-50">
+                <tr
+                  key={finish.id}
+                  onClick={() => handleViewDetails(finish)}
+                  className="hover:bg-blue-50 cursor-pointer transition-colors"
+                >
                   <td className="px-6 py-4">
                     <div>
-                      <div className="text-sm font-medium text-gray-900">{finish.name}</div>
+                      <div className="text-sm font-medium text-gray-900 flex items-center gap-2">
+                        {finish.name}
+                        <Eye className="w-4 h-4 text-gray-400" />
+                      </div>
                       <div className="text-xs text-gray-500">{finish.code}</div>
                       <div className="text-xs text-gray-400">{finish.subcategory}</div>
                     </div>
@@ -337,14 +444,32 @@ export default function FinishMaster() {
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-2">
                       <button
-                        onClick={() => handleEdit(finish)}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleViewDetails(finish);
+                        }}
+                        className="text-emerald-600 hover:text-emerald-800"
+                        title="View Details"
+                      >
+                        <Eye className="h-4 w-4" />
+                      </button>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleEdit(finish);
+                        }}
                         className="text-blue-600 hover:text-blue-800"
+                        title="Edit"
                       >
                         <Edit2 className="h-4 w-4" />
                       </button>
                       <button
-                        onClick={() => handleDelete(finish.id)}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleDelete(finish.id);
+                        }}
                         className="text-red-600 hover:text-red-800"
+                        title="Delete"
                       >
                         <Trash2 className="h-4 w-4" />
                       </button>
@@ -522,8 +647,427 @@ export default function FinishMaster() {
               >
                 Cancel
               </button>
-              <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+              <button
+                onClick={() => {
+                  setIsModalOpen(false);
+                  showToast('Finish saved successfully', 'success');
+                }}
+                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+              >
                 Save Finish
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Details Modal */}
+      {showDetailsModal && selectedFinishForDetails && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-hidden flex flex-col">
+            {/* Modal Header */}
+            <div className="bg-gradient-to-r from-blue-50 via-indigo-50 to-purple-50 px-6 py-4 border-b border-blue-200 sticky top-0 z-10">
+              <div className="flex items-start justify-between">
+                <div className="flex-1">
+                  <div className="flex items-center gap-3 mb-2">
+                    <Sparkles className="w-6 h-6 text-blue-600" />
+                    <h2 className="text-xl font-bold text-gray-900">{selectedFinishForDetails.name}</h2>
+                  </div>
+                  <div className="flex items-center gap-3 text-sm">
+                    <span className="font-mono text-blue-600">{selectedFinishForDetails.code}</span>
+                    <span className="text-gray-500">|</span>
+                    <span className="text-gray-600">{selectedFinishForDetails.category}</span>
+                    <span className="text-gray-500">|</span>
+                    {getStatusBadge(selectedFinishForDetails.status)}
+                  </div>
+                </div>
+                <button
+                  onClick={() => setShowDetailsModal(false)}
+                  className="text-gray-400 hover:text-gray-600 transition-colors p-2"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+
+            {/* Modal Body */}
+            <div className="flex-1 overflow-y-auto p-6 space-y-6">
+              {/* Basic Information */}
+              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-5 border border-blue-200">
+                <h3 className="font-semibold text-blue-900 mb-3 flex items-center gap-2">
+                  <Info className="w-5 h-5" />
+                  Basic Information
+                </h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <div className="text-xs text-blue-600 font-medium mb-1">Category</div>
+                    <div className="text-sm text-gray-900">{selectedFinishForDetails.category}</div>
+                  </div>
+                  <div>
+                    <div className="text-xs text-blue-600 font-medium mb-1">Subcategory</div>
+                    <div className="text-sm text-gray-900">{selectedFinishForDetails.subcategory}</div>
+                  </div>
+                  <div>
+                    <div className="text-xs text-blue-600 font-medium mb-1">Texture</div>
+                    <div className="text-sm text-gray-900">{selectedFinishForDetails.properties.texture}</div>
+                  </div>
+                  <div>
+                    <div className="text-xs text-blue-600 font-medium mb-1">Sheen</div>
+                    <div className="text-sm text-gray-900">{selectedFinishForDetails.properties.sheen}</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Properties */}
+              <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-5 border border-green-200">
+                <h3 className="font-semibold text-green-900 mb-3 flex items-center gap-2">
+                  <Shield className="w-5 h-5" />
+                  Properties & Resistance
+                </h3>
+                <div className="grid grid-cols-3 gap-4">
+                  <div>
+                    <div className="text-xs text-green-600 font-medium mb-1">Durability</div>
+                    {getDurabilityBadge(selectedFinishForDetails.properties.durability)}
+                  </div>
+                  <div>
+                    <div className="text-xs text-green-600 font-medium mb-1 flex items-center gap-1">
+                      <Droplet className="w-3 h-3" />
+                      Water Resistance
+                    </div>
+                    <div className="text-sm text-gray-900">{selectedFinishForDetails.properties.waterResistance}</div>
+                  </div>
+                  <div>
+                    <div className="text-xs text-green-600 font-medium mb-1 flex items-center gap-1">
+                      <Shield className="w-3 h-3" />
+                      Scratch Resistance
+                    </div>
+                    <div className="text-sm text-gray-900">{selectedFinishForDetails.properties.scratchResistance}</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Available Colors */}
+              <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg p-5 border border-purple-200">
+                <h3 className="font-semibold text-purple-900 mb-3 flex items-center gap-2">
+                  <Palette className="w-5 h-5" />
+                  Available Colors
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {selectedFinishForDetails.colors.map((color, index) => (
+                    <span key={index} className="px-3 py-1 bg-white border border-purple-200 rounded-full text-sm text-gray-700">
+                      {color}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Application Details */}
+              <div className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-lg p-5 border border-orange-200">
+                <h3 className="font-semibold text-orange-900 mb-3 flex items-center gap-2">
+                  <Package className="w-5 h-5" />
+                  Application Details
+                </h3>
+                <div className="space-y-3">
+                  <div>
+                    <div className="text-xs text-orange-600 font-medium mb-2">Application Methods</div>
+                    <div className="flex flex-wrap gap-2">
+                      {selectedFinishForDetails.applicationMethod.map((method, index) => (
+                        <span key={index} className="px-3 py-1 bg-white border border-orange-200 rounded-full text-sm text-gray-700">
+                          {method}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <div>
+                    <div className="text-xs text-orange-600 font-medium mb-2">Suitable For</div>
+                    <div className="flex flex-wrap gap-2">
+                      {selectedFinishForDetails.suitableFor.map((use, index) => (
+                        <span key={index} className="px-3 py-1 bg-white border border-orange-200 rounded-full text-sm text-gray-700">
+                          {use}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Drying Time */}
+              <div className="bg-gradient-to-br from-yellow-50 to-amber-50 rounded-lg p-5 border border-yellow-200">
+                <h3 className="font-semibold text-yellow-900 mb-3 flex items-center gap-2">
+                  <Clock className="w-5 h-5" />
+                  Drying Time
+                </h3>
+                <div className="grid grid-cols-3 gap-4">
+                  <div className="bg-white rounded-lg p-3 border border-yellow-200">
+                    <div className="text-xs text-yellow-600 font-medium mb-1">Touch Dry</div>
+                    <div className="text-sm font-semibold text-gray-900">{selectedFinishForDetails.dryingTime.touch}</div>
+                  </div>
+                  <div className="bg-white rounded-lg p-3 border border-yellow-200">
+                    <div className="text-xs text-yellow-600 font-medium mb-1">Recoat Time</div>
+                    <div className="text-sm font-semibold text-gray-900">{selectedFinishForDetails.dryingTime.recoat}</div>
+                  </div>
+                  <div className="bg-white rounded-lg p-3 border border-yellow-200">
+                    <div className="text-xs text-yellow-600 font-medium mb-1">Full Cure</div>
+                    <div className="text-sm font-semibold text-gray-900">{selectedFinishForDetails.dryingTime.fullCure}</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Pricing & Coverage */}
+              <div className="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-lg p-5 border border-emerald-200">
+                <h3 className="font-semibold text-emerald-900 mb-3 flex items-center gap-2">
+                  <DollarSign className="w-5 h-5" />
+                  Pricing & Coverage
+                </h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="bg-white rounded-lg p-4 border border-emerald-200">
+                    <div className="text-xs text-emerald-600 font-medium mb-1">Price per Unit</div>
+                    <div className="text-2xl font-bold text-emerald-900">₹{selectedFinishForDetails.pricePerUnit}</div>
+                  </div>
+                  <div className="bg-white rounded-lg p-4 border border-emerald-200">
+                    <div className="text-xs text-emerald-600 font-medium mb-1">Coverage</div>
+                    <div className="text-lg font-bold text-emerald-900">
+                      {selectedFinishForDetails.coverage.value} {selectedFinishForDetails.coverage.unit}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Maintenance & Warranty */}
+              <div className="bg-gradient-to-br from-gray-50 to-slate-50 rounded-lg p-5 border border-gray-200">
+                <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                  <Shield className="w-5 h-5" />
+                  Maintenance & Warranty
+                </h3>
+                <div className="space-y-3">
+                  <div>
+                    <div className="text-xs text-gray-600 font-medium mb-1">Maintenance</div>
+                    <div className="text-sm text-gray-900">{selectedFinishForDetails.maintenance}</div>
+                  </div>
+                  <div>
+                    <div className="text-xs text-gray-600 font-medium mb-1">Warranty</div>
+                    <div className="text-sm font-semibold text-gray-900">{selectedFinishForDetails.warranty}</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Certifications */}
+              {selectedFinishForDetails.certifications.length > 0 && (
+                <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-lg p-5 border border-blue-200">
+                  <h3 className="font-semibold text-blue-900 mb-3 flex items-center gap-2">
+                    <CheckCircle2 className="w-5 h-5" />
+                    Certifications
+                  </h3>
+                  <div className="flex flex-wrap gap-2">
+                    {selectedFinishForDetails.certifications.map((cert, index) => (
+                      <span key={index} className="px-3 py-1 bg-white border border-blue-200 rounded-full text-sm font-medium text-blue-700">
+                        {cert}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Modal Footer */}
+            <div className="px-6 py-4 bg-gray-50 border-t flex items-center justify-end gap-3">
+              <button
+                onClick={() => {
+                  setShowDetailsModal(false);
+                  handleEdit(selectedFinishForDetails);
+                }}
+                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              >
+                Edit Finish
+              </button>
+              <button
+                onClick={() => setShowDetailsModal(false)}
+                className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Analytics Modal */}
+      {showAnalyticsModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg shadow-xl max-w-5xl w-full max-h-[90vh] overflow-hidden flex flex-col">
+            {/* Modal Header */}
+            <div className="bg-gradient-to-r from-blue-50 via-indigo-50 to-purple-50 px-6 py-4 border-b border-blue-200 sticky top-0 z-10">
+              <div className="flex items-start justify-between">
+                <div className="flex-1">
+                  <div className="flex items-center gap-3 mb-2">
+                    <BarChart3 className="w-6 h-6 text-blue-600" />
+                    <h2 className="text-xl font-bold text-gray-900">Finish Analytics</h2>
+                  </div>
+                  <p className="text-sm text-gray-600">Overview of finishes, categories, and pricing trends</p>
+                </div>
+                <button
+                  onClick={() => setShowAnalyticsModal(false)}
+                  className="text-gray-400 hover:text-gray-600 transition-colors p-2"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+
+            {/* Modal Body */}
+            <div className="flex-1 overflow-y-auto p-6 space-y-6">
+              {/* Key Metrics */}
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-lg p-4 border-2 border-blue-200">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="text-sm font-medium text-blue-700">Total Finishes</div>
+                    <Sparkles className="w-5 h-5 text-blue-600" />
+                  </div>
+                  <div className="text-3xl font-bold text-blue-900">{stats.total}</div>
+                  <div className="text-xs text-blue-600 mt-1">In catalog</div>
+                </div>
+
+                <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-4 border-2 border-green-200">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="text-sm font-medium text-green-700">Active Finishes</div>
+                    <CheckCircle2 className="w-5 h-5 text-green-600" />
+                  </div>
+                  <div className="text-3xl font-bold text-green-900">{stats.active}</div>
+                  <div className="text-xs text-green-600 mt-1">{Math.round((stats.active / stats.total) * 100)}% of total</div>
+                </div>
+
+                <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg p-4 border-2 border-purple-200">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="text-sm font-medium text-purple-700">Categories</div>
+                    <Package className="w-5 h-5 text-purple-600" />
+                  </div>
+                  <div className="text-3xl font-bold text-purple-900">{stats.categories}</div>
+                  <div className="text-xs text-purple-600 mt-1">Different types</div>
+                </div>
+
+                <div className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-lg p-4 border-2 border-orange-200">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="text-sm font-medium text-orange-700">Avg Price</div>
+                    <DollarSign className="w-5 h-5 text-orange-600" />
+                  </div>
+                  <div className="text-3xl font-bold text-orange-900">₹{stats.avgPrice}</div>
+                  <div className="text-xs text-orange-600 mt-1">Per unit</div>
+                </div>
+              </div>
+
+              {/* Category Distribution */}
+              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-5 border border-blue-200">
+                <h3 className="font-semibold text-blue-900 mb-4 flex items-center gap-2">
+                  <Package className="w-5 h-5" />
+                  Category Distribution
+                </h3>
+                <div className="space-y-3">
+                  {Array.from(new Set(finishes.map(f => f.category))).map((category) => {
+                    const count = finishes.filter(f => f.category === category).length;
+                    const percentage = (count / stats.total) * 100;
+                    return (
+                      <div key={category}>
+                        <div className="flex items-center justify-between text-sm mb-1">
+                          <span className="text-blue-700 font-medium">{category}</span>
+                          <span className="font-semibold text-blue-900">{count} items ({percentage.toFixed(0)}%)</span>
+                        </div>
+                        <div className="w-full bg-blue-100 rounded-full h-2">
+                          <div
+                            className="bg-gradient-to-r from-blue-500 to-cyan-500 h-2 rounded-full"
+                            style={{ width: `${percentage}%` }}
+                          ></div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Price Range Analysis */}
+              <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-5 border border-green-200">
+                <h3 className="font-semibold text-green-900 mb-4 flex items-center gap-2">
+                  <TrendingUp className="w-5 h-5" />
+                  Price Range Analysis
+                </h3>
+                <div className="grid grid-cols-3 gap-4">
+                  <div className="bg-white rounded-lg p-4 border border-green-200">
+                    <div className="text-sm text-green-700 font-medium mb-2">Lowest Price</div>
+                    <div className="text-2xl font-bold text-green-900">
+                      ₹{Math.min(...finishes.map(f => f.pricePerUnit))}
+                    </div>
+                  </div>
+                  <div className="bg-white rounded-lg p-4 border border-green-200">
+                    <div className="text-sm text-green-700 font-medium mb-2">Average Price</div>
+                    <div className="text-2xl font-bold text-green-900">₹{stats.avgPrice}</div>
+                  </div>
+                  <div className="bg-white rounded-lg p-4 border border-green-200">
+                    <div className="text-sm text-green-700 font-medium mb-2">Highest Price</div>
+                    <div className="text-2xl font-bold text-green-900">
+                      ₹{Math.max(...finishes.map(f => f.pricePerUnit))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Durability Breakdown */}
+              <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg p-5 border border-purple-200">
+                <h3 className="font-semibold text-purple-900 mb-4 flex items-center gap-2">
+                  <Shield className="w-5 h-5" />
+                  Durability Breakdown
+                </h3>
+                <div className="grid grid-cols-3 gap-4">
+                  {['High', 'Medium', 'Low'].map((level) => {
+                    const count = finishes.filter(f => f.properties.durability === level).length;
+                    return (
+                      <div key={level} className="text-center bg-white rounded-lg p-4 border border-purple-200">
+                        <div className="text-2xl font-bold text-purple-900">{count}</div>
+                        <div className="text-xs text-purple-600 mt-1">{level} Durability</div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Status Overview */}
+              <div className="bg-gradient-to-br from-gray-50 to-slate-50 rounded-lg p-5 border border-gray-200">
+                <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                  <CheckCircle2 className="w-5 h-5" />
+                  Status Overview
+                </h3>
+                <div className="grid grid-cols-3 gap-4">
+                  <div className="text-center bg-white rounded-lg p-4 border border-gray-200">
+                    <div className="text-2xl font-bold text-green-600">{stats.active}</div>
+                    <div className="text-xs text-gray-600 mt-1">Active</div>
+                  </div>
+                  <div className="text-center bg-white rounded-lg p-4 border border-gray-200">
+                    <div className="text-2xl font-bold text-gray-600">
+                      {finishes.filter(f => f.status === 'Inactive').length}
+                    </div>
+                    <div className="text-xs text-gray-600 mt-1">Inactive</div>
+                  </div>
+                  <div className="text-center bg-white rounded-lg p-4 border border-gray-200">
+                    <div className="text-2xl font-bold text-red-600">
+                      {finishes.filter(f => f.status === 'Discontinued').length}
+                    </div>
+                    <div className="text-xs text-gray-600 mt-1">Discontinued</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Modal Footer */}
+            <div className="px-6 py-4 bg-gray-50 border-t flex items-center justify-end gap-3">
+              <button
+                onClick={() => showToast('Exporting analytics report...', 'success')}
+                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              >
+                Export Report
+              </button>
+              <button
+                onClick={() => setShowAnalyticsModal(false)}
+                className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors"
+              >
+                Close
               </button>
             </div>
           </div>

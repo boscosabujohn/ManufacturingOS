@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
-import { Plus, Search, Download, Filter, X, Clock, Sun, Moon, CalendarDays, DollarSign, AlertCircle } from 'lucide-react';
+import React, { useState, useMemo, useEffect } from 'react';
+import { Plus, Search, Download, Filter, X, Clock, Sun, Moon, CalendarDays, DollarSign, AlertCircle, CheckCircle, XCircle } from 'lucide-react';
 import { DataTable, Column } from '@/components/ui/DataTable';
 import { StatusBadge } from '@/components/ui/StatusBadge';
 import { mockShifts, Shift } from '@/data/common-masters/shifts';
@@ -12,6 +12,28 @@ export default function ShiftMasterPage() {
   const [filterType, setFilterType] = useState<string>('all');
   const [filterApplicable, setFilterApplicable] = useState<string>('all');
   const [showFilters, setShowFilters] = useState(false);
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' | 'info' } | null>(null);
+
+  useEffect(() => {
+    if (toast) {
+      const timer = setTimeout(() => setToast(null), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [toast]);
+
+  const showToast = (message: string, type: 'success' | 'error' | 'info') => {
+    setToast({ message, type });
+  };
+
+  const handleAddShift = () => showToast('Add shift functionality will be implemented', 'info');
+  const handleEditShift = (shift: Shift) => showToast(`Editing shift: ${shift.shiftName}`, 'info');
+  const handleDeleteShift = (shift: Shift) => {
+    if (confirm(`Are you sure you want to delete ${shift.shiftName}?`)) {
+      setShifts(prev => prev.filter(s => s.id !== shift.id));
+      showToast(`${shift.shiftName} deleted successfully`, 'success');
+    }
+  };
+  const handleExport = () => showToast('Exporting shifts data...', 'success');
 
   // Filtered data
   const filteredData = useMemo(() => {
@@ -189,7 +211,7 @@ export default function ShiftMasterPage() {
             className="text-blue-600 hover:text-blue-800 text-sm font-medium"
             onClick={(e) => {
               e.stopPropagation();
-              console.log('Edit shift:', row);
+              handleEditShift(row);
             }}
           >
             Edit
@@ -198,9 +220,7 @@ export default function ShiftMasterPage() {
             className="text-red-600 hover:text-red-800 text-sm font-medium"
             onClick={(e) => {
               e.stopPropagation();
-              if (confirm(`Are you sure you want to delete ${row.shiftName}?`)) {
-                setShifts(prev => prev.filter(s => s.id !== row.id));
-              }
+              handleDeleteShift(row);
             }}
           >
             Delete
@@ -238,26 +258,43 @@ export default function ShiftMasterPage() {
   }, [shifts]);
 
   return (
-    <div className="p-6 space-y-6">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
-            <Clock className="w-7 h-7 text-blue-600" />
-            Shift Master
-          </h1>
-          <p className="text-gray-600 mt-1">Manage work shifts, timings, and attendance rules for manufacturing operations</p>
-        </div>
-        <div className="flex items-center gap-3">
-          <button
-            onClick={() => console.log('Export')}
-            className="inline-flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-          >
+    <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 via-cyan-50 to-sky-50">
+      <div className="flex-1 overflow-y-auto overflow-x-hidden">
+        <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+          {toast && (
+            <div className="fixed top-4 right-4 z-50 animate-in slide-in-from-top-5">
+              <div className={`rounded-lg px-4 py-3 shadow-lg flex items-center gap-3 ${
+                toast.type === 'success' ? 'bg-green-50 text-green-800 border border-green-200' :
+                toast.type === 'error' ? 'bg-red-50 text-red-800 border border-red-200' :
+                'bg-blue-50 text-blue-800 border border-blue-200'
+              }`}>
+                {toast.type === 'success' && <CheckCircle className="w-5 h-5" />}
+                {toast.type === 'error' && <XCircle className="w-5 h-5" />}
+                {toast.type === 'info' && <AlertCircle className="w-5 h-5" />}
+                <span className="font-medium">{toast.message}</span>
+              </div>
+            </div>
+          )}
+
+          {/* Header */}
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
+                <Clock className="w-7 h-7 text-blue-600" />
+                Shift Master
+              </h1>
+              <p className="text-gray-600 mt-1">Manage work shifts, timings, and attendance rules for manufacturing operations</p>
+            </div>
+            <div className="flex items-center gap-3">
+              <button
+                onClick={handleExport}
+                className="inline-flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+              >
             <Download className="w-4 h-4" />
             <span>Export</span>
           </button>
           <button
-            onClick={() => console.log('Add Shift')}
+            onClick={handleAddShift}
             className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
           >
             <Plus className="w-4 h-4" />
@@ -414,6 +451,8 @@ export default function ShiftMasterPage() {
           <li>✓ Grace periods and half-day rules for attendance management</li>
           <li>✓ Overtime multipliers (2x-3x) as per labor law compliance</li>
         </ul>
+      </div>
+        </div>
       </div>
     </div>
   );

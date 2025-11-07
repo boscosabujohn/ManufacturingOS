@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
-import { Plus, Search, Download, Filter, X, Users, TrendingUp, Award, CreditCard, Package } from 'lucide-react';
+import React, { useState, useMemo, useEffect } from 'react';
+import { Plus, Search, Download, Filter, X, Users, TrendingUp, Award, CreditCard, Package, CheckCircle, XCircle, AlertCircle } from 'lucide-react';
 import { DataTable, Column } from '@/components/ui/DataTable';
 import { StatusBadge } from '@/components/ui/StatusBadge';
 import { mockCustomerCategories, CustomerCategory, getCustomerCategoryStats } from '@/data/common-masters/customer-categories';
@@ -11,6 +11,35 @@ export default function CustomerCategoryMasterPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterBusinessType, setFilterBusinessType] = useState<string>('all');
   const [showFilters, setShowFilters] = useState(false);
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' | 'info' } | null>(null);
+
+  // Auto-dismiss toast after 3 seconds
+  useEffect(() => {
+    if (toast) {
+      const timer = setTimeout(() => setToast(null), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [toast]);
+
+  const showToast = (message: string, type: 'success' | 'error' | 'info') => {
+    setToast({ message, type });
+  };
+
+  const handleEditCategory = (category: CustomerCategory) => {
+    showToast(`Editing category: ${category.categoryName}`, 'info');
+  };
+
+  const handleViewCustomers = (category: CustomerCategory) => {
+    showToast(`Viewing ${category.customersCount} customers in: ${category.categoryName}`, 'info');
+  };
+
+  const handleExport = () => {
+    showToast('Exporting customer categories data...', 'success');
+  };
+
+  const handleAddCategory = () => {
+    showToast('Opening add category form...', 'info');
+  };
 
   const filteredData = useMemo(() => {
     return categories.filter(category => {
@@ -170,7 +199,7 @@ export default function CustomerCategoryMasterPage() {
             className="text-blue-600 hover:text-blue-800 text-sm font-medium"
             onClick={(e) => {
               e.stopPropagation();
-              console.log('Edit category:', row);
+              handleEditCategory(row);
             }}
           >
             Edit
@@ -179,7 +208,7 @@ export default function CustomerCategoryMasterPage() {
             className="text-green-600 hover:text-green-800 text-sm font-medium"
             onClick={(e) => {
               e.stopPropagation();
-              console.log('View customers:', row);
+              handleViewCustomers(row);
             }}
           >
             Customers
@@ -190,6 +219,7 @@ export default function CustomerCategoryMasterPage() {
               e.stopPropagation();
               if (confirm(`Delete ${row.categoryName}? This affects ${row.customersCount} customers.`)) {
                 setCategories(prev => prev.filter(c => c.id !== row.id));
+                showToast(`Deleted category: ${row.categoryName}`, 'success');
               }
             }}
           >
@@ -213,25 +243,41 @@ export default function CustomerCategoryMasterPage() {
   const stats = useMemo(() => getCustomerCategoryStats(), [categories]);
 
   return (
-    <div className="p-6 space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
-            <Users className="w-7 h-7 text-blue-600" />
-            Customer Category Master
-          </h1>
-          <p className="text-gray-600 mt-1">Manage customer categories, pricing tiers, and credit terms</p>
-        </div>
+    <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 via-rose-50 to-pink-50">
+      <div className="flex-1 overflow-y-auto">
+        <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+          {/* Toast Notification */}
+          {toast && (
+            <div className={`fixed top-4 right-4 z-50 flex items-center gap-2 px-4 py-3 rounded-lg shadow-lg ${
+              toast.type === 'success' ? 'bg-green-50 text-green-800 border border-green-200' :
+              toast.type === 'error' ? 'bg-red-50 text-red-800 border border-red-200' :
+              'bg-blue-50 text-blue-800 border border-blue-200'
+            }`}>
+              {toast.type === 'success' && <CheckCircle className="w-5 h-5" />}
+              {toast.type === 'error' && <XCircle className="w-5 h-5" />}
+              {toast.type === 'info' && <AlertCircle className="w-5 h-5" />}
+              <span className="font-medium">{toast.message}</span>
+            </div>
+          )}
+
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
+                <Users className="w-7 h-7 text-blue-600" />
+                Customer Category Master
+              </h1>
+              <p className="text-gray-600 mt-1">Manage customer categories, pricing tiers, and credit terms</p>
+            </div>
         <div className="flex items-center gap-3">
           <button
-            onClick={() => console.log('Export categories')}
+            onClick={handleExport}
             className="inline-flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
           >
             <Download className="w-4 h-4" />
             <span>Export</span>
           </button>
           <button
-            onClick={() => console.log('Add category')}
+            onClick={handleAddCategory}
             className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
           >
             <Plus className="w-4 h-4" />
@@ -359,6 +405,8 @@ export default function CustomerCategoryMasterPage() {
           <li>✓ <strong>Special Pricing:</strong> Contract-based special pricing for VIP and corporate categories</li>
           <li>✓ <strong>Sales Analytics:</strong> Track sales, outstanding amounts, and average order values by category</li>
         </ul>
+      </div>
+        </div>
       </div>
     </div>
   );

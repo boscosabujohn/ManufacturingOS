@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
-import { Plus, Search, Download, Filter, X, MapPin } from 'lucide-react';
+import React, { useState, useMemo, useEffect } from 'react';
+import { Plus, Search, Download, Filter, X, MapPin, CheckCircle, XCircle, AlertCircle } from 'lucide-react';
 import { DataTable, Column } from '@/components/ui/DataTable';
 import { StatusBadge } from '@/components/ui/StatusBadge';
 import { mockCities, City } from '@/data/common-masters/cities';
@@ -14,6 +14,40 @@ export default function CityMasterPage() {
   const [filterTier, setFilterTier] = useState<string>('all');
   const [filterMetro, setFilterMetro] = useState<string>('all');
   const [showFilters, setShowFilters] = useState(false);
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' | 'info' } | null>(null);
+
+  // Toast notification effect
+  useEffect(() => {
+    if (toast) {
+      const timer = setTimeout(() => setToast(null), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [toast]);
+
+  // Show toast notification
+  const showToast = (message: string, type: 'success' | 'error' | 'info') => {
+    setToast({ message, type });
+  };
+
+  // Action handlers
+  const handleAddCity = () => {
+    showToast('Add city functionality will be implemented', 'info');
+  };
+
+  const handleEditCity = (city: City) => {
+    showToast(`Editing city: ${city.name}`, 'info');
+  };
+
+  const handleDeleteCity = (city: City) => {
+    if (confirm(`Are you sure you want to delete ${city.name}?`)) {
+      setCities(prev => prev.filter(c => c.id !== city.id));
+      showToast(`${city.name} deleted successfully`, 'success');
+    }
+  };
+
+  const handleExport = () => {
+    showToast('Exporting cities data...', 'success');
+  };
 
   // Get unique filter options
   const countries = useMemo(() => {
@@ -164,7 +198,7 @@ export default function CityMasterPage() {
             className="text-blue-600 hover:text-blue-800 text-sm font-medium"
             onClick={(e) => {
               e.stopPropagation();
-              console.log('Edit city:', row);
+              handleEditCity(row);
             }}
           >
             Edit
@@ -173,9 +207,7 @@ export default function CityMasterPage() {
             className="text-red-600 hover:text-red-800 text-sm font-medium"
             onClick={(e) => {
               e.stopPropagation();
-              if (confirm('Are you sure you want to delete this city?')) {
-                setCities(prev => prev.filter(c => c.id !== row.id));
-              }
+              handleDeleteCity(row);
             }}
           >
             Delete
@@ -202,30 +234,48 @@ export default function CityMasterPage() {
   ].filter(Boolean).length;
 
   return (
-    <div className="p-6 space-y-6">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-gray-900">City Master</h1>
-          <p className="text-gray-600 mt-1">Manage city and location master data</p>
-        </div>
-        <div className="flex items-center gap-3">
-          <button
-            onClick={() => console.log('Export')}
-            className="inline-flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-          >
-            <Download className="w-4 h-4" />
-            <span>Export</span>
-          </button>
-          <button
-            onClick={() => console.log('Add City')}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-          >
-            <Plus className="w-4 h-4" />
-            <span>Add City</span>
-          </button>
-        </div>
-      </div>
+    <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 via-indigo-50 to-blue-50">
+      <div className="flex-1 overflow-y-auto overflow-x-hidden">
+        <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+          {/* Toast Notification */}
+          {toast && (
+            <div className="fixed top-4 right-4 z-50 animate-in slide-in-from-top-5">
+              <div className={`rounded-lg px-4 py-3 shadow-lg flex items-center gap-3 ${
+                toast.type === 'success' ? 'bg-green-50 text-green-800 border border-green-200' :
+                toast.type === 'error' ? 'bg-red-50 text-red-800 border border-red-200' :
+                'bg-blue-50 text-blue-800 border border-blue-200'
+              }`}>
+                {toast.type === 'success' && <CheckCircle className="w-5 h-5" />}
+                {toast.type === 'error' && <XCircle className="w-5 h-5" />}
+                {toast.type === 'info' && <AlertCircle className="w-5 h-5" />}
+                <span className="font-medium">{toast.message}</span>
+              </div>
+            </div>
+          )}
+
+          {/* Header */}
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-2xl font-bold text-gray-900">City Master</h1>
+              <p className="text-gray-600 mt-1">Manage city and location master data</p>
+            </div>
+            <div className="flex items-center gap-3">
+              <button
+                onClick={handleExport}
+                className="inline-flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                <Download className="w-4 h-4" />
+                <span>Export</span>
+              </button>
+              <button
+                onClick={handleAddCity}
+                className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              >
+                <Plus className="w-4 h-4" />
+                <span>Add City</span>
+              </button>
+            </div>
+          </div>
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
@@ -387,6 +437,8 @@ export default function CityMasterPage() {
           emptyMessage="No cities found"
           emptyDescription="Try adjusting your search or filters to find what you're looking for."
         />
+      </div>
+        </div>
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
-import { Plus, Search, Download, Filter, X, Users, Shield, MapPin, Briefcase, Clock } from 'lucide-react';
+import React, { useState, useMemo, useEffect } from 'react';
+import { Plus, Search, Download, Filter, X, Users, Shield, MapPin, Briefcase, Clock, CheckCircle, XCircle, AlertCircle } from 'lucide-react';
 import { DataTable, Column } from '@/components/ui/DataTable';
 import { StatusBadge } from '@/components/ui/StatusBadge';
 import { mockUsers, User, getUserStats } from '@/data/common-masters/users';
@@ -14,6 +14,34 @@ export default function UserMasterPage() {
   const [filterStatus, setFilterStatus] = useState<string>('all');
   const [filterAccessLevel, setFilterAccessLevel] = useState<string>('all');
   const [showFilters, setShowFilters] = useState(false);
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' | 'info' } | null>(null);
+
+  useEffect(() => {
+    if (toast) {
+      const timer = setTimeout(() => setToast(null), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [toast]);
+
+  const showToast = (message: string, type: 'success' | 'error' | 'info') => {
+    setToast({ message, type });
+  };
+
+  const handleViewUser = (row: User) => {
+    showToast(`Viewing user profile: ${row.fullName}`, 'info');
+  };
+
+  const handleEditUser = (row: User) => {
+    showToast(`Opening editor for: ${row.fullName}`, 'info');
+  };
+
+  const handleExport = () => {
+    showToast('Exporting user data...', 'success');
+  };
+
+  const handleAddUser = () => {
+    showToast('Opening form to add new user', 'info');
+  };
 
   // Get unique departments and locations
   const departments = useMemo(() => {
@@ -202,7 +230,7 @@ export default function UserMasterPage() {
             className="text-blue-600 hover:text-blue-800 text-sm font-medium"
             onClick={(e) => {
               e.stopPropagation();
-              console.log('View user:', row);
+              handleViewUser(row);
             }}
           >
             View
@@ -211,7 +239,7 @@ export default function UserMasterPage() {
             className="text-green-600 hover:text-green-800 text-sm font-medium"
             onClick={(e) => {
               e.stopPropagation();
-              console.log('Edit user:', row);
+              handleEditUser(row);
             }}
           >
             Edit
@@ -254,107 +282,132 @@ export default function UserMasterPage() {
   const stats = useMemo(() => getUserStats(), [users]);
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 via-blue-50 to-slate-50">
+      {/* Toast Notification */}
+      {toast && (
+        <div className="fixed top-4 right-4 z-50 max-w-md animate-slide-in">
+          <div className={`rounded-lg shadow-lg p-4 ${
+            toast.type === 'success' ? 'bg-green-50 border border-green-200' :
+            toast.type === 'error' ? 'bg-red-50 border border-red-200' :
+            'bg-blue-50 border border-blue-200'
+          }`}>
+            <div className="flex items-start gap-3">
+              {toast.type === 'success' && <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />}
+              {toast.type === 'error' && <XCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />}
+              {toast.type === 'info' && <AlertCircle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />}
+              <p className={`text-sm font-medium ${
+                toast.type === 'success' ? 'text-green-800' :
+                toast.type === 'error' ? 'text-red-800' :
+                'text-blue-800'
+              }`}>{toast.message}</p>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
-            <Users className="w-7 h-7 text-blue-600" />
-            User Master
-          </h1>
-          <p className="text-gray-600 mt-1">Manage employee accounts, roles, and access permissions</p>
-        </div>
-        <div className="flex items-center gap-3">
-          <button
-            onClick={() => console.log('Export users')}
-            className="inline-flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-          >
-            <Download className="w-4 h-4" />
-            <span>Export</span>
-          </button>
-          <button
-            onClick={() => console.log('Add user')}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-          >
-            <Plus className="w-4 h-4" />
-            <span>Add User</span>
-          </button>
-        </div>
-      </div>
-
-      {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
-          <div className="text-sm text-gray-600 mb-1">Total Users</div>
-          <div className="text-2xl font-bold text-gray-900">{stats.total}</div>
-        </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
-          <div className="text-sm text-gray-600 mb-1">Active</div>
-          <div className="text-2xl font-bold text-green-600">{stats.active}</div>
-        </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
-          <div className="text-sm text-gray-600 mb-1">On Probation</div>
-          <div className="text-2xl font-bold text-yellow-600">{stats.onProbation}</div>
-        </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
-          <div className="text-sm text-gray-600 mb-1">Managers</div>
-          <div className="text-2xl font-bold text-blue-600">{stats.managers}</div>
-        </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
-          <div className="text-sm text-gray-600 mb-1 flex items-center gap-1">
-            <Shield className="w-3 h-3" /> MFA Enabled
+      <div className="flex-none p-6 pb-4 space-y-4">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
+              <Users className="w-7 h-7 text-blue-600" />
+              User Master
+            </h1>
+            <p className="text-gray-600 mt-1">Manage employee accounts, roles, and access permissions</p>
           </div>
-          <div className="text-2xl font-bold text-purple-600">{stats.mfaEnabled}</div>
-        </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
-          <div className="text-sm text-gray-600 mb-1">Contract</div>
-          <div className="text-2xl font-bold text-orange-600">{stats.contract}</div>
-        </div>
-      </div>
-
-      {/* Search and Filters */}
-      <div className="bg-white rounded-lg border border-gray-200 p-4">
-        <div className="flex items-center gap-4">
-          <div className="flex-1 relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-            <input
-              type="text"
-              placeholder="Search by name, employee code, email, or designation..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            />
-          </div>
-          <button
-            onClick={() => setShowFilters(!showFilters)}
-            className={`inline-flex items-center gap-2 px-4 py-2 border rounded-lg transition-colors ${
-              showFilters ? 'bg-blue-50 border-blue-300 text-blue-700' : 'border-gray-300 hover:bg-gray-50'
-            }`}
-          >
-            <Filter className="w-4 h-4" />
-            <span>Filters</span>
-            {activeFilterCount > 0 && (
-              <span className="inline-flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-blue-600 rounded-full">
-                {activeFilterCount}
-              </span>
-            )}
-          </button>
-          {activeFilterCount > 0 && (
+          <div className="flex items-center gap-3">
             <button
-              onClick={clearFilters}
-              className="inline-flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-gray-900 transition-colors"
+              onClick={handleExport}
+              className="inline-flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
             >
-              <X className="w-4 h-4" />
-              <span>Clear</span>
+              <Download className="w-4 h-4" />
+              <span>Export</span>
             </button>
-          )}
+            <button
+              onClick={handleAddUser}
+              className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              <Plus className="w-4 h-4" />
+              <span>Add User</span>
+            </button>
+          </div>
         </div>
 
-        {/* Filter Panel */}
-        {showFilters && (
-          <div className="mt-4 pt-4 border-t border-gray-200 grid grid-cols-1 md:grid-cols-4 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+        {/* Stats Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
+          <div className="bg-white rounded-lg border border-gray-200 p-4">
+            <div className="text-sm text-gray-600 mb-1">Total Users</div>
+            <div className="text-2xl font-bold text-gray-900">{stats.total}</div>
+          </div>
+          <div className="bg-white rounded-lg border border-gray-200 p-4">
+            <div className="text-sm text-gray-600 mb-1">Active</div>
+            <div className="text-2xl font-bold text-green-600">{stats.active}</div>
+          </div>
+          <div className="bg-white rounded-lg border border-gray-200 p-4">
+            <div className="text-sm text-gray-600 mb-1">On Probation</div>
+            <div className="text-2xl font-bold text-yellow-600">{stats.onProbation}</div>
+          </div>
+          <div className="bg-white rounded-lg border border-gray-200 p-4">
+            <div className="text-sm text-gray-600 mb-1">Managers</div>
+            <div className="text-2xl font-bold text-blue-600">{stats.managers}</div>
+          </div>
+          <div className="bg-white rounded-lg border border-gray-200 p-4">
+            <div className="text-sm text-gray-600 mb-1 flex items-center gap-1">
+              <Shield className="w-3 h-3" /> MFA Enabled
+            </div>
+            <div className="text-2xl font-bold text-purple-600">{stats.mfaEnabled}</div>
+          </div>
+          <div className="bg-white rounded-lg border border-gray-200 p-4">
+            <div className="text-sm text-gray-600 mb-1">Contract</div>
+            <div className="text-2xl font-bold text-orange-600">{stats.contract}</div>
+          </div>
+        </div>
+      </div>
+
+      <div className="flex-1 overflow-hidden px-6">
+        <div className="h-full flex flex-col bg-white rounded-lg border border-gray-200 overflow-hidden">
+          <div className="flex-none p-4 border-b border-gray-200">
+            <div className="flex items-center gap-4">
+              <div className="flex-1 relative">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                <input
+                  type="text"
+                  placeholder="Search by name, employee code, email, or designation..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+              </div>
+              <button
+                onClick={() => setShowFilters(!showFilters)}
+                className={`inline-flex items-center gap-2 px-4 py-2 border rounded-lg transition-colors ${
+                  showFilters ? 'bg-blue-50 border-blue-300 text-blue-700' : 'border-gray-300 hover:bg-gray-50'
+                }`}
+              >
+                <Filter className="w-4 h-4" />
+                <span>Filters</span>
+                {activeFilterCount > 0 && (
+                  <span className="inline-flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-blue-600 rounded-full">
+                    {activeFilterCount}
+                  </span>
+                )}
+              </button>
+              {activeFilterCount > 0 && (
+                <button
+                  onClick={clearFilters}
+                  className="inline-flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-gray-900 transition-colors"
+                >
+                  <X className="w-4 h-4" />
+                  <span>Clear</span>
+                </button>
+              )}
+            </div>
+
+            {/* Filter Panel */}
+            {showFilters && (
+              <div className="mt-4 pt-4 border-t border-gray-200 grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
                 Department
               </label>
               <select
@@ -415,40 +468,26 @@ export default function UserMasterPage() {
             </div>
           </div>
         )}
-      </div>
+        </div>
 
-      {/* Data Table */}
-      <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
-        <DataTable
-          data={filteredData}
-          columns={columns}
-          pagination={{
-            enabled: true,
-            pageSize: 10
-          }}
-          sorting={{
-            enabled: true,
-            defaultSort: { column: 'employee', direction: 'asc' }
-          }}
-          emptyMessage="No users found"
-          emptyDescription="Try adjusting your search or filters to find what you're looking for."
-        />
+        {/* Data Table */}
+        <div className="flex-1 overflow-auto">
+          <DataTable
+            data={filteredData}
+            columns={columns}
+            pagination={{
+              enabled: true,
+              pageSize: 10
+            }}
+            sorting={{
+              enabled: true,
+              defaultSort: { column: 'employee', direction: 'asc' }
+            }}
+            emptyMessage="No users found"
+            emptyDescription="Try adjusting your search or filters to find what you're looking for."
+          />
+        </div>
       </div>
-
-      {/* Information Panel */}
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-        <h3 className="font-semibold text-blue-900 mb-2 flex items-center gap-2">
-          <Shield className="w-5 h-5" />
-          User Account Security & Access Control
-        </h3>
-        <ul className="text-sm text-blue-800 space-y-1 ml-7">
-          <li>✓ Multi-Factor Authentication (MFA) strongly recommended for all managers and admin users</li>
-          <li>✓ Role-based access control (RBAC) ensures users only see data relevant to their permissions</li>
-          <li>✓ Probation period employees have restricted access until confirmation</li>
-          <li>✓ Password must be changed every 90 days as per IT security policy</li>
-          <li>✓ Account automatically locks after 5 failed login attempts</li>
-          <li>✓ All user activities are logged for audit and compliance purposes</li>
-        </ul>
       </div>
     </div>
   );

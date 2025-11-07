@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
-import { Plus, Search, Download, Filter, X, TrendingUp, Users } from 'lucide-react';
+import React, { useState, useMemo, useEffect } from 'react';
+import { Plus, Search, Download, Filter, X, TrendingUp, Users, CheckCircle, XCircle, AlertCircle } from 'lucide-react';
 import { DataTable, Column } from '@/components/ui/DataTable';
 import { StatusBadge } from '@/components/ui/StatusBadge';
 import { mockDesignations, Designation } from '@/data/common-masters/designations';
@@ -13,6 +13,28 @@ export default function DesignationMasterPage() {
   const [filterLevel, setFilterLevel] = useState<string>('all');
   const [filterGrade, setFilterGrade] = useState<string>('all');
   const [showFilters, setShowFilters] = useState(false);
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' | 'info' } | null>(null);
+
+  useEffect(() => {
+    if (toast) {
+      const timer = setTimeout(() => setToast(null), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [toast]);
+
+  const showToast = (message: string, type: 'success' | 'error' | 'info') => {
+    setToast({ message, type });
+  };
+
+  const handleAddDesignation = () => showToast('Add designation functionality will be implemented', 'info');
+  const handleEditDesignation = (designation: Designation) => showToast(`Editing designation: ${designation.name}`, 'info');
+  const handleDeleteDesignation = (designation: Designation) => {
+    if (confirm(`Are you sure you want to delete ${designation.name}?`)) {
+      setDesignations(prev => prev.filter(d => d.id !== designation.id));
+      showToast(`${designation.name} deleted successfully`, 'success');
+    }
+  };
+  const handleExport = () => showToast('Exporting designations data...', 'success');
 
   // Get unique filter options
   const departments = useMemo(() => {
@@ -162,7 +184,7 @@ export default function DesignationMasterPage() {
             className="text-blue-600 hover:text-blue-800 text-sm font-medium"
             onClick={(e) => {
               e.stopPropagation();
-              console.log('Edit designation:', row);
+              handleEditDesignation(row);
             }}
           >
             Edit
@@ -171,9 +193,7 @@ export default function DesignationMasterPage() {
             className="text-red-600 hover:text-red-800 text-sm font-medium"
             onClick={(e) => {
               e.stopPropagation();
-              if (confirm('Are you sure you want to delete this designation?')) {
-                setDesignations(prev => prev.filter(d => d.id !== row.id));
-              }
+              handleDeleteDesignation(row);
             }}
           >
             Delete
@@ -200,24 +220,41 @@ export default function DesignationMasterPage() {
   const totalHeadcount = designations.reduce((sum, d) => sum + (d.headCount || 0), 0);
 
   return (
-    <div className="p-6 space-y-6">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-gray-900">Designation Master</h1>
-          <p className="text-gray-600 mt-1">Manage organizational designations and hierarchy</p>
-        </div>
-        <div className="flex items-center gap-3">
-          <button
-            onClick={() => console.log('Export')}
-            className="inline-flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-          >
-            <Download className="w-4 h-4" />
-            <span>Export</span>
-          </button>
-          <button
-            onClick={() => console.log('Add Designation')}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+    <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 via-orange-50 to-amber-50">
+      <div className="flex-1 overflow-y-auto overflow-x-hidden">
+        <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+          {toast && (
+            <div className="fixed top-4 right-4 z-50 animate-in slide-in-from-top-5">
+              <div className={`rounded-lg px-4 py-3 shadow-lg flex items-center gap-3 ${
+                toast.type === 'success' ? 'bg-green-50 text-green-800 border border-green-200' :
+                toast.type === 'error' ? 'bg-red-50 text-red-800 border border-red-200' :
+                'bg-blue-50 text-blue-800 border border-blue-200'
+              }`}>
+                {toast.type === 'success' && <CheckCircle className="w-5 h-5" />}
+                {toast.type === 'error' && <XCircle className="w-5 h-5" />}
+                {toast.type === 'info' && <AlertCircle className="w-5 h-5" />}
+                <span className="font-medium">{toast.message}</span>
+              </div>
+            </div>
+          )}
+
+          {/* Header */}
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-2xl font-bold text-gray-900">Designation Master</h1>
+              <p className="text-gray-600 mt-1">Manage organizational designations and hierarchy</p>
+            </div>
+            <div className="flex items-center gap-3">
+              <button
+                onClick={handleExport}
+                className="inline-flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                <Download className="w-4 h-4" />
+                <span>Export</span>
+              </button>
+              <button
+                onClick={handleAddDesignation}
+                className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
           >
             <Plus className="w-4 h-4" />
             <span>Add Designation</span>
@@ -355,6 +392,8 @@ export default function DesignationMasterPage() {
           emptyMessage="No designations found"
           emptyDescription="Try adjusting your search or filters to find what you're looking for."
         />
+      </div>
+        </div>
       </div>
     </div>
   );

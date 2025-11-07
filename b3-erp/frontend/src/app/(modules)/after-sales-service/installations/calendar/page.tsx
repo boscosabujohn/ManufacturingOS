@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import {
   ChevronLeft,
@@ -9,7 +9,14 @@ import {
   Plus,
   Filter,
   Users,
-  Eye
+  Eye,
+  X,
+  Clock,
+  Wrench,
+  CheckCircle,
+  AlertTriangle,
+  BarChart3,
+  MapPin
 } from 'lucide-react';
 
 interface Installation {
@@ -28,6 +35,11 @@ export default function InstallationCalendarPage() {
   const [currentDate, setCurrentDate] = useState(new Date(2025, 1, 1)); // February 2025
   const [viewMode, setViewMode] = useState<'month' | 'week'>('month');
   const [selectedEngineer, setSelectedEngineer] = useState('All');
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'info' | 'error' } | null>(null);
+  const [showDayModal, setShowDayModal] = useState(false);
+  const [selectedDay, setSelectedDay] = useState<number | null>(null);
+  const [showInstallationModal, setShowInstallationModal] = useState(false);
+  const [selectedInstallation, setSelectedInstallation] = useState<Installation | null>(null);
 
   // Mock installations data
   const installations: Record<string, Installation[]> = {

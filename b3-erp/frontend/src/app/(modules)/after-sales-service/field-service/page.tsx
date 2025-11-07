@@ -1,8 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Plus, Search, Eye, Edit, MapPin, Navigation, CheckCircle, Clock, XCircle, Wrench, User, Phone, TrendingUp, Download, Package } from 'lucide-react';
+import { Plus, Search, Eye, Edit, MapPin, Navigation, CheckCircle, Clock, XCircle, Wrench, User, Phone, TrendingUp, Download, Package, BarChart3, X, AlertTriangle } from 'lucide-react';
 
 interface FieldServiceJob {
   id: string;
@@ -304,6 +304,54 @@ export default function FieldServicePage() {
   const [priorityFilter, setPriorityFilter] = useState<string>('all');
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'info' | 'error' } | null>(null);
+  const [showAnalyticsModal, setShowAnalyticsModal] = useState(false);
+  const [selectedJob, setSelectedJob] = useState<FieldServiceJob | null>(null);
+
+  // Toast auto-dismiss
+  useEffect(() => {
+    if (toast) {
+      const timer = setTimeout(() => setToast(null), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [toast]);
+
+  // Handler functions
+  const handleStatsCardClick = (type: string) => {
+    switch (type) {
+      case 'total':
+        setStatusFilter('all');
+        setPriorityFilter('all');
+        setToast({ message: `Showing all ${stats.totalJobs} jobs`, type: 'info' });
+        break;
+      case 'scheduled':
+        setStatusFilter('scheduled');
+        setToast({ message: `${stats.scheduledJobs} jobs scheduled`, type: 'info' });
+        break;
+      case 'dispatched':
+        setStatusFilter('dispatched');
+        setToast({ message: `${stats.dispatchedJobs} jobs dispatched`, type: 'info' });
+        break;
+      case 'in_progress':
+        setStatusFilter('in_progress');
+        setToast({ message: `${stats.inProgressJobs} jobs in progress`, type: 'info' });
+        break;
+      case 'completed':
+        setStatusFilter('completed');
+        setToast({ message: `${stats.completedJobs} jobs completed`, type: 'success' });
+        break;
+      case 'avgtime':
+        setToast({ message: `Average job duration: ${stats.avgJobDuration.toFixed(1)} hours`, type: 'info' });
+        break;
+      case 'parts':
+        setToast({ message: `Total parts value: ${formatCurrency(stats.totalPartsValue)}`, type: 'info' });
+        break;
+    }
+  };
+
+  const handleJobRowClick = (job: FieldServiceJob) => {
+    setSelectedJob(job);
+  };
 
   // Filter jobs
   const filteredJobs = mockFieldServiceJobs.filter((job) => {
@@ -350,83 +398,134 @@ export default function FieldServicePage() {
 
   return (
     <div className="p-6 max-w-[1600px] mx-auto">
+      {/* Toast Notification */}
+      {toast && (
+        <div className={`fixed top-4 right-4 z-50 flex items-center gap-2 px-4 py-3 rounded-lg shadow-lg ${
+          toast.type === 'success' ? 'bg-green-50 text-green-800 border border-green-200' :
+          toast.type === 'error' ? 'bg-red-50 text-red-800 border border-red-200' :
+          'bg-blue-50 text-blue-800 border border-blue-200'
+        }`}>
+          {toast.type === 'success' && <CheckCircle className="w-5 h-5" />}
+          {toast.type === 'info' && <AlertTriangle className="w-5 h-5" />}
+          {toast.type === 'error' && <X className="w-5 h-5" />}
+          <span className="font-medium">{toast.message}</span>
+        </div>
+      )}
+
       {/* Header */}
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Field Service Jobs</h1>
-        <p className="text-gray-600">Manage engineer dispatch and on-site service operations</p>
+      <div className="mb-6 flex items-center justify-between">
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Field Service Jobs</h1>
+          <p className="text-gray-600">Manage engineer dispatch and on-site service operations</p>
+        </div>
+        <button
+          onClick={() => setShowAnalyticsModal(true)}
+          className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2 shadow-lg"
+        >
+          <BarChart3 className="w-5 h-5" />
+          View Analytics
+        </button>
       </div>
 
       {/* Statistics Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-7 gap-4 mb-6">
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <button
+          onClick={() => handleStatsCardClick('total')}
+          className="bg-white rounded-lg border-2 border-gray-200 p-4 hover:border-blue-500 hover:shadow-lg transition-all text-left"
+        >
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Jobs</p>
               <p className="text-2xl font-bold text-gray-900">{stats.totalJobs}</p>
+              <p className="text-xs text-blue-600 mt-1">View all</p>
             </div>
             <Wrench className="h-8 w-8 text-blue-600" />
           </div>
-        </div>
+        </button>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <button
+          onClick={() => handleStatsCardClick('scheduled')}
+          className="bg-white rounded-lg border-2 border-gray-200 p-4 hover:border-blue-500 hover:shadow-lg transition-all text-left"
+        >
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Scheduled</p>
               <p className="text-2xl font-bold text-blue-600">{stats.scheduledJobs}</p>
+              <p className="text-xs text-blue-600 mt-1">Click to filter</p>
             </div>
             <Clock className="h-8 w-8 text-blue-600" />
           </div>
-        </div>
+        </button>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <button
+          onClick={() => handleStatsCardClick('dispatched')}
+          className="bg-white rounded-lg border-2 border-gray-200 p-4 hover:border-cyan-500 hover:shadow-lg transition-all text-left"
+        >
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Dispatched</p>
               <p className="text-2xl font-bold text-cyan-600">{stats.dispatchedJobs}</p>
+              <p className="text-xs text-cyan-600 mt-1">Click to filter</p>
             </div>
             <Navigation className="h-8 w-8 text-cyan-600" />
           </div>
-        </div>
+        </button>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <button
+          onClick={() => handleStatsCardClick('in_progress')}
+          className="bg-white rounded-lg border-2 border-gray-200 p-4 hover:border-purple-500 hover:shadow-lg transition-all text-left"
+        >
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">In Progress</p>
               <p className="text-2xl font-bold text-purple-600">{stats.inProgressJobs}</p>
+              <p className="text-xs text-purple-600 mt-1">Click to filter</p>
             </div>
             <Wrench className="h-8 w-8 text-purple-600" />
           </div>
-        </div>
+        </button>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <button
+          onClick={() => handleStatsCardClick('completed')}
+          className="bg-white rounded-lg border-2 border-gray-200 p-4 hover:border-green-500 hover:shadow-lg transition-all text-left"
+        >
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Completed</p>
               <p className="text-2xl font-bold text-green-600">{stats.completedJobs}</p>
+              <p className="text-xs text-green-600 mt-1">Click to filter</p>
             </div>
             <CheckCircle className="h-8 w-8 text-green-600" />
           </div>
-        </div>
+        </button>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <button
+          onClick={() => handleStatsCardClick('avgtime')}
+          className="bg-white rounded-lg border-2 border-gray-200 p-4 hover:border-orange-500 hover:shadow-lg transition-all text-left"
+        >
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Avg Time</p>
               <p className="text-2xl font-bold text-orange-600">{stats.avgJobDuration.toFixed(1)}h</p>
+              <p className="text-xs text-orange-600 mt-1">Duration info</p>
             </div>
             <TrendingUp className="h-8 w-8 text-orange-600" />
           </div>
-        </div>
+        </button>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
+        <button
+          onClick={() => handleStatsCardClick('parts')}
+          className="bg-white rounded-lg border-2 border-gray-200 p-4 hover:border-purple-500 hover:shadow-lg transition-all text-left"
+        >
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Parts Value</p>
               <p className="text-xl font-bold text-purple-600">{formatCurrency(stats.totalPartsValue)}</p>
+              <p className="text-xs text-purple-600 mt-1">Total value</p>
             </div>
             <Package className="h-8 w-8 text-purple-600" />
           </div>
-        </div>
+        </button>
       </div>
 
       {/* Filters and Actions */}
@@ -531,7 +630,11 @@ export default function FieldServicePage() {
               {paginatedJobs.map((job) => {
                 const StatusIcon = statusIcons[job.status];
                 return (
-                  <tr key={job.id} className="hover:bg-gray-50 transition-colors">
+                  <tr
+                    key={job.id}
+                    onClick={() => handleJobRowClick(job)}
+                    className="hover:bg-blue-50 transition-colors cursor-pointer"
+                  >
                     <td className="px-6 py-4">
                       <div className="flex flex-col">
                         <span className="text-sm font-medium text-gray-900">{job.jobNumber}</span>
@@ -625,16 +728,22 @@ export default function FieldServicePage() {
                     <td className="px-6 py-4 text-right">
                       <div className="flex items-center justify-end gap-2">
                         <button
-                          onClick={() => router.push(`/after-sales-service/field-service/view/${job.id}`)}
-                          className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-                         
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            router.push(`/after-sales-service/field-service/view/${job.id}`);
+                          }}
+                          className="p-2 text-blue-600 hover:bg-blue-100 rounded-lg transition-colors"
+                          title="View Details"
                         >
                           <Eye className="h-4 w-4" />
                         </button>
                         <button
-                          onClick={() => router.push(`/after-sales-service/field-service/edit/${job.id}`)}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            router.push(`/after-sales-service/field-service/edit/${job.id}`);
+                          }}
                           className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
-                         
+                          title="Edit Job"
                         >
                           <Edit className="h-4 w-4" />
                         </button>
@@ -672,6 +781,447 @@ export default function FieldServicePage() {
           </div>
         )}
       </div>
+
+      {/* Job Details Modal */}
+      {selectedJob && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50" onClick={() => setSelectedJob(null)}>
+          <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl" onClick={(e) => e.stopPropagation()}>
+            <div className={`sticky top-0 bg-gradient-to-r ${
+              selectedJob.status === 'completed' ? 'from-green-600 to-emerald-600' :
+              selectedJob.status === 'in_progress' ? 'from-purple-600 to-pink-600' :
+              selectedJob.status === 'dispatched' ? 'from-cyan-600 to-blue-600' :
+              'from-blue-600 to-indigo-600'
+            } px-6 py-4 flex items-center justify-between`}>
+              <div>
+                <h2 className="text-2xl font-bold text-white">{selectedJob.jobNumber}</h2>
+                <p className="text-sm text-white/90">{selectedJob.customerName}</p>
+              </div>
+              <button
+                onClick={() => setSelectedJob(null)}
+                className="text-white hover:text-gray-200 transition-colors"
+              >
+                <X className="h-6 w-6" />
+              </button>
+            </div>
+
+            <div className="p-6 space-y-6">
+              {/* Status and Priority */}
+              <div className="flex items-center gap-4">
+                <span className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium ${statusColors[selectedJob.status]}`}>
+                  {(() => {
+                    const StatusIcon = statusIcons[selectedJob.status];
+                    return <StatusIcon className="h-4 w-4" />;
+                  })()}
+                  {selectedJob.status.replace('_', ' ').toUpperCase()}
+                </span>
+                <span className={`inline-flex items-center px-4 py-2 rounded-lg text-sm font-medium border ${priorityColors[selectedJob.priority]}`}>
+                  {selectedJob.priority}
+                </span>
+              </div>
+
+              {/* Equipment and Issue */}
+              <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">Equipment & Issue</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-sm text-gray-600">Equipment Model</p>
+                    <p className="text-base font-medium text-gray-900">{selectedJob.equipmentModel}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-600">Issue Type</p>
+                    <p className="text-base font-medium text-gray-900">{selectedJob.issueType}</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Schedule Information */}
+              <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+                <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                  <Clock className="h-5 w-5 text-blue-600" />
+                  Schedule Information
+                </h3>
+                <div className="grid grid-cols-3 gap-4">
+                  <div>
+                    <p className="text-sm text-gray-600">Scheduled Date</p>
+                    <p className="text-base font-medium text-gray-900">
+                      {new Date(selectedJob.scheduledDate).toLocaleDateString('en-IN', {
+                        day: '2-digit',
+                        month: 'long',
+                        year: 'numeric'
+                      })}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-600">Time Slot</p>
+                    <p className="text-base font-medium text-gray-900">{selectedJob.scheduledTimeSlot}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-600">Duration</p>
+                    <p className="text-base font-medium text-gray-900">
+                      {selectedJob.actualDuration ? `${selectedJob.actualDuration}h (Actual)` : `${selectedJob.estimatedDuration}h (Est.)`}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Engineer Information */}
+              {selectedJob.engineerName && (
+                <div className="bg-purple-50 rounded-lg p-4 border border-purple-200">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                    <User className="h-5 w-5 text-purple-600" />
+                    Engineer Details
+                  </h3>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <p className="text-sm text-gray-600">Assigned Engineer</p>
+                      <p className="text-base font-medium text-gray-900">{selectedJob.engineerName}</p>
+                      <p className="text-sm text-gray-600">ID: {selectedJob.engineerId}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-gray-600">Check-in Status</p>
+                      {selectedJob.checkInTime && (
+                        <div className="space-y-1">
+                          <p className="text-sm text-green-600 flex items-center gap-1">
+                            <CheckCircle className="h-3 w-3" />
+                            In: {new Date(selectedJob.checkInTime).toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' })}
+                          </p>
+                          {selectedJob.checkOutTime && (
+                            <p className="text-sm text-gray-600 flex items-center gap-1">
+                              <CheckCircle className="h-3 w-3" />
+                              Out: {new Date(selectedJob.checkOutTime).toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' })}
+                            </p>
+                          )}
+                        </div>
+                      )}
+                      {!selectedJob.checkInTime && (
+                        <p className="text-sm text-gray-500">Not checked in yet</p>
+                      )}
+                    </div>
+                  </div>
+                  {selectedJob.travelDistance && (
+                    <div className="mt-3 pt-3 border-t border-purple-200">
+                      <p className="text-sm text-gray-600">Travel Distance</p>
+                      <p className="text-base font-medium text-purple-600">{selectedJob.travelDistance} km</p>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Site Information */}
+              <div className="bg-emerald-50 rounded-lg p-4 border border-emerald-200">
+                <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                  <MapPin className="h-5 w-5 text-emerald-600" />
+                  Site Information
+                </h3>
+                <div className="space-y-3">
+                  <div>
+                    <p className="text-sm text-gray-600">Site Address</p>
+                    <p className="text-base font-medium text-gray-900">{selectedJob.siteAddress}</p>
+                  </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <p className="text-sm text-gray-600">Contact Person</p>
+                      <p className="text-base font-medium text-gray-900">{selectedJob.siteContactPerson}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-gray-600">Contact Phone</p>
+                      <p className="text-base font-medium text-gray-900 flex items-center gap-2">
+                        <Phone className="h-4 w-4 text-emerald-600" />
+                        {selectedJob.siteContactPhone}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Parts and Service Report */}
+              <div className="bg-orange-50 rounded-lg p-4 border border-orange-200">
+                <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                  <Package className="h-5 w-5 text-orange-600" />
+                  Parts & Service Report
+                </h3>
+                <div className="grid grid-cols-3 gap-4 mb-3">
+                  <div>
+                    <p className="text-sm text-gray-600">Parts Consumed</p>
+                    <p className="text-2xl font-bold text-orange-600">{selectedJob.partsConsumed}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-600">Parts Value</p>
+                    <p className="text-2xl font-bold text-orange-600">{formatCurrency(selectedJob.totalPartsValue)}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm text-gray-600">Service Report</p>
+                    {selectedJob.serviceReportSubmitted ? (
+                      <p className="text-sm text-green-600 flex items-center gap-1 mt-2">
+                        <CheckCircle className="h-4 w-4" />
+                        Submitted
+                      </p>
+                    ) : (
+                      <p className="text-sm text-orange-600 flex items-center gap-1 mt-2">
+                        <Clock className="h-4 w-4" />
+                        Pending
+                      </p>
+                    )}
+                  </div>
+                </div>
+                {selectedJob.customerSignature && (
+                  <div className="pt-3 border-t border-orange-200">
+                    <p className="text-sm text-green-600 flex items-center gap-2">
+                      <CheckCircle className="h-4 w-4" />
+                      Customer signature obtained
+                    </p>
+                  </div>
+                )}
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex justify-end gap-3 pt-4 border-t border-gray-200">
+                <button
+                  onClick={() => setSelectedJob(null)}
+                  className="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                >
+                  Close
+                </button>
+                <button
+                  onClick={() => {
+                    setSelectedJob(null);
+                    router.push(`/after-sales-service/field-service/edit/${selectedJob.id}`);
+                  }}
+                  className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2"
+                >
+                  <Edit className="h-4 w-4" />
+                  Edit Job
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Analytics Modal */}
+      {showAnalyticsModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-lg max-w-6xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
+            <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-4 flex items-center justify-between">
+              <div>
+                <h2 className="text-2xl font-bold text-white flex items-center gap-2">
+                  <BarChart3 className="h-7 w-7" />
+                  Field Service Analytics
+                </h2>
+                <p className="text-sm text-blue-100 mt-1">Comprehensive insights into field service operations</p>
+              </div>
+              <button
+                onClick={() => setShowAnalyticsModal(false)}
+                className="text-white hover:text-gray-200 transition-colors"
+              >
+                <X className="h-6 w-6" />
+              </button>
+            </div>
+
+            <div className="p-6 space-y-6">
+              {/* Overview Stats */}
+              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-6 border border-blue-200">
+                <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                  <TrendingUp className="h-5 w-5 text-blue-600" />
+                  Overview
+                </h3>
+                <div className="grid grid-cols-4 gap-4">
+                  <div className="bg-white rounded-lg p-4 border border-blue-200">
+                    <div className="text-sm text-gray-600 mb-1">Total Jobs</div>
+                    <div className="text-3xl font-bold text-gray-900">{stats.totalJobs}</div>
+                  </div>
+                  <div className="bg-white rounded-lg p-4 border border-green-200">
+                    <div className="text-sm text-gray-600 mb-1">Completion Rate</div>
+                    <div className="text-3xl font-bold text-green-600">
+                      {((stats.completedJobs / stats.totalJobs) * 100).toFixed(0)}%
+                    </div>
+                  </div>
+                  <div className="bg-white rounded-lg p-4 border border-orange-200">
+                    <div className="text-sm text-gray-600 mb-1">Avg Duration</div>
+                    <div className="text-3xl font-bold text-orange-600">{stats.avgJobDuration.toFixed(1)}h</div>
+                  </div>
+                  <div className="bg-white rounded-lg p-4 border border-purple-200">
+                    <div className="text-sm text-gray-600 mb-1">Parts Value</div>
+                    <div className="text-2xl font-bold text-purple-600">{formatCurrency(stats.totalPartsValue)}</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Status Distribution */}
+              <div className="bg-white rounded-lg border border-gray-200 p-6">
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">Status Distribution</h3>
+                <div className="grid grid-cols-4 gap-4">
+                  {[
+                    { label: 'Scheduled', count: stats.scheduledJobs, color: 'blue', icon: Clock },
+                    { label: 'Dispatched', count: stats.dispatchedJobs, color: 'cyan', icon: Navigation },
+                    { label: 'In Progress', count: stats.inProgressJobs, color: 'purple', icon: Wrench },
+                    { label: 'Completed', count: stats.completedJobs, color: 'green', icon: CheckCircle },
+                  ].map((item) => {
+                    const Icon = item.icon;
+                    return (
+                      <div key={item.label} className="bg-gray-50 rounded-lg p-4 text-center">
+                        <Icon className={`h-8 w-8 text-${item.color}-600 mx-auto mb-2`} />
+                        <div className={`text-3xl font-bold text-${item.color}-600 mb-1`}>{item.count}</div>
+                        <div className="text-sm text-gray-600">{item.label}</div>
+                        <div className="w-full bg-gray-200 rounded-full h-2 mt-3">
+                          <div
+                            className={`bg-${item.color}-600 h-2 rounded-full transition-all`}
+                            style={{ width: `${(item.count / stats.totalJobs) * 100}%` }}
+                          ></div>
+                        </div>
+                        <div className="text-xs text-gray-500 mt-1">
+                          {((item.count / stats.totalJobs) * 100).toFixed(0)}%
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Priority Analysis */}
+              <div className="grid grid-cols-2 gap-6">
+                <div className="bg-white rounded-lg border border-gray-200 p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Priority Breakdown</h3>
+                  <div className="space-y-3">
+                    {['P1 - Critical', 'P2 - High', 'P3 - Medium', 'P4 - Low'].map((priority) => {
+                      const count = mockFieldServiceJobs.filter(j => j.priority === priority).length;
+                      const colorMap: Record<string, string> = {
+                        'P1 - Critical': 'red',
+                        'P2 - High': 'orange',
+                        'P3 - Medium': 'yellow',
+                        'P4 - Low': 'blue'
+                      };
+                      const color = colorMap[priority];
+                      return (
+                        <div key={priority}>
+                          <div className="flex items-center justify-between mb-2">
+                            <span className="text-sm font-medium text-gray-700">{priority}</span>
+                            <span className={`text-sm font-bold text-${color}-600`}>{count} jobs</span>
+                          </div>
+                          <div className="w-full bg-gray-200 rounded-full h-3">
+                            <div
+                              className={`bg-${color}-600 h-3 rounded-full transition-all`}
+                              style={{ width: `${(count / stats.totalJobs) * 100}%` }}
+                            ></div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                <div className="bg-white rounded-lg border border-gray-200 p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Engineer Performance</h3>
+                  <div className="space-y-3">
+                    {Array.from(new Set(mockFieldServiceJobs.filter(j => j.engineerName).map(j => j.engineerName))).map((engineer) => {
+                      const engineerJobs = mockFieldServiceJobs.filter(j => j.engineerName === engineer);
+                      const completed = engineerJobs.filter(j => j.status === 'completed').length;
+                      return (
+                        <div key={engineer} className="bg-gray-50 rounded-lg p-3">
+                          <div className="flex items-center justify-between mb-2">
+                            <div className="flex items-center gap-2">
+                              <User className="h-4 w-4 text-blue-600" />
+                              <span className="text-sm font-medium text-gray-900">{engineer}</span>
+                            </div>
+                            <span className="text-sm font-bold text-green-600">{completed}/{engineerJobs.length}</span>
+                          </div>
+                          <div className="w-full bg-gray-200 rounded-full h-2">
+                            <div
+                              className="bg-green-600 h-2 rounded-full transition-all"
+                              style={{ width: `${(completed / engineerJobs.length) * 100}%` }}
+                            ></div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+
+              {/* Parts Consumption Analysis */}
+              <div className="bg-white rounded-lg border border-gray-200 p-6">
+                <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                  <Package className="h-5 w-5 text-purple-600" />
+                  Parts Consumption Analysis
+                </h3>
+                <div className="grid grid-cols-4 gap-4 mb-4">
+                  <div className="bg-purple-50 rounded-lg p-4 border border-purple-200 text-center">
+                    <div className="text-sm text-gray-600 mb-1">Total Parts Used</div>
+                    <div className="text-3xl font-bold text-purple-600">
+                      {mockFieldServiceJobs.reduce((sum, j) => sum + j.partsConsumed, 0)}
+                    </div>
+                  </div>
+                  <div className="bg-purple-50 rounded-lg p-4 border border-purple-200 text-center">
+                    <div className="text-sm text-gray-600 mb-1">Jobs with Parts</div>
+                    <div className="text-3xl font-bold text-purple-600">
+                      {mockFieldServiceJobs.filter(j => j.partsConsumed > 0).length}
+                    </div>
+                  </div>
+                  <div className="bg-purple-50 rounded-lg p-4 border border-purple-200 text-center">
+                    <div className="text-sm text-gray-600 mb-1">Total Value</div>
+                    <div className="text-2xl font-bold text-purple-600">{formatCurrency(stats.totalPartsValue)}</div>
+                  </div>
+                  <div className="bg-purple-50 rounded-lg p-4 border border-purple-200 text-center">
+                    <div className="text-sm text-gray-600 mb-1">Avg Value/Job</div>
+                    <div className="text-2xl font-bold text-purple-600">
+                      {formatCurrency(stats.totalPartsValue / mockFieldServiceJobs.filter(j => j.partsConsumed > 0).length || 0)}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Service Report Status */}
+              <div className="bg-white rounded-lg border border-gray-200 p-6">
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">Service Report Status</h3>
+                <div className="grid grid-cols-3 gap-4">
+                  <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+                    <div className="text-sm text-gray-600 mb-2">Reports Submitted</div>
+                    <div className="text-3xl font-bold text-green-600">
+                      {mockFieldServiceJobs.filter(j => j.serviceReportSubmitted).length}
+                    </div>
+                    <div className="text-xs text-green-600 mt-1">
+                      {((mockFieldServiceJobs.filter(j => j.serviceReportSubmitted).length / stats.completedJobs) * 100).toFixed(0)}% of completed
+                    </div>
+                  </div>
+                  <div className="bg-orange-50 rounded-lg p-4 border border-orange-200">
+                    <div className="text-sm text-gray-600 mb-2">Reports Pending</div>
+                    <div className="text-3xl font-bold text-orange-600">
+                      {mockFieldServiceJobs.filter(j => j.status === 'completed' && !j.serviceReportSubmitted).length}
+                    </div>
+                    <div className="text-xs text-orange-600 mt-1">Awaiting submission</div>
+                  </div>
+                  <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+                    <div className="text-sm text-gray-600 mb-2">Customer Signatures</div>
+                    <div className="text-3xl font-bold text-blue-600">
+                      {mockFieldServiceJobs.filter(j => j.customerSignature).length}
+                    </div>
+                    <div className="text-xs text-blue-600 mt-1">
+                      {((mockFieldServiceJobs.filter(j => j.customerSignature).length / stats.completedJobs) * 100).toFixed(0)}% of completed
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex justify-end gap-3 pt-4 border-t border-gray-200">
+                <button
+                  onClick={() => setShowAnalyticsModal(false)}
+                  className="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                >
+                  Close
+                </button>
+                <button
+                  onClick={() => setToast({ message: 'Export feature coming soon', type: 'info' })}
+                  className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2"
+                >
+                  <Download className="h-4 w-4" />
+                  Export Report
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

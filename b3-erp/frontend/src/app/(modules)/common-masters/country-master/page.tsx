@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
-import { Plus, Search, Download, Upload, Filter, X } from 'lucide-react';
+import React, { useState, useMemo, useEffect } from 'react';
+import { Plus, Search, Download, Upload, Filter, X, CheckCircle, XCircle, AlertCircle } from 'lucide-react';
 import { DataTable, Column } from '@/components/ui/DataTable';
 import { StatusBadge } from '@/components/ui/StatusBadge';
 import { mockCountries, Country } from '@/data/common-masters/countries';
@@ -13,6 +13,20 @@ export default function CountryMasterPage() {
   const [filterStatus, setFilterStatus] = useState<string>('all');
   const [showAddModal, setShowAddModal] = useState(false);
   const [showFilters, setShowFilters] = useState(false);
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' | 'info' } | null>(null);
+
+  // Toast notification effect
+  useEffect(() => {
+    if (toast) {
+      const timer = setTimeout(() => setToast(null), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [toast]);
+
+  // Show toast notification
+  const showToast = (message: string, type: 'success' | 'error' | 'info') => {
+    setToast({ message, type });
+  };
 
   // Get unique continents for filter
   const continents = useMemo(() => {
@@ -136,19 +150,26 @@ export default function CountryMasterPage() {
   ];
 
   const handleEdit = (country: Country) => {
-    console.log('Edit country:', country);
+    showToast(`Editing country: ${country.name}`, 'info');
     // TODO: Implement edit functionality
   };
 
   const handleDelete = (id: string) => {
-    if (confirm('Are you sure you want to delete this country?')) {
+    const country = countries.find(c => c.id === id);
+    if (confirm(`Are you sure you want to delete ${country?.name}?`)) {
       setCountries(prev => prev.filter(c => c.id !== id));
+      showToast(`${country?.name} deleted successfully`, 'success');
     }
   };
 
   const handleExport = () => {
-    console.log('Exporting countries data...');
+    showToast('Exporting countries data...', 'success');
     // TODO: Implement export functionality
+  };
+
+  const handleAddCountry = () => {
+    setShowAddModal(true);
+    showToast('Add country functionality will be implemented', 'info');
   };
 
   const clearFilters = () => {
@@ -164,30 +185,48 @@ export default function CountryMasterPage() {
   ].filter(Boolean).length;
 
   return (
-    <div className="p-6 space-y-6">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-gray-900">Country Master</h1>
-          <p className="text-gray-600 mt-1">Manage country master data and configurations</p>
-        </div>
-        <div className="flex items-center gap-3">
-          <button
-            onClick={handleExport}
-            className="inline-flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-          >
-            <Download className="w-4 h-4" />
-            <span>Export</span>
-          </button>
-          <button
-            onClick={() => setShowAddModal(true)}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-          >
-            <Plus className="w-4 h-4" />
-            <span>Add Country</span>
-          </button>
-        </div>
-      </div>
+    <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 via-purple-50 to-pink-50">
+      <div className="flex-1 overflow-y-auto overflow-x-hidden">
+        <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+          {/* Toast Notification */}
+          {toast && (
+            <div className="fixed top-4 right-4 z-50 animate-in slide-in-from-top-5">
+              <div className={`rounded-lg px-4 py-3 shadow-lg flex items-center gap-3 ${
+                toast.type === 'success' ? 'bg-green-50 text-green-800 border border-green-200' :
+                toast.type === 'error' ? 'bg-red-50 text-red-800 border border-red-200' :
+                'bg-blue-50 text-blue-800 border border-blue-200'
+              }`}>
+                {toast.type === 'success' && <CheckCircle className="w-5 h-5" />}
+                {toast.type === 'error' && <XCircle className="w-5 h-5" />}
+                {toast.type === 'info' && <AlertCircle className="w-5 h-5" />}
+                <span className="font-medium">{toast.message}</span>
+              </div>
+            </div>
+          )}
+
+          {/* Header */}
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-2xl font-bold text-gray-900">Country Master</h1>
+              <p className="text-gray-600 mt-1">Manage country master data and configurations</p>
+            </div>
+            <div className="flex items-center gap-3">
+              <button
+                onClick={handleExport}
+                className="inline-flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                <Download className="w-4 h-4" />
+                <span>Export</span>
+              </button>
+              <button
+                onClick={handleAddCountry}
+                className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              >
+                <Plus className="w-4 h-4" />
+                <span>Add Country</span>
+              </button>
+            </div>
+          </div>
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -330,6 +369,8 @@ export default function CountryMasterPage() {
           </div>
         </div>
       )}
+        </div>
+      </div>
     </div>
   );
 }

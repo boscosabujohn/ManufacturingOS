@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import { LogIn, LogOut, Shield, AlertTriangle, CheckCircle2, XCircle, Globe, MapPin, Monitor, Smartphone, Calendar, Filter, Download, Eye, Search } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { LogIn, LogOut, Shield, AlertTriangle, CheckCircle2, XCircle, Globe, MapPin, Monitor, Smartphone, Calendar, Filter, Download, Eye, Search, CheckCircle, AlertCircle } from 'lucide-react';
 
 interface LoginAuditLog {
   id: string;
@@ -40,6 +40,18 @@ const LoginAuditLogsPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [dateRange, setDateRange] = useState('today');
   const [selectedLog, setSelectedLog] = useState<LoginAuditLog | null>(null);
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' | 'info' } | null>(null);
+
+  useEffect(() => {
+    if (toast) {
+      const timer = setTimeout(() => setToast(null), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [toast]);
+
+  const showToast = (message: string, type: 'success' | 'error' | 'info') => {
+    setToast({ message, type });
+  };
 
   const [logs] = useState<LoginAuditLog[]>([
     {
@@ -333,10 +345,11 @@ const LoginAuditLogsPage = () => {
 
   const handleViewDetails = (log: LoginAuditLog) => {
     setSelectedLog(log);
+    showToast(`Viewing details for ${log.userName}`, 'info');
   };
 
   const handleExport = () => {
-    alert('Exporting login audit logs...');
+    showToast('Exporting login audit logs...', 'info');
   };
 
   const handleCloseDetails = () => {
@@ -344,13 +357,27 @@ const LoginAuditLogsPage = () => {
   };
 
   return (
-    <div className="p-6 max-w-[1600px] mx-auto">
-      {/* Header */}
-      <div className="mb-6">
-        <div className="flex items-center justify-between mb-2">
+    <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 via-violet-50 to-purple-50">
+      {/* Toast Notification */}
+      {toast && (
+        <div className={`fixed top-4 right-4 z-50 flex items-center gap-2 px-4 py-3 rounded-lg shadow-lg ${
+          toast.type === 'success' ? 'bg-green-50 text-green-800 border border-green-200' :
+          toast.type === 'error' ? 'bg-red-50 text-red-800 border border-red-200' :
+          'bg-blue-50 text-blue-800 border border-blue-200'
+        }`}>
+          {toast.type === 'success' && <CheckCircle className="w-5 h-5" />}
+          {toast.type === 'error' && <XCircle className="w-5 h-5" />}
+          {toast.type === 'info' && <AlertCircle className="w-5 h-5" />}
+          <span className="font-medium">{toast.message}</span>
+        </div>
+      )}
+
+      {/* Header Section */}
+      <div className="flex-none p-6 pb-4 space-y-4">
+        <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="p-2 bg-blue-100 rounded-lg">
-              <LogIn className="w-6 h-6 text-blue-600" />
+            <div className="p-2 bg-violet-100 rounded-lg">
+              <LogIn className="w-6 h-6 text-violet-600" />
             </div>
             <div>
               <h1 className="text-3xl font-bold text-gray-900">Login Audit Logs</h1>
@@ -359,16 +386,15 @@ const LoginAuditLogsPage = () => {
           </div>
           <button
             onClick={handleExport}
-            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            className="flex items-center gap-2 px-4 py-2 bg-white border border-violet-300 text-violet-700 rounded-lg hover:bg-violet-50 transition-colors"
           >
             <Download className="w-4 h-4" />
             Export Logs
           </button>
         </div>
-      </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4">
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-600">Total Events</span>
@@ -417,11 +443,15 @@ const LoginAuditLogsPage = () => {
           <div className="text-2xl font-bold text-green-600">{stats.mfaLogins}</div>
         </div>
       </div>
+    </div>
 
+      {/* Scrollable Content Area */}
+      <div className="flex-1 overflow-hidden px-6">
+        <div className="h-full flex flex-col bg-white rounded-lg border border-gray-200">
       {/* Filters */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 mb-6">
+      <div className="flex-none p-4 border-b border-gray-200">
         <div className="flex items-center gap-3 mb-4">
-          <Filter className="w-5 h-5 text-gray-600" />
+          <Filter className="w-5 h-5 text-violet-600" />
           <h3 className="font-semibold text-gray-900">Filters</h3>
         </div>
         <div className="flex flex-wrap gap-4">
@@ -433,14 +463,14 @@ const LoginAuditLogsPage = () => {
                 placeholder="Search by user, email, or IP..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent"
               />
             </div>
           </div>
           <select
             value={dateRange}
             onChange={(e) => setDateRange(e.target.value)}
-            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent"
           >
             <option value="today">Today</option>
             <option value="yesterday">Yesterday</option>
@@ -451,7 +481,7 @@ const LoginAuditLogsPage = () => {
           <select
             value={filterAction}
             onChange={(e) => setFilterAction(e.target.value)}
-            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent"
           >
             <option value="all">All Actions</option>
             <option value="login">Login</option>
@@ -462,7 +492,7 @@ const LoginAuditLogsPage = () => {
           <select
             value={filterStatus}
             onChange={(e) => setFilterStatus(e.target.value)}
-            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent"
           >
             <option value="all">All Status</option>
             <option value="success">Success</option>
@@ -473,7 +503,7 @@ const LoginAuditLogsPage = () => {
           <select
             value={filterDevice}
             onChange={(e) => setFilterDevice(e.target.value)}
-            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent"
           >
             <option value="all">All Devices</option>
             <option value="desktop">Desktop</option>
@@ -485,10 +515,9 @@ const LoginAuditLogsPage = () => {
       </div>
 
       {/* Audit Logs Table */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200">
-        <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead>
+      <div className="flex-1 overflow-auto">
+        <table className="w-full">
+          <thead className="sticky top-0 bg-gray-50 z-10">
               <tr className="border-b border-gray-200 bg-gray-50">
                 <th className="text-left py-3 px-4 text-sm font-semibold text-gray-900">Timestamp</th>
                 <th className="text-left py-3 px-4 text-sm font-semibold text-gray-900">User</th>
@@ -562,8 +591,7 @@ const LoginAuditLogsPage = () => {
                   <td className="py-3 px-4 text-right">
                     <button
                       onClick={() => handleViewDetails(log)}
-                      className="text-blue-600 hover:text-blue-700 p-1"
-                     
+                      className="text-violet-600 hover:text-violet-700 p-1"
                     >
                       <Eye className="w-4 h-4" />
                     </button>
@@ -580,6 +608,8 @@ const LoginAuditLogsPage = () => {
             <p className="text-gray-600">No login logs found matching your criteria</p>
           </div>
         )}
+      </div>
+        </div>
       </div>
 
       {/* Details Modal */}

@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
-import { Plus, Search, Download, Filter, X, DollarSign, Star } from 'lucide-react';
+import React, { useState, useMemo, useEffect } from 'react';
+import { Plus, Search, Download, Filter, X, DollarSign, Star, CheckCircle, XCircle, AlertCircle } from 'lucide-react';
 import { DataTable, Column } from '@/components/ui/DataTable';
 import { StatusBadge } from '@/components/ui/StatusBadge';
 import { mockCurrencies, Currency } from '@/data/common-masters/currencies';
@@ -12,6 +12,47 @@ export default function CurrencyMasterPage() {
   const [filterStatus, setFilterStatus] = useState<string>('all');
   const [filterDecimalDigits, setFilterDecimalDigits] = useState<string>('all');
   const [showFilters, setShowFilters] = useState(false);
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' | 'info' } | null>(null);
+
+  // Toast notification effect
+  useEffect(() => {
+    if (toast) {
+      const timer = setTimeout(() => setToast(null), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [toast]);
+
+  // Show toast notification
+  const showToast = (message: string, type: 'success' | 'error' | 'info') => {
+    setToast({ message, type });
+  };
+
+  // Action handlers
+  const handleAddCurrency = () => {
+    showToast('Add currency functionality will be implemented', 'info');
+    // TODO: Open add currency modal/form
+  };
+
+  const handleEditCurrency = (currency: Currency) => {
+    showToast(`Editing currency: ${currency.name}`, 'info');
+    // TODO: Open edit currency modal/form
+  };
+
+  const handleDeleteCurrency = (currency: Currency) => {
+    if (currency.isBaseCurrency) {
+      showToast('Cannot delete base currency', 'error');
+      return;
+    }
+    if (confirm(`Are you sure you want to delete ${currency.name}?`)) {
+      setCurrencies(prev => prev.filter(c => c.id !== currency.id));
+      showToast(`${currency.name} deleted successfully`, 'success');
+    }
+  };
+
+  const handleExport = () => {
+    showToast('Exporting currencies data...', 'success');
+    // TODO: Implement export functionality
+  };
 
   // Get unique decimal digits
   const decimalDigitsOptions = useMemo(() => {
@@ -149,7 +190,7 @@ export default function CurrencyMasterPage() {
             className="text-blue-600 hover:text-blue-800 text-sm font-medium"
             onClick={(e) => {
               e.stopPropagation();
-              console.log('Edit currency:', row);
+              handleEditCurrency(row);
             }}
           >
             Edit
@@ -159,9 +200,7 @@ export default function CurrencyMasterPage() {
               className="text-red-600 hover:text-red-800 text-sm font-medium"
               onClick={(e) => {
                 e.stopPropagation();
-                if (confirm('Are you sure you want to delete this currency?')) {
-                  setCurrencies(prev => prev.filter(c => c.id !== row.id));
-                }
+                handleDeleteCurrency(row);
               }}
             >
               Delete
@@ -187,30 +226,48 @@ export default function CurrencyMasterPage() {
   const baseCurrency = currencies.find(c => c.isBaseCurrency);
 
   return (
-    <div className="p-6 space-y-6">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-gray-900">Currency Master</h1>
-          <p className="text-gray-600 mt-1">Manage currency master data and exchange rates</p>
-        </div>
-        <div className="flex items-center gap-3">
-          <button
-            onClick={() => console.log('Export')}
-            className="inline-flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-          >
-            <Download className="w-4 h-4" />
-            <span>Export</span>
-          </button>
-          <button
-            onClick={() => console.log('Add Currency')}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-          >
-            <Plus className="w-4 h-4" />
-            <span>Add Currency</span>
-          </button>
-        </div>
-      </div>
+    <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 via-green-50 to-blue-50">
+      <div className="flex-1 overflow-y-auto overflow-x-hidden">
+        <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+          {/* Toast Notification */}
+          {toast && (
+            <div className="fixed top-4 right-4 z-50 animate-in slide-in-from-top-5">
+              <div className={`rounded-lg px-4 py-3 shadow-lg flex items-center gap-3 ${
+                toast.type === 'success' ? 'bg-green-50 text-green-800 border border-green-200' :
+                toast.type === 'error' ? 'bg-red-50 text-red-800 border border-red-200' :
+                'bg-blue-50 text-blue-800 border border-blue-200'
+              }`}>
+                {toast.type === 'success' && <CheckCircle className="w-5 h-5" />}
+                {toast.type === 'error' && <XCircle className="w-5 h-5" />}
+                {toast.type === 'info' && <AlertCircle className="w-5 h-5" />}
+                <span className="font-medium">{toast.message}</span>
+              </div>
+            </div>
+          )}
+
+          {/* Header */}
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-2xl font-bold text-gray-900">Currency Master</h1>
+              <p className="text-gray-600 mt-1">Manage currency master data and exchange rates</p>
+            </div>
+            <div className="flex items-center gap-3">
+              <button
+                onClick={handleExport}
+                className="inline-flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                <Download className="w-4 h-4" />
+                <span>Export</span>
+              </button>
+              <button
+                onClick={handleAddCurrency}
+                className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              >
+                <Plus className="w-4 h-4" />
+                <span>Add Currency</span>
+              </button>
+            </div>
+          </div>
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
@@ -337,6 +394,8 @@ export default function CurrencyMasterPage() {
           emptyMessage="No currencies found"
           emptyDescription="Try adjusting your search or filters to find what you're looking for."
         />
+      </div>
+        </div>
       </div>
     </div>
   );

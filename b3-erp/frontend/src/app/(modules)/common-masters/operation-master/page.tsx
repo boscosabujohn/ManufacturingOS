@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
-import { Plus, Search, Download, Filter, X, GitBranch, Clock, AlertTriangle, Users } from 'lucide-react';
+import React, { useState, useMemo, useEffect } from 'react';
+import { Plus, Search, Download, Filter, X, GitBranch, Clock, AlertTriangle, Users, CheckCircle, XCircle, AlertCircle as AlertCircleIcon } from 'lucide-react';
 import { DataTable, Column } from '@/components/ui/DataTable';
 import { StatusBadge } from '@/components/ui/StatusBadge';
 import { mockOperations, Operation, getOperationStats } from '@/data/common-masters/operations';
@@ -13,6 +13,35 @@ export default function OperationMasterPage() {
   const [filterCategory, setFilterCategory] = useState<string>('all');
   const [filterRisk, setFilterRisk] = useState<string>('all');
   const [showFilters, setShowFilters] = useState(false);
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' | 'info' } | null>(null);
+
+  // Auto-dismiss toast after 3 seconds
+  useEffect(() => {
+    if (toast) {
+      const timer = setTimeout(() => setToast(null), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [toast]);
+
+  const showToast = (message: string, type: 'success' | 'error' | 'info') => {
+    setToast({ message, type });
+  };
+
+  const handleViewOperation = (operation: Operation) => {
+    showToast(`Viewing operation: ${operation.operationName}`, 'info');
+  };
+
+  const handleEditOperation = (operation: Operation) => {
+    showToast(`Editing operation: ${operation.operationName}`, 'info');
+  };
+
+  const handleExport = () => {
+    showToast('Exporting operations data...', 'success');
+  };
+
+  const handleAddOperation = () => {
+    showToast('Opening add operation form...', 'info');
+  };
 
   // Filtered data
   const filteredData = useMemo(() => {
@@ -206,7 +235,7 @@ export default function OperationMasterPage() {
             className="text-blue-600 hover:text-blue-800 text-sm font-medium"
             onClick={(e) => {
               e.stopPropagation();
-              console.log('View operation:', row);
+              handleViewOperation(row);
             }}
           >
             View
@@ -215,7 +244,7 @@ export default function OperationMasterPage() {
             className="text-green-600 hover:text-green-800 text-sm font-medium"
             onClick={(e) => {
               e.stopPropagation();
-              console.log('Edit operation:', row);
+              handleEditOperation(row);
             }}
           >
             Edit
@@ -243,26 +272,42 @@ export default function OperationMasterPage() {
   const stats = useMemo(() => getOperationStats(), [operations]);
 
   return (
-    <div className="p-6 space-y-6">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
-            <GitBranch className="w-7 h-7 text-blue-600" />
-            Operation Master
-          </h1>
-          <p className="text-gray-600 mt-1">Manage production operations, routing, and process standards</p>
-        </div>
+    <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 via-indigo-50 to-purple-50">
+      <div className="flex-1 overflow-y-auto">
+        <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+          {/* Toast Notification */}
+          {toast && (
+            <div className={`fixed top-4 right-4 z-50 flex items-center gap-2 px-4 py-3 rounded-lg shadow-lg ${
+              toast.type === 'success' ? 'bg-green-50 text-green-800 border border-green-200' :
+              toast.type === 'error' ? 'bg-red-50 text-red-800 border border-red-200' :
+              'bg-blue-50 text-blue-800 border border-blue-200'
+            }`}>
+              {toast.type === 'success' && <CheckCircle className="w-5 h-5" />}
+              {toast.type === 'error' && <XCircle className="w-5 h-5" />}
+              {toast.type === 'info' && <AlertCircleIcon className="w-5 h-5" />}
+              <span className="font-medium">{toast.message}</span>
+            </div>
+          )}
+
+          {/* Header */}
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
+                <GitBranch className="w-7 h-7 text-blue-600" />
+                Operation Master
+              </h1>
+              <p className="text-gray-600 mt-1">Manage production operations, routing, and process standards</p>
+            </div>
         <div className="flex items-center gap-3">
           <button
-            onClick={() => console.log('Export operations')}
+            onClick={handleExport}
             className="inline-flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
           >
             <Download className="w-4 h-4" />
             <span>Export</span>
           </button>
           <button
-            onClick={() => console.log('Add operation')}
+            onClick={handleAddOperation}
             className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
           >
             <Plus className="w-4 h-4" />
@@ -432,6 +477,8 @@ export default function OperationMasterPage() {
           <li>✓ Material wastage percentages factored into BOM and costing</li>
           <li>✓ Operation sequencing defines manufacturing process flow and routing</li>
         </ul>
+      </div>
+        </div>
       </div>
     </div>
   );

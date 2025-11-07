@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
-import { Plus, Search, Download, Filter, X, Receipt, TrendingUp, FileText, Package, Percent } from 'lucide-react';
+import React, { useState, useMemo, useEffect } from 'react';
+import { Plus, Search, Download, Filter, X, Receipt, TrendingUp, FileText, Package, Percent, CheckCircle, XCircle, AlertCircle } from 'lucide-react';
 import { DataTable, Column } from '@/components/ui/DataTable';
 import { StatusBadge } from '@/components/ui/StatusBadge';
 import { mockHSNSAC, HSNSAC, getHSNSACStats } from '@/data/common-masters/hsn-sac';
@@ -12,6 +12,30 @@ export default function HSNSACMasterPage() {
   const [filterCodeType, setFilterCodeType] = useState<string>('all');
   const [filterApplicableFor, setFilterApplicableFor] = useState<string>('all');
   const [showFilters, setShowFilters] = useState(false);
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' | 'info' } | null>(null);
+
+  useEffect(() => {
+    if (toast) {
+      const timer = setTimeout(() => setToast(null), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [toast]);
+
+  const showToast = (message: string, type: 'success' | 'error' | 'info') => {
+    setToast({ message, type });
+  };
+
+  const handleEditHSNSAC = (record: HSNSAC) => {
+    showToast(`Editing HSN/SAC code: ${record.code}`, 'info');
+  };
+
+  const handleExport = () => {
+    showToast('Exporting HSN/SAC codes...', 'success');
+  };
+
+  const handleAddHSNSAC = () => {
+    showToast('Opening Add HSN/SAC form...', 'info');
+  };
 
   const filteredData = useMemo(() => {
     return hsnSacRecords.filter(record => {
@@ -176,7 +200,7 @@ export default function HSNSACMasterPage() {
             className="text-blue-600 hover:text-blue-800 text-sm font-medium"
             onClick={(e) => {
               e.stopPropagation();
-              console.log('Edit HSN/SAC:', row);
+              handleEditHSNSAC(row);
             }}
           >
             Edit
@@ -185,7 +209,7 @@ export default function HSNSACMasterPage() {
             className="text-green-600 hover:text-green-800 text-sm font-medium"
             onClick={(e) => {
               e.stopPropagation();
-              console.log('View items:', row);
+              showToast(`Viewing items for ${row.code}`, 'info');
             }}
           >
             Items
@@ -196,6 +220,7 @@ export default function HSNSACMasterPage() {
               e.stopPropagation();
               if (confirm(`Delete HSN/SAC code ${row.code}?`)) {
                 setHsnSacRecords(prev => prev.filter(h => h.id !== row.id));
+                showToast(`Deleted HSN/SAC code: ${row.code}`, 'success');
               }
             }}
           >
@@ -221,101 +246,118 @@ export default function HSNSACMasterPage() {
   const stats = useMemo(() => getHSNSACStats(), [hsnSacRecords]);
 
   return (
-    <div className="p-6 space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
-            <Receipt className="w-7 h-7 text-blue-600" />
-            HSN/SAC Code Master
-          </h1>
-          <p className="text-gray-600 mt-1">Manage HSN and SAC codes for GST compliance and taxation</p>
+    <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 via-yellow-50 to-amber-50">
+      {/* Toast Notification */}
+      {toast && (
+        <div className="fixed top-4 right-4 z-50 flex items-center gap-2 bg-white px-4 py-3 rounded-lg shadow-lg border-l-4 animate-slide-in"
+             style={{ 
+               borderLeftColor: toast.type === 'success' ? '#10b981' : toast.type === 'error' ? '#ef4444' : '#3b82f6',
+               minWidth: '300px'
+             }}>
+          {toast.type === 'success' && <CheckCircle className="w-5 h-5 text-green-500" />}
+          {toast.type === 'error' && <XCircle className="w-5 h-5 text-red-500" />}
+          {toast.type === 'info' && <AlertCircle className="w-5 h-5 text-blue-500" />}
+          <span className="text-sm text-gray-700">{toast.message}</span>
         </div>
-        <div className="flex items-center gap-3">
-          <button
-            onClick={() => console.log('Export HSN/SAC')}
-            className="inline-flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-          >
-            <Download className="w-4 h-4" />
-            <span>Export</span>
-          </button>
-          <button
-            onClick={() => console.log('Add HSN/SAC')}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-          >
-            <Plus className="w-4 h-4" />
-            <span>Add Code</span>
-          </button>
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
-          <div className="text-sm text-gray-600 mb-1">Total Codes</div>
-          <div className="text-2xl font-bold text-gray-900">{stats.total}</div>
-        </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
-          <div className="text-sm text-gray-600 mb-1">HSN Codes</div>
-          <div className="text-2xl font-bold text-green-600">{stats.hsnCount}</div>
-        </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
-          <div className="text-sm text-gray-600 mb-1">SAC Codes</div>
-          <div className="text-2xl font-bold text-purple-600">{stats.sacCount}</div>
-        </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
-          <div className="text-sm text-gray-600 mb-1">Total Items</div>
-          <div className="text-2xl font-bold text-blue-600">{stats.totalItems}</div>
-        </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
-          <div className="text-sm text-gray-600 mb-1 flex items-center gap-1">
-            <TrendingUp className="w-3 h-3" /> Taxable
+      )}
+      
+      <div className="flex-none p-6 pb-4 space-y-4">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
+              <Receipt className="w-7 h-7 text-amber-600" />
+              HSN/SAC Code Master
+            </h1>
+            <p className="text-gray-600 mt-1">Manage HSN and SAC codes for GST compliance and taxation</p>
           </div>
-          <div className="text-2xl font-bold text-orange-600">₹{(stats.totalTaxableAmount / 10000000).toFixed(1)}Cr</div>
-        </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-4">
-          <div className="text-sm text-gray-600 mb-1 flex items-center gap-1">
-            <Percent className="w-3 h-3" /> Tax Collected
-          </div>
-          <div className="text-2xl font-bold text-red-600">₹{(stats.totalTaxCollected / 10000000).toFixed(1)}Cr</div>
-        </div>
-      </div>
-
-      <div className="bg-white rounded-lg border border-gray-200 p-4">
-        <div className="flex items-center gap-4">
-          <div className="flex-1 relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-            <input
-              type="text"
-              placeholder="Search by HSN/SAC code, description, or category..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            />
-          </div>
-          <button
-            onClick={() => setShowFilters(!showFilters)}
-            className={`inline-flex items-center gap-2 px-4 py-2 border rounded-lg transition-colors ${
-              showFilters ? 'bg-blue-50 border-blue-300 text-blue-700' : 'border-gray-300 hover:bg-gray-50'
-            }`}
-          >
-            <Filter className="w-4 h-4" />
-            <span>Filters</span>
-            {activeFilterCount > 0 && (
-              <span className="inline-flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-blue-600 rounded-full">
-                {activeFilterCount}
-              </span>
-            )}
-          </button>
-          {activeFilterCount > 0 && (
+          <div className="flex items-center gap-3">
             <button
-              onClick={clearFilters}
-              className="inline-flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-gray-900 transition-colors"
+              onClick={handleExport}
+              className="inline-flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
             >
-              <X className="w-4 h-4" />
-              <span>Clear</span>
+              <Download className="w-4 h-4" />
+              <span>Export</span>
             </button>
-          )}
+            <button
+              onClick={handleAddHSNSAC}
+              className="inline-flex items-center gap-2 px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition-colors"
+            >
+              <Plus className="w-4 h-4" />
+              <span>Add Code</span>
+            </button>
+          </div>
         </div>
 
+        <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
+          <div className="bg-white rounded-lg border border-gray-200 p-4">
+            <div className="text-sm text-gray-600 mb-1">Total Codes</div>
+            <div className="text-2xl font-bold text-gray-900">{stats.total}</div>
+          </div>
+          <div className="bg-white rounded-lg border border-gray-200 p-4">
+            <div className="text-sm text-gray-600 mb-1">HSN Codes</div>
+            <div className="text-2xl font-bold text-green-600">{stats.hsnCount}</div>
+          </div>
+          <div className="bg-white rounded-lg border border-gray-200 p-4">
+            <div className="text-sm text-gray-600 mb-1">SAC Codes</div>
+            <div className="text-2xl font-bold text-purple-600">{stats.sacCount}</div>
+          </div>
+          <div className="bg-white rounded-lg border border-gray-200 p-4">
+            <div className="text-sm text-gray-600 mb-1">Total Items</div>
+            <div className="text-2xl font-bold text-amber-600">{stats.totalItems}</div>
+          </div>
+          <div className="bg-white rounded-lg border border-gray-200 p-4">
+            <div className="text-sm text-gray-600 mb-1 flex items-center gap-1">
+              <TrendingUp className="w-3 h-3" /> Taxable
+            </div>
+            <div className="text-2xl font-bold text-orange-600">₹{(stats.totalTaxableAmount / 10000000).toFixed(1)}Cr</div>
+          </div>
+          <div className="bg-white rounded-lg border border-gray-200 p-4">
+            <div className="text-sm text-gray-600 mb-1 flex items-center gap-1">
+              <Percent className="w-3 h-3" /> Tax Collected
+            </div>
+            <div className="text-2xl font-bold text-red-600">₹{(stats.totalTaxCollected / 10000000).toFixed(1)}Cr</div>
+          </div>
+        </div>
+      </div>
+
+      <div className="flex-1 overflow-hidden px-6">
+        <div className="h-full flex flex-col bg-white rounded-lg border border-gray-200 overflow-hidden">
+          <div className="flex-none p-4 border-b border-gray-200">
+            <div className="flex items-center gap-4">
+              <div className="flex-1 relative">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                <input
+                  type="text"
+                  placeholder="Search by HSN/SAC code, description, or category..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                />
+              </div>
+              <button
+                onClick={() => setShowFilters(!showFilters)}
+                className={`inline-flex items-center gap-2 px-4 py-2 border rounded-lg transition-colors ${
+                  showFilters ? 'bg-amber-50 border-amber-300 text-amber-700' : 'border-gray-300 hover:bg-gray-50'
+                }`}
+              >
+                <Filter className="w-4 h-4" />
+                <span>Filters</span>
+                {activeFilterCount > 0 && (
+                  <span className="inline-flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-amber-600 rounded-full">
+                    {activeFilterCount}
+                  </span>
+                )}
+              </button>
+              {activeFilterCount > 0 && (
+                <button
+                  onClick={clearFilters}
+                  className="inline-flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-gray-900 transition-colors"
+                >
+                  <X className="w-4 h-4" />
+                  <span>Clear</span>
+                </button>
+              )}
+            </div>
         {showFilters && (
           <div className="mt-4 pt-4 border-t border-gray-200 grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
@@ -325,7 +367,7 @@ export default function HSNSACMasterPage() {
               <select
                 value={filterCodeType}
                 onChange={(e) => setFilterCodeType(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
               >
                 <option value="all">All Types</option>
                 <option value="HSN">HSN - Goods</option>
@@ -339,7 +381,7 @@ export default function HSNSACMasterPage() {
               <select
                 value={filterApplicableFor}
                 onChange={(e) => setFilterApplicableFor(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-transparent"
               >
                 <option value="all">All Categories</option>
                 <option value="goods">Goods Only</option>
@@ -349,39 +391,43 @@ export default function HSNSACMasterPage() {
             </div>
           </div>
         )}
+          </div>
+
+          <div className="flex-1 overflow-auto">
+            <DataTable
+              data={filteredData}
+              columns={columns}
+              pagination={{
+                enabled: true,
+                pageSize: 10
+              }}
+              sorting={{
+                enabled: true,
+                defaultSort: { column: 'code', direction: 'asc' }
+              }}
+              emptyMessage="No HSN/SAC codes found"
+              emptyDescription="Try adjusting your search or filters to find what you're looking for."
+            />
+          </div>
+        </div>
       </div>
 
-      <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
-        <DataTable
-          data={filteredData}
-          columns={columns}
-          pagination={{
-            enabled: true,
-            pageSize: 10
-          }}
-          sorting={{
-            enabled: true,
-            defaultSort: { column: 'code', direction: 'asc' }
-          }}
-          emptyMessage="No HSN/SAC codes found"
-          emptyDescription="Try adjusting your search or filters to find what you're looking for."
-        />
-      </div>
-
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-        <h3 className="font-semibold text-blue-900 mb-2 flex items-center gap-2">
-          <Receipt className="w-5 h-5" />
-          HSN/SAC Code Management Guidelines
-        </h3>
-        <ul className="text-sm text-blue-800 space-y-1 ml-7">
-          <li>✓ <strong>HSN Codes:</strong> Harmonized System of Nomenclature for goods classification (6-8 digit codes)</li>
-          <li>✓ <strong>SAC Codes:</strong> Services Accounting Code for service classification (6 digit codes)</li>
-          <li>✓ <strong>GST Structure:</strong> CGST + SGST for intra-state, IGST for inter-state transactions</li>
-          <li>✓ <strong>Tax Slabs:</strong> 0%, 5%, 12%, 18%, 28% with additional cess on certain items</li>
-          <li>✓ <strong>Special Cases:</strong> Exempted goods/services, nil-rated items, reverse charge mechanism</li>
-          <li>✓ <strong>Compliance:</strong> Accurate HSN/SAC codes essential for GST filing and tax calculation</li>
-          <li>✓ <strong>Analytics:</strong> Track taxable turnover and tax collected for each HSN/SAC code</li>
-        </ul>
+      <div className="flex-none p-6 pt-4">
+        <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
+          <h3 className="font-semibold text-amber-900 mb-2 flex items-center gap-2">
+            <Receipt className="w-5 h-5" />
+            HSN/SAC Code Management Guidelines
+          </h3>
+          <ul className="text-sm text-amber-800 space-y-1 ml-7">
+            <li>✓ <strong>HSN Codes:</strong> Harmonized System of Nomenclature for goods classification (6-8 digit codes)</li>
+            <li>✓ <strong>SAC Codes:</strong> Services Accounting Code for service classification (6 digit codes)</li>
+            <li>✓ <strong>GST Structure:</strong> CGST + SGST for intra-state, IGST for inter-state transactions</li>
+            <li>✓ <strong>Tax Slabs:</strong> 0%, 5%, 12%, 18%, 28% with additional cess on certain items</li>
+            <li>✓ <strong>Special Cases:</strong> Exempted goods/services, nil-rated items, reverse charge mechanism</li>
+            <li>✓ <strong>Compliance:</strong> Accurate HSN/SAC codes essential for GST filing and tax calculation</li>
+            <li>✓ <strong>Analytics:</strong> Track taxable turnover and tax collected for each HSN/SAC code</li>
+          </ul>
+        </div>
       </div>
     </div>
   );

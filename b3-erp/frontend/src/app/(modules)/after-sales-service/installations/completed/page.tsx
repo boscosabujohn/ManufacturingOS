@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   CheckCircle2, 
   Calendar, 
@@ -126,6 +126,35 @@ const CompletedInstallationsPage = () => {
   const [selectedInstallation, setSelectedInstallation] = useState<CompletedInstallation | null>(null);
   const [showFilters, setShowFilters] = useState(false);
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('list');
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'info' | 'error' } | null>(null);
+  const [showAnalyticsModal, setShowAnalyticsModal] = useState(false);
+
+  // Toast auto-dismiss
+  useEffect(() => {
+    if (toast) {
+      const timer = setTimeout(() => setToast(null), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [toast]);
+
+  const handleStatsCardClick = (type: string) => {
+    switch (type) {
+      case 'total':
+        setFilterRating('');
+        setFilterComplexity('');
+        setToast({ message: `Showing all ${stats.totalCompleted} completed installations`, type: 'info' });
+        break;
+      case 'satisfaction':
+        setToast({ message: `Average customer satisfaction: ${stats.avgSatisfaction}/5`, type: 'info' });
+        break;
+      case 'ontime':
+        setToast({ message: `${stats.onTimeRate}% of installations completed on time`, type: 'success' });
+        break;
+      case 'quality':
+        setToast({ message: `Average quality score: ${stats.avgQualityScore}/5`, type: 'info' });
+        break;
+    }
+  };
 
   const completedInstallations: CompletedInstallation[] = [
     {
