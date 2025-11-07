@@ -7,6 +7,8 @@ export default function UploadDocumentsPage() {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const [dragActive, setDragActive] = useState(false);
+  const [uploading, setUploading] = useState(false);
+  const [uploadSuccess, setUploadSuccess] = useState(false);
 
   const documentCategories = [
     { value: 'personal', label: 'Personal Documents', sublabel: 'Aadhaar, PAN, Passport, etc.' },
@@ -54,6 +56,38 @@ export default function UploadDocumentsPage() {
     const sizes = ['Bytes', 'KB', 'MB'];
     const i = Math.floor(Math.log(bytes) / Math.log(k));
     return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i];
+  };
+
+  const handleUpload = async () => {
+    if (!selectedCategory || selectedFiles.length === 0) {
+      return;
+    }
+
+    setUploading(true);
+    setUploadSuccess(false);
+
+    try {
+      // Simulate file upload - Replace with actual API call
+      await new Promise(resolve => setTimeout(resolve, 2000));
+
+      // Here you would typically:
+      // const formData = new FormData();
+      // formData.append('category', selectedCategory);
+      // selectedFiles.forEach(file => formData.append('files', file));
+      // await fetch('/api/documents/upload', { method: 'POST', body: formData });
+
+      setUploadSuccess(true);
+      setSelectedFiles([]);
+      setSelectedCategory('');
+
+      // Reset success message after 3 seconds
+      setTimeout(() => setUploadSuccess(false), 3000);
+    } catch (error) {
+      console.error('Upload failed:', error);
+      alert('Upload failed. Please try again.');
+    } finally {
+      setUploading(false);
+    }
   };
 
   return (
@@ -171,16 +205,37 @@ export default function UploadDocumentsPage() {
           </div>
 
           <div className="mt-6 flex gap-3">
-            <button className="flex-1 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium">
-              Upload {selectedFiles.length} {selectedFiles.length === 1 ? 'File' : 'Files'}
+            <button
+              onClick={handleUpload}
+              disabled={uploading}
+              className={`flex-1 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium flex items-center justify-center gap-2 ${
+                uploading ? 'opacity-50 cursor-not-allowed' : ''
+              }`}
+            >
+              {uploading ? (
+                <>
+                  <div className="animate-spin h-5 w-5 border-2 border-white border-t-transparent rounded-full"></div>
+                  Uploading...
+                </>
+              ) : (
+                <>Upload {selectedFiles.length} {selectedFiles.length === 1 ? 'File' : 'Files'}</>
+              )}
             </button>
             <button
               onClick={() => setSelectedFiles([])}
-              className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium"
+              disabled={uploading}
+              className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Clear All
             </button>
           </div>
+
+          {uploadSuccess && (
+            <div className="mt-4 p-4 bg-green-50 border border-green-200 rounded-lg flex items-center gap-2 text-green-800">
+              <CheckCircle className="h-5 w-5" />
+              <span className="font-medium">Upload successful! Documents submitted for verification.</span>
+            </div>
+          )}
         </div>
       )}
 

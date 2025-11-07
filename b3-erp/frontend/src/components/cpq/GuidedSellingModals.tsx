@@ -232,7 +232,18 @@ export const RecommendationsModal: React.FC<RecommendationsModalProps> = ({
 
         <div className="p-6 border-t bg-gray-50 flex justify-between items-center">
           <div className="text-sm text-gray-600">
-            Need help deciding? <a href="#" className="text-blue-600 hover:underline">Contact our sales team</a>
+            Need help deciding?{' '}
+            <a
+              href="/contact-sales"
+              onClick={(e) => {
+                e.preventDefault();
+                // In a real app, this would open a contact form or navigate to contact page
+                alert('Contact sales form would open here. You can also call: +1-800-SALES or email: sales@company.com');
+              }}
+              className="text-blue-600 hover:underline cursor-pointer"
+            >
+              Contact our sales team
+            </a>
           </div>
           <div className="flex gap-3">
             <button

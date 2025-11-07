@@ -474,7 +474,21 @@ export default function LeadScoringQualification() {
                 >
                   Close
                 </button>
-                <button className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+                <button
+                  onClick={() => {
+                    if (selectedLead) {
+                      // Update the lead status to qualified
+                      setLeads(prev => prev.map(lead =>
+                        lead.id === selectedLead.id
+                          ? { ...lead, status: 'qualified' as const }
+                          : lead
+                      ));
+                      // Close the modal
+                      setSelectedLead(null);
+                    }
+                  }}
+                  className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+                >
                   Qualify Lead
                 </button>
               </div>

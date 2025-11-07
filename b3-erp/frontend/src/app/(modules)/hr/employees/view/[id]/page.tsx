@@ -102,6 +102,40 @@ interface LeaveRecord {
 export default function ViewEmployeePage({ params }: { params: { id: string } }) {
   const router = useRouter();
   const [activeTab, setActiveTab] = useState<'overview' | 'attendance' | 'leave' | 'documents' | 'activity'>('overview');
+  const [selectedDocCategory, setSelectedDocCategory] = useState<string>('all');
+  const [uploadFiles, setUploadFiles] = useState<File[]>([]);
+
+  const handleDocumentCategoryClick = (category: string) => {
+    setSelectedDocCategory(category);
+    // In a real app, this would filter the documents displayed
+    console.log(`Filtering documents by category: ${category}`);
+  };
+
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      const files = Array.from(e.target.files);
+      setUploadFiles([...uploadFiles, ...files]);
+      // In a real app, you would upload these files to the server
+      console.log('Files to upload:', files);
+      alert(`Selected ${files.length} file(s) for upload`);
+    }
+  };
+
+  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+      const files = Array.from(e.dataTransfer.files);
+      setUploadFiles([...uploadFiles, ...files]);
+      console.log('Files dropped:', files);
+      alert(`Dropped ${files.length} file(s) for upload`);
+    }
+  };
+
+  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
 
   // Mock employee data
   const employee: Employee = {
@@ -791,28 +825,48 @@ export default function ViewEmployeePage({ params }: { params: { id: string } })
 
                 {/* Document Categories */}
                 <div className="grid grid-cols-4 gap-4">
-                  <div className="p-6 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl border border-blue-200 cursor-pointer hover:shadow-lg transition-shadow">
+                  <div
+                    onClick={() => handleDocumentCategoryClick('identity')}
+                    className={`p-6 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl border cursor-pointer hover:shadow-lg transition-all ${
+                      selectedDocCategory === 'identity' ? 'border-blue-500 shadow-lg ring-2 ring-blue-200' : 'border-blue-200'
+                    }`}
+                  >
                     <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-3">
                       <FileText className="w-6 h-6 text-blue-600" />
                     </div>
                     <div className="text-2xl font-bold text-blue-600 mb-1">12</div>
                     <div className="text-sm text-gray-600">Identity Docs</div>
                   </div>
-                  <div className="p-6 bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl border border-green-200 cursor-pointer hover:shadow-lg transition-shadow">
+                  <div
+                    onClick={() => handleDocumentCategoryClick('certifications')}
+                    className={`p-6 bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl border cursor-pointer hover:shadow-lg transition-all ${
+                      selectedDocCategory === 'certifications' ? 'border-green-500 shadow-lg ring-2 ring-green-200' : 'border-green-200'
+                    }`}
+                  >
                     <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-3">
                       <Award className="w-6 h-6 text-green-600" />
                     </div>
                     <div className="text-2xl font-bold text-green-600 mb-1">8</div>
                     <div className="text-sm text-gray-600">Certifications</div>
                   </div>
-                  <div className="p-6 bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl border border-purple-200 cursor-pointer hover:shadow-lg transition-shadow">
+                  <div
+                    onClick={() => handleDocumentCategoryClick('hr-forms')}
+                    className={`p-6 bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl border cursor-pointer hover:shadow-lg transition-all ${
+                      selectedDocCategory === 'hr-forms' ? 'border-purple-500 shadow-lg ring-2 ring-purple-200' : 'border-purple-200'
+                    }`}
+                  >
                     <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-3">
                       <FileText className="w-6 h-6 text-purple-600" />
                     </div>
                     <div className="text-2xl font-bold text-purple-600 mb-1">5</div>
                     <div className="text-sm text-gray-600">HR Forms</div>
                   </div>
-                  <div className="p-6 bg-gradient-to-br from-orange-50 to-red-50 rounded-xl border border-orange-200 cursor-pointer hover:shadow-lg transition-shadow">
+                  <div
+                    onClick={() => handleDocumentCategoryClick('all')}
+                    className={`p-6 bg-gradient-to-br from-orange-50 to-red-50 rounded-xl border cursor-pointer hover:shadow-lg transition-all ${
+                      selectedDocCategory === 'all' ? 'border-orange-500 shadow-lg ring-2 ring-orange-200' : 'border-orange-200'
+                    }`}
+                  >
                     <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-3">
                       <FileText className="w-6 h-6 text-orange-600" />
                     </div>
@@ -913,10 +967,24 @@ export default function ViewEmployeePage({ params }: { params: { id: string } })
                 </div>
 
                 {/* Upload New Document */}
-                <div className="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center hover:border-blue-400 transition-colors cursor-pointer">
+                <div
+                  onClick={() => document.getElementById('document-upload-input')?.click()}
+                  onDrop={handleDrop}
+                  onDragOver={handleDragOver}
+                  className="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center hover:border-blue-400 transition-colors cursor-pointer"
+                >
+                  <input
+                    id="document-upload-input"
+                    type="file"
+                    multiple
+                    accept=".pdf,.jpg,.jpeg,.png,.doc,.docx"
+                    onChange={handleFileUpload}
+                    className="hidden"
+                  />
                   <FileText className="w-12 h-12 text-gray-400 mx-auto mb-3" />
                   <div className="font-semibold text-gray-900 mb-1">Upload New Document</div>
                   <div className="text-sm text-gray-600">Drag and drop files here or click to browse</div>
+                  <div className="text-xs text-gray-500 mt-2">Supports PDF, JPG, PNG, DOC, DOCX</div>
                 </div>
 
                 {/* Skill Matrix */}

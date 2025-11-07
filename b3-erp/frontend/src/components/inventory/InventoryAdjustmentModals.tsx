@@ -634,7 +634,19 @@ export const BulkAdjustmentModal: React.FC<BulkAdjustmentModalProps> = ({
                   Choose File
                 </label>
                 <p className="text-xs text-gray-400 mt-3">
-                  Download template: <a href="#" className="text-purple-600 hover:underline">adjustment-template.xlsx</a>
+                  Download template:{' '}
+                  <a
+                    href="/templates/adjustment-template.xlsx"
+                    download="adjustment-template.xlsx"
+                    onClick={(e) => {
+                      // In a real app, this would download an actual template file
+                      e.preventDefault();
+                      alert('Template download would start here. File: adjustment-template.xlsx');
+                    }}
+                    className="text-purple-600 hover:underline cursor-pointer"
+                  >
+                    adjustment-template.xlsx
+                  </a>
                 </p>
               </div>
             </div>
