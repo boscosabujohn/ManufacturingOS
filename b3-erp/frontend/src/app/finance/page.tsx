@@ -217,8 +217,8 @@ export default function FinanceDashboard() {
       icon: <FileText className="h-8 w-8" />,
       color: 'from-indigo-500 to-indigo-600',
       stats: '1,234 Entries',
-      link: '/finance/general-ledger',
-      available: false
+      link: '/finance/accounting/chart-of-accounts',
+      available: true
     },
     {
       title: 'Bank Reconciliation',
@@ -227,7 +227,7 @@ export default function FinanceDashboard() {
       color: 'from-teal-500 to-teal-600',
       stats: '3 Accounts',
       link: '/finance/bank-reconciliation',
-      available: false
+      available: true
     },
     {
       title: 'Reports & Analytics',
