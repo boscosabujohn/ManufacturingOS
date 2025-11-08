@@ -46,6 +46,228 @@ export default function RoutePlanningPage() {
   const [selectedMode, setSelectedMode] = useState('all');
   const [selectedStatus, setSelectedStatus] = useState('all');
 
+  const handleCreateRoute = () => {
+    alert(`Create New Route
+
+Route Information:
+━━━━━━━━━━━━━━━━━━━━
+• Route Code: Auto-generated (RT-XXX-YYY-NNN)
+• Route Name: Descriptive name with highway info
+• Route Type: Primary / Alternate / Emergency
+
+Origin & Destination:
+━━━━━━━━━━━━━━━━━━━━
+• Origin Location: Warehouse/Factory/Port dropdown
+• Origin Address: Complete address with GPS
+• Destination Location: Distribution center dropdown
+• Destination Address: Complete address with GPS
+
+Route Planning:
+━━━━━━━━━━━━━━━━━━━━
+• Waypoints: Add multiple transit/hub locations
+• Highway/Route: NH48, NH44, etc.
+• Distance: Auto-calculated (km)
+• Estimated Time: Auto-calculated (hours)
+
+Transport Details:
+━━━━━━━━━━━━━━━━━━━━
+• Transport Mode: Road / Rail / Air / Sea
+• Vehicle Type: Truck / Train / Cargo Plane / Ship
+• Frequency: Daily / Weekly / Bi-weekly / Monthly / On-demand
+
+Cost Estimation:
+━━━━━━━━━━━━━━━━━━━━
+• Base Route Cost: ₹
+• Fuel Cost: ₹ (calculated per km)
+• Toll Cost: ₹ (based on route)
+• Driver Wages: ₹
+• Vehicle Maintenance: ₹
+• Total Cost: ₹ (auto-calculated)
+
+Operational Parameters:
+━━━━━━━━━━━━━━━━━━━━
+• Max Load Capacity: (tons/kg)
+• Avg Speed: (km/h)
+• Rest Stops: Number and duration
+• Preferred Departure Time: HH:MM
+• Service Level Agreement: (hours)
+
+Route Optimization:
+━━━━━━━━━━━━━━━━━━━━
+• ☑ Optimize for shortest distance
+• ☑ Avoid tolls (if possible)
+• ☑ Prefer highways
+• ☑ Avoid congestion zones
+• ☑ Consider weather conditions
+• ☑ Enable real-time rerouting
+
+Safety & Compliance:
+━━━━━━━━━━━━━━━━━━━━
+• Hazardous Material: Yes / No
+• Special Permits Required: List
+• Insurance Coverage: ₹
+• Emergency Contacts: Add contacts
+
+Integration:
+━━━━━━━━━━━━━━━━━━━━
+• Google Maps API: Route visualization
+• Traffic Data: Real-time integration
+• Weather API: Condition monitoring
+• ETA Calculation: Dynamic updates
+
+Actions: Save Route | Save as Template | Calculate | Cancel`);
+  };
+
+  const handleViewRoute = (route: RouteDetails) => {
+    alert(`Route Details - ${route.routeCode}
+
+ROUTE INFORMATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Route Code: ${route.routeCode}
+Route Name: ${route.routeName}
+Route Type: ${route.routeType.toUpperCase()}
+Transport Mode: ${route.transportMode.toUpperCase()}
+Status: ${route.status.toUpperCase()}
+
+ORIGIN & DESTINATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Origin: ${route.origin}
+Destination: ${route.destination}
+${route.waypoints.length > 0 ? `Waypoints:\n${route.waypoints.map((w, i) => `  ${i + 1}. ${w}`).join('\n')}` : 'No waypoints'}
+
+DISTANCE & TIME
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Total Distance: ${route.distance.toLocaleString()} km
+Estimated Time: ${route.estimatedTime} hours
+Average Speed: ${Math.round(route.distance / route.estimatedTime)} km/h
+Average Delay: ${route.avgDelay} minutes
+
+COST BREAKDOWN
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Total Route Cost: ₹${route.routeCost.toLocaleString()}
+├─ Fuel Cost: ₹${route.fuelCost.toLocaleString()} (${((route.fuelCost/route.routeCost)*100).toFixed(1)}%)
+├─ Toll Cost: ₹${route.tollCost.toLocaleString()} (${((route.tollCost/route.routeCost)*100).toFixed(1)}%)
+└─ Other Costs: ₹${(route.routeCost - route.fuelCost - route.tollCost).toLocaleString()}
+
+Cost Per Kilometer: ₹${(route.routeCost / route.distance).toFixed(2)}/km
+Fuel Efficiency: ₹${(route.fuelCost / route.distance).toFixed(2)}/km
+
+OPERATIONAL METRICS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Frequency: ${route.frequency.toUpperCase()}
+Active Trips: ${route.activeTrips} shipments currently in transit
+Reliability: ${route.reliability}% (on-time delivery rate)
+Last Used: ${route.lastUsed}
+Created: ${route.createdDate}
+
+PERFORMANCE ANALYSIS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Total Trips (Last 30 days): ${route.activeTrips * 4}
+On-Time Deliveries: ${Math.round((route.activeTrips * 4 * route.reliability) / 100)}
+Delayed Deliveries: ${Math.round((route.activeTrips * 4 * (100 - route.reliability)) / 100)}
+Average Delay Time: ${route.avgDelay} minutes
+Revenue Generated: ₹${(route.routeCost * route.activeTrips * 4 * 1.2).toLocaleString()}
+
+ROUTE HEALTH
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Overall Score: ${route.reliability >= 95 ? 'Excellent ⭐⭐⭐⭐⭐' : route.reliability >= 90 ? 'Good ⭐⭐⭐⭐' : 'Fair ⭐⭐⭐'}
+${route.reliability >= 95 ? '✓ Highly reliable route' : route.reliability >= 90 ? '⚠ Minor delays observed' : '⚠ Requires optimization'}
+${route.avgDelay < 20 ? '✓ Minimal average delay' : route.avgDelay < 40 ? '⚠ Moderate delay concerns' : '⚠ High delay - investigate causes'}
+${route.activeTrips > 5 ? '✓ High utilization rate' : route.activeTrips > 2 ? '○ Moderate utilization' : '○ Low utilization'}
+
+SAFETY & COMPLIANCE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Permits & Licenses: Valid
+• Insurance Coverage: Active
+• Safety Inspections: Up to date
+• Driver Certifications: Verified
+• Vehicle Fitness: Approved
+• Hazmat Clearance: ${route.transportMode === 'air' ? 'Required' : 'Not Applicable'}
+
+WEATHER & TRAFFIC
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Current Conditions: Normal
+Traffic Status: Moderate
+Weather Impact: None
+Recommended Departure: As scheduled
+
+Actions Available:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Edit Route] [Duplicate Route] [Generate Report] [View Map] [View History] [Optimize] [Deactivate]`);
+  };
+
+  const handleEditRoute = (route: RouteDetails) => {
+    alert(`Edit Route - ${route.routeCode}
+
+Current Route Configuration:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+BASIC INFORMATION
+Route Code: ${route.routeCode} [Read-only]
+Route Name: [${route.routeName}]
+Route Type: [${route.routeType}] ▼
+  Options: Primary / Alternate / Emergency
+
+LOCATIONS
+Origin: [${route.origin}] ▼
+Destination: [${route.destination}] ▼
+
+Waypoints (${route.waypoints.length} stops):
+${route.waypoints.map((w, i) => `  ${i + 1}. [${w}] [Remove]`).join('\n')}
+[+ Add Waypoint]
+
+TRANSPORT DETAILS
+Transport Mode: [${route.transportMode}] ▼
+  Options: Road / Rail / Air / Sea
+Frequency: [${route.frequency}] ▼
+  Options: Daily / Weekly / Bi-weekly / Monthly / On-demand
+
+ROUTE METRICS
+Distance: [${route.distance}] km (auto-calculated)
+Estimated Time: [${route.estimatedTime}] hours (auto-calculated)
+Average Speed: ${Math.round(route.distance / route.estimatedTime)} km/h
+
+COST CONFIGURATION
+Total Route Cost: ₹ [${route.routeCost}]
+├─ Fuel Cost: ₹ [${route.fuelCost}]
+├─ Toll Cost: ₹ [${route.tollCost}]
+└─ Other Costs: ₹ ${route.routeCost - route.fuelCost - route.tollCost} (auto-calculated)
+
+OPERATIONAL STATUS
+Status: [${route.status}] ▼
+  Options: Active / Inactive / Under Review
+Current Active Trips: ${route.activeTrips} [Read-only]
+Reliability: ${route.reliability}% [Read-only]
+
+OPTIMIZATION OPTIONS
+☑ Recalculate shortest path
+☑ Update fuel costs based on current rates
+☑ Adjust for traffic patterns
+☑ Optimize waypoint sequence
+☑ Update toll costs
+
+VALIDATION CHECKS
+${route.status === 'active' && route.activeTrips > 0 ? '⚠ Warning: Route has active trips. Changes may affect ongoing shipments.' : '✓ Safe to modify'}
+${route.reliability < 90 ? '⚠ Low reliability detected. Consider route optimization.' : '✓ Route performance is good'}
+${route.avgDelay > 40 ? '⚠ High average delay. Review waypoints and timing.' : '✓ Delay metrics acceptable'}
+
+CHANGE LOG
+Last Modified: ${route.lastUsed}
+Modified By: Current User
+Modification Type: [Will be logged]
+
+Actions:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Save Changes] [Recalculate Route] [Test Route] [Cancel] [Delete Route]
+
+Note: Saved changes will:
+• Update route in database
+• Notify active drivers if route has active trips
+• Recalculate all metrics automatically
+• Create audit log entry
+• Update connected shipment schedules`);
+  };
+
   const [routes, setRoutes] = useState<RouteDetails[]>([
     {
       id: 1,
@@ -335,7 +557,10 @@ export default function RoutePlanningPage() {
           <p className="text-gray-600 mt-1">Manage transportation routes and optimize delivery paths</p>
         </div>
         <div className="flex items-center space-x-3">
-          <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center space-x-2">
+          <button
+            onClick={handleCreateRoute}
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center space-x-2"
+          >
             <Plus className="w-4 h-4" />
             <span>Create Route</span>
           </button>
@@ -535,11 +760,17 @@ export default function RoutePlanningPage() {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm">
                     <div className="flex items-center space-x-2">
-                      <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                      <button
+                        onClick={() => handleViewRoute(route)}
+                        className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm"
+                      >
                         <Eye className="w-4 h-4 text-gray-600" />
                         <span className="text-gray-700">View</span>
                       </button>
-                      <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                      <button
+                        onClick={() => handleEditRoute(route)}
+                        className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm"
+                      >
                         <Edit2 className="w-4 h-4 text-gray-600" />
                         <span className="text-gray-700">Edit</span>
                       </button>

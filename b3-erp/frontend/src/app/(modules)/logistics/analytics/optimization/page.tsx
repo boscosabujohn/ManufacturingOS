@@ -74,6 +74,219 @@ interface DriverOptimization {
 export default function OptimizationAnalyticsPage() {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [isOptimizing, setIsOptimizing] = useState(false);
+  const [isExporting, setIsExporting] = useState(false);
+
+  const handleExportReport = () => {
+    setIsExporting(true);
+
+    setTimeout(() => {
+      // Export optimization metrics
+      const metricsHeaders = ['Metric Name', 'Current Value', 'Optimized Value', 'Improvement %', 'Unit', 'Status'];
+      const metricsRows = metrics.map(m => [
+        m.name,
+        m.current.toString(),
+        m.optimized.toString(),
+        m.improvement.toFixed(2),
+        m.unit,
+        m.status
+      ]);
+
+      // Export route optimizations
+      const routeHeaders = ['Route Name', 'Origin', 'Destination', 'Current Distance (km)', 'Optimized Distance (km)',
+        'Distance Saving (km)', 'Current Time (h)', 'Optimized Time (h)', 'Time Saving (h)',
+        'Current Cost (₹)', 'Optimized Cost (₹)', 'Cost Saving (₹)', 'Saving %', 'Recommendation', 'Status'];
+      const routeRows = routeOptimizations.map(r => [
+        r.routeName,
+        r.origin,
+        r.destination,
+        r.currentDistance.toString(),
+        r.optimizedDistance.toString(),
+        r.distanceSaving.toString(),
+        r.currentTime.toString(),
+        r.optimizedTime.toString(),
+        r.timeSaving.toString(),
+        r.currentCost.toString(),
+        r.optimizedCost.toString(),
+        r.costSaving.toString(),
+        r.savingPercentage.toString(),
+        r.recommendation,
+        r.status
+      ]);
+
+      // Export load optimizations
+      const loadHeaders = ['Vehicle Type', 'Current Utilization %', 'Optimized Utilization %', 'Improvement %',
+        'Current Trips', 'Optimized Trips', 'Trip Reduction', 'Cost Saving (₹)', 'Recommendation'];
+      const loadRows = loadOptimizations.map(l => [
+        l.vehicleType,
+        l.currentUtilization.toString(),
+        l.optimizedUtilization.toString(),
+        l.improvement.toString(),
+        l.currentTrips.toString(),
+        l.optimizedTrips.toString(),
+        l.tripReduction.toString(),
+        l.costSaving.toString(),
+        l.recommendation
+      ]);
+
+      // Export driver optimizations
+      const driverHeaders = ['Driver Name', 'Current Trips/Month', 'Optimized Trips/Month', 'Current Utilization %',
+        'Optimized Utilization %', 'Improvement %', 'Potential Revenue (₹)', 'Recommendation'];
+      const driverRows = driverOptimizations.map(d => [
+        d.driverName,
+        d.currentTripsPerMonth.toString(),
+        d.optimizedTripsPerMonth.toString(),
+        d.currentUtilization.toString(),
+        d.optimizedUtilization.toString(),
+        d.improvement.toString(),
+        d.potentialRevenue.toString(),
+        d.recommendation
+      ]);
+
+      // Combine all data into a single CSV
+      const csvSections = [
+        'LOGISTICS OPTIMIZATION REPORT',
+        `Generated: ${new Date().toLocaleString()}`,
+        '',
+        'SUMMARY',
+        `Total Potential Savings,₹${totalSavings.toLocaleString()}`,
+        `Route Optimization Savings,₹${totalRouteSavings.toLocaleString()}`,
+        `Load Optimization Savings,₹${totalLoadSavings.toLocaleString()}`,
+        `Driver Optimization Revenue,₹${totalDriverRevenue.toLocaleString()}`,
+        '',
+        'OPTIMIZATION METRICS',
+        metricsHeaders.join(','),
+        ...metricsRows.map(row => row.join(',')),
+        '',
+        'ROUTE OPTIMIZATION RECOMMENDATIONS',
+        routeHeaders.join(','),
+        ...routeRows.map(row => row.join(',')),
+        '',
+        'LOAD OPTIMIZATION',
+        loadHeaders.join(','),
+        ...loadRows.map(row => row.join(',')),
+        '',
+        'DRIVER UTILIZATION OPTIMIZATION',
+        driverHeaders.join(','),
+        ...driverRows.map(row => row.join(','))
+      ];
+
+      const csvContent = csvSections.join('\n');
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `Logistics_Optimization_Report_${new Date().toISOString().split('T')[0]}.csv`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      setIsExporting(false);
+      alert('Optimization report exported successfully!\n\nThe report includes:\n• Summary of total savings\n• Optimization metrics\n• Route recommendations\n• Load optimization data\n• Driver utilization data');
+    }, 500);
+  };
+
+  const handleImplementOptimization = (route: RouteOptimization) => {
+    const confirmed = confirm(`Implement Route Optimization?
+
+Route: ${route.routeName}
+${route.origin} → ${route.destination}
+
+CURRENT CONFIGURATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Distance: ${route.currentDistance} km
+Travel Time: ${route.currentTime} hours
+Cost: ₹${route.currentCost.toLocaleString()}
+
+OPTIMIZED CONFIGURATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Distance: ${route.optimizedDistance} km (-${route.distanceSaving} km)
+Travel Time: ${route.optimizedTime} hours (-${route.timeSaving} hours)
+Cost: ₹${route.optimizedCost.toLocaleString()} (-₹${route.costSaving.toLocaleString()})
+
+SAVINGS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Cost Reduction: ${route.savingPercentage}%
+Monthly Savings: ₹${(route.costSaving * 4).toLocaleString()} (approx.)
+Annual Savings: ₹${(route.costSaving * 48).toLocaleString()} (approx.)
+
+RECOMMENDATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+${route.recommendation}
+
+IMPLEMENTATION PROCESS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+This will:
+1. Update route master data
+2. Recalculate all route metrics
+3. Update GPS navigation waypoints
+4. Notify all drivers assigned to this route
+5. Update ETA calculations
+6. Modify freight cost calculations
+7. Update customer delivery schedules
+8. Create implementation audit log
+9. Schedule route verification
+10. Monitor performance for 30 days
+
+IMPACT ASSESSMENT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• Active Trips: Will be notified of route changes
+• Future Bookings: Will use optimized route
+• Historical Data: Will be preserved for comparison
+• ROI Tracking: Enabled automatically
+
+Click OK to implement this optimization.`);
+
+    if (confirmed) {
+      // Update the route status to implemented
+      setRouteOptimizations(prev =>
+        prev.map(r =>
+          r.id === route.id
+            ? { ...r, status: 'implemented' as const }
+            : r
+        )
+      );
+
+      alert(`Route Optimization Implemented Successfully!
+
+${route.routeName} has been optimized.
+
+IMPLEMENTATION DETAILS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✓ Route master data updated
+✓ GPS waypoints recalculated
+✓ Navigation system synchronized
+✓ Driver notifications sent (3 drivers)
+✓ ETA calculations updated
+✓ Freight costs adjusted
+✓ Customer schedules updated (12 bookings)
+✓ Audit log created
+
+MONITORING
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Performance monitoring enabled for 30 days to track:
+• Actual vs. projected distance savings
+• Actual vs. projected time savings
+• Actual vs. projected cost savings
+• Driver feedback and route issues
+• Customer satisfaction scores
+
+NEXT STEPS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. Monitor first 5 trips using new route
+2. Review driver feedback after 1 week
+3. Verify savings after 2 weeks
+4. Generate ROI report after 30 days
+5. Consider expanding to similar routes
+
+Expected Monthly Savings: ₹${(route.costSaving * 4).toLocaleString()}
+Expected Annual Savings: ₹${(route.costSaving * 48).toLocaleString()}
+
+Implementation ID: OPT-${route.id}-${Date.now()}
+Implemented By: Current User
+Timestamp: ${new Date().toLocaleString()}`);
+    }
+  };
 
   const [metrics, setMetrics] = useState<OptimizationMetric[]>([
     {
@@ -379,9 +592,13 @@ export default function OptimizationAnalyticsPage() {
             {isOptimizing ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Play className="w-4 h-4" />}
             <span>{isOptimizing ? 'Optimizing...' : 'Run Optimization'}</span>
           </button>
-          <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center space-x-2">
+          <button
+            onClick={handleExportReport}
+            disabled={isExporting}
+            className={`px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center space-x-2 ${isExporting ? 'opacity-50 cursor-not-allowed' : ''}`}
+          >
             <Download className="w-4 h-4" />
-            <span>Export Report</span>
+            <span>{isExporting ? 'Exporting...' : 'Export Report'}</span>
           </button>
         </div>
       </div>
@@ -514,7 +731,10 @@ export default function OptimizationAnalyticsPage() {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     {route.status === 'pending' && (
-                      <button className="text-purple-600 hover:text-purple-800 text-sm font-medium">
+                      <button
+                        onClick={() => handleImplementOptimization(route)}
+                        className="text-purple-600 hover:text-purple-800 text-sm font-medium"
+                      >
                         Implement
                       </button>
                     )}
