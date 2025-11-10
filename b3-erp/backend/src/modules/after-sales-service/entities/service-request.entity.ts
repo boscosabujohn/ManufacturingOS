@@ -79,7 +79,7 @@ export class ServiceRequest {
   billable: boolean;
 
   // SLA
-  responseTime SLA: number; // in hours
+  responseTimeSLA: number; // in hours
   resolutionTimeSLA: number; // in hours
   responseDeadline: Date;
   resolutionDeadline: Date;
@@ -172,7 +172,7 @@ export class ServiceTicket {
   assignmentDate?: Date;
 
   // SLA Tracking
-  responseTime SLA: number;
+  responseTimeSLA: number;
   resolutionTimeSLA: number;
   responseTime: number; // actual
   resolutionTime: number; // actual

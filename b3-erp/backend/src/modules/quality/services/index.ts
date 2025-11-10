@@ -1,0 +1,11 @@
+export { QCTemplateService } from './qc-template.service';
+export { QCParameterService } from './qc-parameter.service';
+export { InspectionService } from './inspection.service';
+export { InspectionResultService } from './inspection-result.service';
+export { NonConformanceService } from './non-conformance.service';
+export { CorrectiveActionService } from './corrective-action.service';
+export { PreventiveActionService } from './preventive-action.service';
+export { CAPAService } from './capa.service';
+export { QualityAlertService } from './quality-alert.service';
+export { AuditPlanService } from './audit-plan.service';
+export { AuditFindingsService } from './audit-findings.service';

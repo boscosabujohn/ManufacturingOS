@@ -72,7 +72,7 @@ export class ServiceContract {
 
   // Related Documents
   attachments?: string[];
-  terms AndConditions?: string;
+  termsAndConditions?: string;
 
   // Sales Information
   salesOrderId?: string;

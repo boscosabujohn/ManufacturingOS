@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-// import { TypeOrmModule } from '@nestjs/typeorm';
-// import { BullModule } from '@nestjs/bull';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { BullModule } from '@nestjs/bull';
 
 // Modules
 import { CoreModule } from './modules/core/core.module';
@@ -19,6 +19,8 @@ import { ReportsModule } from './modules/reports/reports.module';
 import { LogisticsModule } from './modules/logistics/logistics.module';
 import { SupportModule } from './modules/support/support.module';
 import { ItAdminModule } from './modules/it-admin/it-admin.module';
+import { AfterSalesServiceModule } from './modules/after-sales-service/after-sales-service.module';
+import { QualityModule } from './modules/quality/quality.module';
 
 @Module({
   imports: [
@@ -28,51 +30,53 @@ import { ItAdminModule } from './modules/it-admin/it-admin.module';
       envFilePath: '.env',
     }),
 
-    // Database - Temporarily disabled for RFP demo (uses in-memory storage)
-    // TypeOrmModule.forRootAsync({
-    //   imports: [ConfigModule],
-    //   useFactory: (configService: ConfigService) => ({
-    //     type: 'postgres',
-    //     host: configService.get('DB_HOST'),
-    //     port: +configService.get('DB_PORT'),
-    //     username: configService.get('DB_USERNAME'),
-    //     password: configService.get('DB_PASSWORD'),
-    //     database: configService.get('DB_DATABASE'),
-    //     entities: [__dirname + '/**/*.entity{.ts,.js}'],
-    //     synchronize: configService.get('NODE_ENV') === 'development',
-    //     logging: configService.get('NODE_ENV') === 'development',
-    //   }),
-    //   inject: [ConfigService],
-    // }),
+    // Database - Now enabled with comprehensive entities
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: (configService: ConfigService) => ({
+        type: 'postgres',
+        host: configService.get('DB_HOST', 'localhost'),
+        port: +configService.get('DB_PORT', 5432),
+        username: configService.get('DB_USERNAME', 'postgres'),
+        password: configService.get('DB_PASSWORD', 'postgres'),
+        database: configService.get('DB_DATABASE', 'manufacturing_erp'),
+        entities: [__dirname + '/**/*.entity{.ts,.js}'],
+        synchronize: configService.get('NODE_ENV') === 'development',
+        logging: configService.get('NODE_ENV') === 'development',
+      }),
+      inject: [ConfigService],
+    }),
 
-    // Bull Queue - Temporarily disabled for RFP demo
-    // BullModule.forRootAsync({
-    //   imports: [ConfigModule],
-    //   useFactory: async (configService: ConfigService) => ({
-    //     redis: {
-    //       host: configService.get('BULL_REDIS_HOST'),
-    //       port: +configService.get('BULL_REDIS_PORT'),
-    //     },
-    //   }),
-    //   inject: [ConfigService],
-    // }),
+    // Bull Queue - For async job processing
+    BullModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => ({
+        redis: {
+          host: configService.get('BULL_REDIS_HOST', 'localhost'),
+          port: +configService.get('BULL_REDIS_PORT', 6379),
+        },
+      }),
+      inject: [ConfigService],
+    }),
 
-    // Application Modules
-    CoreModule,
+    // Application Modules - Comprehensive Manufacturing ERP
+    CoreModule, // Customer, Vendor, Item, UOM, Category masters
     AccountsModule,
-    CrmModule,
-    SalesModule,
-    EstimationModule,
-    InventoryModule,
-    ProductionModule,
-    ProcurementModule,
-    FinanceModule,
-    HrModule,
-    WorkflowModule,
-    ReportsModule,
-    LogisticsModule,
-    SupportModule,
-    ItAdminModule,
+    CrmModule, // Lead & Interaction management
+    SalesModule, // RFP, Quotes, Orders
+    AfterSalesServiceModule, // Service requests, contracts, warranties
+    EstimationModule, // Cost estimation & quotations
+    InventoryModule, // Stock management, warehousing, transfers
+    ProductionModule, // BOM, Work Orders, Shop Floor Control
+    ProcurementModule, // Purchase Orders, RFQ, Goods Receipt
+    FinanceModule, // GL, Journal Entries, Invoices, Payments
+    HrModule, // Employee, Payroll, Leave, Attendance
+    QualityModule, // QC, Inspections, NCR, CAPA
+    WorkflowModule, // Approval workflows
+    ReportsModule, // Comprehensive reporting
+    LogisticsModule, // Shipment, Fleet, Route management
+    SupportModule, // Customer support
+    ItAdminModule, // User, Role, Permission, Audit management
   ],
 })
 export class AppModule {}
