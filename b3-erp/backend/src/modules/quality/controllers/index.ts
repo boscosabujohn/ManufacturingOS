@@ -1,0 +1,11 @@
+export { QCTemplateController } from './qc-template.controller';
+export { QCParameterController } from './qc-parameter.controller';
+export { InspectionController } from './inspection.controller';
+export { InspectionResultController } from './inspection-result.controller';
+export { NonConformanceController } from './non-conformance.controller';
+export { CorrectiveActionController } from './corrective-action.controller';
+export { PreventiveActionController } from './preventive-action.controller';
+export { CAPAController } from './capa.controller';
+export { QualityAlertController } from './quality-alert.controller';
+export { AuditPlanController } from './audit-plan.controller';
+export { AuditFindingsController } from './audit-findings.controller';
