@@ -1,0 +1,106 @@
+import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
+
+// Entities
+import {
+  QCTemplate,
+  QCParameter,
+  Inspection,
+  InspectionResultEntity,
+  NonConformance,
+  CorrectiveAction,
+  PreventiveAction,
+  CAPA,
+  QualityAlert,
+  AuditPlan,
+  AuditFindings,
+} from './entities';
+
+// Services
+import {
+  QCTemplateService,
+  QCParameterService,
+  InspectionService,
+  InspectionResultService,
+  NonConformanceService,
+  CorrectiveActionService,
+  PreventiveActionService,
+  CAPAService,
+  QualityAlertService,
+  AuditPlanService,
+  AuditFindingsService,
+} from './services';
+
+// Controllers
+import {
+  QCTemplateController,
+  QCParameterController,
+  InspectionController,
+  InspectionResultController,
+  NonConformanceController,
+  CorrectiveActionController,
+  PreventiveActionController,
+  CAPAController,
+  QualityAlertController,
+  AuditPlanController,
+  AuditFindingsController,
+} from './controllers';
+
+@Module({
+  imports: [
+    TypeOrmModule.forFeature([
+      // Main entities
+      QCTemplate,
+      QCParameter,
+      Inspection,
+      InspectionResultEntity,
+      NonConformance,
+      CorrectiveAction,
+      PreventiveAction,
+      CAPA,
+      QualityAlert,
+      AuditPlan,
+      AuditFindings,
+    ]),
+  ],
+  controllers: [
+    QCTemplateController,
+    QCParameterController,
+    InspectionController,
+    InspectionResultController,
+    NonConformanceController,
+    CorrectiveActionController,
+    PreventiveActionController,
+    CAPAController,
+    QualityAlertController,
+    AuditPlanController,
+    AuditFindingsController,
+  ],
+  providers: [
+    QCTemplateService,
+    QCParameterService,
+    InspectionService,
+    InspectionResultService,
+    NonConformanceService,
+    CorrectiveActionService,
+    PreventiveActionService,
+    CAPAService,
+    QualityAlertService,
+    AuditPlanService,
+    AuditFindingsService,
+  ],
+  exports: [
+    QCTemplateService,
+    QCParameterService,
+    InspectionService,
+    InspectionResultService,
+    NonConformanceService,
+    CorrectiveActionService,
+    PreventiveActionService,
+    CAPAService,
+    QualityAlertService,
+    AuditPlanService,
+    AuditFindingsService,
+  ],
+})
+export class QualityModule {}
