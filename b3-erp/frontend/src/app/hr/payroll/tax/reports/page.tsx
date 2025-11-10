@@ -391,7 +391,7 @@ function EmailReportModal({ report, onClose, formatCurrency }: { report: TaxRepo
   const [emailData, setEmailData] = useState({
     recipients: '',
     subject: `Tax Report - ${report.reportName} (${report.period})`,
-    message: `Please find attached the ${report.reportName} for ${report.period}.\n\nTotal Employees: ${report.totalEmployees}\nTotal Tax Deducted: ${formatCurrency(report.totalTaxDeducted)}\n\nThis is an automated email from B3 MACBIS ERP System.`,
+    message: `Please find attached the ${report.reportName} for ${report.period}.\n\nTotal Employees: ${report.totalEmployees}\nTotal Tax Deducted: ${formatCurrency(report.totalTaxDeducted)}\n\nThis is an automated email from ManufacturingOS ERP System.`,
     includeAttachment: true,
     format: 'pdf'
   });

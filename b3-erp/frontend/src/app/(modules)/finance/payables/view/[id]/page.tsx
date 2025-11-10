@@ -136,7 +136,7 @@ interface Payable {
   lastPurchaseDate: string;
 }
 
-// Mock Data - B3 MACBIS ERP - Indian Manufacturing Context
+// Mock Data - ManufacturingOS ERP - Indian Manufacturing Context
 const mockPayable: Payable = {
   id: 'PAY-001',
   vendorId: 'VEN-2023-0142',

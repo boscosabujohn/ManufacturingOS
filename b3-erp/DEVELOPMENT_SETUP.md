@@ -1,4 +1,4 @@
-# B3 MACBIS ERP - Development Setup Guide
+# ManufacturingOS ERP - Development Setup Guide
 
 ## ✅ System Preparation Complete!
 

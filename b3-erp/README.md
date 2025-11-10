@@ -1,6 +1,6 @@
-# B3 MACBIS ERP System
+# ManufacturingOS ERP System
 
-# B3 MACBIS ERP System
+# ManufacturingOS ERP System
 
 A comprehensive Manufacturing ERP system built with modern technologies to manage all aspects of manufacturing operations.
 

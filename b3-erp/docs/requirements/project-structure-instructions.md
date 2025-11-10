@@ -1,7 +1,7 @@
 # ERP Project Structure & Development Instructions
 ## Complete Guide for AI-Assisted Code Generation
 
-### Project: B3 MACBIS ERP System
+### Project: ManufacturingOS ERP System
 **Version:** 1.0  
 **Last Updated:** 2024  
 **Purpose:** Instruction set for Claude CLI and AI-assisted development
@@ -959,4 +959,4 @@ claude-cli generate module crm feature lead-management \
 
 ---
 
-*This instruction document should be consulted before any code generation to ensure consistency and maintainability of the B3 MACBIS ERP system.*
+*This instruction document should be consulted before any code generation to ensure consistency and maintainability of the ManufacturingOS ERP system.*

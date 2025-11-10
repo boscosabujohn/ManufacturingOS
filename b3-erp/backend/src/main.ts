@@ -29,8 +29,8 @@ async function bootstrap() {
 
   // Swagger documentation
   const config = new DocumentBuilder()
-    .setTitle('B3 MACBIS ERP API')
-    .setDescription('B3 MACBIS ERP System API Documentation')
+    .setTitle('ManufacturingOS ERP API')
+    .setDescription('ManufacturingOS ERP System API Documentation')
     .setVersion('1.0')
     .addBearerAuth()
     .addTag('Authentication')

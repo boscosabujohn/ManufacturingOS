@@ -2,7 +2,7 @@
 ## Strategic Sourcing & Purchase Management
 
 ### Module Overview
-**Organization:** B3 MACBIS Ltd  
+**Organization:** ManufacturingOS Ltd  
 **Developed by:** KreupAI Technologies LLC  
 **Module Type:** Core Operations Module  
 **Version:** 1.0  
@@ -11,7 +11,7 @@
 
 ## 1. Executive Summary
 
-The Procurement Module serves as the strategic sourcing backbone for B3 MACBIS Ltd, managing all purchasing activities from requirement identification to vendor payment. This module ensures timely availability of materials at optimal costs while maintaining quality standards, managing vendor relationships, and ensuring compliance with procurement policies. It integrates seamlessly with production planning, inventory management, and financial accounting to create an efficient procure-to-pay cycle.
+The Procurement Module serves as the strategic sourcing backbone for ManufacturingOS Ltd, managing all purchasing activities from requirement identification to vendor payment. This module ensures timely availability of materials at optimal costs while maintaining quality standards, managing vendor relationships, and ensuring compliance with procurement policies. It integrates seamlessly with production planning, inventory management, and financial accounting to create an efficient procure-to-pay cycle.
 
 ---
 
@@ -812,4 +812,4 @@ The Procurement Module serves as the strategic sourcing backbone for B3 MACBIS L
 
 ---
 
-*A Solution for B3 MACBIS Ltd, Developed by KreupAI Technologies LLC © 2024*
+*A Solution for ManufacturingOS Ltd, Developed by KreupAI Technologies LLC © 2024*

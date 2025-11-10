@@ -2,7 +2,7 @@
 
 ## ✅ What's Been Done
 
-Your B3 MACBIS ERP project is now **ready to run** on Windows! Here's what was configured:
+Your ManufacturingOS ERP project is now **ready to run** on Windows! Here's what was configured:
 
 ### 1. Environment Configuration ✅
 - ✅ Created `backend\.env` with development settings
@@ -217,7 +217,7 @@ npm install
 
 ## 🎉 You're All Set!
 
-Your B3 MACBIS ERP system is ready to run. Start developing and building something amazing!
+Your ManufacturingOS ERP system is ready to run. Start developing and building something amazing!
 
 **Questions?** Check the documentation or review the troubleshooting guides.
 

@@ -1,6 +1,6 @@
-# B3 MACBIS ERP - PowerShell Startup Script
+# ManufacturingOS ERP - PowerShell Startup Script
 Write-Host "========================================" -ForegroundColor Cyan
-Write-Host "B3 MACBIS ERP - Starting Services" -ForegroundColor Cyan
+Write-Host "ManufacturingOS ERP - Starting Services" -ForegroundColor Cyan
 Write-Host "========================================" -ForegroundColor Cyan
 Write-Host ""
 

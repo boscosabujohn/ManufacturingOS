@@ -1,6 +1,6 @@
 @echo off
 echo ========================================
-echo B3 MACBIS ERP - UI Development Mode
+echo ManufacturingOS ERP - UI Development Mode
 echo ========================================
 echo.
 echo Starting Frontend Only (No Backend Required)

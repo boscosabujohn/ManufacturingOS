@@ -1,7 +1,7 @@
 # Comprehensive RFP Module Implementation Summary
 
 ## Overview
-Successfully implemented a comprehensive Request for Proposal (RFP) management system for the B3 MACBIS Manufacturing ERP.
+Successfully implemented a comprehensive Request for Proposal (RFP) management system for the ManufacturingOS Manufacturing ERP.
 
 ## Access
 - **Frontend URL**: http://localhost:3006/sales/rfp

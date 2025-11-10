@@ -1,7 +1,7 @@
 # Master Files Quick Reference
 
 ## 📋 Summary
-Created 7 comprehensive master file components for item management in the B3 MACBIS ERP system.
+Created 7 comprehensive master file components for item management in the ManufacturingOS ERP system.
 
 ---
 

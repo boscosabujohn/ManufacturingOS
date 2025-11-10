@@ -98,7 +98,7 @@ interface RFQ {
   updatedAt: string;
 }
 
-// Mock Data - B3 MACBIS India
+// Mock Data - ManufacturingOS India
 const mockRFQ: RFQ = {
   id: '1',
   rfqNumber: 'RFQ-2025-0087',
@@ -222,7 +222,7 @@ const mockRFQ: RFQ = {
 4. Quality inspection will be conducted before acceptance
 5. Vendor must provide warranty as per industry standards
 6. Late delivery penalties may apply as per contract
-7. B3 MACBIS reserves the right to reject any or all quotes
+7. ManufacturingOS reserves the right to reject any or all quotes
 8. Award decision is final and binding`,
   notesToVendors: 'Please ensure all items are original and come with manufacturer warranties. Priority will be given to vendors who can deliver within 7 days.',
   createdBy: 'Rajesh Patel - Procurement Manager',

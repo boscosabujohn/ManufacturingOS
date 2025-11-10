@@ -2,7 +2,7 @@
 ## Equipment Testing, Validation & Handover
 
 ### Module Overview
-**Organization:** B3 MACBIS Ltd  
+**Organization:** ManufacturingOS Ltd  
 **Developed by:** KreupAI Technologies LLC  
 **Module Type:** Project Execution Module  
 **Version:** 1.0  
@@ -804,4 +804,4 @@ The Commissioning Module manages the critical final phase of kitchen equipment i
 
 ---
 
-*A Solution for B3 MACBIS Ltd, Developed by KreupAI Technologies LLC © 2024*
+*A Solution for ManufacturingOS Ltd, Developed by KreupAI Technologies LLC © 2024*

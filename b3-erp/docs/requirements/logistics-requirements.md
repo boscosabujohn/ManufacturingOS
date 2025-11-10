@@ -2,7 +2,7 @@
 ## Transportation & Delivery Operations
 
 ### Module Overview
-**Organization:** B3 MACBIS Ltd  
+**Organization:** ManufacturingOS Ltd  
 **Developed by:** KreupAI Technologies LLC  
 **Module Type:** Core Operations Module  
 **Version:** 1.0  
@@ -11,7 +11,7 @@
 
 ## 1. Executive Summary
 
-The Logistics Module manages all transportation and delivery operations for B3 MACBIS Ltd, covering the movement of finished goods from factory to customer sites, inter-facility transfers, and emergency spare parts delivery. This module ensures timely delivery of kitchen equipment to restaurants, food courts, and corporate clients while optimizing transportation costs and maintaining delivery quality. It integrates with sales, warehouse, and support modules to provide end-to-end visibility of shipment movements.
+The Logistics Module manages all transportation and delivery operations for ManufacturingOS Ltd, covering the movement of finished goods from factory to customer sites, inter-facility transfers, and emergency spare parts delivery. This module ensures timely delivery of kitchen equipment to restaurants, food courts, and corporate clients while optimizing transportation costs and maintaining delivery quality. It integrates with sales, warehouse, and support modules to provide end-to-end visibility of shipment movements.
 
 ---
 
@@ -775,4 +775,4 @@ The Logistics Module manages all transportation and delivery operations for B3 M
 
 ---
 
-*A Solution for B3 MACBIS Ltd, Developed by KreupAI Technologies LLC © 2024*
+*A Solution for ManufacturingOS Ltd, Developed by KreupAI Technologies LLC © 2024*

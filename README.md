@@ -1,4 +1,4 @@
-# 🚀 B3 MACBIS ERP - Manufacturing Operating System
+# 🚀 ManufacturingOS ERP - Manufacturing Operating System
 
 A comprehensive Manufacturing ERP system built with modern technologies to manage all aspects of manufacturing operations.
 
@@ -160,7 +160,7 @@ The system includes the following modules:
 
 ## 📧 Project Information
 
-- **Project:** B3 MACBIS ERP System
+- **Project:** ManufacturingOS ERP System
 - **Repository:** ManufacturingOS
 - **Environment:** Windows Development Setup
 

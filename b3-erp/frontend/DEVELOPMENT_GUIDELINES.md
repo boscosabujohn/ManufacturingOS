@@ -1,7 +1,7 @@
-# B3 MACBIS ERP - Development Guidelines
+# ManufacturingOS ERP - Development Guidelines
 
 ## Project Overview
-**Company**: B3 MACBIS - Kitchen Manufacturing
+**Company**: ManufacturingOS - Kitchen Manufacturing
 **Developer**: KreupAI Technologies LLC
 **Location**: India
 **Industry**: Kitchen Manufacturing & Modular Kitchen Systems
@@ -465,7 +465,7 @@ const steps = [
 ## Branding Guidelines
 
 ### Company Information
-- **Company Name**: B3 MACBIS
+- **Company Name**: ManufacturingOS
 - **Product**: Kitchen Manufacturing ERP
 - **Developer**: KreupAI Technologies LLC
 
@@ -473,7 +473,7 @@ const steps = [
 ```tsx
 <div className="text-center md:text-left">
   <p className="text-sm font-semibold text-gray-700 mb-1">
-    B3 MACBIS - Kitchen Manufacturing ERP
+    ManufacturingOS - Kitchen Manufacturing ERP
   </p>
   <p className="text-xs text-gray-500">
     Powered by KreupAI Technologies LLC
@@ -486,7 +486,7 @@ const steps = [
 {isOpen && (
   <div className="border-t border-gray-200 p-4 bg-white">
     <p className="text-xs text-gray-500 text-center">
-      B3 MACBIS - Kitchen Manufacturing ERP
+      ManufacturingOS - Kitchen Manufacturing ERP
     </p>
     <p className="text-xs text-gray-400 text-center mt-1">
       Powered by KreupAI Technologies LLC
@@ -499,7 +499,7 @@ const steps = [
 ```tsx
 <div className="flex-shrink-0">
   <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-    B3 MACBIS
+    ManufacturingOS
   </h1>
   <p className="text-xs text-gray-600 font-medium">
     Manufacturing ERP System

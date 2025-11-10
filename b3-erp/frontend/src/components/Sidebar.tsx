@@ -3636,7 +3636,7 @@ export default function Sidebar({ isOpen, onToggle }: SidebarProps) {
         {/* Header */}
         <div className="h-16 border-b border-gray-200 flex items-center justify-between px-4 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600">
           {isOpen && (
-            <h2 className="text-lg font-bold text-white tracking-wide">B3 MACBIS</h2>
+            <h2 className="text-lg font-bold text-white tracking-wide">ManufacturingOS</h2>
           )}
           <button
             onClick={onToggle}
@@ -3707,7 +3707,7 @@ export default function Sidebar({ isOpen, onToggle }: SidebarProps) {
         {isOpen && (
           <div className="border-t border-gray-200 p-4 bg-gradient-to-r from-slate-50 to-white">
             <p className="text-xs text-gray-600 text-center font-semibold">
-              B3 MACBIS - Kitchen Manufacturing ERP
+              ManufacturingOS - Kitchen Manufacturing ERP
             </p>
             <p className="text-xs text-gray-400 text-center mt-1">
               Powered by KreupAI Technologies LLC

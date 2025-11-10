@@ -2,7 +2,7 @@
 ## Intelligent Process Automation & Orchestration Engine
 
 ### Module Overview
-**Organization:** B3 MACBIS Ltd  
+**Organization:** ManufacturingOS Ltd  
 **Developed by:** KreupAI Technologies LLC  
 **Module Type:** Core Orchestration Layer  
 **Version:** 1.0  
@@ -11,7 +11,7 @@
 
 ## 1. Executive Summary
 
-The Workflow Management System (WMS) serves as the intelligent orchestration layer for B3 MACBIS Ltd's ERP ecosystem, automating business processes across all modules while enabling seamless collaboration with external partners. This system provides a flexible, event-driven architecture that can handle complex workflows including email-triggered processes, parallel approvals, external system integration, and on-the-fly workflow creation. It ensures business agility while maintaining control, compliance, and complete audit trails.
+The Workflow Management System (WMS) serves as the intelligent orchestration layer for ManufacturingOS Ltd's ERP ecosystem, automating business processes across all modules while enabling seamless collaboration with external partners. This system provides a flexible, event-driven architecture that can handle complex workflows including email-triggered processes, parallel approvals, external system integration, and on-the-fly workflow creation. It ensures business agility while maintaining control, compliance, and complete audit trails.
 
 ---
 
@@ -1310,4 +1310,4 @@ Complete list of 150+ pre-built workflow templates covering:
 
 ---
 
-*A Solution for B3 MACBIS Ltd, Developed by KreupAI Technologies LLC © 2024*
+*A Solution for ManufacturingOS Ltd, Developed by KreupAI Technologies LLC © 2024*

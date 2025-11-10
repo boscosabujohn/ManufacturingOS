@@ -1,6 +1,6 @@
 @echo off
 echo ========================================
-echo B3 MACBIS ERP - Starting Services
+echo ManufacturingOS ERP - Starting Services
 echo ========================================
 echo.
 

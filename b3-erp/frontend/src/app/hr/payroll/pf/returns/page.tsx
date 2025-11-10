@@ -583,7 +583,7 @@ function ViewReceiptModal({ returnData, onClose, formatCurrency }: { returnData:
             <div className="bg-gray-50 rounded-lg p-4 border border-gray-200 space-y-2 text-sm">
               <div className="flex justify-between">
                 <span className="text-gray-600">Establishment Name:</span>
-                <span className="font-medium text-gray-900">B3 MACBIS Manufacturing Pvt. Ltd.</span>
+                <span className="font-medium text-gray-900">ManufacturingOS Manufacturing Pvt. Ltd.</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-gray-600">Establishment Code:</span>

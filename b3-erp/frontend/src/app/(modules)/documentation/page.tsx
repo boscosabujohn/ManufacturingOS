@@ -57,7 +57,7 @@ export default function DocumentationPage() {
             </div>
             <div>
               <h1 className="text-3xl font-bold text-gray-900">Documentation</h1>
-              <p className="text-gray-600">Complete guides and references for B3 MACBIS ERP</p>
+              <p className="text-gray-600">Complete guides and references for ManufacturingOS ERP</p>
             </div>
           </div>
 

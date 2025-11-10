@@ -1,6 +1,6 @@
-# B3 MACBIS ERP - UI Development Mode (PowerShell)
+# ManufacturingOS ERP - UI Development Mode (PowerShell)
 Write-Host "========================================" -ForegroundColor Cyan
-Write-Host "B3 MACBIS ERP - UI Development Mode" -ForegroundColor Cyan
+Write-Host "ManufacturingOS ERP - UI Development Mode" -ForegroundColor Cyan
 Write-Host "========================================" -ForegroundColor Cyan
 Write-Host ""
 Write-Host "Starting Frontend Only (No Backend Required)" -ForegroundColor Yellow

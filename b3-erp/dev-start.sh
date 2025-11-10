@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# B3 MACBIS ERP - Development Startup Script
+# ManufacturingOS ERP - Development Startup Script
 # This script prepares and starts the development environment
 
 set -e
 
-echo "🚀 B3 MACBIS ERP - Development Setup"
+echo "🚀 ManufacturingOS ERP - Development Setup"
 echo "===================================="
 echo ""
 
@@ -117,7 +117,7 @@ NEXT_PUBLIC_API_TIMEOUT=30000
 NEXT_PUBLIC_WS_URL=ws://localhost:5000
 
 # App Configuration
-NEXT_PUBLIC_APP_NAME=B3 MACBIS ERP
+NEXT_PUBLIC_APP_NAME=ManufacturingOS ERP
 NEXT_PUBLIC_APP_VERSION=1.0.0
 
 # Feature Flags

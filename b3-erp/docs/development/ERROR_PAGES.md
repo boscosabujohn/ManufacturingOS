@@ -1,7 +1,7 @@
 # Error Pages Documentation
 
 ## Overview
-Custom error pages have been implemented for the B3 MACBIS ERP system to provide a better user experience when errors occur. The error messages are hidden by default, with an option for users (or developers) to view technical details.
+Custom error pages have been implemented for the ManufacturingOS ERP system to provide a better user experience when errors occur. The error messages are hidden by default, with an option for users (or developers) to view technical details.
 
 ## Error Pages Created
 

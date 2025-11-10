@@ -145,7 +145,7 @@ interface Receivable {
   lastSaleDate: string;
 }
 
-// Mock Data - B3 MACBIS ERP - Indian Manufacturing Context
+// Mock Data - ManufacturingOS ERP - Indian Manufacturing Context
 const mockReceivable: Receivable = {
   id: 'REC-001',
   customerId: 'CUST-2023-0142',

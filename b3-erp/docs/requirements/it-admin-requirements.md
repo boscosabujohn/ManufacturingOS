@@ -2,7 +2,7 @@
 ## Infrastructure, Technology & Facility Management
 
 ### Module Overview
-**Organization:** B3 MACBIS Ltd  
+**Organization:** ManufacturingOS Ltd  
 **Developed by:** KreupAI Technologies LLC  
 **Module Type:** Horizontal Support Module  
 **Version:** 1.0  
@@ -1238,4 +1238,4 @@ The IT & Admin Services Module acts as a horizontal support function serving the
 
 ---
 
-*A Solution for B3 MACBIS Ltd, Developed by KreupAI Technologies LLC © 2024*
+*A Solution for ManufacturingOS Ltd, Developed by KreupAI Technologies LLC © 2024*

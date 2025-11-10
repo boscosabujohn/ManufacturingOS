@@ -211,7 +211,7 @@ interface Interaction {
   outcome?: string;
 }
 
-// Mock customer data with comprehensive enterprise fields - B3 MACBIS India
+// Mock customer data with comprehensive enterprise fields - ManufacturingOS India
 const mockCustomer: Customer = {
   id: '1',
   // General Information
@@ -428,7 +428,7 @@ const mockCustomer: Customer = {
   lastOrderDate: '2025-10-05',
 };
 
-// Mock orders data - B3 MACBIS India
+// Mock orders data - ManufacturingOS India
 const mockOrders: Order[] = [
   { id: '1', orderNumber: 'ORD-2025-1234', date: '2025-10-05', amount: 785000, status: 'paid', items: 45 },
   { id: '2', orderNumber: 'ORD-2025-1189', date: '2025-09-28', amount: 625000, status: 'paid', items: 32 },
@@ -439,7 +439,7 @@ const mockOrders: Order[] = [
   { id: '7', orderNumber: 'ORD-2025-0987', date: '2025-07-05', amount: 595000, status: 'paid', items: 33 },
 ];
 
-// Mock interactions - B3 MACBIS India
+// Mock interactions - ManufacturingOS India
 const mockInteractions: Interaction[] = [
   {
     id: '1',

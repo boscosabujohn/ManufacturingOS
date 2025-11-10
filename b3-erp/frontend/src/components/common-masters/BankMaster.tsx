@@ -56,7 +56,7 @@ const BankMaster: React.FC = () => {
       ifscCode: 'HDFC0001234',
       swiftCode: 'HDFCINBB',
       micrCode: '560240002',
-      accountHolderName: 'B3 MACBIS Private Limited',
+      accountHolderName: 'ManufacturingOS Private Limited',
       currency: 'INR',
       contactDetails: {
         branchAddress: '123 MG Road, Richmond Town',
@@ -74,7 +74,7 @@ const BankMaster: React.FC = () => {
       },
       onlineAccess: {
         internetBanking: true,
-        netbankingId: 'B3MACBIS001',
+        netbankingId: 'ManufacturingOS001',
         upiId: 'b3macbis@hdfc'
       },
       isPrimary: true,
@@ -90,7 +90,7 @@ const BankMaster: React.FC = () => {
       accountType: 'current',
       ifscCode: 'ICIC0001705',
       swiftCode: 'ICICINBB',
-      accountHolderName: 'B3 MACBIS Private Limited',
+      accountHolderName: 'ManufacturingOS Private Limited',
       currency: 'INR',
       contactDetails: {
         branchAddress: 'Sony World Junction, Koramangala',
@@ -108,7 +108,7 @@ const BankMaster: React.FC = () => {
       },
       onlineAccess: {
         internetBanking: true,
-        netbankingId: 'B3MACBIS002'
+        netbankingId: 'ManufacturingOS002'
       },
       isPrimary: false,
       status: 'active',
@@ -123,7 +123,7 @@ const BankMaster: React.FC = () => {
       accountType: 'savings',
       ifscCode: 'SBIN0012345',
       micrCode: '560002045',
-      accountHolderName: 'B3 MACBIS Private Limited',
+      accountHolderName: 'ManufacturingOS Private Limited',
       currency: 'INR',
       contactDetails: {
         branchAddress: '100 Feet Road, Indiranagar',

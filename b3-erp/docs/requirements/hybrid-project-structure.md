@@ -1,4 +1,4 @@
-# B3 MACBIS ERP - Hybrid Architecture Guide
+# ManufacturingOS ERP - Hybrid Architecture Guide
 ## Django Backend + Next.js Frontend
 
 ### Technology Decision & Rationale
@@ -669,7 +669,7 @@ import Image from 'next/image';
 
 ## 8. Why This Architecture is Optimal
 
-### For B3 MACBIS ERP Specifically:
+### For ManufacturingOS ERP Specifically:
 
 1. **Complex Business Logic**: Django excels at handling complex business rules
 2. **Financial Calculations**: Python's numerical libraries are superior

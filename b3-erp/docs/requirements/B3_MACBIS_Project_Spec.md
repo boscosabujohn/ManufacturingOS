@@ -1,5 +1,5 @@
 
-# 🏢 B3 MACBIS Ltd — Enterprise ERP Project  
+# 🏢 ManufacturingOS Ltd — Enterprise ERP Project  
 ### **Project Documentation (Module / Sub-Module / Feature / Options)**  
 *Version 1.0 — Consolidated Functional Overview*
 
@@ -8,7 +8,7 @@
 ## 📘 1. Project Overview
 
 **Purpose:**  
-To create a fully integrated enterprise ERP platform for **B3 MACBIS Ltd**, covering all operational areas — from **Sales and CRM** to **Production, HR, and Logistics** — with a unified data model and real-time analytics.
+To create a fully integrated enterprise ERP platform for **ManufacturingOS Ltd**, covering all operational areas — from **Sales and CRM** to **Production, HR, and Logistics** — with a unified data model and real-time analytics.
 
 **Key Objectives:**
 - Streamline processes across departments.

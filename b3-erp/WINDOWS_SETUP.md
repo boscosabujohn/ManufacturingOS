@@ -1,4 +1,4 @@
-# B3 MACBIS ERP - Windows Setup Guide
+# ManufacturingOS ERP - Windows Setup Guide
 
 ## 🚀 Quick Start (Windows)
 

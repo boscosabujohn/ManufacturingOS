@@ -297,21 +297,21 @@ The CRM module has been completed to **100% for all frontend functionality**. Th
 
 **5 Connected Accounts (Mock Data):**
 
-1. **LinkedIn - B3 MACBIS Manufacturing**
+1. **LinkedIn - ManufacturingOS Manufacturing**
    - Followers: 12.5K
    - Engagement: 4.8%
    - Posts: 145
    - Total Reach: 45K
    - Status: ✅ Connected
 
-2. **Twitter - @B3MACBIS**
+2. **Twitter - @ManufacturingOS**
    - Followers: 8.9K
    - Engagement: 3.2%
    - Posts: 456
    - Total Reach: 78K
    - Status: ✅ Connected
 
-3. **Facebook - B3 MACBIS Manufacturing Solutions**
+3. **Facebook - ManufacturingOS Manufacturing Solutions**
    - Followers: 15.6K
    - Engagement: 5.1%
    - Posts: 234
@@ -325,7 +325,7 @@ The CRM module has been completed to **100% for all frontend functionality**. Th
    - Total Reach: 120K
    - Status: ❌ Disconnected
 
-5. **YouTube - B3 MACBIS Manufacturing**
+5. **YouTube - ManufacturingOS Manufacturing**
    - Followers: 4.3K (Subscribers)
    - Engagement: 7.8%
    - Videos: 67

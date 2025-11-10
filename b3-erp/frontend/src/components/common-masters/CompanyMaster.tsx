@@ -107,8 +107,8 @@ const CompanyMaster: React.FC = () => {
     {
       id: 'COMP002',
       code: 'B3M',
-      name: 'B3 MACBIS Manufacturing',
-      shortName: 'B3 MACBIS',
+      name: 'ManufacturingOS Manufacturing',
+      shortName: 'ManufacturingOS',
       type: 'subsidiary',
       parentCompany: 'COMP001',
       status: 'active',
@@ -132,7 +132,7 @@ const CompanyMaster: React.FC = () => {
         fiscalYearStart: '01-01'
       },
       legal: {
-        legalName: 'B3 MACBIS Manufacturing Corporation',
+        legalName: 'ManufacturingOS Manufacturing Corporation',
         businessType: 'Corporation',
         industry: 'Kitchen Manufacturing',
         licenses: ['Manufacturing License', 'Safety Certification']
@@ -143,7 +143,7 @@ const CompanyMaster: React.FC = () => {
     {
       id: 'COMP003',
       code: 'B3EU',
-      name: 'B3 MACBIS Europe',
+      name: 'ManufacturingOS Europe',
       shortName: 'B3 Europe',
       type: 'branch',
       parentCompany: 'COMP002',
@@ -168,7 +168,7 @@ const CompanyMaster: React.FC = () => {
         fiscalYearStart: '01-01'
       },
       legal: {
-        legalName: 'B3 MACBIS Europe GmbH',
+        legalName: 'ManufacturingOS Europe GmbH',
         businessType: 'GmbH',
         industry: 'Kitchen Manufacturing',
         licenses: ['EU Manufacturing License', 'CE Certification']

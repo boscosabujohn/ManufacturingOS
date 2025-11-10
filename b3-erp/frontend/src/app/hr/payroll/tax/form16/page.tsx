@@ -595,7 +595,7 @@ function Form16DetailsModal({ record, onClose, formatCurrency }: Form16DetailsMo
         <div className="p-6">
           {/* Header Section */}
           <div className="text-center mb-6 pb-4 border-b-2 border-gray-200">
-            <h1 className="text-2xl font-bold text-gray-900">B3 MACBIS</h1>
+            <h1 className="text-2xl font-bold text-gray-900">ManufacturingOS</h1>
             <p className="text-sm text-gray-600">Kitchen Manufacturing ERP System</p>
             <p className="text-xs text-gray-500 mt-1">TDS Certificate - Form 16</p>
             <p className="text-xs text-gray-500">Financial Year: {record.financialYear}</p>
@@ -642,7 +642,7 @@ function Form16DetailsModal({ record, onClose, formatCurrency }: Form16DetailsMo
                 <div className="space-y-2 text-sm">
                   <div>
                     <p className="text-xs text-green-700">Name</p>
-                    <p className="font-medium text-green-900">B3 MACBIS Private Limited</p>
+                    <p className="font-medium text-green-900">ManufacturingOS Private Limited</p>
                   </div>
                   <div>
                     <p className="text-xs text-green-700">TAN Number</p>
@@ -782,7 +782,7 @@ function Form16DetailsModal({ record, onClose, formatCurrency }: Form16DetailsMo
           {/* Verification */}
           <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
             <p className="text-xs text-yellow-800 text-center">
-              <strong>Verification:</strong> I, on behalf of B3 MACBIS Private Limited, hereby certify that the information given above is true and correct and is based on the books of account, documents, TDS statements, and other available records.
+              <strong>Verification:</strong> I, on behalf of ManufacturingOS Private Limited, hereby certify that the information given above is true and correct and is based on the books of account, documents, TDS statements, and other available records.
             </p>
             <p className="text-xs text-yellow-700 text-center mt-2">
               This certificate is digitally signed and does not require a physical signature.
@@ -820,7 +820,7 @@ interface EmailForm16ModalProps {
 function EmailForm16Modal({ record, onClose }: EmailForm16ModalProps) {
   const [emailAddress, setEmailAddress] = useState('');
   const [ccAddress, setCcAddress] = useState('');
-  const [message, setMessage] = useState(`Dear ${record.employeeName},\n\nPlease find attached your Form 16 for Financial Year ${record.financialYear}.\n\nThis is a digitally signed certificate and can be used for filing your Income Tax Return.\n\nRegards,\nHR Department\nB3 MACBIS`);
+  const [message, setMessage] = useState(`Dear ${record.employeeName},\n\nPlease find attached your Form 16 for Financial Year ${record.financialYear}.\n\nThis is a digitally signed certificate and can be used for filing your Income Tax Return.\n\nRegards,\nHR Department\nManufacturingOS`);
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">

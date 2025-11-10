@@ -2,7 +2,7 @@
 ## Inventory Control & Store Operations
 
 ### Module Overview
-**Organization:** B3 MACBIS Ltd  
+**Organization:** ManufacturingOS Ltd  
 **Developed by:** KreupAI Technologies LLC  
 **Module Type:** Core Operations Module  
 **Version:** 1.0  
@@ -11,7 +11,7 @@
 
 ## 1. Executive Summary
 
-The Warehouse Management Module serves as the central hub for all inventory operations at B3 MACBIS Ltd, managing multiple storage locations including Raw Materials Store, Finished Goods Store, and specialized storage areas. This module ensures accurate inventory tracking, optimized storage utilization, efficient material handling, and seamless integration with production and sales operations. It provides complete visibility and traceability of all materials from receipt through consumption or dispatch.
+The Warehouse Management Module serves as the central hub for all inventory operations at ManufacturingOS Ltd, managing multiple storage locations including Raw Materials Store, Finished Goods Store, and specialized storage areas. This module ensures accurate inventory tracking, optimized storage utilization, efficient material handling, and seamless integration with production and sales operations. It provides complete visibility and traceability of all materials from receipt through consumption or dispatch.
 
 ---
 
@@ -840,4 +840,4 @@ The Warehouse Management Module serves as the central hub for all inventory oper
 
 ---
 
-*A Solution for B3 MACBIS Ltd, Developed by KreupAI Technologies LLC © 2024*
+*A Solution for ManufacturingOS Ltd, Developed by KreupAI Technologies LLC © 2024*

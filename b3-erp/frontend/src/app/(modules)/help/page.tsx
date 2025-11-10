@@ -8,7 +8,7 @@ const helpCategories = [
   {
     id: 'getting-started',
     name: 'Getting Started',
-    description: 'Learn the basics of using B3 MACBIS ERP',
+    description: 'Learn the basics of using ManufacturingOS ERP',
     icon: HelpCircle,
     color: 'bg-blue-500',
     articles: 12,

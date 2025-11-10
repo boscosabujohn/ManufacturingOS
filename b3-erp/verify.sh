@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # System Verification Script
-echo "🔍 B3 MACBIS ERP - System Verification"
+echo "🔍 ManufacturingOS ERP - System Verification"
 echo "======================================="
 echo ""
 

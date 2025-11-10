@@ -41,7 +41,16 @@
       "Bash(node_modules/.bin/tsc:*)",
       "Bash(wc:*)",
       "Bash(file:*)",
-      "Bash(timeout 60 npm run build)"
+      "Bash(timeout 60 npm run build)",
+      "Bash(while read file)",
+      "Bash(do sed -i '' 's/ManufacturingOS/ManufacturingOS/g' \"$file\" echo \"Updated: $file\" done)",
+      "Read(//private/tmp/**)",
+      "Bash(while IFS= read -r file)",
+      "Bash(do if [ -f \"$file\" ])",
+      "Bash(then sed -i.bak 's/ManufacturingOS/ManufacturingOS/g' \"$file\")",
+      "Bash(echo \"✓ Updated: $file\" fi done)",
+      "Bash(cat:*)",
+      "Bash(xargs:*)"
     ],
     "deny": [],
     "ask": []

@@ -1,4 +1,4 @@
-# B3 MACBIS ERP - Quick Reference
+# ManufacturingOS ERP - Quick Reference
 
 ## 🚀 Start Development (Fastest Way)
 

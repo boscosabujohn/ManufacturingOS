@@ -2,7 +2,7 @@
 ## Complete Service Lifecycle Management
 
 ### Module Overview
-**Organization:** B3 MACBIS Ltd  
+**Organization:** ManufacturingOS Ltd  
 **Developed by:** KreupAI Technologies LLC  
 **Module Type:** Core Service Module  
 **Version:** 1.0  
@@ -11,7 +11,7 @@
 
 ## 1. Executive Summary
 
-The Support & Incident Management Module provides comprehensive management of all customer service requests, equipment breakdowns, and maintenance activities for B3 MACBIS Ltd's installed kitchen equipment base. This module ensures rapid incident response, efficient troubleshooting, spare parts management, and preventive maintenance for restaurants, food courts, and corporate clients. It integrates with logistics, procurement, and warehouse modules to ensure timely resolution of customer issues while maintaining high service quality and customer satisfaction.
+The Support & Incident Management Module provides comprehensive management of all customer service requests, equipment breakdowns, and maintenance activities for ManufacturingOS Ltd's installed kitchen equipment base. This module ensures rapid incident response, efficient troubleshooting, spare parts management, and preventive maintenance for restaurants, food courts, and corporate clients. It integrates with logistics, procurement, and warehouse modules to ensure timely resolution of customer issues while maintaining high service quality and customer satisfaction.
 
 ---
 
@@ -1147,4 +1147,4 @@ The Support & Incident Management Module provides comprehensive management of al
 
 ---
 
-*A Solution for B3 MACBIS Ltd, Developed by KreupAI Technologies LLC © 2024*
+*A Solution for ManufacturingOS Ltd, Developed by KreupAI Technologies LLC © 2024*

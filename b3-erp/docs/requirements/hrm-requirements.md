@@ -2,7 +2,7 @@
 ## Complete Employee Lifecycle Management
 
 ### Module Overview
-**Organization:** B3 MACBIS Ltd  
+**Organization:** ManufacturingOS Ltd  
 **Developed by:** KreupAI Technologies LLC  
 **Module Type:** Core Support Module  
 **Version:** 1.0  
@@ -11,7 +11,7 @@
 
 ## 1. Executive Summary
 
-The Human Resources Management Module provides comprehensive management of the complete employee lifecycle at B3 MACBIS Ltd, from workforce planning and recruitment through development, performance management, and separation. This module ensures efficient HR operations, regulatory compliance, employee development, and organizational growth. It integrates with payroll, attendance, and other operational modules to create a unified employee management ecosystem that supports the company's growth objectives while maintaining a positive workplace culture.
+The Human Resources Management Module provides comprehensive management of the complete employee lifecycle at ManufacturingOS Ltd, from workforce planning and recruitment through development, performance management, and separation. This module ensures efficient HR operations, regulatory compliance, employee development, and organizational growth. It integrates with payroll, attendance, and other operational modules to create a unified employee management ecosystem that supports the company's growth objectives while maintaining a positive workplace culture.
 
 ---
 
@@ -1093,4 +1093,4 @@ The Human Resources Management Module provides comprehensive management of the c
 
 ---
 
-*A Solution for B3 MACBIS Ltd, Developed by KreupAI Technologies LLC © 2024*
+*A Solution for ManufacturingOS Ltd, Developed by KreupAI Technologies LLC © 2024*

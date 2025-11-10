@@ -1,4 +1,4 @@
-# B3 MACBIS ERP - Architecture Documentation
+# ManufacturingOS ERP - Architecture Documentation
 
 ## Technology Stack
 

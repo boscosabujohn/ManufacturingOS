@@ -171,7 +171,7 @@ export default function DashboardPage() {
             {/* Logo and Title */}
             <div className="flex items-center">
               <div className="flex-shrink-0">
-                <h1 className="text-2xl font-bold text-gray-900">B3 MACBIS</h1>
+                <h1 className="text-2xl font-bold text-gray-900">ManufacturingOS</h1>
                 <p className="text-xs text-gray-500">Manufacturing ERP</p>
               </div>
             </div>
@@ -304,7 +304,7 @@ export default function DashboardPage() {
         {/* Welcome Section */}
         <div className="mb-8">
           <h2 className="text-3xl font-bold text-gray-900 mb-2">
-            Welcome to B3 MACBIS ERP
+            Welcome to ManufacturingOS ERP
           </h2>
           <p className="text-gray-600">
             Select a module below to get started. Manage your entire manufacturing operations from one place.
@@ -456,7 +456,7 @@ export default function DashboardPage() {
           <div className="flex justify-between items-center">
             <div>
               <p className="text-sm font-semibold text-gray-700">
-                B3 MACBIS - Kitchen Manufacturing ERP
+                ManufacturingOS - Kitchen Manufacturing ERP
               </p>
               <p className="text-xs text-gray-500">
                 Powered by KreupAI Technologies LLC

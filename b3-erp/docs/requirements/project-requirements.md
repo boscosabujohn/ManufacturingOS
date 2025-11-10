@@ -2,7 +2,7 @@
 ## End-to-End Project Execution & Control
 
 ### Module Overview
-**Organization:** B3 MACBIS Ltd  
+**Organization:** ManufacturingOS Ltd  
 **Developed by:** KreupAI Technologies LLC  
 **Module Type:** Core Operations Module  
 **Version:** 1.0  
@@ -11,7 +11,7 @@
 
 ## 1. Executive Summary
 
-The Project Management Module provides comprehensive management of customer projects from order confirmation through site installation, commissioning, and final handover. This module is critical for B3 MACBIS Ltd's kitchen equipment installation projects, managing on-site execution, resource deployment, expense tracking, and customer sign-offs. It ensures projects are delivered on time, within budget, and to customer satisfaction while maintaining profitability margins.
+The Project Management Module provides comprehensive management of customer projects from order confirmation through site installation, commissioning, and final handover. This module is critical for ManufacturingOS Ltd's kitchen equipment installation projects, managing on-site execution, resource deployment, expense tracking, and customer sign-offs. It ensures projects are delivered on time, within budget, and to customer satisfaction while maintaining profitability margins.
 
 ---
 
@@ -839,4 +839,4 @@ The Project Management Module provides comprehensive management of customer proj
 
 ---
 
-*A Solution for B3 MACBIS Ltd, Developed by KreupAI Technologies LLC © 2024*
+*A Solution for ManufacturingOS Ltd, Developed by KreupAI Technologies LLC © 2024*

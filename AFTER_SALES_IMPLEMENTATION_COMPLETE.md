@@ -1,7 +1,7 @@
 # After Sales Service Module - Implementation Complete
 
 ## Overview
-The complete After Sales Service module has been successfully implemented for the B3 MACBIS ERP system. This module provides comprehensive management of service contracts, warranties, service requests, installations, field service operations, and service billing.
+The complete After Sales Service module has been successfully implemented for the ManufacturingOS ERP system. This module provides comprehensive management of service contracts, warranties, service requests, installations, field service operations, and service billing.
 
 ## Implementation Summary
 

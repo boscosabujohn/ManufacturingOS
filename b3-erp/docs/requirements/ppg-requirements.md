@@ -2,7 +2,7 @@
 ## Manufacturing Command Center
 
 ### Module Overview
-**Organization:** B3 MACBIS Ltd  
+**Organization:** ManufacturingOS Ltd  
 **Developed by:** KreupAI Technologies LLC  
 **Module Type:** Core Production Module  
 **Version:** 1.0  
@@ -853,4 +853,4 @@ The Production Planning Group (PPG) sub-module serves as the command center for 
 
 ---
 
-*A Solution for B3 MACBIS Ltd, Developed by KreupAI Technologies LLC © 2024*
+*A Solution for ManufacturingOS Ltd, Developed by KreupAI Technologies LLC © 2024*

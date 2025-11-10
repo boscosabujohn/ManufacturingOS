@@ -200,7 +200,7 @@ const ItemMaster: React.FC = () => {
       description: 'Complete kitchen cabinet set with soft close doors and drawers',
       category: 'Finished Goods',
       subCategory: 'Kitchen Sets',
-      brand: 'B3 MACBIS',
+      brand: 'ManufacturingOS',
       type: 'finished_good',
       status: 'active',
       hsn_sac_code: '9403.40',

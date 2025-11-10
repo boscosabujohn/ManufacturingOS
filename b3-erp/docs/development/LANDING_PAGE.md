@@ -1,4 +1,4 @@
-# B3 MACBIS ERP - Landing Page
+# ManufacturingOS ERP - Landing Page
 
 ## Overview
 The landing page has been created with a comprehensive dashboard that displays all modules as interactive cards.

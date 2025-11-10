@@ -2,7 +2,7 @@
 ## Complete Sales Process Management
 
 ### Module Overview
-**Organization:** B3 MACBIS Ltd  
+**Organization:** ManufacturingOS Ltd  
 **Developed by:** KreupAI Technologies LLC  
 **Module Type:** Core Business Module  
 **Version:** 1.0  
@@ -11,7 +11,7 @@
 
 ## 1. Executive Summary
 
-The Sales Module serves as the primary revenue gateway for B3 MACBIS Ltd, managing the complete sales lifecycle from initial customer engagement to confirmed order handover. This module enforces stringent processes to maximize sales efficiency, prevent revenue leakage, and provide top management with clear visibility and control over all sales activities.
+The Sales Module serves as the primary revenue gateway for ManufacturingOS Ltd, managing the complete sales lifecycle from initial customer engagement to confirmed order handover. This module enforces stringent processes to maximize sales efficiency, prevent revenue leakage, and provide top management with clear visibility and control over all sales activities.
 
 ---
 
@@ -523,4 +523,4 @@ Streamline and standardize the creation, management, and tracking of all commerc
 
 ---
 
-*A Solution for B3 MACBIS Ltd, Developed by KreupAI Technologies LLC © 2024*
+*A Solution for ManufacturingOS Ltd, Developed by KreupAI Technologies LLC © 2024*

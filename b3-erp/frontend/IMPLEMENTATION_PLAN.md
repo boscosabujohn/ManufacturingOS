@@ -1,4 +1,4 @@
-# B3 MACBIS ERP - Critical Gaps Implementation Plan
+# ManufacturingOS ERP - Critical Gaps Implementation Plan
 
 **Plan Created:** October 28, 2025
 **Scope:** Address all critical gaps EXCEPT backend API integration

@@ -660,7 +660,7 @@ function ReceiptModal({ record, onClose, formatCurrency }: ReceiptModalProps) {
         <div className="p-6" id="receipt-content">
           {/* Company Header */}
           <div className="text-center mb-6 pb-4 border-b-2 border-gray-200">
-            <h1 className="text-2xl font-bold text-gray-900">B3 MACBIS</h1>
+            <h1 className="text-2xl font-bold text-gray-900">ManufacturingOS</h1>
             <p className="text-sm text-gray-600">Kitchen Manufacturing ERP System</p>
             <p className="text-xs text-gray-500 mt-1">Salary Payment Receipt</p>
           </div>
@@ -844,7 +844,7 @@ function PaymentReportModal({ batch, onClose, formatCurrency }: PaymentReportMod
         <div className="p-6">
           {/* Report Header */}
           <div className="text-center mb-6">
-            <h1 className="text-2xl font-bold text-gray-900">B3 MACBIS</h1>
+            <h1 className="text-2xl font-bold text-gray-900">ManufacturingOS</h1>
             <p className="text-sm text-gray-600">Salary Disbursement Report</p>
             <p className="text-xs text-gray-500 mt-1">{batch.monthYear}</p>
           </div>

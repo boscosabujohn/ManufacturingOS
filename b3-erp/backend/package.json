@@ -1,7 +1,7 @@
 {
   "name": "b3-erp-backend",
   "version": "1.0.0",
-  "description": "B3 MACBIS ERP - Backend API (Node.js/NestJS)",
+  "description": "ManufacturingOS ERP - Backend API (Node.js/NestJS)",
   "main": "dist/main.js",
   "scripts": {
     "prebuild": "rimraf dist",

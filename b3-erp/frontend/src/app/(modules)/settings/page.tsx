@@ -149,7 +149,7 @@ export default function SettingsPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div>
               <p className="text-sm text-gray-600 mb-1">Version</p>
-              <p className="font-semibold text-gray-900">B3 MACBIS v2.5.0</p>
+              <p className="font-semibold text-gray-900">ManufacturingOS v2.5.0</p>
             </div>
             <div>
               <p className="text-sm text-gray-600 mb-1">Environment</p>

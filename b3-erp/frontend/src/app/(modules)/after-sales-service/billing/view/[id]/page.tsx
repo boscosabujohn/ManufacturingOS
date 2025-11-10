@@ -96,7 +96,7 @@ export default function ViewInvoicePage({ params }: { params: { id: string } }) 
         notes: 'Advance payment - 50%',
       },
     ],
-    notes: 'Payment Terms: 50% advance on order confirmation, 50% on completion of installation.\n\nBank Details:\nAccount Name: B3 MACBIS ERP Solutions\nAccount Number: 1234567890\nIFSC Code: HDFC0001234\nBank: HDFC Bank, MG Road Branch',
+    notes: 'Payment Terms: 50% advance on order confirmation, 50% on completion of installation.\n\nBank Details:\nAccount Name: ManufacturingOS ERP Solutions\nAccount Number: 1234567890\nIFSC Code: HDFC0001234\nBank: HDFC Bank, MG Road Branch',
     createdBy: 'Priya Patel',
     sentDate: '2025-10-05',
   };
@@ -187,7 +187,7 @@ export default function ViewInvoicePage({ params }: { params: { id: string } }) 
         {/* Company Header */}
         <div className="flex justify-between items-start mb-8 pb-6 border-b-2 border-gray-200">
           <div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">B3 MACBIS ERP Solutions</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mb-2">ManufacturingOS ERP Solutions</h2>
             <p className="text-sm text-gray-600">123 Tech Park, MG Road</p>
             <p className="text-sm text-gray-600">Bangalore - 560001, Karnataka</p>
             <p className="text-sm text-gray-600">GSTIN: 29ABCDE1234F1Z5</p>

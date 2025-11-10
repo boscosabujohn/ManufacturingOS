@@ -231,7 +231,7 @@ function PFChallanModal({ pfMonth, onClose, formatCurrency }: { pfMonth: PFContr
             <div className="flex items-center justify-center gap-3 mb-3">
               <Building2 className="h-8 w-8 text-blue-600" />
               <div>
-                <h2 className="text-2xl font-bold text-gray-900">B3 MACBIS Manufacturing Pvt. Ltd.</h2>
+                <h2 className="text-2xl font-bold text-gray-900">ManufacturingOS Manufacturing Pvt. Ltd.</h2>
                 <p className="text-sm text-gray-600">Provident Fund Payment Challan</p>
               </div>
             </div>

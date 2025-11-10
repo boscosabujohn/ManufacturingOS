@@ -55,7 +55,7 @@ export default function SocialMediaIntegrationPage() {
     {
       id: '1',
       platform: 'linkedin',
-      accountName: 'B3 MACBIS Manufacturing',
+      accountName: 'ManufacturingOS Manufacturing',
       accountHandle: '@b3macbis',
       connected: true,
       followers: 12500,
@@ -72,8 +72,8 @@ export default function SocialMediaIntegrationPage() {
     {
       id: '2',
       platform: 'twitter',
-      accountName: 'B3 MACBIS',
-      accountHandle: '@B3MACBIS',
+      accountName: 'ManufacturingOS',
+      accountHandle: '@ManufacturingOS',
       connected: true,
       followers: 8900,
       engagement: 3.2,
@@ -89,7 +89,7 @@ export default function SocialMediaIntegrationPage() {
     {
       id: '3',
       platform: 'facebook',
-      accountName: 'B3 MACBIS Manufacturing Solutions',
+      accountName: 'ManufacturingOS Manufacturing Solutions',
       accountHandle: '@b3macbis.manufacturing',
       connected: false,
       followers: 15600,
@@ -106,7 +106,7 @@ export default function SocialMediaIntegrationPage() {
     {
       id: '4',
       platform: 'instagram',
-      accountName: 'B3 MACBIS',
+      accountName: 'ManufacturingOS',
       accountHandle: '@b3macbis',
       connected: false,
       followers: 6700,
@@ -123,8 +123,8 @@ export default function SocialMediaIntegrationPage() {
     {
       id: '5',
       platform: 'youtube',
-      accountName: 'B3 MACBIS Manufacturing',
-      accountHandle: '@B3MACBIS',
+      accountName: 'ManufacturingOS Manufacturing',
+      accountHandle: '@ManufacturingOS',
       connected: true,
       followers: 4300,
       engagement: 7.8,
@@ -228,7 +228,7 @@ export default function SocialMediaIntegrationPage() {
       shares: 67,
       comments: 12,
       reach: 12000,
-      url: 'https://twitter.com/B3MACBIS/status/...'
+      url: 'https://twitter.com/ManufacturingOS/status/...'
     },
     {
       id: '3',

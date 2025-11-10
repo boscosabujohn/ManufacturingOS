@@ -2,7 +2,7 @@
 ## Complete Financial Management & Compliance
 
 ### Module Overview
-**Organization:** B3 MACBIS Ltd  
+**Organization:** ManufacturingOS Ltd  
 **Developed by:** KreupAI Technologies LLC  
 **Module Type:** Core Financial Module  
 **Version:** 1.0  
@@ -11,7 +11,7 @@
 
 ## 1. Executive Summary
 
-The Financial Accounting Module (FAM) serves as the financial backbone of B3 MACBIS Ltd's ERP system, managing all monetary transactions, ensuring regulatory compliance, and providing real-time financial insights. This module integrates with all operational modules to capture financial implications of business activities, from sales and procurement to payroll and asset management. It ensures accurate financial reporting, statutory compliance, and provides management with critical financial intelligence for decision-making.
+The Financial Accounting Module (FAM) serves as the financial backbone of ManufacturingOS Ltd's ERP system, managing all monetary transactions, ensuring regulatory compliance, and providing real-time financial insights. This module integrates with all operational modules to capture financial implications of business activities, from sales and procurement to payroll and asset management. It ensures accurate financial reporting, statutory compliance, and provides management with critical financial intelligence for decision-making.
 
 ---
 
@@ -1201,4 +1201,4 @@ The Financial Accounting Module (FAM) serves as the financial backbone of B3 MAC
 
 ---
 
-*A Solution for B3 MACBIS Ltd, Developed by KreupAI Technologies LLC © 2024*
+*A Solution for ManufacturingOS Ltd, Developed by KreupAI Technologies LLC © 2024*

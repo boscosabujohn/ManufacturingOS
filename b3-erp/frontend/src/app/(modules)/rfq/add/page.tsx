@@ -221,13 +221,13 @@ const mockVendors: Vendor[] = [
 
 const termsTemplate = `1. All prices should be quoted in INR including GST (18% or as applicable)
 2. Payment terms will be as specified in the commercial terms section
-3. Delivery must be made to our factory premises at B3 MACBIS, Bhiwandi, Maharashtra
+3. Delivery must be made to our factory premises at ManufacturingOS, Bhiwandi, Maharashtra
 4. Quality inspection will be conducted before acceptance
 5. Vendor must provide warranty as per industry standards (minimum 6 months)
 6. Late delivery penalties: 1% of order value per week delay (maximum 5%)
 7. Materials must be original and come with manufacturer certifications
 8. Rejection clause: Defective items will be rejected and replacement must be provided within 48 hours
-9. B3 MACBIS reserves the right to reject any or all quotes without assigning reasons
+9. ManufacturingOS reserves the right to reject any or all quotes without assigning reasons
 10. Award decision is final and binding
 11. Force majeure clause applies as per standard business practices
 12. Any disputes will be subject to Mumbai jurisdiction`;
@@ -1049,7 +1049,7 @@ export default function AddRFQPage() {
                   <li>Number of Items: {formData.items.length}</li>
                 </ul>
                 <p>Please review the attached specifications and submit your quote before the closing date.</p>
-                <p>Best regards,<br />B3 MACBIS Procurement Team</p>
+                <p>Best regards,<br />ManufacturingOS Procurement Team</p>
               </div>
             </div>
           )}

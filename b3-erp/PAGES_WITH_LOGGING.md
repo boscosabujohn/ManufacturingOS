@@ -1,6 +1,6 @@
 # Pages with Automatic Logging
 
-This document tracks all pages in the B3 MACBIS ERP system that have automatic page visit logging enabled.
+This document tracks all pages in the ManufacturingOS ERP system that have automatic page visit logging enabled.
 
 ## What is Automatic Logging?
 
