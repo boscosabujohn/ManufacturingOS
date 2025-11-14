@@ -33,6 +33,12 @@ const SupplierCollaboration: React.FC<SupplierCollaborationProps> = () => {
   const [isCollaborateDesignModalOpen, setIsCollaborateDesignModalOpen] = useState(false);
   const [isMessageSuppliersModalOpen, setIsMessageSuppliersModalOpen] = useState(false);
 
+  // Real-time features
+  const [showRealTimeChat, setShowRealTimeChat] = useState(true);
+  const [unreadMessages, setUnreadMessages] = useState(8);
+  const [isOnline, setIsOnline] = useState(true);
+  const [activeCollaborators, setActiveCollaborators] = useState(12);
+
   // Mock supplier data
   const suppliers = [
     {
@@ -886,6 +892,198 @@ const SupplierCollaboration: React.FC<SupplierCollaborationProps> = () => {
           </div>
         </div>
       </div>
+
+      {/* Real-Time Collaboration Center */}
+      {showRealTimeChat && (
+        <div className="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-lg shadow-lg p-6 mb-6 border border-blue-200">
+          <div className="flex items-start justify-between mb-4">
+            <div className="flex items-center gap-3">
+              <div className="p-2 bg-blue-600 rounded-lg relative">
+                <MessageCircle className="w-6 h-6 text-white" />
+                {unreadMessages > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                    {unreadMessages}
+                  </span>
+                )}
+              </div>
+              <div>
+                <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
+                  Real-Time Collaboration Center
+                  {isOnline && (
+                    <span className="flex items-center gap-1 text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full">
+                      <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                      Online
+                    </span>
+                  )}
+                </h2>
+                <p className="text-sm text-gray-600">{activeCollaborators} active suppliers • {unreadMessages} unread messages</p>
+              </div>
+            </div>
+            <button
+              onClick={() => setShowRealTimeChat(false)}
+              className="text-gray-400 hover:text-gray-600"
+            >
+              ×
+            </button>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+            <div className="bg-white rounded-lg p-4 border-l-4 border-green-500">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-medium text-gray-600">Online Now</span>
+                <div className="flex items-center gap-1">
+                  <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                  <Users className="w-4 h-4 text-green-600" />
+                </div>
+              </div>
+              <div className="text-3xl font-bold text-gray-900">{activeCollaborators}</div>
+              <div className="text-xs text-green-600 mt-1">5 suppliers, 7 team members</div>
+            </div>
+
+            <div className="bg-white rounded-lg p-4 border-l-4 border-blue-500">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-medium text-gray-600">Active Chats</span>
+                <MessageCircle className="w-4 h-4 text-blue-600" />
+              </div>
+              <div className="text-3xl font-bold text-gray-900">8</div>
+              <div className="text-xs text-blue-600 mt-1">{unreadMessages} unread messages</div>
+            </div>
+
+            <div className="bg-white rounded-lg p-4 border-l-4 border-purple-500">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-medium text-gray-600">Live Meetings</span>
+                <Video className="w-4 h-4 text-purple-600" />
+              </div>
+              <div className="text-3xl font-bold text-gray-900">3</div>
+              <div className="text-xs text-purple-600 mt-1">2 in progress, 1 scheduled</div>
+            </div>
+
+            <div className="bg-white rounded-lg p-4 border-l-4 border-amber-500">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-medium text-gray-600">Shared Docs</span>
+                <FileText className="w-4 h-4 text-amber-600" />
+              </div>
+              <div className="text-3xl font-bold text-gray-900">24</div>
+              <div className="text-xs text-amber-600 mt-1">6 updated today</div>
+            </div>
+          </div>
+
+          {/* Recent Activity */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <div className="bg-white rounded-lg p-4">
+              <h3 className="text-sm font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                <MessageCircle className="w-4 h-4 text-blue-600" />
+                Recent Messages
+              </h3>
+              <div className="space-y-2">
+                <div className="flex items-start gap-2 p-2 hover:bg-gray-50 rounded cursor-pointer">
+                  <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-semibold text-xs">
+                    JS
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm font-medium text-gray-900">John Smith</span>
+                      <span className="text-xs text-gray-500">2 min ago</span>
+                    </div>
+                    <p className="text-xs text-gray-600 truncate">Quote for Q2 components ready for review</p>
+                  </div>
+                  <span className="bg-blue-600 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center flex-shrink-0">
+                    2
+                  </span>
+                </div>
+
+                <div className="flex items-start gap-2 p-2 hover:bg-gray-50 rounded cursor-pointer">
+                  <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center text-green-600 font-semibold text-xs">
+                    SJ
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm font-medium text-gray-900">Sarah Johnson</span>
+                      <span className="text-xs text-gray-500">15 min ago</span>
+                    </div>
+                    <p className="text-xs text-gray-600 truncate">Design collaboration session scheduled</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-2 p-2 hover:bg-gray-50 rounded cursor-pointer">
+                  <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center text-purple-600 font-semibold text-xs">
+                    MC
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm font-medium text-gray-900">Mike Chen</span>
+                      <span className="text-xs text-gray-500">1 hour ago</span>
+                    </div>
+                    <p className="text-xs text-gray-600 truncate">Updated delivery schedule attached</p>
+                  </div>
+                  <span className="bg-blue-600 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center flex-shrink-0">
+                    1
+                  </span>
+                </div>
+              </div>
+              <button className="mt-3 w-full py-2 text-sm text-blue-600 hover:text-blue-700 font-medium">
+                View All Messages →
+              </button>
+            </div>
+
+            <div className="bg-white rounded-lg p-4">
+              <h3 className="text-sm font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                <Activity className="w-4 h-4 text-green-600" />
+                Live Activity Feed
+              </h3>
+              <div className="space-y-2">
+                <div className="flex items-start gap-2 text-xs">
+                  <Clock className="w-4 h-4 text-gray-400 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <span className="font-medium text-gray-900">Tech Components Ltd</span>
+                    <span className="text-gray-600"> shared a document • </span>
+                    <span className="text-gray-500">Just now</span>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-2 text-xs">
+                  <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <span className="font-medium text-gray-900">Sarah Johnson</span>
+                    <span className="text-gray-600"> approved design revision • </span>
+                    <span className="text-gray-500">5 min ago</span>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-2 text-xs">
+                  <Video className="w-4 h-4 text-purple-500 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <span className="font-medium text-gray-900">Mike Chen</span>
+                    <span className="text-gray-600"> started a video call • </span>
+                    <span className="text-gray-500">12 min ago</span>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-2 text-xs">
+                  <FileText className="w-4 h-4 text-blue-500 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <span className="font-medium text-gray-900">Metal Works Inc</span>
+                    <span className="text-gray-600"> uploaded cost analysis • </span>
+                    <span className="text-gray-500">25 min ago</span>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-2 text-xs">
+                  <Star className="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <span className="font-medium text-gray-900">John Smith</span>
+                    <span className="text-gray-600"> marked milestone complete • </span>
+                    <span className="text-gray-500">1 hour ago</span>
+                  </div>
+                </div>
+              </div>
+              <button className="mt-3 w-full py-2 text-sm text-green-600 hover:text-green-700 font-medium">
+                View Full Activity →
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Navigation Tabs */}
       <div className="flex gap-1 mb-6 border-b">

@@ -107,6 +107,10 @@ export default function ContractManagement() {
   const [selectedContract, setSelectedContract] = useState<Contract | null>(null)
   const [filterStatus, setFilterStatus] = useState('all')
   const [showRenewalAlert, setShowRenewalAlert] = useState(true)
+  const [showRealTimeMonitoring, setShowRealTimeMonitoring] = useState(true)
+  const [showAIInsights, setShowAIInsights] = useState(true)
+  const [autoRefresh, setAutoRefresh] = useState(false)
+  const [searchTerm, setSearchTerm] = useState('')
 
   // Handler functions
   const handleCreateContract = () => {
@@ -434,6 +438,173 @@ export default function ContractManagement() {
           </div>
         )}
       </div>
+
+      {/* Real-Time Monitoring Dashboard */}
+      {showRealTimeMonitoring && (
+        <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl shadow-lg p-6 border border-indigo-200 mb-6">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
+              <Activity className="h-5 w-5 text-indigo-600" />
+              Real-Time Contract Monitoring
+            </h3>
+            <div className="flex items-center gap-3">
+              <label className="flex items-center gap-2 text-sm text-gray-700">
+                <input
+                  type="checkbox"
+                  checked={autoRefresh}
+                  onChange={(e) => setAutoRefresh(e.target.checked)}
+                  className="rounded border-gray-300"
+                />
+                Auto-refresh
+              </label>
+              <button
+                onClick={() => setShowRealTimeMonitoring(false)}
+                className="text-gray-400 hover:text-gray-600"
+              >
+                <XCircle className="h-5 w-5" />
+              </button>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+            <div className="bg-white rounded-lg p-4 shadow-sm">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-medium text-gray-600">Active Changes</span>
+                <FileEdit className="h-5 w-5 text-blue-600" />
+              </div>
+              <div className="text-2xl font-bold text-gray-900">4</div>
+              <div className="text-xs text-blue-600 mt-1">2 amendments pending</div>
+            </div>
+
+            <div className="bg-white rounded-lg p-4 shadow-sm">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-medium text-gray-600">Renewals This Week</span>
+                <RefreshCw className="h-5 w-5 text-green-600" />
+              </div>
+              <div className="text-2xl font-bold text-gray-900">3</div>
+              <div className="text-xs text-amber-600 mt-1">Decisions needed</div>
+            </div>
+
+            <div className="bg-white rounded-lg p-4 shadow-sm">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-medium text-gray-600">Compliance Alerts</span>
+                <AlertCircle className="h-5 w-5 text-amber-600" />
+              </div>
+              <div className="text-2xl font-bold text-gray-900">2</div>
+              <div className="text-xs text-red-600 mt-1">1 critical</div>
+            </div>
+
+            <div className="bg-white rounded-lg p-4 shadow-sm">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-medium text-gray-600">Contract Value Change</span>
+                <DollarSign className="h-5 w-5 text-purple-600" />
+              </div>
+              <div className="text-2xl font-bold text-gray-900">+$1.2M</div>
+              <div className="text-xs text-green-600 mt-1">This month</div>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-lg p-4 shadow-sm">
+            <h4 className="text-sm font-semibold text-gray-900 mb-3">Recent Contract Activity</h4>
+            <div className="space-y-2 max-h-32 overflow-y-auto">
+              <div className="flex items-center gap-3 text-sm">
+                <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0" />
+                <span className="text-gray-600">CTR-2024-003 executed and activated</span>
+                <span className="text-gray-400 text-xs ml-auto">10 min ago</span>
+              </div>
+              <div className="flex items-center gap-3 text-sm">
+                <FileEdit className="h-4 w-4 text-blue-600 flex-shrink-0" />
+                <span className="text-gray-600">Amendment #2 submitted for CTR-2024-001</span>
+                <span className="text-gray-400 text-xs ml-auto">1 hour ago</span>
+              </div>
+              <div className="flex items-center gap-3 text-sm">
+                <AlertCircle className="h-4 w-4 text-amber-600 flex-shrink-0" />
+                <span className="text-gray-600">Insurance certificate expiring for CTR-2024-002</span>
+                <span className="text-gray-400 text-xs ml-auto">2 hours ago</span>
+              </div>
+              <div className="flex items-center gap-3 text-sm">
+                <RefreshCw className="h-4 w-4 text-purple-600 flex-shrink-0" />
+                <span className="text-gray-600">Renewal initiated for Software License Agreement</span>
+                <span className="text-gray-400 text-xs ml-auto">4 hours ago</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* AI-Powered Insights */}
+      {showAIInsights && (
+        <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl shadow-lg p-6 border border-purple-200 mb-6">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
+              <Zap className="h-5 w-5 text-purple-600" />
+              AI-Powered Contract Intelligence
+            </h3>
+            <button
+              onClick={() => setShowAIInsights(false)}
+              className="text-gray-400 hover:text-gray-600"
+            >
+              <XCircle className="h-5 w-5" />
+            </button>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+            <div className="bg-white rounded-lg p-4 shadow-sm">
+              <div className="flex items-center gap-2 mb-2">
+                <Target className="h-5 w-5 text-blue-600" />
+                <span className="text-sm font-semibold text-gray-900">Renewal Prediction</span>
+              </div>
+              <div className="text-2xl font-bold text-green-600 mb-1">92%</div>
+              <p className="text-xs text-gray-600">Success rate predicted for upcoming renewals based on supplier performance and market conditions</p>
+            </div>
+
+            <div className="bg-white rounded-lg p-4 shadow-sm">
+              <div className="flex items-center gap-2 mb-2">
+                <AlertTriangle className="h-5 w-5 text-amber-600" />
+                <span className="text-sm font-semibold text-gray-900">Risk Alert</span>
+              </div>
+              <div className="text-2xl font-bold text-amber-600 mb-1">3</div>
+              <p className="text-xs text-gray-600">Contracts with compliance or performance issues requiring immediate attention before renewal</p>
+            </div>
+
+            <div className="bg-white rounded-lg p-4 shadow-sm">
+              <div className="flex items-center gap-2 mb-2">
+                <DollarSign className="h-5 w-5 text-green-600" />
+                <span className="text-sm font-semibold text-gray-900">Savings Opportunity</span>
+              </div>
+              <div className="text-2xl font-bold text-green-600 mb-1">$380K</div>
+              <p className="text-xs text-gray-600">Potential savings through renegotiation and contract consolidation opportunities identified</p>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-lg p-4 shadow-sm">
+            <h4 className="text-sm font-semibold text-gray-900 mb-3">Smart Contract Recommendations</h4>
+            <div className="space-y-2">
+              <div className="flex items-start gap-3 p-2 bg-amber-50 rounded">
+                <Clock className="h-4 w-4 text-amber-600 mt-0.5 flex-shrink-0" />
+                <div className="text-sm">
+                  <span className="font-medium text-gray-900">Early Renewal Action:</span>
+                  <span className="text-gray-600"> Start CTR-2024-002 renewal process now (120 days out) to secure better pricing before market rates increase</span>
+                </div>
+              </div>
+              <div className="flex items-start gap-3 p-2 bg-blue-50 rounded">
+                <GitBranch className="h-4 w-4 text-blue-600 mt-0.5 flex-shrink-0" />
+                <div className="text-sm">
+                  <span className="font-medium text-gray-900">Consolidation Opportunity:</span>
+                  <span className="text-gray-600"> Merge 3 IT service contracts into single MSA to reduce management overhead and improve terms</span>
+                </div>
+              </div>
+              <div className="flex items-start gap-3 p-2 bg-red-50 rounded">
+                <Shield className="h-4 w-4 text-red-600 mt-0.5 flex-shrink-0" />
+                <div className="text-sm">
+                  <span className="font-medium text-gray-900">Compliance Update Needed:</span>
+                  <span className="text-gray-600"> 5 contracts require updated data protection clauses to meet new regulatory requirements</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Tabs */}
       <div className="bg-white rounded-xl shadow-sm border border-gray-200">

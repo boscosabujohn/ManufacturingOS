@@ -107,6 +107,12 @@ export default function PurchaseRequisitionWorkflow() {
   const [isTrackStatusModalOpen, setIsTrackStatusModalOpen] = useState(false)
   const [approvalAction, setApprovalAction] = useState<'approve' | 'reject' | 'request_info'>('approve')
 
+  // Advanced features state
+  const [showRealTimeMonitoring, setShowRealTimeMonitoring] = useState(true)
+  const [showAIInsights, setShowAIInsights] = useState(true)
+  const [autoRefresh, setAutoRefresh] = useState(false)
+  const [searchTerm, setSearchTerm] = useState('')
+
   // Mock data
   const requisitions: Requisition[] = [
     {
@@ -319,6 +325,191 @@ export default function PurchaseRequisitionWorkflow() {
           </div>
         </div>
       </div>
+
+      {/* Real-Time Workflow Monitoring */}
+      {showRealTimeMonitoring && (
+        <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl shadow-lg p-6 border border-indigo-200">
+          <div className="flex items-center justify-between mb-6">
+            <div>
+              <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
+                <Activity className="w-6 h-6 text-indigo-600" />
+                Live Workflow Monitor
+              </h2>
+              <p className="text-sm text-gray-600 mt-1">Real-time requisition processing and approval status</p>
+            </div>
+            <div className="flex items-center gap-3">
+              {autoRefresh && (
+                <span className="flex items-center gap-1 text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full">
+                  <RefreshCw className="w-3 h-3 animate-spin" />
+                  Live
+                </span>
+              )}
+              <button
+                onClick={() => setAutoRefresh(!autoRefresh)}
+                className={`px-3 py-1.5 rounded-lg text-xs font-medium transition ${
+                  autoRefresh ? 'bg-green-600 text-white' : 'bg-white text-gray-700 border border-gray-300'
+                }`}
+              >
+                {autoRefresh ? 'Auto-Refresh ON' : 'Auto-Refresh OFF'}
+              </button>
+              <button
+                onClick={() => setShowRealTimeMonitoring(false)}
+                className="text-gray-400 hover:text-gray-600"
+              >
+                <XCircle className="w-5 h-5" />
+              </button>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div className="bg-white rounded-lg p-4 border border-indigo-100">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-medium text-gray-600">Processing Now</span>
+                <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+              </div>
+              <div className="text-2xl font-bold text-gray-900">7</div>
+              <div className="text-xs text-gray-500 mt-1">Avg time: 45 min</div>
+            </div>
+
+            <div className="bg-white rounded-lg p-4 border border-indigo-100">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-medium text-gray-600">Awaiting Action</span>
+                <Clock className="w-4 h-4 text-yellow-500" />
+              </div>
+              <div className="text-2xl font-bold text-gray-900">12</div>
+              <div className="text-xs text-yellow-600 mt-1">2 approaching SLA</div>
+            </div>
+
+            <div className="bg-white rounded-lg p-4 border border-indigo-100">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-medium text-gray-600">Completed Today</span>
+                <CheckCircle className="w-4 h-4 text-green-500" />
+              </div>
+              <div className="text-2xl font-bold text-gray-900">24</div>
+              <div className="text-xs text-green-600 mt-1">↑ 20% vs yesterday</div>
+            </div>
+
+            <div className="bg-white rounded-lg p-4 border border-indigo-100">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-medium text-gray-600">Bottlenecks</span>
+                <AlertTriangle className="w-4 h-4 text-red-500" />
+              </div>
+              <div className="text-2xl font-bold text-gray-900">2</div>
+              <div className="text-xs text-red-600 mt-1">Finance review stage</div>
+            </div>
+          </div>
+
+          {/* Live Activity Feed */}
+          <div className="mt-6 bg-white rounded-lg p-4 border border-indigo-100">
+            <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+              <Zap className="w-4 h-4 text-yellow-500" />
+              Recent Activity
+            </h3>
+            <div className="space-y-2">
+              {[
+                { action: 'Approved', id: 'PR-2024-089', by: 'Sarah Johnson', time: '2 min ago', color: 'green' },
+                { action: 'Submitted', id: 'PR-2024-090', by: 'Mike Chen', time: '5 min ago', color: 'blue' },
+                { action: 'Rejected', id: 'PR-2024-087', by: 'David Lee', time: '8 min ago', color: 'red' },
+                { action: 'Approved', id: 'PR-2024-088', by: 'Tom Wilson', time: '12 min ago', color: 'green' }
+              ].map((activity, idx) => (
+                <div key={idx} className="flex items-center justify-between text-sm py-2 border-b last:border-0">
+                  <div className="flex items-center gap-3">
+                    <span className={`w-2 h-2 rounded-full bg-${activity.color}-500`}></span>
+                    <span className="font-medium text-gray-900">{activity.id}</span>
+                    <span className="text-gray-600">{activity.action} by {activity.by}</span>
+                  </div>
+                  <span className="text-xs text-gray-500">{activity.time}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* AI-Powered Insights */}
+      {showAIInsights && (
+        <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl shadow-lg p-6 border border-purple-200">
+          <div className="flex items-center justify-between mb-6">
+            <div>
+              <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
+                <Activity className="w-6 h-6 text-purple-600" />
+                AI-Powered Insights & Predictions
+              </h2>
+              <p className="text-sm text-gray-600 mt-1">Intelligent analysis and workflow optimization recommendations</p>
+            </div>
+            <button
+              onClick={() => setShowAIInsights(false)}
+              className="text-gray-400 hover:text-gray-600"
+            >
+              <XCircle className="w-5 h-5" />
+            </button>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+            <div className="bg-white rounded-lg p-4 border border-purple-100">
+              <div className="flex items-center gap-2 mb-2">
+                <TrendingUp className="w-5 h-5 text-purple-600" />
+                <span className="font-semibold text-gray-900">Approval Prediction</span>
+              </div>
+              <div className="text-3xl font-bold text-green-600 mb-1">94%</div>
+              <p className="text-xs text-gray-600">Expected approval rate this week</p>
+              <div className="mt-2 text-xs text-gray-500">
+                <span className="font-medium">Confidence:</span> High (89%)
+              </div>
+            </div>
+
+            <div className="bg-white rounded-lg p-4 border border-purple-100">
+              <div className="flex items-center gap-2 mb-2">
+                <Clock className="w-5 h-5 text-blue-600" />
+                <span className="font-semibold text-gray-900">Cycle Time Forecast</span>
+              </div>
+              <div className="text-3xl font-bold text-blue-600 mb-1">2.8d</div>
+              <p className="text-xs text-gray-600">Predicted avg for next month</p>
+              <div className="mt-2 text-xs text-green-600">
+                ↓ 12% improvement expected
+              </div>
+            </div>
+
+            <div className="bg-white rounded-lg p-4 border border-purple-100">
+              <div className="flex items-center gap-2 mb-2">
+                <AlertCircle className="w-5 h-5 text-orange-600" />
+                <span className="font-semibold text-gray-900">Risk Detection</span>
+              </div>
+              <div className="text-3xl font-bold text-orange-600 mb-1">3</div>
+              <p className="text-xs text-gray-600">High-risk requisitions flagged</p>
+              <div className="mt-2 text-xs text-gray-500">
+                <span className="font-medium">Reasons:</span> Budget overrun
+              </div>
+            </div>
+          </div>
+
+          {/* Smart Recommendations */}
+          <div className="bg-white rounded-lg p-4 border border-purple-100">
+            <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+              <Briefcase className="w-4 h-4 text-purple-600" />
+              Smart Recommendations
+            </h3>
+            <div className="space-y-2">
+              <div className="flex items-start gap-3 p-3 bg-blue-50 rounded-lg">
+                <CheckSquare className="w-5 h-5 text-blue-600 mt-0.5" />
+                <div className="flex-1">
+                  <p className="text-sm font-medium text-gray-900">Optimize Finance Review Stage</p>
+                  <p className="text-xs text-gray-600 mt-1">Reduce bottleneck by implementing parallel approval for requests under $10K</p>
+                </div>
+                <span className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full">High Impact</span>
+              </div>
+              <div className="flex items-start gap-3 p-3 bg-green-50 rounded-lg">
+                <CheckSquare className="w-5 h-5 text-green-600 mt-0.5" />
+                <div className="flex-1">
+                  <p className="text-sm font-medium text-gray-900">Automate Low-Value Requisitions</p>
+                  <p className="text-xs text-gray-600 mt-1">Auto-approve requisitions under $500 to save 12 hours weekly</p>
+                </div>
+                <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full">Quick Win</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Tabs */}
       <div className="bg-white rounded-xl shadow-sm border border-gray-200">

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Plus, Search, Eye, Edit, MapPin, Navigation, CheckCircle, Clock, XCircle, Wrench, User, Phone, TrendingUp, Download, Package, BarChart3, X, AlertTriangle } from 'lucide-react';
+import { Plus, Search, Eye, Edit, MapPin, Navigation, CheckCircle, Clock, XCircle, Wrench, User, Phone, TrendingUp, Download, Package, BarChart3, X, AlertTriangle, Calendar, CalendarDays, Filter, ChevronLeft, ChevronRight, Grid3x3, List, UserPlus, FileEdit, Trash2, Copy } from 'lucide-react';
 
 interface FieldServiceJob {
   id: string;
@@ -302,11 +302,34 @@ export default function FieldServicePage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [priorityFilter, setPriorityFilter] = useState<string>('all');
+  const [engineerFilter, setEngineerFilter] = useState<string>('all');
+  const [dateRangeStart, setDateRangeStart] = useState('');
+  const [dateRangeEnd, setDateRangeEnd] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
   const [toast, setToast] = useState<{ message: string; type: 'success' | 'info' | 'error' } | null>(null);
   const [showAnalyticsModal, setShowAnalyticsModal] = useState(false);
   const [selectedJob, setSelectedJob] = useState<FieldServiceJob | null>(null);
+  const [viewMode, setViewMode] = useState<'list' | 'calendar'>('list');
+  const [selectedJobs, setSelectedJobs] = useState<Set<string>>(new Set());
+  const [showBulkActionsModal, setShowBulkActionsModal] = useState(false);
+  const [showCreateJobModal, setShowCreateJobModal] = useState(false);
+  const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
+  const [calendarDate, setCalendarDate] = useState(new Date());
+
+  // New job form state
+  const [newJob, setNewJob] = useState({
+    customerName: '',
+    priority: 'P3 - Medium' as FieldServiceJob['priority'],
+    engineerName: '',
+    scheduledDate: '',
+    scheduledTimeSlot: '',
+    equipmentModel: '',
+    issueType: '',
+    siteAddress: '',
+    siteContactPerson: '',
+    siteContactPhone: '',
+  });
 
   // Toast auto-dismiss
   useEffect(() => {
@@ -353,6 +376,72 @@ export default function FieldServicePage() {
     setSelectedJob(job);
   };
 
+  const handleSelectJob = (jobId: string, e: React.MouseEvent) => {
+    e.stopPropagation();
+    const newSelection = new Set(selectedJobs);
+    if (newSelection.has(jobId)) {
+      newSelection.delete(jobId);
+    } else {
+      newSelection.add(jobId);
+    }
+    setSelectedJobs(newSelection);
+  };
+
+  const handleSelectAll = () => {
+    if (selectedJobs.size === paginatedJobs.length) {
+      setSelectedJobs(new Set());
+    } else {
+      setSelectedJobs(new Set(paginatedJobs.map(job => job.id)));
+    }
+  };
+
+  const handleBulkAction = (action: string) => {
+    const count = selectedJobs.size;
+    switch (action) {
+      case 'assign':
+        setToast({ message: `Assigning ${count} jobs to engineer...`, type: 'info' });
+        break;
+      case 'reschedule':
+        setToast({ message: `Rescheduling ${count} jobs...`, type: 'info' });
+        break;
+      case 'cancel':
+        setToast({ message: `Cancelling ${count} jobs...`, type: 'info' });
+        break;
+      case 'export':
+        setToast({ message: `Exporting ${count} jobs...`, type: 'success' });
+        break;
+    }
+    setSelectedJobs(new Set());
+    setShowBulkActionsModal(false);
+  };
+
+  const handleCreateJob = () => {
+    setToast({ message: 'Job created successfully!', type: 'success' });
+    setShowCreateJobModal(false);
+    setNewJob({
+      customerName: '',
+      priority: 'P3 - Medium',
+      engineerName: '',
+      scheduledDate: '',
+      scheduledTimeSlot: '',
+      equipmentModel: '',
+      issueType: '',
+      siteAddress: '',
+      siteContactPerson: '',
+      siteContactPhone: '',
+    });
+  };
+
+  const navigateCalendar = (direction: 'prev' | 'next') => {
+    const newDate = new Date(calendarDate);
+    if (direction === 'prev') {
+      newDate.setMonth(newDate.getMonth() - 1);
+    } else {
+      newDate.setMonth(newDate.getMonth() + 1);
+    }
+    setCalendarDate(newDate);
+  };
+
   // Filter jobs
   const filteredJobs = mockFieldServiceJobs.filter((job) => {
     const matchesSearch =
@@ -362,7 +451,18 @@ export default function FieldServicePage() {
       job.equipmentModel.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesStatus = statusFilter === 'all' || job.status === statusFilter;
     const matchesPriority = priorityFilter === 'all' || job.priority === priorityFilter;
-    return matchesSearch && matchesStatus && matchesPriority;
+    const matchesEngineer = engineerFilter === 'all' || job.engineerName === engineerFilter;
+
+    // Date range filter
+    let matchesDateRange = true;
+    if (dateRangeStart && dateRangeEnd) {
+      const jobDate = new Date(job.scheduledDate);
+      const startDate = new Date(dateRangeStart);
+      const endDate = new Date(dateRangeEnd);
+      matchesDateRange = jobDate >= startDate && jobDate <= endDate;
+    }
+
+    return matchesSearch && matchesStatus && matchesPriority && matchesEngineer && matchesDateRange;
   });
 
   // Pagination
@@ -386,6 +486,26 @@ export default function FieldServicePage() {
         mockFieldServiceJobs.filter(j => j.actualDuration).length
       : 0,
     totalPartsValue: mockFieldServiceJobs.reduce((sum, j) => sum + j.totalPartsValue, 0),
+  };
+
+  // Get unique engineers
+  const uniqueEngineers = Array.from(new Set(mockFieldServiceJobs.filter(j => j.engineerName).map(j => j.engineerName)));
+
+  // Calendar helpers
+  const getDaysInMonth = (date: Date) => {
+    const year = date.getFullYear();
+    const month = date.getMonth();
+    const firstDay = new Date(year, month, 1);
+    const lastDay = new Date(year, month + 1, 0);
+    const daysInMonth = lastDay.getDate();
+    const startingDayOfWeek = firstDay.getDay();
+
+    return { daysInMonth, startingDayOfWeek, year, month };
+  };
+
+  const getJobsForDate = (date: Date) => {
+    const dateStr = date.toISOString().split('T')[0];
+    return mockFieldServiceJobs.filter(job => job.scheduledDate === dateStr);
   };
 
   const formatCurrency = (amount: number) => {
@@ -418,13 +538,22 @@ export default function FieldServicePage() {
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Field Service Jobs</h1>
           <p className="text-gray-600">Manage engineer dispatch and on-site service operations</p>
         </div>
-        <button
-          onClick={() => setShowAnalyticsModal(true)}
-          className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2 shadow-lg"
-        >
-          <BarChart3 className="w-5 h-5" />
-          View Analytics
-        </button>
+        <div className="flex gap-3">
+          <button
+            onClick={() => setShowCreateJobModal(true)}
+            className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2 shadow-lg"
+          >
+            <Plus className="w-5 h-5" />
+            Create Job
+          </button>
+          <button
+            onClick={() => setShowAnalyticsModal(true)}
+            className="bg-emerald-600 text-white px-6 py-3 rounded-lg hover:bg-emerald-700 transition-colors flex items-center gap-2 shadow-lg"
+          >
+            <BarChart3 className="w-5 h-5" />
+            Analytics
+          </button>
+        </div>
       </div>
 
       {/* Statistics Cards */}
@@ -528,10 +657,11 @@ export default function FieldServicePage() {
         </button>
       </div>
 
-      {/* Filters and Actions */}
+      {/* Filters, View Mode Toggle, and Bulk Actions */}
       <div className="bg-white rounded-lg border border-gray-200 p-4 mb-6">
-        <div className="flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between">
-          <div className="flex-1 flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
+        <div className="flex flex-col gap-4">
+          {/* Top Row: Search, View Toggle, Bulk Actions */}
+          <div className="flex items-center gap-4">
             {/* Search */}
             <div className="relative flex-1 max-w-md">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
@@ -544,243 +674,422 @@ export default function FieldServicePage() {
               />
             </div>
 
-            {/* Status Filter */}
-            <select
-              value={statusFilter}
-              onChange={(e) => setStatusFilter(e.target.value)}
-              className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
-            >
-              <option value="all">All Status</option>
-              <option value="scheduled">Scheduled</option>
-              <option value="dispatched">Dispatched</option>
-              <option value="in_progress">In Progress</option>
-              <option value="completed">Completed</option>
-            </select>
+            {/* View Mode Toggle */}
+            <div className="flex items-center gap-2 bg-gray-100 p-1 rounded-lg">
+              <button
+                onClick={() => setViewMode('list')}
+                className={`px-4 py-2 rounded-md flex items-center gap-2 transition-colors ${
+                  viewMode === 'list' ? 'bg-white text-blue-600 shadow-sm' : 'text-gray-600 hover:text-gray-900'
+                }`}
+              >
+                <List className="h-4 w-4" />
+                List
+              </button>
+              <button
+                onClick={() => setViewMode('calendar')}
+                className={`px-4 py-2 rounded-md flex items-center gap-2 transition-colors ${
+                  viewMode === 'calendar' ? 'bg-white text-blue-600 shadow-sm' : 'text-gray-600 hover:text-gray-900'
+                }`}
+              >
+                <CalendarDays className="h-4 w-4" />
+                Calendar
+              </button>
+            </div>
 
-            {/* Priority Filter */}
-            <select
-              value={priorityFilter}
-              onChange={(e) => setPriorityFilter(e.target.value)}
-              className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+            {/* Advanced Filters Toggle */}
+            <button
+              onClick={() => setShowAdvancedFilters(!showAdvancedFilters)}
+              className={`px-4 py-2 rounded-lg flex items-center gap-2 transition-colors ${
+                showAdvancedFilters ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+              }`}
             >
-              <option value="all">All Priority</option>
-              <option value="P1 - Critical">P1 - Critical</option>
-              <option value="P2 - High">P2 - High</option>
-              <option value="P3 - Medium">P3 - Medium</option>
-              <option value="P4 - Low">P4 - Low</option>
-            </select>
+              <Filter className="h-4 w-4" />
+              Filters
+            </button>
+
+            {/* Bulk Actions */}
+            {selectedJobs.size > 0 && (
+              <button
+                onClick={() => setShowBulkActionsModal(true)}
+                className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors flex items-center gap-2"
+              >
+                <FileEdit className="h-4 w-4" />
+                Bulk Actions ({selectedJobs.size})
+              </button>
+            )}
           </div>
 
-          <div className="flex gap-2">
-            <button
-              onClick={() => router.push('/after-sales-service/field-service/dispatch')}
-              className="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors flex items-center gap-2"
-            >
-              <Navigation className="h-4 w-4" />
-              Dispatch Board
-            </button>
-            <button
-              onClick={() => router.push('/after-sales-service/field-service/engineer-schedule')}
-              className="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors flex items-center gap-2"
-            >
-              <User className="h-4 w-4" />
-              Engineer Schedule
-            </button>
-            <button className="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors flex items-center gap-2">
-              <Download className="h-4 w-4" />
-              Export
-            </button>
-          </div>
+          {/* Advanced Filters Row */}
+          {showAdvancedFilters && (
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-4 pt-4 border-t border-gray-200">
+              {/* Status Filter */}
+              <select
+                value={statusFilter}
+                onChange={(e) => setStatusFilter(e.target.value)}
+                className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+              >
+                <option value="all">All Status</option>
+                <option value="scheduled">Scheduled</option>
+                <option value="dispatched">Dispatched</option>
+                <option value="in_progress">In Progress</option>
+                <option value="completed">Completed</option>
+                <option value="cancelled">Cancelled</option>
+              </select>
+
+              {/* Priority Filter */}
+              <select
+                value={priorityFilter}
+                onChange={(e) => setPriorityFilter(e.target.value)}
+                className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+              >
+                <option value="all">All Priority</option>
+                <option value="P1 - Critical">P1 - Critical</option>
+                <option value="P2 - High">P2 - High</option>
+                <option value="P3 - Medium">P3 - Medium</option>
+                <option value="P4 - Low">P4 - Low</option>
+              </select>
+
+              {/* Engineer Filter */}
+              <select
+                value={engineerFilter}
+                onChange={(e) => setEngineerFilter(e.target.value)}
+                className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+              >
+                <option value="all">All Engineers</option>
+                {uniqueEngineers.map(engineer => (
+                  <option key={engineer} value={engineer}>{engineer}</option>
+                ))}
+              </select>
+
+              {/* Date Range Start */}
+              <input
+                type="date"
+                value={dateRangeStart}
+                onChange={(e) => setDateRangeStart(e.target.value)}
+                placeholder="Start Date"
+                className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+              />
+
+              {/* Date Range End */}
+              <input
+                type="date"
+                value={dateRangeEnd}
+                onChange={(e) => setDateRangeEnd(e.target.value)}
+                placeholder="End Date"
+                className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+              />
+            </div>
+          )}
         </div>
       </div>
 
-      {/* Field Service Jobs Table */}
-      <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
-        <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead className="bg-gray-50 border-b border-gray-200">
-              <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Job Details
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Priority & Status
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Equipment & Issue
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Schedule
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Engineer
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Location & Contact
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Parts & Report
-                </th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Actions
-                </th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-200">
-              {paginatedJobs.map((job) => {
-                const StatusIcon = statusIcons[job.status];
-                return (
-                  <tr
-                    key={job.id}
-                    onClick={() => handleJobRowClick(job)}
-                    className="hover:bg-blue-50 transition-colors cursor-pointer"
-                  >
-                    <td className="px-6 py-4">
-                      <div className="flex flex-col">
-                        <span className="text-sm font-medium text-gray-900">{job.jobNumber}</span>
-                        <span className="text-sm text-gray-600">{job.customerName}</span>
-                      </div>
-                    </td>
-                    <td className="px-6 py-4">
-                      <div className="flex flex-col gap-1">
-                        <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium border w-fit ${priorityColors[job.priority]}`}>
-                          {job.priority}
-                        </span>
-                        <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium w-fit ${statusColors[job.status]}`}>
-                          <StatusIcon className="h-3 w-3" />
-                          {job.status.replace('_', ' ').charAt(0).toUpperCase() + job.status.slice(1).replace('_', ' ')}
-                        </span>
-                      </div>
-                    </td>
-                    <td className="px-6 py-4">
-                      <div className="flex flex-col">
-                        <span className="text-sm text-gray-900">{job.equipmentModel}</span>
-                        <span className="text-xs text-gray-600">{job.issueType}</span>
-                      </div>
-                    </td>
-                    <td className="px-6 py-4">
-                      <div className="flex flex-col text-sm">
-                        <span className="text-gray-900">
-                          {new Date(job.scheduledDate).toLocaleDateString('en-IN', {
-                            day: '2-digit',
-                            month: 'short'
-                          })}
-                        </span>
-                        <span className="text-xs text-gray-600">{job.scheduledTimeSlot}</span>
-                        {job.actualDuration && (
-                          <span className="text-xs text-green-600">Done in {job.actualDuration}h</span>
-                        )}
-                      </div>
-                    </td>
-                    <td className="px-6 py-4">
-                      {job.engineerName ? (
-                        <div className="flex flex-col">
-                          <div className="flex items-center gap-1">
-                            <User className="h-3 w-3 text-gray-400" />
-                            <span className="text-sm text-gray-900">{job.engineerName}</span>
-                          </div>
-                          {job.checkInTime && !job.checkOutTime && (
-                            <span className="text-xs text-green-600">Checked In</span>
-                          )}
-                          {job.checkOutTime && (
-                            <span className="text-xs text-gray-600">Checked Out</span>
-                          )}
-                        </div>
-                      ) : (
-                        <span className="text-sm text-gray-400">Unassigned</span>
-                      )}
-                    </td>
-                    <td className="px-6 py-4">
-                      <div className="flex flex-col max-w-xs">
-                        <div className="flex items-start gap-1">
-                          <MapPin className="h-3 w-3 text-gray-400 mt-0.5 flex-shrink-0" />
-                          <span className="text-xs text-gray-600 truncate">{job.siteAddress}</span>
-                        </div>
-                        <div className="flex items-center gap-1 mt-1">
-                          <Phone className="h-3 w-3 text-gray-400" />
-                          <span className="text-xs text-gray-600">{job.siteContactPerson}</span>
-                        </div>
-                        {job.travelDistance && (
-                          <span className="text-xs text-blue-600 mt-1">{job.travelDistance} km</span>
-                        )}
-                      </div>
-                    </td>
-                    <td className="px-6 py-4">
-                      <div className="flex flex-col">
-                        {job.partsConsumed > 0 ? (
-                          <span className="text-sm text-gray-900">{job.partsConsumed} parts</span>
-                        ) : (
-                          <span className="text-sm text-gray-400">No parts</span>
-                        )}
-                        {job.totalPartsValue > 0 && (
-                          <span className="text-xs text-gray-600">{formatCurrency(job.totalPartsValue)}</span>
-                        )}
-                        {job.serviceReportSubmitted ? (
-                          <span className="inline-flex items-center gap-1 text-xs text-green-600 mt-1">
-                            <CheckCircle className="h-3 w-3" />
-                            Report Submitted
-                          </span>
-                        ) : job.status === 'completed' ? (
-                          <span className="text-xs text-orange-600 mt-1">Report Pending</span>
-                        ) : null}
-                      </div>
-                    </td>
-                    <td className="px-6 py-4 text-right">
-                      <div className="flex items-center justify-end gap-2">
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            router.push(`/after-sales-service/field-service/view/${job.id}`);
-                          }}
-                          className="p-2 text-blue-600 hover:bg-blue-100 rounded-lg transition-colors"
-                          title="View Details"
-                        >
-                          <Eye className="h-4 w-4" />
-                        </button>
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            router.push(`/after-sales-service/field-service/edit/${job.id}`);
-                          }}
-                          className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
-                          title="Edit Job"
-                        >
-                          <Edit className="h-4 w-4" />
-                        </button>
-                      </div>
-                    </td>
+      {/* Main Content - List or Calendar View */}
+      {viewMode === 'list' ? (
+        <>
+          {/* Field Service Jobs Table */}
+          <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead className="bg-gray-50 border-b border-gray-200">
+                  <tr>
+                    <th className="px-6 py-3 text-left">
+                      <input
+                        type="checkbox"
+                        checked={selectedJobs.size === paginatedJobs.length && paginatedJobs.length > 0}
+                        onChange={handleSelectAll}
+                        className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                      />
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Job Details
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Priority & Status
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Equipment & Issue
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Schedule
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Engineer
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Location & Contact
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Parts & Report
+                    </th>
+                    <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Actions
+                    </th>
                   </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
-
-        {/* Pagination */}
-        {totalPages > 1 && (
-          <div className="bg-gray-50 px-6 py-3 border-t border-gray-200 flex items-center justify-between">
-            <div className="text-sm text-gray-700">
-              Showing {(currentPage - 1) * itemsPerPage + 1} to {Math.min(currentPage * itemsPerPage, filteredJobs.length)} of {filteredJobs.length} jobs
+                </thead>
+                <tbody className="divide-y divide-gray-200">
+                  {paginatedJobs.map((job) => {
+                    const StatusIcon = statusIcons[job.status];
+                    return (
+                      <tr
+                        key={job.id}
+                        onClick={() => handleJobRowClick(job)}
+                        className="hover:bg-blue-50 transition-colors cursor-pointer"
+                      >
+                        <td className="px-6 py-4" onClick={(e) => e.stopPropagation()}>
+                          <input
+                            type="checkbox"
+                            checked={selectedJobs.has(job.id)}
+                            onChange={(e) => handleSelectJob(job.id, e)}
+                            className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                          />
+                        </td>
+                        <td className="px-6 py-4">
+                          <div className="flex flex-col">
+                            <span className="text-sm font-medium text-gray-900">{job.jobNumber}</span>
+                            <span className="text-sm text-gray-600">{job.customerName}</span>
+                          </div>
+                        </td>
+                        <td className="px-6 py-4">
+                          <div className="flex flex-col gap-1">
+                            <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium border w-fit ${priorityColors[job.priority]}`}>
+                              {job.priority}
+                            </span>
+                            <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium w-fit ${statusColors[job.status]}`}>
+                              <StatusIcon className="h-3 w-3" />
+                              {job.status.replace('_', ' ').charAt(0).toUpperCase() + job.status.slice(1).replace('_', ' ')}
+                            </span>
+                          </div>
+                        </td>
+                        <td className="px-6 py-4">
+                          <div className="flex flex-col">
+                            <span className="text-sm text-gray-900">{job.equipmentModel}</span>
+                            <span className="text-xs text-gray-600">{job.issueType}</span>
+                          </div>
+                        </td>
+                        <td className="px-6 py-4">
+                          <div className="flex flex-col text-sm">
+                            <span className="text-gray-900">
+                              {new Date(job.scheduledDate).toLocaleDateString('en-IN', {
+                                day: '2-digit',
+                                month: 'short'
+                              })}
+                            </span>
+                            <span className="text-xs text-gray-600">{job.scheduledTimeSlot}</span>
+                            {job.actualDuration && (
+                              <span className="text-xs text-green-600">Done in {job.actualDuration}h</span>
+                            )}
+                          </div>
+                        </td>
+                        <td className="px-6 py-4">
+                          {job.engineerName ? (
+                            <div className="flex flex-col">
+                              <div className="flex items-center gap-1">
+                                <User className="h-3 w-3 text-gray-400" />
+                                <span className="text-sm text-gray-900">{job.engineerName}</span>
+                              </div>
+                              {job.checkInTime && !job.checkOutTime && (
+                                <span className="text-xs text-green-600">Checked In</span>
+                              )}
+                              {job.checkOutTime && (
+                                <span className="text-xs text-gray-600">Checked Out</span>
+                              )}
+                            </div>
+                          ) : (
+                            <span className="text-sm text-gray-400">Unassigned</span>
+                          )}
+                        </td>
+                        <td className="px-6 py-4">
+                          <div className="flex flex-col max-w-xs">
+                            <div className="flex items-start gap-1">
+                              <MapPin className="h-3 w-3 text-gray-400 mt-0.5 flex-shrink-0" />
+                              <span className="text-xs text-gray-600 truncate">{job.siteAddress}</span>
+                            </div>
+                            <div className="flex items-center gap-1 mt-1">
+                              <Phone className="h-3 w-3 text-gray-400" />
+                              <span className="text-xs text-gray-600">{job.siteContactPerson}</span>
+                            </div>
+                            {job.travelDistance && (
+                              <span className="text-xs text-blue-600 mt-1">{job.travelDistance} km</span>
+                            )}
+                          </div>
+                        </td>
+                        <td className="px-6 py-4">
+                          <div className="flex flex-col">
+                            {job.partsConsumed > 0 ? (
+                              <span className="text-sm text-gray-900">{job.partsConsumed} parts</span>
+                            ) : (
+                              <span className="text-sm text-gray-400">No parts</span>
+                            )}
+                            {job.totalPartsValue > 0 && (
+                              <span className="text-xs text-gray-600">{formatCurrency(job.totalPartsValue)}</span>
+                            )}
+                            {job.serviceReportSubmitted ? (
+                              <span className="inline-flex items-center gap-1 text-xs text-green-600 mt-1">
+                                <CheckCircle className="h-3 w-3" />
+                                Report Submitted
+                              </span>
+                            ) : job.status === 'completed' ? (
+                              <span className="text-xs text-orange-600 mt-1">Report Pending</span>
+                            ) : null}
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 text-right">
+                          <div className="flex items-center justify-end gap-2">
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                router.push(`/after-sales-service/field-service/view/${job.id}`);
+                              }}
+                              className="p-2 text-blue-600 hover:bg-blue-100 rounded-lg transition-colors"
+                              title="View Details"
+                            >
+                              <Eye className="h-4 w-4" />
+                            </button>
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                router.push(`/after-sales-service/field-service/edit/${job.id}`);
+                              }}
+                              className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
+                              title="Edit Job"
+                            >
+                              <Edit className="h-4 w-4" />
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
             </div>
+
+            {/* Pagination */}
+            {totalPages > 1 && (
+              <div className="bg-gray-50 px-6 py-3 border-t border-gray-200 flex items-center justify-between">
+                <div className="text-sm text-gray-700">
+                  Showing {(currentPage - 1) * itemsPerPage + 1} to {Math.min(currentPage * itemsPerPage, filteredJobs.length)} of {filteredJobs.length} jobs
+                </div>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+                    disabled={currentPage === 1}
+                    className="px-3 py-1 border border-gray-300 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100 transition-colors"
+                  >
+                    Previous
+                  </button>
+                  <button
+                    onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
+                    disabled={currentPage === totalPages}
+                    className="px-3 py-1 border border-gray-300 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100 transition-colors"
+                  >
+                    Next
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        </>
+      ) : (
+        /* Calendar View */
+        <div className="bg-white rounded-lg border border-gray-200 p-6">
+          {/* Calendar Header */}
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-2xl font-bold text-gray-900">
+              {calendarDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
+            </h2>
             <div className="flex gap-2">
               <button
-                onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
-                disabled={currentPage === 1}
-                className="px-3 py-1 border border-gray-300 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100 transition-colors"
+                onClick={() => navigateCalendar('prev')}
+                className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
               >
-                Previous
+                <ChevronLeft className="h-5 w-5" />
               </button>
               <button
-                onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
-                disabled={currentPage === totalPages}
-                className="px-3 py-1 border border-gray-300 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100 transition-colors"
+                onClick={() => setCalendarDate(new Date())}
+                className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
               >
-                Next
+                Today
+              </button>
+              <button
+                onClick={() => navigateCalendar('next')}
+                className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                <ChevronRight className="h-5 w-5" />
               </button>
             </div>
           </div>
-        )}
-      </div>
+
+          {/* Calendar Grid */}
+          <div className="grid grid-cols-7 gap-2">
+            {/* Day Headers */}
+            {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => (
+              <div key={day} className="text-center font-semibold text-gray-700 py-2">
+                {day}
+              </div>
+            ))}
+
+            {/* Calendar Days */}
+            {(() => {
+              const { daysInMonth, startingDayOfWeek, year, month } = getDaysInMonth(calendarDate);
+              const days = [];
+
+              // Empty cells for days before month starts
+              for (let i = 0; i < startingDayOfWeek; i++) {
+                days.push(<div key={`empty-${i}`} className="aspect-square border border-gray-200 rounded-lg bg-gray-50"></div>);
+              }
+
+              // Days of the month
+              for (let day = 1; day <= daysInMonth; day++) {
+                const date = new Date(year, month, day);
+                const jobsForDay = getJobsForDate(date);
+                const isToday = new Date().toDateString() === date.toDateString();
+
+                days.push(
+                  <div
+                    key={day}
+                    className={`aspect-square border rounded-lg p-2 hover:shadow-md transition-shadow ${
+                      isToday ? 'border-blue-500 bg-blue-50' : 'border-gray-200 bg-white'
+                    }`}
+                  >
+                    <div className={`text-sm font-semibold mb-1 ${isToday ? 'text-blue-600' : 'text-gray-700'}`}>
+                      {day}
+                    </div>
+                    <div className="space-y-1 overflow-y-auto max-h-24">
+                      {jobsForDay.map(job => (
+                        <div
+                          key={job.id}
+                          onClick={() => setSelectedJob(job)}
+                          className={`text-xs p-1 rounded cursor-pointer hover:opacity-80 transition-opacity ${statusColors[job.status]}`}
+                          title={`${job.jobNumber} - ${job.customerName}`}
+                        >
+                          <div className="font-medium truncate">{job.jobNumber}</div>
+                          <div className="truncate">{job.scheduledTimeSlot}</div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                );
+              }
+
+              return days;
+            })()}
+          </div>
+
+          {/* Calendar Legend */}
+          <div className="mt-6 pt-6 border-t border-gray-200">
+            <h3 className="text-sm font-semibold text-gray-700 mb-3">Legend</h3>
+            <div className="flex flex-wrap gap-4">
+              {Object.entries(statusColors).map(([status, colorClass]) => (
+                <div key={status} className="flex items-center gap-2">
+                  <div className={`w-4 h-4 rounded ${colorClass}`}></div>
+                  <span className="text-sm text-gray-600 capitalize">{status.replace('_', ' ')}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Job Details Modal */}
       {selectedJob && (
@@ -998,7 +1307,262 @@ export default function FieldServicePage() {
         </div>
       )}
 
-      {/* Analytics Modal */}
+      {/* Create Job Modal */}
+      {showCreateJobModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-lg max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
+            <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-4 flex items-center justify-between">
+              <div>
+                <h2 className="text-2xl font-bold text-white">Create New Field Service Job</h2>
+                <p className="text-sm text-blue-100">Fill in the details to create a new service job</p>
+              </div>
+              <button
+                onClick={() => setShowCreateJobModal(false)}
+                className="text-white hover:text-gray-200 transition-colors"
+              >
+                <X className="h-6 w-6" />
+              </button>
+            </div>
+
+            <div className="p-6">
+              <form className="space-y-6">
+                {/* Customer Information */}
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Customer Information</h3>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Customer Name *</label>
+                      <input
+                        type="text"
+                        value={newJob.customerName}
+                        onChange={(e) => setNewJob({...newJob, customerName: e.target.value})}
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        placeholder="Enter customer name"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Priority *</label>
+                      <select
+                        value={newJob.priority}
+                        onChange={(e) => setNewJob({...newJob, priority: e.target.value as FieldServiceJob['priority']})}
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        required
+                      >
+                        <option value="P1 - Critical">P1 - Critical</option>
+                        <option value="P2 - High">P2 - High</option>
+                        <option value="P3 - Medium">P3 - Medium</option>
+                        <option value="P4 - Low">P4 - Low</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Schedule Information */}
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Schedule Information</h3>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Scheduled Date *</label>
+                      <input
+                        type="date"
+                        value={newJob.scheduledDate}
+                        onChange={(e) => setNewJob({...newJob, scheduledDate: e.target.value})}
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Time Slot *</label>
+                      <input
+                        type="text"
+                        value={newJob.scheduledTimeSlot}
+                        onChange={(e) => setNewJob({...newJob, scheduledTimeSlot: e.target.value})}
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        placeholder="e.g., 09:00 - 11:00"
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Equipment & Issue */}
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Equipment & Issue</h3>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Equipment Model *</label>
+                      <input
+                        type="text"
+                        value={newJob.equipmentModel}
+                        onChange={(e) => setNewJob({...newJob, equipmentModel: e.target.value})}
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        placeholder="Enter equipment model"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Issue Type *</label>
+                      <input
+                        type="text"
+                        value={newJob.issueType}
+                        onChange={(e) => setNewJob({...newJob, issueType: e.target.value})}
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        placeholder="Enter issue description"
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Site Information */}
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Site Information</h3>
+                  <div className="space-y-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Site Address *</label>
+                      <textarea
+                        value={newJob.siteAddress}
+                        onChange={(e) => setNewJob({...newJob, siteAddress: e.target.value})}
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        rows={2}
+                        placeholder="Enter complete site address"
+                        required
+                      />
+                    </div>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">Contact Person *</label>
+                        <input
+                          type="text"
+                          value={newJob.siteContactPerson}
+                          onChange={(e) => setNewJob({...newJob, siteContactPerson: e.target.value})}
+                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                          placeholder="Contact person name"
+                          required
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">Contact Phone *</label>
+                        <input
+                          type="tel"
+                          value={newJob.siteContactPhone}
+                          onChange={(e) => setNewJob({...newJob, siteContactPhone: e.target.value})}
+                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                          placeholder="+91-XXXXX-XXXXX"
+                          required
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Engineer Assignment */}
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Engineer Assignment</h3>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Assign Engineer (Optional)</label>
+                    <select
+                      value={newJob.engineerName}
+                      onChange={(e) => setNewJob({...newJob, engineerName: e.target.value})}
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    >
+                      <option value="">Select an engineer (optional)</option>
+                      {uniqueEngineers.map(engineer => (
+                        <option key={engineer} value={engineer}>{engineer}</option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+
+                {/* Action Buttons */}
+                <div className="flex justify-end gap-3 pt-4 border-t border-gray-200">
+                  <button
+                    type="button"
+                    onClick={() => setShowCreateJobModal(false)}
+                    className="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleCreateJob}
+                    className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2"
+                  >
+                    <Plus className="h-4 w-4" />
+                    Create Job
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Bulk Actions Modal */}
+      {showBulkActionsModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-lg max-w-md w-full shadow-2xl">
+            <div className="sticky top-0 bg-gradient-to-r from-purple-600 to-pink-600 px-6 py-4 flex items-center justify-between">
+              <div>
+                <h2 className="text-xl font-bold text-white">Bulk Actions</h2>
+                <p className="text-sm text-purple-100">{selectedJobs.size} jobs selected</p>
+              </div>
+              <button
+                onClick={() => setShowBulkActionsModal(false)}
+                className="text-white hover:text-gray-200 transition-colors"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+
+            <div className="p-6 space-y-3">
+              <button
+                onClick={() => handleBulkAction('assign')}
+                className="w-full px-4 py-3 bg-blue-50 text-blue-700 rounded-lg hover:bg-blue-100 transition-colors flex items-center gap-3"
+              >
+                <UserPlus className="h-5 w-5" />
+                <span className="font-medium">Assign to Engineer</span>
+              </button>
+
+              <button
+                onClick={() => handleBulkAction('reschedule')}
+                className="w-full px-4 py-3 bg-orange-50 text-orange-700 rounded-lg hover:bg-orange-100 transition-colors flex items-center gap-3"
+              >
+                <Calendar className="h-5 w-5" />
+                <span className="font-medium">Reschedule Jobs</span>
+              </button>
+
+              <button
+                onClick={() => handleBulkAction('export')}
+                className="w-full px-4 py-3 bg-green-50 text-green-700 rounded-lg hover:bg-green-100 transition-colors flex items-center gap-3"
+              >
+                <Download className="h-5 w-5" />
+                <span className="font-medium">Export Selected</span>
+              </button>
+
+              <button
+                onClick={() => handleBulkAction('cancel')}
+                className="w-full px-4 py-3 bg-red-50 text-red-700 rounded-lg hover:bg-red-100 transition-colors flex items-center gap-3"
+              >
+                <XCircle className="h-5 w-5" />
+                <span className="font-medium">Cancel Jobs</span>
+              </button>
+            </div>
+
+            <div className="px-6 py-4 bg-gray-50 border-t flex justify-end">
+              <button
+                onClick={() => setShowBulkActionsModal(false)}
+                className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Analytics Modal - Keep existing implementation */}
       {showAnalyticsModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
           <div className="bg-white rounded-lg max-w-6xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">

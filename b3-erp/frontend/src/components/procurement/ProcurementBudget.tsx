@@ -50,6 +50,10 @@ const ProcurementBudget: React.FC = () => {
   const [isAlertSetupModalOpen, setIsAlertSetupModalOpen] = useState(false);
   const [isExportModalOpen, setIsExportModalOpen] = useState(false);
   const [selectedBudget, setSelectedBudget] = useState<BudgetLine | null>(null);
+  const [showRealTimeMonitoring, setShowRealTimeMonitoring] = useState(true);
+  const [showAIInsights, setShowAIInsights] = useState(true);
+  const [autoRefresh, setAutoRefresh] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
 
   // Mock data - Budget lines
   const budgetLines: BudgetLine[] = [
@@ -1395,6 +1399,173 @@ Data Privacy:
           <p className="text-sm text-gray-600">Remaining Budget</p>
         </div>
       </div>
+
+      {/* Real-Time Monitoring Dashboard */}
+      {showRealTimeMonitoring && (
+        <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl shadow-lg p-6 border border-indigo-200 mb-6">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
+              <Activity className="h-5 w-5 text-indigo-600" />
+              Real-Time Budget Monitoring
+            </h3>
+            <div className="flex items-center gap-3">
+              <label className="flex items-center gap-2 text-sm text-gray-700">
+                <input
+                  type="checkbox"
+                  checked={autoRefresh}
+                  onChange={(e) => setAutoRefresh(e.target.checked)}
+                  className="rounded border-gray-300"
+                />
+                Auto-refresh
+              </label>
+              <button
+                onClick={() => setShowRealTimeMonitoring(false)}
+                className="text-gray-400 hover:text-gray-600"
+              >
+                <XCircle className="h-5 w-5" />
+              </button>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+            <div className="bg-white rounded-lg p-4 shadow-sm">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-medium text-gray-600">Today's Spend</span>
+                <DollarSign className="h-5 w-5 text-blue-600" />
+              </div>
+              <div className="text-2xl font-bold text-gray-900">$42.5K</div>
+              <div className="text-xs text-green-600 mt-1">↓ 12% vs yesterday</div>
+            </div>
+
+            <div className="bg-white rounded-lg p-4 shadow-sm">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-medium text-gray-600">Budget Alerts</span>
+                <AlertCircle className="h-5 w-5 text-amber-600" />
+              </div>
+              <div className="text-2xl font-bold text-gray-900">3</div>
+              <div className="text-xs text-red-600 mt-1">2 critical</div>
+            </div>
+
+            <div className="bg-white rounded-lg p-4 shadow-sm">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-medium text-gray-600">Burn Rate</span>
+                <TrendingUp className="h-5 w-5 text-purple-600" />
+              </div>
+              <div className="text-2xl font-bold text-gray-900">$185K</div>
+              <div className="text-xs text-gray-600 mt-1">Per day avg</div>
+            </div>
+
+            <div className="bg-white rounded-lg p-4 shadow-sm">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-medium text-gray-600">Forecast Variance</span>
+                <Target className="h-5 w-5 text-green-600" />
+              </div>
+              <div className="text-2xl font-bold text-gray-900">-2.3%</div>
+              <div className="text-xs text-green-600 mt-1">Under forecast</div>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-lg p-4 shadow-sm">
+            <h4 className="text-sm font-semibold text-gray-900 mb-3">Recent Budget Activity</h4>
+            <div className="space-y-2 max-h-32 overflow-y-auto">
+              <div className="flex items-center gap-3 text-sm">
+                <DollarSign className="h-4 w-4 text-blue-600 flex-shrink-0" />
+                <span className="text-gray-600">PO-2024-567 approved: $28,500 against Raw Materials budget</span>
+                <span className="text-gray-400 text-xs ml-auto">5 min ago</span>
+              </div>
+              <div className="flex items-center gap-3 text-sm">
+                <AlertCircle className="h-4 w-4 text-amber-600 flex-shrink-0" />
+                <span className="text-gray-600">IT Services budget reached 85% utilization threshold</span>
+                <span className="text-gray-400 text-xs ml-auto">1 hour ago</span>
+              </div>
+              <div className="flex items-center gap-3 text-sm">
+                <TrendingUp className="h-4 w-4 text-green-600 flex-shrink-0" />
+                <span className="text-gray-600">Budget transfer: $50K from Contingency to Manufacturing</span>
+                <span className="text-gray-400 text-xs ml-auto">2 hours ago</span>
+              </div>
+              <div className="flex items-center gap-3 text-sm">
+                <Target className="h-4 w-4 text-purple-600 flex-shrink-0" />
+                <span className="text-gray-600">Q4 forecast updated with 3% reduction in logistics costs</span>
+                <span className="text-gray-400 text-xs ml-auto">4 hours ago</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* AI-Powered Insights */}
+      {showAIInsights && (
+        <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl shadow-lg p-6 border border-purple-200 mb-6">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
+              <Zap className="h-5 w-5 text-purple-600" />
+              AI-Powered Budget Insights
+            </h3>
+            <button
+              onClick={() => setShowAIInsights(false)}
+              className="text-gray-400 hover:text-gray-600"
+            >
+              <XCircle className="h-5 w-5" />
+            </button>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+            <div className="bg-white rounded-lg p-4 shadow-sm">
+              <div className="flex items-center gap-2 mb-2">
+                <TrendingUp className="h-5 w-5 text-blue-600" />
+                <span className="text-sm font-semibold text-gray-900">Forecast Accuracy</span>
+              </div>
+              <div className="text-2xl font-bold text-green-600 mb-1">94.2%</div>
+              <p className="text-xs text-gray-600">AI predictions matching actual spend within 5% margin - high confidence for Q1 planning</p>
+            </div>
+
+            <div className="bg-white rounded-lg p-4 shadow-sm">
+              <div className="flex items-center gap-2 mb-2">
+                <AlertCircle className="h-5 w-5 text-amber-600" />
+                <span className="text-sm font-semibold text-gray-900">Overspend Risk</span>
+              </div>
+              <div className="text-2xl font-bold text-amber-600 mb-1">Medium</div>
+              <p className="text-xs text-gray-600">Raw Materials and IT Services budgets projected to exceed by 8-12% if current trends continue</p>
+            </div>
+
+            <div className="bg-white rounded-lg p-4 shadow-sm">
+              <div className="flex items-center gap-2 mb-2">
+                <DollarSign className="h-5 w-5 text-green-600" />
+                <span className="text-sm font-semibold text-gray-900">Savings Opportunity</span>
+              </div>
+              <div className="text-2xl font-bold text-green-600 mb-1">$125K</div>
+              <p className="text-xs text-gray-600">Potential savings identified through spend pattern analysis and supplier consolidation</p>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-lg p-4 shadow-sm">
+            <h4 className="text-sm font-semibold text-gray-900 mb-3">Smart Budget Recommendations</h4>
+            <div className="space-y-2">
+              <div className="flex items-start gap-3 p-2 bg-amber-50 rounded">
+                <AlertCircle className="h-4 w-4 text-amber-600 mt-0.5 flex-shrink-0" />
+                <div className="text-sm">
+                  <span className="font-medium text-gray-900">Reallocation Needed:</span>
+                  <span className="text-gray-600"> Transfer $75K from underutilized Marketing budget to Manufacturing to avoid Q4 overspend</span>
+                </div>
+              </div>
+              <div className="flex items-start gap-3 p-2 bg-blue-50 rounded">
+                <Target className="h-4 w-4 text-blue-600 mt-0.5 flex-shrink-0" />
+                <div className="text-sm">
+                  <span className="font-medium text-gray-900">Seasonal Adjustment:</span>
+                  <span className="text-gray-600"> Historical data shows 20% spike in logistics costs during Dec-Jan - recommend budget reserve</span>
+                </div>
+              </div>
+              <div className="flex items-start gap-3 p-2 bg-green-50 rounded">
+                <DollarSign className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
+                <div className="text-sm">
+                  <span className="font-medium text-gray-900">Cost Optimization:</span>
+                  <span className="text-gray-600"> Negotiate volume discounts with top 3 suppliers to achieve 5-7% cost reduction on $2.1M annual spend</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Navigation Tabs */}
       <div className="flex gap-1 mb-6 border-b">

@@ -22,6 +22,9 @@ const QualityAssurance: React.FC<QualityAssuranceProps> = () => {
   const [selectedInspection, setSelectedInspection] = useState<any>(null);
   const [filterStatus, setFilterStatus] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
+  const [showRealTimeMonitoring, setShowRealTimeMonitoring] = useState(true);
+  const [showAIInsights, setShowAIInsights] = useState(true);
+  const [autoRefresh, setAutoRefresh] = useState(false);
 
   // Mock data for quality metrics
   const qualityMetrics = {
@@ -3447,6 +3450,173 @@ Report Distribution: Management, Quality Team
           Compliance
         </button>
       </div>
+
+      {/* Real-Time Monitoring Dashboard */}
+      {showRealTimeMonitoring && (
+        <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl shadow-lg p-6 border border-indigo-200 mb-6">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
+              <Activity className="h-5 w-5 text-indigo-600" />
+              Real-Time Quality Monitoring
+            </h3>
+            <div className="flex items-center gap-3">
+              <label className="flex items-center gap-2 text-sm text-gray-700">
+                <input
+                  type="checkbox"
+                  checked={autoRefresh}
+                  onChange={(e) => setAutoRefresh(e.target.checked)}
+                  className="rounded border-gray-300"
+                />
+                Auto-refresh
+              </label>
+              <button
+                onClick={() => setShowRealTimeMonitoring(false)}
+                className="text-gray-400 hover:text-gray-600"
+              >
+                <XCircle className="h-5 w-5" />
+              </button>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+            <div className="bg-white rounded-lg p-4 shadow-sm">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-medium text-gray-600">Active Inspections</span>
+                <ClipboardCheck className="h-5 w-5 text-blue-600" />
+              </div>
+              <div className="text-2xl font-bold text-gray-900">8</div>
+              <div className="text-xs text-green-600 mt-1">↑ 2 in last hour</div>
+            </div>
+
+            <div className="bg-white rounded-lg p-4 shadow-sm">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-medium text-gray-600">Pass Rate Today</span>
+                <CheckCircle className="h-5 w-5 text-green-600" />
+              </div>
+              <div className="text-2xl font-bold text-gray-900">97.2%</div>
+              <div className="text-xs text-green-600 mt-1">↑ 0.7% vs yesterday</div>
+            </div>
+
+            <div className="bg-white rounded-lg p-4 shadow-sm">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-medium text-gray-600">Defects Detected</span>
+                <AlertTriangle className="h-5 w-5 text-amber-600" />
+              </div>
+              <div className="text-2xl font-bold text-gray-900">3</div>
+              <div className="text-xs text-red-600 mt-1">Critical: 1</div>
+            </div>
+
+            <div className="bg-white rounded-lg p-4 shadow-sm">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-medium text-gray-600">Avg Inspection Time</span>
+                <Clock className="h-5 w-5 text-purple-600" />
+              </div>
+              <div className="text-2xl font-bold text-gray-900">22m</div>
+              <div className="text-xs text-green-600 mt-1">↓ 2m faster</div>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-lg p-4 shadow-sm">
+            <h4 className="text-sm font-semibold text-gray-900 mb-3">Live Activity Feed</h4>
+            <div className="space-y-2 max-h-32 overflow-y-auto">
+              <div className="flex items-center gap-3 text-sm">
+                <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0" />
+                <span className="text-gray-600">INS-2024-0456 passed inspection</span>
+                <span className="text-gray-400 text-xs ml-auto">2 min ago</span>
+              </div>
+              <div className="flex items-center gap-3 text-sm">
+                <AlertTriangle className="h-4 w-4 text-amber-600 flex-shrink-0" />
+                <span className="text-gray-600">Defect detected in batch BATCH-789</span>
+                <span className="text-gray-400 text-xs ml-auto">5 min ago</span>
+              </div>
+              <div className="flex items-center gap-3 text-sm">
+                <ClipboardCheck className="h-4 w-4 text-blue-600 flex-shrink-0" />
+                <span className="text-gray-600">New inspection INS-2024-0457 created</span>
+                <span className="text-gray-400 text-xs ml-auto">8 min ago</span>
+              </div>
+              <div className="flex items-center gap-3 text-sm">
+                <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0" />
+                <span className="text-gray-600">Quality check completed for PO-2024-123</span>
+                <span className="text-gray-400 text-xs ml-auto">12 min ago</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* AI-Powered Insights */}
+      {showAIInsights && (
+        <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl shadow-lg p-6 border border-purple-200 mb-6">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
+              <Zap className="h-5 w-5 text-purple-600" />
+              AI-Powered Quality Insights
+            </h3>
+            <button
+              onClick={() => setShowAIInsights(false)}
+              className="text-gray-400 hover:text-gray-600"
+            >
+              <XCircle className="h-5 w-5" />
+            </button>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+            <div className="bg-white rounded-lg p-4 shadow-sm">
+              <div className="flex items-center gap-2 mb-2">
+                <Target className="h-5 w-5 text-blue-600" />
+                <span className="text-sm font-semibold text-gray-900">Defect Prediction</span>
+              </div>
+              <div className="text-2xl font-bold text-amber-600 mb-1">18%</div>
+              <p className="text-xs text-gray-600">Predicted defect rate for next batch from Tech Components Ltd based on historical trends</p>
+            </div>
+
+            <div className="bg-white rounded-lg p-4 shadow-sm">
+              <div className="flex items-center gap-2 mb-2">
+                <TrendingUp className="h-5 w-5 text-green-600" />
+                <span className="text-sm font-semibold text-gray-900">Quality Trend</span>
+              </div>
+              <div className="text-2xl font-bold text-green-600 mb-1">+2.3%</div>
+              <p className="text-xs text-gray-600">Overall quality improvement expected this month with current supplier performance</p>
+            </div>
+
+            <div className="bg-white rounded-lg p-4 shadow-sm">
+              <div className="flex items-center gap-2 mb-2">
+                <AlertCircle className="h-5 w-5 text-red-600" />
+                <span className="text-sm font-semibold text-gray-900">Risk Alert</span>
+              </div>
+              <div className="text-2xl font-bold text-red-600 mb-1">High</div>
+              <p className="text-xs text-gray-600">Chemical Supply Co showing declining quality trends - recommend additional inspection</p>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-lg p-4 shadow-sm">
+            <h4 className="text-sm font-semibold text-gray-900 mb-3">Smart Recommendations</h4>
+            <div className="space-y-2">
+              <div className="flex items-start gap-3 p-2 bg-blue-50 rounded">
+                <Award className="h-4 w-4 text-blue-600 mt-0.5 flex-shrink-0" />
+                <div className="text-sm">
+                  <span className="font-medium text-gray-900">Optimize Inspection Frequency:</span>
+                  <span className="text-gray-600"> Reduce inspections for Plastic Solutions (99.1% score) to quarterly - save 12 hours/month</span>
+                </div>
+              </div>
+              <div className="flex items-start gap-3 p-2 bg-purple-50 rounded">
+                <Shield className="h-4 w-4 text-purple-600 mt-0.5 flex-shrink-0" />
+                <div className="text-sm">
+                  <span className="font-medium text-gray-900">Strengthen Controls:</span>
+                  <span className="text-gray-600"> Implement 100% inspection for Chemical Supply Co due to recent quality decline</span>
+                </div>
+              </div>
+              <div className="flex items-start gap-3 p-2 bg-green-50 rounded">
+                <Gauge className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
+                <div className="text-sm">
+                  <span className="font-medium text-gray-900">Process Improvement:</span>
+                  <span className="text-gray-600"> Update Electronics Inspection template - dimensional checks taking 30% longer than standard</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Navigation Tabs */}
       <div className="flex gap-1 mb-6 border-b">

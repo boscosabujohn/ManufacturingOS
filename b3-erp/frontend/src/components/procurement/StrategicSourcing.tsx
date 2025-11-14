@@ -114,6 +114,9 @@ export default function StrategicSourcing() {
   const [selectedStrategy, setSelectedStrategy] = useState<SourcingStrategy | null>(null)
   const [filterCategory, setFilterCategory] = useState('all')
   const [dateRange, setDateRange] = useState('quarter')
+  const [searchTerm, setSearchTerm] = useState('')
+  const [showAIInsights, setShowAIInsights] = useState(true)
+  const [showAlerts, setShowAlerts] = useState(true)
 
   // Mock data
   const strategies: SourcingStrategy[] = [
@@ -343,6 +346,79 @@ export default function StrategicSourcing() {
         </div>
       </div>
 
+      {/* AI Insights & Alerts */}
+      {showAlerts && (
+        <div className="bg-gradient-to-r from-purple-50 to-indigo-50 rounded-xl shadow-sm p-6 border border-purple-200">
+          <div className="flex items-start justify-between mb-4">
+            <div className="flex items-center gap-3">
+              <div className="p-2 bg-purple-600 rounded-lg">
+                <Zap className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <h2 className="text-lg font-bold text-gray-900">AI-Powered Insights</h2>
+                <p className="text-sm text-gray-600">Real-time recommendations and predictive analytics</p>
+              </div>
+            </div>
+            <button
+              onClick={() => setShowAlerts(false)}
+              className="text-gray-400 hover:text-gray-600"
+            >
+              ×
+            </button>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {/* Critical Alert */}
+            <div className="bg-white rounded-lg p-4 border-l-4 border-red-500">
+              <div className="flex items-start gap-3">
+                <AlertTriangle className="w-5 h-5 text-red-500 mt-0.5" />
+                <div className="flex-1">
+                  <h4 className="font-semibold text-gray-900 mb-1">High Risk: Logistics Suppliers</h4>
+                  <p className="text-sm text-gray-600 mb-2">
+                    AI predicts 78% probability of price increase in Q2. Consider locking rates now.
+                  </p>
+                  <button className="text-sm text-red-600 hover:text-red-700 font-medium flex items-center gap-1">
+                    View Details <ChevronRight className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Opportunity Alert */}
+            <div className="bg-white rounded-lg p-4 border-l-4 border-green-500">
+              <div className="flex items-start gap-3">
+                <TrendingUp className="w-5 h-5 text-green-500 mt-0.5" />
+                <div className="flex-1">
+                  <h4 className="font-semibold text-gray-900 mb-1">Savings Opportunity: $420K</h4>
+                  <p className="text-sm text-gray-600 mb-2">
+                    Consolidate 8 MRO suppliers to 3 preferred vendors. Projected 18% cost reduction.
+                  </p>
+                  <button className="text-sm text-green-600 hover:text-green-700 font-medium flex items-center gap-1">
+                    Start Initiative <ChevronRight className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Performance Insight */}
+            <div className="bg-white rounded-lg p-4 border-l-4 border-blue-500">
+              <div className="flex items-start gap-3">
+                <Award className="w-5 h-5 text-blue-500 mt-0.5" />
+                <div className="flex-1">
+                  <h4 className="font-semibold text-gray-900 mb-1">Performance Excellence</h4>
+                  <p className="text-sm text-gray-600 mb-2">
+                    IT Services strategy outperforming by 32%. Best practices identified for replication.
+                  </p>
+                  <button className="text-sm text-blue-600 hover:text-blue-700 font-medium flex items-center gap-1">
+                    Apply Template <ChevronRight className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Tabs */}
       <div className="bg-white rounded-xl shadow-sm border border-gray-200">
         <div className="flex gap-1 p-1 bg-gray-100 rounded-t-xl">
@@ -364,9 +440,86 @@ export default function StrategicSourcing() {
         <div className="p-6">
           {activeTab === 'overview' && (
             <div className="space-y-6">
+              {/* Predictive Analytics Section */}
+              <div className="bg-gradient-to-r from-indigo-50 to-purple-50 p-6 rounded-lg border border-indigo-200">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 bg-indigo-600 rounded-lg">
+                      <Zap className="w-5 h-5 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900">Predictive Analytics Dashboard</h3>
+                      <p className="text-sm text-gray-600">AI-powered forecasting and recommendations</p>
+                    </div>
+                  </div>
+                  <button className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition flex items-center gap-2">
+                    <Download className="w-4 h-4" />
+                    Export Insights
+                  </button>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                  <div className="bg-white p-4 rounded-lg">
+                    <div className="flex items-center gap-2 mb-2">
+                      <TrendingUp className="w-5 h-5 text-green-600" />
+                      <span className="text-sm font-medium text-gray-600">Projected Savings (Q2)</span>
+                    </div>
+                    <div className="text-2xl font-bold text-gray-900">$1.85M</div>
+                    <div className="text-xs text-green-600 mt-1">↑ 22% vs. Q1 forecast</div>
+                    <div className="text-xs text-gray-500 mt-1">Confidence: 87%</div>
+                  </div>
+
+                  <div className="bg-white p-4 rounded-lg">
+                    <div className="flex items-center gap-2 mb-2">
+                      <AlertTriangle className="w-5 h-5 text-amber-600" />
+                      <span className="text-sm font-medium text-gray-600">Risk Exposure</span>
+                    </div>
+                    <div className="text-2xl font-bold text-gray-900">$3.2M</div>
+                    <div className="text-xs text-amber-600 mt-1">↑ 15% increase detected</div>
+                    <div className="text-xs text-gray-500 mt-1">Action required</div>
+                  </div>
+
+                  <div className="bg-white p-4 rounded-lg">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Target className="w-5 h-5 text-blue-600" />
+                      <span className="text-sm font-medium text-gray-600">Untapped Opportunities</span>
+                    </div>
+                    <div className="text-2xl font-bold text-gray-900">$2.1M</div>
+                    <div className="text-xs text-blue-600 mt-1">12 initiatives identified</div>
+                    <div className="text-xs text-gray-500 mt-1">Ready to implement</div>
+                  </div>
+
+                  <div className="bg-white p-4 rounded-lg">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Award className="w-5 h-5 text-purple-600" />
+                      <span className="text-sm font-medium text-gray-600">Optimal Supplier Score</span>
+                    </div>
+                    <div className="text-2xl font-bold text-gray-900">8.4/10</div>
+                    <div className="text-xs text-purple-600 mt-1">↑ 0.8 improvement</div>
+                    <div className="text-xs text-gray-500 mt-1">Above industry avg</div>
+                  </div>
+                </div>
+              </div>
+
               {/* Spend Trend Analysis */}
               <div className="bg-gray-50 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Spend Trend Analysis</h3>
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-lg font-semibold text-gray-900">Spend Trend Analysis</h3>
+                  <div className="flex items-center gap-2">
+                    <select
+                      value={dateRange}
+                      onChange={(e) => setDateRange(e.target.value)}
+                      className="px-3 py-1 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+                      <option value="month">Monthly</option>
+                      <option value="quarter">Quarterly</option>
+                      <option value="year">Yearly</option>
+                    </select>
+                    <button className="p-2 hover:bg-gray-200 rounded-lg transition">
+                      <Download className="w-4 h-4 text-gray-600" />
+                    </button>
+                  </div>
+                </div>
                 <ResponsiveContainer width="100%" height={300}>
                   <LineChart data={spendTrendData}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
@@ -437,9 +590,19 @@ export default function StrategicSourcing() {
                   <Search className="w-5 h-5 text-gray-400" />
                   <input
                     type="text"
-                    placeholder="Search strategies..."
+                    placeholder="Search strategies by ID, category, owner, or supplier..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
                     className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
+                  {searchTerm && (
+                    <button
+                      onClick={() => setSearchTerm('')}
+                      className="text-gray-400 hover:text-gray-600"
+                    >
+                      ×
+                    </button>
+                  )}
                 </div>
                 <select
                   value={filterCategory}
@@ -475,7 +638,36 @@ export default function StrategicSourcing() {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-200">
-                    {strategies.map((strategy) => (
+                    {strategies
+                      .filter((strategy) => {
+                        // Apply category filter
+                        if (filterCategory !== 'all') {
+                          const categoryMap: { [key: string]: string } = {
+                            'raw': 'Raw Materials',
+                            'it': 'IT Services',
+                            'logistics': 'Logistics',
+                            'mro': 'MRO Supplies'
+                          }
+                          if (strategy.category !== categoryMap[filterCategory]) {
+                            return false
+                          }
+                        }
+
+                        // Apply search filter
+                        if (searchTerm) {
+                          const searchLower = searchTerm.toLowerCase()
+                          return (
+                            strategy.id.toLowerCase().includes(searchLower) ||
+                            strategy.category.toLowerCase().includes(searchLower) ||
+                            strategy.owner.toLowerCase().includes(searchLower) ||
+                            strategy.leadSupplier.toLowerCase().includes(searchLower) ||
+                            strategy.strategy.toLowerCase().includes(searchLower)
+                          )
+                        }
+
+                        return true
+                      })
+                      .map((strategy) => (
                       <tr key={strategy.id} className="hover:bg-gray-50">
                         <td className="px-4 py-3">
                           <span className="font-medium text-gray-900">{strategy.id}</span>

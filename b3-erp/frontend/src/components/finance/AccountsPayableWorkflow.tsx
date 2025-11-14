@@ -103,6 +103,11 @@ export default function AccountsPayableWorkflow() {
   const [selectedInvoice, setSelectedInvoice] = useState<PayableInvoice | null>(null);
   const [showApprovalModal, setShowApprovalModal] = useState(false);
 
+  // Advanced features state
+  const [showRealTimeMonitoring, setShowRealTimeMonitoring] = useState(true);
+  const [showAIInsights, setShowAIInsights] = useState(true);
+  const [autoRefresh, setAutoRefresh] = useState(false);
+
   // Mock data for AP workflow
   const apSummary = {
     totalPayables: 5600000,
@@ -465,6 +470,199 @@ export default function AccountsPayableWorkflow() {
           </nav>
         </div>
       </div>
+
+      {/* Real-Time AP Monitoring */}
+      {showRealTimeMonitoring && (
+        <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl shadow-lg p-6 border border-indigo-200 mb-8">
+          <div className="flex items-center justify-between mb-6">
+            <div>
+              <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
+                <Activity className="w-6 h-6 text-indigo-600" />
+                Real-Time AP Monitoring
+              </h2>
+              <p className="text-sm text-gray-600 mt-1">Live tracking of payables processing and cash flow impact</p>
+            </div>
+            <div className="flex items-center gap-3">
+              {autoRefresh && (
+                <span className="flex items-center gap-1 text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full">
+                  <RefreshCw className="w-3 h-3 animate-spin" />
+                  Live
+                </span>
+              )}
+              <button
+                onClick={() => setAutoRefresh(!autoRefresh)}
+                className={`px-3 py-1.5 rounded-lg text-xs font-medium transition ${
+                  autoRefresh ? 'bg-green-600 text-white' : 'bg-white text-gray-700 border border-gray-300'
+                }`}
+              >
+                {autoRefresh ? 'Auto-Refresh ON' : 'Auto-Refresh OFF'}
+              </button>
+              <button
+                onClick={() => setShowRealTimeMonitoring(false)}
+                className="text-gray-400 hover:text-gray-600"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+            <div className="bg-white rounded-lg p-4 border border-indigo-100">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-medium text-gray-600">Processing Today</span>
+                <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+              </div>
+              <div className="text-2xl font-bold text-gray-900">$284K</div>
+              <div className="text-xs text-gray-500 mt-1">18 invoices in progress</div>
+            </div>
+
+            <div className="bg-white rounded-lg p-4 border border-indigo-100">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-medium text-gray-600">Approval Queue</span>
+                <Clock className="w-4 h-4 text-yellow-500" />
+              </div>
+              <div className="text-2xl font-bold text-gray-900">45</div>
+              <div className="text-xs text-yellow-600 mt-1">8 urgent items</div>
+            </div>
+
+            <div className="bg-white rounded-lg p-4 border border-indigo-100">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-medium text-gray-600">Discounts Expiring</span>
+                <AlertTriangle className="w-4 h-4 text-orange-500" />
+              </div>
+              <div className="text-2xl font-bold text-orange-600">$125K</div>
+              <div className="text-xs text-gray-500 mt-1">Next 7 days</div>
+            </div>
+
+            <div className="bg-white rounded-lg p-4 border border-indigo-100">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-medium text-gray-600">Avg Processing Time</span>
+                <CheckCircle className="w-4 h-4 text-green-500" />
+              </div>
+              <div className="text-2xl font-bold text-green-600">4.2d</div>
+              <div className="text-xs text-green-600 mt-1">↓ 15% vs last month</div>
+            </div>
+          </div>
+
+          {/* Live Activity Feed */}
+          <div className="bg-white rounded-lg p-4 border border-indigo-100">
+            <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+              <Bell className="w-4 h-4 text-indigo-600" />
+              Recent Activity
+            </h3>
+            <div className="space-y-2">
+              {[
+                { action: 'Approved', invoice: 'INV-2024-089', amount: '$45K', by: 'Sarah Johnson', time: '2 min ago', color: 'green' },
+                { action: 'Submitted', invoice: 'INV-2024-090', amount: '$28K', by: 'Mike Chen', time: '5 min ago', color: 'blue' },
+                { action: 'Paid', invoice: 'INV-2024-087', amount: '$67K', by: 'Payment System', time: '8 min ago', color: 'green' },
+                { action: 'On Hold', invoice: 'INV-2024-088', amount: '$92K', by: 'Tom Wilson', time: '12 min ago', color: 'yellow' }
+              ].map((activity, idx) => (
+                <div key={idx} className="flex items-center justify-between text-sm py-2 border-b last:border-0">
+                  <div className="flex items-center gap-3">
+                    <span className={`w-2 h-2 rounded-full bg-${activity.color}-500`}></span>
+                    <span className="font-medium text-gray-900">{activity.invoice}</span>
+                    <span className="text-gray-600">{activity.action} · {activity.amount}</span>
+                  </div>
+                  <span className="text-xs text-gray-500">{activity.time}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* AI-Powered Cash Flow Insights */}
+      {showAIInsights && (
+        <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl shadow-lg p-6 border border-purple-200 mb-8">
+          <div className="flex items-center justify-between mb-6">
+            <div>
+              <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
+                <Target className="w-6 h-6 text-purple-600" />
+                AI-Powered Cash Flow Intelligence
+              </h2>
+              <p className="text-sm text-gray-600 mt-1">Smart predictions and optimization recommendations</p>
+            </div>
+            <button
+              onClick={() => setShowAIInsights(false)}
+              className="text-gray-400 hover:text-gray-600"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+            <div className="bg-white rounded-lg p-4 border border-purple-100">
+              <div className="flex items-center gap-2 mb-2">
+                <DollarSign className="w-5 h-5 text-purple-600" />
+                <span className="font-semibold text-gray-900">Cash Flow Forecast</span>
+              </div>
+              <div className="text-3xl font-bold text-purple-600 mb-1">$3.2M</div>
+              <p className="text-xs text-gray-600">Outflow next 30 days</p>
+              <div className="mt-2 text-xs text-gray-500">
+                <span className="font-medium">Confidence:</span> High (94%)
+              </div>
+            </div>
+
+            <div className="bg-white rounded-lg p-4 border border-purple-100">
+              <div className="flex items-center gap-2 mb-2">
+                <ArrowDownRight className="w-5 h-5 text-green-600" />
+                <span className="font-semibold text-gray-900">Discount Opportunity</span>
+              </div>
+              <div className="text-3xl font-bold text-green-600 mb-1">$89K</div>
+              <p className="text-xs text-gray-600">Available savings this month</p>
+              <div className="mt-2 text-xs text-green-600">
+                71% capture rate vs target 85%
+              </div>
+            </div>
+
+            <div className="bg-white rounded-lg p-4 border border-purple-100">
+              <div className="flex items-center gap-2 mb-2">
+                <AlertTriangle className="w-5 h-5 text-orange-600" />
+                <span className="font-semibold text-gray-900">Risk Alert</span>
+              </div>
+              <div className="text-3xl font-bold text-orange-600 mb-1">3</div>
+              <p className="text-xs text-gray-600">Vendors at payment risk</p>
+              <div className="mt-2 text-xs text-gray-500">
+                Total exposure: $450K
+              </div>
+            </div>
+          </div>
+
+          {/* Smart Recommendations */}
+          <div className="bg-white rounded-lg p-4 border border-purple-100">
+            <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+              <Star className="w-4 h-4 text-purple-600" />
+              Smart Optimization Recommendations
+            </h3>
+            <div className="space-y-2">
+              <div className="flex items-start gap-3 p-3 bg-blue-50 rounded-lg">
+                <ThumbsUp className="w-5 h-5 text-blue-600 mt-0.5" />
+                <div className="flex-1">
+                  <p className="text-sm font-medium text-gray-900">Accelerate Early Payment Discounts</p>
+                  <p className="text-xs text-gray-600 mt-1">Pay 8 invoices early to capture $24K in discounts (2.8% return)</p>
+                </div>
+                <span className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full">$24K savings</span>
+              </div>
+              <div className="flex items-start gap-3 p-3 bg-green-50 rounded-lg">
+                <Check className="w-5 h-5 text-green-600 mt-0.5" />
+                <div className="flex-1">
+                  <p className="text-sm font-medium text-gray-900">Optimize Payment Timing</p>
+                  <p className="text-xs text-gray-600 mt-1">Shift 12 payments by 3-5 days to improve cash positioning without penalties</p>
+                </div>
+                <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full">Quick Win</span>
+              </div>
+              <div className="flex items-start gap-3 p-3 bg-purple-50 rounded-lg">
+                <MessageSquare className="w-5 h-5 text-purple-600 mt-0.5" />
+                <div className="flex-1">
+                  <p className="text-sm font-medium text-gray-900">Resolve Approval Bottleneck</p>
+                  <p className="text-xs text-gray-600 mt-1">3 approvers have 15+ invoices pending - delegate or adjust thresholds</p>
+                </div>
+                <span className="text-xs bg-purple-100 text-purple-700 px-2 py-1 rounded-full">High Impact</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* KPI Summary Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">

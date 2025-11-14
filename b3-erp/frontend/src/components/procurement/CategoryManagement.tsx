@@ -32,6 +32,12 @@ const CategoryManagement: React.FC = () => {
   const [activeTab, setActiveTab] = useState('overview');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
+  // Advanced features state
+  const [showRealTimeInsights, setShowRealTimeInsights] = useState(true);
+  const [showAIRecommendations, setShowAIRecommendations] = useState(true);
+  const [autoRefresh, setAutoRefresh] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+
   // Mock data - Categories
   const categories: Category[] = [
     {
@@ -898,6 +904,228 @@ Integration:
           <p className="text-sm text-gray-600">Total Savings</p>
         </div>
       </div>
+
+      {/* Real-Time Category Insights */}
+      {showRealTimeInsights && (
+        <div className="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl shadow-lg p-6 border border-blue-200 mb-6">
+          <div className="flex items-center justify-between mb-6">
+            <div>
+              <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
+                <Activity className="w-6 h-6 text-blue-600" />
+                Real-Time Category Intelligence
+              </h2>
+              <p className="text-sm text-gray-600 mt-1">Live insights into category performance and spending patterns</p>
+            </div>
+            <div className="flex items-center gap-3">
+              {autoRefresh && (
+                <span className="flex items-center gap-1 text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full">
+                  <RefreshCw className="w-3 h-3 animate-spin" />
+                  Live
+                </span>
+              )}
+              <button
+                onClick={() => setAutoRefresh(!autoRefresh)}
+                className={`px-3 py-1.5 rounded-lg text-xs font-medium transition ${
+                  autoRefresh ? 'bg-green-600 text-white' : 'bg-white text-gray-700 border border-gray-300'
+                }`}
+              >
+                {autoRefresh ? 'Auto-Refresh ON' : 'Auto-Refresh OFF'}
+              </button>
+              <button
+                onClick={() => setShowRealTimeInsights(false)}
+                className="text-gray-400 hover:text-gray-600"
+              >
+                <AlertCircle className="w-5 h-5" />
+              </button>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+            <div className="bg-white rounded-lg p-4 border border-blue-100">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-medium text-gray-600">Budget at Risk</span>
+                <AlertTriangle className="w-4 h-4 text-orange-500" />
+              </div>
+              <div className="text-2xl font-bold text-orange-600">$245K</div>
+              <div className="text-xs text-gray-500 mt-1">3 categories over 85%</div>
+            </div>
+
+            <div className="bg-white rounded-lg p-4 border border-blue-100">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-medium text-gray-600">Savings Achieved</span>
+                <TrendingUp className="w-4 h-4 text-green-500" />
+              </div>
+              <div className="text-2xl font-bold text-green-600">108%</div>
+              <div className="text-xs text-green-600 mt-1">Above target by $28K</div>
+            </div>
+
+            <div className="bg-white rounded-lg p-4 border border-blue-100">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-medium text-gray-600">Active Initiatives</span>
+                <Target className="w-4 h-4 text-purple-500" />
+              </div>
+              <div className="text-2xl font-bold text-gray-900">14</div>
+              <div className="text-xs text-gray-500 mt-1">8 completed this quarter</div>
+            </div>
+
+            <div className="bg-white rounded-lg p-4 border border-blue-100">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-medium text-gray-600">Health Score</span>
+                <Activity className="w-4 h-4 text-blue-500" />
+              </div>
+              <div className="text-2xl font-bold text-blue-600">8.4/10</div>
+              <div className="text-xs text-blue-600 mt-1">Excellent performance</div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="bg-white rounded-lg p-4 border border-blue-100">
+              <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                <Award className="w-4 h-4 text-green-600" />
+                Top Performing Categories
+              </h3>
+              <div className="space-y-2">
+                {[
+                  { name: 'Raw Materials', performance: 108, color: 'green' },
+                  { name: 'Office Supplies', performance: 120, color: 'green' },
+                  { name: 'Safety Equipment', performance: 105, color: 'green' }
+                ].map((cat, idx) => (
+                  <div key={idx} className="flex items-center justify-between text-sm">
+                    <span className="text-gray-700">{cat.name}</span>
+                    <span className={`font-medium text-${cat.color}-600`}>{cat.performance}% of target</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="bg-white rounded-lg p-4 border border-blue-100">
+              <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                <AlertCircle className="w-4 h-4 text-orange-600" />
+                Needs Attention
+              </h3>
+              <div className="space-y-2">
+                {[
+                  { name: 'Electronic Components', issue: 'Budget utilization: 89%', severity: 'medium' },
+                  { name: 'IT Equipment', issue: 'Supplier consolidation needed', severity: 'low' },
+                  { name: 'Packaging Materials', issue: 'Price increase: 12%', severity: 'high' }
+                ].map((cat, idx) => (
+                  <div key={idx} className="flex items-start gap-2 text-sm">
+                    <span className={`w-2 h-2 rounded-full mt-1.5 ${
+                      cat.severity === 'high' ? 'bg-red-500' :
+                      cat.severity === 'medium' ? 'bg-orange-500' : 'bg-yellow-500'
+                    }`}></span>
+                    <div className="flex-1">
+                      <div className="font-medium text-gray-900">{cat.name}</div>
+                      <div className="text-gray-600 text-xs">{cat.issue}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* AI-Powered Recommendations */}
+      {showAIRecommendations && (
+        <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl shadow-lg p-6 border border-purple-200 mb-6">
+          <div className="flex items-center justify-between mb-6">
+            <div>
+              <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
+                <Target className="w-6 h-6 text-purple-600" />
+                AI-Powered Strategic Recommendations
+              </h2>
+              <p className="text-sm text-gray-600 mt-1">Intelligent insights for category optimization and cost reduction</p>
+            </div>
+            <button
+              onClick={() => setShowAIRecommendations(false)}
+              className="text-gray-400 hover:text-gray-600"
+            >
+              <AlertCircle className="w-5 h-5" />
+            </button>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+            <div className="bg-white rounded-lg p-4 border border-purple-100">
+              <div className="flex items-center gap-2 mb-2">
+                <DollarSign className="w-5 h-5 text-purple-600" />
+                <span className="font-semibold text-gray-900">Savings Potential</span>
+              </div>
+              <div className="text-3xl font-bold text-purple-600 mb-1">$186K</div>
+              <p className="text-xs text-gray-600">Identified opportunities</p>
+              <div className="mt-2 text-xs text-gray-500">
+                <span className="font-medium">Confidence:</span> High (92%)
+              </div>
+            </div>
+
+            <div className="bg-white rounded-lg p-4 border border-purple-100">
+              <div className="flex items-center gap-2 mb-2">
+                <Users className="w-5 h-5 text-blue-600" />
+                <span className="font-semibold text-gray-900">Supplier Optimization</span>
+              </div>
+              <div className="text-3xl font-bold text-blue-600 mb-1">8</div>
+              <p className="text-xs text-gray-600">Consolidation opportunities</p>
+              <div className="mt-2 text-xs text-blue-600">
+                Est. savings: $42K annually
+              </div>
+            </div>
+
+            <div className="bg-white rounded-lg p-4 border border-purple-100">
+              <div className="flex items-center gap-2 mb-2">
+                <Shield className="w-5 h-5 text-green-600" />
+                <span className="font-semibold text-gray-900">Risk Mitigation</span>
+              </div>
+              <div className="text-3xl font-bold text-green-600 mb-1">5</div>
+              <p className="text-xs text-gray-600">Action items identified</p>
+              <div className="mt-2 text-xs text-gray-500">
+                Priority: 3 high, 2 medium
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-lg p-4 border border-purple-100">
+            <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+              <Tag className="w-4 h-4 text-purple-600" />
+              Recommended Strategic Actions
+            </h3>
+            <div className="space-y-2">
+              <div className="flex items-start gap-3 p-3 bg-blue-50 rounded-lg">
+                <CheckCircle className="w-5 h-5 text-blue-600 mt-0.5" />
+                <div className="flex-1">
+                  <p className="text-sm font-medium text-gray-900">Consolidate Electronic Components Suppliers</p>
+                  <p className="text-xs text-gray-600 mt-1">Reduce from 8 to 3 preferred suppliers to gain volume discounts</p>
+                </div>
+                <div className="text-right">
+                  <span className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full">$58K savings</span>
+                  <div className="text-xs text-gray-500 mt-1">High Impact</div>
+                </div>
+              </div>
+              <div className="flex items-start gap-3 p-3 bg-green-50 rounded-lg">
+                <CheckCircle className="w-5 h-5 text-green-600 mt-0.5" />
+                <div className="flex-1">
+                  <p className="text-sm font-medium text-gray-900">Implement Automated Reordering for Office Supplies</p>
+                  <p className="text-xs text-gray-600 mt-1">Reduce admin time by 15 hours/month with smart inventory triggers</p>
+                </div>
+                <div className="text-right">
+                  <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full">Quick Win</span>
+                  <div className="text-xs text-gray-500 mt-1">Medium Impact</div>
+                </div>
+              </div>
+              <div className="flex items-start gap-3 p-3 bg-purple-50 rounded-lg">
+                <CheckCircle className="w-5 h-5 text-purple-600 mt-0.5" />
+                <div className="flex-1">
+                  <p className="text-sm font-medium text-gray-900">Renegotiate Raw Materials Contracts</p>
+                  <p className="text-xs text-gray-600 mt-1">Market prices down 7% - opportunity to lock in better rates</p>
+                </div>
+                <div className="text-right">
+                  <span className="text-xs bg-purple-100 text-purple-700 px-2 py-1 rounded-full">$128K savings</span>
+                  <div className="text-xs text-gray-500 mt-1">High Impact</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Navigation Tabs */}
       <div className="flex gap-1 mb-6 border-b">

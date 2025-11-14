@@ -14,6 +14,10 @@ export default function SupplierPortal() {
   const [showProfileEdit, setShowProfileEdit] = useState(false)
   const [showQuoteModal, setShowQuoteModal] = useState(false)
   const [showInvoiceModal, setShowInvoiceModal] = useState(false)
+  const [showRealTimeMonitoring, setShowRealTimeMonitoring] = useState(true)
+  const [showAIInsights, setShowAIInsights] = useState(true)
+  const [autoRefresh, setAutoRefresh] = useState(false)
+  const [searchTerm, setSearchTerm] = useState('')
 
   // Supplier Info
   const supplierInfo = {
@@ -739,6 +743,177 @@ export default function SupplierPortal() {
           </nav>
         </div>
       </div>
+
+      {/* Real-Time Monitoring Dashboard */}
+      {showRealTimeMonitoring && (
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl shadow-lg p-6 border border-indigo-200 mb-6">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
+                <Activity className="h-5 w-5 text-indigo-600" />
+                Real-Time Performance Dashboard
+              </h3>
+              <div className="flex items-center gap-3">
+                <label className="flex items-center gap-2 text-sm text-gray-700">
+                  <input
+                    type="checkbox"
+                    checked={autoRefresh}
+                    onChange={(e) => setAutoRefresh(e.target.checked)}
+                    className="rounded border-gray-300"
+                  />
+                  Auto-refresh
+                </label>
+                <button
+                  onClick={() => setShowRealTimeMonitoring(false)}
+                  className="text-gray-400 hover:text-gray-600"
+                >
+                  <XCircle className="h-5 w-5" />
+                </button>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+              <div className="bg-white rounded-lg p-4 shadow-sm">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-sm font-medium text-gray-600">Orders This Week</span>
+                  <ShoppingCart className="h-5 w-5 text-blue-600" />
+                </div>
+                <div className="text-2xl font-bold text-gray-900">8</div>
+                <div className="text-xs text-green-600 mt-1">↑ 3 vs last week</div>
+              </div>
+
+              <div className="bg-white rounded-lg p-4 shadow-sm">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-sm font-medium text-gray-600">On-Time Delivery</span>
+                  <Truck className="h-5 w-5 text-green-600" />
+                </div>
+                <div className="text-2xl font-bold text-gray-900">98.5%</div>
+                <div className="text-xs text-green-600 mt-1">+1.2% improvement</div>
+              </div>
+
+              <div className="bg-white rounded-lg p-4 shadow-sm">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-sm font-medium text-gray-600">Response Time</span>
+                  <Clock className="h-5 w-5 text-purple-600" />
+                </div>
+                <div className="text-2xl font-bold text-gray-900">2.3h</div>
+                <div className="text-xs text-green-600 mt-1">↓ 30min faster</div>
+              </div>
+
+              <div className="bg-white rounded-lg p-4 shadow-sm">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-sm font-medium text-gray-600">Quality Score</span>
+                  <Award className="h-5 w-5 text-amber-600" />
+                </div>
+                <div className="text-2xl font-bold text-gray-900">4.9/5</div>
+                <div className="text-xs text-blue-600 mt-1">Excellent rating</div>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-lg p-4 shadow-sm">
+              <h4 className="text-sm font-semibold text-gray-900 mb-3">Recent Activity</h4>
+              <div className="space-y-2 max-h-32 overflow-y-auto">
+                <div className="flex items-center gap-3 text-sm">
+                  <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0" />
+                  <span className="text-gray-600">PO-2024-001 delivered on time</span>
+                  <span className="text-gray-400 text-xs ml-auto">1 hour ago</span>
+                </div>
+                <div className="flex items-center gap-3 text-sm">
+                  <FileText className="h-4 w-4 text-blue-600 flex-shrink-0" />
+                  <span className="text-gray-600">RFQ-2024-102 quote submitted</span>
+                  <span className="text-gray-400 text-xs ml-auto">3 hours ago</span>
+                </div>
+                <div className="flex items-center gap-3 text-sm">
+                  <DollarSign className="h-4 w-4 text-green-600 flex-shrink-0" />
+                  <span className="text-gray-600">Invoice INV-2024-002 paid</span>
+                  <span className="text-gray-400 text-xs ml-auto">1 day ago</span>
+                </div>
+                <div className="flex items-center gap-3 text-sm">
+                  <Star className="h-4 w-4 text-amber-600 flex-shrink-0" />
+                  <span className="text-gray-600">Performance rating updated to 4.9</span>
+                  <span className="text-gray-400 text-xs ml-auto">2 days ago</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* AI-Powered Insights */}
+      {showAIInsights && (
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-6">
+          <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl shadow-lg p-6 border border-purple-200 mb-6">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
+                <Zap className="h-5 w-5 text-purple-600" />
+                AI-Powered Business Insights
+              </h3>
+              <button
+                onClick={() => setShowAIInsights(false)}
+                className="text-gray-400 hover:text-gray-600"
+              >
+                <XCircle className="h-5 w-5" />
+              </button>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+              <div className="bg-white rounded-lg p-4 shadow-sm">
+                <div className="flex items-center gap-2 mb-2">
+                  <TrendingUp className="h-5 w-5 text-blue-600" />
+                  <span className="text-sm font-semibold text-gray-900">Growth Opportunity</span>
+                </div>
+                <div className="text-2xl font-bold text-green-600 mb-1">+25%</div>
+                <p className="text-xs text-gray-600">Projected revenue increase based on current order trends and customer feedback</p>
+              </div>
+
+              <div className="bg-white rounded-lg p-4 shadow-sm">
+                <div className="flex items-center gap-2 mb-2">
+                  <Target className="h-5 w-5 text-amber-600" />
+                  <span className="text-sm font-semibold text-gray-900">Tier Upgrade</span>
+                </div>
+                <div className="text-2xl font-bold text-amber-600 mb-1">Gold</div>
+                <p className="text-xs text-gray-600">On track to achieve Gold tier status within 2 months with current performance metrics</p>
+              </div>
+
+              <div className="bg-white rounded-lg p-4 shadow-sm">
+                <div className="flex items-center gap-2 mb-2">
+                  <DollarSign className="h-5 w-5 text-green-600" />
+                  <span className="text-sm font-semibold text-gray-900">Optimization Potential</span>
+                </div>
+                <div className="text-2xl font-bold text-green-600 mb-1">$18K</div>
+                <p className="text-xs text-gray-600">Potential monthly revenue increase through pricing optimization and expanded offerings</p>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-lg p-4 shadow-sm">
+              <h4 className="text-sm font-semibold text-gray-900 mb-3">Smart Recommendations</h4>
+              <div className="space-y-2">
+                <div className="flex items-start gap-3 p-2 bg-blue-50 rounded">
+                  <Award className="h-4 w-4 text-blue-600 mt-0.5 flex-shrink-0" />
+                  <div className="text-sm">
+                    <span className="font-medium text-gray-900">Excellence Recognition:</span>
+                    <span className="text-gray-600"> Your 98.5% on-time delivery rate exceeds industry standard - highlight in quotes for competitive advantage</span>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3 p-2 bg-green-50 rounded">
+                  <TrendingUp className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
+                  <div className="text-sm">
+                    <span className="font-medium text-gray-900">Expansion Opportunity:</span>
+                    <span className="text-gray-600"> 3 active RFQs match your capabilities - submit quotes to increase win rate by 40%</span>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3 p-2 bg-amber-50 rounded">
+                  <MessageSquare className="h-4 w-4 text-amber-600 mt-0.5 flex-shrink-0" />
+                  <div className="text-sm">
+                    <span className="font-medium text-gray-900">Response Time Improvement:</span>
+                    <span className="text-gray-600"> Reduce quote response time by 12 hours to improve conversion rate from 65% to 80%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
