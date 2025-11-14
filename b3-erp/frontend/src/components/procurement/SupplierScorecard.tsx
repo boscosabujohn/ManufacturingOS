@@ -99,6 +99,10 @@ export default function SupplierScorecard() {
   const [selectedSupplier, setSelectedSupplier] = useState<SupplierScore | null>(null)
   const [selectedPeriod, setSelectedPeriod] = useState('quarter')
   const [comparisonMode, setComparisonMode] = useState(false)
+  const [showRealTimeMonitoring, setShowRealTimeMonitoring] = useState(true)
+  const [showAIInsights, setShowAIInsights] = useState(true)
+  const [autoRefresh, setAutoRefresh] = useState(false)
+  const [searchTerm, setSearchTerm] = useState('')
 
   // Handler functions
   const handleRefresh = () => {
@@ -439,6 +443,173 @@ export default function SupplierScorecard() {
           </div>
         </div>
       </div>
+
+      {/* Real-Time Monitoring Dashboard */}
+      {showRealTimeMonitoring && (
+        <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl shadow-lg p-6 border border-indigo-200">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
+              <Activity className="h-5 w-5 text-indigo-600" />
+              Real-Time Supplier Performance Monitoring
+            </h3>
+            <div className="flex items-center gap-3">
+              <label className="flex items-center gap-2 text-sm text-gray-700">
+                <input
+                  type="checkbox"
+                  checked={autoRefresh}
+                  onChange={(e) => setAutoRefresh(e.target.checked)}
+                  className="rounded border-gray-300"
+                />
+                Auto-refresh
+              </label>
+              <button
+                onClick={() => setShowRealTimeMonitoring(false)}
+                className="text-gray-400 hover:text-gray-600"
+              >
+                <XCircle className="h-5 w-5" />
+              </button>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+            <div className="bg-white rounded-lg p-4 shadow-sm">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-medium text-gray-600">Score Changes</span>
+                <TrendingUp className="h-5 w-5 text-green-600" />
+              </div>
+              <div className="text-2xl font-bold text-gray-900">+3</div>
+              <div className="text-xs text-green-600 mt-1">Improved today</div>
+            </div>
+
+            <div className="bg-white rounded-lg p-4 shadow-sm">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-medium text-gray-600">Tier Movements</span>
+                <Trophy className="h-5 w-5 text-blue-600" />
+              </div>
+              <div className="text-2xl font-bold text-gray-900">2</div>
+              <div className="text-xs text-blue-600 mt-1">This week</div>
+            </div>
+
+            <div className="bg-white rounded-lg p-4 shadow-sm">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-medium text-gray-600">At-Risk Suppliers</span>
+                <AlertTriangle className="h-5 w-5 text-amber-600" />
+              </div>
+              <div className="text-2xl font-bold text-gray-900">4</div>
+              <div className="text-xs text-red-600 mt-1">Below threshold</div>
+            </div>
+
+            <div className="bg-white rounded-lg p-4 shadow-sm">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-medium text-gray-600">Evaluations Due</span>
+                <Clock className="h-5 w-5 text-purple-600" />
+              </div>
+              <div className="text-2xl font-bold text-gray-900">7</div>
+              <div className="text-xs text-orange-600 mt-1">Next 7 days</div>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-lg p-4 shadow-sm">
+            <h4 className="text-sm font-semibold text-gray-900 mb-3">Recent Performance Events</h4>
+            <div className="space-y-2 max-h-32 overflow-y-auto">
+              <div className="flex items-center gap-3 text-sm">
+                <TrendingUp className="h-4 w-4 text-green-600 flex-shrink-0" />
+                <span className="text-gray-600">Tech Components Ltd upgraded to Gold tier</span>
+                <span className="text-gray-400 text-xs ml-auto">1 hour ago</span>
+              </div>
+              <div className="flex items-center gap-3 text-sm">
+                <AlertTriangle className="h-4 w-4 text-amber-600 flex-shrink-0" />
+                <span className="text-gray-600">Chemical Supply Co score dropped to 78/100</span>
+                <span className="text-gray-400 text-xs ml-auto">3 hours ago</span>
+              </div>
+              <div className="flex items-center gap-3 text-sm">
+                <Star className="h-4 w-4 text-blue-600 flex-shrink-0" />
+                <span className="text-gray-600">Plastic Solutions achieved 99.1 quality score</span>
+                <span className="text-gray-400 text-xs ml-auto">5 hours ago</span>
+              </div>
+              <div className="flex items-center gap-3 text-sm">
+                <CheckCircle className="h-4 w-4 text-green-600 flex-shrink-0" />
+                <span className="text-gray-600">Monthly evaluations completed for 12 suppliers</span>
+                <span className="text-gray-400 text-xs ml-auto">1 day ago</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* AI-Powered Insights */}
+      {showAIInsights && (
+        <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl shadow-lg p-6 border border-purple-200">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
+              <Zap className="h-5 w-5 text-purple-600" />
+              AI-Powered Supplier Insights
+            </h3>
+            <button
+              onClick={() => setShowAIInsights(false)}
+              className="text-gray-400 hover:text-gray-600"
+            >
+              <XCircle className="h-5 w-5" />
+            </button>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+            <div className="bg-white rounded-lg p-4 shadow-sm">
+              <div className="flex items-center gap-2 mb-2">
+                <Target className="h-5 w-5 text-blue-600" />
+                <span className="text-sm font-semibold text-gray-900">Performance Prediction</span>
+              </div>
+              <div className="text-2xl font-bold text-green-600 mb-1">+4.2%</div>
+              <p className="text-xs text-gray-600">Overall supplier performance expected to improve next quarter based on current trends</p>
+            </div>
+
+            <div className="bg-white rounded-lg p-4 shadow-sm">
+              <div className="flex items-center gap-2 mb-2">
+                <TrendingDown className="h-5 w-5 text-red-600" />
+                <span className="text-sm font-semibold text-gray-900">Risk Alert</span>
+              </div>
+              <div className="text-2xl font-bold text-red-600 mb-1">3</div>
+              <p className="text-xs text-gray-600">Suppliers showing concerning performance decline patterns requiring immediate attention</p>
+            </div>
+
+            <div className="bg-white rounded-lg p-4 shadow-sm">
+              <div className="flex items-center gap-2 mb-2">
+                <DollarSign className="h-5 w-5 text-green-600" />
+                <span className="text-sm font-semibold text-gray-900">Optimization Opportunity</span>
+              </div>
+              <div className="text-2xl font-bold text-green-600 mb-1">$250K</div>
+              <p className="text-xs text-gray-600">Potential annual savings by optimizing supplier mix and consolidating top performers</p>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-lg p-4 shadow-sm">
+            <h4 className="text-sm font-semibold text-gray-900 mb-3">Smart Recommendations</h4>
+            <div className="space-y-2">
+              <div className="flex items-start gap-3 p-2 bg-blue-50 rounded">
+                <Medal className="h-4 w-4 text-blue-600 mt-0.5 flex-shrink-0" />
+                <div className="text-sm">
+                  <span className="font-medium text-gray-900">Strategic Partnership Opportunity:</span>
+                  <span className="text-gray-600"> Tech Innovations Inc consistently exceeds targets - consider expanding partnership and volume commitments</span>
+                </div>
+              </div>
+              <div className="flex items-start gap-3 p-2 bg-amber-50 rounded">
+                <AlertTriangle className="h-4 w-4 text-amber-600 mt-0.5 flex-shrink-0" />
+                <div className="text-sm">
+                  <span className="font-medium text-gray-900">Supplier Development Needed:</span>
+                  <span className="text-gray-600"> Standard Supplies declining to Bronze tier - schedule improvement workshop or consider alternative sources</span>
+                </div>
+              </div>
+              <div className="flex items-start gap-3 p-2 bg-green-50 rounded">
+                <Badge className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
+                <div className="text-sm">
+                  <span className="font-medium text-gray-900">Consolidation Opportunity:</span>
+                  <span className="text-gray-600"> 3 suppliers in same category with similar scores - consolidate to top 2 performers for better rates and efficiency</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Tabs */}
       <div className="bg-white rounded-xl shadow-sm border border-gray-200">
