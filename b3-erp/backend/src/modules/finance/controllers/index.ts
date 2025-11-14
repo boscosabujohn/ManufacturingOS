@@ -1,4 +1,5 @@
 export * from './chart-of-accounts.controller';
+export * from './chart-of-accounts-seeder.controller';
 export * from './journal-entry.controller';
 export * from './invoice.controller';
 export * from './payment.controller';

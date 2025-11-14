@@ -37,6 +37,7 @@ import {
 // Controllers
 import {
   ChartOfAccountsController,
+  ChartOfAccountsSeederController,
   JournalEntryController,
   InvoiceController,
   PaymentController,
@@ -46,6 +47,7 @@ import {
 // Services
 import {
   ChartOfAccountsService,
+  ChartOfAccountsSeederService,
   JournalEntryService,
   InvoiceService,
   PaymentService,
@@ -109,6 +111,7 @@ import {
   ],
   controllers: [
     ChartOfAccountsController,
+    ChartOfAccountsSeederController,
     JournalEntryController,
     InvoiceController,
     PaymentController,
@@ -116,6 +119,7 @@ import {
   ],
   providers: [
     ChartOfAccountsService,
+    ChartOfAccountsSeederService,
     JournalEntryService,
     InvoiceService,
     PaymentService,
@@ -123,6 +127,7 @@ import {
   ],
   exports: [
     ChartOfAccountsService,
+    ChartOfAccountsSeederService,
     JournalEntryService,
     InvoiceService,
     PaymentService,

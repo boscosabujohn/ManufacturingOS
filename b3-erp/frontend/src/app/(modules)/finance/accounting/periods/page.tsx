@@ -17,6 +17,12 @@ import {
   FileText,
   Settings,
   ChevronRight,
+  Package,
+  DollarSign,
+  Calculator,
+  Users,
+  Save,
+  X,
 } from 'lucide-react';
 
 interface FinancialYear {
@@ -43,6 +49,13 @@ interface FinancialPeriod {
   status: 'Open' | 'Closed' | 'Locked';
   isCurrent: boolean;
   transactionsCount: number;
+}
+
+interface ChecklistItem {
+  id: string;
+  name: string;
+  status: 'completed' | 'pending' | 'in-progress' | 'not-started';
+  icon: any;
 }
 
 export default function FinancialPeriodsPage() {
@@ -190,6 +203,15 @@ export default function FinancialPeriodsPage() {
   ]);
 
   const [selectedYear, setSelectedYear] = useState('FY2025-26');
+  const [showInventoryModal, setShowInventoryModal] = useState(false);
+  const [showAccrualsModal, setShowAccrualsModal] = useState(false);
+  const [showReviewModal, setShowReviewModal] = useState(false);
+
+  const [checklistStatus, setChecklistStatus] = useState({
+    inventoryValuation: 'pending' as 'completed' | 'pending' | 'in-progress',
+    accrualsProvisions: 'not-started' as 'completed' | 'pending' | 'not-started',
+    managementReview: 'pending' as 'completed' | 'pending' | 'in-progress',
+  });
 
   const currentYear = financialYears.find((y) => y.yearCode === selectedYear);
   const yearPeriods = periods.filter((p) => p.yearCode === selectedYear);
@@ -218,6 +240,27 @@ export default function FinancialPeriodsPage() {
       default:
         return <Clock className="w-4 h-4" />;
     }
+  };
+
+  const handleInventoryValuation = () => {
+    // Simulate processing
+    setChecklistStatus((prev) => ({ ...prev, inventoryValuation: 'completed' }));
+    setShowInventoryModal(false);
+    alert('Inventory valuation completed successfully!');
+  };
+
+  const handleAccrualsProvisions = () => {
+    // Simulate processing
+    setChecklistStatus((prev) => ({ ...prev, accrualsProvisions: 'completed' }));
+    setShowAccrualsModal(false);
+    alert('Accruals and provisions processed successfully!');
+  };
+
+  const handleManagementReview = () => {
+    // Simulate processing
+    setChecklistStatus((prev) => ({ ...prev, managementReview: 'completed' }));
+    setShowReviewModal(false);
+    alert('Management review submitted successfully!');
   };
 
   return (
@@ -344,13 +387,13 @@ export default function FinancialPeriodsPage() {
                   <div className="flex items-center gap-2">
                     <button
                       className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-                     
+
                     >
                       <Eye className="w-5 h-5" />
                     </button>
                     <button
                       className="p-2 text-purple-600 hover:bg-purple-50 rounded-lg transition-colors"
-                     
+
                     >
                       <Settings className="w-5 h-5" />
                     </button>
@@ -432,14 +475,14 @@ export default function FinancialPeriodsPage() {
                     <div className="flex items-center gap-1">
                       <button
                         className="p-1.5 text-blue-600 hover:bg-blue-50 rounded transition-colors"
-                       
+
                       >
                         <Eye className="w-4 h-4" />
                       </button>
                       {period.status === 'Open' && (
                         <button
                           className="p-1.5 text-red-600 hover:bg-red-50 rounded transition-colors"
-                         
+
                         >
                           <Lock className="w-4 h-4" />
                         </button>
@@ -447,7 +490,7 @@ export default function FinancialPeriodsPage() {
                       {period.status === 'Closed' && (
                         <button
                           className="p-1.5 text-green-600 hover:bg-green-50 rounded transition-colors"
-                         
+
                         >
                           <Unlock className="w-4 h-4" />
                         </button>
@@ -467,47 +510,411 @@ export default function FinancialPeriodsPage() {
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               <div className="bg-white border border-gray-200 rounded-lg p-4">
-                <div className="flex items-center gap-3">
-                  <CheckCircle className="w-5 h-5 text-green-600" />
-                  <span className="text-sm font-medium text-gray-900">All invoices posted</span>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="w-5 h-5 text-green-600" />
+                    <span className="text-sm font-medium text-gray-900">All invoices posted</span>
+                  </div>
                 </div>
               </div>
               <div className="bg-white border border-gray-200 rounded-lg p-4">
-                <div className="flex items-center gap-3">
-                  <CheckCircle className="w-5 h-5 text-green-600" />
-                  <span className="text-sm font-medium text-gray-900">Bank reconciliation completed</span>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="w-5 h-5 text-green-600" />
+                    <span className="text-sm font-medium text-gray-900">Bank reconciliation completed</span>
+                  </div>
                 </div>
               </div>
               <div className="bg-white border border-gray-200 rounded-lg p-4">
-                <div className="flex items-center gap-3">
-                  <CheckCircle className="w-5 h-5 text-green-600" />
-                  <span className="text-sm font-medium text-gray-900">Depreciation calculated</span>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="w-5 h-5 text-green-600" />
+                    <span className="text-sm font-medium text-gray-900">Depreciation calculated</span>
+                  </div>
                 </div>
               </div>
-              <div className="bg-white border border-gray-200 rounded-lg p-4">
-                <div className="flex items-center gap-3">
-                  <AlertCircle className="w-5 h-5 text-orange-600" />
-                  <span className="text-sm font-medium text-gray-900">Inventory valuation</span>
+
+              {/* Inventory Valuation - Clickable */}
+              <button
+                onClick={() => setShowInventoryModal(true)}
+                className="bg-white border border-gray-200 rounded-lg p-4 hover:border-orange-400 hover:bg-orange-50 transition-all"
+              >
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    {checklistStatus.inventoryValuation === 'completed' ? (
+                      <CheckCircle className="w-5 h-5 text-green-600" />
+                    ) : (
+                      <AlertCircle className="w-5 h-5 text-orange-600" />
+                    )}
+                    <span className="text-sm font-medium text-gray-900">Inventory valuation</span>
+                  </div>
+                  <ChevronRight className="w-4 h-4 text-gray-400" />
                 </div>
-              </div>
-              <div className="bg-white border border-gray-200 rounded-lg p-4">
-                <div className="flex items-center gap-3">
-                  <XCircle className="w-5 h-5 text-red-600" />
-                  <span className="text-sm font-medium text-gray-900">Accruals and provisions</span>
+              </button>
+
+              {/* Accruals and Provisions - Clickable */}
+              <button
+                onClick={() => setShowAccrualsModal(true)}
+                className="bg-white border border-gray-200 rounded-lg p-4 hover:border-red-400 hover:bg-red-50 transition-all"
+              >
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    {checklistStatus.accrualsProvisions === 'completed' ? (
+                      <CheckCircle className="w-5 h-5 text-green-600" />
+                    ) : (
+                      <XCircle className="w-5 h-5 text-red-600" />
+                    )}
+                    <span className="text-sm font-medium text-gray-900">Accruals and provisions</span>
+                  </div>
+                  <ChevronRight className="w-4 h-4 text-gray-400" />
                 </div>
-              </div>
-              <div className="bg-white border border-gray-200 rounded-lg p-4">
-                <div className="flex items-center gap-3">
-                  <Clock className="w-5 h-5 text-gray-400" />
-                  <span className="text-sm font-medium text-gray-900">Management review</span>
+              </button>
+
+              {/* Management Review - Clickable */}
+              <button
+                onClick={() => setShowReviewModal(true)}
+                className="bg-white border border-gray-200 rounded-lg p-4 hover:border-blue-400 hover:bg-blue-50 transition-all"
+              >
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    {checklistStatus.managementReview === 'completed' ? (
+                      <CheckCircle className="w-5 h-5 text-green-600" />
+                    ) : (
+                      <Clock className="w-5 h-5 text-gray-400" />
+                    )}
+                    <span className="text-sm font-medium text-gray-900">Management review</span>
+                  </div>
+                  <ChevronRight className="w-4 h-4 text-gray-400" />
                 </div>
-              </div>
+              </button>
             </div>
           </div>
         </div>
       )}
         </div>
       </div>
+
+      {/* Inventory Valuation Modal */}
+      {showInventoryModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto">
+            <div className="bg-gradient-to-r from-orange-500 to-orange-600 p-6 text-white">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <Package className="w-8 h-8" />
+                  <div>
+                    <h2 className="text-2xl font-bold">Inventory Valuation</h2>
+                    <p className="text-orange-100 text-sm">Period: October 2025</p>
+                  </div>
+                </div>
+                <button
+                  onClick={() => setShowInventoryModal(false)}
+                  className="text-white hover:bg-orange-600 p-2 rounded-lg transition-colors"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+            </div>
+
+            <div className="p-6">
+              <div className="space-y-6">
+                {/* Summary */}
+                <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
+                  <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                    <Calculator className="w-5 h-5 text-orange-600" />
+                    Valuation Summary
+                  </h3>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <p className="text-sm text-gray-600">Total Items</p>
+                      <p className="text-xl font-bold text-gray-900">1,247</p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-gray-600">Total Value</p>
+                      <p className="text-xl font-bold text-orange-600">₹45,67,890</p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-gray-600">Method</p>
+                      <p className="text-sm font-semibold text-gray-900">Weighted Average</p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-gray-600">Last Run</p>
+                      <p className="text-sm font-semibold text-gray-900">2025-09-30</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Valuation Methods */}
+                <div>
+                  <h3 className="font-semibold text-gray-900 mb-3">Valuation Method</h3>
+                  <div className="space-y-2">
+                    <label className="flex items-center gap-3 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
+                      <input type="radio" name="method" defaultChecked className="w-4 h-4 text-orange-600" />
+                      <div>
+                        <p className="font-medium text-gray-900">Weighted Average Cost</p>
+                        <p className="text-xs text-gray-500">Calculate average cost based on purchase history</p>
+                      </div>
+                    </label>
+                    <label className="flex items-center gap-3 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
+                      <input type="radio" name="method" className="w-4 h-4 text-orange-600" />
+                      <div>
+                        <p className="font-medium text-gray-900">FIFO (First In First Out)</p>
+                        <p className="text-xs text-gray-500">Value inventory based on oldest stock first</p>
+                      </div>
+                    </label>
+                    <label className="flex items-center gap-3 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
+                      <input type="radio" name="method" className="w-4 h-4 text-orange-600" />
+                      <div>
+                        <p className="font-medium text-gray-900">Standard Cost</p>
+                        <p className="text-xs text-gray-500">Use predefined standard costs</p>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+
+                {/* Actions */}
+                <div className="flex items-center justify-end gap-3 pt-4 border-t">
+                  <button
+                    onClick={() => setShowInventoryModal(false)}
+                    className="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={handleInventoryValuation}
+                    className="px-6 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors flex items-center gap-2"
+                  >
+                    <Save className="w-4 h-4" />
+                    Run Valuation
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Accruals and Provisions Modal */}
+      {showAccrualsModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+            <div className="bg-gradient-to-r from-red-500 to-red-600 p-6 text-white">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <DollarSign className="w-8 h-8" />
+                  <div>
+                    <h2 className="text-2xl font-bold">Accruals and Provisions</h2>
+                    <p className="text-red-100 text-sm">Period: October 2025</p>
+                  </div>
+                </div>
+                <button
+                  onClick={() => setShowAccrualsModal(false)}
+                  className="text-white hover:bg-red-600 p-2 rounded-lg transition-colors"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+            </div>
+
+            <div className="p-6">
+              <div className="space-y-6">
+                {/* Accruals Section */}
+                <div>
+                  <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                    <FileText className="w-5 h-5 text-blue-600" />
+                    Expense Accruals
+                  </h3>
+                  <div className="space-y-3">
+                    <div className="border border-gray-200 rounded-lg p-4">
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="font-medium text-gray-900">Electricity Charges</span>
+                        <span className="text-lg font-bold text-gray-900">₹45,000</span>
+                      </div>
+                      <p className="text-sm text-gray-600">Estimated utility charges for the month</p>
+                    </div>
+                    <div className="border border-gray-200 rounded-lg p-4">
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="font-medium text-gray-900">Professional Fees</span>
+                        <span className="text-lg font-bold text-gray-900">₹1,25,000</span>
+                      </div>
+                      <p className="text-sm text-gray-600">Consultant and audit fees accrual</p>
+                    </div>
+                    <div className="border border-gray-200 rounded-lg p-4">
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="font-medium text-gray-900">Salary Accrual</span>
+                        <span className="text-lg font-bold text-gray-900">₹8,50,000</span>
+                      </div>
+                      <p className="text-sm text-gray-600">Month-end salary accrual</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Provisions Section */}
+                <div>
+                  <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                    <AlertCircle className="w-5 h-5 text-orange-600" />
+                    Provisions
+                  </h3>
+                  <div className="space-y-3">
+                    <div className="border border-gray-200 rounded-lg p-4">
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="font-medium text-gray-900">Warranty Provision</span>
+                        <span className="text-lg font-bold text-gray-900">₹2,50,000</span>
+                      </div>
+                      <p className="text-sm text-gray-600">Estimated warranty claims for products sold</p>
+                    </div>
+                    <div className="border border-gray-200 rounded-lg p-4">
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="font-medium text-gray-900">Bad Debt Provision</span>
+                        <span className="text-lg font-bold text-gray-900">₹75,000</span>
+                      </div>
+                      <p className="text-sm text-gray-600">Provision for doubtful receivables</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Total Summary */}
+                <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                  <div className="flex items-center justify-between">
+                    <span className="font-semibold text-gray-900">Total Accruals & Provisions</span>
+                    <span className="text-2xl font-bold text-red-600">₹13,45,000</span>
+                  </div>
+                </div>
+
+                {/* Actions */}
+                <div className="flex items-center justify-end gap-3 pt-4 border-t">
+                  <button
+                    onClick={() => setShowAccrualsModal(false)}
+                    className="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={handleAccrualsProvisions}
+                    className="px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors flex items-center gap-2"
+                  >
+                    <Save className="w-4 h-4" />
+                    Post Accruals & Provisions
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Management Review Modal */}
+      {showReviewModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+            <div className="bg-gradient-to-r from-blue-500 to-blue-600 p-6 text-white">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <Users className="w-8 h-8" />
+                  <div>
+                    <h2 className="text-2xl font-bold">Management Review</h2>
+                    <p className="text-blue-100 text-sm">Period: October 2025</p>
+                  </div>
+                </div>
+                <button
+                  onClick={() => setShowReviewModal(false)}
+                  className="text-white hover:bg-blue-600 p-2 rounded-lg transition-colors"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+            </div>
+
+            <div className="p-6">
+              <div className="space-y-6">
+                {/* Financial Highlights */}
+                <div>
+                  <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                    <TrendingUp className="w-5 h-5 text-green-600" />
+                    Financial Highlights
+                  </h3>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                      <p className="text-sm text-gray-600 mb-1">Total Revenue</p>
+                      <p className="text-2xl font-bold text-green-600">₹1,25,67,000</p>
+                      <p className="text-xs text-green-700 mt-1">↑ 12% vs last month</p>
+                    </div>
+                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                      <p className="text-sm text-gray-600 mb-1">Total Expenses</p>
+                      <p className="text-2xl font-bold text-blue-600">₹87,45,000</p>
+                      <p className="text-xs text-blue-700 mt-1">↑ 5% vs last month</p>
+                    </div>
+                    <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                      <p className="text-sm text-gray-600 mb-1">Net Profit</p>
+                      <p className="text-2xl font-bold text-purple-600">₹38,22,000</p>
+                      <p className="text-xs text-purple-700 mt-1">↑ 25% vs last month</p>
+                    </div>
+                    <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
+                      <p className="text-sm text-gray-600 mb-1">Profit Margin</p>
+                      <p className="text-2xl font-bold text-orange-600">30.4%</p>
+                      <p className="text-xs text-orange-700 mt-1">↑ 3.2% vs last month</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Review Checklist */}
+                <div>
+                  <h3 className="font-semibold text-gray-900 mb-3">Review Checklist</h3>
+                  <div className="space-y-2">
+                    <label className="flex items-center gap-3 p-3 border border-gray-200 rounded-lg">
+                      <input type="checkbox" defaultChecked className="w-5 h-5 text-blue-600" />
+                      <span className="text-sm text-gray-900">Verified revenue recognition and matching principles</span>
+                    </label>
+                    <label className="flex items-center gap-3 p-3 border border-gray-200 rounded-lg">
+                      <input type="checkbox" defaultChecked className="w-5 h-5 text-blue-600" />
+                      <span className="text-sm text-gray-900">Reviewed major expense categories and anomalies</span>
+                    </label>
+                    <label className="flex items-center gap-3 p-3 border border-gray-200 rounded-lg">
+                      <input type="checkbox" defaultChecked className="w-5 h-5 text-blue-600" />
+                      <span className="text-sm text-gray-900">Verified balance sheet reconciliations</span>
+                    </label>
+                    <label className="flex items-center gap-3 p-3 border border-gray-200 rounded-lg">
+                      <input type="checkbox" className="w-5 h-5 text-blue-600" />
+                      <span className="text-sm text-gray-900">Reviewed cash flow and liquidity position</span>
+                    </label>
+                    <label className="flex items-center gap-3 p-3 border border-gray-200 rounded-lg">
+                      <input type="checkbox" className="w-5 h-5 text-blue-600" />
+                      <span className="text-sm text-gray-900">Analyzed variance from budget</span>
+                    </label>
+                  </div>
+                </div>
+
+                {/* Comments */}
+                <div>
+                  <h3 className="font-semibold text-gray-900 mb-3">Management Comments</h3>
+                  <textarea
+                    rows={4}
+                    placeholder="Enter review comments and observations..."
+                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  />
+                </div>
+
+                {/* Actions */}
+                <div className="flex items-center justify-end gap-3 pt-4 border-t">
+                  <button
+                    onClick={() => setShowReviewModal(false)}
+                    className="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={handleManagementReview}
+                    className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2"
+                  >
+                    <CheckCircle className="w-4 h-4" />
+                    Approve & Submit
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
