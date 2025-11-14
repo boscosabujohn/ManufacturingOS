@@ -159,21 +159,8 @@ const SourcingEvents: React.FC = () => {
       return;
     }
 
-    {
-      const msg = 'Cancel Sourcing Event?\n\n'
-        + `Event: ${event.eventNumber}\n${event.title}\n\n`
-        + `Status: ${event.status}\nResponses: ${event.responsesReceived}\n\n`
-        + (event.responsesReceived > 0
-          ? `⚠️ WARNING: ${event.responsesReceived} suppliers have submitted responses.\n`
-            + 'Cancellation will require formal notification and explanation.\n\n'
-          : '')
-        + 'This action:\n- Closes the event permanently\n- Notifies all participants\n- Cannot be undone\n\n'
-        + 'Reason for cancellation required.\n\n'
-        + 'Proceed with cancellation?';
-
-      if (confirm(msg)) {
+    if (confirm(`Cancel Sourcing Event?\n\nEvent: ${event.eventNumber}\n${event.title}\n\nStatus: ${event.status}\nResponses: ${event.responsesReceived}\n\n${event.responsesReceived > 0 ? '⚠️ WARNING: ' + event.responsesReceived + ' suppliers have submitted responses.\nCancellation will require formal notification and explanation.\n\n' : ''}This action:\n- Closes the event permanently\n- Notifies all participants\n- Cannot be undone\n\nReason for cancellation required.\n\nProceed with cancellation?`)) {
       alert(`Event Cancellation Process\n\nEvent ${event.eventNumber} marked for cancellation.\n\nREQUIRED INFORMATION:\n\n1. Cancellation Reason:\n   - Requirements changed\n   - Budget not approved\n   - Business need eliminated\n   - Insufficient responses\n   - Technical issues\n   - Other (specify)\n\n2. Impact Assessment:\n   - Suppliers to notify: ${event.responsesReceived > 0 ? event.responsesReceived + ' (submitted bids)' : event.participantsInvited + ' (invited)'}\n   - Debriefing required: ${event.responsesReceived > 0 ? 'Yes' : 'No'}\n   - Compensation due: None (standard T&Cs)\n\n3. Communication Plan:\n   ${event.responsesReceived > 0 ? '- Send formal cancellation letter\n   - Offer debriefing calls\n   - Document in supplier records\n   - Update supplier scorecard' : '- Send brief notification\n   - Update supplier portal'}\n\n4. Internal Actions:\n   - Document reason in event log\n   - Update forecast/budget\n   - Plan alternative sourcing (if needed)\n   - Lessons learned session\n\nAPPROVAL:\nCancellation requires ${event.estimatedValue > 500000 ? 'Procurement Director' : 'Category Manager'} approval.\n\nSubmit cancellation request?`);
-      }
     }
   };
 
@@ -888,36 +875,36 @@ const SourcingEvents: React.FC = () => {
                   <span className="text-sm font-bold text-green-600">${(auction.savings / 1000).toFixed(0)}K</span>
                 </div>
               </div>
-              <div className="px-4 pb-4">
-                <button
-                  onClick={() => handleMonitorAuction(auction)}
-                  className={`w-full flex items-center justify-center space-x-2 px-4 py-2 rounded-lg font-medium transition-colors ${
-                    auction.status === 'live'
-                      ? 'bg-green-600 text-white hover:bg-green-700'
-                      : auction.status === 'upcoming'
-                      ? 'bg-blue-600 text-white hover:bg-blue-700'
-                      : 'bg-gray-600 text-white hover:bg-gray-700'
-                  }`}
-                  title={auction.status === 'live' ? 'Monitor Live Auction' : auction.status === 'upcoming' ? 'View Auction Details' : 'View Results'}
-                >
-                  {auction.status === 'live' ? (
-                    <>
-                      <Play className="h-4 w-4" />
-                      <span>Monitor Live Auction</span>
-                    </>
-                  ) : auction.status === 'upcoming' ? (
-                    <>
-                      <Clock className="h-4 w-4" />
-                      <span>View Details</span>
-                    </>
-                  ) : (
-                    <>
-                      <CheckCircle className="h-4 w-4" />
-                      <span>View Results</span>
-                    </>
-                  )}
-                </button>
-              </div>
+            </div>
+            <div className="px-4 pb-4">
+              <button
+                onClick={() => handleMonitorAuction(auction)}
+                className={`w-full flex items-center justify-center space-x-2 px-4 py-2 rounded-lg font-medium transition-colors ${
+                  auction.status === 'live'
+                    ? 'bg-green-600 text-white hover:bg-green-700'
+                    : auction.status === 'upcoming'
+                    ? 'bg-blue-600 text-white hover:bg-blue-700'
+                    : 'bg-gray-600 text-white hover:bg-gray-700'
+                }`}
+                title={auction.status === 'live' ? 'Monitor Live Auction' : auction.status === 'upcoming' ? 'View Auction Details' : 'View Results'}
+              >
+                {auction.status === 'live' ? (
+                  <>
+                    <Play className="h-4 w-4" />
+                    <span>Monitor Live Auction</span>
+                  </>
+                ) : auction.status === 'upcoming' ? (
+                  <>
+                    <Clock className="h-4 w-4" />
+                    <span>View Details</span>
+                  </>
+                ) : (
+                  <>
+                    <CheckCircle className="h-4 w-4" />
+                    <span>View Results</span>
+                  </>
+                )}
+              </button>
             </div>
           </div>
         ))}
