@@ -98,6 +98,8 @@ export default function SupplierRelationshipManagement() {
   const [selectedSupplier, setSelectedSupplier] = useState<Supplier | null>(null)
   const [filterTier, setFilterTier] = useState('all')
   const [searchTerm, setSearchTerm] = useState('')
+  const [showScorecards, setShowScorecards] = useState(false)
+  const [showHealthDashboard, setShowHealthDashboard] = useState(true)
 
   // Mock data
   const suppliers: Supplier[] = [
@@ -1561,6 +1563,254 @@ Last updated: ${new Date().toLocaleString()}`);
           </div>
         </div>
       </div>
+
+      {/* Supplier Health Dashboard */}
+      {showHealthDashboard && (
+        <div className="bg-gradient-to-r from-teal-50 to-cyan-50 rounded-xl shadow-sm p-6 border border-teal-200">
+          <div className="flex items-start justify-between mb-4">
+            <div className="flex items-center gap-3">
+              <div className="p-2 bg-teal-600 rounded-lg">
+                <Activity className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <h2 className="text-lg font-bold text-gray-900">Supplier Health Monitoring</h2>
+                <p className="text-sm text-gray-600">Real-time supplier health indicators and risk alerts</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => setShowScorecards(!showScorecards)}
+                className="px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition flex items-center gap-2"
+              >
+                <BarChart3 className="w-4 h-4" />
+                {showScorecards ? 'Hide' : 'View'} Scorecards
+              </button>
+              <button
+                onClick={() => setShowHealthDashboard(false)}
+                className="text-gray-400 hover:text-gray-600"
+              >
+                ×
+              </button>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+            {/* Health Indicator 1 */}
+            <div className="bg-white rounded-lg p-4 border-l-4 border-green-500">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-medium text-gray-600">Excellent Health</span>
+                <CheckCircle className="w-5 h-5 text-green-600" />
+              </div>
+              <div className="text-3xl font-bold text-gray-900">24</div>
+              <div className="text-xs text-gray-600 mt-1">Score: 90-100</div>
+              <div className="mt-2 flex items-center gap-1">
+                <div className="flex-1 bg-gray-200 rounded-full h-2">
+                  <div className="bg-green-500 h-2 rounded-full" style={{ width: '72%' }} />
+                </div>
+                <span className="text-xs text-gray-600">72%</span>
+              </div>
+            </div>
+
+            {/* Health Indicator 2 */}
+            <div className="bg-white rounded-lg p-4 border-l-4 border-blue-500">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-medium text-gray-600">Good Health</span>
+                <ThumbsUp className="w-5 h-5 text-blue-600" />
+              </div>
+              <div className="text-3xl font-bold text-gray-900">18</div>
+              <div className="text-xs text-gray-600 mt-1">Score: 75-89</div>
+              <div className="mt-2 flex items-center gap-1">
+                <div className="flex-1 bg-gray-200 rounded-full h-2">
+                  <div className="bg-blue-500 h-2 rounded-full" style={{ width: '18%' }} />
+                </div>
+                <span className="text-xs text-gray-600">18%</span>
+              </div>
+            </div>
+
+            {/* Health Indicator 3 */}
+            <div className="bg-white rounded-lg p-4 border-l-4 border-amber-500">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-medium text-gray-600">Needs Attention</span>
+                <AlertCircle className="w-5 h-5 text-amber-600" />
+              </div>
+              <div className="text-3xl font-bold text-gray-900">8</div>
+              <div className="text-xs text-gray-600 mt-1">Score: 60-74</div>
+              <div className="mt-2 flex items-center gap-1">
+                <div className="flex-1 bg-gray-200 rounded-full h-2">
+                  <div className="bg-amber-500 h-2 rounded-full" style={{ width: '8%' }} />
+                </div>
+                <span className="text-xs text-gray-600">8%</span>
+              </div>
+            </div>
+
+            {/* Health Indicator 4 */}
+            <div className="bg-white rounded-lg p-4 border-l-4 border-red-500">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-sm font-medium text-gray-600">Critical</span>
+                <AlertTriangle className="w-5 h-5 text-red-600" />
+              </div>
+              <div className="text-3xl font-bold text-gray-900">2</div>
+              <div className="text-xs text-gray-600 mt-1">Score: Below 60</div>
+              <div className="mt-2 flex items-center gap-1">
+                <div className="flex-1 bg-gray-200 rounded-full h-2">
+                  <div className="bg-red-500 h-2 rounded-full" style={{ width: '2%' }} />
+                </div>
+                <span className="text-xs text-gray-600">2%</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Quick Alerts */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+            <div className="bg-white rounded-lg p-3 flex items-start gap-3">
+              <AlertTriangle className="w-5 h-5 text-red-500 mt-0.5" />
+              <div className="flex-1">
+                <h4 className="text-sm font-semibold text-gray-900">Financial Risk Detected</h4>
+                <p className="text-xs text-gray-600 mt-1">Quality Components Inc - Credit score dropped 15 points</p>
+                <button className="text-xs text-red-600 hover:text-red-700 font-medium mt-1">Review Details →</button>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-lg p-3 flex items-start gap-3">
+              <Clock className="w-5 h-5 text-amber-500 mt-0.5" />
+              <div className="flex-1">
+                <h4 className="text-sm font-semibold text-gray-900">Delivery Performance Drop</h4>
+                <p className="text-xs text-gray-600 mt-1">Express Logistics - On-time delivery fell to 82% (target: 95%)</p>
+                <button className="text-xs text-amber-600 hover:text-amber-700 font-medium mt-1">View Metrics →</button>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-lg p-3 flex items-start gap-3">
+              <Star className="w-5 h-5 text-green-500 mt-0.5" />
+              <div className="flex-1">
+                <h4 className="text-sm font-semibold text-gray-900">Excellence Achievement</h4>
+                <p className="text-xs text-gray-600 mt-1">Global Tech Solutions - 6 months of perfect performance</p>
+                <button className="text-xs text-green-600 hover:text-green-700 font-medium mt-1">Send Recognition →</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Supplier Scorecards */}
+      {showScorecards && (
+        <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
+              <BarChart3 className="w-6 h-6 text-blue-600" />
+              Detailed Supplier Scorecards
+            </h2>
+            <button
+              onClick={() => setShowScorecards(false)}
+              className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition"
+            >
+              Close Scorecards
+            </button>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {suppliers.slice(0, 4).map((supplier) => (
+              <div key={supplier.id} className="border border-gray-200 rounded-lg p-5 bg-gray-50">
+                <div className="flex items-start justify-between mb-4">
+                  <div>
+                    <h3 className="text-lg font-bold text-gray-900">{supplier.name}</h3>
+                    <div className="flex items-center gap-2 mt-1">
+                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                        supplier.tier === 'strategic' ? 'bg-purple-100 text-purple-700' :
+                        supplier.tier === 'preferred' ? 'bg-blue-100 text-blue-700' :
+                        supplier.tier === 'approved' ? 'bg-green-100 text-green-700' :
+                        'bg-gray-100 text-gray-700'
+                      }`}>
+                        {supplier.tier.toUpperCase()}
+                      </span>
+                      <span className="text-xs text-gray-600">{supplier.category}</span>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-3xl font-bold text-blue-600">{supplier.performanceScore}</div>
+                    <div className="text-xs text-gray-600">Overall Score</div>
+                  </div>
+                </div>
+
+                {/* Scorecard Metrics */}
+                <div className="space-y-3">
+                  <div>
+                    <div className="flex items-center justify-between text-xs mb-1">
+                      <span className="text-gray-600">Quality</span>
+                      <span className="font-medium text-gray-900">{supplier.performanceScore - 2}/100</span>
+                    </div>
+                    <div className="w-full bg-gray-200 rounded-full h-2">
+                      <div className="bg-green-500 h-2 rounded-full" style={{ width: `${supplier.performanceScore - 2}%` }} />
+                    </div>
+                  </div>
+
+                  <div>
+                    <div className="flex items-center justify-between text-xs mb-1">
+                      <span className="text-gray-600">Delivery</span>
+                      <span className="font-medium text-gray-900">{supplier.performanceScore + 3}/100</span>
+                    </div>
+                    <div className="w-full bg-gray-200 rounded-full h-2">
+                      <div className="bg-blue-500 h-2 rounded-full" style={{ width: `${supplier.performanceScore + 3}%` }} />
+                    </div>
+                  </div>
+
+                  <div>
+                    <div className="flex items-center justify-between text-xs mb-1">
+                      <span className="text-gray-600">Cost Competitiveness</span>
+                      <span className="font-medium text-gray-900">{supplier.performanceScore - 5}/100</span>
+                    </div>
+                    <div className="w-full bg-gray-200 rounded-full h-2">
+                      <div className="bg-amber-500 h-2 rounded-full" style={{ width: `${supplier.performanceScore - 5}%` }} />
+                    </div>
+                  </div>
+
+                  <div>
+                    <div className="flex items-center justify-between text-xs mb-1">
+                      <span className="text-gray-600">Innovation</span>
+                      <span className="font-medium text-gray-900">{supplier.performanceScore - 8}/100</span>
+                    </div>
+                    <div className="w-full bg-gray-200 rounded-full h-2">
+                      <div className="bg-purple-500 h-2 rounded-full" style={{ width: `${supplier.performanceScore - 8}%` }} />
+                    </div>
+                  </div>
+
+                  <div>
+                    <div className="flex items-center justify-between text-xs mb-1">
+                      <span className="text-gray-600">Compliance</span>
+                      <span className="font-medium text-gray-900">{supplier.performanceScore + 1}/100</span>
+                    </div>
+                    <div className="w-full bg-gray-200 rounded-full h-2">
+                      <div className="bg-teal-500 h-2 rounded-full" style={{ width: `${supplier.performanceScore + 1}%` }} />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Key Stats */}
+                <div className="grid grid-cols-3 gap-3 mt-4 pt-4 border-t border-gray-200">
+                  <div>
+                    <div className="text-xs text-gray-600">Spend</div>
+                    <div className="text-sm font-bold text-gray-900">${(supplier.spend / 1000000).toFixed(1)}M</div>
+                  </div>
+                  <div>
+                    <div className="text-xs text-gray-600">Contracts</div>
+                    <div className="text-sm font-bold text-gray-900">{supplier.contracts}</div>
+                  </div>
+                  <div>
+                    <div className="text-xs text-gray-600">Risk</div>
+                    <div className={`text-sm font-bold ${
+                      supplier.riskScore < 25 ? 'text-green-600' :
+                      supplier.riskScore < 50 ? 'text-amber-600' :
+                      'text-red-600'
+                    }`}>
+                      {supplier.riskScore < 25 ? 'Low' : supplier.riskScore < 50 ? 'Medium' : 'High'}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Tabs */}
       <div className="bg-white rounded-xl shadow-sm border border-gray-200">
