@@ -41,6 +41,7 @@ import {
 } from './services';
 import { ThreeWayMatchingService } from './services/three-way-matching.service';
 import { ContractService } from './services/contract.service';
+import { ApprovalMatrixService } from './services/approval-matrix.service';
 
 @Module({
   imports: [
@@ -92,6 +93,7 @@ import { ContractService } from './services/contract.service';
     VendorEvaluationService,
     ThreeWayMatchingService,
     ContractService,
+    ApprovalMatrixService,
   ],
   exports: [
     PurchaseRequisitionService,
@@ -104,6 +106,7 @@ import { ContractService } from './services/contract.service';
     VendorEvaluationService,
     ThreeWayMatchingService,
     ContractService,
+    ApprovalMatrixService,
   ],
 })
 export class ProcurementModule {}
