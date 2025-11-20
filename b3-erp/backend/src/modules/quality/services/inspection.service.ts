@@ -7,12 +7,14 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Inspection, InspectionStatus, InspectionResult as InspectionResultEnum } from '../entities/inspection.entity';
 import { CreateInspectionDto, UpdateInspectionDto, InspectionResponseDto } from '../dto';
+import { EventBusService } from '../../workflow/services/event-bus.service';
 
 @Injectable()
 export class InspectionService {
   constructor(
     @InjectRepository(Inspection)
     private readonly inspectionRepository: Repository<Inspection>,
+    private readonly eventBus: EventBusService,
   ) {}
 
   async create(createDto: CreateInspectionDto): Promise<InspectionResponseDto> {
@@ -178,6 +180,21 @@ export class InspectionService {
     inspection.approvedAt = new Date();
 
     const updatedInspection = await this.inspectionRepository.save(inspection);
+
+    // Emit inspection passed event
+    await this.eventBus.emitInspectionPassed({
+      inspectionId: updatedInspection.id,
+      inspectionNumber: updatedInspection.inspectionNumber,
+      referenceType: updatedInspection.referenceType as any || 'goods_receipt',
+      referenceId: updatedInspection.referenceId || '',
+      itemId: updatedInspection.itemId,
+      itemName: updatedInspection.itemName,
+      quantity: updatedInspection.acceptedQuantity || updatedInspection.lotQuantity,
+      unit: updatedInspection.uom || 'units',
+      result: 'passed',
+      userId: approvedBy,
+    });
+
     return this.mapToResponseDto(updatedInspection);
   }
 
@@ -197,6 +214,26 @@ export class InspectionService {
     inspection.rejectionReason = reason;
 
     const updatedInspection = await this.inspectionRepository.save(inspection);
+
+    // Emit inspection failed event
+    await this.eventBus.emitInspectionFailed({
+      inspectionId: updatedInspection.id,
+      inspectionNumber: updatedInspection.inspectionNumber,
+      referenceType: updatedInspection.referenceType as any || 'goods_receipt',
+      referenceId: updatedInspection.referenceId || '',
+      itemId: updatedInspection.itemId,
+      itemName: updatedInspection.itemName,
+      quantity: updatedInspection.rejectedQuantity || updatedInspection.lotQuantity,
+      unit: updatedInspection.uom || 'units',
+      result: 'failed',
+      defects: updatedInspection.totalDefects ? [
+        { type: 'critical', quantity: updatedInspection.criticalDefects || 0, severity: 'critical' as const },
+        { type: 'major', quantity: updatedInspection.majorDefects || 0, severity: 'major' as const },
+        { type: 'minor', quantity: updatedInspection.minorDefects || 0, severity: 'minor' as const },
+      ] : undefined,
+      userId: rejectedBy,
+    });
+
     return this.mapToResponseDto(updatedInspection);
   }
 

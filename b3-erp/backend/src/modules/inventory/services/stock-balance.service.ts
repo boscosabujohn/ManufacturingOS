@@ -10,12 +10,14 @@ import {
   UpdateStockBalanceDto,
   StockBalanceResponseDto,
 } from '../dto';
+import { EventBusService } from '../../workflow/services/event-bus.service';
 
 @Injectable()
 export class StockBalanceService {
   constructor(
     @InjectRepository(StockBalance)
     private readonly stockBalanceRepository: Repository<StockBalance>,
+    private readonly eventBus: EventBusService,
   ) {}
 
   async create(createDto: CreateStockBalanceDto): Promise<StockBalanceResponseDto> {
@@ -199,7 +201,76 @@ export class StockBalanceService {
 
     Object.assign(balance, updateDto);
     const updated = await this.stockBalanceRepository.save(balance);
+
+    // Check if stock is below reorder level and emit event
+    await this.checkAndEmitStockEvents(updated);
+
     return this.mapToResponseDto(updated);
+  }
+
+  /**
+   * Check stock levels and emit appropriate events
+   */
+  private async checkAndEmitStockEvents(balance: StockBalance): Promise<void> {
+    const availableQty = Number(balance.availableQuantity);
+    const reorderLevel = Number(balance.reorderLevel || 0);
+
+    // Emit STOCK_OUT event if stock is zero
+    if (availableQty <= 0) {
+      await this.eventBus.emitStockOut({
+        itemId: balance.itemId,
+        itemCode: balance.itemCode,
+        itemName: balance.itemName,
+        warehouseId: balance.warehouseId,
+        warehouseName: balance.warehouseName || '',
+        locationId: balance.locationId,
+        quantity: availableQty,
+        unit: balance.uom,
+        currentStock: availableQty,
+        reorderLevel,
+        userId: 'system',
+      });
+    }
+    // Emit STOCK_LOW event if below reorder level
+    else if (reorderLevel > 0 && availableQty <= reorderLevel) {
+      await this.eventBus.emitStockLow({
+        itemId: balance.itemId,
+        itemCode: balance.itemCode,
+        itemName: balance.itemName,
+        warehouseId: balance.warehouseId,
+        warehouseName: balance.warehouseName || '',
+        locationId: balance.locationId,
+        quantity: availableQty,
+        unit: balance.uom,
+        currentStock: availableQty,
+        reorderLevel,
+        userId: 'system',
+      });
+    }
+  }
+
+  /**
+   * Adjust stock balance and emit events
+   */
+  async adjustBalance(
+    itemId: string,
+    warehouseId: string,
+    quantityChange: number,
+    adjustedBy: string,
+    reason?: string,
+  ): Promise<void> {
+    const balance = await this.stockBalanceRepository.findOne({
+      where: { itemId, warehouseId },
+    });
+
+    if (balance) {
+      balance.availableQuantity = Number(balance.availableQuantity) + quantityChange;
+      balance.totalQuantity = Number(balance.totalQuantity) + quantityChange;
+      balance.freeQuantity = Number(balance.freeQuantity) + quantityChange;
+
+      const updated = await this.stockBalanceRepository.save(balance);
+      await this.checkAndEmitStockEvents(updated);
+    }
   }
 
   async remove(id: string): Promise<void> {

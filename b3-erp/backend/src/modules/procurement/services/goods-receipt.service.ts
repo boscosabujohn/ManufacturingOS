@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { GoodsReceipt, GRNStatus } from '../entities/goods-receipt.entity';
 import { GoodsReceiptItem, GRNItemStatus } from '../entities/goods-receipt-item.entity';
 import { CreateGoodsReceiptDto, UpdateGoodsReceiptDto, GoodsReceiptResponseDto } from '../dto';
+import { EventBusService } from '../../workflow/services/event-bus.service';
 
 @Injectable()
 export class GoodsReceiptService {
@@ -12,6 +13,7 @@ export class GoodsReceiptService {
     private readonly grnRepository: Repository<GoodsReceipt>,
     @InjectRepository(GoodsReceiptItem)
     private readonly grnItemRepository: Repository<GoodsReceiptItem>,
+    private readonly eventBus: EventBusService,
   ) {}
 
   async create(createDto: CreateGoodsReceiptDto): Promise<GoodsReceiptResponseDto> {
@@ -36,6 +38,26 @@ export class GoodsReceiptService {
     );
 
     await this.grnItemRepository.save(grnItems);
+
+    // Emit goods received event
+    await this.eventBus.emitGoodsReceived({
+      receiptId: savedGRN.id,
+      receiptNumber: savedGRN.grnNumber,
+      purchaseOrderId: savedGRN.purchaseOrderId,
+      poNumber: savedGRN.purchaseOrderNumber,
+      vendorId: savedGRN.vendorId,
+      warehouseId: savedGRN.warehouseId,
+      items: grnItems.map(item => ({
+        itemId: item.itemId,
+        itemName: item.itemName,
+        orderedQty: item.orderedQuantity,
+        receivedQty: item.receivedQuantity,
+        unit: item.uom,
+        batchNumber: item.batchNumber,
+        inspectionRequired: item.inspectionRequired !== false,
+      })),
+      userId: savedGRN.createdBy || 'system',
+    });
 
     return this.mapToResponse(savedGRN);
   }
