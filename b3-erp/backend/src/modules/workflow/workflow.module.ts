@@ -23,6 +23,7 @@ import {
   ProcurementInventoryWorkflowService,
 } from './services';
 import { WorkflowRepositoryService } from './services/workflow-repository.service';
+import { WorkflowSeederService } from './services/workflow-seeder.service';
 
 // Controllers
 import { OrderTrackingController } from './controllers/order-tracking.controller';
@@ -92,6 +93,7 @@ import { WorkflowProcessor, NotificationProcessor } from './processors';
     NotificationService,
     OrderTrackingService,
     WorkflowRepositoryService,
+    WorkflowSeederService,
 
     // Workflow orchestration services
     SalesProductionWorkflowService,
