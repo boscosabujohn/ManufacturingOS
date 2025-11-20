@@ -6,6 +6,7 @@ import { OrderService } from './services/order.service';
 import { ApprovalWorkflowService } from './services/approval-workflow.service';
 import { PricingService } from './services/pricing.service';
 import { BOQValidationService } from './services/boq-validation.service';
+import { Customer360Service } from './services/customer-360.service';
 import { WorkflowModule } from '../workflow/workflow.module';
 
 @Module({
@@ -17,6 +18,7 @@ import { WorkflowModule } from '../workflow/workflow.module';
     ApprovalWorkflowService,
     PricingService,
     BOQValidationService,
+    Customer360Service,
   ],
   exports: [
     RFPService,
@@ -24,6 +26,7 @@ import { WorkflowModule } from '../workflow/workflow.module';
     ApprovalWorkflowService,
     PricingService,
     BOQValidationService,
+    Customer360Service,
   ],
 })
 export class SalesModule {}
