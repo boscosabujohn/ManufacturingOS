@@ -1,10 +1,14 @@
-import { Module } from '@nestjs/common';
+import { Module, forwardRef } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { BullModule } from '@nestjs/bull';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 
 // Entities
 import { OrderTracking } from './entities/order-tracking.entity';
+
+// Import other modules for processor dependencies
+import { ProductionModule } from '../production/production.module';
+import { InventoryModule } from '../inventory/inventory.module';
 
 // Services
 import {
@@ -64,6 +68,10 @@ import { WorkflowProcessor, NotificationProcessor } from './processors';
         },
       },
     ),
+
+    // Import other modules with forwardRef to resolve circular dependencies
+    forwardRef(() => ProductionModule),
+    forwardRef(() => InventoryModule),
   ],
   controllers: [OrderTrackingController],
   providers: [
