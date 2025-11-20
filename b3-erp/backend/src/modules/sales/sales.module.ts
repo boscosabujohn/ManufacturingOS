@@ -5,6 +5,7 @@ import { OrderController } from './controllers/order.controller';
 import { OrderService } from './services/order.service';
 import { ApprovalWorkflowService } from './services/approval-workflow.service';
 import { PricingService } from './services/pricing.service';
+import { BOQValidationService } from './services/boq-validation.service';
 import { WorkflowModule } from '../workflow/workflow.module';
 
 @Module({
@@ -15,12 +16,14 @@ import { WorkflowModule } from '../workflow/workflow.module';
     OrderService,
     ApprovalWorkflowService,
     PricingService,
+    BOQValidationService,
   ],
   exports: [
     RFPService,
     OrderService,
     ApprovalWorkflowService,
     PricingService,
+    BOQValidationService,
   ],
 })
 export class SalesModule {}
