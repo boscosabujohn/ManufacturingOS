@@ -5,6 +5,10 @@ import { EventEmitterModule } from '@nestjs/event-emitter';
 
 // Entities
 import { OrderTracking } from './entities/order-tracking.entity';
+import { WorkflowDefinition } from './entities/workflow-definition.entity';
+import { WorkflowInstance } from './entities/workflow-instance.entity';
+import { WorkflowStep } from './entities/workflow-step.entity';
+import { WorkflowHistory } from './entities/workflow-history.entity';
 
 // Import other modules for processor dependencies
 import { ProductionModule } from '../production/production.module';
@@ -18,9 +22,11 @@ import {
   SalesProductionWorkflowService,
   ProcurementInventoryWorkflowService,
 } from './services';
+import { WorkflowRepositoryService } from './services/workflow-repository.service';
 
 // Controllers
 import { OrderTrackingController } from './controllers/order-tracking.controller';
+import { WorkflowRepositoryController } from './controllers/workflow-repository.controller';
 
 // Processors
 import { WorkflowProcessor, NotificationProcessor } from './processors';
@@ -39,7 +45,13 @@ import { WorkflowProcessor, NotificationProcessor } from './processors';
     }),
 
     // Database entities
-    TypeOrmModule.forFeature([OrderTracking]),
+    TypeOrmModule.forFeature([
+      OrderTracking,
+      WorkflowDefinition,
+      WorkflowInstance,
+      WorkflowStep,
+      WorkflowHistory,
+    ]),
 
     // Bull queues for async job processing
     BullModule.registerQueue(
@@ -73,12 +85,13 @@ import { WorkflowProcessor, NotificationProcessor } from './processors';
     forwardRef(() => ProductionModule),
     forwardRef(() => InventoryModule),
   ],
-  controllers: [OrderTrackingController],
+  controllers: [OrderTrackingController, WorkflowRepositoryController],
   providers: [
     // Core services
     EventBusService,
     NotificationService,
     OrderTrackingService,
+    WorkflowRepositoryService,
 
     // Workflow orchestration services
     SalesProductionWorkflowService,
@@ -92,6 +105,7 @@ import { WorkflowProcessor, NotificationProcessor } from './processors';
     EventBusService,
     NotificationService,
     OrderTrackingService,
+    WorkflowRepositoryService,
     SalesProductionWorkflowService,
     ProcurementInventoryWorkflowService,
   ],
