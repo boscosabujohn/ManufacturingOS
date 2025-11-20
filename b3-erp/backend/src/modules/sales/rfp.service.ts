@@ -3,12 +3,13 @@ import { CreateRFPDto } from './dto/create-rfp.dto';
 import { UpdateRFPDto } from './dto/update-rfp.dto';
 import { RFP, RFPStatus } from './entities/rfp.entity';
 import { v4 as uuidv4 } from 'uuid';
+import { EventBusService } from '../workflow/services/event-bus.service';
 
 @Injectable()
 export class RFPService {
   private rfps: Map<string, RFP> = new Map();
 
-  constructor() {
+  constructor(private readonly eventBus: EventBusService) {
     this.seedMockData();
   }
 
@@ -38,6 +39,25 @@ export class RFPService {
     };
 
     this.rfps.set(rfp.id, rfp);
+
+    // Emit RFP created event
+    this.eventBus.emitRFPCreated({
+      rfpId: rfp.id,
+      rfpNumber: rfp.rfpNumber,
+      customerId: rfp.customerId || '',
+      customerName: rfp.customerName,
+      totalAmount: rfp.estimatedBudget,
+      items: rfp.items.map(item => ({
+        itemId: item.id,
+        itemName: item.itemName,
+        quantity: item.quantity,
+        unit: item.unit,
+      })),
+      deliveryDate: rfp.expectedCompletionDate ? new Date(rfp.expectedCompletionDate) : undefined,
+      status: rfp.status,
+      userId: rfp.createdBy,
+    });
+
     return rfp;
   }
 
@@ -240,6 +260,25 @@ export class RFPService {
     };
 
     this.rfps.set(id, updatedRFP);
+
+    // Emit RFP approved event - triggers workflow to create sales order
+    this.eventBus.emitRFPApproved({
+      rfpId: updatedRFP.id,
+      rfpNumber: updatedRFP.rfpNumber,
+      customerId: updatedRFP.customerId || '',
+      customerName: updatedRFP.customerName,
+      totalAmount: updatedRFP.estimatedBudget || updatedRFP.proposalValue,
+      items: updatedRFP.items.map(item => ({
+        itemId: item.id,
+        itemName: item.itemName,
+        quantity: item.quantity,
+        unit: item.unit,
+      })),
+      deliveryDate: updatedRFP.expectedCompletionDate ? new Date(updatedRFP.expectedCompletionDate) : undefined,
+      status: updatedRFP.status,
+      userId: approver,
+    });
+
     return updatedRFP;
   }
 

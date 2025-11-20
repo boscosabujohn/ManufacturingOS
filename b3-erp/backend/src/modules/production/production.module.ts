@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { WorkflowModule } from '../workflow/workflow.module';
 
 // Entities
 import {
@@ -54,6 +55,7 @@ import {
       Routing,
       ProductionEntry,
     ]),
+    WorkflowModule,
   ],
   controllers: [
     BOMController,

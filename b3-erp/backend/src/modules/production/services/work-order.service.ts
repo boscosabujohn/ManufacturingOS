@@ -8,6 +8,7 @@ import { Repository } from 'typeorm';
 import { WorkOrder, WorkOrderStatus } from '../entities/work-order.entity';
 import { WorkOrderItem } from '../entities/work-order-item.entity';
 import { CreateWorkOrderDto, UpdateWorkOrderDto, WorkOrderResponseDto } from '../dto';
+import { EventBusService } from '../../workflow/services/event-bus.service';
 
 @Injectable()
 export class WorkOrderService {
@@ -16,6 +17,7 @@ export class WorkOrderService {
     private readonly workOrderRepository: Repository<WorkOrder>,
     @InjectRepository(WorkOrderItem)
     private readonly workOrderItemRepository: Repository<WorkOrderItem>,
+    private readonly eventBus: EventBusService,
   ) {}
 
   async create(createDto: CreateWorkOrderDto): Promise<WorkOrderResponseDto> {
@@ -36,6 +38,24 @@ export class WorkOrderService {
     });
 
     const savedWorkOrder = await this.workOrderRepository.save(workOrder);
+
+    // Emit work order created event
+    this.eventBus.emitWorkOrderCreated({
+      workOrderId: savedWorkOrder.id,
+      workOrderNumber: savedWorkOrder.workOrderNumber,
+      orderId: savedWorkOrder.salesOrderId,
+      orderNumber: savedWorkOrder.salesOrderNumber,
+      itemId: savedWorkOrder.itemId,
+      itemName: savedWorkOrder.itemName,
+      quantity: savedWorkOrder.plannedQuantity,
+      unit: savedWorkOrder.uom,
+      plannedStartDate: savedWorkOrder.plannedStartDate,
+      plannedEndDate: savedWorkOrder.plannedEndDate,
+      status: savedWorkOrder.status,
+      priority: savedWorkOrder.priority as any,
+      userId: savedWorkOrder.createdBy,
+    });
+
     return this.mapToResponseDto(savedWorkOrder);
   }
 
@@ -171,6 +191,24 @@ export class WorkOrderService {
     workOrder.releasedAt = new Date();
 
     const updatedWorkOrder = await this.workOrderRepository.save(workOrder);
+
+    // Emit work order released event - triggers material issue
+    this.eventBus.emitWorkOrderReleased({
+      workOrderId: updatedWorkOrder.id,
+      workOrderNumber: updatedWorkOrder.workOrderNumber,
+      orderId: updatedWorkOrder.salesOrderId,
+      orderNumber: updatedWorkOrder.salesOrderNumber,
+      itemId: updatedWorkOrder.itemId,
+      itemName: updatedWorkOrder.itemName,
+      quantity: updatedWorkOrder.plannedQuantity,
+      unit: updatedWorkOrder.uom,
+      plannedStartDate: updatedWorkOrder.plannedStartDate,
+      plannedEndDate: updatedWorkOrder.plannedEndDate,
+      status: updatedWorkOrder.status,
+      priority: updatedWorkOrder.priority as any,
+      userId: releasedBy,
+    });
+
     return this.mapToResponseDto(updatedWorkOrder);
   }
 
@@ -195,6 +233,24 @@ export class WorkOrderService {
     workOrder.actualStartDate = new Date();
 
     const updatedWorkOrder = await this.workOrderRepository.save(workOrder);
+
+    // Emit work order started event
+    this.eventBus.emitWorkOrderStarted({
+      workOrderId: updatedWorkOrder.id,
+      workOrderNumber: updatedWorkOrder.workOrderNumber,
+      orderId: updatedWorkOrder.salesOrderId,
+      orderNumber: updatedWorkOrder.salesOrderNumber,
+      itemId: updatedWorkOrder.itemId,
+      itemName: updatedWorkOrder.itemName,
+      quantity: updatedWorkOrder.plannedQuantity,
+      unit: updatedWorkOrder.uom,
+      plannedStartDate: updatedWorkOrder.plannedStartDate,
+      plannedEndDate: updatedWorkOrder.plannedEndDate,
+      status: updatedWorkOrder.status,
+      priority: updatedWorkOrder.priority as any,
+      userId: startedBy,
+    });
+
     return this.mapToResponseDto(updatedWorkOrder);
   }
 
@@ -224,6 +280,24 @@ export class WorkOrderService {
     workOrder.progressPercentage = 100;
 
     const updatedWorkOrder = await this.workOrderRepository.save(workOrder);
+
+    // Emit work order completed event - triggers QC and finished goods receipt
+    this.eventBus.emitWorkOrderCompleted({
+      workOrderId: updatedWorkOrder.id,
+      workOrderNumber: updatedWorkOrder.workOrderNumber,
+      orderId: updatedWorkOrder.salesOrderId,
+      orderNumber: updatedWorkOrder.salesOrderNumber,
+      itemId: updatedWorkOrder.itemId,
+      itemName: updatedWorkOrder.itemName,
+      quantity: updatedWorkOrder.producedQuantity || updatedWorkOrder.plannedQuantity,
+      unit: updatedWorkOrder.uom,
+      plannedStartDate: updatedWorkOrder.plannedStartDate,
+      plannedEndDate: updatedWorkOrder.plannedEndDate,
+      status: updatedWorkOrder.status,
+      priority: updatedWorkOrder.priority as any,
+      userId: completedBy,
+    });
+
     return this.mapToResponseDto(updatedWorkOrder);
   }
 
