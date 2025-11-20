@@ -39,6 +39,8 @@ import {
   PurchaseInvoiceService,
   VendorEvaluationService,
 } from './services';
+import { ThreeWayMatchingService } from './services/three-way-matching.service';
+import { ContractService } from './services/contract.service';
 
 @Module({
   imports: [
@@ -88,6 +90,8 @@ import {
     PurchaseReturnService,
     PurchaseInvoiceService,
     VendorEvaluationService,
+    ThreeWayMatchingService,
+    ContractService,
   ],
   exports: [
     PurchaseRequisitionService,
@@ -98,6 +102,8 @@ import {
     PurchaseReturnService,
     PurchaseInvoiceService,
     VendorEvaluationService,
+    ThreeWayMatchingService,
+    ContractService,
   ],
 })
 export class ProcurementModule {}
