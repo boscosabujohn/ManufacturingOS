@@ -28,6 +28,8 @@ import {
   ProductionEntryService,
 } from './services';
 import { EscalationManagementService } from './services/escalation-management.service';
+import { MRPRequisitionService } from './services/mrp-requisition.service';
+import { DemandForecastingService } from './services/demand-forecasting.service';
 
 // Controllers
 import {
@@ -78,6 +80,8 @@ import {
     RoutingService,
     ProductionEntryService,
     EscalationManagementService,
+    MRPRequisitionService,
+    DemandForecastingService,
   ],
   exports: [
     BOMService,
@@ -89,6 +93,8 @@ import {
     RoutingService,
     ProductionEntryService,
     EscalationManagementService,
+    MRPRequisitionService,
+    DemandForecastingService,
   ],
 })
 export class ProductionModule {}
