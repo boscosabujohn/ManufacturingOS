@@ -27,6 +27,7 @@ import {
   RoutingService,
   ProductionEntryService,
 } from './services';
+import { EscalationManagementService } from './services/escalation-management.service';
 
 // Controllers
 import {
@@ -76,6 +77,7 @@ import {
     WorkCenterService,
     RoutingService,
     ProductionEntryService,
+    EscalationManagementService,
   ],
   exports: [
     BOMService,
@@ -86,6 +88,7 @@ import {
     WorkCenterService,
     RoutingService,
     ProductionEntryService,
+    EscalationManagementService,
   ],
 })
 export class ProductionModule {}

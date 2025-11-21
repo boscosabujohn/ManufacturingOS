@@ -40,6 +40,7 @@ import {
   SerialNumberService,
   BatchNumberService,
 } from './services';
+import { ReorderManagementService } from './services/reorder-management.service';
 
 @Module({
   imports: [
@@ -77,6 +78,7 @@ import {
     StockAdjustmentService,
     SerialNumberService,
     BatchNumberService,
+    ReorderManagementService,
   ],
   exports: [
     WarehouseService,
@@ -87,6 +89,7 @@ import {
     StockAdjustmentService,
     SerialNumberService,
     BatchNumberService,
+    ReorderManagementService,
   ],
 })
 export class InventoryModule {}
