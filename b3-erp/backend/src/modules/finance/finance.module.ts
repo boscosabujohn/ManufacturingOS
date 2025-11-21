@@ -53,6 +53,9 @@ import {
   PaymentService,
   FinancialReportsService,
 } from './services';
+import { AccountsReceivableService } from './services/accounts-receivable.service';
+import { AccountsPayableService } from './services/accounts-payable.service';
+import { BankReconciliationService } from './services/bank-reconciliation.service';
 
 @Module({
   imports: [
@@ -124,6 +127,9 @@ import {
     InvoiceService,
     PaymentService,
     FinancialReportsService,
+    AccountsReceivableService,
+    AccountsPayableService,
+    BankReconciliationService,
   ],
   exports: [
     ChartOfAccountsService,
@@ -132,6 +138,9 @@ import {
     InvoiceService,
     PaymentService,
     FinancialReportsService,
+    AccountsReceivableService,
+    AccountsPayableService,
+    BankReconciliationService,
   ],
 })
 export class FinanceModule {}

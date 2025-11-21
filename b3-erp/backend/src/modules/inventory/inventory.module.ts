@@ -40,6 +40,10 @@ import {
   SerialNumberService,
   BatchNumberService,
 } from './services';
+import { ReorderManagementService } from './services/reorder-management.service';
+import { StorageLocationService as StorageLocationClassificationService } from './services/storage-location.service';
+import { PutawayStrategyService } from './services/putaway-strategy.service';
+import { VEDAnalysisService } from './services/ved-analysis.service';
 
 @Module({
   imports: [
@@ -77,6 +81,10 @@ import {
     StockAdjustmentService,
     SerialNumberService,
     BatchNumberService,
+    ReorderManagementService,
+    StorageLocationClassificationService,
+    PutawayStrategyService,
+    VEDAnalysisService,
   ],
   exports: [
     WarehouseService,
@@ -87,6 +95,10 @@ import {
     StockAdjustmentService,
     SerialNumberService,
     BatchNumberService,
+    ReorderManagementService,
+    StorageLocationClassificationService,
+    PutawayStrategyService,
+    VEDAnalysisService,
   ],
 })
 export class InventoryModule {}

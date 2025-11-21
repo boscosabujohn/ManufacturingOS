@@ -24,6 +24,9 @@ import {
 } from './services';
 import { WorkflowRepositoryService } from './services/workflow-repository.service';
 import { WorkflowSeederService } from './services/workflow-seeder.service';
+import { EmailGatewayService } from './services/email-gateway.service';
+import { ParallelApprovalService } from './services/parallel-approval.service';
+import { IntelligentRoutingService } from './services/intelligent-routing.service';
 
 // Controllers
 import { OrderTrackingController } from './controllers/order-tracking.controller';
@@ -102,6 +105,11 @@ import { WorkflowProcessor, NotificationProcessor } from './processors';
     // Queue processors
     WorkflowProcessor,
     NotificationProcessor,
+
+    // New services
+    EmailGatewayService,
+    ParallelApprovalService,
+    IntelligentRoutingService,
   ],
   exports: [
     EventBusService,
@@ -110,6 +118,9 @@ import { WorkflowProcessor, NotificationProcessor } from './processors';
     WorkflowRepositoryService,
     SalesProductionWorkflowService,
     ProcurementInventoryWorkflowService,
+    EmailGatewayService,
+    ParallelApprovalService,
+    IntelligentRoutingService,
   ],
 })
 export class WorkflowModule {}

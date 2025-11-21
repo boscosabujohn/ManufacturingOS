@@ -51,6 +51,9 @@ import {
   SalarySlipService,
   PerformanceReviewService,
 } from './services';
+import { OnboardingWorkflowService } from './services/onboarding-workflow.service';
+import { SeparationService } from './services/separation.service';
+import { TrainingService } from './services/training.service';
 
 @Module({
   imports: [
@@ -110,6 +113,9 @@ import {
     PayrollService,
     SalarySlipService,
     PerformanceReviewService,
+    OnboardingWorkflowService,
+    SeparationService,
+    TrainingService,
   ],
   exports: [
     DepartmentService,
@@ -125,6 +131,9 @@ import {
     PayrollService,
     SalarySlipService,
     PerformanceReviewService,
+    OnboardingWorkflowService,
+    SeparationService,
+    TrainingService,
   ],
 })
 export class HrModule {}

@@ -31,6 +31,7 @@ import {
   AuditPlanService,
   AuditFindingsService,
 } from './services';
+import { CAPAManagementService } from './services/capa-management.service';
 
 // Controllers
 import {
@@ -90,6 +91,7 @@ import {
     QualityAlertService,
     AuditPlanService,
     AuditFindingsService,
+    CAPAManagementService,
   ],
   exports: [
     QCTemplateService,
@@ -103,6 +105,7 @@ import {
     QualityAlertService,
     AuditPlanService,
     AuditFindingsService,
+    CAPAManagementService,
   ],
 })
 export class QualityModule {}

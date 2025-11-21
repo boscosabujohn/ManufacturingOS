@@ -41,6 +41,9 @@ import {
 } from './services';
 import { ThreeWayMatchingService } from './services/three-way-matching.service';
 import { ContractService } from './services/contract.service';
+import { ApprovalMatrixService } from './services/approval-matrix.service';
+import { RFQPolicyService } from './services/rfq-policy.service';
+import { SpendAnalysisService } from './services/spend-analysis.service';
 
 @Module({
   imports: [
@@ -92,6 +95,9 @@ import { ContractService } from './services/contract.service';
     VendorEvaluationService,
     ThreeWayMatchingService,
     ContractService,
+    ApprovalMatrixService,
+    RFQPolicyService,
+    SpendAnalysisService,
   ],
   exports: [
     PurchaseRequisitionService,
@@ -104,6 +110,9 @@ import { ContractService } from './services/contract.service';
     VendorEvaluationService,
     ThreeWayMatchingService,
     ContractService,
+    ApprovalMatrixService,
+    RFQPolicyService,
+    SpendAnalysisService,
   ],
 })
 export class ProcurementModule {}
