@@ -40,6 +40,10 @@ import {
   FreightChargeService,
   TransportCompanyService,
 } from './services';
+import { ConsolidationService } from './services/consolidation.service';
+import { ReturnManagementService } from './services/return-management.service';
+import { GPSTrackingService } from './services/gps-tracking.service';
+import { CustomerNotificationService } from './services/customer-notification.service';
 
 @Module({
   imports: [
@@ -77,6 +81,10 @@ import {
     TrackingEventService,
     FreightChargeService,
     TransportCompanyService,
+    ConsolidationService,
+    ReturnManagementService,
+    GPSTrackingService,
+    CustomerNotificationService,
   ],
   exports: [
     ShipmentService,
@@ -88,6 +96,10 @@ import {
     TrackingEventService,
     FreightChargeService,
     TransportCompanyService,
+    ConsolidationService,
+    ReturnManagementService,
+    GPSTrackingService,
+    CustomerNotificationService,
   ],
 })
 export class LogisticsModule {}
