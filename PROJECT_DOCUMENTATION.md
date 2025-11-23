@@ -1161,26 +1161,47 @@ Complete project lifecycle management.
 
 **Components**: 9 | **Backend Services**: 11+
 
-Central workflow and automation engine.
+Central workflow and automation engine powering cross-module business processes.
 
-#### Core Features
-- Event Bus for central processing
-- Email Gateway for notifications
-- Intelligent routing
-- Parallel approvals
-- Multi-channel notifications
-- Cross-module order tracking
+#### Core Backend Services
+- **Event Bus Service** - Central event processing and distribution
+- **Email Gateway Service** - Automated email notifications and communications
+- **Notification Service** - Multi-channel notification delivery (email, in-app, SMS)
+- **Intelligent Routing Service** - Smart workflow routing based on rules and conditions
+- **Parallel Approval Service** - Multiple concurrent approvers with configurable logic
+- **Order Tracking Service** - Cross-module order status tracking
+- **Workflow Repository Service** - Reusable workflow definition management
+- **Workflow Seeder Service** - Template initialization and setup
 
-#### Workflow Types
-- Sales-Production workflow
-- Procurement-Inventory workflow
-- Approval workflow automation
-- Escalation management
+#### Business Process Workflows
+- **Sales-Production Workflow** - End-to-end sales order to production integration
+- **Procurement-Inventory Workflow** - Purchase to inventory receipt automation
+- **Approval Workflow Automation** - Multi-level approval routing
+- **Escalation Management** - Automatic escalation on SLA breach
 
-#### Configuration
-- Workflow repository
-- Workflow templates
-- Reusable definitions
+#### Workflow Designer Components
+- **Orchestration Engine** - Visual workflow orchestration and management
+- **Conditional Branching** - If/else logic and decision nodes
+- **Version Control** - Workflow versioning and history
+- **Error Handling** - Exception handling and retry logic
+- **Testing Sandbox** - Test workflows before deployment
+- **Execution Logs** - Detailed workflow execution history
+- **KPI Monitoring** - Workflow performance metrics and dashboards
+- **Integration Catalog** - Pre-built integrations with external systems
+
+#### Workflow Entities
+- Workflow Definition - Workflow templates and schemas
+- Workflow Instance - Running workflow instances
+- Workflow Step - Individual workflow steps/nodes
+- Workflow History - Execution audit trail
+- Order Tracking - Cross-module order status
+
+#### Configuration & Management
+- Workflow repository for reusable definitions
+- Workflow templates and versioning
+- Custom trigger configuration
+- Action and condition setup
+- Variable and context management
 
 ---
 
