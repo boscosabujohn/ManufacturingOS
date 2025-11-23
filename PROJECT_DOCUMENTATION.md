@@ -1491,6 +1491,209 @@ The system includes 56 master data records for essential setup and configuration
 
 ---
 
+## Required Improvements
+
+This section outlines the improvements needed to make the project production-ready.
+
+### Critical Priority
+
+#### 1. Security - Authentication & Authorization
+- **Issue**: 0 out of 89 controllers have authentication guards
+- **Impact**: 491 modification endpoints (POST/PUT/DELETE) are unprotected
+- **Details**: Empty `accounts` module - no login/logout implementation
+- **Action Required**:
+  - Implement JWT authentication guards on all endpoints
+  - Add role-based access control (RBAC)
+  - Create permission decorators for resource-level access
+
+#### 2. Zero Test Coverage
+- **Issue**: No test files exist for the entire codebase
+- **Impact**:
+  - Backend: 0 tests for 131 services
+  - Frontend: 0 tests for 456 components
+- **Action Required**:
+  - Create test suites for all backend services
+  - Add component tests for frontend
+  - Target minimum 80% code coverage
+  - Add E2E tests for critical workflows
+
+#### 3. N+1 Query Vulnerabilities
+- **Issue**: 1,225 database queries with only 2 caching instances
+- **Impact**: Severe performance degradation under load
+- **Action Required**:
+  - Audit all queries for N+1 patterns
+  - Implement `leftJoinAndSelect` for relationships
+  - Add Redis caching layer for frequently accessed data
+
+#### 4. XSS Vulnerabilities
+- **Files Affected**:
+  - `CommentModal.tsx` - `dangerouslySetInnerHTML`
+  - `DragDropUpload.tsx` - `innerHTML` assignment
+  - `profit-loss/page.tsx` - `innerHTML` manipulation
+- **Action Required**:
+  - Replace with safe React rendering
+  - Use DOMPurify for user-generated content
+
+---
+
+### High Priority
+
+#### 5. Database Migration Structure
+- **Issue**: Single migration file for 109 entities
+- **Impact**: Impossible to rollback individual features
+- **Action Required**:
+  - Break into 20-30 feature-specific migrations
+  - Create migration for each module
+  - Add rollback testing
+
+#### 6. Missing Database Indexes
+- **Issue**: Only IT-Admin entities have indexes (9 total)
+- **Missing Indexes**:
+  - Sales: `customerId, orderId, createdDate`
+  - Inventory: `itemId, warehouseId, quantity`
+  - Production: `itemId, workCenterId, status`
+  - Procurement: `vendorId, purchaseOrderNumber`
+  - Logistics: `shipmentId, vehicleId, deliveryDate`
+- **Action Required**: Add `@Index()` decorators to 100+ entity fields
+
+#### 7. Mock Data Not Replaced
+- **Issue**:
+  - 101 mock data imports in frontend
+  - 37 backend services using in-memory mock data
+- **Impact**: Data lost on server restart, no audit trail
+- **Action Required**:
+  - Connect frontend to real backend APIs
+  - Implement database persistence for all services
+
+#### 8. Missing CI/CD Pipeline
+- **Issue**: No automation for testing, building, or deployment
+- **Action Required**:
+  - Create GitHub Actions workflows
+  - Add test automation on PR
+  - Configure deployment pipelines
+  - Add code quality gates
+
+#### 9. Console.log Statements in Production Code
+- **Backend**: 3 instances (main.ts, interactions.service.ts)
+- **Frontend**: 20+ instances across multiple components
+- **Action Required**:
+  - Remove all console.log statements
+  - Use Winston (backend) or error tracking service (frontend)
+
+---
+
+### Medium Priority
+
+#### 10. Accessibility (A11Y)
+- **Issue**: 0 ARIA attributes in 456 components
+- **Missing**:
+  - No semantic HTML (proper heading hierarchy)
+  - No ARIA landmarks or labels
+  - No keyboard navigation support
+  - No alt text for images
+- **Action Required**:
+  - Add ARIA attributes to interactive elements
+  - Implement keyboard navigation
+  - Add screen reader testing
+
+#### 11. Frontend Performance Optimization
+- **Issue**: Only 27% of components use useCallback/useMemo
+- **Impact**: 333 components with unnecessary re-renders
+- **Action Required**:
+  - Add useCallback for event handlers
+  - Add useMemo for derived data
+  - Use React.memo for pure components
+
+#### 12. Incomplete Error Handling
+- **Issue**:
+  - Only 3 error boundaries for 1,273 pages
+  - Only 52 try-catch blocks in frontend
+- **Action Required**:
+  - Add error boundary to each major module
+  - Implement global error interceptor
+  - Add user-friendly error messages
+
+#### 13. Missing Code Quality Tools
+- **Issue**: No ESLint/Prettier configuration, no pre-commit hooks
+- **Note**: 357 TODO/FIXME comments in frontend
+- **Action Required**:
+  - Configure ESLint and Prettier
+  - Set up Husky for pre-commit hooks
+  - Resolve or create issues for all TODOs
+
+#### 14. Form Validation Gaps
+- **Issue**: 12,117 form/input references without consistent validation
+- **Action Required**:
+  - Implement Zod/Joi schema validation
+  - Add server-side validation
+  - Show inline validation errors
+
+#### 15. Environment Configuration
+- **Issue**: Only 15 environment variable usages in backend
+- **Missing**: Feature flags, rate limiting, CORS whitelist
+- **Risk**: `synchronize: true` in database config
+- **Action Required**:
+  - Expand environment variable usage
+  - Create centralized config service
+  - Disable database synchronization
+
+---
+
+### Low Priority
+
+#### 16. Documentation Enhancements
+- **Current State**: 1,584 Swagger decorators (good coverage)
+- **Missing**:
+  - Example request/response payloads
+  - Architecture Decision Records (ADRs)
+  - Deployment runbook
+  - Database schema documentation
+- **Action Required**: Add examples, ADRs, deployment guide
+
+---
+
+### Improvement Metrics Summary
+
+| Area | Current | Target |
+|------|---------|--------|
+| Test Coverage | 0% | 80%+ |
+| Protected Endpoints | 0/491 | 491/491 |
+| Database Indexes | 9 | 100+ |
+| Error Boundaries | 3 | 18+ (per module) |
+| ARIA Attributes | 0 | All interactive elements |
+| CI/CD Pipelines | 0 | 3+ (test, build, deploy) |
+| Caching Implementation | 2 | 50+ queries |
+
+---
+
+### Recommended Implementation Phases
+
+**Phase 1: Security & Testing (Weeks 1-4)**
+- Implement authentication/authorization
+- Add API guards to all modification endpoints
+- Create basic test suite (20% coverage)
+- Fix XSS vulnerabilities
+
+**Phase 2: Performance (Weeks 5-8)**
+- Fix N+1 queries in top services
+- Add database indexes
+- Implement Redis caching layer
+- Optimize React components
+
+**Phase 3: Quality & DevOps (Weeks 9-12)**
+- Set up CI/CD pipeline
+- Configure linters/formatters
+- Restructure database migrations
+- Implement error monitoring
+
+**Phase 4: Accessibility & Documentation (Weeks 13-16)**
+- Add ARIA attributes to components
+- Implement keyboard navigation
+- Complete API documentation
+- Create architecture documentation
+
+---
+
 ## Deployment
 
 The project supports multiple deployment options:
