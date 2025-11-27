@@ -36,15 +36,6 @@ export class Project {
     @Column('jsonb', { nullable: true })
     metadata: any;
 
-    @OneToMany(() => ProjectPhase, phase => phase.project)
-    phases: ProjectPhase[];
-
-    @OneToMany(() => WorkflowDocument, document => document.project)
-    documents: WorkflowDocument[];
-
-    @OneToMany(() => QualityGate, gate => gate.project)
-    qualityGates: QualityGate[];
-
     @CreateDateColumn()
     createdAt: Date;
 

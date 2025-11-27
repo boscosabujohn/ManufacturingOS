@@ -11,7 +11,6 @@ import { Defect } from './defect.entity';
 
 @Entity('quality_gates')
 @Index(['projectId', 'phase'])
-@Index(['status'])
 export class QualityGate {
     @PrimaryGeneratedColumn('uuid')
     id: string;

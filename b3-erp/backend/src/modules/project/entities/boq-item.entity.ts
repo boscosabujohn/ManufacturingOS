@@ -7,9 +7,6 @@ export class BOQItem {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
-    @Column()
-    boqId: string;
-
     @ManyToOne(() => BOQ, boq => boq.items, { onDelete: 'CASCADE' })
     @JoinColumn({ name: 'boqId' })
     boq: BOQ;

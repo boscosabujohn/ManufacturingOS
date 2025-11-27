@@ -10,11 +10,13 @@ export const AppDataSource = new DataSource({
     username: process.env.DB_USERNAME || 'postgres',
     password: process.env.DB_PASSWORD,
     database: process.env.DB_DATABASE || 'b3erp',
+    schema: process.env.DB_SCHEMA || 'kreupai_factory_os',
     ssl: process.env.DB_SSL === 'true' ? {
         rejectUnauthorized: false,
     } : undefined,
     entities: [__dirname + '/**/*.entity{.ts,.js}'],
     migrations: [__dirname + '/migrations/*{.ts,.js}'],
-    synchronize: false,
+    synchronize: process.env.NODE_ENV !== 'production', // Auto-create tables in dev
     logging: process.env.DB_LOGGING === 'true',
 });
+
