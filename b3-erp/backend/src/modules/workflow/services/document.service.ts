@@ -1,9 +1,9 @@
 
-import { Injectable, Logger, NotFoundException } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { WorkflowDocument } from '../entities/workflow-document.entity';
-import { v4 as uuidv4 } from 'uuid';
+import { Injectable, Logger, NotFoundException} from '@nestjs/common';
+import { InjectRepository} from '@nestjs/typeorm';
+import { Repository} from 'typeorm';
+import { WorkflowDocument} from '../entities/workflow-document.entity';
+import { v4 as uuidv4} from 'uuid';
 
 @Injectable()
 export class DocumentService {
@@ -12,7 +12,7 @@ export class DocumentService {
     constructor(
         @InjectRepository(WorkflowDocument)
         private documentRepository: Repository<WorkflowDocument>,
-    ) { }
+    ) {}
 
     /**
      * Upload a new document
@@ -38,10 +38,10 @@ export class DocumentService {
             status: 'draft',
             uploadedBy: userId,
             metadata,
-        });
+       });
 
         return this.documentRepository.save(document);
-    }
+   }
 
     /**
      * Create a new version of an existing document
@@ -52,10 +52,10 @@ export class DocumentService {
         userId: string,
         changeDescription: string,
     ): Promise<WorkflowDocument> {
-        const existingDoc = await this.documentRepository.findOne({ where: { id: documentId } });
+        const existingDoc = await this.documentRepository.findOne({ where: { id: documentId}});
         if (!existingDoc) {
             throw new NotFoundException(`Document ${documentId} not found`);
-        }
+       }
 
         // Mock S3 upload
         const fileUrl = await this.mockS3Upload(file);
@@ -80,22 +80,22 @@ export class DocumentService {
                 ...existingDoc.metadata,
                 previousVersionId: existingDoc.id,
                 changeDescription,
-            },
-        });
+           },
+       });
 
         return this.documentRepository.save(newDoc);
-    }
+   }
 
     /**
      * Get document by ID
      */
     async getDocument(id: string): Promise<WorkflowDocument> {
-        const doc = await this.documentRepository.findOne({ where: { id } });
+        const doc = await this.documentRepository.findOne({ where: { id}});
         if (!doc) {
             throw new NotFoundException(`Document ${id} not found`);
-        }
+       }
         return doc;
-    }
+   }
 
     /**
      * Get all versions of a document
@@ -104,26 +104,26 @@ export class DocumentService {
      */
     async getDocumentVersions(projectId: string, documentType: string, fileName: string): Promise<WorkflowDocument[]> {
         return this.documentRepository.find({
-            where: { projectId, documentType, fileName },
-            order: { version: 'DESC' },
-        });
-    }
+            where: { projectId, documentType, fileName},
+            order: { version: 'DESC'},
+       });
+   }
 
     /**
      * Check if a document of a specific type exists for a project
      */
     async checkDocumentExists(projectId: string, documentType: string): Promise<boolean> {
         const count = await this.documentRepository.count({
-            where: { projectId, documentType },
-        });
+            where: { projectId, documentType},
+       });
         return count > 0;
-    }
+   }
 
     private async mockS3Upload(file: any): Promise<string> {
         // Simulate upload delay
         await new Promise((resolve) => setTimeout(resolve, 500));
         return `https://s3.amazonaws.com/bucket/${uuidv4()}-${file.originalname}`;
-    }
+   }
 
     private incrementVersion(version: string): string {
         const parts = version.split('.');
@@ -131,9 +131,9 @@ export class DocumentService {
             const major = parseInt(parts[0], 10);
             const minor = parseInt(parts[1], 10);
             return `${major}.${minor + 1}`;
-        }
+       }
         return version + '.1';
-    }
+   }
 
     /**
      * Compare two versions of a document
@@ -144,12 +144,12 @@ export class DocumentService {
         const doc2 = await this.getDocument(docId2);
 
         return {
-            doc1: { version: doc1.version, fileName: doc1.fileName, size: doc1.fileSize },
-            doc2: { version: doc2.version, fileName: doc2.fileName, size: doc2.fileSize },
+            doc1: { version: doc1.version, fileName: doc1.fileName, size: doc1.fileSize},
+            doc2: { version: doc2.version, fileName: doc2.fileName, size: doc2.fileSize},
             diff: 'Binary comparison not implemented in mock',
             metadataDiff: this.getMetadataDiff(doc1.metadata, doc2.metadata),
-        };
-    }
+       };
+   }
 
     private getMetadataDiff(meta1: any, meta2: any): any {
         // Simple key-value diff
@@ -158,11 +158,11 @@ export class DocumentService {
 
         keys.forEach(key => {
             if (meta1?.[key] !== meta2?.[key]) {
-                diff[key] = { from: meta1?.[key], to: meta2?.[key] };
-            }
-        });
+                diff[key] = { from: meta1?.[key], to: meta2?.[key]};
+           }
+       });
         return diff;
-    }
+   }
 
     /**
      * Submit a document for parallel approval
@@ -171,7 +171,7 @@ export class DocumentService {
         const document = await this.getDocument(documentId);
         if (!document) {
             throw new NotFoundException(`Document with ID ${documentId} not found.`);
-        }
+       }
 
         // Update document status
         document.status = 'pending_approval';
@@ -188,7 +188,7 @@ export class DocumentService {
             message: `Document ${documentId} submitted for approval.`,
             approvalProcessId: approvalProcess.id,
             documentStatus: document.status,
-        };
-    }
+       };
+   }
 }
 ```
