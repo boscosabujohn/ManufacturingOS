@@ -1,3 +1,5 @@
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany, ManyToOne, JoinColumn } from 'typeorm';
+
 export enum WarrantyStatus {
   ACTIVE = 'active',
   EXPIRED = 'expired',
@@ -169,11 +171,11 @@ export class WarrantyClaim {
 
   // Labor
   laborHours?: number;
-  laborCost?: number;
+  @Column({ type: 'decimal', precision: 15, scale: 2, default: 0 })
+  laborCost: number;
 
   // Costs
   partsCost: number;
-  laborCost: number;
   totalCost: number;
   customerCharge: number; // if partial coverage
   companyBearing: number;

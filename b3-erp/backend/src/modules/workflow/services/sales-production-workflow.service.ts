@@ -10,6 +10,7 @@ import {
 } from '../events/event-types';
 import { EventBusService } from './event-bus.service';
 import { NotificationService } from './notification.service';
+import { ProjectService } from '../../project/services/project.service';
 
 @Injectable()
 export class SalesProductionWorkflowService {
@@ -19,7 +20,8 @@ export class SalesProductionWorkflowService {
     private readonly eventBus: EventBusService,
     private readonly notificationService: NotificationService,
     @InjectQueue('workflow') private readonly workflowQueue: Queue,
-  ) {}
+    private readonly projectService: ProjectService,
+  ) { }
 
   /**
    * When an RFP is approved, create a sales order and notify relevant teams
@@ -70,6 +72,22 @@ export class SalesProductionWorkflowService {
     this.logger.log(`Handling order confirmed: ${payload.orderNumber}`);
 
     try {
+      // Create Project for the confirmed order
+      const project = await this.projectService.createProject({
+        name: `Project for Order ${payload.orderNumber}`,
+        clientName: payload.customerName,
+        salesOrderId: payload.orderId,
+        managerId: payload.userId, // Default to user who confirmed order, or assign later
+        startDate: new Date(),
+        endDate: payload.deliveryDate ? new Date(payload.deliveryDate) : undefined,
+        status: 'active',
+        metadata: {
+          orderNumber: payload.orderNumber,
+          priority: payload.priority,
+        }
+      });
+      this.logger.log(`Project created: ${project.id} for Order: ${payload.orderNumber}`);
+
       // Queue job to create work orders from sales order
       await this.workflowQueue.add('create-work-orders-from-order', {
         orderId: payload.orderId,
@@ -80,6 +98,7 @@ export class SalesProductionWorkflowService {
         deliveryDate: payload.deliveryDate,
         priority: payload.priority || 'medium',
         userId: payload.userId,
+        projectId: project.id, // Pass project ID to work orders
       });
 
       // Queue job to check material availability
@@ -89,14 +108,15 @@ export class SalesProductionWorkflowService {
         items: payload.items,
         requiredDate: payload.deliveryDate,
         userId: payload.userId,
+        projectId: project.id,
       });
 
       // Notify production team
       await this.notificationService.notifyTeam('production', {
         title: 'New Sales Order Confirmed',
-        message: `Order ${payload.orderNumber} confirmed for ${payload.customerName}. Work orders will be created.`,
+        message: `Order ${payload.orderNumber} confirmed for ${payload.customerName}. Project ${project.name} created.`,
         priority: payload.priority === 'urgent' ? 'high' : 'normal',
-        data: { orderId: payload.orderId, orderNumber: payload.orderNumber },
+        data: { orderId: payload.orderId, orderNumber: payload.orderNumber, projectId: project.id },
       });
 
       // Notify warehouse team to prepare materials
@@ -104,7 +124,7 @@ export class SalesProductionWorkflowService {
         title: 'Material Preparation Required',
         message: `Prepare materials for order ${payload.orderNumber}. Delivery date: ${payload.deliveryDate}`,
         priority: 'normal',
-        data: { orderId: payload.orderId },
+        data: { orderId: payload.orderId, projectId: project.id },
       });
     } catch (error) {
       this.logger.error(`Failed to handle order confirmed: ${error.message}`, error.stack);

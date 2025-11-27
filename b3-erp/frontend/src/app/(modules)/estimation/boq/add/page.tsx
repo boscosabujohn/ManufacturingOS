@@ -168,15 +168,40 @@ export default function AddBOQPage() {
     router.push('/estimation/boq');
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!validateForm()) {
       alert('Please fix the errors before submitting');
       return;
     }
 
-    console.log('Submitting BOQ for Review:', formData);
-    alert('BOQ submitted for review successfully!');
-    router.push('/estimation/boq');
+    try {
+      const response = await fetch('http://localhost:3000/estimation/boq', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          projectName: formData.projectName,
+          clientName: formData.clientName,
+          projectLocation: formData.projectLocation,
+          projectDuration: formData.projectDuration,
+          currency: formData.currency,
+          notes: formData.notes,
+          items: formData.items,
+        }),
+      });
+
+      if (response.ok) {
+        alert('BOQ submitted for review successfully!');
+        router.push('/estimation/boq');
+      } else {
+        const error = await response.json();
+        alert(`Failed to submit BOQ: ${error.message || 'Unknown error'}`);
+      }
+    } catch (error) {
+      console.error('Error submitting BOQ:', error);
+      alert('Failed to submit BOQ. Please try again.');
+    }
   };
 
   const handleCancel = () => {
@@ -234,9 +259,8 @@ export default function AddBOQPage() {
                   type="text"
                   value={formData.projectName}
                   onChange={(e) => updateFormData('projectName', e.target.value)}
-                  className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                    errors.projectName ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.projectName ? 'border-red-500' : 'border-gray-300'
+                    }`}
                   placeholder="Manufacturing Plant Expansion"
                 />
                 {errors.projectName && (
@@ -252,9 +276,8 @@ export default function AddBOQPage() {
                   type="text"
                   value={formData.clientName}
                   onChange={(e) => updateFormData('clientName', e.target.value)}
-                  className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                    errors.clientName ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.clientName ? 'border-red-500' : 'border-gray-300'
+                    }`}
                   placeholder="Tata Steel Ltd."
                 />
                 {errors.clientName && (
@@ -365,9 +388,8 @@ export default function AddBOQPage() {
                           type="text"
                           value={item.description}
                           onChange={(e) => updateItem(index, 'description', e.target.value)}
-                          className={`w-full min-w-[200px] px-2 py-1 text-sm border rounded focus:outline-none focus:ring-1 focus:ring-blue-500 ${
-                            errors[`item_${index}_description`] ? 'border-red-500' : 'border-gray-300'
-                          }`}
+                          className={`w-full min-w-[200px] px-2 py-1 text-sm border rounded focus:outline-none focus:ring-1 focus:ring-blue-500 ${errors[`item_${index}_description`] ? 'border-red-500' : 'border-gray-300'
+                            }`}
                           placeholder="Enter description"
                         />
                       </td>
@@ -407,9 +429,8 @@ export default function AddBOQPage() {
                           type="number"
                           value={item.quantity}
                           onChange={(e) => updateItem(index, 'quantity', parseFloat(e.target.value) || 0)}
-                          className={`w-24 px-2 py-1 text-sm text-right border rounded focus:outline-none focus:ring-1 focus:ring-blue-500 ${
-                            errors[`item_${index}_quantity`] ? 'border-red-500' : 'border-gray-300'
-                          }`}
+                          className={`w-24 px-2 py-1 text-sm text-right border rounded focus:outline-none focus:ring-1 focus:ring-blue-500 ${errors[`item_${index}_quantity`] ? 'border-red-500' : 'border-gray-300'
+                            }`}
                           min="0"
                           step="0.01"
                         />
@@ -419,9 +440,8 @@ export default function AddBOQPage() {
                           type="number"
                           value={item.unitRate}
                           onChange={(e) => updateItem(index, 'unitRate', parseFloat(e.target.value) || 0)}
-                          className={`w-32 px-2 py-1 text-sm text-right border rounded focus:outline-none focus:ring-1 focus:ring-blue-500 ${
-                            errors[`item_${index}_unitRate`] ? 'border-red-500' : 'border-gray-300'
-                          }`}
+                          className={`w-32 px-2 py-1 text-sm text-right border rounded focus:outline-none focus:ring-1 focus:ring-blue-500 ${errors[`item_${index}_unitRate`] ? 'border-red-500' : 'border-gray-300'
+                            }`}
                           min="0"
                           step="0.01"
                         />
@@ -436,14 +456,14 @@ export default function AddBOQPage() {
                           <button
                             onClick={() => duplicateItem(index)}
                             className="p-1 text-blue-600 hover:bg-blue-50 rounded transition-colors"
-                           
+
                           >
                             <Copy className="h-4 w-4" />
                           </button>
                           <button
                             onClick={() => removeItem(index)}
                             className="p-1 text-red-600 hover:bg-red-50 rounded transition-colors"
-                           
+
                           >
                             <Trash2 className="h-4 w-4" />
                           </button>

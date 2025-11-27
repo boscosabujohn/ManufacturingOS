@@ -44,6 +44,7 @@ interface PurchaseOrder {
   requisitionNumber?: string
   vendorName: string
   vendorCode: string
+  category: 'Accessories' | 'Fittings' | 'Raw Materials' | 'Equipment' | 'Consumables' | 'Other'
   status: 'draft' | 'pending_approval' | 'approved' | 'sent' | 'acknowledged' | 'partially_delivered' | 'delivered' | 'closed' | 'cancelled'
   priority: 'low' | 'medium' | 'high' | 'urgent'
   totalAmount: number
@@ -67,6 +68,7 @@ export default function PurchaseOrdersPage() {
   const [selectedStatus, setSelectedStatus] = useState('all')
   const [selectedPriority, setSelectedPriority] = useState('all')
   const [selectedVendor, setSelectedVendor] = useState('all')
+  const [selectedCategory, setSelectedCategory] = useState('all')
   const [sortBy, setSortBy] = useState<'date' | 'amount' | 'vendor' | 'status'>('date')
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc')
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('list')
@@ -83,8 +85,9 @@ export default function PurchaseOrdersPage() {
         id: '1',
         poNumber: 'PO-2024-001',
         requisitionNumber: 'REQ-2024-045',
-        vendorName: 'Tech Supplies Co.',
+        vendorName: 'Kitchen Accessories Supplier',
         vendorCode: 'VEND-001',
+        category: 'Accessories',
         status: 'approved',
         priority: 'high',
         totalAmount: 125000,
@@ -98,13 +101,14 @@ export default function PurchaseOrdersPage() {
         paymentTerms: 'Net 30',
         deliveryStatus: 45,
         invoiceStatus: 'partially_invoiced',
-        tags: ['IT Equipment', 'Q1 Budget']
+        tags: ['Accessories', 'Handles', 'Hinges']
       },
       {
         id: '2',
         poNumber: 'PO-2024-002',
-        vendorName: 'Office Furniture Ltd',
+        vendorName: 'Plumbing Fittings Inc',
         vendorCode: 'VEND-002',
+        category: 'Fittings',
         status: 'sent',
         priority: 'medium',
         totalAmount: 45000,
@@ -117,14 +121,15 @@ export default function PurchaseOrdersPage() {
         paymentTerms: 'Net 45',
         deliveryStatus: 0,
         invoiceStatus: 'not_invoiced',
-        tags: ['Furniture', 'Office Setup']
+        tags: ['Fittings', 'Valves', 'Pipes']
       },
       {
         id: '3',
         poNumber: 'PO-2024-003',
         requisitionNumber: 'REQ-2024-048',
-        vendorName: 'Industrial Parts Inc',
+        vendorName: 'Stainless Steel Suppliers',
         vendorCode: 'VEND-003',
+        category: 'Raw Materials',
         status: 'partially_delivered',
         priority: 'urgent',
         totalAmount: 285000,
@@ -138,13 +143,14 @@ export default function PurchaseOrdersPage() {
         paymentTerms: 'Immediate',
         deliveryStatus: 75,
         invoiceStatus: 'partially_invoiced',
-        tags: ['Manufacturing', 'Urgent']
+        tags: ['SS304', 'Raw Materials']
       },
       {
         id: '4',
         poNumber: 'PO-2024-004',
         vendorName: 'Safety Equipment Pro',
         vendorCode: 'VEND-004',
+        category: 'Equipment',
         status: 'pending_approval',
         priority: 'low',
         totalAmount: 15000,
@@ -164,6 +170,7 @@ export default function PurchaseOrdersPage() {
         poNumber: 'PO-2024-005',
         vendorName: 'Chemical Supplies Global',
         vendorCode: 'VEND-005',
+        category: 'Consumables',
         status: 'delivered',
         priority: 'medium',
         totalAmount: 92000,
@@ -182,8 +189,9 @@ export default function PurchaseOrdersPage() {
       {
         id: '6',
         poNumber: 'PO-2024-006',
-        vendorName: 'Tech Supplies Co.',
-        vendorCode: 'VEND-001',
+        vendorName: 'HVAC Accessories Ltd',
+        vendorCode: 'VEND-006',
+        category: 'Accessories',
         status: 'draft',
         priority: 'medium',
         totalAmount: 67500,
@@ -196,7 +204,7 @@ export default function PurchaseOrdersPage() {
         paymentTerms: 'Net 30',
         deliveryStatus: 0,
         invoiceStatus: 'not_invoiced',
-        tags: ['IT Equipment']
+        tags: ['Accessories', 'HVAC Parts']
       }
     ]
 
@@ -234,6 +242,11 @@ export default function PurchaseOrdersPage() {
     // Vendor filter
     if (selectedVendor !== 'all') {
       filtered = filtered.filter(order => order.vendorCode === selectedVendor)
+    }
+
+    // Category filter
+    if (selectedCategory !== 'all') {
+      filtered = filtered.filter(order => order.category === selectedCategory)
     }
 
     // Date range filter
@@ -280,7 +293,7 @@ export default function PurchaseOrdersPage() {
     })
 
     setFilteredOrders(filtered)
-  }, [purchaseOrders, searchTerm, selectedStatus, selectedPriority, selectedVendor, dateRange, sortBy, sortOrder])
+  }, [purchaseOrders, searchTerm, selectedStatus, selectedPriority, selectedVendor, selectedCategory, dateRange, sortBy, sortOrder])
 
   const getStatusColor = (status: string) => {
     const colors = {
@@ -492,6 +505,20 @@ export default function PurchaseOrdersPage() {
             </select>
 
             <select
+              value={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.target.value)}
+              className="px-3 py-2 bg-gradient-to-r from-purple-50 to-pink-50 border border-purple-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 font-medium text-purple-900"
+            >
+              <option value="all">All Categories</option>
+              <option value="Accessories">🔧 Accessories</option>
+              <option value="Fittings">🔩 Fittings</option>
+              <option value="Raw Materials">📦 Raw Materials</option>
+              <option value="Equipment">⚙️ Equipment</option>
+              <option value="Consumables">🛒 Consumables</option>
+              <option value="Other">📋 Other</option>
+            </select>
+
+            <select
               value={dateRange}
               onChange={(e) => setDateRange(e.target.value as any)}
               className="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -505,9 +532,8 @@ export default function PurchaseOrdersPage() {
 
             <button
               onClick={() => setShowFilters(!showFilters)}
-              className={`px-3 py-2 border rounded-lg flex items-center gap-2 ${
-                showFilters ? 'bg-blue-50 border-blue-300 text-blue-700' : 'border-gray-300 hover:bg-gray-50'
-              }`}
+              className={`px-3 py-2 border rounded-lg flex items-center gap-2 ${showFilters ? 'bg-blue-50 border-blue-300 text-blue-700' : 'border-gray-300 hover:bg-gray-50'
+                }`}
             >
               <Filter className="h-4 w-4" />
               More Filters
@@ -518,17 +544,15 @@ export default function PurchaseOrdersPage() {
           <div className="flex gap-2">
             <button
               onClick={() => setViewMode('list')}
-              className={`p-2 rounded-lg ${
-                viewMode === 'list' ? 'bg-blue-100 text-blue-700' : 'text-gray-500 hover:bg-gray-100'
-              }`}
+              className={`p-2 rounded-lg ${viewMode === 'list' ? 'bg-blue-100 text-blue-700' : 'text-gray-500 hover:bg-gray-100'
+                }`}
             >
               <BarChart3 className="h-5 w-5" />
             </button>
             <button
               onClick={() => setViewMode('grid')}
-              className={`p-2 rounded-lg ${
-                viewMode === 'grid' ? 'bg-blue-100 text-blue-700' : 'text-gray-500 hover:bg-gray-100'
-              }`}
+              className={`p-2 rounded-lg ${viewMode === 'grid' ? 'bg-blue-100 text-blue-700' : 'text-gray-500 hover:bg-gray-100'
+                }`}
             >
               <Package className="h-5 w-5" />
             </button>

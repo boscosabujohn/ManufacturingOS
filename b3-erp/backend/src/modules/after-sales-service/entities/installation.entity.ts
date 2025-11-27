@@ -132,7 +132,6 @@ export class Installation {
   customerAcceptance: boolean;
   acceptanceDate?: Date;
   customerSignature?: string;
-  customerName?: string;
   customerComments?: string;
 
   // Handover

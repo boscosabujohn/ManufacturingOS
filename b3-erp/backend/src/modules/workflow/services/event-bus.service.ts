@@ -24,7 +24,7 @@ import {
 export class EventBusService {
   private readonly logger = new Logger(EventBusService.name);
 
-  constructor(private readonly eventEmitter: EventEmitter2) {}
+  constructor(private readonly eventEmitter: EventEmitter2) { }
 
   /**
    * Emit a workflow event
@@ -76,6 +76,10 @@ export class EventBusService {
     await this.emit<OrderEventPayload>(WorkflowEventType.ORDER_COMPLETED, payload);
   }
 
+  async emitOrderReadyForShipment(payload: Omit<OrderEventPayload, 'eventId' | 'timestamp'>): Promise<void> {
+    await this.emit<OrderEventPayload>(WorkflowEventType.ORDER_READY_FOR_SHIPMENT, payload);
+  }
+
   // Production Events
   async emitWorkOrderCreated(payload: Omit<WorkOrderEventPayload, 'eventId' | 'timestamp'>): Promise<void> {
     await this.emit<WorkOrderEventPayload>(WorkflowEventType.WORK_ORDER_CREATED, payload);
@@ -118,6 +122,34 @@ export class EventBusService {
     await this.emit<StockEventPayload>(WorkflowEventType.STOCK_OUT, payload);
   }
 
+  async emitInventoryUpdated(payload: Omit<StockEventPayload, 'eventId' | 'timestamp'>): Promise<void> {
+    await this.emit<StockEventPayload>(WorkflowEventType.INVENTORY_UPDATED, payload);
+  }
+
+  async emitInventoryReleased(payload: Omit<StockEventPayload, 'eventId' | 'timestamp'>): Promise<void> {
+    await this.emit<StockEventPayload>(WorkflowEventType.INVENTORY_RELEASED, payload);
+  }
+
+  async emitInventoryQuarantined(payload: Omit<StockEventPayload, 'eventId' | 'timestamp'>): Promise<void> {
+    await this.emit<StockEventPayload>(WorkflowEventType.INVENTORY_QUARANTINED, payload);
+  }
+
+  async emitMaterialShortage(payload: Omit<StockEventPayload, 'eventId' | 'timestamp'>): Promise<void> {
+    await this.emit<StockEventPayload>(WorkflowEventType.MATERIAL_SHORTAGE, payload);
+  }
+
+  async emitReservationShortage(payload: Omit<StockReservationPayload, 'eventId' | 'timestamp'>): Promise<void> {
+    await this.emit<StockReservationPayload>(WorkflowEventType.RESERVATION_SHORTAGE, payload);
+  }
+
+  async emitMaterialsIssued(payload: Omit<StockEventPayload, 'eventId' | 'timestamp'>): Promise<void> {
+    await this.emit<StockEventPayload>(WorkflowEventType.MATERIALS_ISSUED, payload);
+  }
+
+  async emitFinishedGoodsReceived(payload: Omit<StockEventPayload, 'eventId' | 'timestamp'>): Promise<void> {
+    await this.emit<StockEventPayload>(WorkflowEventType.FINISHED_GOODS_RECEIVED, payload);
+  }
+
   // Procurement Events
   async emitPurchaseOrderCreated(payload: Omit<PurchaseOrderEventPayload, 'eventId' | 'timestamp'>): Promise<void> {
     await this.emit<PurchaseOrderEventPayload>(WorkflowEventType.PURCHASE_ORDER_CREATED, payload);
@@ -138,6 +170,14 @@ export class EventBusService {
 
   async emitInspectionFailed(payload: Omit<InspectionEventPayload, 'eventId' | 'timestamp'>): Promise<void> {
     await this.emit<InspectionEventPayload>(WorkflowEventType.INSPECTION_FAILED, payload);
+  }
+
+  async emitNCRCreatedWorkflow(payload: Omit<InspectionEventPayload, 'eventId' | 'timestamp'>): Promise<void> {
+    await this.emit<InspectionEventPayload>(WorkflowEventType.NCR_CREATED_WORKFLOW, payload);
+  }
+
+  async emitInspectionRequiredWorkflow(payload: Omit<InspectionEventPayload, 'eventId' | 'timestamp'>): Promise<void> {
+    await this.emit<InspectionEventPayload>(WorkflowEventType.INSPECTION_REQUIRED_WORKFLOW, payload);
   }
 
   // Finance Events

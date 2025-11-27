@@ -21,6 +21,8 @@ import { SupportModule } from './modules/support/support.module';
 import { ItAdminModule } from './modules/it-admin/it-admin.module';
 import { AfterSalesServiceModule } from './modules/after-sales-service/after-sales-service.module';
 import { QualityModule } from './modules/quality/quality.module';
+import { ProjectManagementModule } from './modules/project-management/project-management.module';
+
 
 @Module({
   imports: [
@@ -77,6 +79,7 @@ import { QualityModule } from './modules/quality/quality.module';
     LogisticsModule, // Shipment, Fleet, Route management
     SupportModule, // Customer support
     ItAdminModule, // User, Role, Permission, Audit management
+    ProjectManagementModule, // Project tracking, documents, handover
   ],
 })
-export class AppModule {}
+export class AppModule { }

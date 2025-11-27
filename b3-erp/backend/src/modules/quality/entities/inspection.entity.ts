@@ -30,7 +30,7 @@ export enum InspectionStatus {
   CANCELLED = 'Cancelled',
 }
 
-export enum InspectionResult {
+export enum InspectionResultEnum {
   PASSED = 'Passed',
   FAILED = 'Failed',
   CONDITIONALLY_ACCEPTED = 'Conditionally Accepted',
@@ -66,8 +66,8 @@ export class Inspection {
   @Column({ type: 'enum', enum: InspectionStatus, default: InspectionStatus.DRAFT })
   status: InspectionStatus;
 
-  @Column({ type: 'enum', enum: InspectionResult, default: InspectionResult.PENDING })
-  result: InspectionResult;
+  @Column({ type: 'enum', enum: InspectionResultEnum, default: InspectionResultEnum.PENDING })
+  result: InspectionResultEnum;
 
   @Column({ type: 'enum', enum: InspectionPriority, default: InspectionPriority.NORMAL })
   priority: InspectionPriority;

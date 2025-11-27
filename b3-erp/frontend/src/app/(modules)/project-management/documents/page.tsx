@@ -347,6 +347,52 @@ export default function DocumentsPage() {
       description: 'Initial leakage test report - superseded by rectification report',
       relatedDocuments: [],
     },
+    {
+      id: 'DOC-013',
+      documentNumber: 'D-2025-013',
+      projectId: 'PRJ-2025-001',
+      projectName: 'Taj Hotels - Commercial Kitchen Setup',
+      documentName: 'Kitchen Appliance Specifications - Complete Set',
+      documentType: 'Specification',
+      category: 'Technical',
+      version: '1.0',
+      uploadDate: '2025-01-10',
+      uploadedBy: 'Sales Team',
+      fileSize: '4.8 MB',
+      fileFormat: 'PDF',
+      status: 'Approved',
+      accessLevel: 'Internal',
+      reviewedBy: 'Technical Team',
+      approvedBy: 'Project Manager',
+      approvalDate: '2025-01-12',
+      expiryDate: '',
+      tags: ['Appliances', 'Specifications', 'Phase 1', 'Handover'],
+      description: 'Complete appliance specifications including ranges, ovens, refrigeration, dishwashers, and food prep equipment. Part of Phase 1 handover package.',
+      relatedDocuments: ['D-2025-001', 'D-2025-002'],
+    },
+    {
+      id: 'DOC-014',
+      documentNumber: 'D-2025-014',
+      projectId: 'PRJ-2025-002',
+      projectName: 'BigBasket Cold Storage Facility',
+      documentName: 'Refrigeration Equipment Specifications',
+      documentType: 'Specification',
+      category: 'Technical',
+      version: '1.0',
+      uploadDate: '2025-01-18',
+      uploadedBy: 'Priya Sharma',
+      fileSize: '3.2 MB',
+      fileFormat: 'PDF',
+      status: 'Approved',
+      accessLevel: 'Internal',
+      reviewedBy: 'Cold Chain Specialist',
+      approvedBy: 'Project Manager',
+      approvalDate: '2025-01-19',
+      expiryDate: '',
+      tags: ['Refrigeration', 'Specifications', 'Cold Storage', 'Appliances'],
+      description: 'Detailed specifications for industrial refrigeration units, compressors, and temperature monitoring systems.',
+      relatedDocuments: [],
+    },
   ];
 
   const stats = {
@@ -615,294 +661,398 @@ export default function DocumentsPage() {
         </div>
 
         {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm text-gray-600">Total Documents</p>
-              <p className="text-2xl font-bold text-gray-900">{stats.totalDocuments}</p>
-            </div>
-            <FileText className="h-8 w-8 text-blue-600" />
-          </div>
-        </div>
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm text-gray-600">Approved</p>
-              <p className="text-2xl font-bold text-green-600">{stats.approved}</p>
-            </div>
-            <FileText className="h-8 w-8 text-green-600" />
-          </div>
-        </div>
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm text-gray-600">Pending Review</p>
-              <p className="text-2xl font-bold text-blue-600">{stats.pending}</p>
-            </div>
-            <FileText className="h-8 w-8 text-blue-600" />
-          </div>
-        </div>
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm text-gray-600">Draft</p>
-              <p className="text-2xl font-bold text-yellow-600">{stats.draft}</p>
-            </div>
-            <FileText className="h-8 w-8 text-yellow-600" />
-          </div>
-        </div>
-        <div className="bg-white p-4 rounded-lg border border-gray-200">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm text-gray-600">Total Size</p>
-              <p className="text-2xl font-bold text-purple-600">{stats.totalSize} MB</p>
-            </div>
-            <Folder className="h-8 w-8 text-purple-600" />
-          </div>
-        </div>
-      </div>
-
-      {/* Filters */}
-      <div className="bg-white p-4 rounded-lg border border-gray-200">
         <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-          <div className="md:col-span-2">
-            <label className="block text-sm font-medium text-gray-700 mb-1">Search</label>
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-              <input
-                type="text"
-                placeholder="Search documents, tags, projects..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              />
+          <div className="bg-white p-4 rounded-lg border border-gray-200">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm text-gray-600">Total Documents</p>
+                <p className="text-2xl font-bold text-gray-900">{stats.totalDocuments}</p>
+              </div>
+              <FileText className="h-8 w-8 text-blue-600" />
             </div>
           </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Document Type</label>
-            <select
-              value={filterType}
-              onChange={(e) => setFilterType(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            >
-              <option value="all">All Types</option>
-              <option value="Drawing">Drawing</option>
-              <option value="Specification">Specification</option>
-              <option value="Report">Report</option>
-              <option value="Certificate">Certificate</option>
-              <option value="Manual">Manual</option>
-              <option value="Contract">Contract</option>
-              <option value="Invoice">Invoice</option>
-              <option value="Photo">Photo</option>
-              <option value="Other">Other</option>
-            </select>
+          <div className="bg-white p-4 rounded-lg border border-gray-200">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm text-gray-600">Approved</p>
+                <p className="text-2xl font-bold text-green-600">{stats.approved}</p>
+              </div>
+              <FileText className="h-8 w-8 text-green-600" />
+            </div>
           </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
-            <select
-              value={filterStatus}
-              onChange={(e) => setFilterStatus(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            >
-              <option value="all">All Status</option>
-              <option value="Draft">Draft</option>
-              <option value="Under Review">Under Review</option>
-              <option value="Approved">Approved</option>
-              <option value="Superseded">Superseded</option>
-              <option value="Archived">Archived</option>
-            </select>
+          <div className="bg-white p-4 rounded-lg border border-gray-200">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm text-gray-600">Pending Review</p>
+                <p className="text-2xl font-bold text-blue-600">{stats.pending}</p>
+              </div>
+              <FileText className="h-8 w-8 text-blue-600" />
+            </div>
           </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Project</label>
-            <select
-              value={filterProject}
-              onChange={(e) => setFilterProject(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            >
-              <option value="all">All Projects</option>
-              {uniqueProjects.map((project) => (
-                <option key={project} value={project}>
-                  {project}
-                </option>
-              ))}
-            </select>
+          <div className="bg-white p-4 rounded-lg border border-gray-200">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm text-gray-600">Draft</p>
+                <p className="text-2xl font-bold text-yellow-600">{stats.draft}</p>
+              </div>
+              <FileText className="h-8 w-8 text-yellow-600" />
+            </div>
+          </div>
+          <div className="bg-white p-4 rounded-lg border border-gray-200">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm text-gray-600">Total Size</p>
+                <p className="text-2xl font-bold text-purple-600">{stats.totalSize} MB</p>
+              </div>
+              <Folder className="h-8 w-8 text-purple-600" />
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* View Mode Toggle */}
-      <div className="flex justify-end space-x-2">
-        <button
-          onClick={() => setViewMode('list')}
-          className={`px-3 py-1 rounded ${
-            viewMode === 'list' ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-700'
-          }`}
-        >
-          List View
-        </button>
-        <button
-          onClick={() => setViewMode('grid')}
-          className={`px-3 py-1 rounded ${
-            viewMode === 'grid' ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-700'
-          }`}
-        >
-          Grid View
-        </button>
-      </div>
-
-      {/* Documents List View */}
-      {viewMode === 'list' && (
-        <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead className="bg-gray-50 border-b border-gray-200">
-                <tr>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Document
-                  </th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Project
-                  </th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Type / Category
-                  </th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Version / Date
-                  </th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Status
-                  </th>
-                  <th className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Actions
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
-                {paginatedDocuments.map((doc) => (
-                  <tr key={doc.id} className="hover:bg-gray-50">
-                    <td className="px-4 py-4">
-                      <div className="flex items-center space-x-3">
-                        <span className="text-2xl">{getTypeIcon(doc.documentType)}</span>
-                        <div>
-                          <div className="text-sm font-medium text-gray-900">{doc.documentName}</div>
-                          <div className="text-xs text-gray-500">{doc.documentNumber}</div>
-                          <div className="text-xs text-gray-500">{doc.fileSize} • {doc.fileFormat}</div>
-                        </div>
-                      </div>
-                    </td>
-                    <td className="px-4 py-4">
-                      <div className="text-sm text-gray-900">{doc.projectId}</div>
-                      <div className="text-xs text-gray-500">{doc.projectName}</div>
-                    </td>
-                    <td className="px-4 py-4">
-                      <div className="text-sm text-gray-900">{doc.documentType}</div>
-                      <div className="text-xs text-gray-500">{doc.category}</div>
-                    </td>
-                    <td className="px-4 py-4">
-                      <div className="text-sm text-gray-900">v{doc.version}</div>
-                      <div className="text-xs text-gray-500">{doc.uploadDate}</div>
-                      <div className="text-xs text-gray-500">by {doc.uploadedBy}</div>
-                    </td>
-                    <td className="px-4 py-4">
-                      <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusColor(doc.status)}`}>
-                        {doc.status}
-                      </span>
-                      <div className={`text-xs mt-1 ${getAccessLevelColor(doc.accessLevel)}`}>
-                        {doc.accessLevel}
-                      </div>
-                    </td>
-                    <td className="px-4 py-4">
-                      <div className="flex flex-col items-center space-y-2">
-                        {/* First row - 5 buttons */}
-                        <div className="flex items-center space-x-1">
-                          <button
-                            onClick={() => openPreviewModal(doc)}
-                            className="p-1.5 rounded hover:bg-violet-50 text-violet-600 hover:text-violet-800 transition-colors"
-                            title="Preview"
-                          >
-                            <Eye className="h-4 w-4" />
-                          </button>
-                          <button
-                            onClick={() => openDetailsModal(doc)}
-                            className="p-1.5 rounded hover:bg-slate-50 text-slate-600 hover:text-slate-800 transition-colors"
-                            title="View Details"
-                          >
-                            <FileText className="h-4 w-4" />
-                          </button>
-                          <button
-                            onClick={() => openEditModal(doc)}
-                            className="p-1.5 rounded hover:bg-green-50 text-green-600 hover:text-green-800 transition-colors"
-                            title="Edit"
-                          >
-                            <Edit className="h-4 w-4" />
-                          </button>
-                          <button
-                            onClick={() => openShareModal(doc)}
-                            className="p-1.5 rounded hover:bg-purple-50 text-purple-600 hover:text-purple-800 transition-colors"
-                            title="Share"
-                          >
-                            <Share2 className="h-4 w-4" />
-                          </button>
-                          <button
-                            className="p-1.5 rounded hover:bg-blue-50 text-blue-600 hover:text-blue-800 transition-colors"
-                            title="Download"
-                          >
-                            <Download className="h-4 w-4" />
-                          </button>
-                        </div>
-                        {/* Second row - 4 buttons */}
-                        <div className="flex items-center space-x-1">
-                          <button
-                            onClick={() => openMoveModal(doc)}
-                            className="p-1.5 rounded hover:bg-orange-50 text-orange-600 hover:text-orange-800 transition-colors"
-                            title="Move"
-                          >
-                            <FolderInput className="h-4 w-4" />
-                          </button>
-                          <button
-                            onClick={() => openPermissionsModal(doc)}
-                            className="p-1.5 rounded hover:bg-indigo-50 text-indigo-600 hover:text-indigo-800 transition-colors"
-                            title="Permissions"
-                          >
-                            <Lock className="h-4 w-4" />
-                          </button>
-                          <button
-                            onClick={() => openVersionHistoryModal(doc)}
-                            className="p-1.5 rounded hover:bg-yellow-50 text-yellow-600 hover:text-yellow-800 transition-colors"
-                            title="Version History"
-                          >
-                            <Clock className="h-4 w-4" />
-                          </button>
-                          <button
-                            onClick={() => openDeleteModal(doc)}
-                            className="p-1.5 rounded hover:bg-red-50 text-red-600 hover:text-red-800 transition-colors"
-                            title="Delete"
-                          >
-                            <Trash2 className="h-4 w-4" />
-                          </button>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-          {/* Pagination */}
-          <div className="bg-gray-50 px-4 py-3 border-t border-gray-200">
-            <div className="flex items-center justify-between">
-              <div className="text-sm text-gray-700">
-                Showing <span className="font-medium">{startIndex + 1}</span> to{' '}
-                <span className="font-medium">{Math.min(startIndex + itemsPerPage, filteredDocuments.length)}</span> of{' '}
-                <span className="font-medium">{filteredDocuments.length}</span> documents
+        {/* Filters */}
+        <div className="bg-white p-4 rounded-lg border border-gray-200">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+            <div className="md:col-span-2">
+              <label className="block text-sm font-medium text-gray-700 mb-1">Search</label>
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                <input
+                  type="text"
+                  placeholder="Search documents, tags, projects..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
               </div>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Document Type</label>
+              <select
+                value={filterType}
+                onChange={(e) => setFilterType(e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              >
+                <option value="all">All Types</option>
+                <option value="Drawing">Drawing</option>
+                <option value="Specification">Specification</option>
+                <option value="Report">Report</option>
+                <option value="Certificate">Certificate</option>
+                <option value="Manual">Manual</option>
+                <option value="Contract">Contract</option>
+                <option value="Invoice">Invoice</option>
+                <option value="Photo">Photo</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
+              <select
+                value={filterStatus}
+                onChange={(e) => setFilterStatus(e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              >
+                <option value="all">All Status</option>
+                <option value="Draft">Draft</option>
+                <option value="Under Review">Under Review</option>
+                <option value="Approved">Approved</option>
+                <option value="Superseded">Superseded</option>
+                <option value="Archived">Archived</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Project</label>
+              <select
+                value={filterProject}
+                onChange={(e) => setFilterProject(e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              >
+                <option value="all">All Projects</option>
+                {uniqueProjects.map((project) => (
+                  <option key={project} value={project}>
+                    {project}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+        </div>
+
+        {/* View Mode Toggle */}
+        <div className="flex justify-end space-x-2">
+          <button
+            onClick={() => setViewMode('list')}
+            className={`px-3 py-1 rounded ${viewMode === 'list' ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-700'
+              }`}
+          >
+            List View
+          </button>
+          <button
+            onClick={() => setViewMode('grid')}
+            className={`px-3 py-1 rounded ${viewMode === 'grid' ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-700'
+              }`}
+          >
+            Grid View
+          </button>
+        </div>
+
+        {/* Documents List View */}
+        {viewMode === 'list' && (
+          <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead className="bg-gray-50 border-b border-gray-200">
+                  <tr>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Document
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Project
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Type / Category
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Version / Date
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Status
+                    </th>
+                    <th className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Actions
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="bg-white divide-y divide-gray-200">
+                  {paginatedDocuments.map((doc) => (
+                    <tr key={doc.id} className="hover:bg-gray-50">
+                      <td className="px-4 py-4">
+                        <div className="flex items-center space-x-3">
+                          <span className="text-2xl">{getTypeIcon(doc.documentType)}</span>
+                          <div>
+                            <div className="text-sm font-medium text-gray-900">{doc.documentName}</div>
+                            <div className="text-xs text-gray-500">{doc.documentNumber}</div>
+                            <div className="text-xs text-gray-500">{doc.fileSize} • {doc.fileFormat}</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td className="px-4 py-4">
+                        <div className="text-sm text-gray-900">{doc.projectId}</div>
+                        <div className="text-xs text-gray-500">{doc.projectName}</div>
+                      </td>
+                      <td className="px-4 py-4">
+                        <div className="text-sm text-gray-900">{doc.documentType}</div>
+                        <div className="text-xs text-gray-500">{doc.category}</div>
+                      </td>
+                      <td className="px-4 py-4">
+                        <div className="text-sm text-gray-900">v{doc.version}</div>
+                        <div className="text-xs text-gray-500">{doc.uploadDate}</div>
+                        <div className="text-xs text-gray-500">by {doc.uploadedBy}</div>
+                      </td>
+                      <td className="px-4 py-4">
+                        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusColor(doc.status)}`}>
+                          {doc.status}
+                        </span>
+                        <div className={`text-xs mt-1 ${getAccessLevelColor(doc.accessLevel)}`}>
+                          {doc.accessLevel}
+                        </div>
+                      </td>
+                      <td className="px-4 py-4">
+                        <div className="flex flex-col items-center space-y-2">
+                          {/* First row - 5 buttons */}
+                          <div className="flex items-center space-x-1">
+                            <button
+                              onClick={() => openPreviewModal(doc)}
+                              className="p-1.5 rounded hover:bg-violet-50 text-violet-600 hover:text-violet-800 transition-colors"
+                              title="Preview"
+                            >
+                              <Eye className="h-4 w-4" />
+                            </button>
+                            <button
+                              onClick={() => openDetailsModal(doc)}
+                              className="p-1.5 rounded hover:bg-slate-50 text-slate-600 hover:text-slate-800 transition-colors"
+                              title="View Details"
+                            >
+                              <FileText className="h-4 w-4" />
+                            </button>
+                            <button
+                              onClick={() => openEditModal(doc)}
+                              className="p-1.5 rounded hover:bg-green-50 text-green-600 hover:text-green-800 transition-colors"
+                              title="Edit"
+                            >
+                              <Edit className="h-4 w-4" />
+                            </button>
+                            <button
+                              onClick={() => openShareModal(doc)}
+                              className="p-1.5 rounded hover:bg-purple-50 text-purple-600 hover:text-purple-800 transition-colors"
+                              title="Share"
+                            >
+                              <Share2 className="h-4 w-4" />
+                            </button>
+                            <button
+                              className="p-1.5 rounded hover:bg-blue-50 text-blue-600 hover:text-blue-800 transition-colors"
+                              title="Download"
+                            >
+                              <Download className="h-4 w-4" />
+                            </button>
+                          </div>
+                          {/* Second row - 4 buttons */}
+                          <div className="flex items-center space-x-1">
+                            <button
+                              onClick={() => openMoveModal(doc)}
+                              className="p-1.5 rounded hover:bg-orange-50 text-orange-600 hover:text-orange-800 transition-colors"
+                              title="Move"
+                            >
+                              <FolderInput className="h-4 w-4" />
+                            </button>
+                            <button
+                              onClick={() => openPermissionsModal(doc)}
+                              className="p-1.5 rounded hover:bg-indigo-50 text-indigo-600 hover:text-indigo-800 transition-colors"
+                              title="Permissions"
+                            >
+                              <Lock className="h-4 w-4" />
+                            </button>
+                            <button
+                              onClick={() => openVersionHistoryModal(doc)}
+                              className="p-1.5 rounded hover:bg-yellow-50 text-yellow-600 hover:text-yellow-800 transition-colors"
+                              title="Version History"
+                            >
+                              <Clock className="h-4 w-4" />
+                            </button>
+                            <button
+                              onClick={() => openDeleteModal(doc)}
+                              className="p-1.5 rounded hover:bg-red-50 text-red-600 hover:text-red-800 transition-colors"
+                              title="Delete"
+                            >
+                              <Trash2 className="h-4 w-4" />
+                            </button>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Pagination */}
+            <div className="bg-gray-50 px-4 py-3 border-t border-gray-200">
+              <div className="flex items-center justify-between">
+                <div className="text-sm text-gray-700">
+                  Showing <span className="font-medium">{startIndex + 1}</span> to{' '}
+                  <span className="font-medium">{Math.min(startIndex + itemsPerPage, filteredDocuments.length)}</span> of{' '}
+                  <span className="font-medium">{filteredDocuments.length}</span> documents
+                </div>
+                <div className="flex space-x-2">
+                  <button
+                    onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+                    disabled={currentPage === 1}
+                    className="px-3 py-1 border border-gray-300 rounded-md bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    Previous
+                  </button>
+                  {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                    <button
+                      key={page}
+                      onClick={() => setCurrentPage(page)}
+                      className={`px-3 py-1 border rounded-md text-sm font-medium ${currentPage === page
+                          ? 'bg-blue-600 text-white border-blue-600'
+                          : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
+                        }`}
+                    >
+                      {page}
+                    </button>
+                  ))}
+                  <button
+                    onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
+                    disabled={currentPage === totalPages}
+                    className="px-3 py-1 border border-gray-300 rounded-md bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    Next
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Grid View */}
+        {viewMode === 'grid' && (
+          <div>
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              {paginatedDocuments.map((doc) => (
+                <div key={doc.id} className="bg-white rounded-lg border border-gray-200 p-4 hover:shadow-lg transition-shadow cursor-pointer">
+                  <div className="flex flex-col items-center text-center">
+                    <span className="text-5xl mb-3">{getTypeIcon(doc.documentType)}</span>
+                    <h3 className="text-sm font-medium text-gray-900 line-clamp-2 mb-2">{doc.documentName}</h3>
+                    <p className="text-xs text-gray-500 mb-2">{doc.documentNumber}</p>
+                    <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium mb-2 ${getStatusColor(doc.status)}`}>
+                      {doc.status}
+                    </span>
+                    <p className="text-xs text-gray-500">{doc.fileSize} • {doc.fileFormat}</p>
+                    <p className="text-xs text-gray-500">v{doc.version}</p>
+
+                    {/* Action Buttons */}
+                    <div className="flex flex-col items-center space-y-2 mt-4 w-full">
+                      {/* First row - 3 buttons */}
+                      <div className="flex items-center space-x-1">
+                        <button
+                          onClick={() => openPreviewModal(doc)}
+                          className="p-2 rounded hover:bg-violet-50 text-violet-600 hover:text-violet-800 transition-colors"
+                          title="Preview"
+                        >
+                          <Eye className="h-4 w-4" />
+                        </button>
+                        <button
+                          className="p-2 rounded hover:bg-blue-50 text-blue-600 hover:text-blue-800 transition-colors"
+                          title="Download"
+                        >
+                          <Download className="h-4 w-4" />
+                        </button>
+                        <button
+                          onClick={() => openShareModal(doc)}
+                          className="p-2 rounded hover:bg-purple-50 text-purple-600 hover:text-purple-800 transition-colors"
+                          title="Share"
+                        >
+                          <Share2 className="h-4 w-4" />
+                        </button>
+                      </div>
+                      {/* Second row - 3 buttons */}
+                      <div className="flex items-center space-x-1">
+                        <button
+                          onClick={() => openEditModal(doc)}
+                          className="p-2 rounded hover:bg-green-50 text-green-600 hover:text-green-800 transition-colors"
+                          title="Edit"
+                        >
+                          <Edit className="h-4 w-4" />
+                        </button>
+                        <button
+                          onClick={() => openMoveModal(doc)}
+                          className="p-2 rounded hover:bg-orange-50 text-orange-600 hover:text-orange-800 transition-colors"
+                          title="Move"
+                        >
+                          <FolderInput className="h-4 w-4" />
+                        </button>
+                        <button
+                          onClick={() => openDeleteModal(doc)}
+                          className="p-2 rounded hover:bg-red-50 text-red-600 hover:text-red-800 transition-colors"
+                          title="Delete"
+                        >
+                          <Trash2 className="h-4 w-4" />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Pagination for Grid View */}
+            <div className="mt-6 flex justify-center">
               <div className="flex space-x-2">
                 <button
                   onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
                   disabled={currentPage === 1}
-                  className="px-3 py-1 border border-gray-300 rounded-md bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="px-3 py-1 border border-gray-300 rounded-md bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50"
                 >
                   Previous
                 </button>
@@ -910,11 +1060,10 @@ export default function DocumentsPage() {
                   <button
                     key={page}
                     onClick={() => setCurrentPage(page)}
-                    className={`px-3 py-1 border rounded-md text-sm font-medium ${
-                      currentPage === page
+                    className={`px-3 py-1 border rounded-md text-sm font-medium ${currentPage === page
                         ? 'bg-blue-600 text-white border-blue-600'
                         : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
-                    }`}
+                      }`}
                   >
                     {page}
                   </button>
@@ -922,213 +1071,106 @@ export default function DocumentsPage() {
                 <button
                   onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
                   disabled={currentPage === totalPages}
-                  className="px-3 py-1 border border-gray-300 rounded-md bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="px-3 py-1 border border-gray-300 rounded-md bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50"
                 >
                   Next
                 </button>
               </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
 
-      {/* Grid View */}
-      {viewMode === 'grid' && (
-        <div>
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {paginatedDocuments.map((doc) => (
-              <div key={doc.id} className="bg-white rounded-lg border border-gray-200 p-4 hover:shadow-lg transition-shadow cursor-pointer">
-                <div className="flex flex-col items-center text-center">
-                  <span className="text-5xl mb-3">{getTypeIcon(doc.documentType)}</span>
-                  <h3 className="text-sm font-medium text-gray-900 line-clamp-2 mb-2">{doc.documentName}</h3>
-                  <p className="text-xs text-gray-500 mb-2">{doc.documentNumber}</p>
-                  <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium mb-2 ${getStatusColor(doc.status)}`}>
-                    {doc.status}
-                  </span>
-                  <p className="text-xs text-gray-500">{doc.fileSize} • {doc.fileFormat}</p>
-                  <p className="text-xs text-gray-500">v{doc.version}</p>
+        {/* All Modals */}
+        <UploadDocumentModal
+          isOpen={showUploadModal}
+          onClose={() => setShowUploadModal(false)}
+          onUpload={handleUpload}
+        />
 
-                  {/* Action Buttons */}
-                  <div className="flex flex-col items-center space-y-2 mt-4 w-full">
-                    {/* First row - 3 buttons */}
-                    <div className="flex items-center space-x-1">
-                      <button
-                        onClick={() => openPreviewModal(doc)}
-                        className="p-2 rounded hover:bg-violet-50 text-violet-600 hover:text-violet-800 transition-colors"
-                        title="Preview"
-                      >
-                        <Eye className="h-4 w-4" />
-                      </button>
-                      <button
-                        className="p-2 rounded hover:bg-blue-50 text-blue-600 hover:text-blue-800 transition-colors"
-                        title="Download"
-                      >
-                        <Download className="h-4 w-4" />
-                      </button>
-                      <button
-                        onClick={() => openShareModal(doc)}
-                        className="p-2 rounded hover:bg-purple-50 text-purple-600 hover:text-purple-800 transition-colors"
-                        title="Share"
-                      >
-                        <Share2 className="h-4 w-4" />
-                      </button>
-                    </div>
-                    {/* Second row - 3 buttons */}
-                    <div className="flex items-center space-x-1">
-                      <button
-                        onClick={() => openEditModal(doc)}
-                        className="p-2 rounded hover:bg-green-50 text-green-600 hover:text-green-800 transition-colors"
-                        title="Edit"
-                      >
-                        <Edit className="h-4 w-4" />
-                      </button>
-                      <button
-                        onClick={() => openMoveModal(doc)}
-                        className="p-2 rounded hover:bg-orange-50 text-orange-600 hover:text-orange-800 transition-colors"
-                        title="Move"
-                      >
-                        <FolderInput className="h-4 w-4" />
-                      </button>
-                      <button
-                        onClick={() => openDeleteModal(doc)}
-                        className="p-2 rounded hover:bg-red-50 text-red-600 hover:text-red-800 transition-colors"
-                        title="Delete"
-                      >
-                        <Trash2 className="h-4 w-4" />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+        <EditDocumentModal
+          isOpen={showEditModal}
+          onClose={() => setShowEditModal(false)}
+          onEdit={handleEdit}
+          doc={selectedDocument}
+        />
 
-          {/* Pagination for Grid View */}
-          <div className="mt-6 flex justify-center">
-            <div className="flex space-x-2">
-              <button
-                onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
-                disabled={currentPage === 1}
-                className="px-3 py-1 border border-gray-300 rounded-md bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50"
-              >
-                Previous
-              </button>
-              {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                <button
-                  key={page}
-                  onClick={() => setCurrentPage(page)}
-                  className={`px-3 py-1 border rounded-md text-sm font-medium ${
-                    currentPage === page
-                      ? 'bg-blue-600 text-white border-blue-600'
-                      : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
-                  }`}
-                >
-                  {page}
-                </button>
-              ))}
-              <button
-                onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
-                disabled={currentPage === totalPages}
-                className="px-3 py-1 border border-gray-300 rounded-md bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50"
-              >
-                Next
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+        <ShareDocumentModal
+          isOpen={showShareModal}
+          onClose={() => setShowShareModal(false)}
+          onShare={handleShare}
+          doc={selectedDocument}
+        />
 
-      {/* All Modals */}
-      <UploadDocumentModal
-        isOpen={showUploadModal}
-        onClose={() => setShowUploadModal(false)}
-        onUpload={handleUpload}
-      />
+        <MoveDocumentModal
+          isOpen={showMoveModal}
+          onClose={() => setShowMoveModal(false)}
+          onMove={handleMove}
+          doc={selectedDocument}
+        />
 
-      <EditDocumentModal
-        isOpen={showEditModal}
-        onClose={() => setShowEditModal(false)}
-        onEdit={handleEdit}
-        doc={selectedDocument}
-      />
+        <CreateFolderModal
+          isOpen={showCreateFolderModal}
+          onClose={() => setShowCreateFolderModal(false)}
+          onCreate={handleCreateFolder}
+        />
 
-      <ShareDocumentModal
-        isOpen={showShareModal}
-        onClose={() => setShowShareModal(false)}
-        onShare={handleShare}
-        doc={selectedDocument}
-      />
+        <SetPermissionsModal
+          isOpen={showPermissionsModal}
+          onClose={() => setShowPermissionsModal(false)}
+          onSet={handleSetPermissions}
+          doc={selectedDocument}
+        />
 
-      <MoveDocumentModal
-        isOpen={showMoveModal}
-        onClose={() => setShowMoveModal(false)}
-        onMove={handleMove}
-        doc={selectedDocument}
-      />
+        <VersionHistoryModal
+          isOpen={showVersionHistoryModal}
+          onClose={() => setShowVersionHistoryModal(false)}
+          doc={selectedDocument}
+        />
 
-      <CreateFolderModal
-        isOpen={showCreateFolderModal}
-        onClose={() => setShowCreateFolderModal(false)}
-        onCreate={handleCreateFolder}
-      />
+        <BulkDownloadModal
+          isOpen={showBulkDownloadModal}
+          onClose={() => setShowBulkDownloadModal(false)}
+          onDownload={handleBulkDownload}
+          selectedDocs={selectedDocuments}
+        />
 
-      <SetPermissionsModal
-        isOpen={showPermissionsModal}
-        onClose={() => setShowPermissionsModal(false)}
-        onSet={handleSetPermissions}
-        doc={selectedDocument}
-      />
+        <FilterDocumentsModal
+          isOpen={showFilterModal}
+          onClose={() => setShowFilterModal(false)}
+          onApply={handleFilterDocuments}
+        />
 
-      <VersionHistoryModal
-        isOpen={showVersionHistoryModal}
-        onClose={() => setShowVersionHistoryModal(false)}
-        doc={selectedDocument}
-      />
+        <SearchDocumentsModal
+          isOpen={showSearchModal}
+          onClose={() => setShowSearchModal(false)}
+          onSearch={handleSearchDocuments}
+        />
 
-      <BulkDownloadModal
-        isOpen={showBulkDownloadModal}
-        onClose={() => setShowBulkDownloadModal(false)}
-        onDownload={handleBulkDownload}
-        selectedDocs={selectedDocuments}
-      />
+        <TagDocumentsModal
+          isOpen={showTagModal}
+          onClose={() => setShowTagModal(false)}
+          onTag={handleTagDocuments}
+          selectedDocs={selectedDocuments}
+        />
 
-      <FilterDocumentsModal
-        isOpen={showFilterModal}
-        onClose={() => setShowFilterModal(false)}
-        onApply={handleFilterDocuments}
-      />
+        <DeleteDocumentModal
+          isOpen={showDeleteModal}
+          onClose={() => setShowDeleteModal(false)}
+          onDelete={handleDelete}
+          doc={selectedDocument}
+        />
 
-      <SearchDocumentsModal
-        isOpen={showSearchModal}
-        onClose={() => setShowSearchModal(false)}
-        onSearch={handleSearchDocuments}
-      />
+        <PreviewDocumentModal
+          isOpen={showPreviewModal}
+          onClose={() => setShowPreviewModal(false)}
+          doc={selectedDocument}
+        />
 
-      <TagDocumentsModal
-        isOpen={showTagModal}
-        onClose={() => setShowTagModal(false)}
-        onTag={handleTagDocuments}
-        selectedDocs={selectedDocuments}
-      />
-
-      <DeleteDocumentModal
-        isOpen={showDeleteModal}
-        onClose={() => setShowDeleteModal(false)}
-        onDelete={handleDelete}
-        doc={selectedDocument}
-      />
-
-      <PreviewDocumentModal
-        isOpen={showPreviewModal}
-        onClose={() => setShowPreviewModal(false)}
-        doc={selectedDocument}
-      />
-
-      <ViewDetailsModal
-        isOpen={showDetailsModal}
-        onClose={() => setShowDetailsModal(false)}
-        doc={selectedDocument}
-      />
+        <ViewDetailsModal
+          isOpen={showDetailsModal}
+          onClose={() => setShowDetailsModal(false)}
+          doc={selectedDocument}
+        />
       </div>
     </div>
   );

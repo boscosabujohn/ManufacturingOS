@@ -57,6 +57,128 @@ const menuItems: MenuItem[] = [
     hoverColor: 'hover:bg-blue-100',
   },
   {
+    id: 'project-management',
+    name: 'Project Management',
+    icon: FolderKanban,
+    color: 'text-orange-600',
+    bgColor: 'bg-orange-50',
+    hoverColor: 'hover:bg-orange-100',
+    subItems: [
+      { id: 'pm-dashboard', name: 'Projects Dashboard', href: '/project-management', description: 'All projects overview' },
+      { id: 'create-project', name: 'Create Project', href: '/project-management/create', description: 'Start new project' },
+      { id: 'project-documents', name: 'Documents', href: '/project-management/documents', description: 'Project documents' },
+      {
+        id: 'manufacturing-workflow',
+        name: '🏭 Manufacturing Workflow',
+        href: '#',
+        description: '8-Phase workflow process',
+        subItems: [
+          {
+            id: 'phase-1',
+            name: 'Phase 1: Project Initiation',
+            href: '#',
+            description: 'Project setup & handover',
+            subItems: [
+              { id: 'p1-project-setup', name: 'Project Setup', href: '/project-management', description: 'Create & configure project' },
+              { id: 'p1-upload-docs', name: 'Upload Documents', href: '/project-management/documents', description: 'BOQ, drawings, renders' },
+              { id: 'p1-sales-handover', name: 'Sales Handover', href: '/sales/handover', description: 'Sales to project team' },
+            ],
+          },
+          {
+            id: 'phase-2',
+            name: 'Phase 2: Design & Site Assessment',
+            href: '#',
+            description: 'Site verification & design',
+            subItems: [
+              { id: 'p2-site-visits', name: 'Site Visits', href: '/after-sales-service/field-service', description: 'Schedule site assessments' },
+              { id: 'p2-drawing-approval', name: 'Drawing Approval', href: '/project-management/documents?type=Drawing', description: 'Approve drawings' },
+              { id: 'p2-drawing-revisions', name: 'Drawing Revisions', href: '/project-management/documents/revisions', description: 'Version control & comparison' },
+              { id: 'p2-client-approvals', name: 'Client Approvals', href: '/project-management/documents/approvals', description: 'E-signature workflow' },
+              { id: 'p2-mep', name: 'MEP Management', href: '/project-management/mep', description: 'MEP drawings & tracking' },
+              { id: 'p2-cabinet-marking', name: 'Cabinet Marking', href: '/project-management/cabinet-marking', description: 'Schedule & execute marking' },
+            ],
+          },
+          {
+            id: 'phase-3',
+            name: 'Phase 3: Technical Design & BOM',
+            href: '#',
+            description: 'Technical drawings & BOM',
+            subItems: [
+              { id: 'p3-briefings', name: 'Layout Briefings', href: '/project-management/briefings', description: 'Conduct team briefings' },
+              { id: 'p3-timeline', name: 'Drawing Timeline', href: '/project-management/timeline', description: 'Calculate timelines' },
+              { id: 'p3-drawings', name: 'Technical Drawings', href: '/project-management/documents?type=Drawing', description: 'Create drawings' },
+              { id: 'p3-bom', name: 'BOM Management', href: '/production/bom', description: 'Bill of materials' },
+              { id: 'p3-verification', name: 'BOM Verification', href: '/production/bom/verification', description: 'Verify completeness' },
+            ],
+          },
+          {
+            id: 'phase-4',
+            name: 'Phase 4: Procurement',
+            href: '#',
+            description: 'Material procurement',
+            subItems: [
+              { id: 'p4-bom-receipt', name: 'BOM Receipt', href: '/procurement/bom-receipt', description: 'Receive BOMs from Technical' },
+              { id: 'p4-pr', name: 'Purchase Requisitions', href: '/procurement/requisitions', description: 'Material requests' },
+              { id: 'p4-po', name: 'Purchase Orders', href: '/procurement/purchase-orders', description: 'Supplier orders' },
+              { id: 'p4-grn', name: 'Goods Receipt', href: '/procurement/goods-receipt', description: 'Material receiving' },
+              { id: 'p4-inventory', name: 'Inventory Status', href: '/inventory/stock', description: 'Stock levels' },
+            ],
+          },
+          {
+            id: 'phase-5',
+            name: 'Phase 5: Production',
+            href: '#',
+            description: 'Manufacturing execution',
+            subItems: [
+              { id: 'p5-work-orders', name: 'Work Orders', href: '/production/work-orders', description: 'Production orders' },
+              { id: 'p5-operations', name: 'Operations Tracking', href: '/production/operations', description: 'Cutting, welding, finishing' },
+              { id: 'p5-shutters', name: 'Shutter Processing', href: '/production/shutters', description: 'Glass/Wood/Steel shutters' },
+              { id: 'p5-trial', name: 'Trial Installation', href: '/production/trial', description: 'Trial records & reporting' },
+              { id: 'p5-shopfloor', name: 'Shop Floor Control', href: '/production/shopfloor', description: 'Floor monitoring' },
+            ],
+          },
+          {
+            id: 'phase-6',
+            name: 'Phase 6: Quality & Packaging',
+            href: '#',
+            description: 'QC & packaging',
+            subItems: [
+              { id: 'p6-inspections', name: 'QC Inspections', href: '/quality/inspections', description: 'Quality checks' },
+              { id: 'p6-defects', name: 'Defect Management', href: '/quality/defects', description: 'Rework routing' },
+              { id: 'p6-approvals', name: 'QC Approvals', href: '/quality/approvals', description: 'Manager approval' },
+              { id: 'p6-packaging', name: 'Packaging Operations', href: '/packaging/operations', description: 'Packing & labeling' },
+              { id: 'p6-staging', name: 'Dispatch Staging', href: '/packaging/staging', description: 'Ready to ship' },
+            ],
+          },
+          {
+            id: 'phase-7',
+            name: 'Phase 7: Logistics & Delivery',
+            href: '#',
+            description: 'Dispatch & delivery',
+            subItems: [
+              { id: 'p7-payment', name: 'Payment Verification', href: '/accounts/payment-verification', description: 'Payment gate' },
+              { id: 'p7-coordination', name: 'Delivery Coordination', href: '/logistics/delivery-coordination', description: 'Site details & timing' },
+              { id: 'p7-loading', name: 'Loading & Dispatch', href: '/logistics/loading', description: 'Loading checklist' },
+              { id: 'p7-tracking', name: 'Delivery Tracking', href: '/logistics/tracking', description: 'GPS & POD' },
+              { id: 'p7-fleet', name: 'Fleet Management', href: '/logistics/fleet', description: 'Vehicle monitoring' },
+            ],
+          },
+          {
+            id: 'phase-8',
+            name: 'Phase 8: Installation & Handover',
+            href: '#',
+            description: 'Site installation & handover',
+            subItems: [
+              { id: 'p8-management', name: 'Installation Management', href: '/installation/management', description: 'Tools & team' },
+              { id: 'p8-progress', name: 'Installation Progress', href: '/installation/progress', description: 'Daily tracking' },
+              { id: 'p8-handover', name: 'Client Handover', href: '/installation/handover', description: 'Signature & closure' },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
     id: 'crm',
     name: 'CRM',
     icon: Users,
@@ -3570,9 +3692,8 @@ export default function Sidebar({ isOpen, onToggle }: SidebarProps) {
               {hasNestedItems ? (
                 <button
                   onClick={() => toggleSubItem(parentId, subItem.id)}
-                  className={`w-full flex items-center justify-between px-${6 + level * 2} py-2.5 text-sm hover:bg-slate-100 transition-all duration-200 group ${
-                    isExpanded ? 'bg-slate-100 font-medium' : 'text-gray-700'
-                  }`}
+                  className={`w-full flex items-center justify-between px-${6 + level * 2} py-2.5 text-sm hover:bg-slate-100 transition-all duration-200 group ${isExpanded ? 'bg-slate-100 font-medium' : 'text-gray-700'
+                    }`}
                 >
                   <div className="flex items-center space-x-2">
                     <ChevronRight className={`h-3 w-3 text-slate-400 transition-transform duration-200 ${isExpanded ? 'rotate-90' : ''}`} />
@@ -3581,9 +3702,8 @@ export default function Sidebar({ isOpen, onToggle }: SidebarProps) {
                     </span>
                   </div>
                   <ChevronDown
-                    className={`h-3 w-3 text-slate-500 transition-transform duration-200 ${
-                      isExpanded ? 'rotate-180' : ''
-                    }`}
+                    className={`h-3 w-3 text-slate-500 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''
+                      }`}
                   />
                 </button>
               ) : (
@@ -3629,9 +3749,8 @@ export default function Sidebar({ isOpen, onToggle }: SidebarProps) {
 
       {/* Sidebar */}
       <aside
-        className={`fixed top-0 left-0 h-full bg-white border-r border-gray-200 z-50 transition-all duration-300 ${
-          isOpen ? 'w-80' : 'w-0 lg:w-20'
-        } overflow-hidden flex flex-col shadow-xl`}
+        className={`fixed top-0 left-0 h-full bg-white border-r border-gray-200 z-50 transition-all duration-300 ${isOpen ? 'w-80' : 'w-0 lg:w-20'
+          } overflow-hidden flex flex-col shadow-xl`}
       >
         {/* Header */}
         <div className="h-16 border-b border-gray-200 flex items-center justify-between px-4 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600">
@@ -3658,11 +3777,10 @@ export default function Sidebar({ isOpen, onToggle }: SidebarProps) {
                 {hasSubItems ? (
                   <button
                     onClick={() => toggleItem(item.id)}
-                    className={`w-full flex items-center justify-between px-4 py-3 transition-all duration-200 ${
-                      isExpanded
-                        ? `${item.bgColor} border-l-4 border-${item.color.replace('text-', '')}`
-                        : item.hoverColor
-                    }`}
+                    className={`w-full flex items-center justify-between px-4 py-3 transition-all duration-200 ${isExpanded
+                      ? `${item.bgColor} border-l-4 border-${item.color.replace('text-', '')}`
+                      : item.hoverColor
+                      }`}
                   >
                     <div className="flex items-center space-x-3">
                       <Icon className={`h-5 w-5 ${item.color} ${isExpanded ? 'scale-110' : ''} transition-transform duration-200`} />
@@ -3674,9 +3792,8 @@ export default function Sidebar({ isOpen, onToggle }: SidebarProps) {
                     </div>
                     {isOpen && (
                       <ChevronDown
-                        className={`h-4 w-4 ${item.color} transition-transform duration-200 ${
-                          isExpanded ? 'rotate-180' : ''
-                        }`}
+                        className={`h-4 w-4 ${item.color} transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''
+                          }`}
                       />
                     )}
                   </button>

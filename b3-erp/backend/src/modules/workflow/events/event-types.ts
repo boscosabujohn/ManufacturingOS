@@ -13,6 +13,7 @@ export enum WorkflowEventType {
   ORDER_CONFIRMED = 'order.confirmed',
   ORDER_CANCELLED = 'order.cancelled',
   ORDER_COMPLETED = 'order.completed',
+  ORDER_READY_FOR_SHIPMENT = 'workflow.order.ready-for-shipment',
 
   // Production Events
   WORK_ORDER_CREATED = 'work_order.created',
@@ -35,6 +36,13 @@ export enum WorkflowEventType {
   STOCK_OUT = 'stock.out',
   STOCK_ADJUSTED = 'stock.adjusted',
   STOCK_TRANSFERRED = 'stock.transferred',
+  INVENTORY_UPDATED = 'workflow.inventory.updated',
+  INVENTORY_RELEASED = 'workflow.inventory.released',
+  INVENTORY_QUARANTINED = 'workflow.inventory.quarantined',
+  MATERIAL_SHORTAGE = 'workflow.material.shortage',
+  RESERVATION_SHORTAGE = 'workflow.reservation.shortage',
+  MATERIALS_ISSUED = 'workflow.materials.issued',
+  FINISHED_GOODS_RECEIVED = 'workflow.finished-goods.received',
 
   // Procurement Events
   PURCHASE_REQUEST_CREATED = 'purchase_request.created',
@@ -53,6 +61,8 @@ export enum WorkflowEventType {
   NCR_RESOLVED = 'ncr.resolved',
   CAPA_CREATED = 'capa.created',
   CAPA_COMPLETED = 'capa.completed',
+  NCR_CREATED_WORKFLOW = 'workflow.ncr.created',
+  INSPECTION_REQUIRED_WORKFLOW = 'workflow.inspection.required',
 
   // Finance Events
   INVOICE_CREATED = 'invoice.created',

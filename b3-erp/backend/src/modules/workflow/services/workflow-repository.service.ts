@@ -31,7 +31,7 @@ export class WorkflowRepositoryService {
     private readonly stepRepository: Repository<WorkflowStep>,
     @InjectRepository(WorkflowHistory)
     private readonly historyRepository: Repository<WorkflowHistory>,
-  ) {}
+  ) { }
 
   // ==================== WORKFLOW DEFINITIONS ====================
 
@@ -319,6 +319,7 @@ export class WorkflowRepositoryService {
   }): Promise<WorkflowStep> {
     const step = this.stepRepository.create({
       ...data,
+      stepType: data.stepType as any, // Cast to any to avoid enum type mismatch
       status: StepStatus.PENDING,
     });
     return this.stepRepository.save(step);

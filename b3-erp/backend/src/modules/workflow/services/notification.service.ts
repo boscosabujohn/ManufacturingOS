@@ -2,6 +2,10 @@ import { Injectable, Logger } from '@nestjs/common';
 import { OnEvent } from '@nestjs/event-emitter';
 import { InjectQueue } from '@nestjs/bull';
 import { Queue } from 'bull';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { NotificationTemplate } from '../entities/notification-template.entity';
+import { NotificationPreference } from '../entities/notification-preference.entity';
 import {
   WorkflowEventType,
   NotificationEventPayload,
@@ -40,7 +44,11 @@ export class NotificationService {
 
   constructor(
     @InjectQueue('notifications') private readonly notificationQueue: Queue,
-  ) {}
+    @InjectRepository(NotificationTemplate)
+    private templateRepository: Repository<NotificationTemplate>,
+    @InjectRepository(NotificationPreference)
+    private preferenceRepository: Repository<NotificationPreference>,
+  ) { }
 
   /**
    * Send notification to all members of a team
@@ -64,13 +72,9 @@ export class NotificationService {
 
     // Also add to in-app notifications
     for (const member of members) {
-      await this.notificationQueue.add('create-in-app-notification', {
+      await this.notifyUser({
         userId: member,
-        title: notification.title,
-        message: notification.message,
-        priority: notification.priority,
-        data: notification.data,
-        scheduledAt: notification.scheduledAt,
+        ...notification,
       });
     }
   }
@@ -79,22 +83,30 @@ export class NotificationService {
    * Send notification to a specific user
    */
   async notifyUser(notification: UserNotification): Promise<void> {
-    this.logger.log(`Notifying user ${notification.userId}: ${notification.title}`);
-
-    await this.notificationQueue.add('send-user-notification', {
-      userId: notification.userId,
-      notification,
+    // Check preferences
+    const preferences = await this.preferenceRepository.find({
+      where: { userId: notification.userId },
     });
 
-    // Also add to in-app notifications
-    await this.notificationQueue.add('create-in-app-notification', {
-      userId: notification.userId,
-      title: notification.title,
-      message: notification.message,
-      priority: notification.priority,
-      data: notification.data,
-      scheduledAt: notification.scheduledAt,
-    });
+    // Default to enabled if no preference set
+    const inAppEnabled = preferences.find(p => p.channel === 'in_app')?.enabled ?? true;
+
+    if (inAppEnabled) {
+      this.logger.log(`Notifying user ${notification.userId}: ${notification.title}`);
+
+      await this.notificationQueue.add('create-in-app-notification', {
+        userId: notification.userId,
+        title: notification.title,
+        message: notification.message,
+        priority: notification.priority,
+        data: notification.data,
+        scheduledAt: notification.scheduledAt,
+      });
+    }
+
+    // Check other channels (email, sms, push) and send if enabled
+    // This logic would be expanded based on how we map 'notification' to specific channels
+    // For now, we assume 'notifyUser' primarily targets in-app, and specific methods are used for others
   }
 
   /**
@@ -109,6 +121,66 @@ export class NotificationService {
         userId,
       });
     }
+  }
+
+  /**
+   * Send templated notification
+   */
+  async sendTemplatedNotification(
+    userId: string,
+    templateCode: string,
+    data: Record<string, any>,
+    channels: ('email' | 'sms' | 'push' | 'in_app')[] = ['in_app'],
+  ): Promise<void> {
+    const preferences = await this.preferenceRepository.find({
+      where: { userId },
+    });
+
+    for (const channel of channels) {
+      // Check if channel is enabled for user
+      const pref = preferences.find(p => p.channel === channel);
+      if (pref && !pref.enabled) continue;
+
+      const template = await this.templateRepository.findOne({
+        where: { code: templateCode, channel, isActive: true },
+      });
+
+      if (!template) {
+        this.logger.warn(`Template ${templateCode} not found for channel ${channel}`);
+        continue;
+      }
+
+      const subject = this.compileTemplate(template.subjectTemplate, data);
+      const body = this.compileTemplate(template.bodyTemplate, data);
+
+      switch (channel) {
+        case 'email':
+          await this.sendEmail([userId], subject, body, data); // Assuming userId is email or we fetch email
+          break;
+        case 'sms':
+          await this.sendSMS([userId], body, data); // Assuming userId maps to phone
+          break;
+        case 'push':
+          await this.sendPush([userId], subject, body, data);
+          break;
+        case 'in_app':
+          await this.notifyUser({
+            userId,
+            title: subject || 'Notification',
+            message: body,
+            priority: 'normal',
+            data,
+          });
+          break;
+      }
+    }
+  }
+
+  private compileTemplate(template: string, data: Record<string, any>): string {
+    if (!template) return '';
+    return template.replace(/\{\{(\w+)\}\}/g, (match, key) => {
+      return data[key] !== undefined ? String(data[key]) : match;
+    });
   }
 
   /**
@@ -266,3 +338,4 @@ export class NotificationService {
     }
   }
 }
+

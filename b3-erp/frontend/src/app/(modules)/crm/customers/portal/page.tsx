@@ -171,12 +171,18 @@ const portalFeatures: PortalAccess[] = [
 ];
 
 export default function CustomerPortalPage() {
-  const [users] = useState<PortalUser[]>(mockPortalUsers);
+  const [users, setUsers] = useState<PortalUser[]>(mockPortalUsers);
   const [features] = useState<PortalAccess[]>(portalFeatures);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterStatus, setFilterStatus] = useState<'all' | 'active' | 'inactive' | 'pending'>('all');
   const [filterRole, setFilterRole] = useState<'all' | 'admin' | 'user' | 'viewer'>('all');
   const [activeTab, setActiveTab] = useState<'users' | 'features' | 'activity'>('users');
+  const [selectedUser, setSelectedUser] = useState<PortalUser | null>(null);
+  const [showViewModal, setShowViewModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
 
   const filteredUsers = users
     .filter(user => {
@@ -248,6 +254,38 @@ export default function CustomerPortalPage() {
     if (diffMins < 60) return `${diffMins} mins ago`;
     if (diffHours < 24) return `${diffHours} hours ago`;
     return `${diffDays} days ago`;
+  };
+
+  const handleViewUser = (user: PortalUser) => {
+    setSelectedUser(user);
+    setShowViewModal(true);
+  };
+
+  const handleEditUser = (user: PortalUser) => {
+    setSelectedUser(user);
+    setShowEditModal(true);
+  };
+
+  const handleDeleteUser = (user: PortalUser) => {
+    setSelectedUser(user);
+    setShowDeleteModal(true);
+  };
+
+  const confirmDelete = () => {
+    if (selectedUser) {
+      setUsers(users.filter(u => u.id !== selectedUser.id));
+      setToastMessage(`User "${selectedUser.name}" deleted successfully`);
+      setShowToast(true);
+      setTimeout(() => setShowToast(false), 3000);
+      setShowDeleteModal(false);
+      setSelectedUser(null);
+    }
+  };
+
+  const handleExport = () => {
+    setToastMessage('Portal users exported successfully!');
+    setShowToast(true);
+    setTimeout(() => setShowToast(false), 3000);
   };
 
   return (
@@ -392,7 +430,10 @@ export default function CustomerPortalPage() {
                   <option value="viewer">Viewer</option>
                 </select>
 
-                <button className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+                <button
+                  onClick={handleExport}
+                  className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
+                >
                   <Download className="w-4 h-4" />
                   Export
                 </button>
@@ -477,15 +518,24 @@ export default function CustomerPortalPage() {
                   </div>
 
                   <div className="flex gap-2">
-                    <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                    <button
+                      onClick={() => handleViewUser(user)}
+                      className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm"
+                    >
                       <Eye className="w-4 h-4 text-gray-600" />
                       <span>View</span>
                     </button>
-                    <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
+                    <button
+                      onClick={() => handleEditUser(user)}
+                      className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm"
+                    >
                       <Edit className="w-4 h-4 text-gray-600" />
                       <span>Edit</span>
                     </button>
-                    <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-red-300 rounded-lg hover:bg-red-50 text-sm">
+                    <button
+                      onClick={() => handleDeleteUser(user)}
+                      className="inline-flex items-center gap-1.5 px-3 py-2 border border-red-300 rounded-lg hover:bg-red-50 text-sm"
+                    >
                       <Trash2 className="w-4 h-4 text-red-600" />
                       <span className="text-red-600">Delete</span>
                     </button>
@@ -561,6 +611,252 @@ export default function CustomerPortalPage() {
               </div>
             ))}
           </div>
+        </div>
+      )}
+
+      {/* View User Modal */}
+      {showViewModal && selectedUser && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="flex justify-between items-start mb-4">
+              <div>
+                <h3 className="text-xl font-bold">{selectedUser.name}</h3>
+                <p className="text-sm text-gray-500">{selectedUser.email}</p>
+              </div>
+              <button
+                onClick={() => setShowViewModal(false)}
+                className="text-gray-400 hover:text-gray-600"
+              >
+                <XCircle className="h-5 w-5" />
+              </button>
+            </div>
+
+            <div className="space-y-6">
+              {/* User Info */}
+              <div>
+                <h4 className="text-sm font-semibold text-gray-700 mb-3">User Information</h4>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-xs text-gray-500">Company</p>
+                    <p className="text-sm font-medium">{selectedUser.company}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-gray-500">Role</p>
+                    <p className="text-sm font-medium capitalize">{selectedUser.role}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-gray-500">Status</p>
+                    <p className="text-sm font-medium capitalize">{selectedUser.status}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-gray-500">Account Value</p>
+                    <p className="text-sm font-medium">${(selectedUser.accountValue / 1000000).toFixed(1)}M</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Activity Stats */}
+              <div>
+                <h4 className="text-sm font-semibold text-gray-700 mb-3">Activity Statistics</h4>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="bg-blue-50 p-3 rounded-lg">
+                    <p className="text-xs text-blue-600">Total Logins</p>
+                    <p className="text-lg font-bold text-blue-700">{selectedUser.loginCount}</p>
+                  </div>
+                  <div className="bg-green-50 p-3 rounded-lg">
+                    <p className="text-xs text-green-600">Last Login</p>
+                    <p className="text-lg font-bold text-green-700">{getTimeSince(selectedUser.lastLogin)}</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Permissions */}
+              <div>
+                <h4 className="text-sm font-semibold text-gray-700 mb-3">Portal Permissions</h4>
+                <div className="flex flex-wrap gap-2">
+                  {selectedUser.permissions.map((permission) => (
+                    <span key={permission} className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">
+                      {permission}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-6 flex justify-end gap-2">
+              <button
+                onClick={() => setShowViewModal(false)}
+                className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
+              >
+                Close
+              </button>
+              <button
+                onClick={() => {
+                  setShowViewModal(false);
+                  handleEditUser(selectedUser);
+                }}
+                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+              >
+                Edit User
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Edit User Modal */}
+      {showEditModal && selectedUser && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="flex justify-between items-start mb-4">
+              <div>
+                <h3 className="text-xl font-bold">Edit User</h3>
+                <p className="text-sm text-gray-500">{selectedUser.email}</p>
+              </div>
+              <button
+                onClick={() => setShowEditModal(false)}
+                className="text-gray-400 hover:text-gray-600"
+              >
+                <XCircle className="h-5 w-5" />
+              </button>
+            </div>
+
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                <input
+                  type="text"
+                  defaultValue={selectedUser.name}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                <input
+                  type="email"
+                  defaultValue={selectedUser.email}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Company</label>
+                <input
+                  type="text"
+                  defaultValue={selectedUser.company}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                />
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Role</label>
+                  <select
+                    defaultValue={selectedUser.role}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                  >
+                    <option value="admin">Admin</option>
+                    <option value="user">User</option>
+                    <option value="viewer">Viewer</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
+                  <select
+                    defaultValue={selectedUser.status}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                  >
+                    <option value="active">Active</option>
+                    <option value="inactive">Inactive</option>
+                    <option value="pending">Pending</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Permissions</label>
+                <div className="flex flex-wrap gap-2">
+                  {['orders', 'invoices', 'support', 'documents', 'analytics', 'settings'].map((perm) => (
+                    <label key={perm} className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
+                      <input
+                        type="checkbox"
+                        defaultChecked={selectedUser.permissions.includes(perm)}
+                        className="rounded text-blue-600"
+                      />
+                      <span className="text-sm capitalize">{perm}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-6 flex justify-end gap-2">
+              <button
+                onClick={() => setShowEditModal(false)}
+                className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={() => {
+                  setToastMessage(`User "${selectedUser.name}" updated successfully`);
+                  setShowToast(true);
+                  setTimeout(() => setShowToast(false), 3000);
+                  setShowEditModal(false);
+                }}
+                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+              >
+                Save Changes
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Delete Confirmation Modal */}
+      {showDeleteModal && selectedUser && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg p-6 max-w-md w-full">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center">
+                <Trash2 className="w-6 h-6 text-red-600" />
+              </div>
+              <div>
+                <h3 className="text-lg font-bold">Delete User</h3>
+                <p className="text-sm text-gray-500">This action cannot be undone</p>
+              </div>
+            </div>
+
+            <p className="text-gray-700 mb-6">
+              Are you sure you want to delete <strong>{selectedUser.name}</strong> ({selectedUser.email})?
+              This will remove their portal access and all associated data.
+            </p>
+
+            <div className="flex justify-end gap-2">
+              <button
+                onClick={() => setShowDeleteModal(false)}
+                className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={confirmDelete}
+                className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
+              >
+                Delete User
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Toast Notification */}
+      {showToast && (
+        <div className="fixed bottom-4 right-4 bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg flex items-center gap-2 z-50">
+          <CheckCircle className="h-4 w-4" />
+          {toastMessage}
         </div>
       )}
     </div>

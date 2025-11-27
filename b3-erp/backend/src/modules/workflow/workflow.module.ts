@@ -10,6 +10,21 @@ import { WorkflowInstance } from './entities/workflow-instance.entity';
 import { WorkflowStep } from './entities/workflow-step.entity';
 import { WorkflowHistory } from './entities/workflow-history.entity';
 
+// New workflow engine entities
+import {
+  ProjectPhase,
+  PhaseTransition,
+  WorkflowDocument,
+  WorkflowApproval,
+  ApprovalStep,
+  QualityGate,
+  QualityGateItem,
+  Defect,
+  WorkflowRule,
+  NotificationTemplate,
+  NotificationPreference,
+} from './entities';
+
 // Import other modules for processor dependencies
 import { ProductionModule } from '../production/production.module';
 import { InventoryModule } from '../inventory/inventory.module';
@@ -21,6 +36,11 @@ import {
   OrderTrackingService,
   SalesProductionWorkflowService,
   ProcurementInventoryWorkflowService,
+  StateMachineService,
+  RuleEngineService,
+  DocumentService,
+  ApprovalService,
+  QualityGateService,
 } from './services';
 import { WorkflowRepositoryService } from './services/workflow-repository.service';
 import { WorkflowSeederService } from './services/workflow-seeder.service';
@@ -31,9 +51,29 @@ import { IntelligentRoutingService } from './services/intelligent-routing.servic
 // Controllers
 import { OrderTrackingController } from './controllers/order-tracking.controller';
 import { WorkflowRepositoryController } from './controllers/workflow-repository.controller';
+import { WorkflowController } from './controllers/workflow.controller';
+import { PhaseManagementController } from './controllers/phase-management.controller';
+import { DocumentController } from './controllers/document.controller';
+import { ApprovalController } from './controllers/approval.controller';
+import { NotificationController } from './controllers/notification.controller';
+import { QualityGateController } from './controllers/quality-gate.controller';
+import { AnalyticsController } from './controllers/analytics.controller';
+import { AnalyticsService } from './services/analytics.service';
+import { Project } from '../project/entities/project.entity';
+import { ProjectService } from '../project/services/project.service';
+import { ProjectController } from '../project/controllers/project.controller';
+import { BOQ } from '../project/entities/boq.entity';
+import { BOQItem } from '../project/entities/boq-item.entity';
+import { BOQService } from '../project/services/boq.service';
+import { BOQController } from '../project/controllers/boq.controller';
 
 // Processors
+// Processors
 import { WorkflowProcessor, NotificationProcessor } from './processors';
+
+// Listeners
+import { WorkflowEventListener } from './listeners/workflow-event.listener';
+import { WorkflowGateway } from './gateways/workflow.gateway';
 
 @Module({
   imports: [
@@ -55,6 +95,21 @@ import { WorkflowProcessor, NotificationProcessor } from './processors';
       WorkflowInstance,
       WorkflowStep,
       WorkflowHistory,
+      // New workflow engine entities
+      ProjectPhase,
+      PhaseTransition,
+      WorkflowDocument,
+      WorkflowApproval,
+      ApprovalStep,
+      QualityGate,
+      QualityGateItem,
+      Defect,
+      WorkflowRule,
+      NotificationTemplate,
+      NotificationPreference,
+      Project,
+      BOQ,
+      BOQItem,
     ]),
 
     // Bull queues for async job processing
@@ -89,7 +144,19 @@ import { WorkflowProcessor, NotificationProcessor } from './processors';
     forwardRef(() => ProductionModule),
     forwardRef(() => InventoryModule),
   ],
-  controllers: [OrderTrackingController, WorkflowRepositoryController],
+  controllers: [
+    OrderTrackingController,
+    WorkflowRepositoryController,
+    WorkflowController,
+    PhaseManagementController,
+    DocumentController,
+    ApprovalController,
+    NotificationController,
+    QualityGateController,
+    AnalyticsController,
+    ProjectController,
+    BOQController,
+  ],
   providers: [
     // Core services
     EventBusService,
@@ -101,15 +168,25 @@ import { WorkflowProcessor, NotificationProcessor } from './processors';
     // Workflow orchestration services
     SalesProductionWorkflowService,
     ProcurementInventoryWorkflowService,
+    StateMachineService, // New state machine service
+    RuleEngineService,
+    DocumentService,
+    ApprovalService,
+    QualityGateService,
+    AnalyticsService,
+    ProjectService,
+    BOQService,
 
     // Queue processors
     WorkflowProcessor,
     NotificationProcessor,
 
-    // New services
+    // Additional services
     EmailGatewayService,
     ParallelApprovalService,
     IntelligentRoutingService,
+    WorkflowEventListener,
+    WorkflowGateway,
   ],
   exports: [
     EventBusService,
@@ -118,9 +195,11 @@ import { WorkflowProcessor, NotificationProcessor } from './processors';
     WorkflowRepositoryService,
     SalesProductionWorkflowService,
     ProcurementInventoryWorkflowService,
+    StateMachineService,
     EmailGatewayService,
     ParallelApprovalService,
     IntelligentRoutingService,
   ],
 })
-export class WorkflowModule {}
+export class WorkflowModule { }
+

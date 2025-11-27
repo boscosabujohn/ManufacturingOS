@@ -1,0 +1,218 @@
+'use client';
+
+import { useState } from 'react';
+import Link from 'next/link';
+import {
+    CheckCircle,
+    XCircle,
+    Clock,
+    User,
+    Calendar,
+    ArrowLeft,
+    FileText,
+    Award,
+} from 'lucide-react';
+
+interface QCApproval {
+    id: string;
+    woNumber: string;
+    productName: string;
+    inspectionId: string;
+    inspector: string;
+    inspectionDate: string;
+    status: 'Pending Approval' | 'Approved' | 'Rejected';
+    manager: string;
+    approvalDate?: string;
+    certificateNumber?: string;
+    remarks?: string;
+}
+
+const mockApprovals: QCApproval[] = [
+    {
+        id: '1',
+        woNumber: 'WO-2025-001',
+        productName: 'SS304 Kitchen Sink Panel',
+        inspectionId: 'QI-2024-001',
+        inspector: 'Alice Johnson',
+        inspectionDate: '2025-01-22',
+        status: 'Approved',
+        manager: 'QC Manager Sarah',
+        approvalDate: '2025-01-22',
+        certificateNumber: 'QC-CERT-2025-001',
+        remarks: 'All quality parameters met. Approved for packaging.',
+    },
+    {
+        id: '2',
+        woNumber: 'WO-2025-003',
+        productName: 'Cabinet Frame Assembly',
+        inspectionId: 'QI-2024-003',
+        inspector: 'Bob Martinez',
+        inspectionDate: '2025-01-23',
+        status: 'Rejected',
+        manager: 'QC Manager Sarah',
+        approvalDate: '2025-01-23',
+        remarks: 'Dimensional defects found. Sent for rework.',
+    },
+    {
+        id: '3',
+        woNumber: 'WO-2025-005',
+        productName: 'Drawer Slide Assembly',
+        inspectionId: 'QI-2024-005',
+        inspector: 'Carol White',
+        inspectionDate: '2025-01-24',
+        status: 'Pending Approval',
+        manager: 'QC Manager Sarah',
+        remarks: 'Awaiting manager review.',
+    },
+];
+
+export default function QCApprovalsPage() {
+    const [approvals] = useState<QCApproval[]>(mockApprovals);
+    const [filterStatus, setFilterStatus] = useState<string>('all');
+
+    const filteredApprovals = approvals.filter((approval) => {
+        return filterStatus === 'all' || approval.status === filterStatus;
+    });
+
+    const getStatusColor = (status: string) => {
+        switch (status) {
+            case 'Approved':
+                return 'bg-green-100 text-green-800 border-green-300';
+            case 'Rejected':
+                return 'bg-red-100 text-red-800 border-red-300';
+            case 'Pending Approval':
+                return 'bg-yellow-100 text-yellow-800 border-yellow-300';
+            default:
+                return 'bg-gray-100 text-gray-800 border-gray-300';
+        }
+    };
+
+    const stats = {
+        total: approvals.length,
+        approved: approvals.filter((a) => a.status === 'Approved').length,
+        rejected: approvals.filter((a) => a.status === 'Rejected').length,
+        pending: approvals.filter((a) => a.status === 'Pending Approval').length,
+    };
+
+    return (
+        <div className="w-full h-screen overflow-y-auto bg-gray-50">
+            <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+                {/* Header */}
+                <div className="bg-white rounded-lg border p-6">
+                    <div className="flex items-center gap-4">
+                        <Link href="/quality/inspections" className="p-2 hover:bg-gray-100 rounded-lg">
+                            <ArrowLeft className="w-5 h-5" />
+                        </Link>
+                        <div>
+                            <h1 className="text-3xl font-bold text-gray-900">QC Approval Gate</h1>
+                            <p className="text-sm text-gray-600 mt-1">Manager approval for QC clearance (Step 6.4)</p>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Stats */}
+                <div className="grid grid-cols-4 gap-4">
+                    <div className="bg-white p-4 rounded-lg border">
+                        <div className="flex items-center justify-between">
+                            <div>
+                                <p className="text-sm text-gray-600">Total Approvals</p>
+                                <p className="text-2xl font-bold">{stats.total}</p>
+                            </div>
+                            <FileText className="w-8 h-8 text-gray-600" />
+                        </div>
+                    </div>
+                    <div className="bg-white p-4 rounded-lg border">
+                        <div className="flex items-center justify-between">
+                            <div>
+                                <p className="text-sm text-green-600">Approved</p>
+                                <p className="text-2xl font-bold text-green-900">{stats.approved}</p>
+                            </div>
+                            <CheckCircle className="w-8 h-8 text-green-600" />
+                        </div>
+                    </div>
+                    <div className="bg-white p-4 rounded-lg border">
+                        <div className="flex items-center justify-between">
+                            <div>
+                                <p className="text-sm text-red-600">Rejected</p>
+                                <p className="text-2xl font-bold text-red-900">{stats.rejected}</p>
+                            </div>
+                            <XCircle className="w-8 h-8 text-red-600" />
+                        </div>
+                    </div>
+                    <div className="bg-white p-4 rounded-lg border">
+                        <div className="flex items-center justify-between">
+                            <div>
+                                <p className="text-sm text-yellow-600">Pending</p>
+                                <p className="text-2xl font-bold text-yellow-900">{stats.pending}</p>
+                            </div>
+                            <Clock className="w-8 h-8 text-yellow-600" />
+                        </div>
+                    </div>
+                </div>
+
+                {/* Filters */}
+                <div className="bg-white rounded-lg border p-4">
+                    <select value={filterStatus} onChange={(e) => setFilterStatus(e.target.value)} className="px-4 py-2 border rounded-lg">
+                        <option value="all">All Status</option>
+                        <option value="Pending Approval">Pending Approval</option>
+                        <option value="Approved">Approved</option>
+                        <option value="Rejected">Rejected</option>
+                    </select>
+                </div>
+
+                {/* Approvals List */}
+                <div className="grid gap-4">
+                    {filteredApprovals.map((approval) => (
+                        <div key={approval.id} className="bg-white rounded-lg border p-6 hover:shadow-lg transition">
+                            <div className="flex items-start gap-4">
+                                <div className={`w-16 h-16 rounded-lg ${approval.status === 'Approved' ? 'bg-green-500' : approval.status === 'Rejected' ? 'bg-red-500' : 'bg-yellow-500'} flex items-center justify-center`}>
+                                    {approval.status === 'Approved' ? <Award className="w-8 h-8 text-white" /> : <FileText className="w-8 h-8 text-white" />}
+                                </div>
+                                <div className="flex-1">
+                                    <div className="flex items-start justify-between mb-3">
+                                        <div>
+                                            <h3 className="text-xl font-bold">{approval.productName}</h3>
+                                            <p className="text-sm text-gray-600">{approval.woNumber} - {approval.inspectionId}</p>
+                                        </div>
+                                        <span className={`px-3 py-1 text-xs font-medium rounded-full border ${getStatusColor(approval.status)}`}>
+                                            {approval.status}
+                                        </span>
+                                    </div>
+                                    <div className="grid grid-cols-4 gap-4 mb-3 text-sm">
+                                        <div>
+                                            <p className="text-xs text-gray-500">Inspector</p>
+                                            <p className="font-medium flex items-center gap-1">
+                                                <User className="w-3 h-3" />
+                                                {approval.inspector}
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <p className="text-xs text-gray-500">Inspection Date</p>
+                                            <p className="font-medium flex items-center gap-1">
+                                                <Calendar className="w-3 h-3" />
+                                                {approval.inspectionDate}
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <p className="text-xs text-gray-500">Manager</p>
+                                            <p className="font-medium">{approval.manager}</p>
+                                        </div>
+                                        <div>
+                                            <p className="text-xs text-gray-500">Certificate</p>
+                                            <p className="font-medium">{approval.certificateNumber || <span className="text-gray-500">N/A</span>}</p>
+                                        </div>
+                                    </div>
+                                    {approval.remarks && (
+                                        <div className={`border rounded p-2 text-sm ${approval.status === 'Approved' ? 'bg-green-50 border-green-200 text-green-800' : 'bg-red-50 border-red-200 text-red-800'}`}>
+                                            <strong>Remarks:</strong> {approval.remarks}
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
+}

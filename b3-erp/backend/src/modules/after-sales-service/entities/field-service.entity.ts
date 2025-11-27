@@ -130,7 +130,6 @@ export class FieldServiceJob {
   // Labor
   laborHours: number;
   laborRate?: number;
-  laborCost?: number;
 
   // Customer Interaction
   customerPresent: boolean;
@@ -335,7 +334,6 @@ export class ServiceReport {
 
   // Customer Feedback
   customerPresent: boolean;
-  customerName?: string;
   customerSignature: string;
   customerComments?: string;
   customerRating?: number;

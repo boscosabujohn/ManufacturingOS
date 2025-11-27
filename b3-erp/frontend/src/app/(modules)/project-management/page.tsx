@@ -276,13 +276,38 @@ const mockProjects: Project[] = [
 ];
 
 export default function ProjectsListPage() {
-  const [projects] = useState<Project[]>(mockProjects);
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('All');
   const [typeFilter, setTypeFilter] = useState('All');
   const [priorityFilter, setPriorityFilter] = useState('All');
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
+
+  // Fetch projects from backend
+  React.useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const response = await fetch('http://localhost:3000/projects');
+        if (response.ok) {
+          const data = await response.json();
+          setProjects(data);
+        } else {
+          console.error('Failed to fetch projects');
+          // Fallback to mock data if API fails
+          setProjects(mockProjects);
+        }
+      } catch (error) {
+        console.error('Error fetching projects:', error);
+        // Use mock data as fallback
+        setProjects(mockProjects);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProjects();
+  }, []);
 
   // Modal states
   const [showAdvancedFilter, setShowAdvancedFilter] = useState(false);
@@ -675,9 +700,8 @@ export default function ProjectsListPage() {
                   <td className="px-6 py-4">
                     <div className="text-sm text-gray-900">{formatCurrency(project.budget)}</div>
                     <div className="text-sm text-gray-600">{formatCurrency(project.actualCost)}</div>
-                    <div className={`text-xs mt-1 ${
-                      project.actualCost <= project.budget ? 'text-green-600' : 'text-red-600'
-                    }`}>
+                    <div className={`text-xs mt-1 ${project.actualCost <= project.budget ? 'text-green-600' : 'text-red-600'
+                      }`}>
                       {project.actualCost <= project.budget ? 'Under' : 'Over'} budget
                     </div>
                   </td>

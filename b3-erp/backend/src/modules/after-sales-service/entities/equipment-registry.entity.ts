@@ -1,3 +1,5 @@
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany, ManyToOne, JoinColumn } from 'typeorm';
+
 export enum EquipmentHealthStatus {
   EXCELLENT = 'excellent', // 90-100%
   GOOD = 'good', // 75-89%
@@ -249,7 +251,7 @@ export class EquipmentPerformance {
 
   // Cost Analysis
   operationalCost: number;
-  maintenanceCost: number;
+  @Column({ type: 'decimal', precision: 15, scale: 2, default: 0 })
   breakdownCost: number;
   totalCost: number;
   costPerOperatingHour: number;
