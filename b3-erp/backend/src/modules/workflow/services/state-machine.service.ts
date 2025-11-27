@@ -94,7 +94,6 @@ export class StateMachineService {
             projectId,
             currentPhase: 1, // Planning
             status: 'active',
-            startDate: new Date(),
         });
         return this.phaseRepository.save(phase);
     }
@@ -150,50 +149,6 @@ export class StateMachineService {
         // This could call RuleEngineService
     }
 
-    async validateTransition(projectId: string, fromPhase: number, toPhase: number): Promise<boolean> {
-        // Basic validation: sequential progression
-        if (toPhase !== fromPhase + 1 && toPhase !== fromPhase - 1) {
-            if (toPhase > fromPhase + 1) {
-                throw new BadRequestException(`Cannot skip phases. Current: ${fromPhase}, Target: ${toPhase}`);
-            }
-        }
-
-        // Phase-specific validation rules
-        switch (toPhase) {
-            case 2: // Site & Design
-                // Requirement: Project must be initiated
-                break;
-            case 3: // Technical
-                // Requirement: Site measurements and initial drawings must be approved
-                break;
-            case 4: // Procurement
-                // Requirement: BOM and Technical Drawings must be ready
-                break;
-            case 5: // Production
-                // Requirement: POs issued and materials received (at least partially)
-                // Check Material QA Gate
-                await this.checkQualityGate(projectId, 4, 'material_qa');
-                break;
-            case 6: // Quality
-                // Requirement: Production completed
-                // Check Production QC Gate
-                await this.checkQualityGate(projectId, 5, 'production_qc');
-                break;
-            case 7: // Logistics
-                // Requirement: QC passed
-                // Check Final QC Gate
-                await this.checkQualityGate(projectId, 6, 'final_qc');
-                break;
-            case 8: // Installation
-                // Requirement: Items dispatched/delivered
-                break;
-            default:
-                break;
-        }
-
-        return true;
-    }
-
     private async checkQualityGate(projectId: string, phase: number, gateType: string) {
         const gates = await this.qualityGateService.getProjectQualityGates(projectId);
         const relevantGate = gates.find(g => g.phase === phase && g.gateType === gateType);
@@ -206,4 +161,3 @@ export class StateMachineService {
         // Let's enforce existence for critical gates if we want to be strict.
     }
 }
-```

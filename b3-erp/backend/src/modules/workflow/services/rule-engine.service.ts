@@ -1,8 +1,7 @@
-```typescript
-import { Injectable, Logger } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { WorkflowRule } from '../entities/workflow-rule.entity';
+import { Injectable, Logger} from '@nestjs/common';
+import { InjectRepository} from '@nestjs/typeorm';
+import { Repository} from 'typeorm';
+import { WorkflowRule} from '../entities/workflow-rule.entity';
 
 export interface Rule {
     id: string;
@@ -39,15 +38,15 @@ export class RuleEngineService {
      */
     async evaluateRulesForEvent(eventName: string, context: any): Promise<void> {
         const rules = await this.ruleRepository.find({
-            where: { triggerEvent: eventName, enabled: true },
-            order: { priority: 'DESC' },
-        });
+            where: { triggerEvent: eventName, enabled: true},
+            order: { priority: 'DESC'},
+       });
 
         if (rules.length > 0) {
-            this.logger.log(`Evaluating ${ rules.length } rules for event: ${ eventName } `);
+            this.logger.log(`Evaluating ${rules.length} rules for event: ${eventName} `);
             await this.evaluateRules(rules as unknown as Rule[], context);
-        }
-    }
+       }
+   }
 
     /**
      * Evaluate a set of rules against a context
@@ -59,11 +58,11 @@ export class RuleEngineService {
 
         for (const rule of sortedRules) {
             if (this.evaluateConditions(rule.conditions, context)) {
-                this.logger.log(`Rule matched: ${ rule.name } `);
+                this.logger.log(`Rule matched: ${rule.name} `);
                 await this.executeActions(rule.actions, context);
-            }
-        }
-    }
+           }
+       }
+   }
 
     /**
      * Evaluate conditions for a single rule
@@ -72,15 +71,15 @@ export class RuleEngineService {
         return conditions.every((condition) => {
             const value = this.getValueFromContext(context, condition.field);
             return this.compare(value, condition.operator, condition.value);
-        });
-    }
+       });
+   }
 
     /**
      * Get value from nested context object using dot notation
      */
     private getValueFromContext(context: any, field: string): any {
         return field.split('.').reduce((obj, key) => (obj && obj[key] !== 'undefined' ? obj[key] : undefined), context);
-    }
+   }
 
     /**
      * Compare values based on operator
@@ -101,43 +100,43 @@ export class RuleEngineService {
                 return Array.isArray(expected) ? expected.includes(actual) : false;
             default:
                 return false;
-        }
-    }
+       }
+   }
 
     /**
    * Execute actions for a matched rule
    */
     private async executeActions(actions: RuleAction[], context: any): Promise<void> {
         for (const action of actions) {
-            this.logger.log(`Executing action: ${ action.type } `, action.params);
+            this.logger.log(`Executing action: ${action.type} `, action.params);
 
             try {
                 switch (action.type) {
                     case 'send_notification':
                         // await this.notificationService.notifyUser(...)
                         // For now, just log as we need to inject NotificationService
-                        this.logger.log(`[Mock] Sending notification: ${ JSON.stringify(action.params) } `);
+                        this.logger.log(`[Mock] Sending notification: ${JSON.stringify(action.params)} `);
                         break;
 
                     case 'trigger_event':
                         // await this.eventBusService.emit(...)
                         // For now, just log as we need to inject EventBusService
-                        this.logger.log(`[Mock] Triggering event: ${ JSON.stringify(action.params) } `);
+                        this.logger.log(`[Mock] Triggering event: ${JSON.stringify(action.params)} `);
                         break;
 
                     case 'update_context':
                         // Update the context object directly (if mutable)
                         if (action.params.field && action.params.value !== undefined) {
                             context[action.params.field] = action.params.value;
-                        }
+                       }
                         break;
 
                     default:
-                        this.logger.warn(`Unknown action type: ${ action.type } `);
-                }
-            } catch (error) {
-                this.logger.error(`Failed to execute action ${ action.type }: ${ error.message } `, error.stack);
-            }
-        }
-    }
+                        this.logger.warn(`Unknown action type: ${action.type} `);
+               }
+           } catch (error) {
+                this.logger.error(`Failed to execute action ${action.type}: ${error.message} `, error.stack);
+           }
+       }
+   }
 }

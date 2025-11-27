@@ -3,7 +3,7 @@ import { CreateFieldServiceJobDto } from '../dto/create-field-service-job.dto';
 import { UpdateFieldServiceJobDto } from '../dto/update-field-service-job.dto';
 import {
   FieldServiceJob,
-  FieldServiceStatus,
+  FieldServiceJobStatus,
   ServiceReport,
 } from '../entities/field-service.entity';
 
@@ -18,11 +18,16 @@ export class FieldServiceService {
     const job: FieldServiceJob = {
       id: `FSJ-${String(this.jobIdCounter++).padStart(6, '0')}`,
       jobNumber: `FS-${new Date().getFullYear()}-${String(this.jobIdCounter).padStart(6, '0')}`,
-      status: FieldServiceStatus.SCHEDULED,
+      status: FieldServiceJobStatus.SCHEDULED,
       ...createFieldServiceJobDto,
       travelDistance: 0,
-      totalPartsValue: 0,
-      totalLaborCost: 0,
+      laborHours: 0,
+      diagnosisCompleted: false,
+      customerPresent: false,
+      customerDemonstration: false,
+      customerTraining: false,
+      customerSatisfied: false,
+      workPerformed: '',
       createdAt: new Date(),
       updatedAt: new Date(),
     };
@@ -42,7 +47,7 @@ export class FieldServiceService {
       filtered = filtered.filter((j) => j.status === filters.status);
     }
     if (filters?.engineerId) {
-      filtered = filtered.filter((j) => j.engineerId === filters.engineerId);
+      filtered = filtered.filter((j) => j.assignedEngineerId === filters.engineerId);
     }
     if (filters?.customerId) {
       filtered = filtered.filter((j) => j.customerId === filters.customerId);
@@ -80,9 +85,8 @@ export class FieldServiceService {
     const job = this.findOneJob(id);
     if (!job) return null;
 
-    job.engineerId = engineerId;
-    job.engineerName = engineerName;
-    job.assignmentDate = new Date();
+    job.assignedEngineerId = engineerId;
+    job.assignedEngineerName = engineerName;
     job.updatedBy = assignedBy;
     job.updatedAt = new Date();
 
@@ -93,8 +97,9 @@ export class FieldServiceService {
     const job = this.findOneJob(id);
     if (!job) return null;
 
-    job.status = FieldServiceStatus.DISPATCHED;
-    job.dispatchTime = new Date();
+    job.status = FieldServiceJobStatus.DISPATCHED;
+    job.dispatchedAt = new Date();
+    job.dispatchedBy = dispatchedBy;
     job.updatedBy = dispatchedBy;
     job.updatedAt = new Date();
 
@@ -110,12 +115,12 @@ export class FieldServiceService {
     const job = this.findOneJob(id);
     if (!job) return null;
 
-    if (job.engineerId !== engineerId) {
+    if (job.assignedEngineerId !== engineerId) {
       throw new Error('Only assigned engineer can check in');
     }
 
     const now = new Date();
-    job.status = FieldServiceStatus.IN_PROGRESS;
+    job.status = FieldServiceJobStatus.IN_PROGRESS;
     job.checkInTime = now;
     job.checkInLocation = location;
     job.actualStartTime = now;
@@ -133,7 +138,7 @@ export class FieldServiceService {
     const job = this.findOneJob(id);
     if (!job) return null;
 
-    if (job.engineerId !== engineerId) {
+    if (job.assignedEngineerId !== engineerId) {
       throw new Error('Only assigned engineer can check out');
     }
 
@@ -159,18 +164,17 @@ export class FieldServiceService {
       partId: string;
       partName: string;
       quantity: number;
-      unitPrice: number;
+      cost: number;
     }>,
     recordedBy: string,
   ): FieldServiceJob | null {
     const job = this.findOneJob(id);
     if (!job) return null;
 
-    job.partsConsumed = parts;
-    job.totalPartsValue = parts.reduce(
-      (sum, part) => sum + part.quantity * part.unitPrice,
-      0,
-    );
+    job.partsUsed = parts.map(p => ({
+      ...p,
+      serialNumbers: []
+    }));
     job.updatedBy = recordedBy;
     job.updatedAt = new Date();
 
@@ -200,8 +204,8 @@ export class FieldServiceService {
       reportNumber: `SRPT-${new Date().getFullYear()}-${String(this.reportIdCounter).padStart(6, '0')}`,
       jobId: id,
       jobNumber: job.jobNumber,
-      engineerId: job.engineerId!,
-      engineerName: job.engineerName!,
+      engineerId: job.assignedEngineerId,
+      engineerName: job.assignedEngineerName,
       customerId: job.customerId,
       customerName: job.customerName,
       serviceDate: job.actualStartTime || new Date(),
@@ -213,8 +217,14 @@ export class FieldServiceService {
 
     this.reports.push(report);
 
-    // Update job with report reference
-    job.serviceReportId = report.id;
+    // Update job with service report
+    job.serviceReport = {
+      problemStatement: reportData.issuesFound?.join(', ') || '',
+      diagnosis: '',
+      workPerformed: reportData.workPerformed,
+      partsReplaced: reportData.partsReplaced,
+      recommendations: reportData.recommendations?.join(', ')
+    };
     job.updatedAt = new Date();
 
     return report;
@@ -228,9 +238,9 @@ export class FieldServiceService {
     const job = this.findOneJob(id);
     if (!job) return null;
 
-    job.status = FieldServiceStatus.COMPLETED;
-    job.completionDate = new Date();
-    job.completionNotes = completionNotes;
+    job.status = FieldServiceJobStatus.COMPLETED;
+    job.completedAt = new Date();
+    job.completedBy = completedBy;
     job.updatedBy = completedBy;
     job.updatedAt = new Date();
 
@@ -245,7 +255,7 @@ export class FieldServiceService {
     const job = this.findOneJob(id);
     if (!job) return null;
 
-    job.status = FieldServiceStatus.CANCELLED;
+    job.status = FieldServiceJobStatus.CANCELLED;
     job.cancellationDate = new Date();
     job.cancellationReason = cancellationReason;
     job.updatedBy = cancelledBy;
@@ -257,12 +267,12 @@ export class FieldServiceService {
   getScheduledJobs(engineerId?: string, date?: Date): FieldServiceJob[] {
     let filtered = this.jobs.filter(
       (job) =>
-        job.status === FieldServiceStatus.SCHEDULED ||
-        job.status === FieldServiceStatus.DISPATCHED,
+        job.status === FieldServiceJobStatus.SCHEDULED ||
+        job.status === FieldServiceJobStatus.DISPATCHED,
     );
 
     if (engineerId) {
-      filtered = filtered.filter((job) => job.engineerId === engineerId);
+      filtered = filtered.filter((job) => job.assignedEngineerId === engineerId);
     }
 
     if (date) {
@@ -290,7 +300,7 @@ export class FieldServiceService {
     startDate?: Date,
     endDate?: Date,
   ): FieldServiceJob[] {
-    let filtered = this.jobs.filter((job) => job.engineerId === engineerId);
+    let filtered = this.jobs.filter((job) => job.assignedEngineerId === engineerId);
 
     if (startDate) {
       filtered = filtered.filter(
@@ -311,9 +321,9 @@ export class FieldServiceService {
   }
 
   getEngineerPerformance(engineerId: string) {
-    const engineerJobs = this.jobs.filter((job) => job.engineerId === engineerId);
+    const engineerJobs = this.jobs.filter((job) => job.assignedEngineerId === engineerId);
     const completedJobs = engineerJobs.filter(
-      (job) => job.status === FieldServiceStatus.COMPLETED,
+      (job) => job.status === FieldServiceJobStatus.COMPLETED,
     );
 
     // Calculate average job duration
@@ -323,17 +333,17 @@ export class FieldServiceService {
     const averageJobDuration =
       jobsWithDuration.length > 0
         ? jobsWithDuration.reduce((sum, job) => sum + (job.actualDuration || 0), 0) /
-          jobsWithDuration.length
+        jobsWithDuration.length
         : 0;
 
     // Calculate on-time completion rate
     const onTimeJobs = completedJobs.filter((job) => {
-      if (!job.scheduledDate || !job.completionDate) return false;
+      if (!job.scheduledDate || !job.completedAt) return false;
       const scheduledEnd = new Date(job.scheduledDate);
       scheduledEnd.setHours(
         scheduledEnd.getHours() + (job.estimatedDuration || 0),
       );
-      return job.completionDate <= scheduledEnd;
+      return job.completedAt <= scheduledEnd;
     });
 
     // Get engineer's service reports
@@ -345,10 +355,10 @@ export class FieldServiceService {
       totalJobs: engineerJobs.length,
       completedJobs: completedJobs.length,
       inProgressJobs: engineerJobs.filter(
-        (job) => job.status === FieldServiceStatus.IN_PROGRESS,
+        (job) => job.status === FieldServiceJobStatus.IN_PROGRESS,
       ).length,
       scheduledJobs: engineerJobs.filter(
-        (job) => job.status === FieldServiceStatus.SCHEDULED,
+        (job) => job.status === FieldServiceJobStatus.SCHEDULED,
       ).length,
       completionRate:
         engineerJobs.length > 0
@@ -366,16 +376,16 @@ export class FieldServiceService {
   getStatistics() {
     const total = this.jobs.length;
     const scheduled = this.jobs.filter(
-      (j) => j.status === FieldServiceStatus.SCHEDULED,
+      (j) => j.status === FieldServiceJobStatus.SCHEDULED,
     ).length;
     const dispatched = this.jobs.filter(
-      (j) => j.status === FieldServiceStatus.DISPATCHED,
+      (j) => j.status === FieldServiceJobStatus.DISPATCHED,
     ).length;
     const inProgress = this.jobs.filter(
-      (j) => j.status === FieldServiceStatus.IN_PROGRESS,
+      (j) => j.status === FieldServiceJobStatus.IN_PROGRESS,
     ).length;
     const completed = this.jobs.filter(
-      (j) => j.status === FieldServiceStatus.COMPLETED,
+      (j) => j.status === FieldServiceJobStatus.COMPLETED,
     ).length;
 
     // Calculate average job duration
@@ -385,12 +395,12 @@ export class FieldServiceService {
     const averageJobDuration =
       jobsWithDuration.length > 0
         ? jobsWithDuration.reduce((sum, j) => sum + (j.actualDuration || 0), 0) /
-          jobsWithDuration.length
+        jobsWithDuration.length
         : 0;
 
     // Total parts value
     const totalPartsValue = this.jobs.reduce(
-      (sum, j) => sum + (j.totalPartsValue || 0),
+      (sum, j) => sum + (j.partsUsed || []).reduce((partSum, part) => partSum + part.cost, 0),
       0,
     );
 
