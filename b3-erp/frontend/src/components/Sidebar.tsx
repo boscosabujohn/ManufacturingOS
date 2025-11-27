@@ -67,6 +67,10 @@ const menuItems: MenuItem[] = [
       { id: 'pm-dashboard', name: 'Projects Dashboard', href: '/project-management', description: 'All projects overview' },
       { id: 'create-project', name: 'Create Project', href: '/project-management/create', description: 'Start new project' },
       { id: 'project-documents', name: 'Documents', href: '/project-management/documents', description: 'Project documents' },
+      { id: 'project-financials', name: 'Project Financials', href: '/project-management/financials', description: 'IoE tracking & budget' },
+      { id: 'ta-settlement', name: 'TA Settlement', href: '/project-management/ta-settlement', description: 'Travel allowance claims' },
+      { id: 'emergency-spares', name: 'Emergency Spares', href: '/project-management/emergency-spares', description: 'urgent parts request' },
+      { id: 'mobile-field', name: 'Mobile Field View', href: '/project-management/mobile-field', description: 'Field engineer access' },
       {
         id: 'manufacturing-workflow',
         name: '🏭 Manufacturing Workflow',
@@ -816,6 +820,7 @@ const menuItems: MenuItem[] = [
     hoverColor: 'hover:bg-red-100',
     subItems: [
       { id: 'production-dashboard', name: 'Production Dashboard', href: '/production', description: 'Production overview' },
+      { id: 'dies-tools', name: 'Dies & Tools Manager', href: '/production/dies-tools', description: 'Tool lifecycle management' },
       {
         id: 'production-planning',
         name: 'Production Planning',
@@ -2808,6 +2813,7 @@ const menuItems: MenuItem[] = [
     hoverColor: 'hover:bg-lime-100',
     subItems: [
       { id: 'logistics-dashboard', name: 'Logistics Dashboard', href: '/logistics', description: 'Logistics overview' },
+      { id: 'gate-pass', name: 'Gate Pass Manager', href: '/logistics/gate-pass', description: 'Security gate passes' },
       {
         id: 'shipping-management',
         name: 'Shipping Management',

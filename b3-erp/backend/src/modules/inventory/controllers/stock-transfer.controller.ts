@@ -16,6 +16,7 @@ import {
   ApiResponse,
   ApiParam,
   ApiQuery,
+  ApiBody,
 } from '@nestjs/swagger';
 import { StockTransferService } from '../services/stock-transfer.service';
 import {
@@ -27,7 +28,7 @@ import {
 @ApiTags('Inventory - Stock Transfer')
 @Controller('inventory/stock-transfers')
 export class StockTransferController {
-  constructor(private readonly stockTransferService: StockTransferService) {}
+  constructor(private readonly stockTransferService: StockTransferService) { }
 
   @Post()
   @ApiOperation({ summary: 'Create a new stock transfer' })

@@ -21,11 +21,12 @@ import {
 import { SystemConfigService } from '../services/system-config.service';
 import { CreateSystemConfigDto } from '../dto/create-system-config.dto';
 import { UpdateSystemConfigDto } from '../dto/update-system-config.dto';
+import { ConfigCategory } from '../entities/system-config.entity';
 
 @ApiTags('IT Admin - System Config')
 @Controller('it-admin/system-config')
 export class SystemConfigController {
-  constructor(private readonly configService: SystemConfigService) {}
+  constructor(private readonly configService: SystemConfigService) { }
 
   @Post()
   @ApiOperation({ summary: 'Create a new system config' })
@@ -59,7 +60,7 @@ export class SystemConfigController {
     description: 'List of configs',
   })
   async getByCategory(@Param('category') category: string): Promise<any[]> {
-    return this.configService.getByCategory(category);
+    return this.configService.getByCategory(category as ConfigCategory);
   }
 
   @Get('module/:module')

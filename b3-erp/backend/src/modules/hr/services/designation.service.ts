@@ -17,7 +17,7 @@ export class DesignationService {
   constructor(
     @InjectRepository(Designation)
     private readonly designationRepository: Repository<Designation>,
-  ) {}
+  ) { }
 
   async create(createDto: CreateDesignationDto): Promise<DesignationResponseDto> {
     const existing = await this.designationRepository.findOne({
@@ -33,7 +33,7 @@ export class DesignationService {
     return this.mapToResponseDto(saved);
   }
 
-  async findAll(): Promise<DesignationResponseDto[]> {
+  async findAll(filters?: any): Promise<DesignationResponseDto[]> {
     const designations = await this.designationRepository.find({
       order: { gradeLevel: 'ASC', title: 'ASC' },
     });

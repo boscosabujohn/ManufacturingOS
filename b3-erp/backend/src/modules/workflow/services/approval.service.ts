@@ -5,7 +5,7 @@ import { Repository, DataSource } from 'typeorm';
 import { WorkflowApproval } from '../entities/workflow-approval.entity';
 import { ApprovalStep } from '../entities/approval-step.entity';
 import { EventBusService } from './event-bus.service';
-import { WorkflowEventType } from '../events/event-types';
+import { WorkflowEventType, ApprovalEventPayload } from '../events/event-types';
 
 @Injectable()
 export class ApprovalService {
@@ -58,7 +58,7 @@ export class ApprovalService {
         await this.stepRepository.save(approvalSteps);
 
         // Emit event
-        await this.eventBusService.emit(WorkflowEventType.APPROVAL_REQUIRED, {
+        await this.eventBusService.emit<ApprovalEventPayload>(WorkflowEventType.APPROVAL_REQUIRED, {
             approvalId: savedApproval.id,
             entityType: approvalType,
             entityId: referenceId,
@@ -66,6 +66,7 @@ export class ApprovalService {
             requiredApprovers: steps.map(s => s.approverId),
             currentLevel: 1,
             maxLevel: steps.length, // Simplified
+            userId: createdBy,
         });
 
         return this.getApproval(savedApproval.id);
@@ -106,7 +107,7 @@ export class ApprovalService {
             await this.approvalRepository.save(approval);
 
             // Emit rejection event
-            await this.eventBusService.emit(WorkflowEventType.APPROVAL_REJECTED, {
+            await this.eventBusService.emit<ApprovalEventPayload>(WorkflowEventType.APPROVAL_REJECTED, {
                 approvalId: approval.id,
                 entityType: approval.approvalType,
                 entityId: approval.referenceId,
@@ -116,6 +117,7 @@ export class ApprovalService {
                 maxLevel: 0,
                 decision: 'rejected',
                 comments,
+                userId,
             });
         } else {
             // Check if all steps in current sequence are approved
@@ -137,7 +139,7 @@ export class ApprovalService {
                     approval.completedAt = new Date();
 
                     // Emit approval granted event
-                    await this.eventBusService.emit(WorkflowEventType.APPROVAL_GRANTED, {
+                    await this.eventBusService.emit<ApprovalEventPayload>(WorkflowEventType.APPROVAL_GRANTED, {
                         approvalId: approval.id,
                         entityType: approval.approvalType,
                         entityId: approval.referenceId,
@@ -147,6 +149,7 @@ export class ApprovalService {
                         maxLevel: 0,
                         decision: 'approved',
                         comments,
+                        userId,
                     });
                 }
                 await this.approvalRepository.save(approval);

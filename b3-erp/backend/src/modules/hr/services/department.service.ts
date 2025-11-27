@@ -17,7 +17,7 @@ export class DepartmentService {
   constructor(
     @InjectRepository(Department)
     private readonly departmentRepository: Repository<Department>,
-  ) {}
+  ) { }
 
   async create(createDto: CreateDepartmentDto): Promise<DepartmentResponseDto> {
     const existing = await this.departmentRepository.findOne({
@@ -33,7 +33,7 @@ export class DepartmentService {
     return this.mapToResponseDto(saved);
   }
 
-  async findAll(): Promise<DepartmentResponseDto[]> {
+  async findAll(filters?: any): Promise<DepartmentResponseDto[]> {
     const departments = await this.departmentRepository.find({
       order: { name: 'ASC' },
     });

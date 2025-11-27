@@ -5,7 +5,7 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Inspection, InspectionStatus, InspectionResult as InspectionResultEnum } from '../entities/inspection.entity';
+import { Inspection, InspectionStatus, InspectionResultEnum } from '../entities/inspection.entity';
 import { CreateInspectionDto, UpdateInspectionDto, InspectionResponseDto } from '../dto';
 import { EventBusService } from '../../workflow/services/event-bus.service';
 
@@ -15,7 +15,7 @@ export class InspectionService {
     @InjectRepository(Inspection)
     private readonly inspectionRepository: Repository<Inspection>,
     private readonly eventBus: EventBusService,
-  ) {}
+  ) { }
 
   async create(createDto: CreateInspectionDto): Promise<InspectionResponseDto> {
     const existing = await this.inspectionRepository.findOne({

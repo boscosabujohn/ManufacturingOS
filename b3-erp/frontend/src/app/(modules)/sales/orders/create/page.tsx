@@ -66,6 +66,13 @@ export default function CreateSalesOrderPage() {
   const [priority, setPriority] = useState<'normal' | 'high' | 'urgent'>('normal');
   const [notes, setNotes] = useState('');
   const [termsAndConditions, setTermsAndConditions] = useState('');
+  const [documents, setDocuments] = useState<{
+    po?: File;
+    specs?: File;
+    drawings?: File;
+    others: File[];
+  }>({ others: [] });
+  const [uploadErrors, setUploadErrors] = useState<string[]>([]);
 
   const [items, setItems] = useState<OrderItem[]>([
     {
@@ -211,11 +218,40 @@ export default function CreateSalesOrderPage() {
     return items.reduce((sum, item) => sum + item.lineTotal, 0);
   };
 
+  const handleFileUpload = (type: 'po' | 'specs' | 'drawings' | 'others', file: File | null) => {
+    if (!file) return;
+
+    if (type === 'others') {
+      setDocuments({ ...documents, others: [...documents.others, file] });
+    } else {
+      setDocuments({ ...documents, [type]: file });
+    }
+  };
+
+  const removeDocument = (type: 'po' | 'specs' | 'drawings' | 'others', index?: number) => {
+    if (type === 'others' && index !== undefined) {
+      const newOthers = documents.others.filter((_, i) => i !== index);
+      setDocuments({ ...documents, others: newOthers });
+    } else if (type !== 'others') {
+      const newDocs = { ...documents };
+      delete newDocs[type];
+      setDocuments(newDocs);
+    }
+  };
+
   const handleSave = (action: 'draft' | 'confirm') => {
+    // Validate mandatory documents before confirming
+    if (action === 'confirm' && !documents.po) {
+      setUploadErrors(['PO document is required to confirm the order']);
+      return;
+    }
+
+    setUploadErrors([]);
     console.log('Saving order:', {
       orderNumber,
       customer: selectedCustomer,
       items,
+      documents,
       action
     });
     // Add save logic here
@@ -616,6 +652,179 @@ export default function CreateSalesOrderPage() {
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />
               </div>
+            </div>
+
+            {/* Document Upload Section */}
+            <div className="bg-white rounded-lg border border-gray-200 p-6">
+              <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                <Upload className="w-5 h-5 text-blue-600" />
+                Document Upload
+              </h2>
+
+              {uploadErrors.length > 0 && (
+                <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg">
+                  {uploadErrors.map((error, idx) => (
+                    <p key={idx} className="text-sm text-red-700">{error}</p>
+                  ))}
+                </div>
+              )}
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {/* PO Document */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Purchase Order (PO) <span className="text-red-500">*</span>
+                  </label>
+                  <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 hover:border-blue-400 transition-colors">
+                    {!documents.po ? (
+                      <label className="cursor-pointer">
+                        <input
+                          type="file"
+                          accept=".pdf,.doc,.docx"
+                          onChange={(e) => handleFileUpload('po', e.target.files?.[0] || null)}
+                          className="hidden"
+                        />
+                        <div className="text-center">
+                          <Upload className="w-8 h-8 mx-auto text-gray-400 mb-2" />
+                          <p className="text-sm text-gray-600">Click to upload PO</p>
+                          <p className="text-xs text-gray-500 mt-1">PDF, DOC, DOCX</p>
+                        </div>
+                      </label>
+                    ) : (
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <FileText className="w-5 h-5 text-blue-600" />
+                          <span className="text-sm text-gray-700 truncate">{documents.po.name}</span>
+                        </div>
+                        <button
+                          onClick={() => removeDocument('po')}
+                          className="p-1 hover:bg-red-50 rounded"
+                        >
+                          <X className="w-4 h-4 text-red-600" />
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* Specs Document */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Technical Specifications
+                  </label>
+                  <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 hover:border-blue-400 transition-colors">
+                    {!documents.specs ? (
+                      <label className="cursor-pointer">
+                        <input
+                          type="file"
+                          accept=".pdf,.doc,.docx"
+                          onChange={(e) => handleFileUpload('specs', e.target.files?.[0] || null)}
+                          className="hidden"
+                        />
+                        <div className="text-center">
+                          <Upload className="w-8 h-8 mx-auto text-gray-400 mb-2" />
+                          <p className="text-sm text-gray-600">Click to upload specs</p>
+                          <p className="text-xs text-gray-500 mt-1">PDF, DOC, DOCX</p>
+                        </div>
+                      </label>
+                    ) : (
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <FileText className="w-5 h-5 text-blue-600" />
+                          <span className="text-sm text-gray-700 truncate">{documents.specs.name}</span>
+                        </div>
+                        <button
+                          onClick={() => removeDocument('specs')}
+                          className="p-1 hover:bg-red-50 rounded"
+                        >
+                          <X className="w-4 h-4 text-red-600" />
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* Drawings Document */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Technical Drawings
+                  </label>
+                  <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 hover:border-blue-400 transition-colors">
+                    {!documents.drawings ? (
+                      <label className="cursor-pointer">
+                        <input
+                          type="file"
+                          accept=".pdf,.dwg,.dxf"
+                          onChange={(e) => handleFileUpload('drawings', e.target.files?.[0] || null)}
+                          className="hidden"
+                        />
+                        <div className="text-center">
+                          <Upload className="w-8 h-8 mx-auto text-gray-400 mb-2" />
+                          <p className="text-sm text-gray-600">Click to upload drawings</p>
+                          <p className="text-xs text-gray-500 mt-1">PDF, DWG, DXF</p>
+                        </div>
+                      </label>
+                    ) : (
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <FileText className="w-5 h-5 text-blue-600" />
+                          <span className="text-sm text-gray-700 truncate">{documents.drawings.name}</span>
+                        </div>
+                        <button
+                          onClick={() => removeDocument('drawings')}
+                          className="p-1 hover:bg-red-50 rounded"
+                        >
+                          <X className="w-4 h-4 text-red-600" />
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* Other Documents */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Other Documents
+                  </label>
+                  <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 hover:border-blue-400 transition-colors">
+                    <label className="cursor-pointer">
+                      <input
+                        type="file"
+                        accept=".pdf,.doc,.docx,.jpg,.png"
+                        onChange={(e) => handleFileUpload('others', e.target.files?.[0] || null)}
+                        className="hidden"
+                      />
+                      <div className="text-center">
+                        <Upload className="w-8 h-8 mx-auto text-gray-400 mb-2" />
+                        <p className="text-sm text-gray-600">Click to upload</p>
+                        <p className="text-xs text-gray-500 mt-1">Any file type</p>
+                      </div>
+                    </label>
+                    {documents.others.length > 0 && (
+                      <div className="mt-3 space-y-2">
+                        {documents.others.map((file, idx) => (
+                          <div key={idx} className="flex items-center justify-between bg-gray-50 p-2 rounded">
+                            <div className="flex items-center gap-2">
+                              <FileText className="w-4 h-4 text-blue-600" />
+                              <span className="text-xs text-gray-700 truncate">{file.name}</span>
+                            </div>
+                            <button
+                              onClick={() => removeDocument('others', idx)}
+                              className="p-1 hover:bg-red-50 rounded"
+                            >
+                              <X className="w-3 h-3 text-red-600" />
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              <p className="text-xs text-gray-500 mt-4">
+                <span className="text-red-500">*</span> PO document is mandatory to confirm the order
+              </p>
             </div>
           </div>
 

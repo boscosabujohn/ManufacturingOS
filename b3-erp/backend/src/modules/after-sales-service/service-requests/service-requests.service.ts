@@ -30,7 +30,7 @@ export class ServiceRequestsService {
   create(createServiceRequestDto: CreateServiceRequestDto): ServiceRequest {
     const now = new Date();
     const priority =
-      createServiceRequestDto.priority || ServiceRequestPriority.P3_MEDIUM;
+      (createServiceRequestDto.priority as ServiceRequestPriority) || ServiceRequestPriority.P3_MEDIUM;
 
     // Calculate SLA deadlines
     const responseDeadline = new Date(now);
@@ -45,7 +45,7 @@ export class ServiceRequestsService {
 
     const request: ServiceRequest = {
       id: `SR-${String(this.idCounter++).padStart(6, '0')}`,
-      ticketNumber: `TICKET-${new Date().getFullYear()}-${String(this.idCounter).padStart(6, '0')}`,
+      requestNumber: `SR-${new Date().getFullYear()}-${String(this.idCounter).padStart(6, '0')}`,
       status: ServiceRequestStatus.OPEN,
       priority,
       ...createServiceRequestDto,
@@ -56,6 +56,25 @@ export class ServiceRequestsService {
       isOverdue: false,
       createdAt: now,
       updatedAt: now,
+      responseTimeSLA: this.SLA_RESPONSE_TIMES[priority],
+      resolutionTimeSLA: this.SLA_RESOLUTION_TIMES[priority],
+      slaBreached: false,
+      assignmentMethod: 'manual',
+      escalated: false,
+      customerConfirmed: false,
+      billable: false,
+      underWarranty: false,
+      underContract: false,
+      subject: createServiceRequestDto.description || 'Service Request',
+      description: createServiceRequestDto.description || '',
+      channel: createServiceRequestDto.channel as any || 'web_portal', // Cast or default
+      serviceType: createServiceRequestDto.serviceType as any || 'repair', // Cast or default
+      customerId: createServiceRequestDto.customerId || 'unknown',
+      customerName: 'Unknown', // Should fetch customer
+      contactPerson: 'Unknown',
+      contactPhone: 'Unknown',
+      serviceAddress: 'Unknown',
+      requestedDate: now,
     };
 
     this.requests.push(request);
@@ -108,6 +127,7 @@ export class ServiceRequestsService {
     this.requests[index] = {
       ...this.requests[index],
       ...updateServiceRequestDto,
+      priority: (updateServiceRequestDto.priority as ServiceRequestPriority) || this.requests[index].priority,
       updatedAt: new Date(),
     };
 
@@ -243,7 +263,7 @@ export class ServiceRequestsService {
     request.escalationLevel = escalationLevel;
     request.escalationDate = new Date();
     request.escalationReason = escalationReason;
-    request.escalatedTo = escalatedTo;
+    request.escalatedTo = escalatedTo ? [escalatedTo] : [];
     request.updatedBy = escalatedBy;
     request.updatedAt = new Date();
 
@@ -393,5 +413,26 @@ export class ServiceRequestsService {
 
     this.requests.splice(index, 1);
     return { message: 'Service request deleted successfully' };
+  }
+  async checkSpareAvailability(partId: string, siteId: string): Promise<{
+    available: boolean;
+    source: 'site' | 'factory' | 'oem' | 'none';
+    quantity: number;
+    leadTime: number; // in hours
+  }> {
+    // 1. Check Site Inventory
+    // Mock: 30% chance available at site
+    if (Math.random() > 0.7) {
+      return { available: true, source: 'site', quantity: 5, leadTime: 0 };
+    }
+
+    // 2. Check Factory Store
+    // Mock: 50% chance available at factory
+    if (Math.random() > 0.5) {
+      return { available: true, source: 'factory', quantity: 20, leadTime: 24 }; // 24h shipping
+    }
+
+    // 3. Check OEM Procurement (or assume available to order)
+    return { available: true, source: 'oem', quantity: 100, leadTime: 168 }; // 7 days
   }
 }

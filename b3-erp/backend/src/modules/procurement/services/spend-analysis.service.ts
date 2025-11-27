@@ -245,7 +245,7 @@ export class SpendAnalysisService {
         paymentPerformance: 85 + Math.random() * 15, // Mock
         categories: Array.from(v.categories),
         trend: Math.round((Math.random() - 0.3) * 20), // Mock trend
-        riskLevel: v.amount / totalSpend > 0.3 ? 'high' : v.amount / totalSpend > 0.15 ? 'medium' : 'low',
+        riskLevel: (v.amount / totalSpend > 0.3 ? 'high' : v.amount / totalSpend > 0.15 ? 'medium' : 'low') as 'low' | 'medium' | 'high',
       }))
       .sort((a, b) => b.totalSpend - a.totalSpend);
   }

@@ -14,7 +14,7 @@ export class GoodsReceiptService {
     @InjectRepository(GoodsReceiptItem)
     private readonly grnItemRepository: Repository<GoodsReceiptItem>,
     private readonly eventBus: EventBusService,
-  ) {}
+  ) { }
 
   async create(createDto: CreateGoodsReceiptDto): Promise<GoodsReceiptResponseDto> {
     const grnNumber = await this.generateGRNNumber();
@@ -34,7 +34,7 @@ export class GoodsReceiptService {
         goodsReceiptId: savedGRN.id,
         ...item,
         status: GRNItemStatus.PENDING_INSPECTION,
-      })
+      } as any) as unknown as GoodsReceiptItem
     );
 
     await this.grnItemRepository.save(grnItems);
@@ -54,7 +54,7 @@ export class GoodsReceiptService {
         receivedQty: item.receivedQuantity,
         unit: item.uom,
         batchNumber: item.batchNumber,
-        inspectionRequired: item.inspectionRequired !== false,
+        inspectionRequired: item.requiresQualityCheck !== false,
       })),
       userId: savedGRN.createdBy || 'system',
     });

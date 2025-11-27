@@ -1,6 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { v4 as uuidv4 } from 'uuid';
 import { EventBusService } from '../../workflow/services/event-bus.service';
+import { WorkflowEventType } from '../../workflow/events/event-types';
 
 export enum MatchingStatus {
   NOT_MATCHED = 'not_matched',
@@ -113,7 +114,7 @@ export class ThreeWayMatchingService {
     maxAbsoluteVariance: 10000, // INR 10,000
   };
 
-  constructor(private readonly eventBusService: EventBusService) {}
+  constructor(private readonly eventBusService: EventBusService) { }
 
   async performThreeWayMatching(
     invoice: InvoiceData,
@@ -277,18 +278,14 @@ export class ThreeWayMatchingService {
     this.matchingResults.push(result);
 
     // Emit event
-    await this.eventBusService.emit({
-      type: result.isMatched ? 'invoice-matched' : 'invoice-matching-variance',
-      payload: {
-        matchingId: result.matchingId,
-        invoiceId: invoice.id,
-        status: matchingStatus,
-        varianceCount: variances.length,
-        exceptionCount: exceptions.length,
-        requiresApproval,
-      },
-      source: 'procurement',
-      timestamp: new Date(),
+    await this.eventBusService.emit<any>(result.isMatched ? WorkflowEventType.INVOICE_MATCHED : WorkflowEventType.INVOICE_MATCHING_VARIANCE, {
+      matchingId: result.matchingId,
+      invoiceId: invoice.id,
+      status: matchingStatus,
+      varianceCount: variances.length,
+      exceptionCount: exceptions.length,
+      requiresApproval,
+      userId: 'SYSTEM',
     });
 
     return result;

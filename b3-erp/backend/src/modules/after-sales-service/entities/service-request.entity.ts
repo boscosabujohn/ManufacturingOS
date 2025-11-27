@@ -1,5 +1,7 @@
 export enum ServiceRequestStatus {
+  OPEN = 'open',
   PENDING = 'pending',
+  ACKNOWLEDGED = 'acknowledged',
   ASSIGNED = 'assigned',
   IN_PROGRESS = 'in_progress',
   ON_HOLD = 'on_hold',
@@ -83,11 +85,17 @@ export class ServiceRequest {
   resolutionTimeSLA: number; // in hours
   responseDeadline: Date;
   resolutionDeadline: Date;
+  responseTime?: number; // actual
+  resolutionTime?: number; // actual
   slaBreached: boolean;
   slaBreachReason?: string;
+  isOverdue?: boolean;
+  slaStatus?: string;
+  acknowledgedDate?: Date;
 
   // Assignment
   assignedTo?: string;
+  assignedToName?: string;
   assignedTeam?: string;
   assignmentDate?: Date;
   assignmentMethod: string; // auto/manual
@@ -102,8 +110,15 @@ export class ServiceRequest {
   // Resolution
   resolutionDate?: Date;
   resolutionNotes?: string;
+  resolution?: string;
   rootCause?: string;
   actionTaken?: string;
+  workStartDate?: Date;
+  partsUsed?: any[];
+  closureDate?: Date;
+  closureNotes?: string;
+  cancellationDate?: Date;
+  cancellationReason?: string;
 
   // Customer Confirmation
   customerConfirmed: boolean;

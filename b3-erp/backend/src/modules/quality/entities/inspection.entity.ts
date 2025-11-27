@@ -7,6 +7,7 @@ import {
   OneToMany,
 } from 'typeorm';
 import { InspectionResult } from './inspection-result.entity';
+export { InspectionResult } from './inspection-result.entity';
 
 export enum InspectionType {
   INCOMING = 'Incoming',
@@ -125,6 +126,12 @@ export class Inspection {
 
   @Column({ type: 'decimal', precision: 15, scale: 4, default: 0 })
   scrapQuantity: number;
+
+  @Column({ nullable: true })
+  referenceType: string;
+
+  @Column({ nullable: true })
+  referenceId: string;
 
   // Source references
   @Column({ nullable: true })

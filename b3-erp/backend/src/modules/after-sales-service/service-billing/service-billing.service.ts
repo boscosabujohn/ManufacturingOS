@@ -20,11 +20,39 @@ export class ServiceBillingService {
       invoiceNumber: `SI-${new Date().getFullYear()}-${String(this.invoiceIdCounter).padStart(5, '0')}`,
       status: InvoiceStatus.DRAFT,
       ...createServiceInvoiceDto,
+      lineItems: createServiceInvoiceDto.lineItems.map(item => ({
+        ...item,
+        itemType: item.itemType as any,
+        amount: item.quantity * item.unitPrice,
+        taxable: true,
+      })),
       invoiceDate: new Date(),
       paidAmount: 0,
       balanceAmount: createServiceInvoiceDto.totalAmount,
       paymentStatus: 'unpaid',
       isOverdue: false,
+      billingAddress: 'Unknown', // Should come from customer or DTO
+      serviceDate: new Date(),
+      serviceDescription: 'Service Invoice',
+      laborCharges: 0,
+      partsCharges: 0,
+      travelCharges: 0,
+      emergencyCharges: 0,
+      otherCharges: 0,
+      subtotal: createServiceInvoiceDto.totalAmount, // Assuming totalAmount is subtotal for now, or calculate
+      taxableAmount: createServiceInvoiceDto.totalAmount,
+      totalTaxAmount: 0,
+      grandTotal: createServiceInvoiceDto.totalAmount,
+      underContract: false,
+      underWarranty: false,
+      warrantyCovered: 0,
+      customerPayable: createServiceInvoiceDto.totalAmount,
+      amountPaid: 0,
+      amountDue: createServiceInvoiceDto.totalAmount,
+      approvalRequired: false,
+      sentToCustomer: false,
+      serviceReportAttached: false,
+      createdBy: 'system',
       createdAt: new Date(),
       updatedAt: new Date(),
     };
@@ -116,6 +144,14 @@ export class ServiceBillingService {
       customerId: invoice.customerId,
       customerName: invoice.customerName,
       ...paymentData,
+      invoiceType: invoice.invoiceType,
+      paymentMode: paymentData.paymentMethod,
+      allocatedToInvoice: paymentData.amount,
+      reconciled: false,
+      receiptGenerated: false,
+      receiptSent: false,
+      collectedBy: paymentData.recordedBy,
+      enteredBy: paymentData.recordedBy,
       createdAt: new Date(),
       updatedAt: new Date(),
     };
@@ -131,7 +167,7 @@ export class ServiceBillingService {
       invoice.paymentStatus = 'paid';
       invoice.paidDate = paymentData.paymentDate;
     } else if (invoice.paidAmount > 0) {
-      invoice.status = InvoiceStatus.PARTIAL_PAID;
+      invoice.status = InvoiceStatus.PARTIALLY_PAID;
       invoice.paymentStatus = 'partial';
     }
 
@@ -174,7 +210,7 @@ export class ServiceBillingService {
     const now = new Date();
     return this.invoices.filter((invoice) => {
       return (
-        [InvoiceStatus.SENT, InvoiceStatus.PARTIAL_PAID].includes(invoice.status) &&
+        [InvoiceStatus.SENT, InvoiceStatus.PARTIALLY_PAID].includes(invoice.status) &&
         invoice.dueDate < now &&
         invoice.balanceAmount > 0
       );
@@ -184,7 +220,7 @@ export class ServiceBillingService {
   private checkAndUpdateOverdue(invoice: ServiceInvoice): void {
     const now = new Date();
     if (
-      [InvoiceStatus.SENT, InvoiceStatus.PARTIAL_PAID].includes(invoice.status) &&
+      [InvoiceStatus.SENT, InvoiceStatus.PARTIALLY_PAID].includes(invoice.status) &&
       invoice.dueDate < now &&
       invoice.balanceAmount > 0
     ) {

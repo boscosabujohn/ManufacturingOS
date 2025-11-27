@@ -23,11 +23,11 @@ export class EstimationService {
             0
         );
 
+        const { items, ...boqData } = createBOQDto;
         const boq = this.boqRepository.create({
-            ...createBOQDto,
+            ...boqData,
             boqNumber,
             estimatedValue,
-            items: undefined, // Remove items from BOQ creation
         });
 
         const savedBOQ = await this.boqRepository.save(boq);
@@ -92,7 +92,7 @@ export class EstimationService {
                 (sum, item) => sum + item.quantity * item.unitRate,
                 0
             );
-            updateBOQDto.estimatedValue = estimatedValue;
+            boq.estimatedValue = estimatedValue;
         }
 
         Object.assign(boq, updateBOQDto);

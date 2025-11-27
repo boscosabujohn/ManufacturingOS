@@ -17,7 +17,7 @@ export class HolidayService {
   constructor(
     @InjectRepository(Holiday)
     private readonly holidayRepository: Repository<Holiday>,
-  ) {}
+  ) { }
 
   async create(createDto: CreateHolidayDto): Promise<HolidayResponseDto> {
     const holiday = this.holidayRepository.create(createDto);
@@ -25,7 +25,7 @@ export class HolidayService {
     return this.mapToResponseDto(saved);
   }
 
-  async findAll(): Promise<HolidayResponseDto[]> {
+  async findAll(filters?: any): Promise<HolidayResponseDto[]> {
     const holidays = await this.holidayRepository.find({
       order: { date: 'ASC' },
     });

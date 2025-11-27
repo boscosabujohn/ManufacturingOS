@@ -44,7 +44,7 @@ export class BOQService {
         const boq = await this.getBOQ(boqId);
         const item = this.boqItemRepository.create({
             ...itemData,
-            boqId,
+            boq: { id: boqId } as any,
         });
 
         const savedItem = await this.boqItemRepository.save(item);
@@ -56,7 +56,7 @@ export class BOQService {
     }
 
     async updateItem(itemId: string, itemData: Partial<BOQItem>): Promise<BOQItem> {
-        const item = await this.boqItemRepository.findOne({ where: { id: itemId } });
+        const item = await this.boqItemRepository.findOne({ where: { id: itemId }, relations: ['boq'] });
         if (!item) {
             throw new NotFoundException(`BOQ Item with ID ${itemId} not found`);
         }
@@ -65,18 +65,18 @@ export class BOQService {
         const savedItem = await this.boqItemRepository.save(item);
 
         // Update total amount
-        await this.calculateTotal(item.boqId);
+        await this.calculateTotal(item.boq.id);
 
         return savedItem;
     }
 
     async removeItem(itemId: string): Promise<void> {
-        const item = await this.boqItemRepository.findOne({ where: { id: itemId } });
+        const item = await this.boqItemRepository.findOne({ where: { id: itemId }, relations: ['boq'] });
         if (!item) {
             throw new NotFoundException(`BOQ Item with ID ${itemId} not found`);
         }
 
-        const boqId = item.boqId;
+        const boqId = item.boq.id;
         await this.boqItemRepository.remove(item);
 
         // Update total amount

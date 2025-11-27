@@ -14,7 +14,7 @@ import { UpdateFieldServiceJobDto } from '../dto/update-field-service-job.dto';
 
 @Controller('after-sales/field-service')
 export class FieldServiceController {
-  constructor(private readonly fieldServiceService: FieldServiceService) {}
+  constructor(private readonly fieldServiceService: FieldServiceService) { }
 
   @Post('jobs')
   createJob(@Body() createFieldServiceJobDto: CreateFieldServiceJobDto) {
@@ -135,7 +135,7 @@ export class FieldServiceController {
   ) {
     return this.fieldServiceService.recordPartsConsumed(
       id,
-      partsData.parts,
+      partsData.parts.map(p => ({ ...p, cost: p.unitPrice })),
       partsData.recordedBy,
     );
   }

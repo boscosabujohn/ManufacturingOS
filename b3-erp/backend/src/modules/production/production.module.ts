@@ -30,6 +30,7 @@ import {
 import { EscalationManagementService } from './services/escalation-management.service';
 import { MRPRequisitionService } from './services/mrp-requisition.service';
 import { DemandForecastingService } from './services/demand-forecasting.service';
+import { DiesToolsService } from './services/dies-tools.service';
 
 // Controllers
 import {
@@ -42,6 +43,7 @@ import {
   RoutingController,
   ProductionEntryController,
 } from './controllers';
+import { DiesToolsController } from './controllers/dies-tools.controller';
 
 @Module({
   imports: [
@@ -69,6 +71,7 @@ import {
     WorkCenterController,
     RoutingController,
     ProductionEntryController,
+    DiesToolsController,
   ],
   providers: [
     BOMService,
@@ -82,6 +85,7 @@ import {
     EscalationManagementService,
     MRPRequisitionService,
     DemandForecastingService,
+    DiesToolsService,
   ],
   exports: [
     BOMService,
@@ -95,6 +99,7 @@ import {
     EscalationManagementService,
     MRPRequisitionService,
     DemandForecastingService,
+    DiesToolsService,
   ],
 })
-export class ProductionModule {}
+export class ProductionModule { }

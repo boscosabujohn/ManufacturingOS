@@ -1,6 +1,7 @@
 import { Injectable, NotFoundException, BadRequestException } from '@nestjs/common';
 import { v4 as uuidv4 } from 'uuid';
 import { EventBusService } from '../../workflow/services/event-bus.service';
+import { WorkflowEventType } from '../../workflow/events/event-types';
 
 export interface ApprovalTier {
   level: number;
@@ -140,7 +141,7 @@ export class ApprovalWorkflowService {
     },
   };
 
-  constructor(private readonly eventBusService: EventBusService) {}
+  constructor(private readonly eventBusService: EventBusService) { }
 
   getApprovalTier(value: number): ApprovalTier {
     const tier = this.approvalMatrix.find(
@@ -238,16 +239,12 @@ export class ApprovalWorkflowService {
 
     this.approvalRequests.push(request);
 
-    await this.eventBusService.emit({
-      type: 'approval-request-created',
-      payload: {
-        requestId: request.id,
-        requestType,
-        referenceId,
-        requiredRole: tier.approverRole,
-      },
-      source: 'sales',
-      timestamp: new Date(),
+    await this.eventBusService.emit<any>(WorkflowEventType.APPROVAL_REQUEST_CREATED, {
+      requestId: request.id,
+      requestType,
+      referenceId,
+      requiredRole: tier.approverRole,
+      userId: requestedBy,
     });
 
     return request;
@@ -271,15 +268,11 @@ export class ApprovalWorkflowService {
 
     request.status = 'in_progress';
 
-    await this.eventBusService.emit({
-      type: 'approval-routed',
-      payload: {
-        requestId,
-        approverId,
-        level: nextLevel,
-      },
-      source: 'sales',
-      timestamp: new Date(),
+    await this.eventBusService.emit<any>(WorkflowEventType.APPROVAL_ROUTED, {
+      requestId,
+      approverId,
+      level: nextLevel,
+      userId: 'SYSTEM',
     });
   }
 
@@ -309,16 +302,12 @@ export class ApprovalWorkflowService {
       request.resolvedAt = new Date().toISOString();
     }
 
-    await this.eventBusService.emit({
-      type: request.status === 'approved' ? 'approval-completed' : 'approval-level-approved',
-      payload: {
-        requestId,
-        approverId,
-        level: request.currentLevel,
-        isFullyApproved: request.status === 'approved',
-      },
-      source: 'sales',
-      timestamp: new Date(),
+    await this.eventBusService.emit<any>(request.status === 'approved' ? WorkflowEventType.APPROVAL_GRANTED : WorkflowEventType.APPROVAL_LEVEL_APPROVED, {
+      requestId,
+      approverId,
+      level: request.currentLevel,
+      isFullyApproved: request.status === 'approved',
+      userId: approverId,
     });
 
     return request;
@@ -344,15 +333,11 @@ export class ApprovalWorkflowService {
     request.status = 'rejected';
     request.resolvedAt = new Date().toISOString();
 
-    await this.eventBusService.emit({
-      type: 'approval-rejected',
-      payload: {
-        requestId,
-        approverId,
-        reason: comments,
-      },
-      source: 'sales',
-      timestamp: new Date(),
+    await this.eventBusService.emit<any>(WorkflowEventType.APPROVAL_REJECTED, {
+      requestId,
+      approverId,
+      reason: comments,
+      userId: approverId,
     });
 
     return request;
@@ -385,16 +370,12 @@ export class ApprovalWorkflowService {
       action: 'pending',
     });
 
-    await this.eventBusService.emit({
-      type: 'approval-escalated',
-      payload: {
-        requestId,
-        escalatedToId,
-        previousLevel: request.currentLevel,
-        newLevel: nextLevel,
-      },
-      source: 'sales',
-      timestamp: new Date(),
+    await this.eventBusService.emit<any>(WorkflowEventType.APPROVAL_ESCALATED, {
+      requestId,
+      escalatedToId,
+      previousLevel: request.currentLevel,
+      newLevel: nextLevel,
+      userId: 'SYSTEM',
     });
 
     return request;
@@ -416,15 +397,11 @@ export class ApprovalWorkflowService {
         // Auto-escalate overdue requests
         escalatedRequests.push(request);
 
-        await this.eventBusService.emit({
-          type: 'approval-sla-breached',
-          payload: {
-            requestId: request.id,
-            slaHours,
-            hoursPassed: Math.round(hoursPassed),
-          },
-          source: 'sales',
-          timestamp: new Date(),
+        await this.eventBusService.emit<any>(WorkflowEventType.APPROVAL_SLA_BREACHED, {
+          requestId: request.id,
+          slaHours,
+          hoursPassed: Math.round(hoursPassed),
+          userId: 'SYSTEM',
         });
       }
     }

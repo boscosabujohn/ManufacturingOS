@@ -7,7 +7,11 @@ export enum ServiceInvoiceStatus {
   PAID = 'paid',
   OVERDUE = 'overdue',
   CANCELLED = 'cancelled',
+  VOID = 'void',
+  WRITTEN_OFF = 'written_off',
 }
+
+export const InvoiceStatus = ServiceInvoiceStatus; // Alias
 
 export enum ServiceChargeType {
   LABOR = 'labor',
@@ -99,7 +103,9 @@ export class ServiceInvoice {
 
   // Payment Information
   amountPaid: number;
+  paidAmount?: number; // Alias for amountPaid
   amountDue: number;
+  balanceAmount?: number; // Alias for amountDue
   paymentHistory?: Array<{
     paymentDate: Date;
     amount: number;
@@ -135,12 +141,22 @@ export class ServiceInvoice {
   cancellationReason?: string;
   cancellationDate?: Date;
   cancellationApprovedBy?: string;
+  writeOffReason?: string;
+  writeOffDate?: Date;
+  writeOffApprovedBy?: string;
+  isOverdue?: boolean;
+  overdueDays?: number;
 
   // Audit
   createdBy: string;
   updatedBy?: string;
   createdAt: Date;
   updatedAt: Date;
+  paymentStatus?: string;
+  sentBy?: string;
+  paidDate?: Date;
+  voidDate?: Date;
+  voidReason?: string;
 }
 
 export enum AMCInvoiceFrequency {
@@ -361,4 +377,7 @@ export class PaymentCollection {
   enteredBy: string;
   createdAt: Date;
   updatedAt: Date;
+  paymentReference?: string; // Alias for referenceNumber
+  notes?: string; // Alias for paymentNotes
+  recordedBy?: string; // Alias for enteredBy
 }

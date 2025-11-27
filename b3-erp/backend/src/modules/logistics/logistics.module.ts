@@ -27,6 +27,7 @@ import {
   FreightChargeController,
   TransportCompanyController,
 } from './controllers';
+import { GatePassController } from './controllers/gate-pass.controller';
 
 // Services
 import {
@@ -44,6 +45,7 @@ import { ConsolidationService } from './services/consolidation.service';
 import { ReturnManagementService } from './services/return-management.service';
 import { GPSTrackingService } from './services/gps-tracking.service';
 import { CustomerNotificationService } from './services/customer-notification.service';
+import { GatePassService } from './services/gate-pass.service';
 
 @Module({
   imports: [
@@ -70,6 +72,7 @@ import { CustomerNotificationService } from './services/customer-notification.se
     TrackingEventController,
     FreightChargeController,
     TransportCompanyController,
+    GatePassController,
   ],
   providers: [
     ShipmentService,
@@ -85,6 +88,7 @@ import { CustomerNotificationService } from './services/customer-notification.se
     ReturnManagementService,
     GPSTrackingService,
     CustomerNotificationService,
+    GatePassService,
   ],
   exports: [
     ShipmentService,
@@ -100,6 +104,7 @@ import { CustomerNotificationService } from './services/customer-notification.se
     ReturnManagementService,
     GPSTrackingService,
     CustomerNotificationService,
+    GatePassService,
   ],
 })
-export class LogisticsModule {}
+export class LogisticsModule { }

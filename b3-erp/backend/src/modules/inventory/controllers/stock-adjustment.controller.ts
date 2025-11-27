@@ -16,6 +16,7 @@ import {
   ApiResponse,
   ApiParam,
   ApiQuery,
+  ApiBody,
 } from '@nestjs/swagger';
 import { StockAdjustmentService } from '../services/stock-adjustment.service';
 import {
@@ -29,7 +30,7 @@ import {
 export class StockAdjustmentController {
   constructor(
     private readonly stockAdjustmentService: StockAdjustmentService,
-  ) {}
+  ) { }
 
   @Post()
   @ApiOperation({ summary: 'Create a new stock adjustment' })

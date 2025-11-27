@@ -269,7 +269,7 @@ export class NonConformance {
 
   // CAPA
   @Column({ default: false })
-  requiresCAPÁ: boolean;
+  requiresCAPA: boolean;
 
   @Column({ nullable: true })
   capaId: string;

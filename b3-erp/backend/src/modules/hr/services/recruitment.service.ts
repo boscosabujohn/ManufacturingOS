@@ -1,6 +1,7 @@
 import { Injectable, NotFoundException, BadRequestException } from '@nestjs/common';
 import { v4 as uuidv4 } from 'uuid';
 import { EventBusService } from '../../workflow/services/event-bus.service';
+import { WorkflowEventType } from '../../workflow/events/event-types';
 
 export enum RequisitionStatus {
   DRAFT = 'draft',
@@ -249,11 +250,10 @@ export class RecruitmentService {
 
     this.requisitions.push(requisition);
 
-    await this.eventBusService.emit({
-      type: 'job-requisition-created',
-      payload: { requisitionId: requisition.id, requisitionNumber },
-      source: 'hr',
-      timestamp: new Date(),
+    await this.eventBusService.emit<any>(WorkflowEventType.JOB_REQUISITION_CREATED, {
+      requisitionId: requisition.id,
+      requisitionNumber,
+      userId: requisition.createdBy,
     });
 
     return requisition;
@@ -270,11 +270,10 @@ export class RecruitmentService {
     requisition.approvedAt = new Date().toISOString();
     requisition.updatedAt = new Date().toISOString();
 
-    await this.eventBusService.emit({
-      type: 'job-requisition-approved',
-      payload: { requisitionId: id, approvedBy },
-      source: 'hr',
-      timestamp: new Date(),
+    await this.eventBusService.emit<any>(WorkflowEventType.JOB_REQUISITION_APPROVED, {
+      requisitionId: id,
+      approvedBy,
+      userId: approvedBy,
     });
 
     return requisition;
@@ -328,11 +327,10 @@ export class RecruitmentService {
       requisition.totalApplications++;
     }
 
-    await this.eventBusService.emit({
-      type: 'candidate-applied',
-      payload: { candidateId: candidate.id, requisitionId: candidate.requisitionId },
-      source: 'hr',
-      timestamp: new Date(),
+    await this.eventBusService.emit<any>(WorkflowEventType.CANDIDATE_APPLIED, {
+      candidateId: candidate.id,
+      requisitionId: candidate.requisitionId,
+      userId: 'SYSTEM',
     });
 
     return candidate;
@@ -369,11 +367,11 @@ export class RecruitmentService {
       }
     }
 
-    await this.eventBusService.emit({
-      type: 'candidate-status-changed',
-      payload: { candidateId: id, previousStatus, newStatus: status },
-      source: 'hr',
-      timestamp: new Date(),
+    await this.eventBusService.emit<any>(WorkflowEventType.CANDIDATE_STATUS_CHANGED, {
+      candidateId: id,
+      previousStatus,
+      newStatus: status,
+      userId: 'SYSTEM',
     });
 
     return candidate;
@@ -416,15 +414,11 @@ export class RecruitmentService {
     // Update candidate status
     await this.updateCandidateStatus(interview.candidateId, CandidateStatus.INTERVIEW_SCHEDULED);
 
-    await this.eventBusService.emit({
-      type: 'interview-scheduled',
-      payload: {
-        interviewId: interview.id,
-        candidateId: interview.candidateId,
-        scheduledAt: interview.scheduledAt,
-      },
-      source: 'hr',
-      timestamp: new Date(),
+    await this.eventBusService.emit<any>(WorkflowEventType.INTERVIEW_SCHEDULED, {
+      interviewId: interview.id,
+      candidateId: interview.candidateId,
+      scheduledAt: interview.scheduledAt,
+      userId: 'SYSTEM',
     });
 
     return interview;
@@ -497,11 +491,10 @@ export class RecruitmentService {
     // Update candidate status
     await this.updateCandidateStatus(offer.candidateId, CandidateStatus.OFFER_EXTENDED);
 
-    await this.eventBusService.emit({
-      type: 'offer-sent',
-      payload: { offerId: id, candidateId: offer.candidateId },
-      source: 'hr',
-      timestamp: new Date(),
+    await this.eventBusService.emit<any>(WorkflowEventType.OFFER_SENT, {
+      offerId: id,
+      candidateId: offer.candidateId,
+      userId: 'SYSTEM',
     });
 
     return offer;
@@ -524,11 +517,10 @@ export class RecruitmentService {
       accepted ? CandidateStatus.OFFER_ACCEPTED : CandidateStatus.OFFER_DECLINED
     );
 
-    await this.eventBusService.emit({
-      type: accepted ? 'offer-accepted' : 'offer-declined',
-      payload: { offerId: id, candidateId: offer.candidateId },
-      source: 'hr',
-      timestamp: new Date(),
+    await this.eventBusService.emit<any>(accepted ? WorkflowEventType.OFFER_ACCEPTED : WorkflowEventType.OFFER_DECLINED, {
+      offerId: id,
+      candidateId: offer.candidateId,
+      userId: 'SYSTEM',
     });
 
     return offer;

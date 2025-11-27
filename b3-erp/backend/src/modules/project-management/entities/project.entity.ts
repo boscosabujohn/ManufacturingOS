@@ -64,6 +64,18 @@ export class Project {
     budget: number;
 
     @Column({ type: 'float', default: 0 })
+    totalExpenditure: number; // Alias for actualCost, or separate
+
+    @Column({ type: 'float', default: 0 })
+    totalIncome: number;
+
+    @Column({ type: 'float', default: 0 })
+    margin: number;
+
+    @Column({ default: 'Pending' })
+    financialStatus: string; // Profitable, Loss, Pending
+
+    @Column({ type: 'float', default: 0 })
     actualCost: number;
 
     @Column({ default: 'Initiation' })

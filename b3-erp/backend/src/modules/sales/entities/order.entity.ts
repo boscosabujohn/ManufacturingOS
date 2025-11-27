@@ -163,6 +163,14 @@ export interface SalesOrder {
   qualityRequirements?: string;
   packagingRequirements?: string;
 
+  // Documents
+  documents?: {
+    po?: string;
+    specs?: string;
+    drawings?: string;
+    others?: string[];
+  };
+
   // Validation & Compliance
   validations: OrderValidation;
 

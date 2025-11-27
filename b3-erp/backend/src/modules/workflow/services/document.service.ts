@@ -3,6 +3,7 @@ import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { WorkflowDocument } from '../entities/workflow-document.entity';
+import { ApprovalService } from './approval.service';
 import { v4 as uuidv4 } from 'uuid';
 
 @Injectable()
@@ -12,6 +13,7 @@ export class DocumentService {
     constructor(
         @InjectRepository(WorkflowDocument)
         private documentRepository: Repository<WorkflowDocument>,
+        private readonly approvalService: ApprovalService,
     ) { }
 
     /**
@@ -174,14 +176,23 @@ export class DocumentService {
         }
 
         // Update document status
-        document.status = 'pending_approval';
+        document.status = 'pending_review';
         await this.documentRepository.save(document);
 
         // Initiate parallel approval process
-        const approvalProcess = await this.parallelApprovalService.startApprovalProcess(
+        const steps = approverIds.map(id => ({
+            approverId: id,
+            stepNumber: 1
+        }));
+
+        const approvalProcess = await this.approvalService.createApproval(
+            document.projectId,
+            'document_approval',
             documentId,
-            approverIds,
+            'parallel',
+            steps,
             submittedBy,
+            'Document submitted for approval'
         );
 
         return {

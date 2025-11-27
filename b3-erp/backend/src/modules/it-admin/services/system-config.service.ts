@@ -6,7 +6,7 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { SystemConfig } from '../entities/system-config.entity';
+import { SystemConfig, ConfigDataType, ConfigCategory } from '../entities/system-config.entity';
 import { CreateSystemConfigDto } from '../dto/create-system-config.dto';
 import { UpdateSystemConfigDto } from '../dto/update-system-config.dto';
 import { AuditLogService } from './audit-log.service';
@@ -17,7 +17,7 @@ export class SystemConfigService {
     @InjectRepository(SystemConfig)
     private readonly repository: Repository<SystemConfig>,
     private readonly auditLogService: AuditLogService,
-  ) {}
+  ) { }
 
   async create(
     createDto: CreateSystemConfigDto,
@@ -108,13 +108,13 @@ export class SystemConfigService {
     try {
       const config = await this.findByKey(key);
 
-      if (config.dataType === 'JSON') {
+      if (config.dataType === ConfigDataType.JSON) {
         return JSON.parse(config.value);
-      } else if (config.dataType === 'NUMBER') {
+      } else if (config.dataType === ConfigDataType.NUMBER) {
         return parseFloat(config.value);
-      } else if (config.dataType === 'BOOLEAN') {
+      } else if (config.dataType === ConfigDataType.BOOLEAN) {
         return config.value.toLowerCase() === 'true';
-      } else if (config.dataType === 'ARRAY') {
+      } else if (config.dataType === ConfigDataType.ARRAY) {
         return JSON.parse(config.value);
       }
 
@@ -142,8 +142,8 @@ export class SystemConfigService {
     let stringValue: string;
 
     if (
-      config.dataType === 'JSON' ||
-      config.dataType === 'ARRAY' ||
+      config.dataType === ConfigDataType.JSON ||
+      config.dataType === ConfigDataType.ARRAY ||
       typeof value === 'object'
     ) {
       stringValue = JSON.stringify(value);
@@ -208,7 +208,7 @@ export class SystemConfigService {
     return updated;
   }
 
-  async getByCategory(category: string): Promise<SystemConfig[]> {
+  async getByCategory(category: ConfigCategory): Promise<SystemConfig[]> {
     return await this.repository.find({
       where: { category },
       order: { key: 'ASC' },

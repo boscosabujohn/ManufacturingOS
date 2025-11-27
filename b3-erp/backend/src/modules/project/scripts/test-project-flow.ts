@@ -74,7 +74,7 @@ async function runProjectFlowSimulation() {
     const mockProject = { id: 'project-new-1', name: 'Project for Order SO-001' };
     jest.spyOn(projectService, 'createProject').mockResolvedValue(mockProject as any);
 
-    await workflowService.handleOrderConfirmed(orderPayload);
+    await workflowService.handleOrderConfirmed(orderPayload as any);
 
     console.log('Order Confirmed handled.');
     expect(projectService.createProject).toHaveBeenCalled();

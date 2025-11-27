@@ -17,7 +17,7 @@ export class ShiftService {
   constructor(
     @InjectRepository(Shift)
     private readonly shiftRepository: Repository<Shift>,
-  ) {}
+  ) { }
 
   async create(createDto: CreateShiftDto): Promise<ShiftResponseDto> {
     const existing = await this.shiftRepository.findOne({
@@ -33,7 +33,7 @@ export class ShiftService {
     return this.mapToResponseDto(saved);
   }
 
-  async findAll(): Promise<ShiftResponseDto[]> {
+  async findAll(filters?: any): Promise<ShiftResponseDto[]> {
     const shifts = await this.shiftRepository.find({
       order: { name: 'ASC' },
     });

@@ -1,6 +1,7 @@
 import { Injectable, NotFoundException, BadRequestException } from '@nestjs/common';
 import { v4 as uuidv4 } from 'uuid';
 import { EventBusService } from '../../workflow/services/event-bus.service';
+import { WorkflowEventType } from '../../workflow/events/event-types';
 
 export enum ContractStatus {
   DRAFT = 'draft',
@@ -187,11 +188,10 @@ export class ContractService {
 
     this.contracts.push(contract);
 
-    await this.eventBusService.emit({
-      type: 'contract-created',
-      payload: { contractId: contract.id, contractNumber },
-      source: 'procurement',
-      timestamp: new Date(),
+    await this.eventBusService.emit<any>(WorkflowEventType.CONTRACT_CREATED, {
+      contractId: contract.id,
+      contractNumber,
+      userId: contract.createdBy,
     });
 
     return contract;
@@ -263,11 +263,10 @@ export class ContractService {
       updatedBy: submittedBy,
     });
 
-    await this.eventBusService.emit({
-      type: 'contract-submitted-for-approval',
-      payload: { contractId: id, contractNumber: contract.contractNumber },
-      source: 'procurement',
-      timestamp: new Date(),
+    await this.eventBusService.emit<any>(WorkflowEventType.CONTRACT_SUBMITTED_FOR_APPROVAL, {
+      contractId: id,
+      contractNumber: contract.contractNumber,
+      userId: submittedBy,
     });
 
     return updatedContract;
@@ -289,11 +288,10 @@ export class ContractService {
       updatedBy: approvedBy,
     });
 
-    await this.eventBusService.emit({
-      type: 'contract-approved',
-      payload: { contractId: id, approvedBy },
-      source: 'procurement',
-      timestamp: new Date(),
+    await this.eventBusService.emit<any>(WorkflowEventType.CONTRACT_APPROVED, {
+      contractId: id,
+      approvedBy,
+      userId: approvedBy,
     });
 
     return updatedContract;
@@ -313,11 +311,10 @@ export class ContractService {
       updatedBy: terminatedBy,
     });
 
-    await this.eventBusService.emit({
-      type: 'contract-terminated',
-      payload: { contractId: id, reason },
-      source: 'procurement',
-      timestamp: new Date(),
+    await this.eventBusService.emit<any>(WorkflowEventType.CONTRACT_TERMINATED, {
+      contractId: id,
+      reason,
+      userId: terminatedBy,
     });
 
     return updatedContract;
@@ -340,11 +337,10 @@ export class ContractService {
     // Reset to active after renewal
     await this.update(id, { status: ContractStatus.ACTIVE });
 
-    await this.eventBusService.emit({
-      type: 'contract-renewed',
-      payload: { contractId: id, newEndDate },
-      source: 'procurement',
-      timestamp: new Date(),
+    await this.eventBusService.emit<any>(WorkflowEventType.CONTRACT_RENEWED, {
+      contractId: id,
+      newEndDate,
+      userId: renewedBy,
     });
 
     return updatedContract;
@@ -410,17 +406,13 @@ export class ContractService {
     contract.items[itemIndex].unitPrice = newPrice;
     contract.priceRevisionHistory.push(revision);
 
-    await this.eventBusService.emit({
-      type: 'contract-price-revised',
-      payload: {
-        contractId,
-        itemId,
-        previousPrice,
-        newPrice,
-        percentageChange,
-      },
-      source: 'procurement',
-      timestamp: new Date(),
+    await this.eventBusService.emit<any>(WorkflowEventType.CONTRACT_PRICE_REVISED, {
+      contractId,
+      itemId,
+      previousPrice,
+      newPrice,
+      percentageChange,
+      userId: revisedBy,
     });
 
     return this.update(contractId, {
@@ -465,16 +457,12 @@ export class ContractService {
         (new Date(contract.endDate).getTime() - Date.now()) / (1000 * 60 * 60 * 24)
       );
 
-      await this.eventBusService.emit({
-        type: 'contract-expiring-soon',
-        payload: {
-          contractId: contract.id,
-          contractNumber: contract.contractNumber,
-          vendorName: contract.vendorName,
-          daysUntilExpiry,
-        },
-        source: 'procurement',
-        timestamp: new Date(),
+      await this.eventBusService.emit<any>(WorkflowEventType.CONTRACT_EXPIRING_SOON, {
+        contractId: contract.id,
+        contractNumber: contract.contractNumber,
+        vendorName: contract.vendorName,
+        daysUntilExpiry,
+        userId: 'SYSTEM',
       });
     }
 

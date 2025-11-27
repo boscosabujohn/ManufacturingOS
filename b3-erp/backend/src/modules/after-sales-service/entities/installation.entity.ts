@@ -8,6 +8,7 @@ export enum InstallationStatus {
   COMPLETED = 'completed',
   ON_HOLD = 'on_hold',
   CANCELLED = 'cancelled',
+  HANDED_OVER = 'handed_over',
 }
 
 export enum SiteReadinessStatus {
@@ -49,7 +50,10 @@ export class Installation {
   siteSurveyDate?: Date;
   siteSurveyBy?: string;
   siteSurveyReport?: string;
-  siteReadiness: SiteReadinessStatus;
+  siteReadiness: SiteReadinessStatus | Record<string, any>;
+  siteSurveyCompleted?: boolean;
+  siteSurveyedBy?: string;
+  sitePreparationRecommendations?: string[];
 
   // Readiness Checklist
   electricalReady: boolean;
@@ -95,7 +99,10 @@ export class Installation {
   // Installation Execution
   installationStartTime?: Date;
   installationEndTime?: Date;
+  actualStartDate?: Date;
+  actualCompletionDate?: Date;
   actualDuration?: number;
+  installationProgress?: number;
 
   // Installation Checklist
   unpackingCompleted: boolean;
@@ -114,6 +121,9 @@ export class Installation {
   performanceTestNotes?: string;
   safetyTestCompleted: boolean;
   safetyTestNotes?: string;
+  testResults?: Record<string, any>;
+  commissioningDate?: Date;
+  commissioningNotes?: string;
 
   // Customer Training
   trainingProvided: boolean;
@@ -126,6 +136,7 @@ export class Installation {
   asBuiltDrawings?: string[];
   operationManual?: string;
   maintenanceManual?: string;
+  documentationHandedOver?: string[];
 
   // Customer Acceptance
   demonstrationCompleted: boolean;
@@ -133,10 +144,12 @@ export class Installation {
   acceptanceDate?: Date;
   customerSignature?: string;
   customerComments?: string;
+  customerFeedback?: string;
 
   // Handover
   handoverCompleted: boolean;
   handoverDate?: Date;
+  handedOverBy?: string;
   warrantyActivated: boolean;
   warrantyStartDate?: Date;
   warrantyId?: string;

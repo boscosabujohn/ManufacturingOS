@@ -27,7 +27,7 @@ export class JournalEntryService {
     @InjectRepository(GeneralLedger)
     private readonly generalLedgerRepository: Repository<GeneralLedger>,
     private readonly dataSource: DataSource,
-  ) {}
+  ) { }
 
   async create(
     createDto: CreateJournalEntryDto,
@@ -202,9 +202,9 @@ export class JournalEntryService {
 
         await manager.save(JournalEntryLine, lines);
 
-        updateDto.totalDebit = totalDebit;
-        updateDto.totalCredit = totalCredit;
-        updateDto.isBalanced = true;
+        journalEntry.totalDebit = totalDebit;
+        journalEntry.totalCredit = totalCredit;
+        journalEntry.isBalanced = true;
       }
 
       Object.assign(journalEntry, updateDto);
@@ -549,24 +549,24 @@ export class JournalEntryService {
       updatedAt: journalEntry.updatedAt,
       lines: journalEntry.lines
         ? journalEntry.lines.map((line) => ({
-            id: line.id,
-            journalEntryId: line.journalEntryId,
-            lineNumber: line.lineNumber,
-            accountId: line.accountId,
-            description: line.description,
-            debitAmount: line.debitAmount,
-            creditAmount: line.creditAmount,
-            costCenter: line.costCenter,
-            department: line.department,
-            project: line.project,
-            location: line.location,
-            partyId: line.partyId,
-            partyName: line.partyName,
-            partyType: line.partyType,
-            generalLedgerId: line.generalLedgerId,
-            createdAt: line.createdAt,
-            updatedAt: line.updatedAt,
-          }))
+          id: line.id,
+          journalEntryId: line.journalEntryId,
+          lineNumber: line.lineNumber,
+          accountId: line.accountId,
+          description: line.description,
+          debitAmount: line.debitAmount,
+          creditAmount: line.creditAmount,
+          costCenter: line.costCenter,
+          department: line.department,
+          project: line.project,
+          location: line.location,
+          partyId: line.partyId,
+          partyName: line.partyName,
+          partyType: line.partyType,
+          generalLedgerId: line.generalLedgerId,
+          createdAt: line.createdAt,
+          updatedAt: line.updatedAt,
+        }))
         : [],
     };
   }

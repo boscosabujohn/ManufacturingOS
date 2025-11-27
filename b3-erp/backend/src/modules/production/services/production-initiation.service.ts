@@ -1,6 +1,7 @@
 import { Injectable, BadRequestException } from '@nestjs/common';
 import { v4 as uuidv4 } from 'uuid';
 import { EventBusService } from '../../workflow/services/event-bus.service';
+import { WorkflowEventType } from '../../workflow/events/event-types';
 
 export interface ValidationResult {
   isValid: boolean;
@@ -66,7 +67,7 @@ export interface DeliveryFeasibility {
 export class ProductionInitiationService {
   private productionRequests: ProductionRequest[] = [];
 
-  constructor(private readonly eventBusService: EventBusService) {}
+  constructor(private readonly eventBusService: EventBusService) { }
 
   async initiateFromSalesOrder(
     salesOrderId: string,
@@ -105,11 +106,11 @@ export class ProductionInitiationService {
 
     this.productionRequests.push(request);
 
-    await this.eventBusService.emit({
-      type: 'production-request-created',
-      payload: { requestId: request.id, requestNumber, sourceType: 'sales_order' },
-      source: 'production',
-      timestamp: new Date(),
+    await this.eventBusService.emit<any>(WorkflowEventType.PRODUCTION_REQUEST_CREATED, {
+      requestId: request.id,
+      requestNumber,
+      sourceType: 'sales_order',
+      userId: createdBy,
     });
 
     return request;
@@ -137,16 +138,12 @@ export class ProductionInitiationService {
     request.overallValidation = { isValid, errors, warnings };
     request.status = isValid ? 'validated' : 'pending_validation';
 
-    await this.eventBusService.emit({
-      type: isValid ? 'production-request-validated' : 'production-request-validation-failed',
-      payload: {
-        requestId,
-        isValid,
-        errorCount: errors.length,
-        warningCount: warnings.length,
-      },
-      source: 'production',
-      timestamp: new Date(),
+    await this.eventBusService.emit<any>(isValid ? WorkflowEventType.PRODUCTION_REQUEST_VALIDATED : WorkflowEventType.PRODUCTION_REQUEST_VALIDATION_FAILED, {
+      requestId,
+      isValid,
+      errorCount: errors.length,
+      warningCount: warnings.length,
+      userId: 'SYSTEM',
     });
 
     return request;
@@ -295,11 +292,10 @@ export class ProductionInitiationService {
 
     request.status = 'approved';
 
-    await this.eventBusService.emit({
-      type: 'production-request-approved',
-      payload: { requestId, approvedBy },
-      source: 'production',
-      timestamp: new Date(),
+    await this.eventBusService.emit<any>(WorkflowEventType.PRODUCTION_REQUEST_APPROVED, {
+      requestId,
+      approvedBy,
+      userId: approvedBy,
     });
 
     return request;
@@ -322,19 +318,15 @@ export class ProductionInitiationService {
       const workOrderId = uuidv4();
       workOrderIds.push(workOrderId);
 
-      await this.eventBusService.emit({
-        type: 'work-order-created',
-        payload: {
-          workOrderId,
-          productionRequestId: requestId,
-          itemId: item.itemId,
-          itemCode: item.itemCode,
-          quantity: item.quantity,
-          bomId: item.bomId,
-          routingId: item.routingId,
-        },
-        source: 'production',
-        timestamp: new Date(),
+      await this.eventBusService.emit<any>(WorkflowEventType.WORK_ORDER_CREATED, {
+        workOrderId,
+        productionRequestId: requestId,
+        itemId: item.itemId,
+        itemCode: item.itemCode,
+        quantity: item.quantity,
+        bomId: item.bomId,
+        routingId: item.routingId,
+        userId: createdBy,
       });
     }
 

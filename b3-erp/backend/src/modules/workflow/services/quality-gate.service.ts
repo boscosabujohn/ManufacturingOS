@@ -6,7 +6,7 @@ import { QualityGate } from '../entities/quality-gate.entity';
 import { QualityGateItem } from '../entities/quality-gate-item.entity';
 import { Defect } from '../entities/defect.entity';
 import { EventBusService } from './event-bus.service';
-import { WorkflowEventType } from '../events/event-types';
+import { WorkflowEventType, InspectionEventPayload } from '../events/event-types';
 
 @Injectable()
 export class QualityGateService {
@@ -79,7 +79,7 @@ export class QualityGateService {
     /**
      * Finalize quality gate inspection
      */
-    async finalizeInspection(gateId: string, passed: boolean, comments?: string): Promise<QualityGate> {
+    async finalizeInspection(gateId: string, passed: boolean, userId: string, comments?: string): Promise<QualityGate> {
         const gate = await this.getQualityGate(gateId);
 
         // Validate all items are checked if passing
@@ -104,7 +104,7 @@ export class QualityGateService {
 
         // Emit event
         const eventType = passed ? WorkflowEventType.INSPECTION_PASSED : WorkflowEventType.INSPECTION_FAILED;
-        await this.eventBusService.emit(eventType, {
+        await this.eventBusService.emit<InspectionEventPayload>(eventType, {
             inspectionId: gate.id,
             inspectionNumber: gate.id, // Use ID as number for now
             referenceType: 'production', // Simplified
@@ -114,6 +114,7 @@ export class QualityGateService {
             quantity: 1,
             unit: 'unit',
             result: passed ? 'passed' : 'failed',
+            userId,
         });
 
         return savedGate;
@@ -130,6 +131,7 @@ export class QualityGateService {
         location?: string,
         assignedTo?: string,
         photos?: string[],
+        userId?: string,
     ): Promise<Defect> {
         const defect = this.defectRepository.create({
             projectId,
@@ -145,7 +147,7 @@ export class QualityGateService {
         const savedDefect = await this.defectRepository.save(defect);
 
         // Emit event
-        await this.eventBusService.emit(WorkflowEventType.NCR_CREATED, {
+        await this.eventBusService.emit<InspectionEventPayload>(WorkflowEventType.NCR_CREATED, {
             inspectionId: qualityGateId || 'ADHOC',
             inspectionNumber: qualityGateId || 'ADHOC',
             referenceType: 'production',
@@ -155,6 +157,7 @@ export class QualityGateService {
             quantity: 1,
             unit: 'unit',
             defects: [{ type: description, quantity: 1, severity }],
+            userId: userId || 'SYSTEM',
         });
 
         return savedDefect;
@@ -181,7 +184,7 @@ export class QualityGateService {
         const savedDefect = await this.defectRepository.save(defect);
 
         // Emit event
-        await this.eventBusService.emit(WorkflowEventType.NCR_RESOLVED, {
+        await this.eventBusService.emit<InspectionEventPayload>(WorkflowEventType.NCR_RESOLVED, {
             inspectionId: defect.qualityGateId || 'ADHOC',
             inspectionNumber: defect.qualityGateId || 'ADHOC',
             referenceType: 'production',
@@ -190,6 +193,7 @@ export class QualityGateService {
             itemName: defect.description,
             quantity: 1,
             unit: 'unit',
+            userId: resolvedBy,
         });
 
         return savedDefect;

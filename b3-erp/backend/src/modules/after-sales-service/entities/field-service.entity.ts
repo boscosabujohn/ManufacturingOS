@@ -279,6 +279,7 @@ export class ServiceReport {
   reportNumber: string;
   fieldServiceJobId: string;
   serviceTicketId?: string;
+  reportStatus?: string;
 
   // Basic Information
   serviceDate: Date;

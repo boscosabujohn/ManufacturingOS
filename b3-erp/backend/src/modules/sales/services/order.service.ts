@@ -12,6 +12,7 @@ import {
 } from '../entities/order.entity';
 import { RFP } from '../entities/rfp.entity';
 import { EventBusService } from '../../workflow/services/event-bus.service';
+import { WorkflowEventType } from '../../workflow/events/event-types';
 
 @Injectable()
 export class OrderService {
@@ -58,6 +59,8 @@ export class OrderService {
         postalCode: '',
         country: 'India',
       },
+
+      documents: createOrderDto.documents || {},
       requestedDeliveryDate: createOrderDto.requestedDeliveryDate || '',
       validations: {
         matchesRFP: false,
@@ -88,11 +91,10 @@ export class OrderService {
     this.orders.push(order);
 
     // Emit event
-    await this.eventBusService.emit({
-      type: 'order-created',
-      payload: { orderId: order.id, orderNumber: order.orderNumber },
-      source: 'sales',
-      timestamp: new Date(),
+    await this.eventBusService.emit<any>(WorkflowEventType.ORDER_CREATED, {
+      orderId: order.id,
+      orderNumber: order.orderNumber,
+      userId: order.createdBy,
     });
 
     return order;
@@ -164,11 +166,10 @@ export class OrderService {
 
     this.orders.push(order);
 
-    await this.eventBusService.emit({
-      type: 'order-created-from-rfp',
-      payload: { orderId: order.id, rfpId },
-      source: 'sales',
-      timestamp: new Date(),
+    await this.eventBusService.emit<any>(WorkflowEventType.ORDER_CREATED_FROM_RFP, {
+      orderId: order.id,
+      rfpId,
+      userId: createdBy,
     });
 
     return order;
@@ -294,17 +295,21 @@ export class OrderService {
       throw new BadRequestException(`Cannot confirm order: ${validationErrors.join(', ')}`);
     }
 
+    // Check mandatory documents
+    if (!order.documents?.po) {
+      throw new BadRequestException('Cannot confirm order: PO document is missing');
+    }
+
     const updatedOrder = await this.update(orderId, {
       status: OrderStatus.CONFIRMED,
       approvalStatus: 'in_progress',
       updatedBy: confirmBy,
     });
 
-    await this.eventBusService.emit({
-      type: 'order-confirmed',
-      payload: { orderId, orderNumber: order.orderNumber },
-      source: 'sales',
-      timestamp: new Date(),
+    await this.eventBusService.emit<any>(WorkflowEventType.ORDER_CONFIRMED, {
+      orderId,
+      orderNumber: order.orderNumber,
+      userId: confirmBy,
     });
 
     return updatedOrder;
@@ -350,11 +355,11 @@ export class OrderService {
       updatedBy: approverId,
     });
 
-    await this.eventBusService.emit({
-      type: isFullyApproved ? 'order-approved' : 'order-approval-level-completed',
-      payload: { orderId, level, approverName },
-      source: 'sales',
-      timestamp: new Date(),
+    await this.eventBusService.emit<any>(isFullyApproved ? WorkflowEventType.ORDER_APPROVED : WorkflowEventType.ORDER_APPROVAL_LEVEL_COMPLETED, {
+      orderId,
+      level,
+      approverName,
+      userId: approverId,
     });
 
     return updatedOrder;
@@ -387,11 +392,12 @@ export class OrderService {
       updatedBy: approverId,
     });
 
-    await this.eventBusService.emit({
-      type: 'order-rejected',
-      payload: { orderId, level, approverName, reason: comments },
-      source: 'sales',
-      timestamp: new Date(),
+    await this.eventBusService.emit<any>(WorkflowEventType.ORDER_REJECTED, {
+      orderId,
+      level,
+      approverName,
+      reason: comments,
+      userId: approverId,
     });
 
     return updatedOrder;
@@ -425,11 +431,10 @@ export class OrderService {
       updatedBy: createdBy,
     });
 
-    await this.eventBusService.emit({
-      type: 'handover-package-created',
-      payload: { orderId, handoverPackageId: handoverPackage.id },
-      source: 'sales',
-      timestamp: new Date(),
+    await this.eventBusService.emit<any>(WorkflowEventType.HANDOVER_PACKAGE_CREATED, {
+      orderId,
+      handoverPackageId: handoverPackage.id,
+      userId: createdBy,
     });
 
     return handoverPackage;
@@ -465,18 +470,14 @@ export class OrderService {
     });
 
     // Emit event to trigger production work order creation
-    await this.eventBusService.emit({
-      type: 'order-handover-accepted',
-      payload: {
-        orderId: order.id,
-        orderNumber: order.orderNumber,
-        customerId: order.customerId,
-        customerName: order.customerName,
-        items: order.items,
-        requestedDeliveryDate: order.requestedDeliveryDate,
-      },
-      source: 'sales',
-      timestamp: new Date(),
+    await this.eventBusService.emit<any>(WorkflowEventType.ORDER_HANDOVER_ACCEPTED, {
+      orderId: order.id,
+      orderNumber: order.orderNumber,
+      customerId: order.customerId,
+      customerName: order.customerName,
+      items: order.items,
+      requestedDeliveryDate: order.requestedDeliveryDate,
+      userId: acceptedBy,
     });
 
     return updatedOrder;

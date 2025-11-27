@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreateInstallationJobDto } from '../dto/create-installation-job.dto';
 import { UpdateInstallationJobDto } from '../dto/update-installation-job.dto';
 import {
-  InstallationJob,
+  Installation as InstallationJob,
   InstallationStatus,
 } from '../entities/installation.entity';
 
@@ -14,10 +14,40 @@ export class InstallationsService {
   create(createInstallationJobDto: CreateInstallationJobDto): InstallationJob {
     const job: InstallationJob = {
       id: `INSTALL-${String(this.idCounter++).padStart(6, '0')}`,
-      jobNumber: `INS-${new Date().getFullYear()}-${String(this.idCounter).padStart(5, '0')}`,
+      installationNumber: `INS-${new Date().getFullYear()}-${String(this.idCounter).padStart(5, '0')}`,
       status: InstallationStatus.SCHEDULED,
       ...createInstallationJobDto,
+      teamMembers: (createInstallationJobDto.teamMembers as any[]).map(m => typeof m === 'string' ? { engineerId: m, engineerName: 'Unknown', role: 'member' } : m),
       siteSurveyCompleted: false,
+      siteReadiness: InstallationStatus.SCHEDULED as any, // Placeholder
+      electricalReady: false,
+      waterSupplyReady: false,
+      gasSupplyReady: false,
+      spaceReady: false,
+      ventilationReady: false,
+      drainageReady: false,
+      siteSurveyRequired: true,
+      unpackingCompleted: false,
+      positioningCompleted: false,
+      levelingCompleted: false,
+      electricalConnectionCompleted: false,
+      waterConnectionCompleted: false,
+      gasConnectionCompleted: false,
+      drainageConnectionCompleted: false,
+      ventilationCompleted: false,
+      functionalTestCompleted: false,
+      performanceTestCompleted: false,
+      safetyTestCompleted: false,
+      trainingProvided: false,
+      demonstrationCompleted: false,
+      customerAcceptance: false,
+      handoverCompleted: false,
+      warrantyActivated: false,
+      supportPeriod: 0,
+      installationCost: 0,
+      totalCost: 0,
+      rescheduledCount: 0,
+      createdBy: 'system',
       installationProgress: 0,
       createdAt: new Date(),
       updatedAt: new Date(),
@@ -63,6 +93,7 @@ export class InstallationsService {
     this.jobs[index] = {
       ...this.jobs[index],
       ...updateInstallationJobDto,
+      teamMembers: updateInstallationJobDto.teamMembers ? (updateInstallationJobDto.teamMembers as any[]).map(m => typeof m === 'string' ? { engineerId: m, engineerName: 'Unknown', role: 'member' } : m) : this.jobs[index].teamMembers,
       updatedAt: new Date(),
     };
 
@@ -105,7 +136,7 @@ export class InstallationsService {
     job.estimatedDuration = estimatedDuration;
     job.teamLeaderId = teamLeaderId;
     job.teamLeaderName = teamLeaderName;
-    job.teamMembers = teamMembers;
+    job.teamMembers = teamMembers.map(m => ({ engineerId: m, engineerName: 'Unknown', role: 'member' }));
     job.updatedBy = updatedBy;
     job.updatedAt = new Date();
 
@@ -239,7 +270,7 @@ export class InstallationsService {
     const averageInstallationTime =
       completedJobs.length > 0
         ? completedJobs.reduce((sum, j) => sum + (j.actualDuration || 0), 0) /
-          completedJobs.length
+        completedJobs.length
         : 0;
 
     // Calculate on-time completion rate
@@ -273,7 +304,7 @@ export class InstallationsService {
       siteSurveyCompletionRate:
         total > 0
           ? (this.jobs.filter((j) => j.siteSurveyCompleted).length / total) *
-            100
+          100
           : 0,
     };
   }

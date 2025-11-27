@@ -18,6 +18,7 @@ export class ServiceContractsService {
       totalBilled: 0,
       totalPaid: 0,
       outstandingAmount: 0,
+      renewalNotificationDays: [90, 60, 30],
       createdAt: new Date(),
       updatedAt: new Date(),
     };
@@ -60,6 +61,8 @@ export class ServiceContractsService {
     this.contracts[index] = {
       ...this.contracts[index],
       ...updateServiceContractDto,
+      contractType: (updateServiceContractDto.contractType as any) || this.contracts[index].contractType,
+      pricingTier: (updateServiceContractDto.pricingTier as any) || this.contracts[index].pricingTier,
       updatedAt: new Date(),
     };
 
@@ -185,9 +188,9 @@ export class ServiceContractsService {
       renewalRate:
         total > 0
           ? (this.contracts.filter((c) => c.status === ContractStatus.RENEWED)
-              .length /
-              total) *
-            100
+            .length /
+            total) *
+          100
           : 0,
     };
   }

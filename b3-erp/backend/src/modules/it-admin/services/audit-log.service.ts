@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, Between } from 'typeorm';
-import { AuditLog } from '../entities/audit-log.entity';
+import { AuditLog, AuditAction } from '../entities/audit-log.entity';
 import { CreateAuditLogDto } from '../dto/create-audit-log.dto';
 import { AuditLogQueryDto } from '../dto/audit-log-query.dto';
 
@@ -10,10 +10,10 @@ export class AuditLogService {
   constructor(
     @InjectRepository(AuditLog)
     private readonly repository: Repository<AuditLog>,
-  ) {}
+  ) { }
 
   async log(createDto: CreateAuditLogDto | any): Promise<AuditLog> {
-    const log = this.repository.create(createDto);
+    const log = this.repository.create(createDto as CreateAuditLogDto);
     return await this.repository.save(log);
   }
 
@@ -114,7 +114,7 @@ export class AuditLogService {
     return await this.repository.find({
       where: {
         userId,
-        action: 'LOGIN',
+        action: AuditAction.LOGIN,
       },
       order: { createdAt: 'DESC' },
       take: limit,

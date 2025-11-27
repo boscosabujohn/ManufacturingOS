@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { InspectionType, InspectionStatus, InspectionResult, InspectionPriority } from '../entities/inspection.entity';
+import { InspectionType, InspectionStatus, InspectionResultEnum, InspectionPriority } from '../entities/inspection.entity';
 
 export class InspectionResponseDto {
   @ApiProperty()
@@ -17,8 +17,8 @@ export class InspectionResponseDto {
   @ApiProperty({ enum: InspectionStatus })
   status: InspectionStatus;
 
-  @ApiProperty({ enum: InspectionResult })
-  result: InspectionResult;
+  @ApiProperty({ enum: InspectionResultEnum })
+  result: InspectionResultEnum;
 
   @ApiProperty({ enum: InspectionPriority })
   priority: InspectionPriority;
