@@ -1,11 +1,11 @@
 
-import { Injectable, Logger, NotFoundException} from '@nestjs/common';
-import { InjectRepository} from '@nestjs/typeorm';
-import { Repository, DataSource} from 'typeorm';
-import { WorkflowApproval} from '../entities/workflow-approval.entity';
-import { ApprovalStep} from '../entities/approval-step.entity';
-import { EventBusService} from './event-bus.service';
-import { WorkflowEventType} from '../events/event-types';
+import { Injectable, Logger, NotFoundException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository, DataSource } from 'typeorm';
+import { WorkflowApproval } from '../entities/workflow-approval.entity';
+import { ApprovalStep } from '../entities/approval-step.entity';
+import { EventBusService } from './event-bus.service';
+import { WorkflowEventType } from '../events/event-types';
 
 @Injectable()
 export class ApprovalService {
@@ -18,7 +18,7 @@ export class ApprovalService {
         private stepRepository: Repository<ApprovalStep>,
         private readonly eventBusService: EventBusService,
         private readonly dataSource: DataSource,
-    ) {}
+    ) { }
 
     /**
      * Create a new approval workflow
@@ -28,7 +28,7 @@ export class ApprovalService {
         approvalType: string,
         referenceId: string,
         workflowType: 'sequential' | 'parallel' | 'conditional' = 'sequential',
-        steps: { approverId: string; approverRole?: string; stepNumber: number}[],
+        steps: { approverId: string; approverRole?: string; stepNumber: number }[],
         createdBy: string,
         description?: string,
     ): Promise<WorkflowApproval> {
@@ -41,7 +41,7 @@ export class ApprovalService {
             description,
             status: 'pending',
             currentStep: 1,
-       });
+        });
 
         const savedApproval = await this.approvalRepository.save(approval);
 
@@ -52,7 +52,7 @@ export class ApprovalService {
                 approverRole: step.approverRole,
                 stepNumber: step.stepNumber,
                 status: 'pending',
-           }),
+            }),
         );
 
         await this.stepRepository.save(approvalSteps);
@@ -66,10 +66,10 @@ export class ApprovalService {
             requiredApprovers: steps.map(s => s.approverId),
             currentLevel: 1,
             maxLevel: steps.length, // Simplified
-       });
+        });
 
         return this.getApproval(savedApproval.id);
-   }
+    }
 
     /**
      * Process an approval action
@@ -91,7 +91,7 @@ export class ApprovalService {
 
         if (!step) {
             throw new NotFoundException(`No pending approval found for user ${userId} in step ${approval.currentStep}`);
-       }
+        }
 
         // Update step
         step.status = action === 'approve' ? 'approved' : 'rejected';
@@ -116,8 +116,8 @@ export class ApprovalService {
                 maxLevel: 0,
                 decision: 'rejected',
                 comments,
-           });
-       } else {
+            });
+        } else {
             // Check if all steps in current sequence are approved
             const allCurrentApproved = currentSteps.every((s) =>
                 s.id === step.id ? true : s.status === 'approved'
@@ -127,12 +127,12 @@ export class ApprovalService {
                 // Check if there are more steps
                 const nextStepNumber = approval.currentStep + 1;
                 const nextSteps = await this.stepRepository.count({
-                    where: { approvalId: approval.id, stepNumber: nextStepNumber},
-               });
+                    where: { approvalId: approval.id, stepNumber: nextStepNumber },
+                });
 
                 if (nextSteps > 0) {
                     approval.currentStep = nextStepNumber;
-               } else {
+                } else {
                     approval.status = 'approved';
                     approval.completedAt = new Date();
 
@@ -147,32 +147,31 @@ export class ApprovalService {
                         maxLevel: 0,
                         decision: 'approved',
                         comments,
-                   });
-               }
+                    });
+                }
                 await this.approvalRepository.save(approval);
-           }
-       }
+            }
+        }
 
         return this.getApproval(approvalId);
-   }
+    }
 
     async getApproval(id: string): Promise<WorkflowApproval> {
         const approval = await this.approvalRepository.findOne({
-            where: { id},
+            where: { id },
             relations: ['steps'],
-       });
+        });
         if (!approval) {
             throw new NotFoundException(`Approval ${id} not found`);
-       }
+        }
         return approval;
-   }
+    }
 
     async getApprovalHistory(referenceId: string, approvalType: string): Promise<WorkflowApproval[]> {
         return this.approvalRepository.find({
-            where: { referenceId, approvalType},
+            where: { referenceId, approvalType },
             relations: ['steps'],
-            order: { createdAt: 'DESC'},
-       });
-   }
+            order: { createdAt: 'DESC' },
+        });
+    }
 }
-```
