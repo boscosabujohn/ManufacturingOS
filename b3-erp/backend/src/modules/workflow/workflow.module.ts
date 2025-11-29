@@ -47,6 +47,11 @@ import { WorkflowSeederService } from './services/workflow-seeder.service';
 import { EmailGatewayService } from './services/email-gateway.service';
 import { ParallelApprovalService } from './services/parallel-approval.service';
 import { IntelligentRoutingService } from './services/intelligent-routing.service';
+import { WorkflowTemplateService } from './services/workflow-template.service';
+import { SLAService } from './services/sla.service';
+import { WorkflowAnalyticsService } from './services/workflow-analytics.service';
+import { UserTaskService } from './services/user-task.service';
+import { NotificationService as EnhancedNotificationService } from './services/notification-enhanced.service';
 
 // Controllers
 import { OrderTrackingController } from './controllers/order-tracking.controller';
@@ -58,6 +63,9 @@ import { ApprovalController } from './controllers/approval.controller';
 import { NotificationController } from './controllers/notification.controller';
 import { QualityGateController } from './controllers/quality-gate.controller';
 import { AnalyticsController } from './controllers/analytics.controller';
+import { WorkflowTemplateController } from './controllers/workflow-template.controller';
+import { WorkflowAnalyticsController } from './controllers/workflow-analytics.controller';
+import { UserTaskController } from './controllers/user-task.controller';
 import { AnalyticsService } from './services/analytics.service';
 import { Project } from '../project/entities/project.entity';
 import { ProjectService } from '../project/services/project.service';
@@ -156,6 +164,9 @@ import { WorkflowGateway } from './gateways/workflow.gateway';
     AnalyticsController,
     ProjectController,
     BOQController,
+    WorkflowTemplateController,
+    WorkflowAnalyticsController,
+    UserTaskController,
   ],
   providers: [
     // Core services
@@ -185,6 +196,9 @@ import { WorkflowGateway } from './gateways/workflow.gateway';
     EmailGatewayService,
     ParallelApprovalService,
     IntelligentRoutingService,
+    WorkflowTemplateService,
+    SLAService,
+    WorkflowAnalyticsService,
     WorkflowEventListener,
     WorkflowGateway,
   ],
@@ -199,6 +213,9 @@ import { WorkflowGateway } from './gateways/workflow.gateway';
     EmailGatewayService,
     ParallelApprovalService,
     IntelligentRoutingService,
+    WorkflowTemplateService,
+    SLAService,
+    WorkflowAnalyticsService,
   ],
 })
 export class WorkflowModule { }
