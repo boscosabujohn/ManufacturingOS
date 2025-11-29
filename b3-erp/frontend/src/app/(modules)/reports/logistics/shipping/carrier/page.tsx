@@ -1,0 +1,84 @@
+'use client';
+
+import React, { Suspense } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { ReportDetailPage } from '@/components/reports/ReportDetailPage';
+import { ClickableTableRow } from '@/components/reports/ClickableTableRow';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+
+function ShippingCarrierContent() {
+    const router = useRouter();
+    const searchParams = useSearchParams();
+    const carrierId = searchParams.get('id');
+    const title = carrierId ? `Carrier: ${carrierId}` : 'Carrier Performance';
+
+    const shipments = [
+        { id: 'SHP-2025-001', date: '2025-01-15', destination: 'New York, NY', weight: '150 kg', cost: 450, status: 'Delivered' },
+        { id: 'SHP-2025-004', date: '2025-01-18', destination: 'Chicago, IL', weight: '85 kg', cost: 320, status: 'In Transit' },
+        { id: 'SHP-2025-008', date: '2025-01-22', destination: 'Los Angeles, CA', weight: '210 kg', cost: 680, status: 'Delayed' },
+        { id: 'SHP-2025-012', date: '2025-01-25', destination: 'Houston, TX', weight: '120 kg', cost: 410, status: 'Delivered' },
+    ];
+
+    return (
+        <ReportDetailPage
+            title={title}
+            description="Detailed shipment history by carrier"
+            breadcrumbs={[
+                { label: 'Reports', href: '/reports' },
+                { label: 'Logistics', href: '/reports' },
+                { label: 'Shipping', href: '/reports/logistics/shipping' },
+                { label: 'Carrier' }
+            ]}
+        >
+            <Card>
+                <CardHeader>
+                    <CardTitle>Shipment History</CardTitle>
+                </CardHeader>
+                <CardContent className="p-0">
+                    <table className="w-full">
+                        <thead className="bg-gray-50">
+                            <tr>
+                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Shipment ID</th>
+                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Destination</th>
+                                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Weight</th>
+                                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Cost</th>
+                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody className="bg-white divide-y divide-gray-200">
+                            {shipments.map((shipment) => (
+                                <ClickableTableRow
+                                    key={shipment.id}
+                                    onClick={() => router.push(`/logistics/shipments/${shipment.id}`)}
+                                >
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-blue-600">{shipment.id}</td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{shipment.date}</td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{shipment.destination}</td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-right text-gray-500">{shipment.weight}</td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-right font-medium">${shipment.cost}</td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm">
+                                        <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${shipment.status === 'Delivered' ? 'bg-green-100 text-green-800' :
+                                                shipment.status === 'In Transit' ? 'bg-blue-100 text-blue-800' :
+                                                    'bg-red-100 text-red-800'
+                                            }`}>
+                                            {shipment.status}
+                                        </span>
+                                    </td>
+                                </ClickableTableRow>
+                            ))}
+                        </tbody>
+                    </table>
+                </CardContent>
+            </Card>
+        </ReportDetailPage>
+    );
+}
+
+export default function ShippingCarrierPage() {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <ShippingCarrierContent />
+        </Suspense>
+    );
+}

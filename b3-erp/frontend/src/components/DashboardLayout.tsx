@@ -30,7 +30,7 @@ export default function DashboardLayout({ children, pageTitle }: DashboardLayout
       <Sidebar isOpen={sidebarOpen} onToggle={() => setSidebarOpen(!sidebarOpen)} />
 
       {/* Main Content Area */}
-      <div className={`flex-1 flex flex-col transition-all duration-300 ${sidebarOpen ? 'lg:ml-72' : 'lg:ml-20'} overflow-hidden`}>
+      <div className={`flex-1 flex flex-col transition-all duration-300 ${sidebarOpen ? 'lg:ml-[315px]' : 'lg:ml-20'} overflow-hidden`}>
         {/* Header */}
         <header className="bg-white/95 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-40 shadow-sm flex-shrink-0">
           <div className="w-full px-4 sm:px-6 lg:px-8">
@@ -55,11 +55,10 @@ export default function DashboardLayout({ children, pageTitle }: DashboardLayout
                   <button
                     key={item.id}
                     onClick={() => setActiveMegaMenu(activeMegaMenu === item.id ? null : item.id)}
-                    className={`flex items-center space-x-1 px-3 py-2 rounded-lg transition-colors ${
-                      activeMegaMenu === item.id
-                        ? 'bg-blue-50 text-blue-600'
-                        : 'text-gray-700 hover:bg-gray-100'
-                    }`}
+                    className={`flex items-center space-x-1 px-3 py-2 rounded-lg transition-colors ${activeMegaMenu === item.id
+                      ? 'bg-blue-50 text-blue-600'
+                      : 'text-gray-700 hover:bg-gray-100'
+                      }`}
                   >
                     <span className="font-medium text-sm">{item.name}</span>
                     <ChevronDown className={`h-4 w-4 transition-transform ${activeMegaMenu === item.id ? 'rotate-180' : ''}`} />
@@ -111,7 +110,7 @@ export default function DashboardLayout({ children, pageTitle }: DashboardLayout
         </header>
 
         {/* Main Content - Scrollable */}
-        <main className="flex-1 overflow-y-auto overflow-x-hidden bg-gray-50">
+        <main className="flex-1 overflow-y-auto overflow-x-hidden bg-gray-50 relative z-0">
           <div className="px-6 pt-4">
             <Breadcrumbs />
           </div>

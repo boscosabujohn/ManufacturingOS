@@ -1,0 +1,141 @@
+'use client';
+
+import React, { Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
+import ReportDetailPage from '@/components/reports/ReportDetailPage';
+import ClickableTableRow from '@/components/reports/ClickableTableRow';
+import { Badge } from '@/components/ui/badge';
+import { CheckCircle, XCircle } from 'lucide-react';
+
+function InspectionByTypeContent() {
+    const searchParams = useSearchParams();
+    const type = searchParams.get('type') || 'All Types';
+
+    // Mock data
+    const inspections = [
+        {
+            id: 'INS-2025-089',
+            item: 'Steel Frame A4',
+            type: 'Incoming',
+            inspector: 'John Smith',
+            date: '2025-10-26',
+            result: 'Pass',
+            defects: 0,
+        },
+        {
+            id: 'INS-2025-088',
+            item: 'Control Panel B2',
+            type: 'In-Process',
+            inspector: 'Sarah Jones',
+            date: '2025-10-26',
+            result: 'Pass',
+            defects: 0,
+        },
+        {
+            id: 'INS-2025-087',
+            item: 'Motor Assembly',
+            type: 'Final',
+            inspector: 'Mike Brown',
+            date: '2025-10-25',
+            result: 'Fail',
+            defects: 2,
+        },
+        {
+            id: 'INS-2025-086',
+            item: 'Wiring Harness',
+            type: 'Incoming',
+            inspector: 'John Smith',
+            date: '2025-10-25',
+            result: 'Pass',
+            defects: 0,
+        },
+        {
+            id: 'INS-2025-085',
+            item: 'Paint Finish',
+            type: 'Final',
+            inspector: 'Sarah Jones',
+            date: '2025-10-24',
+            result: 'Pass',
+            defects: 0,
+        },
+    ];
+
+    // Filter data
+    const filteredData = type === 'All Types'
+        ? inspections
+        : inspections.filter(item => item.type === type);
+
+    return (
+        <ReportDetailPage
+            title={`Inspections - ${type}`}
+            description={`Detailed inspection records for ${type}`}
+            breadcrumbs={[
+                { label: 'Reports', href: '/reports' },
+                { label: 'Quality', href: '/reports' },
+                { label: 'Inspections', href: '/reports/quality/inspections' },
+                { label: type }
+            ]}
+        >
+            <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+                <div className="overflow-x-auto">
+                    <table className="w-full text-sm text-left">
+                        <thead className="text-xs text-gray-700 uppercase bg-gray-50 border-b">
+                            <tr>
+                                <th className="px-6 py-3">Inspection ID</th>
+                                <th className="px-6 py-3">Item</th>
+                                <th className="px-6 py-3">Type</th>
+                                <th className="px-6 py-3">Inspector</th>
+                                <th className="px-6 py-3">Date</th>
+                                <th className="px-6 py-3 text-center">Result</th>
+                                <th className="px-6 py-3 text-center">Defects</th>
+                            </tr>
+                        </thead>
+                        <tbody className="divide-y divide-gray-200">
+                            {filteredData.map((record) => (
+                                <ClickableTableRow
+                                    key={record.id}
+                                    id={record.id}
+                                    basePath="/quality/inspections/view"
+                                >
+                                    <td className="px-6 py-4 font-medium text-gray-900">{record.id}</td>
+                                    <td className="px-6 py-4">{record.item}</td>
+                                    <td className="px-6 py-4">{record.type}</td>
+                                    <td className="px-6 py-4">{record.inspector}</td>
+                                    <td className="px-6 py-4">{record.date}</td>
+                                    <td className="px-6 py-4 text-center">
+                                        <Badge className={record.result === 'Pass' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}>
+                                            {record.result === 'Pass' ? (
+                                                <div className="flex items-center gap-1">
+                                                    <CheckCircle className="w-3 h-3" /> Pass
+                                                </div>
+                                            ) : (
+                                                <div className="flex items-center gap-1">
+                                                    <XCircle className="w-3 h-3" /> Fail
+                                                </div>
+                                            )}
+                                        </Badge>
+                                    </td>
+                                    <td className="px-6 py-4 text-center">
+                                        {record.defects > 0 ? (
+                                            <span className="text-red-600 font-medium">{record.defects}</span>
+                                        ) : (
+                                            <span className="text-gray-400">-</span>
+                                        )}
+                                    </td>
+                                </ClickableTableRow>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </ReportDetailPage>
+    );
+}
+
+export default function InspectionByTypePage() {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <InspectionByTypeContent />
+        </Suspense>
+    );
+}

@@ -1,5 +1,7 @@
+'use client';
+
 import React, { useState, useEffect } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import {
     BarChart,
@@ -12,9 +14,14 @@ import {
     ResponsiveContainer,
     PieChart,
     Pie,
-    Cell
+    Cell,
+    LineChart,
+    Line,
+    AreaChart,
+    Area
 } from 'recharts';
 import { projectFinancialsApi } from '@/services/api';
+import { Download, Plus, Filter, TrendingUp, TrendingDown, DollarSign, Wallet } from 'lucide-react';
 
 interface ProjectFinancialsProps {
     projectId: string;
@@ -33,16 +40,34 @@ const ProjectFinancials: React.FC<ProjectFinancialsProps> = ({ projectId }) => {
                 const response = await projectFinancialsApi.getFinancials(projectId);
 
                 if (response.success) {
-                    // Merge API data with mock chart data (charts data would come from backend in production)
+                    // Enhanced mock data for demonstration
+                    const monthlyData = [
+                        { name: 'Jan', income: 400000, expense: 240000, cashFlow: 160000 },
+                        { name: 'Feb', income: 300000, expense: 139800, cashFlow: 160200 },
+                        { name: 'Mar', income: 200000, expense: 980000, cashFlow: -780000 },
+                        { name: 'Apr', income: 278000, expense: 390800, cashFlow: -112800 },
+                        { name: 'May', income: 189000, expense: 480000, cashFlow: -291000 },
+                        { name: 'Jun', income: 239000, expense: 380000, cashFlow: -141000 },
+                        { name: 'Jul', income: 349000, expense: 430000, cashFlow: -81000 },
+                    ];
+
                     setFinancials({
                         ...response.data,
                         expensesByCategory: [
-                            { name: 'Materials', value: response.data.totalExpenditure * 0.47 },
-                            { name: 'Labor', value: response.data.totalExpenditure * 0.31 },
-                            { name: 'Equipment', value: response.data.totalExpenditure * 0.16 },
-                            { name: 'Overhead', value: response.data.totalExpenditure * 0.06 },
+                            { name: 'Materials', value: response.data.totalExpenditure * 0.45, color: '#0088FE' },
+                            { name: 'Labor', value: response.data.totalExpenditure * 0.30, color: '#00C49F' },
+                            { name: 'Equipment', value: response.data.totalExpenditure * 0.15, color: '#FFBB28' },
+                            { name: 'Subcontractors', value: response.data.totalExpenditure * 0.05, color: '#FF8042' },
+                            { name: 'Overhead', value: response.data.totalExpenditure * 0.05, color: '#8884d8' },
                         ],
-                        monthlyTrend: [] // Would come from backend
+                        monthlyTrend: monthlyData,
+                        recentTransactions: [
+                            { id: 1, date: '2024-07-15', description: 'Steel Supply Payment', category: 'Materials', amount: -25000, status: 'Completed' },
+                            { id: 2, date: '2024-07-14', description: 'Client Milestone Payment', category: 'Income', amount: 150000, status: 'Completed' },
+                            { id: 3, date: '2024-07-12', description: 'Site Labor Wages', category: 'Labor', amount: -45000, status: 'Pending' },
+                            { id: 4, date: '2024-07-10', description: 'Excavator Rental', category: 'Equipment', amount: -12000, status: 'Completed' },
+                            { id: 5, date: '2024-07-08', description: 'Consulting Fees', category: 'Overhead', amount: -8000, status: 'Completed' },
+                        ]
                     });
                 }
             } catch (err) {
@@ -60,7 +85,7 @@ const ProjectFinancials: React.FC<ProjectFinancialsProps> = ({ projectId }) => {
     if (loading) {
         return (
             <div className="flex items-center justify-center h-64">
-                <div className="text-gray-500">Loading financials...</div>
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
             </div>
         );
     }
@@ -68,76 +93,157 @@ const ProjectFinancials: React.FC<ProjectFinancialsProps> = ({ projectId }) => {
     if (error || !financials) {
         return (
             <div className="flex items-center justify-center h-64">
-                <div className="text-red-500">{error || 'No financial data available'}</div>
+                <div className="text-red-500 bg-red-50 px-4 py-2 rounded-lg border border-red-200">
+                    {error || 'No financial data available'}
+                </div>
             </div>
         );
     }
 
-    const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
+    const COLORS = financials.expensesByCategory.map((item: any) => item.color);
 
     return (
-        <div className="space-y-6">
+        <div className="space-y-6 animate-in fade-in duration-500">
+            {/* Action Toolbar */}
+            <div className="flex justify-between items-center">
+                <div>
+                    <h2 className="text-lg font-semibold text-gray-900">Financial Overview</h2>
+                    <p className="text-sm text-gray-500">Track project budget, expenses, and profitability</p>
+                </div>
+                <div className="flex gap-3">
+                    <Button variant="outline" className="flex items-center gap-2">
+                        <Download className="w-4 h-4" />
+                        Export Report
+                    </Button>
+                    <Button className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white">
+                        <Plus className="w-4 h-4" />
+                        Add Transaction
+                    </Button>
+                </div>
+            </div>
+
+            {/* KPI Cards */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <Card>
+                <Card className="bg-gradient-to-br from-blue-50 to-white border-blue-100">
                     <CardHeader className="pb-2">
-                        <CardTitle className="text-sm font-medium text-muted-foreground">Total Budget</CardTitle>
+                        <CardTitle className="text-sm font-medium text-blue-600 flex items-center gap-2">
+                            <Wallet className="w-4 h-4" /> Total Budget
+                        </CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <div className="text-2xl font-bold">₹{financials.budget.toLocaleString()}</div>
+                        <div className="text-2xl font-bold text-gray-900">₹{financials.budget.toLocaleString()}</div>
+                        <p className="text-xs text-blue-600 mt-1 flex items-center">
+                            <TrendingUp className="w-3 h-3 mr-1" /> +2.5% from initial
+                        </p>
                     </CardContent>
                 </Card>
-                <Card>
+                <Card className="bg-gradient-to-br from-red-50 to-white border-red-100">
                     <CardHeader className="pb-2">
-                        <CardTitle className="text-sm font-medium text-muted-foreground">Total Expenditure</CardTitle>
+                        <CardTitle className="text-sm font-medium text-red-600 flex items-center gap-2">
+                            <TrendingDown className="w-4 h-4" /> Total Expenditure
+                        </CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <div className="text-2xl font-bold text-red-500">₹{financials.totalExpenditure.toLocaleString()}</div>
+                        <div className="text-2xl font-bold text-gray-900">₹{financials.totalExpenditure.toLocaleString()}</div>
+                        <div className="w-full bg-red-100 h-1.5 mt-2 rounded-full overflow-hidden">
+                            <div
+                                className="bg-red-500 h-full rounded-full"
+                                style={{ width: `${(financials.totalExpenditure / financials.budget) * 100}%` }}
+                            ></div>
+                        </div>
+                        <p className="text-xs text-gray-500 mt-1">
+                            {((financials.totalExpenditure / financials.budget) * 100).toFixed(1)}% of budget utilized
+                        </p>
                     </CardContent>
                 </Card>
-                <Card>
+                <Card className="bg-gradient-to-br from-green-50 to-white border-green-100">
                     <CardHeader className="pb-2">
-                        <CardTitle className="text-sm font-medium text-muted-foreground">Total Income</CardTitle>
+                        <CardTitle className="text-sm font-medium text-green-600 flex items-center gap-2">
+                            <DollarSign className="w-4 h-4" /> Total Income
+                        </CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <div className="text-2xl font-bold text-green-500">₹{financials.totalIncome.toLocaleString()}</div>
+                        <div className="text-2xl font-bold text-gray-900">₹{financials.totalIncome.toLocaleString()}</div>
+                        <p className="text-xs text-green-600 mt-1 flex items-center">
+                            <TrendingUp className="w-3 h-3 mr-1" /> On track
+                        </p>
                     </CardContent>
                 </Card>
-                <Card>
+                <Card className="bg-gradient-to-br from-purple-50 to-white border-purple-100">
                     <CardHeader className="pb-2">
-                        <CardTitle className="text-sm font-medium text-muted-foreground">Margin</CardTitle>
+                        <CardTitle className="text-sm font-medium text-purple-600 flex items-center gap-2">
+                            <TrendingUp className="w-4 h-4" /> Net Margin
+                        </CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <div className={`text-2xl font-bold ${financials.margin >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                        <div className={`text-2xl font-bold ${financials.margin >= 0 ? 'text-gray-900' : 'text-red-600'}`}>
                             ₹{financials.margin.toLocaleString()}
                         </div>
-                        <p className="text-xs text-muted-foreground mt-1">Status: {financials.financialStatus}</p>
+                        <p className="text-xs text-purple-600 mt-1">
+                            {((financials.margin / financials.totalIncome) * 100).toFixed(1)}% Profit Margin
+                        </p>
                     </CardContent>
                 </Card>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <Card>
+            {/* Charts Section */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <Card className="shadow-sm">
                     <CardHeader>
-                        <CardTitle>Income vs Expenditure Trend</CardTitle>
+                        <CardTitle>Cash Flow Analysis</CardTitle>
+                        <CardDescription>Monthly income vs expenses breakdown</CardDescription>
                     </CardHeader>
-                    <CardContent className="h-[300px]">
+                    <CardContent className="h-[350px]">
                         <ResponsiveContainer width="100%" height="100%">
-                            <BarChart data={financials.monthlyTrend}>
-                                <CartesianGrid strokeDasharray="3 3" />
-                                <XAxis dataKey="name" />
-                                <YAxis />
-                                <Tooltip />
+                            <BarChart data={financials.monthlyTrend} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f0f0f0" />
+                                <XAxis dataKey="name" axisLine={false} tickLine={false} />
+                                <YAxis axisLine={false} tickLine={false} tickFormatter={(value) => `₹${value / 1000}k`} />
+                                <Tooltip
+                                    formatter={(value: number) => [`₹${value.toLocaleString()}`, '']}
+                                    contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}
+                                />
                                 <Legend />
-                                <Bar dataKey="income" fill="#10b981" name="Income" />
-                                <Bar dataKey="expense" fill="#ef4444" name="Expenditure" />
+                                <Bar dataKey="income" fill="#10b981" name="Income" radius={[4, 4, 0, 0]} />
+                                <Bar dataKey="expense" fill="#ef4444" name="Expenditure" radius={[4, 4, 0, 0]} />
                             </BarChart>
                         </ResponsiveContainer>
                     </CardContent>
                 </Card>
 
-                <Card>
+                <Card className="shadow-sm">
                     <CardHeader>
-                        <CardTitle>Expense Breakdown</CardTitle>
+                        <CardTitle>Cumulative Cash Flow</CardTitle>
+                        <CardDescription>Net cash position over time</CardDescription>
+                    </CardHeader>
+                    <CardContent className="h-[350px]">
+                        <ResponsiveContainer width="100%" height="100%">
+                            <AreaChart data={financials.monthlyTrend} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                                <defs>
+                                    <linearGradient id="colorCashFlow" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.8} />
+                                        <stop offset="95%" stopColor="#3b82f6" stopOpacity={0} />
+                                    </linearGradient>
+                                </defs>
+                                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f0f0f0" />
+                                <XAxis dataKey="name" axisLine={false} tickLine={false} />
+                                <YAxis axisLine={false} tickLine={false} tickFormatter={(value) => `₹${value / 1000}k`} />
+                                <Tooltip
+                                    formatter={(value: number) => [`₹${value.toLocaleString()}`, 'Net Cash Flow']}
+                                    contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}
+                                />
+                                <Area type="monotone" dataKey="cashFlow" stroke="#3b82f6" fillOpacity={1} fill="url(#colorCashFlow)" strokeWidth={2} />
+                            </AreaChart>
+                        </ResponsiveContainer>
+                    </CardContent>
+                </Card>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <Card className="lg:col-span-1 shadow-sm">
+                    <CardHeader>
+                        <CardTitle>Expense Distribution</CardTitle>
+                        <CardDescription>Breakdown by category</CardDescription>
                     </CardHeader>
                     <CardContent className="h-[300px]">
                         <ResponsiveContainer width="100%" height="100%">
@@ -146,19 +252,67 @@ const ProjectFinancials: React.FC<ProjectFinancialsProps> = ({ projectId }) => {
                                     data={financials.expensesByCategory}
                                     cx="50%"
                                     cy="50%"
-                                    labelLine={false}
-                                    label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
-                                    outerRadius={100}
-                                    fill="#8884d8"
+                                    innerRadius={60}
+                                    outerRadius={80}
+                                    paddingAngle={5}
                                     dataKey="value"
                                 >
                                     {financials.expensesByCategory.map((entry: any, index: number) => (
-                                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                                        <Cell key={`cell-${index}`} fill={entry.color} />
                                     ))}
                                 </Pie>
-                                <Tooltip />
+                                <Tooltip formatter={(value: number) => `₹${value.toLocaleString()}`} />
+                                <Legend layout="vertical" verticalAlign="middle" align="right" wrapperStyle={{ fontSize: '12px' }} />
                             </PieChart>
                         </ResponsiveContainer>
+                    </CardContent>
+                </Card>
+
+                <Card className="lg:col-span-2 shadow-sm">
+                    <CardHeader className="flex flex-row items-center justify-between">
+                        <div>
+                            <CardTitle>Recent Transactions</CardTitle>
+                            <CardDescription>Latest financial activities</CardDescription>
+                        </div>
+                        <Button variant="ghost" size="sm" className="text-blue-600 hover:text-blue-700">View All</Button>
+                    </CardHeader>
+                    <CardContent>
+                        <div className="overflow-x-auto">
+                            <table className="w-full text-sm text-left">
+                                <thead className="text-xs text-gray-700 uppercase bg-gray-50">
+                                    <tr>
+                                        <th className="px-4 py-3 rounded-l-lg">Date</th>
+                                        <th className="px-4 py-3">Description</th>
+                                        <th className="px-4 py-3">Category</th>
+                                        <th className="px-4 py-3">Status</th>
+                                        <th className="px-4 py-3 text-right rounded-r-lg">Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {financials.recentTransactions.map((tx: any) => (
+                                        <tr key={tx.id} className="border-b hover:bg-gray-50 transition-colors">
+                                            <td className="px-4 py-3 font-medium text-gray-900">{tx.date}</td>
+                                            <td className="px-4 py-3">{tx.description}</td>
+                                            <td className="px-4 py-3">
+                                                <span className="px-2 py-1 text-xs font-medium rounded-full bg-gray-100 text-gray-800">
+                                                    {tx.category}
+                                                </span>
+                                            </td>
+                                            <td className="px-4 py-3">
+                                                <span className={`px-2 py-1 text-xs font-medium rounded-full ${tx.status === 'Completed' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'
+                                                    }`}>
+                                                    {tx.status}
+                                                </span>
+                                            </td>
+                                            <td className={`px-4 py-3 text-right font-semibold ${tx.amount > 0 ? 'text-green-600' : 'text-red-600'
+                                                }`}>
+                                                {tx.amount > 0 ? '+' : ''}₹{Math.abs(tx.amount).toLocaleString()}
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
                     </CardContent>
                 </Card>
             </div>

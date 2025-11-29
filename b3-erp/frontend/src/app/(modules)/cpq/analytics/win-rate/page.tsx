@@ -34,8 +34,11 @@ import {
   PolarRadiusAxis,
   Radar
 } from 'recharts'
+import { useRouter } from 'next/navigation'
+import { ClickableTableRow } from '@/components/reports/ClickableTableRow'
 
 export default function CPQAnalyticsWinRatePage() {
+  const router = useRouter()
   const [timeRange, setTimeRange] = useState('last-6-months')
 
   // Win/Loss trend
@@ -261,7 +264,11 @@ export default function CPQAnalyticsWinRatePage() {
             </thead>
             <tbody>
               {competitorAnalysis.map((comp, idx) => (
-                <tr key={idx} className="border-b border-gray-100 hover:bg-gray-50">
+                <ClickableTableRow
+                  key={idx}
+                  onClick={() => router.push(`/cpq/quotes?competitor=${encodeURIComponent(comp.competitor)}`)}
+                  className="border-b border-gray-100 hover:bg-gray-50"
+                >
                   <td className="py-3 px-4">
                     <p className="font-medium text-gray-900">{comp.competitor}</p>
                   </td>
@@ -275,18 +282,17 @@ export default function CPQAnalyticsWinRatePage() {
                     <span className="text-gray-900 font-medium">{comp.won + comp.lost}</span>
                   </td>
                   <td className="py-3 px-4 text-right">
-                    <span className={`px-2 py-1 rounded text-xs font-semibold ${
-                      comp.winRate >= 40 ? 'bg-green-100 text-green-700' :
+                    <span className={`px-2 py-1 rounded text-xs font-semibold ${comp.winRate >= 40 ? 'bg-green-100 text-green-700' :
                       comp.winRate >= 35 ? 'bg-yellow-100 text-yellow-700' :
-                      'bg-red-100 text-red-700'
-                    }`}>
+                        'bg-red-100 text-red-700'
+                      }`}>
                       {comp.winRate}%
                     </span>
                   </td>
                   <td className="py-3 px-4 text-right">
                     <span className="text-purple-600 font-bold">₹{comp.avgDealSize}L</span>
                   </td>
-                </tr>
+                </ClickableTableRow>
               ))}
             </tbody>
           </table>

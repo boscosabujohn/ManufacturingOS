@@ -18,6 +18,15 @@ import {
   PreviewDocumentModal,
   ViewDetailsModal,
 } from '@/components/project-management/DocumentsModals';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import Link from 'next/link';
 
 interface Document {
   id: string;
@@ -52,6 +61,7 @@ export default function DocumentsPage() {
   const [selectedDocument, setSelectedDocument] = useState<Document | null>(null);
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('list');
   const [currentPage, setCurrentPage] = useState(1);
+  const [activeTab, setActiveTab] = useState<'all' | 'my_approvals'>('all');
   const itemsPerPage = 12;
 
   // Modal states
@@ -415,7 +425,11 @@ export default function DocumentsPage() {
     const matchesType = filterType === 'all' || doc.documentType === filterType;
     const matchesStatus = filterStatus === 'all' || doc.status === filterStatus;
     const matchesProject = filterProject === 'all' || doc.projectId === filterProject;
-    return matchesSearch && matchesType && matchesStatus && matchesProject;
+
+    // Tab filtering
+    const matchesTab = activeTab === 'all' || (activeTab === 'my_approvals' && doc.status === 'Under Review'); // Mock logic for "My Approvals"
+
+    return matchesSearch && matchesType && matchesStatus && matchesProject && matchesTab;
   });
 
   const totalPages = Math.ceil(filteredDocuments.length / itemsPerPage);
@@ -607,15 +621,72 @@ export default function DocumentsPage() {
             </div>
           </div>
 
+          {/* Tabs */}
+          <div className="border-b border-gray-200 mb-6">
+            <nav className="-mb-px flex space-x-8">
+              <button
+                onClick={() => setActiveTab('all')}
+                className={`${activeTab === 'all'
+                    ? 'border-blue-500 text-blue-600'
+                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                  } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
+              >
+                All Documents
+              </button>
+              <button
+                onClick={() => setActiveTab('my_approvals')}
+                className={`${activeTab === 'my_approvals'
+                    ? 'border-blue-500 text-blue-600'
+                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                  } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm flex items-center`}
+              >
+                My Approvals
+                <span className="ml-2 bg-red-100 text-red-600 py-0.5 px-2 rounded-full text-xs">
+                  {mockDocuments.filter(d => d.status === 'Under Review').length}
+                </span>
+              </button>
+            </nav>
+          </div>
+
           {/* Action Buttons Row */}
           <div className="flex flex-wrap gap-3">
-            <button
-              onClick={() => setShowUploadModal(true)}
-              className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-            >
-              <Upload className="h-4 w-4" />
-              <span>Upload</span>
-            </button>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button
+                  className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                >
+                  <Upload className="h-4 w-4" />
+                  <span>Upload Document</span>
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="start" className="w-56">
+                <DropdownMenuLabel>Select Document Type</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem asChild>
+                  <Link href="/project-management/documents/upload/boq" className="cursor-pointer">
+                    <FileText className="mr-2 h-4 w-4" />
+                    <span>Bill of Quantities (BOQ)</span>
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/project-management/documents/upload/drawings" className="cursor-pointer">
+                    <Folder className="mr-2 h-4 w-4" />
+                    <span>Drawings & Plans</span>
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/project-management/documents/upload/renders" className="cursor-pointer">
+                    <Eye className="mr-2 h-4 w-4" />
+                    <span>3D Renders & Visuals</span>
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={() => setShowUploadModal(true)}>
+                  <Upload className="mr-2 h-4 w-4" />
+                  <span>Other Documents</span>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
             <button
               onClick={() => setShowCreateFolderModal(true)}
               className="flex items-center space-x-2 px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors"
@@ -955,8 +1026,8 @@ export default function DocumentsPage() {
                       key={page}
                       onClick={() => setCurrentPage(page)}
                       className={`px-3 py-1 border rounded-md text-sm font-medium ${currentPage === page
-                          ? 'bg-blue-600 text-white border-blue-600'
-                          : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
+                        ? 'bg-blue-600 text-white border-blue-600'
+                        : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
                         }`}
                     >
                       {page}
@@ -1061,8 +1132,8 @@ export default function DocumentsPage() {
                     key={page}
                     onClick={() => setCurrentPage(page)}
                     className={`px-3 py-1 border rounded-md text-sm font-medium ${currentPage === page
-                        ? 'bg-blue-600 text-white border-blue-600'
-                        : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
+                      ? 'bg-blue-600 text-white border-blue-600'
+                      : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
                       }`}
                   >
                     {page}

@@ -31,8 +31,11 @@ import {
   Legend,
   ResponsiveContainer
 } from 'recharts'
+import { useRouter } from 'next/navigation'
+import { ClickableTableRow } from '@/components/reports/ClickableTableRow'
 
 export default function CPQAnalyticsQuotesPage() {
+  const router = useRouter()
   const [timeRange, setTimeRange] = useState('last-30-days')
 
   // Quote volume trend data
@@ -312,7 +315,11 @@ export default function CPQAnalyticsQuotesPage() {
             </thead>
             <tbody>
               {topPerformers.map((rep, idx) => (
-                <tr key={idx} className="border-b border-gray-100 hover:bg-gray-50">
+                <ClickableTableRow
+                  key={idx}
+                  onClick={() => router.push(`/cpq/quotes?salesRep=${encodeURIComponent(rep.name)}`)}
+                  className="border-b border-gray-100 hover:bg-gray-50"
+                >
                   <td className="py-3 px-4">
                     <div className="flex items-center justify-center w-8 h-8 rounded-full bg-gradient-to-br from-purple-100 to-purple-200 text-purple-700 font-bold text-sm">
                       {idx + 1}
@@ -328,18 +335,17 @@ export default function CPQAnalyticsQuotesPage() {
                     <span className="text-green-600 font-medium">{rep.converted}</span>
                   </td>
                   <td className="py-3 px-4 text-right">
-                    <span className={`px-2 py-1 rounded text-xs font-semibold ${
-                      rep.conversionRate >= 50 ? 'bg-green-100 text-green-700' :
+                    <span className={`px-2 py-1 rounded text-xs font-semibold ${rep.conversionRate >= 50 ? 'bg-green-100 text-green-700' :
                       rep.conversionRate >= 45 ? 'bg-yellow-100 text-yellow-700' :
-                      'bg-red-100 text-red-700'
-                    }`}>
+                        'bg-red-100 text-red-700'
+                      }`}>
                       {rep.conversionRate}%
                     </span>
                   </td>
                   <td className="py-3 px-4 text-right">
                     <span className="text-purple-600 font-bold">₹{rep.value}Cr</span>
                   </td>
-                </tr>
+                </ClickableTableRow>
               ))}
             </tbody>
           </table>

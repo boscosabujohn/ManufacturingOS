@@ -17,6 +17,7 @@ import {
   Percent,
   BarChart3
 } from 'lucide-react'
+import { ClickableTableRow } from '@/components/reports/ClickableTableRow'
 
 interface EstimatorPerformance {
   name: string
@@ -297,7 +298,11 @@ export default function EstimationAnalyticsPerformancePage() {
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {estimatorPerformance.map((estimator) => (
-                <tr key={estimator.name} className="hover:bg-gray-50 transition-colors">
+                <ClickableTableRow
+                  key={estimator.name}
+                  onClick={() => router.push(`/estimation?estimator=${encodeURIComponent(estimator.name)}`)}
+                  className="hover:bg-gray-50 transition-colors"
+                >
                   <td className="px-4 py-4 whitespace-nowrap">
                     <div className="flex items-center">
                       <div className="flex-shrink-0 h-10 w-10 bg-blue-100 rounded-full flex items-center justify-center">
@@ -347,13 +352,12 @@ export default function EstimationAnalyticsPerformancePage() {
                       <div className="w-20">
                         <div className="w-full bg-gray-200 rounded-full h-2">
                           <div
-                            className={`h-2 rounded-full ${
-                              estimator.productivity >= 90
-                                ? 'bg-green-600'
-                                : estimator.productivity >= 80
+                            className={`h-2 rounded-full ${estimator.productivity >= 90
+                              ? 'bg-green-600'
+                              : estimator.productivity >= 80
                                 ? 'bg-blue-600'
                                 : 'bg-yellow-600'
-                            }`}
+                              }`}
                             style={{ width: `${estimator.productivity}%` }}
                           ></div>
                         </div>
@@ -363,7 +367,7 @@ export default function EstimationAnalyticsPerformancePage() {
                       </span>
                     </div>
                   </td>
-                </tr>
+                </ClickableTableRow>
               ))}
             </tbody>
           </table>
@@ -402,7 +406,11 @@ export default function EstimationAnalyticsPerformancePage() {
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {categoryMetrics.map((category) => (
-                <tr key={category.category} className="hover:bg-gray-50 transition-colors">
+                <ClickableTableRow
+                  key={category.category}
+                  onClick={() => router.push(`/estimation?category=${encodeURIComponent(category.category)}`)}
+                  className="hover:bg-gray-50 transition-colors"
+                >
                   <td className="px-4 py-4 whitespace-nowrap">
                     <div className="text-sm font-medium text-gray-900">{category.category}</div>
                   </td>
@@ -428,7 +436,7 @@ export default function EstimationAnalyticsPerformancePage() {
                       {category.winRate.toFixed(1)}%
                     </span>
                   </td>
-                </tr>
+                </ClickableTableRow>
               ))}
             </tbody>
           </table>

@@ -11,21 +11,22 @@ interface FinancialReport {
   category: string;
   frequency: string;
   lastGenerated?: string;
+  href: string;
 }
 
 const financialReports: FinancialReport[] = [
-  { id: '1', name: 'Profit & Loss Statement', description: 'Comprehensive income statement showing revenues and expenses', category: 'Financial Statements', frequency: 'Monthly', lastGenerated: '2025-10-27' },
-  { id: '2', name: 'Balance Sheet', description: 'Statement of financial position - assets, liabilities, and equity', category: 'Financial Statements', frequency: 'Monthly', lastGenerated: '2025-10-27' },
-  { id: '3', name: 'Cash Flow Statement', description: 'Analysis of cash inflows and outflows', category: 'Financial Statements', frequency: 'Monthly', lastGenerated: '2025-10-26' },
-  { id: '4', name: 'Trial Balance', description: 'Summary of all ledger account balances', category: 'Accounting', frequency: 'Monthly', lastGenerated: '2025-10-27' },
-  { id: '5', name: 'General Ledger Report', description: 'Detailed transactions for all accounts', category: 'Accounting', frequency: 'On-Demand', lastGenerated: '2025-10-25' },
-  { id: '6', name: 'Accounts Receivable Aging', description: 'Outstanding customer invoices by age', category: 'Receivables', frequency: 'Weekly', lastGenerated: '2025-10-27' },
-  { id: '7', name: 'Accounts Payable Aging', description: 'Outstanding vendor bills by age', category: 'Payables', frequency: 'Weekly', lastGenerated: '2025-10-27' },
-  { id: '8', name: 'Revenue Analysis', description: 'Detailed breakdown of revenue by product/service', category: 'Revenue', frequency: 'Monthly', lastGenerated: '2025-10-26' },
-  { id: '9', name: 'Expense Analysis', description: 'Categorized expense tracking and trends', category: 'Expenses', frequency: 'Monthly', lastGenerated: '2025-10-26' },
-  { id: '10', name: 'Budget vs Actual', description: 'Compare actual performance against budget', category: 'Budget', frequency: 'Monthly', lastGenerated: '2025-10-25' },
-  { id: '11', name: 'Cost Center Analysis', description: 'Department-wise cost allocation and analysis', category: 'Cost Accounting', frequency: 'Monthly' },
-  { id: '12', name: 'Tax Summary Report', description: 'GST/VAT collection and payment summary', category: 'Tax', frequency: 'Monthly', lastGenerated: '2025-10-20' },
+  { id: '1', name: 'Profit & Loss Statement', description: 'Comprehensive income statement showing revenues and expenses', category: 'Financial Statements', frequency: 'Monthly', lastGenerated: '2025-10-27', href: '/reports/finance/pl' },
+  { id: '2', name: 'Balance Sheet', description: 'Statement of financial position - assets, liabilities, and equity', category: 'Financial Statements', frequency: 'Monthly', lastGenerated: '2025-10-27', href: '/reports/finance/balance-sheet' },
+  { id: '3', name: 'Cash Flow Statement', description: 'Analysis of cash inflows and outflows', category: 'Financial Statements', frequency: 'Monthly', lastGenerated: '2025-10-26', href: '/reports/finance/cash-flow' },
+  { id: '4', name: 'Trial Balance', description: 'Summary of all ledger account balances', category: 'Accounting', frequency: 'Monthly', lastGenerated: '2025-10-27', href: '/reports/finance/trial-balance' },
+  { id: '5', name: 'General Ledger Report', description: 'Detailed transactions for all accounts', category: 'Accounting', frequency: 'On-Demand', lastGenerated: '2025-10-25', href: '/reports/finance/general-ledger' },
+  { id: '6', name: 'Accounts Receivable Aging', description: 'Outstanding customer invoices by age', category: 'Receivables', frequency: 'Weekly', lastGenerated: '2025-10-27', href: '/reports/finance/ar-aging' },
+  { id: '7', name: 'Accounts Payable Aging', description: 'Outstanding vendor bills by age', category: 'Payables', frequency: 'Weekly', lastGenerated: '2025-10-27', href: '/reports/finance/ap-aging' },
+  { id: '8', name: 'Revenue Analysis', description: 'Detailed breakdown of revenue by product/service', category: 'Revenue', frequency: 'Monthly', lastGenerated: '2025-10-26', href: '/reports/finance/revenue-analysis' },
+  { id: '9', name: 'Expense Analysis', description: 'Categorized expense tracking and trends', category: 'Expenses', frequency: 'Monthly', lastGenerated: '2025-10-26', href: '/reports/finance/expense-analysis' },
+  { id: '10', name: 'Budget vs Actual', description: 'Compare actual performance against budget', category: 'Budget', frequency: 'Monthly', lastGenerated: '2025-10-25', href: '/reports/finance/budget-vs-actual' },
+  { id: '11', name: 'Cost Center Analysis', description: 'Department-wise cost allocation and analysis', category: 'Cost Accounting', frequency: 'Monthly', href: '/reports/finance/cost-center' },
+  { id: '12', name: 'Tax Summary Report', description: 'GST/VAT collection and payment summary', category: 'Tax', frequency: 'Monthly', lastGenerated: '2025-10-20', href: '/reports/finance/tax-summary' },
 ];
 
 export default function FinancialReportsPage() {
@@ -37,7 +38,7 @@ export default function FinancialReportsPage() {
   const filteredReports = financialReports.filter(report => {
     const matchesCategory = filterCategory === 'all' || report.category === filterCategory;
     const matchesSearch = report.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         report.description.toLowerCase().includes(searchQuery.toLowerCase());
+      report.description.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
   });
 
@@ -56,7 +57,7 @@ export default function FinancialReportsPage() {
             </div>
             <div>
               <h1 className="text-3xl font-bold text-gray-900">Financial Reports</h1>
-              <p className="text-gray-600">Comprehensive financial analysis and accounting reports</p>
+              <p className="text-gray-600">Comprehensive financial analysis and accounting reports - click any card to view</p>
             </div>
           </div>
         </div>
@@ -87,16 +88,17 @@ export default function FinancialReportsPage() {
           </div>
         </div>
 
-        {/* Reports Grid */}
+        {/* Reports Grid - NOW CLICKABLE */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredReports.map((report) => (
-            <div
+            <Link
               key={report.id}
-              className="bg-white rounded-lg shadow border border-gray-200 hover:shadow-lg transition-all duration-200 overflow-hidden"
+              href={report.href}
+              className="bg-white rounded-lg shadow border border-gray-200 hover:shadow-xl hover:border-blue-300 transition-all duration-200 overflow-hidden cursor-pointer group"
             >
               <div className="p-6">
                 <div className="flex items-start justify-between mb-3">
-                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                  <div className="w-10 h-10 bg-green-100 group-hover:bg-green-200 rounded-lg flex items-center justify-center transition-colors">
                     <FileText className="w-5 h-5 text-green-600" />
                   </div>
                   <span className="text-xs px-2 py-1 bg-blue-100 text-blue-600 rounded">
@@ -104,7 +106,7 @@ export default function FinancialReportsPage() {
                   </span>
                 </div>
 
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">{report.name}</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">{report.name}</h3>
                 <p className="text-sm text-gray-600 mb-3">{report.description}</p>
 
                 <div className="flex items-center justify-between pt-3 border-t border-gray-100">
@@ -118,17 +120,12 @@ export default function FinancialReportsPage() {
                       <span>Not generated yet</span>
                     )}
                   </div>
-                  <div className="flex gap-2">
-                    <button className="p-1.5 text-blue-600 hover:bg-blue-50 rounded transition-colors">
-                      <Eye className="w-4 h-4" />
-                    </button>
-                    <button className="p-1.5 text-green-600 hover:bg-green-50 rounded transition-colors">
-                      <Download className="w-4 h-4" />
-                    </button>
+                  <div className="text-xs text-blue-600 font-medium group-hover:underline">
+                    View Report →
                   </div>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
 

@@ -460,7 +460,7 @@ export default function ProjectsListPage() {
   return (
     <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6 space-y-6">
       {/* Header Actions */}
-      <div className="flex justify-between items-center mb-4">
+      <div className="flex justify-between items-center mb-4 relative z-10">
         <div className="flex items-center gap-3">
           <button
             onClick={() => setShowAdvancedFilter(true)}
@@ -612,7 +612,7 @@ export default function ProjectsListPage() {
       </div>
 
       {/* Projects Table */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden relative z-0">
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">

@@ -15,6 +15,7 @@ import {
   DollarSign,
   Percent
 } from 'lucide-react'
+import { ClickableTableRow } from '@/components/reports/ClickableTableRow'
 
 interface AccuracyData {
   projectName: string
@@ -375,7 +376,11 @@ export default function EstimationAnalyticsAccuracyPage() {
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {accuracyData.map((data) => (
-                <tr key={data.estimateNumber} className="hover:bg-gray-50 transition-colors">
+                <ClickableTableRow
+                  key={data.estimateNumber}
+                  onClick={() => router.push(`/estimation?estimateId=${encodeURIComponent(data.estimateNumber)}`)}
+                  className="hover:bg-gray-50 transition-colors"
+                >
                   <td className="px-4 py-4 whitespace-nowrap">
                     <div className="text-sm font-medium text-gray-900">{data.projectName}</div>
                     <div className="text-xs text-gray-500">{data.estimateNumber}</div>
@@ -418,7 +423,7 @@ export default function EstimationAnalyticsAccuracyPage() {
                   <td className="px-4 py-4 whitespace-nowrap">
                     <div className="text-sm text-gray-700">{data.completedDate}</div>
                   </td>
-                </tr>
+                </ClickableTableRow>
               ))}
             </tbody>
           </table>

@@ -1,0 +1,98 @@
+'use client';
+
+import React, { Suspense } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { ReportDetailPage } from '@/components/reports/ReportDetailPage';
+import { ClickableTableRow } from '@/components/reports/ClickableTableRow';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+
+function ReconciliationStatusContent() {
+    const router = useRouter();
+    const searchParams = useSearchParams();
+    const status = searchParams.get('status') || 'All';
+
+    const transactions = [
+        { id: 'TXN-001', date: '2025-01-20', description: 'Wire Transfer - Vendor Payment', amount: 12500, type: 'Debit', status: 'Unmatched' },
+        { id: 'TXN-002', date: '2025-01-18', description: 'Customer Deposit', amount: 8500, type: 'Credit', status: 'Unmatched' },
+        { id: 'TXN-003', date: '2025-01-15', description: 'Bank Charges', amount: -125, type: 'Debit', status: 'Unmatched' },
+        { id: 'TXN-004', date: '2025-01-12', description: 'Interest Income', amount: 450, type: 'Credit', status: 'Unmatched' },
+        { id: 'TXN-005', date: '2025-01-10', description: 'Check #1245', amount: -2850, type: 'Debit', status: 'Unmatched' },
+        { id: 'TXN-006', date: '2025-01-05', description: 'Payroll Run #24', amount: -45000, type: 'Debit', status: 'Reconciled' },
+        { id: 'TXN-007', date: '2025-01-04', description: 'Client Payment - Inv #442', amount: 12000, type: 'Credit', status: 'Reconciled' },
+        { id: 'TXN-008', date: '2025-01-02', description: 'Office Rent', amount: -3500, type: 'Debit', status: 'Reconciled' },
+    ];
+
+    const filteredTransactions = status === 'All'
+        ? transactions
+        : transactions.filter(t => t.status === status);
+
+    return (
+        <ReportDetailPage
+            title={`Reconciliation: ${status}`}
+            description={`List of transactions with status: ${status}`}
+            breadcrumbs={[
+                { label: 'Reports', href: '/reports' },
+                { label: 'Accounts', href: '/reports' },
+                { label: 'Bank Reconciliation', href: '/reports/accounts/reconciliation' },
+                { label: status }
+            ]}
+        >
+            <Card>
+                <CardHeader>
+                    <CardTitle>Transaction List</CardTitle>
+                </CardHeader>
+                <CardContent className="p-0">
+                    <table className="w-full">
+                        <thead className="bg-gray-50">
+                            <tr>
+                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                                <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
+                                <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody className="bg-white divide-y divide-gray-200">
+                            {filteredTransactions.map((txn) => (
+                                <ClickableTableRow
+                                    key={txn.id}
+                                    onClick={() => router.push(`/accounts/transactions/${txn.id}`)}
+                                >
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{new Date(txn.date).toLocaleDateString()}</td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{txn.description}</td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-center">
+                                        <Badge className={txn.type === 'Credit' ? 'bg-green-600' : 'bg-red-600'}>{txn.type}</Badge>
+                                    </td>
+                                    <td className={`px-6 py-4 whitespace-nowrap text-sm text-right font-medium ${txn.amount > 0 ? 'text-green-600' : 'text-red-600'}`}>
+                                        ${Math.abs(txn.amount).toLocaleString()}
+                                    </td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-center">
+                                        <Badge variant={txn.status === 'Unmatched' ? 'destructive' : 'default'}>
+                                            {txn.status}
+                                        </Badge>
+                                    </td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-center">
+                                        {txn.status === 'Unmatched' && (
+                                            <Button size="sm" variant="outline" onClick={(e) => { e.stopPropagation(); /* Add match logic */ }}>Match</Button>
+                                        )}
+                                    </td>
+                                </ClickableTableRow>
+                            ))}
+                        </tbody>
+                    </table>
+                </CardContent>
+            </Card>
+        </ReportDetailPage>
+    );
+}
+
+export default function ReconciliationStatusPage() {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <ReconciliationStatusContent />
+        </Suspense>
+    );
+}

@@ -25,6 +25,7 @@ import {
   Layers,
   GitBranch,
   BarChart3,
+  ClipboardCheck,
 } from 'lucide-react';
 
 interface SubMenuItem {
@@ -84,7 +85,18 @@ const menuItems: MenuItem[] = [
             description: 'Project setup & handover',
             subItems: [
               { id: 'p1-project-setup', name: 'Project Setup', href: '/project-management', description: 'Create & configure project' },
-              { id: 'p1-upload-docs', name: 'Upload Documents', href: '/project-management/documents', description: 'BOQ, drawings, renders' },
+              {
+                id: 'p1-upload-docs',
+                name: 'Upload Documents',
+                href: '#',
+                description: 'BOQ, drawings, renders',
+                subItems: [
+                  { id: 'p1-upload-boq', name: 'Upload BOQ', href: '/project-management/documents/upload/boq', description: 'Bill of Quantities' },
+                  { id: 'p1-upload-drawings', name: 'Upload Drawings', href: '/project-management/documents/upload/drawings', description: 'Technical Drawings' },
+                  { id: 'p1-upload-renders', name: 'Upload Renders', href: '/project-management/documents/upload/renders', description: '3D Visualizations' },
+                  { id: 'p1-all-docs', name: 'All Documents', href: '/project-management/documents', description: 'View all project docs' },
+                ]
+              },
               { id: 'p1-sales-handover', name: 'Sales Handover', href: '/sales/handover', description: 'Sales to project team' },
             ],
           },
@@ -984,6 +996,50 @@ const menuItems: MenuItem[] = [
     ],
   },
   {
+    id: 'quality',
+    name: 'Quality',
+    icon: ClipboardCheck,
+    color: 'text-indigo-600',
+    bgColor: 'bg-indigo-50',
+    hoverColor: 'hover:bg-indigo-100',
+    subItems: [
+      { id: 'quality-dashboard', name: 'Quality Dashboard', href: '/quality', description: 'Quality overview' },
+      {
+        id: 'inspections',
+        name: 'Inspections',
+        href: '#',
+        description: 'Quality inspections',
+        subItems: [
+          { id: 'all-inspections', name: 'All Inspections', href: '/quality/inspections', description: 'View inspections' },
+          { id: 'schedule-inspection', name: 'Schedule Inspection', href: '/quality/inspections/new', description: 'Create inspection' },
+          { id: 'inspection-results', name: 'Inspection Results', href: '/quality/inspections?status=completed', description: 'Results' },
+        ],
+      },
+      {
+        id: 'ncr',
+        name: 'Non-Conformance (NCR)',
+        href: '#',
+        description: 'Non-conformance reports',
+        subItems: [
+          { id: 'all-ncr', name: 'All NCRs', href: '/quality/ncr', description: 'View NCRs' },
+          { id: 'create-ncr', name: 'Report NCR', href: '/quality/ncr/new', description: 'Create NCR' },
+          { id: 'open-ncr', name: 'Open NCRs', href: '/quality/ncr?status=open', description: 'Pending issues' },
+        ],
+      },
+      {
+        id: 'capa',
+        name: 'CAPA',
+        href: '#',
+        description: 'Corrective/Preventive Actions',
+        subItems: [
+          { id: 'all-capa', name: 'All CAPAs', href: '/quality/capa', description: 'View CAPAs' },
+          { id: 'create-capa', name: 'Create CAPA', href: '/quality/capa/new', description: 'New CAPA' },
+          { id: 'my-capa', name: 'My CAPAs', href: '/quality/capa?filter=my', description: 'Assigned to me' },
+        ],
+      },
+    ],
+  },
+  {
     id: 'inventory',
     name: 'Inventory',
     icon: Package,
@@ -1647,6 +1703,49 @@ const menuItems: MenuItem[] = [
         subItems: [
           { id: 'production-integration', name: 'Production Integration', href: '/finance/integration/production', description: 'Production costs' },
           { id: 'procurement-integration', name: 'Procurement Integration', href: '/finance/integration/procurement', description: 'Purchase costs' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'accounts',
+    name: 'Accounts',
+    icon: DollarSign,
+    color: 'text-emerald-600',
+    bgColor: 'bg-emerald-50',
+    hoverColor: 'hover:bg-emerald-100',
+    subItems: [
+      { id: 'accounts-dashboard', name: 'Accounts Dashboard', href: '/accounts', description: 'Accounts overview' },
+      {
+        id: 'banking',
+        name: 'Banking',
+        href: '#',
+        description: 'Bank accounts management',
+        subItems: [
+          { id: 'bank-accounts', name: 'Bank Accounts', href: '/accounts/banks', description: 'Manage bank accounts' },
+          { id: 'bank-transactions', name: 'Transactions', href: '/accounts/banks', description: 'View transactions' },
+          { id: 'bank-reconciliation', name: 'Bank Reconciliation', href: '/accounts/reconciliation', description: 'Reconcile statements' },
+        ],
+      },
+      {
+        id: 'expense-management',
+        name: 'Expense Management',
+        href: '#',
+        description: 'Employee expenses',
+        subItems: [
+          { id: 'expense-claims', name: 'Expense Claims', href: '/accounts/expense-claims', description: 'Submit \u0026 approve claims' },
+          { id: 'my-claims', name: 'My Claims', href: '/accounts/expense-claims?filter=my', description: 'Your expense claims' },
+          { id: 'pending-approvals', name: 'Pending Approvals', href: '/accounts/expense-claims?status=pending', description: 'Approve claims' },
+        ],
+      },
+      {
+        id: 'petty-cash-management',
+        name: 'Petty Cash',
+        href: '#',
+        description: 'Petty cash tracking',
+        subItems: [
+          { id: 'petty-cash', name: 'Petty Cash', href: '/accounts/petty-cash', description: 'Manage petty cash' },
+          { id: 'replenishment', name: 'Replenishment', href: '/accounts/petty-cash?tab=replenish', description: 'Request replenishment' },
         ],
       },
     ],
@@ -3283,6 +3382,7 @@ const menuItems: MenuItem[] = [
     hoverColor: 'hover:bg-indigo-100',
     subItems: [
       { id: 'workflow-dashboard', name: 'Workflow Dashboard', href: '/workflow', description: 'Workflow overview' },
+      { id: 'task-inbox', name: '📥 My Task Inbox', href: '/workflow/inbox', description: 'Your pending tasks \u0026 approvals' },
       {
         id: 'advanced-features',
         name: '✨ Advanced Features',
@@ -3340,32 +3440,138 @@ const menuItems: MenuItem[] = [
     bgColor: 'bg-cyan-50',
     hoverColor: 'hover:bg-cyan-100',
     subItems: [
-      { id: 'reports-dashboard', name: 'Reports Dashboard', href: '/reports', description: 'Overview' },
+      { id: 'reports-dashboard', name: 'Reports Dashboard', href: '/reports', description: 'All reports overview' },
       {
-        id: 'advanced-features',
-        name: '✨ Advanced Features',
+        id: 'crm-reports',
+        name: 'CRM Reports',
         href: '#',
-        description: 'Enterprise BI & Analytics',
+        description: 'Customer relationship reports',
         subItems: [
-          { id: 'self-service-bi', name: 'Self-Service BI', href: '/reports/advanced-features#self-service', description: 'No-code analytics' },
-          { id: 'drill-through', name: 'Drill-Through Analysis', href: '/reports/advanced-features#drill-through', description: 'Interactive exploration' },
-          { id: 'data-models', name: 'Governed Data Models', href: '/reports/advanced-features#data-models', description: 'Centralized governance' },
-          { id: 'ml-forecasting', name: 'ML Forecasting', href: '/reports/advanced-features#ml-forecasting', description: 'AI predictions' },
-          { id: 'export-scheduling', name: 'Export Scheduling', href: '/reports/advanced-features#export', description: 'Automated distribution' },
-          { id: 'role-based-insights', name: 'Role-Based Insights', href: '/reports/advanced-features#role-based', description: 'Personalized views' },
-          { id: 'kpi-alerts', name: 'KPI Alerts', href: '/reports/advanced-features#kpi-alerts', description: 'Real-time notifications' },
-          { id: 'all-reports-features', name: '→ View All Features', href: '/reports/advanced-features', description: 'Complete feature set' },
+          { id: 'lead-analysis', name: 'Lead Analysis', href: '/reports/crm/leads', description: 'Lead sources & conversion' },
+          { id: 'sales-pipeline', name: 'Sales Pipeline', href: '/reports/crm/pipeline', description: 'Pipeline funnel & forecast' },
+          { id: 'customer-analytics', name: 'Customer Analytics', href: '/reports/crm/customers', description: 'Customer segmentation & CLV' },
         ],
       },
       {
-        id: 'analytics',
-        name: 'Analytics',
+        id: 'finance-reports',
+        name: 'Finance Reports',
         href: '#',
-        description: 'Business intelligence',
+        description: 'Financial statements',
         subItems: [
-          { id: 'analytics-home', name: 'Analytics Home', href: '/reports/analytics', description: 'Main analytics' },
-          { id: 'custom-reports', name: 'Custom Reports', href: '/reports/custom', description: 'Build reports' },
-          { id: 'dashboards', name: 'Dashboards', href: '/reports/dashboards', description: 'Visual dashboards' },
+          { id: 'profit-loss', name: 'Profit & Loss', href: '/reports/finance/pl', description: 'Income statement' },
+          { id: 'balance-sheet', name: 'Balance Sheet', href: '/reports/finance/balance-sheet', description: 'Financial position' },
+          { id: 'cash-flow', name: 'Cash Flow', href: '/reports/finance/cash-flow', description: 'Cash movement' },
+          { id: 'ar-aging', name: 'AR Aging', href: '/reports/finance/ar-aging', description: 'Receivables aging' },
+          { id: 'ap-aging', name: 'AP Aging', href: '/reports/finance/ap-aging', description: 'Payables aging' },
+        ],
+      },
+      {
+        id: 'sales-reports',
+        name: 'Sales Reports',
+        href: '#',
+        description: 'Sales performance',
+        subItems: [
+          { id: 'sales-performance', name: 'Sales Performance', href: '/reports/sales/performance', description: 'Revenue & targets' },
+          { id: 'quotation-analysis', name: 'Quotation Analysis', href: '/reports/sales/quotations', description: 'Quote conversion' },
+          { id: 'order-fulfillment', name: 'Order Fulfillment', href: '/reports/sales/orders', description: 'Order completion' },
+        ],
+      },
+      {
+        id: 'accounts-reports',
+        name: 'Accounts Reports',
+        href: '#',
+        description: 'Accounting & reconciliation',
+        subItems: [
+          { id: 'bank-reconciliation', name: 'Bank Reconciliation', href: '/reports/accounts/reconciliation', description: 'Bank matching' },
+          { id: 'expense-claims', name: 'Expense Claims', href: '/reports/accounts/expense-claims', description: 'Employee expenses' },
+          { id: 'petty-cash', name: 'Petty Cash', href: '/reports/accounts/petty-cash', description: 'Petty cash tracking' },
+        ],
+      },
+      {
+        id: 'hr-reports',
+        name: 'HR Reports',
+        href: '#',
+        description: 'Human resources',
+        subItems: [
+          { id: 'attendance-report', name: 'Attendance', href: '/reports/hr/attendance', description: 'Employee attendance' },
+          { id: 'headcount-report', name: 'Headcount', href: '/reports/hr/headcount', description: 'Workforce distribution' },
+          { id: 'leave-report', name: 'Leave', href: '/reports/hr/leave', description: 'Leave tracking' },
+          { id: 'payroll-report', name: 'Payroll', href: '/reports/hr/payroll', description: 'Payroll summary' },
+        ],
+      },
+      {
+        id: 'inventory-reports',
+        name: 'Inventory Reports',
+        href: '#',
+        description: 'Stock & warehouse',
+        subItems: [
+          { id: 'stock-summary', name: 'Stock Summary', href: '/reports/inventory/stock', description: 'Stock levels & value' },
+          { id: 'inventory-movement', name: 'Inventory Movement', href: '/reports/inventory/movement', description: 'Stock transactions' },
+          { id: 'stock-aging', name: 'Stock Aging', href: '/reports/inventory/aging', description: 'Slow-moving items' },
+        ],
+      },
+      {
+        id: 'production-reports',
+        name: 'Production Reports',
+        href: '#',
+        description: 'Manufacturing performance',
+        subItems: [
+          { id: 'production-performance', name: 'Production Performance', href: '/reports/production/performance', description: 'OEE & efficiency' },
+          { id: 'work-orders', name: 'Work Orders', href: '/reports/production/work-orders', description: 'WO tracking' },
+          { id: 'material-consumption', name: 'Material Consumption', href: '/reports/production/material-consumption', description: 'Material usage' },
+        ],
+      },
+      {
+        id: 'procurement-reports',
+        name: 'Procurement Reports',
+        href: '#',
+        description: 'Purchasing & vendors',
+        subItems: [
+          { id: 'purchase-orders', name: 'Purchase Orders', href: '/reports/procurement/po', description: 'PO tracking' },
+          { id: 'vendor-performance', name: 'Vendor Performance', href: '/reports/procurement/vendor-performance', description: 'Supplier ratings' },
+          { id: 'spend-analysis', name: 'Spend Analysis', href: '/reports/procurement/spend-analysis', description: 'Procurement spend' },
+        ],
+      },
+      {
+        id: 'quality-reports',
+        name: 'Quality Reports',
+        href: '#',
+        description: 'Quality management',
+        subItems: [
+          { id: 'quality-dashboard', name: 'Quality Dashboard', href: '/reports/quality/dashboard', description: 'Quality overview' },
+          { id: 'inspection-results', name: 'Inspection Results', href: '/reports/quality/inspections', description: 'Inspection outcomes' },
+          { id: 'ncr-capa', name: 'NCR & CAPA', href: '/reports/quality/ncr-capa', description: 'Non-conformance & actions' },
+        ],
+      },
+      {
+        id: 'logistics-reports',
+        name: 'Logistics Reports',
+        href: '#',
+        description: 'Shipping & fleet',
+        subItems: [
+          { id: 'shipping-performance', name: 'Shipping Performance', href: '/reports/logistics/shipping', description: 'Delivery tracking' },
+          { id: 'fleet-utilization', name: 'Fleet Utilization', href: '/reports/logistics/fleet', description: 'Vehicle performance' },
+        ],
+      },
+      {
+        id: 'project-reports',
+        name: 'Project Reports',
+        href: '#',
+        description: 'Project management',
+        subItems: [
+          { id: 'project-performance', name: 'Project Performance', href: '/reports/project-management/performance', description: 'Budget & schedule' },
+          { id: 'resource-allocation', name: 'Resource Allocation', href: '/reports/project-management/resources', description: 'Resource utilization' },
+        ],
+      },
+      {
+        id: 'aftersales-reports',
+        name: 'After-Sales Reports',
+        href: '#',
+        description: 'Service & support',
+        subItems: [
+          { id: 'service-calls', name: 'Service Calls', href: '/reports/after-sales/service-calls', description: 'Service tracking' },
+          { id: 'warranty-claims', name: 'Warranty Claims', href: '/reports/after-sales/warranty', description: 'Warranty tracking' },
+          { id: 'customer-satisfaction', name: 'Customer Satisfaction', href: '/reports/after-sales/satisfaction', description: 'CSAT & NPS' },
         ],
       },
     ],
@@ -3755,7 +3961,7 @@ export default function Sidebar({ isOpen, onToggle }: SidebarProps) {
 
       {/* Sidebar */}
       <aside
-        className={`fixed top-0 left-0 h-full bg-white border-r border-gray-200 z-50 transition-all duration-300 ${isOpen ? 'w-80' : 'w-0 lg:w-20'
+        className={`fixed top-0 left-0 h-full bg-white border-r border-gray-200 z-50 transition-all duration-300 ${isOpen ? 'w-[315px]' : 'w-0 lg:w-20'
           } overflow-hidden flex flex-col shadow-xl`}
       >
         {/* Header */}

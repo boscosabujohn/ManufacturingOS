@@ -1,0 +1,86 @@
+'use client';
+
+import React, { Suspense } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { ReportDetailPage } from '@/components/reports/ReportDetailPage';
+import { ClickableTableRow } from '@/components/reports/ClickableTableRow';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+
+function JournalEntryContent() {
+    const router = useRouter();
+    const searchParams = useSearchParams();
+    const id = searchParams.get('id') || 'Unknown';
+
+    // Mock data for a balanced journal entry
+    const entryLines = [
+        { id: 1, accountCode: '1100', accountName: 'Accounts Receivable', debit: 500000, credit: 0, description: 'Invoice #INV-2025-001' },
+        { id: 2, accountCode: '4000', accountName: 'Sales Revenue', debit: 0, credit: 450000, description: 'Sales for Jan' },
+        { id: 3, accountCode: '2100', accountName: 'Output GST', debit: 0, credit: 50000, description: 'GST @ 10%' },
+    ];
+
+    const totalDebit = entryLines.reduce((sum, line) => sum + line.debit, 0);
+    const totalCredit = entryLines.reduce((sum, line) => sum + line.credit, 0);
+
+    return (
+        <ReportDetailPage
+            title={`Journal Entry: ${id}`}
+            description={`Details for journal entry ${id}`}
+            breadcrumbs={[
+                { label: 'Reports', href: '/reports' },
+                { label: 'Finance', href: '/reports' },
+                { label: 'General Ledger', href: '/reports/finance/general-ledger' },
+                { label: 'Journal Entry' }
+            ]}
+        >
+            <Card>
+                <CardHeader>
+                    <CardTitle>Entry Details</CardTitle>
+                </CardHeader>
+                <CardContent className="p-0">
+                    <table className="w-full">
+                        <thead className="bg-gray-50">
+                            <tr>
+                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Account Code</th>
+                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Account Name</th>
+                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Debit</th>
+                                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Credit</th>
+                            </tr>
+                        </thead>
+                        <tbody className="bg-white divide-y divide-gray-200">
+                            {entryLines.map((line) => (
+                                <ClickableTableRow
+                                    key={line.id}
+                                    onClick={() => router.push(`/accounts/ledger/${line.accountCode}`)}
+                                >
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{line.accountCode}</td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{line.accountName}</td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{line.description}</td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-right text-gray-900">
+                                        {line.debit > 0 ? `₹${line.debit.toLocaleString()}` : '-'}
+                                    </td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-right text-gray-900">
+                                        {line.credit > 0 ? `₹${line.credit.toLocaleString()}` : '-'}
+                                    </td>
+                                </ClickableTableRow>
+                            ))}
+                            <tr className="bg-gray-50 font-bold">
+                                <td className="px-6 py-4" colSpan={3}>Total</td>
+                                <td className="px-6 py-4 text-right text-blue-600">₹{totalDebit.toLocaleString()}</td>
+                                <td className="px-6 py-4 text-right text-green-600">₹{totalCredit.toLocaleString()}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </CardContent>
+            </Card>
+        </ReportDetailPage>
+    );
+}
+
+export default function JournalEntryPage() {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <JournalEntryContent />
+        </Suspense>
+    );
+}

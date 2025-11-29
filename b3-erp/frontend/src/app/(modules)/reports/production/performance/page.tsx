@@ -1,0 +1,90 @@
+'use client';
+
+import React from 'react';
+import { useRouter } from 'next/navigation';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Download, Activity, Zap, BarChart3 } from 'lucide-react';
+import { ClickableKPICard } from '@/components/reports/ClickableKPICard';
+import { ClickableTableRow } from '@/components/reports/ClickableTableRow';
+
+export default function ProductionPerformanceReport() {
+    const router = useRouter();
+
+    const data = {
+        oee: 84.5,
+        availability: 92.0,
+        performance: 88.5,
+        quality: 96.0,
+        topWorkCenters: [
+            { id: 'WC-001', name: 'CNC Machining', oee: 88 },
+            { id: 'WC-002', name: 'Assembly Line 1', oee: 82 },
+            { id: 'WC-003', name: 'Paint Shop', oee: 75 },
+        ],
+    };
+
+    return (
+        <div className="container mx-auto p-6">
+            <div className="flex justify-between items-center mb-6">
+                <div>
+                    <h1 className="text-3xl font-bold mb-2">Production Performance</h1>
+                    <p className="text-gray-600">OEE and efficiency metrics - Click cards to drill down</p>
+                </div>
+                <Button variant="outline"><Download className="mr-2 h-4 w-4" />Export</Button>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+                <ClickableKPICard
+                    title="Overall OEE"
+                    value={`${data.oee}%`}
+                    color={data.oee >= 85 ? 'green' : 'orange'}
+                    description="Click for breakdown"
+                    onClick={() => router.push('/reports/production/performance/workcenter')}
+                />
+                <ClickableKPICard
+                    title="Availability"
+                    value={`${data.availability}%`}
+                    color="blue"
+                />
+                <ClickableKPICard
+                    title="Performance"
+                    value={`${data.performance}%`}
+                    color="purple"
+                />
+                <ClickableKPICard
+                    title="Quality"
+                    value={`${data.quality}%`}
+                    color="green"
+                />
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <Card className="cursor-pointer hover:shadow-md transition-shadow" onClick={() => router.push('/reports/production/performance/workcenter')}>
+                    <CardHeader><CardTitle>Work Center Performance</CardTitle></CardHeader>
+                    <CardContent>
+                        <div className="flex items-center justify-center h-40 bg-blue-50 rounded-lg border border-dashed border-blue-200">
+                            <div className="text-center">
+                                <Activity className="w-8 h-8 text-blue-500 mx-auto mb-2" />
+                                <p className="text-blue-700 font-medium">View Work Center Metrics</p>
+                                <p className="text-sm text-blue-600">Click to analyze utilization</p>
+                            </div>
+                        </div>
+                    </CardContent>
+                </Card>
+
+                <Card className="cursor-pointer hover:shadow-md transition-shadow" onClick={() => router.push('/reports/production/performance/product')}>
+                    <CardHeader><CardTitle>Product Performance</CardTitle></CardHeader>
+                    <CardContent>
+                        <div className="flex items-center justify-center h-40 bg-purple-50 rounded-lg border border-dashed border-purple-200">
+                            <div className="text-center">
+                                <BarChart3 className="w-8 h-8 text-purple-500 mx-auto mb-2" />
+                                <p className="text-purple-700 font-medium">View Product Metrics</p>
+                                <p className="text-sm text-purple-600">Click to analyze cycle times</p>
+                            </div>
+                        </div>
+                    </CardContent>
+                </Card>
+            </div>
+        </div>
+    );
+}

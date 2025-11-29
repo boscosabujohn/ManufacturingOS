@@ -1,0 +1,87 @@
+'use client';
+
+import React from 'react';
+import { useRouter } from 'next/navigation';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Download, FileText, CheckCircle, XCircle } from 'lucide-react';
+import { ClickableKPICard } from '@/components/reports/ClickableKPICard';
+
+export default function QuotationAnalysisReport() {
+    const router = useRouter();
+
+    const data = {
+        totalQuotes: 85,
+        totalValue: 4500000,
+        accepted: 32,
+        rejected: 15,
+        pending: 38,
+        conversionRate: 37.6,
+    };
+
+    return (
+        <div className="container mx-auto p-6">
+            <div className="flex justify-between items-center mb-6">
+                <div>
+                    <h1 className="text-3xl font-bold mb-2">Quotation Analysis</h1>
+                    <p className="text-gray-600">Track quotation status and conversion rates</p>
+                </div>
+                <Button variant="outline"><Download className="mr-2 h-4 w-4" />Export</Button>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+                <ClickableKPICard
+                    title="Total Quotations"
+                    value={data.totalQuotes.toString()}
+                    color="blue"
+                    onClick={() => router.push('/reports/sales/quotations/status?status=All')}
+                />
+                <ClickableKPICard
+                    title="Accepted"
+                    value={data.accepted.toString()}
+                    color="green"
+                    onClick={() => router.push('/reports/sales/quotations/status?status=Accepted')}
+                />
+                <ClickableKPICard
+                    title="Pending"
+                    value={data.pending.toString()}
+                    color="orange"
+                    onClick={() => router.push('/reports/sales/quotations/status?status=Sent')}
+                />
+                <ClickableKPICard
+                    title="Conversion Rate"
+                    value={`${data.conversionRate}%`}
+                    color="purple"
+                />
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <Card className="cursor-pointer hover:shadow-md transition-shadow" onClick={() => router.push('/reports/sales/quotations/status?status=Accepted')}>
+                    <CardHeader><CardTitle>Won Deals</CardTitle></CardHeader>
+                    <CardContent>
+                        <div className="flex items-center justify-center h-40 bg-green-50 rounded-lg border border-dashed border-green-200">
+                            <div className="text-center">
+                                <CheckCircle className="w-8 h-8 text-green-500 mx-auto mb-2" />
+                                <p className="text-green-700 font-medium">32 Accepted Quotes</p>
+                                <p className="text-sm text-green-600">Click to view details</p>
+                            </div>
+                        </div>
+                    </CardContent>
+                </Card>
+
+                <Card className="cursor-pointer hover:shadow-md transition-shadow" onClick={() => router.push('/reports/sales/quotations/status?status=Expired')}>
+                    <CardHeader><CardTitle>Lost/Expired Analysis</CardTitle></CardHeader>
+                    <CardContent>
+                        <div className="flex items-center justify-center h-40 bg-red-50 rounded-lg border border-dashed border-red-200">
+                            <div className="text-center">
+                                <XCircle className="w-8 h-8 text-red-500 mx-auto mb-2" />
+                                <p className="text-red-700 font-medium">15 Lost Quotes</p>
+                                <p className="text-sm text-red-600">Click to analyze reasons</p>
+                            </div>
+                        </div>
+                    </CardContent>
+                </Card>
+            </div>
+        </div>
+    );
+}

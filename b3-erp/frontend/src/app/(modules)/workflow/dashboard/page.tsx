@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import {
   Activity,
   Package,
@@ -190,9 +191,9 @@ const statusConfig: Record<OrderTrackingStatus, { label: string; color: string; 
 };
 
 export default function WorkflowDashboardPage() {
+  const router = useRouter();
   const [orders, setOrders] = useState<OrderTracking[]>(mockOrders);
   const [metrics, setMetrics] = useState<WorkflowMetrics>(mockMetrics);
-  const [selectedOrder, setSelectedOrder] = useState<OrderTracking | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [isLoading, setIsLoading] = useState(false);
@@ -399,7 +400,7 @@ export default function WorkflowDashboardPage() {
                 <div
                   key={order.id}
                   className="p-4 hover:bg-gray-50 cursor-pointer"
-                  onClick={() => setSelectedOrder(order)}
+                  onClick={() => router.push(`/workflow/orders/${order.id}`)}
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-4">
@@ -449,13 +450,12 @@ export default function WorkflowDashboardPage() {
                         {order.workOrders.map((wo) => (
                           <span
                             key={wo.workOrderNumber}
-                            className={`px-2 py-1 text-xs rounded ${
-                              wo.status === 'completed'
-                                ? 'bg-green-100 text-green-700'
-                                : wo.status === 'in_progress'
+                            className={`px-2 py-1 text-xs rounded ${wo.status === 'completed'
+                              ? 'bg-green-100 text-green-700'
+                              : wo.status === 'in_progress'
                                 ? 'bg-orange-100 text-orange-700'
                                 : 'bg-gray-100 text-gray-700'
-                            }`}
+                              }`}
                           >
                             {wo.workOrderNumber}: {wo.itemName} ({wo.quantity})
                           </span>
@@ -491,10 +491,9 @@ export default function WorkflowDashboardPage() {
               { time: '3 hours ago', message: 'New order SO-2024-005 confirmed from Modern Living', type: 'success' },
             ].map((event, index) => (
               <div key={index} className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg">
-                <div className={`mt-0.5 p-1 rounded-full ${
-                  event.type === 'success' ? 'bg-green-100' :
+                <div className={`mt-0.5 p-1 rounded-full ${event.type === 'success' ? 'bg-green-100' :
                   event.type === 'warning' ? 'bg-yellow-100' : 'bg-blue-100'
-                }`}>
+                  }`}>
                   {event.type === 'success' ? (
                     <CheckCircle className="h-3 w-3 text-green-600" />
                   ) : event.type === 'warning' ? (
@@ -512,102 +511,6 @@ export default function WorkflowDashboardPage() {
           </div>
         </div>
       </div>
-
-      {/* Order Detail Modal */}
-      {selectedOrder && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full mx-4 max-h-[80vh] overflow-y-auto">
-            <div className="p-6 border-b border-gray-200">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900">{selectedOrder.orderNumber}</h3>
-                  <p className="text-sm text-gray-500">{selectedOrder.customerName}</p>
-                </div>
-                <button
-                  onClick={() => setSelectedOrder(null)}
-                  className="p-2 hover:bg-gray-100 rounded-lg"
-                >
-                  <span className="text-gray-400 text-xl">&times;</span>
-                </button>
-              </div>
-            </div>
-
-            <div className="p-6">
-              {/* Progress */}
-              <div className="mb-6">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-sm font-medium text-gray-700">Progress</span>
-                  <span className="text-sm text-gray-500">{selectedOrder.progress}%</span>
-                </div>
-                <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
-                  <div
-                    className="h-full bg-blue-600 rounded-full transition-all duration-300"
-                    style={{ width: `${selectedOrder.progress}%` }}
-                  />
-                </div>
-              </div>
-
-              {/* Order Info */}
-              <div className="grid grid-cols-2 gap-4 mb-6">
-                <div>
-                  <p className="text-sm text-gray-500">Total Amount</p>
-                  <p className="font-medium text-gray-900">{formatCurrency(selectedOrder.totalAmount)}</p>
-                </div>
-                <div>
-                  <p className="text-sm text-gray-500">Expected Delivery</p>
-                  <p className="font-medium text-gray-900">{formatDate(selectedOrder.expectedDeliveryDate)}</p>
-                </div>
-              </div>
-
-              {/* Timeline */}
-              <div className="mb-6">
-                <h4 className="text-sm font-medium text-gray-900 mb-3">Order Timeline</h4>
-                <div className="space-y-3">
-                  {selectedOrder.events.map((event, index) => (
-                    <div key={index} className="flex items-start gap-3">
-                      <div className="mt-1.5 w-2 h-2 rounded-full bg-blue-600" />
-                      <div>
-                        <p className="text-sm text-gray-900">{event.description}</p>
-                        <p className="text-xs text-gray-500">
-                          {new Date(event.timestamp).toLocaleString()}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Work Orders */}
-              {selectedOrder.workOrders.length > 0 && (
-                <div>
-                  <h4 className="text-sm font-medium text-gray-900 mb-3">Work Orders</h4>
-                  <div className="space-y-2">
-                    {selectedOrder.workOrders.map((wo) => (
-                      <div key={wo.workOrderNumber} className="p-3 bg-gray-50 rounded-lg">
-                        <div className="flex items-center justify-between">
-                          <div>
-                            <p className="font-medium text-gray-900">{wo.workOrderNumber}</p>
-                            <p className="text-sm text-gray-500">{wo.itemName} (Qty: {wo.quantity})</p>
-                          </div>
-                          <span className={`px-2 py-1 text-xs rounded ${
-                            wo.status === 'completed'
-                              ? 'bg-green-100 text-green-700'
-                              : wo.status === 'in_progress'
-                              ? 'bg-orange-100 text-orange-700'
-                              : 'bg-gray-100 text-gray-700'
-                          }`}>
-                            {wo.status}
-                          </span>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

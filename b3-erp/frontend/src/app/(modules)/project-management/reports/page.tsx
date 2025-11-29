@@ -29,6 +29,7 @@ import {
   Edit,
   Save,
   Settings,
+  Factory,
 } from 'lucide-react';
 import {
   GenerateReportModal,
@@ -294,6 +295,22 @@ export default function ProjectReportsPage() {
       status: 'Available',
       icon: FileBarChart,
     },
+    {
+      id: 'workflow-analytics',
+      reportName: 'Manufacturing Workflow Analysis',
+      reportType: 'Custom',
+      category: 'Production Analytics',
+      description: 'Comprehensive insights into production stages, bottlenecks, and efficiency',
+      frequency: 'Daily',
+      format: 'PDF',
+      lastGenerated: '2024-06-02',
+      generatedBy: 'System',
+      projectScope: 'All Projects',
+      projectCount: 25,
+      fileSize: '3.5 MB',
+      status: 'Available',
+      icon: Factory,
+    },
   ];
 
   // Report templates
@@ -378,6 +395,16 @@ export default function ProjectReportsPage() {
       charts: ['Consumption Bar', 'Variance Pie', 'Cost Trend', 'Wastage Analysis'],
       icon: BarChart3,
     },
+    {
+      id: 'T9',
+      templateName: 'Workflow Efficiency Dashboard',
+      reportType: 'Custom',
+      description: 'Production workflow analysis with stage-wise breakdown and bottleneck detection',
+      dataPoints: ['Cycle Time', 'Throughput', 'Bottleneck Stages', 'Resource Efficiency', 'Delay Impact'],
+      filters: ['Date Range', 'Project Type', 'Stage', 'Resource'],
+      charts: ['Stage Analysis Bar', 'Throughput Trend', 'Bottleneck Radar', 'Efficiency Pie'],
+      icon: Factory,
+    },
   ];
 
   const filteredReports = mockReports.filter((report) => {
@@ -456,8 +483,13 @@ export default function ProjectReportsPage() {
   };
 
   const handlePreview = (report: Report) => {
+    if (report.id === 'workflow-analytics') {
+      router.push('/project-management/reports/workflow');
+      return;
+    }
     console.log('Preview report:', report);
-    // API call would go here
+    setSelectedReport(report);
+    setShowPreviewModal(true);
   };
 
   const handleShare = (data: any) => {
@@ -599,408 +631,406 @@ export default function ProjectReportsPage() {
 
             {/* Quick Stats */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-          <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-gray-600">Total Reports</p>
-                <p className="text-2xl font-bold text-gray-900 mt-1">{mockReports.length}</p>
-              </div>
-              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                <FileText className="w-6 h-6 text-blue-600" />
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-gray-600">Report Templates</p>
-                <p className="text-2xl font-bold text-gray-900 mt-1">{reportTemplates.length}</p>
-              </div>
-              <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
-                <Layout className="w-6 h-6 text-purple-600" />
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-gray-600">This Month</p>
-                <p className="text-2xl font-bold text-gray-900 mt-1">
-                  {mockReports.filter(r => r.lastGenerated.startsWith('2024-05') || r.lastGenerated.startsWith('2024-06')).length}
-                </p>
-              </div>
-              <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                <Calendar className="w-6 h-6 text-green-600" />
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-gray-600">Total Size</p>
-                <p className="text-2xl font-bold text-gray-900 mt-1">18.3 MB</p>
-              </div>
-              <div className="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center">
-                <Download className="w-6 h-6 text-cyan-600" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Tabs */}
-      <div className="flex border-b border-gray-200 mb-6">
-        <button
-          onClick={() => setActiveTab('recent')}
-          className={`px-6 py-3 font-medium ${
-            activeTab === 'recent'
-              ? 'text-cyan-600 border-b-2 border-cyan-600'
-              : 'text-gray-600 hover:text-gray-900'
-          }`}
-        >
-          Recent Reports
-        </button>
-        <button
-          onClick={() => setActiveTab('templates')}
-          className={`px-6 py-3 font-medium ${
-            activeTab === 'templates'
-              ? 'text-cyan-600 border-b-2 border-cyan-600'
-              : 'text-gray-600 hover:text-gray-900'
-          }`}
-        >
-          Report Templates
-        </button>
-      </div>
-
-      {/* Recent Reports Tab */}
-      {activeTab === 'recent' && (
-        <>
-          {/* Filters */}
-          <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200 mb-6">
-            <div className="flex flex-col md:flex-row gap-4">
-              <div className="flex-1">
-                <input
-                  type="text"
-                  placeholder="Search reports..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
-                />
-              </div>
-              <select
-                value={reportTypeFilter}
-                onChange={(e) => setReportTypeFilter(e.target.value)}
-                className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
-              >
-                <option value="all">All Types</option>
-                <option value="Executive">Executive</option>
-                <option value="Financial">Financial</option>
-                <option value="Progress">Progress</option>
-                <option value="Resource">Resource</option>
-                <option value="Quality">Quality</option>
-                <option value="Risk">Risk</option>
-                <option value="Custom">Custom</option>
-              </select>
-              <select
-                value={frequencyFilter}
-                onChange={(e) => setFrequencyFilter(e.target.value)}
-                className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
-              >
-                <option value="all">All Frequencies</option>
-                <option value="Daily">Daily</option>
-                <option value="Weekly">Weekly</option>
-                <option value="Monthly">Monthly</option>
-                <option value="Quarterly">Quarterly</option>
-                <option value="On-Demand">On-Demand</option>
-              </select>
-            </div>
-          </div>
-
-          {/* Reports Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredReports.map((report) => {
-              const IconComponent = report.icon;
-              return (
-                <div key={report.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
-                      <IconComponent className="w-6 h-6 text-gray-600" />
-                    </div>
-                    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusColor(report.status)}`}>
-                      {report.status}
-                    </span>
+              <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm text-gray-600">Total Reports</p>
+                    <p className="text-2xl font-bold text-gray-900 mt-1">{mockReports.length}</p>
                   </div>
-
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">{report.reportName}</h3>
-                  <p className="text-sm text-gray-600 mb-4 line-clamp-2">{report.description}</p>
-
-                  <div className="space-y-2 mb-4">
-                    <div className="flex items-center justify-between text-sm">
-                      <span className="text-gray-600">Type:</span>
-                      <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getReportTypeColor(report.reportType)}`}>
-                        {report.reportType}
-                      </span>
-                    </div>
-                    <div className="flex items-center justify-between text-sm">
-                      <span className="text-gray-600">Format:</span>
-                      <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getFormatColor(report.format)}`}>
-                        {report.format}
-                      </span>
-                    </div>
-                    <div className="flex items-center justify-between text-sm">
-                      <span className="text-gray-600">Frequency:</span>
-                      <span className="text-gray-900">{report.frequency}</span>
-                    </div>
-                    <div className="flex items-center justify-between text-sm">
-                      <span className="text-gray-600">Projects:</span>
-                      <span className="text-gray-900">{report.projectCount}</span>
-                    </div>
-                    <div className="flex items-center justify-between text-sm">
-                      <span className="text-gray-600">Size:</span>
-                      <span className="text-gray-900">{report.fileSize}</span>
-                    </div>
+                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                    <FileText className="w-6 h-6 text-blue-600" />
                   </div>
+                </div>
+              </div>
 
-                  <div className="border-t border-gray-200 pt-4">
-                    <p className="text-xs text-gray-500 mb-3">
-                      Generated on {new Date(report.lastGenerated).toLocaleDateString('en-IN')} by {report.generatedBy}
+              <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm text-gray-600">Report Templates</p>
+                    <p className="text-2xl font-bold text-gray-900 mt-1">{reportTemplates.length}</p>
+                  </div>
+                  <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                    <Layout className="w-6 h-6 text-purple-600" />
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm text-gray-600">This Month</p>
+                    <p className="text-2xl font-bold text-gray-900 mt-1">
+                      {mockReports.filter(r => r.lastGenerated.startsWith('2024-05') || r.lastGenerated.startsWith('2024-06')).length}
                     </p>
-                    <div className="space-y-2">
-                      {/* First row of actions */}
-                      <div className="flex gap-2">
-                        <button
-                          onClick={() => openPreviewModal(report)}
-                          className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 text-sm transition-colors"
-                        >
-                          <Eye className="w-4 h-4" />
-                          Preview
-                        </button>
-                        <button className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700 text-sm transition-colors">
-                          <Download className="w-4 h-4" />
-                          Download
-                        </button>
-                        <button
-                          onClick={() => openShareModal(report)}
-                          className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm transition-colors"
-                        >
-                          <Share2 className="w-4 h-4" />
-                          Share
-                        </button>
-                      </div>
-                      {/* Second row of actions */}
-                      <div className="flex gap-2">
-                        <button
-                          onClick={() => openScheduleModal(report)}
-                          className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 border border-green-300 text-green-700 rounded-lg hover:bg-green-50 text-sm transition-colors"
-                        >
-                          <Calendar className="w-4 h-4" />
-                          Schedule
-                        </button>
-                        <button
-                          onClick={() => openHistoryModal(report)}
-                          className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 border border-purple-300 text-purple-700 rounded-lg hover:bg-purple-50 text-sm transition-colors"
-                        >
-                          <Clock className="w-4 h-4" />
-                          History
-                        </button>
-                        <button
-                          onClick={() => handleDeleteReport(report)}
-                          className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 border border-red-300 text-red-700 rounded-lg hover:bg-red-50 text-sm transition-colors"
-                        >
-                          <Trash2 className="w-4 h-4" />
-                          Delete
-                        </button>
-                      </div>
-                    </div>
                   </div>
-                </div>
-              );
-            })}
-          </div>
-        </>
-      )}
-
-      {/* Templates Tab */}
-      {activeTab === 'templates' && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {reportTemplates.map((template) => {
-            const IconComponent = template.icon;
-            return (
-              <div key={template.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
-                <div className="flex items-start gap-4 mb-4">
-                  <div className="w-14 h-14 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <IconComponent className="w-7 h-7 text-white" />
+                  <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                    <Calendar className="w-6 h-6 text-green-600" />
                   </div>
-                  <div className="flex-1">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-1">{template.templateName}</h3>
-                    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getReportTypeColor(template.reportType)}`}>
-                      {template.reportType}
-                    </span>
-                  </div>
-                </div>
-
-                <p className="text-sm text-gray-600 mb-4">{template.description}</p>
-
-                <div className="space-y-3 mb-4">
-                  <div>
-                    <p className="text-xs font-semibold text-gray-700 mb-2">Data Points:</p>
-                    <div className="flex flex-wrap gap-1">
-                      {template.dataPoints.map((point, idx) => (
-                        <span key={idx} className="inline-flex items-center px-2 py-1 rounded text-xs bg-blue-50 text-blue-700">
-                          {point}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div>
-                    <p className="text-xs font-semibold text-gray-700 mb-2">Available Filters:</p>
-                    <div className="flex flex-wrap gap-1">
-                      {template.filters.map((filter, idx) => (
-                        <span key={idx} className="inline-flex items-center px-2 py-1 rounded text-xs bg-purple-50 text-purple-700">
-                          {filter}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div>
-                    <p className="text-xs font-semibold text-gray-700 mb-2">Charts & Visualizations:</p>
-                    <div className="flex flex-wrap gap-1">
-                      {template.charts.map((chart, idx) => (
-                        <span key={idx} className="inline-flex items-center px-2 py-1 rounded text-xs bg-green-50 text-green-700">
-                          {chart}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                <div className="flex gap-2">
-                  <button
-                    onClick={() => {
-                      setSelectedTemplate(template);
-                      setShowGenerateModal(true);
-                    }}
-                    className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-                  >
-                    <FileText className="w-4 h-4" />
-                    Generate Report
-                  </button>
-                  <button
-                    onClick={() => openCustomizeModal(template)}
-                    className="flex-1 flex items-center justify-center gap-2 px-4 py-2 border border-purple-300 text-purple-700 rounded-lg hover:bg-purple-50 transition-colors"
-                  >
-                    <Edit className="w-4 h-4" />
-                    Customize
-                  </button>
                 </div>
               </div>
-            );
-          })}
-        </div>
-      )}
 
-      {/* All Modals */}
-      <GenerateReportModal
-        isOpen={showGenerateModal}
-        onClose={() => {
-          setShowGenerateModal(false);
-          setSelectedTemplate(null);
-        }}
-        onGenerate={handleGenerate}
-        template={selectedTemplate}
-      />
+              <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm text-gray-600">Total Size</p>
+                    <p className="text-2xl font-bold text-gray-900 mt-1">18.3 MB</p>
+                  </div>
+                  <div className="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center">
+                    <Download className="w-6 h-6 text-cyan-600" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
-      <ScheduleReportModal
-        isOpen={showScheduleModal}
-        onClose={() => {
-          setShowScheduleModal(false);
-          setSelectedReport(null);
-        }}
-        onSchedule={handleSchedule}
-      />
+          {/* Tabs */}
+          <div className="flex border-b border-gray-200 mb-6">
+            <button
+              onClick={() => setActiveTab('recent')}
+              className={`px-6 py-3 font-medium ${activeTab === 'recent'
+                  ? 'text-cyan-600 border-b-2 border-cyan-600'
+                  : 'text-gray-600 hover:text-gray-900'
+                }`}
+            >
+              Recent Reports
+            </button>
+            <button
+              onClick={() => setActiveTab('templates')}
+              className={`px-6 py-3 font-medium ${activeTab === 'templates'
+                  ? 'text-cyan-600 border-b-2 border-cyan-600'
+                  : 'text-gray-600 hover:text-gray-900'
+                }`}
+            >
+              Report Templates
+            </button>
+          </div>
 
-      <CustomizeTemplateModal
-        isOpen={showCustomizeModal}
-        onClose={() => {
-          setShowCustomizeModal(false);
-          setSelectedTemplateForCustomize(null);
-        }}
-        template={selectedTemplateForCustomize}
-        onSave={handleCustomizeTemplate}
-      />
+          {/* Recent Reports Tab */}
+          {activeTab === 'recent' && (
+            <>
+              {/* Filters */}
+              <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200 mb-6">
+                <div className="flex flex-col md:flex-row gap-4">
+                  <div className="flex-1">
+                    <input
+                      type="text"
+                      placeholder="Search reports..."
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
+                    />
+                  </div>
+                  <select
+                    value={reportTypeFilter}
+                    onChange={(e) => setReportTypeFilter(e.target.value)}
+                    className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
+                  >
+                    <option value="all">All Types</option>
+                    <option value="Executive">Executive</option>
+                    <option value="Financial">Financial</option>
+                    <option value="Progress">Progress</option>
+                    <option value="Resource">Resource</option>
+                    <option value="Quality">Quality</option>
+                    <option value="Risk">Risk</option>
+                    <option value="Custom">Custom</option>
+                  </select>
+                  <select
+                    value={frequencyFilter}
+                    onChange={(e) => setFrequencyFilter(e.target.value)}
+                    className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
+                  >
+                    <option value="all">All Frequencies</option>
+                    <option value="Daily">Daily</option>
+                    <option value="Weekly">Weekly</option>
+                    <option value="Monthly">Monthly</option>
+                    <option value="Quarterly">Quarterly</option>
+                    <option value="On-Demand">On-Demand</option>
+                  </select>
+                </div>
+              </div>
 
-      <ReportPreviewModal
-        isOpen={showPreviewModal}
-        onClose={() => {
-          setShowPreviewModal(false);
-          setSelectedReport(null);
-        }}
-        report={selectedReport}
-      />
+              {/* Reports Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {filteredReports.map((report) => {
+                  const IconComponent = report.icon;
+                  return (
+                    <div key={report.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
+                      <div className="flex items-start justify-between mb-4">
+                        <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
+                          <IconComponent className="w-6 h-6 text-gray-600" />
+                        </div>
+                        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusColor(report.status)}`}>
+                          {report.status}
+                        </span>
+                      </div>
 
-      <ShareReportModal
-        isOpen={showShareModal}
-        onClose={() => {
-          setShowShareModal(false);
-          setSelectedReport(null);
-        }}
-        report={selectedReport}
-        onShare={handleShare}
-      />
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">{report.reportName}</h3>
+                      <p className="text-sm text-gray-600 mb-4 line-clamp-2">{report.description}</p>
 
-      <ExportMultipleReportsModal
-        isOpen={showExportMultipleModal}
-        onClose={() => setShowExportMultipleModal(false)}
-        reports={mockReports}
-        onExport={handleExportMultiple}
-      />
+                      <div className="space-y-2 mb-4">
+                        <div className="flex items-center justify-between text-sm">
+                          <span className="text-gray-600">Type:</span>
+                          <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getReportTypeColor(report.reportType)}`}>
+                            {report.reportType}
+                          </span>
+                        </div>
+                        <div className="flex items-center justify-between text-sm">
+                          <span className="text-gray-600">Format:</span>
+                          <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getFormatColor(report.format)}`}>
+                            {report.format}
+                          </span>
+                        </div>
+                        <div className="flex items-center justify-between text-sm">
+                          <span className="text-gray-600">Frequency:</span>
+                          <span className="text-gray-900">{report.frequency}</span>
+                        </div>
+                        <div className="flex items-center justify-between text-sm">
+                          <span className="text-gray-600">Projects:</span>
+                          <span className="text-gray-900">{report.projectCount}</span>
+                        </div>
+                        <div className="flex items-center justify-between text-sm">
+                          <span className="text-gray-600">Size:</span>
+                          <span className="text-gray-900">{report.fileSize}</span>
+                        </div>
+                      </div>
 
-      <ReportComparisonModal
-        isOpen={showComparisonModal}
-        onClose={() => {
-          setShowComparisonModal(false);
-          setSelectedReports([]);
-        }}
-        reports={mockReports}
-      />
+                      <div className="border-t border-gray-200 pt-4">
+                        <p className="text-xs text-gray-500 mb-3">
+                          Generated on {new Date(report.lastGenerated).toLocaleDateString('en-IN')} by {report.generatedBy}
+                        </p>
+                        <div className="space-y-2">
+                          {/* First row of actions */}
+                          <div className="flex gap-2">
+                            <button
+                              onClick={() => openPreviewModal(report)}
+                              className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 text-sm transition-colors"
+                            >
+                              <Eye className="w-4 h-4" />
+                              Preview
+                            </button>
+                            <button className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700 text-sm transition-colors">
+                              <Download className="w-4 h-4" />
+                              Download
+                            </button>
+                            <button
+                              onClick={() => openShareModal(report)}
+                              className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm transition-colors"
+                            >
+                              <Share2 className="w-4 h-4" />
+                              Share
+                            </button>
+                          </div>
+                          {/* Second row of actions */}
+                          <div className="flex gap-2">
+                            <button
+                              onClick={() => openScheduleModal(report)}
+                              className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 border border-green-300 text-green-700 rounded-lg hover:bg-green-50 text-sm transition-colors"
+                            >
+                              <Calendar className="w-4 h-4" />
+                              Schedule
+                            </button>
+                            <button
+                              onClick={() => openHistoryModal(report)}
+                              className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 border border-purple-300 text-purple-700 rounded-lg hover:bg-purple-50 text-sm transition-colors"
+                            >
+                              <Clock className="w-4 h-4" />
+                              History
+                            </button>
+                            <button
+                              onClick={() => handleDeleteReport(report)}
+                              className="flex-1 flex items-center justify-center gap-1.5 px-3 py-2 border border-red-300 text-red-700 rounded-lg hover:bg-red-50 text-sm transition-colors"
+                            >
+                              <Trash2 className="w-4 h-4" />
+                              Delete
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </>
+          )}
 
-      <AdvancedFilterModal
-        isOpen={showAdvancedFilterModal}
-        onClose={() => setShowAdvancedFilterModal(false)}
-        onApplyFilters={handleAdvancedFilter}
-      />
+          {/* Templates Tab */}
+          {activeTab === 'templates' && (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {reportTemplates.map((template) => {
+                const IconComponent = template.icon;
+                return (
+                  <div key={template.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
+                    <div className="flex items-start gap-4 mb-4">
+                      <div className="w-14 h-14 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <IconComponent className="w-7 h-7 text-white" />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-lg font-semibold text-gray-900 mb-1">{template.templateName}</h3>
+                        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getReportTypeColor(template.reportType)}`}>
+                          {template.reportType}
+                        </span>
+                      </div>
+                    </div>
 
-      <ReportAnalyticsModal
-        isOpen={showAnalyticsModal}
-        onClose={() => setShowAnalyticsModal(false)}
-        reports={mockReports}
-      />
+                    <p className="text-sm text-gray-600 mb-4">{template.description}</p>
 
-      <CreateTemplateModal
-        isOpen={showCreateTemplateModal}
-        onClose={() => setShowCreateTemplateModal(false)}
-        onSave={handleCreateTemplate}
-      />
+                    <div className="space-y-3 mb-4">
+                      <div>
+                        <p className="text-xs font-semibold text-gray-700 mb-2">Data Points:</p>
+                        <div className="flex flex-wrap gap-1">
+                          {template.dataPoints.map((point, idx) => (
+                            <span key={idx} className="inline-flex items-center px-2 py-1 rounded text-xs bg-blue-50 text-blue-700">
+                              {point}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
 
-      <ReportHistoryModal
-        isOpen={showHistoryModal}
-        onClose={() => {
-          setShowHistoryModal(false);
-          setSelectedReport(null);
-        }}
-        report={selectedReport}
-      />
+                      <div>
+                        <p className="text-xs font-semibold text-gray-700 mb-2">Available Filters:</p>
+                        <div className="flex flex-wrap gap-1">
+                          {template.filters.map((filter, idx) => (
+                            <span key={idx} className="inline-flex items-center px-2 py-1 rounded text-xs bg-purple-50 text-purple-700">
+                              {filter}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
 
-      <NotificationSettingsModal
-        isOpen={showNotificationModal}
-        onClose={() => setShowNotificationModal(false)}
-        onSave={handleNotificationSettings}
-      />
+                      <div>
+                        <p className="text-xs font-semibold text-gray-700 mb-2">Charts & Visualizations:</p>
+                        <div className="flex flex-wrap gap-1">
+                          {template.charts.map((chart, idx) => (
+                            <span key={idx} className="inline-flex items-center px-2 py-1 rounded text-xs bg-green-50 text-green-700">
+                              {chart}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="flex gap-2">
+                      <button
+                        onClick={() => {
+                          setSelectedTemplate(template);
+                          setShowGenerateModal(true);
+                        }}
+                        className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                      >
+                        <FileText className="w-4 h-4" />
+                        Generate Report
+                      </button>
+                      <button
+                        onClick={() => openCustomizeModal(template)}
+                        className="flex-1 flex items-center justify-center gap-2 px-4 py-2 border border-purple-300 text-purple-700 rounded-lg hover:bg-purple-50 transition-colors"
+                      >
+                        <Edit className="w-4 h-4" />
+                        Customize
+                      </button>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+
+          {/* All Modals */}
+          <GenerateReportModal
+            isOpen={showGenerateModal}
+            onClose={() => {
+              setShowGenerateModal(false);
+              setSelectedTemplate(null);
+            }}
+            onGenerate={handleGenerate}
+            template={selectedTemplate}
+          />
+
+          <ScheduleReportModal
+            isOpen={showScheduleModal}
+            onClose={() => {
+              setShowScheduleModal(false);
+              setSelectedReport(null);
+            }}
+            onSchedule={handleSchedule}
+          />
+
+          <CustomizeTemplateModal
+            isOpen={showCustomizeModal}
+            onClose={() => {
+              setShowCustomizeModal(false);
+              setSelectedTemplateForCustomize(null);
+            }}
+            template={selectedTemplateForCustomize}
+            onSave={handleCustomizeTemplate}
+          />
+
+          <ReportPreviewModal
+            isOpen={showPreviewModal}
+            onClose={() => {
+              setShowPreviewModal(false);
+              setSelectedReport(null);
+            }}
+            report={selectedReport}
+          />
+
+          <ShareReportModal
+            isOpen={showShareModal}
+            onClose={() => {
+              setShowShareModal(false);
+              setSelectedReport(null);
+            }}
+            report={selectedReport}
+            onShare={handleShare}
+          />
+
+          <ExportMultipleReportsModal
+            isOpen={showExportMultipleModal}
+            onClose={() => setShowExportMultipleModal(false)}
+            reports={mockReports}
+            onExport={handleExportMultiple}
+          />
+
+          <ReportComparisonModal
+            isOpen={showComparisonModal}
+            onClose={() => {
+              setShowComparisonModal(false);
+              setSelectedReports([]);
+            }}
+            reports={mockReports}
+          />
+
+          <AdvancedFilterModal
+            isOpen={showAdvancedFilterModal}
+            onClose={() => setShowAdvancedFilterModal(false)}
+            onApplyFilters={handleAdvancedFilter}
+          />
+
+          <ReportAnalyticsModal
+            isOpen={showAnalyticsModal}
+            onClose={() => setShowAnalyticsModal(false)}
+            reports={mockReports}
+          />
+
+          <CreateTemplateModal
+            isOpen={showCreateTemplateModal}
+            onClose={() => setShowCreateTemplateModal(false)}
+            onSave={handleCreateTemplate}
+          />
+
+          <ReportHistoryModal
+            isOpen={showHistoryModal}
+            onClose={() => {
+              setShowHistoryModal(false);
+              setSelectedReport(null);
+            }}
+            report={selectedReport}
+          />
+
+          <NotificationSettingsModal
+            isOpen={showNotificationModal}
+            onClose={() => setShowNotificationModal(false)}
+            onSave={handleNotificationSettings}
+          />
         </div>
       </div>
     </div>

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import {
   BarChart,
   Bar,
@@ -93,7 +94,7 @@ export default function AnalyticsPage() {
   const [activeChart, setActiveChart] = useState('overview');
   const [refreshKey, setRefreshKey] = useState(0);
 
-  const metrics: AnalyticsMetric[] = [
+  const metrics: (AnalyticsMetric & { href: string })[] = [
     {
       id: 'revenue',
       title: 'Total Revenue',
@@ -102,6 +103,7 @@ export default function AnalyticsPage() {
       changeType: 'increase',
       icon: <DollarSign className="w-6 h-6" />,
       color: 'bg-green-500',
+      href: '/reports/finance/revenue-analysis',
     },
     {
       id: 'orders',
@@ -111,6 +113,7 @@ export default function AnalyticsPage() {
       changeType: 'increase',
       icon: <ShoppingCart className="w-6 h-6" />,
       color: 'bg-blue-500',
+      href: '/reports/sales/orders/status',
     },
     {
       id: 'production',
@@ -120,6 +123,7 @@ export default function AnalyticsPage() {
       changeType: 'decrease',
       icon: <Package className="w-6 h-6" />,
       color: 'bg-purple-500',
+      href: '/reports/production/performance',
     },
     {
       id: 'customers',
@@ -129,6 +133,7 @@ export default function AnalyticsPage() {
       changeType: 'increase',
       icon: <Users className="w-6 h-6" />,
       color: 'bg-orange-500',
+      href: '/reports/crm/customers/acquisition',
     },
     {
       id: 'efficiency',
@@ -138,6 +143,7 @@ export default function AnalyticsPage() {
       changeType: 'increase',
       icon: <Zap className="w-6 h-6" />,
       color: 'bg-yellow-500',
+      href: '/reports/production/performance',
     },
     {
       id: 'fulfillment',
@@ -147,6 +153,7 @@ export default function AnalyticsPage() {
       changeType: 'increase',
       icon: <CheckCircle className="w-6 h-6" />,
       color: 'bg-teal-500',
+      href: '/reports/sales/orders/status',
     },
   ];
 
@@ -308,29 +315,30 @@ export default function AnalyticsPage() {
         {/* Key Metrics Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {metrics.map((metric) => (
-            <div key={metric.id} className="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow">
-              <div className="flex justify-between items-start mb-4">
-                <div className={`${metric.color} p-3 rounded-lg text-white`}>
-                  {metric.icon}
+            <Link key={metric.id} href={metric.href} className="block">
+              <div className="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow cursor-pointer hover:border-blue-500 border border-transparent">
+                <div className="flex justify-between items-start mb-4">
+                  <div className={`${metric.color} p-3 rounded-lg text-white`}>
+                    {metric.icon}
+                  </div>
+                  <div className="flex items-center gap-1">
+                    {metric.changeType === 'increase' ? (
+                      <TrendingUp className="w-4 h-4 text-green-500" />
+                    ) : (
+                      <TrendingDown className="w-4 h-4 text-red-500" />
+                    )}
+                    <span
+                      className={`text-sm font-semibold ${metric.changeType === 'increase' ? 'text-green-500' : 'text-red-500'
+                        }`}
+                    >
+                      {metric.change}%
+                    </span>
+                  </div>
                 </div>
-                <div className="flex items-center gap-1">
-                  {metric.changeType === 'increase' ? (
-                    <TrendingUp className="w-4 h-4 text-green-500" />
-                  ) : (
-                    <TrendingDown className="w-4 h-4 text-red-500" />
-                  )}
-                  <span
-                    className={`text-sm font-semibold ${
-                      metric.changeType === 'increase' ? 'text-green-500' : 'text-red-500'
-                    }`}
-                  >
-                    {metric.change}%
-                  </span>
-                </div>
+                <h3 className="text-gray-600 text-sm font-medium mb-1">{metric.title}</h3>
+                <p className="text-3xl font-bold text-gray-900">{metric.value}</p>
               </div>
-              <h3 className="text-gray-600 text-sm font-medium mb-1">{metric.title}</h3>
-              <p className="text-3xl font-bold text-gray-900">{metric.value}</p>
-            </div>
+            </Link>
           ))}
         </div>
 

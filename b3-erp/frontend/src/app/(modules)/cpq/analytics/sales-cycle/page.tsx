@@ -32,8 +32,11 @@ import {
   Cell,
   LabelList
 } from 'recharts'
+import { useRouter } from 'next/navigation'
+import { ClickableTableRow } from '@/components/reports/ClickableTableRow'
 
 export default function CPQAnalyticsSalesCyclePage() {
+  const router = useRouter()
   const [timeRange, setTimeRange] = useState('last-6-months')
 
   // Average sales cycle time trend
@@ -306,16 +309,19 @@ export default function CPQAnalyticsSalesCyclePage() {
             </thead>
             <tbody>
               {cycleBySize.map((item, idx) => (
-                <tr key={idx} className="border-b border-gray-100 hover:bg-gray-50">
+                <ClickableTableRow
+                  key={idx}
+                  onClick={() => router.push(`/cpq/quotes?dealSize=${encodeURIComponent(item.range)}`)}
+                  className="border-b border-gray-100 hover:bg-gray-50"
+                >
                   <td className="py-3 px-4">
                     <p className="font-medium text-gray-900">{item.range}</p>
                   </td>
                   <td className="py-3 px-4 text-right">
-                    <span className={`px-2 py-1 rounded text-xs font-semibold ${
-                      item.avgDays <= 20 ? 'bg-green-100 text-green-700' :
+                    <span className={`px-2 py-1 rounded text-xs font-semibold ${item.avgDays <= 20 ? 'bg-green-100 text-green-700' :
                       item.avgDays <= 30 ? 'bg-yellow-100 text-yellow-700' :
-                      'bg-red-100 text-red-700'
-                    }`}>
+                        'bg-red-100 text-red-700'
+                      }`}>
                       {item.avgDays} days
                     </span>
                   </td>
@@ -323,22 +329,21 @@ export default function CPQAnalyticsSalesCyclePage() {
                     <span className="text-gray-900 font-medium">{item.deals}</span>
                   </td>
                   <td className="py-3 px-4 text-right">
-                    <span className={`px-2 py-1 rounded text-xs font-semibold ${
-                      item.velocity === 'Fast' ? 'bg-green-100 text-green-700' :
+                    <span className={`px-2 py-1 rounded text-xs font-semibold ${item.velocity === 'Fast' ? 'bg-green-100 text-green-700' :
                       item.velocity === 'Medium' ? 'bg-yellow-100 text-yellow-700' :
-                      'bg-red-100 text-red-700'
-                    }`}>
+                        'bg-red-100 text-red-700'
+                      }`}>
                       {item.velocity}
                     </span>
                   </td>
                   <td className="py-3 px-4 text-right">
                     <p className="text-xs text-gray-600">
                       {item.avgDays <= 20 ? 'Maintain pace' :
-                       item.avgDays <= 30 ? 'Optimize approval' :
-                       'Streamline process'}
+                        item.avgDays <= 30 ? 'Optimize approval' :
+                          'Streamline process'}
                     </p>
                   </td>
-                </tr>
+                </ClickableTableRow>
               ))}
             </tbody>
           </table>
@@ -385,11 +390,10 @@ export default function CPQAnalyticsSalesCyclePage() {
                     <p className="text-sm text-gray-700">{item.reason}</p>
                   </td>
                   <td className="py-3 px-4 text-right">
-                    <span className={`px-2 py-1 rounded text-xs font-semibold ${
-                      idx === 0 ? 'bg-red-100 text-red-700' :
+                    <span className={`px-2 py-1 rounded text-xs font-semibold ${idx === 0 ? 'bg-red-100 text-red-700' :
                       idx === 1 ? 'bg-orange-100 text-orange-700' :
-                      'bg-yellow-100 text-yellow-700'
-                    }`}>
+                        'bg-yellow-100 text-yellow-700'
+                      }`}>
                       {idx === 0 ? 'Critical' : idx === 1 ? 'High' : 'Medium'}
                     </span>
                   </td>

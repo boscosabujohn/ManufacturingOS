@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import TASettlement from '@/components/project-management/TASettlement';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/Select';
 
 export default function TASettlementPage() {
     const [selectedProject, setSelectedProject] = useState<string>('proj-001');

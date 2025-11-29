@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import {
   LayoutDashboard,
   Plus,
@@ -291,9 +292,9 @@ export default function DashboardsPage() {
     alert('Sharing dashboard...');
   };
 
-  const renderMetricWidget = (title: string, value: string, change: number, icon: React.ReactNode, color: string) => {
-    return (
-      <div className="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow">
+  const renderMetricWidget = (title: string, value: string, change: number, icon: React.ReactNode, color: string, href?: string) => {
+    const content = (
+      <div className={`bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow ${href ? 'cursor-pointer hover:border-blue-500 border border-transparent' : ''}`}>
         <div className="flex justify-between items-start mb-4">
           <div className={`${color} p-3 rounded-lg text-white`}>{icon}</div>
           <div className="flex items-center gap-1">
@@ -311,6 +312,12 @@ export default function DashboardsPage() {
         <p className="text-3xl font-bold text-gray-900">{value}</p>
       </div>
     );
+
+    if (href) {
+      return <Link href={href} className="block h-full">{content}</Link>;
+    }
+
+    return content;
   };
 
   const renderChartWidget = (title: string, type: string) => {
@@ -624,11 +631,10 @@ export default function DashboardsPage() {
                 {filteredDashboards.map((dashboard) => (
                   <div
                     key={dashboard.id}
-                    className={`border-2 rounded-lg p-4 cursor-pointer transition-all ${
-                      selectedDashboard?.id === dashboard.id
-                        ? 'border-blue-500 bg-blue-50'
-                        : 'border-gray-200 hover:border-gray-300'
-                    }`}
+                    className={`border-2 rounded-lg p-4 cursor-pointer transition-all ${selectedDashboard?.id === dashboard.id
+                      ? 'border-blue-500 bg-blue-50'
+                      : 'border-gray-200 hover:border-gray-300'
+                      }`}
                     onClick={() => setSelectedDashboard(dashboard)}
                   >
                     <div className="flex justify-between items-start mb-3">
@@ -759,12 +765,12 @@ export default function DashboardsPage() {
             {/* Widgets Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
               {/* Metric Widgets */}
-              {renderMetricWidget('Total Revenue', '$2,456,789', 12.5, <DollarSign className="w-6 h-6" />, 'bg-green-500')}
-              {renderMetricWidget('Total Orders', '8,542', 8.2, <ShoppingCart className="w-6 h-6" />, 'bg-blue-500')}
-              {renderMetricWidget('Production Output', '45,678', -3.1, <Package className="w-6 h-6" />, 'bg-purple-500')}
-              {renderMetricWidget('Active Users', '3,247', 15.8, <Users className="w-6 h-6" />, 'bg-orange-500')}
+              {renderMetricWidget('Total Revenue', '$2,456,789', 12.5, <DollarSign className="w-6 h-6" />, 'bg-green-500', '/reports/finance/revenue-analysis')}
+              {renderMetricWidget('Total Orders', '8,542', 8.2, <ShoppingCart className="w-6 h-6" />, 'bg-blue-500', '/reports/sales/orders/status')}
+              {renderMetricWidget('Production Output', '45,678', -3.1, <Package className="w-6 h-6" />, 'bg-purple-500', '/reports/production/performance')}
+              {renderMetricWidget('Active Users', '3,247', 15.8, <Users className="w-6 h-6" />, 'bg-orange-500', '/reports/crm/customers/acquisition')}
               {renderMetricWidget('System Uptime', '99.8%', 0.2, <Zap className="w-6 h-6" />, 'bg-yellow-500')}
-              {renderMetricWidget('Efficiency Rate', '94.2%', 2.3, <Target className="w-6 h-6" />, 'bg-teal-500')}
+              {renderMetricWidget('Efficiency Rate', '94.2%', 2.3, <Target className="w-6 h-6" />, 'bg-teal-500', '/reports/production/performance')}
 
               {/* Chart Widgets */}
               <div className="md:col-span-2">
