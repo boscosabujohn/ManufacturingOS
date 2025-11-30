@@ -19,6 +19,8 @@ export default function UploadDrawingsPage() {
     const [isDragging, setIsDragging] = useState(false);
     const [previewFile, setPreviewFile] = useState<File | null>(null);
 
+    const [isMaximized, setIsMaximized] = useState(false);
+
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files) {
             setFiles(prev => [...prev, ...Array.from(e.target.files || [])]);
@@ -226,12 +228,17 @@ export default function UploadDrawingsPage() {
             {/* PDF Preview Modal */}
             {previewFile && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-                    <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl h-[80vh] flex flex-col">
+                    <div className={`bg-white rounded-lg shadow-xl flex flex-col transition-all duration-200 ${isMaximized ? 'w-full h-full' : 'w-full max-w-4xl h-[80vh]'}`}>
                         <div className="flex items-center justify-between p-4 border-b">
                             <h3 className="text-lg font-semibold">{previewFile.name}</h3>
-                            <Button variant="ghost" size="sm" onClick={() => setPreviewFile(null)}>
-                                <X className="w-5 h-5" />
-                            </Button>
+                            <div className="flex items-center gap-2">
+                                <Button variant="ghost" size="sm" onClick={() => setIsMaximized(!isMaximized)}>
+                                    {isMaximized ? 'Minimize' : 'Maximize'}
+                                </Button>
+                                <Button variant="ghost" size="sm" onClick={() => setPreviewFile(null)}>
+                                    <X className="w-5 h-5" />
+                                </Button>
+                            </div>
                         </div>
                         <div className="flex-1 bg-gray-100 p-4 overflow-hidden">
                             <iframe
