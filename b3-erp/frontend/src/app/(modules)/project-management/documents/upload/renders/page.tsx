@@ -16,6 +16,8 @@ export default function UploadRendersPage() {
     const [project, setProject] = useState('');
     const [viewType, setViewType] = useState('');
     const [isUploading, setIsUploading] = useState(false);
+    const [previewFile, setPreviewFile] = useState<File | null>(null);
+    const [isMaximized, setIsMaximized] = useState(false);
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files) {
@@ -122,12 +124,20 @@ export default function UploadRendersPage() {
                             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-6">
                                 {files.map((file, index) => (
                                     <div key={index} className="relative group aspect-video bg-gray-100 rounded-lg overflow-hidden border">
-                                        {/* Mock image preview since we can't actually read file content in this environment easily without URL.createObjectURL which might not work in SSR context perfectly, but for client component it's fine. For now using a placeholder icon for simplicity in this mock environment */}
-                                        <div className="absolute inset-0 flex items-center justify-center bg-gray-50">
-                                            <ImageIcon className="w-8 h-8 text-gray-400" />
-                                        </div>
+                                        {file.type.startsWith('image/') ? (
+                                            <img
+                                                src={URL.createObjectURL(file)}
+                                                alt={file.name}
+                                                className="w-full h-full object-cover"
+                                            />
+                                        ) : (
+                                            <div className="absolute inset-0 flex items-center justify-center bg-gray-50">
+                                                <ImageIcon className="w-8 h-8 text-gray-400" />
+                                            </div>
+                                        )}
+
                                         <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all flex items-center justify-center opacity-0 group-hover:opacity-100 gap-2">
-                                            <Button variant="secondary" size="sm" className="h-8 w-8 p-0 rounded-full">
+                                            <Button variant="secondary" size="sm" className="h-8 w-8 p-0 rounded-full" onClick={() => setPreviewFile(file)}>
                                                 <Eye className="w-4 h-4" />
                                             </Button>
                                             <Button variant="destructive" size="sm" className="h-8 w-8 p-0 rounded-full" onClick={() => removeFile(index)}>
@@ -174,6 +184,40 @@ export default function UploadRendersPage() {
                     </Card>
                 </div>
             </div>
+
+            {/* Image Preview Modal */}
+            {previewFile && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4">
+                    <div className={`bg-white rounded-lg shadow-xl flex flex-col transition-all duration-200 ${isMaximized ? 'w-full h-full' : 'w-full max-w-5xl h-[85vh]'}`}>
+                        <div className="flex items-center justify-between p-4 border-b">
+                            <h3 className="text-lg font-semibold">{previewFile.name}</h3>
+                            <div className="flex items-center gap-2">
+                                <Button variant="ghost" size="sm" onClick={() => setIsMaximized(!isMaximized)}>
+                                    {isMaximized ? 'Minimize' : 'Maximize'}
+                                </Button>
+                                <Button variant="ghost" size="sm" onClick={() => setPreviewFile(null)}>
+                                    <X className="w-5 h-5" />
+                                </Button>
+                            </div>
+                        </div>
+                        <div className="flex-1 bg-black flex items-center justify-center overflow-hidden p-2">
+                            {previewFile.type.startsWith('video/') ? (
+                                <video
+                                    src={URL.createObjectURL(previewFile)}
+                                    controls
+                                    className="max-w-full max-h-full"
+                                />
+                            ) : (
+                                <img
+                                    src={URL.createObjectURL(previewFile)}
+                                    alt={previewFile.name}
+                                    className="max-w-full max-h-full object-contain"
+                                />
+                            )}
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
