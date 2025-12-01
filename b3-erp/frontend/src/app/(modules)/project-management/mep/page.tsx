@@ -393,10 +393,10 @@ export default function MEPManagementPage() {
                                                 <div className="w-full bg-gray-200 rounded-full h-2">
                                                     <div
                                                         className={`h-2 rounded-full ${drawing.siteWorkProgress === 100
-                                                                ? 'bg-green-600'
-                                                                : drawing.siteWorkProgress > 0
-                                                                    ? 'bg-blue-600'
-                                                                    : 'bg-gray-400'
+                                                            ? 'bg-green-600'
+                                                            : drawing.siteWorkProgress > 0
+                                                                ? 'bg-blue-600'
+                                                                : 'bg-gray-400'
                                                             }`}
                                                         style={{ width: `${drawing.siteWorkProgress}%` }}
                                                     ></div>
@@ -444,7 +444,7 @@ export default function MEPManagementPage() {
                         <div>
                             <h3 className="text-sm font-medium text-blue-900">About MEP Management</h3>
                             <p className="text-sm text-blue-700 mt-1">
-                                Steps 2.9-2.11: Create MEP drawings, share them with site teams, and track the
+                                Step 2.8: Create MEP drawings, share them with site teams, and track the
                                 progress of MEP work installation. MEP drawings must be approved before sharing
                                 with site.
                             </p>

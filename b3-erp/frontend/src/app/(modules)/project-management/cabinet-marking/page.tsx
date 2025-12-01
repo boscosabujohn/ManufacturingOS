@@ -315,10 +315,10 @@ export default function CabinetMarkingPage() {
                                             <div className="w-full bg-gray-200 rounded-full h-2.5">
                                                 <div
                                                     className={`h-2.5 rounded-full ${task.completionPercentage === 100
-                                                            ? 'bg-green-600'
-                                                            : task.completionPercentage > 0
-                                                                ? 'bg-yellow-600'
-                                                                : 'bg-gray-400'
+                                                        ? 'bg-green-600'
+                                                        : task.completionPercentage > 0
+                                                            ? 'bg-yellow-600'
+                                                            : 'bg-gray-400'
                                                         }`}
                                                     style={{ width: `${task.completionPercentage}%` }}
                                                 ></div>
@@ -368,7 +368,7 @@ export default function CabinetMarkingPage() {
                         <div>
                             <h3 className="text-sm font-medium text-blue-900">About Cabinet Marking</h3>
                             <p className="text-sm text-blue-700 mt-1">
-                                Steps 2.14-2.15: Schedule and execute cabinet marking tasks before installation.
+                                Step 2.9: Schedule and execute cabinet marking tasks before installation.
                                 Teams mark cabinets with identifying labels, take photos for documentation, and
                                 generate marking reports for the installation team.
                             </p>
