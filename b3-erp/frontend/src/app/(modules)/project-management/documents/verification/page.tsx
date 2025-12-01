@@ -4,9 +4,22 @@ import { useRouter } from 'next/navigation';
 import { ArrowLeft, FileText, CheckCircle, AlertTriangle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { useToast } from '@/hooks/use-toast';
 
 export default function DrawingVerificationPage() {
     const router = useRouter();
+    const { toast } = useToast();
+
+    const handleStartVerification = () => {
+        toast({
+            title: "Verification Started",
+            description: "The verification process has been initiated for 3 drawings.",
+        });
+        // Simulate navigation or state update
+        setTimeout(() => {
+            router.push('/project-management/documents/revisions');
+        }, 1000);
+    };
 
     return (
         <div className="container mx-auto py-6 space-y-6">
@@ -49,7 +62,7 @@ export default function DrawingVerificationPage() {
                             <h3 className="font-semibold text-gray-900">Pending Verification</h3>
                             <p className="text-sm text-gray-500 mt-1">3 drawings require review</p>
                         </div>
-                        <Button className="w-full max-w-xs">Start Verification</Button>
+                        <Button className="w-full max-w-xs" onClick={handleStartVerification}>Start Verification</Button>
                     </CardContent>
                 </Card>
             </div>

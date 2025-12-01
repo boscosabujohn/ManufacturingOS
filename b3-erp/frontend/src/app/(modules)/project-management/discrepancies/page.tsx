@@ -4,9 +4,25 @@ import { useRouter } from 'next/navigation';
 import { ArrowLeft, Plus, Filter, AlertOctagon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { useToast } from '@/hooks/use-toast';
 
 export default function DiscrepanciesPage() {
     const router = useRouter();
+    const { toast } = useToast();
+
+    const handleLogIssue = () => {
+        toast({
+            title: "Log New Issue",
+            description: "Opening issue logging form...",
+        });
+    };
+
+    const handleFilter = () => {
+        toast({
+            title: "Filter Applied",
+            description: "Showing active issues only.",
+        });
+    };
 
     return (
         <div className="container mx-auto py-6 space-y-6">
@@ -20,7 +36,7 @@ export default function DiscrepanciesPage() {
                         <p className="text-sm text-gray-500">Step 2.3: Record mismatches for client clarification</p>
                     </div>
                 </div>
-                <Button className="bg-red-600 hover:bg-red-700">
+                <Button className="bg-red-600 hover:bg-red-700" onClick={handleLogIssue}>
                     <Plus className="w-4 h-4 mr-2" />
                     Log New Issue
                 </Button>
@@ -33,7 +49,7 @@ export default function DiscrepanciesPage() {
                             <CardTitle>Active Issues</CardTitle>
                             <CardDescription>Track resolution of identified discrepancies</CardDescription>
                         </div>
-                        <Button variant="outline" size="sm">
+                        <Button variant="outline" size="sm" onClick={handleFilter}>
                             <Filter className="w-4 h-4 mr-2" />
                             Filter
                         </Button>
@@ -48,8 +64,8 @@ export default function DiscrepanciesPage() {
                                 <div key={i} className="flex items-center justify-between p-4 border rounded-lg hover:bg-gray-50">
                                     <div className="flex items-start gap-4">
                                         <div className={`p-2 rounded-full ${issue.priority === 'High' ? 'bg-red-100 text-red-600' :
-                                                issue.priority === 'Medium' ? 'bg-yellow-100 text-yellow-600' :
-                                                    'bg-blue-100 text-blue-600'
+                                            issue.priority === 'Medium' ? 'bg-yellow-100 text-yellow-600' :
+                                                'bg-blue-100 text-blue-600'
                                             }`}>
                                             <AlertOctagon className="w-5 h-5" />
                                         </div>
@@ -60,12 +76,12 @@ export default function DiscrepanciesPage() {
                                     </div>
                                     <div className="flex items-center gap-4">
                                         <span className={`px-2 py-1 rounded-full text-xs font-medium ${issue.status === 'Open' ? 'bg-red-100 text-red-700' :
-                                                issue.status === 'In Review' ? 'bg-yellow-100 text-yellow-700' :
-                                                    'bg-green-100 text-green-700'
+                                            issue.status === 'In Review' ? 'bg-yellow-100 text-yellow-700' :
+                                                'bg-green-100 text-green-700'
                                             }`}>
                                             {issue.status}
                                         </span>
-                                        <Button variant="ghost" size="sm">View</Button>
+                                        <Button variant="ghost" size="sm" onClick={() => toast({ title: "View Issue", description: `Viewing details for ${issue.id}` })}>View</Button>
                                     </div>
                                 </div>
                             ))}

@@ -4,10 +4,19 @@ import { useRouter } from 'next/navigation';
 import { ArrowLeft, Ruler, Save, Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
+import { Input } from '@/components/ui/Input';
+import { useToast } from '@/hooks/use-toast';
 
 export default function SiteMeasurementsPage() {
     const router = useRouter();
+    const { toast } = useToast();
+
+    const handleSave = () => {
+        toast({
+            title: "Measurements Saved",
+            description: "Site dimensions have been updated.",
+        });
+    };
 
     return (
         <div className="container mx-auto py-6 space-y-6">
@@ -21,7 +30,7 @@ export default function SiteMeasurementsPage() {
                         <p className="text-sm text-gray-500">Step 2.5: Capture actual dimensions via mobile app</p>
                     </div>
                 </div>
-                <Button className="bg-blue-600 hover:bg-blue-700">
+                <Button className="bg-blue-600 hover:bg-blue-700" onClick={handleSave}>
                     <Save className="w-4 h-4 mr-2" />
                     Save Measurements
                 </Button>
@@ -34,7 +43,7 @@ export default function SiteMeasurementsPage() {
                             <CardTitle>Wall Dimensions</CardTitle>
                             <CardDescription>Enter measured values (mm)</CardDescription>
                         </div>
-                        <Button variant="ghost" size="sm"><Plus className="w-4 h-4" /></Button>
+                        <Button variant="ghost" size="sm" onClick={() => toast({ title: "Add Field", description: "Adding new measurement field..." })}><Plus className="w-4 h-4" /></Button>
                     </CardHeader>
                     <CardContent className="space-y-4">
                         {[

@@ -4,11 +4,20 @@ import { useRouter } from 'next/navigation';
 import { ArrowLeft, Calendar, Clock, MapPin, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
+import { Input } from '@/components/ui/Input';
 import { Label } from '@/components/ui/label';
+import { useToast } from '@/hooks/use-toast';
 
 export default function ScheduleSiteVisitPage() {
     const router = useRouter();
+    const { toast } = useToast();
+
+    const handleBooking = () => {
+        toast({
+            title: "Appointment Confirmed",
+            description: "Site visit has been scheduled successfully.",
+        });
+    };
 
     return (
         <div className="container mx-auto py-6 space-y-6">
@@ -59,7 +68,7 @@ export default function ScheduleSiteVisitPage() {
                                 <Input id="contact" placeholder="Name & Phone" className="pl-9" />
                             </div>
                         </div>
-                        <Button className="w-full bg-blue-600 hover:bg-blue-700">Confirm Booking</Button>
+                        <Button className="w-full bg-blue-600 hover:bg-blue-700" onClick={handleBooking}>Confirm Booking</Button>
                     </CardContent>
                 </Card>
 

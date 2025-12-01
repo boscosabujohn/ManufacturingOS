@@ -4,9 +4,18 @@ import { useRouter } from 'next/navigation';
 import { ArrowLeft, CheckSquare, FileSpreadsheet, AlertCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { useToast } from '@/hooks/use-toast';
 
 export default function BOQCheckPage() {
     const router = useRouter();
+    const { toast } = useToast();
+
+    const handleGenerateReport = () => {
+        toast({
+            title: "Report Generated",
+            description: "BOQ discrepancy report has been downloaded.",
+        });
+    };
 
     return (
         <div className="container mx-auto py-6 space-y-6">
@@ -74,7 +83,7 @@ export default function BOQCheckPage() {
                                 <p className="text-xs text-red-700 mt-1">1 item quantity mismatch found. Please resolve before approval.</p>
                             </div>
                         </div>
-                        <Button className="w-full" variant="outline">Generate Report</Button>
+                        <Button className="w-full" variant="outline" onClick={handleGenerateReport}>Generate Report</Button>
                     </CardContent>
                 </Card>
             </div>

@@ -4,10 +4,19 @@ import { useRouter } from 'next/navigation';
 import { ArrowLeft, UserPlus, Search, UserCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
+import { Input } from '@/components/ui/Input';
+import { useToast } from '@/hooks/use-toast';
 
 export default function AssignSupervisorPage() {
     const router = useRouter();
+    const { toast } = useToast();
+
+    const handleAssign = (name: string) => {
+        toast({
+            title: "Supervisor Assigned",
+            description: `${name} has been assigned to this project.`,
+        });
+    };
 
     return (
         <div className="container mx-auto py-6 space-y-6">
@@ -53,7 +62,7 @@ export default function AssignSupervisorPage() {
                                         <p className="text-xs text-gray-500">Active Projects</p>
                                         <p className="font-medium text-gray-900">{person.projects}</p>
                                     </div>
-                                    <Button size="sm" disabled={person.status === 'Busy'} variant={person.status === 'Busy' ? 'secondary' : 'default'}>
+                                    <Button size="sm" disabled={person.status === 'Busy'} variant={person.status === 'Busy' ? 'outline' : 'default'} onClick={() => handleAssign(person.name)}>
                                         {person.status === 'Busy' ? 'Unavailable' : 'Assign'}
                                     </Button>
                                 </div>

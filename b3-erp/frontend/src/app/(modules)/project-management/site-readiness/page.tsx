@@ -4,9 +4,29 @@ import { useRouter } from 'next/navigation';
 import { ArrowLeft, CheckCircle, XCircle, AlertTriangle, Package } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
+import { useToast } from '@/hooks/use-toast';
 
 export default function SiteReadinessPage() {
     const router = useRouter();
+    const { toast } = useToast();
+
+    const handleConfirmReady = () => {
+        toast({
+            title: "Site Confirmed Ready",
+            description: "Proceeding to Production Phase.",
+        });
+        setTimeout(() => {
+            router.push('/project-management/production');
+        }, 1000);
+    };
+
+    const handleNotReady = () => {
+        toast({
+            variant: "destructive",
+            title: "Site Not Ready",
+            description: "Initiating Godown Storage Workflow.",
+        });
+    };
 
     return (
         <div className="container mx-auto py-6 space-y-6">
@@ -42,7 +62,7 @@ export default function SiteReadinessPage() {
                         </ul>
                     </CardContent>
                     <CardFooter>
-                        <Button className="w-full bg-green-600 hover:bg-green-700">Confirm Site Ready</Button>
+                        <Button className="w-full bg-green-600 hover:bg-green-700" onClick={handleConfirmReady}>Confirm Site Ready</Button>
                     </CardFooter>
                 </Card>
 
@@ -73,7 +93,7 @@ export default function SiteReadinessPage() {
                         </div>
                     </CardContent>
                     <CardFooter>
-                        <Button variant="destructive" className="w-full">Mark Not Ready</Button>
+                        <Button className="w-full bg-red-600 hover:bg-red-700 text-white" onClick={handleNotReady}>Mark Not Ready</Button>
                     </CardFooter>
                 </Card>
             </div>
