@@ -16,6 +16,7 @@ import {
     Upload,
     Plus,
 } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
 
 interface DrawingRevision {
     id: string;
@@ -88,6 +89,7 @@ const mockRevisions: DrawingRevision[] = [
 ];
 
 export default function DrawingRevisionsPage() {
+    const { toast } = useToast();
     const [revisions] = useState<DrawingRevision[]>(mockRevisions);
     const [statusFilter, setStatusFilter] = useState('All');
     const [selectedRevision, setSelectedRevision] = useState<DrawingRevision | null>(null);
@@ -152,7 +154,10 @@ export default function DrawingRevisionsPage() {
                                 </p>
                             </div>
                         </div>
-                        <button className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                        <button
+                            onClick={() => toast({ title: "Upload Revision", description: "Upload modal would open here" })}
+                            className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+                        >
                             <Upload className="w-4 h-4" />
                             Upload Revision
                         </button>
@@ -309,6 +314,7 @@ export default function DrawingRevisionsPage() {
                                             <button
                                                 className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
                                                 title="View Drawing"
+                                                onClick={() => toast({ title: "View Drawing", description: `Viewing ${revision.documentName} v${revision.version}` })}
                                             >
                                                 <Eye className="w-4 h-4 text-gray-600" />
                                             </button>
@@ -325,6 +331,7 @@ export default function DrawingRevisionsPage() {
                                             <button
                                                 className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
                                                 title="Download"
+                                                onClick={() => toast({ title: "Download Started", description: `Downloading ${revision.documentName}...` })}
                                             >
                                                 <Download className="w-4 h-4 text-gray-600" />
                                             </button>
@@ -392,7 +399,13 @@ export default function DrawingRevisionsPage() {
                                 >
                                     Close
                                 </button>
-                                <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                                <button
+                                    onClick={() => {
+                                        toast({ title: "Revision Approved", description: "Status updated to Approved" });
+                                        setSelectedRevision(null);
+                                    }}
+                                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                                >
                                     Approve Revision
                                 </button>
                             </div>

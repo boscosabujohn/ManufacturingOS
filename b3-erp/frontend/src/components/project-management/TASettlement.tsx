@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/Input';
@@ -6,31 +6,63 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/Textarea';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
+import { useToast } from '@/hooks/use-toast';
+import { projectManagementService, TAClaim } from '@/services/ProjectManagementService';
 
 interface TASettlementProps {
     projectId: string;
 }
 
 const TASettlement: React.FC<TASettlementProps> = ({ projectId }) => {
-    const [claims, setClaims] = useState([
-        { id: 'CLM-001', date: '2023-10-25', amount: 1500, description: 'Site visit travel', status: 'Approved' },
-        { id: 'CLM-002', date: '2023-10-28', amount: 800, description: 'Local conveyance', status: 'Pending' },
-    ]);
+    const { toast } = useToast();
+    const [claims, setClaims] = useState<TAClaim[]>([]);
     const [amount, setAmount] = useState('');
     const [description, setDescription] = useState('');
+    const [loading, setLoading] = useState(false);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    useEffect(() => {
+        loadClaims();
+    }, [projectId]);
+
+    const loadClaims = async () => {
+        try {
+            const data = await projectManagementService.getClaims(projectId);
+            setClaims(data);
+        } catch (error) {
+            toast({
+                variant: "destructive",
+                title: "Error",
+                description: "Failed to load claims.",
+            });
+        }
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        const newClaim = {
-            id: `CLM-${Date.now()}`,
-            date: new Date().toISOString().split('T')[0],
-            amount: Number(amount),
-            description,
-            status: 'Pending',
-        };
-        setClaims([...claims, newClaim]);
-        setAmount('');
-        setDescription('');
+        setLoading(true);
+        try {
+            const newClaim = await projectManagementService.createClaim({
+                date: new Date().toISOString().split('T')[0],
+                amount: Number(amount),
+                description,
+                projectId,
+            });
+            setClaims([...claims, newClaim]);
+            setAmount('');
+            setDescription('');
+            toast({
+                title: "Claim Submitted",
+                description: "Your travel allowance claim has been submitted for approval.",
+            });
+        } catch (error) {
+            toast({
+                variant: "destructive",
+                title: "Error",
+                description: "Failed to submit claim.",
+            });
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -64,7 +96,9 @@ const TASettlement: React.FC<TASettlementProps> = ({ projectId }) => {
                                 />
                             </div>
                         </div>
-                        <Button type="submit">Submit Claim</Button>
+                        <Button type="submit" disabled={loading}>
+                            {loading ? 'Submitting...' : 'Submit Claim'}
+                        </Button>
                     </form>
                 </CardContent>
             </Card>
@@ -85,19 +119,27 @@ const TASettlement: React.FC<TASettlementProps> = ({ projectId }) => {
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            {claims.map((claim) => (
-                                <TableRow key={claim.id}>
-                                    <TableCell>{claim.id}</TableCell>
-                                    <TableCell>{claim.date}</TableCell>
-                                    <TableCell>{claim.description}</TableCell>
-                                    <TableCell>₹{claim.amount}</TableCell>
-                                    <TableCell>
-                                        <Badge variant={claim.status === 'Approved' ? 'default' : 'secondary'}>
-                                            {claim.status}
-                                        </Badge>
+                            {claims.length === 0 ? (
+                                <TableRow>
+                                    <TableCell colSpan={5} className="text-center text-muted-foreground">
+                                        No claims found for this project.
                                     </TableCell>
                                 </TableRow>
-                            ))}
+                            ) : (
+                                claims.map((claim) => (
+                                    <TableRow key={claim.id}>
+                                        <TableCell>{claim.id}</TableCell>
+                                        <TableCell>{claim.date}</TableCell>
+                                        <TableCell>{claim.description}</TableCell>
+                                        <TableCell>₹{claim.amount}</TableCell>
+                                        <TableCell>
+                                            <Badge variant={claim.status === 'Approved' ? 'default' : 'secondary'}>
+                                                {claim.status}
+                                            </Badge>
+                                        </TableCell>
+                                    </TableRow>
+                                ))
+                            )}
                         </TableBody>
                     </Table>
                 </CardContent>

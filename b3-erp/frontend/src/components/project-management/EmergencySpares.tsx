@@ -1,41 +1,91 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/Input';
-import { Label } from '@/components/ui/Label';
+import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/Textarea';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/Table';
-import { Badge } from '@/components/ui/Badge';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Badge } from '@/components/ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/Select';
+import { useToast } from '@/hooks/use-toast';
+import { projectManagementService, EmergencySpareRequest } from '@/services/ProjectManagementService';
 
 interface EmergencySparesProps {
     projectId: string;
 }
 
 const EmergencySpares: React.FC<EmergencySparesProps> = ({ projectId }) => {
-    const [requests, setRequests] = useState([
-        { id: 'SPR-001', partId: 'PT-123', quantity: 5, urgency: 'High', status: 'Approved', requestedBy: 'John Doe' },
-        { id: 'SPR-002', partId: 'PT-456', quantity: 2, urgency: 'Medium', status: 'Pending Approval', requestedBy: 'Jane Smith' },
-    ]);
+    const { toast } = useToast();
+    const [requests, setRequests] = useState<EmergencySpareRequest[]>([]);
     const [partId, setPartId] = useState('');
     const [quantity, setQuantity] = useState('');
-    const [urgency, setUrgency] = useState('Medium');
+    const [urgency, setUrgency] = useState<'Low' | 'Medium' | 'High' | 'Critical'>('Medium');
     const [reason, setReason] = useState('');
+    const [loading, setLoading] = useState(false);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    useEffect(() => {
+        loadRequests();
+    }, [projectId]);
+
+    const loadRequests = async () => {
+        try {
+            const data = await projectManagementService.getSpareRequests(projectId);
+            setRequests(data);
+        } catch (error) {
+            toast({
+                variant: "destructive",
+                title: "Error",
+                description: "Failed to load spare requests.",
+            });
+        }
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        const newRequest = {
-            id: `SPR-${Date.now()}`,
-            partId,
-            quantity: Number(quantity),
-            urgency,
-            status: 'Pending Approval',
-            requestedBy: 'Current User',
-        };
-        setRequests([...requests, newRequest]);
-        setPartId('');
-        setQuantity('');
-        setReason('');
+        setLoading(true);
+        try {
+            const newRequest = await projectManagementService.createSpareRequest({
+                partId,
+                quantity: Number(quantity),
+                urgency,
+                reason,
+                requestedBy: 'Current User',
+                projectId,
+            });
+            setRequests([...requests, newRequest]);
+            setPartId('');
+            setQuantity('');
+            setReason('');
+            toast({
+                title: "Request Submitted",
+                description: "Emergency spare request has been logged.",
+            });
+        } catch (error) {
+            toast({
+                variant: "destructive",
+                title: "Error",
+                description: "Failed to submit request.",
+            });
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleAction = async (id: string, status: EmergencySpareRequest['status']) => {
+        try {
+            await projectManagementService.updateSpareRequestStatus(id, status);
+            setRequests(requests.map(r => r.id === id ? { ...r, status } : r));
+            toast({
+                title: `Request ${status}`,
+                description: `Request has been ${status.toLowerCase()}.`,
+            });
+        } catch (error) {
+            toast({
+                variant: "destructive",
+                title: "Error",
+                description: "Failed to update status.",
+            });
+        }
     };
 
     return (
@@ -72,12 +122,17 @@ const EmergencySpares: React.FC<EmergencySparesProps> = ({ projectId }) => {
                                 <Label htmlFor="urgency">Urgency</Label>
                                 <Select
                                     value={urgency}
-                                    onChange={(e) => setUrgency(e.target.value)}
+                                    onValueChange={(value: any) => setUrgency(value)}
                                 >
-                                    <option value="Low">Low</option>
-                                    <option value="Medium">Medium</option>
-                                    <option value="High">High</option>
-                                    <option value="Critical">Critical</option>
+                                    <SelectTrigger>
+                                        <SelectValue placeholder="Select urgency" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value="Low">Low</SelectItem>
+                                        <SelectItem value="Medium">Medium</SelectItem>
+                                        <SelectItem value="High">High</SelectItem>
+                                        <SelectItem value="Critical">Critical</SelectItem>
+                                    </SelectContent>
                                 </Select>
                             </div>
                             <div className="space-y-2">
@@ -91,7 +146,9 @@ const EmergencySpares: React.FC<EmergencySparesProps> = ({ projectId }) => {
                                 />
                             </div>
                         </div>
-                        <Button type="submit">Submit Request</Button>
+                        <Button type="submit" disabled={loading}>
+                            {loading ? 'Submitting...' : 'Submit Request'}
+                        </Button>
                     </form>
                 </CardContent>
             </Card>
@@ -114,32 +171,40 @@ const EmergencySpares: React.FC<EmergencySparesProps> = ({ projectId }) => {
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            {requests.map((request) => (
-                                <TableRow key={request.id}>
-                                    <TableCell>{request.id}</TableCell>
-                                    <TableCell>{request.partId}</TableCell>
-                                    <TableCell>{request.quantity}</TableCell>
-                                    <TableCell>
-                                        <Badge variant={request.urgency === 'Critical' || request.urgency === 'High' ? 'destructive' : 'secondary'}>
-                                            {request.urgency}
-                                        </Badge>
-                                    </TableCell>
-                                    <TableCell>{request.requestedBy}</TableCell>
-                                    <TableCell>
-                                        <Badge variant={request.status === 'Approved' ? 'default' : 'secondary'}>
-                                            {request.status}
-                                        </Badge>
-                                    </TableCell>
-                                    <TableCell>
-                                        {request.status === 'Pending Approval' && (
-                                            <div className="flex gap-2">
-                                                <Button size="sm" variant="outline">Approve</Button>
-                                                <Button size="sm" variant="destructive">Reject</Button>
-                                            </div>
-                                        )}
+                            {requests.length === 0 ? (
+                                <TableRow>
+                                    <TableCell colSpan={7} className="text-center text-muted-foreground">
+                                        No requests found.
                                     </TableCell>
                                 </TableRow>
-                            ))}
+                            ) : (
+                                requests.map((request) => (
+                                    <TableRow key={request.id}>
+                                        <TableCell>{request.id}</TableCell>
+                                        <TableCell>{request.partId}</TableCell>
+                                        <TableCell>{request.quantity}</TableCell>
+                                        <TableCell>
+                                            <Badge variant={request.urgency === 'Critical' || request.urgency === 'High' ? 'destructive' : 'secondary'}>
+                                                {request.urgency}
+                                            </Badge>
+                                        </TableCell>
+                                        <TableCell>{request.requestedBy}</TableCell>
+                                        <TableCell>
+                                            <Badge variant={request.status === 'Approved' ? 'default' : 'secondary'}>
+                                                {request.status}
+                                            </Badge>
+                                        </TableCell>
+                                        <TableCell>
+                                            {request.status === 'Pending Approval' && (
+                                                <div className="flex gap-2">
+                                                    <Button size="sm" variant="outline" onClick={() => handleAction(request.id, 'Approved')}>Approve</Button>
+                                                    <Button size="sm" className="bg-red-500 hover:bg-red-600 text-white" onClick={() => handleAction(request.id, 'Rejected')}>Reject</Button>
+                                                </div>
+                                            )}
+                                        </TableCell>
+                                    </TableRow>
+                                ))
+                            )}
                         </TableBody>
                     </Table>
                 </CardContent>

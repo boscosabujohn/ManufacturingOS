@@ -126,11 +126,13 @@ const menuItems: MenuItem[] = [
             href: '#',
             description: 'Technical drawings & BOM',
             subItems: [
-              { id: 'p3-briefings', name: 'Layout Briefings', href: '/project-management/briefings', description: 'Conduct team briefings' },
-              { id: 'p3-timeline', name: 'Drawing Timeline', href: '/project-management/timeline', description: 'Calculate timelines' },
-              { id: 'p3-drawings', name: 'Technical Drawings', href: '/project-management/documents?type=Drawing', description: 'Create drawings' },
-              { id: 'p3-bom', name: 'BOM Management', href: '/production/bom', description: 'Bill of materials' },
-              { id: 'p3-verification', name: 'BOM Verification', href: '/production/bom/verification', description: 'Verify completeness' },
+              { id: 'p3-share', name: '3.1 Share Documents', href: '/project-management/technical/share', description: 'Share docs with technical' },
+              { id: 'p3-briefing', name: '3.2 Layout Briefing', href: '/project-management/technical/briefing', description: 'Conduct team briefings' },
+              { id: 'p3-timeline', name: '3.3 Drawing Timeline', href: '/project-management/technical/timeline', description: 'Calculate timelines' },
+              { id: 'p3-drawings', name: '3.4 Technical Drawings', href: '/project-management/technical/drawings', description: 'Create drawings' },
+              { id: 'p3-bom-acc', name: '3.5 Accessories BOM', href: '/project-management/technical/bom/accessories', description: 'Fittings & hardware' },
+              { id: 'p3-shutter-specs', name: '3.6 Shutter Specs', href: '/project-management/technical/specs/shutters', description: 'Door specifications' },
+              { id: 'p3-validation', name: '3.7 BOM Validation', href: '/project-management/technical/validation', description: 'Verify completeness' },
             ],
           },
           {
@@ -139,11 +141,14 @@ const menuItems: MenuItem[] = [
             href: '#',
             description: 'Material procurement',
             subItems: [
-              { id: 'p4-bom-receipt', name: 'BOM Receipt', href: '/procurement/bom-receipt', description: 'Receive BOMs from Technical' },
-              { id: 'p4-pr', name: 'Purchase Requisitions', href: '/procurement/requisitions', description: 'Material requests' },
-              { id: 'p4-po', name: 'Purchase Orders', href: '/procurement/purchase-orders', description: 'Supplier orders' },
-              { id: 'p4-grn', name: 'Goods Receipt', href: '/procurement/goods-receipt', description: 'Material receiving' },
-              { id: 'p4-inventory', name: 'Inventory Status', href: '/inventory/stock', description: 'Stock levels' },
+              { id: 'p4-bom-reception', name: '4.1 BOM Reception', href: '/project-management/procurement/bom-reception', description: 'Receive BOMs from Technical' },
+              { id: 'p4-stock-check', name: '4.2 Stock Check', href: '/project-management/procurement/stock-check', description: 'Check inventory availability' },
+              { id: 'p4-pr-generation', name: '4.3 Generate PR', href: '/project-management/procurement/pr-generation', description: 'Create purchase requisitions' },
+              { id: 'p4-approvals', name: '4.4 Approvals', href: '/project-management/procurement/approvals', description: 'Approve PRs & POs' },
+              { id: 'p4-po-creation', name: '4.5 Create PO', href: '/project-management/procurement/po-creation', description: 'Issue purchase orders' },
+              { id: 'p4-vendor-tracking', name: '4.6 Vendor Tracking', href: '/project-management/procurement/vendor-tracking', description: 'Track shipments' },
+              { id: 'p4-payments', name: '4.7 Payments', href: '/project-management/procurement/payments', description: 'Process vendor payments' },
+              { id: 'p4-grn', name: '4.8 GRN Entry', href: '/project-management/procurement/grn', description: 'Goods receipt & QC' },
             ],
           },
           {
@@ -152,11 +157,13 @@ const menuItems: MenuItem[] = [
             href: '#',
             description: 'Manufacturing execution',
             subItems: [
-              { id: 'p5-work-orders', name: 'Work Orders', href: '/production/work-orders', description: 'Production orders' },
-              { id: 'p5-operations', name: 'Operations Tracking', href: '/production/operations', description: 'Cutting, welding, finishing' },
-              { id: 'p5-shutters', name: 'Shutter Processing', href: '/production/shutters', description: 'Glass/Wood/Steel shutters' },
-              { id: 'p5-trial', name: 'Trial Installation', href: '/production/trial', description: 'Trial records & reporting' },
-              { id: 'p5-shopfloor', name: 'Shop Floor Control', href: '/production/shopfloor', description: 'Floor monitoring' },
+              { id: 'p5-laser-cutting', name: '5.1 Laser Cutting', href: '/project-management/production/laser-cutting', description: 'Laser cutting & logo etch' },
+              { id: 'p5-bending', name: '5.2 Bending', href: '/project-management/production/bending', description: 'Bending & forming' },
+              { id: 'p5-fabrication', name: '5.3 Fabrication', href: '/project-management/production/fabrication', description: 'Assembly & fabrication' },
+              { id: 'p5-welding', name: '5.4 Welding', href: '/project-management/production/welding', description: 'Welding & joining' },
+              { id: 'p5-buffing', name: '5.5 Buffing', href: '/project-management/production/buffing', description: 'Buffing & finishing' },
+              { id: 'p5-shutter-work', name: '5.6 Shutter Work', href: '/project-management/production/shutter-work', description: 'Glass & wood shutters' },
+              { id: 'p5-trial-wall', name: '5.7 Trial Wall', href: '/project-management/production/trial-wall', description: 'Trial installation' },
             ],
           },
           {
@@ -3904,14 +3911,16 @@ export default function Sidebar({ isOpen, onToggle }: SidebarProps) {
           const hasNestedItems = subItem.subItems && subItem.subItems.length > 0;
           const fullId = `${parentId}-${subItem.id}`;
           const isExpanded = expandedSubItems.has(fullId);
+          const paddingLeft = `${(level + 1) * 1}rem`; // Dynamic padding
 
           return (
             <div key={subItem.id}>
               {hasNestedItems ? (
                 <button
                   onClick={() => toggleSubItem(parentId, subItem.id)}
-                  className={`w-full flex items-center justify-between px-${6 + level * 2} py-2.5 text-sm hover:bg-slate-100 transition-all duration-200 group ${isExpanded ? 'bg-slate-100 font-medium' : 'text-gray-700'
+                  className={`w-full flex items-center justify-between py-2.5 text-sm hover:bg-slate-100 transition-all duration-200 group ${isExpanded ? 'bg-slate-100 font-medium' : 'text-gray-700'
                     }`}
+                  style={{ paddingLeft, paddingRight: '1rem' }}
                 >
                   <div className="flex items-center space-x-2">
                     <ChevronRight className={`h-3 w-3 text-slate-400 transition-transform duration-200 ${isExpanded ? 'rotate-90' : ''}`} />
@@ -3927,7 +3936,8 @@ export default function Sidebar({ isOpen, onToggle }: SidebarProps) {
               ) : (
                 <Link
                   href={subItem.href}
-                  className={`block px-${6 + level * 2} py-2.5 text-sm text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-all duration-200 group`}
+                  className={`block py-2.5 text-sm text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-all duration-200 group`}
+                  style={{ paddingLeft, paddingRight: '1rem' }}
                 >
                   <div className="flex items-center justify-between">
                     <span className="font-medium group-hover:translate-x-1 transition-transform duration-200">
@@ -3945,7 +3955,7 @@ export default function Sidebar({ isOpen, onToggle }: SidebarProps) {
               {/* Nested sub-items */}
               {hasNestedItems && isExpanded && isOpen && (
                 <div className="animate-slideDown">
-                  {renderSubMenu(subItem.subItems!, parentId, level + 1)}
+                  {renderSubMenu(subItem.subItems!, fullId, level + 1)}
                 </div>
               )}
             </div>

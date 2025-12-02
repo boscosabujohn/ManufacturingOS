@@ -18,7 +18,22 @@ import {
     Zap,
     Droplet,
     Wind,
+    X,
 } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+    DialogFooter,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 interface MEPDrawing {
     id: string;
@@ -125,9 +140,65 @@ const mockMEPDrawings: MEPDrawing[] = [
 ];
 
 export default function MEPManagementPage() {
-    const [drawings] = useState<MEPDrawing[]>(mockMEPDrawings);
+    const { toast } = useToast();
+    const [drawings, setDrawings] = useState<MEPDrawing[]>(mockMEPDrawings);
     const [typeFilter, setTypeFilter] = useState('All');
     const [statusFilter, setStatusFilter] = useState('All');
+    const [isCreateOpen, setIsCreateOpen] = useState(false);
+    const [newDrawing, setNewDrawing] = useState({
+        projectName: '',
+        drawingType: '',
+        drawingName: '',
+    });
+
+    const handleCreateDrawing = () => {
+        if (!newDrawing.projectName || !newDrawing.drawingType || !newDrawing.drawingName) {
+            toast({
+                title: "Missing Fields",
+                description: "Please fill in all fields to create a drawing.",
+                variant: "destructive",
+            });
+            return;
+        }
+
+        const newEntry: MEPDrawing = {
+            id: Math.random().toString(36).substring(7),
+            mepNumber: `MEP-2025-${(drawings.length + 1).toString().padStart(3, '0')}`,
+            projectId: 'PRJ-2025-NEW', // Mock project ID
+            projectName: newDrawing.projectName,
+            drawingType: newDrawing.drawingType as any,
+            drawingName: newDrawing.drawingName,
+            version: '1.0',
+            status: 'Draft',
+            createdDate: new Date().toISOString().split('T')[0],
+            createdBy: 'Current User',
+            siteWorkProgress: 0,
+            siteWorkStatus: 'Not Started',
+            assignedTo: 'Pending Assignment',
+            fileSize: '0 MB', // Placeholder
+        };
+
+        setDrawings([newEntry, ...drawings]);
+        setIsCreateOpen(false);
+        setNewDrawing({ projectName: '', drawingType: '', drawingName: '' });
+        toast({
+            title: "Drawing Created",
+            description: `${newEntry.mepNumber} has been created successfully.`,
+        });
+    };
+
+    const handleShare = (id: string) => {
+        setDrawings(drawings.map(d => {
+            if (d.id === id) {
+                return { ...d, status: 'Shared with Site', siteWorkStatus: 'Not Started' };
+            }
+            return d;
+        }));
+        toast({
+            title: "Shared with Site",
+            description: "Drawing has been shared with the site team.",
+        });
+    };
 
     const filteredDrawings = drawings.filter(
         (d) =>
@@ -215,10 +286,73 @@ export default function MEPManagementPage() {
                                 </p>
                             </div>
                         </div>
-                        <button className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
-                            <Plus className="w-4 h-4" />
-                            Create MEP Drawing
-                        </button>
+                        <Dialog open={isCreateOpen} onOpenChange={setIsCreateOpen}>
+                            <DialogTrigger asChild>
+                                <button className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                                    <Plus className="w-4 h-4" />
+                                    Create MEP Drawing
+                                </button>
+                            </DialogTrigger>
+                            <DialogContent className="sm:max-w-[425px]">
+                                <DialogHeader>
+                                    <DialogTitle>Create New MEP Drawing</DialogTitle>
+                                    <DialogDescription>
+                                        Enter the details for the new MEP drawing. Click save when you're done.
+                                    </DialogDescription>
+                                </DialogHeader>
+                                <div className="grid gap-4 py-4">
+                                    <div className="grid grid-cols-4 items-center gap-4">
+                                        <Label htmlFor="project" className="text-right">
+                                            Project
+                                        </Label>
+                                        <Select
+                                            onValueChange={(value) => setNewDrawing({ ...newDrawing, projectName: value })}
+                                        >
+                                            <SelectTrigger className="col-span-3">
+                                                <SelectValue placeholder="Select Project" />
+                                            </SelectTrigger>
+                                            <SelectContent>
+                                                <SelectItem value="Taj Hotels - Commercial Kitchen Setup">Taj Hotels</SelectItem>
+                                                <SelectItem value="BigBasket Cold Storage Facility">BigBasket</SelectItem>
+                                            </SelectContent>
+                                        </Select>
+                                    </div>
+                                    <div className="grid grid-cols-4 items-center gap-4">
+                                        <Label htmlFor="type" className="text-right">
+                                            Type
+                                        </Label>
+                                        <Select
+                                            onValueChange={(value) => setNewDrawing({ ...newDrawing, drawingType: value })}
+                                        >
+                                            <SelectTrigger className="col-span-3">
+                                                <SelectValue placeholder="Select Type" />
+                                            </SelectTrigger>
+                                            <SelectContent>
+                                                <SelectItem value="Electrical">Electrical</SelectItem>
+                                                <SelectItem value="Plumbing">Plumbing</SelectItem>
+                                                <SelectItem value="HVAC">HVAC</SelectItem>
+                                                <SelectItem value="Fire Safety">Fire Safety</SelectItem>
+                                                <SelectItem value="Drainage">Drainage</SelectItem>
+                                            </SelectContent>
+                                        </Select>
+                                    </div>
+                                    <div className="grid grid-cols-4 items-center gap-4">
+                                        <Label htmlFor="name" className="text-right">
+                                            Name
+                                        </Label>
+                                        <Input
+                                            id="name"
+                                            value={newDrawing.drawingName}
+                                            onChange={(e) => setNewDrawing({ ...newDrawing, drawingName: e.target.value })}
+                                            className="col-span-3"
+                                        />
+                                    </div>
+                                </div>
+                                <DialogFooter>
+                                    <Button type="submit" onClick={handleCreateDrawing}>Create Drawing</Button>
+                                </DialogFooter>
+                            </DialogContent>
+                        </Dialog>
                     </div>
                 </div>
 
@@ -411,12 +545,14 @@ export default function MEPManagementPage() {
                                                 <button
                                                     className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
                                                     title="View Drawing"
+                                                    onClick={() => toast({ title: "View Drawing", description: `Viewing ${drawing.drawingName}` })}
                                                 >
                                                     <Eye className="w-4 h-4 text-gray-600" />
                                                 </button>
                                                 <button
                                                     className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
                                                     title="Download"
+                                                    onClick={() => toast({ title: "Download Started", description: `Downloading ${drawing.drawingName}...` })}
                                                 >
                                                     <Download className="w-4 h-4 text-gray-600" />
                                                 </button>
@@ -424,6 +560,7 @@ export default function MEPManagementPage() {
                                                     <button
                                                         className="p-2 hover:bg-blue-100 rounded-lg transition-colors"
                                                         title="Share with Site"
+                                                        onClick={() => handleShare(drawing.id)}
                                                     >
                                                         <Share2 className="w-4 h-4 text-blue-600" />
                                                     </button>

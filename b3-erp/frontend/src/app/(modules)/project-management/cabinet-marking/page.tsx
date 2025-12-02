@@ -15,7 +15,22 @@ import {
     Download,
     AlertCircle,
     Edit,
+    X,
 } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+    DialogFooter,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 interface CabinetMarkingTask {
     id: string;
@@ -102,8 +117,53 @@ const mockMarkingTasks: CabinetMarkingTask[] = [
 ];
 
 export default function CabinetMarkingPage() {
-    const [tasks] = useState<CabinetMarkingTask[]>(mockMarkingTasks);
+    const { toast } = useToast();
+    const [tasks, setTasks] = useState<CabinetMarkingTask[]>(mockMarkingTasks);
     const [statusFilter, setStatusFilter] = useState('All');
+    const [isScheduleOpen, setIsScheduleOpen] = useState(false);
+    const [isChecklistOpen, setIsChecklistOpen] = useState(false);
+    const [newTask, setNewTask] = useState({
+        projectName: '',
+        cabinetType: '',
+        quantity: '',
+        assignedTeam: '',
+    });
+
+    const handleScheduleTask = () => {
+        if (!newTask.projectName || !newTask.cabinetType || !newTask.quantity || !newTask.assignedTeam) {
+            toast({
+                title: "Missing Fields",
+                description: "Please fill in all fields to schedule a task.",
+                variant: "destructive",
+            });
+            return;
+        }
+
+        const newEntry: CabinetMarkingTask = {
+            id: Math.random().toString(36).substring(7),
+            taskNumber: `CM-2025-${(tasks.length + 1).toString().padStart(3, '0')}`,
+            projectId: 'PRJ-2025-NEW',
+            projectName: newTask.projectName,
+            cabinetType: newTask.cabinetType,
+            quantity: parseInt(newTask.quantity),
+            scheduledDate: new Date().toISOString().split('T')[0],
+            assignedTeam: newTask.assignedTeam,
+            status: 'Scheduled',
+            completionPercentage: 0,
+            markedItems: 0,
+            totalItems: parseInt(newTask.quantity),
+            photosUploaded: 0,
+            reportGenerated: false,
+        };
+
+        setTasks([newEntry, ...tasks]);
+        setIsScheduleOpen(false);
+        setNewTask({ projectName: '', cabinetType: '', quantity: '', assignedTeam: '' });
+        toast({
+            title: "Task Scheduled",
+            description: `${newEntry.taskNumber} has been scheduled successfully.`,
+        });
+    };
 
     const filteredTasks = tasks.filter(
         (t) => statusFilter === 'All' || t.status === statusFilter
@@ -171,10 +231,79 @@ export default function CabinetMarkingPage() {
                                 </p>
                             </div>
                         </div>
-                        <button className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
-                            <Plus className="w-4 h-4" />
-                            Schedule Marking
-                        </button>
+                        <Dialog open={isScheduleOpen} onOpenChange={setIsScheduleOpen}>
+                            <DialogTrigger asChild>
+                                <button className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                                    <Plus className="w-4 h-4" />
+                                    Schedule Marking
+                                </button>
+                            </DialogTrigger>
+                            <DialogContent className="sm:max-w-[425px]">
+                                <DialogHeader>
+                                    <DialogTitle>Schedule Marking Task</DialogTitle>
+                                    <DialogDescription>
+                                        Create a new cabinet marking task.
+                                    </DialogDescription>
+                                </DialogHeader>
+                                <div className="grid gap-4 py-4">
+                                    <div className="grid grid-cols-4 items-center gap-4">
+                                        <Label htmlFor="project" className="text-right">
+                                            Project
+                                        </Label>
+                                        <Select
+                                            onValueChange={(value) => setNewTask({ ...newTask, projectName: value })}
+                                        >
+                                            <SelectTrigger className="col-span-3">
+                                                <SelectValue placeholder="Select Project" />
+                                            </SelectTrigger>
+                                            <SelectContent>
+                                                <SelectItem value="Taj Hotels - Commercial Kitchen Setup">Taj Hotels</SelectItem>
+                                                <SelectItem value="BigBasket Cold Storage Facility">BigBasket</SelectItem>
+                                            </SelectContent>
+                                        </Select>
+                                    </div>
+                                    <div className="grid grid-cols-4 items-center gap-4">
+                                        <Label htmlFor="type" className="text-right">
+                                            Type
+                                        </Label>
+                                        <Input
+                                            id="type"
+                                            value={newTask.cabinetType}
+                                            onChange={(e) => setNewTask({ ...newTask, cabinetType: e.target.value })}
+                                            className="col-span-3"
+                                            placeholder="e.g., Wall Cabinets"
+                                        />
+                                    </div>
+                                    <div className="grid grid-cols-4 items-center gap-4">
+                                        <Label htmlFor="quantity" className="text-right">
+                                            Quantity
+                                        </Label>
+                                        <Input
+                                            id="quantity"
+                                            type="number"
+                                            value={newTask.quantity}
+                                            onChange={(e) => setNewTask({ ...newTask, quantity: e.target.value })}
+                                            className="col-span-3"
+                                        />
+                                    </div>
+                                    <div className="grid grid-cols-4 items-center gap-4">
+                                        <Label htmlFor="team" className="text-right">
+                                            Team
+                                        </Label>
+                                        <Input
+                                            id="team"
+                                            value={newTask.assignedTeam}
+                                            onChange={(e) => setNewTask({ ...newTask, assignedTeam: e.target.value })}
+                                            className="col-span-3"
+                                            placeholder="e.g., Team A"
+                                        />
+                                    </div>
+                                </div>
+                                <DialogFooter>
+                                    <Button type="submit" onClick={handleScheduleTask}>Schedule Task</Button>
+                                </DialogFooter>
+                            </DialogContent>
+                        </Dialog>
                     </div>
                 </div>
 
@@ -336,19 +465,49 @@ export default function CabinetMarkingPage() {
                                             <button
                                                 className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
                                                 title="Edit Task"
+                                                onClick={() => toast({ title: "Edit Task", description: `Editing task ${task.taskNumber}` })}
                                             >
                                                 <Edit className="w-4 h-4 text-gray-600" />
                                             </button>
-                                            <button
-                                                className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
-                                                title="View Checklist"
-                                            >
-                                                <FileText className="w-4 h-4 text-gray-600" />
-                                            </button>
+                                            <Dialog open={isChecklistOpen} onOpenChange={setIsChecklistOpen}>
+                                                <DialogTrigger asChild>
+                                                    <button
+                                                        className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                                                        title="View Checklist"
+                                                    >
+                                                        <FileText className="w-4 h-4 text-gray-600" />
+                                                    </button>
+                                                </DialogTrigger>
+                                                <DialogContent>
+                                                    <DialogHeader>
+                                                        <DialogTitle>Marking Checklist</DialogTitle>
+                                                        <DialogDescription>Standard procedure for cabinet marking.</DialogDescription>
+                                                    </DialogHeader>
+                                                    <div className="space-y-4">
+                                                        {[
+                                                            "Verify cabinet dimensions against drawings",
+                                                            "Check for surface defects or damage",
+                                                            "Apply identification label to visible surface",
+                                                            "Mark installation height and position",
+                                                            "Photograph marked cabinet",
+                                                            "Update tracking sheet"
+                                                        ].map((item, i) => (
+                                                            <div key={i} className="flex items-center gap-2">
+                                                                <div className="w-4 h-4 rounded-full border border-gray-300" />
+                                                                <span className="text-sm text-gray-700">{item}</span>
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                    <DialogFooter>
+                                                        <Button onClick={() => setIsChecklistOpen(false)}>Close</Button>
+                                                    </DialogFooter>
+                                                </DialogContent>
+                                            </Dialog>
                                             {task.reportGenerated && (
                                                 <button
                                                     className="p-2 hover:bg-green-100 rounded-lg transition-colors"
                                                     title="Download Report"
+                                                    onClick={() => toast({ title: "Download Report", description: "Downloading marking report..." })}
                                                 >
                                                     <Download className="w-4 h-4 text-green-600" />
                                                 </button>

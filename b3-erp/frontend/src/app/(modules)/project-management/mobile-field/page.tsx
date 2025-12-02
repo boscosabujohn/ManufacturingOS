@@ -1,24 +1,70 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { MapPin, Camera, Clock } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
+import { projectManagementService, FieldScheduleItem } from '@/services/ProjectManagementService';
 
 export default function MobileFieldViewPage() {
+    const { toast } = useToast();
     const [isCheckedIn, setIsCheckedIn] = useState(false);
-    const [schedule] = useState([
-        { id: 1, project: 'Metro Rail Phase 1', location: 'Site A', time: '09:00 AM', status: 'Upcoming' },
-        { id: 2, project: 'Solar Power Plant', location: 'Site B', time: '02:00 PM', status: 'Upcoming' },
-    ]);
+    const [schedule, setSchedule] = useState<FieldScheduleItem[]>([]);
+    const [loading, setLoading] = useState(true);
 
-    const handleCheckIn = () => {
-        setIsCheckedIn(true);
+    useEffect(() => {
+        loadSchedule();
+    }, []);
+
+    const loadSchedule = async () => {
+        try {
+            const data = await projectManagementService.getSchedule();
+            setSchedule(data);
+        } catch (error) {
+            toast({
+                variant: "destructive",
+                title: "Error",
+                description: "Failed to load schedule.",
+            });
+        } finally {
+            setLoading(false);
+        }
     };
 
-    const handleCheckOut = () => {
-        setIsCheckedIn(false);
+    const handleCheckIn = async () => {
+        try {
+            await projectManagementService.checkIn();
+            setIsCheckedIn(true);
+            toast({
+                title: "Checked In",
+                description: "You have successfully checked in.",
+            });
+        } catch (error) {
+            toast({
+                variant: "destructive",
+                title: "Error",
+                description: "Failed to check in.",
+            });
+        }
+    };
+
+    const handleCheckOut = async () => {
+        try {
+            await projectManagementService.checkOut();
+            setIsCheckedIn(false);
+            toast({
+                title: "Checked Out",
+                description: "You have successfully checked out.",
+            });
+        } catch (error) {
+            toast({
+                variant: "destructive",
+                title: "Error",
+                description: "Failed to check out.",
+            });
+        }
     };
 
     return (
@@ -44,7 +90,7 @@ export default function MobileFieldViewPage() {
                         {!isCheckedIn ? (
                             <Button onClick={handleCheckIn}>Check In</Button>
                         ) : (
-                            <Button variant="destructive" onClick={handleCheckOut}>Check Out</Button>
+                            <Button className="bg-red-500 hover:bg-red-600 text-white" onClick={handleCheckOut}>Check Out</Button>
                         )}
                     </div>
                 </CardContent>
@@ -56,21 +102,25 @@ export default function MobileFieldViewPage() {
                     <CardTitle>Today's Schedule</CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <div className="space-y-3">
-                        {schedule.map((item) => (
-                            <div key={item.id} className="flex items-center justify-between p-3 border rounded-lg">
-                                <div>
-                                    <p className="font-medium">{item.project}</p>
-                                    <p className="text-sm text-muted-foreground flex items-center gap-1">
-                                        <MapPin className="h-3 w-3" />
-                                        {item.location}
-                                    </p>
-                                    <p className="text-sm text-muted-foreground">{item.time}</p>
+                    {loading ? (
+                        <p className="text-center text-muted-foreground">Loading schedule...</p>
+                    ) : (
+                        <div className="space-y-3">
+                            {schedule.map((item) => (
+                                <div key={item.id} className="flex items-center justify-between p-3 border rounded-lg">
+                                    <div>
+                                        <p className="font-medium">{item.project}</p>
+                                        <p className="text-sm text-muted-foreground flex items-center gap-1">
+                                            <MapPin className="h-3 w-3" />
+                                            {item.location}
+                                        </p>
+                                        <p className="text-sm text-muted-foreground">{item.time}</p>
+                                    </div>
+                                    <Badge variant="outline">{item.status}</Badge>
                                 </div>
-                                <Badge variant="outline">{item.status}</Badge>
-                            </div>
-                        ))}
-                    </div>
+                            ))}
+                        </div>
+                    )}
                 </CardContent>
             </Card>
 
@@ -83,10 +133,10 @@ export default function MobileFieldViewPage() {
                     </CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <div className="border-2 border-dashed rounded-lg p-8 text-center">
+                    <div className="border-2 border-dashed rounded-lg p-8 text-center cursor-pointer hover:bg-gray-50 transition-colors" onClick={() => toast({ title: "Upload", description: "Opening camera..." })}>
                         <Camera className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
                         <p className="text-sm text-muted-foreground mb-4">Click to upload site photos</p>
-                        <Button>Choose File</Button>
+                        <Button variant="outline">Choose File</Button>
                     </div>
                 </CardContent>
             </Card>
