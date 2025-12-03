@@ -250,7 +250,7 @@ export default function ReceivablesPage() {
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50">
       <div className="flex-1 overflow-y-auto overflow-x-hidden">
-        <div className="px-4 sm:px-6 lg:px-8 py-6">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 max-w-7xl">
           {/* Stats */}
           <div className="mb-6 flex items-start gap-4">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 flex-1">

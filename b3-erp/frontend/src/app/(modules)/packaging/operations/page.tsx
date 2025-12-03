@@ -12,6 +12,7 @@ import {
     Tag,
     Box,
 } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
 
 interface PackingJob {
     id: string;
@@ -65,6 +66,7 @@ const mockPackingJobs: PackingJob[] = [
 ];
 
 export default function PackagingOperationsPage() {
+    const { toast } = useToast();
     const [jobs] = useState<PackingJob[]>(mockPackingJobs);
     const [filterStatus, setFilterStatus] = useState<string>('all');
 
@@ -206,6 +208,47 @@ export default function PackagingOperationsPage() {
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+
+                                {/* Actions */}
+                                <div className="mt-4 flex gap-3 border-t pt-4">
+                                    <button
+                                        onClick={() => {
+                                            toast({
+                                                title: "Job Details",
+                                                description: `Viewing details for ${job.woNumber}`,
+                                            });
+                                        }}
+                                        className="flex-1 bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 font-medium transition-colors"
+                                    >
+                                        View Details
+                                    </button>
+                                    {job.status === 'In Queue' && (
+                                        <button
+                                            onClick={() => {
+                                                toast({
+                                                    title: "Job Started",
+                                                    description: `Packing started for ${job.productName}`,
+                                                });
+                                            }}
+                                            className="flex-1 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 font-medium transition-colors"
+                                        >
+                                            Start Packing
+                                        </button>
+                                    )}
+                                    {job.status === 'Packing' && (
+                                        <button
+                                            onClick={() => {
+                                                toast({
+                                                    title: "Job Completed",
+                                                    description: `Packing completed for ${job.productName}`,
+                                                });
+                                            }}
+                                            className="flex-1 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 font-medium transition-colors"
+                                        >
+                                            Complete Job
+                                        </button>
+                                    )}
                                 </div>
                             </div>
                         </div>

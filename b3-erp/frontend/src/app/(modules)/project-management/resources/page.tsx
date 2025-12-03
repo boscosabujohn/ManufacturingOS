@@ -416,7 +416,7 @@ export default function ResourcesListPage() {
   const roles = Array.from(new Set(resources.map(r => r.role)));
 
   return (
-    <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+    <div className="container mx-auto min-h-screen px-4 sm:px-6 lg:px-8 py-6 max-w-7xl space-y-6">
       {/* Header Actions */}
       <div className="flex justify-between items-center mb-4">
         <div className="flex gap-2">

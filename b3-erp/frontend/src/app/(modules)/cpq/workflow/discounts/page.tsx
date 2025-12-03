@@ -424,7 +424,7 @@ export default function CPQWorkflowDiscountsPage() {
   const avgDiscount = (discounts.reduce((sum, d) => sum + d.discountPercentage, 0) / discounts.length).toFixed(1)
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
+    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 max-w-7xl">
       {/* Action Buttons */}
       <div className="mb-6 flex justify-end">
         <div className="flex items-center gap-3">

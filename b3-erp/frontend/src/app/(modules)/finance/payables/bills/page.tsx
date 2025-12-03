@@ -337,7 +337,7 @@ export default function VendorBillsPage() {
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 via-green-50 to-blue-50">
       <div className="flex-1 overflow-y-auto overflow-x-hidden">
-        <div className="px-4 sm:px-6 lg:px-8 py-6">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 max-w-7xl">
           {/* Header */}
           <div className="flex justify-between items-start mb-6">
             <div>

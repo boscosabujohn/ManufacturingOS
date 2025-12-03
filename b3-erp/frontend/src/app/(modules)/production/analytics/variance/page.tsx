@@ -407,7 +407,7 @@ export default function VarianceAnalytics() {
   }
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
+    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 max-w-7xl">
       {/* Inline Header */}
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-4">

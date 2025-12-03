@@ -738,7 +738,7 @@ export default function QualityPlansPage() {
       {/* Plan Details Modal */}
       {selectedPlan && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50" onClick={() => setSelectedPlan(null)}>
-          <div className="bg-white rounded-xl p-6 max-w-5xl w-full max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+          <div className="bg-white rounded-xl p-6 max-w-7xl w-full max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
             {(() => {
               const plan = qualityPlans.find(p => p.id === selectedPlan);
               if (!plan) return null;

@@ -13,6 +13,7 @@ import {
     FileText,
     AlertTriangle,
 } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
 
 interface PaymentVerification {
     id: string;
@@ -81,6 +82,7 @@ const mockVerifications: PaymentVerification[] = [
 ];
 
 export default function PaymentVerificationPage() {
+    const { toast } = useToast();
     const [verifications] = useState<PaymentVerification[]>(mockVerifications);
     const [filterStatus, setFilterStatus] = useState<string>('all');
 
@@ -276,6 +278,34 @@ export default function PaymentVerificationPage() {
                                             <div className={`border rounded p-2 text-sm ${ver.status === 'Verified' ? 'bg-green-50 border-green-200 text-green-800' : 'bg-yellow-50 border-yellow-200 text-yellow-800'}`}>
                                                 <strong>Note:</strong> {ver.notes}
                                             </div>
+                                        )}
+                                    </div>
+                                    {/* Actions */}
+                                    <div className="mt-4 flex gap-3 border-t pt-4">
+                                        <button
+                                            onClick={() => {
+                                                toast({
+                                                    title: "Opening Details",
+                                                    description: `Viewing details for ${ver.woNumber}`,
+                                                });
+                                            }}
+                                            className="flex-1 bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 font-medium transition-colors"
+                                        >
+                                            View Details
+                                        </button>
+                                        {ver.status === 'Pending Verification' && (
+                                            <button
+                                                onClick={() => {
+                                                    toast({
+                                                        title: "Payment Verified",
+                                                        description: `Payment for ${ver.woNumber} has been verified.`,
+                                                        variant: "default",
+                                                    });
+                                                }}
+                                                className="flex-1 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 font-medium transition-colors"
+                                            >
+                                                Verify Payment
+                                            </button>
                                         )}
                                     </div>
                                 </div>

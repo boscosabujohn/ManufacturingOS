@@ -60,7 +60,7 @@ export default function CreateTicketPage() {
   };
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
+    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 max-w-7xl">
       <div className="w-full">
         {/* Header */}
         <div className="mb-8">

@@ -299,7 +299,7 @@ export default function PaymentEditPage() {
   const requiresCheckDetails = formData.paymentMethod === 'check';
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
+    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 max-w-7xl">
       {/* Header */}
       <div className="mb-6">
         <button onClick={handleCancel} className="flex items-center text-gray-600 hover:text-gray-900 mb-4">

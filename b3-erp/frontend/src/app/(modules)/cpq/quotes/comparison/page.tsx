@@ -172,7 +172,7 @@ export default function CPQQuotesComparisonPage() {
   const deliveryDiff = quote1.deliveryDays - quote2.deliveryDays
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
+    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 max-w-7xl">
       {/* Action Buttons */}
       <div className="mb-6 flex justify-between items-center">
         <h2 className="text-xl font-semibold text-gray-900 flex items-center gap-2">

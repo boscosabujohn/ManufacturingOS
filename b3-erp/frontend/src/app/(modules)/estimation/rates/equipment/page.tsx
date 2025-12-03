@@ -263,7 +263,7 @@ export default function EquipmentRatesPage() {
   const withOperator = equipmentRates.filter(e => e.operatorIncluded).length
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
+    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 max-w-7xl">
       {/* Header */}
       <div className="mb-6 flex items-center justify-between">
         <div className="flex items-center gap-4">

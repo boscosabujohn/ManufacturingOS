@@ -197,7 +197,7 @@ export default function StockMovementAddPage() {
   const balanceAfter = calculateBalanceAfter();
 
   return (
-    <div className="p-6 max-w-5xl mx-auto">
+    <div className="p-6 max-w-7xl mx-auto">
       {/* Header */}
       <div className="flex items-center gap-4 mb-6">
         <button

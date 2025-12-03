@@ -304,7 +304,7 @@ export default function LaborCostingPage() {
   const totalMonthlyCost = laborRates.reduce((sum, l) => sum + (l.actualRate * l.headcount * l.avgHoursPerMonth), 0)
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
+    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 max-w-7xl">
       {/* Header */}
       <div className="mb-6 flex items-center justify-between">
         <div className="flex items-center gap-4">
