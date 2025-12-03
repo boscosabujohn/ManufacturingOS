@@ -145,7 +145,7 @@ interface Receivable {
   lastSaleDate: string;
 }
 
-// Mock Data - ManufacturingOS ERP - Indian Manufacturing Context
+// Mock Data - FactOS ERP - Indian Manufacturing Context
 const mockReceivable: Receivable = {
   id: 'REC-001',
   customerId: 'CUST-2023-0142',
@@ -503,18 +503,16 @@ export default function ViewReceivablePage() {
                   <span className={`px-3 py-1 text-sm font-semibold rounded-full border ${statusColors[receivable.accountStatus]}`}>
                     {receivable.accountStatus.replace('_', ' ').charAt(0).toUpperCase() + receivable.accountStatus.replace('_', ' ').slice(1)}
                   </span>
-                  <span className={`px-3 py-1 text-sm font-semibold rounded-full ${
-                    receivable.riskRating === 'low' ? 'bg-green-100 text-green-700' :
-                    receivable.riskRating === 'medium' ? 'bg-yellow-100 text-yellow-700' :
-                    'bg-red-100 text-red-700'
-                  }`}>
+                  <span className={`px-3 py-1 text-sm font-semibold rounded-full ${receivable.riskRating === 'low' ? 'bg-green-100 text-green-700' :
+                      receivable.riskRating === 'medium' ? 'bg-yellow-100 text-yellow-700' :
+                        'bg-red-100 text-red-700'
+                    }`}>
                     {receivable.riskRating.charAt(0).toUpperCase() + receivable.riskRating.slice(1)} Risk
                   </span>
-                  <span className={`px-3 py-1 text-sm font-semibold rounded-full ${
-                    receivable.collectionPriority === 'high' ? 'bg-red-100 text-red-700' :
-                    receivable.collectionPriority === 'medium' ? 'bg-yellow-100 text-yellow-700' :
-                    'bg-green-100 text-green-700'
-                  }`}>
+                  <span className={`px-3 py-1 text-sm font-semibold rounded-full ${receivable.collectionPriority === 'high' ? 'bg-red-100 text-red-700' :
+                      receivable.collectionPriority === 'medium' ? 'bg-yellow-100 text-yellow-700' :
+                        'bg-green-100 text-green-700'
+                    }`}>
                     {receivable.collectionPriority.charAt(0).toUpperCase() + receivable.collectionPriority.slice(1)} Priority
                   </span>
                   <span className="px-3 py-1 text-sm font-semibold rounded-full bg-purple-100 text-purple-700 capitalize">
@@ -631,11 +629,10 @@ export default function ViewReceivablePage() {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id as any)}
-                  className={`flex items-center space-x-2 py-4 px-1 border-b-2 font-medium text-sm transition-colors ${
-                    activeTab === tab.id
+                  className={`flex items-center space-x-2 py-4 px-1 border-b-2 font-medium text-sm transition-colors ${activeTab === tab.id
                       ? 'border-blue-600 text-blue-600'
                       : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                  }`}
+                    }`}
                 >
                   <TabIcon className="h-5 w-5" />
                   <span>{tab.name}</span>
@@ -707,13 +704,12 @@ export default function ViewReceivablePage() {
                     <p className="text-xs font-medium text-gray-500 uppercase mb-2">Credit Utilization</p>
                     <div className="w-full bg-gray-200 rounded-full h-2">
                       <div
-                        className={`h-2 rounded-full ${
-                          (receivable.creditUsed / receivable.creditLimit) * 100 > 80
+                        className={`h-2 rounded-full ${(receivable.creditUsed / receivable.creditLimit) * 100 > 80
                             ? 'bg-red-600'
                             : (receivable.creditUsed / receivable.creditLimit) * 100 > 60
-                            ? 'bg-yellow-600'
-                            : 'bg-green-600'
-                        }`}
+                              ? 'bg-yellow-600'
+                              : 'bg-green-600'
+                          }`}
                         style={{ width: `${(receivable.creditUsed / receivable.creditLimit) * 100}%` }}
                       ></div>
                     </div>
@@ -790,11 +786,10 @@ export default function ViewReceivablePage() {
                   </div>
                   <div>
                     <p className="text-xs font-medium text-gray-500 uppercase mb-1">Collection Priority</p>
-                    <span className={`px-3 py-1 text-sm font-semibold rounded-full ${
-                      receivable.collectionPriority === 'high' ? 'bg-red-100 text-red-700' :
-                      receivable.collectionPriority === 'medium' ? 'bg-yellow-100 text-yellow-700' :
-                      'bg-green-100 text-green-700'
-                    }`}>
+                    <span className={`px-3 py-1 text-sm font-semibold rounded-full ${receivable.collectionPriority === 'high' ? 'bg-red-100 text-red-700' :
+                        receivable.collectionPriority === 'medium' ? 'bg-yellow-100 text-yellow-700' :
+                          'bg-green-100 text-green-700'
+                      }`}>
                       {receivable.collectionPriority.charAt(0).toUpperCase() + receivable.collectionPriority.slice(1)} Priority
                     </span>
                   </div>

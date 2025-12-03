@@ -1,0 +1,246 @@
+'use client';
+
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { useToast } from '@/hooks/use-toast';
+import {
+    ArrowLeft,
+    ArrowRight,
+    Users,
+    Send,
+    CheckCircle2,
+    Calendar,
+    Clock
+} from 'lucide-react';
+
+interface TeamMember {
+    id: string;
+    name: string;
+    role: string;
+    phone: string;
+    status: 'Available' | 'Assigned' | 'Busy';
+}
+
+export default function SiteNotificationPage() {
+    const router = useRouter();
+    const { toast } = useToast();
+    const [teamMembers, setTeamMembers] = useState<TeamMember[]>([
+        { id: '1', name: 'Rajesh Kumar', role: 'Senior Installation Engineer', phone: '+91 98765 11111', status: 'Available' },
+        { id: '2', name: 'Suresh Babu', role: 'Installation Technician', phone: '+91 98765 22222', status: 'Available' },
+        { id: '3', name: 'Mohan S', role: 'Installation Technician', phone: '+91 98765 33333', status: 'Available' },
+    ]);
+
+    const [selectedTeam, setSelectedTeam] = useState<string[]>([]);
+    const [notificationSent, setNotificationSent] = useState(false);
+
+    const handleToggleMember = (id: string) => {
+        setSelectedTeam(prev =>
+            prev.includes(id) ? prev.filter(m => m !== id) : [...prev, id]
+        );
+    };
+
+    const handleSendNotification = () => {
+        setTeamMembers(teamMembers.map(member =>
+            selectedTeam.includes(member.id) ? { ...member, status: 'Assigned' as const } : member
+        ));
+        setNotificationSent(true);
+        toast({
+            title: 'Installation Team Notified',
+            description: `${selectedTeam.length} team member(s) have been notified about the delivery`,
+        });
+    };
+
+    const getStatusBadge = (status: TeamMember['status']) => {
+        const styles = {
+            'Available': 'bg-green-100 text-green-800 hover:bg-green-100',
+            'Assigned': 'bg-blue-100 text-blue-800 hover:bg-blue-100',
+            'Busy': 'bg-red-100 text-red-800 hover:bg-red-100'
+        };
+        return <Badge className={styles[status]}>{status}</Badge>;
+    };
+
+    return (
+        <div className="container mx-auto py-6 max-w-5xl space-y-8">
+            <div className="flex justify-between items-center">
+                <div className="space-y-1">
+                    <h1 className="text-3xl font-bold flex items-center gap-2">
+                        <Users className="h-8 w-8 text-orange-600" />
+                        7.9 Site Contact Notification
+                    </h1>
+                    <p className="text-muted-foreground">
+                        Alert installation team about delivery completion and schedule installation.
+                    </p>
+                </div>
+                <div className="flex gap-2">
+                    <Button variant="outline" onClick={() => router.push('/logistics/delivery-confirmation')}>
+                        <ArrowLeft className="mr-2 h-4 w-4" /> Back
+                    </Button>
+                    <Button
+                        onClick={() => router.push('/installation/tool-prep')}
+                        disabled={!notificationSent}
+                    >
+                        Phase 8: Installation <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                </div>
+            </div>
+
+            {/* Delivery Summary */}
+            <Card>
+                <CardHeader>
+                    <CardTitle>Delivery Information</CardTitle>
+                </CardHeader>
+                <CardContent className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div>
+                        <div className="text-sm text-muted-foreground">Order Number</div>
+                        <div className="font-medium">ORD-KT-345</div>
+                    </div>
+                    <div>
+                        <div className="text-sm text-muted-foreground">Customer</div>
+                        <div className="font-medium">Pearl Apartments</div>
+                    </div>
+                    <div>
+                        <div className="text-sm text-muted-foreground">Delivery Date</div>
+                        <div className="font-medium flex items-center gap-1">
+                            <Calendar className="h-3 w-3" />
+                            Dec 18, 2024
+                        </div>
+                    </div>
+                    <div>
+                        <div className="text-sm text-muted-foreground">Items Delivered</div>
+                        <div className="font-medium text-green-600">18 packages</div>
+                    </div>
+                </CardContent>
+            </Card>
+
+            {/* Team Selection */}
+            <Card>
+                <CardHeader>
+                    <CardTitle>Select Installation Team</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <div className="space-y-3">
+                        {teamMembers.map((member) => (
+                            <div
+                                key={member.id}
+                                className={`p-4 rounded-lg border cursor-pointer hover:bg-muted/50 ${selectedTeam.includes(member.id) ? 'border-orange-600 bg-orange-50' : ''
+                                    }`}
+                                onClick={() => handleToggleMember(member.id)}
+                            >
+                                <div className="flex items-center justify-between">
+                                    <div className="flex items-center gap-3">
+                                        <input
+                                            type="checkbox"
+                                            checked={selectedTeam.includes(member.id)}
+                                            onChange={() => handleToggleMember(member.id)}
+                                            className="h-5 w-5 rounded border-gray-300 text-orange-600 focus:ring-orange-500"
+                                        />
+                                        <div>
+                                            <div className="font-medium">{member.name}</div>
+                                            <div className="text-sm text-muted-foreground">{member.role}</div>
+                                            <div className="text-sm text-muted-foreground mt-1">{member.phone}</div>
+                                        </div>
+                                    </div>
+                                    {getStatusBadge(member.status)}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </CardContent>
+            </Card>
+
+            {/* Notification Preview */}
+            <Card>
+                <CardHeader>
+                    <CardTitle>Notification Message Preview</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <div className="p-4 bg-muted/30 rounded-lg space-y-2">
+                        <div className="font-medium">Subject: Installation Required - Order #ORD-KT-345 Delivered</div>
+                        <div className="text-sm text-muted-foreground whitespace-pre-line">
+                            {`Installation Team,
+
+Materials for the following project have been delivered to site:
+
+Order Number: ORD-KT-345
+Customer: Pearl Apartments - Tower A
+Location: Bangalore, Karnataka
+
+Delivery Completed: Dec 18, 2024
+Total Packages Received: 18
+All items verified and in good condition.
+
+Site Contact Person: Mr. Rajesh Kumar
+Site Contact: +91 98765 43210
+
+Please coordinate with the site contact for installation scheduling.
+Tools and team assignment details will follow.
+
+Regards,
+Logistics Team - B3 MACBIS`}
+                        </div>
+                    </div>
+                </CardContent>
+            </Card>
+
+            {/* Schedule Installation */}
+            <Card>
+                <CardHeader>
+                    <CardTitle>Installation Schedule</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                    <div className="grid grid-cols-2 gap-4">
+                        <div>
+                            <label className="text-sm font-medium">Installation Start Date</label>
+                            <div className="mt-1">
+                                <input
+                                    type="date"
+                                    className="w-full border rounded px-3 py-2"
+                                    defaultValue="2024-12-20"
+                                />
+                            </div>
+                        </div>
+                        <div>
+                            <label className="text-sm font-medium">Estimated Duration</label>
+                            <div className="mt-1">
+                                <input
+                                    type="text"
+                                    className="w-full border rounded px-3 py-2"
+                                    defaultValue="3 days"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </CardContent>
+            </Card>
+
+            {/* Action */}
+            <div className="flex justify-end">
+                {!notificationSent ? (
+                    <Button
+                        onClick={handleSendNotification}
+                        disabled={selectedTeam.length === 0}
+                        size="lg"
+                    >
+                        <Send className="mr-2 h-4 w-4" />
+                        Send Notification & Schedule ({selectedTeam.length} selected)
+                    </Button>
+                ) : (
+                    <Card className="flex-1 border-l-4 border-l-green-500 bg-green-50">
+                        <CardContent className="pt-6 flex items-center justify-between">
+                            <div className="flex items-center gap-2 text-green-600">
+                                <CheckCircle2 className="h-5 w-5" />
+                                <span className="font-medium">Installation team notified. Phase 7 Complete!</span>
+                            </div>
+                            <Button onClick={() => router.push('/installation/tool-prep')}>
+                                Start Phase 8: Installation <ArrowRight className="ml-2 h-4 w-4" />
+                            </Button>
+                        </CardContent>
+                    </Card>
+                )}
+            </div>
+        </div>
+    );
+}

@@ -248,7 +248,7 @@ export async function generateESIChallan(data: ESIReturn | ESIContributionMonth)
 
   const contributionData = [
     ['Description', 'Amount (₹)'],
-    ['Total ESI Wages', ('totalWages' in data ? data.totalWages : data.totalWages).toLocaleString('en-IN')],
+    ['Total ESI Wages', data.totalWages.toLocaleString('en-IN')],
     ['Employee Contribution (0.75%)', ('employeeContribution' in data ? data.employeeContribution : data.totalEmployeeContribution).toLocaleString('en-IN')],
     ['Employer Contribution (3.0%)', ('employerContribution' in data ? data.employerContribution : data.totalEmployerContribution).toLocaleString('en-IN')],
     ['Total Payable', ('totalDue' in data ? data.totalDue : data.totalPayable).toLocaleString('en-IN')],

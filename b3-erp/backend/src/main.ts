@@ -29,8 +29,8 @@ async function bootstrap() {
 
   // Swagger documentation
   const config = new DocumentBuilder()
-    .setTitle('ManufacturingOS ERP API')
-    .setDescription('ManufacturingOS ERP System API Documentation')
+    .setTitle('FactOS ERP API')
+    .setDescription('FactOS ERP System API Documentation')
     .setVersion('1.0')
     .addBearerAuth()
     .addTag('Authentication')
@@ -50,7 +50,7 @@ async function bootstrap() {
 
   const port = configService.get('PORT') || 8000;
   await app.listen(port);
-  
+
   console.log(`🚀 Application is running on: http://localhost:${port}/${apiPrefix}`);
   console.log(`📚 API Documentation: http://localhost:${port}/api/docs`);
 }

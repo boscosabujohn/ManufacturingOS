@@ -151,7 +151,7 @@ export default function DashboardPage() {
 
   const filteredModules = modules.filter((module) => {
     const matchesSearch = module.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         module.description.toLowerCase().includes(searchQuery.toLowerCase());
+      module.description.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesSearch;
   });
 
@@ -171,7 +171,7 @@ export default function DashboardPage() {
             {/* Logo and Title */}
             <div className="flex items-center">
               <div className="flex-shrink-0">
-                <h1 className="text-2xl font-bold text-gray-900">ManufacturingOS</h1>
+                <h1 className="text-2xl font-bold text-gray-900">FactOS</h1>
                 <p className="text-xs text-gray-500">Manufacturing ERP</p>
               </div>
             </div>
@@ -304,7 +304,7 @@ export default function DashboardPage() {
         {/* Welcome Section */}
         <div className="mb-8">
           <h2 className="text-3xl font-bold text-gray-900 mb-2">
-            Welcome to ManufacturingOS ERP
+            Welcome to FactOS ERP
           </h2>
           <p className="text-gray-600">
             Select a module below to get started. Manage your entire manufacturing operations from one place.
@@ -374,11 +374,10 @@ export default function DashboardPage() {
                 <button
                   key={category.id}
                   onClick={() => setSelectedCategory(category.id)}
-                  className={`${
-                    selectedCategory === category.id
-                      ? 'border-blue-500 text-blue-600'
-                      : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                  } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
+                  className={`${selectedCategory === category.id
+                    ? 'border-blue-500 text-blue-600'
+                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                    } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
                 >
                   {category.name}
                 </button>
@@ -455,8 +454,8 @@ export default function DashboardPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex justify-between items-center">
             <div>
-              <p className="text-sm font-semibold text-gray-700">
-                ManufacturingOS - Kitchen Manufacturing ERP
+              <p className="text-sm font-semibold text-gray-700 mb-1">
+                FactOS - Kitchen Manufacturing ERP
               </p>
               <p className="text-xs text-gray-500">
                 Powered by KreupAI Technologies LLC

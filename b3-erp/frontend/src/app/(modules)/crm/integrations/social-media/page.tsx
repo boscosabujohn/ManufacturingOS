@@ -55,7 +55,7 @@ export default function SocialMediaIntegrationPage() {
     {
       id: '1',
       platform: 'linkedin',
-      accountName: 'ManufacturingOS Manufacturing',
+      accountName: 'FactOS Manufacturing',
       accountHandle: '@b3macbis',
       connected: true,
       followers: 12500,
@@ -72,8 +72,8 @@ export default function SocialMediaIntegrationPage() {
     {
       id: '2',
       platform: 'twitter',
-      accountName: 'ManufacturingOS',
-      accountHandle: '@ManufacturingOS',
+      accountName: 'FactOS',
+      accountHandle: '@FactOS',
       connected: true,
       followers: 8900,
       engagement: 3.2,
@@ -89,7 +89,7 @@ export default function SocialMediaIntegrationPage() {
     {
       id: '3',
       platform: 'facebook',
-      accountName: 'ManufacturingOS Manufacturing Solutions',
+      accountName: 'FactOS Manufacturing Solutions',
       accountHandle: '@b3macbis.manufacturing',
       connected: false,
       followers: 15600,
@@ -106,7 +106,7 @@ export default function SocialMediaIntegrationPage() {
     {
       id: '4',
       platform: 'instagram',
-      accountName: 'ManufacturingOS',
+      accountName: 'FactOS',
       accountHandle: '@b3macbis',
       connected: false,
       followers: 6700,
@@ -123,8 +123,8 @@ export default function SocialMediaIntegrationPage() {
     {
       id: '5',
       platform: 'youtube',
-      accountName: 'ManufacturingOS Manufacturing',
-      accountHandle: '@ManufacturingOS',
+      accountName: 'FactOS Manufacturing',
+      accountHandle: '@FactOS',
       connected: true,
       followers: 4300,
       engagement: 7.8,
@@ -228,7 +228,7 @@ export default function SocialMediaIntegrationPage() {
       shares: 67,
       comments: 12,
       reach: 12000,
-      url: 'https://twitter.com/ManufacturingOS/status/...'
+      url: 'https://twitter.com/FactOS/status/...'
     },
     {
       id: '3',
@@ -281,10 +281,12 @@ export default function SocialMediaIntegrationPage() {
       setTimeout(() => {
         setAccounts(accounts.map(acc =>
           acc.id === accountId
-            ? { ...acc, lastSync: new Date().toLocaleString('en-IN', {
+            ? {
+              ...acc, lastSync: new Date().toLocaleString('en-IN', {
                 year: 'numeric', month: '2-digit', day: '2-digit',
                 hour: '2-digit', minute: '2-digit'
-              })}
+              })
+            }
             : acc
         ))
         addToast({
@@ -419,11 +421,10 @@ export default function SocialMediaIntegrationPage() {
               return (
                 <div
                   key={account.id}
-                  className={`border-2 rounded-lg p-5 transition-all ${
-                    account.connected
+                  className={`border-2 rounded-lg p-5 transition-all ${account.connected
                       ? `border-${color}-200 bg-${color}-50`
                       : 'border-gray-200 bg-gray-50 opacity-60'
-                  }`}
+                    }`}
                 >
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex items-center gap-3">
@@ -435,11 +436,10 @@ export default function SocialMediaIntegrationPage() {
                         <p className="text-sm text-gray-600">{account.accountHandle}</p>
                       </div>
                     </div>
-                    <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                      account.connected
+                    <span className={`px-3 py-1 rounded-full text-xs font-medium ${account.connected
                         ? 'bg-green-100 text-green-700'
                         : 'bg-gray-100 text-gray-600'
-                    }`}>
+                      }`}>
                       {account.connected ? '● Connected' : '○ Disconnected'}
                     </span>
                   </div>
@@ -491,11 +491,10 @@ export default function SocialMediaIntegrationPage() {
                   <div className="flex gap-2">
                     <button
                       onClick={() => toggleConnection(account.id)}
-                      className={`flex-1 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
-                        account.connected
+                      className={`flex-1 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${account.connected
                           ? 'bg-orange-100 text-orange-700 hover:bg-orange-200'
                           : 'bg-green-100 text-green-700 hover:bg-green-200'
-                      }`}
+                        }`}
                     >
                       {account.connected ? 'Disconnect' : 'Connect'}
                     </button>
@@ -545,11 +544,10 @@ export default function SocialMediaIntegrationPage() {
                         <div className="flex items-center gap-2 mb-1">
                           <h3 className="font-semibold text-gray-900">{lead.name}</h3>
                           <span className="text-sm text-gray-500">{lead.handle}</span>
-                          <span className={`px-2 py-0.5 rounded text-xs font-medium ${
-                            lead.score >= 80 ? 'bg-green-100 text-green-700' :
-                            lead.score >= 60 ? 'bg-yellow-100 text-yellow-700' :
-                            'bg-gray-100 text-gray-700'
-                          }`}>
+                          <span className={`px-2 py-0.5 rounded text-xs font-medium ${lead.score >= 80 ? 'bg-green-100 text-green-700' :
+                              lead.score >= 60 ? 'bg-yellow-100 text-yellow-700' :
+                                'bg-gray-100 text-gray-700'
+                            }`}>
                             Score: {lead.score}
                           </span>
                         </div>
@@ -567,12 +565,11 @@ export default function SocialMediaIntegrationPage() {
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
-                      <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                        lead.status === 'converted' ? 'bg-green-100 text-green-700' :
-                        lead.status === 'qualified' ? 'bg-blue-100 text-blue-700' :
-                        lead.status === 'contacted' ? 'bg-yellow-100 text-yellow-700' :
-                        'bg-gray-100 text-gray-600'
-                      }`}>
+                      <span className={`px-3 py-1 rounded-full text-xs font-medium ${lead.status === 'converted' ? 'bg-green-100 text-green-700' :
+                          lead.status === 'qualified' ? 'bg-blue-100 text-blue-700' :
+                            lead.status === 'contacted' ? 'bg-yellow-100 text-yellow-700' :
+                              'bg-gray-100 text-gray-600'
+                        }`}>
                         {lead.status.charAt(0).toUpperCase() + lead.status.slice(1)}
                       </span>
                       <button

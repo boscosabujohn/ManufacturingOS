@@ -174,7 +174,7 @@ export default function DashboardPage() {
 
   const filteredModules = modules.filter((module) => {
     const matchesSearch = module.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         module.description.toLowerCase().includes(searchQuery.toLowerCase());
+      module.description.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesSearch;
   });
 
@@ -195,7 +195,7 @@ export default function DashboardPage() {
   return (
     <div className="h-screen flex flex-col bg-white overflow-hidden">
       <Sidebar isOpen={sidebarOpen} onToggle={() => setSidebarOpen(!sidebarOpen)} />
-      
+
       <div className={`flex-1 flex flex-col overflow-hidden transition-all duration-300 ${sidebarOpen ? 'lg:ml-72' : 'lg:ml-20'}`}>
         {/* Header */}
         <header className="bg-white/95 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-40 shadow-sm flex-shrink-0">
@@ -210,7 +210,7 @@ export default function DashboardPage() {
                   <Menu className="h-6 w-6" />
                 </button>
                 <div className="flex-shrink-0">
-                  <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">ManufacturingOS</h1>
+                  <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">FactOS</h1>
                   <p className="text-xs text-gray-600 font-medium">Manufacturing ERP System</p>
                 </div>
               </div>
@@ -221,11 +221,10 @@ export default function DashboardPage() {
                   <button
                     key={item.id}
                     onClick={() => setActiveMegaMenu(activeMegaMenu === item.id ? null : item.id)}
-                    className={`flex items-center space-x-1 px-4 py-2 rounded-lg transition-colors ${
-                      activeMegaMenu === item.id
-                        ? 'bg-blue-50 text-blue-600'
-                        : 'text-gray-700 hover:bg-gray-100'
-                    }`}
+                    className={`flex items-center space-x-1 px-4 py-2 rounded-lg transition-colors ${activeMegaMenu === item.id
+                      ? 'bg-blue-50 text-blue-600'
+                      : 'text-gray-700 hover:bg-gray-100'
+                      }`}
                   >
                     <span className="font-medium text-sm">{item.name}</span>
                     <ChevronDown className={`h-4 w-4 transition-transform ${activeMegaMenu === item.id ? 'rotate-180' : ''}`} />
@@ -276,57 +275,57 @@ export default function DashboardPage() {
           <div className="w-full px-4 sm:px-6 lg:px-8 py-6 max-w-[1920px] mx-auto">
             {/* Quick Stats */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-          <div className="bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-lg p-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-blue-600 mb-1">Total Orders</p>
-                <p className="text-2xl font-bold text-blue-700">1,234</p>
-                <span className="text-xs font-semibold text-green-600">↑ 12%</span>
+              <div className="bg-gradient-to-br from-blue-50 to-blue-100 border border-blue-200 rounded-lg p-4">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-medium text-blue-600 mb-1">Total Orders</p>
+                    <p className="text-2xl font-bold text-blue-700">1,234</p>
+                    <span className="text-xs font-semibold text-green-600">↑ 12%</span>
+                  </div>
+                  <div className="h-12 w-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                    <ShoppingCart className="h-6 w-6 text-blue-600" />
+                  </div>
+                </div>
               </div>
-              <div className="h-12 w-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                <ShoppingCart className="h-6 w-6 text-blue-600" />
-              </div>
-            </div>
-          </div>
 
-          <div className="bg-gradient-to-br from-green-50 to-green-100 border border-green-200 rounded-lg p-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-green-600 mb-1">Revenue</p>
-                <p className="text-2xl font-bold text-green-700">₹45.2L</p>
-                <span className="text-xs font-semibold text-green-600">↑ 8%</span>
+              <div className="bg-gradient-to-br from-green-50 to-green-100 border border-green-200 rounded-lg p-4">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-medium text-green-600 mb-1">Revenue</p>
+                    <p className="text-2xl font-bold text-green-700">₹45.2L</p>
+                    <span className="text-xs font-semibold text-green-600">↑ 8%</span>
+                  </div>
+                  <div className="h-12 w-12 bg-green-100 rounded-lg flex items-center justify-center">
+                    <DollarSign className="h-6 w-6 text-green-600" />
+                  </div>
+                </div>
               </div>
-              <div className="h-12 w-12 bg-green-100 rounded-lg flex items-center justify-center">
-                <DollarSign className="h-6 w-6 text-green-600" />
-              </div>
-            </div>
-          </div>
 
-          <div className="bg-gradient-to-br from-orange-50 to-orange-100 border border-orange-200 rounded-lg p-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-orange-600 mb-1">Production</p>
-                <p className="text-2xl font-bold text-orange-700">234</p>
-                <span className="text-xs font-semibold text-green-600">↑ 15%</span>
+              <div className="bg-gradient-to-br from-orange-50 to-orange-100 border border-orange-200 rounded-lg p-4">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-medium text-orange-600 mb-1">Production</p>
+                    <p className="text-2xl font-bold text-orange-700">234</p>
+                    <span className="text-xs font-semibold text-green-600">↑ 15%</span>
+                  </div>
+                  <div className="h-12 w-12 bg-orange-100 rounded-lg flex items-center justify-center">
+                    <Factory className="h-6 w-6 text-orange-600" />
+                  </div>
+                </div>
               </div>
-              <div className="h-12 w-12 bg-orange-100 rounded-lg flex items-center justify-center">
-                <Factory className="h-6 w-6 text-orange-600" />
-              </div>
-            </div>
-          </div>
 
-          <div className="bg-gradient-to-br from-purple-50 to-purple-100 border border-purple-200 rounded-lg p-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-purple-600 mb-1">Inventory Items</p>
-                <p className="text-2xl font-bold text-purple-700">3,421</p>
-                <span className="text-xs font-semibold text-red-600">↓ 3%</span>
+              <div className="bg-gradient-to-br from-purple-50 to-purple-100 border border-purple-200 rounded-lg p-4">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-medium text-purple-600 mb-1">Inventory Items</p>
+                    <p className="text-2xl font-bold text-purple-700">3,421</p>
+                    <span className="text-xs font-semibold text-red-600">↓ 3%</span>
+                  </div>
+                  <div className="h-12 w-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                    <Package className="h-6 w-6 text-purple-600" />
+                  </div>
+                </div>
               </div>
-              <div className="h-12 w-12 bg-purple-100 rounded-lg flex items-center justify-center">
-                <Package className="h-6 w-6 text-purple-600" />
-              </div>
-            </div>
-          </div>
             </div>
 
             {/* Filter Tabs */}
@@ -337,11 +336,10 @@ export default function DashboardPage() {
                     <button
                       key={category.id}
                       onClick={() => setSelectedCategory(category.id)}
-                      className={`${
-                        selectedCategory === category.id
-                          ? 'border-blue-500 text-blue-600'
-                          : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                      } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
+                      className={`${selectedCategory === category.id
+                        ? 'border-blue-500 text-blue-600'
+                        : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                        } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
                     >
                       {category.name}
                     </button>
@@ -352,55 +350,55 @@ export default function DashboardPage() {
 
             {/* Module Cards Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6">
-          {filteredModules.map((module) => {
-            const Icon = module.icon;
-            return (
-              <Link
-                key={module.id}
-                href={module.href}
-                className="group bg-white rounded-xl shadow-sm hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-200 hover:border-blue-400 hover:-translate-y-1"
-              >
-                <div className="p-6">
-                  {/* Icon */}
-                  <div className={`${module.color} w-14 h-14 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-md`}>
-                    <Icon className="h-7 w-7 text-white" />
-                  </div>
-
-                  {/* Module Name */}
-                  <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors duration-200">
-                    {module.name}
-                  </h3>
-
-                  {/* Description */}
-                  <p className="text-sm text-gray-600 mb-4 leading-relaxed">
-                    {module.description}
-                  </p>
-
-                  {/* Stats */}
-                  <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                    <div className="flex items-center space-x-4">
-                      <div>
-                        <p className="text-xs font-medium text-gray-500">Total</p>
-                        <p className="text-base font-bold text-gray-900">{module.stats.total.toLocaleString()}</p>
+              {filteredModules.map((module) => {
+                const Icon = module.icon;
+                return (
+                  <Link
+                    key={module.id}
+                    href={module.href}
+                    className="group bg-white rounded-xl shadow-sm hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-200 hover:border-blue-400 hover:-translate-y-1"
+                  >
+                    <div className="p-6">
+                      {/* Icon */}
+                      <div className={`${module.color} w-14 h-14 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-md`}>
+                        <Icon className="h-7 w-7 text-white" />
                       </div>
-                      <div>
-                        <p className="text-xs font-medium text-gray-500">New</p>
-                        <p className="text-base font-bold text-green-600">+{module.stats.new}</p>
+
+                      {/* Module Name */}
+                      <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors duration-200">
+                        {module.name}
+                      </h3>
+
+                      {/* Description */}
+                      <p className="text-sm text-gray-600 mb-4 leading-relaxed">
+                        {module.description}
+                      </p>
+
+                      {/* Stats */}
+                      <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                        <div className="flex items-center space-x-4">
+                          <div>
+                            <p className="text-xs font-medium text-gray-500">Total</p>
+                            <p className="text-base font-bold text-gray-900">{module.stats.total.toLocaleString()}</p>
+                          </div>
+                          <div>
+                            <p className="text-xs font-medium text-gray-500">New</p>
+                            <p className="text-base font-bold text-green-600">+{module.stats.new}</p>
+                          </div>
+                        </div>
+                        <div className="text-blue-600 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-200">
+                          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                          </svg>
+                        </div>
                       </div>
                     </div>
-                    <div className="text-blue-600 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-200">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </div>
-                  </div>
-                </div>
 
-                {/* Hover Effect Bar */}
-                <div className={`h-1.5 ${module.color} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left`}></div>
-              </Link>
-            );
-          })}
+                    {/* Hover Effect Bar */}
+                    <div className={`h-1.5 ${module.color} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left`}></div>
+                  </Link>
+                );
+              })}
             </div>
 
             {/* Empty State */}
@@ -422,7 +420,7 @@ export default function DashboardPage() {
             <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
               <div className="text-center md:text-left">
                 <p className="text-sm font-semibold text-gray-700 mb-1">
-                  ManufacturingOS - Kitchen Manufacturing ERP
+                  FactOS - Kitchen Manufacturing ERP
                 </p>
                 <p className="text-xs text-gray-500">
                   Powered by KreupAI Technologies LLC

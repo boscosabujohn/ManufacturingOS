@@ -136,7 +136,7 @@ interface Payable {
   lastPurchaseDate: string;
 }
 
-// Mock Data - ManufacturingOS ERP - Indian Manufacturing Context
+// Mock Data - FactOS ERP - Indian Manufacturing Context
 const mockPayable: Payable = {
   id: 'PAY-001',
   vendorId: 'VEN-2023-0142',
@@ -447,11 +447,10 @@ export default function ViewPayablePage() {
                   <span className={`px-3 py-1 text-sm font-semibold rounded-full border ${statusColors[payable.accountStatus]}`}>
                     {payable.accountStatus.replace('_', ' ').charAt(0).toUpperCase() + payable.accountStatus.replace('_', ' ').slice(1)}
                   </span>
-                  <span className={`px-3 py-1 text-sm font-semibold rounded-full ${
-                    payable.riskRating === 'low' ? 'bg-green-100 text-green-700' :
-                    payable.riskRating === 'medium' ? 'bg-yellow-100 text-yellow-700' :
-                    'bg-red-100 text-red-700'
-                  }`}>
+                  <span className={`px-3 py-1 text-sm font-semibold rounded-full ${payable.riskRating === 'low' ? 'bg-green-100 text-green-700' :
+                      payable.riskRating === 'medium' ? 'bg-yellow-100 text-yellow-700' :
+                        'bg-red-100 text-red-700'
+                    }`}>
                     {payable.riskRating.charAt(0).toUpperCase() + payable.riskRating.slice(1)} Risk
                   </span>
                   <span className="px-3 py-1 text-sm font-semibold rounded-full bg-purple-100 text-purple-700 capitalize">
@@ -568,11 +567,10 @@ export default function ViewPayablePage() {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id as any)}
-                  className={`flex items-center space-x-2 py-4 px-1 border-b-2 font-medium text-sm transition-colors ${
-                    activeTab === tab.id
+                  className={`flex items-center space-x-2 py-4 px-1 border-b-2 font-medium text-sm transition-colors ${activeTab === tab.id
                       ? 'border-orange-600 text-orange-600'
                       : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                  }`}
+                    }`}
                 >
                   <TabIcon className="h-5 w-5" />
                   <span>{tab.name}</span>
@@ -661,13 +659,12 @@ export default function ViewPayablePage() {
                       </div>
                       <div className="w-full bg-gray-200 rounded-full h-2">
                         <div
-                          className={`h-2 rounded-full ${
-                            (payable.totalOutstanding / payable.creditLimit) * 100 > 80
+                          className={`h-2 rounded-full ${(payable.totalOutstanding / payable.creditLimit) * 100 > 80
                               ? 'bg-red-600'
                               : (payable.totalOutstanding / payable.creditLimit) * 100 > 60
-                              ? 'bg-yellow-600'
-                              : 'bg-green-600'
-                          }`}
+                                ? 'bg-yellow-600'
+                                : 'bg-green-600'
+                            }`}
                           style={{ width: `${(payable.totalOutstanding / payable.creditLimit) * 100}%` }}
                         ></div>
                       </div>

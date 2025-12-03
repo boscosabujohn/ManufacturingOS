@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # System Verification Script
-echo "🔍 ManufacturingOS ERP - System Verification"
+echo "🔍 FactOS ERP - System Verification"
 echo "======================================="
 echo ""
 

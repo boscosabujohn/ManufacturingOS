@@ -601,7 +601,7 @@ ${booking.customsStatus === 'cleared' ? '→ Download Customs Clearance Certific
 → Download Booking Summary
 
 ========================
-For assistance, contact: freight@manufacturingos.com | +91-1800-XXX-XXXX
+For assistance, contact: freight@factos.com | +91-1800-XXX-XXXX
     `;
 
     alert(details);
@@ -695,21 +695,21 @@ ${booking.status !== 'pending' && booking.status !== 'cancelled' ? '  ✓ Cargo 
 ${booking.status === 'in-transit' || booking.status === 'delivered' ? '  ✓ Departed Origin - ' + booking.pickupDate + ' 14:00 PM' : '  ○ Departure Pending'}
 
 ${booking.transportMode === 'sea' && (booking.status === 'in-transit' || booking.status === 'delivered') ?
-`Checkpoint 1: Port of Loading
+        `Checkpoint 1: Port of Loading
   ✓ Container Loaded - ${booking.pickupDate} 18:00 PM
   ✓ Vessel Departed - ${booking.pickupDate} 23:59 PM
 ${booking.status === 'delivered' ? '  ✓ Crossed International Waters' : '  → Currently in International Waters'}
 ${booking.status === 'delivered' ? '  ✓ Approaching Destination Port' : '  → En Route to Destination Port'}` : ''}
 
 ${booking.transportMode === 'air' && (booking.status === 'in-transit' || booking.status === 'delivered') ?
-`Checkpoint 1: Origin Airport
+        `Checkpoint 1: Origin Airport
   ✓ Cargo Checked In - ${booking.pickupDate} 11:00 AM
   ✓ Loaded on Aircraft - ${booking.pickupDate} 13:30 PM
   ✓ Flight Departed - ${booking.pickupDate} 15:00 PM
 ${booking.status === 'delivered' ? '  ✓ Flight Arrived - ' + booking.expectedDelivery : '  → In Flight - ETA: ' + booking.expectedDelivery}` : ''}
 
 ${booking.transportMode === 'road' && (booking.status === 'in-transit' || booking.status === 'delivered') ?
-`Checkpoint 1: Highway Toll - Outer Ring Road
+        `Checkpoint 1: Highway Toll - Outer Ring Road
   ✓ Passed at ${booking.pickupDate} 16:00 PM
 Checkpoint 2: State Border Checkpoint
   ${booking.status === 'delivered' ? '✓' : '→'} ${booking.status === 'delivered' ? 'Crossed' : 'Approaching'} - ${booking.status === 'delivered' ? booking.pickupDate : 'Expected in 6 hours'}
@@ -717,7 +717,7 @@ Checkpoint 3: Midway Hub
   ${booking.status === 'delivered' ? '✓ Passed' : '○ Pending'}` : ''}
 
 ${booking.customsStatus !== 'not-required' ?
-`Customs Checkpoint:
+        `Customs Checkpoint:
   ${booking.customsStatus === 'cleared' ? '✓ Customs Cleared' : booking.customsStatus === 'in-process' ? '→ Under Customs Inspection' : '○ Awaiting Customs'} - ${booking.customsStatus === 'cleared' ? booking.pickupDate : 'In Progress'}
   ${booking.customsStatus === 'cleared' ? 'Clearance Reference: CC-' + booking.id + '-2025' : ''}` : ''}
 

@@ -1,6 +1,6 @@
 @echo off
 echo ========================================
-echo ManufacturingOS ERP - UI Development Mode
+echo FactOS ERP - UI Development Mode
 echo ========================================
 echo.
 echo Starting Frontend Only (No Backend Required)

@@ -1,6 +1,6 @@
 @echo off
 echo ========================================
-echo ManufacturingOS ERP - Starting Services
+echo FactOS ERP - Starting Services
 echo ========================================
 echo.
 

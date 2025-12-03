@@ -1,6 +1,7 @@
-# ManufacturingOS ERP - PowerShell Startup Script
+# FactOS ERP - PowerShell Startup Script
+# Print banner
 Write-Host "========================================" -ForegroundColor Cyan
-Write-Host "ManufacturingOS ERP - Starting Services" -ForegroundColor Cyan
+Write-Host "FactOS ERP - Starting Services" -ForegroundColor Cyan
 Write-Host "========================================" -ForegroundColor Cyan
 Write-Host ""
 

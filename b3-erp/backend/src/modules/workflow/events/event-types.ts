@@ -1,4 +1,4 @@
-// Event Types for ManufacturingOS Workflow Automation
+// Event Types for FactOS Workflow Automation
 // These events enable inter-module communication and workflow orchestration
 
 export enum WorkflowEventType {

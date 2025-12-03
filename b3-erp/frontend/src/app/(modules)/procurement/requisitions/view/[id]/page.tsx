@@ -84,7 +84,7 @@ interface Requisition {
   updatedAt: string;
 }
 
-// Mock Data - ManufacturingOS India Manufacturing Context
+// Mock Data - FactOS India Manufacturing Context
 const mockRequisition: Requisition = {
   id: '1',
   prNumber: 'PR-2025-0142',
@@ -435,38 +435,33 @@ export default function ViewRequisitionPage() {
               <p className="text-xs text-green-600 mt-1">Estimated cost</p>
             </div>
 
-            <div className={`bg-gradient-to-br rounded-lg p-4 border ${
-              requisition.priority === 'urgent' ? 'from-red-50 to-red-100 border-red-200' :
-              requisition.priority === 'high' ? 'from-orange-50 to-orange-100 border-orange-200' :
-              requisition.priority === 'medium' ? 'from-yellow-50 to-yellow-100 border-yellow-200' :
-              'from-green-50 to-green-100 border-green-200'
-            }`}>
+            <div className={`bg-gradient-to-br rounded-lg p-4 border ${requisition.priority === 'urgent' ? 'from-red-50 to-red-100 border-red-200' :
+                requisition.priority === 'high' ? 'from-orange-50 to-orange-100 border-orange-200' :
+                  requisition.priority === 'medium' ? 'from-yellow-50 to-yellow-100 border-yellow-200' :
+                    'from-green-50 to-green-100 border-green-200'
+              }`}>
               <div className="flex items-center space-x-2 mb-2">
-                <TrendingUp className={`h-5 w-5 ${
-                  requisition.priority === 'urgent' ? 'text-red-600' :
-                  requisition.priority === 'high' ? 'text-orange-600' :
-                  requisition.priority === 'medium' ? 'text-yellow-600' :
-                  'text-green-600'
-                }`} />
-                <p className={`text-xs font-medium uppercase ${
-                  requisition.priority === 'urgent' ? 'text-red-600' :
-                  requisition.priority === 'high' ? 'text-orange-600' :
-                  requisition.priority === 'medium' ? 'text-yellow-600' :
-                  'text-green-600'
-                }`}>Priority Level</p>
+                <TrendingUp className={`h-5 w-5 ${requisition.priority === 'urgent' ? 'text-red-600' :
+                    requisition.priority === 'high' ? 'text-orange-600' :
+                      requisition.priority === 'medium' ? 'text-yellow-600' :
+                        'text-green-600'
+                  }`} />
+                <p className={`text-xs font-medium uppercase ${requisition.priority === 'urgent' ? 'text-red-600' :
+                    requisition.priority === 'high' ? 'text-orange-600' :
+                      requisition.priority === 'medium' ? 'text-yellow-600' :
+                        'text-green-600'
+                  }`}>Priority Level</p>
               </div>
-              <p className={`text-2xl font-bold ${
-                requisition.priority === 'urgent' ? 'text-red-900' :
-                requisition.priority === 'high' ? 'text-orange-900' :
-                requisition.priority === 'medium' ? 'text-yellow-900' :
-                'text-green-900'
-              }`}>{requisition.priority.toUpperCase()}</p>
-              <p className={`text-xs mt-1 ${
-                requisition.priority === 'urgent' ? 'text-red-600' :
-                requisition.priority === 'high' ? 'text-orange-600' :
-                requisition.priority === 'medium' ? 'text-yellow-600' :
-                'text-green-600'
-              }`}>Priority level</p>
+              <p className={`text-2xl font-bold ${requisition.priority === 'urgent' ? 'text-red-900' :
+                  requisition.priority === 'high' ? 'text-orange-900' :
+                    requisition.priority === 'medium' ? 'text-yellow-900' :
+                      'text-green-900'
+                }`}>{requisition.priority.toUpperCase()}</p>
+              <p className={`text-xs mt-1 ${requisition.priority === 'urgent' ? 'text-red-600' :
+                  requisition.priority === 'high' ? 'text-orange-600' :
+                    requisition.priority === 'medium' ? 'text-yellow-600' :
+                      'text-green-600'
+                }`}>Priority level</p>
             </div>
 
             <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
@@ -484,9 +479,8 @@ export default function ViewRequisitionPage() {
             <h3 className="text-sm font-semibold text-gray-700 mb-3">Approval Progress</h3>
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-2">
-                <div className={`h-10 w-10 rounded-full flex items-center justify-center ${
-                  requisition.status !== 'draft' ? 'bg-green-500' : 'bg-gray-300'
-                }`}>
+                <div className={`h-10 w-10 rounded-full flex items-center justify-center ${requisition.status !== 'draft' ? 'bg-green-500' : 'bg-gray-300'
+                  }`}>
                   <FileText className="h-5 w-5 text-white" />
                 </div>
                 <div>
@@ -495,15 +489,13 @@ export default function ViewRequisitionPage() {
                 </div>
               </div>
 
-              <div className={`flex-1 h-1 mx-2 ${
-                requisition.status !== 'draft' ? 'bg-green-500' : 'bg-gray-300'
-              }`}></div>
+              <div className={`flex-1 h-1 mx-2 ${requisition.status !== 'draft' ? 'bg-green-500' : 'bg-gray-300'
+                }`}></div>
 
               <div className="flex items-center space-x-2">
-                <div className={`h-10 w-10 rounded-full flex items-center justify-center ${
-                  requisition.status === 'pending_approval' || requisition.status === 'approved' || requisition.status === 'converted_to_po'
+                <div className={`h-10 w-10 rounded-full flex items-center justify-center ${requisition.status === 'pending_approval' || requisition.status === 'approved' || requisition.status === 'converted_to_po'
                     ? 'bg-yellow-500' : 'bg-gray-300'
-                }`}>
+                  }`}>
                   <Clock className="h-5 w-5 text-white" />
                 </div>
                 <div>
@@ -512,14 +504,12 @@ export default function ViewRequisitionPage() {
                 </div>
               </div>
 
-              <div className={`flex-1 h-1 mx-2 ${
-                requisition.status === 'approved' || requisition.status === 'converted_to_po' ? 'bg-green-500' : 'bg-gray-300'
-              }`}></div>
+              <div className={`flex-1 h-1 mx-2 ${requisition.status === 'approved' || requisition.status === 'converted_to_po' ? 'bg-green-500' : 'bg-gray-300'
+                }`}></div>
 
               <div className="flex items-center space-x-2">
-                <div className={`h-10 w-10 rounded-full flex items-center justify-center ${
-                  requisition.status === 'approved' || requisition.status === 'converted_to_po' ? 'bg-green-500' : 'bg-gray-300'
-                }`}>
+                <div className={`h-10 w-10 rounded-full flex items-center justify-center ${requisition.status === 'approved' || requisition.status === 'converted_to_po' ? 'bg-green-500' : 'bg-gray-300'
+                  }`}>
                   <CheckCircle className="h-5 w-5 text-white" />
                 </div>
                 <div>
@@ -528,14 +518,12 @@ export default function ViewRequisitionPage() {
                 </div>
               </div>
 
-              <div className={`flex-1 h-1 mx-2 ${
-                requisition.status === 'converted_to_po' ? 'bg-green-500' : 'bg-gray-300'
-              }`}></div>
+              <div className={`flex-1 h-1 mx-2 ${requisition.status === 'converted_to_po' ? 'bg-green-500' : 'bg-gray-300'
+                }`}></div>
 
               <div className="flex items-center space-x-2">
-                <div className={`h-10 w-10 rounded-full flex items-center justify-center ${
-                  requisition.status === 'converted_to_po' ? 'bg-blue-500' : 'bg-gray-300'
-                }`}>
+                <div className={`h-10 w-10 rounded-full flex items-center justify-center ${requisition.status === 'converted_to_po' ? 'bg-blue-500' : 'bg-gray-300'
+                  }`}>
                   <ShoppingBag className="h-5 w-5 text-white" />
                 </div>
                 <div>
@@ -544,14 +532,12 @@ export default function ViewRequisitionPage() {
                 </div>
               </div>
 
-              <div className={`flex-1 h-1 mx-2 ${
-                requisition.status === 'converted_to_po' ? 'bg-green-500' : 'bg-gray-300'
-              }`}></div>
+              <div className={`flex-1 h-1 mx-2 ${requisition.status === 'converted_to_po' ? 'bg-green-500' : 'bg-gray-300'
+                }`}></div>
 
               <div className="flex items-center space-x-2">
-                <div className={`h-10 w-10 rounded-full flex items-center justify-center ${
-                  requisition.status === 'converted_to_po' ? 'bg-green-500' : 'bg-gray-300'
-                }`}>
+                <div className={`h-10 w-10 rounded-full flex items-center justify-center ${requisition.status === 'converted_to_po' ? 'bg-green-500' : 'bg-gray-300'
+                  }`}>
                   <CheckCircle className="h-5 w-5 text-white" />
                 </div>
                 <div>
@@ -586,11 +572,10 @@ export default function ViewRequisitionPage() {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id as any)}
-                  className={`flex items-center space-x-2 py-4 px-1 border-b-2 font-medium text-sm transition-colors ${
-                    activeTab === tab.id
+                  className={`flex items-center space-x-2 py-4 px-1 border-b-2 font-medium text-sm transition-colors ${activeTab === tab.id
                       ? 'border-blue-600 text-blue-600'
                       : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                  }`}
+                    }`}
                 >
                   <TabIcon className="h-5 w-5" />
                   <span>{tab.name}</span>
@@ -866,12 +851,11 @@ export default function ViewRequisitionPage() {
                     )}
 
                     <div className="flex items-start space-x-4">
-                      <div className={`h-10 w-10 rounded-full flex items-center justify-center border-2 flex-shrink-0 ${
-                        history.action === 'approved' ? 'bg-green-100 text-green-700 border-green-300' :
-                        history.action === 'rejected' ? 'bg-red-100 text-red-700 border-red-300' :
-                        history.action === 'submitted' ? 'bg-blue-100 text-blue-700 border-blue-300' :
-                        'bg-yellow-100 text-yellow-700 border-yellow-300'
-                      }`}>
+                      <div className={`h-10 w-10 rounded-full flex items-center justify-center border-2 flex-shrink-0 ${history.action === 'approved' ? 'bg-green-100 text-green-700 border-green-300' :
+                          history.action === 'rejected' ? 'bg-red-100 text-red-700 border-red-300' :
+                            history.action === 'submitted' ? 'bg-blue-100 text-blue-700 border-blue-300' :
+                              'bg-yellow-100 text-yellow-700 border-yellow-300'
+                        }`}>
                         {history.action === 'approved' && <ThumbsUp className="h-5 w-5" />}
                         {history.action === 'rejected' && <ThumbsDown className="h-5 w-5" />}
                         {history.action === 'submitted' && <Send className="h-5 w-5" />}

@@ -172,11 +172,14 @@ const menuItems: MenuItem[] = [
             href: '#',
             description: 'QC & packaging',
             subItems: [
-              { id: 'p6-inspections', name: 'QC Inspections', href: '/quality/inspections', description: 'Quality checks' },
-              { id: 'p6-defects', name: 'Defect Management', href: '/quality/defects', description: 'Rework routing' },
-              { id: 'p6-approvals', name: 'QC Approvals', href: '/quality/approvals', description: 'Manager approval' },
-              { id: 'p6-packaging', name: 'Packaging Operations', href: '/packaging/operations', description: 'Packing & labeling' },
-              { id: 'p6-staging', name: 'Dispatch Staging', href: '/packaging/staging', description: 'Ready to ship' },
+              { id: 'p6-qc-inspection', name: '6.1 QC Inspection', href: '/quality/inspections', description: 'Quality checks' },
+              { id: 'p6-log-defects', name: '6.2 Log Defects', href: '/quality/defects', description: 'Rework routing' },
+              { id: 'p6-rework-loop', name: '6.3 Rework Loop', href: '/quality/rework', description: 'Defect corrections' },
+              { id: 'p6-qc-approval', name: '6.4 QC Manager Approval', href: '/quality/approvals', description: 'Manager approval' },
+              { id: 'p6-check-materials', name: '6.5 Check Packing Materials', href: '/packaging/materials', description: 'Material availability' },
+              { id: 'p6-package-products', name: '6.6 Package Products', href: '/packaging/operations', description: 'Packing & labeling' },
+              { id: 'p6-generate-shipping', name: '6.7 Generate Shipping Bill', href: '/packaging/shipping-bill', description: 'Bill generation' },
+              { id: 'p6-staging', name: '6.8 Dispatch Staging', href: '/packaging/staging', description: 'Ready to ship' },
             ],
           },
           {
@@ -185,11 +188,15 @@ const menuItems: MenuItem[] = [
             href: '#',
             description: 'Dispatch & delivery',
             subItems: [
-              { id: 'p7-payment', name: 'Payment Verification', href: '/accounts/payment-verification', description: 'Payment gate' },
-              { id: 'p7-coordination', name: 'Delivery Coordination', href: '/logistics/delivery-coordination', description: 'Site details & timing' },
-              { id: 'p7-loading', name: 'Loading & Dispatch', href: '/logistics/loading', description: 'Loading checklist' },
-              { id: 'p7-tracking', name: 'Delivery Tracking', href: '/logistics/tracking', description: 'GPS & POD' },
-              { id: 'p7-fleet', name: 'Fleet Management', href: '/logistics/fleet', description: 'Vehicle monitoring' },
+              { id: 'p7-payment-check', name: '7.1 Payment Check', href: '/accounts/payment-verification', description: 'Check payment status before release' },
+              { id: 'p7-billing-details', name: '7.2 Billing to Accounts', href: '/accounts/billing', description: 'Invoice generation and tracking' },
+              { id: 'p7-transport-selection', name: '7.3 Transport Selection', href: '/logistics/transport-selection', description: 'Choose method based on location' },
+              { id: 'p7-site-location', name: '7.4 Site Location Sharing', href: '/logistics/site-location', description: 'Address, contact, timing details' },
+              { id: 'p7-transporter-notify', name: '7.5 Transporter Notification', href: '/logistics/transporter-notification', description: 'Alert with pickup details' },
+              { id: 'p7-loading', name: '7.6 Loading & Documentation', href: '/logistics/loading', description: 'Proper packing & bill generation' },
+              { id: 'p7-gps-tracking', name: '7.7 GPS Tracking', href: '/logistics/tracking', description: 'Real-time delivery tracking' },
+              { id: 'p7-delivery-confirm', name: '7.8 Delivery Confirmation', href: '/logistics/delivery-confirmation', description: 'Unloading and receipt sign-off' },
+              { id: 'p7-site-contact-notify', name: '7.9 Site Contact Notification', href: '/logistics/site-notification', description: 'Alert installation team' },
             ],
           },
           {
@@ -198,9 +205,18 @@ const menuItems: MenuItem[] = [
             href: '#',
             description: 'Site installation & handover',
             subItems: [
-              { id: 'p8-management', name: 'Installation Management', href: '/installation/management', description: 'Tools & team' },
-              { id: 'p8-progress', name: 'Installation Progress', href: '/installation/progress', description: 'Daily tracking' },
-              { id: 'p8-handover', name: 'Client Handover', href: '/installation/handover', description: 'Signature & closure' },
+              { id: 'p8-tool-prep', name: '8.1 Tool Prep', href: '/installation/tool-prep', description: 'Tool list preparation' },
+              { id: 'p8-tool-dispatch', name: '8.2 Tool Dispatch', href: '/installation/tool-dispatch', description: 'Tools to site' },
+              { id: 'p8-team-assignment', name: '8.3 Team Assignment', href: '/installation/team-assignment', description: 'Cabinet align' },
+              { id: 'p8-cabinet-align', name: '8.4 Cabinet Align', href: '/installation/cabinet-align', description: 'Trial wall & buffing' },
+              { id: 'p8-trial-wall', name: '8.5 Trial Wall', href: '/installation/trial-wall', description: 'Accessory fix' },
+              { id: 'p8-accessory-fix', name: '8.6 Accessory Fix', href: '/installation/accessory-fix', description: 'Final align' },
+              { id: 'p8-final-align', name: '8.7 Final Align', href: '/installation/final-align', description: 'Photo doc' },
+              { id: 'p8-photo-doc', name: '8.8 Photo Doc', href: '/installation/photo-doc', description: 'Issue reporting with images' },
+              { id: 'p8-final-inspection', name: '8.9 Final Inspection', href: '/installation/final-inspection', description: 'Inspection complete' },
+              { id: 'p8-kitchen-cleaning', name: '8.10 Kitchen Cleaning', href: '/installation/kitchen-cleaning', description: 'Kitchen cleaning done' },
+              { id: 'p8-client-handover', name: '8.11 Client Handover', href: '/installation/handover', description: 'E-signature' },
+              { id: 'p8-project-closure', name: '8.12 Project Closure', href: '/installation/project-closure', description: 'Project closure' },
             ],
           },
         ],
@@ -3983,7 +3999,7 @@ export default function Sidebar({ isOpen, onToggle }: SidebarProps) {
         {/* Header */}
         <div className="h-16 border-b border-gray-200 flex items-center justify-between px-4 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600">
           {isOpen && (
-            <h2 className="text-lg font-bold text-white tracking-wide">ManufacturingOS</h2>
+            <h2 className="text-lg font-bold text-white tracking-wide">FactOS</h2>
           )}
           <button
             onClick={onToggle}

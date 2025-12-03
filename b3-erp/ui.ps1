@@ -1,6 +1,6 @@
-# ManufacturingOS ERP - UI Development Mode (PowerShell)
+# FactOS ERP - UI Development Mode (PowerShell)
 Write-Host "========================================" -ForegroundColor Cyan
-Write-Host "ManufacturingOS ERP - UI Development Mode" -ForegroundColor Cyan
+Write-Host "FactOS ERP - UI Development Mode" -ForegroundColor Cyan
 Write-Host "========================================" -ForegroundColor Cyan
 Write-Host ""
 Write-Host "Starting Frontend Only (No Backend Required)" -ForegroundColor Yellow
