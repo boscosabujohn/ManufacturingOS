@@ -211,7 +211,7 @@ export default function QuoteTemplatesPage() {
   };
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 max-w-7xl">
+    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 ">
       <div className="mb-8">
         <div className="flex justify-end mb-6">
           <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">

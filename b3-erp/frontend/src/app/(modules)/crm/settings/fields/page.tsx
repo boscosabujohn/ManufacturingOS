@@ -511,7 +511,7 @@ export default function CustomFieldsPage() {
   };
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 max-w-7xl space-y-6">
+    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6  space-y-6">
       {/* Header */}
       <div className="flex items-center justify-end">
         <button

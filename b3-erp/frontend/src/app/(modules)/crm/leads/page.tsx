@@ -594,7 +594,7 @@ export default function LeadsPage() {
   };
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 max-w-7xl">
+    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 ">
       {/* Page Header with Toolbar */}
       <PageToolbar
 

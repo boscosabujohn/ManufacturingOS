@@ -145,7 +145,7 @@ export default function SalesAnalyticsPage() {
   ));
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 max-w-7xl">
+    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 ">
       <div className="mb-8">
         <div className="flex gap-2 mb-6">
           {(['week', 'month', 'quarter', 'year'] as const).map((range) => (
