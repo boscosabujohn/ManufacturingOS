@@ -149,10 +149,13 @@ export default function SalesHandoverPage() {
                 </p>
               </div>
             </div>
-            <button className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+            <Link
+              href="/sales/handover/package"
+              className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+            >
               <Send className="w-4 h-4" />
               New Handover
-            </button>
+            </Link>
           </div>
         </div>
 

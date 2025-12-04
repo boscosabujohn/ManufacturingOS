@@ -20,6 +20,7 @@ interface PackageDocument {
     status: 'Available' | 'Missing' | 'Pending Review';
     uploadDate?: string;
     uploadedBy?: string;
+    content?: string;
 }
 
 interface HandoverPackage {
@@ -106,10 +107,47 @@ const mockPackage: HandoverPackage = {
 };
 
 export default function HandoverPackagePage() {
-    const [packageData] = useState<HandoverPackage>(mockPackage);
+    const [packageData, setPackageData] = useState<HandoverPackage>(mockPackage);
+    const [showNoteModal, setShowNoteModal] = useState(false);
+    const [currentNote, setCurrentNote] = useState('');
+    const [selectedDocId, setSelectedDocId] = useState<string | null>(null);
 
     const availableDocs = packageData.documents.filter((d) => d.status === 'Available').length;
     const totalDocs = packageData.documents.length;
+
+    const handleAddNote = (docId: string, existingContent?: string) => {
+        setSelectedDocId(docId);
+        setCurrentNote(existingContent || '');
+        setShowNoteModal(true);
+    };
+
+    const handleViewNote = (doc: PackageDocument) => {
+        setSelectedDocId(doc.id);
+        setCurrentNote(doc.content || '');
+        setShowNoteModal(true);
+    };
+
+    const handleSaveNote = () => {
+        if (selectedDocId) {
+            setPackageData((prev) => ({
+                ...prev,
+                documents: prev.documents.map((doc) =>
+                    doc.id === selectedDocId
+                        ? {
+                            ...doc,
+                            status: 'Available',
+                            uploadDate: new Date().toISOString().split('T')[0],
+                            uploadedBy: 'Current User',
+                            content: currentNote,
+                        }
+                        : doc
+                ),
+            }));
+            setShowNoteModal(false);
+            setSelectedDocId(null);
+            setCurrentNote('');
+        }
+    };
 
     const getStatusIcon = (status: string) => {
         switch (status) {
@@ -167,8 +205,8 @@ export default function HandoverPackagePage() {
                             <button
                                 disabled={availableDocs !== totalDocs}
                                 className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${availableDocs === totalDocs
-                                        ? 'bg-blue-600 text-white hover:bg-blue-700'
-                                        : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                                    ? 'bg-blue-600 text-white hover:bg-blue-700'
+                                    : 'bg-gray-300 text-gray-500 cursor-not-allowed'
                                     }`}
                             >
                                 <Send className="w-4 h-4" />
@@ -250,8 +288,19 @@ export default function HandoverPackagePage() {
                                             {doc.status}
                                         </span>
                                         {doc.status === 'Available' && (
-                                            <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+                                            <button
+                                                onClick={() => handleViewNote(doc)}
+                                                className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                                            >
                                                 <FileText className="w-4 h-4 text-gray-600" />
+                                            </button>
+                                        )}
+                                        {doc.type === 'Notes' && doc.status === 'Missing' && (
+                                            <button
+                                                onClick={() => handleAddNote(doc.id)}
+                                                className="flex items-center gap-1 px-3 py-1 text-xs font-medium bg-blue-50 text-blue-600 rounded-full hover:bg-blue-100 transition-colors"
+                                            >
+                                                Add Note
                                             </button>
                                         )}
                                     </div>
@@ -296,6 +345,37 @@ export default function HandoverPackagePage() {
                     </div>
                 )}
             </div>
+
+            {/* Note Modal */}
+            {showNoteModal && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                    <div className="bg-white rounded-lg p-6 w-full max-w-md">
+                        <h3 className="text-lg font-bold text-gray-900 mb-4">
+                            Notes: {packageData.documents.find(d => d.id === selectedDocId)?.name}
+                        </h3>
+                        <textarea
+                            value={currentNote}
+                            onChange={(e) => setCurrentNote(e.target.value)}
+                            className="w-full h-32 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent mb-4"
+                            placeholder="Enter your notes here..."
+                        />
+                        <div className="flex justify-end gap-3">
+                            <button
+                                onClick={() => setShowNoteModal(false)}
+                                className="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg"
+                            >
+                                Cancel
+                            </button>
+                            <button
+                                onClick={handleSaveNote}
+                                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                            >
+                                Save Note
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

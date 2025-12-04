@@ -292,7 +292,7 @@ const ProductionQualityPage = () => {
   }
 
   return (
-    <div className="container mx-auto min-h-screen px-4 sm:px-6 lg:px-8 py-6 max-w-7xl">
+    <div className="container mx-auto py-6 space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
           <div className="flex items-center justify-between">
@@ -528,11 +528,10 @@ const ProductionQualityPage = () => {
                 <button
                   key={i + 1}
                   onClick={() => setCurrentPage(i + 1)}
-                  className={`px-4 py-2 border rounded-lg text-sm font-medium ${
-                    currentPage === i + 1
+                  className={`px-4 py-2 border rounded-lg text-sm font-medium ${currentPage === i + 1
                       ? 'bg-blue-600 text-white border-blue-600'
                       : 'border-gray-300 text-gray-700 hover:bg-gray-50'
-                  }`}
+                    }`}
                 >
                   {i + 1}
                 </button>

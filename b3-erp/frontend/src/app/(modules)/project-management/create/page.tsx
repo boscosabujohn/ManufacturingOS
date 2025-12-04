@@ -272,7 +272,7 @@ export default function CreateProjectPage() {
 
   return (
     <div className="w-full h-screen overflow-y-auto overflow-x-hidden">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
         {/* Page Header with Template Actions */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
           <div className="flex items-center justify-between mb-4">
@@ -646,7 +646,7 @@ export default function CreateProjectPage() {
                       type="button"
                       onClick={() => removeTeamMember(member.id)}
                       className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
-                     
+
                     >
                       <Trash2 className="w-4 h-4" />
                     </button>
@@ -716,7 +716,7 @@ export default function CreateProjectPage() {
                       type="button"
                       onClick={() => removeDeliverable(deliverable.id)}
                       className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
-                     
+
                     >
                       <Trash2 className="w-4 h-4" />
                     </button>
