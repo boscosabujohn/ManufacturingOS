@@ -13,3 +13,16 @@ export type { Station, StationStatus, WorkItem, ProductionLineFlowProps } from '
 
 export { RealTimeAlertsBanner } from './RealTimeAlertsBanner';
 export type { ProductionAlert, AlertSeverity, AlertType, RealTimeAlertsBannerProps } from './RealTimeAlertsBanner';
+
+// Digital Twin Components
+export { FactoryFloor3D } from './FactoryFloor3D';
+export type { FloorMachine, FloorZone, FactoryFloor3DProps } from './FactoryFloor3D';
+
+export { EquipmentHealthCards } from './EquipmentHealthCards';
+export type { Equipment, HealthStatus, HealthMetric, MaintenancePrediction, EquipmentHealthCardsProps } from './EquipmentHealthCards';
+
+export { ProductionSimulation } from './ProductionSimulation';
+export type { SimulationScenario, SimulationParameters, SimulationResults, ProductionSimulationProps } from './ProductionSimulation';
+
+export { AssetTrackingMap } from './AssetTrackingMap';
+export type { TrackedAsset, AssetType, TrackingMethod, AssetStatus, AssetTrackingMapProps } from './AssetTrackingMap';

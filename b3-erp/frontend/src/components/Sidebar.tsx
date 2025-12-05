@@ -1016,6 +1016,20 @@ const menuItems: MenuItem[] = [
         ],
       },
       {
+        id: 'industry4',
+        name: '🏭 Industry 4.0',
+        href: '#',
+        description: 'Smart Manufacturing',
+        subItems: [
+          { id: 'realtime-monitoring', name: 'Real-Time Monitoring', href: '/production/real-time-monitoring', description: 'Live OEE & machine status' },
+          { id: 'digital-twin', name: 'Digital Twin', href: '/production/digital-twin', description: 'Virtual factory visualization' },
+          { id: 'factory-floor-3d', name: '3D Factory Floor', href: '/production/digital-twin?view=factory-floor', description: 'Interactive 3D shop floor' },
+          { id: 'equipment-health', name: 'Equipment Health', href: '/production/digital-twin?view=equipment-health', description: 'Predictive maintenance' },
+          { id: 'production-simulation', name: 'What-If Simulation', href: '/production/digital-twin?view=simulation', description: 'Scenario planning' },
+          { id: 'asset-tracking', name: 'Asset Tracking', href: '/production/digital-twin?view=asset-tracking', description: 'GPS/RFID location tracking' },
+        ],
+      },
+      {
         id: 'advanced-features',
         name: '✨ Advanced Features',
         href: '#',
