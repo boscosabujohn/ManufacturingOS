@@ -26,3 +26,19 @@ export type { SimulationScenario, SimulationParameters, SimulationResults, Produ
 
 export { AssetTrackingMap } from './AssetTrackingMap';
 export type { TrackedAsset, AssetType, TrackingMethod, AssetStatus, AssetTrackingMapProps } from './AssetTrackingMap';
+
+// Smart Analytics & AI Components
+export { AIInsightsPanel } from './AIInsightsPanel';
+export type { MLPrediction, InsightCategory, InsightPriority, AIInsightsPanelProps } from './AIInsightsPanel';
+
+export { AnomalyDetection } from './AnomalyDetection';
+export type { Anomaly, AnomalyType, AnomalySeverity, MetricType, AnomalyDetectionProps } from './AnomalyDetection';
+
+export { PredictiveQualityCharts } from './PredictiveQualityCharts';
+export type { QualityDataPoint, QualityMetric, PredictiveQualityChartsProps } from './PredictiveQualityCharts';
+
+export { SmartRecommendations } from './SmartRecommendations';
+export type { Recommendation, RecommendationType, RecommendationImpact, SmartRecommendationsProps } from './SmartRecommendations';
+
+export { NaturalLanguageQuery } from './NaturalLanguageQuery';
+export type { QueryResult, SuggestedQuery, NaturalLanguageQueryProps } from './NaturalLanguageQuery';

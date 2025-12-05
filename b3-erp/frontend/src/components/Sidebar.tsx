@@ -1030,6 +1030,20 @@ const menuItems: MenuItem[] = [
         ],
       },
       {
+        id: 'smart-analytics',
+        name: '🤖 Smart Analytics & AI',
+        href: '#',
+        description: 'AI-powered insights',
+        subItems: [
+          { id: 'smart-analytics-dashboard', name: 'Analytics Dashboard', href: '/production/smart-analytics', description: 'AI insights overview' },
+          { id: 'ai-insights', name: 'AI Insights Panel', href: '/production/smart-analytics?view=ai-insights', description: 'ML predictions' },
+          { id: 'anomaly-detection', name: 'Anomaly Detection', href: '/production/smart-analytics?view=anomalies', description: 'Metric deviation alerts' },
+          { id: 'quality-forecast', name: 'Quality Forecast', href: '/production/smart-analytics?view=quality', description: 'Predictive quality charts' },
+          { id: 'smart-recommendations', name: 'Recommendations', href: '/production/smart-analytics?view=recommendations', description: 'AI-suggested actions' },
+          { id: 'ask-ai', name: 'Ask AI', href: '/production/smart-analytics?view=ask-ai', description: 'Natural language query' },
+        ],
+      },
+      {
         id: 'advanced-features',
         name: '✨ Advanced Features',
         href: '#',
