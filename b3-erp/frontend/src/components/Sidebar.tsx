@@ -1425,8 +1425,10 @@ const menuItems: MenuItem[] = [
           { id: 'wbs', name: 'Work Breakdown Structure', href: '/project-management/wbs', description: 'Task hierarchy' },
           { id: 'schedule', name: 'Project Schedule', href: '/project-management/schedule', description: 'Timeline planning' },
           { id: 'timeline', name: 'Timeline View', href: '/project-management/timeline', description: 'Gantt chart' },
+          { id: 'critical-path', name: 'Critical Path', href: '/project-management/critical-path', description: 'Critical path analysis' },
           { id: 'tasks', name: 'Tasks', href: '/project-management/tasks', description: 'Task management' },
           { id: 'milestones', name: 'Milestone Templates', href: '/project-management/milestone-templates', description: 'Project milestones' },
+          { id: 'milestone-timeline', name: 'Milestone Timeline', href: '/project-management/milestone-timeline', description: 'Visual milestone view' },
           { id: 'deliverables', name: 'Deliverables', href: '/project-management/deliverables', description: 'Project outputs' },
         ],
       },
@@ -1436,6 +1438,7 @@ const menuItems: MenuItem[] = [
         href: '#',
         description: 'Project execution',
         subItems: [
+          { id: 'phase-progress', name: 'Phase Progress', href: '/project-management/phase-progress', description: '8-phase visualization' },
           { id: 'progress', name: 'Progress Tracking', href: '/project-management/progress', description: 'Track progress' },
           { id: 'issues', name: 'Issues & Problems', href: '/project-management/issues', description: 'Issue tracking' },
           { id: 'site-issues', name: 'Site Issues', href: '/project-management/site-issues', description: 'On-site problems' },
@@ -1453,6 +1456,7 @@ const menuItems: MenuItem[] = [
         subItems: [
           { id: 'resources', name: 'Resources', href: '/project-management/resources', description: 'Resource master' },
           { id: 'resource-allocation', name: 'Resource Allocation', href: '/project-management/resource-allocation', description: 'Allocate resources' },
+          { id: 'resource-conflicts', name: 'Resource Conflicts', href: '/project-management/resource-conflicts', description: 'Conflict alerts' },
           { id: 'resource-utilization', name: 'Resource Utilization', href: '/project-management/resource-utilization', description: 'Usage analytics' },
           { id: 'labor-tracking', name: 'Labor Tracking', href: '/project-management/labor-tracking', description: 'Track workforce' },
         ],

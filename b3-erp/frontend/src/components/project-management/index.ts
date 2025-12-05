@@ -10,3 +10,9 @@ export * from './ProjectListModals';
 export * from './ReportsModals';
 export * from './ResourceModals';
 export * from './WBSModals';
+
+// Enhanced Project Management UI Components
+export { PhaseProgressVisualization } from './PhaseProgressVisualization';
+export { CriticalPathHighlight } from './CriticalPathHighlight';
+export { ResourceConflictAlerts } from './ResourceConflictAlerts';
+export { MilestoneTimeline } from './MilestoneTimeline';
