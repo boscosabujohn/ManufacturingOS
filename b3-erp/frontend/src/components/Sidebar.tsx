@@ -256,6 +256,7 @@ const menuItems: MenuItem[] = [
         description: 'Sales opportunities',
         subItems: [
           { id: 'all-opportunities', name: 'All Opportunities', href: '/crm/opportunities', description: 'View all opportunities' },
+          { id: 'pipeline-kanban', name: 'Pipeline Kanban', href: '/crm/opportunities/kanban', description: 'Drag-drop pipeline' },
           { id: 'pipeline-view', name: 'Sales Pipeline', href: '/crm/opportunities/pipeline', description: 'Visual pipeline' },
           { id: 'won-deals', name: 'Won Deals', href: '/crm/opportunities/won', description: 'Closed won deals' },
           { id: 'lost-deals', name: 'Lost Deals', href: '/crm/opportunities/lost', description: 'Lost opportunities' },
@@ -272,6 +273,7 @@ const menuItems: MenuItem[] = [
           { id: 'customer-segments', name: 'Customer Segments', href: '/crm/customers/segments', description: 'Segment customers' },
           { id: 'customer-hierarchy', name: 'Customer Hierarchy', href: '/crm/customers/hierarchy', description: 'Parent-child accounts' },
           { id: 'customer-portal', name: 'Customer Portal', href: '/crm/customers/portal', description: 'Self-service portal' },
+          { id: 'customer-360-unified', name: 'Customer 360°', href: '/crm/customers/360', description: 'Unified customer view' },
         ],
       },
       {
@@ -297,6 +299,7 @@ const menuItems: MenuItem[] = [
           { id: 'meetings', name: 'Meetings', href: '/crm/activities/meetings', description: 'Schedule meetings' },
           { id: 'calls', name: 'Calls', href: '/crm/activities/calls', description: 'Call logs' },
           { id: 'emails', name: 'Emails', href: '/crm/activities/emails', description: 'Email tracking' },
+          { id: 'quick-entry', name: 'Quick Entry', href: '/crm/activities/quick-entry', description: 'One-click activity log' },
         ],
       },
       {

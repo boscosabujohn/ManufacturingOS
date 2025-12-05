@@ -14,6 +14,11 @@ export { CollaborativeTimeline } from './CollaborativeTimeline';
 export { WorkflowBuilder } from './WorkflowBuilder';
 export { TaskBoard } from './TaskBoard';
 
+// Enhanced CRM UI Components
+export { PipelineKanban } from './PipelineKanban';
+export { Customer360Unified } from './Customer360Unified';
+export { ActivityQuickEntry, ActivityQuickEntryButton } from './ActivityQuickEntry';
+
 // Re-export types from components
 export type { AILeadScore } from './AILeadScoreCard';
 export type { AccountNode } from './AccountHierarchyTree';
