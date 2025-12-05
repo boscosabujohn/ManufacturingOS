@@ -927,6 +927,7 @@ const menuItems: MenuItem[] = [
           { id: 'all-schedules', name: 'All Schedules', href: '/production/scheduling', description: 'View schedules' },
           { id: 'create-schedule', name: 'Create Schedule', href: '/production/scheduling/add', description: 'New schedule' },
           { id: 'gantt-chart', name: 'Gantt Chart', href: '/production/scheduling/gantt', description: 'Visual timeline' },
+          { id: 'enhanced-gantt', name: 'Enhanced Gantt', href: '/production/scheduling/enhanced-gantt', description: 'Drag & drop scheduling' },
           { id: 'resource-scheduling', name: 'Resource Scheduling', href: '/production/scheduling/resources', description: 'Allocate resources' },
           { id: 'job-sequencing', name: 'Job Sequencing', href: '/production/scheduling/sequencing', description: 'Optimize sequence' },
           { id: 'schedule-optimization', name: 'Schedule Optimization', href: '/production/scheduling/optimize', description: 'Auto-optimize' },
@@ -939,6 +940,8 @@ const menuItems: MenuItem[] = [
         description: 'Floor operations',
         subItems: [
           { id: 'shopfloor-control', name: 'Shop Floor Control', href: '/production/shopfloor', description: 'Floor management' },
+          { id: 'andon-board', name: 'Andon Board', href: '/production/shopfloor/andon', description: 'Large display status' },
+          { id: 'machine-timeline', name: 'Machine Timeline', href: '/production/shopfloor/machine-timeline', description: 'Utilization timeline' },
           { id: 'floor-operations', name: 'Floor Operations', href: '/production/floor', description: 'Track operations' },
           { id: 'job-tracking', name: 'Job Tracking', href: '/production/shopfloor/tracking', description: 'Real-time tracking' },
           { id: 'operator-dashboard', name: 'Operator Dashboard', href: '/production/shopfloor/operator', description: 'Operator view' },
@@ -951,6 +954,7 @@ const menuItems: MenuItem[] = [
         href: '#',
         description: 'Quality management',
         subItems: [
+          { id: 'quality-dashboard', name: 'Quality Dashboard', href: '/production/quality/dashboard', description: 'SPC & Pareto analysis' },
           { id: 'all-quality', name: 'Quality Inspections', href: '/production/quality', description: 'All inspections' },
           { id: 'create-inspection', name: 'Create Inspection', href: '/production/quality/add', description: 'New inspection' },
           { id: 'quality-plans', name: 'Quality Plans', href: '/production/quality/plans', description: 'Inspection plans' },
