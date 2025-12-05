@@ -42,3 +42,16 @@ export type { Recommendation, RecommendationType, RecommendationImpact, SmartRec
 
 export { NaturalLanguageQuery } from './NaturalLanguageQuery';
 export type { QueryResult, SuggestedQuery, NaturalLanguageQueryProps } from './NaturalLanguageQuery';
+
+// Connected Supply Chain Components
+export { SupplyChainMap } from './SupplyChainMap';
+export type { Shipment, SupplyNode, GeoLocation, ShipmentStatus, TransportMode, LocationType, SupplyChainMapProps } from './SupplyChainMap';
+
+export { VendorRiskHeatmap } from './VendorRiskHeatmap';
+export type { Vendor, RiskScore, RiskLevel, RiskCategory, VendorTier, VendorRiskHeatmapProps } from './VendorRiskHeatmap';
+
+export { LeadTimeTimeline } from './LeadTimeTimeline';
+export type { Order, Milestone, OrderStatus, MilestoneStatus, LeadTimeStats, LeadTimeTimelineProps } from './LeadTimeTimeline';
+
+export { InventoryOptimization } from './InventoryOptimization';
+export type { ReorderSuggestion, DemandForecast, CostImpact, ReorderUrgency, InventoryStatus, AIConfidence, InventoryMetrics, InventoryOptimizationProps } from './InventoryOptimization';

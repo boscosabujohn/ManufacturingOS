@@ -1044,6 +1044,19 @@ const menuItems: MenuItem[] = [
         ],
       },
       {
+        id: 'supply-chain',
+        name: '🔗 Connected Supply Chain',
+        href: '#',
+        description: 'End-to-end visibility',
+        subItems: [
+          { id: 'supply-chain-dashboard', name: 'Supply Chain Dashboard', href: '/production/supply-chain', description: 'Supply chain overview' },
+          { id: 'supply-chain-map', name: 'Visibility Map', href: '/production/supply-chain?view=supply-chain', description: 'Global shipment tracking' },
+          { id: 'vendor-risk', name: 'Vendor Risk Heatmap', href: '/production/supply-chain?view=vendor-risk', description: 'Vendor reliability analysis' },
+          { id: 'lead-time', name: 'Lead Time Tracking', href: '/production/supply-chain?view=lead-time', description: 'Delivery timeline' },
+          { id: 'inventory-optimization', name: 'Inventory AI', href: '/production/supply-chain?view=inventory', description: 'AI reorder suggestions' },
+        ],
+      },
+      {
         id: 'advanced-features',
         name: '✨ Advanced Features',
         href: '#',
