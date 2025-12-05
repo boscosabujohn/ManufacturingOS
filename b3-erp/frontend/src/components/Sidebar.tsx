@@ -1298,6 +1298,7 @@ const menuItems: MenuItem[] = [
           { id: 'all-po', name: 'All Purchase Orders', href: '/procurement/purchase-orders', description: 'PO list' },
           { id: 'create-po', name: 'Create PO', href: '/procurement/purchase-orders/create', description: 'New PO' },
           { id: 'po-tracking', name: 'PO Tracking', href: '/procurement/po', description: 'Track orders' },
+          { id: 'po-approval', name: 'PO Approval Workflow', href: '/procurement/purchase-orders/approval', description: 'Approval chain' },
         ],
       },
       {
@@ -1309,6 +1310,7 @@ const menuItems: MenuItem[] = [
           { id: 'grn-list', name: 'Goods Receipt Notes', href: '/procurement/grn', description: 'All GRNs' },
           { id: 'create-grn', name: 'Create GRN', href: '/procurement/grn/add', description: 'New GRN' },
           { id: 'quality-inspection', name: 'Quality Inspection', href: '/procurement/quality-assurance', description: 'QC at receiving' },
+          { id: 'three-way-match', name: '3-Way Matching', href: '/procurement/grn/matching', description: 'PO-GRN-Invoice match' },
         ],
       },
       {
@@ -1323,6 +1325,7 @@ const menuItems: MenuItem[] = [
           { id: 'vendor-onboarding', name: 'Vendor Onboarding', href: '/procurement/supplier-onboarding', description: 'Onboard suppliers' },
           { id: 'vendor-performance', name: 'Vendor Performance', href: '/procurement/vendor-performance', description: 'Performance metrics' },
           { id: 'vendor-scorecard', name: 'Supplier Scorecard', href: '/procurement/supplier-scorecard', description: 'Vendor ratings' },
+          { id: 'vendor-comparison', name: 'Vendor Comparison', href: '/procurement/vendors/comparison', description: 'Side-by-side compare' },
         ],
       },
       {
