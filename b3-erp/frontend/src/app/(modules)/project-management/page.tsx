@@ -37,6 +37,7 @@ import {
   TeamMembersModal,
   QuickNotesModal,
 } from '@/components/project-management/ProjectListModals';
+import { WorkflowQuickActions } from '@/components/project-management/WorkflowQuickActions';
 
 interface Project {
   id: string;
@@ -487,7 +488,7 @@ export default function ProjectsListPage() {
           )}
         </div>
         <Link
-          href="/project-management/create"
+          href="/project-management/create-enhanced"
           className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
         >
           <Plus className="w-5 h-5" />
@@ -550,6 +551,9 @@ export default function ProjectsListPage() {
           </div>
         </div>
       </div>
+
+      {/* Workflow Quick Actions - Enhanced Forms Navigation */}
+      <WorkflowQuickActions variant="compact" />
 
       {/* Filters */}
       <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
