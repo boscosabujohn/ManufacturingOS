@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Project } from '../entities/project.entity';
+import { Project } from '../../project/entities/project.entity';
 // Assuming we might have a Claim entity later, for now using a simple structure or linking to Finance
 
 @Injectable()
@@ -21,8 +21,7 @@ export class TASettlementService {
         // For now, we'll simulate it and log the expense to the project
 
         // Log as project expense
-        project.totalExpenditure += amount;
-        project.actualCost += amount;
+        project.budgetSpent = (Number(project.budgetSpent) || 0) + amount;
 
         await this.projectRepository.save(project);
 

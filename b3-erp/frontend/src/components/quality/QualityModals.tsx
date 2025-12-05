@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { X, Save, Plus, Trash2, Eye, Edit3, CheckCircle, AlertCircle, User, MapPin, Calendar, ClipboardList, Hash, Package, FileText, CheckSquare } from 'lucide-react';
+import { X, Save, Plus, Trash2, Eye, Edit3, CheckCircle, AlertCircle, User, MapPin, Calendar, ClipboardList, Hash, Package, FileText, CheckSquare, Play } from 'lucide-react';
 
 // Interfaces
 export interface DefectCategory {
@@ -321,9 +321,10 @@ interface EditInspectionModalProps {
   onClose: () => void;
   onSave: (data: Inspection) => void;
   inspection?: Inspection | null;
+  mode?: 'edit' | 'conduct';
 }
 
-export const EditInspectionModal: React.FC<EditInspectionModalProps> = ({ isOpen, onClose, onSave, inspection }) => {
+export const EditInspectionModal: React.FC<EditInspectionModalProps> = ({ isOpen, onClose, onSave, inspection, mode = 'edit' }) => {
   const [formData, setFormData] = useState<Partial<Inspection>>({
     workOrderId: inspection?.workOrderId || '',
     productName: inspection?.productName || '',
@@ -440,7 +441,9 @@ export const EditInspectionModal: React.FC<EditInspectionModalProps> = ({ isOpen
       <div className="bg-white rounded-lg w-full max-w-4xl max-h-[90vh] overflow-y-auto">
         {/* Header */}
         <div className="sticky top-0 bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-6 py-4 flex items-center justify-between">
-          <h2 className="text-xl font-bold">{inspection ? 'Edit' : 'Create'} Inspection</h2>
+          <h2 className="text-xl font-bold">
+            {mode === 'conduct' ? 'Conduct Inspection' : (inspection ? 'Edit Inspection' : 'Create Inspection')}
+          </h2>
           <button onClick={onClose} className="text-white hover:bg-white/20 rounded p-1">
             <X className="h-5 w-5" />
           </button>
@@ -457,9 +460,8 @@ export const EditInspectionModal: React.FC<EditInspectionModalProps> = ({ isOpen
                   type="text"
                   value={formData.workOrderId}
                   onChange={(e) => setFormData({ ...formData, workOrderId: e.target.value })}
-                  className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                    errors.workOrderId ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.workOrderId ? 'border-red-500' : 'border-gray-300'
+                    }`}
                   placeholder="WO-2024-001"
                   required
                 />
@@ -472,9 +474,8 @@ export const EditInspectionModal: React.FC<EditInspectionModalProps> = ({ isOpen
                   type="text"
                   value={formData.productName}
                   onChange={(e) => setFormData({ ...formData, productName: e.target.value })}
-                  className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                    errors.productName ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.productName ? 'border-red-500' : 'border-gray-300'
+                    }`}
                   placeholder="Premium Modular Kitchen"
                   required
                 />
@@ -551,9 +552,8 @@ export const EditInspectionModal: React.FC<EditInspectionModalProps> = ({ isOpen
                       inspectorId: `INS-${selectedInspector.replace(/\s/g, '')}`
                     });
                   }}
-                  className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                    errors.inspector ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.inspector ? 'border-red-500' : 'border-gray-300'
+                    }`}
                   required
                 >
                   <option value="">Select Inspector</option>
@@ -576,9 +576,8 @@ export const EditInspectionModal: React.FC<EditInspectionModalProps> = ({ isOpen
                       workCenterId: `WC-${selectedWorkCenter.replace(/\s/g, '')}`
                     });
                   }}
-                  className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                    errors.workCenter ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.workCenter ? 'border-red-500' : 'border-gray-300'
+                    }`}
                   required
                 >
                   <option value="">Select Work Center</option>
@@ -601,9 +600,8 @@ export const EditInspectionModal: React.FC<EditInspectionModalProps> = ({ isOpen
                   type="number"
                   value={formData.sampleSize}
                   onChange={(e) => setFormData({ ...formData, sampleSize: parseInt(e.target.value) || 0 })}
-                  className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                    errors.sampleSize ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.sampleSize ? 'border-red-500' : 'border-gray-300'
+                    }`}
                   placeholder="100"
                   min="1"
                   required
@@ -617,9 +615,8 @@ export const EditInspectionModal: React.FC<EditInspectionModalProps> = ({ isOpen
                   type="number"
                   value={formData.defectsFound}
                   onChange={(e) => setFormData({ ...formData, defectsFound: parseInt(e.target.value) || 0 })}
-                  className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                    errors.defectsFound ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.defectsFound ? 'border-red-500' : 'border-gray-300'
+                    }`}
                   placeholder="5"
                   min="0"
                   required
@@ -730,7 +727,9 @@ export const EditInspectionModal: React.FC<EditInspectionModalProps> = ({ isOpen
               className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center space-x-2"
             >
               <Save className="h-4 w-4" />
-              <span>{inspection ? 'Update' : 'Create'} Inspection</span>
+              <span>
+                {mode === 'conduct' ? 'Submit Results' : (inspection ? 'Update Inspection' : 'Create Inspection')}
+              </span>
             </button>
           </div>
         </form>
@@ -936,9 +935,8 @@ export const ApproveInspectionModal: React.FC<ApproveInspectionModalProps> = ({
                 setComments(e.target.value);
                 setError('');
               }}
-              className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 ${
-                error && !comments.trim() ? 'border-red-500' : 'border-gray-300'
-              }`}
+              className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 ${error && !comments.trim() ? 'border-red-500' : 'border-gray-300'
+                }`}
               rows={4}
               placeholder="Provide detailed comments about your decision..."
               required
@@ -962,9 +960,8 @@ export const ApproveInspectionModal: React.FC<ApproveInspectionModalProps> = ({
                   setSignature(e.target.value);
                   setError('');
                 }}
-                className={`flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 ${
-                  error && !signature.trim() ? 'border-red-500' : 'border-gray-300'
-                }`}
+                className={`flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 ${error && !signature.trim() ? 'border-red-500' : 'border-gray-300'
+                  }`}
                 placeholder="Enter your name or authorization code"
                 required
               />
@@ -995,13 +992,12 @@ export const ApproveInspectionModal: React.FC<ApproveInspectionModalProps> = ({
             </button>
             <button
               type="submit"
-              className={`px-4 py-2 text-white rounded-lg transition-colors flex items-center space-x-2 ${
-                decision === 'approve'
-                  ? 'bg-green-600 hover:bg-green-700'
-                  : decision === 'reject'
+              className={`px-4 py-2 text-white rounded-lg transition-colors flex items-center space-x-2 ${decision === 'approve'
+                ? 'bg-green-600 hover:bg-green-700'
+                : decision === 'reject'
                   ? 'bg-red-600 hover:bg-red-700'
                   : 'bg-orange-600 hover:bg-orange-700'
-              }`}
+                }`}
             >
               <CheckCircle className="h-4 w-4" />
               <span>Submit Decision</span>

@@ -31,7 +31,7 @@ export class WorkflowTemplateController {
     createTemplate(@Body() template: Omit<WorkflowTemplate, 'id' | 'createdAt' | 'updatedAt'>) {
         return {
             success: true,
-            data: this.templateService.createTemplate(template),
+            data: this.templateService.createTemplate(template as any),
         };
     }
 

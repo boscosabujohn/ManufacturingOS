@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Project } from '../entities/project.entity';
+import { Project } from '../../project/entities/project.entity';
 
 @Injectable()
 export class EmergencySpareService {
@@ -30,7 +30,7 @@ export class EmergencySpareService {
 
         // In a real system, we would check inventory here or trigger a purchase requisition
         // For now, we just log the request
-        console.log(`Emergency spare requested for project ${project.projectName}: ${quantity} x ${partId} (${urgency})`);
+        console.log(`Emergency spare requested for project ${project.name}: ${quantity} x ${partId} (${urgency})`);
 
         return request;
     }

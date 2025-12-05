@@ -3,6 +3,12 @@ import * as dotenv from 'dotenv';
 
 dotenv.config();
 
+console.log('DB Config:', {
+    host: process.env.DB_HOST,
+    ssl: process.env.DB_SSL === 'true',
+    sslConfig: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : undefined
+});
+
 export const AppDataSource = new DataSource({
     type: 'postgres',
     host: process.env.DB_HOST || 'localhost',

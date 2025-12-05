@@ -15,6 +15,7 @@ import {
   QualityAlert,
   AuditPlan,
   AuditFindings,
+  NCR, // Added NCR
 } from './entities';
 
 // Services
@@ -30,6 +31,7 @@ import {
   QualityAlertService,
   AuditPlanService,
   AuditFindingsService,
+  NCRService, // Added NCRService
 } from './services';
 import { CAPAManagementService } from './services/capa-management.service';
 
@@ -46,6 +48,7 @@ import {
   QualityAlertController,
   AuditPlanController,
   AuditFindingsController,
+  NCRController, // Added NCRController
 } from './controllers';
 
 @Module({
@@ -63,6 +66,7 @@ import {
       QualityAlert,
       AuditPlan,
       AuditFindings,
+      NCR, // Added NCR
     ]),
     WorkflowModule,
   ],
@@ -78,6 +82,7 @@ import {
     QualityAlertController,
     AuditPlanController,
     AuditFindingsController,
+    NCRController, // Added NCRController
   ],
   providers: [
     QCTemplateService,
@@ -92,6 +97,7 @@ import {
     AuditPlanService,
     AuditFindingsService,
     CAPAManagementService,
+    NCRService, // Added NCRService
   ],
   exports: [
     QCTemplateService,
@@ -106,6 +112,7 @@ import {
     AuditPlanService,
     AuditFindingsService,
     CAPAManagementService,
+    NCRService, // Added NCRService
   ],
 })
-export class QualityModule {}
+export class QualityModule { }

@@ -269,6 +269,19 @@ export class InspectionService {
     };
   }
 
+  async export(filters?: {
+    status?: InspectionStatus;
+    inspectionType?: string;
+    startDate?: Date;
+    endDate?: Date;
+  }): Promise<{ url: string; message: string }> {
+    // Mock export functionality
+    return {
+      url: 'https://example.com/reports/inspection-report.pdf',
+      message: 'Export generated successfully',
+    };
+  }
+
   private mapToResponseDto(inspection: Inspection): InspectionResponseDto {
     return {
       id: inspection.id,

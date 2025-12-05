@@ -1,624 +1,482 @@
-'use client';
+'use client'
 
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react'
+import {
+  PieChart,
+  Pie,
+  BarChart,
+  Bar,
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+  Cell,
+} from 'recharts'
 import {
   DollarSign,
-  Plus,
-  Save,
   TrendingUp,
   TrendingDown,
-  AlertCircle,
-  Edit,
-  Trash2,
-  FileText,
+  AlertTriangle,
+  CheckCircle,
   Download,
-  Upload,
-  History,
-  PieChart,
-  Target,
-  Bell,
-  Lock,
-  BarChart3,
+  Plus,
   Calendar,
-} from 'lucide-react';
-import {
-  AddBudgetItemModal,
-  EditBudgetItemModal,
-  RecordActualCostModal,
-  VarianceAnalysisModal,
-  BudgetForecastModal,
-  CostBreakdownModal,
-  BudgetAllocationModal,
-  BudgetHistoryModal,
-  BudgetAlertSettingsModal,
-  BudgetApprovalModal,
-  BudgetBaselineModal,
-  BudgetTemplateModal,
-  ExportBudgetModal,
-  ImportBudgetModal,
-  BudgetComparisonModal,
-} from '@/components/project-management/BudgetModals';
+} from 'lucide-react'
+import { projectManagementService, Project, ProjectBudget } from '@/services/ProjectManagementService'
 
-interface BudgetItem {
-  id: string;
-  category: string;
-  subcategory: string;
-  description: string;
-  estimatedCost: number;
-  actualCost: number;
-  variance: number;
-  variancePercent: number;
-  status: 'Under Budget' | 'On Budget' | 'Over Budget';
+interface BudgetCategory {
+  category: string
+  budgetAllocated: number
+  budgetSpent: number
+  forecast: number
+  variance: number
+  variancePercent: number
 }
 
-const mockBudgetItems: BudgetItem[] = [
-  {
-    id: '1',
-    category: 'Equipment',
-    subcategory: 'Cooking Equipment',
-    description: 'Gas ranges, ovens, fryers',
-    estimatedCost: 2800000,
-    actualCost: 2775000,
-    variance: 25000,
-    variancePercent: 0.89,
-    status: 'Under Budget',
-  },
-  {
-    id: '2',
-    category: 'Equipment',
-    subcategory: 'Refrigeration',
-    description: 'Walk-in coolers, freezers',
-    estimatedCost: 2200000,
-    actualCost: 2150000,
-    variance: 50000,
-    variancePercent: 2.27,
-    status: 'Under Budget',
-  },
-  {
-    id: '3',
-    category: 'Equipment',
-    subcategory: 'HVAC & Exhaust',
-    description: 'Exhaust hoods, ventilation',
-    estimatedCost: 800000,
-    actualCost: 875000,
-    variance: -75000,
-    variancePercent: -9.38,
-    status: 'Over Budget',
-  },
-  {
-    id: '4',
-    category: 'Civil Work',
-    subcategory: 'Floor Preparation',
-    description: 'Flooring, waterproofing',
-    estimatedCost: 300000,
-    actualCost: 320000,
-    variance: -20000,
-    variancePercent: -6.67,
-    status: 'Over Budget',
-  },
-  {
-    id: '5',
-    category: 'Civil Work',
-    subcategory: 'Plumbing',
-    description: 'Pipes, drainage, fixtures',
-    estimatedCost: 250000,
-    actualCost: 270000,
-    variance: -20000,
-    variancePercent: -8.0,
-    status: 'Over Budget',
-  },
-  {
-    id: '6',
-    category: 'Civil Work',
-    subcategory: 'Electrical',
-    description: 'Wiring, panels, lighting',
-    estimatedCost: 250000,
-    actualCost: 260000,
-    variance: -10000,
-    variancePercent: -4.0,
-    status: 'Over Budget',
-  },
-  {
-    id: '7',
-    category: 'Labor',
-    subcategory: 'Installation',
-    description: 'Installation crew wages',
-    estimatedCost: 600000,
-    actualCost: 420000,
-    variance: 180000,
-    variancePercent: 30.0,
-    status: 'Under Budget',
-  },
-  {
-    id: '8',
-    category: 'Labor',
-    subcategory: 'Supervision',
-    description: 'Project manager, supervisors',
-    estimatedCost: 400000,
-    actualCost: 280000,
-    variance: 120000,
-    variancePercent: 30.0,
-    status: 'Under Budget',
-  },
-  {
-    id: '9',
-    category: 'Testing & QC',
-    subcategory: 'Quality Inspection',
-    description: 'QC testing, certifications',
-    estimatedCost: 200000,
-    actualCost: 0,
-    variance: 200000,
-    variancePercent: 100.0,
-    status: 'Under Budget',
-  },
-  {
-    id: '10',
-    category: 'Commissioning',
-    subcategory: 'Testing & Training',
-    description: 'Final testing, staff training',
-    estimatedCost: 300000,
-    actualCost: 0,
-    variance: 300000,
-    variancePercent: 100.0,
-    status: 'Under Budget',
-  },
-  {
-    id: '11',
-    category: 'Contingency',
-    subcategory: 'Buffer',
-    description: 'Contingency reserve',
-    estimatedCost: 400000,
-    actualCost: 50000,
-    variance: 350000,
-    variancePercent: 87.5,
-    status: 'Under Budget',
-  },
-];
+interface SpendingTrend {
+  month: string
+  planned: number
+  actual: number
+  forecast: number
+}
 
-export default function BudgetPlanningPage() {
-  const [budgetItems, setBudgetItems] = useState<BudgetItem[]>(mockBudgetItems);
-  const [showAddModal, setShowAddModal] = useState(false);
+const COLORS = {
+  labor: '#3b82f6',
+  materials: '#10b981',
+  equipment: '#f59e0b',
+  subcontractor: '#8b5cf6',
+  other: '#6b7280',
+}
 
-  // Modal states
-  const [showEditItem, setShowEditItem] = useState(false);
-  const [showRecordCost, setShowRecordCost] = useState(false);
-  const [showVarianceAnalysis, setShowVarianceAnalysis] = useState(false);
-  const [showForecast, setShowForecast] = useState(false);
-  const [showCostBreakdown, setShowCostBreakdown] = useState(false);
-  const [showAllocation, setShowAllocation] = useState(false);
-  const [showHistory, setShowHistory] = useState(false);
-  const [showAlertSettings, setShowAlertSettings] = useState(false);
-  const [showApproval, setShowApproval] = useState(false);
-  const [showBaseline, setShowBaseline] = useState(false);
-  const [showTemplate, setShowTemplate] = useState(false);
-  const [showExport, setShowExport] = useState(false);
-  const [showImport, setShowImport] = useState(false);
-  const [showComparison, setShowComparison] = useState(false);
-  const [selectedItem, setSelectedItem] = useState<BudgetItem | null>(null);
+export default function BudgetManagementPage() {
+  const [budgetData, setBudgetData] = useState<BudgetCategory[]>([])
+  const [spendingTrend, setSpendingTrend] = useState<SpendingTrend[]>([])
+  const [projects, setProjects] = useState<Project[]>([])
+  const [selectedProjectId, setSelectedProjectId] = useState<string>('')
+  const [isLoading, setIsLoading] = useState(true)
+  const [selectedCategory, setSelectedCategory] = useState<string>('all')
 
-  // Calculate totals
-  const estimatedCost = budgetItems.reduce((sum, item) => sum + item.estimatedCost, 0);
-  const actualCost = budgetItems.reduce((sum, item) => sum + item.actualCost, 0);
-  const variance = estimatedCost - actualCost;
-  const variancePercent = (variance / estimatedCost) * 100;
-  
-  const totals = {
-    estimatedCost,
-    actualCost,
-    variance,
-    variancePercent,
-  };
+  useEffect(() => {
+    fetchProjects()
+  }, [])
 
-  // Group by category
-  const categories = Array.from(new Set(budgetItems.map(item => item.category)));
-  const categorySummary = categories.map(category => {
-    const categoryItems = budgetItems.filter(item => item.category === category);
-    const estimated = categoryItems.reduce((sum, item) => sum + item.estimatedCost, 0);
-    const actual = categoryItems.reduce((sum, item) => sum + item.actualCost, 0);
-    const variance = estimated - actual;
-    return {
-      category,
-      estimated,
-      actual,
-      variance,
-      variancePercent: (variance / estimated) * 100,
-    };
-  });
-
-  const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat('en-IN', {
-      style: 'currency',
-      currency: 'INR',
-      minimumFractionDigits: 0,
-    }).format(amount);
-  };
-
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'Under Budget': return 'bg-green-100 text-green-700';
-      case 'On Budget': return 'bg-blue-100 text-blue-700';
-      case 'Over Budget': return 'bg-red-100 text-red-700';
-      default: return 'bg-gray-100 text-gray-700';
+  useEffect(() => {
+    if (selectedProjectId) {
+      fetchBudgetData(selectedProjectId)
     }
-  };
+  }, [selectedProjectId])
 
-  // Modal handlers
-  const handleAddItem = (item: any) => {
-    console.log('Adding budget item:', item);
-    setShowAddModal(false);
-  };
+  const fetchProjects = async () => {
+    try {
+      const data = await projectManagementService.getProjects()
+      setProjects(data)
+      if (data.length > 0) {
+        setSelectedProjectId(data[0].id)
+      } else {
+        setIsLoading(false)
+      }
+    } catch (error) {
+      console.error('Failed to fetch projects:', error)
+      setIsLoading(false)
+    }
+  }
 
-  const handleEditItem = (item: any) => {
-    console.log('Editing budget item:', item);
-    setShowEditItem(false);
-    setSelectedItem(null);
-  };
+  const fetchBudgetData = async (projectId: string) => {
+    setIsLoading(true)
+    try {
+      const budgets = await projectManagementService.getBudgets(projectId)
 
-  const handleRecordCost = (cost: any) => {
-    console.log('Recording actual cost:', cost);
-    setShowRecordCost(false);
-    setSelectedItem(null);
-  };
+      // Map API data to UI format
+      const mappedBudgets: BudgetCategory[] = budgets.map(b => {
+        const variance = b.budgetAllocated - b.budgetSpent
+        const variancePercent = b.budgetAllocated > 0 ? (variance / b.budgetAllocated) * 100 : 0
+        return {
+          category: b.category,
+          budgetAllocated: b.budgetAllocated,
+          budgetSpent: b.budgetSpent,
+          forecast: b.forecastCost,
+          variance: variance,
+          variancePercent: variancePercent
+        }
+      })
 
-  const handleAllocation = (allocation: any) => {
-    console.log('Applying budget allocation:', allocation);
-    setShowAllocation(false);
-  };
+      setBudgetData(mappedBudgets)
 
-  const handleAlertSettings = (settings: any) => {
-    console.log('Saving alert settings:', settings);
-    setShowAlertSettings(false);
-  };
+      // Mock trend data for now as API doesn't provide historical trend yet
+      // In a real implementation, we would fetch this from a separate endpoint or aggregate time logs
+      const mockTrend: SpendingTrend[] = [
+        { month: 'Nov', planned: 15000, actual: 14500, forecast: 15000 },
+        { month: 'Dec', planned: 30000, actual: 28000, forecast: 31000 },
+        { month: 'Jan', planned: 55000, actual: 52000, forecast: 57000 },
+        { month: 'Feb', planned: 80000, actual: 75700, forecast: 82300 },
+        { month: 'Mar', planned: 100000, actual: 95000, forecast: 104000 },
+        { month: 'Apr', planned: 110000, actual: 105700, forecast: 114800 },
+      ]
+      setSpendingTrend(mockTrend)
 
-  const handleApproval = (approval: any) => {
-    console.log('Submitting for approval:', approval);
-    setShowApproval(false);
-  };
+    } catch (error) {
+      console.error('Failed to fetch budget data:', error)
+    } finally {
+      setIsLoading(false)
+    }
+  }
 
-  const handleBaseline = (baseline: any) => {
-    console.log('Setting baseline:', baseline);
-    setShowBaseline(false);
-  };
+  const totalBudget = budgetData.reduce((sum, cat) => sum + cat.budgetAllocated, 0)
+  const totalSpent = budgetData.reduce((sum, cat) => sum + cat.budgetSpent, 0)
+  const totalForecast = budgetData.reduce((sum, cat) => sum + cat.forecast, 0)
+  const totalVariance = totalBudget - totalSpent // Variance is typically Budget - Actual
+  const utilizationPercent = totalBudget > 0 ? (totalSpent / totalBudget) * 100 : 0
 
-  const handleTemplate = (template: any) => {
-    console.log('Applying template:', template);
-    setShowTemplate(false);
-  };
+  const pieData = budgetData.map((cat) => ({
+    name: cat.category,
+    value: cat.budgetAllocated,
+  }))
 
-  const handleExport = (format: string) => {
-    console.log('Exporting budget:', format);
-    setShowExport(false);
-  };
+  const varianceData = budgetData.map((cat) => ({
+    category: cat.category,
+    planned: cat.budgetAllocated,
+    actual: cat.budgetSpent,
+    variance: cat.variance,
+  }))
 
-  const handleImport = (file: File) => {
-    console.log('Importing budget:', file);
-    setShowImport(false);
-  };
+  const getVarianceColor = (variance: number): string => {
+    // Positive variance (under budget) is green, negative (over budget) is red
+    // Note: The calculation above was Budget - Spent. 
+    // If Budget (50k) - Spent (45k) = 5k (Positive) -> Under Budget (Good) -> Green
+    // If Budget (50k) - Spent (55k) = -5k (Negative) -> Over Budget (Bad) -> Red
+    if (variance > 0) return 'text-green-600 bg-green-100'
+    if (variance < 0) return 'text-red-600 bg-red-100'
+    return 'text-gray-600 bg-gray-100'
+  }
 
-  const openEditModal = (item: BudgetItem) => {
-    setSelectedItem(item);
-    setShowEditItem(true);
-  };
+  const getVarianceIcon = (variance: number) => {
+    if (variance > 0) return <TrendingDown className="h-4 w-4" /> // Trending down (spending less than budget) is good? Or maybe just check circle
+    if (variance < 0) return <TrendingUp className="h-4 w-4" /> // Trending up (over budget)
+    return <CheckCircle className="h-4 w-4" />
+  }
 
-  const openRecordCostModal = (item: BudgetItem) => {
-    setSelectedItem(item);
-    setShowRecordCost(true);
-  };
-
-  const openVarianceModal = (item: BudgetItem) => {
-    setSelectedItem(item);
-    setShowVarianceAnalysis(true);
-  };
-
-  const openHistoryModal = (item: BudgetItem) => {
-    setSelectedItem(item);
-    setShowHistory(true);
-  };
+  if (isLoading && projects.length === 0) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading budget data...</p>
+        </div>
+      </div>
+    )
+  }
 
   return (
-    <div className="w-full h-screen overflow-y-auto overflow-x-hidden">
-      <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
-        {/* Header Actions */}
-        <div className="flex justify-between mb-4">
-          <div className="flex gap-2">
-            <button
-              onClick={() => setShowTemplate(true)}
-              className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-            >
-              <FileText className="w-5 h-5" />
-              Templates
-            </button>
-            <button
-              onClick={() => setShowImport(true)}
-              className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-            >
-              <Upload className="w-5 h-5" />
-              Import
-            </button>
-            <button
-              onClick={() => setShowExport(true)}
-              className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-            >
-              <Download className="w-5 h-5" />
-              Export
-            </button>
-          </div>
-          <div className="flex gap-2">
-            <button
-              onClick={() => setShowForecast(true)}
-              className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-            >
-              <TrendingUp className="w-5 h-5" />
-              Forecast
-            </button>
-            <button
-              onClick={() => setShowCostBreakdown(true)}
-              className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-            >
-              <PieChart className="w-5 h-5" />
-              Breakdown
-            </button>
-            <button
-              onClick={() => setShowComparison(true)}
-              className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-            >
-              <BarChart3 className="w-5 h-5" />
-              Compare
-            </button>
-            <button
-              onClick={() => setShowAllocation(true)}
-              className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-            >
-              <Target className="w-5 h-5" />
-              Allocate
-            </button>
-            <button
-              onClick={() => setShowAlertSettings(true)}
-              className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-            >
-              <Bell className="w-5 h-5" />
-              Alerts
-            </button>
-            <button
-              onClick={() => setShowBaseline(true)}
-              className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-            >
-              <Target className="w-5 h-5" />
-              Baseline
-            </button>
-            <button
-              onClick={() => setShowApproval(true)}
-              className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-            >
-              <Lock className="w-5 h-5" />
-              Approve
-            </button>
-            <button
-              onClick={() => setShowAddModal(true)}
-              className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-            >
-              <Plus className="w-5 h-5" />
-              Add Item
-            </button>
-          </div>
+    <div className="p-6 space-y-6">
+      {/* Header */}
+      <div className="flex justify-between items-start">
+        <div>
+          <h1 className="text-2xl font-bold text-gray-900">Budget Management</h1>
+          <p className="text-gray-500 mt-1">Cost tracking, variance analysis, and forecasting</p>
         </div>
-
-        {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <div className="flex items-center justify-between mb-2">
-            <p className="text-sm text-gray-600">Total Budget</p>
-            <DollarSign className="w-5 h-5 text-blue-600" />
-          </div>
-          <p className="text-2xl font-bold text-gray-900">{formatCurrency(totals.estimatedCost)}</p>
-          <p className="text-sm text-gray-500 mt-1">Estimated cost</p>
-        </div>
-
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <div className="flex items-center justify-between mb-2">
-            <p className="text-sm text-gray-600">Actual Spent</p>
-            <DollarSign className="w-5 h-5 text-purple-600" />
-          </div>
-          <p className="text-2xl font-bold text-purple-900">{formatCurrency(totals.actualCost)}</p>
-          <p className="text-sm text-gray-500 mt-1">
-            {Math.round((totals.actualCost / totals.estimatedCost) * 100)}% of budget
-          </p>
-        </div>
-
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <div className="flex items-center justify-between mb-2">
-            <p className="text-sm text-gray-600">Variance</p>
-            {totals.variance >= 0 ? (
-              <TrendingDown className="w-5 h-5 text-green-600" />
-            ) : (
-              <TrendingUp className="w-5 h-5 text-red-600" />
-            )}
-          </div>
-          <p className={`text-2xl font-bold ${totals.variance >= 0 ? 'text-green-900' : 'text-red-900'}`}>
-            {formatCurrency(Math.abs(totals.variance))}
-          </p>
-          <p className={`text-sm mt-1 ${totals.variance >= 0 ? 'text-green-600' : 'text-red-600'}`}>
-            {totals.variance >= 0 ? 'Under' : 'Over'} budget ({Math.abs(totals.variancePercent).toFixed(1)}%)
-          </p>
-        </div>
-
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <div className="flex items-center justify-between mb-2">
-            <p className="text-sm text-gray-600">Remaining</p>
-            <AlertCircle className="w-5 h-5 text-orange-600" />
-          </div>
-          <p className="text-2xl font-bold text-orange-900">
-            {formatCurrency(totals.estimatedCost - totals.actualCost)}
-          </p>
-          <p className="text-sm text-gray-500 mt-1">Available to spend</p>
-        </div>
-      </div>
-
-      {/* Category Summary */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200">
-        <div className="p-6 border-b border-gray-200">
-          <h2 className="text-xl font-semibold text-gray-900">Budget by Category</h2>
-        </div>
-        <div className="p-6">
-          <div className="space-y-4">
-            {categorySummary.map((cat, index) => (
-              <div key={index} className="bg-gray-50 rounded-lg p-4">
-                <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-lg font-semibold text-gray-900">{cat.category}</h3>
-                  <div className="text-right">
-                    <p className="text-sm font-medium text-gray-900">
-                      {formatCurrency(cat.actual)} / {formatCurrency(cat.estimated)}
-                    </p>
-                    <p className={`text-xs ${cat.variance >= 0 ? 'text-green-600' : 'text-red-600'}`}>
-                      {cat.variance >= 0 ? '↓' : '↑'} {formatCurrency(Math.abs(cat.variance))} ({Math.abs(cat.variancePercent).toFixed(1)}%)
-                    </p>
-                  </div>
-                </div>
-                <div className="w-full bg-gray-200 rounded-full h-3">
-                  <div
-                    className={`h-3 rounded-full ${
-                      cat.actual > cat.estimated ? 'bg-red-500' :
-                      cat.actual > cat.estimated * 0.9 ? 'bg-yellow-500' :
-                      'bg-green-500'
-                    }`}
-                    style={{ width: `${Math.min((cat.actual / cat.estimated) * 100, 100)}%` }}
-                  ></div>
-                </div>
-              </div>
+        <div className="flex gap-2 items-center">
+          <select
+            value={selectedProjectId}
+            onChange={(e) => setSelectedProjectId(e.target.value)}
+            className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 mr-4"
+          >
+            {projects.map((project) => (
+              <option key={project.id} value={project.id}>
+                {project.name}
+              </option>
             ))}
+          </select>
+          <button className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
+            <Plus className="h-4 w-4" />
+            Add Expense
+          </button>
+          <button className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
+            <Download className="h-4 w-4" />
+            Export Report
+          </button>
+        </div>
+      </div>
+
+      {/* Summary Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="bg-white p-6 rounded-lg border border-gray-200">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm text-gray-500">Total Budget</p>
+              <p className="text-3xl font-bold text-gray-900 mt-2">
+                ${(totalBudget / 1000).toFixed(0)}k
+              </p>
+              <p className="text-sm text-gray-500 mt-1">Allocated</p>
+            </div>
+            <div className="p-3 bg-blue-100 rounded-full">
+              <DollarSign className="h-8 w-8 text-blue-600" />
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-white p-6 rounded-lg border border-gray-200">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm text-gray-500">Total Spent</p>
+              <p className="text-3xl font-bold text-gray-900 mt-2">
+                ${(totalSpent / 1000).toFixed(0)}k
+              </p>
+              <p className="text-sm text-gray-500 mt-1">
+                {utilizationPercent.toFixed(1)}% utilized
+              </p>
+            </div>
+            <div className="p-3 bg-green-100 rounded-full">
+              <DollarSign className="h-8 w-8 text-green-600" />
+            </div>
+          </div>
+        </div>
+
+        <div
+          className={`bg-white p-6 rounded-lg border border-gray-200 ${totalVariance < 0 ? 'border-red-200' : 'border-green-200'
+            }`}
+        >
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm text-gray-500">Variance</p>
+              <p
+                className={`text-3xl font-bold mt-2 ${totalVariance < 0 ? 'text-red-600' : 'text-green-600'
+                  }`}
+              >
+                ${Math.abs(totalVariance / 1000).toFixed(1)}k
+              </p>
+              <p
+                className={`text-sm mt-1 flex items-center gap-1 ${totalVariance < 0 ? 'text-red-600' : 'text-green-600'
+                  }`}
+              >
+                {totalVariance < 0 ? <TrendingUp className="h-4 w-4" /> : <TrendingDown className="h-4 w-4" />}
+                {totalVariance < 0 ? 'Over' : 'Under'} budget
+              </p>
+            </div>
+            <div className={`p-3 rounded-full ${totalVariance < 0 ? 'bg-red-100' : 'bg-green-100'}`}>
+              {totalVariance < 0 ? (
+                <AlertTriangle className="h-8 w-8 text-red-600" />
+              ) : (
+                <CheckCircle className="h-8 w-8 text-green-600" />
+              )}
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-white p-6 rounded-lg border border-gray-200">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm text-gray-500">Forecast (EAC)</p>
+              <p className="text-3xl font-bold text-gray-900 mt-2">
+                ${(totalForecast / 1000).toFixed(0)}k
+              </p>
+              <p className="text-sm text-gray-500 mt-1">Estimate at completion</p>
+            </div>
+            <div className="p-3 bg-purple-100 rounded-full">
+              <TrendingUp className="h-8 w-8 text-purple-600" />
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Detailed Budget Items */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200">
+      {/* Charts Row 1 */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Budget Allocation Pie Chart */}
+        <div className="bg-white p-6 rounded-lg border border-gray-200">
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">Budget Allocation by Category</h3>
+          <ResponsiveContainer width="100%" height={300}>
+            <PieChart>
+              <Pie
+                data={pieData}
+                cx="50%"
+                cy="50%"
+                labelLine={false}
+                label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                outerRadius={100}
+                fill="#8884d8"
+                dataKey="value"
+              >
+                {pieData.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={COLORS[entry.name.toLowerCase() as keyof typeof COLORS] || '#8884d8'} />
+                ))}
+              </Pie>
+              <Tooltip formatter={(value: number) => `$${value.toLocaleString()}`} />
+            </PieChart>
+          </ResponsiveContainer>
+        </div>
+
+        {/* Planned vs Actual Bar Chart */}
+        <div className="bg-white p-6 rounded-lg border border-gray-200">
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">Planned vs Actual by Category</h3>
+          <ResponsiveContainer width="100%" height={300}>
+            <BarChart data={varianceData}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="category" />
+              <YAxis />
+              <Tooltip formatter={(value: number) => `$${value.toLocaleString()}`} />
+              <Legend />
+              <Bar dataKey="planned" fill="#3b82f6" name="Planned" />
+              <Bar dataKey="actual" fill="#10b981" name="Actual" />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+
+      {/* Spending Trend */}
+      <div className="bg-white p-6 rounded-lg border border-gray-200">
+        <h3 className="text-lg font-semibold text-gray-900 mb-4">Budget Burndown & Forecast</h3>
+        <ResponsiveContainer width="100%" height={300}>
+          <LineChart data={spendingTrend}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="month" />
+            <YAxis />
+            <Tooltip formatter={(value: number) => `$${value.toLocaleString()}`} />
+            <Legend />
+            <Line type="monotone" dataKey="planned" stroke="#3b82f6" strokeWidth={2} name="Planned" />
+            <Line type="monotone" dataKey="actual" stroke="#10b981" strokeWidth={2} name="Actual" />
+            <Line
+              type="monotone"
+              dataKey="forecast"
+              stroke="#f59e0b"
+              strokeWidth={2}
+              strokeDasharray="5 5"
+              name="Forecast"
+            />
+          </LineChart>
+        </ResponsiveContainer>
+        <div className="mt-4 flex items-center justify-center gap-6 text-sm">
+          <div className="flex items-center gap-2">
+            <div className="w-4 h-1 bg-blue-500"></div>
+            <span className="text-gray-700">Planned Spend</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-4 h-1 bg-green-500"></div>
+            <span className="text-gray-700">Actual Spend</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-4 h-1 bg-yellow-500" style={{ borderTop: '1px dashed #f59e0b' }}></div>
+            <span className="text-gray-700">Forecast</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Detailed Budget Table */}
+      <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
         <div className="p-6 border-b border-gray-200">
-          <h2 className="text-xl font-semibold text-gray-900">Budget Line Items</h2>
+          <h3 className="text-lg font-semibold text-gray-900">Budget Variance Analysis</h3>
+          <p className="text-sm text-gray-500 mt-1">Detailed breakdown by category</p>
         </div>
         <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead className="bg-gray-50 border-b border-gray-200">
+          <table className="min-w-full">
+            <thead className="bg-gray-50">
               <tr>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Category
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Description
+                  Budget Allocated
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Estimated
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Actual
+                  Budget Spent
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Variance
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Status
+                  Variance %
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Actions
+                  Forecast (EAC)
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Status
                 </th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {budgetItems.map((item) => (
-                <tr key={item.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4">
-                    <div>
-                      <p className="font-medium text-gray-900">{item.category}</p>
-                      <p className="text-sm text-gray-500">{item.subcategory}</p>
+              {budgetData.map((cat, index) => (
+                <tr key={index} className="hover:bg-gray-50">
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <div className="flex items-center gap-2">
+                      <div
+                        className="w-3 h-3 rounded"
+                        style={{ backgroundColor: COLORS[cat.category.toLowerCase() as keyof typeof COLORS] || '#8884d8' }}
+                      ></div>
+                      <span className="text-sm font-medium text-gray-900">{cat.category}</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
-                    <p className="text-sm text-gray-900">{item.description}</p>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    ${cat.budgetAllocated.toLocaleString()}
                   </td>
-                  <td className="px-6 py-4">
-                    <p className="text-sm font-medium text-gray-900">{formatCurrency(item.estimatedCost)}</p>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    ${cat.budgetSpent.toLocaleString()}
                   </td>
-                  <td className="px-6 py-4">
-                    <p className="text-sm font-medium text-gray-900">{formatCurrency(item.actualCost)}</p>
-                    <p className="text-xs text-gray-500">
-                      {item.estimatedCost > 0 ? Math.round((item.actualCost / item.estimatedCost) * 100) : 0}% spent
-                    </p>
-                  </td>
-                  <td className="px-6 py-4">
-                    <div className="flex items-center gap-1">
-                      {item.variance >= 0 ? (
-                        <TrendingDown className="w-4 h-4 text-green-600" />
-                      ) : (
-                        <TrendingUp className="w-4 h-4 text-red-600" />
-                      )}
-                      <div>
-                        <p className={`text-sm font-medium ${item.variance >= 0 ? 'text-green-900' : 'text-red-900'}`}>
-                          {formatCurrency(Math.abs(item.variance))}
-                        </p>
-                        <p className={`text-xs ${item.variance >= 0 ? 'text-green-600' : 'text-red-600'}`}>
-                          {Math.abs(item.variancePercent).toFixed(1)}%
-                        </p>
-                      </div>
-                    </div>
-                  </td>
-                  <td className="px-6 py-4">
-                    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusColor(item.status)}`}>
-                      {item.status}
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <span
+                      className={`text-sm font-medium ${cat.variance > 0 ? 'text-green-600' : cat.variance < 0 ? 'text-red-600' : 'text-gray-600'
+                        }`}
+                    >
+                      ${Math.abs(cat.variance).toLocaleString()}
                     </span>
                   </td>
-                  <td className="px-6 py-4">
-                    <div className="flex items-center gap-2">
-                      <button
-                        onClick={() => openEditModal(item)}
-                        className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
-                        title="Edit"
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <div className="flex items-center gap-1">
+                      {getVarianceIcon(cat.variance)}
+                      <span
+                        className={`text-sm font-medium ${cat.variance > 0 ? 'text-green-600' : cat.variance < 0 ? 'text-red-600' : 'text-gray-600'
+                          }`}
                       >
-                        <Edit className="w-4 h-4" />
-                      </button>
-                      <button
-                        onClick={() => openRecordCostModal(item)}
-                        className="p-2 text-purple-600 hover:bg-purple-50 rounded-lg transition-colors"
-                        title="Record Cost"
-                      >
-                        <DollarSign className="w-4 h-4" />
-                      </button>
-                      <button
-                        onClick={() => openVarianceModal(item)}
-                        className="p-2 text-orange-600 hover:bg-orange-50 rounded-lg transition-colors"
-                        title="Variance Analysis"
-                      >
-                        <TrendingUp className="w-4 h-4" />
-                      </button>
-                      <button
-                        onClick={() => openHistoryModal(item)}
-                        className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
-                        title="History"
-                      >
-                        <History className="w-4 h-4" />
-                      </button>
+                        {Math.abs(cat.variancePercent).toFixed(1)}%
+                      </span>
                     </div>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                    ${cat.forecast.toLocaleString()}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${getVarianceColor(cat.variance)}`}>
+                      {cat.variance > 0 ? 'Under Budget' : cat.variance < 0 ? 'Over Budget' : 'On Track'}
+                    </span>
                   </td>
                 </tr>
               ))}
               {/* Total Row */}
-              <tr className="bg-gray-100 font-bold">
-                <td className="px-6 py-4" colSpan={2}>
-                  <p className="text-sm font-bold text-gray-900">TOTAL</p>
+              <tr className="bg-gray-50 font-semibold">
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">TOTAL</td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  ${totalBudget.toLocaleString()}
                 </td>
-                <td className="px-6 py-4">
-                  <p className="text-sm font-bold text-gray-900">{formatCurrency(totals.estimatedCost)}</p>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  ${totalSpent.toLocaleString()}
                 </td>
-                <td className="px-6 py-4">
-                  <p className="text-sm font-bold text-gray-900">{formatCurrency(totals.actualCost)}</p>
+                <td className="px-6 py-4 whitespace-nowrap">
+                  <span
+                    className={`text-sm font-medium ${totalVariance > 0 ? 'text-green-600' : totalVariance < 0 ? 'text-red-600' : 'text-gray-600'
+                      }`}
+                  >
+                    ${Math.abs(totalVariance).toLocaleString()}
+                  </span>
                 </td>
-                <td className="px-6 py-4">
-                  <p className={`text-sm font-bold ${totals.variance >= 0 ? 'text-green-900' : 'text-red-900'}`}>
-                    {formatCurrency(Math.abs(totals.variance))}
-                  </p>
+                <td className="px-6 py-4 whitespace-nowrap">
+                  <span
+                    className={`text-sm font-medium ${totalVariance > 0 ? 'text-green-600' : totalVariance < 0 ? 'text-red-600' : 'text-gray-600'
+                      }`}
+                  >
+                    {totalBudget > 0 ? ((totalVariance / totalBudget) * 100).toFixed(1) : 0}%
+                  </span>
                 </td>
-                <td className="px-6 py-4" colSpan={2}>
-                  <p className={`text-sm font-bold ${totals.variance >= 0 ? 'text-green-900' : 'text-red-900'}`}>
-                    {totals.variance >= 0 ? 'Under Budget' : 'Over Budget'}
-                  </p>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  ${totalForecast.toLocaleString()}
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap">
+                  <span
+                    className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${getVarianceColor(totalVariance)}`}
+                  >
+                    {totalVariance > 0 ? 'Under Budget' : totalVariance < 0 ? 'Over Budget' : 'On Track'}
+                  </span>
                 </td>
               </tr>
             </tbody>
@@ -626,151 +484,31 @@ export default function BudgetPlanningPage() {
         </div>
       </div>
 
-      {/* Budget Utilization Chart */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <h2 className="text-xl font-semibold text-gray-900 mb-6">Budget Utilization</h2>
-        <div className="space-y-4">
-          {categorySummary.map((cat, index) => (
-            <div key={index}>
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-medium text-gray-900">{cat.category}</span>
-                <span className="text-sm text-gray-600">
-                  {Math.round((cat.actual / cat.estimated) * 100)}%
-                </span>
-              </div>
-              <div className="relative">
-                <div className="w-full bg-gray-200 rounded-full h-8">
-                  <div
-                    className={`h-8 rounded-full flex items-center justify-end pr-2 ${
-                      cat.actual > cat.estimated ? 'bg-red-500' :
-                      cat.actual > cat.estimated * 0.9 ? 'bg-yellow-500' :
-                      'bg-green-500'
-                    }`}
-                    style={{ width: `${Math.min((cat.actual / cat.estimated) * 100, 100)}%` }}
-                  >
-                    <span className="text-xs font-medium text-white">
-                      {formatCurrency(cat.actual)}
-                    </span>
-                  </div>
-                </div>
-                <div className="absolute top-1/2 transform -translate-y-1/2 right-2 text-xs text-gray-600">
-                  of {formatCurrency(cat.estimated)}
-                </div>
-              </div>
-            </div>
-          ))}
+      {/* Insights */}
+      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-lg border border-blue-200">
+        <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <DollarSign className="h-5 w-5 text-blue-600" />
+          Budget Insights & Recommendations
+        </h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="bg-white p-4 rounded-lg">
+            <h4 className="font-medium text-gray-900 mb-2">✅ Performing Well</h4>
+            <ul className="text-sm text-gray-600 space-y-1">
+              <li>• Labor costs 10% under budget</li>
+              <li>• Equipment spending on track</li>
+              <li>• Overall utilization at 96%</li>
+            </ul>
+          </div>
+          <div className="bg-white p-4 rounded-lg">
+            <h4 className="font-medium text-gray-900 mb-2">⚠️ Needs Attention</h4>
+            <ul className="text-sm text-gray-600 space-y-1">
+              <li>• Materials 6.7% over budget</li>
+              <li>• Other category showing 16% savings (review allocation)</li>
+              <li>• Forecast trending 4.8% over total budget</li>
+            </ul>
+          </div>
         </div>
       </div>
-
-      {/* Modals */}
-      <AddBudgetItemModal
-        isOpen={showAddModal}
-        onClose={() => setShowAddModal(false)}
-        onAdd={handleAddItem}
-      />
-
-      {selectedItem && (
-        <>
-          <EditBudgetItemModal
-            isOpen={showEditItem}
-            onClose={() => {
-              setShowEditItem(false);
-              setSelectedItem(null);
-            }}
-            item={selectedItem}
-            onSave={handleEditItem}
-          />
-
-          <RecordActualCostModal
-            isOpen={showRecordCost}
-            onClose={() => {
-              setShowRecordCost(false);
-              setSelectedItem(null);
-            }}
-            item={selectedItem}
-            onRecord={handleRecordCost}
-          />
-
-          <VarianceAnalysisModal
-            isOpen={showVarianceAnalysis}
-            onClose={() => {
-              setShowVarianceAnalysis(false);
-              setSelectedItem(null);
-            }}
-            item={selectedItem}
-          />
-
-          <BudgetHistoryModal
-            isOpen={showHistory}
-            onClose={() => {
-              setShowHistory(false);
-              setSelectedItem(null);
-            }}
-            item={selectedItem}
-          />
-        </>
-      )}
-
-      <BudgetForecastModal
-        isOpen={showForecast}
-        onClose={() => setShowForecast(false)}
-        budgetItems={budgetItems}
-      />
-
-      <CostBreakdownModal
-        isOpen={showCostBreakdown}
-        onClose={() => setShowCostBreakdown(false)}
-        budgetItems={budgetItems}
-      />
-
-      <BudgetAllocationModal
-        isOpen={showAllocation}
-        onClose={() => setShowAllocation(false)}
-        onAllocate={handleAllocation}
-      />
-
-      <BudgetAlertSettingsModal
-        isOpen={showAlertSettings}
-        onClose={() => setShowAlertSettings(false)}
-        onSave={handleAlertSettings}
-      />
-
-      <BudgetApprovalModal
-        isOpen={showApproval}
-        onClose={() => setShowApproval(false)}
-        onSubmit={handleApproval}
-      />
-
-      <BudgetBaselineModal
-        isOpen={showBaseline}
-        onClose={() => setShowBaseline(false)}
-        onSave={handleBaseline}
-      />
-
-      <BudgetTemplateModal
-        isOpen={showTemplate}
-        onClose={() => setShowTemplate(false)}
-        onApply={handleTemplate}
-      />
-
-      <ExportBudgetModal
-        isOpen={showExport}
-        onClose={() => setShowExport(false)}
-        onExport={handleExport}
-      />
-
-      <ImportBudgetModal
-        isOpen={showImport}
-        onClose={() => setShowImport(false)}
-        onImport={handleImport}
-      />
-
-      <BudgetComparisonModal
-        isOpen={showComparison}
-        onClose={() => setShowComparison(false)}
-        budgetItems={budgetItems}
-      />
-      </div>
     </div>
-  );
+  )
 }

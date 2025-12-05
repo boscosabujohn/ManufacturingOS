@@ -18,7 +18,7 @@ export class MobileController {
         const projects = await this.projectService.findAll();
         return projects.map(p => ({
             id: p.id,
-            name: p.projectName,
+            name: p.name,
             location: p.location,
             status: p.status,
             startDate: p.startDate,

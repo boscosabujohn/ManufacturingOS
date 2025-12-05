@@ -792,6 +792,32 @@ export default function PurchaseOrdersPage() {
                           <Eye className="h-4 w-4 text-gray-600" />
                           <span className="text-gray-700">View</span>
                         </Link>
+
+                        {/* Submit for Approval - show for draft or approved orders */}
+                        {(order.status === 'draft' || order.status === 'approved') && (
+                          <button
+                            onClick={() => {
+                              // TODO: API call to create approval request
+                              alert(`Submitting PO ${order.poNumber} for approval...`);
+                            }}
+                            className="inline-flex items-center gap-1.5 px-3 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 text-sm"
+                          >
+                            <CheckCircle className="h-4 w-4" />
+                            <span>Submit for Approval</span>
+                          </button>
+                        )}
+
+                        {/* Show Approval Status - for pending_approval */}
+                        {order.status === 'pending_approval' && (
+                          <Link
+                            href="/workflow/approvals"
+                            className="inline-flex items-center gap-1.5 px-3 py-2 bg-yellow-50 border border-yellow-300 text-yellow-700 rounded-lg hover:bg-yellow-100 text-sm font-medium"
+                          >
+                            <Clock className="h-4 w-4" />
+                            <span>View Approval Status</span>
+                          </Link>
+                        )}
+
                         <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
                           <Edit className="h-4 w-4 text-gray-600" />
                           <span className="text-gray-700">Edit</span>

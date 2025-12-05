@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Project, ProjectStatus } from './entities/project.entity';
+import { Project, ProjectStatus } from '../project/entities/project.entity';
 import { CreateProjectDto } from './dto/create-project.dto';
 import { UpdateProjectDto } from './dto/update-project.dto';
 
@@ -13,10 +13,23 @@ export class ProjectService {
     ) { }
 
     async create(createProjectDto: CreateProjectDto): Promise<Project> {
-        const projectNumber = await this.generateProjectNumber();
+        const projectCode = await this.generateProjectNumber();
         const project = this.projectRepository.create({
-            ...createProjectDto,
-            projectNumber,
+            name: createProjectDto.projectName,
+            clientName: createProjectDto.customer,
+            description: `Project for ${createProjectDto.customer}`, // Or add description to DTO
+            projectCode: projectCode,
+            salesOrderId: createProjectDto.salesOrderNumber,
+            projectManagerId: createProjectDto.projectManager,
+            startDate: createProjectDto.startDate ? new Date(createProjectDto.startDate) : undefined,
+            endDate: createProjectDto.endDate ? new Date(createProjectDto.endDate) : undefined,
+            plannedStart: createProjectDto.startDate ? new Date(createProjectDto.startDate) : undefined,
+            plannedEnd: createProjectDto.endDate ? new Date(createProjectDto.endDate) : undefined,
+            status: createProjectDto.status || ProjectStatus.PLANNING,
+            priority: createProjectDto.priority || 'medium',
+            budgetAllocated: createProjectDto.budget || 0,
+            location: createProjectDto.location, // Need to add location to entity?
+            // projectType: createProjectDto.projectType, // Need to add projectType to entity?
         });
         return this.projectRepository.save(project);
     }

@@ -317,7 +317,7 @@ export default function KnowledgePage() {
   };
 
   return (
-    <div className="container mx-auto min-h-screen px-4 sm:px-6 lg:px-8 py-6 max-w-7xl">
+    <div className="container mx-auto min-h-screen px-4 sm:px-6 lg:px-8 py-6 w-full max-w-full">
       <div className="mb-6 flex items-start gap-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 flex-1">
           <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
@@ -555,21 +555,21 @@ export default function KnowledgePage() {
                       <button
                         onClick={() => router.push(`/support/knowledge/view/${article.id}`)}
                         className="p-1.5 text-blue-600 hover:bg-blue-50 rounded transition-colors"
-                       
+
                       >
                         <Eye className="h-4 w-4" />
                       </button>
                       <button
                         onClick={() => router.push(`/support/knowledge/edit/${article.id}`)}
                         className="p-1.5 text-green-600 hover:bg-green-50 rounded transition-colors"
-                       
+
                       >
                         <Edit className="h-4 w-4" />
                       </button>
                       <button
                         onClick={() => handleDeleteArticle(article.id)}
                         className="p-1.5 text-red-600 hover:bg-red-50 rounded transition-colors"
-                       
+
                       >
                         <Trash2 className="h-4 w-4" />
                       </button>
@@ -605,11 +605,10 @@ export default function KnowledgePage() {
                     )}
                     <button
                       onClick={() => setCurrentPage(page)}
-                      className={`px-3 py-1 rounded-lg ${
-                        currentPage === page
+                      className={`px-3 py-1 rounded-lg ${currentPage === page
                           ? 'bg-blue-600 text-white'
                           : 'border border-gray-300 hover:bg-gray-50'
-                      }`}
+                        }`}
                     >
                       {page}
                     </button>

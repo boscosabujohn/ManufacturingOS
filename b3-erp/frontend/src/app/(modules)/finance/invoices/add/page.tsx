@@ -147,7 +147,7 @@ export default function AddInvoicePage() {
     termsConditions: '1. Payment due as per agreed terms\n2. Late payment subject to 2% monthly interest\n3. Goods once sold cannot be returned\n4. Subject to applicable jurisdiction',
   });
 
-  const [selectedCompanyInfo, setSelectedCompanyInfo] = useState<{email: string; phone: string} | null>(null);
+  const [selectedCompanyInfo, setSelectedCompanyInfo] = useState<{ email: string; phone: string } | null>(null);
 
   const updateFormData = (field: keyof InvoiceFormData, value: any) => {
     setFormData(prev => ({ ...prev, [field]: value }));
@@ -271,7 +271,7 @@ export default function AddInvoicePage() {
   return (
     <div className="w-full h-screen flex flex-col bg-gray-50">
       <div className="flex-1 overflow-y-auto">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 max-w-7xl">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full max-w-full">
           {/* Header */}
           <div className="mb-6">
             <button
@@ -649,14 +649,14 @@ export default function AddInvoicePage() {
                           <button
                             onClick={() => duplicateLineItem(index)}
                             className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-                           
+
                           >
                             <Copy className="h-5 w-5" />
                           </button>
                           <button
                             onClick={() => removeLineItem(index)}
                             className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
-                           
+
                             disabled={formData.lineItems.length === 1}
                           >
                             <Trash2 className="h-5 w-5" />

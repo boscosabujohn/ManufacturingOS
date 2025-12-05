@@ -20,6 +20,7 @@ import {
   ChevronDown,
   LucideIcon,
   ArrowRight,
+  Briefcase,
 } from 'lucide-react';
 
 interface MegaMenuItem {
@@ -76,6 +77,19 @@ const megaMenuData: Record<string, MegaMenuSection[]> = {
     },
   ],
   operations: [
+    {
+      id: 'projects',
+      name: 'Project Management',
+      icon: Briefcase,
+      color: 'text-purple-600 bg-purple-50',
+      items: [
+        { id: 'dashboard', name: 'Project Dashboard', href: '/project-management/1/dashboard', description: 'Overview and key metrics' },
+        { id: 'gantt', name: 'Gantt Chart', href: '/project-management/gantt', description: 'Interactive timeline & dependencies' },
+        { id: 'resources', name: 'Resource Management', href: '/project-management/resources', description: 'Allocation & capacity planning' },
+        { id: 'budget', name: 'Budget Management', href: '/project-management/budget', description: 'Cost tracking & forecasting' },
+        { id: 'tasks', name: 'Task Board', href: '/project-management/tasks', description: 'Kanban board for tasks' },
+      ],
+    },
     {
       id: 'production',
       name: 'Production',
@@ -229,12 +243,25 @@ const megaMenuData: Record<string, MegaMenuSection[]> = {
       ],
     },
     {
+      id: 'workflow-automation',
+      name: 'Workflow Automation',
+      icon: Workflow,
+      color: 'text-blue-600 bg-blue-50',
+      items: [
+        { id: 'workflow-overview', name: 'Overview Dashboard', href: '/admin/workflow-overview', description: 'Central hub for workflows' },
+        { id: 'workflows', name: 'Manage Workflows', href: '/admin/workflows', description: 'View and edit all workflows' },
+        { id: 'workflow-builder', name: 'Workflow Builder', href: '/admin/workflows/builder', description: 'Create new workflows' },
+        { id: 'pending-approvals', name: 'Pending Approvals', href: '/workflow/approvals', description: 'Review and action approvals' },
+        { id: 'sla-analytics', name: 'SLA Analytics', href: '/admin/sla-analytics', description: 'Performance metrics & compliance' },
+        { id: 'delay-analysis', name: 'Delay Analysis', href: '/admin/delay-analysis', description: 'Identify bottlenecks & delays' },
+      ],
+    },
+    {
       id: 'system',
       name: 'System & Support',
       icon: Settings,
-      color: 'text-gray-600 bg-white',
+      color: 'text-gray-600 bg-gray-50',
       items: [
-        { id: 'workflow', name: 'Workflow Automation', href: '/workflow/automation', description: 'Automate business processes' },
         { id: 'reports', name: 'Reports & Analytics', href: '/reports/analytics', description: 'Business intelligence' },
         { id: 'support', name: 'Support & Incidents', href: '/support/tickets', description: 'Help desk management' },
         { id: 'it-admin', name: 'IT Administration', href: '/it-admin/users', description: 'User and system settings' },

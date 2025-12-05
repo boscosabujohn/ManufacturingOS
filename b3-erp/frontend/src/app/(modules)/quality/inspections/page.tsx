@@ -1,9 +1,10 @@
 'use client'
 
-import React, { useState } from 'react'
-import { Search, Filter, Download, Eye, Edit2, CheckCircle as CheckIcon, ClipboardCheck, XCircle, AlertTriangle, TrendingUp } from 'lucide-react'
+import React, { useState, useEffect } from 'react'
+import { Search, Filter, Download, Eye, Edit2, CheckCircle as CheckIcon, ClipboardCheck, XCircle, AlertTriangle, TrendingUp, Plus, Play } from 'lucide-react'
 import { ViewInspectionModal, EditInspectionModal, ApproveInspectionModal, type Inspection } from '@/components/quality/QualityModals'
 import { ExportInspectionReportModal } from '@/components/quality/QualityExportModals'
+import Link from 'next/link'
 
 interface QualityInspection {
   id: string
@@ -17,116 +18,109 @@ interface QualityInspection {
   sample_size: number
   defects_found: number
   defect_categories: { [key: string]: number }
-  pass_fail_status: 'pending' | 'passed' | 'failed' | 'conditional'
+  pass_fail_status: 'pending' | 'passed' | 'failed' | 'conditional' | 'scheduled' | 'in_progress' | 'draft'
   remarks: string
   work_center: string
 }
 
-const mockInspections: QualityInspection[] = [
-  {
-    id: '1',
-    inspection_id: 'QI-2024-001',
-    work_order_id: 'WO-2024-045',
-    product_name: 'Steel Frame Assembly',
-    product_code: 'SFA-5000',
-    inspection_type: 'in_process',
-    inspection_date: '2024-01-15 10:30',
-    inspector_name: 'Alice Johnson',
-    sample_size: 50,
-    defects_found: 2,
-    defect_categories: { 'Dimensional': 1, 'Surface': 1 },
-    pass_fail_status: 'passed',
-    remarks: 'Minor defects within acceptable limits',
-    work_center: 'Assembly Line 1'
-  },
-  {
-    id: '2',
-    inspection_id: 'QI-2024-002',
-    work_order_id: 'WO-2024-046',
-    product_name: 'Precision Gear Box',
-    product_code: 'PGB-3200',
-    inspection_type: 'final',
-    inspection_date: '2024-01-15 14:00',
-    inspector_name: 'Bob Martinez',
-    sample_size: 30,
-    defects_found: 0,
-    defect_categories: {},
-    pass_fail_status: 'passed',
-    remarks: 'All samples passed inspection',
-    work_center: 'Machining Center'
-  },
-  {
-    id: '3',
-    inspection_id: 'QI-2024-003',
-    work_order_id: 'WO-2024-047',
-    product_name: 'Hydraulic Cylinder',
-    product_code: 'HC-1800',
-    inspection_type: 'first_article',
-    inspection_date: '2024-01-15 08:45',
-    inspector_name: 'Carol White',
-    sample_size: 5,
-    defects_found: 1,
-    defect_categories: { 'Coating': 1 },
-    pass_fail_status: 'conditional',
-    remarks: 'Coating thickness slightly below spec, monitoring required',
-    work_center: 'Welding Shop'
-  },
-  {
-    id: '4',
-    inspection_id: 'QI-2024-004',
-    work_order_id: 'WO-2024-048',
-    product_name: 'Electric Motor Housing',
-    product_code: 'EMH-2400',
-    inspection_type: 'receiving',
-    inspection_date: '2024-01-15 09:15',
-    inspector_name: 'David Chen',
-    sample_size: 100,
-    defects_found: 8,
-    defect_categories: { 'Dimensional': 5, 'Material': 3 },
-    pass_fail_status: 'failed',
-    remarks: 'Excessive defects, batch rejected',
-    work_center: 'Paint Shop'
-  },
-  {
-    id: '5',
-    inspection_id: 'QI-2024-005',
-    work_order_id: 'WO-2024-049',
-    product_name: 'Conveyor Belt System',
-    product_code: 'CBS-7500',
-    inspection_type: 'audit',
-    inspection_date: '2024-01-15 11:00',
-    inspector_name: 'Emily Davis',
-    sample_size: 20,
-    defects_found: 0,
-    defect_categories: {},
-    pass_fail_status: 'pending',
-    remarks: 'Awaiting final documentation review',
-    work_center: 'Assembly Line 2'
-  },
-  {
-    id: '6',
-    inspection_id: 'QI-2024-006',
-    work_order_id: 'WO-2024-050',
-    product_name: 'Quality Control Jig',
-    product_code: 'QCJ-1100',
-    inspection_type: 'final',
-    inspection_date: '2024-01-15 15:30',
-    inspector_name: 'Frank Wilson',
-    sample_size: 15,
-    defects_found: 1,
-    defect_categories: { 'Assembly': 1 },
-    pass_fail_status: 'passed',
-    remarks: 'Minor assembly issue corrected on-site',
-    work_center: 'Quality Station'
-  }
-]
-
 const ProductionQualityPage = () => {
+  const [inspections, setInspections] = useState<QualityInspection[]>([])
+  const [loading, setLoading] = useState(true)
   const [searchTerm, setSearchTerm] = useState('')
   const [statusFilter, setStatusFilter] = useState('all')
   const [inspectionTypeFilter, setInspectionTypeFilter] = useState('all')
   const [currentPage, setCurrentPage] = useState(1)
   const itemsPerPage = 10
+
+  useEffect(() => {
+    fetchInspections()
+  }, [])
+
+  const mockInspections: QualityInspection[] = [
+    {
+      id: '1',
+      inspection_id: 'INS-2024-001',
+      work_order_id: 'WO-2024-101',
+      product_name: 'Premium Kitchen Cabinet',
+      product_code: 'PKC-001',
+      inspection_type: 'in_process',
+      inspection_date: '2024-03-20',
+      inspector_name: 'John Smith',
+      sample_size: 50,
+      defects_found: 0,
+      defect_categories: {},
+      pass_fail_status: 'pending',
+      remarks: 'Initial inspection scheduled',
+      work_center: 'Assembly Line 1'
+    },
+    {
+      id: '2',
+      inspection_id: 'INS-2024-002',
+      work_order_id: 'WO-2024-102',
+      product_name: 'Modular Wardrobe Unit',
+      product_code: 'MWU-005',
+      inspection_type: 'final',
+      inspection_date: '2024-03-19',
+      inspector_name: 'Sarah Johnson',
+      sample_size: 100,
+      defects_found: 2,
+      defect_categories: { 'Scratch': 2 },
+      pass_fail_status: 'passed',
+      remarks: 'Minor scratches observed but within tolerance',
+      work_center: 'Finishing Station'
+    },
+    {
+      id: '3',
+      inspection_id: 'INS-2024-003',
+      work_order_id: 'WO-2024-103',
+      product_name: 'Office Desk Set',
+      product_code: 'ODS-010',
+      inspection_type: 'receiving',
+      inspection_date: '2024-03-21',
+      inspector_name: 'Mike Chen',
+      sample_size: 200,
+      defects_found: 15,
+      defect_categories: { 'Dent': 10, 'Paint Peel': 5 },
+      pass_fail_status: 'failed',
+      remarks: 'High defect rate in raw material',
+      work_center: 'Receiving Dock'
+    },
+    {
+      id: '4',
+      inspection_id: 'INS-2024-004',
+      work_order_id: 'WO-2024-104',
+      product_name: 'Conference Table',
+      product_code: 'CT-002',
+      inspection_type: 'first_article',
+      inspection_date: '2024-03-22',
+      inspector_name: 'Emily Davis',
+      sample_size: 5,
+      defects_found: 0,
+      defect_categories: {},
+      pass_fail_status: 'scheduled',
+      remarks: 'First article inspection for new design',
+      work_center: 'Prototype Lab'
+    }
+  ]
+
+  const fetchInspections = async () => {
+    try {
+      setLoading(true)
+      const response = await fetch('/api/quality/inspection')
+      if (!response.ok) throw new Error('Failed to fetch inspections')
+      const data = await response.json()
+      if (Array.isArray(data) && data.length > 0) {
+        setInspections(data)
+      } else {
+        setInspections(mockInspections)
+      }
+    } catch (error) {
+      console.error('Failed to fetch inspections:', error)
+      setInspections(mockInspections)
+    } finally {
+      setLoading(false)
+    }
+  }
 
   // Modal state hooks
   const [isViewOpen, setIsViewOpen] = useState(false)
@@ -134,11 +128,16 @@ const ProductionQualityPage = () => {
   const [isApproveOpen, setIsApproveOpen] = useState(false)
   const [isExportOpen, setIsExportOpen] = useState(false)
   const [selectedInspection, setSelectedInspection] = useState<QualityInspection | null>(null)
+  const [modalMode, setModalMode] = useState<'edit' | 'conduct'>('edit')
 
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'pending':
+      case 'scheduled':
+      case 'draft':
         return 'bg-yellow-100 text-yellow-800'
+      case 'in_progress':
+        return 'bg-blue-100 text-blue-800'
       case 'passed':
         return 'bg-green-100 text-green-800'
       case 'failed':
@@ -167,7 +166,7 @@ const ProductionQualityPage = () => {
     }
   }
 
-  const filteredInspections = mockInspections.filter(inspection => {
+  const filteredInspections = inspections.filter(inspection => {
     const matchesSearch =
       inspection.inspection_id.toLowerCase().includes(searchTerm.toLowerCase()) ||
       inspection.work_order_id.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -185,10 +184,10 @@ const ProductionQualityPage = () => {
   const startIndex = (currentPage - 1) * itemsPerPage
   const paginatedInspections = filteredInspections.slice(startIndex, startIndex + itemsPerPage)
 
-  const pendingInspections = mockInspections.filter(i => i.pass_fail_status === 'pending').length
-  const passedInspections = mockInspections.filter(i => i.pass_fail_status === 'passed').length
-  const failedInspections = mockInspections.filter(i => i.pass_fail_status === 'failed').length
-  const totalInspections = mockInspections.filter(i => i.pass_fail_status !== 'pending').length
+  const pendingInspections = inspections.filter(i => i.pass_fail_status === 'pending').length
+  const passedInspections = inspections.filter(i => i.pass_fail_status === 'passed').length
+  const failedInspections = inspections.filter(i => i.pass_fail_status === 'failed').length
+  const totalInspections = inspections.filter(i => i.pass_fail_status !== 'pending').length
   const passRate = totalInspections > 0 ? ((passedInspections / totalInspections) * 100).toFixed(1) : '0.0'
 
   // Helper function to convert QualityInspection to Inspection modal format
@@ -240,6 +239,13 @@ const ProductionQualityPage = () => {
 
   const handleEdit = (inspection: QualityInspection) => {
     setSelectedInspection(inspection)
+    setModalMode('edit')
+    setIsEditOpen(true)
+  }
+
+  const handleConduct = (inspection: QualityInspection) => {
+    setSelectedInspection(inspection)
+    setModalMode('conduct')
     setIsEditOpen(true)
   }
 
@@ -257,38 +263,71 @@ const ProductionQualityPage = () => {
     setSelectedInspection(null)
   }
 
-  const handleEditSubmit = (data: Inspection) => {
-    // TODO: Replace with actual API call
-    // await fetch(`/api/quality/inspections/${data.id}`, {
-    //   method: 'PUT',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify(data)
-    // });
-    console.log('Edit inspection submitted:', data)
-    setIsEditOpen(false)
-    setSelectedInspection(null)
+  const handleEditSubmit = async (data: Inspection) => {
+    try {
+      const response = await fetch(`/api/quality/inspections/${data.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      if (response.ok) {
+        fetchInspections();
+        setIsEditOpen(false);
+        setSelectedInspection(null);
+      } else {
+        console.error('Failed to update inspection');
+      }
+    } catch (error) {
+      console.error('Error updating inspection:', error);
+    }
   }
 
-  const handleApproveSubmit = (decision: 'approve' | 'reject' | 'request-changes', comments: string, signature: string) => {
-    // TODO: Replace with actual API call
-    // await fetch(`/api/quality/inspections/${selectedInspection?.id}/approve`, {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify({ decision, comments, signature })
-    // });
-    console.log('Approve inspection submitted:', { decision, comments, signature })
-    setIsApproveOpen(false)
-    setSelectedInspection(null)
+  const handleApproveSubmit = async (decision: 'approve' | 'reject' | 'request-changes', comments: string, signature: string) => {
+    try {
+      const endpoint = decision === 'approve' ? 'approve' : 'reject';
+      const body = decision === 'approve'
+        ? { approvedBy: signature }
+        : { rejectedBy: signature, reason: comments };
+
+      const response = await fetch(`/api/quality/inspections/${selectedInspection?.id}/${endpoint}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      });
+
+      if (response.ok) {
+        fetchInspections();
+        setIsApproveOpen(false);
+        setSelectedInspection(null);
+      } else {
+        console.error(`Failed to ${decision} inspection`);
+      }
+    } catch (error) {
+      console.error(`Error ${decision}ing inspection:`, error);
+    }
   }
 
-  const handleExportSubmit = (data: any) => {
-    // TODO: Replace with actual API call
-    // await fetch('/api/quality/inspections/export', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify(data)
-    // });
-    console.log('Export inspection report:', data)
+  const handleExportSubmit = async (data: any) => {
+    try {
+      const response = await fetch('/api/quality/inspection/export', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        if (result.url) {
+          window.open(result.url, '_blank');
+        }
+        setIsExportOpen(false);
+      } else {
+        console.error('Failed to export inspection report');
+      }
+    } catch (error) {
+      console.error('Error exporting report:', error);
+    }
   }
 
   return (
@@ -384,9 +423,15 @@ const ProductionQualityPage = () => {
               </div>
             </div>
 
+            <Link href="/quality/inspections/new">
+              <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                <Plus className="w-5 h-5" />
+                Schedule Inspection
+              </button>
+            </Link>
             <button
               onClick={handleExport}
-              className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
             >
               <Download className="w-5 h-5" />
               Export Report
@@ -490,6 +535,15 @@ const ProductionQualityPage = () => {
                       >
                         <Edit2 className="w-5 h-5" />
                       </button>
+                      {(inspection.pass_fail_status === 'pending' || inspection.pass_fail_status === 'scheduled') && (
+                        <button
+                          onClick={() => handleConduct(inspection)}
+                          className="text-blue-600 hover:text-blue-900"
+                          title="Conduct Inspection"
+                        >
+                          <Play className="w-5 h-5" />
+                        </button>
+                      )}
                       {inspection.pass_fail_status === 'pending' && (
                         <button
                           onClick={() => handleApprove(inspection)}
@@ -529,8 +583,8 @@ const ProductionQualityPage = () => {
                   key={i + 1}
                   onClick={() => setCurrentPage(i + 1)}
                   className={`px-4 py-2 border rounded-lg text-sm font-medium ${currentPage === i + 1
-                      ? 'bg-blue-600 text-white border-blue-600'
-                      : 'border-gray-300 text-gray-700 hover:bg-gray-50'
+                    ? 'bg-blue-600 text-white border-blue-600'
+                    : 'border-gray-300 text-gray-700 hover:bg-gray-50'
                     }`}
                 >
                   {i + 1}
@@ -554,7 +608,7 @@ const ProductionQualityPage = () => {
         onClose={handleViewClose}
         inspection={selectedInspection ? convertToModalInspection(selectedInspection) : null}
         onEdit={(inspection) => {
-          const qualityInspection = mockInspections.find(i => i.inspection_id === inspection.id)
+          const qualityInspection = inspections.find(i => i.inspection_id === inspection.id)
           if (qualityInspection) {
             handleEdit(qualityInspection)
           }
@@ -569,6 +623,7 @@ const ProductionQualityPage = () => {
         }}
         onSave={handleEditSubmit}
         inspection={selectedInspection ? convertToModalInspection(selectedInspection) : null}
+        mode={modalMode}
       />
 
       <ApproveInspectionModal

@@ -135,8 +135,8 @@ export default function AttendancePage() {
 
   const filteredAttendance = mockAttendance.filter(record => {
     const matchesSearch = record.employeeName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         record.employeeId.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         record.department.toLowerCase().includes(searchTerm.toLowerCase());
+      record.employeeId.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      record.department.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesStatus = statusFilter === 'all' || record.status === statusFilter;
     const matchesDepartment = departmentFilter === 'all' || record.department === departmentFilter;
     return matchesSearch && matchesStatus && matchesDepartment;
@@ -201,7 +201,7 @@ export default function AttendancePage() {
 
   return (
     <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6">
-      <div className="max-w-7xl mx-auto">
+      <div className="w-full max-w-full mx-auto">
         {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
           {stats.map((stat, index) => {
@@ -412,11 +412,10 @@ export default function AttendancePage() {
                   <button
                     key={idx}
                     onClick={() => setCurrentPage(idx + 1)}
-                    className={`px-4 py-2 border rounded-lg text-sm font-medium transition-colors ${
-                      currentPage === idx + 1
+                    className={`px-4 py-2 border rounded-lg text-sm font-medium transition-colors ${currentPage === idx + 1
                         ? 'bg-gradient-to-r from-blue-500 to-cyan-600 text-white border-transparent'
                         : 'border-gray-300 text-gray-700 bg-white hover:bg-gray-50'
-                    }`}
+                      }`}
                   >
                     {idx + 1}
                   </button>

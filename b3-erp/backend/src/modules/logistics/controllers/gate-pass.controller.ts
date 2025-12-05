@@ -17,12 +17,14 @@ export class GatePassController {
     async createGatePass(
         @Body() body: { type: string; vehicle: string; driver: string; items: any[] }
     ) {
-        const result = await this.gatePassService.createGatePass(
-            body.type,
-            body.vehicle,
-            body.driver,
-            body.items
-        );
+        const result = await this.gatePassService.createGatePass({
+            type: body.type as any,
+            vehicleNumber: body.vehicle,
+            driverName: body.driver,
+            items: body.items,
+            referenceId: `GP-${Date.now()}`, // Generate reference ID
+            issuedBy: 'SYSTEM' // Placeholder
+        });
         return {
             success: true,
             data: result

@@ -1,19 +1,37 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import ProjectFinancials from '@/components/project-management/ProjectFinancials';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { projectManagementService, Project } from '@/services/ProjectManagementService';
 
 export default function ProjectFinancialsPage() {
-    const [selectedProject, setSelectedProject] = useState<string>('proj-001');
+    const [projects, setProjects] = useState<Project[]>([]);
+    const [selectedProject, setSelectedProject] = useState<string>('');
+    const [isLoading, setIsLoading] = useState(true);
 
-    // Mock projects list
-    const projects = [
-        { id: 'proj-001', name: 'Metro Rail Phase 1' },
-        { id: 'proj-002', name: 'Solar Power Plant' },
-        { id: 'proj-003', name: 'Highway Expansion' },
-    ];
+    useEffect(() => {
+        fetchProjects();
+    }, []);
+
+    const fetchProjects = async () => {
+        try {
+            const data = await projectManagementService.getProjects();
+            setProjects(data);
+            if (data.length > 0) {
+                setSelectedProject(data[0].id);
+            }
+        } catch (error) {
+            console.error('Failed to fetch projects:', error);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    if (isLoading && projects.length === 0) {
+        return <div className="p-6">Loading projects...</div>;
+    }
 
     return (
         <div className="container mx-auto py-6 space-y-6">
@@ -35,7 +53,7 @@ export default function ProjectFinancialsPage() {
                 </div>
             </div>
 
-            <ProjectFinancials projectId={selectedProject} />
+            {selectedProject && <ProjectFinancials projectId={selectedProject} />}
         </div>
     );
 }

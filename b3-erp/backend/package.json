@@ -19,8 +19,9 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "typeorm": "typeorm-ts-node-commonjs",
     "migration:generate": "npm run typeorm -- migration:generate",
-    "migration:run": "npm run typeorm -- migration:run",
-    "migration:revert": "npm run typeorm -- migration:revert"
+    "migration:run": "ts-node run-migrations.ts run",
+    "migration:revert": "ts-node run-migrations.ts revert",
+    "migration:status": "ts-node run-migrations.ts status"
   },
   "dependencies": {
     "@nestjs/bull": "^10.0.1",
@@ -32,6 +33,7 @@
     "@nestjs/passport": "^10.0.3",
     "@nestjs/platform-express": "^10.3.0",
     "@nestjs/platform-socket.io": "^10.3.0",
+    "@nestjs/schedule": "^6.0.1",
     "@nestjs/swagger": "^7.1.17",
     "@nestjs/typeorm": "^10.0.1",
     "@nestjs/websockets": "^10.3.0",

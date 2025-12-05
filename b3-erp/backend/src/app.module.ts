@@ -22,6 +22,7 @@ import { ItAdminModule } from './modules/it-admin/it-admin.module';
 import { AfterSalesServiceModule } from './modules/after-sales-service/after-sales-service.module';
 import { QualityModule } from './modules/quality/quality.module';
 import { ProjectManagementModule } from './modules/project-management/project-management.module';
+import { ApprovalsModule } from './modules/approvals/approvals.module';
 
 
 @Module({
@@ -75,6 +76,7 @@ import { ProjectManagementModule } from './modules/project-management/project-ma
     HrModule, // Employee, Payroll, Leave, Attendance
     QualityModule, // QC, Inspections, NCR, CAPA
     WorkflowModule, // Approval workflows
+    ApprovalsModule, // Multi-level approval system
     ReportsModule, // Comprehensive reporting
     LogisticsModule, // Shipment, Fleet, Route management
     SupportModule, // Customer support

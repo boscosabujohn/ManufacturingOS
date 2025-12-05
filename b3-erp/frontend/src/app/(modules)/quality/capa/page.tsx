@@ -1,9 +1,9 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
-import { Button } from '@/components/ui/Button';
-import { Badge } from '@/components/ui/Badge';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 import { Plus, Activity, Clock, CheckCircle, TrendingUp, AlertCircle } from 'lucide-react';
 import Link from 'next/link';
 
@@ -25,7 +25,7 @@ export default function CAPAPage() {
     const [loading, setLoading] = useState(true);
     const [filter, setFilter] = useState('all');
 
-    useEffect() => {
+    useEffect(() => {
         fetchCAPAs();
     }, []);
 

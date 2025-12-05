@@ -230,7 +230,7 @@ export default function DatabaseBackupPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
+    <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6 w-full max-w-full">
       <div className="mb-6 flex items-center gap-4">
         <button onClick={() => router.back()} className="p-2 hover:bg-gray-100 rounded-lg">
           <ArrowLeft className="w-5 h-5 text-gray-600" />
@@ -343,20 +343,20 @@ export default function DatabaseBackupPage() {
                       <button
                         onClick={() => handleRestore(backup.id)}
                         className="p-2 hover:bg-blue-50 rounded-lg text-blue-600"
-                       
+
                       >
                         <RotateCcw className="w-5 h-5" />
                       </button>
                       <button
                         className="p-2 hover:bg-green-50 rounded-lg text-green-600"
-                       
+
                       >
                         <Download className="w-5 h-5" />
                       </button>
                       <button
                         onClick={() => handleDelete(backup.id)}
                         className="p-2 hover:bg-red-50 rounded-lg text-red-600"
-                       
+
                       >
                         <Trash2 className="w-5 h-5" />
                       </button>

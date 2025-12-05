@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import {
   Search,
@@ -43,6 +43,7 @@ import {
   BulkUpdateModal,
   ViewDetailsModal,
 } from '@/components/project-management/TasksModals';
+import { projectManagementService, Project, ProjectTask } from '@/services/ProjectManagementService';
 
 interface Task {
   id: string;
@@ -63,184 +64,11 @@ interface Task {
   dependencies: string[];
 }
 
-const mockTasks: Task[] = [
-  {
-    id: '1',
-    taskNumber: 'TSK-001',
-    taskName: 'Site Survey and Measurements',
-    projectNumber: 'PRJ-2024-001',
-    projectName: 'Taj Hotel Commercial Kitchen',
-    deliverable: 'DEL-002',
-    assignedTo: 'Ramesh Nair',
-    startDate: '2024-01-15',
-    dueDate: '2024-01-20',
-    completedDate: '2024-01-19',
-    status: 'Completed',
-    priority: 'High',
-    progress: 100,
-    estimatedHours: 40,
-    actualHours: 38,
-    dependencies: [],
-  },
-  {
-    id: '2',
-    taskNumber: 'TSK-002',
-    taskName: 'Equipment Procurement',
-    projectNumber: 'PRJ-2024-001',
-    projectName: 'Taj Hotel Commercial Kitchen',
-    deliverable: 'DEL-001',
-    assignedTo: 'Procurement Team',
-    startDate: '2024-01-20',
-    dueDate: '2024-02-10',
-    completedDate: '2024-02-08',
-    status: 'Completed',
-    priority: 'High',
-    progress: 100,
-    estimatedHours: 80,
-    actualHours: 75,
-    dependencies: ['TSK-001'],
-  },
-  {
-    id: '3',
-    taskNumber: 'TSK-003',
-    taskName: 'Install Cooking Range Units',
-    projectNumber: 'PRJ-2024-001',
-    projectName: 'Taj Hotel Commercial Kitchen',
-    deliverable: 'DEL-003',
-    assignedTo: 'Suresh Patel',
-    startDate: '2024-03-05',
-    dueDate: '2024-03-15',
-    status: 'In Progress',
-    priority: 'High',
-    progress: 70,
-    estimatedHours: 120,
-    actualHours: 85,
-    dependencies: ['TSK-002'],
-  },
-  {
-    id: '4',
-    taskNumber: 'TSK-004',
-    taskName: 'Exhaust System Installation',
-    projectNumber: 'PRJ-2024-001',
-    projectName: 'Taj Hotel Commercial Kitchen',
-    deliverable: 'DEL-003',
-    assignedTo: 'HVAC Team',
-    startDate: '2024-03-10',
-    dueDate: '2024-03-20',
-    status: 'In Progress',
-    priority: 'High',
-    progress: 55,
-    estimatedHours: 100,
-    actualHours: 60,
-    dependencies: ['TSK-003'],
-  },
-  {
-    id: '5',
-    taskNumber: 'TSK-005',
-    taskName: 'Cold Room Panel Assembly',
-    projectNumber: 'PRJ-2024-002',
-    projectName: 'BigBasket Cold Storage',
-    deliverable: 'DEL-004',
-    assignedTo: 'Assembly Team',
-    startDate: '2024-02-25',
-    dueDate: '2024-03-10',
-    status: 'In Progress',
-    priority: 'High',
-    progress: 45,
-    estimatedHours: 200,
-    actualHours: 92,
-    dependencies: [],
-  },
-  {
-    id: '6',
-    taskNumber: 'TSK-006',
-    taskName: 'Refrigeration Unit Testing',
-    projectNumber: 'PRJ-2024-002',
-    projectName: 'BigBasket Cold Storage',
-    deliverable: 'DEL-004',
-    assignedTo: 'QC Team',
-    startDate: '2024-03-12',
-    dueDate: '2024-03-18',
-    status: 'To Do',
-    priority: 'High',
-    progress: 0,
-    estimatedHours: 80,
-    actualHours: 0,
-    dependencies: ['TSK-005'],
-  },
-  {
-    id: '7',
-    taskNumber: 'TSK-007',
-    taskName: 'Switchgear Panel Wiring',
-    projectNumber: 'PRJ-2024-003',
-    projectName: 'L&T Switchgear Panel',
-    deliverable: 'DEL-007',
-    assignedTo: 'Electrical Team',
-    startDate: '2024-02-15',
-    dueDate: '2024-02-25',
-    completedDate: '2024-02-26',
-    status: 'Completed',
-    priority: 'Medium',
-    progress: 100,
-    estimatedHours: 160,
-    actualHours: 168,
-    dependencies: [],
-  },
-  {
-    id: '8',
-    taskNumber: 'TSK-008',
-    taskName: 'Factory Acceptance Test (FAT)',
-    projectNumber: 'PRJ-2024-003',
-    projectName: 'L&T Switchgear Panel',
-    deliverable: 'DEL-006',
-    assignedTo: 'Test Engineer',
-    startDate: '2024-03-01',
-    dueDate: '2024-03-10',
-    status: 'Review',
-    priority: 'High',
-    progress: 90,
-    estimatedHours: 60,
-    actualHours: 58,
-    dependencies: ['TSK-007'],
-  },
-  {
-    id: '9',
-    taskNumber: 'TSK-009',
-    taskName: 'Design Drawings Preparation',
-    projectNumber: 'PRJ-2024-004',
-    projectName: 'ITC Grand Kitchen Renovation',
-    deliverable: 'DEL-009',
-    assignedTo: 'CAD Team',
-    startDate: '2024-03-01',
-    dueDate: '2024-03-08',
-    status: 'In Progress',
-    priority: 'High',
-    progress: 80,
-    estimatedHours: 60,
-    actualHours: 52,
-    dependencies: [],
-  },
-  {
-    id: '10',
-    taskNumber: 'TSK-010',
-    taskName: 'Client Approval Process',
-    projectNumber: 'PRJ-2024-004',
-    projectName: 'ITC Grand Kitchen Renovation',
-    deliverable: 'DEL-009',
-    assignedTo: 'Project Manager',
-    startDate: '2024-03-09',
-    dueDate: '2024-03-15',
-    status: 'Blocked',
-    priority: 'High',
-    progress: 20,
-    estimatedHours: 20,
-    actualHours: 5,
-    dependencies: ['TSK-009'],
-  },
-];
-
 export default function TasksListPage() {
-  const [tasks] = useState<Task[]>(mockTasks);
+  const [tasks, setTasks] = useState<Task[]>([]);
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [selectedProjectId, setSelectedProjectId] = useState<string>('');
+  const [isLoading, setIsLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('All');
   const [priorityFilter, setPriorityFilter] = useState('All');
@@ -264,6 +92,63 @@ export default function TasksListPage() {
   const [showBulkUpdateModal, setShowBulkUpdateModal] = useState(false);
   const [showDetailsModal, setShowDetailsModal] = useState(false);
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
+
+  useEffect(() => {
+    fetchProjects();
+  }, []);
+
+  useEffect(() => {
+    if (selectedProjectId) {
+      fetchTasks(selectedProjectId);
+    }
+  }, [selectedProjectId]);
+
+  const fetchProjects = async () => {
+    try {
+      const data = await projectManagementService.getProjects();
+      setProjects(data);
+      if (data.length > 0) {
+        setSelectedProjectId(data[0].id);
+      } else {
+        setIsLoading(false);
+      }
+    } catch (error) {
+      console.error('Failed to fetch projects:', error);
+      setIsLoading(false);
+    }
+  };
+
+  const fetchTasks = async (projectId: string) => {
+    setIsLoading(true);
+    try {
+      const projectTasks = await projectManagementService.getTasks(projectId);
+      const project = projects.find(p => p.id === projectId);
+
+      const mappedTasks: Task[] = projectTasks.map((t: any) => ({
+        id: t.id,
+        taskNumber: `TSK-${t.id.substring(0, 4).toUpperCase()}`,
+        taskName: t.name,
+        projectNumber: project?.projectCode || `PRJ-${projectId.substring(0, 4).toUpperCase()}`,
+        projectName: project?.name || 'Unknown Project',
+        deliverable: 'DEL-001', // Placeholder
+        assignedTo: t.assignedTo ? (Array.isArray(t.assignedTo) ? t.assignedTo.join(', ') : t.assignedTo) : 'Unassigned',
+        startDate: t.startDate || new Date().toISOString(),
+        dueDate: t.endDate || new Date().toISOString(),
+        completedDate: t.status === 'Completed' ? t.updatedAt : undefined,
+        status: t.status as any,
+        priority: t.priority as any,
+        progress: t.progress || 0,
+        estimatedHours: 40, // Placeholder
+        actualHours: 0, // Placeholder
+        dependencies: [], // Placeholder
+      }));
+      setTasks(mappedTasks);
+    } catch (error) {
+      console.error('Failed to fetch tasks:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   // Calculate statistics
   const stats = {
@@ -311,6 +196,7 @@ export default function TasksListPage() {
   };
 
   const formatDate = (dateString: string) => {
+    if (!dateString) return 'N/A';
     return new Date(dateString).toLocaleDateString('en-IN', {
       day: '2-digit',
       month: 'short',
@@ -319,7 +205,7 @@ export default function TasksListPage() {
   };
 
   const isOverdue = (dueDate: string, status: string) => {
-    if (status === 'Completed') return false;
+    if (status === 'Completed' || !dueDate) return false;
     return new Date(dueDate) < new Date();
   };
 
@@ -327,6 +213,8 @@ export default function TasksListPage() {
   const handleCreateTask = (data: any) => {
     console.log('Create Task:', data);
     setShowCreateModal(false);
+    // Refresh tasks
+    if (selectedProjectId) fetchTasks(selectedProjectId);
   };
 
   const handleEditTask = (data: any) => {
@@ -471,6 +359,17 @@ export default function TasksListPage() {
       {/* Header Actions */}
       <div className="flex justify-between items-center mb-4">
         <div className="flex items-center gap-3">
+          <select
+            value={selectedProjectId}
+            onChange={(e) => setSelectedProjectId(e.target.value)}
+            className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 mr-4"
+          >
+            {projects.map((project) => (
+              <option key={project.id} value={project.id}>
+                {project.name}
+              </option>
+            ))}
+          </select>
           <button
             onClick={() => setShowFilterModal(true)}
             className="flex items-center gap-2 border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors"
@@ -661,11 +560,10 @@ export default function TasksListPage() {
                         </div>
                         <div className="w-full bg-gray-200 rounded-full h-2">
                           <div
-                            className={`h-2 rounded-full transition-all ${
-                              task.status === 'Completed' ? 'bg-green-600' :
-                              task.status === 'Blocked' ? 'bg-red-600' :
-                              'bg-blue-600'
-                            }`}
+                            className={`h-2 rounded-full transition-all ${task.status === 'Completed' ? 'bg-green-600' :
+                                task.status === 'Blocked' ? 'bg-red-600' :
+                                  'bg-blue-600'
+                              }`}
                             style={{ width: `${task.progress}%` }}
                           ></div>
                         </div>

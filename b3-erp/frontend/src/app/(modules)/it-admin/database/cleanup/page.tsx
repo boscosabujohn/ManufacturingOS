@@ -283,7 +283,7 @@ export default function DatabaseCleanupPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
+    <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6 w-full max-w-full">
       <div className="mb-6 flex items-center gap-4">
         <button onClick={() => router.back()} className="p-2 hover:bg-gray-100 rounded-lg">
           <ArrowLeft className="w-5 h-5 text-gray-600" />
@@ -422,11 +422,10 @@ export default function DatabaseCleanupPage() {
                   {categoryTasks.map((task) => (
                     <div
                       key={task.id}
-                      className={`border-2 rounded-lg p-4 cursor-pointer transition-all ${
-                        selectedTasks.includes(task.id)
+                      className={`border-2 rounded-lg p-4 cursor-pointer transition-all ${selectedTasks.includes(task.id)
                           ? 'border-blue-500 bg-blue-50'
                           : 'border-gray-200 hover:border-blue-300'
-                      }`}
+                        }`}
                       onClick={() => toggleTask(task.id)}
                     >
                       <div className="flex items-start justify-between">

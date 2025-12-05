@@ -239,7 +239,7 @@ export default function EditInvoicePage() {
   return (
     <div className="w-full h-screen flex flex-col bg-gray-50">
       <div className="flex-1 overflow-y-auto">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 max-w-7xl">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full max-w-full">
           {/* Header */}
           <div className="mb-6">
             <button
@@ -598,14 +598,14 @@ export default function EditInvoicePage() {
                         <button
                           onClick={() => duplicateLineItem(index)}
                           className="flex-1 p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-                         
+
                         >
                           <Copy className="h-5 w-5" />
                         </button>
                         <button
                           onClick={() => removeLineItem(index)}
                           className="flex-1 p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
-                         
+
                           disabled={formData.lineItems.length === 1}
                         >
                           <Trash2 className="h-5 w-5" />

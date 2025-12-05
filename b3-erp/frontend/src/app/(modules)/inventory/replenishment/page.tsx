@@ -1,8 +1,9 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { ArrowLeft, Search, Package, AlertTriangle, TrendingUp, Clock, CheckCircle, XCircle, Plus, RefreshCw } from 'lucide-react';
+import { inventoryService } from '@/services/InventoryService';
 
 interface ReplenishmentRequest {
   id: string;
@@ -25,161 +26,50 @@ interface ReplenishmentRequest {
 
 export default function ReplenishmentPage() {
   const router = useRouter();
+  const [replenishmentRequests, setReplenishmentRequests] = useState<ReplenishmentRequest[]>([]);
+  const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [filterPriority, setFilterPriority] = useState('all');
   const [filterStatus, setFilterStatus] = useState('all');
 
-  const replenishmentRequests: ReplenishmentRequest[] = [
-    {
-      id: '1',
-      itemCode: 'RM-008',
-      itemName: 'Steel Plate 5mm',
-      currentStock: 45,
-      minLevel: 100,
-      maxLevel: 500,
-      reorderPoint: 120,
-      suggestedQty: 455,
-      uom: 'Sheets',
-      location: 'Zone A - Bin A-01',
-      leadTime: 7,
-      supplier: 'SteelCorp Industries',
-      priority: 'critical',
-      status: 'pending',
-      requestDate: '2025-10-21',
-      estimatedArrival: '2025-10-28'
-    },
-    {
-      id: '2',
-      itemCode: 'CP-045',
-      itemName: 'Hydraulic Cylinder',
-      currentStock: 12,
-      minLevel: 10,
-      maxLevel: 50,
-      reorderPoint: 15,
-      suggestedQty: 38,
-      uom: 'Nos',
-      location: 'Zone B - Bin B-03',
-      leadTime: 14,
-      supplier: 'HydroTech Systems',
-      priority: 'high',
-      status: 'approved',
-      requestDate: '2025-10-20',
-      estimatedArrival: '2025-11-03'
-    },
-    {
-      id: '3',
-      itemCode: 'RM-089',
-      itemName: 'Aluminum Rod 20mm',
-      currentStock: 78,
-      minLevel: 50,
-      maxLevel: 300,
-      reorderPoint: 75,
-      suggestedQty: 222,
-      uom: 'Pcs',
-      location: 'Zone A - Bin A-04',
-      leadTime: 5,
-      supplier: 'MetalSource Ltd',
-      priority: 'high',
-      status: 'ordered',
-      requestDate: '2025-10-19',
-      estimatedArrival: '2025-10-24'
-    },
-    {
-      id: '4',
-      itemCode: 'CS-023',
-      itemName: 'Cutting Oil Premium',
-      currentStock: 35,
-      minLevel: 30,
-      maxLevel: 150,
-      reorderPoint: 40,
-      suggestedQty: 115,
-      uom: 'Liters',
-      location: 'Zone D - Bin D-02',
-      leadTime: 3,
-      supplier: 'ChemSupply Co',
-      priority: 'medium',
-      status: 'pending',
-      requestDate: '2025-10-21',
-      estimatedArrival: '2025-10-24'
-    },
-    {
-      id: '5',
-      itemCode: 'CP-078',
-      itemName: 'Ball Bearing 6208',
-      currentStock: 145,
-      minLevel: 100,
-      maxLevel: 400,
-      reorderPoint: 120,
-      suggestedQty: 255,
-      uom: 'Nos',
-      location: 'Zone B - Bin B-01',
-      leadTime: 10,
-      supplier: 'BearingTech Industries',
-      priority: 'medium',
-      status: 'completed',
-      requestDate: '2025-10-10',
-      estimatedArrival: '2025-10-20'
-    },
-    {
-      id: '6',
-      itemCode: 'RM-034',
-      itemName: 'Copper Wire 4mm',
-      currentStock: 8,
-      minLevel: 25,
-      maxLevel: 200,
-      reorderPoint: 30,
-      suggestedQty: 192,
-      uom: 'Kg',
-      location: 'Zone A - Bin A-05',
-      leadTime: 6,
-      supplier: 'WireTech Solutions',
-      priority: 'critical',
-      status: 'pending',
-      requestDate: '2025-10-21',
-      estimatedArrival: '2025-10-27'
-    },
-    {
-      id: '7',
-      itemCode: 'CS-056',
-      itemName: 'Grinding Wheel 180mm',
-      currentStock: 56,
-      minLevel: 40,
-      maxLevel: 180,
-      reorderPoint: 50,
-      suggestedQty: 124,
-      uom: 'Nos',
-      location: 'Zone D - Bin D-03',
-      leadTime: 4,
-      supplier: 'AbrasiveTech Co',
-      priority: 'low',
-      status: 'pending',
-      requestDate: '2025-10-20',
-      estimatedArrival: '2025-10-24'
-    },
-    {
-      id: '8',
-      itemCode: 'RM-112',
-      itemName: 'Brass Sheet 2mm',
-      currentStock: 22,
-      minLevel: 30,
-      maxLevel: 150,
-      reorderPoint: 35,
-      suggestedQty: 128,
-      uom: 'Sheets',
-      location: 'Zone A - Bin A-02',
-      leadTime: 8,
-      supplier: 'MetalSource Ltd',
-      priority: 'high',
-      status: 'rejected',
-      requestDate: '2025-10-18',
-      estimatedArrival: '2025-10-26'
+  useEffect(() => {
+    fetchSuggestions();
+  }, []);
+
+  const fetchSuggestions = async () => {
+    try {
+      setLoading(true);
+      const suggestions = await inventoryService.getReorderSuggestions();
+      const mappedRequests: ReplenishmentRequest[] = suggestions.map((s) => ({
+        id: s.id,
+        itemCode: s.itemCode,
+        itemName: s.itemName,
+        currentStock: s.currentStock,
+        minLevel: 0, // Placeholder
+        maxLevel: 0, // Placeholder
+        reorderPoint: s.reorderPoint,
+        suggestedQty: s.suggestedQuantity,
+        uom: 'Unit', // Placeholder
+        location: 'Warehouse', // Placeholder
+        leadTime: s.leadTimeDays,
+        supplier: s.vendorName || 'Unknown',
+        priority: s.priority,
+        status: s.status === 'suggested' ? 'pending' : s.status as any,
+        requestDate: new Date(s.createdAt).toISOString().split('T')[0],
+        estimatedArrival: s.expectedDeliveryDate,
+      }));
+      setReplenishmentRequests(mappedRequests);
+    } catch (error) {
+      console.error('Failed to fetch reorder suggestions:', error);
+    } finally {
+      setLoading(false);
     }
-  ];
+  };
 
   const filteredRequests = replenishmentRequests.filter(req => {
     const matchesSearch = req.itemCode.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         req.itemName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         req.supplier.toLowerCase().includes(searchQuery.toLowerCase());
+      req.itemName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      req.supplier.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesPriority = filterPriority === 'all' || req.priority === filterPriority;
     const matchesStatus = filterStatus === 'all' || req.status === filterStatus;
     return matchesSearch && matchesPriority && matchesStatus;
@@ -221,6 +111,10 @@ export default function ReplenishmentPage() {
     if (current < reorder) return 'text-orange-600';
     return 'text-green-600';
   };
+
+  if (loading) {
+    return <div className="p-8 text-center">Loading replenishment requests...</div>;
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
@@ -314,7 +208,7 @@ export default function ReplenishmentPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
         <div className="md:col-span-2 bg-white rounded-xl border border-gray-200 p-4 flex items-center gap-3 cursor-pointer hover:bg-gray-50"
-             onClick={() => router.push('/inventory/replenishment/min-max')}>
+          onClick={() => router.push('/inventory/replenishment/min-max')}>
           <div className="bg-blue-100 p-3 rounded-lg">
             <TrendingUp className="w-6 h-6 text-blue-600" />
           </div>
@@ -325,7 +219,7 @@ export default function ReplenishmentPage() {
         </div>
 
         <div className="md:col-span-2 bg-white rounded-xl border border-gray-200 p-4 flex items-center gap-3 cursor-pointer hover:bg-gray-50"
-             onClick={() => router.push('/inventory/replenishment/auto')}>
+          onClick={() => router.push('/inventory/replenishment/auto')}>
           <div className="bg-purple-100 p-3 rounded-lg">
             <RefreshCw className="w-6 h-6 text-purple-600" />
           </div>

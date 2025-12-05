@@ -1,3 +1,74 @@
+import { apiClient } from './api/client';
+
+export interface Project {
+    id: string;
+    name: string;
+    clientName: string;
+    description?: string;
+    projectCode?: string;
+    startDate?: string;
+    endDate?: string;
+    status: string;
+    priority: string;
+    progress: number;
+    budgetAllocated: number;
+    budgetSpent: number;
+    projectManagerId?: string;
+    location?: string;
+    projectType?: string;
+}
+
+export interface ProjectTask {
+    id: string;
+    projectId: string;
+    name: string;
+    description?: string;
+    startDate?: string;
+    endDate?: string;
+    status: string;
+    priority: string;
+    progress: number;
+    assignedTo?: string[];
+    parentTaskId?: string;
+    subtasks?: ProjectTask[];
+}
+
+export interface ProjectResource {
+    id: string;
+    projectId: string;
+    userId: string;
+    role?: string;
+    allocationPercentage: number;
+    startDate?: string;
+    endDate?: string;
+}
+
+export interface ProjectBudget {
+    id: string;
+    projectId: string;
+    category: string;
+    budgetAllocated: number;
+    budgetSpent: number;
+    forecastCost: number;
+}
+
+export interface ProjectMilestone {
+    id: string;
+    projectId: string;
+    name: string;
+    dueDate?: string;
+    status: string;
+}
+
+export interface TimeLog {
+    id: string;
+    projectId: string;
+    taskId?: string;
+    userId: string;
+    date: string;
+    hours: number;
+    description?: string;
+}
 
 export interface TAClaim {
     id: string;
@@ -72,7 +143,7 @@ export interface Drawing {
 }
 
 class ProjectManagementService {
-    // Mock Data Stores
+    // ... existing mock data stores ...
     private claims: TAClaim[] = [
         { id: 'CLM-001', date: '2023-10-25', amount: 1500, description: 'Site visit travel', status: 'Approved', projectId: 'proj-001' },
         { id: 'CLM-002', date: '2023-10-28', amount: 800, description: 'Local conveyance', status: 'Pending', projectId: 'proj-001' },
@@ -127,6 +198,134 @@ class ProjectManagementService {
         { id: 'DIS-003', title: 'Material Finish Unavailable', description: 'Selected laminate out of stock', priority: 'Low', status: 'Resolved', date: '2025-01-18', reportedBy: 'Procurement' },
     ];
 
+    // --- Projects ---
+    async getProjects(): Promise<Project[]> {
+        const response = await apiClient.get<Project[]>('/projects');
+        return response.data || []; // Handle if data is wrapped or direct
+    }
+
+    async getProject(id: string): Promise<Project> {
+        const response = await apiClient.get<Project>(`/projects/${id}`);
+        return response.data;
+    }
+
+    async createProject(data: any): Promise<Project> {
+        const response = await apiClient.post<Project>('/projects', data);
+        return response.data;
+    }
+
+    async updateProject(id: string, data: any): Promise<Project> {
+        const response = await apiClient.put<Project>(`/projects/${id}`, data); // or patch
+        return response.data; // Assuming patch is supported or use put
+    }
+
+    async deleteProject(id: string): Promise<void> {
+        await apiClient.delete(`/projects/${id}`);
+    }
+
+    // --- Tasks ---
+    async getTasks(projectId: string): Promise<ProjectTask[]> {
+        const response = await apiClient.get<ProjectTask[]>(`/project-tasks?projectId=${projectId}`);
+        return response.data || [];
+    }
+
+    async createTask(data: any): Promise<ProjectTask> {
+        const response = await apiClient.post<ProjectTask>('/project-tasks', data);
+        return response.data;
+    }
+
+    async updateTask(id: string, data: any): Promise<ProjectTask> {
+        const response = await apiClient.put<ProjectTask>(`/project-tasks/${id}`, data); // Using put for now, maybe patch
+        return response.data;
+    }
+
+    async deleteTask(id: string): Promise<void> {
+        await apiClient.delete(`/project-tasks/${id}`);
+    }
+
+    // --- Resources ---
+    async getResources(projectId: string): Promise<ProjectResource[]> {
+        const response = await apiClient.get<ProjectResource[]>(`/project-resources?projectId=${projectId}`);
+        return response.data || [];
+    }
+
+    async createResource(data: any): Promise<ProjectResource> {
+        const response = await apiClient.post<ProjectResource>('/project-resources', data);
+        return response.data;
+    }
+
+    async updateResource(id: string, data: any): Promise<ProjectResource> {
+        const response = await apiClient.put<ProjectResource>(`/project-resources/${id}`, data);
+        return response.data;
+    }
+
+    async deleteResource(id: string): Promise<void> {
+        await apiClient.delete(`/project-resources/${id}`);
+    }
+
+    // --- Budgets ---
+    async getBudgets(projectId: string): Promise<ProjectBudget[]> {
+        const response = await apiClient.get<ProjectBudget[]>(`/project-budgets?projectId=${projectId}`);
+        return response.data || [];
+    }
+
+    async createBudget(data: any): Promise<ProjectBudget> {
+        const response = await apiClient.post<ProjectBudget>('/project-budgets', data);
+        return response.data;
+    }
+
+    async updateBudget(id: string, data: any): Promise<ProjectBudget> {
+        const response = await apiClient.put<ProjectBudget>(`/project-budgets/${id}`, data);
+        return response.data;
+    }
+
+    async deleteBudget(id: string): Promise<void> {
+        await apiClient.delete(`/project-budgets/${id}`);
+    }
+
+    // --- Milestones ---
+    async getMilestones(projectId: string): Promise<ProjectMilestone[]> {
+        const response = await apiClient.get<ProjectMilestone[]>(`/project-milestones?projectId=${projectId}`);
+        return response.data || [];
+    }
+
+    async createMilestone(data: any): Promise<ProjectMilestone> {
+        const response = await apiClient.post<ProjectMilestone>('/project-milestones', data);
+        return response.data;
+    }
+
+    async updateMilestone(id: string, data: any): Promise<ProjectMilestone> {
+        const response = await apiClient.put<ProjectMilestone>(`/project-milestones/${id}`, data);
+        return response.data;
+    }
+
+    async deleteMilestone(id: string): Promise<void> {
+        await apiClient.delete(`/project-milestones/${id}`);
+    }
+
+    // --- Time Logs ---
+    async getTimeLogs(projectId: string, userId?: string): Promise<TimeLog[]> {
+        let url = `/time-logs?projectId=${projectId}`;
+        if (userId) url += `&userId=${userId}`;
+        const response = await apiClient.get<TimeLog[]>(url);
+        return response.data || [];
+    }
+
+    async createTimeLog(data: any): Promise<TimeLog> {
+        const response = await apiClient.post<TimeLog>('/time-logs', data);
+        return response.data;
+    }
+
+    async updateTimeLog(id: string, data: any): Promise<TimeLog> {
+        const response = await apiClient.put<TimeLog>(`/time-logs/${id}`, data);
+        return response.data;
+    }
+
+    async deleteTimeLog(id: string): Promise<void> {
+        await apiClient.delete(`/time-logs/${id}`);
+    }
+
+    // ... existing methods ...
     // TA Settlement Methods
     async getClaims(projectId: string): Promise<TAClaim[]> {
         // Simulate API delay

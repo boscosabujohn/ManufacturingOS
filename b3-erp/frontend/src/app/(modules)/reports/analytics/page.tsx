@@ -245,7 +245,7 @@ export default function AnalyticsPage() {
 
   return (
     <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6">
-      <div className="max-w-7xl mx-auto space-y-6">
+      <div className="w-full max-w-full mx-auto space-y-6">
         {/* Header */}
         <div className="bg-white rounded-lg shadow-sm p-6">
           <div className="flex justify-between items-start mb-4">

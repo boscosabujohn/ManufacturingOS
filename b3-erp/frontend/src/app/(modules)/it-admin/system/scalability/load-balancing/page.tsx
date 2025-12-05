@@ -1,0 +1,96 @@
+'use client';
+
+import React, { useState } from 'react';
+import { Network, Server, Activity, Settings, RefreshCw, Power, Plus, MoreVertical } from 'lucide-react';
+
+export default function LoadBalancingPage() {
+    const [balancers, setBalancers] = useState([
+        { id: 1, name: 'Web-LB-01', region: 'us-east-1', status: 'active', algorithm: 'Round Robin', connections: 12543, health: 100 },
+        { id: 2, name: 'API-LB-01', region: 'us-east-1', status: 'active', algorithm: 'Least Connections', connections: 8932, health: 98 },
+        { id: 3, name: 'DB-Read-LB', region: 'us-east-1', status: 'active', algorithm: 'Round Robin', connections: 4521, health: 100 },
+    ]);
+
+    return (
+        <div className="w-full min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
+            <div className="w-full max-w-full mx-auto space-y-6">
+                <div className="flex justify-between items-center">
+                    <div>
+                        <h1 className="text-2xl font-bold text-gray-900">Load Balancing</h1>
+                        <p className="text-sm text-gray-500 mt-1">Configure traffic distribution and server pools</p>
+                    </div>
+                    <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium flex items-center gap-2">
+                        <Plus className="w-4 h-4" />
+                        Create Load Balancer
+                    </button>
+                </div>
+
+                {/* Load Balancers List */}
+                <div className="grid grid-cols-1 gap-6">
+                    {balancers.map((lb) => (
+                        <div key={lb.id} className="bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
+                            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
+                                <div className="flex items-center gap-4">
+                                    <div className="p-3 bg-blue-50 rounded-lg">
+                                        <Network className="w-6 h-6 text-blue-600" />
+                                    </div>
+                                    <div>
+                                        <div className="flex items-center gap-3">
+                                            <h3 className="text-lg font-bold text-gray-900">{lb.name}</h3>
+                                            <span className="px-2 py-1 bg-green-100 text-green-700 text-xs font-bold rounded-full uppercase">
+                                                {lb.status}
+                                            </span>
+                                        </div>
+                                        <p className="text-sm text-gray-500 mt-1">{lb.region} • {lb.algorithm}</p>
+                                    </div>
+                                </div>
+                                <div className="flex items-center gap-3">
+                                    <button className="p-2 text-gray-500 hover:bg-gray-100 rounded-lg">
+                                        <RefreshCw className="w-5 h-5" />
+                                    </button>
+                                    <button className="p-2 text-gray-500 hover:bg-gray-100 rounded-lg">
+                                        <Settings className="w-5 h-5" />
+                                    </button>
+                                    <button className="p-2 text-gray-500 hover:bg-gray-100 rounded-lg">
+                                        <MoreVertical className="w-5 h-5" />
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6 border-t border-gray-100">
+                                <div>
+                                    <p className="text-sm text-gray-500 mb-1">Active Connections</p>
+                                    <p className="text-2xl font-bold text-gray-900">{lb.connections.toLocaleString()}</p>
+                                </div>
+                                <div>
+                                    <p className="text-sm text-gray-500 mb-1">Health Score</p>
+                                    <div className="flex items-center gap-2">
+                                        <div className="flex-1 h-2 bg-gray-100 rounded-full w-32">
+                                            <div
+                                                className={`h-2 rounded-full ${lb.health >= 90 ? 'bg-green-500' : 'bg-yellow-500'}`}
+                                                style={{ width: `${lb.health}%` }}
+                                            ></div>
+                                        </div>
+                                        <span className="text-sm font-bold text-gray-900">{lb.health}%</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p className="text-sm text-gray-500 mb-1">Target Groups</p>
+                                    <div className="flex -space-x-2">
+                                        {[1, 2, 3].map((i) => (
+                                            <div key={i} className="w-8 h-8 rounded-full bg-gray-100 border-2 border-white flex items-center justify-center">
+                                                <Server className="w-4 h-4 text-gray-500" />
+                                            </div>
+                                        ))}
+                                        <div className="w-8 h-8 rounded-full bg-gray-100 border-2 border-white flex items-center justify-center text-xs font-medium text-gray-600">
+                                            +2
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
+}

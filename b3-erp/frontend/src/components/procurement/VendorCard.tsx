@@ -22,33 +22,10 @@ import {
   BarChart3,
   Award
 } from 'lucide-react'
+import { Vendor } from '@/services/VendorService'
 
 interface VendorCardProps {
-  vendor: {
-    id: string
-    vendorCode: string
-    vendorName: string
-    contactPerson: string
-    email: string
-    phone: string
-    category: string
-    rating: number
-    status: 'active' | 'inactive' | 'blacklisted' | 'pending_approval'
-    totalOrders: number
-    totalSpend: number
-    onTimeDelivery: number
-    qualityScore: number
-    paymentTerms: string
-    address: string
-    city: string
-    country: string
-    registeredDate: string
-    lastOrderDate: string
-    tags?: string[]
-    certifications?: string[]
-    responseTime?: number
-    disputeRate?: number
-  }
+  vendor: Vendor
   viewMode: 'grid' | 'list'
   onView: (id: string) => void
   onEdit: (id: string) => void
@@ -71,13 +48,13 @@ export default function VendorCard({
   const [showDropdown, setShowDropdown] = useState(false)
 
   const getStatusColor = (status: string) => {
-    const colors = {
-      active: 'bg-green-100 text-green-700 border-green-200',
-      inactive: 'bg-gray-100 text-gray-700 border-gray-200',
-      blacklisted: 'bg-red-100 text-red-700 border-red-200',
-      pending_approval: 'bg-yellow-100 text-yellow-700 border-yellow-200'
+    const colors: Record<string, string> = {
+      Active: 'bg-green-100 text-green-700 border-green-200',
+      Inactive: 'bg-gray-100 text-gray-700 border-gray-200',
+      Blacklisted: 'bg-red-100 text-red-700 border-red-200',
+      Pending: 'bg-yellow-100 text-yellow-700 border-yellow-200'
     }
-    return colors[status as keyof typeof colors] || colors.inactive
+    return colors[status] || colors.Inactive
   }
 
   const getRatingColor = (rating: number) => {
@@ -88,14 +65,27 @@ export default function VendorCard({
   }
 
   const getPerformanceIndicator = (score: number) => {
-    if (score >= 90) return { color: 'text-green-600', icon: TrendingUp, label: 'Excellent' }
-    if (score >= 75) return { color: 'text-blue-600', icon: CheckCircle, label: 'Good' }
-    if (score >= 60) return { color: 'text-yellow-600', icon: Clock, label: 'Average' }
+    if (score >= 4.5) return { color: 'text-green-600', icon: TrendingUp, label: 'Excellent' }
+    if (score >= 3.5) return { color: 'text-blue-600', icon: CheckCircle, label: 'Good' }
+    if (score >= 2.5) return { color: 'text-yellow-600', icon: Clock, label: 'Average' }
     return { color: 'text-red-600', icon: AlertCircle, label: 'Poor' }
   }
 
-  const performanceScore = (vendor.onTimeDelivery + vendor.qualityScore) / 2
-  const performance = getPerformanceIndicator(performanceScore)
+  const performance = getPerformanceIndicator(vendor.averageRating || 0)
+
+  // Helper to convert enum rating to percentage for display
+  const getRatingPercentage = (rating: string) => {
+    switch (rating) {
+      case 'Excellent': return 95;
+      case 'Good': return 80;
+      case 'Fair': return 60;
+      case 'Poor': return 40;
+      default: return 0;
+    }
+  }
+
+  const qualityScore = getRatingPercentage(vendor.qualityRating);
+  const deliveryScore = getRatingPercentage(vendor.deliveryRating);
 
   if (viewMode === 'list') {
     return (
@@ -130,7 +120,7 @@ export default function VendorCard({
               <div className="flex items-center gap-3 mt-1 text-xs text-gray-500">
                 <span className="flex items-center gap-1">
                   <MapPin className="h-3 w-3" />
-                  {vendor.city}, {vendor.country}
+                  {vendor.address ? vendor.address.split(',').pop()?.trim() : 'N/A'}
                 </span>
                 <span className="flex items-center gap-1">
                   <Mail className="h-3 w-3" />
@@ -144,23 +134,23 @@ export default function VendorCard({
               {/* Rating */}
               <div className="text-center">
                 <div className="flex items-center gap-1">
-                  <Star className={`h-5 w-5 ${getRatingColor(vendor.rating)} fill-current`} />
-                  <span className={`text-lg font-bold ${getRatingColor(vendor.rating)}`}>
-                    {vendor.rating.toFixed(1)}
+                  <Star className={`h-5 w-5 ${getRatingColor(vendor.averageRating || 0)} fill-current`} />
+                  <span className={`text-lg font-bold ${getRatingColor(vendor.averageRating || 0)}`}>
+                    {(vendor.averageRating || 0).toFixed(1)}
                   </span>
                 </div>
-                <p className="text-xs text-gray-500">Rating</p>
+                <p className="text-xs text-gray-500">Avg Rating</p>
               </div>
 
-              {/* On-Time Delivery */}
+              {/* Delivery */}
               <div className="text-center">
-                <p className="text-lg font-bold text-gray-900">{vendor.onTimeDelivery}%</p>
-                <p className="text-xs text-gray-500">On-Time</p>
+                <p className="text-lg font-bold text-gray-900">{deliveryScore}%</p>
+                <p className="text-xs text-gray-500">Delivery</p>
               </div>
 
               {/* Quality Score */}
               <div className="text-center">
-                <p className="text-lg font-bold text-gray-900">{vendor.qualityScore}%</p>
+                <p className="text-lg font-bold text-gray-900">{qualityScore}%</p>
                 <p className="text-xs text-gray-500">Quality</p>
               </div>
 
@@ -174,12 +164,12 @@ export default function VendorCard({
             {/* Business Metrics */}
             <div className="flex items-center gap-4">
               <div>
-                <p className="text-sm font-bold text-gray-900">${(vendor.totalSpend / 1000).toFixed(0)}K</p>
+                <p className="text-sm font-bold text-gray-900">${((vendor.totalPurchases || 0) / 1000).toFixed(0)}K</p>
                 <p className="text-xs text-gray-500">Total Spend</p>
               </div>
               <div>
-                <p className="text-sm font-bold text-gray-900">{vendor.totalOrders}</p>
-                <p className="text-xs text-gray-500">Orders</p>
+                <p className="text-sm font-bold text-gray-900">{vendor.paymentStatus}</p>
+                <p className="text-xs text-gray-500">Payment</p>
               </div>
             </div>
 
@@ -311,9 +301,9 @@ export default function VendorCard({
         {/* Rating and Performance */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-1">
-            <Star className={`h-5 w-5 ${getRatingColor(vendor.rating)} fill-current`} />
-            <span className={`text-lg font-bold ${getRatingColor(vendor.rating)}`}>
-              {vendor.rating.toFixed(1)}
+            <Star className={`h-5 w-5 ${getRatingColor(vendor.averageRating || 0)} fill-current`} />
+            <span className={`text-lg font-bold ${getRatingColor(vendor.averageRating || 0)}`}>
+              {(vendor.averageRating || 0).toFixed(1)}
             </span>
           </div>
           <div className={`flex items-center gap-1 ${performance.color}`}>
@@ -330,7 +320,9 @@ export default function VendorCard({
           </div>
           <div className="flex items-center justify-between">
             <span className="text-gray-500">Location</span>
-            <span className="font-medium text-gray-900">{vendor.city}, {vendor.country}</span>
+            <span className="font-medium text-gray-900">
+              {vendor.address ? vendor.address.split(',').pop()?.trim() : 'N/A'}
+            </span>
           </div>
           <div className="flex items-center justify-between">
             <span className="text-gray-500">Contact</span>
@@ -341,52 +333,36 @@ export default function VendorCard({
         {/* Metrics Grid */}
         <div className="grid grid-cols-2 gap-3 pt-3 border-t">
           <div className="text-center p-2 bg-gray-50 rounded-lg">
-            <p className="text-lg font-bold text-gray-900">{vendor.onTimeDelivery}%</p>
-            <p className="text-xs text-gray-500">On-Time</p>
+            <p className="text-lg font-bold text-gray-900">{deliveryScore}%</p>
+            <p className="text-xs text-gray-500">Delivery</p>
           </div>
           <div className="text-center p-2 bg-gray-50 rounded-lg">
-            <p className="text-lg font-bold text-gray-900">{vendor.qualityScore}%</p>
+            <p className="text-lg font-bold text-gray-900">{qualityScore}%</p>
             <p className="text-xs text-gray-500">Quality</p>
           </div>
           <div className="text-center p-2 bg-gray-50 rounded-lg">
-            <p className="text-lg font-bold text-green-700">${(vendor.totalSpend / 1000).toFixed(0)}K</p>
+            <p className="text-lg font-bold text-green-700">${((vendor.totalPurchases || 0) / 1000).toFixed(0)}K</p>
             <p className="text-xs text-gray-500">Total Spend</p>
           </div>
           <div className="text-center p-2 bg-gray-50 rounded-lg">
-            <p className="text-lg font-bold text-gray-900">{vendor.totalOrders}</p>
-            <p className="text-xs text-gray-500">Orders</p>
+            <p className="text-lg font-bold text-gray-900">{vendor.paymentStatus}</p>
+            <p className="text-xs text-gray-500">Payment</p>
           </div>
         </div>
 
-        {/* Tags */}
-        {vendor.tags && vendor.tags.length > 0 && (
-          <div className="flex flex-wrap gap-1 pt-3 border-t">
-            {vendor.tags.map((tag) => (
-              <span key={tag} className="px-2 py-0.5 bg-blue-100 text-blue-700 text-xs rounded-full">
-                {tag}
-              </span>
-            ))}
-          </div>
-        )}
+        {/* Tags - Removed as not in interface, or could be added if needed */}
 
-        {/* Certifications */}
-        {vendor.certifications && vendor.certifications.length > 0 && (
-          <div className="flex items-center gap-2 text-xs text-gray-500">
-            <Award className="h-3.5 w-3.5 text-yellow-600" />
-            {vendor.certifications.join(', ')}
-          </div>
-        )}
       </div>
 
       {/* Footer */}
       <div className="px-4 py-3 bg-gray-50 border-t border-gray-100 flex items-center justify-between text-xs text-gray-500">
         <span className="flex items-center gap-1">
           <Calendar className="h-3 w-3" />
-          Since {new Date(vendor.registeredDate).getFullYear()}
+          {vendor.paymentTerms || 'Net 30'}
         </span>
         <span className="flex items-center gap-1">
           <Package className="h-3 w-3" />
-          Last order: {vendor.lastOrderDate}
+          Last: {vendor.lastPurchaseDate ? new Date(vendor.lastPurchaseDate).toLocaleDateString() : 'Never'}
         </span>
       </div>
     </div>

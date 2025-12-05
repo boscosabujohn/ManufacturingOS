@@ -399,18 +399,16 @@ export default function CustomReportsPage() {
                 (step, index) => (
                   <div
                     key={index}
-                    className={`flex items-center gap-2 ${
-                      currentStep > index + 1 ? 'opacity-100' : 'opacity-60'
-                    }`}
+                    className={`flex items-center gap-2 ${currentStep > index + 1 ? 'opacity-100' : 'opacity-60'
+                      }`}
                   >
                     <div
-                      className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                        currentStep > index
+                      className={`w-8 h-8 rounded-full flex items-center justify-center ${currentStep > index
                           ? 'bg-green-500'
                           : currentStep === index + 1
-                          ? 'bg-white text-blue-600'
-                          : 'bg-blue-500'
-                      }`}
+                            ? 'bg-white text-blue-600'
+                            : 'bg-blue-500'
+                        }`}
                     >
                       {currentStep > index ? (
                         <Check className="w-5 h-5" />
@@ -479,11 +477,10 @@ export default function CustomReportsPage() {
                       <button
                         key={type.id}
                         onClick={() => setSelectedChartType(type.id)}
-                        className={`p-4 border-2 rounded-lg flex flex-col items-center gap-2 transition-colors ${
-                          selectedChartType === type.id
+                        className={`p-4 border-2 rounded-lg flex flex-col items-center gap-2 transition-colors ${selectedChartType === type.id
                             ? 'border-blue-500 bg-blue-50'
                             : 'border-gray-300 hover:border-gray-400'
-                        }`}
+                          }`}
                       >
                         {type.icon}
                         <span className="text-sm">{type.name}</span>
@@ -505,11 +502,10 @@ export default function CustomReportsPage() {
                       <button
                         key={source.id}
                         onClick={() => setSelectedDataSource(source.id)}
-                        className={`p-4 border-2 rounded-lg text-left transition-colors ${
-                          selectedDataSource === source.id
+                        className={`p-4 border-2 rounded-lg text-left transition-colors ${selectedDataSource === source.id
                             ? 'border-blue-500 bg-blue-50'
                             : 'border-gray-300 hover:border-gray-400'
-                        }`}
+                          }`}
                       >
                         <div className="flex items-center gap-2 mb-2">
                           <Database className="w-5 h-5" />
@@ -689,7 +685,7 @@ export default function CustomReportsPage() {
 
   return (
     <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6">
-      <div className="max-w-7xl mx-auto space-y-6">
+      <div className="w-full max-w-full mx-auto space-y-6">
         {/* Header */}
         <div className="bg-white rounded-lg shadow-sm p-6">
           <div className="flex justify-end items-start gap-2 mb-4">
@@ -730,17 +726,15 @@ export default function CustomReportsPage() {
             <div className="flex gap-2">
               <button
                 onClick={() => setViewMode('grid')}
-                className={`p-2 rounded-lg ${
-                  viewMode === 'grid' ? 'bg-blue-100 text-blue-600' : 'bg-gray-100'
-                }`}
+                className={`p-2 rounded-lg ${viewMode === 'grid' ? 'bg-blue-100 text-blue-600' : 'bg-gray-100'
+                  }`}
               >
                 <Grid className="w-5 h-5" />
               </button>
               <button
                 onClick={() => setViewMode('list')}
-                className={`p-2 rounded-lg ${
-                  viewMode === 'list' ? 'bg-blue-100 text-blue-600' : 'bg-gray-100'
-                }`}
+                className={`p-2 rounded-lg ${viewMode === 'list' ? 'bg-blue-100 text-blue-600' : 'bg-gray-100'
+                  }`}
               >
                 <List className="w-5 h-5" />
               </button>

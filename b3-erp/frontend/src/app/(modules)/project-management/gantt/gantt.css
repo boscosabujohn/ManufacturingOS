@@ -1,0 +1,58 @@
+/* Global Gantt Chart Styles */
+@import 'gantt-task-react/dist/index.css';
+
+/* Custom Gantt Chart Overrides */
+.gantt-container {
+  font-family: 'Inter', sans-serif;
+}
+
+.gantt-vertical-container {
+  overflow: hidden !important;
+}
+
+/* Task bars */
+._3uo9D {
+  rx: 4px !important;
+}
+
+/* Grid cells */
+._2pkoW {
+  stroke: #e5e7eb !important;
+}
+
+/* Today marker */
+._1xd2o {
+  stroke: #ef4444 !important;
+  stroke-width: 2px !important;
+}
+
+/* Arrows (dependencies) */
+._3dJbM {
+  stroke: #6b7280 !important;
+  stroke-width: 1.5px !important;
+}
+
+/* Task list header */
+._1riHN {
+  background-color: #f9fafb !important;
+  border-bottom: 2px solid #e5e7eb !important;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

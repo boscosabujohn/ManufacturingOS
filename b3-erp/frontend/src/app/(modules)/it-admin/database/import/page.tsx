@@ -230,7 +230,7 @@ export default function DatabaseImportPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
+    <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6 w-full max-w-full">
       <div className="mb-6 flex items-center gap-4">
         <button onClick={() => router.back()} className="p-2 hover:bg-gray-100 rounded-lg">
           <ArrowLeft className="w-5 h-5 text-gray-600" />
@@ -303,9 +303,8 @@ export default function DatabaseImportPage() {
             onDragLeave={handleDrag}
             onDragOver={handleDrag}
             onDrop={handleDrop}
-            className={`mb-6 border-2 border-dashed rounded-lg p-8 text-center transition-colors ${
-              dragActive ? 'border-blue-500 bg-blue-50' : 'border-gray-300'
-            }`}
+            className={`mb-6 border-2 border-dashed rounded-lg p-8 text-center transition-colors ${dragActive ? 'border-blue-500 bg-blue-50' : 'border-gray-300'
+              }`}
           >
             <Upload className="w-12 h-12 text-gray-400 mx-auto mb-3" />
             <p className="text-sm font-medium text-gray-900 mb-1">
@@ -527,7 +526,7 @@ export default function DatabaseImportPage() {
                       <button
                         onClick={() => handlePauseImport(job.id)}
                         className="p-2 hover:bg-yellow-50 rounded-lg text-yellow-600"
-                       
+
                       >
                         <Pause className="w-5 h-5" />
                       </button>
@@ -536,7 +535,7 @@ export default function DatabaseImportPage() {
                       <button
                         onClick={() => handleResumeImport(job.id)}
                         className="p-2 hover:bg-green-50 rounded-lg text-green-600"
-                       
+
                       >
                         <Play className="w-5 h-5" />
                       </button>
@@ -545,7 +544,7 @@ export default function DatabaseImportPage() {
                       <button
                         onClick={() => handleRetryImport(job.id)}
                         className="p-2 hover:bg-blue-50 rounded-lg text-blue-600"
-                       
+
                       >
                         <RotateCcw className="w-5 h-5" />
                       </button>

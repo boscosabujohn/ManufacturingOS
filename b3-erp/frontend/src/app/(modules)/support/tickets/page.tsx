@@ -331,7 +331,7 @@ export default function TicketsPage() {
     const matchesSource = sourceFilter === 'all' || ticket.source === sourceFilter;
     const matchesDepartment = departmentFilter === 'all' || ticket.department === departmentFilter;
     return matchesSearch && matchesStatus && matchesPriority && matchesCategory &&
-           matchesAssignedTo && matchesSla && matchesSource && matchesDepartment;
+      matchesAssignedTo && matchesSla && matchesSource && matchesDepartment;
   });
 
   if (sortField) {
@@ -392,10 +392,10 @@ export default function TicketsPage() {
   const isAllSelected = paginatedTickets.length > 0 && paginatedTickets.every(t => selectedTickets.includes(t.id));
 
   return (
-    <div className="container mx-auto min-h-screen px-4 sm:px-6 lg:px-8 py-6 max-w-7xl">
+    <div className="container mx-auto min-h-screen px-4 sm:px-6 lg:px-8 py-6 w-full max-w-full">
       {/* Page Header with Toolbar */}
       <PageToolbar
-       
+
         subtitle={`${stats.total} tickets · ${stats.open} open · ${stats.slaBreach} SLA breach`}
         breadcrumbs={[
           { label: 'Support', href: '/support' },
@@ -649,15 +649,15 @@ export default function TicketsPage() {
             icon={Ticket}
             title={
               searchQuery || statusFilter !== 'all' || priorityFilter !== 'all' ||
-              categoryFilter !== 'all' || assignedToFilter !== 'all' ||
-              slaFilter !== 'all' || sourceFilter !== 'all' || departmentFilter !== 'all'
+                categoryFilter !== 'all' || assignedToFilter !== 'all' ||
+                slaFilter !== 'all' || sourceFilter !== 'all' || departmentFilter !== 'all'
                 ? "No tickets found"
                 : "No tickets yet"
             }
             description={
               searchQuery || statusFilter !== 'all' || priorityFilter !== 'all' ||
-              categoryFilter !== 'all' || assignedToFilter !== 'all' ||
-              slaFilter !== 'all' || sourceFilter !== 'all' || departmentFilter !== 'all'
+                categoryFilter !== 'all' || assignedToFilter !== 'all' ||
+                slaFilter !== 'all' || sourceFilter !== 'all' || departmentFilter !== 'all'
                 ? "Try adjusting your search or filters to find what you're looking for."
                 : "Get started by creating your first support ticket."
             }
@@ -668,21 +668,21 @@ export default function TicketsPage() {
             }}
             secondaryAction={
               searchQuery || statusFilter !== 'all' || priorityFilter !== 'all' ||
-              categoryFilter !== 'all' || assignedToFilter !== 'all' ||
-              slaFilter !== 'all' || sourceFilter !== 'all' || departmentFilter !== 'all'
+                categoryFilter !== 'all' || assignedToFilter !== 'all' ||
+                slaFilter !== 'all' || sourceFilter !== 'all' || departmentFilter !== 'all'
                 ? {
-                    label: "Clear Filters",
-                    onClick: () => {
-                      setSearchQuery('');
-                      setStatusFilter('all');
-                      setPriorityFilter('all');
-                      setCategoryFilter('all');
-                      setAssignedToFilter('all');
-                      setSlaFilter('all');
-                      setSourceFilter('all');
-                      setDepartmentFilter('all');
-                    }
+                  label: "Clear Filters",
+                  onClick: () => {
+                    setSearchQuery('');
+                    setStatusFilter('all');
+                    setPriorityFilter('all');
+                    setCategoryFilter('all');
+                    setAssignedToFilter('all');
+                    setSlaFilter('all');
+                    setSourceFilter('all');
+                    setDepartmentFilter('all');
                   }
+                }
                 : undefined
             }
           />
@@ -691,181 +691,180 @@ export default function TicketsPage() {
         <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
           <div className="overflow-x-auto max-h-[calc(100vh-400px)] overflow-y-auto">
             <table className="w-full">
-            <thead className="bg-gray-50 border-b border-gray-200 sticky top-0">
-              <tr>
-                <th className="px-4 py-3 text-left">
-                  <input
-                    type="checkbox"
-                    checked={isAllSelected}
-                    onChange={(e) => handleSelectAll(e.target.checked)}
-                    className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-                  />
-                </th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase cursor-pointer hover:bg-gray-100" onClick={() => handleSort('ticketNumber')}>
-                  <div className="flex items-center space-x-1">
-                    <span>Ticket #</span>
-                    <ArrowUpDown className="h-3 w-3" />
-                  </div>
-                </th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Subject</th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Customer</th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Assigned To</th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Priority</th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Category</th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">SLA Status</th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase cursor-pointer hover:bg-gray-100" onClick={() => handleSort('createdDate')}>
-                  <div className="flex items-center space-x-1">
-                    <span>Created</span>
-                    <ArrowUpDown className="h-3 w-3" />
-                  </div>
-                </th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-200">
-              {paginatedTickets.map((ticket) => (
-                <tr key={ticket.id} className="hover:bg-gray-50">
-                  <td className="px-4 py-3">
+              <thead className="bg-gray-50 border-b border-gray-200 sticky top-0">
+                <tr>
+                  <th className="px-4 py-3 text-left">
                     <input
                       type="checkbox"
-                      checked={selectedTickets.includes(ticket.id)}
-                      onChange={() => handleSelectTicket(ticket.id)}
+                      checked={isAllSelected}
+                      onChange={(e) => handleSelectAll(e.target.checked)}
                       className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                     />
-                  </td>
-                  <td className="px-4 py-3">
-                    <div className="font-medium text-blue-600">{ticket.ticketNumber}</div>
-                    <div className="text-xs text-gray-500">{ticket.source}</div>
-                  </td>
-                  <td className="px-4 py-3">
-                    <div className="font-medium text-gray-900 max-w-xs truncate">{ticket.subject}</div>
-                    <div className="text-xs text-gray-500 flex items-center gap-2 mt-1">
-                      <span className="flex items-center gap-1">
-                        <MessageSquare className="h-3 w-3" />
-                        {ticket.comments}
-                      </span>
-                      {ticket.attachments > 0 && (
-                        <span className="flex items-center gap-1">
-                          <Tag className="h-3 w-3" />
-                          {ticket.attachments}
-                        </span>
-                      )}
-                    </div>
-                  </td>
-                  <td className="px-4 py-3">
-                    <div className="font-medium text-gray-900">{ticket.customer}</div>
-                    <div className="text-xs text-gray-500 flex items-center gap-2">
-                      <Mail className="h-3 w-3" />
-                      {ticket.customerEmail}
-                    </div>
-                  </td>
-                  <td className="px-4 py-3">
-                    <div className="flex items-center gap-2">
-                      <User className="h-4 w-4 text-gray-400" />
-                      <span className="text-sm text-gray-700">{ticket.assignedTo}</span>
-                    </div>
-                    <div className="text-xs text-gray-500 mt-1">{ticket.department}</div>
-                  </td>
-                  <td className="px-4 py-3">
-                    <span className={`px-2 py-1 text-xs font-semibold rounded-full ${statusColors[ticket.status]}`}>
-                      {ticket.status.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
-                    </span>
-                  </td>
-                  <td className="px-4 py-3">
-                    <span className={`px-2 py-1 text-xs font-semibold rounded-full ${priorityColors[ticket.priority]}`}>
-                      {ticket.priority.charAt(0).toUpperCase() + ticket.priority.slice(1)}
-                    </span>
-                  </td>
-                  <td className="px-4 py-3">
-                    <span className={`px-2 py-1 text-xs font-semibold rounded-full ${categoryColors[ticket.category]}`}>
-                      {ticket.category.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
-                    </span>
-                  </td>
-                  <td className="px-4 py-3">
-                    <span className={`px-2 py-1 text-xs font-semibold rounded-full ${slaColors[ticket.slaStatus]}`}>
-                      {ticket.slaStatus.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
-                    </span>
-                  </td>
-                  <td className="px-4 py-3">
-                    <div className="text-sm text-gray-700">{ticket.createdDate}</div>
-                    <div className="text-xs text-gray-500">Updated: {ticket.lastUpdated}</div>
-                  </td>
-                  <td className="px-4 py-3">
+                  </th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase cursor-pointer hover:bg-gray-100" onClick={() => handleSort('ticketNumber')}>
                     <div className="flex items-center space-x-1">
+                      <span>Ticket #</span>
+                      <ArrowUpDown className="h-3 w-3" />
+                    </div>
+                  </th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Subject</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Customer</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Assigned To</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Priority</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Category</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">SLA Status</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase cursor-pointer hover:bg-gray-100" onClick={() => handleSort('createdDate')}>
+                    <div className="flex items-center space-x-1">
+                      <span>Created</span>
+                      <ArrowUpDown className="h-3 w-3" />
+                    </div>
+                  </th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-200">
+                {paginatedTickets.map((ticket) => (
+                  <tr key={ticket.id} className="hover:bg-gray-50">
+                    <td className="px-4 py-3">
+                      <input
+                        type="checkbox"
+                        checked={selectedTickets.includes(ticket.id)}
+                        onChange={() => handleSelectTicket(ticket.id)}
+                        className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                      />
+                    </td>
+                    <td className="px-4 py-3">
+                      <div className="font-medium text-blue-600">{ticket.ticketNumber}</div>
+                      <div className="text-xs text-gray-500">{ticket.source}</div>
+                    </td>
+                    <td className="px-4 py-3">
+                      <div className="font-medium text-gray-900 max-w-xs truncate">{ticket.subject}</div>
+                      <div className="text-xs text-gray-500 flex items-center gap-2 mt-1">
+                        <span className="flex items-center gap-1">
+                          <MessageSquare className="h-3 w-3" />
+                          {ticket.comments}
+                        </span>
+                        {ticket.attachments > 0 && (
+                          <span className="flex items-center gap-1">
+                            <Tag className="h-3 w-3" />
+                            {ticket.attachments}
+                          </span>
+                        )}
+                      </div>
+                    </td>
+                    <td className="px-4 py-3">
+                      <div className="font-medium text-gray-900">{ticket.customer}</div>
+                      <div className="text-xs text-gray-500 flex items-center gap-2">
+                        <Mail className="h-3 w-3" />
+                        {ticket.customerEmail}
+                      </div>
+                    </td>
+                    <td className="px-4 py-3">
+                      <div className="flex items-center gap-2">
+                        <User className="h-4 w-4 text-gray-400" />
+                        <span className="text-sm text-gray-700">{ticket.assignedTo}</span>
+                      </div>
+                      <div className="text-xs text-gray-500 mt-1">{ticket.department}</div>
+                    </td>
+                    <td className="px-4 py-3">
+                      <span className={`px-2 py-1 text-xs font-semibold rounded-full ${statusColors[ticket.status]}`}>
+                        {ticket.status.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
+                      </span>
+                    </td>
+                    <td className="px-4 py-3">
+                      <span className={`px-2 py-1 text-xs font-semibold rounded-full ${priorityColors[ticket.priority]}`}>
+                        {ticket.priority.charAt(0).toUpperCase() + ticket.priority.slice(1)}
+                      </span>
+                    </td>
+                    <td className="px-4 py-3">
+                      <span className={`px-2 py-1 text-xs font-semibold rounded-full ${categoryColors[ticket.category]}`}>
+                        {ticket.category.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
+                      </span>
+                    </td>
+                    <td className="px-4 py-3">
+                      <span className={`px-2 py-1 text-xs font-semibold rounded-full ${slaColors[ticket.slaStatus]}`}>
+                        {ticket.slaStatus.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
+                      </span>
+                    </td>
+                    <td className="px-4 py-3">
+                      <div className="text-sm text-gray-700">{ticket.createdDate}</div>
+                      <div className="text-xs text-gray-500">Updated: {ticket.lastUpdated}</div>
+                    </td>
+                    <td className="px-4 py-3">
+                      <div className="flex items-center space-x-1">
+                        <button
+                          onClick={() => router.push(`/support/tickets/view/${ticket.id}`)}
+                          className="p-1.5 text-blue-600 hover:bg-blue-50 rounded transition-colors"
+
+                        >
+                          <Eye className="h-4 w-4" />
+                        </button>
+                        <button
+                          onClick={() => router.push(`/support/tickets/edit/${ticket.id}`)}
+                          className="p-1.5 text-green-600 hover:bg-green-50 rounded transition-colors"
+
+                        >
+                          <Edit className="h-4 w-4" />
+                        </button>
+                        <button
+                          onClick={() => handleDeleteTicket(ticket.id)}
+                          className="p-1.5 text-red-600 hover:bg-red-50 rounded transition-colors"
+
+                        >
+                          <Trash2 className="h-4 w-4" />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <div className="px-6 py-4 border-t border-gray-200 flex items-center justify-between">
+            <div className="text-sm text-gray-700">
+              Showing {startIndex + 1} to {Math.min(startIndex + itemsPerPage, filteredTickets.length)} of {filteredTickets.length} tickets
+            </div>
+            <div className="flex items-center space-x-2">
+              <button
+                onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+                disabled={currentPage === 1}
+                className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <ChevronLeft className="h-4 w-4" />
+              </button>
+              <div className="flex items-center space-x-1">
+                {Array.from({ length: totalPages }, (_, i) => i + 1)
+                  .filter(page => {
+                    return page === 1 || page === totalPages || (page >= currentPage - 1 && page <= currentPage + 1);
+                  })
+                  .map((page, index, array) => (
+                    <div key={page} className="flex items-center">
+                      {index > 0 && array[index - 1] !== page - 1 && (
+                        <span className="px-2 text-gray-400">...</span>
+                      )}
                       <button
-                        onClick={() => router.push(`/support/tickets/view/${ticket.id}`)}
-                        className="p-1.5 text-blue-600 hover:bg-blue-50 rounded transition-colors"
-                       
+                        onClick={() => setCurrentPage(page)}
+                        className={`px-3 py-1 rounded-lg ${currentPage === page
+                            ? 'bg-blue-600 text-white'
+                            : 'border border-gray-300 hover:bg-gray-50'
+                          }`}
                       >
-                        <Eye className="h-4 w-4" />
-                      </button>
-                      <button
-                        onClick={() => router.push(`/support/tickets/edit/${ticket.id}`)}
-                        className="p-1.5 text-green-600 hover:bg-green-50 rounded transition-colors"
-                       
-                      >
-                        <Edit className="h-4 w-4" />
-                      </button>
-                      <button
-                        onClick={() => handleDeleteTicket(ticket.id)}
-                        className="p-1.5 text-red-600 hover:bg-red-50 rounded transition-colors"
-                       
-                      >
-                        <Trash2 className="h-4 w-4" />
+                        {page}
                       </button>
                     </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-
-        <div className="px-6 py-4 border-t border-gray-200 flex items-center justify-between">
-          <div className="text-sm text-gray-700">
-            Showing {startIndex + 1} to {Math.min(startIndex + itemsPerPage, filteredTickets.length)} of {filteredTickets.length} tickets
-          </div>
-          <div className="flex items-center space-x-2">
-            <button
-              onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
-              disabled={currentPage === 1}
-              className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              <ChevronLeft className="h-4 w-4" />
-            </button>
-            <div className="flex items-center space-x-1">
-              {Array.from({ length: totalPages }, (_, i) => i + 1)
-                .filter(page => {
-                  return page === 1 || page === totalPages || (page >= currentPage - 1 && page <= currentPage + 1);
-                })
-                .map((page, index, array) => (
-                  <div key={page} className="flex items-center">
-                    {index > 0 && array[index - 1] !== page - 1 && (
-                      <span className="px-2 text-gray-400">...</span>
-                    )}
-                    <button
-                      onClick={() => setCurrentPage(page)}
-                      className={`px-3 py-1 rounded-lg ${
-                        currentPage === page
-                          ? 'bg-blue-600 text-white'
-                          : 'border border-gray-300 hover:bg-gray-50'
-                      }`}
-                    >
-                      {page}
-                    </button>
-                  </div>
-                ))}
+                  ))}
+              </div>
+              <button
+                onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
+                disabled={currentPage === totalPages}
+                className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <ChevronRight className="h-4 w-4" />
+              </button>
             </div>
-            <button
-              onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
-              disabled={currentPage === totalPages}
-              className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              <ChevronRight className="h-4 w-4" />
-            </button>
           </div>
-        </div>
         </div>
       )}
     </div>

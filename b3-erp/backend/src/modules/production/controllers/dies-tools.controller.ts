@@ -18,12 +18,12 @@ export class DiesToolsController {
     async createTool(
         @Body() body: { toolId: string; name: string; type: string; maxLife: number }
     ) {
-        const result = await this.diesToolsService.createTool(
-            body.toolId,
-            body.name,
-            body.type,
-            body.maxLife
-        );
+        const result = await this.diesToolsService.createTool({
+            toolId: body.toolId,
+            name: body.name,
+            type: body.type,
+            maxLife: body.maxLife
+        });
         return {
             success: true,
             data: result
@@ -45,9 +45,9 @@ export class DiesToolsController {
     @Post(':id/return')
     async returnTool(
         @Param('id') toolId: string,
-        @Body() body: { cyclesUsed: number }
+        @Body() body: { cyclesUsed: number; condition: string }
     ) {
-        const result = await this.diesToolsService.returnTool(toolId, body.cyclesUsed);
+        const result = await this.diesToolsService.returnTool(toolId, body.condition || 'Good', body.cyclesUsed);
         return {
             success: true,
             data: result

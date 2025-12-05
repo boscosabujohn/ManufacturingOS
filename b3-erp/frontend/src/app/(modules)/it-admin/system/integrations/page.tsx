@@ -289,16 +289,16 @@ export default function IntegrationsPage() {
       prev.map(integration =>
         integration.id === integrationId
           ? {
-              ...integration,
-              status: integration.status === 'active' ? 'inactive' : 'active'
-            }
+            ...integration,
+            status: integration.status === 'active' ? 'inactive' : 'active'
+          }
           : integration
       )
     );
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
+    <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6 w-full max-w-full">
       <div className="mb-6 flex items-center gap-4">
         <button onClick={() => router.back()} className="p-2 hover:bg-gray-100 rounded-lg">
           <ArrowLeft className="w-5 h-5 text-gray-600" />
@@ -375,11 +375,10 @@ export default function IntegrationsPage() {
                 <button
                   key={category.id}
                   onClick={() => setSelectedCategory(category.id)}
-                  className={`w-full text-left p-3 rounded-lg border-2 transition-all ${
-                    selectedCategory === category.id
+                  className={`w-full text-left p-3 rounded-lg border-2 transition-all ${selectedCategory === category.id
                       ? 'border-blue-500 bg-blue-50'
                       : 'border-gray-200 hover:border-blue-300'
-                  }`}
+                    }`}
                 >
                   <div className="flex items-center gap-2 mb-1">
                     <IconComponent className={`w-4 h-4 ${selectedCategory === category.id ? 'text-blue-600' : 'text-gray-600'}`} />
@@ -421,7 +420,7 @@ export default function IntegrationsPage() {
                           <button
                             onClick={() => handleSync(integration.id)}
                             className="p-2 hover:bg-gray-100 rounded-lg"
-                           
+
                           >
                             <RefreshCw className="w-5 h-5 text-gray-600" />
                           </button>
@@ -429,17 +428,16 @@ export default function IntegrationsPage() {
                         <button
                           onClick={() => setSelectedIntegration(integration.id)}
                           className="p-2 hover:bg-gray-100 rounded-lg"
-                         
+
                         >
                           <Settings className="w-5 h-5 text-gray-600" />
                         </button>
                         <button
                           onClick={() => handleToggleStatus(integration.id)}
-                          className={`px-3 py-2 rounded-lg text-sm font-medium ${
-                            integration.status === 'active'
+                          className={`px-3 py-2 rounded-lg text-sm font-medium ${integration.status === 'active'
                               ? 'bg-red-50 text-red-700 hover:bg-red-100'
                               : 'bg-green-50 text-green-700 hover:bg-green-100'
-                          }`}
+                            }`}
                         >
                           {integration.status === 'active' ? 'Disable' : 'Enable'}
                         </button>

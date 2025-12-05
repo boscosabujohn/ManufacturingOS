@@ -1,9 +1,9 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
-import { Button } from '@/components/ui/Button';
-import { Badge } from '@/components/ui/Badge';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 import { Plus, AlertTriangle, Clock, XCircle, CheckCircle, Filter } from 'lucide-react';
 import Link from 'next/link';
 
@@ -32,51 +32,10 @@ export default function NCRPage() {
     const fetchNCRs = async () => {
         try {
             setLoading(true);
-            const response = await fetch('/api/quality/non-conformance');
+            const response = await fetch('/api/quality/ncr');
+            if (!response.ok) throw new Error('Failed to fetch NCRs');
             const data = await response.json();
-            if (data.success) {
-                setNcrs(data.data);
-            } else {
-                // Mock data
-                setNcrs([
-                    {
-                        id: '1',
-                        ncrNumber: 'NCR-2025-001',
-                        title: 'Dimensional deviation in steel frame',
-                        source: 'Inspection',
-                        severity: 'major',
-                        status: 'open',
-                        reportedBy: 'John Doe',
-                        reportedDate: '2025-01-15',
-                        assignedTo: 'Jane Smith',
-                        description: 'Frame assembly showing 2mm deviation from specification',
-                    },
-                    {
-                        id: '2',
-                        ncrNumber: 'NCR-2025-002',
-                        title: 'Surface finish quality issue',
-                        source: 'Customer Complaint',
-                        severity: 'minor',
-                        status: 'in-progress',
-                        reportedBy: 'Bob Johnson',
-                        reportedDate: '2025-01-14',
-                        assignedTo: 'Mike Wilson',
-                        description: 'Customer reported coating unevenness on delivered parts',
-                    },
-                    {
-                        id: '3',
-                        ncrNumber: 'NCR-2025-003',
-                        title: 'Missing documentation',
-                        source: 'Audit',
-                        severity: 'critical',
-                        status: 'closed',
-                        reportedBy: 'Alice Brown',
-                        reportedDate: '2025-01-10',
-                        assignedTo: 'Tom Davis',
-                        description: 'Test certificates not available for batch LOT-2024-500',
-                    },
-                ]);
-            }
+            setNcrs(data);
         } catch (error) {
             console.error('Failed to fetch NCRs:', error);
         } finally {

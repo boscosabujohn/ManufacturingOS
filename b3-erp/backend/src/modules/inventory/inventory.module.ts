@@ -27,6 +27,7 @@ import {
   StockAdjustmentController,
   SerialNumberController,
   BatchNumberController,
+  ReorderManagementController,
 } from './controllers';
 
 // Services
@@ -71,6 +72,7 @@ import { VEDAnalysisService } from './services/ved-analysis.service';
     StockAdjustmentController,
     SerialNumberController,
     BatchNumberController,
+    ReorderManagementController,
   ],
   providers: [
     WarehouseService,
@@ -101,4 +103,4 @@ import { VEDAnalysisService } from './services/ved-analysis.service';
     VEDAnalysisService,
   ],
 })
-export class InventoryModule {}
+export class InventoryModule { }

@@ -199,7 +199,7 @@ export default function AddEmployeePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-6">
-      <div className="max-w-7xl mx-auto">
+      <div className="w-full max-w-full mx-auto">
         <div className="mb-6 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <button onClick={handleCancel} className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
@@ -263,16 +263,15 @@ export default function AddEmployeePage() {
                     type="text"
                     value={formData.employeeId}
                     onChange={(e) => handleInputChange('employeeId', e.target.value.toUpperCase())}
-                    className={`flex-1 px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent uppercase ${
-                      errors.employeeId ? 'border-red-500' : 'border-gray-300'
-                    }`}
+                    className={`flex-1 px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent uppercase ${errors.employeeId ? 'border-red-500' : 'border-gray-300'
+                      }`}
                     placeholder="B3-0001"
                   />
                   <button
                     type="button"
                     onClick={generateEmployeeId}
                     className="px-4 py-2.5 bg-gradient-to-r from-purple-600 to-purple-700 text-white rounded-lg hover:from-purple-700 hover:to-purple-800 transition-all flex items-center gap-2"
-                   
+
                   >
                     <Sparkles className="w-4 h-4" />
                   </button>
@@ -302,9 +301,8 @@ export default function AddEmployeePage() {
                   type="text"
                   value={formData.firstName}
                   onChange={(e) => handleInputChange('firstName', e.target.value)}
-                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                    errors.firstName ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.firstName ? 'border-red-500' : 'border-gray-300'
+                    }`}
                   placeholder="Enter first name"
                 />
                 {errors.firstName && <p className="mt-1 text-sm text-red-500">{errors.firstName}</p>}
@@ -318,9 +316,8 @@ export default function AddEmployeePage() {
                   type="text"
                   value={formData.lastName}
                   onChange={(e) => handleInputChange('lastName', e.target.value)}
-                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                    errors.lastName ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.lastName ? 'border-red-500' : 'border-gray-300'
+                    }`}
                   placeholder="Enter last name"
                 />
                 {errors.lastName && <p className="mt-1 text-sm text-red-500">{errors.lastName}</p>}
@@ -334,9 +331,8 @@ export default function AddEmployeePage() {
                   type="date"
                   value={formData.dateOfBirth}
                   onChange={(e) => handleInputChange('dateOfBirth', e.target.value)}
-                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                    errors.dateOfBirth ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.dateOfBirth ? 'border-red-500' : 'border-gray-300'
+                    }`}
                   max={new Date().toISOString().split('T')[0]}
                 />
                 {errors.dateOfBirth && <p className="mt-1 text-sm text-red-500">{errors.dateOfBirth}</p>}
@@ -394,9 +390,8 @@ export default function AddEmployeePage() {
                   type="email"
                   value={formData.email}
                   onChange={(e) => handleInputChange('email', e.target.value)}
-                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                    errors.email ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.email ? 'border-red-500' : 'border-gray-300'
+                    }`}
                   placeholder="employee@b3macbis.com"
                 />
                 {errors.email && <p className="mt-1 text-sm text-red-500">{errors.email}</p>}
@@ -410,9 +405,8 @@ export default function AddEmployeePage() {
                   type="tel"
                   value={formData.phone}
                   onChange={(e) => handleInputChange('phone', e.target.value)}
-                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                    errors.phone ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.phone ? 'border-red-500' : 'border-gray-300'
+                    }`}
                   placeholder="+91 98765 43210"
                 />
                 {errors.phone && <p className="mt-1 text-sm text-red-500">{errors.phone}</p>}
@@ -473,9 +467,8 @@ export default function AddEmployeePage() {
                   type="text"
                   value={formData.pincode}
                   onChange={(e) => handleInputChange('pincode', e.target.value)}
-                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                    errors.pincode ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.pincode ? 'border-red-500' : 'border-gray-300'
+                    }`}
                   maxLength={6}
                   placeholder="411019"
                 />
@@ -515,9 +508,8 @@ export default function AddEmployeePage() {
                 <select
                   value={formData.department}
                   onChange={(e) => handleInputChange('department', e.target.value)}
-                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                    errors.department ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.department ? 'border-red-500' : 'border-gray-300'
+                    }`}
                 >
                   <option value="">Select department</option>
                   {departments.map(dept => <option key={dept} value={dept}>{dept}</option>)}
@@ -533,9 +525,8 @@ export default function AddEmployeePage() {
                   type="text"
                   value={formData.position}
                   onChange={(e) => handleInputChange('position', e.target.value)}
-                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                    errors.position ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.position ? 'border-red-500' : 'border-gray-300'
+                    }`}
                   placeholder="e.g., Production Manager"
                 />
                 {errors.position && <p className="mt-1 text-sm text-red-500">{errors.position}</p>}
@@ -565,9 +556,8 @@ export default function AddEmployeePage() {
                   type="date"
                   value={formData.joinDate}
                   onChange={(e) => handleInputChange('joinDate', e.target.value)}
-                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                    errors.joinDate ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.joinDate ? 'border-red-500' : 'border-gray-300'
+                    }`}
                   max={new Date().toISOString().split('T')[0]}
                 />
                 {errors.joinDate && <p className="mt-1 text-sm text-red-500">{errors.joinDate}</p>}
@@ -639,9 +629,8 @@ export default function AddEmployeePage() {
                   type="text"
                   value={formData.panNumber}
                   onChange={(e) => handleInputChange('panNumber', e.target.value.toUpperCase())}
-                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent uppercase font-mono ${
-                    errors.panNumber ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent uppercase font-mono ${errors.panNumber ? 'border-red-500' : 'border-gray-300'
+                    }`}
                   maxLength={10}
                   placeholder="ABCDE1234F"
                 />
@@ -654,9 +643,8 @@ export default function AddEmployeePage() {
                   type="text"
                   value={formData.aadhaarNumber}
                   onChange={(e) => handleInputChange('aadhaarNumber', e.target.value)}
-                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent font-mono ${
-                    errors.aadhaarNumber ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent font-mono ${errors.aadhaarNumber ? 'border-red-500' : 'border-gray-300'
+                    }`}
                   maxLength={12}
                   placeholder="123456789012"
                 />
@@ -728,9 +716,8 @@ export default function AddEmployeePage() {
                   type="text"
                   value={formData.ifscCode}
                   onChange={(e) => handleInputChange('ifscCode', e.target.value.toUpperCase())}
-                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent uppercase font-mono ${
-                    errors.ifscCode ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent uppercase font-mono ${errors.ifscCode ? 'border-red-500' : 'border-gray-300'
+                    }`}
                   maxLength={11}
                   placeholder="HDFC0001234"
                 />

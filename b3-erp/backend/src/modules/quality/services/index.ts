@@ -9,3 +9,4 @@ export { CAPAService } from './capa.service';
 export { QualityAlertService } from './quality-alert.service';
 export { AuditPlanService } from './audit-plan.service';
 export { AuditFindingsService } from './audit-findings.service';
+export { NCRService } from './ncr.service';

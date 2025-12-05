@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Plus, Search, Eye, Edit, Package, AlertTriangle, TrendingUp, TrendingDown, Download, Filter, ChevronLeft, ChevronRight, BarChart3, Warehouse } from 'lucide-react';
 import {
@@ -8,6 +8,7 @@ import {
   StockItem as ModalStockItem, AddStockItemData, QuickAdjustmentData
 } from '@/components/inventory/InventoryStockModals';
 import { ExportStockDataModal, ExportStockDataConfig } from '@/components/inventory/InventoryExportModals';
+import { inventoryService, StockBalance } from '@/services/InventoryService';
 
 interface StockItem {
   id: string;
@@ -25,99 +26,6 @@ interface StockItem {
   totalValue: number;
 }
 
-const mockStockItems: StockItem[] = [
-  {
-    id: 'STK-001',
-    itemCode: 'SS304-001',
-    itemName: 'Stainless Steel Sheet 304 - 2mm',
-    category: 'Raw Material',
-    currentStock: 450,
-    unit: 'kg',
-    reorderLevel: 200,
-    maxLevel: 800,
-    location: 'RM-A-01-AA-001',
-    lastUpdated: '2025-10-15',
-    status: 'in_stock',
-    unitCost: 8.5,
-    totalValue: 3825,
-  },
-  {
-    id: 'STK-002',
-    itemCode: 'MTR-ELC-001',
-    itemName: 'Electric Motor 3HP 1440 RPM',
-    category: 'Components',
-    currentStock: 15,
-    unit: 'pcs',
-    reorderLevel: 20,
-    maxLevel: 50,
-    location: 'RM-B-02-BB-005',
-    lastUpdated: '2025-10-14',
-    status: 'low_stock',
-    unitCost: 245.00,
-    totalValue: 3675,
-  },
-  {
-    id: 'STK-003',
-    itemCode: 'VLV-SS-001',
-    itemName: 'SS Ball Valve 1 inch',
-    category: 'Components',
-    currentStock: 0,
-    unit: 'pcs',
-    reorderLevel: 10,
-    maxLevel: 50,
-    location: 'RM-C-03-CC-010',
-    lastUpdated: '2025-10-12',
-    status: 'out_of_stock',
-    unitCost: 35.00,
-    totalValue: 0,
-  },
-  {
-    id: 'STK-004',
-    itemCode: 'PKG-BOX-001',
-    itemName: 'Corrugated Box Large',
-    category: 'Packaging',
-    currentStock: 1200,
-    unit: 'pcs',
-    reorderLevel: 500,
-    maxLevel: 1000,
-    location: 'RM-D-04-DD-015',
-    lastUpdated: '2025-10-15',
-    status: 'overstock',
-    unitCost: 2.5,
-    totalValue: 3000,
-  },
-  {
-    id: 'STK-005',
-    itemCode: 'FG-KIT-001',
-    itemName: 'Commercial Kitchen Equipment Set',
-    category: 'Finished Goods',
-    currentStock: 8,
-    unit: 'set',
-    reorderLevel: 5,
-    maxLevel: 20,
-    location: 'FG-A-01-AA-001',
-    lastUpdated: '2025-10-13',
-    status: 'in_stock',
-    unitCost: 12500.00,
-    totalValue: 100000,
-  },
-  {
-    id: 'STK-006',
-    itemCode: 'WLD-ROD-001',
-    itemName: 'Welding Rod SS 316',
-    category: 'Consumables',
-    currentStock: 25,
-    unit: 'kg',
-    reorderLevel: 30,
-    maxLevel: 100,
-    location: 'RM-E-05-EE-020',
-    lastUpdated: '2025-10-14',
-    status: 'low_stock',
-    unitCost: 15.00,
-    totalValue: 375,
-  },
-];
-
 const statusColors = {
   in_stock: 'bg-green-100 text-green-700',
   low_stock: 'bg-yellow-100 text-yellow-700',
@@ -134,7 +42,8 @@ const statusLabels = {
 
 export default function StockPage() {
   const router = useRouter();
-  const [stockItems, setStockItems] = useState<StockItem[]>(mockStockItems);
+  const [stockItems, setStockItems] = useState<StockItem[]>([]);
+  const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [categoryFilter, setCategoryFilter] = useState<string>('all');
@@ -148,6 +57,44 @@ export default function StockPage() {
   const [isQuickAdjustOpen, setIsQuickAdjustOpen] = useState(false);
   const [isExportOpen, setIsExportOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<StockItem | null>(null);
+
+  useEffect(() => {
+    fetchStockData();
+  }, []);
+
+  const fetchStockData = async () => {
+    try {
+      setLoading(true);
+      const balances = await inventoryService.getStockBalances();
+      const mappedItems: StockItem[] = balances.map((balance) => {
+        let status: StockItem['status'] = 'in_stock';
+        if (balance.availableQuantity <= 0) status = 'out_of_stock';
+        else if (balance.belowReorderLevel) status = 'low_stock';
+        // Overstock logic would need maxLevel from somewhere, assuming derived or default for now
+
+        return {
+          id: balance.id,
+          itemCode: balance.itemCode,
+          itemName: balance.itemName,
+          category: 'General', // Placeholder as API doesn't return category yet
+          currentStock: balance.availableQuantity,
+          unit: balance.uom,
+          reorderLevel: balance.reorderLevel,
+          maxLevel: 0, // Placeholder
+          location: balance.locationName || balance.warehouseName,
+          lastUpdated: new Date(balance.lastUpdated).toISOString().split('T')[0],
+          status,
+          unitCost: balance.availableQuantity > 0 ? balance.stockValue / balance.availableQuantity : 0,
+          totalValue: balance.stockValue,
+        };
+      });
+      setStockItems(mappedItems);
+    } catch (error) {
+      console.error('Failed to fetch stock data:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const filteredItems = stockItems.filter((item) => {
     const matchesSearch =
@@ -183,26 +130,9 @@ export default function StockPage() {
   };
 
   const handleAddItemSubmit = (data: AddStockItemData) => {
-    // Convert AddStockItemData to StockItem format
-    const newItem: StockItem = {
-      id: `STK-${String(stockItems.length + 1).padStart(3, '0')}`,
-      itemCode: data.itemCode,
-      itemName: data.itemName,
-      category: data.category,
-      currentStock: data.initialQuantity,
-      unit: data.uom,
-      reorderLevel: data.minLevel,
-      maxLevel: data.maxLevel,
-      location: `${data.warehouse}-${data.zone}-${data.bin}`,
-      lastUpdated: new Date().toISOString().split('T')[0],
-      status: data.initialQuantity === 0 ? 'out_of_stock' :
-              data.initialQuantity <= data.minLevel ? 'low_stock' :
-              data.initialQuantity >= data.maxLevel ? 'overstock' : 'in_stock',
-      unitCost: data.costPrice,
-      totalValue: data.initialQuantity * data.costPrice,
-    };
-    setStockItems([...stockItems, newItem]);
-    console.log('New stock item added:', newItem);
+    // In a real app, this would call an API to create the item
+    console.log('Add item not implemented yet for API');
+    fetchStockData(); // Refresh data
   };
 
   const handleEditItem = (item: StockItem) => {
@@ -211,23 +141,9 @@ export default function StockPage() {
   };
 
   const handleEditItemSubmit = (data: Partial<AddStockItemData>) => {
-    if (!selectedItem) return;
-
-    setStockItems(stockItems.map(item =>
-      item.id === selectedItem.id
-        ? {
-            ...item,
-            itemName: data.itemName || item.itemName,
-            category: data.category || item.category,
-            reorderLevel: data.minLevel !== undefined ? data.minLevel : item.reorderLevel,
-            maxLevel: data.maxLevel !== undefined ? data.maxLevel : item.maxLevel,
-            unitCost: data.costPrice !== undefined ? data.costPrice : item.unitCost,
-            totalValue: item.currentStock * (data.costPrice !== undefined ? data.costPrice : item.unitCost),
-            lastUpdated: new Date().toISOString().split('T')[0],
-          }
-        : item
-    ));
-    console.log('Stock item updated:', selectedItem.id);
+    // In a real app, this would call an API to update the item
+    console.log('Edit item not implemented yet for API');
+    fetchStockData(); // Refresh data
   };
 
   const handleQuickAdjust = (item: StockItem) => {
@@ -236,37 +152,9 @@ export default function StockPage() {
   };
 
   const handleQuickAdjustSubmit = (data: QuickAdjustmentData) => {
-    if (!selectedItem) return;
-
-    let newQuantity = selectedItem.currentStock;
-    switch (data.adjustmentType) {
-      case 'increase':
-        newQuantity = selectedItem.currentStock + data.quantity;
-        break;
-      case 'decrease':
-        newQuantity = selectedItem.currentStock - data.quantity;
-        break;
-      case 'set':
-        newQuantity = data.quantity;
-        break;
-    }
-
-    const newStatus = newQuantity === 0 ? 'out_of_stock' :
-                     newQuantity <= selectedItem.reorderLevel ? 'low_stock' :
-                     newQuantity >= selectedItem.maxLevel ? 'overstock' : 'in_stock';
-
-    setStockItems(stockItems.map(item =>
-      item.id === selectedItem.id
-        ? {
-            ...item,
-            currentStock: newQuantity,
-            totalValue: newQuantity * item.unitCost,
-            status: newStatus,
-            lastUpdated: new Date().toISOString().split('T')[0],
-          }
-        : item
-    ));
-    console.log('Stock adjusted:', selectedItem.id, data);
+    // In a real app, this would call an API to adjust stock
+    console.log('Quick adjust not implemented yet for API');
+    fetchStockData(); // Refresh data
   };
 
   const handleExport = () => {
@@ -317,6 +205,10 @@ export default function StockPage() {
       lastModifiedDate: item.lastUpdated,
     };
   };
+
+  if (loading) {
+    return <div className="p-8 text-center">Loading stock data...</div>;
+  }
 
   return (
     <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 max-w-7xl">
@@ -452,7 +344,7 @@ export default function StockPage() {
                   <div className="font-bold text-blue-900">
                     {item.currentStock} {item.unit}
                   </div>
-                  <div className="text-xs text-gray-500">${item.unitCost}/{item.unit}</div>
+                  <div className="text-xs text-gray-500">${item.unitCost.toFixed(2)}/{item.unit}</div>
                 </td>
                 <td className="px-6 py-4 text-sm">
                   <div className="text-gray-700">Min: {item.reorderLevel}</div>
@@ -518,9 +410,8 @@ export default function StockPage() {
                     {index > 0 && array[index - 1] !== page - 1 && <span className="px-2 text-gray-400">...</span>}
                     <button
                       onClick={() => setCurrentPage(page)}
-                      className={`px-3 py-1 rounded-lg ${
-                        currentPage === page ? 'bg-blue-600 text-white' : 'border border-gray-300 hover:bg-gray-50'
-                      }`}
+                      className={`px-3 py-1 rounded-lg ${currentPage === page ? 'bg-blue-600 text-white' : 'border border-gray-300 hover:bg-gray-50'
+                        }`}
                     >
                       {page}
                     </button>

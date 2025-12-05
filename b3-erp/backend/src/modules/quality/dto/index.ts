@@ -52,3 +52,8 @@ export { AuditPlanResponseDto } from './audit-plan-response.dto';
 export { CreateAuditFindingsDto } from './create-audit-findings.dto';
 export { UpdateAuditFindingsDto } from './update-audit-findings.dto';
 export { AuditFindingsResponseDto } from './audit-findings-response.dto';
+
+// NCR DTOs
+export { CreateNCRDto } from './create-ncr.dto';
+export { UpdateNCRDto } from './update-ncr.dto';
+export { NCRResponseDto } from './ncr-response.dto';

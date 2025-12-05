@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import {
   Clock,
@@ -37,6 +37,7 @@ import {
   RefreshCw,
   CheckSquare
 } from 'lucide-react'
+import { io } from 'socket.io-client'
 
 // Import Approval Modals
 import {
@@ -50,37 +51,7 @@ import {
   ExportApprovalsModal
 } from '@/components/procurement/ApprovalModals'
 
-interface ApprovalRequest {
-  id: string
-  documentType: 'requisition' | 'purchase_order' | 'rfq' | 'contract' | 'vendor' | 'payment'
-  documentNumber: string
-  title: string
-  requestedBy: string
-  requestedDate: string
-  amount: number
-  currency: string
-  priority: 'low' | 'medium' | 'high' | 'urgent'
-  status: 'pending' | 'approved' | 'rejected' | 'escalated' | 'expired'
-  currentApprover: string
-  approvalLevel: number
-  totalLevels: number
-  dueDate: string
-  department: string
-  vendor?: string
-  justification: string
-  attachments: number
-  comments: number
-  approvalHistory: {
-    approver: string
-    action: 'approved' | 'rejected' | 'returned' | 'escalated'
-    date: string
-    comments?: string
-    level: number
-  }[]
-  nextApprovers: string[]
-  slaStatus: 'on_time' | 'due_soon' | 'overdue'
-  delegatedFrom?: string
-}
+import { approvalService, ApprovalRequest } from '@/services/ApprovalService'
 
 interface ApprovalStats {
   pending: number
@@ -99,6 +70,10 @@ export default function ApprovalsPage() {
   const [selectedPriority, setSelectedPriority] = useState('all')
   const [showDetails, setShowDetails] = useState<string | null>(null)
 
+  // Data state
+  const [approvalRequests, setApprovalRequests] = useState<ApprovalRequest[]>([])
+  const [loading, setLoading] = useState(true)
+
   // Modal state management
   const [isApproveModalOpen, setIsApproveModalOpen] = useState(false)
   const [isRejectModalOpen, setIsRejectModalOpen] = useState(false)
@@ -111,178 +86,46 @@ export default function ApprovalsPage() {
   const [selectedApproval, setSelectedApproval] = useState<ApprovalRequest | null>(null)
   const [selectedApprovals, setSelectedApprovals] = useState<string[]>([])
 
-  // Mock approval data
-  const approvalRequests: ApprovalRequest[] = [
-    {
-      id: '1',
-      documentType: 'purchase_order',
-      documentNumber: 'PO-2024-001',
-      title: 'IT Equipment Purchase - Q1 2024',
-      requestedBy: 'John Smith',
-      requestedDate: '2024-01-20',
-      amount: 125000,
-      currency: 'USD',
-      priority: 'high',
-      status: 'pending',
-      currentApprover: 'Sarah Johnson',
-      approvalLevel: 2,
-      totalLevels: 3,
-      dueDate: '2024-01-25',
-      department: 'IT',
-      vendor: 'Tech Supplies Co.',
-      justification: 'Urgent requirement for new project setup',
-      attachments: 3,
-      comments: 2,
-      approvalHistory: [
-        {
-          approver: 'Mike Davis',
-          action: 'approved',
-          date: '2024-01-21',
-          comments: 'Budget verified',
-          level: 1
-        }
-      ],
-      nextApprovers: ['Robert Chen'],
-      slaStatus: 'due_soon',
-      delegatedFrom: 'Emma Wilson'
-    },
-    {
-      id: '2',
-      documentType: 'requisition',
-      documentNumber: 'REQ-2024-045',
-      title: 'Office Furniture Request',
-      requestedBy: 'Lisa Anderson',
-      requestedDate: '2024-01-22',
-      amount: 45000,
-      currency: 'USD',
-      priority: 'medium',
-      status: 'pending',
-      currentApprover: 'Sarah Johnson',
-      approvalLevel: 1,
-      totalLevels: 2,
-      dueDate: '2024-01-28',
-      department: 'Administration',
-      justification: 'Office expansion - 20 new workstations',
-      attachments: 2,
-      comments: 0,
-      approvalHistory: [],
-      nextApprovers: ['Mike Davis'],
-      slaStatus: 'on_time'
-    },
-    {
-      id: '3',
-      documentType: 'contract',
-      documentNumber: 'CON-2024-012',
-      title: 'Annual Maintenance Contract - HVAC',
-      requestedBy: 'James Brown',
-      requestedDate: '2024-01-18',
-      amount: 180000,
-      currency: 'USD',
-      priority: 'urgent',
-      status: 'escalated',
-      currentApprover: 'Robert Chen',
-      approvalLevel: 3,
-      totalLevels: 4,
-      dueDate: '2024-01-23',
-      department: 'Facilities',
-      vendor: 'Blue Star Services',
-      justification: 'Contract renewal before expiry',
-      attachments: 5,
-      comments: 4,
-      approvalHistory: [
-        {
-          approver: 'Sarah Johnson',
-          action: 'approved',
-          date: '2024-01-19',
-          level: 1
-        },
-        {
-          approver: 'Mike Davis',
-          action: 'approved',
-          date: '2024-01-20',
-          comments: 'Verified previous performance',
-          level: 2
-        }
-      ],
-      nextApprovers: ['CEO'],
-      slaStatus: 'overdue'
-    },
-    {
-      id: '4',
-      documentType: 'vendor',
-      documentNumber: 'VEN-2024-008',
-      title: 'New Vendor Registration - ABC Supplies',
-      requestedBy: 'Emma Wilson',
-      requestedDate: '2024-01-21',
-      amount: 0,
-      currency: 'USD',
-      priority: 'low',
-      status: 'approved',
-      currentApprover: 'Sarah Johnson',
-      approvalLevel: 2,
-      totalLevels: 2,
-      dueDate: '2024-01-26',
-      department: 'Procurement',
-      vendor: 'ABC Supplies Pvt Ltd',
-      justification: 'Alternative vendor for raw materials',
-      attachments: 4,
-      comments: 1,
-      approvalHistory: [
-        {
-          approver: 'Mike Davis',
-          action: 'approved',
-          date: '2024-01-22',
-          comments: 'Documents verified',
-          level: 1
-        },
-        {
-          approver: 'Sarah Johnson',
-          action: 'approved',
-          date: '2024-01-23',
-          level: 2
-        }
-      ],
-      nextApprovers: [],
-      slaStatus: 'on_time'
-    },
-    {
-      id: '5',
-      documentType: 'rfq',
-      documentNumber: 'RFQ-2024-015',
-      title: 'Chemical Supplies - Q2 2024',
-      requestedBy: 'David Lee',
-      requestedDate: '2024-01-19',
-      amount: 95000,
-      currency: 'USD',
-      priority: 'high',
-      status: 'rejected',
-      currentApprover: 'Sarah Johnson',
-      approvalLevel: 1,
-      totalLevels: 2,
-      dueDate: '2024-01-24',
-      department: 'Production',
-      justification: 'Quarterly chemical procurement',
-      attachments: 2,
-      comments: 3,
-      approvalHistory: [
-        {
-          approver: 'Sarah Johnson',
-          action: 'rejected',
-          date: '2024-01-20',
-          comments: 'Budget exceeded, needs revision',
-          level: 1
-        }
-      ],
-      nextApprovers: [],
-      slaStatus: 'on_time'
+  useEffect(() => {
+    fetchApprovals()
+
+    // Real-time updates
+    const socket = io(process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000')
+
+    socket.on('connect', () => {
+      console.log('Connected to WebSocket for approvals')
+    })
+
+    socket.on('approval.created', (newApproval: ApprovalRequest) => {
+      setApprovalRequests(prev => [newApproval, ...prev])
+    })
+
+    socket.on('approval.updated', (updatedApproval: ApprovalRequest) => {
+      setApprovalRequests(prev => prev.map(req => req.id === updatedApproval.id ? updatedApproval : req))
+    })
+
+    return () => {
+      socket.disconnect()
     }
-  ]
+  }, [])
+
+  const fetchApprovals = async () => {
+    try {
+      setLoading(true)
+      const data = await approvalService.getApprovals()
+      setApprovalRequests(data)
+    } catch (error) {
+      console.error('Failed to fetch approvals:', error)
+    } finally {
+      setLoading(false)
+    }
+  }
 
   const stats: ApprovalStats = {
     pending: approvalRequests.filter(a => a.status === 'pending').length,
     approved: approvalRequests.filter(a => a.status === 'approved').length,
     rejected: approvalRequests.filter(a => a.status === 'rejected').length,
-    avgApprovalTime: 2.5,
+    avgApprovalTime: 2.5, // This would ideally come from backend analytics
     overdueCount: approvalRequests.filter(a => a.slaStatus === 'overdue').length,
     escalatedCount: approvalRequests.filter(a => a.status === 'escalated').length
   }
@@ -337,9 +180,11 @@ export default function ApprovalsPage() {
   }
 
   const filteredRequests = approvalRequests.filter(request => {
+    // Mock logic for "My Approvals" vs "My Requests" since we don't have auth context yet
+    // In a real app, we'd compare request.currentApprover with currentUser.id
     const matchesTab = selectedTab === 'all' ||
       (selectedTab === 'my_approvals' && request.status === 'pending') ||
-      (selectedTab === 'my_requests' && request.requestedBy === 'John Smith') ||
+      (selectedTab === 'my_requests' && request.requestedBy === 'John Smith') || // Mock user
       (selectedTab === 'delegated' && request.delegatedFrom)
 
     const matchesStatus = selectedStatus === 'all' || request.status === selectedStatus
@@ -402,6 +247,22 @@ export default function ApprovalsPage() {
     } else {
       setSelectedApprovals(filteredRequests.map(r => r.id))
     }
+  }
+
+  const handleActionComplete = async () => {
+    // Refresh list after action
+    await fetchApprovals()
+    setIsApproveModalOpen(false)
+    setIsRejectModalOpen(false)
+    setIsReturnModalOpen(false)
+    setIsDelegateModalOpen(false)
+    setIsBulkActionsModalOpen(false)
+    setSelectedApproval(null)
+    setSelectedApprovals([])
+  }
+
+  if (loading) {
+    return <div className="flex justify-center items-center min-h-screen">Loading...</div>
   }
 
   return (
@@ -502,11 +363,10 @@ export default function ApprovalsPage() {
           <div className="flex">
             <button
               onClick={() => setSelectedTab('my_approvals')}
-              className={`px-6 py-3 text-sm font-medium border-b-2 transition-colors ${
-                selectedTab === 'my_approvals'
+              className={`px-6 py-3 text-sm font-medium border-b-2 transition-colors ${selectedTab === 'my_approvals'
                   ? 'border-blue-600 text-blue-600'
                   : 'border-transparent text-gray-500 hover:text-gray-700'
-              }`}
+                }`}
             >
               My Approvals
               {stats.pending > 0 && (
@@ -517,31 +377,28 @@ export default function ApprovalsPage() {
             </button>
             <button
               onClick={() => setSelectedTab('my_requests')}
-              className={`px-6 py-3 text-sm font-medium border-b-2 transition-colors ${
-                selectedTab === 'my_requests'
+              className={`px-6 py-3 text-sm font-medium border-b-2 transition-colors ${selectedTab === 'my_requests'
                   ? 'border-blue-600 text-blue-600'
                   : 'border-transparent text-gray-500 hover:text-gray-700'
-              }`}
+                }`}
             >
               My Requests
             </button>
             <button
               onClick={() => setSelectedTab('delegated')}
-              className={`px-6 py-3 text-sm font-medium border-b-2 transition-colors ${
-                selectedTab === 'delegated'
+              className={`px-6 py-3 text-sm font-medium border-b-2 transition-colors ${selectedTab === 'delegated'
                   ? 'border-blue-600 text-blue-600'
                   : 'border-transparent text-gray-500 hover:text-gray-700'
-              }`}
+                }`}
             >
               Delegated
             </button>
             <button
               onClick={() => setSelectedTab('all')}
-              className={`px-6 py-3 text-sm font-medium border-b-2 transition-colors ${
-                selectedTab === 'all'
+              className={`px-6 py-3 text-sm font-medium border-b-2 transition-colors ${selectedTab === 'all'
                   ? 'border-blue-600 text-blue-600'
                   : 'border-transparent text-gray-500 hover:text-gray-700'
-              }`}
+                }`}
             >
               All Approvals
             </button>
@@ -693,10 +550,9 @@ export default function ApprovalsPage() {
                       {request.approvalHistory.map((history, index) => (
                         <div key={index} className="flex items-center">
                           <div className="flex items-center gap-2">
-                            <div className={`p-1.5 rounded-full ${
-                              history.action === 'approved' ? 'bg-green-100' :
-                              history.action === 'rejected' ? 'bg-red-100' : 'bg-yellow-100'
-                            }`}>
+                            <div className={`p-1.5 rounded-full ${history.action === 'approved' ? 'bg-green-100' :
+                                history.action === 'rejected' ? 'bg-red-100' : 'bg-yellow-100'
+                              }`}>
                               {history.action === 'approved' ? (
                                 <CheckCircle className="h-4 w-4 text-green-600" />
                               ) : history.action === 'rejected' ? (
@@ -782,7 +638,7 @@ export default function ApprovalsPage() {
 
                 {/* Actions */}
                 <div className="ml-4">
-                  {request.status === 'pending' && request.currentApprover === 'Sarah Johnson' ? (
+                  {request.status === 'pending' ? (
                     <div className="flex flex-col gap-2">
                       <button
                         onClick={() => handleApprove(request)}
@@ -799,190 +655,85 @@ export default function ApprovalsPage() {
                         Reject
                       </button>
                       <button
-                        onClick={() => handleReturn(request)}
-                        className="px-3 py-1.5 bg-orange-600 text-white rounded-lg hover:bg-orange-700 text-sm flex items-center gap-1"
+                        onClick={() => handleViewDetails(request)}
+                        className="px-3 py-1.5 text-gray-600 hover:bg-gray-100 rounded-lg text-sm flex items-center gap-1"
                       >
-                        <RotateCcw className="h-4 w-4" />
-                        Return
-                      </button>
-                      <button
-                        onClick={() => handleViewHistory(request)}
-                        className="px-3 py-1.5 text-blue-600 border border-blue-300 rounded-lg hover:bg-blue-50 text-sm flex items-center gap-1"
-                      >
-                        <History className="h-4 w-4" />
-                        History
+                        <Eye className="h-4 w-4" />
+                        Details
                       </button>
                     </div>
                   ) : (
-                    <div className="flex flex-col gap-2">
-                      <button
-                        onClick={() => handleViewDetails(request)}
-                        className="px-3 py-1.5 text-blue-600 border border-blue-600 rounded-lg hover:bg-blue-50 text-sm flex items-center gap-1"
-                      >
-                        <Eye className="h-4 w-4" />
-                        View
-                      </button>
-                      <button
-                        onClick={() => handleViewHistory(request)}
-                        className="px-3 py-1.5 text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm flex items-center gap-1"
-                      >
-                        <History className="h-4 w-4" />
-                        History
-                      </button>
-                    </div>
+                    <button
+                      onClick={() => handleViewHistory(request)}
+                      className="px-3 py-1.5 text-blue-600 hover:bg-blue-50 rounded-lg text-sm flex items-center gap-1"
+                    >
+                      <Clock className="h-4 w-4" />
+                      History
+                    </button>
                   )}
                 </div>
-              </div>
               </div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Approval Modals */}
-      <ApproveModal
-        isOpen={isApproveModalOpen}
-        onClose={() => setIsApproveModalOpen(false)}
-        approval={selectedApproval ? {
-          id: selectedApproval.id,
-          documentType: selectedApproval.documentType,
-          documentNumber: selectedApproval.documentNumber,
-          title: selectedApproval.title,
-          requestedBy: selectedApproval.requestedBy,
-          requestedDate: selectedApproval.requestedDate,
-          amount: selectedApproval.amount,
-          currency: selectedApproval.currency,
-          priority: selectedApproval.priority,
-          status: selectedApproval.status,
-          currentApprover: selectedApproval.currentApprover,
-          approvalLevel: selectedApproval.approvalLevel,
-          totalLevels: selectedApproval.totalLevels,
-          dueDate: selectedApproval.dueDate,
-          department: selectedApproval.department,
-          vendor: selectedApproval.vendor,
-          justification: selectedApproval.justification,
-          nextApprovers: selectedApproval.nextApprovers
-        } : undefined}
-        onSubmit={(data) => {
-          console.log('Approval submitted:', data)
-          setIsApproveModalOpen(false)
-        }}
-      />
-
-      <RejectModal
-        isOpen={isRejectModalOpen}
-        onClose={() => setIsRejectModalOpen(false)}
-        approval={selectedApproval ? {
-          documentNumber: selectedApproval.documentNumber,
-          title: selectedApproval.title,
-          requestedBy: selectedApproval.requestedBy,
-          amount: selectedApproval.amount,
-          currency: selectedApproval.currency,
-          department: selectedApproval.department
-        } : undefined}
-        onSubmit={(data) => {
-          console.log('Rejection submitted:', data)
-          setIsRejectModalOpen(false)
-        }}
-      />
-
-      <DelegateModal
-        isOpen={isDelegateModalOpen}
-        onClose={() => setIsDelegateModalOpen(false)}
-        approval={selectedApproval ? {
-          documentNumber: selectedApproval.documentNumber,
-          title: selectedApproval.title
-        } : undefined}
-        onSubmit={(data) => {
-          console.log('Delegation submitted:', data)
-          setIsDelegateModalOpen(false)
-        }}
-      />
-
-      <ReturnModal
-        isOpen={isReturnModalOpen}
-        onClose={() => setIsReturnModalOpen(false)}
-        approval={selectedApproval ? {
-          documentNumber: selectedApproval.documentNumber,
-          title: selectedApproval.title,
-          amount: selectedApproval.amount,
-          currency: selectedApproval.currency
-        } : undefined}
-        onSubmit={(data) => {
-          console.log('Return submitted:', data)
-          setIsReturnModalOpen(false)
-        }}
-      />
-
-      <ViewHistoryModal
-        isOpen={isHistoryModalOpen}
-        onClose={() => setIsHistoryModalOpen(false)}
-        approval={selectedApproval ? {
-          documentNumber: selectedApproval.documentNumber,
-          title: selectedApproval.title,
-          requestedBy: selectedApproval.requestedBy,
-          requestedDate: selectedApproval.requestedDate,
-          amount: selectedApproval.amount,
-          currency: selectedApproval.currency,
-          documentType: selectedApproval.documentType,
-          department: selectedApproval.department,
-          status: selectedApproval.status,
-          approvalLevel: selectedApproval.approvalLevel,
-          totalLevels: selectedApproval.totalLevels,
-          currentApprover: selectedApproval.currentApprover,
-          dueDate: selectedApproval.dueDate,
-          justification: selectedApproval.justification,
-          approvalHistory: selectedApproval.approvalHistory,
-          nextApprovers: selectedApproval.nextApprovers,
-          attachments: selectedApproval.attachments,
-          comments: selectedApproval.comments
-        } : undefined}
-      />
-
-      <ViewDetailsModal
-        isOpen={isDetailsModalOpen}
-        onClose={() => setIsDetailsModalOpen(false)}
-        approval={selectedApproval ? {
-          documentNumber: selectedApproval.documentNumber,
-          documentType: selectedApproval.documentType,
-          title: selectedApproval.title,
-          requestedBy: selectedApproval.requestedBy,
-          requestedDate: selectedApproval.requestedDate,
-          amount: selectedApproval.amount,
-          currency: selectedApproval.currency,
-          priority: selectedApproval.priority,
-          status: selectedApproval.status,
-          currentApprover: selectedApproval.currentApprover,
-          approvalLevel: selectedApproval.approvalLevel,
-          totalLevels: selectedApproval.totalLevels,
-          dueDate: selectedApproval.dueDate,
-          department: selectedApproval.department,
-          vendor: selectedApproval.vendor,
-          justification: selectedApproval.justification,
-          nextApprovers: selectedApproval.nextApprovers,
-          slaStatus: selectedApproval.slaStatus,
-          attachments: selectedApproval.attachments,
-          comments: selectedApproval.comments
-        } : undefined}
-      />
+      {/* Modals */}
+      {selectedApproval && (
+        <>
+          <ApproveModal
+            isOpen={isApproveModalOpen}
+            onClose={() => setIsApproveModalOpen(false)}
+            onApprove={async (comments) => {
+              await approvalService.processAction(selectedApproval.id, 'user-id', 'approve', comments)
+              handleActionComplete()
+            }}
+            request={selectedApproval}
+          />
+          <RejectModal
+            isOpen={isRejectModalOpen}
+            onClose={() => setIsRejectModalOpen(false)}
+            onReject={async (comments) => {
+              await approvalService.processAction(selectedApproval.id, 'user-id', 'reject', comments)
+              handleActionComplete()
+            }}
+            request={selectedApproval}
+          />
+          <DelegateModal
+            isOpen={isDelegateModalOpen}
+            onClose={() => setIsDelegateModalOpen(false)}
+            onDelegate={() => handleActionComplete()}
+            request={selectedApproval}
+          />
+          <ReturnModal
+            isOpen={isReturnModalOpen}
+            onClose={() => setIsReturnModalOpen(false)}
+            onReturn={() => handleActionComplete()}
+            request={selectedApproval}
+          />
+          <ViewHistoryModal
+            isOpen={isHistoryModalOpen}
+            onClose={() => setIsHistoryModalOpen(false)}
+            request={selectedApproval}
+          />
+          <ViewDetailsModal
+            isOpen={isDetailsModalOpen}
+            onClose={() => setIsDetailsModalOpen(false)}
+            request={selectedApproval}
+          />
+        </>
+      )}
 
       <BulkActionsModal
         isOpen={isBulkActionsModalOpen}
         onClose={() => setIsBulkActionsModalOpen(false)}
-        onSubmit={(data: any) => {
-          console.log('Bulk action submitted:', data)
-          setIsBulkActionsModalOpen(false)
-          setSelectedApprovals([])
-        }}
+        selectedCount={selectedApprovals.length}
+        onComplete={handleActionComplete}
       />
 
       <ExportApprovalsModal
         isOpen={isExportModalOpen}
         onClose={() => setIsExportModalOpen(false)}
-        onSubmit={(data) => {
-          console.log('Export submitted:', data)
-          setIsExportModalOpen(false)
-        }}
       />
     </div>
   )

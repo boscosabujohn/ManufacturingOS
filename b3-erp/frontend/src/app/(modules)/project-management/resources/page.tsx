@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import {
   Search,
@@ -39,7 +39,9 @@ import {
   ResourceComparisonModal,
 } from '@/components/project-management/ResourceModals';
 
-interface Resource {
+import { projectManagementService, Project, ProjectResource } from '@/services/ProjectManagementService'
+
+interface PageResource {
   id: string;
   employeeId: string;
   name: string;
@@ -61,263 +63,11 @@ interface Resource {
   experienceYears: number;
 }
 
-const mockResources: Resource[] = [
-  {
-    id: '1',
-    employeeId: 'EMP-001',
-    name: 'Rajesh Kumar',
-    role: 'Project Manager',
-    department: 'Project Management',
-    email: 'rajesh.kumar@b3macbis.com',
-    phone: '+91-98765-43210',
-    skills: ['Project Planning', 'Budgeting', 'Team Leadership', 'Client Management'],
-    currentProject: 'Taj Hotel Commercial Kitchen',
-    currentProjectId: 'PRJ-2024-001',
-    allocation: 100,
-    availability: 0,
-    status: 'Fully Allocated',
-    totalProjects: 15,
-    completedProjects: 12,
-    efficiency: 92,
-    costRate: 3500,
-    location: 'Mumbai',
-    experienceYears: 12,
-  },
-  {
-    id: '2',
-    employeeId: 'EMP-002',
-    name: 'Priya Sharma',
-    role: 'Project Manager',
-    department: 'Project Management',
-    email: 'priya.sharma@b3macbis.com',
-    phone: '+91-98765-43211',
-    skills: ['Cold Room Projects', 'HVAC Systems', 'Vendor Management', 'Quality Control'],
-    currentProject: 'BigBasket Cold Storage',
-    currentProjectId: 'PRJ-2024-002',
-    allocation: 100,
-    availability: 0,
-    status: 'Fully Allocated',
-    totalProjects: 18,
-    completedProjects: 15,
-    efficiency: 95,
-    costRate: 3800,
-    location: 'Bangalore',
-    experienceYears: 10,
-  },
-  {
-    id: '3',
-    employeeId: 'EMP-003',
-    name: 'Amit Patel',
-    role: 'Electrical Engineer',
-    department: 'Engineering',
-    email: 'amit.patel@b3macbis.com',
-    phone: '+91-98765-43212',
-    skills: ['Switchgear Design', 'Electrical Testing', 'Panel Assembly', 'AutoCAD'],
-    currentProject: 'L&T Switchgear Panel',
-    currentProjectId: 'PRJ-2024-003',
-    allocation: 80,
-    availability: 20,
-    status: 'Partially Available',
-    totalProjects: 22,
-    completedProjects: 20,
-    efficiency: 88,
-    costRate: 2800,
-    location: 'Pune',
-    experienceYears: 8,
-  },
-  {
-    id: '4',
-    employeeId: 'EMP-004',
-    name: 'Sunita Reddy',
-    role: 'Senior Designer',
-    department: 'Design',
-    email: 'sunita.reddy@b3macbis.com',
-    phone: '+91-98765-43213',
-    skills: ['3D Modeling', 'Kitchen Design', 'Space Planning', 'SolidWorks'],
-    currentProject: 'ITC Grand Kitchen',
-    currentProjectId: 'PRJ-2024-004',
-    allocation: 60,
-    availability: 40,
-    status: 'Partially Available',
-    totalProjects: 25,
-    completedProjects: 23,
-    efficiency: 94,
-    costRate: 2500,
-    location: 'Delhi',
-    experienceYears: 9,
-  },
-  {
-    id: '5',
-    employeeId: 'EMP-005',
-    name: 'Vikram Singh',
-    role: 'Installation Supervisor',
-    department: 'Operations',
-    email: 'vikram.singh@b3macbis.com',
-    phone: '+91-98765-43214',
-    skills: ['Site Management', 'Installation', 'Safety Compliance', 'Team Coordination'],
-    currentProject: 'Godrej Cold Room',
-    currentProjectId: 'PRJ-2024-005',
-    allocation: 100,
-    availability: 0,
-    status: 'Fully Allocated',
-    totalProjects: 30,
-    completedProjects: 28,
-    efficiency: 90,
-    costRate: 2200,
-    location: 'Hyderabad',
-    experienceYears: 11,
-  },
-  {
-    id: '6',
-    employeeId: 'EMP-006',
-    name: 'Manoj Kumar',
-    role: 'Electrical Engineer',
-    department: 'Engineering',
-    email: 'manoj.kumar@b3macbis.com',
-    phone: '+91-98765-43215',
-    skills: ['HT Switchgear', 'Testing', 'Commissioning', 'Documentation'],
-    currentProject: 'Siemens Switchgear',
-    currentProjectId: 'PRJ-2024-006',
-    allocation: 100,
-    availability: 0,
-    status: 'Fully Allocated',
-    totalProjects: 16,
-    completedProjects: 14,
-    efficiency: 87,
-    costRate: 3000,
-    location: 'Bangalore',
-    experienceYears: 7,
-  },
-  {
-    id: '7',
-    employeeId: 'EMP-007',
-    name: 'Neha Gupta',
-    role: 'Project Coordinator',
-    department: 'Project Management',
-    email: 'neha.gupta@b3macbis.com',
-    phone: '+91-98765-43216',
-    skills: ['Project Coordination', 'Documentation', 'Client Communication', 'MS Project'],
-    currentProject: 'Prestige Modular Kitchen',
-    currentProjectId: 'PRJ-2024-007',
-    allocation: 70,
-    availability: 30,
-    status: 'Partially Available',
-    totalProjects: 12,
-    completedProjects: 10,
-    efficiency: 91,
-    costRate: 2000,
-    location: 'Gurgaon',
-    experienceYears: 5,
-  },
-  {
-    id: '8',
-    employeeId: 'EMP-008',
-    name: 'Suresh Patel',
-    role: 'Installation Technician',
-    department: 'Operations',
-    email: 'suresh.patel@b3macbis.com',
-    phone: '+91-98765-43217',
-    skills: ['Equipment Installation', 'Plumbing', 'Electrical Work', 'Troubleshooting'],
-    currentProject: 'Taj Hotel Commercial Kitchen',
-    currentProjectId: 'PRJ-2024-001',
-    allocation: 100,
-    availability: 0,
-    status: 'Fully Allocated',
-    totalProjects: 35,
-    completedProjects: 33,
-    efficiency: 89,
-    costRate: 1800,
-    location: 'Mumbai',
-    experienceYears: 13,
-  },
-  {
-    id: '9',
-    employeeId: 'EMP-009',
-    name: 'Anjali Verma',
-    role: 'Quality Inspector',
-    department: 'Quality Control',
-    email: 'anjali.verma@b3macbis.com',
-    phone: '+91-98765-43218',
-    skills: ['Quality Auditing', 'ISO Standards', 'Inspection', 'Report Writing'],
-    currentProject: '',
-    currentProjectId: '',
-    allocation: 0,
-    availability: 100,
-    status: 'Available',
-    totalProjects: 20,
-    completedProjects: 20,
-    efficiency: 96,
-    costRate: 2300,
-    location: 'Chennai',
-    experienceYears: 6,
-  },
-  {
-    id: '10',
-    employeeId: 'EMP-010',
-    name: 'Deepak Joshi',
-    role: 'Commissioning Engineer',
-    department: 'Commissioning',
-    email: 'deepak.joshi@b3macbis.com',
-    phone: '+91-98765-43219',
-    skills: ['Commissioning', 'Testing', 'Client Training', 'Documentation'],
-    currentProject: 'Reliance Cold Chain',
-    currentProjectId: 'PRJ-2024-009',
-    allocation: 90,
-    availability: 10,
-    status: 'Partially Available',
-    totalProjects: 18,
-    completedProjects: 16,
-    efficiency: 93,
-    costRate: 2600,
-    location: 'Ahmedabad',
-    experienceYears: 8,
-  },
-  {
-    id: '11',
-    employeeId: 'EMP-011',
-    name: 'Karan Malhotra',
-    role: 'Site Supervisor',
-    department: 'Operations',
-    email: 'karan.malhotra@b3macbis.com',
-    phone: '+91-98765-43220',
-    skills: ['Site Management', 'Labor Coordination', 'Safety', 'Progress Tracking'],
-    currentProject: '',
-    currentProjectId: '',
-    allocation: 0,
-    availability: 100,
-    status: 'Available',
-    totalProjects: 14,
-    completedProjects: 14,
-    efficiency: 85,
-    costRate: 2100,
-    location: 'Noida',
-    experienceYears: 7,
-  },
-  {
-    id: '12',
-    employeeId: 'EMP-012',
-    name: 'Ramesh Nair',
-    role: 'Civil Engineer',
-    department: 'Engineering',
-    email: 'ramesh.nair@b3macbis.com',
-    phone: '+91-98765-43221',
-    skills: ['Structural Design', 'Site Survey', 'Civil Work', 'AutoCAD'],
-    currentProject: '',
-    currentProjectId: '',
-    allocation: 0,
-    availability: 100,
-    status: 'Available',
-    totalProjects: 19,
-    completedProjects: 18,
-    efficiency: 88,
-    costRate: 2400,
-    location: 'Kochi',
-    experienceYears: 10,
-  },
-];
-
 export default function ResourcesListPage() {
-  const [resources] = useState<Resource[]>(mockResources);
+  const [resources, setResources] = useState<PageResource[]>([])
+  const [projects, setProjects] = useState<Project[]>([])
+  const [selectedProjectId, setSelectedProjectId] = useState<string>('')
+  const [isLoading, setIsLoading] = useState(true)
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('All');
   const [roleFilter, setRoleFilter] = useState('All');
@@ -340,11 +90,69 @@ export default function ResourcesListPage() {
     resourceComparison: false,
   });
 
-  const [selectedResource, setSelectedResource] = useState<Resource | null>(null);
-  const [selectedResources, setSelectedResources] = useState<Resource[]>([]);
+  const [selectedResource, setSelectedResource] = useState<PageResource | null>(null);
+  const [selectedResources, setSelectedResources] = useState<PageResource[]>([]);
   const [showResourceMenu, setShowResourceMenu] = useState<string | null>(null);
 
-  const openModal = (modalName: keyof typeof modals, resource?: Resource) => {
+  useEffect(() => {
+    fetchProjects()
+  }, [])
+
+  useEffect(() => {
+    if (selectedProjectId) {
+      fetchProjectResources(selectedProjectId)
+    }
+  }, [selectedProjectId])
+
+  const fetchProjects = async () => {
+    try {
+      const data = await projectManagementService.getProjects()
+      setProjects(data)
+      if (data.length > 0) {
+        setSelectedProjectId(data[0].id)
+      } else {
+        setIsLoading(false)
+      }
+    } catch (error) {
+      console.error('Failed to fetch projects:', error)
+      setIsLoading(false)
+    }
+  }
+
+  const fetchProjectResources = async (projectId: string) => {
+    setIsLoading(true)
+    try {
+      const data = await projectManagementService.getResources(projectId)
+      const mappedResources: PageResource[] = data.map((r: any) => ({
+        id: r.id,
+        employeeId: r.user?.employeeId || 'N/A',
+        name: r.user?.name || 'Unknown User',
+        role: r.role || 'Team Member',
+        department: r.user?.department || 'Engineering',
+        email: r.user?.email || '',
+        phone: r.user?.phone || '',
+        skills: r.user?.skills || [],
+        currentProject: projects.find(p => p.id === projectId)?.name || 'Unknown',
+        currentProjectId: projectId,
+        allocation: r.allocationPercentage,
+        availability: 100 - r.allocationPercentage,
+        status: r.allocationPercentage >= 100 ? 'Fully Allocated' : r.allocationPercentage > 0 ? 'Partially Available' : 'Available',
+        totalProjects: 0,
+        completedProjects: 0,
+        efficiency: 90,
+        costRate: 0,
+        location: 'On Site',
+        experienceYears: 0,
+      }))
+      setResources(mappedResources)
+    } catch (error) {
+      console.error('Failed to fetch resources:', error)
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  const openModal = (modalName: keyof typeof modals, resource?: PageResource) => {
     if (resource) setSelectedResource(resource);
     setModals({ ...modals, [modalName]: true });
   };
@@ -365,8 +173,8 @@ export default function ResourcesListPage() {
     available: resources.filter(r => r.status === 'Available').length,
     fullyAllocated: resources.filter(r => r.status === 'Fully Allocated').length,
     partiallyAvailable: resources.filter(r => r.status === 'Partially Available').length,
-    avgUtilization: Math.round(resources.reduce((sum, r) => sum + r.allocation, 0) / resources.length),
-    avgEfficiency: Math.round(resources.reduce((sum, r) => sum + r.efficiency, 0) / resources.length),
+    avgUtilization: resources.length > 0 ? Math.round(resources.reduce((sum, r) => sum + r.allocation, 0) / resources.length) : 0,
+    avgEfficiency: resources.length > 0 ? Math.round(resources.reduce((sum, r) => sum + r.efficiency, 0) / resources.length) : 0,
   };
 
   // Filter resources
@@ -419,7 +227,18 @@ export default function ResourcesListPage() {
     <div className="container mx-auto min-h-screen px-4 sm:px-6 lg:px-8 py-6 max-w-7xl space-y-6">
       {/* Header Actions */}
       <div className="flex justify-between items-center mb-4">
-        <div className="flex gap-2">
+        <div className="flex gap-2 items-center">
+          <select
+            value={selectedProjectId}
+            onChange={(e) => setSelectedProjectId(e.target.value)}
+            className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 mr-4"
+          >
+            {projects.map((project) => (
+              <option key={project.id} value={project.id}>
+                {project.name}
+              </option>
+            ))}
+          </select>
           {selectedResources.length > 0 && (
             <>
               <button
@@ -623,11 +442,10 @@ export default function ResourcesListPage() {
                       </div>
                       <div className="w-full bg-gray-200 rounded-full h-2">
                         <div
-                          className={`h-2 rounded-full ${
-                            resource.allocation === 100 ? 'bg-red-500' :
+                          className={`h-2 rounded-full ${resource.allocation === 100 ? 'bg-red-500' :
                             resource.allocation >= 70 ? 'bg-yellow-500' :
-                            'bg-green-500'
-                          }`}
+                              'bg-green-500'
+                            }`}
                           style={{ width: `${resource.allocation}%` }}
                         ></div>
                       </div>

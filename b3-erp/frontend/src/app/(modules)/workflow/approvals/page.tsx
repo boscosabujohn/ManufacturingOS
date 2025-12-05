@@ -60,6 +60,34 @@ const mockApprovals: ApprovalRequest[] = [
     ],
   },
   {
+    id: 'APR001B',
+    title: 'Purchase Order Approval - Office Equipment (RESUBMITTED)',
+    description: 'Purchase request for ergonomic office chairs and standing desks. Previously rejected due to budget concerns. Amount reduced from $8500 to $6200 by choosing economy model chairs.',
+    type: 'purchase_order',
+    referenceId: 'PO-2025-10-142-R2',
+    amount: 6200,
+    status: 'pending',
+    priority: 'medium',
+    requestedBy: 'Admin Manager',
+    requestedDate: '2025-10-17',
+    currentApprover: 'Finance Manager',
+    approvalLevel: 'Level 1 of 2 (Resubmission)',
+    totalLevels: 2,
+    deadline: '2025-10-21',
+    daysRemaining: 4,
+    comments: 4,
+    attachments: 5,
+    history: [
+      // Previous attempt (rejected)
+      { approver: 'Admin Manager', action: 'pending', date: '2025-10-10 09:00', comment: 'Initial submission' },
+      { approver: 'Department Head', action: 'approved', date: '2025-10-10 14:20', comment: 'Necessary for employee health' },
+      { approver: 'Finance Manager', action: 'rejected', date: '2025-10-11 10:30', comment: 'Amount exceeds budget allocation for office equipment this quarter. Please revise to $6000 or less.' },
+      // Current attempt (pending)
+      { approver: 'Admin Manager', action: 'pending', date: '2025-10-17 08:45', comment: 'Resubmitted with reduced amount - selected economy model chairs to meet budget requirement' },
+      { approver: 'Finance Manager', action: 'pending', date: '2025-10-17 09:00' },
+    ],
+  },
+  {
     id: 'APR002',
     title: 'Employee Expense Reimbursement',
     description: 'Travel expenses for client meeting in New York - accommodation, flights, and meals',
@@ -310,6 +338,21 @@ export default function ApprovalsPage() {
   const [viewMode, setViewMode] = useState<'pending' | 'all'>('pending');
   const itemsPerPage = 8;
 
+  // Modal state
+  const [showModal, setShowModal] = useState(false);
+  const [modalAction, setModalAction] = useState<'approve' | 'reject' | null>(null);
+  const [selectedApproval, setSelectedApproval] = useState<ApprovalRequest | null>(null);
+  const [actionComment, setActionComment] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Expanded card state
+  const [expandedCard, setExpandedCard] = useState<string | null>(null);
+
+  // Delegation modal state
+  const [showDelegationModal, setShowDelegationModal] = useState(false);
+  const [delegationApproval, setDelegationApproval] = useState<ApprovalRequest | null>(null);
+  const [delegateTo, setDelegateTo] = useState('');
+
   const filteredApprovals = approvals.filter((approval) => {
     const matchesSearch =
       approval.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -339,21 +382,79 @@ export default function ApprovalsPage() {
       .reduce((sum, a) => sum + (a.amount || 0), 0),
   };
 
-  const handleApprove = (approval: ApprovalRequest) => {
-    if (confirm(`Approve: ${approval.title}?`)) {
+  // Open approval modal
+  const openApprovalModal = (approval: ApprovalRequest, action: 'approve' | 'reject') => {
+    setSelectedApproval(approval);
+    setModalAction(action);
+    setActionComment('');
+    setShowModal(true);
+  };
+
+  // Close modal
+  const closeModal = () => {
+    setShowModal(false);
+    setSelectedApproval(null);
+    setModalAction(null);
+    setActionComment('');
+  };
+
+  // Submit approval/rejection
+  const handleSubmitAction = async () => {
+    if (!selectedApproval || !modalAction) return;
+
+    setIsSubmitting(true);
+
+    try {
+      // TODO: Replace with actual API call when backend is connected
+      // const response = await fetch(`/api/approvals/${selectedApproval.id}/${modalAction}`, {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify({
+      //     userId: 'current-user-id', // TODO: Get from auth context
+      //     [modalAction === 'approve' ? 'comment' : 'reason']: actionComment
+      //   })
+      // });
+
+      // For now, update local state (mock behavior)
       setApprovals(approvals.map(a =>
-        a.id === approval.id ? { ...a, status: 'approved' as const } : a
+        a.id === selectedApproval.id
+          ? { ...a, status: modalAction === 'approve' ? 'approved' : 'rejected' }
+          : a
       ));
+
+      // Show success message
+      alert(`Request ${modalAction === 'approve' ? 'approved' : 'rejected'} successfully!`);
+      closeModal();
+    } catch (error) {
+      console.error('Error submitting action:', error);
+      alert('Failed to submit action. Please try again.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
+  const handleApprove = (approval: ApprovalRequest) => {
+    openApprovalModal(approval, 'approve');
+  };
+
   const handleReject = (approval: ApprovalRequest) => {
-    const reason = prompt('Please provide a reason for rejection:');
-    if (reason) {
-      setApprovals(approvals.map(a =>
-        a.id === approval.id ? { ...a, status: 'rejected' as const } : a
-      ));
-    }
+    openApprovalModal(approval, 'reject');
+  };
+
+  const handleDelegate = (approval: ApprovalRequest) => {
+    setDelegationApproval(approval);
+    setDelegateTo('');
+    setShowDelegationModal(true);
+  };
+
+  const handleSubmitDelegation = () => {
+    if (!delegationApproval || !delegateTo) return;
+
+    // TODO: API call to delegate task
+    alert(`Task "${delegationApproval.title}" delegated to ${delegateTo}`);
+    setShowDelegationModal(false);
+    setDelegationApproval(null);
+    setDelegateTo('');
   };
 
   const getDaysRemainingColor = (days: number) => {
@@ -374,7 +475,7 @@ export default function ApprovalsPage() {
   };
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 max-w-7xl">
+    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6">
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-6 gap-4 mb-6">
         <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
@@ -441,11 +542,10 @@ export default function ApprovalsPage() {
       <div className="flex justify-end mb-6">
         <button
           onClick={() => setViewMode(viewMode === 'pending' ? 'all' : 'pending')}
-          className={`px-4 py-2 rounded-lg transition-colors ${
-            viewMode === 'pending'
-              ? 'bg-blue-600 text-white'
-              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-          }`}
+          className={`px-4 py-2 rounded-lg transition-colors ${viewMode === 'pending'
+            ? 'bg-blue-600 text-white'
+            : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+            }`}
         >
           {viewMode === 'pending' ? 'Show All' : 'Show Pending Only'}
         </button>
@@ -466,9 +566,8 @@ export default function ApprovalsPage() {
           </div>
           <button
             onClick={() => setShowFilters(!showFilters)}
-            className={`flex items-center space-x-2 px-4 py-2 border rounded-lg transition-colors ${
-              showFilters ? 'bg-blue-50 border-blue-300 text-blue-700' : 'border-gray-300 text-gray-700 hover:bg-gray-50'
-            }`}
+            className={`flex items-center space-x-2 px-4 py-2 border rounded-lg transition-colors ${showFilters ? 'bg-blue-50 border-blue-300 text-blue-700' : 'border-gray-300 text-gray-700 hover:bg-gray-50'
+              }`}
           >
             <Filter className="h-5 w-5" />
             <span>Filters</span>
@@ -532,6 +631,13 @@ export default function ApprovalsPage() {
                   <span className={`px-2 py-0.5 text-xs font-semibold rounded-full ${statusColors[approval.status]}`}>
                     {approval.status}
                   </span>
+                  {/* Show resubmission badge if there's a rejection in history */}
+                  {approval.history.some(h => h.action === 'rejected') && approval.status === 'pending' && (
+                    <span className="px-2 py-0.5 text-xs font-semibold rounded-full bg-amber-100 text-amber-700 border border-amber-300 flex items-center space-x-1">
+                      <AlertCircle className="h-3 w-3" />
+                      <span>Resubmitted</span>
+                    </span>
+                  )}
                 </div>
                 <p className="text-sm text-gray-600 mb-2">{approval.description}</p>
                 <div className="flex items-center space-x-2 mb-2">
@@ -615,13 +721,12 @@ export default function ApprovalsPage() {
                 {approval.history.map((item, index) => (
                   <div key={index} className="flex items-center flex-1">
                     <div
-                      className={`flex-1 h-2 rounded-full ${
-                        item.action === 'approved'
-                          ? 'bg-green-500'
-                          : item.action === 'rejected'
+                      className={`flex-1 h-2 rounded-full ${item.action === 'approved'
+                        ? 'bg-green-500'
+                        : item.action === 'rejected'
                           ? 'bg-red-500'
                           : 'bg-yellow-500'
-                      }`}
+                        }`}
                     />
                   </div>
                 ))}
@@ -648,31 +753,211 @@ export default function ApprovalsPage() {
             {/* Action Buttons */}
             <div className="flex items-center space-x-2">
               <button
-                onClick={() => router.push(`/workflow/approvals/view/${approval.id}`)}
+                onClick={() => setExpandedCard(expandedCard === approval.id ? null : approval.id)}
                 className="flex-1 flex items-center justify-center space-x-1 px-3 py-2 text-blue-600 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors text-sm font-medium"
               >
                 <Eye className="h-4 w-4" />
-                <span>View Details</span>
+                <span>{expandedCard === approval.id ? 'Hide Details' : 'View Details'}</span>
               </button>
               {approval.status === 'pending' && (
                 <>
                   <button
+                    onClick={() => handleDelegate(approval)}
+                    className="flex items-center justify-center px-3 py-2 text-purple-600 bg-purple-50 hover:bg-purple-100 rounded-lg transition-colors"
+                    title="Delegate to another user"
+                  >
+                    <Users className="h-4 w-4" />
+                  </button>
+                  <button
                     onClick={() => handleApprove(approval)}
                     className="flex items-center justify-center px-3 py-2 text-green-600 bg-green-50 hover:bg-green-100 rounded-lg transition-colors"
-                   
                   >
                     <ThumbsUp className="h-4 w-4" />
                   </button>
                   <button
                     onClick={() => handleReject(approval)}
                     className="flex items-center justify-center px-3 py-2 text-red-600 bg-red-50 hover:bg-red-100 rounded-lg transition-colors"
-                   
                   >
                     <ThumbsDown className="h-4 w-4" />
                   </button>
                 </>
               )}
             </div>
+
+            {/* Expanded Details Section */}
+            {expandedCard === approval.id && (
+              <div className="mt-4 pt-4 border-t border-gray-200 space-y-4">
+                {/* Previous Rejection Alert */}
+                {approval.history.some(h => h.action === 'rejected') && approval.status === 'pending' && (
+                  <div className="bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-lg">
+                    <div className="flex items-start space-x-3">
+                      <AlertCircle className="h-5 w-5 text-amber-600 flex-shrink-0 mt-0.5" />
+                      <div>
+                        <h4 className="font-semibold text-amber-900 mb-1">Previously Rejected Request</h4>
+                        <p className="text-sm text-amber-800 mb-2">
+                          This request was previously rejected and has been resubmitted with modifications.
+                          Review the complete history below to see previous feedback and changes made.
+                        </p>
+                        {approval.history.filter(h => h.action === 'rejected').map((rejection, idx) => (
+                          <div key={idx} className="mt-2 p-2 bg-white rounded border border-amber-200">
+                            <p className="text-xs text-gray-600 mb-1">
+                              <span className="font-medium">Rejected by {rejection.approver}</span> on {rejection.date}
+                            </p>
+                            {rejection.comment && (
+                              <p className="text-sm text-gray-800 italic">"{rejection.comment}"</p>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Document Link */}
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h4 className="font-semibold text-blue-900 mb-1 flex items-center space-x-2">
+                        <FileText className="h-5 w-5" />
+                        <span>Original Document</span>
+                      </h4>
+                      <p className="text-sm text-blue-700">View the complete {approval.type.replace('_', ' ')} document</p>
+                    </div>
+                    <button
+                      onClick={() => {
+                        // TODO: Navigate to actual document when routes are set up
+                        alert(`Opening ${approval.referenceId}...`);
+                      }}
+                      className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                    >
+                      <Eye className="h-4 w-4" />
+                      <span>View Document</span>
+                    </button>
+                  </div>
+                </div>
+
+                {/* Attachments Section */}
+                {approval.attachments > 0 && (
+                  <div>
+                    <h4 className="font-semibold text-gray-900 mb-3 flex items-center space-x-2">
+                      <Package className="h-4 w-4" />
+                      <span>Attachments ({approval.attachments})</span>
+                    </h4>
+                    <div className="grid grid-cols-1 gap-2">
+                      {/* Mock attachments - replace with real data */}
+                      {Array.from({ length: approval.attachments }).map((_, idx) => (
+                        <div key={idx} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg border border-gray-200 hover:bg-gray-100 transition-colors">
+                          <div className="flex items-center space-x-3">
+                            <FileText className="h-5 w-5 text-blue-600" />
+                            <div>
+                              <p className="text-sm font-medium text-gray-900">
+                                {idx === 0 ? 'Purchase_Order_Details.pdf' :
+                                  idx === 1 ? 'Vendor_Quotation.pdf' :
+                                    'Material_Specifications.xlsx'}
+                              </p>
+                              <p className="text-xs text-gray-500">
+                                {idx === 0 ? '245 KB' : idx === 1 ? '189 KB' : '78 KB'}
+                              </p>
+                            </div>
+                          </div>
+                          <div className="flex items-center space-x-2">
+                            <button
+                              onClick={() => alert('Preview coming soon...')}
+                              className="p-2 text-blue-600 hover:bg-blue-50 rounded transition-colors"
+                              title="Preview"
+                            >
+                              <Eye className="h-4 w-4" />
+                            </button>
+                            <button
+                              onClick={() => alert('Download starting...')}
+                              className="p-2 text-green-600 hover:bg-green-50 rounded transition-colors"
+                              title="Download"
+                            >
+                              <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Comments Section */}
+                {approval.comments > 0 && (
+                  <div>
+                    <h4 className="font-semibold text-gray-900 mb-3 flex items-center space-x-2">
+                      <MessageSquare className="h-4 w-4" />
+                      <span>Comments ({approval.comments})</span>
+                    </h4>
+                    <div className="space-y-3">
+                      {/* Mock comments - replace with real data */}
+                      {Array.from({ length: approval.comments }).map((_, idx) => (
+                        <div key={idx} className="bg-gray-50 rounded-lg p-3 border border-gray-200">
+                          <div className="flex items-center space-x-2 mb-2">
+                            <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white text-sm font-semibold">
+                              {idx === 0 ? 'PM' : 'FD'}
+                            </div>
+                            <div>
+                              <p className="text-sm font-medium text-gray-900">
+                                {idx === 0 ? 'Procurement Manager' : 'Finance Director'}
+                              </p>
+                              <p className="text-xs text-gray-500">
+                                {idx === 0 ? '2025-10-15 10:30 AM' : '2025-10-16 02:15 PM'}
+                              </p>
+                            </div>
+                          </div>
+                          <p className="text-sm text-gray-700">
+                            {idx === 0
+                              ? 'Checked with supplier - delivery confirmed within 2 weeks. Prices are competitive.'
+                              : 'Please verify if budget allocation is available for Q4.'}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Approval History */}
+                <div>
+                  <h4 className="font-semibold text-gray-900 mb-3 flex items-center space-x-2">
+                    <Activity className="h-4 w-4" />
+                    <span>Approval History</span>
+                  </h4>
+                  <div className="space-y-3">
+                    {approval.history.map((event, idx) => (
+                      <div key={idx} className="flex items-start space-x-3">
+                        <div className="flex-shrink-0 mt-1">
+                          {event.action === 'approved' ? (
+                            <CheckCircle className="h-5 w-5 text-green-600" />
+                          ) : event.action === 'rejected' ? (
+                            <XCircle className="h-5 w-5 text-red-600" />
+                          ) : (
+                            <Clock className="h-5 w-5 text-yellow-600" />
+                          )}
+                        </div>
+                        <div className="flex-1">
+                          <div className="flex items-center space-x-2">
+                            <span className="font-medium text-gray-900">{event.approver}</span>
+                            <span className={`px-2 py-0.5 text-xs rounded-full ${event.action === 'approved' ? 'bg-green-100 text-green-700' :
+                              event.action === 'rejected' ? 'bg-red-100 text-red-700' :
+                                'bg-yellow-100 text-yellow-700'
+                              }`}>
+                              {event.action}
+                            </span>
+                          </div>
+                          <p className="text-sm text-gray-500 mt-0.5">{event.date}</p>
+                          {event.comment && (
+                            <p className="text-sm text-gray-700 mt-1 italic bg-white p-2 rounded border border-gray-200">"{event.comment}"</p>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         ))}
       </div>
@@ -702,11 +987,10 @@ export default function ApprovalsPage() {
                   )}
                   <button
                     onClick={() => setCurrentPage(page)}
-                    className={`px-3 py-1 rounded-lg ${
-                      currentPage === page
-                        ? 'bg-blue-600 text-white'
-                        : 'border border-gray-300 hover:bg-gray-50'
-                    }`}
+                    className={`px-3 py-1 rounded-lg ${currentPage === page
+                      ? 'bg-blue-600 text-white'
+                      : 'border border-gray-300 hover:bg-gray-50'
+                      }`}
                   >
                     {page}
                   </button>
@@ -722,6 +1006,215 @@ export default function ApprovalsPage() {
           </button>
         </div>
       </div>
+
+      {/* Approval/Rejection Modal */}
+      {showModal && selectedApproval && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            {/* Modal Header */}
+            <div className={`px-6 py-4 border-b ${modalAction === 'approve' ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'
+              }`}>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-3">
+                  {modalAction === 'approve' ? (
+                    <CheckCircle className="h-6 w-6 text-green-600" />
+                  ) : (
+                    <XCircle className="h-6 w-6 text-red-600" />
+                  )}
+                  <h2 className={`text-xl font-bold ${modalAction === 'approve' ? 'text-green-900' : 'text-red-900'
+                    }`}>
+                    {modalAction === 'approve' ? 'Approve Request' : 'Reject Request'}
+                  </h2>
+                </div>
+                <button
+                  onClick={closeModal}
+                  className="text-gray-400 hover:text-gray-600 transition-colors"
+                  disabled={isSubmitting}
+                >
+                  <XCircle className="h-6 w-6" />
+                </button>
+              </div>
+            </div>
+
+            {/* Modal Body */}
+            <div className="px-6 py-4">
+              {/* Request Details */}
+              <div className="mb-6">
+                <h3 className="font-semibold text-gray-900 mb-2">Request Details</h3>
+                <div className="bg-gray-50 rounded-lg p-4 space-y-2">
+                  <div className="flex justify-between">
+                    <span className="text-sm text-gray-600">Title:</span>
+                    <span className="text-sm font-medium text-gray-900">{selectedApproval.title}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-sm text-gray-600">Reference:</span>
+                    <span className="text-sm font-medium text-gray-900">{selectedApproval.referenceId}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-sm text-gray-600">Requested By:</span>
+                    <span className="text-sm font-medium text-gray-900">{selectedApproval.requestedBy}</span>
+                  </div>
+                  {selectedApproval.amount && (
+                    <div className="flex justify-between">
+                      <span className="text-sm text-gray-600">Amount:</span>
+                      <span className="text-sm font-bold text-gray-900">
+                        ₹{selectedApproval.amount.toLocaleString()}
+                      </span>
+                    </div>
+                  )}
+                  <div className="pt-2 border-t border-gray-200">
+                    <span className="text-sm text-gray-600">Description:</span>
+                    <p className="text-sm text-gray-900 mt-1">{selectedApproval.description}</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Comment/Reason Input */}
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  {modalAction === 'approve'
+                    ? 'Comment (Optional)'
+                    : 'Reason for Rejection (Required)'}
+                  <span className="text-red-500 ml-1">{modalAction === 'reject' ? '*' : ''}</span>
+                </label>
+                <textarea
+                  value={actionComment}
+                  onChange={(e) => setActionComment(e.target.value)}
+                  placeholder={modalAction === 'approve'
+                    ? 'Add any comments or notes...'
+                    : 'Please provide a reason for rejection...'}
+                  rows={4}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                  disabled={isSubmitting}
+                />
+              </div>
+
+              {modalAction === 'reject' && !actionComment && (
+                <div className="mb-4 p-3 bg-amber-50 border border-amber-200 rounded-lg flex items-start space-x-2">
+                  <AlertCircle className="h-5 w-5 text-amber-600 flex-shrink-0 mt-0.5" />
+                  <p className="text-sm text-amber-800">
+                    A reason is required when rejecting an approval request.
+                  </p>
+                </div>
+              )}
+            </div>
+
+            {/* Modal Footer */}
+            <div className="px-6 py-4 bg-gray-50 border-t border-gray-200 flex justify-end space-x-3">
+              <button
+                onClick={closeModal}
+                className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors"
+                disabled={isSubmitting}
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleSubmitAction}
+                disabled={isSubmitting || (modalAction === 'reject' && !actionComment.trim())}
+                className={`px-4 py-2 rounded-lg text-white transition-colors flex items-center space-x-2 ${modalAction === 'approve'
+                  ? 'bg-green-600 hover:bg-green-700 disabled:bg-green-300'
+                  : 'bg-red-600 hover:bg-red-700 disabled:bg-red-300'
+                  } disabled:cursor-not-allowed`}
+              >
+                {isSubmitting ? (
+                  <>
+                    <div className="animate-spin h-4 w-4 border-2 border-white border-t-transparent rounded-full"></div>
+                    <span>Processing...</span>
+                  </>
+                ) : (
+                  <>
+                    {modalAction === 'approve' ? (
+                      <><ThumbsUp className="h-4 w-4" /><span>Approve</span></>
+                    ) : (
+                      <><ThumbsDown className="h-4 w-4" /><span>Reject</span></>
+                    )}
+                  </>
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Delegation Modal */}
+      {showDelegationModal && delegationApproval && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg shadow-xl max-w-md w-full">
+            {/* Modal Header */}
+            <div className="px-6 py-4 border-b bg-purple-50 border-purple-200">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-3">
+                  <Users className="h-6 w-6 text-purple-600" />
+                  <h2 className="text-xl font-bold text-purple-900">Delegate Task</h2>
+                </div>
+                <button
+                  onClick={() => setShowDelegationModal(false)}
+                  className="text-gray-400 hover:text-gray-600 transition-colors"
+                >
+                  <XCircle className="h-6 w-6" />
+                </button>
+              </div>
+            </div>
+
+            {/* Modal Body */}
+            <div className="px-6 py-4">
+              <div className="mb-4">
+                <h3 className="font-semibold text-gray-900 mb-2">Task Details</h3>
+                <div className="bg-gray-50 rounded-lg p-3 space-y-1">
+                  <p className="text-sm font-medium text-gray-900">{delegationApproval.title}</p>
+                  <p className="text-xs text-gray-600">{delegationApproval.referenceId}</p>
+                  {delegationApproval.amount && (
+                    <p className="text-sm font-bold text-gray-900">₹{delegationApproval.amount.toLocaleString()}</p>
+                  )}
+                </div>
+              </div>
+
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Delegate To <span className="text-red-500">*</span>
+                </label>
+                <select
+                  value={delegateTo}
+                  onChange={(e) => setDelegateTo(e.target.value)}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                >
+                  <option value="">Select a user...</option>
+                  <option value="john_doe">John Doe - Finance Manager</option>
+                  <option value="sarah_williams">Sarah Williams - Department Head</option>
+                  <option value="mike_johnson">Mike Johnson - Procurement Manager</option>
+                  <option value="emily_brown">Emily Brown - Finance Director</option>
+                  <option value="david_miller">David Miller - CEO</option>
+                </select>
+              </div>
+
+              <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                <p className="text-sm text-blue-800">
+                  <strong>Note:</strong> The selected user will receive this task in their approval inbox.
+                  You will no longer be responsible for this approval.
+                </p>
+              </div>
+            </div>
+
+            {/* Modal Footer */}
+            <div className="px-6 py-4 bg-gray-50 border-t border-gray-200 flex justify-end space-x-3">
+              <button
+                onClick={() => setShowDelegationModal(false)}
+                className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleSubmitDelegation}
+                disabled={!delegateTo}
+                className="px-4 py-2 rounded-lg text-white transition-colors flex items-center space-x-2 bg-purple-600 hover:bg-purple-700 disabled:bg-purple-300 disabled:cursor-not-allowed"
+              >
+                <Users className="h-4 w-4" />
+                <span>Delegate Task</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

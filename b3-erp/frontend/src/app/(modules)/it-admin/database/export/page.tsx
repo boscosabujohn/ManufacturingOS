@@ -160,7 +160,7 @@ export default function DatabaseExportPage() {
     }, 0);
 
   return (
-    <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
+    <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6 w-full max-w-full">
       <div className="mb-6 flex items-center gap-4">
         <button onClick={() => router.back()} className="p-2 hover:bg-gray-100 rounded-lg">
           <ArrowLeft className="w-5 h-5 text-gray-600" />
@@ -242,11 +242,10 @@ export default function DatabaseExportPage() {
                   <button
                     key={format.id}
                     onClick={() => setSelectedFormat(format.id as any)}
-                    className={`p-4 rounded-lg border-2 transition-all ${
-                      selectedFormat === format.id
+                    className={`p-4 rounded-lg border-2 transition-all ${selectedFormat === format.id
                         ? 'border-blue-500 bg-blue-50'
                         : 'border-gray-200 hover:border-blue-300'
-                    }`}
+                      }`}
                   >
                     <IconComponent className={`w-8 h-8 mx-auto mb-2 ${selectedFormat === format.id ? 'text-blue-600' : 'text-gray-600'}`} />
                     <p className="font-semibold text-sm text-gray-900">{format.name}</p>
@@ -353,11 +352,10 @@ export default function DatabaseExportPage() {
                 <button
                   key={table.name}
                   onClick={() => toggleTable(table.name)}
-                  className={`text-left p-4 rounded-lg border-2 transition-all ${
-                    table.selected
+                  className={`text-left p-4 rounded-lg border-2 transition-all ${table.selected
                       ? 'border-blue-500 bg-blue-50'
                       : 'border-gray-200 hover:border-blue-300'
-                  }`}
+                    }`}
                 >
                   <div className="flex items-start justify-between">
                     <div className="flex-1">

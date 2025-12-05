@@ -1,0 +1,322 @@
+
+> b3-erp-backend@1.0.0 prebuild
+> rimraf dist
+
+
+> b3-erp-backend@1.0.0 build
+> nest build
+
+[96msrc/modules/approvals/services/analytics.service.ts[0m:[93m82[0m:[93m15[0m - [91merror[0m[90m TS2339: [0mProperty 'completedAt' does not exist on type 'ApprovalRequest'.
+
+[7m82[0m             a.completedAt &&
+[7m  [0m [91m              ~~~~~~~~~~~[0m
+[96msrc/modules/approvals/services/analytics.service.ts[0m:[93m84[0m:[93m15[0m - [91merror[0m[90m TS2339: [0mProperty 'completedAt' does not exist on type 'ApprovalRequest'.
+
+[7m84[0m             a.completedAt <= a.deadline
+[7m  [0m [91m              ~~~~~~~~~~~[0m
+[96msrc/modules/approvals/services/analytics.service.ts[0m:[93m97[0m:[93m26[0m - [91merror[0m[90m TS2339: [0mProperty 'completedAt' does not exist on type 'ApprovalRequest'.
+
+[7m97[0m                 return a.completedAt && a.completedAt > a.deadline;
+[7m  [0m [91m                         ~~~~~~~~~~~[0m
+[96msrc/modules/approvals/services/analytics.service.ts[0m:[93m97[0m:[93m43[0m - [91merror[0m[90m TS2339: [0mProperty 'completedAt' does not exist on type 'ApprovalRequest'.
+
+[7m97[0m                 return a.completedAt && a.completedAt > a.deadline;
+[7m  [0m [91m                                          ~~~~~~~~~~~[0m
+[96msrc/modules/approvals/services/analytics.service.ts[0m:[93m108[0m:[93m15[0m - [91merror[0m[90m TS2339: [0mProperty 'completedAt' does not exist on type 'ApprovalRequest'.
+
+[7m108[0m             a.completedAt && a.createdAt
+[7m   [0m [91m              ~~~~~~~~~~~[0m
+[96msrc/modules/approvals/services/analytics.service.ts[0m:[93m113[0m:[93m37[0m - [91merror[0m[90m TS2339: [0mProperty 'completedAt' does not exist on type 'ApprovalRequest'.
+
+[7m113[0m                 const duration = (a.completedAt!.getTime() - a.createdAt.getTime()) / (1000 * 60 * 60);
+[7m   [0m [91m                                    ~~~~~~~~~~~[0m
+[96msrc/modules/approvals/services/analytics.service.ts[0m:[93m121[0m:[93m17[0m - [91merror[0m[90m TS2322: [0mType '"completed"' is not assignable to type 'TaskStatus | FindOperator<TaskStatus>'.
+
+[7m121[0m                 status: 'completed',
+[7m   [0m [91m                ~~~~~~[0m
+[96msrc/modules/approvals/services/analytics.service.ts[0m:[93m159[0m:[93m38[0m - [91merror[0m[90m TS2551: [0mProperty 'chain' does not exist on type 'ApprovalRequest'. Did you mean 'chainId'?
+
+[7m159[0m             const chainId = approval.chain.id;
+[7m   [0m [91m                                     ~~~~~[0m
+
+  [96msrc/modules/approvals/entities/approval-request.entity.ts[0m:[93m74[0m:[93m5[0m
+    [7m74[0m     chainId: string;
+    [7m  [0m [96m    ~~~~~~~[0m
+    'chainId' is declared here.
+[96msrc/modules/approvals/services/analytics.service.ts[0m:[93m169[0m:[93m45[0m - [91merror[0m[90m TS2551: [0mProperty 'chain' does not exist on type 'ApprovalRequest'. Did you mean 'chainId'?
+
+[7m169[0m             const chain = chainApprovals[0].chain;
+[7m   [0m [91m                                            ~~~~~[0m
+
+  [96msrc/modules/approvals/entities/approval-request.entity.ts[0m:[93m74[0m:[93m5[0m
+    [7m74[0m     chainId: string;
+    [7m  [0m [96m    ~~~~~~~[0m
+    'chainId' is declared here.
+[96msrc/modules/approvals/services/analytics.service.ts[0m:[93m173[0m:[93m19[0m - [91merror[0m[90m TS2339: [0mProperty 'completedAt' does not exist on type 'ApprovalRequest'.
+
+[7m173[0m                 a.completedAt && a.deadline && a.completedAt <= a.deadline
+[7m   [0m [91m                  ~~~~~~~~~~~[0m
+[96msrc/modules/approvals/services/analytics.service.ts[0m:[93m173[0m:[93m50[0m - [91merror[0m[90m TS2339: [0mProperty 'completedAt' does not exist on type 'ApprovalRequest'.
+
+[7m173[0m                 a.completedAt && a.deadline && a.completedAt <= a.deadline
+[7m   [0m [91m                                                 ~~~~~~~~~~~[0m
+[96msrc/modules/approvals/services/analytics.service.ts[0m:[93m186[0m:[93m30[0m - [91merror[0m[90m TS2339: [0mProperty 'completedAt' does not exist on type 'ApprovalRequest'.
+
+[7m186[0m                     return a.completedAt && a.completedAt > a.deadline;
+[7m   [0m [91m                             ~~~~~~~~~~~[0m
+[96msrc/modules/approvals/services/analytics.service.ts[0m:[93m186[0m:[93m47[0m - [91merror[0m[90m TS2339: [0mProperty 'completedAt' does not exist on type 'ApprovalRequest'.
+
+[7m186[0m                     return a.completedAt && a.completedAt > a.deadline;
+[7m   [0m [91m                                              ~~~~~~~~~~~[0m
+[96msrc/modules/approvals/services/analytics.service.ts[0m:[93m191[0m:[93m69[0m - [91merror[0m[90m TS2339: [0mProperty 'completedAt' does not exist on type 'ApprovalRequest'.
+
+[7m191[0m             const completedApprovals = chainApprovals.filter(a => a.completedAt);
+[7m   [0m [91m                                                                    ~~~~~~~~~~~[0m
+[96msrc/modules/approvals/services/analytics.service.ts[0m:[93m194[0m:[93m41[0m - [91merror[0m[90m TS2339: [0mProperty 'completedAt' does not exist on type 'ApprovalRequest'.
+
+[7m194[0m                     const duration = (a.completedAt!.getTime() - a.createdAt.getTime()) / (1000 * 60 * 60);
+[7m   [0m [91m                                        ~~~~~~~~~~~[0m
+[96msrc/modules/approvals/services/analytics.service.ts[0m:[93m243[0m:[93m19[0m - [91merror[0m[90m TS2339: [0mProperty 'completedAt' does not exist on type 'ApprovalRequest'.
+
+[7m243[0m                 a.completedAt && a.deadline && a.completedAt <= a.deadline
+[7m   [0m [91m                  ~~~~~~~~~~~[0m
+[96msrc/modules/approvals/services/analytics.service.ts[0m:[93m243[0m:[93m50[0m - [91merror[0m[90m TS2339: [0mProperty 'completedAt' does not exist on type 'ApprovalRequest'.
+
+[7m243[0m                 a.completedAt && a.deadline && a.completedAt <= a.deadline
+[7m   [0m [91m                                                 ~~~~~~~~~~~[0m
+[96msrc/modules/approvals/services/analytics.service.ts[0m:[93m255[0m:[93m30[0m - [91merror[0m[90m TS2339: [0mProperty 'completedAt' does not exist on type 'ApprovalRequest'.
+
+[7m255[0m                     return a.completedAt && a.completedAt > a.deadline;
+[7m   [0m [91m                             ~~~~~~~~~~~[0m
+[96msrc/modules/approvals/services/analytics.service.ts[0m:[93m255[0m:[93m47[0m - [91merror[0m[90m TS2339: [0mProperty 'completedAt' does not exist on type 'ApprovalRequest'.
+
+[7m255[0m                     return a.completedAt && a.completedAt > a.deadline;
+[7m   [0m [91m                                              ~~~~~~~~~~~[0m
+[96msrc/modules/approvals/services/analytics.service.ts[0m:[93m283[0m:[93m17[0m - [91merror[0m[90m TS2322: [0mType '"approval"' is not assignable to type 'TaskType | FindOperator<TaskType>'.
+
+[7m283[0m                 taskType: 'approval',
+[7m   [0m [91m                ~~~~~~~~[0m
+[96msrc/modules/approvals/services/analytics.service.ts[0m:[93m302[0m:[93m42[0m - [91merror[0m[90m TS2339: [0mProperty 'deadline' does not exist on type 'UserTask'.
+
+[7m302[0m                 task.completedAt && task.deadline && task.completedAt <= task.deadline
+[7m   [0m [91m                                         ~~~~~~~~[0m
+[96msrc/modules/approvals/services/analytics.service.ts[0m:[93m302[0m:[93m79[0m - [91merror[0m[90m TS2339: [0mProperty 'deadline' does not exist on type 'UserTask'.
+
+[7m302[0m                 task.completedAt && task.deadline && task.completedAt <= task.deadline
+[7m   [0m [91m                                                                              ~~~~~~~~[0m
+[96msrc/modules/approvals/services/analytics.service.ts[0m:[93m344[0m:[93m15[0m - [91merror[0m[90m TS2339: [0mProperty 'completedAt' does not exist on type 'ApprovalRequest'.
+
+[7m344[0m             a.completedAt && a.deadline && a.completedAt > a.deadline
+[7m   [0m [91m              ~~~~~~~~~~~[0m
+[96msrc/modules/approvals/services/analytics.service.ts[0m:[93m344[0m:[93m46[0m - [91merror[0m[90m TS2339: [0mProperty 'completedAt' does not exist on type 'ApprovalRequest'.
+
+[7m344[0m             a.completedAt && a.deadline && a.completedAt > a.deadline
+[7m   [0m [91m                                             ~~~~~~~~~~~[0m
+[96msrc/modules/approvals/services/analytics.service.ts[0m:[93m350[0m:[93m38[0m - [91merror[0m[90m TS2551: [0mProperty 'chain' does not exist on type 'ApprovalRequest'. Did you mean 'chainId'?
+
+[7m350[0m             const chainId = approval.chain.id;
+[7m   [0m [91m                                     ~~~~~[0m
+
+  [96msrc/modules/approvals/entities/approval-request.entity.ts[0m:[93m74[0m:[93m5[0m
+    [7m74[0m     chainId: string;
+    [7m  [0m [96m    ~~~~~~~[0m
+    'chainId' is declared here.
+[96msrc/modules/approvals/services/analytics.service.ts[0m:[93m360[0m:[93m38[0m - [91merror[0m[90m TS2551: [0mProperty 'chain' does not exist on type 'ApprovalRequest'. Did you mean 'chainId'?
+
+[7m360[0m             const chain = delayed[0].chain;
+[7m   [0m [91m                                     ~~~~~[0m
+
+  [96msrc/modules/approvals/entities/approval-request.entity.ts[0m:[93m74[0m:[93m5[0m
+    [7m74[0m     chainId: string;
+    [7m  [0m [96m    ~~~~~~~[0m
+    'chainId' is declared here.
+[96msrc/modules/approvals/services/analytics.service.ts[0m:[93m363[0m:[93m39[0m - [91merror[0m[90m TS2339: [0mProperty 'completedAt' does not exist on type 'ApprovalRequest'.
+
+[7m363[0m                 const delayHours = (a.completedAt!.getTime() - a.deadline!.getTime()) / (1000 * 60 * 60);
+[7m   [0m [91m                                      ~~~~~~~~~~~[0m
+[96msrc/modules/approvals/services/escalation.service.ts[0m:[93m35[0m:[93m39[0m - [91merror[0m[90m TS2551: [0mProperty 'chain' does not exist on type 'ApprovalRequest'. Did you mean 'chainId'?
+
+[7m35[0m         const currentLevel = approval.chain.levels.find(
+[7m  [0m [91m                                      ~~~~~[0m
+
+  [96msrc/modules/approvals/entities/approval-request.entity.ts[0m:[93m74[0m:[93m5[0m
+    [7m74[0m     chainId: string;
+    [7m  [0m [96m    ~~~~~~~[0m
+    'chainId' is declared here.
+[96msrc/modules/approvals/services/escalation.service.ts[0m:[93m36[0m:[93m44[0m - [91merror[0m[90m TS2339: [0mProperty 'currentLevelSequence' does not exist on type 'ApprovalRequest'.
+
+[7m36[0m             (l) => l.sequence === approval.currentLevelSequence,
+[7m  [0m [91m                                           ~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/approvals/services/escalation.service.ts[0m:[93m51[0m:[93m81[0m - [91merror[0m[90m TS2339: [0mProperty 'currentLevelSequence' does not exist on type 'ApprovalRequest'.
+
+[7m51[0m         const targetLevelSequence = escalationRules.escalateToLevel || approval.currentLevelSequence + 1;
+[7m  [0m [91m                                                                                ~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/approvals/services/escalation.service.ts[0m:[93m52[0m:[93m38[0m - [91merror[0m[90m TS2551: [0mProperty 'chain' does not exist on type 'ApprovalRequest'. Did you mean 'chainId'?
+
+[7m52[0m         const targetLevel = approval.chain.levels.find(
+[7m  [0m [91m                                     ~~~~~[0m
+
+  [96msrc/modules/approvals/entities/approval-request.entity.ts[0m:[93m74[0m:[93m5[0m
+    [7m74[0m     chainId: string;
+    [7m  [0m [96m    ~~~~~~~[0m
+    'chainId' is declared here.
+[96msrc/modules/approvals/services/escalation.service.ts[0m:[93m64[0m:[93m17[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+  Overload 1 of 3, '(entityLikeArray: DeepPartial<UserTask>[]): UserTask[]', gave the following error.
+    Object literal may only specify known properties, and 'userId' does not exist in type 'DeepPartial<UserTask>[]'.
+
+[7m64[0m                 userId: approverId,
+[7m  [0m [91m                ~~~~~~[0m
+
+[96msrc/modules/approvals/services/escalation.service.ts[0m:[93m76[0m:[93m13[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'currentLevelSequence' does not exist in type '_QueryDeepPartialEntity<ApprovalRequest>'.
+
+[7m76[0m             currentLevelSequence: targetLevelSequence,
+[7m  [0m [91m            ~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/approvals/services/escalation.service.ts[0m:[93m85[0m:[93m26[0m - [91merror[0m[90m TS2551: [0mProperty 'chain' does not exist on type 'ApprovalRequest'. Did you mean 'chainId'?
+
+[7m85[0m                 approval.chain.name,
+[7m  [0m [91m                         ~~~~~[0m
+
+  [96msrc/modules/approvals/entities/approval-request.entity.ts[0m:[93m74[0m:[93m5[0m
+    [7m74[0m     chainId: string;
+    [7m  [0m [96m    ~~~~~~~[0m
+    'chainId' is declared here.
+[96msrc/modules/approvals/services/escalation.service.ts[0m:[93m114[0m:[93m15[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'requestId' does not exist in type 'string[] | Date | ObjectId | number[] | Date[] | ObjectId[] | FindOptionsWhere<UserTask> | FindOptionsWhere<UserTask>[]'.
+
+[7m114[0m             { requestId: approvalId, status: 'pending' },
+[7m   [0m [91m              ~~~~~~~~~[0m
+[96msrc/modules/approvals/services/escalation.service.ts[0m:[93m121[0m:[93m17[0m - [91merror[0m[90m TS2769: [0mNo overload matches this call.
+  Overload 1 of 3, '(entityLikeArray: DeepPartial<UserTask>[]): UserTask[]', gave the following error.
+    Object literal may only specify known properties, and 'userId' does not exist in type 'DeepPartial<UserTask>[]'.
+
+[7m121[0m                 userId,
+[7m   [0m [91m                ~~~~~~[0m
+
+[96msrc/modules/approvals/services/escalation.service.ts[0m:[93m136[0m:[93m26[0m - [91merror[0m[90m TS2551: [0mProperty 'chain' does not exist on type 'ApprovalRequest'. Did you mean 'chainId'?
+
+[7m136[0m                 approval.chain.name,
+[7m   [0m [91m                         ~~~~~[0m
+
+  [96msrc/modules/approvals/entities/approval-request.entity.ts[0m:[93m74[0m:[93m5[0m
+    [7m74[0m     chainId: string;
+    [7m  [0m [96m    ~~~~~~~[0m
+    'chainId' is declared here.
+[96msrc/modules/approvals/services/escalation.service.ts[0m:[93m150[0m:[93m22[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'requestId' does not exist in type 'FindOptionsWhere<UserTask> | FindOptionsWhere<UserTask>[]'.
+
+[7m150[0m             where: { requestId: approvalId },
+[7m   [0m [91m                     ~~~~~~~~~[0m
+
+  [96mnode_modules/typeorm/find-options/FindOneOptions.d.ts[0m:[93m23[0m:[93m5[0m
+    [7m23[0m     where?: FindOptionsWhere<Entity>[] | FindOptionsWhere<Entity>;
+    [7m  [0m [96m    ~~~~~[0m
+    The expected type comes from property 'where' which is declared here on type 'FindManyOptions<UserTask>'
+[96msrc/modules/approvals/services/escalation.service.ts[0m:[93m154[0m:[93m36[0m - [91merror[0m[90m TS2367: [0mThis comparison appears to be unintentional because the types 'TaskStatus' and '"escalated"' have no overlap.
+
+[7m154[0m         return tasks.filter((t) => t.status === 'escalated');
+[7m   [0m [91m                                   ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/approvals/services/sla-monitoring.service.ts[0m:[93m2[0m:[93m38[0m - [91merror[0m[90m TS2307: [0mCannot find module '@nestjs/schedule' or its corresponding type declarations.
+
+[7m2[0m import { Cron, CronExpression } from '@nestjs/schedule';
+[7m [0m [91m                                     ~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/approvals/services/sla-monitoring.service.ts[0m:[93m32[0m:[93m26[0m - [91merror[0m[90m TS2322: [0mType '"pending"' is not assignable to type 'ApprovalStatus | FindOperator<ApprovalStatus>'.
+
+[7m32[0m                 where: { status: 'pending' },
+[7m  [0m [91m                         ~~~~~~[0m
+[96msrc/modules/approvals/services/sla-monitoring.service.ts[0m:[93m111[0m:[93m15[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'requestId' does not exist in type 'string[] | Date | ObjectId | number[] | Date[] | ObjectId[] | FindOptionsWhere<UserTask> | FindOptionsWhere<UserTask>[]'.
+
+[7m111[0m             { requestId: approvalId, status: 'pending' },
+[7m   [0m [91m              ~~~~~~~~~[0m
+[96msrc/modules/approvals/services/sla-monitoring.service.ts[0m:[93m124[0m:[93m17[0m - [91merror[0m[90m TS2322: [0mType '"pending"' is not assignable to type 'TaskStatus | FindOperator<TaskStatus>'.
+
+[7m124[0m                 status: 'pending',
+[7m   [0m [91m                ~~~~~~[0m
+[96msrc/modules/approvals/services/sla-monitoring.service.ts[0m:[93m125[0m:[93m17[0m - [91merror[0m[90m TS2322: [0mType 'FindOperator<"breached">' is not assignable to type 'SLAStatus | FindOperator<SLAStatus>'.
+  Type 'FindOperator<"breached">' is not assignable to type 'FindOperator<SLAStatus>'.
+    Type '"breached"' is not assignable to type 'SLAStatus'.
+
+[7m125[0m                 slaStatus: Not('breached'),
+[7m   [0m [91m                ~~~~~~~~~[0m
+[96msrc/modules/approvals/services/sla-monitoring.service.ts[0m:[93m134[0m:[93m26[0m - [91merror[0m[90m TS2551: [0mProperty 'chain' does not exist on type 'ApprovalRequest'. Did you mean 'chainId'?
+
+[7m134[0m                 approval.chain?.name || 'Approval',
+[7m   [0m [91m                         ~~~~~[0m
+
+  [96msrc/modules/approvals/entities/approval-request.entity.ts[0m:[93m74[0m:[93m5[0m
+    [7m74[0m     chainId: string;
+    [7m  [0m [96m    ~~~~~~~[0m
+    'chainId' is declared here.
+[96msrc/modules/approvals/services/sla-monitoring.service.ts[0m:[93m139[0m:[93m17[0m - [91merror[0m[90m TS2322: [0mType '"breached"' is not assignable to type '(() => string) | _QueryDeepPartialEntity<SLAStatus>'.
+
+[7m139[0m                 slaStatus: 'breached',
+[7m   [0m [91m                ~~~~~~~~~[0m
+
+  [96msrc/modules/approvals/entities/user-task.entity.ts[0m:[93m87[0m:[93m5[0m
+    [7m87[0m     slaStatus: SLAStatus;
+    [7m  [0m [96m    ~~~~~~~~~[0m
+    The expected type comes from property 'slaStatus' which is declared here on type '_QueryDeepPartialEntity<UserTask>'
+[96msrc/modules/approvals/services/sla-monitoring.service.ts[0m:[93m157[0m:[93m17[0m - [91merror[0m[90m TS2322: [0mType '"pending"' is not assignable to type 'TaskStatus | FindOperator<TaskStatus>'.
+
+[7m157[0m                 status: 'pending',
+[7m   [0m [91m                ~~~~~~[0m
+[96msrc/modules/approvals/services/sla-monitoring.service.ts[0m:[93m158[0m:[93m17[0m - [91merror[0m[90m TS2322: [0mType '"on_time"' is not assignable to type 'SLAStatus | FindOperator<SLAStatus>'.
+
+[7m158[0m                 slaStatus: 'on_time', // Only notify if status was previously on_time
+[7m   [0m [91m                ~~~~~~~~~[0m
+[96msrc/modules/approvals/services/sla-monitoring.service.ts[0m:[93m166[0m:[93m26[0m - [91merror[0m[90m TS2551: [0mProperty 'chain' does not exist on type 'ApprovalRequest'. Did you mean 'chainId'?
+
+[7m166[0m                 approval.chain?.name || 'Approval',
+[7m   [0m [91m                         ~~~~~[0m
+
+  [96msrc/modules/approvals/entities/approval-request.entity.ts[0m:[93m74[0m:[93m5[0m
+    [7m74[0m     chainId: string;
+    [7m  [0m [96m    ~~~~~~~[0m
+    'chainId' is declared here.
+[96msrc/modules/approvals/services/sla-monitoring.service.ts[0m:[93m171[0m:[93m17[0m - [91merror[0m[90m TS2322: [0mType '"approaching"' is not assignable to type '(() => string) | _QueryDeepPartialEntity<SLAStatus>'.
+
+[7m171[0m                 slaStatus: 'approaching',
+[7m   [0m [91m                ~~~~~~~~~[0m
+
+  [96msrc/modules/approvals/entities/user-task.entity.ts[0m:[93m87[0m:[93m5[0m
+    [7m87[0m     slaStatus: SLAStatus;
+    [7m  [0m [96m    ~~~~~~~~~[0m
+    The expected type comes from property 'slaStatus' which is declared here on type '_QueryDeepPartialEntity<UserTask>'
+[96msrc/modules/approvals/services/sla-monitoring.service.ts[0m:[93m189[0m:[93m35[0m - [91merror[0m[90m TS2339: [0mProperty 'completedAt' does not exist on type 'ApprovalRequest'.
+
+[7m189[0m             if (!a.deadline || !a.completedAt) return false;
+[7m   [0m [91m                                  ~~~~~~~~~~~[0m
+[96msrc/modules/approvals/services/sla-monitoring.service.ts[0m:[93m190[0m:[93m22[0m - [91merror[0m[90m TS2339: [0mProperty 'completedAt' does not exist on type 'ApprovalRequest'.
+
+[7m190[0m             return a.completedAt <= a.deadline;
+[7m   [0m [91m                     ~~~~~~~~~~~[0m
+[96msrc/modules/logistics/controllers/gate-pass.controller.ts[0m:[93m22[0m:[93m13[0m - [91merror[0m[90m TS2554: [0mExpected 1 arguments, but got 4.
+
+[7m22[0m             body.vehicle,
+[7m  [0m [91m            ~~~~~~~~~~~~~[0m
+[7m23[0m             body.driver,
+[7m  [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[7m24[0m             body.items
+[7m  [0m [91m~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/production/controllers/dies-tools.controller.ts[0m:[93m23[0m:[93m13[0m - [91merror[0m[90m TS2554: [0mExpected 1 arguments, but got 4.
+
+[7m23[0m             body.name,
+[7m  [0m [91m            ~~~~~~~~~~[0m
+[7m24[0m             body.type,
+[7m  [0m [91m~~~~~~~~~~~~~~~~~~~~~~[0m
+[7m25[0m             body.maxLife
+[7m  [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/production/controllers/dies-tools.controller.ts[0m:[93m50[0m:[93m52[0m - [91merror[0m[90m TS2554: [0mExpected 3 arguments, but got 2.
+
+[7m50[0m         const result = await this.diesToolsService.returnTool(toolId, body.cyclesUsed);
+[7m  [0m [91m                                                   ~~~~~~~~~~[0m
+
+  [96msrc/modules/production/services/dies-tools.service.ts[0m:[93m42[0m:[93m57[0m
+    [7m42[0m     async returnTool(toolId: string, condition: string, usageCount: number): Promise<any> {
+    [7m  [0m [96m                                                        ~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'usageCount' was not provided.
+[96msrc/modules/workflow/controllers/workflow-template.controller.ts[0m:[93m34[0m:[93m55[0m - [91merror[0m[90m TS2345: [0mArgument of type 'Omit<WorkflowTemplate, "id" | "createdAt" | "updatedAt">' is not assignable to parameter of type 'Omit<WorkflowTemplate, "id"> & { id?: string; }'.
+  Type 'Omit<WorkflowTemplate, "id" | "createdAt" | "updatedAt">' is missing the following properties from type 'Omit<WorkflowTemplate, "id">': createdAt, updatedAt
+
+[7m34[0m             data: this.templateService.createTemplate(template),
+[7m  [0m [91m                                                      ~~~~~~~~[0m
+
+Found 56 error(s).
+

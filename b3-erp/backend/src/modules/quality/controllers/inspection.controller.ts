@@ -6,7 +6,7 @@ import { CreateInspectionDto, UpdateInspectionDto, InspectionResponseDto } from 
 @ApiTags('Quality - Inspection')
 @Controller('quality/inspection')
 export class InspectionController {
-  constructor(private readonly inspectionService: InspectionService) {}
+  constructor(private readonly inspectionService: InspectionService) { }
 
   @Post()
   @ApiOperation({ summary: 'Create inspection' })
@@ -80,5 +80,11 @@ export class InspectionController {
   @ApiOperation({ summary: 'Get inspection statistics' })
   async calculateStatistics(@Param('id') id: string): Promise<any> {
     return this.inspectionService.calculateStatistics(id);
+  }
+
+  @Post('export')
+  @ApiOperation({ summary: 'Export inspection report' })
+  async export(@Body() filters: any): Promise<{ url: string; message: string }> {
+    return this.inspectionService.export(filters);
   }
 }

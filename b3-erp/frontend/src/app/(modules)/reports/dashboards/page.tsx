@@ -574,7 +574,7 @@ export default function DashboardsPage() {
 
   return (
     <div className={`w-full min-h-screen ${isFullscreen ? 'p-0' : 'px-4 sm:px-6 lg:px-8 py-6'}`}>
-      <div className={`mx-auto space-y-6 ${isFullscreen ? 'max-w-full' : 'max-w-7xl'}`}>
+      <div className={`mx-auto space-y-6 ${isFullscreen ? 'max-w-full' : 'w-full max-w-full'}`}>
         {!isFullscreen && (
           <>
             {/* Header */}

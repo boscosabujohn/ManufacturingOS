@@ -218,7 +218,7 @@ export default function EmployeesPage() {
   };
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 max-w-7xl">
+    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 w-full max-w-full">
       {/* Stats */}
       <div className="mb-6 flex items-start gap-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 flex-1">
@@ -404,7 +404,7 @@ export default function EmployeesPage() {
                       <button
                         onClick={() => router.push(`/hr/employees/view/${emp.id}`)}
                         className="flex items-center space-x-1 px-3 py-1.5 text-blue-600 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors text-sm font-medium"
-                       
+
                       >
                         <Eye className="h-4 w-4" />
                         <span>View</span>
@@ -412,7 +412,7 @@ export default function EmployeesPage() {
                       <button
                         onClick={() => router.push(`/hr/employees/edit/${emp.id}`)}
                         className="flex items-center space-x-1 px-3 py-1.5 text-green-600 bg-green-50 hover:bg-green-100 rounded-lg transition-colors text-sm font-medium"
-                       
+
                       >
                         <Edit className="h-4 w-4" />
                         <span>Edit</span>
@@ -420,7 +420,7 @@ export default function EmployeesPage() {
                       <button
                         onClick={() => handleDelete(emp.id)}
                         className="flex items-center space-x-1 px-3 py-1.5 text-red-600 bg-red-50 hover:bg-red-100 rounded-lg transition-colors text-sm font-medium"
-                       
+
                       >
                         <Trash2 className="h-4 w-4" />
                         <span>Delete</span>
@@ -457,9 +457,8 @@ export default function EmployeesPage() {
                     {index > 0 && array[index - 1] !== page - 1 && <span className="px-2 text-gray-400">...</span>}
                     <button
                       onClick={() => setCurrentPage(page)}
-                      className={`px-3 py-1 rounded-lg ${
-                        currentPage === page ? 'bg-blue-600 text-white' : 'border border-gray-300 hover:bg-gray-50'
-                      }`}
+                      className={`px-3 py-1 rounded-lg ${currentPage === page ? 'bg-blue-600 text-white' : 'border border-gray-300 hover:bg-gray-50'
+                        }`}
                     >
                       {page}
                     </button>
