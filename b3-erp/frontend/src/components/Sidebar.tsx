@@ -1057,6 +1057,19 @@ const menuItems: MenuItem[] = [
         ],
       },
       {
+        id: 'automation',
+        name: '⚡ Automation & Integration',
+        href: '#',
+        description: 'System integrations',
+        subItems: [
+          { id: 'automation-dashboard', name: 'Automation Dashboard', href: '/production/automation', description: 'Integration overview' },
+          { id: 'mes-integration', name: 'MES Integration', href: '/production/automation?view=mes-integration', description: 'ERP-MES sync status' },
+          { id: 'workflows', name: 'Automated Workflows', href: '/production/automation?view=workflows', description: 'Running automations' },
+          { id: 'health-monitor', name: 'System Health', href: '/production/automation?view=health-monitor', description: 'Connected systems' },
+          { id: 'barcode-scanner', name: 'Barcode Scanner', href: '/production/automation?view=scanner', description: 'WIP tracking' },
+        ],
+      },
+      {
         id: 'advanced-features',
         name: '✨ Advanced Features',
         href: '#',

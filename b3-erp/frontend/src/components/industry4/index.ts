@@ -55,3 +55,16 @@ export type { Order, Milestone, OrderStatus, MilestoneStatus, LeadTimeStats, Lea
 
 export { InventoryOptimization } from './InventoryOptimization';
 export type { ReorderSuggestion, DemandForecast, CostImpact, ReorderUrgency, InventoryStatus, AIConfidence, InventoryMetrics, InventoryOptimizationProps } from './InventoryOptimization';
+
+// Automation & Integration Components
+export { MESIntegrationDashboard } from './MESIntegrationDashboard';
+export type { DataEntity, SyncEvent, SyncMetrics, MESConnection, SyncStatus, DataFlow, EntityType, MESIntegrationDashboardProps } from './MESIntegrationDashboard';
+
+export { AutomatedWorkflowStatus } from './AutomatedWorkflowStatus';
+export type { AutomatedWorkflow, WorkflowExecution, WorkflowStep, WorkflowStatus, TriggerType, StepStatus, AutomatedWorkflowStatusProps } from './AutomatedWorkflowStatus';
+
+export { IntegrationHealthMonitor } from './IntegrationHealthMonitor';
+export type { ConnectedSystem, HealthCheck, SystemMetric, HealthEvent, HealthStatus as IntegrationHealthStatus, SystemType, IntegrationHealthMonitorProps } from './IntegrationHealthMonitor';
+
+export { BarcodeScanner } from './BarcodeScanner';
+export type { ScannedItem, ScanHistory, WIPStatus, ScanMode, ScanResult, BarcodeScannerProps } from './BarcodeScanner';
