@@ -68,3 +68,22 @@ export type { ConnectedSystem, HealthCheck, SystemMetric, HealthEvent, HealthSta
 
 export { BarcodeScanner } from './BarcodeScanner';
 export type { ScannedItem, ScanHistory, WIPStatus, ScanMode, ScanResult, BarcodeScannerProps } from './BarcodeScanner';
+
+// Industry 5.0 Human-Centric Design Components
+export { PersonalizedDashboard } from './PersonalizedDashboard';
+export type { DashboardWidget, WidgetSize, WidgetCategory, UserRole as DashboardUserRole, PersonalizedDashboardProps } from './PersonalizedDashboard';
+
+export { RoleBasedViews } from './RoleBasedViews';
+export type { UserRole, RoleConfig, QuickAction, DashboardSection, RoleBasedViewsProps } from './RoleBasedViews';
+
+export { OperatorWorkstation } from './OperatorWorkstation';
+export type { WorkstationMode, JobStatus, CurrentJob, WorkstationAction, QualityCheck, OperatorWorkstationProps } from './OperatorWorkstation';
+
+export { SkillMatrixVisualization } from './SkillMatrixVisualization';
+export type { SkillLevel, SkillCategory, Skill, Employee, EmployeeSkill, Certification, SkillGap, SkillMatrixVisualizationProps } from './SkillMatrixVisualization';
+
+export { WorkloadBalanceCharts } from './WorkloadBalanceCharts';
+export type { WorkloadStatus, TimeframeType, TeamMember, WorkloadTask, TeamWorkload, WorkloadBalanceChartsProps } from './WorkloadBalanceCharts';
+
+export { ErgonomicAlerts } from './ErgonomicAlerts';
+export type { AlertType as ErgonomicAlertType, AlertPriority, ErgonomicAlert, BreakSchedule, WellnessMetrics, IoTSensorStatus, ErgonomicAlertsProps } from './ErgonomicAlerts';

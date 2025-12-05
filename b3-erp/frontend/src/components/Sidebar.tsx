@@ -1070,6 +1070,21 @@ const menuItems: MenuItem[] = [
         ],
       },
       {
+        id: 'human-centric',
+        name: '👥 Human-Centric Design',
+        href: '#',
+        description: 'Industry 5.0 people-first',
+        subItems: [
+          { id: 'human-centric-dashboard', name: 'Human-Centric Dashboard', href: '/production/human-centric', description: 'All human-centric features' },
+          { id: 'personalized-dashboard', name: 'Personalized Dashboard', href: '/production/human-centric?view=personalized', description: 'Custom widget layout' },
+          { id: 'role-based-views', name: 'Role-Based Views', href: '/production/human-centric?view=role-based', description: 'Pre-configured interfaces' },
+          { id: 'operator-workstation', name: 'Operator Workstation', href: '/production/human-centric?view=workstation', description: 'Shop floor interface' },
+          { id: 'skill-matrix', name: 'Skill Matrix', href: '/production/human-centric?view=skills', description: 'Skills gap analysis' },
+          { id: 'workload-balance', name: 'Workload Balance', href: '/production/human-centric?view=workload', description: 'Team distribution' },
+          { id: 'ergonomic-alerts', name: 'Ergonomic Alerts', href: '/production/human-centric?view=ergonomics', description: 'Wellness & breaks' },
+        ],
+      },
+      {
         id: 'advanced-features',
         name: '✨ Advanced Features',
         href: '#',
