@@ -3,6 +3,8 @@
 import { usePathname } from 'next/navigation';
 import DashboardLayout from '@/components/DashboardLayout';
 import { ToastProvider } from '@/components/ui/Toast';
+import { NotificationProvider } from '@/context/NotificationContext';
+import { EnhancedToastProvider } from '@/components/ui/EnhancedToast';
 
 export default function ModulesLayout({
   children,
@@ -22,8 +24,12 @@ export default function ModulesLayout({
   };
 
   return (
-    <ToastProvider>
-      <DashboardLayout pageTitle={getPageTitle()}>{children}</DashboardLayout>
-    </ToastProvider>
+    <NotificationProvider>
+      <EnhancedToastProvider>
+        <ToastProvider>
+          <DashboardLayout pageTitle={getPageTitle()}>{children}</DashboardLayout>
+        </ToastProvider>
+      </EnhancedToastProvider>
+    </NotificationProvider>
   );
 }
