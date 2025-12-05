@@ -113,3 +113,16 @@ export type { SparklineChartProps } from './SparklineChart';
 
 export { TimelineView } from './TimelineView';
 export type { TimelineViewProps, TimelineEvent } from './TimelineView';
+
+// ============================================================================
+// Phase 3 Components - Mobile & Touch Optimization
+// ============================================================================
+
+export { ResponsiveDataTable } from './ResponsiveDataTable';
+export type { ResponsiveDataTableProps, Column as ResponsiveColumn } from './ResponsiveDataTable';
+
+export { TouchButton, IconButton, FloatingActionButton } from './TouchButton';
+export type { TouchButtonProps, IconButtonProps, FABProps } from './TouchButton';
+
+export { MobileBottomNav } from './MobileBottomNav';
+export type { MobileBottomNavProps, NavItem } from './MobileBottomNav';
