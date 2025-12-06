@@ -1,0 +1,92 @@
+// Advanced Features Components
+// Feature 34: Voice commands, AR, chatbot, and video conferencing
+
+// Voice Commands
+export {
+  VoiceCommandProvider,
+  useVoiceCommands,
+  VoiceButton,
+  VoiceSearch,
+  VoiceCommandHelp,
+  createNavigationCommands,
+} from './VoiceCommands';
+
+export type {
+  VoiceCommand,
+  VoiceCommandMatch,
+  VoiceState,
+  SpeechOptions,
+  VoiceCommandProviderProps,
+  VoiceButtonProps,
+  VoiceSearchProps,
+  VoiceCommandHelpProps,
+} from './VoiceCommands';
+
+// AR Integration
+export {
+  ARProvider,
+  useAR,
+  ARViewer,
+  MaintenanceGuideList,
+  StepByStepGuide,
+} from './ARIntegration';
+
+export type {
+  ARMarker,
+  ARAnnotation,
+  ARStep,
+  MaintenanceGuide,
+  ARState,
+  ARProviderProps,
+  ARViewerProps,
+  MaintenanceGuideListProps,
+  StepByStepGuideProps,
+} from './ARIntegration';
+
+// Chatbot Assistant
+export {
+  DEFAULT_INTENTS,
+  ChatbotProvider,
+  useChatbot,
+  ChatWidget,
+  InlineChat,
+} from './ChatbotAssistant';
+
+export type {
+  MessageRole,
+  MessageStatus,
+  ChatMessage,
+  ChatAction,
+  QuickReply,
+  ChatbotConfig,
+  ChatbotState,
+  Intent,
+  ChatContext,
+  ChatbotProviderProps,
+  ChatWidgetProps,
+  InlineChatProps,
+} from './ChatbotAssistant';
+
+// Video Conferencing
+export {
+  VideoConferenceProvider,
+  useVideoConference,
+  VideoGrid,
+  VideoTile,
+  MeetingControls,
+  MeetingChat,
+  JoinMeetingDialog,
+} from './VideoConferencing';
+
+export type {
+  Participant,
+  VideoMessage,
+  MeetingInfo,
+  CallState,
+  VideoConferenceProviderProps,
+  VideoGridProps,
+  VideoTileProps,
+  MeetingControlsProps,
+  MeetingChatProps,
+  JoinMeetingDialogProps,
+} from './VideoConferencing';
