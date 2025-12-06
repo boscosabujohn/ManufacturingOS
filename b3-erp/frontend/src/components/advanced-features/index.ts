@@ -80,7 +80,6 @@ export {
 
 export type {
   Participant,
-  VideoMessage,
   MeetingInfo,
   CallState,
   VideoConferenceProviderProps,
@@ -90,3 +89,6 @@ export type {
   MeetingChatProps,
   JoinMeetingDialogProps,
 } from './VideoConferencing';
+
+// Re-export ChatMessage as VideoMessage for backwards compatibility
+export { type ChatMessage as VideoMessage } from './VideoConferencing';

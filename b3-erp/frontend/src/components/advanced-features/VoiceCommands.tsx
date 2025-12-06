@@ -772,13 +772,3 @@ export const createNavigationCommands = (
   },
 ];
 
-export type {
-  VoiceCommand,
-  VoiceCommandMatch,
-  VoiceState,
-  SpeechOptions,
-  VoiceCommandProviderProps,
-  VoiceButtonProps,
-  VoiceSearchProps,
-  VoiceCommandHelpProps,
-};

@@ -874,15 +874,3 @@ export function JoinMeetingDialog({
   );
 }
 
-export type {
-  Participant,
-  ChatMessage as VideoMessage,
-  MeetingInfo,
-  CallState,
-  VideoConferenceProviderProps,
-  VideoGridProps,
-  VideoTileProps,
-  MeetingControlsProps,
-  MeetingChatProps,
-  JoinMeetingDialogProps,
-};

@@ -775,17 +775,3 @@ export function InlineChat({ className = '' }: InlineChatProps) {
   );
 }
 
-export type {
-  MessageRole,
-  MessageStatus,
-  ChatMessage,
-  ChatAction,
-  QuickReply,
-  ChatbotConfig,
-  ChatbotState,
-  Intent,
-  ChatContext,
-  ChatbotProviderProps,
-  ChatWidgetProps,
-  InlineChatProps,
-};

@@ -563,14 +563,3 @@ export function RTLStyleSheet() {
   );
 }
 
-export type {
-  RTLProviderProps,
-  RTLFlexProps,
-  RTLIconProps,
-  RTLTextProps,
-  RTLBoxProps,
-  RTLPositionProps,
-  BidiTextProps,
-  LogicalPosition,
-  PhysicalPosition,
-};
