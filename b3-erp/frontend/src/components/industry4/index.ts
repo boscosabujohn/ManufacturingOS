@@ -87,3 +87,22 @@ export type { WorkloadStatus, TimeframeType, TeamMember, WorkloadTask, TeamWorkl
 
 export { ErgonomicAlerts } from './ErgonomicAlerts';
 export type { AlertType as ErgonomicAlertType, AlertPriority, ErgonomicAlert, BreakSchedule, WellnessMetrics, IoTSensorStatus, ErgonomicAlertsProps } from './ErgonomicAlerts';
+
+// Industry 5.0 Sustainability Dashboard Components
+export { CarbonFootprintTracker } from './CarbonFootprintTracker';
+export type { EmissionScope, EmissionSource, TimeRange, EmissionData, ProductEmission, EmissionTarget, CarbonFootprintTrackerProps } from './CarbonFootprintTracker';
+
+export { EnergyConsumptionDashboard } from './EnergyConsumptionDashboard';
+export type { EnergyType, ConsumptionTrend, EnergyConsumption, EnergyZone, CostProjection, EnergyMetrics, EnergyConsumptionDashboardProps } from './EnergyConsumptionDashboard';
+
+export { WasteReductionMetrics } from './WasteReductionMetrics';
+export type { WasteType, DisposalMethod, WasteStream, MaterialEfficiency, ScrapData, WasteReductionMetricsProps } from './WasteReductionMetrics';
+
+export { WaterUsageMonitor } from './WaterUsageMonitor';
+export type { WaterSource, WaterUse, WaterConsumption, WaterZone, WaterMetrics, WaterUsageMonitorProps } from './WaterUsageMonitor';
+
+export { SustainabilityScorecard } from './SustainabilityScorecard';
+export type { KPICategory, KPIStatus, Period, SustainabilityKPI, ESGScore, PeriodData, SustainabilityScorecardProps } from './SustainabilityScorecard';
+
+export { GreenSupplierBadges } from './GreenSupplierBadges';
+export type { CertificationType, SupplierTier, GreenCertification, GreenSupplier, GreenSupplierBadgesProps } from './GreenSupplierBadges';

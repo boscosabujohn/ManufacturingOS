@@ -1085,6 +1085,21 @@ const menuItems: MenuItem[] = [
         ],
       },
       {
+        id: 'sustainability',
+        name: '🌱 Sustainability',
+        href: '#',
+        description: 'Industry 5.0 sustainable',
+        subItems: [
+          { id: 'sustainability-dashboard', name: 'Sustainability Dashboard', href: '/production/sustainability', description: 'ESG overview' },
+          { id: 'carbon-footprint', name: 'Carbon Footprint', href: '/production/sustainability?view=carbon', description: 'CO₂ emissions tracking' },
+          { id: 'energy-consumption', name: 'Energy Consumption', href: '/production/sustainability?view=energy', description: 'Power usage & costs' },
+          { id: 'waste-reduction', name: 'Waste Reduction', href: '/production/sustainability?view=waste', description: 'Recycling & efficiency' },
+          { id: 'water-usage', name: 'Water Usage', href: '/production/sustainability?view=water', description: 'Consumption monitoring' },
+          { id: 'sustainability-scorecard', name: 'Scorecard', href: '/production/sustainability?view=scorecard', description: 'KPIs & targets' },
+          { id: 'green-suppliers', name: 'Green Suppliers', href: '/production/sustainability?view=suppliers', description: 'Eco-certified vendors' },
+        ],
+      },
+      {
         id: 'advanced-features',
         name: '✨ Advanced Features',
         href: '#',
