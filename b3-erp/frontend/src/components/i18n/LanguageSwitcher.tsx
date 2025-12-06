@@ -690,11 +690,3 @@ export function TranslatedText({
 // Shorthand alias
 export const T = TranslatedText;
 
-export type {
-  LanguageCode,
-  Language,
-  LanguageProviderProps,
-  LanguageSwitcherProps,
-  LanguageSelectProps,
-  TranslatedTextProps,
-};

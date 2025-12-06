@@ -756,14 +756,3 @@ export function StepByStepGuide({
   );
 }
 
-export type {
-  ARMarker,
-  ARAnnotation,
-  ARStep,
-  MaintenanceGuide,
-  ARState,
-  ARProviderProps,
-  ARViewerProps,
-  MaintenanceGuideListProps,
-  StepByStepGuideProps,
-};

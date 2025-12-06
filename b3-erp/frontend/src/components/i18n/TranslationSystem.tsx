@@ -806,14 +806,3 @@ export function TranslationDebug({
   return null;
 }
 
-export type {
-  TranslationKey,
-  TranslationParams,
-  TranslationNamespace,
-  TranslationResource,
-  TranslationResources,
-  TranslationProviderProps,
-  TransProps,
-  PluralProps,
-  TranslationDebugProps,
-};

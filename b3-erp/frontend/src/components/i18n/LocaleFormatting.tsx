@@ -776,16 +776,3 @@ export function TimezoneSelector({
   );
 }
 
-export type {
-  LocaleCode,
-  LocaleConfig,
-  LocaleProviderProps,
-  FormattedDateProps,
-  FormattedNumberProps,
-  CurrencyDisplayProps,
-  DateRangeProps,
-  RelativeTimeProps,
-  LocaleNumberInputProps,
-  CurrencySelectorProps,
-  TimezoneSelectorProps,
-};
