@@ -119,3 +119,19 @@ export type { CapacityStatus, SurgeLevel, ResourceType, CapacityResource, Demand
 
 export { default as BusinessContinuityStatus } from './BusinessContinuityStatus';
 export type { HealthStatus, ProcessCategory, RecoveryPriority, CriticalProcess, IncidentHistory, RecoveryPlan, ContinuityMetric } from './BusinessContinuityStatus';
+
+// Industry 5.0 Collaborative Manufacturing Components
+export { default as RealTimeCollaborationPanel } from './RealTimeCollaborationPanel';
+export type { UserStatus, ActivityType, ResourceType as CollabResourceType, ActiveUser, ResourceActivity, RecentActivity } from './RealTimeCollaborationPanel';
+
+export { default as TeamChatIntegration } from './TeamChatIntegration';
+export type { ChannelType, MessageType, MessageStatus, ChatChannel, ChatParticipant, ChatMessage, MessageAttachment, MessageReaction } from './TeamChatIntegration';
+
+export { default as HandoffChecklists } from './HandoffChecklists';
+export type { ShiftType, HandoffStatus, ItemPriority, ItemCategory, ChecklistItem, ActiveIssue, ProductionStatus, ShiftHandoff } from './HandoffChecklists';
+
+export { default as CrossFunctionalTimeline } from './CrossFunctionalTimeline';
+export type { MilestoneType, MilestoneStatus, Milestone, Project } from './CrossFunctionalTimeline';
+
+export { default as CustomerPortal } from './CustomerPortal';
+export type { ApprovalStatus, ProjectPhase, CustomerMilestone, CustomerDocument, CustomerOrder, CustomerUpdate, CustomerContact } from './CustomerPortal';

@@ -1113,6 +1113,20 @@ const menuItems: MenuItem[] = [
         ],
       },
       {
+        id: 'collaboration',
+        name: '🤝 Collaboration',
+        href: '#',
+        description: 'Industry 5.0 collaboration',
+        subItems: [
+          { id: 'collaboration-dashboard', name: 'Collaboration Hub', href: '/production/collaboration', description: 'Team overview' },
+          { id: 'team-activity', name: 'Team Activity', href: '/production/collaboration?tab=team', description: 'Live presence' },
+          { id: 'team-chat', name: 'Team Chat', href: '/production/collaboration?tab=chat', description: 'Project messaging' },
+          { id: 'shift-handoff', name: 'Shift Handoff', href: '/production/collaboration?tab=handoff', description: 'Handover checklists' },
+          { id: 'project-timeline', name: 'Project Timeline', href: '/production/collaboration?tab=timeline', description: 'Cross-functional view' },
+          { id: 'customer-portal', name: 'Customer Portal', href: '/production/collaboration?tab=customer', description: 'Client status view' },
+        ],
+      },
+      {
         id: 'advanced-features',
         name: '✨ Advanced Features',
         href: '#',
