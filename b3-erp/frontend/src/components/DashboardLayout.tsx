@@ -2,10 +2,11 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Search, Bell, User, Menu, ChevronDown } from 'lucide-react';
+import { Search, User, Menu, ChevronDown } from 'lucide-react';
 import Sidebar from '@/components/Sidebar';
 import MegaMenu from '@/components/MegaMenu';
 import Breadcrumbs from '@/components/Breadcrumbs';
+import NotificationCenter from '@/components/notifications/NotificationCenter';
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
@@ -89,10 +90,10 @@ export default function DashboardLayout({ children, pageTitle }: DashboardLayout
 
               {/* User Actions */}
               <div className="flex items-center space-x-2">
-                <button className="relative p-2 text-gray-400 hover:text-blue-600 transition-colors rounded-lg hover:bg-blue-50">
-                  <Bell className="h-5 w-5" />
-                  <span className="absolute top-1 right-1 block h-2 w-2 rounded-full bg-red-500 ring-2 ring-white animate-pulse"></span>
-                </button>
+                {/* Notification Center */}
+                <NotificationCenter />
+
+                {/* User Profile */}
                 <button className="flex items-center space-x-2 px-2 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all">
                   <div className="h-8 w-8 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center">
                     <User className="h-4 w-4 text-white" />

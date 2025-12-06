@@ -113,3 +113,43 @@ export type { SparklineChartProps } from './SparklineChart';
 
 export { TimelineView } from './TimelineView';
 export type { TimelineViewProps, TimelineEvent } from './TimelineView';
+
+// ============================================================================
+// Phase 3 Components - Mobile & Touch Optimization
+// ============================================================================
+
+export { ResponsiveDataTable } from './ResponsiveDataTable';
+export type { ResponsiveDataTableProps, Column as ResponsiveColumn } from './ResponsiveDataTable';
+
+export { TouchButton, IconButton, FloatingActionButton } from './TouchButton';
+export type { TouchButtonProps, IconButtonProps, FABProps } from './TouchButton';
+
+export { MobileBottomNav } from './MobileBottomNav';
+export type { MobileBottomNavProps, NavItem } from './MobileBottomNav';
+
+// ============================================================================
+// Phase 4 Components - Form UX Enhancements
+// ============================================================================
+
+export {
+  MultiStepForm,
+  useMultiStepForm,
+  FormProgressIndicator,
+  useAutoSaveDraft,
+  AutoSaveIndicator,
+  DraftRecoveryBanner,
+  useUnsavedChangesWarning,
+  UnsavedChangesModal,
+  FieldHelp,
+  HelpIcon,
+  useSmartDefaults,
+  SmartDefaultField,
+} from './FormUX';
+export type {
+  WizardStep,
+  MultiStepFormProps,
+  FormProgressIndicatorProps,
+  FormFieldConfig,
+  FieldHelpProps,
+  SmartDefaultConfig,
+} from './FormUX';

@@ -16,3 +16,13 @@ export type { ApprovalStatus, RequestType, ApprovalRequest, ApprovalStep, Workfl
 export type { RiskLevel, SupplierRisk, RiskFactor } from './SupplierRiskScoring';
 export type { SavingsType, SavingsStatus, SavingsInitiative } from './SavingsTracking';
 export type { CategorySpend, SupplierSpend, MonthlySpend } from './SpendAnalytics';
+
+// Enhanced Procurement UI Components
+export { VendorComparisonMatrix } from './VendorComparisonMatrix';
+export { POApprovalWorkflowUI } from './POApprovalWorkflowUI';
+export { GoodsReceiptMatching } from './GoodsReceiptMatching';
+
+// Enhanced types
+export type { ComparisonVendor, VendorMetrics } from './VendorComparisonMatrix';
+export type { PurchaseOrderApproval, ApprovalStep as POApprovalStep, Approver } from './POApprovalWorkflowUI';
+export type { ThreeWayMatch, MatchingResult, MatchStatus } from './GoodsReceiptMatching';
