@@ -26,6 +26,7 @@ import {
   GitBranch,
   BarChart3,
   ClipboardCheck,
+  Palette,
 } from 'lucide-react';
 
 interface SubMenuItem {
@@ -3999,6 +4000,23 @@ const menuItems: MenuItem[] = [
           { id: 'feature-access', name: 'Feature Access', href: '/it-admin/license/features', description: 'Enabled features' },
         ],
       },
+    ],
+  },
+  {
+    id: 'design-system',
+    name: 'Design System',
+    icon: Palette,
+    color: 'text-pink-600',
+    bgColor: 'bg-pink-50',
+    hoverColor: 'hover:bg-pink-100',
+    subItems: [
+      { id: 'ds-overview', name: 'Design System Overview', href: '/design-system', description: 'Full documentation' },
+      { id: 'ds-tokens', name: 'Design Tokens', href: '/design-system#tokens', description: 'Colors, spacing, typography' },
+      { id: 'ds-components', name: 'Component Matrix', href: '/design-system#components', description: 'Component states' },
+      { id: 'ds-icons', name: 'Icon Guide', href: '/design-system#icons', description: 'Icon sizes & usage' },
+      { id: 'ds-colors', name: 'Color Guidelines', href: '/design-system#colors', description: 'Semantic colors' },
+      { id: 'ds-theme', name: 'Theme Settings', href: '/design-system#theme', description: 'Light/dark mode' },
+      { id: 'ds-branding', name: 'Branding', href: '/design-system#branding', description: 'Logo & colors' },
     ],
   },
 ];
