@@ -58,7 +58,7 @@ export function TableColumnManager({
 
   // Hide all columns (except locked)
   const hideAll = useCallback(() => {
-    onChange(columns.map(col => col.locked ? col : { ...col, visible: false })));
+    onChange(columns.map(col => col.locked ? col : { ...col, visible: false }));
   }, [columns, onChange]);
 
   // Handle drag reorder
