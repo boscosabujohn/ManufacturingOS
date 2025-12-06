@@ -106,3 +106,16 @@ export type { KPICategory, KPIStatus, Period, SustainabilityKPI, ESGScore, Perio
 
 export { GreenSupplierBadges } from './GreenSupplierBadges';
 export type { CertificationType, SupplierTier, GreenCertification, GreenSupplier, GreenSupplierBadgesProps } from './GreenSupplierBadges';
+
+// Industry 5.0 Resilience & Flexibility Components
+export { default as SupplyChainRiskDashboard } from './SupplyChainRiskDashboard';
+export type { RiskLevel, SourceType, StockStatus, SupplierRisk, BufferStock, RiskAlert } from './SupplyChainRiskDashboard';
+
+export { default as ScenarioPlanningTool } from './ScenarioPlanningTool';
+export type { DisruptionType, ImpactSeverity, ScenarioStatus, ScenarioParameter, ImpactResult, MitigationAction, Scenario } from './ScenarioPlanningTool';
+
+export { default as CapacityFlexibilityView } from './CapacityFlexibilityView';
+export type { CapacityStatus, SurgeLevel, ResourceType, CapacityResource, DemandForecast, SurgeIndicator, FlexibilityOption } from './CapacityFlexibilityView';
+
+export { default as BusinessContinuityStatus } from './BusinessContinuityStatus';
+export type { HealthStatus, ProcessCategory, RecoveryPriority, CriticalProcess, IncidentHistory, RecoveryPlan, ContinuityMetric } from './BusinessContinuityStatus';

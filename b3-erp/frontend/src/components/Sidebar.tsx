@@ -1100,6 +1100,19 @@ const menuItems: MenuItem[] = [
         ],
       },
       {
+        id: 'resilience',
+        name: '🛡️ Resilience & Flexibility',
+        href: '#',
+        description: 'Industry 5.0 resilience',
+        subItems: [
+          { id: 'resilience-dashboard', name: 'Resilience Dashboard', href: '/production/resilience', description: 'Resilience overview' },
+          { id: 'supply-chain-risk', name: 'Supply Chain Risk', href: '/production/resilience?tab=supply-risk', description: 'Supplier vulnerabilities' },
+          { id: 'scenario-planning', name: 'Scenario Planning', href: '/production/resilience?tab=scenarios', description: 'What-if analysis' },
+          { id: 'capacity-flexibility', name: 'Capacity Flexibility', href: '/production/resilience?tab=capacity', description: 'Surge capacity' },
+          { id: 'business-continuity', name: 'Business Continuity', href: '/production/resilience?tab=continuity', description: 'BCP health' },
+        ],
+      },
+      {
         id: 'advanced-features',
         name: '✨ Advanced Features',
         href: '#',
