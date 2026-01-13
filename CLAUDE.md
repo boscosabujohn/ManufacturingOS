@@ -23,7 +23,6 @@ The following Claude capabilities are enabled for this project:
 | `developer-guidelines` | Coding standards, API conventions, security |
 | `business-ops-marketing-manager` | Demos, sales materials, marketing content |
 | `linkedin-expert` | Social media content, blog articles |
-| `facility-management-expert` | FM modules, maintenance, asset tracking |
 | `kreupai-solution-architect` | RFP analysis, solution architecture, proposals |
 | `landing-page-developer` | High-converting landing pages |
 | `backend-engineer` | Database schemas, APIs, frontend-backend wiring |
@@ -43,7 +42,6 @@ Detailed documentation for each capability is in `.claude/capabilities/`:
     ├── developer-guidelines.md
     ├── business-ops-marketing-manager.md
     ├── linkedin-expert.md
-    ├── facility-management-expert.md
     ├── kreupai-solution-architect.md
     ├── landing-page-developer.md
     ├── backend-engineer.md
