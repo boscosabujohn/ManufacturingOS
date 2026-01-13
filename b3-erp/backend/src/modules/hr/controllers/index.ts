@@ -11,3 +11,10 @@ export * from './salary-structure.controller';
 export * from './payroll.controller';
 export * from './salary-slip.controller';
 export * from './performance-review.controller';
+
+// Skill Management
+export * from './skill-category.controller';
+export * from './skill.controller';
+export * from './proficiency-level.controller';
+export * from './user-skill.controller';
+export * from './skill-gap.controller';

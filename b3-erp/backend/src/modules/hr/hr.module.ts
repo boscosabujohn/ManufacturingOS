@@ -16,6 +16,11 @@ import {
   Payroll,
   SalarySlip,
   PerformanceReview,
+  SkillCategory,
+  Skill,
+  ProficiencyLevel,
+  UserSkill,
+  SkillGap,
 } from './entities';
 
 // Controllers
@@ -33,6 +38,11 @@ import {
   PayrollController,
   SalarySlipController,
   PerformanceReviewController,
+  SkillCategoryController,
+  SkillController,
+  ProficiencyLevelController,
+  UserSkillController,
+  SkillGapController,
 } from './controllers';
 
 // Services
@@ -50,10 +60,16 @@ import {
   PayrollService,
   SalarySlipService,
   PerformanceReviewService,
+  SkillCategoryService,
+  SkillService,
+  ProficiencyLevelService,
+  UserSkillService,
+  SkillGapService,
 } from './services';
 import { OnboardingWorkflowService } from './services/onboarding-workflow.service';
 import { SeparationService } from './services/separation.service';
 import { TrainingService } from './services/training.service';
+import { SkillSeederService } from './services/skill-seeder.service';
 
 @Module({
   imports: [
@@ -82,6 +98,13 @@ import { TrainingService } from './services/training.service';
 
       // Performance Management
       PerformanceReview,
+
+      // Skill Management
+      SkillCategory,
+      Skill,
+      ProficiencyLevel,
+      UserSkill,
+      SkillGap,
     ]),
   ],
   controllers: [
@@ -98,6 +121,11 @@ import { TrainingService } from './services/training.service';
     PayrollController,
     SalarySlipController,
     PerformanceReviewController,
+    SkillCategoryController,
+    SkillController,
+    ProficiencyLevelController,
+    UserSkillController,
+    SkillGapController,
   ],
   providers: [
     DepartmentService,
@@ -116,6 +144,12 @@ import { TrainingService } from './services/training.service';
     OnboardingWorkflowService,
     SeparationService,
     TrainingService,
+    SkillCategoryService,
+    SkillService,
+    ProficiencyLevelService,
+    UserSkillService,
+    SkillGapService,
+    SkillSeederService,
   ],
   exports: [
     DepartmentService,
@@ -134,6 +168,11 @@ import { TrainingService } from './services/training.service';
     OnboardingWorkflowService,
     SeparationService,
     TrainingService,
+    SkillCategoryService,
+    SkillService,
+    ProficiencyLevelService,
+    UserSkillService,
+    SkillGapService,
   ],
 })
 export class HrModule {}

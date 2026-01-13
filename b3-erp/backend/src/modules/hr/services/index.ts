@@ -11,3 +11,10 @@ export * from './salary-structure.service';
 export * from './payroll.service';
 export * from './salary-slip.service';
 export * from './performance-review.service';
+
+// Skill Management
+export * from './skill-category.service';
+export * from './skill.service';
+export * from './proficiency-level.service';
+export * from './user-skill.service';
+export * from './skill-gap.service';

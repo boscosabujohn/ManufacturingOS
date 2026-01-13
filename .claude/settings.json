@@ -1,0 +1,26 @@
+{
+  "capabilities": {
+    "enabled": [
+      "workflow-manager",
+      "ai-automation",
+      "platform-capabilities",
+      "developer-guidelines",
+      "business-ops-marketing-manager",
+      "linkedin-expert",
+      "kreupai-solution-architect",
+      "landing-page-developer",
+      "backend-engineer",
+      "quality-assurance-engineer"
+    ],
+    "directory": ".claude/capabilities"
+  },
+  "project": {
+    "name": "ManufacturingOS",
+    "type": "full-stack-erp",
+    "stack": {
+      "frontend": "Next.js 14 + React 18 + TypeScript + TailwindCSS",
+      "backend": "NestJS 10 + TypeORM + PostgreSQL",
+      "architecture": "Monorepo (b3-erp/frontend, b3-erp/backend)"
+    }
+  }
+}
