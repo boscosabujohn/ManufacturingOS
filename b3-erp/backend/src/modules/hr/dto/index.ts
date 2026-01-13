@@ -62,3 +62,23 @@ export * from './salary-slip-response.dto';
 export * from './create-performance-review.dto';
 export * from './update-performance-review.dto';
 export * from './performance-review-response.dto';
+
+// Skill Category DTOs
+export * from './create-skill-category.dto';
+export * from './update-skill-category.dto';
+export * from './skill-category-response.dto';
+
+// Skill DTOs
+export * from './create-skill.dto';
+export * from './update-skill.dto';
+export * from './skill-response.dto';
+
+// Proficiency Level DTOs
+export * from './create-proficiency-level.dto';
+export * from './update-proficiency-level.dto';
+export * from './proficiency-level-response.dto';
+
+// User Skill DTOs
+export * from './create-user-skill.dto';
+export * from './update-user-skill.dto';
+export * from './user-skill-response.dto';
