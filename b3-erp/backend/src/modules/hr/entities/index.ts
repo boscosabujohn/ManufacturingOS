@@ -17,3 +17,4 @@ export * from './skill-category.entity';
 export * from './skill.entity';
 export * from './proficiency-level.entity';
 export * from './user-skill.entity';
+export * from './skill-gap.entity';

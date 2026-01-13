@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { SkillCategory, SkillCategoryStatus } from '../entities/skill-category.entity';
 import { Skill, SkillStatus, SkillType } from '../entities/skill.entity';
 import { ProficiencyLevel, ProficiencyLevelStatus } from '../entities/proficiency-level.entity';
+import { SkillGap, SkillGapStatus, SkillGapPriority, SkillGapCategory } from '../entities/skill-gap.entity';
 
 @Injectable()
 export class SkillSeederService implements OnModuleInit {
@@ -16,6 +17,8 @@ export class SkillSeederService implements OnModuleInit {
     private readonly skillRepository: Repository<Skill>,
     @InjectRepository(ProficiencyLevel)
     private readonly proficiencyRepository: Repository<ProficiencyLevel>,
+    @InjectRepository(SkillGap)
+    private readonly skillGapRepository: Repository<SkillGap>,
   ) {}
 
   async onModuleInit(): Promise<void> {
@@ -26,6 +29,7 @@ export class SkillSeederService implements OnModuleInit {
     await this.seedProficiencyLevels();
     await this.seedCategories();
     await this.seedSkills();
+    await this.seedSkillGaps();
   }
 
   async seedProficiencyLevels(): Promise<void> {
@@ -336,5 +340,100 @@ export class SkillSeederService implements OnModuleInit {
     }
 
     this.logger.log('Skills seeding completed');
+  }
+
+  async seedSkillGaps(): Promise<void> {
+    this.logger.log('Seeding skill gaps...');
+
+    // Get skill IDs
+    const solutionArchitectSkill = await this.skillRepository.findOne({ where: { code: 'kreupai-solution-architect' } });
+    const backendEngineerSkill = await this.skillRepository.findOne({ where: { code: 'backend-engineer' } });
+    const qaEngineerSkill = await this.skillRepository.findOne({ where: { code: 'quality-assurance-engineer' } });
+
+    const skillGaps = [
+      {
+        code: 'GAP-SOL-ARCH',
+        name: 'Solution Architecture Capability Gap',
+        description: 'Critical gap in solution architecture capabilities for enterprise RFP responses and custom solution design. Currently lacking senior architects who can analyze complex customer requirements and propose comprehensive SaaS solutions.',
+        category: SkillGapCategory.ROLE_REQUIREMENT,
+        roleName: 'Solution Architect',
+        departmentName: 'Engineering',
+        skillId: solutionArchitectSkill?.id,
+        requiredProficiencyLevel: 4,
+        currentAverageProficiency: 2,
+        employeesWithSkill: 2,
+        employeesRequired: 5,
+        gapPercentage: 60,
+        priority: SkillGapPriority.CRITICAL,
+        impact: 'Unable to respond to large enterprise RFPs effectively. Lost 3 major opportunities in Q4 due to inadequate solution proposals. Revenue impact estimated at $2.5M.',
+        recommendation: 'Hire 2 senior solution architects with enterprise SaaS experience. Implement internal training program for existing engineers. Partner with consulting firm for complex RFPs.',
+        trainingPlan: '1. Enterprise Architecture Fundamentals (4 weeks)\n2. RFP Response Best Practices (2 weeks)\n3. Cloud Solution Design Patterns (3 weeks)\n4. Customer Requirements Analysis Workshop (1 week)',
+        targetDate: new Date('2024-06-30'),
+        requiredCompetencies: ['Enterprise Architecture', 'RFP Analysis', 'Solution Design', 'Technical Writing', 'Cloud Platforms'],
+        status: SkillGapStatus.ACTIVE,
+      },
+      {
+        code: 'GAP-BACKEND',
+        name: 'Backend Engineering Proficiency Gap',
+        description: 'Significant gap in backend engineering skills, particularly in database schema design from UI/UX specifications, API development, and frontend-backend integration. Team struggles with translating design requirements into efficient backend implementations.',
+        category: SkillGapCategory.TEAM_CAPABILITY,
+        roleName: 'Backend Engineer',
+        departmentName: 'Engineering',
+        skillId: backendEngineerSkill?.id,
+        requiredProficiencyLevel: 4,
+        currentAverageProficiency: 2,
+        employeesWithSkill: 4,
+        employeesRequired: 8,
+        gapPercentage: 50,
+        priority: SkillGapPriority.HIGH,
+        impact: 'Development velocity reduced by 30%. Technical debt accumulating due to suboptimal database designs. API inconsistencies causing frontend integration delays.',
+        recommendation: 'Conduct intensive backend bootcamp for existing developers. Hire 2 senior backend engineers. Establish code review standards and architectural guidelines.',
+        trainingPlan: '1. Database Design & Prisma Mastery (3 weeks)\n2. RESTful API Design Patterns (2 weeks)\n3. Node.js Advanced Concepts (2 weeks)\n4. Frontend-Backend Integration Workshop (1 week)',
+        targetDate: new Date('2024-05-15'),
+        requiredCompetencies: ['Database Design', 'Prisma ORM', 'Node.js', 'API Development', 'TypeScript'],
+        status: SkillGapStatus.ACTIVE,
+      },
+      {
+        code: 'GAP-QA',
+        name: 'Quality Assurance Engineering Gap',
+        description: 'Gap in QA engineering capabilities affecting product quality and release cycles. Limited automation testing coverage, inconsistent test case documentation, and reactive rather than proactive quality processes.',
+        category: SkillGapCategory.TEAM_CAPABILITY,
+        roleName: 'QA Engineer',
+        departmentName: 'Quality Assurance',
+        skillId: qaEngineerSkill?.id,
+        requiredProficiencyLevel: 3,
+        currentAverageProficiency: 2,
+        employeesWithSkill: 3,
+        employeesRequired: 5,
+        gapPercentage: 40,
+        priority: SkillGapPriority.HIGH,
+        impact: 'Bug escape rate increased by 25% in last quarter. Customer-reported issues doubled. Release cycles extended due to manual testing bottlenecks.',
+        recommendation: 'Implement test automation framework. Train existing QA team on automation tools. Establish quality metrics and KPIs. Hire 1 senior QA automation engineer.',
+        trainingPlan: '1. Test Automation with Playwright/Cypress (3 weeks)\n2. API Testing with Postman/Jest (2 weeks)\n3. CI/CD Integration for Testing (1 week)\n4. Quality Metrics & Reporting (1 week)',
+        targetDate: new Date('2024-04-30'),
+        requiredCompetencies: ['Test Automation', 'Manual Testing', 'CI/CD', 'Bug Tracking', 'Test Planning'],
+        status: SkillGapStatus.ACTIVE,
+      },
+    ];
+
+    for (const gap of skillGaps) {
+      try {
+        if (!gap.skillId) {
+          this.logger.warn(`Skill not found for gap ${gap.code}, skipping...`);
+          continue;
+        }
+        const existing = await this.skillGapRepository.findOne({
+          where: { code: gap.code },
+        });
+        if (!existing) {
+          await this.skillGapRepository.save(gap);
+          this.logger.log(`Created skill gap: ${gap.name}`);
+        }
+      } catch (error) {
+        this.logger.error(`Failed to seed skill gap ${gap.name}: ${error.message}`);
+      }
+    }
+
+    this.logger.log('Skill gaps seeding completed');
   }
 }

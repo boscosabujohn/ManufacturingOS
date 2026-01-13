@@ -82,3 +82,8 @@ export * from './proficiency-level-response.dto';
 export * from './create-user-skill.dto';
 export * from './update-user-skill.dto';
 export * from './user-skill-response.dto';
+
+// Skill Gap DTOs
+export * from './create-skill-gap.dto';
+export * from './update-skill-gap.dto';
+export * from './skill-gap-response.dto';

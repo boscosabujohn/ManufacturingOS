@@ -157,3 +157,84 @@ export interface CreateUserSkillDto {
 }
 
 export interface UpdateUserSkillDto extends Partial<Omit<CreateUserSkillDto, 'employeeId' | 'skillId'>> {}
+
+// Skill Gap Types
+export enum SkillGapStatus {
+  ACTIVE = 'Active',
+  INACTIVE = 'Inactive',
+  DRAFT = 'Draft',
+}
+
+export enum SkillGapPriority {
+  CRITICAL = 'Critical',
+  HIGH = 'High',
+  MEDIUM = 'Medium',
+  LOW = 'Low',
+}
+
+export enum SkillGapCategory {
+  ROLE_REQUIREMENT = 'Role Requirement',
+  PROJECT_REQUIREMENT = 'Project Requirement',
+  TEAM_CAPABILITY = 'Team Capability',
+  ORGANIZATIONAL = 'Organizational',
+}
+
+export interface SkillGap {
+  id: string;
+  code: string;
+  name: string;
+  description?: string;
+  category: SkillGapCategory;
+  roleId?: string;
+  roleName?: string;
+  departmentId?: string;
+  departmentName?: string;
+  skillId: string;
+  skill?: Skill;
+  requiredProficiencyLevel: number;
+  currentAverageProficiency: number;
+  employeesWithSkill: number;
+  employeesRequired: number;
+  gapPercentage: number;
+  priority: SkillGapPriority;
+  impact?: string;
+  recommendation?: string;
+  trainingPlan?: string;
+  targetDate?: Date;
+  requiredCompetencies?: string[];
+  relatedTrainingIds?: string[];
+  status: SkillGapStatus;
+  metadata?: Record<string, any>;
+  createdBy?: string;
+  updatedBy?: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface CreateSkillGapDto {
+  code: string;
+  name: string;
+  description?: string;
+  category?: SkillGapCategory;
+  roleId?: string;
+  roleName?: string;
+  departmentId?: string;
+  departmentName?: string;
+  skillId: string;
+  requiredProficiencyLevel?: number;
+  currentAverageProficiency?: number;
+  employeesWithSkill?: number;
+  employeesRequired?: number;
+  gapPercentage?: number;
+  priority?: SkillGapPriority;
+  impact?: string;
+  recommendation?: string;
+  trainingPlan?: string;
+  targetDate?: string;
+  requiredCompetencies?: string[];
+  relatedTrainingIds?: string[];
+  status?: SkillGapStatus;
+  metadata?: Record<string, any>;
+}
+
+export interface UpdateSkillGapDto extends Partial<CreateSkillGapDto> {}

@@ -20,6 +20,7 @@ import {
   Skill,
   ProficiencyLevel,
   UserSkill,
+  SkillGap,
 } from './entities';
 
 // Controllers
@@ -41,6 +42,7 @@ import {
   SkillController,
   ProficiencyLevelController,
   UserSkillController,
+  SkillGapController,
 } from './controllers';
 
 // Services
@@ -62,6 +64,7 @@ import {
   SkillService,
   ProficiencyLevelService,
   UserSkillService,
+  SkillGapService,
 } from './services';
 import { OnboardingWorkflowService } from './services/onboarding-workflow.service';
 import { SeparationService } from './services/separation.service';
@@ -101,6 +104,7 @@ import { SkillSeederService } from './services/skill-seeder.service';
       Skill,
       ProficiencyLevel,
       UserSkill,
+      SkillGap,
     ]),
   ],
   controllers: [
@@ -121,6 +125,7 @@ import { SkillSeederService } from './services/skill-seeder.service';
     SkillController,
     ProficiencyLevelController,
     UserSkillController,
+    SkillGapController,
   ],
   providers: [
     DepartmentService,
@@ -143,6 +148,7 @@ import { SkillSeederService } from './services/skill-seeder.service';
     SkillService,
     ProficiencyLevelService,
     UserSkillService,
+    SkillGapService,
     SkillSeederService,
   ],
   exports: [
@@ -166,6 +172,7 @@ import { SkillSeederService } from './services/skill-seeder.service';
     SkillService,
     ProficiencyLevelService,
     UserSkillService,
+    SkillGapService,
   ],
 })
 export class HrModule {}

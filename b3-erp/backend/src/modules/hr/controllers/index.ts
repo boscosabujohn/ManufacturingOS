@@ -17,3 +17,4 @@ export * from './skill-category.controller';
 export * from './skill.controller';
 export * from './proficiency-level.controller';
 export * from './user-skill.controller';
+export * from './skill-gap.controller';

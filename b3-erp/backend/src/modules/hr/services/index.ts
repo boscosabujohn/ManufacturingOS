@@ -17,3 +17,4 @@ export * from './skill-category.service';
 export * from './skill.service';
 export * from './proficiency-level.service';
 export * from './user-skill.service';
+export * from './skill-gap.service';
