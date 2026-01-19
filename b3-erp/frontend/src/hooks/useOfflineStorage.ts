@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 
-const DB_NAME = 'FactOS-Offline';
+const DB_NAME = 'OptiForge-Offline';
 const DB_VERSION = 1;
 
 interface CachedItem<T> {

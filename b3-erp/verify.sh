@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # System Verification Script
-echo "🔍 FactOS ERP - System Verification"
+echo "🔍 OptiForge ERP - System Verification"
 echo "======================================="
 echo ""
 

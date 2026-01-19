@@ -1,6 +1,6 @@
 @echo off
 echo ========================================
-echo FactOS ERP - UI Development Mode
+echo OptiForge ERP - UI Development Mode
 echo ========================================
 echo.
 echo Starting Frontend Only (No Backend Required)

@@ -6,21 +6,21 @@ import { ServiceWorkerRegistration } from '@/components/ServiceWorkerRegistratio
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'FactOS ERP',
+  title: 'OptiForge ERP',
   description: 'Manufacturing ERP System for Kitchen and Furniture Manufacturing',
   manifest: '/manifest.json',
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',
-    title: 'FactOS',
+    title: 'OptiForge',
   },
   formatDetection: {
     telephone: false,
   },
   openGraph: {
     type: 'website',
-    siteName: 'FactOS ERP',
-    title: 'FactOS - Manufacturing ERP',
+    siteName: 'OptiForge ERP',
+    title: 'OptiForge - Manufacturing ERP',
     description: 'Complete Manufacturing ERP System',
   },
 }

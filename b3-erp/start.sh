@@ -2,7 +2,7 @@
 
 # Quick Start Script - Starts everything with one command
 
-echo "🚀 Starting FactOS ERP Development Environment..."
+echo "🚀 Starting OptiForge ERP Development Environment..."
 
 # Start Docker services
 echo "📦 Starting Docker services (PostgreSQL & Redis)..."

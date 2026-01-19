@@ -661,7 +661,7 @@ function ReceiptModal({ record, onClose, formatCurrency }: ReceiptModalProps) {
           {/* Company Header */}
           <div className="text-center mb-6 pb-4 border-b-2 border-gray-200">
             <h1 className="text-2xl font-bold text-gray-900">ManufacturingOS</h1>
-            <p className="text-sm text-gray-600">Kitchen Manufacturing ERP System</p>
+            <p className="text-sm text-gray-600">Solution to manufacturers System</p>
             <p className="text-xs text-gray-500 mt-1">Salary Payment Receipt</p>
           </div>
 

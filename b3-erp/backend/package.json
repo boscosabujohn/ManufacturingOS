@@ -1,7 +1,7 @@
 {
   "name": "b3-erp-backend",
   "version": "1.0.0",
-  "description": "FactOS ERP - Backend API (Node.js/NestJS)",
+  "description": "OptiForge ERP - Backend API (Node.js/NestJS)",
   "main": "dist/main.js",
   "scripts": {
     "prebuild": "rimraf dist",

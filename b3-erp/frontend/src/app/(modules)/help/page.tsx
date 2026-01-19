@@ -8,7 +8,7 @@ const helpCategories = [
   {
     id: 'getting-started',
     name: 'Getting Started',
-    description: 'Learn the basics of using FactOS ERP',
+    description: 'Learn the basics of using OptiForge ERP',
     icon: HelpCircle,
     color: 'bg-blue-500',
     articles: 12,

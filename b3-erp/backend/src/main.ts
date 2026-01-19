@@ -29,8 +29,8 @@ async function bootstrap() {
 
   // Swagger documentation
   const config = new DocumentBuilder()
-    .setTitle('FactOS ERP API')
-    .setDescription('FactOS ERP System API Documentation')
+    .setTitle('OptiForge ERP API')
+    .setDescription('OptiForge ERP System API Documentation')
     .setVersion('1.0')
     .addBearerAuth()
     .addTag('Authentication')

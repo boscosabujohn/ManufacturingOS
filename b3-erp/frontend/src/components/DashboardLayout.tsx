@@ -45,7 +45,7 @@ export default function DashboardLayout({ children, pageTitle }: DashboardLayout
                   <Menu className="h-6 w-6 text-gray-600" />
                 </button>
                 <div className="flex-shrink-0">
-                  <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">FactOS</h1>
+                  <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">OptiForge</h1>
                   <p className="text-xs text-gray-600 font-medium">Manufacturing ERP System</p>
                 </div>
               </div>
@@ -124,7 +124,7 @@ export default function DashboardLayout({ children, pageTitle }: DashboardLayout
             <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
               <div className="text-center md:text-left">
                 <p className="text-sm font-semibold text-gray-700 mb-1">
-                  FactOS - Kitchen Manufacturing ERP
+                  OptiForge - Solution to manufacturers
                 </p>
                 <p className="text-xs text-gray-500">
                   Powered by KreupAI Technologies LLC

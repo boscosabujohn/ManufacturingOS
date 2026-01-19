@@ -1,7 +1,7 @@
-# FactOS ERP - PowerShell Startup Script
+# OptiForge ERP - PowerShell Startup Script
 # Print banner
 Write-Host "========================================" -ForegroundColor Cyan
-Write-Host "FactOS ERP - Starting Services" -ForegroundColor Cyan
+Write-Host "OptiForge ERP - Starting Services" -ForegroundColor Cyan
 Write-Host "========================================" -ForegroundColor Cyan
 Write-Host ""
 

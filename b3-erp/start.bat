@@ -1,6 +1,6 @@
 @echo off
 echo ========================================
-echo FactOS ERP - Starting Services
+echo OptiForge ERP - Starting Services
 echo ========================================
 echo.
 

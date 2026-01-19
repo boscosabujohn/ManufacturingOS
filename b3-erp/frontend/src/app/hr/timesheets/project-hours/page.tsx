@@ -26,7 +26,7 @@ export default function ProjectHoursPage() {
 
   const mockProjects: ProjectHours[] = [
     {
-      id: '1', projectName: 'Kitchen Manufacturing ERP', projectCode: 'KM-ERP-2024',
+      id: '1', projectName: 'Solution to manufacturers', projectCode: 'KM-ERP-2024',
       teamMembers: 8, totalHours: 1456, billableHours: 1398, nonBillableHours: 58,
       budgetHours: 1600, utilizationPercent: 91, status: 'active',
       startDate: '2024-01-15'

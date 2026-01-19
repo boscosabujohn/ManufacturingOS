@@ -145,7 +145,7 @@ interface Receivable {
   lastSaleDate: string;
 }
 
-// Mock Data - FactOS ERP - Indian Manufacturing Context
+// Mock Data - OptiForge ERP - Indian Manufacturing Context
 const mockReceivable: Receivable = {
   id: 'REC-001',
   customerId: 'CUST-2023-0142',

@@ -1,7 +1,7 @@
 {
   "name": "b3-erp-frontend",
   "version": "1.0.0",
-  "description": "FactOS ERP - Frontend (Next.js)",
+  "description": "OptiForge ERP - Frontend (Next.js)",
   "private": true,
   "scripts": {
     "dev": "next dev",

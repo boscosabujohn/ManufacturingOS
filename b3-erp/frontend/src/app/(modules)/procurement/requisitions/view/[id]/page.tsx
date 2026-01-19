@@ -84,7 +84,7 @@ interface Requisition {
   updatedAt: string;
 }
 
-// Mock Data - FactOS India Manufacturing Context
+// Mock Data - OptiForge India Manufacturing Context
 const mockRequisition: Requisition = {
   id: '1',
   prNumber: 'PR-2025-0142',

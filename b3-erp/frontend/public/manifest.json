@@ -1,6 +1,6 @@
 {
-  "name": "FactOS - Manufacturing ERP",
-  "short_name": "FactOS",
+  "name": "OptiForge - Manufacturing ERP",
+  "short_name": "OptiForge",
   "description": "Manufacturing ERP System for Kitchen and Furniture Manufacturing",
   "start_url": "/dashboard",
   "display": "standalone",

@@ -1,4 +1,4 @@
-// Event Types for FactOS Workflow Automation
+// Event Types for OptiForge Workflow Automation
 // These events enable inter-module communication and workflow orchestration
 
 export enum WorkflowEventType {

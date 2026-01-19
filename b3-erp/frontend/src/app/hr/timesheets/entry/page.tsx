@@ -16,13 +16,13 @@ export default function TimesheetEntryPage() {
   const [entries, setEntries] = useState<TimesheetEntry[]>([
     {
       id: '1',
-      projectName: 'Kitchen Manufacturing ERP',
+      projectName: 'Solution to manufacturers',
       taskName: 'HR Module Development',
       hours: { mon: 8, tue: 8, wed: 8, thu: 8, fri: 6, sat: 0, sun: 0 }
     },
     {
       id: '2',
-      projectName: 'Kitchen Manufacturing ERP',
+      projectName: 'Solution to manufacturers',
       taskName: 'Payroll Module Testing',
       hours: { mon: 0, tue: 0, wed: 0, thu: 0, fri: 2, sat: 0, sun: 0 }
     },

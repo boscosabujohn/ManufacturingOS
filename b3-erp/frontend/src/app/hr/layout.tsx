@@ -2,6 +2,7 @@
 
 import DashboardLayout from '@/components/DashboardLayout';
 import { usePathname } from 'next/navigation';
+import { NotificationProvider } from '@/context/NotificationContext';
 
 export default function HRLayout({
   children,
@@ -9,7 +10,7 @@ export default function HRLayout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
-  
+
   // Generate page title from pathname
   const getPageTitle = () => {
     const segments = pathname.split('/').filter(Boolean);
@@ -27,8 +28,10 @@ export default function HRLayout({
   };
 
   return (
-    <DashboardLayout pageTitle={getPageTitle()}>
-      {children}
-    </DashboardLayout>
+    <NotificationProvider>
+      <DashboardLayout pageTitle={getPageTitle()}>
+        {children}
+      </DashboardLayout>
+    </NotificationProvider>
   );
 }

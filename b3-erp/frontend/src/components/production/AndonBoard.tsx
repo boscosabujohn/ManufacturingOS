@@ -84,7 +84,7 @@ export function AndonBoard({
   refreshInterval = 30000,
   onRefresh,
   showClock = true,
-  companyName = 'FactOS',
+  companyName = 'OptiForge',
   plantName = 'Plant 1',
   className = ''
 }: AndonBoardProps) {
