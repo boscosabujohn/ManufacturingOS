@@ -191,8 +191,8 @@ const menuItems: MenuItem[] = [
             href: '#',
             description: 'Dispatch & delivery',
             subItems: [
-              { id: 'p7-payment-check', name: '7.1 Payment Check', href: '/accounts/payment-verification', description: 'Check payment status before release' },
-              { id: 'p7-billing-details', name: '7.2 Billing to Accounts', href: '/accounts/billing', description: 'Invoice generation and tracking' },
+              { id: 'p7-payment-check', name: '7.1 Payment Check', href: '/finance/payment-verification', description: 'Check payment status before release' },
+              { id: 'p7-billing-details', name: '7.2 Billing to Accounts', href: '/finance/billing', description: 'Invoice generation and tracking' },
               { id: 'p7-transport-selection', name: '7.3 Transport Selection', href: '/logistics/transport-selection', description: 'Choose method based on location' },
               { id: 'p7-site-location', name: '7.4 Site Location Sharing', href: '/logistics/site-location', description: 'Address, contact, timing details' },
               { id: 'p7-transporter-notify', name: '7.5 Transporter Notification', href: '/logistics/transporter-notification', description: 'Alert with pickup details' },
@@ -1879,9 +1879,9 @@ const menuItems: MenuItem[] = [
         href: '#',
         description: 'Bank accounts management',
         subItems: [
-          { id: 'bank-accounts', name: 'Bank Accounts', href: '/accounts/banks', description: 'Manage bank accounts' },
-          { id: 'bank-transactions', name: 'Transactions', href: '/accounts/banks', description: 'View transactions' },
-          { id: 'bank-reconciliation', name: 'Bank Reconciliation', href: '/accounts/reconciliation', description: 'Reconcile statements' },
+          { id: 'bank-accounts', name: 'Bank Accounts', href: '/finance/banks', description: 'Manage bank accounts' },
+          { id: 'bank-transactions', name: 'Transactions', href: '/finance/banks', description: 'View transactions' },
+          { id: 'bank-reconciliation', name: 'Bank Reconciliation', href: '/finance/reconciliation', description: 'Reconcile statements' },
         ],
       },
       {
@@ -1890,9 +1890,9 @@ const menuItems: MenuItem[] = [
         href: '#',
         description: 'Employee expenses',
         subItems: [
-          { id: 'expense-claims', name: 'Expense Claims', href: '/accounts/expense-claims', description: 'Submit \u0026 approve claims' },
-          { id: 'my-claims', name: 'My Claims', href: '/accounts/expense-claims?filter=my', description: 'Your expense claims' },
-          { id: 'pending-approvals', name: 'Pending Approvals', href: '/accounts/expense-claims?status=pending', description: 'Approve claims' },
+          { id: 'expense-claims', name: 'Expense Claims', href: '/finance/expense-claims', description: 'Submit \u0026 approve claims' },
+          { id: 'my-claims', name: 'My Claims', href: '/finance/expense-claims?filter=my', description: 'Your expense claims' },
+          { id: 'pending-approvals', name: 'Pending Approvals', href: '/finance/expense-claims?status=pending', description: 'Approve claims' },
         ],
       },
       {
@@ -1901,8 +1901,8 @@ const menuItems: MenuItem[] = [
         href: '#',
         description: 'Petty cash tracking',
         subItems: [
-          { id: 'petty-cash', name: 'Petty Cash', href: '/accounts/petty-cash', description: 'Manage petty cash' },
-          { id: 'replenishment', name: 'Replenishment', href: '/accounts/petty-cash?tab=replenish', description: 'Request replenishment' },
+          { id: 'petty-cash', name: 'Petty Cash', href: '/finance/petty-cash', description: 'Manage petty cash' },
+          { id: 'replenishment', name: 'Replenishment', href: '/finance/petty-cash?tab=replenish', description: 'Request replenishment' },
         ],
       },
     ],
