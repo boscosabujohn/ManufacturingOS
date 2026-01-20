@@ -23,6 +23,7 @@ const CACHE_STRATEGIES = {
     '/production',
     '/inventory',
     '/project-management',
+    '/after-sales-service',
   ],
   // Cache first, update in background
   cacheFirst: [

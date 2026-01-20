@@ -263,15 +263,15 @@ export default function ExpiringServiceContractsPage() {
 
   // Filter and search contracts
   const filteredContracts = contracts.filter(contract => {
-    const matchesSearch = 
+    const matchesSearch =
       contract.contractNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
       contract.customerName.toLowerCase().includes(searchTerm.toLowerCase()) ||
       contract.accountManager.toLowerCase().includes(searchTerm.toLowerCase());
-    
+
     const matchesType = selectedType === 'all' || contract.contractType === selectedType;
     const matchesRisk = selectedRisk === 'all' || contract.riskLevel === selectedRisk;
     const matchesStatus = selectedStatus === 'all' || contract.renewalStatus === selectedStatus;
-    
+
     return matchesSearch && matchesType && matchesRisk && matchesStatus;
   });
 
@@ -279,12 +279,12 @@ export default function ExpiringServiceContractsPage() {
   const sortedContracts = [...filteredContracts].sort((a, b) => {
     let aValue: any = a[sortBy as keyof ExpiringServiceContract];
     let bValue: any = b[sortBy as keyof ExpiringServiceContract];
-    
+
     if (typeof aValue === 'string') {
       aValue = aValue.toLowerCase();
       bValue = bValue.toLowerCase();
     }
-    
+
     if (sortOrder === 'asc') {
       return aValue < bValue ? -1 : aValue > bValue ? 1 : 0;
     } else {
@@ -365,7 +365,7 @@ export default function ExpiringServiceContractsPage() {
   const stats = calculateStats();
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/20 to-indigo-50/20 p-6 space-y-6">
       {/* Header */}
       <div className="flex justify-between items-center">
         <div>
@@ -401,7 +401,7 @@ export default function ExpiringServiceContractsPage() {
             <Clock className="w-8 h-8 text-red-600" />
           </div>
         </div>
-        
+
         <div className="bg-white p-4 rounded-lg border">
           <div className="flex items-center justify-between">
             <div>
@@ -411,7 +411,7 @@ export default function ExpiringServiceContractsPage() {
             <DollarSign className="w-8 h-8 text-blue-600" />
           </div>
         </div>
-        
+
         <div className="bg-white p-4 rounded-lg border">
           <div className="flex items-center justify-between">
             <div>
@@ -421,7 +421,7 @@ export default function ExpiringServiceContractsPage() {
             <TrendingUp className="w-8 h-8 text-green-600" />
           </div>
         </div>
-        
+
         <div className="bg-white p-4 rounded-lg border">
           <div className="flex items-center justify-between">
             <div>
@@ -433,7 +433,7 @@ export default function ExpiringServiceContractsPage() {
             <TrendingUp className="w-8 h-8 text-blue-600" />
           </div>
         </div>
-        
+
         <div className="bg-white p-4 rounded-lg border">
           <div className="flex items-center justify-between">
             <div>
@@ -443,7 +443,7 @@ export default function ExpiringServiceContractsPage() {
             <AlertTriangle className="w-8 h-8 text-red-600" />
           </div>
         </div>
-        
+
         <div className="bg-white p-4 rounded-lg border">
           <div className="flex items-center justify-between">
             <div>
@@ -500,7 +500,7 @@ export default function ExpiringServiceContractsPage() {
               <option value="Parts & Labor">Parts & Labor</option>
               <option value="Extended Warranty">Extended Warranty</option>
             </select>
-            
+
             <select
               className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               value={selectedRisk}
@@ -512,7 +512,7 @@ export default function ExpiringServiceContractsPage() {
               <option value="medium">Medium</option>
               <option value="low">Low</option>
             </select>
-            
+
             <select
               className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               value={selectedStatus}
@@ -643,14 +643,14 @@ export default function ExpiringServiceContractsPage() {
                       <button
                         onClick={() => handleRenewalAction(contract)}
                         className="text-green-600 hover:text-green-900"
-                       
+
                       >
                         <RefreshCw className="w-4 h-4" />
                       </button>
                       <button
                         onClick={() => router.push(`/after-sales-service/service-contracts/view/${contract.id}`)}
                         className="text-blue-600 hover:text-blue-900"
-                       
+
                       >
                         <Eye className="w-4 h-4" />
                       </button>
@@ -659,7 +659,7 @@ export default function ExpiringServiceContractsPage() {
                           // Handle contact action
                         }}
                         className="text-purple-600 hover:text-purple-900"
-                       
+
                       >
                         <Phone className="w-4 h-4" />
                       </button>

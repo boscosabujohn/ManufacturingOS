@@ -149,8 +149,8 @@ export default function HRDashboardPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-indigo-900 to-gray-900 p-6">
-      <div className="max-w-7xl mx-auto space-y-6">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-indigo-900 to-gray-900 px-2 py-4">
+      <div className="w-full space-y-6">
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
@@ -180,7 +180,7 @@ export default function HRDashboardPage() {
           ) : (
             <>
               <KPICard
-               
+
                 value={stats.totalEmployees}
                 icon={Users}
                 color="blue"
@@ -188,7 +188,7 @@ export default function HRDashboardPage() {
                 onClick={() => router.push('/hr/employees')}
               />
               <KPICard
-               
+
                 value={stats.onLeaveToday}
                 icon={Clock}
                 color="green"
@@ -196,7 +196,7 @@ export default function HRDashboardPage() {
                 onClick={() => router.push('/hr/attendance')}
               />
               <KPICard
-               
+
                 value={formatCurrency(stats.monthlyPayroll)}
                 icon={DollarSign}
                 color="purple"
@@ -204,7 +204,7 @@ export default function HRDashboardPage() {
                 onClick={() => router.push('/hr/payroll')}
               />
               <KPICard
-               
+
                 value={stats.pendingApprovals}
                 icon={AlertTriangle}
                 color="red"

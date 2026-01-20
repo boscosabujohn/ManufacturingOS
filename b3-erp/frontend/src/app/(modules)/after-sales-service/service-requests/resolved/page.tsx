@@ -1,18 +1,18 @@
 'use client';
 
 import React, { useState } from 'react';
-import { 
-  CheckCircle, 
-  Clock, 
-  User, 
-  Phone, 
-  Mail, 
-  MapPin, 
-  Calendar, 
-  Search, 
-  Filter, 
-  Eye, 
-  Edit, 
+import {
+  CheckCircle,
+  Clock,
+  User,
+  Phone,
+  Mail,
+  MapPin,
+  Calendar,
+  Search,
+  Filter,
+  Eye,
+  Edit,
   MessageSquare,
   Flag,
   Tag,
@@ -648,21 +648,21 @@ const ResolvedServiceRequestsPage = () => {
 
   const filteredRequests = serviceRequests.filter(request => {
     const matchesSearch = request.ticketNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         request.customer.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         request.customer.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         request.issue.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         request.product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         request.assignedTo.toLowerCase().includes(searchTerm.toLowerCase());
-    
+      request.customer.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      request.customer.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      request.issue.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      request.product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      request.assignedTo.toLowerCase().includes(searchTerm.toLowerCase());
+
     const matchesPriority = !filterPriority || request.issue.priority === filterPriority;
     const matchesCategory = !filterCategory || request.issue.category === filterCategory;
     const matchesAssignee = !filterAssignee || request.assignedTo === filterAssignee;
     const matchesSLA = !filterSLA || request.slaStatus === filterSLA;
-    const matchesRating = !filterRating || 
-                         (filterRating === '5' && request.customerSatisfaction.rating === 5) ||
-                         (filterRating === '4+' && request.customerSatisfaction.rating >= 4) ||
-                         (filterRating === '3+' && request.customerSatisfaction.rating >= 3);
-    
+    const matchesRating = !filterRating ||
+      (filterRating === '5' && request.customerSatisfaction.rating === 5) ||
+      (filterRating === '4+' && request.customerSatisfaction.rating >= 4) ||
+      (filterRating === '3+' && request.customerSatisfaction.rating >= 3);
+
     return matchesSearch && matchesPriority && matchesCategory && matchesAssignee && matchesSLA && matchesRating;
   });
 
@@ -716,7 +716,7 @@ const ResolvedServiceRequestsPage = () => {
   const slaMetPercentage = (filteredRequests.filter(r => r.slaStatus === 'Met' || r.slaStatus === 'Exceeded').length / filteredRequests.length) * 100;
 
   return (
-    <div className="p-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/20 to-indigo-50/20 p-6">
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-gray-900 mb-2">Resolved Service Requests</h1>
         <p className="text-gray-600">View completed service requests and customer satisfaction metrics</p>
@@ -974,25 +974,25 @@ const ResolvedServiceRequestsPage = () => {
                       <button
                         onClick={() => setSelectedRequest(request)}
                         className="text-blue-600 hover:text-blue-800"
-                       
+
                       >
                         <Eye className="h-4 w-4" />
                       </button>
                       <button
                         className="text-green-600 hover:text-green-800"
-                       
+
                       >
                         <Download className="h-4 w-4" />
                       </button>
                       <button
                         className="text-purple-600 hover:text-purple-800"
-                       
+
                       >
                         <RefreshCw className="h-4 w-4" />
                       </button>
                       <button
                         className="text-gray-600 hover:text-gray-800"
-                       
+
                       >
                         <ExternalLink className="h-4 w-4" />
                       </button>
@@ -1073,7 +1073,7 @@ const ResolvedServiceRequestsPage = () => {
                   </div>
                 </div>
               </div>
-              
+
               <div className="mt-6">
                 <h3 className="font-semibold text-gray-900 mb-3">Resolution Details</h3>
                 <div className="bg-gray-50 p-4 rounded-lg">

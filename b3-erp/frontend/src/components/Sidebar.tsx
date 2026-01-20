@@ -234,7 +234,7 @@ const menuItems: MenuItem[] = [
     bgColor: 'bg-indigo-50',
     hoverColor: 'hover:bg-indigo-100',
     subItems: [
-      { id: 'crm-dashboard', name: 'CRM Dashboard', href: '/crm', description: 'CRM overview' },
+      { id: 'crm-dashboard-summary', name: 'CRM Dashboard', href: '/crm', description: 'CRM overview' },
       {
         id: 'lead-management',
         name: 'Lead Management',
@@ -364,21 +364,21 @@ const menuItems: MenuItem[] = [
         ],
       },
       {
-        id: 'analytics',
+        id: 'crm-analytics',
         name: 'Reports & Analytics',
         href: '#',
         description: 'CRM insights',
         subItems: [
           { id: 'crm-analytics', name: 'CRM Analytics', href: '/crm/analytics', description: 'Key metrics' },
-          { id: 'sales-reports', name: 'Sales Reports', href: '/crm/analytics/sales', description: 'Sales performance' },
-          { id: 'customer-analytics', name: 'Customer Analytics', href: '/crm/analytics/customers', description: 'Customer insights' },
+          { id: 'crm-sales-reports', name: 'Sales Reports', href: '/crm/analytics/sales', description: 'Sales performance' },
+          { id: 'crm-customer-analytics', name: 'Customer Analytics', href: '/crm/analytics/customers', description: 'Customer insights' },
           { id: 'revenue-analytics', name: 'Revenue Analytics', href: '/crm/analytics/revenue', description: 'Revenue tracking' },
           { id: 'team-performance', name: 'Team Performance', href: '/crm/analytics/team', description: 'Team metrics' },
           { id: 'custom-reports', name: 'Custom Reports', href: '/crm/analytics/custom', description: 'Build reports' },
         ],
       },
       {
-        id: 'advanced-features',
+        id: 'crm-advanced-features',
         name: '✨ Advanced Features',
         href: '/crm/advanced-features',
         description: 'Enterprise AI & Automation',
@@ -522,9 +522,9 @@ const menuItems: MenuItem[] = [
         description: 'Sales insights',
         subItems: [
           { id: 'sales-dashboard-analytics', name: 'Sales Analytics', href: '/sales/analytics', description: 'Performance metrics' },
-          { id: 'sales-reports', name: 'Sales Reports', href: '/sales/analytics/reports', description: 'Sales reports' },
+          { id: 'sales-perf-reports', name: 'Sales Reports', href: '/sales/analytics/reports', description: 'Sales reports' },
           { id: 'product-performance', name: 'Product Performance', href: '/sales/analytics/products', description: 'Product analysis' },
-          { id: 'customer-analytics', name: 'Customer Analytics', href: '/sales/analytics/customers', description: 'Customer insights' },
+          { id: 'sales-customer-analytics-section', name: 'Customer Analytics', href: '/sales/analytics/customers', description: 'Customer insights' },
           { id: 'sales-forecast', name: 'Sales Forecast', href: '/sales/analytics/forecast', description: 'Revenue forecasting' },
           { id: 'sales-targets', name: 'Sales Targets', href: '/sales/analytics/targets', description: 'Track targets' },
         ],
@@ -542,7 +542,7 @@ const menuItems: MenuItem[] = [
         ],
       },
       {
-        id: 'advanced-features',
+        id: 'sales-advanced-features',
         name: '✨ Advanced Features',
         href: '#',
         description: 'Enterprise automation',
@@ -569,7 +569,7 @@ const menuItems: MenuItem[] = [
     subItems: [
       { id: 'rfq-list', name: 'RFQ List', href: '/rfq', description: 'All RFQs' },
       {
-        id: 'advanced-features',
+        id: 'rfq-advanced-features',
         name: '✨ Advanced Features',
         href: '#',
         description: 'Enterprise RFQ capabilities',
@@ -578,7 +578,7 @@ const menuItems: MenuItem[] = [
           { id: 'response-scoring', name: 'Response Scoring', href: '/rfq/advanced-features#scoring', description: 'Weighted scoring' },
           { id: 'bid-comparison', name: 'Bid Comparison', href: '/rfq/advanced-features#comparison', description: 'Automated comparison' },
           { id: 'approval-workflow', name: 'Approval Workflow', href: '/rfq/advanced-features#approval', description: 'Multi-level approvals' },
-          { id: 'audit-trail', name: 'Audit Trail', href: '/rfq/advanced-features#audit', description: 'Activity logging' },
+          { id: 'rfq-audit-trail', name: 'Audit Trail', href: '/rfq/advanced-features#audit', description: 'Activity logging' },
           { id: 'sourcing-integration', name: 'Sourcing Integration', href: '/rfq/advanced-features#sourcing', description: 'Event linkage' },
           { id: 'contract-generation', name: 'Contract Generation', href: '/rfq/advanced-features#contract', description: 'Auto contracts' },
           { id: 'all-rfq-features', name: '→ View All Features', href: '/rfq/advanced-features', description: 'Complete feature set' },
@@ -720,7 +720,7 @@ const menuItems: MenuItem[] = [
           { id: 'pricing-rules-engine', name: 'Pricing Rules Engine', href: '/cpq/advanced-features#pricing-rules', description: 'Automated pricing logic' },
           { id: 'version-control', name: 'Version Control', href: '/cpq/advanced-features#version-control', description: 'Track pricing changes' },
           { id: 'guided-selling-wizard', name: 'Guided Selling Wizard', href: '/cpq/advanced-features#guided-selling', description: 'Product configuration wizard' },
-          { id: 'approval-workflows', name: 'Approval Workflows', href: '/cpq/advanced-features#approvals', description: 'Multi-level approvals' },
+          { id: 'cpq-approval-workflows', name: 'Approval Workflows', href: '/cpq/advanced-features#approvals', description: 'Multi-level approvals' },
           { id: 'document-generation', name: 'Document Generation', href: '/cpq/advanced-features#documents', description: 'Template-based documents' },
           { id: 'e-signature-integration', name: 'E-Signature Integration', href: '/cpq/advanced-features#e-signature', description: 'Digital signatures' },
           { id: 'margin-analysis', name: 'Margin Analysis', href: '/cpq/advanced-features#margin-analysis', description: 'Real-time margin analytics' },
@@ -812,7 +812,7 @@ const menuItems: MenuItem[] = [
         href: '#',
         description: 'Process automation',
         subItems: [
-          { id: 'approval-workflows', name: 'Approval Workflows', href: '/cpq/workflow/approvals', description: 'Configure approvals' },
+          { id: 'cpq-config-approvals', name: 'Approval Workflows', href: '/cpq/workflow/approvals', description: 'Configure approvals' },
           { id: 'discount-approvals', name: 'Discount Approvals', href: '/cpq/workflow/discounts', description: 'Discount thresholds' },
           { id: 'legal-review', name: 'Legal Review', href: '/cpq/workflow/legal', description: 'Legal approval' },
           { id: 'executive-approval', name: 'Executive Approval', href: '/cpq/workflow/executive', description: 'C-level sign-off' },
@@ -1058,7 +1058,7 @@ const menuItems: MenuItem[] = [
         ],
       },
       {
-        id: 'automation',
+        id: 'support-automation',
         name: '⚡ Automation & Integration',
         href: '#',
         description: 'System integrations',
@@ -1124,11 +1124,11 @@ const menuItems: MenuItem[] = [
           { id: 'team-chat', name: 'Team Chat', href: '/production/collaboration?tab=chat', description: 'Project messaging' },
           { id: 'shift-handoff', name: 'Shift Handoff', href: '/production/collaboration?tab=handoff', description: 'Handover checklists' },
           { id: 'project-timeline', name: 'Project Timeline', href: '/production/collaboration?tab=timeline', description: 'Cross-functional view' },
-          { id: 'customer-portal', name: 'Customer Portal', href: '/production/collaboration?tab=customer', description: 'Client status view' },
+          { id: 'prod-customer-portal', name: 'Customer Portal', href: '/production/collaboration?tab=customer', description: 'Client status view' },
         ],
       },
       {
-        id: 'advanced-features',
+        id: 'production-advanced-features',
         name: '✨ Advanced Features',
         href: '#',
         description: 'MES-grade capabilities',
@@ -1153,7 +1153,7 @@ const menuItems: MenuItem[] = [
     bgColor: 'bg-indigo-50',
     hoverColor: 'hover:bg-indigo-100',
     subItems: [
-      { id: 'quality-dashboard', name: 'Quality Dashboard', href: '/quality', description: 'Quality overview' },
+      { id: 'production-quality-dashboard', name: 'Quality Dashboard', href: '/quality', description: 'Quality overview' },
       {
         id: 'inspections',
         name: 'Inspections',
@@ -1199,7 +1199,7 @@ const menuItems: MenuItem[] = [
     subItems: [
       { id: 'inventory-dashboard', name: 'Inventory Dashboard', href: '/inventory', description: 'Inventory overview' },
       {
-        id: 'advanced-features',
+        id: 'inventory-advanced-features',
         name: '✨ Advanced Features',
         href: '#',
         description: 'WMS-grade capabilities',
@@ -1378,7 +1378,7 @@ const menuItems: MenuItem[] = [
     bgColor: 'bg-cyan-50',
     hoverColor: 'hover:bg-cyan-100',
     subItems: [
-      { id: 'dashboard', name: 'Procurement Dashboard', href: '/procurement', description: 'Overview & analytics' },
+      { id: 'procurement-dashboard', name: 'Procurement Dashboard', href: '/procurement', description: 'Overview & analytics' },
       { id: 'calendar', name: 'Procurement Calendar', href: '/procurement/calendar', description: 'Schedule & deadlines' },
       {
         id: 'purchase-requisitions',
@@ -1506,7 +1506,7 @@ const menuItems: MenuItem[] = [
         ],
       },
       {
-        id: 'advanced-features',
+        id: 'procurement-advanced-features',
         name: '✨ Advanced Features',
         href: '#',
         description: 'Enterprise procurement capabilities',
@@ -1531,7 +1531,7 @@ const menuItems: MenuItem[] = [
     bgColor: 'bg-teal-50',
     hoverColor: 'hover:bg-teal-100',
     subItems: [
-      { id: 'dashboard', name: 'Projects Dashboard', href: '/project-management/dashboard', description: 'Overview of all projects' },
+      { id: 'projects-dashboard-main', name: 'Projects Dashboard', href: '/project-management/dashboard', description: 'Overview of all projects' },
       { id: 'all-projects', name: 'All Projects', href: '/project-management', description: 'Project list' },
       { id: 'create-project', name: 'Create Project', href: '/project-management/create', description: 'New project' },
       {
@@ -1611,7 +1611,7 @@ const menuItems: MenuItem[] = [
         ],
       },
       {
-        id: 'collaboration',
+        id: 'projects-collaboration',
         name: 'Documents & Reports',
         href: '#',
         description: 'Documentation',
@@ -1627,13 +1627,13 @@ const menuItems: MenuItem[] = [
         href: '#',
         description: 'Project configuration',
         subItems: [
-          { id: 'templates', name: 'Project Templates', href: '/project-management/templates', description: 'Reusable templates' },
+          { id: 'projects-templates', name: 'Project Templates', href: '/project-management/templates', description: 'Reusable templates' },
           { id: 'project-types', name: 'Project Types', href: '/project-management/project-types', description: 'Project categories' },
           { id: 'settings', name: 'Settings', href: '/project-management/settings', description: 'Configuration' },
         ],
       },
       {
-        id: 'advanced-features',
+        id: 'projects-advanced-features',
         name: '✨ Advanced Features',
         href: '#',
         description: 'Enterprise-grade capabilities',
@@ -1657,16 +1657,16 @@ const menuItems: MenuItem[] = [
     bgColor: 'bg-yellow-50',
     hoverColor: 'hover:bg-yellow-100',
     subItems: [
-      { id: 'dashboard', name: 'Finance Dashboard', href: '/finance/dashboard', description: 'Financial overview' },
+      { id: 'finance-dashboard-main', name: 'Finance Dashboard', href: '/finance/dashboard', description: 'Financial overview' },
       {
-        id: 'advanced-features',
+        id: 'finance-advanced-features',
         name: '✨ Advanced Features',
         href: '#',
         description: 'Enterprise finance tools',
         subItems: [
           { id: 'general-ledger-advanced', name: 'General Ledger & Journals', href: '/finance/advanced-features#general-ledger', description: 'Advanced GL operations' },
           { id: 'multi-entity-consolidation', name: 'Multi-Entity Consolidation', href: '/finance/advanced-features#consolidation', description: 'Group consolidation' },
-          { id: 'audit-trail-advanced', name: 'Advanced Audit Trail', href: '/finance/advanced-features#audit-trail', description: 'Comprehensive audit logs' },
+          { id: 'finance-audit-trail', name: 'Advanced Audit Trail', href: '/finance/advanced-features#audit-trail', description: 'Comprehensive audit logs' },
           { id: 'compliance-automation', name: 'Compliance Automation', href: '/finance/advanced-features#compliance', description: 'Automated compliance' },
           { id: 'treasury-management', name: 'Treasury Management', href: '/finance/advanced-features#treasury', description: 'Cash & investments' },
           { id: 'predictive-forecasting', name: 'Predictive Cash Forecasting', href: '/finance/advanced-features#cash-forecast', description: 'AI-powered forecasts' },
@@ -1800,7 +1800,7 @@ const menuItems: MenuItem[] = [
         ],
       },
       {
-        id: 'analytics',
+        id: 'finance-analytics',
         name: 'Financial Analytics',
         href: '#',
         description: 'Business intelligence',
@@ -1842,7 +1842,7 @@ const menuItems: MenuItem[] = [
         ],
       },
       {
-        id: 'automation',
+        id: 'finance-automation',
         name: 'Automation',
         href: '#',
         description: 'Process automation',
@@ -1864,49 +1864,7 @@ const menuItems: MenuItem[] = [
       },
     ],
   },
-  {
-    id: 'accounts',
-    name: 'Accounts',
-    icon: DollarSign,
-    color: 'text-emerald-600',
-    bgColor: 'bg-emerald-50',
-    hoverColor: 'hover:bg-emerald-100',
-    subItems: [
-      { id: 'accounts-dashboard', name: 'Accounts Dashboard', href: '/accounts', description: 'Accounts overview' },
-      {
-        id: 'banking',
-        name: 'Banking',
-        href: '#',
-        description: 'Bank accounts management',
-        subItems: [
-          { id: 'bank-accounts', name: 'Bank Accounts', href: '/finance/banks', description: 'Manage bank accounts' },
-          { id: 'bank-transactions', name: 'Transactions', href: '/finance/banks', description: 'View transactions' },
-          { id: 'bank-reconciliation', name: 'Bank Reconciliation', href: '/finance/reconciliation', description: 'Reconcile statements' },
-        ],
-      },
-      {
-        id: 'expense-management',
-        name: 'Expense Management',
-        href: '#',
-        description: 'Employee expenses',
-        subItems: [
-          { id: 'expense-claims', name: 'Expense Claims', href: '/finance/expense-claims', description: 'Submit \u0026 approve claims' },
-          { id: 'my-claims', name: 'My Claims', href: '/finance/expense-claims?filter=my', description: 'Your expense claims' },
-          { id: 'pending-approvals', name: 'Pending Approvals', href: '/finance/expense-claims?status=pending', description: 'Approve claims' },
-        ],
-      },
-      {
-        id: 'petty-cash-management',
-        name: 'Petty Cash',
-        href: '#',
-        description: 'Petty cash tracking',
-        subItems: [
-          { id: 'petty-cash', name: 'Petty Cash', href: '/finance/petty-cash', description: 'Manage petty cash' },
-          { id: 'replenishment', name: 'Replenishment', href: '/finance/petty-cash?tab=replenish', description: 'Request replenishment' },
-        ],
-      },
-    ],
-  },
+
   {
     id: 'hr',
     name: 'HR',
@@ -1917,7 +1875,7 @@ const menuItems: MenuItem[] = [
     subItems: [
       { id: 'hr-dashboard', name: 'HR Dashboard', href: '/hr', description: 'HR overview' },
       {
-        id: 'advanced-features',
+        id: 'hr-advanced-features',
         name: '✨ Advanced Features',
         href: '#',
         description: 'Enterprise HCM capabilities',
@@ -3046,7 +3004,7 @@ const menuItems: MenuItem[] = [
             ],
           },
           {
-            id: 'compliance-reports',
+            id: 'production-compliance',
             name: 'Compliance Reports',
             href: '#',
             description: 'Reporting',
@@ -3197,7 +3155,7 @@ const menuItems: MenuItem[] = [
         ],
       },
       {
-        id: 'advanced-features',
+        id: 'logistics-advanced-features',
         name: '✨ Advanced Features',
         href: '#',
         description: 'TMS-grade capabilities',
@@ -3208,7 +3166,7 @@ const menuItems: MenuItem[] = [
           { id: 'exception-handling', name: 'Exception Handling', href: '/logistics/advanced-features#exceptions', description: 'Shipment exceptions' },
           { id: 'dock-sched', name: 'Dock Scheduling', href: '/logistics/advanced-features#dock', description: 'Dock appointments' },
           { id: 'freight-cost', name: 'Freight Cost Analytics', href: '/logistics/advanced-features#cost', description: 'Cost breakdown' },
-          { id: 'customer-portal', name: 'Customer Portal', href: '/logistics/advanced-features#customer', description: 'Self-service tracking' },
+          { id: 'logistics-customer-portal', name: 'Customer Portal', href: '/logistics/advanced-features#customer', description: 'Self-service tracking' },
           { id: 'all-logistics-features', name: '→ View All Features', href: '/logistics/advanced-features', description: 'Complete feature set' },
         ],
       },
@@ -3224,7 +3182,7 @@ const menuItems: MenuItem[] = [
     subItems: [
       { id: 'ass-main-dashboard', name: 'Service Overview', href: '/after-sales-service', description: 'Main dashboard' },
       {
-        id: 'advanced-features',
+        id: 'ass-advanced-features',
         name: '✨ Advanced Features',
         href: '#',
         description: 'Enterprise field service',
@@ -3234,7 +3192,7 @@ const menuItems: MenuItem[] = [
           { id: 'spare-parts', name: 'Spare Parts Integration', href: '/after-sales-service/advanced-features#parts', description: 'Inventory sync' },
           { id: 'service-dispatch', name: 'Service Dispatch', href: '/after-sales-service/advanced-features#dispatch', description: 'Field dispatch' },
           { id: 'auto-escalations', name: 'Automated Escalations', href: '/after-sales-service/advanced-features#escalations', description: 'Smart escalation' },
-          { id: 'self-service', name: 'Self-Service Portal', href: '/after-sales-service/advanced-features#self-service', description: 'Customer portal' },
+          { id: 'self-service', name: 'Self-Service Portal', href: '/after-sales-service/self-service', description: 'Customer portal' },
           { id: 'feedback-loop', name: 'Customer Feedback Loop', href: '/after-sales-service/advanced-features#feedback', description: 'Post-service surveys' },
           { id: 'all-ass-features', name: '→ View All Features', href: '/after-sales-service/advanced-features', description: 'Complete feature set' },
         ],
@@ -3277,7 +3235,7 @@ const menuItems: MenuItem[] = [
           { id: 'create-warranty', name: 'Register Warranty', href: '/after-sales-service/warranties/add', description: 'New warranty' },
           { id: 'active-warranties', name: 'Active Warranties', href: '/after-sales-service/warranties/active', description: 'In warranty' },
           { id: 'expired-warranties', name: 'Expired Warranties', href: '/after-sales-service/warranties/expired', description: 'Out of warranty' },
-          { id: 'warranty-claims', name: 'Warranty Claims', href: '/after-sales-service/warranties/claims', description: 'Claims processing' },
+          { id: 'ass-warranty-claims', name: 'Warranty Claims', href: '/after-sales-service/warranties/claims', description: 'Claims processing' },
           { id: 'claim-approval', name: 'Claim Approvals', href: '/after-sales-service/warranties/claims/approvals', description: 'Approve claims' },
         ],
       },
@@ -3313,7 +3271,7 @@ const menuItems: MenuItem[] = [
         href: '#',
         description: 'Service parts',
         subItems: [
-          { id: 'spare-parts', name: 'Spare Parts', href: '/after-sales-service/parts', description: 'Parts catalog' },
+          { id: 'ass-spare-parts', name: 'Spare Parts', href: '/after-sales-service/parts', description: 'Parts catalog' },
           { id: 'parts-requisition', name: 'Parts Requisition', href: '/after-sales-service/parts/requisition', description: 'Request parts' },
           { id: 'parts-consumption', name: 'Parts Consumption', href: '/after-sales-service/parts/consumption', description: 'Usage tracking' },
           { id: 'parts-returns', name: 'Parts Returns', href: '/after-sales-service/parts/returns', description: 'Return parts' },
@@ -3356,7 +3314,7 @@ const menuItems: MenuItem[] = [
         ],
       },
       {
-        id: 'service-analytics',
+        id: 'service-analytics-section',
         name: 'Analytics & Reports',
         href: '#',
         description: 'Service insights',
@@ -3371,7 +3329,7 @@ const menuItems: MenuItem[] = [
     ],
   },
   {
-    id: 'support',
+    id: 'support-module',
     name: 'Support',
     icon: Headphones,
     color: 'text-rose-600',
@@ -3380,7 +3338,7 @@ const menuItems: MenuItem[] = [
     subItems: [
       { id: 'support-dashboard', name: 'Support Dashboard', href: '/support', description: 'Support overview' },
       {
-        id: 'advanced-features',
+        id: 'support-advanced-features',
         name: '✨ Advanced Features',
         href: '#',
         description: 'Enterprise service desk',
@@ -3512,11 +3470,11 @@ const menuItems: MenuItem[] = [
           { id: 'support-agents', name: 'Support Agents', href: '/support/team/agents', description: 'Agent directory' },
           { id: 'team-performance', name: 'Team Performance', href: '/support/team/performance', description: 'Agent metrics' },
           { id: 'workload-distribution', name: 'Workload Distribution', href: '/support/team/workload', description: 'Ticket distribution' },
-          { id: 'skill-matrix', name: 'Skill Matrix', href: '/support/team/skills', description: 'Agent skills' },
+          { id: 'support-skill-matrix', name: 'Skill Matrix', href: '/support/team/skills', description: 'Agent skills' },
         ],
       },
       {
-        id: 'support-analytics',
+        id: 'support-analytics-section',
         name: 'Analytics & Reports',
         href: '#',
         description: 'Support insights',
@@ -3541,7 +3499,7 @@ const menuItems: MenuItem[] = [
       { id: 'workflow-dashboard', name: 'Workflow Dashboard', href: '/workflow', description: 'Workflow overview' },
       { id: 'task-inbox', name: '📥 My Task Inbox', href: '/workflow/inbox', description: 'Your pending tasks \u0026 approvals' },
       {
-        id: 'advanced-features',
+        id: 'workflow-advanced-features',
         name: '✨ Advanced Features',
         href: '#',
         description: 'Enterprise workflow automation',
@@ -3558,7 +3516,7 @@ const menuItems: MenuItem[] = [
         ],
       },
       {
-        id: 'automation',
+        id: 'workflow-automation-section',
         name: 'Automation',
         href: '#',
         description: 'Automated workflows',
@@ -3578,7 +3536,7 @@ const menuItems: MenuItem[] = [
         ],
       },
       {
-        id: 'templates',
+        id: 'workflow-templates',
         name: 'Templates',
         href: '#',
         description: 'Workflow templates',

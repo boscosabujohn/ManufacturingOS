@@ -228,7 +228,7 @@ export default function ViewContractPage({ params }: { params: { id: string } })
   };
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/20 to-indigo-50/20 p-6 space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -350,31 +350,28 @@ export default function ViewContractPage({ params }: { params: { id: string } })
         <div className="flex gap-6">
           <button
             onClick={() => setActiveTab('details')}
-            className={`pb-3 px-1 border-b-2 text-sm font-medium transition-colors ${
-              activeTab === 'details'
+            className={`pb-3 px-1 border-b-2 text-sm font-medium transition-colors ${activeTab === 'details'
                 ? 'border-blue-600 text-blue-600'
                 : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-            }`}
+              }`}
           >
             Contract Details
           </button>
           <button
             onClick={() => setActiveTab('history')}
-            className={`pb-3 px-1 border-b-2 text-sm font-medium transition-colors ${
-              activeTab === 'history'
+            className={`pb-3 px-1 border-b-2 text-sm font-medium transition-colors ${activeTab === 'history'
                 ? 'border-blue-600 text-blue-600'
                 : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-            }`}
+              }`}
           >
             Service History ({serviceHistory.length})
           </button>
           <button
             onClick={() => setActiveTab('invoices')}
-            className={`pb-3 px-1 border-b-2 text-sm font-medium transition-colors ${
-              activeTab === 'invoices'
+            className={`pb-3 px-1 border-b-2 text-sm font-medium transition-colors ${activeTab === 'invoices'
                 ? 'border-blue-600 text-blue-600'
                 : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-            }`}
+              }`}
           >
             Invoices ({invoices.length})
           </button>
@@ -596,11 +593,10 @@ export default function ViewContractPage({ params }: { params: { id: string } })
                     <td className="px-6 py-4 text-sm text-gray-900">{formatDate(record.date)}</td>
                     <td className="px-6 py-4 text-sm text-gray-900">{record.type}</td>
                     <td className="px-6 py-4">
-                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                        record.status === 'Completed' ? 'bg-green-100 text-green-700' :
-                        record.status === 'In Progress' ? 'bg-blue-100 text-blue-700' :
-                        'bg-gray-100 text-gray-700'
-                      }`}>
+                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${record.status === 'Completed' ? 'bg-green-100 text-green-700' :
+                          record.status === 'In Progress' ? 'bg-blue-100 text-blue-700' :
+                            'bg-gray-100 text-gray-700'
+                        }`}>
                         {record.status}
                       </span>
                     </td>
@@ -643,11 +639,10 @@ export default function ViewContractPage({ params }: { params: { id: string } })
                     <td className="px-6 py-4 text-sm font-medium text-gray-900 text-right">{formatCurrency(invoice.amount)}</td>
                     <td className="px-6 py-4 text-sm text-gray-900">{formatDate(invoice.dueDate)}</td>
                     <td className="px-6 py-4">
-                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                        invoice.status === 'Paid' ? 'bg-green-100 text-green-700' :
-                        invoice.status === 'Pending' ? 'bg-yellow-100 text-yellow-700' :
-                        'bg-red-100 text-red-700'
-                      }`}>
+                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${invoice.status === 'Paid' ? 'bg-green-100 text-green-700' :
+                          invoice.status === 'Pending' ? 'bg-yellow-100 text-yellow-700' :
+                            'bg-red-100 text-red-700'
+                        }`}>
                         {invoice.status}
                       </span>
                     </td>

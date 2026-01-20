@@ -198,15 +198,57 @@ class ProjectManagementService {
         { id: 'DIS-003', title: 'Material Finish Unavailable', description: 'Selected laminate out of stock', priority: 'Low', status: 'Resolved', date: '2025-01-18', reportedBy: 'Procurement' },
     ];
 
+    private mockProjects: Project[] = [
+        {
+            id: 'proj-001',
+            name: 'Taj Hotel Commercial Kitchen Installation',
+            clientName: 'Taj Hotels Limited',
+            projectCode: 'PRJ-2024-001',
+            status: 'In Progress',
+            priority: 'High',
+            progress: 65,
+            budgetAllocated: 8500000,
+            budgetSpent: 5200000,
+            location: 'Mumbai',
+            projectType: 'Commercial Kitchen'
+        },
+        {
+            id: 'proj-002',
+            name: 'BigBasket Cold Storage Facility',
+            clientName: 'BigBasket Pvt Ltd',
+            projectCode: 'PRJ-2024-002',
+            status: 'In Progress',
+            priority: 'High',
+            progress: 45,
+            budgetAllocated: 12000000,
+            budgetSpent: 4800000,
+            location: 'Bangalore',
+            projectType: 'Cold Room'
+        }
+    ];
+
     // --- Projects ---
     async getProjects(): Promise<Project[]> {
-        const response = await apiClient.get<Project[]>('/projects');
-        return response.data || []; // Handle if data is wrapped or direct
+        try {
+            const response = await apiClient.get<Project[]>('/projects');
+            const data = response.data || [];
+            return data.length > 0 ? data : this.mockProjects;
+        } catch (error) {
+            console.error('API Error fetching projects, using mocks:', error);
+            return this.mockProjects;
+        }
     }
 
     async getProject(id: string): Promise<Project> {
-        const response = await apiClient.get<Project>(`/projects/${id}`);
-        return response.data;
+        try {
+            const response = await apiClient.get<Project>(`/projects/${id}`);
+            return response.data;
+        } catch (error) {
+            console.error(`API Error fetching project ${id}, using mocks:`, error);
+            const mock = this.mockProjects.find(p => p.id === id);
+            if (mock) return mock;
+            throw error;
+        }
     }
 
     async createProject(data: any): Promise<Project> {

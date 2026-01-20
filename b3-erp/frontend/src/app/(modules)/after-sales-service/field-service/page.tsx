@@ -481,9 +481,9 @@ export default function FieldServicePage() {
     completedJobs: mockFieldServiceJobs.filter(j => j.status === 'completed').length,
     avgJobDuration: mockFieldServiceJobs.filter(j => j.actualDuration).length > 0
       ? mockFieldServiceJobs
-          .filter(j => j.actualDuration)
-          .reduce((sum, j) => sum + (j.actualDuration || 0), 0) /
-        mockFieldServiceJobs.filter(j => j.actualDuration).length
+        .filter(j => j.actualDuration)
+        .reduce((sum, j) => sum + (j.actualDuration || 0), 0) /
+      mockFieldServiceJobs.filter(j => j.actualDuration).length
       : 0,
     totalPartsValue: mockFieldServiceJobs.reduce((sum, j) => sum + j.totalPartsValue, 0),
   };
@@ -517,14 +517,13 @@ export default function FieldServicePage() {
   };
 
   return (
-    <div className="p-6 max-w-[1600px] mx-auto">
+    <div className="p-6 w-full">
       {/* Toast Notification */}
       {toast && (
-        <div className={`fixed top-4 right-4 z-50 flex items-center gap-2 px-4 py-3 rounded-lg shadow-lg ${
-          toast.type === 'success' ? 'bg-green-50 text-green-800 border border-green-200' :
-          toast.type === 'error' ? 'bg-red-50 text-red-800 border border-red-200' :
-          'bg-blue-50 text-blue-800 border border-blue-200'
-        }`}>
+        <div className={`fixed top-4 right-4 z-50 flex items-center gap-2 px-4 py-3 rounded-lg shadow-lg ${toast.type === 'success' ? 'bg-green-50 text-green-800 border border-green-200' :
+            toast.type === 'error' ? 'bg-red-50 text-red-800 border border-red-200' :
+              'bg-blue-50 text-blue-800 border border-blue-200'
+          }`}>
           {toast.type === 'success' && <CheckCircle className="w-5 h-5" />}
           {toast.type === 'info' && <AlertTriangle className="w-5 h-5" />}
           {toast.type === 'error' && <X className="w-5 h-5" />}
@@ -678,18 +677,16 @@ export default function FieldServicePage() {
             <div className="flex items-center gap-2 bg-gray-100 p-1 rounded-lg">
               <button
                 onClick={() => setViewMode('list')}
-                className={`px-4 py-2 rounded-md flex items-center gap-2 transition-colors ${
-                  viewMode === 'list' ? 'bg-white text-blue-600 shadow-sm' : 'text-gray-600 hover:text-gray-900'
-                }`}
+                className={`px-4 py-2 rounded-md flex items-center gap-2 transition-colors ${viewMode === 'list' ? 'bg-white text-blue-600 shadow-sm' : 'text-gray-600 hover:text-gray-900'
+                  }`}
               >
                 <List className="h-4 w-4" />
                 List
               </button>
               <button
                 onClick={() => setViewMode('calendar')}
-                className={`px-4 py-2 rounded-md flex items-center gap-2 transition-colors ${
-                  viewMode === 'calendar' ? 'bg-white text-blue-600 shadow-sm' : 'text-gray-600 hover:text-gray-900'
-                }`}
+                className={`px-4 py-2 rounded-md flex items-center gap-2 transition-colors ${viewMode === 'calendar' ? 'bg-white text-blue-600 shadow-sm' : 'text-gray-600 hover:text-gray-900'
+                  }`}
               >
                 <CalendarDays className="h-4 w-4" />
                 Calendar
@@ -699,9 +696,8 @@ export default function FieldServicePage() {
             {/* Advanced Filters Toggle */}
             <button
               onClick={() => setShowAdvancedFilters(!showAdvancedFilters)}
-              className={`px-4 py-2 rounded-lg flex items-center gap-2 transition-colors ${
-                showAdvancedFilters ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-              }`}
+              className={`px-4 py-2 rounded-lg flex items-center gap-2 transition-colors ${showAdvancedFilters ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                }`}
             >
               <Filter className="h-4 w-4" />
               Filters
@@ -1048,9 +1044,8 @@ export default function FieldServicePage() {
                 days.push(
                   <div
                     key={day}
-                    className={`aspect-square border rounded-lg p-2 hover:shadow-md transition-shadow ${
-                      isToday ? 'border-blue-500 bg-blue-50' : 'border-gray-200 bg-white'
-                    }`}
+                    className={`aspect-square border rounded-lg p-2 hover:shadow-md transition-shadow ${isToday ? 'border-blue-500 bg-blue-50' : 'border-gray-200 bg-white'
+                      }`}
                   >
                     <div className={`text-sm font-semibold mb-1 ${isToday ? 'text-blue-600' : 'text-gray-700'}`}>
                       {day}
@@ -1095,12 +1090,11 @@ export default function FieldServicePage() {
       {selectedJob && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50" onClick={() => setSelectedJob(null)}>
           <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl" onClick={(e) => e.stopPropagation()}>
-            <div className={`sticky top-0 bg-gradient-to-r ${
-              selectedJob.status === 'completed' ? 'from-green-600 to-emerald-600' :
-              selectedJob.status === 'in_progress' ? 'from-purple-600 to-pink-600' :
-              selectedJob.status === 'dispatched' ? 'from-cyan-600 to-blue-600' :
-              'from-blue-600 to-indigo-600'
-            } px-6 py-4 flex items-center justify-between`}>
+            <div className={`sticky top-0 bg-gradient-to-r ${selectedJob.status === 'completed' ? 'from-green-600 to-emerald-600' :
+                selectedJob.status === 'in_progress' ? 'from-purple-600 to-pink-600' :
+                  selectedJob.status === 'dispatched' ? 'from-cyan-600 to-blue-600' :
+                    'from-blue-600 to-indigo-600'
+              } px-6 py-4 flex items-center justify-between`}>
               <div>
                 <h2 className="text-2xl font-bold text-white">{selectedJob.jobNumber}</h2>
                 <p className="text-sm text-white/90">{selectedJob.customerName}</p>
@@ -1335,7 +1329,7 @@ export default function FieldServicePage() {
                       <input
                         type="text"
                         value={newJob.customerName}
-                        onChange={(e) => setNewJob({...newJob, customerName: e.target.value})}
+                        onChange={(e) => setNewJob({ ...newJob, customerName: e.target.value })}
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         placeholder="Enter customer name"
                         required
@@ -1345,7 +1339,7 @@ export default function FieldServicePage() {
                       <label className="block text-sm font-medium text-gray-700 mb-2">Priority *</label>
                       <select
                         value={newJob.priority}
-                        onChange={(e) => setNewJob({...newJob, priority: e.target.value as FieldServiceJob['priority']})}
+                        onChange={(e) => setNewJob({ ...newJob, priority: e.target.value as FieldServiceJob['priority'] })}
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         required
                       >
@@ -1367,7 +1361,7 @@ export default function FieldServicePage() {
                       <input
                         type="date"
                         value={newJob.scheduledDate}
-                        onChange={(e) => setNewJob({...newJob, scheduledDate: e.target.value})}
+                        onChange={(e) => setNewJob({ ...newJob, scheduledDate: e.target.value })}
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         required
                       />
@@ -1377,7 +1371,7 @@ export default function FieldServicePage() {
                       <input
                         type="text"
                         value={newJob.scheduledTimeSlot}
-                        onChange={(e) => setNewJob({...newJob, scheduledTimeSlot: e.target.value})}
+                        onChange={(e) => setNewJob({ ...newJob, scheduledTimeSlot: e.target.value })}
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         placeholder="e.g., 09:00 - 11:00"
                         required
@@ -1395,7 +1389,7 @@ export default function FieldServicePage() {
                       <input
                         type="text"
                         value={newJob.equipmentModel}
-                        onChange={(e) => setNewJob({...newJob, equipmentModel: e.target.value})}
+                        onChange={(e) => setNewJob({ ...newJob, equipmentModel: e.target.value })}
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         placeholder="Enter equipment model"
                         required
@@ -1406,7 +1400,7 @@ export default function FieldServicePage() {
                       <input
                         type="text"
                         value={newJob.issueType}
-                        onChange={(e) => setNewJob({...newJob, issueType: e.target.value})}
+                        onChange={(e) => setNewJob({ ...newJob, issueType: e.target.value })}
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         placeholder="Enter issue description"
                         required
@@ -1423,7 +1417,7 @@ export default function FieldServicePage() {
                       <label className="block text-sm font-medium text-gray-700 mb-2">Site Address *</label>
                       <textarea
                         value={newJob.siteAddress}
-                        onChange={(e) => setNewJob({...newJob, siteAddress: e.target.value})}
+                        onChange={(e) => setNewJob({ ...newJob, siteAddress: e.target.value })}
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         rows={2}
                         placeholder="Enter complete site address"
@@ -1436,7 +1430,7 @@ export default function FieldServicePage() {
                         <input
                           type="text"
                           value={newJob.siteContactPerson}
-                          onChange={(e) => setNewJob({...newJob, siteContactPerson: e.target.value})}
+                          onChange={(e) => setNewJob({ ...newJob, siteContactPerson: e.target.value })}
                           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                           placeholder="Contact person name"
                           required
@@ -1447,7 +1441,7 @@ export default function FieldServicePage() {
                         <input
                           type="tel"
                           value={newJob.siteContactPhone}
-                          onChange={(e) => setNewJob({...newJob, siteContactPhone: e.target.value})}
+                          onChange={(e) => setNewJob({ ...newJob, siteContactPhone: e.target.value })}
                           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                           placeholder="+91-XXXXX-XXXXX"
                           required
@@ -1464,7 +1458,7 @@ export default function FieldServicePage() {
                     <label className="block text-sm font-medium text-gray-700 mb-2">Assign Engineer (Optional)</label>
                     <select
                       value={newJob.engineerName}
-                      onChange={(e) => setNewJob({...newJob, engineerName: e.target.value})}
+                      onChange={(e) => setNewJob({ ...newJob, engineerName: e.target.value })}
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     >
                       <option value="">Select an engineer (optional)</option>

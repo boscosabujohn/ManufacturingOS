@@ -111,7 +111,7 @@ export default function AddServiceRequestPage() {
   };
 
   return (
-    <div className="p-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/20 to-indigo-50/20 p-6">
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Header */}
         <div className="flex items-center justify-between">

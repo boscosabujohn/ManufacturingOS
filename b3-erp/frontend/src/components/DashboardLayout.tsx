@@ -112,7 +112,7 @@ export default function DashboardLayout({ children, pageTitle }: DashboardLayout
 
         {/* Main Content - Scrollable */}
         <main className="flex-1 overflow-y-auto overflow-x-hidden bg-gray-50 relative z-0">
-          <div className="px-6 pt-4">
+          <div className="px-4 pt-4">
             <Breadcrumbs />
           </div>
           {children}

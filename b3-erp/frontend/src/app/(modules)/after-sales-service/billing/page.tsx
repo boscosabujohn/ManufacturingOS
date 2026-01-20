@@ -343,7 +343,7 @@ export default function ServiceBillingPage() {
   };
 
   return (
-    <div className="p-6 max-w-[1600px] mx-auto">
+    <div className="p-6 w-full">
       {/* Header */}
       <div className="mb-6">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">Service Billing</h1>
@@ -684,13 +684,12 @@ export default function ServiceBillingPage() {
             {/* Modal Body */}
             <div className="p-6 space-y-6">
               {/* Status Banner */}
-              <div className={`rounded-lg p-4 border-2 ${
-                selectedInvoice.status === 'paid' ? 'bg-green-50 border-green-200' :
-                selectedInvoice.status === 'overdue' ? 'bg-red-50 border-red-200' :
-                selectedInvoice.status === 'sent' ? 'bg-blue-50 border-blue-200' :
-                selectedInvoice.status === 'partial_paid' ? 'bg-yellow-50 border-yellow-200' :
-                'bg-gray-50 border-gray-200'
-              }`}>
+              <div className={`rounded-lg p-4 border-2 ${selectedInvoice.status === 'paid' ? 'bg-green-50 border-green-200' :
+                  selectedInvoice.status === 'overdue' ? 'bg-red-50 border-red-200' :
+                    selectedInvoice.status === 'sent' ? 'bg-blue-50 border-blue-200' :
+                      selectedInvoice.status === 'partial_paid' ? 'bg-yellow-50 border-yellow-200' :
+                        'bg-gray-50 border-gray-200'
+                }`}>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     {selectedInvoice.status === 'paid' && <CheckCircle className="h-8 w-8 text-green-600" />}
@@ -699,26 +698,24 @@ export default function ServiceBillingPage() {
                     {selectedInvoice.status === 'partial_paid' && <DollarSign className="h-8 w-8 text-yellow-600" />}
                     {selectedInvoice.status === 'draft' && <Clock className="h-8 w-8 text-gray-600" />}
                     <div>
-                      <h3 className={`text-lg font-bold ${
-                        selectedInvoice.status === 'paid' ? 'text-green-900' :
-                        selectedInvoice.status === 'overdue' ? 'text-red-900' :
-                        selectedInvoice.status === 'sent' ? 'text-blue-900' :
-                        selectedInvoice.status === 'partial_paid' ? 'text-yellow-900' :
-                        'text-gray-900'
-                      }`}>
+                      <h3 className={`text-lg font-bold ${selectedInvoice.status === 'paid' ? 'text-green-900' :
+                          selectedInvoice.status === 'overdue' ? 'text-red-900' :
+                            selectedInvoice.status === 'sent' ? 'text-blue-900' :
+                              selectedInvoice.status === 'partial_paid' ? 'text-yellow-900' :
+                                'text-gray-900'
+                        }`}>
                         {selectedInvoice.status === 'paid' ? 'Fully Paid' :
-                         selectedInvoice.status === 'overdue' ? `Overdue (${selectedInvoice.overdueDays} days)` :
-                         selectedInvoice.status === 'sent' ? 'Sent to Customer' :
-                         selectedInvoice.status === 'partial_paid' ? 'Partially Paid' :
-                         'Draft Invoice'}
+                          selectedInvoice.status === 'overdue' ? `Overdue (${selectedInvoice.overdueDays} days)` :
+                            selectedInvoice.status === 'sent' ? 'Sent to Customer' :
+                              selectedInvoice.status === 'partial_paid' ? 'Partially Paid' :
+                                'Draft Invoice'}
                       </h3>
-                      <p className={`text-sm ${
-                        selectedInvoice.status === 'paid' ? 'text-green-700' :
-                        selectedInvoice.status === 'overdue' ? 'text-red-700' :
-                        selectedInvoice.status === 'sent' ? 'text-blue-700' :
-                        selectedInvoice.status === 'partial_paid' ? 'text-yellow-700' :
-                        'text-gray-700'
-                      }`}>
+                      <p className={`text-sm ${selectedInvoice.status === 'paid' ? 'text-green-700' :
+                          selectedInvoice.status === 'overdue' ? 'text-red-700' :
+                            selectedInvoice.status === 'sent' ? 'text-blue-700' :
+                              selectedInvoice.status === 'partial_paid' ? 'text-yellow-700' :
+                                'text-gray-700'
+                        }`}>
                         {selectedInvoice.paymentTerms}
                       </p>
                     </div>
@@ -834,11 +831,10 @@ export default function ServiceBillingPage() {
                   </div>
                   <div className="w-full bg-gray-200 rounded-full h-3">
                     <div
-                      className={`h-3 rounded-full ${
-                        selectedInvoice.paymentStatus === 'paid' ? 'bg-gradient-to-r from-green-500 to-emerald-500' :
-                        selectedInvoice.paymentStatus === 'partial' ? 'bg-gradient-to-r from-yellow-500 to-orange-500' :
-                        'bg-gray-300'
-                      }`}
+                      className={`h-3 rounded-full ${selectedInvoice.paymentStatus === 'paid' ? 'bg-gradient-to-r from-green-500 to-emerald-500' :
+                          selectedInvoice.paymentStatus === 'partial' ? 'bg-gradient-to-r from-yellow-500 to-orange-500' :
+                            'bg-gray-300'
+                        }`}
                       style={{ width: `${(selectedInvoice.paidAmount / selectedInvoice.totalAmount) * 100}%` }}
                     ></div>
                   </div>

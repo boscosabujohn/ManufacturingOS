@@ -244,9 +244,9 @@ export default function InstallationsPage() {
     completedJobs: mockInstallationJobs.filter(j => j.status === 'completed' || j.status === 'handed_over').length,
     avgCompletionRate: mockInstallationJobs.filter(j => j.actualDuration && j.estimatedDuration).length > 0
       ? mockInstallationJobs
-          .filter(j => j.actualDuration && j.estimatedDuration)
-          .reduce((sum, j) => sum + ((j.actualDuration! / j.estimatedDuration) * 100), 0) /
-        mockInstallationJobs.filter(j => j.actualDuration && j.estimatedDuration).length
+        .filter(j => j.actualDuration && j.estimatedDuration)
+        .reduce((sum, j) => sum + ((j.actualDuration! / j.estimatedDuration) * 100), 0) /
+      mockInstallationJobs.filter(j => j.actualDuration && j.estimatedDuration).length
       : 0,
   };
 
@@ -259,7 +259,7 @@ export default function InstallationsPage() {
   };
 
   return (
-    <div className="p-6 max-w-[1600px] mx-auto">
+    <div className="p-6 w-full">
       {/* Header */}
       <div className="mb-6">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">Installation Jobs</h1>
@@ -493,14 +493,14 @@ export default function InstallationsPage() {
                         <button
                           onClick={() => router.push(`/after-sales-service/installations/view/${job.id}`)}
                           className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-                         
+
                         >
                           <Eye className="h-4 w-4" />
                         </button>
                         <button
                           onClick={() => router.push(`/after-sales-service/installations/edit/${job.id}`)}
                           className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
-                         
+
                         >
                           <Edit className="h-4 w-4" />
                         </button>

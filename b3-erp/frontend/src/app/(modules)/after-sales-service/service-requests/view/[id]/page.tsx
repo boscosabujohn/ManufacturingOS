@@ -204,7 +204,7 @@ export default function ViewServiceRequestPage({ params }: { params: { id: strin
   const isResponseMet = ticket.firstResponseTime !== '';
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/20 to-indigo-50/20 p-6 space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -300,31 +300,28 @@ export default function ViewServiceRequestPage({ params }: { params: { id: strin
         <div className="flex gap-6">
           <button
             onClick={() => setActiveTab('details')}
-            className={`pb-3 px-1 border-b-2 text-sm font-medium transition-colors ${
-              activeTab === 'details'
+            className={`pb-3 px-1 border-b-2 text-sm font-medium transition-colors ${activeTab === 'details'
                 ? 'border-blue-600 text-blue-600'
                 : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-            }`}
+              }`}
           >
             Ticket Details
           </button>
           <button
             onClick={() => setActiveTab('activity')}
-            className={`pb-3 px-1 border-b-2 text-sm font-medium transition-colors ${
-              activeTab === 'activity'
+            className={`pb-3 px-1 border-b-2 text-sm font-medium transition-colors ${activeTab === 'activity'
                 ? 'border-blue-600 text-blue-600'
                 : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-            }`}
+              }`}
           >
             Activity Timeline ({activities.length})
           </button>
           <button
             onClick={() => setActiveTab('notes')}
-            className={`pb-3 px-1 border-b-2 text-sm font-medium transition-colors ${
-              activeTab === 'notes'
+            className={`pb-3 px-1 border-b-2 text-sm font-medium transition-colors ${activeTab === 'notes'
                 ? 'border-blue-600 text-blue-600'
                 : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-            }`}
+              }`}
           >
             Internal Notes ({notes.length})
           </button>

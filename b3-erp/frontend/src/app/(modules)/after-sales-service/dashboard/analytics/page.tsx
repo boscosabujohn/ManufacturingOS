@@ -121,7 +121,7 @@ export default function AnalyticsDashboard() {
   const maxRevenue = Math.max(...serviceTypeData.map(d => d.revenue));
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-6 w-full">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -481,10 +481,9 @@ export default function AnalyticsDashboard() {
                       <div className="flex items-center justify-center gap-2">
                         <div className="w-16 bg-gray-200 rounded-full h-2">
                           <div
-                            className={`h-2 rounded-full ${
-                              engineer.slaCompliance >= 95 ? 'bg-green-500' :
-                              engineer.slaCompliance >= 90 ? 'bg-yellow-500' : 'bg-red-500'
-                            }`}
+                            className={`h-2 rounded-full ${engineer.slaCompliance >= 95 ? 'bg-green-500' :
+                                engineer.slaCompliance >= 90 ? 'bg-yellow-500' : 'bg-red-500'
+                              }`}
                             style={{ width: `${engineer.slaCompliance}%` }}
                           />
                         </div>
@@ -604,8 +603,8 @@ export default function AnalyticsDashboard() {
             </div>
             <div className="text-xs text-gray-500 mt-1">
               {customerSatisfactionData[customerSatisfactionData.length - 1].npsScore >= 50 ? 'Excellent' :
-               customerSatisfactionData[customerSatisfactionData.length - 1].npsScore >= 30 ? 'Good' :
-               customerSatisfactionData[customerSatisfactionData.length - 1].npsScore >= 0 ? 'Needs Improvement' : 'Critical'}
+                customerSatisfactionData[customerSatisfactionData.length - 1].npsScore >= 30 ? 'Good' :
+                  customerSatisfactionData[customerSatisfactionData.length - 1].npsScore >= 0 ? 'Needs Improvement' : 'Critical'}
             </div>
           </div>
           <div className="bg-indigo-50 p-4 rounded-lg">

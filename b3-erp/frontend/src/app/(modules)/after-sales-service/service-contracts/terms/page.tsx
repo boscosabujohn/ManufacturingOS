@@ -239,7 +239,7 @@ export default function ContractTermsConfigPage() {
   };
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/20 to-indigo-50/20 p-6 space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -319,31 +319,28 @@ export default function ContractTermsConfigPage() {
         <div className="flex gap-6">
           <button
             onClick={() => setActiveTab('templates')}
-            className={`pb-3 px-1 border-b-2 text-sm font-medium transition-colors ${
-              activeTab === 'templates'
+            className={`pb-3 px-1 border-b-2 text-sm font-medium transition-colors ${activeTab === 'templates'
                 ? 'border-blue-600 text-blue-600'
                 : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-            }`}
+              }`}
           >
             Contract Templates ({templates.length})
           </button>
           <button
             onClick={() => setActiveTab('sla')}
-            className={`pb-3 px-1 border-b-2 text-sm font-medium transition-colors ${
-              activeTab === 'sla'
+            className={`pb-3 px-1 border-b-2 text-sm font-medium transition-colors ${activeTab === 'sla'
                 ? 'border-blue-600 text-blue-600'
                 : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-            }`}
+              }`}
           >
             SLA Presets ({slaPresets.length})
           </button>
           <button
             onClick={() => setActiveTab('clauses')}
-            className={`pb-3 px-1 border-b-2 text-sm font-medium transition-colors ${
-              activeTab === 'clauses'
+            className={`pb-3 px-1 border-b-2 text-sm font-medium transition-colors ${activeTab === 'clauses'
                 ? 'border-blue-600 text-blue-600'
                 : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-            }`}
+              }`}
           >
             Standard Clauses Library
           </button>
@@ -402,7 +399,7 @@ export default function ContractTermsConfigPage() {
                       setShowTemplateModal(true);
                     }}
                     className="p-2 text-gray-600 hover:bg-gray-100 rounded-md transition-colors"
-                   
+
                   >
                     <Edit className="w-4 h-4" />
                   </button>
@@ -412,13 +409,13 @@ export default function ContractTermsConfigPage() {
                       setTemplates([...templates, newTemplate]);
                     }}
                     className="p-2 text-gray-600 hover:bg-gray-100 rounded-md transition-colors"
-                   
+
                   >
                     <Copy className="w-4 h-4" />
                   </button>
                   <button
                     className="p-2 text-red-600 hover:bg-red-50 rounded-md transition-colors"
-                   
+
                   >
                     <Trash2 className="w-4 h-4" />
                   </button>
@@ -492,13 +489,13 @@ export default function ContractTermsConfigPage() {
                 <div className="flex items-center gap-2 ml-4">
                   <button
                     className="p-2 text-gray-600 hover:bg-gray-100 rounded-md transition-colors"
-                   
+
                   >
                     <Edit className="w-4 h-4" />
                   </button>
                   <button
                     className="p-2 text-red-600 hover:bg-red-50 rounded-md transition-colors"
-                   
+
                   >
                     <Trash2 className="w-4 h-4" />
                   </button>

@@ -115,7 +115,7 @@ export default function RenewContractPage({ params }: { params: { id: string } }
   };
 
   return (
-    <div className="p-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/20 to-indigo-50/20 p-6">
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Header */}
         <div className="flex items-center justify-between">
@@ -188,9 +188,8 @@ export default function RenewContractPage({ params }: { params: { id: string } }
         <div className="bg-white p-6 rounded-lg border border-gray-200">
           <h2 className="text-lg font-semibold text-gray-900 mb-4">Renewal Type</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <label className={`relative flex items-start p-4 border-2 rounded-lg cursor-pointer transition-all ${
-              renewalType === 'Standard' ? 'border-blue-600 bg-blue-50' : 'border-gray-200 hover:border-gray-300'
-            }`}>
+            <label className={`relative flex items-start p-4 border-2 rounded-lg cursor-pointer transition-all ${renewalType === 'Standard' ? 'border-blue-600 bg-blue-50' : 'border-gray-200 hover:border-gray-300'
+              }`}>
               <input
                 type="radio"
                 value="Standard"
@@ -207,9 +206,8 @@ export default function RenewContractPage({ params }: { params: { id: string } }
               </div>
             </label>
 
-            <label className={`relative flex items-start p-4 border-2 rounded-lg cursor-pointer transition-all ${
-              renewalType === 'Modified' ? 'border-blue-600 bg-blue-50' : 'border-gray-200 hover:border-gray-300'
-            }`}>
+            <label className={`relative flex items-start p-4 border-2 rounded-lg cursor-pointer transition-all ${renewalType === 'Modified' ? 'border-blue-600 bg-blue-50' : 'border-gray-200 hover:border-gray-300'
+              }`}>
               <input
                 type="radio"
                 value="Modified"

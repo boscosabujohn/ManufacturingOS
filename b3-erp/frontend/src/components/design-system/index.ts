@@ -1,12 +1,10 @@
 // Design System Documentation Components
-export { DesignTokens } from './DesignTokens';
-export type { ColorToken, SpacingToken, TypographyToken, ShadowToken, DesignTokensProps } from './DesignTokens';
+export { default as DesignTokens } from './DesignTokens';
+export type { ColorToken, SpacingToken, TypographyToken, ShadowToken } from './DesignTokens';
 
-export { ComponentVariantMatrix } from './ComponentVariantMatrix';
-export type { ComponentState, ComponentVariant, ComponentSize, ComponentCategory, ComponentVariantMatrixProps } from './ComponentVariantMatrix';
+export { default as ComponentVariantMatrix } from './ComponentVariantMatrix';
 
-export { IconUsageGuide } from './IconUsageGuide';
-export type { IconSize, IconCategory, IconUsageGuideProps } from './IconUsageGuide';
+export { default as IconUsageGuide } from './IconUsageGuide';
 
 export { ColorUsageGuidelines } from './ColorUsageGuidelines';
 export type { SemanticColor, UsageContext, ColorGuideline, ColorUsageGuidelinesProps } from './ColorUsageGuidelines';

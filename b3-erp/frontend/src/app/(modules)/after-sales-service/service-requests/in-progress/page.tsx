@@ -1,18 +1,18 @@
 'use client';
 
 import React, { useState } from 'react';
-import { 
-  Settings, 
-  Clock, 
-  User, 
-  Phone, 
-  Mail, 
-  MapPin, 
-  Calendar, 
-  Search, 
-  Filter, 
-  Eye, 
-  Edit, 
+import {
+  Settings,
+  Clock,
+  User,
+  Phone,
+  Mail,
+  MapPin,
+  Calendar,
+  Search,
+  Filter,
+  Eye,
+  Edit,
   MessageSquare,
   Flag,
   Tag,
@@ -411,17 +411,17 @@ const InProgressServiceRequestsPage = () => {
 
   const filteredRequests = serviceRequests.filter(request => {
     const matchesSearch = request.ticketNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         request.customer.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         request.customer.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         request.issue.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         request.product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         request.assignedTo.toLowerCase().includes(searchTerm.toLowerCase());
-    
+      request.customer.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      request.customer.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      request.issue.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      request.product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      request.assignedTo.toLowerCase().includes(searchTerm.toLowerCase());
+
     const matchesPriority = !filterPriority || request.issue.priority === filterPriority;
     const matchesCategory = !filterCategory || request.issue.category === filterCategory;
     const matchesAssignee = !filterAssignee || request.assignedTo === filterAssignee;
     const matchesStatus = !filterStatus || request.status === filterStatus;
-    
+
     return matchesSearch && matchesPriority && matchesCategory && matchesAssignee && matchesStatus;
   });
 
@@ -476,7 +476,7 @@ const InProgressServiceRequestsPage = () => {
   };
 
   return (
-    <div className="p-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/20 to-indigo-50/20 p-6">
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-gray-900 mb-2">In Progress Service Requests</h1>
         <p className="text-gray-600">Monitor and manage service requests currently being worked on</p>
@@ -704,8 +704,8 @@ const InProgressServiceRequestsPage = () => {
                         </span>
                       </div>
                       <div className="w-full bg-gray-200 rounded-full h-2 mt-2">
-                        <div 
-                          className="bg-blue-600 h-2 rounded-full" 
+                        <div
+                          className="bg-blue-600 h-2 rounded-full"
                           style={{ width: `${request.progressPercentage}%` }}
                         ></div>
                       </div>
@@ -735,25 +735,25 @@ const InProgressServiceRequestsPage = () => {
                       <button
                         onClick={() => setSelectedRequest(request)}
                         className="text-blue-600 hover:text-blue-800"
-                       
+
                       >
                         <Eye className="h-4 w-4" />
                       </button>
                       <button
                         className="text-green-600 hover:text-green-800"
-                       
+
                       >
                         <Edit className="h-4 w-4" />
                       </button>
                       <button
                         className="text-purple-600 hover:text-purple-800"
-                       
+
                       >
                         <MessageSquare className="h-4 w-4" />
                       </button>
                       <button
                         className="text-gray-600 hover:text-gray-800"
-                       
+
                       >
                         <ExternalLink className="h-4 w-4" />
                       </button>
@@ -858,8 +858,8 @@ const InProgressServiceRequestsPage = () => {
               <div className="mt-6">
                 <h3 className="font-semibold text-gray-900 mb-3">Progress Tracking</h3>
                 <div className="w-full bg-gray-200 rounded-full h-4">
-                  <div 
-                    className="bg-blue-600 h-4 rounded-full flex items-center justify-center" 
+                  <div
+                    className="bg-blue-600 h-4 rounded-full flex items-center justify-center"
                     style={{ width: `${selectedRequest.progressPercentage}%` }}
                   >
                     <span className="text-xs text-white font-medium">{selectedRequest.progressPercentage}%</span>

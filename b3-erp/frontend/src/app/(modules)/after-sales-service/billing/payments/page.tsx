@@ -227,7 +227,7 @@ export default function PaymentsPage() {
   };
 
   return (
-    <div className="p-6 max-w-[1600px] mx-auto">
+    <div className="p-6 w-full">
       {/* Header */}
       <div className="mb-6">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">Payment Collections</h1>
@@ -426,7 +426,7 @@ export default function PaymentsPage() {
                     <button
                       onClick={() => router.push(`/after-sales-service/billing/view/${payment.invoiceId}`)}
                       className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-                     
+
                     >
                       <Eye className="h-4 w-4" />
                     </button>

@@ -245,15 +245,15 @@ export default function ServiceContractRenewalsPage() {
 
   // Filter and search renewals
   const filteredRenewals = renewals.filter(renewal => {
-    const matchesSearch = 
+    const matchesSearch =
       renewal.contractNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
       renewal.customerName.toLowerCase().includes(searchTerm.toLowerCase()) ||
       renewal.accountManager.toLowerCase().includes(searchTerm.toLowerCase());
-    
+
     const matchesStatus = selectedStatus === 'all' || renewal.renewalStatus === selectedStatus;
     const matchesPriority = selectedPriority === 'all' || renewal.priorityLevel === selectedPriority;
     const matchesThreat = selectedThreat === 'all' || renewal.competitorThreat === selectedThreat;
-    
+
     return matchesSearch && matchesStatus && matchesPriority && matchesThreat;
   });
 
@@ -261,12 +261,12 @@ export default function ServiceContractRenewalsPage() {
   const sortedRenewals = [...filteredRenewals].sort((a, b) => {
     let aValue: any = a[sortBy as keyof ContractRenewal];
     let bValue: any = b[sortBy as keyof ContractRenewal];
-    
+
     if (typeof aValue === 'string') {
       aValue = aValue.toLowerCase();
       bValue = bValue.toLowerCase();
     }
-    
+
     if (sortOrder === 'asc') {
       return aValue < bValue ? -1 : aValue > bValue ? 1 : 0;
     } else {
@@ -353,7 +353,7 @@ export default function ServiceContractRenewalsPage() {
   const stats = calculateStats();
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/20 to-indigo-50/20 p-6 space-y-6">
       {/* Header */}
       <div className="flex justify-between items-center">
         <div>
@@ -389,7 +389,7 @@ export default function ServiceContractRenewalsPage() {
             <RefreshCw className="w-8 h-8 text-blue-600" />
           </div>
         </div>
-        
+
         <div className="bg-white p-4 rounded-lg border">
           <div className="flex items-center justify-between">
             <div>
@@ -399,7 +399,7 @@ export default function ServiceContractRenewalsPage() {
             <DollarSign className="w-8 h-8 text-blue-600" />
           </div>
         </div>
-        
+
         <div className="bg-white p-4 rounded-lg border">
           <div className="flex items-center justify-between">
             <div>
@@ -409,7 +409,7 @@ export default function ServiceContractRenewalsPage() {
             <TrendingUp className="w-8 h-8 text-green-600" />
           </div>
         </div>
-        
+
         <div className="bg-white p-4 rounded-lg border">
           <div className="flex items-center justify-between">
             <div>
@@ -421,7 +421,7 @@ export default function ServiceContractRenewalsPage() {
             <TrendingUp className="w-8 h-8 text-blue-600" />
           </div>
         </div>
-        
+
         <div className="bg-white p-4 rounded-lg border">
           <div className="flex items-center justify-between">
             <div>
@@ -431,7 +431,7 @@ export default function ServiceContractRenewalsPage() {
             <AlertTriangle className="w-8 h-8 text-orange-600" />
           </div>
         </div>
-        
+
         <div className="bg-white p-4 rounded-lg border">
           <div className="flex items-center justify-between">
             <div>
@@ -491,7 +491,7 @@ export default function ServiceContractRenewalsPage() {
               <option value="renewed">Renewed</option>
               <option value="rejected">Rejected</option>
             </select>
-            
+
             <select
               className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               value={selectedPriority}
@@ -503,7 +503,7 @@ export default function ServiceContractRenewalsPage() {
               <option value="medium">Medium</option>
               <option value="low">Low</option>
             </select>
-            
+
             <select
               className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               value={selectedThreat}
@@ -550,8 +550,8 @@ export default function ServiceContractRenewalsPage() {
             </thead>
             <tbody className="divide-y divide-gray-200">
               {sortedRenewals.map((renewal) => (
-                <tr 
-                  key={renewal.id} 
+                <tr
+                  key={renewal.id}
                   className="hover:bg-gray-50 cursor-pointer"
                   onClick={() => handleRenewalDetails(renewal)}
                 >
@@ -639,7 +639,7 @@ export default function ServiceContractRenewalsPage() {
                           router.push(`/after-sales-service/service-contracts/view/${renewal.id}`);
                         }}
                         className="text-blue-600 hover:text-blue-900"
-                       
+
                       >
                         <Eye className="w-4 h-4" />
                       </button>
@@ -649,7 +649,7 @@ export default function ServiceContractRenewalsPage() {
                           router.push(`/after-sales-service/service-contracts/edit/${renewal.id}`);
                         }}
                         className="text-gray-600 hover:text-gray-900"
-                       
+
                       >
                         <Edit className="w-4 h-4" />
                       </button>
@@ -659,7 +659,7 @@ export default function ServiceContractRenewalsPage() {
                           // Handle send proposal
                         }}
                         className="text-green-600 hover:text-green-900"
-                       
+
                       >
                         <Send className="w-4 h-4" />
                       </button>
@@ -669,7 +669,7 @@ export default function ServiceContractRenewalsPage() {
                           // Handle contact customer
                         }}
                         className="text-purple-600 hover:text-purple-900"
-                       
+
                       >
                         <Phone className="w-4 h-4" />
                       </button>

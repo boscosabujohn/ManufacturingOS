@@ -1,18 +1,18 @@
 'use client';
 
 import React, { useState } from 'react';
-import { 
-  AlertCircle, 
-  Clock, 
-  User, 
-  Phone, 
-  Mail, 
-  MapPin, 
-  Calendar, 
-  Search, 
-  Filter, 
-  Eye, 
-  Edit, 
+import {
+  AlertCircle,
+  Clock,
+  User,
+  Phone,
+  Mail,
+  MapPin,
+  Calendar,
+  Search,
+  Filter,
+  Eye,
+  Edit,
   MessageSquare,
   Flag,
   Tag,
@@ -334,15 +334,15 @@ const OpenServiceRequestsPage = () => {
 
   const filteredRequests = serviceRequests.filter(request => {
     const matchesSearch = request.ticketNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         request.customer.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         request.customer.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         request.issue.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         request.product.name.toLowerCase().includes(searchTerm.toLowerCase());
-    
+      request.customer.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      request.customer.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      request.issue.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      request.product.name.toLowerCase().includes(searchTerm.toLowerCase());
+
     const matchesPriority = !filterPriority || request.issue.priority === filterPriority;
     const matchesCategory = !filterCategory || request.issue.category === filterCategory;
     const matchesSLA = !filterSLA || request.slaStatus === filterSLA;
-    
+
     return matchesSearch && matchesPriority && matchesCategory && matchesSLA;
   });
 
@@ -375,7 +375,7 @@ const OpenServiceRequestsPage = () => {
   };
 
   return (
-    <div className="p-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/20 to-indigo-50/20 p-6">
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-gray-900 mb-2">Open Service Requests</h1>
         <p className="text-gray-600">Manage and track all open service requests requiring attention</p>
@@ -606,25 +606,25 @@ const OpenServiceRequestsPage = () => {
                       <button
                         onClick={() => setSelectedRequest(request)}
                         className="text-blue-600 hover:text-blue-800"
-                       
+
                       >
                         <Eye className="h-4 w-4" />
                       </button>
                       <button
                         className="text-green-600 hover:text-green-800"
-                       
+
                       >
                         <Edit className="h-4 w-4" />
                       </button>
                       <button
                         className="text-purple-600 hover:text-purple-800"
-                       
+
                       >
                         <MessageSquare className="h-4 w-4" />
                       </button>
                       <button
                         className="text-gray-600 hover:text-gray-800"
-                       
+
                       >
                         <ExternalLink className="h-4 w-4" />
                       </button>

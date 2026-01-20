@@ -295,7 +295,7 @@ export default function WarrantiesPage() {
   };
 
   return (
-    <div className="p-6 max-w-[1600px] mx-auto">
+    <div className="p-6 w-full">
       {/* Header */}
       <div className="mb-6">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">Warranties</h1>
@@ -515,10 +515,9 @@ export default function WarrantiesPage() {
                         <span className="text-sm font-medium text-gray-900">{warranty.remainingCoverage}%</span>
                         <div className="w-24 h-2 bg-gray-200 rounded-full mt-1">
                           <div
-                            className={`h-full rounded-full ${
-                              warranty.remainingCoverage >= 80 ? 'bg-green-500' :
-                              warranty.remainingCoverage >= 50 ? 'bg-yellow-500' : 'bg-red-500'
-                            }`}
+                            className={`h-full rounded-full ${warranty.remainingCoverage >= 80 ? 'bg-green-500' :
+                                warranty.remainingCoverage >= 50 ? 'bg-yellow-500' : 'bg-red-500'
+                              }`}
                             style={{ width: `${warranty.remainingCoverage}%` }}
                           ></div>
                         </div>
@@ -529,7 +528,7 @@ export default function WarrantiesPage() {
                         <button
                           onClick={() => router.push(`/after-sales-service/warranties/view/${warranty.id}`)}
                           className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-                         
+
                         >
                           <Eye className="h-4 w-4" />
                         </button>
@@ -537,7 +536,7 @@ export default function WarrantiesPage() {
                           <button
                             onClick={() => router.push(`/after-sales-service/warranties/claims/add?warrantyId=${warranty.id}`)}
                             className="p-2 text-orange-600 hover:bg-orange-50 rounded-lg transition-colors"
-                           
+
                           >
                             <FileText className="h-4 w-4" />
                           </button>
@@ -545,7 +544,7 @@ export default function WarrantiesPage() {
                         <button
                           onClick={() => router.push(`/after-sales-service/warranties/edit/${warranty.id}`)}
                           className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
-                         
+
                         >
                           <Edit className="h-4 w-4" />
                         </button>

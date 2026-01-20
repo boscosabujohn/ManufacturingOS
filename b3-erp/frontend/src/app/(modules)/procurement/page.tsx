@@ -339,7 +339,7 @@ export default function ProcurementDashboard() {
 
   return (
     <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-green-50 to-emerald-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="max-w-7xl mx-auto space-y-6">
+      <div className="w-full space-y-6">
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
@@ -349,9 +349,8 @@ export default function ProcurementDashboard() {
           <div className="flex items-center gap-3">
             <button
               onClick={handleRefresh}
-              className={`flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-all ${
-                isRefreshing ? 'animate-pulse' : ''
-              }`}
+              className={`flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-all ${isRefreshing ? 'animate-pulse' : ''
+                }`}
             >
               <RefreshCw className={`h-4 w-4 ${isRefreshing ? 'animate-spin' : ''}`} />
               Refresh
@@ -444,12 +443,12 @@ export default function ProcurementDashboard() {
               <AreaChart data={spendTrend}>
                 <defs>
                   <linearGradient id="colorSpent" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor={CHART_COLORS.primary} stopOpacity={0.8}/>
-                    <stop offset="95%" stopColor={CHART_COLORS.primary} stopOpacity={0.1}/>
+                    <stop offset="5%" stopColor={CHART_COLORS.primary} stopOpacity={0.8} />
+                    <stop offset="95%" stopColor={CHART_COLORS.primary} stopOpacity={0.1} />
                   </linearGradient>
                   <linearGradient id="colorBudget" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor={CHART_COLORS.success} stopOpacity={0.8}/>
-                    <stop offset="95%" stopColor={CHART_COLORS.success} stopOpacity={0.1}/>
+                    <stop offset="5%" stopColor={CHART_COLORS.success} stopOpacity={0.8} />
+                    <stop offset="95%" stopColor={CHART_COLORS.success} stopOpacity={0.1} />
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />

@@ -221,15 +221,15 @@ export default function ActiveServiceContractsPage() {
 
   // Filter and search contracts
   const filteredContracts = contracts.filter(contract => {
-    const matchesSearch = 
+    const matchesSearch =
       contract.contractNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
       contract.customerName.toLowerCase().includes(searchTerm.toLowerCase()) ||
       contract.technicianAssigned.toLowerCase().includes(searchTerm.toLowerCase());
-    
+
     const matchesType = selectedType === 'all' || contract.contractType === selectedType;
     const matchesTier = selectedTier === 'all' || contract.pricingTier === selectedTier;
     const matchesPriority = selectedPriority === 'all' || contract.priority === selectedPriority;
-    
+
     return matchesSearch && matchesType && matchesTier && matchesPriority;
   });
 
@@ -237,12 +237,12 @@ export default function ActiveServiceContractsPage() {
   const sortedContracts = [...filteredContracts].sort((a, b) => {
     let aValue: any = a[sortBy as keyof ActiveServiceContract];
     let bValue: any = b[sortBy as keyof ActiveServiceContract];
-    
+
     if (typeof aValue === 'string') {
       aValue = aValue.toLowerCase();
       bValue = bValue.toLowerCase();
     }
-    
+
     if (sortOrder === 'asc') {
       return aValue < bValue ? -1 : aValue > bValue ? 1 : 0;
     } else {
@@ -304,7 +304,7 @@ export default function ActiveServiceContractsPage() {
   const stats = calculateStats();
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/20 to-indigo-50/20 p-6 space-y-6">
       {/* Header */}
       <div className="flex justify-between items-center">
         <div>
@@ -340,7 +340,7 @@ export default function ActiveServiceContractsPage() {
             <FileText className="w-8 h-8 text-blue-600" />
           </div>
         </div>
-        
+
         <div className="bg-white p-4 rounded-lg border">
           <div className="flex items-center justify-between">
             <div>
@@ -350,7 +350,7 @@ export default function ActiveServiceContractsPage() {
             <DollarSign className="w-8 h-8 text-green-600" />
           </div>
         </div>
-        
+
         <div className="bg-white p-4 rounded-lg border">
           <div className="flex items-center justify-between">
             <div>
@@ -360,7 +360,7 @@ export default function ActiveServiceContractsPage() {
             <AlertCircle className="w-8 h-8 text-red-600" />
           </div>
         </div>
-        
+
         <div className="bg-white p-4 rounded-lg border">
           <div className="flex items-center justify-between">
             <div>
@@ -372,7 +372,7 @@ export default function ActiveServiceContractsPage() {
             <TrendingUp className="w-8 h-8 text-blue-600" />
           </div>
         </div>
-        
+
         <div className="bg-white p-4 rounded-lg border">
           <div className="flex items-center justify-between">
             <div>
@@ -382,7 +382,7 @@ export default function ActiveServiceContractsPage() {
             <AlertCircle className="w-8 h-8 text-red-600" />
           </div>
         </div>
-        
+
         <div className="bg-white p-4 rounded-lg border">
           <div className="flex items-center justify-between">
             <div>
@@ -439,7 +439,7 @@ export default function ActiveServiceContractsPage() {
               <option value="Parts & Labor">Parts & Labor</option>
               <option value="Extended Warranty">Extended Warranty</option>
             </select>
-            
+
             <select
               className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               value={selectedTier}
@@ -451,7 +451,7 @@ export default function ActiveServiceContractsPage() {
               <option value="Premium">Premium</option>
               <option value="Enterprise">Enterprise</option>
             </select>
-            
+
             <select
               className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               value={selectedPriority}
@@ -498,8 +498,8 @@ export default function ActiveServiceContractsPage() {
             </thead>
             <tbody className="divide-y divide-gray-200">
               {sortedContracts.map((contract) => (
-                <tr 
-                  key={contract.id} 
+                <tr
+                  key={contract.id}
                   className="hover:bg-gray-50 cursor-pointer"
                   onClick={() => handleContractClick(contract)}
                 >

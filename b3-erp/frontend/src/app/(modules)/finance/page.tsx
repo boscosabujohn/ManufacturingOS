@@ -212,7 +212,7 @@ export default function FinanceDashboard() {
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 to-blue-50">
       <div className="flex-1 overflow-y-auto overflow-x-hidden">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 max-w-7xl">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full">
           {/* Header Actions */}
           <div className="mb-6 flex items-center justify-between gap-3">
             <div className="flex items-center gap-3">
@@ -269,316 +269,315 @@ export default function FinanceDashboard() {
             </div>
           </div>
 
-      {/* Key Metrics - Top Row */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-        {isLoading ? (
-          <>
-            <CardSkeleton />
-            <CardSkeleton />
-            <CardSkeleton />
-            <CardSkeleton />
-          </>
-        ) : (
-          <>
-            <div className="relative group">
-              <KPICard
-                value={formatCurrency(dashboardData.cashPosition.totalCash)}
-                icon={Wallet}
-                color="blue"
-                trend={{
-                  value: dashboardData.cashPosition.change,
-                  isPositive: dashboardData.cashPosition.change > 0,
-                  label: 'vs last month'
-                }}
-              />
-              <button
-                onClick={() => openModal('viewCashPosition')}
-                className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity bg-white/90 hover:bg-white text-blue-600 px-3 py-1.5 rounded-lg text-sm font-medium shadow-md flex items-center gap-1"
-              >
-                <Eye className="w-4 h-4" />
-                View Details
-              </button>
-            </div>
-            <div className="relative group">
-              <KPICard
-                value={formatCurrency(dashboardData.accountsReceivable.total)}
-                icon={TrendingUp}
-                color="green"
-                description={`Current: ${formatCurrency(dashboardData.accountsReceivable.current)}`}
-              />
-              <button
-                onClick={() => openModal('viewReceivables')}
-                className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity bg-white/90 hover:bg-white text-green-600 px-3 py-1.5 rounded-lg text-sm font-medium shadow-md flex items-center gap-1"
-              >
-                <Eye className="w-4 h-4" />
-                View Details
-              </button>
-            </div>
-            <div className="relative group">
-              <KPICard
-                value={formatCurrency(dashboardData.accountsPayable.total)}
-                icon={TrendingDown}
-                color="red"
-                description={`Current: ${formatCurrency(dashboardData.accountsPayable.current)}`}
-              />
-              <button
-                onClick={() => openModal('viewPayables')}
-                className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity bg-white/90 hover:bg-white text-red-600 px-3 py-1.5 rounded-lg text-sm font-medium shadow-md flex items-center gap-1"
-              >
-                <Eye className="w-4 h-4" />
-                View Details
-              </button>
-            </div>
-            <div className="relative group">
-              <KPICard
-                value={formatCurrency(dashboardData.netProfit.amount)}
-                icon={PieChart}
-                color="purple"
-                trend={{
-                  value: dashboardData.netProfit.change,
-                  isPositive: true
-                }}
-                description={`${dashboardData.netProfit.margin}% Margin`}
-              />
-              <button
-                onClick={() => openModal('viewProfit')}
-                className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity bg-white/90 hover:bg-white text-purple-600 px-3 py-1.5 rounded-lg text-sm font-medium shadow-md flex items-center gap-1"
-              >
-                <Eye className="w-4 h-4" />
-                View Details
-              </button>
-            </div>
-          </>
-        )}
-      </div>
-
-      {/* Quick Actions */}
-      <div className="bg-white rounded-xl shadow-lg p-6 mb-6">
-        <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-          <ArrowRight className="w-5 h-5 text-blue-600" />
-          Quick Actions
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {quickActions.map((action) => {
-            const colorMap: any = {
-              blue: 'from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700',
-              green: 'from-green-500 to-green-600 hover:from-green-600 hover:to-green-700',
-              purple: 'from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700',
-              orange: 'from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700',
-            };
-            return (
-              <Link
-                key={action.label}
-                href={action.href}
-                className={`bg-gradient-to-r ${colorMap[action.color]} text-white p-4 rounded-lg shadow-md transition-all hover:shadow-xl flex items-center gap-3`}
-              >
-                <action.icon className="w-8 h-8" />
-                <span className="font-semibold">{action.label}</span>
-              </Link>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* Middle Row - Revenue/Expense & Cash Flow */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-        {/* Revenue vs Expense */}
-        <div className="bg-white rounded-xl shadow-lg p-6">
-          <h2 className="text-xl font-bold text-gray-900 mb-4">Monthly Revenue vs Expense</h2>
-          <div className="space-y-4">
-            <div>
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-medium text-gray-600">Revenue</span>
-                <div className="flex items-center gap-2">
-                  <span className="text-lg font-bold text-green-600">
-                    {formatCurrency(dashboardData.monthlyRevenue.current)}
-                  </span>
-                  <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">
-                    +{dashboardData.monthlyRevenue.change}%
-                  </span>
-                </div>
-              </div>
-              <div className="w-full bg-gray-200 rounded-full h-3">
-                <div className="bg-green-500 h-3 rounded-full" style={{ width: '75%' }}></div>
-              </div>
-            </div>
-
-            <div>
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-medium text-gray-600">Expense</span>
-                <div className="flex items-center gap-2">
-                  <span className="text-lg font-bold text-red-600">
-                    {formatCurrency(dashboardData.monthlyExpense.current)}
-                  </span>
-                  <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">
-                    {dashboardData.monthlyExpense.change}%
-                  </span>
-                </div>
-              </div>
-              <div className="w-full bg-gray-200 rounded-full h-3">
-                <div className="bg-red-500 h-3 rounded-full" style={{ width: '48%' }}></div>
-              </div>
-            </div>
-
-            <div className="pt-4 border-t border-gray-200">
-              <div className="flex items-center justify-between">
-                <span className="text-sm font-medium text-gray-600">Net Profit</span>
-                <span className="text-xl font-bold text-purple-600">
-                  {formatCurrency(dashboardData.monthlyRevenue.current - dashboardData.monthlyExpense.current)}
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Anticipated Cash Flow */}
-        <div className="bg-white rounded-xl shadow-lg p-6">
-          <h2 className="text-xl font-bold text-gray-900 mb-4">Anticipated Cash Flow</h2>
-          <div className="space-y-4">
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-              <div className="flex items-center justify-between mb-2">
-                <div className="flex items-center gap-2">
-                  <ArrowUpRight className="w-5 h-5 text-green-600" />
-                  <span className="font-semibold text-gray-900">Expected Receipts</span>
-                </div>
-                <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">
-                  {dashboardData.anticipatedReceipts.count} items
-                </span>
-              </div>
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-gray-600">This Week</p>
-                  <p className="text-xl font-bold text-green-600">
-                    {formatCurrency(dashboardData.anticipatedReceipts.thisWeek)}
-                  </p>
-                </div>
-                <div>
-                  <p className="text-sm text-gray-600">This Month</p>
-                  <p className="text-xl font-bold text-green-600">
-                    {formatCurrency(dashboardData.anticipatedReceipts.thisMonth)}
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
-              <div className="flex items-center justify-between mb-2">
-                <div className="flex items-center gap-2">
-                  <ArrowDownRight className="w-5 h-5 text-orange-600" />
-                  <span className="font-semibold text-gray-900">Expected Payments</span>
-                </div>
-                <span className="text-xs bg-orange-100 text-orange-700 px-2 py-1 rounded">
-                  {dashboardData.anticipatedPayments.count} items
-                </span>
-              </div>
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-gray-600">This Week</p>
-                  <p className="text-xl font-bold text-orange-600">
-                    {formatCurrency(dashboardData.anticipatedPayments.thisWeek)}
-                  </p>
-                </div>
-                <div>
-                  <p className="text-sm text-gray-600">This Month</p>
-                  <p className="text-xl font-bold text-orange-600">
-                    {formatCurrency(dashboardData.anticipatedPayments.thisMonth)}
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="pt-2 border-t border-gray-200">
-              <div className="flex items-center justify-between">
-                <span className="text-sm font-medium text-gray-600">Net Cash Flow (This Month)</span>
-                <span className="text-xl font-bold text-blue-600">
-                  {formatCurrency(
-                    dashboardData.anticipatedReceipts.thisMonth - dashboardData.anticipatedPayments.thisMonth
-                  )}
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Bottom Row - Recent Transactions & Financial Reports */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Recent Transactions */}
-        <div className="bg-white rounded-xl shadow-lg p-6">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-xl font-bold text-gray-900">Recent Transactions</h2>
-            <Link href="/finance/transactions" className="text-blue-600 hover:text-blue-700 text-sm font-medium">
-              View All →
-            </Link>
-          </div>
-          <div className="space-y-3">
-            {recentTransactions.map((transaction) => (
-              <div
-                key={transaction.id}
-                className="flex items-center justify-between p-3 bg-gray-50 hover:bg-gray-100 rounded-lg transition-colors"
-              >
-                <div className="flex items-center gap-3">
-                  <div
-                    className={`w-10 h-10 rounded-lg flex items-center justify-center ${
-                      transaction.amount > 0 ? 'bg-green-100' : 'bg-red-100'
-                    }`}
+          {/* Key Metrics - Top Row */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+            {isLoading ? (
+              <>
+                <CardSkeleton />
+                <CardSkeleton />
+                <CardSkeleton />
+                <CardSkeleton />
+              </>
+            ) : (
+              <>
+                <div className="relative group">
+                  <KPICard
+                    value={formatCurrency(dashboardData.cashPosition.totalCash)}
+                    icon={Wallet}
+                    color="blue"
+                    trend={{
+                      value: dashboardData.cashPosition.change,
+                      isPositive: dashboardData.cashPosition.change > 0,
+                      label: 'vs last month'
+                    }}
+                  />
+                  <button
+                    onClick={() => openModal('viewCashPosition')}
+                    className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity bg-white/90 hover:bg-white text-blue-600 px-3 py-1.5 rounded-lg text-sm font-medium shadow-md flex items-center gap-1"
                   >
-                    {transaction.amount > 0 ? (
+                    <Eye className="w-4 h-4" />
+                    View Details
+                  </button>
+                </div>
+                <div className="relative group">
+                  <KPICard
+                    value={formatCurrency(dashboardData.accountsReceivable.total)}
+                    icon={TrendingUp}
+                    color="green"
+                    description={`Current: ${formatCurrency(dashboardData.accountsReceivable.current)}`}
+                  />
+                  <button
+                    onClick={() => openModal('viewReceivables')}
+                    className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity bg-white/90 hover:bg-white text-green-600 px-3 py-1.5 rounded-lg text-sm font-medium shadow-md flex items-center gap-1"
+                  >
+                    <Eye className="w-4 h-4" />
+                    View Details
+                  </button>
+                </div>
+                <div className="relative group">
+                  <KPICard
+                    value={formatCurrency(dashboardData.accountsPayable.total)}
+                    icon={TrendingDown}
+                    color="red"
+                    description={`Current: ${formatCurrency(dashboardData.accountsPayable.current)}`}
+                  />
+                  <button
+                    onClick={() => openModal('viewPayables')}
+                    className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity bg-white/90 hover:bg-white text-red-600 px-3 py-1.5 rounded-lg text-sm font-medium shadow-md flex items-center gap-1"
+                  >
+                    <Eye className="w-4 h-4" />
+                    View Details
+                  </button>
+                </div>
+                <div className="relative group">
+                  <KPICard
+                    value={formatCurrency(dashboardData.netProfit.amount)}
+                    icon={PieChart}
+                    color="purple"
+                    trend={{
+                      value: dashboardData.netProfit.change,
+                      isPositive: true
+                    }}
+                    description={`${dashboardData.netProfit.margin}% Margin`}
+                  />
+                  <button
+                    onClick={() => openModal('viewProfit')}
+                    className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity bg-white/90 hover:bg-white text-purple-600 px-3 py-1.5 rounded-lg text-sm font-medium shadow-md flex items-center gap-1"
+                  >
+                    <Eye className="w-4 h-4" />
+                    View Details
+                  </button>
+                </div>
+              </>
+            )}
+          </div>
+
+          {/* Quick Actions */}
+          <div className="bg-white rounded-xl shadow-lg p-6 mb-6">
+            <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+              <ArrowRight className="w-5 h-5 text-blue-600" />
+              Quick Actions
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              {quickActions.map((action) => {
+                const colorMap: any = {
+                  blue: 'from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700',
+                  green: 'from-green-500 to-green-600 hover:from-green-600 hover:to-green-700',
+                  purple: 'from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700',
+                  orange: 'from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700',
+                };
+                return (
+                  <Link
+                    key={action.label}
+                    href={action.href}
+                    className={`bg-gradient-to-r ${colorMap[action.color]} text-white p-4 rounded-lg shadow-md transition-all hover:shadow-xl flex items-center gap-3`}
+                  >
+                    <action.icon className="w-8 h-8" />
+                    <span className="font-semibold">{action.label}</span>
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Middle Row - Revenue/Expense & Cash Flow */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+            {/* Revenue vs Expense */}
+            <div className="bg-white rounded-xl shadow-lg p-6">
+              <h2 className="text-xl font-bold text-gray-900 mb-4">Monthly Revenue vs Expense</h2>
+              <div className="space-y-4">
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-sm font-medium text-gray-600">Revenue</span>
+                    <div className="flex items-center gap-2">
+                      <span className="text-lg font-bold text-green-600">
+                        {formatCurrency(dashboardData.monthlyRevenue.current)}
+                      </span>
+                      <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">
+                        +{dashboardData.monthlyRevenue.change}%
+                      </span>
+                    </div>
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-3">
+                    <div className="bg-green-500 h-3 rounded-full" style={{ width: '75%' }}></div>
+                  </div>
+                </div>
+
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-sm font-medium text-gray-600">Expense</span>
+                    <div className="flex items-center gap-2">
+                      <span className="text-lg font-bold text-red-600">
+                        {formatCurrency(dashboardData.monthlyExpense.current)}
+                      </span>
+                      <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">
+                        {dashboardData.monthlyExpense.change}%
+                      </span>
+                    </div>
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-3">
+                    <div className="bg-red-500 h-3 rounded-full" style={{ width: '48%' }}></div>
+                  </div>
+                </div>
+
+                <div className="pt-4 border-t border-gray-200">
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm font-medium text-gray-600">Net Profit</span>
+                    <span className="text-xl font-bold text-purple-600">
+                      {formatCurrency(dashboardData.monthlyRevenue.current - dashboardData.monthlyExpense.current)}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Anticipated Cash Flow */}
+            <div className="bg-white rounded-xl shadow-lg p-6">
+              <h2 className="text-xl font-bold text-gray-900 mb-4">Anticipated Cash Flow</h2>
+              <div className="space-y-4">
+                <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-2">
                       <ArrowUpRight className="w-5 h-5 text-green-600" />
-                    ) : (
-                      <ArrowDownRight className="w-5 h-5 text-red-600" />
-                    )}
+                      <span className="font-semibold text-gray-900">Expected Receipts</span>
+                    </div>
+                    <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">
+                      {dashboardData.anticipatedReceipts.count} items
+                    </span>
                   </div>
-                  <div>
-                    <p className="font-semibold text-gray-900">{transaction.number}</p>
-                    <p className="text-sm text-gray-500">
-                      {transaction.type} • {transaction.date}
-                    </p>
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm text-gray-600">This Week</p>
+                      <p className="text-xl font-bold text-green-600">
+                        {formatCurrency(dashboardData.anticipatedReceipts.thisWeek)}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-gray-600">This Month</p>
+                      <p className="text-xl font-bold text-green-600">
+                        {formatCurrency(dashboardData.anticipatedReceipts.thisMonth)}
+                      </p>
+                    </div>
                   </div>
                 </div>
-                <div className="text-right">
-                  <p
-                    className={`font-bold ${transaction.amount > 0 ? 'text-green-600' : 'text-red-600'}`}
-                  >
-                    {transaction.amount > 0 ? '+' : ''}
-                    {formatCurrency(Math.abs(transaction.amount))}
-                  </p>
-                  <span className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">{transaction.status}</span>
+
+                <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center gap-2">
+                      <ArrowDownRight className="w-5 h-5 text-orange-600" />
+                      <span className="font-semibold text-gray-900">Expected Payments</span>
+                    </div>
+                    <span className="text-xs bg-orange-100 text-orange-700 px-2 py-1 rounded">
+                      {dashboardData.anticipatedPayments.count} items
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm text-gray-600">This Week</p>
+                      <p className="text-xl font-bold text-orange-600">
+                        {formatCurrency(dashboardData.anticipatedPayments.thisWeek)}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-gray-600">This Month</p>
+                      <p className="text-xl font-bold text-orange-600">
+                        {formatCurrency(dashboardData.anticipatedPayments.thisMonth)}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="pt-2 border-t border-gray-200">
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm font-medium text-gray-600">Net Cash Flow (This Month)</span>
+                    <span className="text-xl font-bold text-blue-600">
+                      {formatCurrency(
+                        dashboardData.anticipatedReceipts.thisMonth - dashboardData.anticipatedPayments.thisMonth
+                      )}
+                    </span>
+                  </div>
                 </div>
               </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Financial Reports */}
-        <div className="bg-white rounded-xl shadow-lg p-6">
-          <h2 className="text-xl font-bold text-gray-900 mb-4">Financial Reports</h2>
-          <div className="grid grid-cols-2 gap-4">
-            {financialReports.map((report) => (
-              <Link
-                key={report.name}
-                href={report.href}
-                className="bg-gradient-to-br from-gray-50 to-gray-100 hover:from-blue-50 hover:to-blue-100 border border-gray-200 hover:border-blue-300 rounded-lg p-4 transition-all hover:shadow-md group"
-              >
-                <report.icon className="w-8 h-8 text-gray-600 group-hover:text-blue-600 mb-2 transition-colors" />
-                <h3 className="font-semibold text-gray-900 mb-1">{report.name}</h3>
-                <p className="text-xs text-gray-600">{report.description}</p>
-              </Link>
-            ))}
+            </div>
           </div>
 
-          <div className="mt-4 pt-4 border-t border-gray-200">
-            <Link
-              href="/finance/reports"
-              className="flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors"
-            >
-              <BarChart3 className="w-5 h-5" />
-              <span className="font-semibold">View All Reports</span>
-            </Link>
+          {/* Bottom Row - Recent Transactions & Financial Reports */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* Recent Transactions */}
+            <div className="bg-white rounded-xl shadow-lg p-6">
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-xl font-bold text-gray-900">Recent Transactions</h2>
+                <Link href="/finance/transactions" className="text-blue-600 hover:text-blue-700 text-sm font-medium">
+                  View All →
+                </Link>
+              </div>
+              <div className="space-y-3">
+                {recentTransactions.map((transaction) => (
+                  <div
+                    key={transaction.id}
+                    className="flex items-center justify-between p-3 bg-gray-50 hover:bg-gray-100 rounded-lg transition-colors"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div
+                        className={`w-10 h-10 rounded-lg flex items-center justify-center ${transaction.amount > 0 ? 'bg-green-100' : 'bg-red-100'
+                          }`}
+                      >
+                        {transaction.amount > 0 ? (
+                          <ArrowUpRight className="w-5 h-5 text-green-600" />
+                        ) : (
+                          <ArrowDownRight className="w-5 h-5 text-red-600" />
+                        )}
+                      </div>
+                      <div>
+                        <p className="font-semibold text-gray-900">{transaction.number}</p>
+                        <p className="text-sm text-gray-500">
+                          {transaction.type} • {transaction.date}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <p
+                        className={`font-bold ${transaction.amount > 0 ? 'text-green-600' : 'text-red-600'}`}
+                      >
+                        {transaction.amount > 0 ? '+' : ''}
+                        {formatCurrency(Math.abs(transaction.amount))}
+                      </p>
+                      <span className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">{transaction.status}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Financial Reports */}
+            <div className="bg-white rounded-xl shadow-lg p-6">
+              <h2 className="text-xl font-bold text-gray-900 mb-4">Financial Reports</h2>
+              <div className="grid grid-cols-2 gap-4">
+                {financialReports.map((report) => (
+                  <Link
+                    key={report.name}
+                    href={report.href}
+                    className="bg-gradient-to-br from-gray-50 to-gray-100 hover:from-blue-50 hover:to-blue-100 border border-gray-200 hover:border-blue-300 rounded-lg p-4 transition-all hover:shadow-md group"
+                  >
+                    <report.icon className="w-8 h-8 text-gray-600 group-hover:text-blue-600 mb-2 transition-colors" />
+                    <h3 className="font-semibold text-gray-900 mb-1">{report.name}</h3>
+                    <p className="text-xs text-gray-600">{report.description}</p>
+                  </Link>
+                ))}
+              </div>
+
+              <div className="mt-4 pt-4 border-t border-gray-200">
+                <Link
+                  href="/finance/reports"
+                  className="flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors"
+                >
+                  <BarChart3 className="w-5 h-5" />
+                  <span className="font-semibold">View All Reports</span>
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
-        </div>
-      </div>
       </div>
 
       {/* Modal Components */}

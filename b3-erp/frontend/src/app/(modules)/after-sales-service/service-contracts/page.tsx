@@ -303,7 +303,7 @@ export default function ServiceContractsPage() {
   };
 
   return (
-    <div className="p-6 max-w-[1600px] mx-auto">
+    <div className="p-6 w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/20 to-indigo-50/20 space-y-6">
       {/* Header */}
       <div className="mb-6">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">Service Contracts</h1>
@@ -531,14 +531,14 @@ export default function ServiceContractsPage() {
                         <button
                           onClick={() => router.push(`/after-sales-service/service-contracts/view/${contract.id}`)}
                           className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-                         
+
                         >
                           <Eye className="h-4 w-4" />
                         </button>
                         <button
                           onClick={() => router.push(`/after-sales-service/service-contracts/edit/${contract.id}`)}
                           className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
-                         
+
                         >
                           <Edit className="h-4 w-4" />
                         </button>
@@ -546,14 +546,14 @@ export default function ServiceContractsPage() {
                           <button
                             onClick={() => router.push(`/after-sales-service/service-contracts/renew/${contract.id}`)}
                             className="p-2 text-green-600 hover:bg-green-50 rounded-lg transition-colors"
-                           
+
                           >
                             <RefreshCw className="h-4 w-4" />
                           </button>
                         )}
                         <button
                           className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
-                         
+
                         >
                           <Trash2 className="h-4 w-4" />
                         </button>
