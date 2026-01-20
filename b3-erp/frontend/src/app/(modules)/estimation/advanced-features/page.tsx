@@ -124,7 +124,7 @@ export default function EstimationAdvancedFeaturesPage() {
   const activeFeature = features.find((f) => f.id === activeTab);
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 max-w-7xl">
+    <div className="w-full h-full px-4 py-6">
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-center space-x-3 mb-2">
@@ -147,9 +147,8 @@ export default function EstimationAdvancedFeaturesPage() {
               <button
                 key={feature.id}
                 onClick={() => setActiveTab(feature.id)}
-                className={`p-4 transition-all ${
-                  isActive ? `${feature.bg} border-b-4 border-current ${feature.color}` : 'hover:bg-gray-50 text-gray-600'
-                }`}
+                className={`p-4 transition-all ${isActive ? `${feature.bg} border-b-4 border-current ${feature.color}` : 'hover:bg-gray-50 text-gray-600'
+                  }`}
               >
                 <div className="flex flex-col items-center space-y-2">
                   <div className={`p-3 rounded-lg ${isActive ? 'bg-white' : feature.bg}`}>

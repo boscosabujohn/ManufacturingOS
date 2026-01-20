@@ -20,8 +20,8 @@ import {
   ApproveLegalModal,
   RejectLegalModal,
   RequestRevisionModal,
-  AddCommentModal,
-  ViewDocumentModal,
+  AddLegalCommentModal,
+  ViewLegalDocumentModal,
   LegalReview as ImportedLegalReview
 } from '@/components/cpq/LegalWorkflowModals'
 
@@ -427,7 +427,7 @@ export default function CPQWorkflowLegalPage() {
   }
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 max-w-7xl">
+    <div className="w-full h-full px-4 py-6">
       {/* Action Buttons */}
       <div className="mb-6 flex justify-end">
         <div className="flex items-center gap-3">
@@ -618,11 +618,10 @@ export default function CPQWorkflowLegalPage() {
                           {issue.severity}
                         </span>
                         <span className="font-semibold text-gray-900">{issue.category}</span>
-                        <span className={`ml-auto px-2 py-0.5 text-xs rounded border ${
-                          issue.status === 'resolved' ? 'bg-green-50 text-green-700 border-green-200' :
+                        <span className={`ml-auto px-2 py-0.5 text-xs rounded border ${issue.status === 'resolved' ? 'bg-green-50 text-green-700 border-green-200' :
                           issue.status === 'accepted' ? 'bg-blue-50 text-blue-700 border-blue-200' :
-                          'bg-yellow-50 text-yellow-700 border-yellow-200'
-                        }`}>
+                            'bg-yellow-50 text-yellow-700 border-yellow-200'
+                          }`}>
                           {issue.status}
                         </span>
                       </div>
@@ -753,14 +752,14 @@ export default function CPQWorkflowLegalPage() {
         review={selectedReview}
       />
 
-      <AddCommentModal
+      <AddLegalCommentModal
         isOpen={isCommentOpen}
         onClose={() => setIsCommentOpen(false)}
         onAddComment={handleCommentSubmit}
         review={selectedReview}
       />
 
-      <ViewDocumentModal
+      <ViewLegalDocumentModal
         isOpen={isViewOpen}
         onClose={() => setIsViewOpen(false)}
         review={selectedReview}

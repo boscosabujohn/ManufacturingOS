@@ -2,6 +2,9 @@
 
 import DashboardLayout from '@/components/DashboardLayout';
 import { usePathname } from 'next/navigation';
+import { NotificationProvider } from '@/context/NotificationContext';
+import { ToastProvider } from '@/components/ui/Toast';
+import { EnhancedToastProvider } from '@/components/ui/EnhancedToast';
 
 export default function RFQLayout({
   children,
@@ -9,7 +12,7 @@ export default function RFQLayout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
-  
+
   // Generate page title from pathname
   const getPageTitle = () => {
     const segments = pathname.split('/').filter(Boolean);
@@ -26,8 +29,14 @@ export default function RFQLayout({
   };
 
   return (
-    <DashboardLayout pageTitle={getPageTitle()}>
-      {children}
-    </DashboardLayout>
+    <NotificationProvider>
+      <EnhancedToastProvider>
+        <ToastProvider>
+          <DashboardLayout pageTitle={getPageTitle()}>
+            {children}
+          </DashboardLayout>
+        </ToastProvider>
+      </EnhancedToastProvider>
+    </NotificationProvider>
   );
 }

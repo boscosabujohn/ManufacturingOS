@@ -35,7 +35,7 @@ export default function InvoiceDetailPage() {
     };
 
     return (
-        <div className="container mx-auto p-6">
+        <div className="w-full px-4 py-6">
             {/* Header */}
             <div className="flex items-center justify-between mb-6">
                 <div>

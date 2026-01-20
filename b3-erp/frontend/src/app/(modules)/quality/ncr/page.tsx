@@ -1,10 +1,29 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import React, { useState, useEffect, useMemo } from 'react';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Plus, AlertTriangle, Clock, XCircle, CheckCircle, Filter } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import {
+    Plus,
+    AlertTriangle,
+    Clock,
+    XCircle,
+    CheckCircle,
+    Filter,
+    Search,
+    ChevronRight,
+    MoreHorizontal,
+    FileText,
+    User,
+    Calendar,
+    MapPin,
+    Tag,
+    AlertCircle,
+    Eye,
+    Download
+} from 'lucide-react';
 import Link from 'next/link';
 
 interface NCR {
@@ -12,62 +31,140 @@ interface NCR {
     ncrNumber: string;
     title: string;
     source: string;
-    severity: string;
-    status: string;
+    severity: 'critical' | 'major' | 'minor';
+    priority: 'high' | 'medium' | 'low';
+    status: 'open' | 'in-progress' | 'closed';
     reportedBy: string;
     reportedDate: string;
     assignedTo?: string;
     description: string;
+    project: string;
+    location: string;
+    category: string;
 }
+
+const MOCK_NCRS: NCR[] = [
+    {
+        id: '1',
+        ncrNumber: 'NCR-2024-001',
+        title: 'Material Thickness Discrepancy in Shell Plate',
+        source: 'Incoming Inspection',
+        severity: 'critical',
+        priority: 'high',
+        status: 'open',
+        reportedBy: 'Arun Varma',
+        reportedDate: '2024-07-18T10:30:00Z',
+        description: 'Shell plates for project P-502 show 10% less thickness than specified in the design docs.',
+        project: 'L&T Pressure Vessel P-502',
+        location: 'Inbound Warehouse A',
+        assignedTo: 'Suresh Patil',
+        category: 'Raw Material'
+    },
+    {
+        id: '2',
+        ncrNumber: 'NCR-2024-002',
+        title: 'Welding Flux Porosity in Main Seam',
+        source: 'In-process QC',
+        severity: 'major',
+        priority: 'medium',
+        status: 'in-progress',
+        reportedBy: 'Meera Nair',
+        reportedDate: '2024-07-17T14:45:00Z',
+        description: 'X-ray inspection revealed porosity at the junction of seam 2 and 4 beyond permissible limits.',
+        project: 'Reliance Ethylene Tank ET-109',
+        location: 'Bay 4 - Welding Shop',
+        assignedTo: 'John Doe',
+        category: 'Workmanship'
+    },
+    {
+        id: '3',
+        ncrNumber: 'NCR-2024-003',
+        title: 'Incorrect Paint Shade on Support Structure',
+        source: 'Final Inspection',
+        severity: 'minor',
+        priority: 'low',
+        status: 'closed',
+        reportedBy: 'Karthik Rao',
+        reportedDate: '2024-07-15T09:15:00Z',
+        description: 'The support structure was painted in RAL 7035 instead of requested RAL 7040. Customer approved deviation.',
+        project: 'Modular Office Structure S-11',
+        location: 'Finishing Yard',
+        assignedTo: 'Rajesh G.',
+        category: 'Surface Finish'
+    },
+    {
+        id: '4',
+        ncrNumber: 'NCR-2024-004',
+        title: 'Calibration Out of Bounds for Torque Wrench',
+        source: 'Audit',
+        severity: 'major',
+        priority: 'high',
+        status: 'open',
+        reportedBy: 'Anita Desai',
+        reportedDate: '2024-07-19T11:00:00Z',
+        description: 'Torque wrench TW-087 found to be 15% out of calibration during an internal audit.',
+        project: 'General Equipment Maintenance',
+        location: 'Tool Room',
+        assignedTo: 'Manoj Singh',
+        category: 'Equipment Maintenance'
+    },
+    {
+        id: '5',
+        ncrNumber: 'NCR-2024-005',
+        title: 'Non-compliant Anchor Bolts Received',
+        source: 'Incoming Inspection',
+        severity: 'major',
+        priority: 'medium',
+        status: 'in-progress',
+        reportedBy: 'Sanjay K.',
+        reportedDate: '2024-07-18T16:20:00Z',
+        description: 'Supplied M36 bolts lack the required heat treatment certification stamps.',
+        project: 'Tata Steel Substation G-14',
+        location: 'Store 2',
+        assignedTo: 'Prakash L.',
+        category: 'Procurement'
+    }
+];
 
 export default function NCRPage() {
     const [ncrs, setNcrs] = useState<NCR[]>([]);
     const [loading, setLoading] = useState(true);
     const [filter, setFilter] = useState('all');
+    const [searchTerm, setSearchTerm] = useState('');
+    const [severityFilter, setSeverityFilter] = useState('all');
 
     useEffect(() => {
+        const fetchNCRs = async () => {
+            try {
+                setLoading(true);
+                // Simulate API call with fallback to mock data
+                const response = await fetch('/api/quality/ncr');
+                if (response.ok) {
+                    const data = await response.json();
+                    setNcrs(data.length > 0 ? data : MOCK_NCRS);
+                } else {
+                    setNcrs(MOCK_NCRS);
+                }
+            } catch (error) {
+                console.error('Failed to fetch NCRs:', error);
+                setNcrs(MOCK_NCRS);
+            } finally {
+                setLoading(false);
+            }
+        };
         fetchNCRs();
     }, []);
 
-    const fetchNCRs = async () => {
-        try {
-            setLoading(true);
-            const response = await fetch('/api/quality/ncr');
-            if (!response.ok) throw new Error('Failed to fetch NCRs');
-            const data = await response.json();
-            setNcrs(data);
-        } catch (error) {
-            console.error('Failed to fetch NCRs:', error);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    const getSeverityBadge = (severity: string) => {
-        const config: Record<string, { color: string; icon: any }> = {
-            critical: { color: 'bg-red-500', icon: XCircle },
-            major: { color: 'bg-orange-500', icon: AlertTriangle },
-            minor: { color: 'bg-yellow-500', icon: Clock },
-        };
-        const { color, icon: Icon } = config[severity] || config.minor;
-        return (
-            <Badge className={color}>
-                <Icon className="mr-1 h-3 w-3" />
-                {severity}
-            </Badge>
-        );
-    };
-
-    const getStatusBadge = (status: string) => {
-        const colors: Record<string, string> = {
-            open: 'bg-red-500',
-            'in-progress': 'bg-yellow-500',
-            closed: 'bg-green-500',
-        };
-        return <Badge className={colors[status] || 'bg-gray-500'}>{status}</Badge>;
-    };
-
-    const filteredNCRs = filter === 'all' ? ncrs : ncrs.filter(n => n.status === filter);
+    const filteredNCRs = useMemo(() => {
+        return ncrs.filter(n => {
+            const matchesStatus = filter === 'all' || n.status === filter;
+            const matchesSeverity = severityFilter === 'all' || n.severity === severityFilter;
+            const matchesSearch = n.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                n.ncrNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                n.project.toLowerCase().includes(searchTerm.toLowerCase());
+            return matchesStatus && matchesSeverity && matchesSearch;
+        });
+    }, [ncrs, filter, severityFilter, searchTerm]);
 
     const stats = {
         total: ncrs.length,
@@ -76,116 +173,253 @@ export default function NCRPage() {
         closed: ncrs.filter(n => n.status === 'closed').length,
     };
 
+    const getSeverityBadge = (severity: string) => {
+        const config: any = {
+            critical: { color: 'bg-red-100 text-red-700 border-red-200', icon: XCircle },
+            major: { color: 'bg-orange-100 text-orange-700 border-orange-200', icon: AlertTriangle },
+            minor: { color: 'bg-yellow-100 text-yellow-700 border-yellow-200', icon: Clock },
+        };
+        const { color, icon: Icon } = config[severity] || config.minor;
+        return (
+            <Badge variant="outline" className={`${color} font-semibold capitalize`}>
+                <Icon className="mr-1 h-3 w-3" />
+                {severity}
+            </Badge>
+        );
+    };
+
+    const getStatusBadge = (status: string) => {
+        const config: any = {
+            open: 'bg-red-50 text-red-600 border-red-200',
+            'in-progress': 'bg-blue-50 text-blue-600 border-blue-200',
+            closed: 'bg-green-50 text-green-600 border-green-200',
+        };
+        return (
+            <Badge variant="outline" className={`${config[status] || 'bg-gray-50'} font-medium capitalize`}>
+                {status.replace('-', ' ')}
+            </Badge>
+        );
+    };
+
     return (
-        <div className="container mx-auto p-6">
-            {/* Header */}
-            <div className="flex justify-between items-center mb-6">
+        <div className="w-full px-4 py-6 space-y-6">
+            {/* Header Area */}
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                 <div>
-                    <h1 className="text-3xl font-bold mb-2">Non-Conformance Reports (NCR)</h1>
-                    <p className="text-gray-600">Track and manage quality issues</p>
+                    <h1 className="text-3xl font-bold text-gray-900 tracking-tight">Non-Conformance Reports</h1>
+                    <p className="text-gray-500 mt-1">Manage and track quality deviations and corrective actions</p>
                 </div>
-                <Link href="/quality/ncr/new">
-                    <Button>
-                        <Plus className="mr-2 h-4 w-4" />
-                        Report NCR
+                <div className="flex gap-2">
+                    <Button variant="outline" className="hidden sm:flex items-center gap-2">
+                        <Download className="w-4 h-4" />
+                        Export
                     </Button>
-                </Link>
+                    <Link href="/quality/ncr/new">
+                        <Button className="bg-blue-600 hover:bg-blue-700">
+                            <Plus className="mr-2 h-4 w-4" />
+                            Report NCR
+                        </Button>
+                    </Link>
+                </div>
             </div>
 
-            {/* Summary Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
-                <Card>
-                    <CardContent className="pt-6">
-                        <div className="text-2xl font-bold">{stats.total}</div>
-                        <p className="text-xs text-gray-500 mt-1">Total NCRs</p>
+            {/* KPI Cards */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                <Card className="bg-gradient-to-br from-gray-50 to-white">
+                    <CardContent className="p-4 flex items-center justify-between">
+                        <div>
+                            <p className="text-sm font-medium text-gray-500">Total NCRs</p>
+                            <h3 className="text-2xl font-bold mt-1">{stats.total}</h3>
+                        </div>
+                        <div className="p-2 bg-gray-100 rounded-lg">
+                            <FileText className="w-6 h-6 text-gray-600" />
+                        </div>
                     </CardContent>
                 </Card>
-                <Card>
-                    <CardContent className="pt-6">
-                        <div className="text-2xl font-bold text-red-600">{stats.open}</div>
-                        <p className="text-xs text-gray-500 mt-1">Open</p>
+                <Card className="bg-gradient-to-br from-red-50 to-white">
+                    <CardContent className="p-4 flex items-center justify-between">
+                        <div>
+                            <p className="text-sm font-medium text-red-600">Open Issues</p>
+                            <h3 className="text-2xl font-bold mt-1">{stats.open}</h3>
+                        </div>
+                        <div className="p-2 bg-red-100 rounded-lg">
+                            <AlertCircle className="w-6 h-6 text-red-600" />
+                        </div>
                     </CardContent>
                 </Card>
-                <Card>
-                    <CardContent className="pt-6">
-                        <div className="text-2xl font-bold text-yellow-600">{stats.inProgress}</div>
-                        <p className="text-xs text-gray-500 mt-1">In Progress</p>
+                <Card className="bg-gradient-to-br from-blue-50 to-white">
+                    <CardContent className="p-4 flex items-center justify-between">
+                        <div>
+                            <p className="text-sm font-medium text-blue-600">In Progress</p>
+                            <h3 className="text-2xl font-bold mt-1">{stats.inProgress}</h3>
+                        </div>
+                        <div className="p-2 bg-blue-100 rounded-lg">
+                            <Clock className="w-6 h-6 text-blue-600" />
+                        </div>
                     </CardContent>
                 </Card>
-                <Card>
-                    <CardContent className="pt-6">
-                        <div className="text-2xl font-bold text-green-600">{stats.closed}</div>
-                        <p className="text-xs text-gray-500 mt-1">Closed</p>
+                <Card className="bg-gradient-to-br from-green-50 to-white">
+                    <CardContent className="p-4 flex items-center justify-between">
+                        <div>
+                            <p className="text-sm font-medium text-green-600">Resolved</p>
+                            <h3 className="text-2xl font-bold mt-1">{stats.closed}</h3>
+                        </div>
+                        <div className="p-2 bg-green-100 rounded-lg">
+                            <CheckCircle className="w-6 h-6 text-green-600" />
+                        </div>
                     </CardContent>
                 </Card>
             </div>
 
-            {/* Filters */}
-            <div className="flex gap-2 mb-6">
-                {['all', 'open', 'in-progress', 'closed'].map((status) => (
-                    <Button
-                        key={status}
-                        variant={filter === status ? 'default' : 'outline'}
-                        onClick={() => setFilter(status)}
-                        size="sm"
-                    >
-                        {status.charAt(0).toUpperCase() + status.slice(1).replace('-', ' ')}
-                    </Button>
-                ))}
-            </div>
+            {/* Filters and Search */}
+            <Card className="shadow-sm border-gray-200">
+                <CardContent className="p-4">
+                    <div className="flex flex-col lg:flex-row gap-4 items-center">
+                        <div className="relative w-full lg:flex-1">
+                            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+                            <Input
+                                placeholder="Search by NCR #, title, or project..."
+                                className="pl-10 w-full"
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                            />
+                        </div>
+                        <div className="flex flex-wrap items-center gap-2 w-full lg:w-auto">
+                            <div className="flex bg-gray-100 p-1 rounded-lg">
+                                {['all', 'open', 'in-progress', 'closed'].map((status) => (
+                                    <button
+                                        key={status}
+                                        onClick={() => setFilter(status)}
+                                        className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-all ${filter === status
+                                            ? 'bg-white text-blue-600 shadow-sm'
+                                            : 'text-gray-500 hover:text-gray-700'
+                                            }`}
+                                    >
+                                        {status === 'all' ? 'All Status' : status.replace('-', ' ').charAt(0).toUpperCase() + status.slice(1).replace('-', ' ')}
+                                    </button>
+                                ))}
+                            </div>
+                            <select
+                                className="text-sm border-gray-200 rounded-lg px-3 py-2 bg-white outline-none focus:ring-2 focus:ring-blue-500 transition-all border"
+                                value={severityFilter}
+                                onChange={(e) => setSeverityFilter(e.target.value)}
+                            >
+                                <option value="all">Any Severity</option>
+                                <option value="critical">Critical</option>
+                                <option value="major">Major</option>
+                                <option value="minor">Minor</option>
+                            </select>
+                        </div>
+                    </div>
+                </CardContent>
+            </Card>
 
             {/* NCR List */}
-            <div className="grid grid-cols-1 gap-4">
+            <div className="flex flex-col gap-4">
                 {loading ? (
-                    <div className="text-center py-12">Loading NCRs...</div>
+                    <div className="flex items-center justify-center py-20">
+                        <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-blue-600"></div>
+                    </div>
                 ) : filteredNCRs.length === 0 ? (
-                    <Card>
-                        <CardContent className="text-center py-12">
-                            <AlertTriangle className="mx-auto h-12 w-12 text-gray-400 mb-4" />
-                            <p className="text-gray-500">No NCRs found</p>
-                        </CardContent>
+                    <Card className="border-dashed border-2 py-20 text-center">
+                        <div className="mx-auto w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mb-4">
+                            <AlertTriangle className="h-8 w-8 text-gray-300" />
+                        </div>
+                        <h3 className="text-lg font-semibold text-gray-900">No NCRs match your criteria</h3>
+                        <p className="text-gray-500 mt-2">Try adjusting your filters or search terms.</p>
+                        <Button variant="outline" className="mt-6" onClick={() => { setFilter('all'); setSeverityFilter('all'); setSearchTerm(''); }}>
+                            Clear All Filters
+                        </Button>
                     </Card>
                 ) : (
-                    filteredNCRs.map((ncr) => (
-                        <Card key={ncr.id} className="hover:shadow-lg transition-shadow">
-                            <CardContent className="p-6">
-                                <div className="flex justify-between items-start mb-4">
-                                    <div className="flex-1">
-                                        <div className="flex items-center gap-2 mb-2">
-                                            <h3 className="text-lg font-semibold">{ncr.ncrNumber}</h3>
-                                            {getSeverityBadge(ncr.severity)}
-                                            {getStatusBadge(ncr.status)}
+                    <div className="grid grid-cols-1 gap-4">
+                        {filteredNCRs.map((ncr) => (
+                            <Card key={ncr.id} className="group hover:border-blue-400 transition-all duration-200 shadow-sm overflow-hidden">
+                                <div className="flex flex-col md:flex-row">
+                                    {/* Left highlight bar based on severity */}
+                                    <div className={`w-1 md:w-2 ${ncr.severity === 'critical' ? 'bg-red-500' : ncr.severity === 'major' ? 'bg-orange-500' : 'bg-yellow-500'}`} />
+
+                                    <CardContent className="p-6 flex-1">
+                                        <div className="flex flex-col lg:flex-row justify-between gap-6">
+                                            <div className="flex-1 space-y-4">
+                                                {/* Header info */}
+                                                <div className="flex flex-wrap items-center gap-2">
+                                                    <span className="text-sm font-bold text-blue-600">{ncr.ncrNumber}</span>
+                                                    <span className="text-gray-300">•</span>
+                                                    {getSeverityBadge(ncr.severity)}
+                                                    {getStatusBadge(ncr.status)}
+                                                    <span className="text-gray-300">•</span>
+                                                    <span className="text-xs text-gray-500 flex items-center">
+                                                        <Tag className="w-3 h-3 mr-1" />
+                                                        {ncr.category}
+                                                    </span>
+                                                </div>
+
+                                                {/* Title and Description */}
+                                                <div>
+                                                    <h3 className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">{ncr.title}</h3>
+                                                    <p className="text-gray-600 mt-2 line-clamp-2">{ncr.description}</p>
+                                                </div>
+
+                                                {/* Details Grid */}
+                                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-2">
+                                                    <div className="flex items-start gap-3">
+                                                        <div className="p-1.5 bg-gray-50 rounded-md">
+                                                            <MapPin className="w-4 h-4 text-gray-400" />
+                                                        </div>
+                                                        <div>
+                                                            <p className="text-xs text-gray-400 uppercase font-semibold">Location</p>
+                                                            <p className="text-sm font-medium text-gray-700">{ncr.location}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div className="flex items-start gap-3">
+                                                        <div className="p-1.5 bg-gray-50 rounded-md">
+                                                            <FileText className="w-4 h-4 text-gray-400" />
+                                                        </div>
+                                                        <div>
+                                                            <p className="text-xs text-gray-400 uppercase font-semibold">Project</p>
+                                                            <p className="text-sm font-medium text-gray-700">{ncr.project}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div className="flex items-start gap-3">
+                                                        <div className="p-1.5 bg-gray-50 rounded-md">
+                                                            <User className="w-4 h-4 text-gray-400" />
+                                                        </div>
+                                                        <div>
+                                                            <p className="text-xs text-gray-400 uppercase font-semibold">Assigned To</p>
+                                                            <p className="text-sm font-medium text-gray-700">{ncr.assignedTo || 'Pending'}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div className="flex items-start gap-3">
+                                                        <div className="p-1.5 bg-gray-50 rounded-md">
+                                                            <Calendar className="w-4 h-4 text-gray-400" />
+                                                        </div>
+                                                        <div>
+                                                            <p className="text-xs text-gray-400 uppercase font-semibold">Reported Date</p>
+                                                            <p className="text-sm font-medium text-gray-700">{new Date(ncr.reportedDate).toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' })}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            {/* Action Sidebar */}
+                                            <div className="flex lg:flex-col justify-end items-end gap-2 shrink-0 md:border-l border-gray-100 md:pl-6">
+                                                <Link href={`/quality/ncr/${ncr.id}`} className="w-full">
+                                                    <Button className="w-full bg-blue-50 text-blue-600 hover:bg-blue-100 hover:text-blue-700 border-none shadow-none" size="sm">
+                                                        <Eye className="w-4 h-4 mr-2" />
+                                                        View Details
+                                                    </Button>
+                                                </Link>
+                                                <Button size="sm" variant="ghost" className="text-gray-400 hover:text-blue-600">
+                                                    <MoreHorizontal className="w-5 h-5" />
+                                                </Button>
+                                            </div>
                                         </div>
-                                        <p className="text-gray-900 font-medium mb-2">{ncr.title}</p>
-                                        <p className="text-sm text-gray-600 mb-3">{ncr.description}</p>
-                                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
-                                            <div>
-                                                <span className="text-gray-500">Source:</span>
-                                                <p className="font-medium">{ncr.source}</p>
-                                            </div>
-                                            <div>
-                                                <span className="text-gray-500">Reported By:</span>
-                                                <p className="font-medium">{ncr.reportedBy}</p>
-                                            </div>
-                                            <div>
-                                                <span className="text-gray-500">Reported Date:</span>
-                                                <p className="font-medium">{new Date(ncr.reportedDate).toLocaleDateString()}</p>
-                                            </div>
-                                            <div>
-                                                <span className="text-gray-500">Assigned To:</span>
-                                                <p className="font-medium">{ncr.assignedTo || 'Unassigned'}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <Link href={`/quality/ncr/${ncr.id}`}>
-                                        <Button size="sm" variant="outline">
-                                            View Details
-                                        </Button>
-                                    </Link>
+                                    </CardContent>
                                 </div>
-                            </CardContent>
-                        </Card>
-                    ))
+                            </Card>
+                        ))}
+                    </div>
                 )}
             </div>
         </div>

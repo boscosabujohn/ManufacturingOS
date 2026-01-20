@@ -288,7 +288,7 @@ export default function CPQQuotesVersionsPage() {
   const avgVersionsPerQuote = totalVersions / (Object.keys(groupedVersions).length || 1)
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 max-w-7xl">
+    <div className="w-full h-full px-4 py-6">
       {/* Action Buttons */}
       <div className="mb-6 flex justify-end">
         <div className="flex items-center gap-3">
