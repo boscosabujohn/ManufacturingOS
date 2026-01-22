@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { ArrowLeft, Search, MapPin, Truck, Package, Clock, CheckCircle, Navigation } from 'lucide-react';
+import { ArrowLeft, Search, MapPin, Truck, Package, Clock, CheckCircle, Navigation, Phone, User, Fuel, Route, RefreshCw } from 'lucide-react';
 
 interface TrackingEvent {
   timestamp: string;
@@ -22,6 +22,10 @@ interface ShipmentTrace {
   estimatedDelivery: string;
   vehicleNo: string;
   driverName: string;
+  driverPhone: string;
+  distanceCovered: string;
+  distanceRemaining: string;
+  progress: number;
   events: TrackingEvent[];
 }
 
@@ -41,42 +45,16 @@ export default function TraceTrackingPage() {
       estimatedDelivery: '2025-10-23 16:00',
       vehicleNo: 'TN-01-AB-1234',
       driverName: 'Rajesh Kumar',
+      driverPhone: '+91 98765 43210',
+      distanceCovered: '145 km',
+      distanceRemaining: '205 km',
+      progress: 42,
       events: [
-        {
-          timestamp: '2025-10-21 08:30',
-          location: 'Chennai Warehouse A',
-          status: 'Picked Up',
-          description: 'Shipment picked up and loaded',
-          icon: 'loading'
-        },
-        {
-          timestamp: '2025-10-21 09:15',
-          location: 'Chennai Checkpoint',
-          status: 'In Transit',
-          description: 'Left Chennai facility',
-          icon: 'checkpoint'
-        },
-        {
-          timestamp: '2025-10-21 12:45',
-          location: 'Vellore Transit Hub',
-          status: 'In Transit',
-          description: 'Arrived at transit hub',
-          icon: 'transit'
-        },
-        {
-          timestamp: '2025-10-21 14:30',
-          location: 'Vellore Transit Hub',
-          status: 'In Transit',
-          description: 'Vehicle refueling and driver break',
-          icon: 'checkpoint'
-        },
-        {
-          timestamp: '2025-10-21 15:00',
-          location: 'Vellore Transit Hub',
-          status: 'In Transit',
-          description: 'Departed from transit hub',
-          icon: 'transit'
-        }
+        { timestamp: '2025-10-21 08:30', location: 'Chennai Warehouse A', status: 'Picked Up', description: 'Shipment picked up and loaded', icon: 'loading' },
+        { timestamp: '2025-10-21 09:15', location: 'Chennai Checkpoint', status: 'In Transit', description: 'Left Chennai facility', icon: 'checkpoint' },
+        { timestamp: '2025-10-21 12:45', location: 'Vellore Transit Hub', status: 'In Transit', description: 'Arrived at transit hub', icon: 'transit' },
+        { timestamp: '2025-10-21 14:30', location: 'Vellore Transit Hub', status: 'In Transit', description: 'Vehicle refueling and driver break', icon: 'checkpoint' },
+        { timestamp: '2025-10-21 15:00', location: 'Vellore Transit Hub', status: 'In Transit', description: 'Departed from transit hub', icon: 'transit' }
       ]
     },
     'TRK-CHN-2025-4524': {
@@ -89,63 +67,19 @@ export default function TraceTrackingPage() {
       estimatedDelivery: '2025-10-23 14:00',
       vehicleNo: 'TN-04-GH-3456',
       driverName: 'Vijay Singh',
+      driverPhone: '+91 98765 12345',
+      distanceCovered: '1,180 km',
+      distanceRemaining: '0 km',
+      progress: 100,
       events: [
-        {
-          timestamp: '2025-10-21 07:00',
-          location: 'Chennai Warehouse A',
-          status: 'Picked Up',
-          description: 'Shipment picked up and loaded',
-          icon: 'loading'
-        },
-        {
-          timestamp: '2025-10-21 07:45',
-          location: 'Chennai Checkpoint',
-          status: 'In Transit',
-          description: 'Left Chennai facility',
-          icon: 'checkpoint'
-        },
-        {
-          timestamp: '2025-10-21 19:30',
-          location: 'Bangalore Transit Hub',
-          status: 'In Transit',
-          description: 'Night halt at transit hub',
-          icon: 'transit'
-        },
-        {
-          timestamp: '2025-10-22 08:00',
-          location: 'Bangalore Transit Hub',
-          status: 'In Transit',
-          description: 'Resumed journey',
-          icon: 'transit'
-        },
-        {
-          timestamp: '2025-10-22 18:45',
-          location: 'Mumbai Transit Hub',
-          status: 'In Transit',
-          description: 'Night halt at transit hub',
-          icon: 'transit'
-        },
-        {
-          timestamp: '2025-10-23 09:00',
-          location: 'Mumbai Transit Hub',
-          status: 'In Transit',
-          description: 'Departed for final destination',
-          icon: 'transit'
-        },
-        {
-          timestamp: '2025-10-23 13:30',
-          location: 'Pune Distribution Center',
-          status: 'Out for Delivery',
-          description: 'Arrived at distribution center',
-          icon: 'checkpoint'
-        },
-        {
-          timestamp: '2025-10-23 15:45',
-          location: 'Customer Location - Pune',
-          status: 'Delivered',
-          description: 'Shipment successfully delivered',
-          icon: 'delivery'
-        }
+        { timestamp: '2025-10-21 07:00', location: 'Chennai Warehouse A', status: 'Picked Up', description: 'Shipment picked up and loaded', icon: 'loading' },
+        { timestamp: '2025-10-21 07:45', location: 'Chennai Checkpoint', status: 'In Transit', description: 'Left Chennai facility', icon: 'checkpoint' },
+        { timestamp: '2025-10-21 19:30', location: 'Bangalore Transit Hub', status: 'In Transit', description: 'Night halt at transit hub', icon: 'transit' },
+        { timestamp: '2025-10-22 08:00', location: 'Bangalore Transit Hub', status: 'In Transit', description: 'Resumed journey', icon: 'transit' },
+        { timestamp: '2025-10-22 18:45', location: 'Mumbai Transit Hub', status: 'In Transit', description: 'Night halt at transit hub', icon: 'transit' },
+        { timestamp: '2025-10-23 09:00', location: 'Mumbai Transit Hub', status: 'In Transit', description: 'Departed for final destination', icon: 'transit' },
+        { timestamp: '2025-10-23 13:30', location: 'Pune Distribution Center', status: 'Out for Delivery', description: 'Arrived at distribution center', icon: 'checkpoint' },
+        { timestamp: '2025-10-23 15:45', location: 'Customer Location - Pune', status: 'Delivered', description: 'Shipment successfully delivered', icon: 'delivery' }
       ]
     }
   };
@@ -172,178 +106,267 @@ export default function TraceTrackingPage() {
 
   const getEventIcon = (icon: string) => {
     switch (icon) {
-      case 'loading': return <Package className="w-5 h-5 text-blue-600" />;
-      case 'checkpoint': return <MapPin className="w-5 h-5 text-purple-600" />;
-      case 'transit': return <Truck className="w-5 h-5 text-yellow-600" />;
-      case 'delivery': return <CheckCircle className="w-5 h-5 text-green-600" />;
-      default: return <MapPin className="w-5 h-5 text-gray-600" />;
+      case 'loading': return <Package className="w-4 h-4 text-blue-600" />;
+      case 'checkpoint': return <MapPin className="w-4 h-4 text-purple-600" />;
+      case 'transit': return <Truck className="w-4 h-4 text-yellow-600" />;
+      case 'delivery': return <CheckCircle className="w-4 h-4 text-green-600" />;
+      default: return <MapPin className="w-4 h-4 text-gray-600" />;
     }
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6 flex items-center gap-4">
-        <button onClick={() => router.back()} className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
-          <ArrowLeft className="w-5 h-5 text-gray-600" />
-        </button>
-        <div>
-          <h1 className="text-2xl font-bold text-gray-900">Trace & Track Shipment</h1>
-          <p className="text-sm text-gray-500 mt-1">Real-time shipment tracking and location updates</p>
+    <div className="h-[calc(100vh-64px)] flex flex-col overflow-hidden">
+      {/* Header */}
+      <div className="px-6 py-3 bg-white border-b border-gray-200 flex items-center justify-between flex-shrink-0">
+        <div className="flex items-center gap-4">
+          <button onClick={() => router.back()} className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+            <ArrowLeft className="w-5 h-5 text-gray-600" />
+          </button>
+          <div>
+            <h1 className="text-xl font-bold text-gray-900 flex items-center gap-2">
+              <Navigation className="w-6 h-6 text-orange-600" />
+              Trace & Track Shipment
+            </h1>
+            <p className="text-[10px] text-gray-500 uppercase tracking-widest font-black">Real-time shipment tracking and GPS location</p>
+          </div>
         </div>
+        <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors flex items-center gap-2 text-gray-600">
+          <RefreshCw className="w-4 h-4" />
+          <span className="text-xs font-bold">Refresh</span>
+        </button>
       </div>
 
-      <div className="max-w-4xl mx-auto">
-        <div className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
-          <h3 className="text-sm font-semibold text-gray-900 mb-4 flex items-center gap-2">
-            <Search className="w-4 h-4" />
-            Enter Tracking Number
-          </h3>
-          <div className="flex gap-3">
-            <input
-              type="text"
-              placeholder="Enter tracking number (e.g., TRK-CHN-2025-4521)"
-              value={trackingQuery}
-              onChange={(e) => setTrackingQuery(e.target.value)}
-              onKeyPress={(e) => e.key === 'Enter' && handleTrack()}
-              className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent font-mono"
-            />
-            <button
-              onClick={handleTrack}
-              className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium flex items-center gap-2"
-            >
-              <Navigation className="w-4 h-4" />
-              Track
-            </button>
-          </div>
-          <p className="text-xs text-gray-500 mt-2">
-            Sample tracking numbers: TRK-CHN-2025-4521, TRK-CHN-2025-4524
-          </p>
-        </div>
-
-        {shipmentTrace && (
-          <>
-            <div className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
-              <div className="flex items-center justify-between mb-4">
-                <div>
-                  <h3 className="text-lg font-bold text-gray-900">{shipmentTrace.shipmentNo}</h3>
-                  <p className="text-sm text-gray-500 font-mono">{shipmentTrace.trackingNumber}</p>
-                </div>
-                <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-sm font-medium border ${getStatusColor(shipmentTrace.status)}`}>
-                  {shipmentTrace.status.replace('-', ' ')}
-                </span>
+      {/* Main Content - Full Width Split View */}
+      <div className="flex-1 flex overflow-hidden">
+        {/* Left Panel - Tracking Info */}
+        <div className="w-full lg:w-[480px] bg-white border-r border-gray-200 flex flex-col overflow-hidden">
+          {/* Search Bar */}
+          <div className="p-4 border-b border-gray-100 flex-shrink-0">
+            <div className="flex gap-2">
+              <div className="relative flex-1">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+                <input
+                  type="text"
+                  placeholder="Enter tracking number..."
+                  value={trackingQuery}
+                  onChange={(e) => setTrackingQuery(e.target.value)}
+                  onKeyPress={(e) => e.key === 'Enter' && handleTrack()}
+                  className="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-orange-500 focus:border-transparent font-mono"
+                />
               </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                <div className="bg-blue-50 rounded-lg p-4">
-                  <div className="flex items-start gap-3">
-                    <MapPin className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
-                    <div>
-                      <p className="text-xs text-blue-600 font-medium mb-1">Origin</p>
-                      <p className="text-sm font-semibold text-blue-900">{shipmentTrace.origin}</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-green-50 rounded-lg p-4">
-                  <div className="flex items-start gap-3">
-                    <MapPin className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
-                    <div>
-                      <p className="text-xs text-green-600 font-medium mb-1">Destination</p>
-                      <p className="text-sm font-semibold text-green-900">{shipmentTrace.destination}</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-purple-50 rounded-lg p-4">
-                  <div className="flex items-start gap-3">
-                    <Navigation className="w-5 h-5 text-purple-600 flex-shrink-0 mt-0.5" />
-                    <div>
-                      <p className="text-xs text-purple-600 font-medium mb-1">Current Location</p>
-                      <p className="text-sm font-semibold text-purple-900">{shipmentTrace.currentLocation}</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-orange-50 rounded-lg p-4">
-                  <div className="flex items-start gap-3">
-                    <Clock className="w-5 h-5 text-orange-600 flex-shrink-0 mt-0.5" />
-                    <div>
-                      <p className="text-xs text-orange-600 font-medium mb-1">Estimated Delivery</p>
-                      <p className="text-sm font-semibold text-orange-900">{shipmentTrace.estimatedDelivery}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-2 gap-4 pt-4 border-t border-gray-200">
-                <div>
-                  <p className="text-xs text-gray-500">Vehicle Number</p>
-                  <p className="text-sm font-mono font-semibold text-gray-900">{shipmentTrace.vehicleNo}</p>
-                </div>
-                <div>
-                  <p className="text-xs text-gray-500">Driver Name</p>
-                  <p className="text-sm font-semibold text-gray-900">{shipmentTrace.driverName}</p>
-                </div>
-              </div>
+              <button
+                onClick={handleTrack}
+                className="px-4 py-2.5 bg-orange-600 text-white rounded-lg hover:bg-orange-700 font-black text-[10px] uppercase tracking-widest flex items-center gap-2"
+              >
+                <Navigation className="w-4 h-4" />
+                Track
+              </button>
             </div>
+            <p className="text-[10px] text-gray-400 mt-2">
+              Try: TRK-CHN-2025-4521 or TRK-CHN-2025-4524
+            </p>
+          </div>
 
-            <div className="bg-white rounded-xl border border-gray-200 p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-6">Tracking History</h3>
+          {/* Shipment Details */}
+          <div className="flex-1 overflow-y-auto">
+            {shipmentTrace ? (
+              <div className="p-4 space-y-4">
+                {/* Status Header */}
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="text-lg font-black text-gray-900">{shipmentTrace.shipmentNo}</h3>
+                    <p className="text-xs text-gray-500 font-mono">{shipmentTrace.trackingNumber}</p>
+                  </div>
+                  <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-[10px] font-black uppercase border ${getStatusColor(shipmentTrace.status)}`}>
+                    {shipmentTrace.status.replace('-', ' ')}
+                  </span>
+                </div>
 
-              <div className="relative">
-                <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gray-200"></div>
+                {/* Progress Bar */}
+                <div className="bg-gray-100 rounded-xl p-4">
+                  <div className="flex justify-between text-[10px] font-black text-gray-500 uppercase mb-2">
+                    <span>Origin</span>
+                    <span>Destination</span>
+                  </div>
+                  <div className="w-full bg-gray-200 h-2 rounded-full overflow-hidden mb-2">
+                    <div
+                      className="h-full bg-orange-500 rounded-full transition-all"
+                      style={{ width: `${shipmentTrace.progress}%` }}
+                    ></div>
+                  </div>
+                  <div className="flex justify-between text-[10px] text-gray-600">
+                    <span>{shipmentTrace.distanceCovered} covered</span>
+                    <span>{shipmentTrace.distanceRemaining} remaining</span>
+                  </div>
+                </div>
 
-                <div className="space-y-6">
-                  {shipmentTrace.events.map((event, index) => (
-                    <div key={index} className="relative flex gap-4">
-                      <div className="relative z-10 flex-shrink-0 w-12 h-12 bg-white rounded-full border-2 border-gray-200 flex items-center justify-center">
-                        {getEventIcon(event.icon)}
+                {/* Location Cards */}
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="bg-blue-50 rounded-lg p-3 border border-blue-100">
+                    <div className="flex items-center gap-2 mb-1">
+                      <MapPin className="w-4 h-4 text-blue-600" />
+                      <span className="text-[10px] font-black text-blue-600 uppercase">Origin</span>
+                    </div>
+                    <p className="text-xs font-bold text-blue-900">{shipmentTrace.origin}</p>
+                  </div>
+                  <div className="bg-green-50 rounded-lg p-3 border border-green-100">
+                    <div className="flex items-center gap-2 mb-1">
+                      <MapPin className="w-4 h-4 text-green-600" />
+                      <span className="text-[10px] font-black text-green-600 uppercase">Destination</span>
+                    </div>
+                    <p className="text-xs font-bold text-green-900">{shipmentTrace.destination}</p>
+                  </div>
+                </div>
+
+                {/* Current Location */}
+                <div className="bg-purple-50 rounded-lg p-3 border border-purple-100">
+                  <div className="flex items-center gap-2 mb-1">
+                    <Navigation className="w-4 h-4 text-purple-600" />
+                    <span className="text-[10px] font-black text-purple-600 uppercase">Current Location</span>
+                  </div>
+                  <p className="text-sm font-bold text-purple-900">{shipmentTrace.currentLocation}</p>
+                </div>
+
+                {/* ETA & Driver */}
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="bg-orange-50 rounded-lg p-3 border border-orange-100">
+                    <div className="flex items-center gap-2 mb-1">
+                      <Clock className="w-4 h-4 text-orange-600" />
+                      <span className="text-[10px] font-black text-orange-600 uppercase">ETA</span>
+                    </div>
+                    <p className="text-xs font-bold text-orange-900">{shipmentTrace.estimatedDelivery}</p>
+                  </div>
+                  <div className="bg-gray-50 rounded-lg p-3 border border-gray-200">
+                    <div className="flex items-center gap-2 mb-1">
+                      <Truck className="w-4 h-4 text-gray-600" />
+                      <span className="text-[10px] font-black text-gray-600 uppercase">Vehicle</span>
+                    </div>
+                    <p className="text-xs font-mono font-bold text-gray-900">{shipmentTrace.vehicleNo}</p>
+                  </div>
+                </div>
+
+                {/* Driver Info */}
+                <div className="bg-white rounded-lg p-3 border border-gray-200">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center">
+                        <User className="w-5 h-5 text-gray-600" />
                       </div>
+                      <div>
+                        <p className="text-xs font-bold text-gray-900">{shipmentTrace.driverName}</p>
+                        <p className="text-[10px] text-gray-500">{shipmentTrace.driverPhone}</p>
+                      </div>
+                    </div>
+                    <button className="p-2 bg-green-50 rounded-lg text-green-600 hover:bg-green-100 transition-colors">
+                      <Phone className="w-4 h-4" />
+                    </button>
+                  </div>
+                </div>
 
-                      <div className="flex-1 pb-6">
-                        <div className="bg-gray-50 rounded-lg p-4">
-                          <div className="flex items-start justify-between mb-2">
-                            <div>
-                              <p className="text-sm font-bold text-gray-900">{event.status}</p>
-                              <p className="text-xs text-gray-500 mt-1">{event.description}</p>
-                            </div>
-                            <div className="flex items-center gap-1 text-xs text-gray-500">
-                              <Clock className="w-3 h-3" />
-                              {event.timestamp}
-                            </div>
+                {/* Timeline */}
+                <div className="pt-4 border-t border-gray-100">
+                  <h4 className="text-xs font-black text-gray-900 uppercase tracking-widest mb-4 flex items-center gap-2">
+                    <Route className="w-4 h-4 text-orange-600" /> Tracking History
+                  </h4>
+                  <div className="relative">
+                    <div className="absolute left-[11px] top-0 bottom-0 w-0.5 bg-gray-200"></div>
+                    <div className="space-y-3">
+                      {shipmentTrace.events.map((event, index) => (
+                        <div key={index} className="relative flex gap-3">
+                          <div className="relative z-10 flex-shrink-0 w-6 h-6 bg-white rounded-full border-2 border-gray-200 flex items-center justify-center">
+                            {getEventIcon(event.icon)}
                           </div>
-                          <div className="flex items-center gap-1 text-xs text-blue-600 mt-2">
-                            <MapPin className="w-3 h-3" />
-                            {event.location}
+                          <div className="flex-1 bg-gray-50 rounded-lg p-3">
+                            <div className="flex items-start justify-between">
+                              <p className="text-xs font-bold text-gray-900">{event.status}</p>
+                              <span className="text-[10px] text-gray-400">{event.timestamp.split(' ')[1]}</span>
+                            </div>
+                            <p className="text-[10px] text-gray-500 mt-0.5">{event.description}</p>
+                            <p className="text-[10px] text-blue-600 mt-1 flex items-center gap-1">
+                              <MapPin className="w-3 h-3" /> {event.location}
+                            </p>
                           </div>
                         </div>
-                      </div>
+                      ))}
                     </div>
-                  ))}
+                  </div>
                 </div>
               </div>
-            </div>
-          </>
-        )}
-
-        {!shipmentTrace && (
-          <div className="bg-white rounded-xl border border-gray-200 p-12 text-center">
-            <Navigation className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-            <p className="text-gray-500 text-lg mb-2">Enter tracking number to trace shipment</p>
-            <p className="text-sm text-gray-400">Get real-time updates on your shipment location and status</p>
+            ) : (
+              <div className="flex-1 flex items-center justify-center p-8">
+                <div className="text-center">
+                  <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Navigation className="w-10 h-10 text-gray-400" />
+                  </div>
+                  <p className="text-gray-500 font-bold mb-1">Enter tracking number</p>
+                  <p className="text-xs text-gray-400">Get real-time updates on shipment location</p>
+                </div>
+              </div>
+            )}
           </div>
-        )}
-      </div>
+        </div>
 
-      <div className="mt-6 max-w-4xl mx-auto bg-blue-50 border border-blue-200 rounded-xl p-4">
-        <h3 className="text-sm font-semibold text-blue-900 mb-2">Tracking Features:</h3>
-        <ul className="text-sm text-blue-700 space-y-1 list-disc list-inside">
-          <li>Real-time GPS location tracking for accurate shipment visibility</li>
-          <li>Complete event history from pickup to delivery</li>
-          <li>Estimated delivery time based on current location and route</li>
-          <li>Driver and vehicle information for direct contact</li>
-          <li>Automated status updates at each checkpoint</li>
-        </ul>
+        {/* Right Panel - Map Area */}
+        <div className="hidden lg:flex flex-1 bg-gray-100 items-center justify-center relative">
+          {shipmentTrace ? (
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-green-50">
+              {/* Map Placeholder with Route Visualization */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="text-center">
+                  <div className="relative mb-6">
+                    {/* Origin Point */}
+                    <div className="absolute -top-20 left-1/2 -translate-x-1/2">
+                      <div className="p-3 bg-blue-500 rounded-full shadow-lg">
+                        <MapPin className="w-6 h-6 text-white" />
+                      </div>
+                      <p className="text-xs font-bold text-blue-700 mt-2 whitespace-nowrap">{shipmentTrace.origin}</p>
+                    </div>
+
+                    {/* Route Line */}
+                    <div className="w-1 h-32 bg-gradient-to-b from-blue-500 via-orange-500 to-green-500 mx-auto rounded-full"></div>
+
+                    {/* Current Position */}
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                      <div className="p-3 bg-orange-500 rounded-full shadow-lg animate-pulse">
+                        <Truck className="w-6 h-6 text-white" />
+                      </div>
+                    </div>
+
+                    {/* Destination Point */}
+                    <div className="absolute -bottom-20 left-1/2 -translate-x-1/2">
+                      <div className="p-3 bg-green-500 rounded-full shadow-lg">
+                        <MapPin className="w-6 h-6 text-white" />
+                      </div>
+                      <p className="text-xs font-bold text-green-700 mt-2 whitespace-nowrap">{shipmentTrace.destination}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Map Info Overlay */}
+              <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-xl p-4 shadow-lg">
+                <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Live Tracking</p>
+                <p className="text-lg font-black text-gray-900">{shipmentTrace.progress}% Complete</p>
+                <div className="w-32 bg-gray-200 h-1.5 rounded-full mt-2 overflow-hidden">
+                  <div className="h-full bg-orange-500 rounded-full" style={{ width: `${shipmentTrace.progress}%` }}></div>
+                </div>
+              </div>
+
+              {/* Map Note */}
+              <div className="absolute bottom-4 left-4 right-4 bg-white/80 backdrop-blur-sm rounded-lg p-3 text-center">
+                <p className="text-[10px] text-gray-500">Interactive map integration available with GPS provider</p>
+              </div>
+            </div>
+          ) : (
+            <div className="text-center p-8">
+              <div className="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-4">
+                <MapPin className="w-12 h-12 text-gray-400" />
+              </div>
+              <p className="text-gray-500 font-bold mb-1">Map View</p>
+              <p className="text-xs text-gray-400">Track a shipment to see its location on the map</p>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

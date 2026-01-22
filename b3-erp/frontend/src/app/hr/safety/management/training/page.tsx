@@ -1,19 +1,214 @@
 'use client';
 
-import { GraduationCap } from 'lucide-react';
+import React, { useState } from 'react';
+import {
+  GraduationCap,
+  Search,
+  Calendar,
+  Users,
+  CheckCircle,
+  AlertTriangle,
+  Clock,
+  ChevronRight,
+  MoreHorizontal
+} from 'lucide-react';
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+  PieChart,
+  Pie,
+  Cell,
+  Legend
+} from 'recharts';
 
-export default function Page() {
+// Mock Data
+const complianceData = [
+  { name: 'Fire Safety', completed: 145, pending: 5, total: 150, color: '#f59e0b' },
+  { name: 'PPE Usage', completed: 148, pending: 2, total: 150, color: '#10b981' },
+  { name: 'HazMat', completed: 45, pending: 5, total: 50, color: '#ef4444' },
+  { name: 'First Aid', completed: 25, pending: 5, total: 30, color: '#3b82f6' },
+];
+
+const upcomingDrills = [
+  { id: 1, name: 'Fire Evacuation Drill', date: '2024-04-15', time: '10:00 AM', status: 'Scheduled', type: 'Evacuation' },
+  { id: 2, name: 'Chemical Spill Response', date: '2024-05-02', time: '02:00 PM', status: 'Planned', type: 'Response' },
+  { id: 3, name: 'Severe Weather Drill', date: '2024-06-10', time: '11:00 AM', status: 'Proposed', type: 'Evacuation' },
+];
+
+const trainingRecords = [
+  { id: 'TR-001', employee: 'John Doe', course: 'Forklift Safety Certification', date: '2024-03-20', expiry: '2025-03-20', status: 'Valid' },
+  { id: 'TR-002', employee: 'Sarah Smith', course: 'Chemical Handling Basics', date: '2023-04-15', expiry: '2024-04-15', status: 'Expiring Soon' },
+  { id: 'TR-003', employee: 'Mike Johnson', course: 'Fire Warden Training', date: '2024-01-10', expiry: '2026-01-10', status: 'Valid' },
+  { id: 'TR-004', employee: 'Emily Davis', course: 'First Aid & CPR', date: '2022-03-01', expiry: '2024-03-01', status: 'Expired' },
+  { id: 'TR-005', employee: 'Chris Wilson', course: 'Lockout/Tagout', date: '2024-02-28', expiry: '2025-02-28', status: 'Valid' },
+];
+
+export default function SafetyTrainingPage() {
+  const [activeTab, setActiveTab] = useState('Compliance');
+
   return (
-    <div className="p-6">
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
-          <GraduationCap className="h-8 w-8 text-orange-600" />
-          Safety Training
-        </h1>
-        <p className="text-gray-600 mt-2">Safety programs</p>
+    <div className="p-6 space-y-6">
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
+            <GraduationCap className="h-8 w-8 text-orange-600" />
+            Safety Training & Drills
+          </h1>
+          <p className="text-gray-500 mt-1">Manage certifications, compliance, and emergency drills</p>
+        </div>
+        <button className="inline-flex items-center px-4 py-2 bg-orange-600 text-white rounded-lg text-sm font-medium hover:bg-orange-700 shadow-sm transition-colors">
+          <Calendar className="w-4 h-4 mr-2" />
+          Schedule Drill
+        </button>
       </div>
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <p className="text-gray-600">This page is under construction. Full functionality coming soon.</p>
+
+      {/* KPI Overview */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm flex items-center justify-between">
+          <div>
+            <p className="text-sm font-medium text-gray-500">Overall Compliance</p>
+            <p className="text-3xl font-bold text-gray-900 mt-1">94%</p>
+            <p className="text-xs text-green-600 mt-1">+1% from last month</p>
+          </div>
+          <div className="h-16 w-16">
+            <ResponsiveContainer width="100%" height="100%">
+              <PieChart>
+                <Pie data={[{ value: 94, fill: '#10b981' }, { value: 6, fill: '#f3f4f6' }]} dataKey="value" innerRadius={20} outerRadius={30} startAngle={90} endAngle={-270} />
+              </PieChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm flex items-center justify-between">
+          <div>
+            <p className="text-sm font-medium text-gray-500">Expired Certifications</p>
+            <p className="text-3xl font-bold text-gray-900 mt-1">12</p>
+            <p className="text-xs text-red-600 mt-1">Immediate action required</p>
+          </div>
+          <div className="p-3 bg-red-50 rounded-lg">
+            <AlertTriangle className="w-6 h-6 text-red-600" />
+          </div>
+        </div>
+        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm flex items-center justify-between">
+          <div>
+            <p className="text-sm font-medium text-gray-500">Upcoming Drills</p>
+            <p className="text-3xl font-bold text-gray-900 mt-1">{upcomingDrills.length}</p>
+            <p className="text-xs text-blue-600 mt-1">Next: Apr 15</p>
+          </div>
+          <div className="p-3 bg-blue-50 rounded-lg">
+            <Clock className="w-6 h-6 text-blue-600" />
+          </div>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Compliance Matrix */}
+        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
+          <h3 className="text-lg font-bold text-gray-900 mb-6">Training Compliance by Category</h3>
+          <div className="h-64">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={complianceData} layout="vertical" margin={{ top: 0, right: 30, left: 40, bottom: 0 }}>
+                <CartesianGrid strokeDasharray="3 3" horizontal={true} vertical={false} stroke="#e5e7eb" />
+                <XAxis type="number" hide />
+                <YAxis dataKey="name" type="category" width={80} axisLine={false} tickLine={false} tick={{ fill: '#4b5563', fontSize: 12 }} />
+                <Tooltip cursor={{ fill: '#f3f4f6' }} contentStyle={{ borderRadius: '8px' }} />
+                <Bar dataKey="completed" stackId="a" fill="#10b981" barSize={20} radius={[0, 4, 4, 0]} name="Completed" />
+                <Bar dataKey="pending" stackId="a" fill="#e5e7eb" barSize={20} radius={[0, 4, 4, 0]} name="Pending" />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        {/* Drill Schedule */}
+        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
+          <h3 className="text-lg font-bold text-gray-900 mb-6">Upcoming Emergency Drills</h3>
+          <div className="space-y-4">
+            {upcomingDrills.map((drill) => (
+              <div key={drill.id} className="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                <div className="flex-shrink-0 w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center text-orange-600 font-bold flex-col">
+                  <span className="text-xs uppercase">{new Date(drill.date).toLocaleString('default', { month: 'short' })}</span>
+                  <span className="text-lg leading-none">{new Date(drill.date).getDate()}</span>
+                </div>
+                <div className="ml-4 flex-1">
+                  <h4 className="text-sm font-bold text-gray-900">{drill.name}</h4>
+                  <div className="flex items-center mt-1 text-xs text-gray-500 gap-3">
+                    <span className="flex items-center"><Clock className="w-3 h-3 mr-1" /> {drill.time}</span>
+                    <span className="px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">{drill.type}</span>
+                  </div>
+                </div>
+                <span className={`text-xs px-2 py-1 rounded-full font-medium ${drill.status === 'Scheduled' ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700'
+                  }`}>
+                  {drill.status}
+                </span>
+              </div>
+            ))}
+            <button className="w-full py-2 text-sm text-center text-gray-500 hover:text-orange-600 transition-colors border border-dashed border-gray-300 rounded-lg hover:border-orange-300 hover:bg-orange-50">
+              + Plan New Drill
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Certification Records */}
+      <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+        <div className="p-6 border-b border-gray-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <h3 className="text-lg font-bold text-gray-900">Recent Certification Status</h3>
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+            <input
+              type="text"
+              placeholder="Search employee or course..."
+              className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-orange-500 focus:border-orange-500 w-full sm:w-64"
+            />
+          </div>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="w-full text-left text-sm text-gray-600">
+            <thead className="bg-gray-50 text-xs uppercase font-semibold text-gray-500">
+              <tr>
+                <th className="px-6 py-4">Employee</th>
+                <th className="px-6 py-4">Course / Certification</th>
+                <th className="px-6 py-4">Completion Date</th>
+                <th className="px-6 py-4">Expiry Date</th>
+                <th className="px-6 py-4">Status</th>
+                <th className="px-6 py-4 text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-100">
+              {trainingRecords.map((record) => (
+                <tr key={record.id} className="hover:bg-gray-50 transition-colors">
+                  <td className="px-6 py-4 font-medium text-gray-900 flex items-center gap-2">
+                    <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-xs font-bold text-gray-600">
+                      {record.employee.split(' ').map(n => n[0]).join('')}
+                    </div>
+                    {record.employee}
+                  </td>
+                  <td className="px-6 py-4">{record.course}</td>
+                  <td className="px-6 py-4">{record.date}</td>
+                  <td className="px-6 py-4">{record.expiry}</td>
+                  <td className="px-6 py-4">
+                    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${record.status === 'Valid' ? 'bg-green-100 text-green-800' :
+                        record.status === 'Expired' ? 'bg-red-100 text-red-800' :
+                          'bg-yellow-100 text-yellow-800'
+                      }`}>
+                      {record.status}
+                    </span>
+                  </td>
+                  <td className="px-6 py-4 text-right">
+                    <button className="text-gray-400 hover:text-gray-600 transition-colors">
+                      <MoreHorizontal className="w-5 h-5" />
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

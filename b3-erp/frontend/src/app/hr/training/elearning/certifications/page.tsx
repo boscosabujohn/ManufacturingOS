@@ -1,19 +1,198 @@
 'use client';
 
-import { Award } from 'lucide-react';
+import React, { useState } from 'react';
+import {
+  Award,
+  Search,
+  Filter,
+  Download,
+  Share2,
+  ExternalLink,
+  ShieldCheck,
+  Calendar,
+  CheckCircle
+} from 'lucide-react';
 
-export default function Page() {
+const certifications = [
+  {
+    id: 1,
+    title: 'Advanced Leadership Masterclass',
+    issuer: 'OptiForge Academy',
+    issueDate: 'Jan 15, 2025',
+    expiryDate: 'Jan 15, 2028',
+    credentialId: 'OF-2025-ALM-8821',
+    image: 'bg-gradient-to-br from-purple-500 to-indigo-600',
+    skills: ['Leadership', 'Management', 'Conflict Resolution']
+  },
+  {
+    id: 2,
+    title: 'Certified Scrum Master',
+    issuer: 'Agile Alliance',
+    issueDate: 'Dec 10, 2024',
+    expiryDate: 'Dec 10, 2026',
+    credentialId: 'AA-CSM-99201',
+    image: 'bg-gradient-to-br from-blue-500 to-cyan-600',
+    skills: ['Agile', 'Scrum', 'Project Management']
+  },
+  {
+    id: 3,
+    title: 'Cyber Security Fundamentals',
+    issuer: 'InfoSec Institute',
+    issueDate: 'Nov 22, 2024',
+    expiryDate: 'Nov 22, 2025',
+    credentialId: 'IS-CSF-4421',
+    image: 'bg-gradient-to-br from-emerald-500 to-teal-600',
+    skills: ['Security', 'Privacy', 'Compliance']
+  },
+  {
+    id: 4,
+    title: 'Effective Business Communication',
+    issuer: 'OptiForge HR',
+    issueDate: 'Oct 05, 2024',
+    expiryDate: 'Permanent',
+    credentialId: 'OF-EBC-1102',
+    image: 'bg-gradient-to-br from-amber-500 to-orange-600',
+    skills: ['Communication', 'Public Speaking']
+  },
+];
+
+export default function CertificationsPage() {
+  const [searchTerm, setSearchTerm] = useState('');
+
   return (
-    <div className="p-6">
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
-          <Award className="h-8 w-8 text-purple-600" />
-          Certifications
-        </h1>
-        <p className="text-gray-600 mt-2">Course completion certificates</p>
+    <div className="p-6 space-y-6">
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
+            <Award className="h-8 w-8 text-purple-600" />
+            My Certifications
+          </h1>
+          <p className="text-gray-500 mt-1">View and manage your professional credentials</p>
+        </div>
+        <div className="flex gap-3">
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+            <input
+              type="text"
+              placeholder="Search certificates..."
+              className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-purple-500 focus:border-purple-500 w-full sm:w-64"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </div>
+          <button className="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 shadow-sm transition-colors">
+            <Filter className="w-4 h-4 mr-2" />
+            Filter
+          </button>
+        </div>
       </div>
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <p className="text-gray-600">This page is under construction. Full functionality coming soon.</p>
+
+      {/* Stats Summary */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="bg-gradient-to-r from-purple-600 to-indigo-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="flex items-center gap-4">
+            <div className="p-3 bg-white/20 rounded-lg backdrop-blur-sm">
+              <Award className="w-8 h-8 text-white" />
+            </div>
+            <div>
+              <p className="text-purple-100 text-sm font-medium">Total Certifications</p>
+              <h2 className="text-3xl font-bold">12</h2>
+            </div>
+          </div>
+        </div>
+        <div className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm flex items-center gap-4">
+          <div className="p-3 bg-green-50 rounded-lg">
+            <ShieldCheck className="w-8 h-8 text-green-600" />
+          </div>
+          <div>
+            <p className="text-gray-500 text-sm font-medium">Active Credentials</p>
+            <h2 className="text-3xl font-bold text-gray-900">10</h2>
+          </div>
+        </div>
+        <div className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm flex items-center gap-4">
+          <div className="p-3 bg-amber-50 rounded-lg">
+            <Calendar className="w-8 h-8 text-amber-600" />
+          </div>
+          <div>
+            <p className="text-gray-500 text-sm font-medium">Expiring Soon</p>
+            <h2 className="text-3xl font-bold text-gray-900">2</h2>
+          </div>
+        </div>
+      </div>
+
+      {/* Certificates Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+        {certifications.map((cert) => (
+          <div key={cert.id} className="bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow flex flex-col overflow-hidden group">
+            <div className={`h-32 ${cert.image} relative p-6 flex flex-col justify-between`}>
+              <div className="flex justify-between items-start">
+                <div className="bg-white/20 backdrop-blur-md p-2 rounded-lg">
+                  <Award className="w-6 h-6 text-white" />
+                </div>
+                <div className="px-2 py-1 bg-white/20 backdrop-blur-md rounded text-xs font-medium text-white">
+                  {cert.expiryDate === 'Permanent' ? 'Permanent' : `Valid until ${cert.expiryDate.split(' ')[2]}`}
+                </div>
+              </div>
+              <div className="absolute -bottom-6 right-6 w-12 h-12 bg-white rounded-full flex items-center justify-center border-4 border-white shadow-sm">
+                <CheckCircle className="w-6 h-6 text-green-500" />
+              </div>
+            </div>
+
+            <div className="p-6 pt-8 flex-1 flex flex-col">
+              <div className="flex-1">
+                <h3 className="text-lg font-bold text-gray-900 mb-1 group-hover:text-purple-600 transition-colors">{cert.title}</h3>
+                <p className="text-sm text-gray-500 font-medium mb-4">{cert.issuer}</p>
+
+                <div className="space-y-2 text-sm text-gray-600 mb-6">
+                  <div className="flex justify-between">
+                    <span className="text-gray-400">Issued</span>
+                    <span className="font-medium">{cert.issueDate}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-400">Credential ID</span>
+                    <span className="font-mono text-xs bg-gray-100 px-2 py-0.5 rounded">{cert.credentialId}</span>
+                  </div>
+                </div>
+
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {cert.skills.map((skill, index) => (
+                    <span key={index} className="px-2 py-1 bg-gray-50 text-gray-600 text-xs rounded-md border border-gray-100">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
+                <button className="flex-1 flex items-center justify-center px-3 py-2 bg-purple-50 text-purple-700 text-sm font-medium rounded-lg hover:bg-purple-100 transition-colors">
+                  <Download className="w-4 h-4 mr-2" />
+                  PDF
+                </button>
+                <button className="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-50 rounded-lg transition-colors">
+                  <Share2 className="w-4 h-4" />
+                </button>
+                <button className="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-50 rounded-lg transition-colors">
+                  <ExternalLink className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+          </div>
+        ))}
+
+        {/* Add New Placeholder/Promo */}
+        <div className="bg-gray-50 rounded-xl border-2 border-dashed border-gray-300 flex flex-col items-center justify-center p-6 text-center hover:bg-gray-100 transition-colors cursor-pointer group">
+          <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-sm mb-4 group-hover:scale-110 transition-transform">
+            <Award className="w-8 h-8 text-gray-400" />
+          </div>
+          <h3 className="text-lg font-bold text-gray-900 mb-2">Detailed Certification?</h3>
+          <p className="text-sm text-gray-500 max-w-xs mb-6">
+            Upload an external certification to add it to your employee profile.
+          </p>
+          <button className="px-5 py-2 bg-white border border-gray-300 shadow-sm text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-colors">
+            Upload Certificate
+          </button>
+        </div>
       </div>
     </div>
   );

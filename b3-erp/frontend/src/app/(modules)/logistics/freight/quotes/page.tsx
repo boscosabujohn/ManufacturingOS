@@ -1,592 +1,418 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { ArrowLeft, Search, FileText, DollarSign, TrendingUp, Package, Truck, MapPin, Calendar, Clock, Plus, CheckCircle, XCircle, Filter } from 'lucide-react';
+import {
+    FileText,
+    Search,
+    Plus,
+    Filter,
+    DollarSign,
+    Clock,
+    CheckCircle2,
+    XCircle,
+    ChevronRight,
+    MoreVertical,
+    Download,
+    Eye,
+    Edit,
+    Truck,
+    Package,
+    MapPin,
+    Calendar,
+    Send,
+    AlertCircle,
+    TrendingUp
+} from 'lucide-react';
 
-interface FreightQuote {
-  id: string;
-  quoteNo: string;
-  customerName: string;
-  origin: string;
-  destination: string;
-  cargoType: string;
-  weight: number;
-  volume: number;
-  transportMode: 'air' | 'sea' | 'road' | 'rail';
-  serviceType: 'express' | 'standard' | 'economy';
-  quotedAmount: number;
-  validUntil: string;
-  transitTime: string;
-  carrier: string;
-  status: 'draft' | 'sent' | 'accepted' | 'rejected' | 'expired';
-  createdDate: string;
-  createdBy: string;
-  remarks: string;
-  includedServices: string[];
-  fuelSurcharge: number;
-  insuranceCharge: number;
-  handlingCharge: number;
-  customsClearance: number;
-}
+// Mock Quote Data
+const quoteStats = {
+    total: 45,
+    pending: 12,
+    approved: 28,
+    rejected: 5,
+    totalValue: 1850000,
+    avgResponseTime: '2.3 days'
+};
+
+const quotes = [
+    {
+        id: 'QUO-2024-0156',
+        customer: 'ABC Manufacturing',
+        origin: 'Dubai, UAE',
+        destination: 'Riyadh, KSA',
+        weight: '2,500 kg',
+        mode: 'Road',
+        requestDate: '2024-01-20',
+        validUntil: '2024-02-20',
+        amount: 45000,
+        status: 'Pending',
+        carrier: 'Emirates Logistics',
+        transitTime: '3-4 days'
+    },
+    {
+        id: 'QUO-2024-0155',
+        customer: 'Tech Innovations LLC',
+        origin: 'Abu Dhabi, UAE',
+        destination: 'Mumbai, India',
+        weight: '850 kg',
+        mode: 'Sea',
+        requestDate: '2024-01-19',
+        validUntil: '2024-02-19',
+        amount: 28500,
+        status: 'Approved',
+        carrier: 'Gulf Shipping',
+        transitTime: '12-15 days'
+    },
+    {
+        id: 'QUO-2024-0154',
+        customer: 'Global Tech Solutions',
+        origin: 'Jebel Ali, UAE',
+        destination: 'Singapore',
+        weight: '3,200 kg',
+        mode: 'Air',
+        requestDate: '2024-01-18',
+        validUntil: '2024-01-28',
+        amount: 125000,
+        status: 'Approved',
+        carrier: 'Emirates SkyCargo',
+        transitTime: '2-3 days'
+    },
+    {
+        id: 'QUO-2024-0153',
+        customer: 'Premier Industries',
+        origin: 'Dubai, UAE',
+        destination: 'London, UK',
+        weight: '1,800 kg',
+        mode: 'Air',
+        requestDate: '2024-01-17',
+        validUntil: '2024-01-27',
+        amount: 98000,
+        status: 'Expired',
+        carrier: 'Etihad Cargo',
+        transitTime: '2-3 days'
+    },
+    {
+        id: 'QUO-2024-0152',
+        customer: 'Al Falak Trading',
+        origin: 'Sharjah, UAE',
+        destination: 'Doha, Qatar',
+        weight: '4,500 kg',
+        mode: 'Road',
+        requestDate: '2024-01-16',
+        validUntil: '2024-02-16',
+        amount: 35000,
+        status: 'Approved',
+        carrier: 'Fast Track Shipping',
+        transitTime: '2-3 days'
+    },
+    {
+        id: 'QUO-2024-0151',
+        customer: 'Sunrise Electronics',
+        origin: 'Dubai, UAE',
+        destination: 'New York, USA',
+        weight: '650 kg',
+        mode: 'Air',
+        requestDate: '2024-01-15',
+        validUntil: '2024-01-25',
+        amount: 85000,
+        status: 'Rejected',
+        carrier: 'FedEx',
+        transitTime: '3-4 days',
+        rejectionReason: 'Price too high'
+    },
+    {
+        id: 'QUO-2024-0150',
+        customer: 'Desert Steel Works',
+        origin: 'Jebel Ali, UAE',
+        destination: 'Chennai, India',
+        weight: '12,000 kg',
+        mode: 'Sea',
+        requestDate: '2024-01-14',
+        validUntil: '2024-02-14',
+        amount: 42000,
+        status: 'Pending',
+        carrier: 'Maersk',
+        transitTime: '10-12 days'
+    }
+];
 
 export default function FreightQuotesPage() {
-  const router = useRouter();
-  const [searchTerm, setSearchTerm] = useState('');
-  const [statusFilter, setStatusFilter] = useState<string>('all');
-  const [modeFilter, setModeFilter] = useState<string>('all');
+    const [filter, setFilter] = useState('all');
+    const [searchQuery, setSearchQuery] = useState('');
 
-  const quotes: FreightQuote[] = [
-    {
-      id: '1',
-      quoteNo: 'FQ-2025-1001',
-      customerName: 'ABC Manufacturing Ltd',
-      origin: 'Chennai Port',
-      destination: 'Singapore Port',
-      cargoType: 'Industrial Machinery',
-      weight: 15000,
-      volume: 45,
-      transportMode: 'sea',
-      serviceType: 'standard',
-      quotedAmount: 485000,
-      validUntil: '2025-11-05',
-      transitTime: '7-10 days',
-      carrier: 'Maersk Line',
-      status: 'sent',
-      createdDate: '2025-10-18',
-      createdBy: 'Rajesh Kumar',
-      remarks: 'LCL shipment, weekly sailing available',
-      includedServices: ['Port handling', 'Documentation', 'Basic insurance'],
-      fuelSurcharge: 48500,
-      insuranceCharge: 14550,
-      handlingCharge: 24250,
-      customsClearance: 0
-    },
-    {
-      id: '2',
-      quoteNo: 'FQ-2025-1002',
-      customerName: 'Global Traders Inc',
-      origin: 'Mumbai',
-      destination: 'Dubai',
-      cargoType: 'Electronics',
-      weight: 8500,
-      volume: 28,
-      transportMode: 'air',
-      serviceType: 'express',
-      quotedAmount: 890000,
-      validUntil: '2025-11-02',
-      transitTime: '2-3 days',
-      carrier: 'Emirates SkyCargo',
-      status: 'accepted',
-      createdDate: '2025-10-15',
-      createdBy: 'Priya Sharma',
-      remarks: 'Temperature controlled cargo, priority handling',
-      includedServices: ['Air freight', 'Express customs', 'Insurance', 'Door delivery'],
-      fuelSurcharge: 89000,
-      insuranceCharge: 26700,
-      handlingCharge: 44500,
-      customsClearance: 35000
-    },
-    {
-      id: '3',
-      quoteNo: 'FQ-2025-1003',
-      customerName: 'TechCorp Solutions',
-      origin: 'Bangalore',
-      destination: 'Delhi',
-      cargoType: 'IT Equipment',
-      weight: 12000,
-      volume: 38,
-      transportMode: 'road',
-      serviceType: 'express',
-      quotedAmount: 185000,
-      validUntil: '2025-10-28',
-      transitTime: '2-3 days',
-      carrier: 'VRL Logistics',
-      status: 'rejected',
-      createdDate: '2025-10-12',
-      createdBy: 'Amit Patel',
-      remarks: 'Customer opted for cheaper alternative',
-      includedServices: ['Full truck load', 'GPS tracking', 'Loading/unloading'],
-      fuelSurcharge: 18500,
-      insuranceCharge: 5550,
-      handlingCharge: 9250,
-      customsClearance: 0
-    },
-    {
-      id: '4',
-      quoteNo: 'FQ-2025-1004',
-      customerName: 'Precision Parts Ltd',
-      origin: 'Chennai',
-      destination: 'Kolkata',
-      cargoType: 'Auto Components',
-      weight: 18500,
-      volume: 52,
-      transportMode: 'rail',
-      serviceType: 'economy',
-      quotedAmount: 125000,
-      validUntil: '2025-11-10',
-      transitTime: '5-7 days',
-      carrier: 'Indian Railways',
-      status: 'sent',
-      createdDate: '2025-10-20',
-      createdBy: 'Suresh Menon',
-      remarks: 'Cost-effective rail freight for non-urgent cargo',
-      includedServices: ['Rail transport', 'Basic loading', 'Destination delivery'],
-      fuelSurcharge: 12500,
-      insuranceCharge: 3750,
-      handlingCharge: 6250,
-      customsClearance: 0
-    },
-    {
-      id: '5',
-      quoteNo: 'FQ-2025-1005',
-      customerName: 'Eastern Electronics',
-      origin: 'Visakhapatnam Port',
-      destination: 'Hong Kong Port',
-      cargoType: 'Consumer Electronics',
-      weight: 22000,
-      volume: 68,
-      transportMode: 'sea',
-      serviceType: 'express',
-      quotedAmount: 625000,
-      validUntil: '2025-11-08',
-      transitTime: '5-7 days',
-      carrier: 'COSCO Shipping',
-      status: 'draft',
-      createdDate: '2025-10-21',
-      createdBy: 'Deepak Singh',
-      remarks: 'FCL shipment, awaiting final cargo details',
-      includedServices: ['Container freight', 'THC charges', 'Full insurance'],
-      fuelSurcharge: 62500,
-      insuranceCharge: 18750,
-      handlingCharge: 31250,
-      customsClearance: 0
-    },
-    {
-      id: '6',
-      quoteNo: 'FQ-2025-1006',
-      customerName: 'Metro Wholesale',
-      origin: 'Hyderabad',
-      destination: 'Mumbai',
-      cargoType: 'FMCG Products',
-      weight: 9500,
-      volume: 32,
-      transportMode: 'road',
-      serviceType: 'standard',
-      quotedAmount: 95000,
-      validUntil: '2025-11-01',
-      transitTime: '3-4 days',
-      carrier: 'Gati Ltd',
-      status: 'accepted',
-      createdDate: '2025-10-16',
-      createdBy: 'Vikas Reddy',
-      remarks: 'Regular weekly shipment, contract rates applied',
-      includedServices: ['Part truck load', 'Standard insurance', 'Tracking'],
-      fuelSurcharge: 9500,
-      insuranceCharge: 2850,
-      handlingCharge: 4750,
-      customsClearance: 0
-    },
-    {
-      id: '7',
-      quoteNo: 'FQ-2025-1007',
-      customerName: 'Coastal Enterprises',
-      origin: 'Kochi',
-      destination: 'Colombo',
-      cargoType: 'Textiles',
-      weight: 13500,
-      volume: 42,
-      transportMode: 'sea',
-      serviceType: 'economy',
-      quotedAmount: 215000,
-      validUntil: '2025-09-15',
-      transitTime: '8-12 days',
-      carrier: 'Sri Lanka Shipping',
-      status: 'expired',
-      createdDate: '2025-09-01',
-      createdBy: 'Lakshmi Iyer',
-      remarks: 'Quote expired, customer did not respond',
-      includedServices: ['Sea freight', 'Port charges', 'Basic documentation'],
-      fuelSurcharge: 21500,
-      insuranceCharge: 6450,
-      handlingCharge: 10750,
-      customsClearance: 8500
-    },
-    {
-      id: '8',
-      quoteNo: 'FQ-2025-1008',
-      customerName: 'Northern Distributors',
-      origin: 'Delhi Airport',
-      destination: 'Frankfurt Airport',
-      cargoType: 'Pharmaceuticals',
-      weight: 5500,
-      volume: 18,
-      transportMode: 'air',
-      serviceType: 'express',
-      quotedAmount: 1250000,
-      validUntil: '2025-11-12',
-      transitTime: '1-2 days',
-      carrier: 'Lufthansa Cargo',
-      status: 'sent',
-      createdDate: '2025-10-19',
-      createdBy: 'Rahul Verma',
-      remarks: 'Temperature controlled, GDP compliant handling required',
-      includedServices: ['Air freight', 'Cold chain', 'Express customs', 'Priority handling'],
-      fuelSurcharge: 125000,
-      insuranceCharge: 37500,
-      handlingCharge: 62500,
-      customsClearance: 45000
-    }
-  ];
+    const getStatusColor = (status: string) => {
+        switch (status) {
+            case 'Pending': return 'bg-yellow-50 text-yellow-600 border-yellow-200';
+            case 'Approved': return 'bg-green-50 text-green-600 border-green-200';
+            case 'Rejected': return 'bg-red-50 text-red-600 border-red-200';
+            case 'Expired': return 'bg-gray-50 text-gray-600 border-gray-200';
+            default: return 'bg-gray-50 text-gray-600 border-gray-200';
+        }
+    };
 
-  const quoteStats = {
-    total: quotes.length,
-    draft: quotes.filter(q => q.status === 'draft').length,
-    sent: quotes.filter(q => q.status === 'sent').length,
-    accepted: quotes.filter(q => q.status === 'accepted').length,
-    rejected: quotes.filter(q => q.status === 'rejected').length,
-    expired: quotes.filter(q => q.status === 'expired').length,
-    totalValue: quotes.filter(q => q.status === 'accepted').reduce((sum, q) => sum + q.quotedAmount, 0),
-    avgQuoteValue: Math.round(quotes.reduce((sum, q) => sum + q.quotedAmount, 0) / quotes.length),
-    conversionRate: ((quotes.filter(q => q.status === 'accepted').length / quotes.filter(q => q.status !== 'draft').length) * 100).toFixed(1)
-  };
+    const getModeIcon = (mode: string) => {
+        switch (mode) {
+            case 'Road': return <Truck className="w-4 h-4" />;
+            case 'Air': return <Send className="w-4 h-4" />;
+            case 'Sea': return <Package className="w-4 h-4" />;
+            default: return <Package className="w-4 h-4" />;
+        }
+    };
 
-  const filteredQuotes = quotes.filter(quote => {
-    const matchesSearch =
-      quote.quoteNo.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      quote.customerName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      quote.origin.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      quote.destination.toLowerCase().includes(searchTerm.toLowerCase());
+    const filteredQuotes = quotes.filter(quote => {
+        if (filter === 'all') return true;
+        if (filter === 'pending') return quote.status === 'Pending';
+        if (filter === 'approved') return quote.status === 'Approved';
+        if (filter === 'rejected') return quote.status === 'Rejected';
+        return true;
+    });
 
-    const matchesStatus = statusFilter === 'all' || quote.status === statusFilter;
-    const matchesMode = modeFilter === 'all' || quote.transportMode === modeFilter;
-
-    return matchesSearch && matchesStatus && matchesMode;
-  });
-
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'draft': return 'bg-gray-100 text-gray-700 border-gray-200';
-      case 'sent': return 'bg-blue-100 text-blue-700 border-blue-200';
-      case 'accepted': return 'bg-green-100 text-green-700 border-green-200';
-      case 'rejected': return 'bg-red-100 text-red-700 border-red-200';
-      case 'expired': return 'bg-orange-100 text-orange-700 border-orange-200';
-      default: return 'bg-gray-100 text-gray-700 border-gray-200';
-    }
-  };
-
-  const getModeColor = (mode: string) => {
-    switch (mode) {
-      case 'air': return 'bg-blue-100 text-blue-700 border-blue-200';
-      case 'sea': return 'bg-cyan-100 text-cyan-700 border-cyan-200';
-      case 'road': return 'bg-green-100 text-green-700 border-green-200';
-      case 'rail': return 'bg-purple-100 text-purple-700 border-purple-200';
-      default: return 'bg-gray-100 text-gray-700 border-gray-200';
-    }
-  };
-
-  const getModeIcon = (mode: string) => {
-    switch (mode) {
-      case 'air': return '';
-      case 'sea': return '=¢';
-      case 'road': return '=›';
-      case 'rail': return '=‚';
-      default: return '=æ';
-    }
-  };
-
-  return (
-    <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6 flex items-center justify-between">
-        <div className="flex items-center gap-4">
-          <button onClick={() => router.back()} className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
-            <ArrowLeft className="w-5 h-5 text-gray-600" />
-          </button>
-          <div>
-            <h1 className="text-2xl font-bold text-gray-900">Freight Quotes</h1>
-            <p className="text-sm text-gray-500 mt-1">Create and manage freight quotations</p>
-          </div>
-        </div>
-        <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium flex items-center gap-2">
-          <Plus className="w-4 h-4" />
-          New Quote
-        </button>
-      </div>
-
-      <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 mb-6">
-        <div className="bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-xl p-4 shadow-sm">
-          <div className="flex items-center justify-between mb-2">
-            <FileText className="w-7 h-7 opacity-80" />
-            <span className="text-2xl font-bold">{quoteStats.total}</span>
-          </div>
-          <p className="text-xs font-medium opacity-90">Total Quotes</p>
-        </div>
-
-        <div className="bg-gradient-to-br from-gray-500 to-gray-600 text-white rounded-xl p-4 shadow-sm">
-          <div className="flex items-center justify-between mb-2">
-            <FileText className="w-7 h-7 opacity-80" />
-            <span className="text-2xl font-bold">{quoteStats.draft}</span>
-          </div>
-          <p className="text-xs font-medium opacity-90">Draft</p>
-        </div>
-
-        <div className="bg-gradient-to-br from-blue-400 to-blue-500 text-white rounded-xl p-4 shadow-sm">
-          <div className="flex items-center justify-between mb-2">
-            <Clock className="w-7 h-7 opacity-80" />
-            <span className="text-2xl font-bold">{quoteStats.sent}</span>
-          </div>
-          <p className="text-xs font-medium opacity-90">Sent</p>
-        </div>
-
-        <div className="bg-gradient-to-br from-green-500 to-green-600 text-white rounded-xl p-4 shadow-sm">
-          <div className="flex items-center justify-between mb-2">
-            <CheckCircle className="w-7 h-7 opacity-80" />
-            <span className="text-2xl font-bold">{quoteStats.accepted}</span>
-          </div>
-          <p className="text-xs font-medium opacity-90">Accepted</p>
-        </div>
-
-        <div className="bg-gradient-to-br from-red-500 to-red-600 text-white rounded-xl p-4 shadow-sm">
-          <div className="flex items-center justify-between mb-2">
-            <XCircle className="w-7 h-7 opacity-80" />
-            <span className="text-2xl font-bold">{quoteStats.rejected}</span>
-          </div>
-          <p className="text-xs font-medium opacity-90">Rejected</p>
-        </div>
-
-        <div className="bg-gradient-to-br from-orange-500 to-orange-600 text-white rounded-xl p-4 shadow-sm">
-          <div className="flex items-center justify-between mb-2">
-            <Calendar className="w-7 h-7 opacity-80" />
-            <span className="text-2xl font-bold">{quoteStats.expired}</span>
-          </div>
-          <p className="text-xs font-medium opacity-90">Expired</p>
-        </div>
-
-        <div className="bg-gradient-to-br from-purple-500 to-purple-600 text-white rounded-xl p-4 shadow-sm">
-          <div className="flex items-center justify-between mb-2">
-            <DollarSign className="w-7 h-7 opacity-80" />
-            <span className="text-lg font-bold">¹{(quoteStats.totalValue / 1000000).toFixed(1)}M</span>
-          </div>
-          <p className="text-xs font-medium opacity-90">Total Value</p>
-        </div>
-
-        <div className="bg-gradient-to-br from-indigo-500 to-indigo-600 text-white rounded-xl p-4 shadow-sm">
-          <div className="flex items-center justify-between mb-2">
-            <TrendingUp className="w-7 h-7 opacity-80" />
-            <span className="text-2xl font-bold">{quoteStats.conversionRate}%</span>
-          </div>
-          <p className="text-xs font-medium opacity-90">Conversion Rate</p>
-        </div>
-      </div>
-
-      <div className="bg-white rounded-xl border border-gray-200 p-6 mb-6">
-        <div className="flex flex-col gap-4">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-            <input
-              type="text"
-              placeholder="Search by quote no, customer, origin, or destination..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            />
-          </div>
-
-          <div className="flex flex-wrap gap-3">
-            <select
-              value={statusFilter}
-              onChange={(e) => setStatusFilter(e.target.value)}
-              className="px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            >
-              <option value="all">All Status</option>
-              <option value="draft">Draft</option>
-              <option value="sent">Sent</option>
-              <option value="accepted">Accepted</option>
-              <option value="rejected">Rejected</option>
-              <option value="expired">Expired</option>
-            </select>
-
-            <select
-              value={modeFilter}
-              onChange={(e) => setModeFilter(e.target.value)}
-              className="px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            >
-              <option value="all">All Modes</option>
-              <option value="air">Air</option>
-              <option value="sea">Sea</option>
-              <option value="road">Road</option>
-              <option value="rail">Rail</option>
-            </select>
-          </div>
-
-          <div className="flex items-center gap-2 text-sm text-gray-600">
-            <Filter className="w-4 h-4" />
-            <span>Showing {filteredQuotes.length} of {quoteStats.total} quotes</span>
-          </div>
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 gap-4">
-        {filteredQuotes.map((quote) => (
-          <div key={quote.id} className="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-md transition-shadow">
-            <div className="flex items-start justify-between mb-4">
-              <div>
-                <div className="flex items-center gap-3 mb-2">
-                  <h3 className="text-lg font-bold text-gray-900">{quote.quoteNo}</h3>
-                  <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium border ${getStatusColor(quote.status)}`}>
-                    {quote.status}
-                  </span>
-                  <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium border ${getModeColor(quote.transportMode)}`}>
-                    {getModeIcon(quote.transportMode)} {quote.transportMode}
-                  </span>
-                </div>
-                <p className="text-sm font-semibold text-blue-600">{quote.customerName}</p>
-                <p className="text-xs text-gray-500 mt-0.5">{quote.cargoType}</p>
-              </div>
-
-              <div className="text-right">
-                <p className="text-xs text-gray-500 mb-0.5">Quoted Amount</p>
-                <p className="text-2xl font-bold text-indigo-600">¹{quote.quotedAmount.toLocaleString()}</p>
-                <p className="text-xs text-gray-500 mt-1">Valid until: {quote.validUntil}</p>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4">
-              <div className="bg-blue-50 rounded-lg p-3">
-                <div className="flex items-center gap-1 mb-1">
-                  <MapPin className="w-3 h-3 text-blue-600" />
-                  <p className="text-xs text-blue-600 font-medium">Route</p>
-                </div>
-                <p className="text-sm font-semibold text-blue-900">{quote.origin}</p>
-                <p className="text-xs text-blue-700 my-0.5">’</p>
-                <p className="text-sm font-semibold text-blue-900">{quote.destination}</p>
-              </div>
-
-              <div className="bg-green-50 rounded-lg p-3">
-                <div className="flex items-center gap-1 mb-1">
-                  <Package className="w-3 h-3 text-green-600" />
-                  <p className="text-xs text-green-600 font-medium">Cargo Details</p>
-                </div>
-                <p className="text-sm font-semibold text-green-900">{quote.weight.toLocaleString()} kg</p>
-                <p className="text-xs text-green-700">{quote.volume} CBM</p>
-              </div>
-
-              <div className="bg-purple-50 rounded-lg p-3">
-                <div className="flex items-center gap-1 mb-1">
-                  <Truck className="w-3 h-3 text-purple-600" />
-                  <p className="text-xs text-purple-600 font-medium">Carrier & Service</p>
-                </div>
-                <p className="text-sm font-semibold text-purple-900">{quote.carrier}</p>
-                <p className="text-xs text-purple-700">{quote.serviceType}</p>
-              </div>
-
-              <div className="bg-orange-50 rounded-lg p-3">
-                <div className="flex items-center gap-1 mb-1">
-                  <Clock className="w-3 h-3 text-orange-600" />
-                  <p className="text-xs text-orange-600 font-medium">Transit Time</p>
-                </div>
-                <p className="text-sm font-semibold text-orange-900">{quote.transitTime}</p>
-                <p className="text-xs text-orange-700 mt-1">Created: {quote.createdDate}</p>
-              </div>
-            </div>
-
-            <div className="bg-gray-50 rounded-lg p-3 mb-4">
-              <p className="text-xs text-gray-500 font-medium mb-2">Cost Breakdown</p>
-              <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 text-xs">
+    return (
+        <div className="p-6 space-y-6 text-sm font-medium">
+            {/* Header */}
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
-                  <p className="text-gray-600">Base Rate</p>
-                  <p className="font-semibold text-gray-900">¹{(quote.quotedAmount - quote.fuelSurcharge - quote.insuranceCharge - quote.handlingCharge - quote.customsClearance).toLocaleString()}</p>
+                    <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
+                        <FileText className="h-8 w-8 text-orange-600" />
+                        Freight Quotes
+                    </h1>
+                    <p className="text-gray-500 mt-1 uppercase text-[10px] font-black tracking-widest leading-none">
+                        Request and manage freight quotations
+                    </p>
                 </div>
-                <div>
-                  <p className="text-gray-600">Fuel Surcharge</p>
-                  <p className="font-semibold text-gray-900">¹{quote.fuelSurcharge.toLocaleString()}</p>
+                <div className="flex items-center gap-3">
+                    <button className="px-4 py-2 border border-gray-200 bg-white text-gray-600 rounded-lg font-black uppercase text-[10px] tracking-widest hover:bg-gray-50 transition-colors flex items-center gap-2">
+                        <Download className="w-4 h-4" /> Export
+                    </button>
+                    <button className="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 flex items-center gap-2 shadow-md font-black uppercase text-[10px] tracking-widest">
+                        <Plus className="w-4 h-4" /> Request Quote
+                    </button>
                 </div>
-                <div>
-                  <p className="text-gray-600">Insurance</p>
-                  <p className="font-semibold text-gray-900">¹{quote.insuranceCharge.toLocaleString()}</p>
-                </div>
-                <div>
-                  <p className="text-gray-600">Handling</p>
-                  <p className="font-semibold text-gray-900">¹{quote.handlingCharge.toLocaleString()}</p>
-                </div>
-                {quote.customsClearance > 0 && (
-                  <div>
-                    <p className="text-gray-600">Customs</p>
-                    <p className="font-semibold text-gray-900">¹{quote.customsClearance.toLocaleString()}</p>
-                  </div>
-                )}
-              </div>
             </div>
 
-            <div className="mb-4">
-              <p className="text-xs text-gray-500 font-medium mb-2">Included Services</p>
-              <div className="flex flex-wrap gap-2">
-                {quote.includedServices.map((service, idx) => (
-                  <span key={idx} className="inline-flex items-center px-2 py-1 bg-blue-50 text-blue-700 rounded text-xs">
-                     {service}
-                  </span>
-                ))}
-              </div>
+            {/* Stats Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
+                <div className="bg-white p-4 rounded-xl border border-gray-100 shadow-sm">
+                    <div className="flex justify-between items-start">
+                        <div>
+                            <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Total Quotes</p>
+                            <p className="text-2xl font-black text-gray-900 mt-1 italic tracking-tighter">{quoteStats.total}</p>
+                        </div>
+                        <div className="p-2 bg-gray-100 rounded-lg text-gray-600">
+                            <FileText className="w-4 h-4" />
+                        </div>
+                    </div>
+                </div>
+
+                <div className="bg-white p-4 rounded-xl border border-yellow-100 shadow-sm">
+                    <div className="flex justify-between items-start">
+                        <div>
+                            <p className="text-[10px] font-black text-yellow-600 uppercase tracking-widest">Pending</p>
+                            <p className="text-2xl font-black text-yellow-600 mt-1 italic tracking-tighter">{quoteStats.pending}</p>
+                        </div>
+                        <div className="p-2 bg-yellow-50 rounded-lg text-yellow-600">
+                            <Clock className="w-4 h-4" />
+                        </div>
+                    </div>
+                </div>
+
+                <div className="bg-white p-4 rounded-xl border border-green-100 shadow-sm">
+                    <div className="flex justify-between items-start">
+                        <div>
+                            <p className="text-[10px] font-black text-green-600 uppercase tracking-widest">Approved</p>
+                            <p className="text-2xl font-black text-green-600 mt-1 italic tracking-tighter">{quoteStats.approved}</p>
+                        </div>
+                        <div className="p-2 bg-green-50 rounded-lg text-green-600">
+                            <CheckCircle2 className="w-4 h-4" />
+                        </div>
+                    </div>
+                </div>
+
+                <div className="bg-white p-4 rounded-xl border border-red-100 shadow-sm">
+                    <div className="flex justify-between items-start">
+                        <div>
+                            <p className="text-[10px] font-black text-red-600 uppercase tracking-widest">Rejected</p>
+                            <p className="text-2xl font-black text-red-600 mt-1 italic tracking-tighter">{quoteStats.rejected}</p>
+                        </div>
+                        <div className="p-2 bg-red-50 rounded-lg text-red-600">
+                            <XCircle className="w-4 h-4" />
+                        </div>
+                    </div>
+                </div>
+
+                <div className="bg-white p-4 rounded-xl border border-blue-100 shadow-sm">
+                    <div className="flex justify-between items-start">
+                        <div>
+                            <p className="text-[10px] font-black text-blue-600 uppercase tracking-widest">Avg Response</p>
+                            <p className="text-2xl font-black text-blue-600 mt-1 italic tracking-tighter">{quoteStats.avgResponseTime}</p>
+                        </div>
+                        <div className="p-2 bg-blue-50 rounded-lg text-blue-600">
+                            <TrendingUp className="w-4 h-4" />
+                        </div>
+                    </div>
+                </div>
+
+                <div className="bg-gray-900 p-4 rounded-xl text-white shadow-xl">
+                    <div className="flex justify-between items-start">
+                        <div>
+                            <p className="text-[10px] font-black text-gray-500 uppercase tracking-widest">Total Value</p>
+                            <p className="text-xl font-black text-white mt-1 italic tracking-tighter">
+                                ${(quoteStats.totalValue / 1000000).toFixed(2)}M
+                            </p>
+                        </div>
+                        <div className="p-2 bg-gray-800 rounded-lg text-green-500">
+                            <DollarSign className="w-4 h-4" />
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            {quote.remarks && (
-              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 mb-4">
-                <p className="text-xs text-yellow-600 font-medium mb-1">Remarks</p>
-                <p className="text-sm text-yellow-900">{quote.remarks}</p>
-              </div>
-            )}
-
-            <div className="flex items-center justify-between pt-3 border-t border-gray-200">
-              <p className="text-xs text-gray-500">Created by {quote.createdBy} on {quote.createdDate}</p>
-              <div className="flex gap-2">
-                <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium text-sm">
-                  View Details
-                </button>
-                {quote.status === 'draft' && (
-                  <button className="px-4 py-2 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 font-medium text-sm">
-                    Send Quote
-                  </button>
-                )}
-                {quote.status === 'sent' && (
-                  <button className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 font-medium text-sm">
-                    Follow Up
-                  </button>
-                )}
-              </div>
+            {/* Filters & Search */}
+            <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-4">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                    <div className="flex items-center gap-2 flex-wrap">
+                        {['all', 'pending', 'approved', 'rejected'].map((f) => (
+                            <button
+                                key={f}
+                                onClick={() => setFilter(f)}
+                                className={`px-3 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-widest transition-colors ${filter === f
+                                        ? 'bg-orange-600 text-white'
+                                        : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                                    }`}
+                            >
+                                {f}
+                            </button>
+                        ))}
+                    </div>
+                    <div className="relative w-full sm:w-64">
+                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+                        <input
+                            type="text"
+                            placeholder="Search quotes..."
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg text-xs"
+                        />
+                    </div>
+                </div>
             </div>
-          </div>
-        ))}
-      </div>
 
-      {filteredQuotes.length === 0 && (
-        <div className="bg-white rounded-xl border border-gray-200 p-12 text-center">
-          <FileText className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-          <p className="text-gray-500 text-lg mb-2">No quotes found</p>
-          <p className="text-sm text-gray-400">Try adjusting your search or filter criteria</p>
+            {/* Quotes Table */}
+            <div className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
+                <div className="overflow-x-auto">
+                    <table className="w-full text-left">
+                        <thead className="bg-gray-50 text-[10px] uppercase font-black text-gray-400 border-b border-gray-100">
+                            <tr>
+                                <th className="px-6 py-4">Quote ID</th>
+                                <th className="px-6 py-4">Customer</th>
+                                <th className="px-6 py-4">Route</th>
+                                <th className="px-6 py-4 text-center">Mode</th>
+                                <th className="px-6 py-4 text-center">Weight</th>
+                                <th className="px-6 py-4 text-center">Amount</th>
+                                <th className="px-6 py-4 text-center">Valid Until</th>
+                                <th className="px-6 py-4 text-center">Status</th>
+                                <th className="px-6 py-4 text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody className="divide-y divide-gray-50">
+                            {filteredQuotes.map((quote) => (
+                                <tr key={quote.id} className="hover:bg-gray-50 transition-colors group cursor-pointer">
+                                    <td className="px-6 py-4">
+                                        <span className="font-black text-gray-900 group-hover:text-orange-600 transition-colors">
+                                            {quote.id}
+                                        </span>
+                                    </td>
+                                    <td className="px-6 py-4">
+                                        <div>
+                                            <span className="font-bold text-gray-900">{quote.customer}</span>
+                                            <p className="text-[10px] text-gray-400">{quote.carrier}</p>
+                                        </div>
+                                    </td>
+                                    <td className="px-6 py-4">
+                                        <div className="text-[10px]">
+                                            <p className="text-gray-600 font-bold flex items-center gap-1">
+                                                <MapPin className="w-3 h-3" /> {quote.origin}
+                                            </p>
+                                            <p className="text-gray-400 flex items-center gap-1 mt-0.5">
+                                                <ChevronRight className="w-3 h-3" /> {quote.destination}
+                                            </p>
+                                        </div>
+                                    </td>
+                                    <td className="px-6 py-4 text-center">
+                                        <div className="inline-flex items-center gap-1 px-2 py-1 bg-gray-100 rounded text-gray-600">
+                                            {getModeIcon(quote.mode)}
+                                            <span className="text-[10px] font-bold">{quote.mode}</span>
+                                        </div>
+                                    </td>
+                                    <td className="px-6 py-4 text-center text-gray-600 font-bold text-[11px]">
+                                        {quote.weight}
+                                    </td>
+                                    <td className="px-6 py-4 text-center">
+                                        <span className="font-black text-gray-900">${quote.amount.toLocaleString()}</span>
+                                        <p className="text-[9px] text-gray-400">{quote.transitTime}</p>
+                                    </td>
+                                    <td className="px-6 py-4 text-center text-[10px] text-gray-600">
+                                        {quote.validUntil}
+                                    </td>
+                                    <td className="px-6 py-4 text-center">
+                                        <span className={`inline-block px-2 py-0.5 rounded text-[9px] font-black uppercase border ${getStatusColor(quote.status)}`}>
+                                            {quote.status}
+                                        </span>
+                                    </td>
+                                    <td className="px-6 py-4 text-right">
+                                        <div className="flex items-center gap-2 justify-end opacity-0 group-hover:opacity-100 transition-opacity">
+                                            <button className="p-1.5 bg-gray-100 rounded-lg text-gray-500 hover:bg-gray-200 transition-colors">
+                                                <Eye className="w-3 h-3" />
+                                            </button>
+                                            <button className="p-1.5 bg-blue-100 rounded-lg text-blue-600 hover:bg-blue-200 transition-colors">
+                                                <Edit className="w-3 h-3" />
+                                            </button>
+                                            {quote.status === 'Pending' && (
+                                                <button className="p-1.5 bg-green-100 rounded-lg text-green-600 hover:bg-green-200 transition-colors">
+                                                    <CheckCircle2 className="w-3 h-3" />
+                                                </button>
+                                            )}
+                                        </div>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            {/* Quick Actions */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="bg-yellow-50 p-4 rounded-xl border border-yellow-100 flex items-start gap-4">
+                    <div className="p-2 bg-yellow-100 rounded-lg text-yellow-600">
+                        <Clock className="w-5 h-5" />
+                    </div>
+                    <div>
+                        <h4 className="text-xs font-black text-yellow-800 uppercase tracking-widest mb-1">Pending Review</h4>
+                        <p className="text-[11px] text-yellow-700">
+                            12 quotes awaiting customer approval. Follow up on quotes older than 3 days.
+                        </p>
+                        <button className="mt-2 text-[10px] font-black text-yellow-800 uppercase tracking-widest flex items-center gap-1 hover:text-yellow-900">
+                            Review Pending <ChevronRight className="w-3 h-3" />
+                        </button>
+                    </div>
+                </div>
+
+                <div className="bg-orange-50 p-4 rounded-xl border border-orange-100 flex items-start gap-4">
+                    <div className="p-2 bg-orange-100 rounded-lg text-orange-600">
+                        <AlertCircle className="w-5 h-5" />
+                    </div>
+                    <div>
+                        <h4 className="text-xs font-black text-orange-800 uppercase tracking-widest mb-1">Expiring Soon</h4>
+                        <p className="text-[11px] text-orange-700">
+                            3 quotes will expire in the next 7 days. Contact customers to confirm or extend.
+                        </p>
+                        <button className="mt-2 text-[10px] font-black text-orange-800 uppercase tracking-widest flex items-center gap-1 hover:text-orange-900">
+                            View Expiring <ChevronRight className="w-3 h-3" />
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
-      )}
-
-      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-xl p-4">
-        <h3 className="text-sm font-semibold text-blue-900 mb-2">Freight Quote Guide:</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm text-blue-700">
-          <div className="flex items-start gap-2">
-            <span className="font-medium">Transport Modes:</span>
-            <span>Air (fastest), Sea (economical), Road (flexible), Rail (bulk)</span>
-          </div>
-          <div className="flex items-start gap-2">
-            <span className="font-medium">Quote Validity:</span>
-            <span>Typical validity period is 7-15 days from issue date</span>
-          </div>
-          <div className="flex items-start gap-2">
-            <span className="font-medium">Cost Components:</span>
-            <span>Base rate + fuel surcharge + insurance + handling + customs</span>
-          </div>
-          <div className="flex items-start gap-2">
-            <span className="font-medium">Conversion Rate:</span>
-            <span>Percentage of sent quotes that are accepted by customers</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+    );
 }

@@ -1,20 +1,307 @@
 'use client';
 
-import { Calendar } from 'lucide-react';
+import { useState } from 'react';
+import { Calendar, Clock, MapPin, Users, Plus, Video, Monitor } from 'lucide-react';
 
-export default function Page() {
+interface Meeting {
+  id: string;
+  employeeName: string;
+  role: string;
+  date: string;
+  time: string;
+  duration: string;
+  type: 'in_person' | 'remote';
+  location: string;
+  status: 'scheduled' | 'completed';
+}
+
+export default function ReviewMeetingsPage() {
+  const [showModal, setShowModal] = useState(false);
+  const [meetings, setMeetings] = useState<Meeting[]>([
+    {
+      id: '1',
+      employeeName: 'Rahul Sharma',
+      role: 'Senior Developer',
+      date: '2024-03-25',
+      time: '10:00 AM',
+      duration: '45 min',
+      type: 'in_person',
+      location: 'Conference Room A',
+      status: 'scheduled'
+    },
+    {
+      id: '2',
+      employeeName: 'Priya Patel',
+      role: 'Product Designer',
+      date: '2024-03-25',
+      time: '02:00 PM',
+      duration: '30 min',
+      type: 'remote',
+      location: 'Google Meet',
+      status: 'scheduled'
+    },
+    {
+      id: '3',
+      employeeName: 'Amit Kumar',
+      role: 'QA Lead',
+      date: '2024-03-26',
+      time: '11:00 AM',
+      duration: '60 min',
+      type: 'remote',
+      location: 'Google Meet',
+      status: 'scheduled'
+    }
+  ]);
+
+  const [formData, setFormData] = useState({
+    employeeName: '',
+    date: '',
+    time: '',
+    duration: '30',
+    type: 'remote',
+    location: ''
+  });
+
+  const handleSchedule = (e: React.FormEvent) => {
+    e.preventDefault();
+    const newMeeting: Meeting = {
+      id: Date.now().toString(),
+      employeeName: formData.employeeName,
+      role: 'Team Member', // Mock role
+      date: formData.date,
+      time: formData.time,
+      duration: `${formData.duration} min`,
+      type: formData.type as 'in_person' | 'remote',
+      location: formData.location || (formData.type === 'remote' ? 'Google Meet' : 'TBD'),
+      status: 'scheduled'
+    };
+
+    setMeetings(prev => [...prev, newMeeting].sort((a, b) =>
+      new Date(`${a.date} ${a.time}`).getTime() - new Date(`${b.date} ${b.time}`).getTime()
+    ));
+
+    setShowModal(false);
+    setFormData({
+      employeeName: '',
+      date: '',
+      time: '',
+      duration: '30',
+      type: 'remote',
+      location: ''
+    });
+  };
+
+  const getMeetingIcon = (type: string) => {
+    return type === 'remote' ? <Video className="h-5 w-5" /> : <Users className="h-5 w-5" />;
+  };
+
   return (
-    <div className="p-6">
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
-          <Calendar className="h-8 w-8 text-purple-600" />
-          Review Meetings
-        </h1>
-        <p className="text-gray-600 mt-2">Schedule review discussions</p>
+    <div className="p-6 space-y-6">
+      <div className="flex justify-between items-start">
+        <div>
+          <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
+            <Calendar className="h-8 w-8 text-purple-600" />
+            Review Meetings
+          </h1>
+          <p className="text-gray-500 mt-1">Schedule and manage 1:1 performance review discussions.</p>
+        </div>
+        <button
+          onClick={() => setShowModal(true)}
+          className="flex items-center gap-2 px-4 py-2 bg-purple-600 text-white font-medium rounded-lg hover:bg-purple-700 transition-colors"
+        >
+          <Plus className="h-4 w-4" />
+          Schedule Meeting
+        </button>
       </div>
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <p className="text-gray-600">This page is under construction. Full functionality coming soon.</p>
+
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Today's Schedule */}
+        <div className="lg:col-span-2 space-y-6">
+          <h2 className="text-lg font-semibold text-gray-900">Upcoming Schedule</h2>
+
+          <div className="space-y-4">
+            {meetings.map((meeting) => (
+              <div
+                key={meeting.id}
+                className="bg-white p-5 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
+              >
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <div className="flex items-start gap-4">
+                    <div className="h-12 w-12 bg-purple-50 rounded-xl flex flex-col items-center justify-center min-w-[3rem]">
+                      <span className="text-xs font-semibold text-purple-600 uppercase">
+                        {new Date(meeting.date).toLocaleDateString('en-US', { month: 'short' })}
+                      </span>
+                      <span className="text-lg font-bold text-purple-700">
+                        {new Date(meeting.date).getDate()}
+                      </span>
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-gray-900 text-lg">{meeting.employeeName}</h3>
+                      <p className="text-sm text-gray-500">{meeting.role}</p>
+                      <div className="flex flex-wrap items-center gap-4 mt-2 text-sm text-gray-600">
+                        <div className="flex items-center gap-1.5">
+                          <Clock className="h-4 w-4" />
+                          <span>{meeting.time} ({meeting.duration})</span>
+                        </div>
+                        <div className="flex items-center gap-1.5">
+                          {meeting.type === 'remote' ? <Monitor className="h-4 w-4" /> : <MapPin className="h-4 w-4" />}
+                          <span>{meeting.location}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2 self-start sm:self-center">
+                    <button className="px-3 py-1.5 text-sm font-medium text-purple-600 bg-purple-50 hover:bg-purple-100 rounded-lg transition-colors">
+                      Reschedule
+                    </button>
+                    {meeting.type === 'remote' && (
+                      <button className="px-3 py-1.5 text-sm font-medium text-white bg-purple-600 hover:bg-purple-700 rounded-lg transition-colors">
+                        Join Call
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Hints / Sidebar */}
+        <div className="space-y-6">
+          <div className="bg-gradient-to-br from-purple-50 to-white p-6 rounded-xl border border-purple-100">
+            <h3 className="font-semibold text-purple-900 mb-2">Meeting Tips</h3>
+            <ul className="space-y-3 text-sm text-purple-800">
+              <li className="flex items-start gap-2">
+                <span className="mt-1">•</span>
+                <span>Review the employee's self-assessment 24h before the meeting.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="mt-1">•</span>
+                <span>Prepare specific examples for feedback.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="mt-1">•</span>
+                <span>Focus on future growth and development goals.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="mt-1">•</span>
+                <span>Allow time for the employee to ask questions.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
+
+      {/* Schedule Modal */}
+      {showModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-xl shadow-xl max-w-md w-full">
+            <div className="p-6 border-b border-gray-200 flex justify-between items-center">
+              <h2 className="text-xl font-semibold text-gray-900">Schedule Review</h2>
+              <button
+                onClick={() => setShowModal(false)}
+                className="text-gray-400 hover:text-gray-500 text-2xl"
+              >
+                &times;
+              </button>
+            </div>
+
+            <form onSubmit={handleSchedule} className="p-6 space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Employee Name</label>
+                <input
+                  type="text"
+                  required
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none"
+                  placeholder="e.g. Rahul Sharma"
+                  value={formData.employeeName}
+                  onChange={e => setFormData({ ...formData, employeeName: e.target.value })}
+                />
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Date</label>
+                  <input
+                    type="date"
+                    required
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 outline-none"
+                    value={formData.date}
+                    onChange={e => setFormData({ ...formData, date: e.target.value })}
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Time</label>
+                  <input
+                    type="time"
+                    required
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 outline-none"
+                    value={formData.time}
+                    onChange={e => setFormData({ ...formData, time: e.target.value })}
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Meeting Type</label>
+                <div className="flex gap-4">
+                  <label className="flex items-center gap-2 cursor-pointer">
+                    <input
+                      type="radio"
+                      name="type"
+                      value="remote"
+                      checked={formData.type === 'remote'}
+                      onChange={e => setFormData({ ...formData, type: 'remote' })}
+                      className="text-purple-600 focus:ring-purple-500"
+                    />
+                    <span>Remote (Video)</span>
+                  </label>
+                  <label className="flex items-center gap-2 cursor-pointer">
+                    <input
+                      type="radio"
+                      name="type"
+                      value="in_person"
+                      checked={formData.type === 'in_person'}
+                      onChange={e => setFormData({ ...formData, type: 'in_person' })}
+                      className="text-purple-600 focus:ring-purple-500"
+                    />
+                    <span>In Person</span>
+                  </label>
+                </div>
+              </div>
+
+              {formData.type === 'in_person' && (
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Location</label>
+                  <input
+                    type="text"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 outline-none"
+                    placeholder="e.g. Conference Room B"
+                    value={formData.location}
+                    onChange={e => setFormData({ ...formData, location: e.target.value })}
+                  />
+                </div>
+              )}
+
+              <div className="flex justify-end gap-3 pt-4">
+                <button
+                  type="button"
+                  onClick={() => setShowModal(false)}
+                  className="px-4 py-2 text-gray-700 font-medium hover:bg-gray-50 rounded-lg transition-colors"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="px-6 py-2 bg-purple-600 text-white font-medium rounded-lg hover:bg-purple-700 transition-colors"
+                >
+                  Schedule
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

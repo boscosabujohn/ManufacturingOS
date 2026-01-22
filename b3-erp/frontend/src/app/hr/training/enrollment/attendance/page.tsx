@@ -1,19 +1,165 @@
 'use client';
 
-import { CheckSquare } from 'lucide-react';
+import { useState } from 'react';
+import { CheckSquare, Calendar, Search, UserCheck, UserX, Clock, Save } from 'lucide-react';
 
-export default function Page() {
+interface Attendee {
+  id: string;
+  name: string;
+  role: string;
+  status: 'Present' | 'Absent' | 'Late';
+}
+
+export default function AttendancePage() {
+  const [selectedSession, setSelectedSession] = useState('1');
+
+  const [attendees, setAttendees] = useState<Attendee[]>([
+    { id: '1', name: 'Sarah Connor', role: 'Frontend Dev', status: 'Present' },
+    { id: '2', name: 'James Wilson', role: 'Sales rep', status: 'Absent' },
+    { id: '3', name: 'Michael Chen', role: 'Product Manager', status: 'Present' },
+    { id: '4', name: 'Emily Davis', role: 'Designer', status: 'Late' },
+    { id: '5', name: 'Robert Johnson', role: 'HR Specialist', status: 'Present' },
+  ]);
+
+  const stats = {
+    present: attendees.filter(a => a.status === 'Present').length,
+    absent: attendees.filter(a => a.status === 'Absent').length,
+    late: attendees.filter(a => a.status === 'Late').length,
+    total: attendees.length
+  };
+
+  const updateStatus = (id: string, status: 'Present' | 'Absent' | 'Late') => {
+    setAttendees(attendees.map(a => a.id === id ? { ...a, status } : a));
+  };
+
+  const handleSave = () => {
+    console.log('Attendance Saved:', attendees);
+    alert('Attendance records updated successfully! (Mock)');
+  };
+
   return (
-    <div className="p-6">
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
-          <CheckSquare className="h-8 w-8 text-purple-600" />
-          Training Attendance
-        </h1>
-        <p className="text-gray-600 mt-2">Mark training attendance</p>
+    <div className="p-6 space-y-6">
+      <div className="flex justify-between items-start">
+        <div>
+          <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
+            <CheckSquare className="h-8 w-8 text-purple-600" />
+            Training Attendance
+          </h1>
+          <p className="text-gray-500 mt-1">Mark and track attendance for training sessions.</p>
+        </div>
+        <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 text-sm text-gray-600 bg-white px-3 py-1.5 rounded-lg border border-gray-200">
+            <Calendar className="h-4 w-4 text-gray-400" />
+            <span>Advanced React Patterns • April 10, 2024</span>
+          </div>
+          <button
+            onClick={handleSave}
+            className="px-4 py-2 bg-purple-600 text-white font-medium rounded-lg hover:bg-purple-700 transition-colors flex items-center gap-2"
+          >
+            <Save className="h-4 w-4" />
+            Save Records
+          </button>
+        </div>
       </div>
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <p className="text-gray-600">This page is under construction. Full functionality coming soon.</p>
+
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+        {/* Stats Cards */}
+        <div className="lg:col-span-4 grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div className="bg-white p-4 rounded-xl border border-gray-200 flex items-center justify-between">
+            <div>
+              <p className="text-xs font-medium text-gray-500 uppercase">Present</p>
+              <p className="text-2xl font-bold text-green-600">{stats.present}</p>
+            </div>
+            <div className="p-2 bg-green-50 rounded-lg"><UserCheck className="h-5 w-5 text-green-600" /></div>
+          </div>
+          <div className="bg-white p-4 rounded-xl border border-gray-200 flex items-center justify-between">
+            <div>
+              <p className="text-xs font-medium text-gray-500 uppercase">Absent</p>
+              <p className="text-2xl font-bold text-red-600">{stats.absent}</p>
+            </div>
+            <div className="p-2 bg-red-50 rounded-lg"><UserX className="h-5 w-5 text-red-600" /></div>
+          </div>
+          <div className="bg-white p-4 rounded-xl border border-gray-200 flex items-center justify-between">
+            <div>
+              <p className="text-xs font-medium text-gray-500 uppercase">Late</p>
+              <p className="text-2xl font-bold text-orange-600">{stats.late}</p>
+            </div>
+            <div className="p-2 bg-orange-50 rounded-lg"><Clock className="h-5 w-5 text-orange-600" /></div>
+          </div>
+          <div className="bg-white p-4 rounded-xl border border-gray-200 flex items-center justify-between">
+            <div>
+              <p className="text-xs font-medium text-gray-500 uppercase">Attendance Rate</p>
+              <p className="text-2xl font-bold text-purple-600">{Math.round(((stats.present + stats.late) / stats.total) * 100)}%</p>
+            </div>
+            <div className="p-2 bg-purple-50 rounded-lg"><CheckSquare className="h-5 w-5 text-purple-600" /></div>
+          </div>
+        </div>
+
+        {/* Main List */}
+        <div className="lg:col-span-4">
+          <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-lg font-semibold text-gray-900">Attendee List</h3>
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+                <input
+                  type="text"
+                  placeholder="Search attendee..."
+                  className="pl-9 pr-4 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 outline-none w-64"
+                />
+              </div>
+            </div>
+
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b border-gray-100 text-left text-sm text-gray-500">
+                    <th className="pb-3 font-medium pl-4">Employee</th>
+                    <th className="pb-3 font-medium">Role</th>
+                    <th className="pb-3 font-medium text-center">Status</th>
+                    <th className="pb-3 font-medium text-right">Actions</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-100">
+                  {attendees.map(attendee => (
+                    <tr key={attendee.id} className="hover:bg-gray-50 transition-colors">
+                      <td className="py-4 pl-4 font-medium text-gray-900">{attendee.name}</td>
+                      <td className="py-4 text-gray-600 text-sm">{attendee.role}</td>
+                      <td className="py-4">
+                        <div className="flex justify-center gap-1 bg-gray-100 p-1 rounded-lg w-fit mx-auto">
+                          <button
+                            onClick={() => updateStatus(attendee.id, 'Present')}
+                            className={`px-3 py-1 rounded-md text-xs font-medium transition-all ${attendee.status === 'Present' ? 'bg-white text-green-700 shadow-sm' : 'text-gray-500 hover:text-gray-700'
+                              }`}
+                          >
+                            Present
+                          </button>
+                          <button
+                            onClick={() => updateStatus(attendee.id, 'Late')}
+                            className={`px-3 py-1 rounded-md text-xs font-medium transition-all ${attendee.status === 'Late' ? 'bg-white text-orange-700 shadow-sm' : 'text-gray-500 hover:text-gray-700'
+                              }`}
+                          >
+                            Late
+                          </button>
+                          <button
+                            onClick={() => updateStatus(attendee.id, 'Absent')}
+                            className={`px-3 py-1 rounded-md text-xs font-medium transition-all ${attendee.status === 'Absent' ? 'bg-white text-red-700 shadow-sm' : 'text-gray-500 hover:text-gray-700'
+                              }`}
+                          >
+                            Absent
+                          </button>
+                        </div>
+                      </td>
+                      <td className="py-4 text-right">
+                        <button className="text-sm text-purple-600 font-medium hover:text-purple-700">Add Note</button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

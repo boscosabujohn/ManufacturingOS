@@ -1,19 +1,241 @@
 'use client';
 
-import { Package } from 'lucide-react';
+import React, { useState } from 'react';
+import {
+  Package,
+  Search,
+  Filter,
+  Calendar,
+  AlertTriangle,
+  History,
+  User,
+  Clock,
+  CheckCircle2,
+  XCircle,
+  MoreVertical,
+  ArrowUpRight,
+  ShieldCheck,
+  TrendingUp,
+  Plus
+} from 'lucide-react';
 
-export default function Page() {
+// Mock Data
+const trackingStats = {
+  totalItems: 842,
+  complianceRate: 98.4,
+  expiringSoon: 12,
+  replacementRequests: 5
+};
+
+const assignedPPE = [
+  {
+    id: 'TRK-9901',
+    employee: 'John Smith',
+    item: 'Standard Hard Hat',
+    issuedDate: '2023-01-10',
+    expiryDate: '2028-01-10',
+    status: 'Compliant',
+    condition: 'Good'
+  },
+  {
+    id: 'TRK-9902',
+    employee: 'Sarah Wilson',
+    item: 'Steel-Toe Boots',
+    issuedDate: '2023-06-15',
+    expiryDate: '2024-06-15',
+    status: 'Expiring Soon',
+    condition: 'Fair'
+  },
+  {
+    id: 'TRK-9888',
+    employee: 'Mike Ross',
+    item: 'Safety Goggles',
+    issuedDate: '2022-12-01',
+    expiryDate: '2023-12-01',
+    status: 'Expired',
+    condition: 'Poor'
+  },
+  {
+    id: 'TRK-9910',
+    employee: 'Emma Blunt',
+    item: 'Reflective Vest',
+    issuedDate: '2024-02-20',
+    expiryDate: '2026-02-20',
+    status: 'Compliant',
+    condition: 'New'
+  },
+];
+
+export default function PPETrackingPage() {
+  const [filter, setFilter] = useState('All');
+
   return (
-    <div className="p-6">
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
-          <Package className="h-8 w-8 text-orange-600" />
-          PPE Tracking
-        </h1>
-        <p className="text-gray-600 mt-2">Track PPE usage</p>
+    <div className="p-6 space-y-6">
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
+            <Package className="h-8 w-8 text-orange-600" />
+            PPE Tracking
+          </h1>
+          <p className="text-gray-500 mt-1">Monitor the lifecycle, condition, and compliance of PPE across the workforce</p>
+        </div>
+        <div className="flex items-center gap-2">
+          <button className="inline-flex items-center px-4 py-2 bg-white border border-gray-200 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-50 shadow-sm transition-colors">
+            <History className="w-4 h-4 mr-2" />
+            History
+          </button>
+          <button className="inline-flex items-center px-4 py-2 bg-orange-600 text-white rounded-lg text-sm font-medium hover:bg-orange-700 shadow-sm transition-colors">
+            <Plus className="w-4 h-4 mr-2" />
+            Direct Assignment
+          </button>
+        </div>
       </div>
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <p className="text-gray-600">This page is under construction. Full functionality coming soon.</p>
+
+      {/* Overview Stats */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+          <div className="flex justify-between items-start">
+            <div>
+              <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Total Active Units</p>
+              <p className="text-2xl font-bold text-gray-900 mt-1">{trackingStats.totalItems}</p>
+            </div>
+            <div className="p-2 bg-blue-50 rounded-lg">
+              <Package className="w-5 h-5 text-blue-500" />
+            </div>
+          </div>
+          <p className="text-[10px] text-gray-400 mt-4 flex items-center gap-1">
+            <TrendingUp className="w-3 h-3 text-green-500" /> 2.4% increase since last month
+          </p>
+        </div>
+
+        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+          <div className="flex justify-between items-start">
+            <div>
+              <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Site Compliance</p>
+              <p className="text-2xl font-bold text-green-600 mt-1">{trackingStats.complianceRate}%</p>
+            </div>
+            <div className="p-2 bg-green-50 rounded-lg">
+              <ShieldCheck className="w-5 h-5 text-green-500" />
+            </div>
+          </div>
+          <div className="w-full bg-gray-100 h-1.5 rounded-full mt-4 overflow-hidden">
+            <div className="bg-green-500 h-full" style={{ width: `${trackingStats.complianceRate}%` }}></div>
+          </div>
+        </div>
+
+        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+          <div className="flex justify-between items-start">
+            <div>
+              <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Expiring / Expired</p>
+              <p className="text-2xl font-bold text-red-600 mt-1">{trackingStats.expiringSoon + 1}</p>
+            </div>
+            <div className="p-2 bg-red-50 rounded-lg">
+              <AlertTriangle className="w-5 h-5 text-red-500" />
+            </div>
+          </div>
+          <p className="text-[10px] text-red-600 mt-4 font-bold uppercase tracking-tighter">Requires replacement</p>
+        </div>
+
+        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+          <div className="flex justify-between items-start">
+            <div>
+              <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Review Requests</p>
+              <p className="text-2xl font-bold text-gray-900 mt-1">{trackingStats.replacementRequests}</p>
+            </div>
+            <div className="p-2 bg-orange-50 rounded-lg">
+              <User className="w-5 h-5 text-orange-500" />
+            </div>
+          </div>
+          <p className="text-[10px] text-orange-600 mt-4 font-bold uppercase tracking-tighter cursor-pointer hover:underline">View All Requests</p>
+        </div>
+      </div>
+
+      <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden text-sm">
+        <div className="p-4 border-b border-gray-100 flex items-center justify-between">
+          <div className="flex bg-gray-100 rounded-lg p-1">
+            {['All', 'Compliant', 'Expiring', 'Expired'].map((t) => (
+              <button
+                key={t}
+                onClick={() => setFilter(t)}
+                className={`px-4 py-1.5 text-[10px] uppercase font-bold rounded-md transition-all ${filter === t ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-400'}`}
+              >
+                {t}
+              </button>
+            ))}
+          </div>
+
+          <div className="flex items-center gap-3">
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+              <input type="text" placeholder="Search item or employee..." className="pl-9 pr-3 py-1.5 border border-gray-200 rounded-lg text-xs w-64" />
+            </div>
+            <button className="p-1.5 hover:bg-gray-100 rounded border border-gray-100"><Filter className="w-4 h-4 text-gray-400" /></button>
+          </div>
+        </div>
+
+        <div className="overflow-x-auto">
+          <table className="w-full text-left">
+            <thead className="bg-gray-50 text-[10px] uppercase font-bold text-gray-500 border-b border-gray-100">
+              <tr>
+                <th className="px-6 py-4">Status & Tracking ID</th>
+                <th className="px-6 py-4">Employee</th>
+                <th className="px-6 py-4">Equipment Item</th>
+                <th className="px-6 py-4">Issue Date</th>
+                <th className="px-6 py-4">Expiration</th>
+                <th className="px-6 py-4">Condition</th>
+                <th className="px-6 py-4 text-right">Action</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-50 font-medium">
+              {assignedPPE.map((unit) => (
+                <tr key={unit.id} className="hover:bg-gray-50 transition-colors">
+                  <td className="px-6 py-4">
+                    <div className="flex items-center gap-3">
+                      {unit.status === 'Compliant' ? <CheckCircle2 className="w-4 h-4 text-green-500" /> :
+                        unit.status === 'Expired' ? <XCircle className="w-4 h-4 text-red-500" /> :
+                          <Clock className="w-4 h-4 text-orange-500" />}
+                      <span className="text-[11px] font-mono text-gray-400">{unit.id}</span>
+                    </div>
+                  </td>
+                  <td className="px-6 py-4 text-gray-900">{unit.employee}</td>
+                  <td className="px-6 py-4 text-gray-600">{unit.item}</td>
+                  <td className="px-6 py-4 text-[11px] text-gray-400">{unit.issuedDate}</td>
+                  <td className="px-6 py-4">
+                    <div className="flex flex-col">
+                      <span className={`text-xs ${unit.status === 'Expired' ? 'text-red-600 font-bold' : 'text-gray-900'}`}>{unit.expiryDate}</span>
+                      <span className="text-[9px] text-gray-400 uppercase tracking-tighter">Approx. {unit.status === 'Expired' ? 'Overdue' : 'Remaining'}</span>
+                    </div>
+                  </td>
+                  <td className="px-6 py-4">
+                    <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${unit.condition === 'Good' || unit.condition === 'New' ? 'bg-green-50 text-green-700' :
+                      unit.condition === 'Fair' ? 'bg-orange-50 text-orange-700' : 'bg-red-50 text-red-700'
+                      }`}>
+                      {unit.condition}
+                    </span>
+                  </td>
+                  <td className="px-6 py-4 text-right">
+                    <button className="p-1 hover:bg-gray-100 rounded-lg transition-colors"><MoreVertical className="w-4 h-4 text-gray-400" /></button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <div className="p-6 border-t border-gray-100 bg-gray-50 flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-4 text-xs">
+            <span className="text-gray-500">Showing <strong>4</strong> of <strong>842</strong> assigned units</span>
+            <div className="h-4 w-px bg-gray-200"></div>
+            <button className="text-orange-600 font-bold hover:underline">Download Comprehensive Tracking Report</button>
+          </div>
+          <div className="flex items-center gap-2">
+            <button className="px-3 py-1 bg-white border border-gray-200 rounded text-xs text-gray-400 disabled:opacity-50">Prev</button>
+            <button className="px-3 py-1 bg-white border border-orange-200 rounded text-xs text-orange-600 font-bold">1</button>
+            <button className="px-3 py-1 bg-white border border-gray-200 rounded text-xs text-gray-600">2</button>
+            <button className="px-3 py-1 bg-white border border-gray-200 rounded text-xs text-gray-600">Next</button>
+          </div>
+        </div>
       </div>
     </div>
   );

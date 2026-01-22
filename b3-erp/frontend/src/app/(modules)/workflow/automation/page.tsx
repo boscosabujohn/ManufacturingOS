@@ -307,10 +307,10 @@ export default function WorkflowAutomationPage() {
     const updatedAutomations = automations.map(a =>
       a.id === automation.id
         ? {
-            ...a,
-            lastRun: new Date().toISOString().split('T').join(' ').substring(0, 16),
-            executionCount: a.executionCount + 1,
-          }
+          ...a,
+          lastRun: new Date().toISOString().split('T').join(' ').substring(0, 16),
+          executionCount: a.executionCount + 1,
+        }
         : a
     );
     setAutomations(updatedAutomations);
@@ -328,332 +328,358 @@ export default function WorkflowAutomationPage() {
   };
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 max-w-7xl">
-      {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-6 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm font-medium text-blue-600">Total Rules</p>
-              <p className="text-2xl font-bold text-blue-900 mt-1">{stats.total}</p>
+    <div className="h-[calc(100vh-64px)] flex flex-col overflow-hidden bg-gray-50">
+      {/* Header */}
+      <div className="px-6 py-4 bg-white border-b border-gray-200 flex-shrink-0">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center shadow-lg">
+              <Bot className="w-5 h-5 text-white" />
             </div>
-            <Bot className="h-8 w-8 text-blue-600" />
-          </div>
-        </div>
-
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
-          <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-green-600">Active</p>
-              <p className="text-2xl font-bold text-green-900 mt-1">{stats.active}</p>
+              <h1 className="text-2xl font-bold text-gray-900">Workflow Automation</h1>
+              <p className="text-gray-500 uppercase text-[10px] font-black tracking-widest leading-none">
+                Manage automation rules and scheduled tasks
+              </p>
             </div>
-            <CheckCircle className="h-8 w-8 text-green-600" />
-          </div>
-        </div>
-
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm font-medium text-yellow-600">Paused</p>
-              <p className="text-2xl font-bold text-yellow-900 mt-1">{stats.paused}</p>
-            </div>
-            <Pause className="h-8 w-8 text-yellow-600" />
-          </div>
-        </div>
-
-        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-4 border border-red-200">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm font-medium text-red-600">Errors</p>
-              <p className="text-2xl font-bold text-red-900 mt-1">{stats.error}</p>
-            </div>
-            <XCircle className="h-8 w-8 text-red-600" />
-          </div>
-        </div>
-
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm font-medium text-purple-600">Executions</p>
-              <p className="text-2xl font-bold text-purple-900 mt-1">{stats.totalExecutions}</p>
-            </div>
-            <Activity className="h-8 w-8 text-purple-600" />
-          </div>
-        </div>
-
-                <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-4 border border-indigo-200">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm font-medium text-indigo-600">Success Rate</p>
-              <p className="text-2xl font-bold text-indigo-900 mt-1">{stats.avgSuccessRate}%</p>
-            </div>
-            <TrendingUp className="h-8 w-8 text-indigo-600" />
-          </div>
-        </div>
-      </div>
-
-      <div className="flex justify-end mb-6">
-        <button
-          onClick={() => router.push('/workflow/automation/new')}
-          className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-        >
-          <Plus className="h-5 w-5" />
-          <span>New Automation</span>
-        </button>
-      </div>
-
-      {/* Filters and Search */}
-      <div className="mb-6 space-y-4">
-        <div className="flex gap-4">
-          <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-            <input
-              type="text"
-              placeholder="Search automations by name, description, or action..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
           </div>
           <button
-            onClick={() => setShowFilters(!showFilters)}
-            className={`flex items-center space-x-2 px-4 py-2 border rounded-lg transition-colors ${
-              showFilters ? 'bg-blue-50 border-blue-300 text-blue-700' : 'border-gray-300 text-gray-700 hover:bg-gray-50'
-            }`}
+            onClick={() => router.push('/workflow/automation/create')}
+            className="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 flex items-center gap-2 shadow-md font-black uppercase text-[10px] tracking-widest"
           >
-            <Filter className="h-5 w-5" />
-            <span>Filters</span>
+            <Plus className="h-4 w-4" />
+            New Automation
           </button>
         </div>
-
-        {showFilters && (
-          <div className="flex gap-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
-            <select
-              value={statusFilter}
-              onChange={(e) => setStatusFilter(e.target.value)}
-              className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-              <option value="all">All Status</option>
-              <option value="active">Active</option>
-              <option value="paused">Paused</option>
-              <option value="error">Error</option>
-              <option value="draft">Draft</option>
-            </select>
-            <select
-              value={categoryFilter}
-              onChange={(e) => setCategoryFilter(e.target.value)}
-              className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-              <option value="all">All Categories</option>
-              <option value="procurement">Procurement</option>
-              <option value="production">Production</option>
-              <option value="finance">Finance</option>
-              <option value="hr">HR</option>
-              <option value="inventory">Inventory</option>
-              <option value="sales">Sales</option>
-            </select>
-            <select
-              value={priorityFilter}
-              onChange={(e) => setPriorityFilter(e.target.value)}
-              className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-              <option value="all">All Priorities</option>
-              <option value="low">Low</option>
-              <option value="medium">Medium</option>
-              <option value="high">High</option>
-              <option value="critical">Critical</option>
-            </select>
-          </div>
-        )}
       </div>
 
-      {/* Automation Rules Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-        {paginatedAutomations.map((automation) => (
-          <div
-            key={automation.id}
-            className="bg-white rounded-lg border-2 border-gray-200 p-6 hover:shadow-lg transition-all"
-          >
-            {/* Automation Header */}
-            <div className="flex items-start justify-between mb-4">
-              <div className="flex-1">
-                <div className="flex items-center space-x-2 mb-1">
-                  <h3 className="text-lg font-semibold text-gray-900">{automation.name}</h3>
-                  <span className={`px-2 py-0.5 text-xs font-semibold rounded-full ${statusColors[automation.status]}`}>
-                    {automation.status}
-                  </span>
-                  <span className={`px-2 py-0.5 text-xs font-semibold rounded-full ${priorityColors[automation.priority]}`}>
-                    {automation.priority}
-                  </span>
-                </div>
-                <p className="text-sm text-gray-600 mb-2">{automation.description}</p>
-                <div className="flex items-center space-x-2 mb-2">
-                  <span className={`px-2 py-0.5 text-xs font-semibold rounded-full ${categoryColors[automation.category]}`}>
-                    {automation.category}
-                  </span>
-                  <span className="text-xs text-gray-500">ID: {automation.id}</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Trigger and Action Info */}
-            <div className="grid grid-cols-2 gap-3 mb-4">
-              <div className="p-3 bg-blue-50 rounded-lg border border-blue-200">
-                <div className="flex items-center space-x-2 mb-1">
-                  {getTriggerIcon(automation.trigger)}
-                  <p className="text-xs font-medium text-blue-900">Trigger</p>
-                </div>
-                <p className="text-xs text-blue-700 font-semibold">{automation.trigger}</p>
-                <p className="text-xs text-gray-600 mt-1">{automation.triggerDetails}</p>
-              </div>
-              <div className="p-3 bg-green-50 rounded-lg border border-green-200">
-                <div className="flex items-center space-x-2 mb-1">
-                  <GitBranch className="h-4 w-4 text-green-700" />
-                  <p className="text-xs font-medium text-green-900">Action</p>
-                </div>
-                <p className="text-xs text-green-700 font-semibold">{automation.action}</p>
-                <p className="text-xs text-gray-600 mt-1">{automation.frequency}</p>
-              </div>
-            </div>
-
-            {/* Execution Stats */}
-            <div className="grid grid-cols-4 gap-3 mb-4 p-3 bg-gray-50 rounded-lg">
+      {/* Main Content */}
+      <div className="flex-1 overflow-y-auto p-6 space-y-6">
+        {/* Stats Cards */}
+        <div className="grid grid-cols-2 md:grid-cols-6 gap-4">
+          <div className="bg-white p-4 rounded-xl border border-gray-100 shadow-sm">
+            <div className="flex justify-between items-start">
               <div>
-                <p className="text-xs text-gray-500 mb-1">Executions</p>
+                <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Total Rules</p>
+                <p className="text-2xl font-black text-gray-900 mt-1 italic tracking-tighter">{stats.total}</p>
+              </div>
+              <div className="p-2 bg-blue-50 rounded-lg">
+                <Bot className="w-5 h-5 text-blue-600" />
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white p-4 rounded-xl border border-green-100 shadow-sm">
+            <div className="flex justify-between items-start">
+              <div>
+                <p className="text-[10px] font-black text-green-600 uppercase tracking-widest">Active</p>
+                <p className="text-2xl font-black text-green-600 mt-1 italic tracking-tighter">{stats.active}</p>
+              </div>
+              <div className="p-2 bg-green-50 rounded-lg">
+                <CheckCircle className="w-5 h-5 text-green-600" />
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white p-4 rounded-xl border border-yellow-100 shadow-sm">
+            <div className="flex justify-between items-start">
+              <div>
+                <p className="text-[10px] font-black text-yellow-600 uppercase tracking-widest">Paused</p>
+                <p className="text-2xl font-black text-yellow-600 mt-1 italic tracking-tighter">{stats.paused}</p>
+              </div>
+              <div className="p-2 bg-yellow-50 rounded-lg">
+                <Pause className="w-5 h-5 text-yellow-600" />
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white p-4 rounded-xl border border-red-100 shadow-sm">
+            <div className="flex justify-between items-start">
+              <div>
+                <p className="text-[10px] font-black text-red-600 uppercase tracking-widest">Errors</p>
+                <p className="text-2xl font-black text-red-600 mt-1 italic tracking-tighter">{stats.error}</p>
+              </div>
+              <div className="p-2 bg-red-50 rounded-lg">
+                <XCircle className="w-5 h-5 text-red-600" />
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white p-4 rounded-xl border border-purple-100 shadow-sm">
+            <div className="flex justify-between items-start">
+              <div>
+                <p className="text-[10px] font-black text-purple-600 uppercase tracking-widest">Executions</p>
+                <p className="text-2xl font-black text-purple-600 mt-1 italic tracking-tighter">{stats.totalExecutions.toLocaleString()}</p>
+              </div>
+              <div className="p-2 bg-purple-50 rounded-lg">
+                <Activity className="w-5 h-5 text-purple-600" />
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-gray-900 p-4 rounded-xl text-white shadow-xl">
+            <div className="flex justify-between items-start">
+              <div>
+                <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Success Rate</p>
+                <p className="text-2xl font-black text-white mt-1 italic tracking-tighter">{stats.avgSuccessRate}%</p>
+              </div>
+              <div className="p-2 bg-gray-800 rounded-lg">
+                <TrendingUp className="w-5 h-5 text-green-500" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Filters and Search */}
+        <div className="mb-6 space-y-4">
+          <div className="flex gap-4">
+            <div className="relative flex-1">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+              <input
+                type="text"
+                placeholder="Search automations by name, description, or action..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+            <button
+              onClick={() => setShowFilters(!showFilters)}
+              className={`flex items-center space-x-2 px-4 py-2 border rounded-lg transition-colors ${showFilters ? 'bg-blue-50 border-blue-300 text-blue-700' : 'border-gray-300 text-gray-700 hover:bg-gray-50'
+                }`}
+            >
+              <Filter className="h-5 w-5" />
+              <span>Filters</span>
+            </button>
+          </div>
+
+          {showFilters && (
+            <div className="flex gap-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
+              <select
+                value={statusFilter}
+                onChange={(e) => setStatusFilter(e.target.value)}
+                className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                <option value="all">All Status</option>
+                <option value="active">Active</option>
+                <option value="paused">Paused</option>
+                <option value="error">Error</option>
+                <option value="draft">Draft</option>
+              </select>
+              <select
+                value={categoryFilter}
+                onChange={(e) => setCategoryFilter(e.target.value)}
+                className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                <option value="all">All Categories</option>
+                <option value="procurement">Procurement</option>
+                <option value="production">Production</option>
+                <option value="finance">Finance</option>
+                <option value="hr">HR</option>
+                <option value="inventory">Inventory</option>
+                <option value="sales">Sales</option>
+              </select>
+              <select
+                value={priorityFilter}
+                onChange={(e) => setPriorityFilter(e.target.value)}
+                className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                <option value="all">All Priorities</option>
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+                <option value="critical">Critical</option>
+              </select>
+            </div>
+          )}
+        </div>
+
+        {/* Automation Rules Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+          {paginatedAutomations.map((automation) => (
+            <div
+              key={automation.id}
+              className="bg-white rounded-lg border-2 border-gray-200 p-6 hover:shadow-lg transition-all"
+            >
+              {/* Automation Header */}
+              <div className="flex items-start justify-between mb-4">
+                <div className="flex-1">
+                  <div className="flex items-center space-x-2 mb-1">
+                    <h3 className="text-lg font-semibold text-gray-900">{automation.name}</h3>
+                    <span className={`px-2 py-0.5 text-xs font-semibold rounded-full ${statusColors[automation.status]}`}>
+                      {automation.status}
+                    </span>
+                    <span className={`px-2 py-0.5 text-xs font-semibold rounded-full ${priorityColors[automation.priority]}`}>
+                      {automation.priority}
+                    </span>
+                  </div>
+                  <p className="text-sm text-gray-600 mb-2">{automation.description}</p>
+                  <div className="flex items-center space-x-2 mb-2">
+                    <span className={`px-2 py-0.5 text-xs font-semibold rounded-full ${categoryColors[automation.category]}`}>
+                      {automation.category}
+                    </span>
+                    <span className="text-xs text-gray-500">ID: {automation.id}</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Trigger and Action Info */}
+              <div className="grid grid-cols-2 gap-3 mb-4">
+                <div className="p-3 bg-blue-50 rounded-lg border border-blue-200">
+                  <div className="flex items-center space-x-2 mb-1">
+                    {getTriggerIcon(automation.trigger)}
+                    <p className="text-xs font-medium text-blue-900">Trigger</p>
+                  </div>
+                  <p className="text-xs text-blue-700 font-semibold">{automation.trigger}</p>
+                  <p className="text-xs text-gray-600 mt-1">{automation.triggerDetails}</p>
+                </div>
+                <div className="p-3 bg-green-50 rounded-lg border border-green-200">
+                  <div className="flex items-center space-x-2 mb-1">
+                    <GitBranch className="h-4 w-4 text-green-700" />
+                    <p className="text-xs font-medium text-green-900">Action</p>
+                  </div>
+                  <p className="text-xs text-green-700 font-semibold">{automation.action}</p>
+                  <p className="text-xs text-gray-600 mt-1">{automation.frequency}</p>
+                </div>
+              </div>
+
+              {/* Execution Stats */}
+              <div className="grid grid-cols-4 gap-3 mb-4 p-3 bg-gray-50 rounded-lg">
+                <div>
+                  <p className="text-xs text-gray-500 mb-1">Executions</p>
+                  <div className="flex items-center space-x-1">
+                    <Activity className="h-3 w-3 text-purple-600" />
+                    <span className="text-sm font-semibold text-gray-900">{automation.executionCount}</span>
+                  </div>
+                </div>
+                <div>
+                  <p className="text-xs text-gray-500 mb-1">Success Rate</p>
+                  <div className="flex items-center space-x-1">
+                    <CheckCircle className={`h-3 w-3 ${getSuccessRateColor(automation.successRate)}`} />
+                    <span className={`text-sm font-semibold ${getSuccessRateColor(automation.successRate)}`}>
+                      {automation.successRate}%
+                    </span>
+                  </div>
+                </div>
+                <div>
+                  <p className="text-xs text-gray-500 mb-1">Avg Time</p>
+                  <span className="text-sm font-semibold text-gray-900">{automation.avgExecutionTime}</span>
+                </div>
+                <div>
+                  <p className="text-xs text-gray-500 mb-1">Next Run</p>
+                  <span className="text-xs font-semibold text-gray-900 truncate block">{automation.nextRun}</span>
+                </div>
+              </div>
+
+              {/* Execution Timeline */}
+              <div className="flex items-center justify-between mb-4 text-xs text-gray-500">
                 <div className="flex items-center space-x-1">
-                  <Activity className="h-3 w-3 text-purple-600" />
-                  <span className="text-sm font-semibold text-gray-900">{automation.executionCount}</span>
+                  <Clock className="h-3 w-3" />
+                  <span>Last: {automation.lastRun}</span>
                 </div>
-              </div>
-              <div>
-                <p className="text-xs text-gray-500 mb-1">Success Rate</p>
                 <div className="flex items-center space-x-1">
-                  <CheckCircle className={`h-3 w-3 ${getSuccessRateColor(automation.successRate)}`} />
-                  <span className={`text-sm font-semibold ${getSuccessRateColor(automation.successRate)}`}>
-                    {automation.successRate}%
-                  </span>
+                  <Users className="h-3 w-3" />
+                  <span>{automation.createdBy}</span>
                 </div>
               </div>
-              <div>
-                <p className="text-xs text-gray-500 mb-1">Avg Time</p>
-                <span className="text-sm font-semibold text-gray-900">{automation.avgExecutionTime}</span>
-              </div>
-              <div>
-                <p className="text-xs text-gray-500 mb-1">Next Run</p>
-                <span className="text-xs font-semibold text-gray-900 truncate block">{automation.nextRun}</span>
-              </div>
-            </div>
 
-            {/* Execution Timeline */}
-            <div className="flex items-center justify-between mb-4 text-xs text-gray-500">
-              <div className="flex items-center space-x-1">
-                <Clock className="h-3 w-3" />
-                <span>Last: {automation.lastRun}</span>
-              </div>
-              <div className="flex items-center space-x-1">
-                <Users className="h-3 w-3" />
-                <span>{automation.createdBy}</span>
-              </div>
-            </div>
-
-            {/* Action Buttons */}
-            <div className="flex items-center space-x-2">
-              <button
-                onClick={() => handleToggleAutomation(automation.id)}
-                className={`flex-1 flex items-center justify-center space-x-1 px-3 py-2 rounded-lg transition-colors text-sm font-medium ${
-                  automation.status === 'active'
+              {/* Action Buttons */}
+              <div className="flex items-center space-x-2">
+                <button
+                  onClick={() => handleToggleAutomation(automation.id)}
+                  className={`flex-1 flex items-center justify-center space-x-1 px-3 py-2 rounded-lg transition-colors text-sm font-medium ${automation.status === 'active'
                     ? 'text-yellow-600 bg-yellow-50 hover:bg-yellow-100'
                     : 'text-green-600 bg-green-50 hover:bg-green-100'
-                }`}
-              >
-                {automation.status === 'active' ? (
-                  <>
-                    <Pause className="h-4 w-4" />
-                    <span>Pause</span>
-                  </>
-                ) : (
-                  <>
-                    <Play className="h-4 w-4" />
-                    <span>Activate</span>
-                  </>
-                )}
-              </button>
-              <button
-                onClick={() => handleRunNow(automation)}
-                className="flex items-center justify-center px-3 py-2 text-purple-600 bg-purple-50 hover:bg-purple-100 rounded-lg transition-colors"
-               
-              >
-                <RefreshCw className="h-4 w-4" />
-              </button>
-              <button
-                onClick={() => router.push(`/workflow/automation/edit/${automation.id}`)}
-                className="flex items-center justify-center px-3 py-2 text-blue-600 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors"
-               
-              >
-                <Edit className="h-4 w-4" />
-              </button>
-              <button
-                onClick={() => router.push(`/workflow/automation/view/${automation.id}`)}
-                className="flex items-center justify-center px-3 py-2 text-indigo-600 bg-indigo-50 hover:bg-indigo-100 rounded-lg transition-colors"
-               
-              >
-                <Eye className="h-4 w-4" />
-              </button>
-              <button
-                onClick={() => handleDeleteAutomation(automation.id)}
-                className="flex items-center justify-center px-3 py-2 text-red-600 bg-red-50 hover:bg-red-100 rounded-lg transition-colors"
-               
-              >
-                <Trash2 className="h-4 w-4" />
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Pagination */}
-      <div className="bg-white rounded-lg border border-gray-200 px-6 py-4 flex items-center justify-between">
-        <div className="text-sm text-gray-700">
-          Showing {startIndex + 1} to {Math.min(startIndex + itemsPerPage, filteredAutomations.length)} of {filteredAutomations.length} automation rules
-        </div>
-        <div className="flex items-center space-x-2">
-          <button
-            onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
-            disabled={currentPage === 1}
-            className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            <ChevronLeft className="h-4 w-4" />
-          </button>
-          <div className="flex items-center space-x-1">
-            {Array.from({ length: totalPages }, (_, i) => i + 1)
-              .filter(page => {
-                return page === 1 || page === totalPages || (page >= currentPage - 1 && page <= currentPage + 1);
-              })
-              .map((page, index, array) => (
-                <div key={page} className="flex items-center">
-                  {index > 0 && array[index - 1] !== page - 1 && (
-                    <span className="px-2 text-gray-400">...</span>
+                    }`}
+                >
+                  {automation.status === 'active' ? (
+                    <>
+                      <Pause className="h-4 w-4" />
+                      <span>Pause</span>
+                    </>
+                  ) : (
+                    <>
+                      <Play className="h-4 w-4" />
+                      <span>Activate</span>
+                    </>
                   )}
-                  <button
-                    onClick={() => setCurrentPage(page)}
-                    className={`px-3 py-1 rounded-lg ${
-                      currentPage === page
+                </button>
+                <button
+                  onClick={() => handleRunNow(automation)}
+                  className="flex items-center justify-center px-3 py-2 text-purple-600 bg-purple-50 hover:bg-purple-100 rounded-lg transition-colors"
+
+                >
+                  <RefreshCw className="h-4 w-4" />
+                </button>
+                <button
+                  onClick={() => router.push(`/workflow/automation/edit/${automation.id}`)}
+                  className="flex items-center justify-center px-3 py-2 text-blue-600 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors"
+
+                >
+                  <Edit className="h-4 w-4" />
+                </button>
+                <button
+                  onClick={() => router.push(`/workflow/automation/view/${automation.id}`)}
+                  className="flex items-center justify-center px-3 py-2 text-indigo-600 bg-indigo-50 hover:bg-indigo-100 rounded-lg transition-colors"
+
+                >
+                  <Eye className="h-4 w-4" />
+                </button>
+                <button
+                  onClick={() => handleDeleteAutomation(automation.id)}
+                  className="flex items-center justify-center px-3 py-2 text-red-600 bg-red-50 hover:bg-red-100 rounded-lg transition-colors"
+
+                >
+                  <Trash2 className="h-4 w-4" />
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Pagination */}
+        <div className="bg-white rounded-lg border border-gray-200 px-6 py-4 flex items-center justify-between">
+          <div className="text-sm text-gray-700">
+            Showing {startIndex + 1} to {Math.min(startIndex + itemsPerPage, filteredAutomations.length)} of {filteredAutomations.length} automation rules
+          </div>
+          <div className="flex items-center space-x-2">
+            <button
+              onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+              disabled={currentPage === 1}
+              className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              <ChevronLeft className="h-4 w-4" />
+            </button>
+            <div className="flex items-center space-x-1">
+              {Array.from({ length: totalPages }, (_, i) => i + 1)
+                .filter(page => {
+                  return page === 1 || page === totalPages || (page >= currentPage - 1 && page <= currentPage + 1);
+                })
+                .map((page, index, array) => (
+                  <div key={page} className="flex items-center">
+                    {index > 0 && array[index - 1] !== page - 1 && (
+                      <span className="px-2 text-gray-400">...</span>
+                    )}
+                    <button
+                      onClick={() => setCurrentPage(page)}
+                      className={`px-3 py-1 rounded-lg ${currentPage === page
                         ? 'bg-blue-600 text-white'
                         : 'border border-gray-300 hover:bg-gray-50'
-                    }`}
-                  >
-                    {page}
-                  </button>
-                </div>
-              ))}
+                        }`}
+                    >
+                      {page}
+                    </button>
+                  </div>
+                ))}
+            </div>
+            <button
+              onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
+              disabled={currentPage === totalPages}
+              className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              <ChevronRight className="h-4 w-4" />
+            </button>
           </div>
-          <button
-            onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
-            disabled={currentPage === totalPages}
-            className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            <ChevronRight className="h-4 w-4" />
-          </button>
         </div>
       </div>
     </div>

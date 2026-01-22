@@ -1,19 +1,381 @@
 'use client';
 
-import { BarChart3 } from 'lucide-react';
+import React, { useState } from 'react';
+import {
+  BarChart3,
+  TrendingUp,
+  TrendingDown,
+  AlertTriangle,
+  Calendar,
+  Download,
+  Filter,
+  ChevronRight,
+  ArrowUpRight,
+  ArrowDownRight,
+  Zap,
+  MapPin,
+  Clock,
+  Users,
+  Shield,
+  FileWarning,
+  Flame,
+  Wrench,
+  Target
+} from 'lucide-react';
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+  LineChart,
+  Line,
+  PieChart,
+  Pie,
+  Cell,
+  Area,
+  AreaChart,
+  Legend
+} from 'recharts';
 
-export default function Page() {
+// Mock Data
+const analyticsStats = {
+  totalIncidents: 47,
+  incidentsTrend: -12,
+  avgResolutionTime: 4.2,
+  resolutionTrend: -8,
+  nearMisses: 23,
+  nearMissTrend: 15,
+  safetyScore: 94.2,
+  scoreTrend: 2.1
+};
+
+const monthlyTrends = [
+  { month: 'Jul', incidents: 8, nearMisses: 4, lostDays: 12 },
+  { month: 'Aug', incidents: 6, nearMisses: 5, lostDays: 8 },
+  { month: 'Sep', incidents: 9, nearMisses: 7, lostDays: 15 },
+  { month: 'Oct', incidents: 5, nearMisses: 3, lostDays: 6 },
+  { month: 'Nov', incidents: 7, nearMisses: 6, lostDays: 10 },
+  { month: 'Dec', incidents: 4, nearMisses: 2, lostDays: 4 },
+  { month: 'Jan', incidents: 8, nearMisses: 5, lostDays: 11 }
+];
+
+const incidentsByType = [
+  { name: 'Slips/Falls', value: 28, color: '#f59e0b' },
+  { name: 'Equipment', value: 22, color: '#3b82f6' },
+  { name: 'Chemical', value: 15, color: '#ef4444' },
+  { name: 'Ergonomic', value: 18, color: '#8b5cf6' },
+  { name: 'Other', value: 17, color: '#6b7280' }
+];
+
+const incidentsByDepartment = [
+  { dept: 'Manufacturing', incidents: 18, severity: 'High' },
+  { dept: 'Warehouse', incidents: 12, severity: 'Medium' },
+  { dept: 'Maintenance', incidents: 8, severity: 'High' },
+  { dept: 'Quality Lab', incidents: 5, severity: 'Low' },
+  { dept: 'Admin', incidents: 4, severity: 'Low' }
+];
+
+const incidentsByShift = [
+  { shift: 'Morning (6AM-2PM)', count: 22, percentage: 47 },
+  { shift: 'Afternoon (2PM-10PM)', count: 15, percentage: 32 },
+  { shift: 'Night (10PM-6AM)', count: 10, percentage: 21 }
+];
+
+const recentIncidents = [
+  { id: 'INC-2024-147', type: 'Near Miss', location: 'Assembly Line C', date: '2024-01-20', severity: 'Low', status: 'Closed' },
+  { id: 'INC-2024-146', type: 'Injury', location: 'Warehouse B', date: '2024-01-19', severity: 'Medium', status: 'Under Review' },
+  { id: 'INC-2024-145', type: 'Property Damage', location: 'Maintenance Shop', date: '2024-01-18', severity: 'High', status: 'Action Required' },
+  { id: 'INC-2024-144', type: 'Near Miss', location: 'Loading Dock', date: '2024-01-17', severity: 'Low', status: 'Closed' },
+  { id: 'INC-2024-143', type: 'Injury', location: 'CNC Area', date: '2024-01-16', severity: 'Medium', status: 'Closed' }
+];
+
+const rootCauses = [
+  { cause: 'Inadequate Training', count: 14, percentage: 30 },
+  { cause: 'Equipment Failure', count: 11, percentage: 23 },
+  { cause: 'Procedural Violation', count: 9, percentage: 19 },
+  { cause: 'Environmental', count: 8, percentage: 17 },
+  { cause: 'Human Error', count: 5, percentage: 11 }
+];
+
+export default function IncidentAnalyticsPage() {
+  const [dateRange, setDateRange] = useState('last6months');
+
   return (
-    <div className="p-6">
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-2">
-          <BarChart3 className="h-8 w-8 text-orange-600" />
-          Incident Analytics
-        </h1>
-        <p className="text-gray-600 mt-2">Incident trends</p>
+    <div className="p-6 space-y-6 text-sm font-medium">
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
+            <BarChart3 className="h-8 w-8 text-orange-600" />
+            Incident Analytics Dashboard
+          </h1>
+          <p className="text-gray-500 mt-1 uppercase text-[10px] font-black tracking-widest leading-none">
+            Comprehensive analysis of workplace safety incidents and trends
+          </p>
+        </div>
+        <div className="flex items-center gap-3">
+          <select
+            value={dateRange}
+            onChange={(e) => setDateRange(e.target.value)}
+            className="px-4 py-2 border border-gray-200 rounded-lg text-xs font-bold bg-white"
+          >
+            <option value="last30days">Last 30 Days</option>
+            <option value="last3months">Last 3 Months</option>
+            <option value="last6months">Last 6 Months</option>
+            <option value="lastyear">Last Year</option>
+          </select>
+          <button className="px-4 py-2 border border-blue-100 bg-blue-50 text-blue-600 rounded-lg font-black uppercase text-[10px] tracking-widest hover:bg-blue-100 transition-colors flex items-center gap-2">
+            <Filter className="w-4 h-4" /> Advanced Filters
+          </button>
+          <button className="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 flex items-center gap-2 shadow-md font-black uppercase text-[10px] tracking-widest">
+            <Download className="w-4 h-4" /> Export Report
+          </button>
+        </div>
       </div>
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <p className="text-gray-600">This page is under construction. Full functionality coming soon.</p>
+
+      {/* Key Metrics */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+          <div className="flex justify-between items-start">
+            <div>
+              <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Total Incidents</p>
+              <p className="text-3xl font-black text-gray-900 mt-1 italic tracking-tighter leading-none">{analyticsStats.totalIncidents}</p>
+            </div>
+            <div className="p-3 bg-orange-50 rounded-xl text-orange-600">
+              <AlertTriangle className="w-5 h-5" />
+            </div>
+          </div>
+          <div className="flex items-center gap-1 mt-6">
+            <ArrowDownRight className="w-4 h-4 text-green-500" />
+            <span className="text-[10px] text-green-600 font-black">{Math.abs(analyticsStats.incidentsTrend)}% vs last period</span>
+          </div>
+        </div>
+
+        <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+          <div className="flex justify-between items-start">
+            <div>
+              <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Avg Resolution (Days)</p>
+              <p className="text-3xl font-black text-gray-900 mt-1 italic tracking-tighter leading-none">{analyticsStats.avgResolutionTime}</p>
+            </div>
+            <div className="p-3 bg-blue-50 rounded-xl text-blue-600">
+              <Clock className="w-5 h-5" />
+            </div>
+          </div>
+          <div className="flex items-center gap-1 mt-6">
+            <ArrowDownRight className="w-4 h-4 text-green-500" />
+            <span className="text-[10px] text-green-600 font-black">{Math.abs(analyticsStats.resolutionTrend)}% faster</span>
+          </div>
+        </div>
+
+        <div className="bg-white p-6 rounded-2xl border border-yellow-100 shadow-sm">
+          <div className="flex justify-between items-start">
+            <div>
+              <p className="text-[10px] font-black text-yellow-600 uppercase tracking-widest">Near Misses</p>
+              <p className="text-3xl font-black text-yellow-700 mt-1 italic tracking-tighter leading-none">{analyticsStats.nearMisses}</p>
+            </div>
+            <div className="p-3 bg-yellow-50 rounded-xl text-yellow-600">
+              <Zap className="w-5 h-5" />
+            </div>
+          </div>
+          <div className="flex items-center gap-1 mt-6">
+            <ArrowUpRight className="w-4 h-4 text-yellow-500" />
+            <span className="text-[10px] text-yellow-600 font-black">+{analyticsStats.nearMissTrend}% reported</span>
+          </div>
+        </div>
+
+        <div className="bg-gray-900 p-6 rounded-2xl text-white shadow-xl relative overflow-hidden">
+          <div className="relative z-10 flex justify-between items-start">
+            <div>
+              <p className="text-[10px] font-black text-gray-500 uppercase tracking-widest">Safety Score</p>
+              <p className="text-3xl font-black text-white mt-1 italic tracking-tighter leading-none">{analyticsStats.safetyScore}%</p>
+            </div>
+            <div className="p-3 bg-gray-800 rounded-xl text-green-500">
+              <Shield className="w-5 h-5" />
+            </div>
+          </div>
+          <div className="flex items-center gap-1 mt-6">
+            <TrendingUp className="w-4 h-4 text-green-500" />
+            <span className="text-[10px] text-green-500 font-black">+{analyticsStats.scoreTrend}% improvement</span>
+          </div>
+          <BarChart3 className="absolute -bottom-6 -right-6 w-24 h-24 text-white opacity-5 rotate-12" />
+        </div>
+      </div>
+
+      {/* Charts Row 1 */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Monthly Trend Chart */}
+        <div className="lg:col-span-2 bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
+          <div className="flex items-center justify-between mb-6">
+            <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest italic flex items-center gap-2">
+              <TrendingUp className="w-4 h-4 text-orange-600" /> Monthly Incident Trends
+            </h3>
+            <div className="flex gap-4 text-[10px]">
+              <span className="flex items-center gap-1"><span className="w-3 h-3 rounded-full bg-orange-500"></span> Incidents</span>
+              <span className="flex items-center gap-1"><span className="w-3 h-3 rounded-full bg-yellow-500"></span> Near Misses</span>
+              <span className="flex items-center gap-1"><span className="w-3 h-3 rounded-full bg-red-500"></span> Lost Days</span>
+            </div>
+          </div>
+          <ResponsiveContainer width="100%" height={280}>
+            <AreaChart data={monthlyTrends}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+              <XAxis dataKey="month" tick={{ fontSize: 10 }} stroke="#9ca3af" />
+              <YAxis tick={{ fontSize: 10 }} stroke="#9ca3af" />
+              <Tooltip
+                contentStyle={{ fontSize: 11, borderRadius: 8, border: '1px solid #e5e7eb' }}
+              />
+              <Area type="monotone" dataKey="incidents" stackId="1" stroke="#f97316" fill="#fed7aa" />
+              <Area type="monotone" dataKey="nearMisses" stackId="2" stroke="#eab308" fill="#fef08a" />
+              <Line type="monotone" dataKey="lostDays" stroke="#ef4444" strokeWidth={2} dot={{ fill: '#ef4444', r: 4 }} />
+            </AreaChart>
+          </ResponsiveContainer>
+        </div>
+
+        {/* Incidents by Type */}
+        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
+          <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest italic flex items-center gap-2 mb-6">
+            <Flame className="w-4 h-4 text-orange-600" /> Incidents by Type
+          </h3>
+          <ResponsiveContainer width="100%" height={200}>
+            <PieChart>
+              <Pie
+                data={incidentsByType}
+                cx="50%"
+                cy="50%"
+                innerRadius={50}
+                outerRadius={80}
+                paddingAngle={3}
+                dataKey="value"
+              >
+                {incidentsByType.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={entry.color} />
+                ))}
+              </Pie>
+              <Tooltip />
+            </PieChart>
+          </ResponsiveContainer>
+          <div className="grid grid-cols-2 gap-2 mt-4">
+            {incidentsByType.map((type, i) => (
+              <div key={i} className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full" style={{ backgroundColor: type.color }}></span>
+                <span className="text-[10px] text-gray-600 font-bold">{type.name}: {type.value}%</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Charts Row 2 */}
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+        {/* Incidents by Department */}
+        <div className="lg:col-span-2 bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
+          <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest italic flex items-center gap-2 mb-6">
+            <MapPin className="w-4 h-4 text-orange-600" /> Incidents by Department
+          </h3>
+          <ResponsiveContainer width="100%" height={200}>
+            <BarChart data={incidentsByDepartment} layout="vertical">
+              <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+              <XAxis type="number" tick={{ fontSize: 10 }} stroke="#9ca3af" />
+              <YAxis dataKey="dept" type="category" tick={{ fontSize: 10 }} stroke="#9ca3af" width={100} />
+              <Tooltip contentStyle={{ fontSize: 11, borderRadius: 8 }} />
+              <Bar dataKey="incidents" fill="#f97316" radius={[0, 4, 4, 0]} />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+
+        {/* Incidents by Shift */}
+        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
+          <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest italic flex items-center gap-2 mb-6">
+            <Clock className="w-4 h-4 text-blue-600" /> By Shift
+          </h3>
+          <div className="space-y-4">
+            {incidentsByShift.map((shift, i) => (
+              <div key={i}>
+                <div className="flex justify-between items-center mb-1">
+                  <span className="text-[10px] text-gray-600 font-bold">{shift.shift}</span>
+                  <span className="text-[10px] font-black text-gray-900">{shift.count}</span>
+                </div>
+                <div className="w-full bg-gray-100 h-2 rounded-full overflow-hidden">
+                  <div
+                    className={`h-full rounded-full ${i === 0 ? 'bg-orange-500' : i === 1 ? 'bg-blue-500' : 'bg-purple-500'}`}
+                    style={{ width: `${shift.percentage}%` }}
+                  ></div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Root Causes */}
+        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
+          <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest italic flex items-center gap-2 mb-6">
+            <Target className="w-4 h-4 text-red-600" /> Root Causes
+          </h3>
+          <div className="space-y-3">
+            {rootCauses.map((cause, i) => (
+              <div key={i} className="flex items-center justify-between group cursor-pointer">
+                <span className="text-[10px] text-gray-600 font-bold group-hover:text-gray-900 transition-colors">{cause.cause}</span>
+                <span className="text-[10px] font-black text-orange-600">{cause.percentage}%</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Recent Incidents Table */}
+      <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+        <div className="p-4 border-b border-gray-50 flex items-center justify-between">
+          <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest italic flex items-center gap-2">
+            <FileWarning className="w-4 h-4 text-orange-600" /> Recent Incidents
+          </h3>
+          <button className="text-[10px] font-black text-orange-600 hover:text-orange-700 uppercase tracking-widest transition-colors flex items-center gap-1">
+            View All <ChevronRight className="w-3 h-3" />
+          </button>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="w-full text-left">
+            <thead className="bg-gray-50 text-[10px] uppercase font-black text-gray-400 border-b border-gray-100">
+              <tr>
+                <th className="px-6 py-4">Incident ID</th>
+                <th className="px-6 py-4">Type</th>
+                <th className="px-6 py-4">Location</th>
+                <th className="px-6 py-4">Date</th>
+                <th className="px-6 py-4">Severity</th>
+                <th className="px-6 py-4 text-right">Status</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-50">
+              {recentIncidents.map((incident) => (
+                <tr key={incident.id} className="hover:bg-gray-50 transition-colors group cursor-pointer">
+                  <td className="px-6 py-4">
+                    <span className="font-black text-gray-900 uppercase group-hover:text-orange-600 transition-colors">{incident.id}</span>
+                  </td>
+                  <td className="px-6 py-4">
+                    <span className="text-[11px] text-gray-600 font-bold">{incident.type}</span>
+                  </td>
+                  <td className="px-6 py-4">
+                    <span className="text-[11px] text-gray-600 font-bold italic">{incident.location}</span>
+                  </td>
+                  <td className="px-6 py-4 text-[11px] text-gray-500 font-bold">{incident.date}</td>
+                  <td className="px-6 py-4">
+                    <span className={`inline-block px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-widest ${incident.severity === 'High' ? 'bg-red-50 text-red-600' :
+                        incident.severity === 'Medium' ? 'bg-orange-50 text-orange-600' : 'bg-green-50 text-green-600'
+                      }`}>
+                      {incident.severity}
+                    </span>
+                  </td>
+                  <td className="px-6 py-4 text-right">
+                    <span className={`text-[10px] font-black uppercase tracking-widest ${incident.status === 'Closed' ? 'text-green-600' :
+                        incident.status === 'Action Required' ? 'text-red-500' : 'text-yellow-600'
+                      }`}>{incident.status}</span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

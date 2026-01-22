@@ -50,48 +50,50 @@ export default function LogisticsAdvancedFeaturesPage() {
   const ActiveComponent = tabs.find(tab => tab.id === activeTab)?.component || LiveTelematicsTracking;
 
   return (
-    <div className="w-full h-screen overflow-hidden bg-gradient-to-br from-gray-50 via-blue-50 to-cyan-50">
-      <div className="h-full flex flex-col px-2 py-2">
-        <div className="mb-4">
-          <div className="flex items-center gap-3 mb-2">
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center">
-              <Sparkles className="w-6 h-6 text-white" />
-            </div>
-            <div>
-              <h1 className="text-2xl font-bold text-gray-900">Logistics Advanced Features</h1>
-              <p className="text-sm text-gray-600">TMS-grade transportation management capabilities</p>
-            </div>
+    <div className="h-[calc(100vh-64px)] flex flex-col overflow-hidden bg-gray-50">
+      {/* Header */}
+      <div className="px-6 py-4 bg-white border-b border-gray-200 flex-shrink-0">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center shadow-lg">
+            <Sparkles className="w-5 h-5 text-white" />
+          </div>
+          <div>
+            <h1 className="text-2xl font-bold text-gray-900">Logistics Advanced Features</h1>
+            <p className="text-gray-500 uppercase text-[10px] font-black tracking-widest leading-none">
+              TMS-grade transportation management capabilities
+            </p>
           </div>
         </div>
+      </div>
 
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-4">
-          <div className="flex overflow-x-auto">
-            {tabs.map((tab) => {
-              const Icon = tab.icon;
-              return (
-                <button
-                  key={tab.id}
-                  onClick={() => {
-                    setActiveTab(tab.id as TabId);
-                    window.location.hash = tab.id;
-                  }}
-                  className={`flex items-center gap-2 px-4 py-3 font-medium transition-colors whitespace-nowrap border-b-2 ${
-                    activeTab === tab.id
-                      ? 'text-blue-600 border-blue-600 bg-blue-50'
-                      : 'text-gray-600 border-transparent hover:text-gray-900 hover:bg-gray-50'
+      {/* Tabs */}
+      <div className="bg-white border-b border-gray-200 flex-shrink-0">
+        <div className="flex overflow-x-auto px-4">
+          {tabs.map((tab) => {
+            const Icon = tab.icon;
+            return (
+              <button
+                key={tab.id}
+                onClick={() => {
+                  setActiveTab(tab.id as TabId);
+                  window.location.hash = tab.id;
+                }}
+                className={`flex items-center gap-2 px-4 py-3 font-bold transition-colors whitespace-nowrap border-b-2 text-[11px] uppercase tracking-wider ${activeTab === tab.id
+                    ? 'text-orange-600 border-orange-600 bg-orange-50'
+                    : 'text-gray-500 border-transparent hover:text-gray-900 hover:bg-gray-50'
                   }`}
-                >
-                  <Icon className="w-4 h-4" />
-                  <span className="text-sm">{tab.label}</span>
-                </button>
-              );
-            })}
-          </div>
+              >
+                <Icon className="w-4 h-4" />
+                <span>{tab.label}</span>
+              </button>
+            );
+          })}
         </div>
+      </div>
 
-        <div className="flex-1 overflow-auto">
-          <ActiveComponent />
-        </div>
+      {/* Content */}
+      <div className="flex-1 overflow-auto">
+        <ActiveComponent />
       </div>
     </div>
   );

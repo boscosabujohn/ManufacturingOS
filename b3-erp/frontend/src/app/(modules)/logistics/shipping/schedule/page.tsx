@@ -1,451 +1,355 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { ArrowLeft, Calendar, Plus, Truck, Package, MapPin, Clock, CheckCircle, AlertCircle, Download } from 'lucide-react';
+import {
+    Calendar,
+    Clock,
+    Truck,
+    Package,
+    MapPin,
+    Search,
+    Filter,
+    Plus,
+    ChevronLeft,
+    ChevronRight,
+    MoreVertical,
+    AlertCircle,
+    CheckCircle2,
+    Clock3,
+    ArrowUpRight,
+    Building2,
+    User
+} from 'lucide-react';
 
-interface ScheduledShipment {
-  id: string;
-  date: string;
-  shipmentNo: string;
-  type: 'inbound' | 'outbound';
-  customer: string;
-  origin: string;
-  destination: string;
-  timeSlot: string;
-  vehicleNo: string;
-  driverName: string;
-  items: number;
-  status: 'scheduled' | 'confirmed' | 'in-progress' | 'completed' | 'delayed' | 'cancelled';
-  bay: string;
-  priority: 'high' | 'medium' | 'low';
-}
+// Mock Schedule Data
+const scheduleData = [
+    {
+        id: 'SHP-2024-1201',
+        time: '08:00',
+        customer: 'ABC Manufacturing',
+        destination: 'Dubai Industrial City',
+        carrier: 'Emirates Logistics',
+        vehicle: 'TRK-4521',
+        items: 12,
+        weight: '2,450 kg',
+        status: 'On Time',
+        dock: 'Dock A1'
+    },
+    {
+        id: 'SHP-2024-1202',
+        time: '09:30',
+        customer: 'Global Tech Solutions',
+        destination: 'Jebel Ali Free Zone',
+        carrier: 'Fast Track Shipping',
+        vehicle: 'TRK-7823',
+        items: 8,
+        weight: '1,200 kg',
+        status: 'Loading',
+        dock: 'Dock B2'
+    },
+    {
+        id: 'SHP-2024-1203',
+        time: '10:00',
+        customer: 'Premier Industries',
+        destination: 'Abu Dhabi Port',
+        carrier: 'Gulf Express',
+        vehicle: 'TRK-3345',
+        items: 25,
+        weight: '4,800 kg',
+        status: 'Delayed',
+        dock: 'Dock A3'
+    },
+    {
+        id: 'SHP-2024-1204',
+        time: '11:30',
+        customer: 'Tech Innovations LLC',
+        destination: 'Sharjah Industrial',
+        carrier: 'Quick Delivery Co',
+        vehicle: 'TRK-9912',
+        items: 5,
+        weight: '650 kg',
+        status: 'Scheduled',
+        dock: 'Dock C1'
+    },
+    {
+        id: 'SHP-2024-1205',
+        time: '13:00',
+        customer: 'Al Falak Trading',
+        destination: 'RAK Free Trade Zone',
+        carrier: 'Northern Logistics',
+        vehicle: 'TRK-5567',
+        items: 18,
+        weight: '3,200 kg',
+        status: 'Scheduled',
+        dock: 'Dock B1'
+    },
+    {
+        id: 'SHP-2024-1206',
+        time: '14:30',
+        customer: 'Sunrise Electronics',
+        destination: 'Ajman Port',
+        carrier: 'Coast Shipping',
+        vehicle: 'TRK-2234',
+        items: 10,
+        weight: '1,800 kg',
+        status: 'Scheduled',
+        dock: 'Dock A2'
+    },
+    {
+        id: 'SHP-2024-1207',
+        time: '16:00',
+        customer: 'Desert Steel Works',
+        destination: 'Dubai South',
+        carrier: 'Heavy Haul Transport',
+        vehicle: 'TRK-8801',
+        items: 3,
+        weight: '8,500 kg',
+        status: 'Scheduled',
+        dock: 'Dock D1'
+    }
+];
+
+const dockStatus = [
+    { dock: 'Dock A1', status: 'Occupied', shipment: 'SHP-2024-1201', eta: '08:45' },
+    { dock: 'Dock A2', status: 'Available', shipment: null, eta: null },
+    { dock: 'Dock A3', status: 'Occupied', shipment: 'SHP-2024-1203', eta: '10:30' },
+    { dock: 'Dock B1', status: 'Reserved', shipment: 'SHP-2024-1205', eta: '13:00' },
+    { dock: 'Dock B2', status: 'Occupied', shipment: 'SHP-2024-1202', eta: '09:45' },
+    { dock: 'Dock C1', status: 'Available', shipment: null, eta: null },
+    { dock: 'Dock D1', status: 'Reserved', shipment: 'SHP-2024-1207', eta: '16:00' }
+];
 
 export default function ShippingSchedulePage() {
-  const router = useRouter();
-  const [selectedDate, setSelectedDate] = useState('2025-10-21');
-  const [filterType, setFilterType] = useState('all');
-  const [filterStatus, setFilterStatus] = useState('all');
+    const [selectedDate, setSelectedDate] = useState(new Date());
+    const [viewMode, setViewMode] = useState<'list' | 'timeline'>('list');
 
-  const scheduledShipments: ScheduledShipment[] = [
-    {
-      id: '1',
-      date: '2025-10-21',
-      shipmentNo: 'OB-2025-0531',
-      type: 'outbound',
-      customer: 'Precision Engineering Co',
-      origin: 'Warehouse A',
-      destination: 'Bangalore',
-      timeSlot: '08:00 - 10:00',
-      vehicleNo: 'TN-01-AB-1234',
-      driverName: 'Rajesh Kumar',
-      items: 8,
-      status: 'in-progress',
-      bay: 'BAY-01',
-      priority: 'high'
-    },
-    {
-      id: '2',
-      date: '2025-10-21',
-      shipmentNo: 'IB-2025-0421',
-      type: 'inbound',
-      customer: 'SteelCorp Industries',
-      origin: 'Mumbai',
-      destination: 'Warehouse A',
-      timeSlot: '10:00 - 12:00',
-      vehicleNo: 'MH-02-CD-5678',
-      driverName: 'Amit Patel',
-      items: 5,
-      status: 'scheduled',
-      bay: 'BAY-03',
-      priority: 'high'
-    },
-    {
-      id: '3',
-      date: '2025-10-21',
-      shipmentNo: 'OB-2025-0536',
-      type: 'outbound',
-      customer: 'Machinery Supplies Co',
-      origin: 'Warehouse A',
-      destination: 'Kochi',
-      timeSlot: '09:00 - 11:00',
-      vehicleNo: 'TN-06-KL-2345',
-      driverName: 'Mohammed Ali',
-      items: 7,
-      status: 'in-progress',
-      bay: 'BAY-02',
-      priority: 'high'
-    },
-    {
-      id: '4',
-      date: '2025-10-21',
-      shipmentNo: 'IB-2025-0424',
-      type: 'inbound',
-      customer: 'ChemSupply Co',
-      origin: 'Ahmedabad',
-      destination: 'Warehouse A',
-      timeSlot: '14:00 - 16:00',
-      vehicleNo: 'GJ-01-EF-9012',
-      driverName: 'Kiran Shah',
-      items: 4,
-      status: 'confirmed',
-      bay: 'BAY-04',
-      priority: 'medium'
-    },
-    {
-      id: '5',
-      date: '2025-10-22',
-      shipmentNo: 'OB-2025-0532',
-      type: 'outbound',
-      customer: 'Industrial Solutions Ltd',
-      origin: 'Warehouse A',
-      destination: 'Hyderabad',
-      timeSlot: '08:00 - 10:00',
-      vehicleNo: 'TN-02-CD-5678',
-      driverName: 'Suresh Reddy',
-      items: 5,
-      status: 'scheduled',
-      bay: 'BAY-01',
-      priority: 'high'
-    },
-    {
-      id: '6',
-      date: '2025-10-22',
-      shipmentNo: 'IB-2025-0422',
-      type: 'inbound',
-      customer: 'BearingTech Industries',
-      origin: 'Pune',
-      destination: 'Warehouse A',
-      timeSlot: '11:00 - 13:00',
-      vehicleNo: 'MH-12-GH-3456',
-      driverName: 'Prakash Joshi',
-      items: 3,
-      status: 'delayed',
-      bay: 'BAY-02',
-      priority: 'high'
-    },
-    {
-      id: '7',
-      date: '2025-10-23',
-      shipmentNo: 'OB-2025-0533',
-      type: 'outbound',
-      customer: 'Manufacturing Hub Inc',
-      origin: 'Warehouse B',
-      destination: 'Mumbai',
-      timeSlot: '07:00 - 09:00',
-      vehicleNo: 'TN-03-EF-9012',
-      driverName: 'Arun Sharma',
-      items: 12,
-      status: 'scheduled',
-      bay: 'BAY-01',
-      priority: 'medium'
-    },
-    {
-      id: '8',
-      date: '2025-10-23',
-      shipmentNo: 'IB-2025-0423',
-      type: 'inbound',
-      customer: 'MetalSource Ltd',
-      origin: 'Bangalore',
-      destination: 'Warehouse B',
-      timeSlot: '09:00 - 11:00',
-      vehicleNo: 'KA-01-IJ-7890',
-      driverName: 'Venkat Raman',
-      items: 8,
-      status: 'confirmed',
-      bay: 'BAY-03',
-      priority: 'medium'
-    }
-  ];
+    const getStatusColor = (status: string) => {
+        switch (status) {
+            case 'On Time': return 'bg-green-50 text-green-600 border-green-200';
+            case 'Loading': return 'bg-blue-50 text-blue-600 border-blue-200';
+            case 'Delayed': return 'bg-red-50 text-red-600 border-red-200';
+            case 'Scheduled': return 'bg-gray-50 text-gray-600 border-gray-200';
+            default: return 'bg-gray-50 text-gray-600 border-gray-200';
+        }
+    };
 
-  const filteredShipments = scheduledShipments.filter(shipment => {
-    const matchesDate = shipment.date === selectedDate;
-    const matchesType = filterType === 'all' || shipment.type === filterType;
-    const matchesStatus = filterStatus === 'all' || shipment.status === filterStatus;
-    return matchesDate && matchesType && matchesStatus;
-  });
+    const getDockStatusColor = (status: string) => {
+        switch (status) {
+            case 'Occupied': return 'bg-blue-500';
+            case 'Available': return 'bg-green-500';
+            case 'Reserved': return 'bg-yellow-500';
+            default: return 'bg-gray-500';
+        }
+    };
 
-  const getTypeColor = (type: string) => {
-    return type === 'inbound' ? 'bg-blue-100 text-blue-700 border-blue-200' : 'bg-green-100 text-green-700 border-green-200';
-  };
+    const formatDate = (date: Date) => {
+        return date.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    };
 
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'completed': return 'bg-green-100 text-green-700 border-green-200';
-      case 'in-progress': return 'bg-blue-100 text-blue-700 border-blue-200';
-      case 'confirmed': return 'bg-purple-100 text-purple-700 border-purple-200';
-      case 'scheduled': return 'bg-yellow-100 text-yellow-700 border-yellow-200';
-      case 'delayed': return 'bg-red-100 text-red-700 border-red-200';
-      case 'cancelled': return 'bg-gray-100 text-gray-700 border-gray-200';
-      default: return 'bg-gray-100 text-gray-700 border-gray-200';
-    }
-  };
-
-  const getStatusIcon = (status: string) => {
-    switch (status) {
-      case 'completed': return <CheckCircle className="w-3 h-3" />;
-      case 'in-progress': return <Truck className="w-3 h-3" />;
-      case 'confirmed': return <CheckCircle className="w-3 h-3" />;
-      case 'scheduled': return <Clock className="w-3 h-3" />;
-      case 'delayed': return <AlertCircle className="w-3 h-3" />;
-      default: return null;
-    }
-  };
-
-  const getPriorityColor = (priority: string) => {
-    switch (priority) {
-      case 'high': return 'bg-red-100 text-red-700 border-red-200';
-      case 'medium': return 'bg-yellow-100 text-yellow-700 border-yellow-200';
-      case 'low': return 'bg-green-100 text-green-700 border-green-200';
-      default: return 'bg-gray-100 text-gray-700 border-gray-200';
-    }
-  };
-
-  const getShipmentsByDate = (date: string) => {
-    return scheduledShipments.filter(s => s.date === date);
-  };
-
-  const getUpcomingDates = () => {
-    const dates = ['2025-10-21', '2025-10-22', '2025-10-23', '2025-10-24', '2025-10-25'];
-    return dates;
-  };
-
-  return (
-    <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <div className="flex items-center gap-4">
-          <button onClick={() => router.back()} className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
-            <ArrowLeft className="w-5 h-5 text-gray-600" />
-          </button>
-          <div>
-            <h1 className="text-2xl font-bold text-gray-900">Shipping Schedule</h1>
-            <p className="text-sm text-gray-500 mt-1">Plan and manage inbound and outbound shipment schedules</p>
-          </div>
-        </div>
-        <div className="flex gap-2">
-          <button className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
-            <Download className="w-4 h-4" />
-            <span>Export</span>
-          </button>
-          <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2">
-            <Plus className="w-4 h-4" />
-            <span>New Schedule</span>
-          </button>
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 border border-blue-200">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm font-medium text-blue-600">Today's Inbound</p>
-              <p className="text-3xl font-bold text-blue-900 mt-1">
-                {scheduledShipments.filter(s => s.date === selectedDate && s.type === 'inbound').length}
-              </p>
-            </div>
-            <Package className="w-6 h-6 text-blue-700" />
-          </div>
-        </div>
-
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6 border border-green-200">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm font-medium text-green-600">Today's Outbound</p>
-              <p className="text-3xl font-bold text-green-900 mt-1">
-                {scheduledShipments.filter(s => s.date === selectedDate && s.type === 'outbound').length}
-              </p>
-            </div>
-            <Truck className="w-6 h-6 text-green-700" />
-          </div>
-        </div>
-
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-6 border border-purple-200">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm font-medium text-purple-600">In Progress</p>
-              <p className="text-3xl font-bold text-purple-900 mt-1">
-                {scheduledShipments.filter(s => s.status === 'in-progress').length}
-              </p>
-            </div>
-            <Truck className="w-6 h-6 text-purple-700" />
-          </div>
-        </div>
-
-        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-xl p-6 border border-red-200">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm font-medium text-red-600">Delayed</p>
-              <p className="text-3xl font-bold text-red-900 mt-1">
-                {scheduledShipments.filter(s => s.status === 'delayed').length}
-              </p>
-            </div>
-            <AlertCircle className="w-6 h-6 text-red-700" />
-          </div>
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-        <div className="lg:col-span-1">
-          <div className="bg-white rounded-xl border border-gray-200 p-4">
-            <h3 className="text-sm font-semibold text-gray-900 mb-4 flex items-center gap-2">
-              <Calendar className="w-4 h-4" />
-              Schedule Overview
-            </h3>
-            <div className="space-y-2">
-              {getUpcomingDates().map((date) => {
-                const shipments = getShipmentsByDate(date);
-                const isSelected = date === selectedDate;
-                return (
-                  <button
-                    key={date}
-                    onClick={() => setSelectedDate(date)}
-                    className={`w-full text-left p-3 rounded-lg transition-colors ${
-                      isSelected ? 'bg-blue-100 border-2 border-blue-500' : 'bg-gray-50 hover:bg-gray-100 border-2 border-transparent'
-                    }`}
-                  >
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <p className={`text-sm font-semibold ${isSelected ? 'text-blue-900' : 'text-gray-900'}`}>
-                          {new Date(date).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })}
-                        </p>
-                        <p className="text-xs text-gray-500 mt-1">
-                          {shipments.length} shipment{shipments.length !== 1 ? 's' : ''}
-                        </p>
-                      </div>
-                      <div className="flex gap-1">
-                        <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-blue-100 text-blue-700 text-xs font-bold">
-                          {shipments.filter(s => s.type === 'inbound').length}
-                        </span>
-                        <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-green-100 text-green-700 text-xs font-bold">
-                          {shipments.filter(s => s.type === 'outbound').length}
-                        </span>
-                      </div>
-                    </div>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-
-        <div className="lg:col-span-3">
-          <div className="bg-white rounded-xl border border-gray-200 p-4 mb-4">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-semibold text-gray-900">
-                {new Date(selectedDate).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
-              </h3>
-              <div className="flex gap-2">
-                <select
-                  value={filterType}
-                  onChange={(e) => setFilterType(e.target.value)}
-                  className="px-3 py-1.5 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                >
-                  <option value="all">All Types</option>
-                  <option value="inbound">Inbound</option>
-                  <option value="outbound">Outbound</option>
-                </select>
-                <select
-                  value={filterStatus}
-                  onChange={(e) => setFilterStatus(e.target.value)}
-                  className="px-3 py-1.5 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                >
-                  <option value="all">All Status</option>
-                  <option value="scheduled">Scheduled</option>
-                  <option value="confirmed">Confirmed</option>
-                  <option value="in-progress">In Progress</option>
-                  <option value="completed">Completed</option>
-                  <option value="delayed">Delayed</option>
-                </select>
-              </div>
-            </div>
-
-            <div className="space-y-3">
-              {filteredShipments.map((shipment) => (
-                <div key={shipment.id} className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
-                  <div className="flex items-start justify-between mb-3">
-                    <div className="flex items-center gap-3">
-                      <div className={`p-2 rounded-lg ${shipment.type === 'inbound' ? 'bg-blue-100' : 'bg-green-100'}`}>
-                        {shipment.type === 'inbound' ? (
-                          <Package className="w-5 h-5 text-blue-600" />
-                        ) : (
-                          <Truck className="w-5 h-5 text-green-600" />
-                        )}
-                      </div>
-                      <div>
-                        <div className="flex items-center gap-2">
-                          <p className="text-sm font-bold text-gray-900">{shipment.shipmentNo}</p>
-                          <span className={`px-2 py-0.5 rounded text-xs font-medium border ${getTypeColor(shipment.type)}`}>
-                            {shipment.type}
-                          </span>
-                        </div>
-                        <p className="text-xs text-gray-500 mt-1">{shipment.customer}</p>
-                      </div>
-                    </div>
-                    <div className="flex gap-2">
-                      <span className={`px-2 py-1 rounded text-xs font-medium border ${getPriorityColor(shipment.priority)}`}>
-                        {shipment.priority}
-                      </span>
-                      <span className={`inline-flex items-center gap-1 px-2 py-1 rounded text-xs font-medium border ${getStatusColor(shipment.status)}`}>
-                        {getStatusIcon(shipment.status)}
-                        {shipment.status}
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs">
-                    <div>
-                      <p className="text-gray-500 mb-1">Time Slot</p>
-                      <div className="flex items-center gap-1">
-                        <Clock className="w-3 h-3 text-blue-500" />
-                        <p className="font-semibold text-gray-900">{shipment.timeSlot}</p>
-                      </div>
-                    </div>
-                    <div>
-                      <p className="text-gray-500 mb-1">Bay</p>
-                      <p className="font-semibold text-purple-600">{shipment.bay}</p>
-                    </div>
-                    <div>
-                      <p className="text-gray-500 mb-1">Vehicle</p>
-                      <p className="font-mono font-semibold text-gray-900">{shipment.vehicleNo}</p>
-                    </div>
-                    <div>
-                      <p className="text-gray-500 mb-1">Items</p>
-                      <p className="font-semibold text-gray-900">{shipment.items} items</p>
-                    </div>
-                  </div>
-
-                  <div className="mt-3 pt-3 border-t border-gray-100">
-                    <div className="flex items-center gap-2 text-xs">
-                      <MapPin className="w-3 h-3 text-gray-400" />
-                      <span className="text-gray-700">{shipment.origin}</span>
-                      <span className="text-gray-400">’</span>
-                      <span className="font-semibold text-gray-900">{shipment.destination}</span>
-                    </div>
-                  </div>
+    return (
+        <div className="p-6 space-y-6 text-sm font-medium">
+            {/* Header */}
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div>
+                    <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
+                        <Calendar className="h-8 w-8 text-orange-600" />
+                        Shipping Schedule
+                    </h1>
+                    <p className="text-gray-500 mt-1 uppercase text-[10px] font-black tracking-widest leading-none">
+                        Daily outbound shipment scheduling and dock management
+                    </p>
                 </div>
-              ))}
+                <div className="flex items-center gap-3">
+                    <div className="flex items-center border border-gray-200 rounded-lg overflow-hidden">
+                        <button
+                            onClick={() => setViewMode('list')}
+                            className={`px-3 py-2 text-[10px] font-black uppercase tracking-widest ${viewMode === 'list' ? 'bg-orange-600 text-white' : 'bg-white text-gray-600 hover:bg-gray-50'}`}
+                        >
+                            List View
+                        </button>
+                        <button
+                            onClick={() => setViewMode('timeline')}
+                            className={`px-3 py-2 text-[10px] font-black uppercase tracking-widest ${viewMode === 'timeline' ? 'bg-orange-600 text-white' : 'bg-white text-gray-600 hover:bg-gray-50'}`}
+                        >
+                            Timeline
+                        </button>
+                    </div>
+                    <button className="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 flex items-center gap-2 shadow-md font-black uppercase text-[10px] tracking-widest">
+                        <Plus className="w-4 h-4" /> Schedule Shipment
+                    </button>
+                </div>
             </div>
 
-            {filteredShipments.length === 0 && (
-              <div className="text-center py-12">
-                <Calendar className="w-12 h-12 text-gray-400 mx-auto mb-3" />
-                <p className="text-gray-500">No shipments scheduled for this date</p>
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
+            {/* Date Navigation */}
+            <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-4">
+                <div className="flex items-center justify-between">
+                    <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+                        <ChevronLeft className="w-5 h-5 text-gray-600" />
+                    </button>
+                    <div className="text-center">
+                        <p className="text-lg font-black text-gray-900">{formatDate(selectedDate)}</p>
+                        <p className="text-[10px] text-gray-500 uppercase tracking-widest mt-1">
+                            {scheduleData.length} shipments scheduled
+                        </p>
+                    </div>
+                    <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+                        <ChevronRight className="w-5 h-5 text-gray-600" />
+                    </button>
+                </div>
+            </div>
 
-      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-xl p-4">
-        <h3 className="text-sm font-semibold text-blue-900 mb-2">Schedule Management:</h3>
-        <ul className="text-sm text-blue-700 space-y-1 list-disc list-inside">
-          <li>Plan shipments in advance to optimize bay utilization and resource allocation</li>
-          <li>Assign time slots to prevent congestion and ensure smooth operations</li>
-          <li>Coordinate with carriers and drivers for timely arrivals</li>
-          <li>Monitor schedule adherence and address delays proactively</li>
-          <li>Balance inbound and outbound shipments for optimal warehouse operations</li>
-        </ul>
-      </div>
-    </div>
-  );
+            {/* Stats Overview */}
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div className="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-center gap-4">
+                    <div className="p-3 bg-blue-50 rounded-xl text-blue-600">
+                        <Truck className="w-5 h-5" />
+                    </div>
+                    <div>
+                        <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Total Shipments</p>
+                        <p className="text-2xl font-black text-gray-900 italic tracking-tighter">{scheduleData.length}</p>
+                    </div>
+                </div>
+
+                <div className="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-center gap-4">
+                    <div className="p-3 bg-green-50 rounded-xl text-green-600">
+                        <CheckCircle2 className="w-5 h-5" />
+                    </div>
+                    <div>
+                        <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">On Time</p>
+                        <p className="text-2xl font-black text-green-600 italic tracking-tighter">
+                            {scheduleData.filter(s => s.status === 'On Time').length}
+                        </p>
+                    </div>
+                </div>
+
+                <div className="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-center gap-4">
+                    <div className="p-3 bg-red-50 rounded-xl text-red-600">
+                        <AlertCircle className="w-5 h-5" />
+                    </div>
+                    <div>
+                        <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Delayed</p>
+                        <p className="text-2xl font-black text-red-600 italic tracking-tighter">
+                            {scheduleData.filter(s => s.status === 'Delayed').length}
+                        </p>
+                    </div>
+                </div>
+
+                <div className="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-center gap-4">
+                    <div className="p-3 bg-orange-50 rounded-xl text-orange-600">
+                        <Package className="w-5 h-5" />
+                    </div>
+                    <div>
+                        <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Total Items</p>
+                        <p className="text-2xl font-black text-gray-900 italic tracking-tighter">
+                            {scheduleData.reduce((sum, s) => sum + s.items, 0)}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+                {/* Schedule List */}
+                <div className="lg:col-span-3 bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+                    <div className="p-4 border-b border-gray-50 flex items-center justify-between">
+                        <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest italic flex items-center gap-2">
+                            <Clock className="w-4 h-4 text-orange-600" /> Today's Schedule
+                        </h3>
+                        <div className="relative">
+                            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+                            <input
+                                type="text"
+                                placeholder="Search shipments..."
+                                className="pl-10 pr-4 py-1.5 border border-gray-100 bg-gray-50 rounded-lg text-xs w-64"
+                            />
+                        </div>
+                    </div>
+
+                    <div className="divide-y divide-gray-50">
+                        {scheduleData.map((shipment) => (
+                            <div key={shipment.id} className="p-4 hover:bg-gray-50 transition-colors cursor-pointer group">
+                                <div className="flex items-start gap-4">
+                                    <div className="text-center min-w-[60px]">
+                                        <p className="text-xl font-black text-gray-900 italic tracking-tighter">{shipment.time}</p>
+                                        <span className={`inline-block px-2 py-0.5 rounded text-[9px] font-black uppercase border ${getStatusColor(shipment.status)}`}>
+                                            {shipment.status}
+                                        </span>
+                                    </div>
+
+                                    <div className="flex-1">
+                                        <div className="flex items-start justify-between">
+                                            <div>
+                                                <h4 className="font-bold text-gray-900 group-hover:text-orange-600 transition-colors flex items-center gap-2">
+                                                    {shipment.id}
+                                                    <span className="text-[10px] text-gray-400 font-normal">{shipment.dock}</span>
+                                                </h4>
+                                                <p className="text-[11px] text-gray-600 mt-1 flex items-center gap-1">
+                                                    <Building2 className="w-3 h-3" /> {shipment.customer}
+                                                </p>
+                                            </div>
+                                            <button className="p-1 hover:bg-gray-100 rounded opacity-0 group-hover:opacity-100 transition-opacity">
+                                                <MoreVertical className="w-4 h-4 text-gray-400" />
+                                            </button>
+                                        </div>
+
+                                        <div className="flex items-center gap-6 mt-3 text-[10px] text-gray-500">
+                                            <span className="flex items-center gap-1">
+                                                <MapPin className="w-3 h-3" /> {shipment.destination}
+                                            </span>
+                                            <span className="flex items-center gap-1">
+                                                <Truck className="w-3 h-3" /> {shipment.carrier}
+                                            </span>
+                                            <span className="flex items-center gap-1">
+                                                <Package className="w-3 h-3" /> {shipment.items} items ({shipment.weight})
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Dock Status Sidebar */}
+                <div className="space-y-4">
+                    <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-4">
+                        <h3 className="text-xs font-black text-gray-900 uppercase tracking-widest italic flex items-center gap-2 mb-4">
+                            <MapPin className="w-4 h-4 text-orange-600" /> Dock Status
+                        </h3>
+                        <div className="space-y-3">
+                            {dockStatus.map((dock) => (
+                                <div key={dock.dock} className="flex items-center justify-between p-2 rounded-lg hover:bg-gray-50 transition-colors">
+                                    <div className="flex items-center gap-2">
+                                        <span className={`w-2 h-2 rounded-full ${getDockStatusColor(dock.status)}`}></span>
+                                        <span className="text-[11px] font-bold text-gray-700">{dock.dock}</span>
+                                    </div>
+                                    <div className="text-right">
+                                        <span className={`text-[9px] font-black uppercase ${dock.status === 'Available' ? 'text-green-600' :
+                                                dock.status === 'Occupied' ? 'text-blue-600' : 'text-yellow-600'
+                                            }`}>
+                                            {dock.status}
+                                        </span>
+                                        {dock.shipment && (
+                                            <p className="text-[9px] text-gray-400">{dock.shipment}</p>
+                                        )}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    <div className="bg-orange-50 p-4 rounded-2xl border border-orange-100">
+                        <h3 className="text-xs font-black text-orange-800 uppercase tracking-widest italic flex items-center gap-2 mb-2">
+                            <AlertCircle className="w-4 h-4" /> Attention Required
+                        </h3>
+                        <p className="text-[11px] text-orange-700 font-bold">
+                            Shipment SHP-2024-1203 is experiencing a 30-minute delay due to carrier issues.
+                        </p>
+                        <button className="mt-3 text-[10px] font-black text-orange-800 uppercase tracking-widest flex items-center gap-1 hover:text-orange-900">
+                            View Details <ArrowUpRight className="w-3 h-3" />
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
 }
