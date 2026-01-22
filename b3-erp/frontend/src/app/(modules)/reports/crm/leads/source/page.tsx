@@ -1,72 +1,219 @@
 'use client';
 
-import React from 'react';
+import React, { Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { ReportDetailPage } from '@/components/reports/ReportDetailPage';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { ClickableTableRow } from '@/components/reports/ClickableTableRow';
+import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import {
+    ArrowLeft,
+    Download,
+    Search,
+    Filter,
+    ChevronRight,
+    PieChart,
+    TrendingUp,
+    Zap,
+    Globe,
+    Linkedin,
+    Mail,
+    Users
+} from 'lucide-react';
 
-export default function LeadsBySourceDetail() {
+function LeadsBySourceContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
-    const source = searchParams.get('source') || 'All';
+    const source = searchParams.get('source') || 'All Sources';
 
     const leads = [
-        { id: 'LEAD-001', name: 'John Smith', company: 'Tech Solutions', source: 'Website', status: 'Qualified', value: 45000 },
-        { id: 'LEAD-002', name: 'Sarah Jones', company: 'Global Corp', source: 'LinkedIn', status: 'New', value: 25000 },
-        { id: 'LEAD-003', name: 'Mike Brown', company: 'Local Retail', source: 'Referral', status: 'Contacted', value: 15000 },
-        { id: 'LEAD-004', name: 'Emily Davis', company: 'Design Studio', source: 'Website', status: 'Proposal', value: 60000 },
-        { id: 'LEAD-005', name: 'David Wilson', company: 'BuildIt Inc', source: 'Trade Show', status: 'New', value: 80000 },
+        { id: 'LEAD-001', name: 'John Smith', company: 'Tech Solutions', source: 'Website', status: 'Qualified', value: 45000, date: '2025-01-18' },
+        { id: 'LEAD-002', name: 'Sarah Jones', company: 'Global Corp', source: 'LinkedIn', status: 'New', value: 25000, date: '2025-01-20' },
+        { id: 'LEAD-003', name: 'Mike Brown', company: 'Local Retail', source: 'Referral', status: 'Contacted', value: 15000, date: '2025-01-22' },
+        { id: 'LEAD-004', name: 'Emily Davis', company: 'Design Studio', source: 'Website', status: 'Proposal', value: 60000, date: '2025-01-24' },
+        { id: 'LEAD-005', name: 'David Wilson', company: 'BuildIt Inc', source: 'Trade Show', status: 'New', value: 80000, date: '2025-01-25' },
+        { id: 'LEAD-006', name: 'Anna K.', company: 'FinTech Hub', source: 'Outbound', status: 'Qualified', value: 125000, date: '2025-01-26' },
+        { id: 'LEAD-007', name: 'Marcus L.', company: 'Auto Dynamics', source: 'LinkedIn', status: 'Contacted', value: 42000, date: '2025-01-27' },
     ];
 
-    const filteredLeads = source === 'All' ? leads : leads.filter(l => l.source === source);
+    const filteredLeads = source === 'All Sources' ? leads : leads.filter(l => l.source === source);
+
+    const getSourceIcon = (src: string) => {
+        switch (src.toLowerCase()) {
+            case 'linkedin': return <Linkedin className="w-4 h-4 text-blue-600" />;
+            case 'website': return <Globe className="w-4 h-4 text-indigo-600" />;
+            case 'referral': return <Users className="w-4 h-4 text-orange-600" />;
+            case 'outbound': return <Mail className="w-4 h-4 text-purple-600" />;
+            default: return <PieChart className="w-4 h-4 text-gray-600" />;
+        }
+    };
 
     return (
-        <ReportDetailPage
-            title={`Leads from ${source}`}
-            description={`List of leads acquired via ${source}`}
-            breadcrumbs={[
-                { label: 'Reports', href: '/reports' },
-                { label: 'CRM', href: '/reports' },
-                { label: 'Lead Analysis', href: '/reports/crm/leads' },
-                { label: source },
-            ]}
-            onBack={() => router.back()}
-            onExport={() => console.log('Export')}
-        >
-            <Card>
-                <CardHeader><CardTitle>Leads List</CardTitle></CardHeader>
-                <CardContent className="p-0">
-                    <table className="w-full">
-                        <thead className="bg-gray-50">
-                            <tr>
-                                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500">Lead Name</th>
-                                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500">Company</th>
-                                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500">Source</th>
-                                <th className="px-4 py-3 text-center text-xs font-medium text-gray-500">Status</th>
-                                <th className="px-4 py-3 text-right text-xs font-medium text-gray-500">Est. Value</th>
-                            </tr>
-                        </thead>
-                        <tbody className="divide-y">
-                            {filteredLeads.map((lead) => (
-                                <ClickableTableRow
-                                    key={lead.id}
-                                    onClick={() => router.push(`/crm/leads/view/${lead.id}`)}
-                                >
-                                    <td className="px-4 py-3 text-sm font-medium text-blue-600">{lead.name}</td>
-                                    <td className="px-4 py-3 text-sm">{lead.company}</td>
-                                    <td className="px-4 py-3 text-sm">{lead.source}</td>
-                                    <td className="px-4 py-3 text-center">
-                                        <Badge variant="outline">{lead.status}</Badge>
-                                    </td>
-                                    <td className="px-4 py-3 text-right text-sm font-bold">${lead.value.toLocaleString()}</td>
-                                </ClickableTableRow>
-                            ))}
-                        </tbody>
-                    </table>
-                </CardContent>
-            </Card>
-        </ReportDetailPage>
+        <div className="h-[calc(100vh-64px)] flex flex-col overflow-hidden bg-gray-50">
+            {/* Header */}
+            <div className="px-6 py-4 bg-white border-b border-gray-200 flex-shrink-0 shadow-sm">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div className="flex items-center gap-4">
+                        <button
+                            onClick={() => router.back()}
+                            className="p-2 hover:bg-gray-100 rounded-lg transition-colors group"
+                        >
+                            <ArrowLeft className="w-5 h-5 text-gray-500 group-hover:text-orange-600" />
+                        </button>
+                        <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg text-white">
+                                {getSourceIcon(source)}
+                            </div>
+                            <div>
+                                <h1 className="text-2xl font-bold text-gray-900 leading-none">Source Analysis: {source}</h1>
+                                <p className="text-gray-500 uppercase text-[10px] font-black tracking-widest mt-1">
+                                    Lead attribution and performance metrics for this channel
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="flex items-center gap-3">
+                        <Button variant="outline" className="font-black uppercase text-[10px] tracking-widest border-gray-200">
+                            Change Source
+                        </Button>
+                        <Button className="bg-orange-600 hover:bg-orange-700 text-white shadow-md font-black uppercase text-[10px] tracking-widest">
+                            <Download className="mr-2 h-4 w-4" /> Export Leads
+                        </Button>
+                    </div>
+                </div>
+            </div>
+
+            {/* Main Content */}
+            <div className="flex-1 overflow-y-auto p-6 space-y-6">
+                {/* Stats Row */}
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                    <Card className="bg-white border-gray-100 shadow-sm">
+                        <CardContent className="p-6">
+                            <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Leads Gathered</p>
+                            <p className="text-3xl font-black text-gray-900 mt-1 italic tracking-tighter">{filteredLeads.length}</p>
+                            <div className="mt-3 flex items-center gap-2 text-[10px] font-bold text-green-600">
+                                <TrendingUp className="w-3 h-3" />
+                                <span>Above avg for {source}</span>
+                            </div>
+                        </CardContent>
+                    </Card>
+
+                    <Card className="bg-white border-gray-100 shadow-sm">
+                        <CardContent className="p-6">
+                            <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Pipeline Value</p>
+                            <p className="text-3xl font-black text-gray-900 mt-1 italic tracking-tighter">
+                                ${filteredLeads.reduce((sum, l) => sum + l.value, 0).toLocaleString()}
+                            </p>
+                            <p className="mt-3 text-[10px] font-bold text-blue-600 uppercase">Estimated Revenue</p>
+                        </CardContent>
+                    </Card>
+
+                    <Card className="bg-white border-gray-100 shadow-sm">
+                        <CardContent className="p-6">
+                            <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Avg Value</p>
+                            <p className="text-3xl font-black text-gray-900 mt-1 italic tracking-tighter">
+                                ${Math.round(filteredLeads.reduce((sum, l) => sum + l.value, 0) / filteredLeads.length).toLocaleString()}
+                            </p>
+                            <p className="mt-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider">Per lead unit</p>
+                        </CardContent>
+                    </Card>
+
+                    <Card className="bg-gray-900 text-white shadow-xl border-none">
+                        <CardContent className="p-6">
+                            <p className="text-[10px] font-black text-orange-400 uppercase tracking-widest">Conv. Strategy</p>
+                            <p className="text-2xl font-black italic tracking-tighter mt-1">Aggressive</p>
+                            <div className="mt-3 flex items-center gap-2 text-[10px] font-bold text-orange-400">
+                                <Zap className="w-3 h-3" />
+                                <span>High intent channel</span>
+                            </div>
+                        </CardContent>
+                    </Card>
+                </div>
+
+                {/* Main Leads Table */}
+                <Card className="border-gray-100 shadow-sm overflow-hidden">
+                    <CardHeader className="bg-white border-b border-gray-100 py-4 flex flex-row items-center justify-between">
+                        <div className="flex items-center gap-4">
+                            <CardTitle className="text-sm font-black uppercase tracking-widest text-gray-900">Pipeline Inflow</CardTitle>
+                            <div className="relative">
+                                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3 h-3 text-gray-400" />
+                                <input
+                                    type="text"
+                                    placeholder="Filter list..."
+                                    className="pl-8 pr-4 py-1.5 border border-gray-100 rounded-lg text-[10px] focus:ring-1 focus:ring-orange-500 w-48"
+                                />
+                            </div>
+                        </div>
+                        <Button variant="ghost" size="sm" className="font-black uppercase text-[9px] tracking-widest text-gray-500">
+                            <Filter className="w-3 h-3 mr-2" /> Extended Filters
+                        </Button>
+                    </CardHeader>
+                    <CardContent className="p-0">
+                        <div className="overflow-x-auto">
+                            <table className="w-full text-left">
+                                <thead className="bg-gray-50/50">
+                                    <tr>
+                                        <th className="px-6 py-4 text-[10px] font-black uppercase tracking-widest text-gray-400">Principal Identity</th>
+                                        <th className="px-6 py-4 text-[10px] font-black uppercase tracking-widest text-gray-400">Organization</th>
+                                        <th className="px-6 py-4 text-[10px] font-black uppercase tracking-widest text-gray-400">Inbound Date</th>
+                                        <th className="px-6 py-4 text-[10px] font-black uppercase tracking-widest text-gray-400">Value Opportunity</th>
+                                        <th className="px-6 py-4 text-[10px] font-black uppercase tracking-widest text-gray-400 text-center">Lifecycle Status</th>
+                                        <th className="px-6 py-4 text-right"></th>
+                                    </tr>
+                                </thead>
+                                <tbody className="divide-y divide-gray-100 bg-white">
+                                    {filteredLeads.map((lead) => (
+                                        <tr
+                                            key={lead.id}
+                                            className="hover:bg-gray-50/50 transition-colors cursor-pointer group"
+                                            onClick={() => router.push(`/crm/leads/view/${lead.id}`)}
+                                        >
+                                            <td className="px-6 py-4">
+                                                <p className="text-sm font-bold text-gray-900 group-hover:text-blue-600 transition-colors">{lead.name}</p>
+                                                <p className="text-[10px] text-gray-400 font-medium tracking-tight">{lead.id}</p>
+                                            </td>
+                                            <td className="px-6 py-4">
+                                                <div className="flex items-center gap-2">
+                                                    <Badge variant="outline" className="border-gray-100 text-[10px] font-bold px-2 py-0">{lead.company}</Badge>
+                                                </div>
+                                            </td>
+                                            <td className="px-6 py-4 text-xs font-bold text-gray-500">{lead.date}</td>
+                                            <td className="px-6 py-4">
+                                                <p className="text-sm font-black text-gray-900 italic tracking-tight">${lead.value.toLocaleString()}</p>
+                                            </td>
+                                            <td className="px-6 py-4">
+                                                <div className="flex justify-center">
+                                                    <span className={`px-2 py-0.5 rounded text-[9px] font-black uppercase border ${lead.status === 'Qualified'
+                                                            ? 'bg-green-50 text-green-700 border-green-100'
+                                                            : lead.status === 'New'
+                                                                ? 'bg-blue-50 text-blue-700 border-blue-100'
+                                                                : 'bg-orange-50 text-orange-700 border-orange-100'
+                                                        }`}>
+                                                        {lead.status}
+                                                    </span>
+                                                </div>
+                                            </td>
+                                            <td className="px-6 py-4 text-right">
+                                                <button className="p-2 opacity-0 group-hover:opacity-100 bg-white shadow-sm border border-gray-100 rounded-lg transition-all translate-x-2 group-hover:translate-x-0">
+                                                    <ChevronRight className="w-4 h-4 text-gray-400" />
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    </CardContent>
+                </Card>
+            </div>
+        </div>
     );
 }
+
+export default function LeadsBySourceDetail() {
+    return (
+        <Suspense fallback={<div className="p-8 text-center text-gray-500 font-black uppercase tracking-widest">Loading Report Structure...</div>}>
+            <LeadsBySourceContent />
+        </Suspense>
+    );
+}
+
