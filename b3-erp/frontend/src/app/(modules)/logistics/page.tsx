@@ -132,7 +132,7 @@ export default function LogisticsDashboard() {
 
   return (
     <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-amber-50 to-yellow-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="max-w-7xl mx-auto space-y-6">
+      <div className="w-full space-y-6">
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">Logistics & Transportation</h1>
@@ -155,28 +155,28 @@ export default function LogisticsDashboard() {
           ) : (
             <>
               <KPICard
-               
+
                 value={stats.activeShipments}
                 icon={Truck}
                 color="blue"
                 description={`${stats.inTransit} in transit`}
               />
               <KPICard
-               
+
                 value={`${stats.onTimeDeliveryRate}%`}
                 icon={CheckCircle}
                 color="green"
                 description={`${stats.delivered} delivered`}
               />
               <KPICard
-               
+
                 value={stats.vehiclesActive}
                 icon={Navigation}
                 color="purple"
                 description={`${stats.totalDistance} km today`}
               />
               <KPICard
-               
+
                 value={`${stats.avgDeliveryTime} days`}
                 icon={Clock}
                 color="yellow"
@@ -226,13 +226,12 @@ export default function LogisticsDashboard() {
                     </div>
                     <div className="w-full bg-gray-200 rounded-full h-2">
                       <div
-                        className={`h-2 rounded-full ${
-                          shipment.status === 'delayed'
+                        className={`h-2 rounded-full ${shipment.status === 'delayed'
                             ? 'bg-red-500'
                             : shipment.progress >= 90
-                            ? 'bg-green-500'
-                            : 'bg-blue-500'
-                        }`}
+                              ? 'bg-green-500'
+                              : 'bg-blue-500'
+                          }`}
                         style={{ width: `${shipment.progress}%` }}
                       />
                     </div>

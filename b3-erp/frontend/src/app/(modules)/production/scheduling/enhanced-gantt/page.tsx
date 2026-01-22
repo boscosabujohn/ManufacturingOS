@@ -7,10 +7,67 @@ import { EnhancedGanttChart } from '@/components/production/EnhancedGanttChart';
 export default function EnhancedGanttPage() {
   const router = useRouter();
 
+  const mockTasks = [
+    {
+      id: '1',
+      name: 'Production Planning',
+      startDate: new Date(2025, 0, 1),
+      endDate: new Date(2025, 0, 5),
+      progress: 100,
+      status: 'completed',
+      priority: 'high',
+      assignee: 'Alice Smith',
+      group: 'planning'
+    },
+    {
+      id: '2',
+      name: 'Material Procurement',
+      startDate: new Date(2025, 0, 6),
+      endDate: new Date(2025, 0, 10),
+      progress: 60,
+      status: 'in-progress',
+      priority: 'medium',
+      assignee: 'Bob Jones',
+      group: 'procurement',
+      dependencies: ['1']
+    },
+    {
+      id: '3',
+      name: 'Assembly Phase 1',
+      startDate: new Date(2025, 0, 11),
+      endDate: new Date(2025, 0, 20),
+      progress: 0,
+      status: 'not-started',
+      priority: 'urgent',
+      assignee: 'Charlie Brown',
+      group: 'assembly',
+      dependencies: ['2']
+    },
+    {
+      id: '4',
+      name: 'Quality Check',
+      startDate: new Date(2025, 0, 21),
+      endDate: new Date(2025, 0, 23),
+      progress: 0,
+      status: 'not-started',
+      priority: 'high',
+      assignee: 'Diana Prince',
+      group: 'quality',
+      dependencies: ['3']
+    }
+  ];
+
+  const mockGroups = [
+    { id: 'planning', name: 'Planning' },
+    { id: 'procurement', name: 'Procurement' },
+    { id: 'assembly', name: 'Assembly' },
+    { id: 'quality', name: 'Quality Control' }
+  ];
+
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 flex flex-col h-screen">
       {/* Header */}
-      <div className="bg-white border-b border-gray-200 px-6 py-4">
+      <div className="bg-white border-b border-gray-200 px-6 py-4 flex-shrink-0">
         <div className="flex items-center gap-4">
           <button
             onClick={() => router.back()}
@@ -28,12 +85,15 @@ export default function EnhancedGanttPage() {
       </div>
 
       {/* Gantt Chart Component */}
-      <div className="p-6">
+      <div className="flex-1 p-6 overflow-hidden">
         <EnhancedGanttChart
-          onTaskUpdate={(taskId, updates) => {
-            console.log('Task updated:', taskId, updates);
+          tasks={mockTasks as any}
+          groups={mockGroups}
+          className="h-full"
+          onTaskUpdate={(task) => {
+            console.log('Task updated:', task);
           }}
-          onDependencyAdd={(fromId, toId) => {
+          onDependencyCreate={(fromId, toId) => {
             console.log('Dependency added:', fromId, '->', toId);
           }}
         />

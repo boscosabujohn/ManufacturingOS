@@ -97,12 +97,14 @@ const generateMockTeams = (): TeamWorkload[] => [
   },
 ];
 
+const MOCK_NOW = new Date('2024-03-10T09:00:00');
+
 const generateMockTasks = (): WorkloadTask[] => [
-  { id: 'task1', name: 'WO-2024-1847 Setup', assignedTo: 'm1', estimatedHours: 4, completedHours: 4, priority: 'high', dueDate: new Date(), status: 'completed' },
-  { id: 'task2', name: 'WO-2024-1847 Production', assignedTo: 'm1', estimatedHours: 16, completedHours: 12, priority: 'high', dueDate: new Date(), status: 'in_progress' },
-  { id: 'task3', name: 'WO-2024-1848 Production', assignedTo: 'm2', estimatedHours: 20, completedHours: 15, priority: 'medium', dueDate: new Date(Date.now() + 86400000), status: 'in_progress' },
-  { id: 'task4', name: 'WO-2024-1849 Setup', assignedTo: 'm3', estimatedHours: 3, completedHours: 0, priority: 'low', dueDate: new Date(Date.now() + 172800000), status: 'pending' },
-  { id: 'task5', name: 'Urgent Order Assembly', assignedTo: 'm12', estimatedHours: 24, completedHours: 18, priority: 'urgent', dueDate: new Date(), status: 'in_progress' },
+  { id: 'task1', name: 'WO-2024-1847 Setup', assignedTo: 'm1', estimatedHours: 4, completedHours: 4, priority: 'high', dueDate: MOCK_NOW, status: 'completed' },
+  { id: 'task2', name: 'WO-2024-1847 Production', assignedTo: 'm1', estimatedHours: 16, completedHours: 12, priority: 'high', dueDate: MOCK_NOW, status: 'in_progress' },
+  { id: 'task3', name: 'WO-2024-1848 Production', assignedTo: 'm2', estimatedHours: 20, completedHours: 15, priority: 'medium', dueDate: new Date(MOCK_NOW.getTime() + 86400000), status: 'in_progress' },
+  { id: 'task4', name: 'WO-2024-1849 Setup', assignedTo: 'm3', estimatedHours: 3, completedHours: 0, priority: 'low', dueDate: new Date(MOCK_NOW.getTime() + 172800000), status: 'pending' },
+  { id: 'task5', name: 'Urgent Order Assembly', assignedTo: 'm12', estimatedHours: 24, completedHours: 18, priority: 'urgent', dueDate: MOCK_NOW, status: 'in_progress' },
 ];
 
 export function WorkloadBalanceCharts({
@@ -200,16 +202,15 @@ export function WorkloadBalanceCharts({
             return (
               <div
                 key={team.teamId}
-                className={`p-4 rounded-lg cursor-pointer transition-colors ${
-                  selectedTeam === team.teamId ? 'bg-gray-700 ring-2 ring-blue-500' : 'bg-gray-700/50 hover:bg-gray-700'
-                }`}
+                className={`p-4 rounded-lg cursor-pointer transition-colors ${selectedTeam === team.teamId ? 'bg-gray-700 ring-2 ring-blue-500' : 'bg-gray-700/50 hover:bg-gray-700'
+                  }`}
                 onClick={() => setSelectedTeam(team.teamId)}
               >
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-3">
                     <span className="text-xl">
                       {team.teamName.includes('CNC') ? '⚙️' :
-                       team.teamName.includes('Assembly') ? '🔧' : '✅'}
+                        team.teamName.includes('Assembly') ? '🔧' : '✅'}
                     </span>
                     <div>
                       <p className="text-white font-medium">{team.teamName}</p>
@@ -225,10 +226,9 @@ export function WorkloadBalanceCharts({
                 </div>
                 <div className="h-3 bg-gray-600 rounded-full overflow-hidden">
                   <div
-                    className={`h-full rounded-full transition-all ${
-                      utilizationPercent > 100 ? 'bg-red-600' :
-                      utilizationPercent > 90 ? 'bg-yellow-600' : 'bg-green-600'
-                    }`}
+                    className={`h-full rounded-full transition-all ${utilizationPercent > 100 ? 'bg-red-600' :
+                        utilizationPercent > 90 ? 'bg-yellow-600' : 'bg-green-600'
+                      }`}
                     style={{ width: `${Math.min(utilizationPercent, 100)}%` }}
                   />
                 </div>
@@ -253,8 +253,8 @@ export function WorkloadBalanceCharts({
             .map(member => {
               const potentialHelpers = allMembers.filter(
                 m => m.id !== member.id &&
-                getWorkloadStatus(m) === 'underloaded' &&
-                m.department === member.department
+                  getWorkloadStatus(m) === 'underloaded' &&
+                  m.department === member.department
               );
               const excessHours = member.allocated - member.capacity;
 
@@ -484,12 +484,11 @@ export function WorkloadBalanceCharts({
                       </div>
                     </td>
                     <td className="p-3 text-center">
-                      <span className={`px-2 py-1 rounded text-xs font-bold ${
-                        task.priority === 'urgent' ? 'bg-red-600 text-white' :
-                        task.priority === 'high' ? 'bg-orange-600 text-white' :
-                        task.priority === 'medium' ? 'bg-yellow-600 text-white' :
-                        'bg-gray-600 text-white'
-                      }`}>
+                      <span className={`px-2 py-1 rounded text-xs font-bold ${task.priority === 'urgent' ? 'bg-red-600 text-white' :
+                          task.priority === 'high' ? 'bg-orange-600 text-white' :
+                            task.priority === 'medium' ? 'bg-yellow-600 text-white' :
+                              'bg-gray-600 text-white'
+                        }`}>
                         {task.priority.toUpperCase()}
                       </span>
                     </td>
@@ -497,11 +496,10 @@ export function WorkloadBalanceCharts({
                       {task.dueDate.toLocaleDateString()}
                     </td>
                     <td className="p-3 text-center">
-                      <span className={`px-2 py-1 rounded text-xs font-bold ${
-                        task.status === 'completed' ? 'bg-green-600 text-white' :
-                        task.status === 'in_progress' ? 'bg-blue-600 text-white' :
-                        'bg-gray-600 text-white'
-                      }`}>
+                      <span className={`px-2 py-1 rounded text-xs font-bold ${task.status === 'completed' ? 'bg-green-600 text-white' :
+                          task.status === 'in_progress' ? 'bg-blue-600 text-white' :
+                            'bg-gray-600 text-white'
+                        }`}>
                         {task.status.replace('_', ' ').toUpperCase()}
                       </span>
                     </td>
@@ -546,11 +544,10 @@ export function WorkloadBalanceCharts({
               <button
                 key={tab.id}
                 onClick={() => setView(tab.id as typeof view)}
-                className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                  view === tab.id
+                className={`px-4 py-2 rounded-lg font-medium transition-colors ${view === tab.id
                     ? 'bg-blue-600 text-white'
                     : 'text-gray-400 hover:text-white'
-                }`}
+                  }`}
               >
                 {tab.icon} {tab.label}
               </button>
@@ -566,11 +563,10 @@ export function WorkloadBalanceCharts({
             <button
               key={team.teamId}
               onClick={() => setSelectedTeam(team.teamId)}
-              className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                selectedTeam === team.teamId
+              className={`px-4 py-2 rounded-lg font-medium transition-colors ${selectedTeam === team.teamId
                   ? 'bg-blue-600 text-white'
                   : 'bg-gray-800 text-gray-400 hover:text-white'
-              }`}
+                }`}
             >
               {team.teamName}
             </button>
@@ -617,11 +613,10 @@ export function WorkloadBalanceCharts({
                     <button
                       key={member.id}
                       onClick={() => setShowRebalanceModal({ ...showRebalanceModal, to: member })}
-                      className={`w-full flex items-center gap-3 p-3 rounded-lg transition-colors ${
-                        showRebalanceModal.to?.id === member.id
+                      className={`w-full flex items-center gap-3 p-3 rounded-lg transition-colors ${showRebalanceModal.to?.id === member.id
                           ? 'bg-blue-600'
                           : 'bg-gray-700 hover:bg-gray-600'
-                      }`}
+                        }`}
                     >
                       <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold">
                         {member.name.split(' ').map(n => n[0]).join('')}

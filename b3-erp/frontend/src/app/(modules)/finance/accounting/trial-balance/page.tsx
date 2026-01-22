@@ -247,7 +247,7 @@ export default function TrialBalancePage() {
             <button
               onClick={() => router.push(`/finance/accounting/ledger-report?account=${account.accountCode}`)}
               className="p-1.5 text-blue-600 hover:bg-blue-50 rounded transition-colors"
-             
+
             >
               <Eye className="h-4 w-4" />
             </button>
@@ -262,7 +262,7 @@ export default function TrialBalancePage() {
   return (
     <div className="h-screen flex flex-col overflow-hidden">
       <div className="flex-1 overflow-y-auto overflow-x-hidden">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 max-w-7xl">
+        <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
           {/* Action Bar */}
           <div className="mb-6">
             <div className="flex items-center justify-end mb-4">
@@ -299,235 +299,234 @@ export default function TrialBalancePage() {
 
             {/* Balance Status */}
             {isBalanced ? (
-          <div className="bg-green-50 border border-green-200 rounded-lg p-4 flex items-start space-x-3">
-            <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
-            <div className="flex-1">
-              <h3 className="text-sm font-semibold text-green-900">Trial Balance is Balanced</h3>
-              <p className="text-sm text-green-700 mt-1">
-                Total Debits (₹{totals.totalClosingDebit.toLocaleString()}) = Total Credits (₹{totals.totalClosingCredit.toLocaleString()})
-              </p>
-            </div>
-          </div>
-        ) : (
-          <div className="bg-red-50 border border-red-200 rounded-lg p-4 flex items-start space-x-3">
-            <AlertCircle className="h-5 w-5 text-red-600 flex-shrink-0 mt-0.5" />
-            <div className="flex-1">
-              <h3 className="text-sm font-semibold text-red-900">Trial Balance Not Balanced</h3>
-              <p className="text-sm text-red-700 mt-1">
-                Difference: ₹{Math.abs(totals.closingDifference).toLocaleString()} ({totals.closingDifference > 0 ? 'Debit' : 'Credit'} excess)
-              </p>
-            </div>
-          </div>
-        )}
-      </div>
-
-      {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm font-medium text-orange-600">Total Debits</p>
-              <p className="text-2xl font-bold text-orange-900 mt-1">₹{(totals.totalClosingDebit / 1000).toFixed(0)}K</p>
-            </div>
-            <ArrowUpCircle className="h-8 w-8 text-orange-600" />
-          </div>
-        </div>
-
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm font-medium text-green-600">Total Credits</p>
-              <p className="text-2xl font-bold text-green-900 mt-1">₹{(totals.totalClosingCredit / 1000).toFixed(0)}K</p>
-            </div>
-            <ArrowDownCircle className="h-8 w-8 text-green-600" />
-          </div>
-        </div>
-
-        <div className={`bg-gradient-to-br rounded-lg p-4 border ${
-          isBalanced
-            ? 'from-blue-50 to-blue-100 border-blue-200'
-            : 'from-red-50 to-red-100 border-red-200'
-        }`}>
-          <div className="flex items-center justify-between">
-            <div>
-              <p className={`text-sm font-medium ${isBalanced ? 'text-blue-600' : 'text-red-600'}`}>Difference</p>
-              <p className={`text-2xl font-bold mt-1 ${isBalanced ? 'text-blue-900' : 'text-red-900'}`}>
-                ₹{Math.abs(totals.closingDifference).toLocaleString()}
-              </p>
-            </div>
-            {isBalanced ? (
-              <CheckCircle className="h-8 w-8 text-blue-600" />
+              <div className="bg-green-50 border border-green-200 rounded-lg p-4 flex items-start space-x-3">
+                <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
+                <div className="flex-1">
+                  <h3 className="text-sm font-semibold text-green-900">Trial Balance is Balanced</h3>
+                  <p className="text-sm text-green-700 mt-1">
+                    Total Debits (₹{totals.totalClosingDebit.toLocaleString()}) = Total Credits (₹{totals.totalClosingCredit.toLocaleString()})
+                  </p>
+                </div>
+              </div>
             ) : (
-              <AlertCircle className="h-8 w-8 text-red-600" />
+              <div className="bg-red-50 border border-red-200 rounded-lg p-4 flex items-start space-x-3">
+                <AlertCircle className="h-5 w-5 text-red-600 flex-shrink-0 mt-0.5" />
+                <div className="flex-1">
+                  <h3 className="text-sm font-semibold text-red-900">Trial Balance Not Balanced</h3>
+                  <p className="text-sm text-red-700 mt-1">
+                    Difference: ₹{Math.abs(totals.closingDifference).toLocaleString()} ({totals.closingDifference > 0 ? 'Debit' : 'Credit'} excess)
+                  </p>
+                </div>
+              </div>
             )}
           </div>
-        </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm font-medium text-purple-600">Accounts Count</p>
-              <p className="text-2xl font-bold text-purple-900 mt-1">{trialBalance.filter(a => a.level === 0).length}</p>
+          {/* Stats */}
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-medium text-orange-600">Total Debits</p>
+                  <p className="text-2xl font-bold text-orange-900 mt-1">₹{(totals.totalClosingDebit / 1000).toFixed(0)}K</p>
+                </div>
+                <ArrowUpCircle className="h-8 w-8 text-orange-600" />
+              </div>
             </div>
-            <FileText className="h-8 w-8 text-purple-600" />
-          </div>
-        </div>
-      </div>
 
-      {/* Filters */}
-      <div className="bg-white border border-gray-200 rounded-lg p-4 mb-6">
-        <div className="flex items-center space-x-2 mb-4">
-          <Filter className="h-5 w-5 text-gray-600" />
-          <h2 className="text-lg font-semibold text-gray-900">Filters & Options</h2>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Date From</label>
-            <div className="relative">
-              <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-              <input
-                type="date"
-                value={dateFrom}
-                onChange={(e) => setDateFrom(e.target.value)}
-                className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
+            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-medium text-green-600">Total Credits</p>
+                  <p className="text-2xl font-bold text-green-900 mt-1">₹{(totals.totalClosingCredit / 1000).toFixed(0)}K</p>
+                </div>
+                <ArrowDownCircle className="h-8 w-8 text-green-600" />
+              </div>
             </div>
-          </div>
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Date To</label>
-            <div className="relative">
-              <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-              <input
-                type="date"
-                value={dateTo}
-                onChange={(e) => setDateTo(e.target.value)}
-                className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-            </div>
-          </div>
-
-          <div className="flex items-end">
-            <label className="flex items-center space-x-2 cursor-pointer">
-              <input
-                type="checkbox"
-                checked={groupByType}
-                onChange={(e) => setGroupByType(e.target.checked)}
-                className="w-4 h-4 text-blue-600 rounded focus:ring-2 focus:ring-blue-500"
-              />
-              <span className="text-sm font-medium text-gray-700">Group by Account Type</span>
-            </label>
-          </div>
-
-          <div className="flex items-end">
-            <label className="flex items-center space-x-2 cursor-pointer">
-              <input
-                type="checkbox"
-                checked={showMovements}
-                onChange={(e) => setShowMovements(e.target.checked)}
-                className="w-4 h-4 text-blue-600 rounded focus:ring-2 focus:ring-blue-500"
-              />
-              <span className="text-sm font-medium text-gray-700">Show Movements</span>
-            </label>
-          </div>
-        </div>
-
-        <div className="flex items-center space-x-2 mt-4">
-          <button
-            onClick={() => alert('Refresh data')}
-            className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-          >
-            <RefreshCw className="h-4 w-4" />
-            <span>Refresh Data</span>
-          </button>
-        </div>
-      </div>
-
-      {/* Trial Balance Table */}
-      <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
-        <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead className="bg-gray-50 border-b-2 border-gray-300">
-              <tr>
-                <th className="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase">Account</th>
-                <th className="px-6 py-4 text-right text-xs font-bold text-gray-700 uppercase" colSpan={2}>Opening Balance</th>
-                {showMovements && (
-                  <th className="px-6 py-4 text-right text-xs font-bold text-gray-700 uppercase" colSpan={2}>Movements</th>
+            <div className={`bg-gradient-to-br rounded-lg p-4 border ${isBalanced
+                ? 'from-blue-50 to-blue-100 border-blue-200'
+                : 'from-red-50 to-red-100 border-red-200'
+              }`}>
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className={`text-sm font-medium ${isBalanced ? 'text-blue-600' : 'text-red-600'}`}>Difference</p>
+                  <p className={`text-2xl font-bold mt-1 ${isBalanced ? 'text-blue-900' : 'text-red-900'}`}>
+                    ₹{Math.abs(totals.closingDifference).toLocaleString()}
+                  </p>
+                </div>
+                {isBalanced ? (
+                  <CheckCircle className="h-8 w-8 text-blue-600" />
+                ) : (
+                  <AlertCircle className="h-8 w-8 text-red-600" />
                 )}
-                <th className="px-6 py-4 text-right text-xs font-bold text-gray-700 uppercase" colSpan={2}>Closing Balance</th>
-                <th className="px-6 py-4 text-center text-xs font-bold text-gray-700 uppercase">Actions</th>
-              </tr>
-              <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase"></th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Debit</th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Credit</th>
-                {showMovements && (
-                  <>
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-medium text-purple-600">Accounts Count</p>
+                  <p className="text-2xl font-bold text-purple-900 mt-1">{trialBalance.filter(a => a.level === 0).length}</p>
+                </div>
+                <FileText className="h-8 w-8 text-purple-600" />
+              </div>
+            </div>
+          </div>
+
+          {/* Filters */}
+          <div className="bg-white border border-gray-200 rounded-lg p-4 mb-6">
+            <div className="flex items-center space-x-2 mb-4">
+              <Filter className="h-5 w-5 text-gray-600" />
+              <h2 className="text-lg font-semibold text-gray-900">Filters & Options</h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Date From</label>
+                <div className="relative">
+                  <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                  <input
+                    type="date"
+                    value={dateFrom}
+                    onChange={(e) => setDateFrom(e.target.value)}
+                    className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Date To</label>
+                <div className="relative">
+                  <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                  <input
+                    type="date"
+                    value={dateTo}
+                    onChange={(e) => setDateTo(e.target.value)}
+                    className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+              </div>
+
+              <div className="flex items-end">
+                <label className="flex items-center space-x-2 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={groupByType}
+                    onChange={(e) => setGroupByType(e.target.checked)}
+                    className="w-4 h-4 text-blue-600 rounded focus:ring-2 focus:ring-blue-500"
+                  />
+                  <span className="text-sm font-medium text-gray-700">Group by Account Type</span>
+                </label>
+              </div>
+
+              <div className="flex items-end">
+                <label className="flex items-center space-x-2 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={showMovements}
+                    onChange={(e) => setShowMovements(e.target.checked)}
+                    className="w-4 h-4 text-blue-600 rounded focus:ring-2 focus:ring-blue-500"
+                  />
+                  <span className="text-sm font-medium text-gray-700">Show Movements</span>
+                </label>
+              </div>
+            </div>
+
+            <div className="flex items-center space-x-2 mt-4">
+              <button
+                onClick={() => alert('Refresh data')}
+                className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              >
+                <RefreshCw className="h-4 w-4" />
+                <span>Refresh Data</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Trial Balance Table */}
+          <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead className="bg-gray-50 border-b-2 border-gray-300">
+                  <tr>
+                    <th className="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase">Account</th>
+                    <th className="px-6 py-4 text-right text-xs font-bold text-gray-700 uppercase" colSpan={2}>Opening Balance</th>
+                    {showMovements && (
+                      <th className="px-6 py-4 text-right text-xs font-bold text-gray-700 uppercase" colSpan={2}>Movements</th>
+                    )}
+                    <th className="px-6 py-4 text-right text-xs font-bold text-gray-700 uppercase" colSpan={2}>Closing Balance</th>
+                    <th className="px-6 py-4 text-center text-xs font-bold text-gray-700 uppercase">Actions</th>
+                  </tr>
+                  <tr>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase"></th>
                     <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Debit</th>
                     <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Credit</th>
-                  </>
-                )}
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Debit</th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Credit</th>
-                <th className="px-6 py-3"></th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-200">
-              {groupByType ? (
-                Object.entries(groupedAccounts).map(([type, accounts]) => {
-                  const isExpanded = expandedGroups.has(type);
-                  const TypeIcon = typeConfig[type as keyof typeof typeConfig].icon;
+                    {showMovements && (
+                      <>
+                        <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Debit</th>
+                        <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Credit</th>
+                      </>
+                    )}
+                    <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Debit</th>
+                    <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Credit</th>
+                    <th className="px-6 py-3"></th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-200">
+                  {groupByType ? (
+                    Object.entries(groupedAccounts).map(([type, accounts]) => {
+                      const isExpanded = expandedGroups.has(type);
+                      const TypeIcon = typeConfig[type as keyof typeof typeConfig].icon;
 
-                  return (
-                    <React.Fragment key={type}>
-                      <tr className="bg-gray-100 hover:bg-gray-150 cursor-pointer" onClick={() => toggleGroup(type)}>
-                        <td className="px-6 py-4 font-bold text-gray-900" colSpan={showMovements ? 8 : 6}>
-                          <div className="flex items-center space-x-2">
-                            {isExpanded ? (
-                              <ChevronDown className="h-5 w-5 text-gray-600" />
-                            ) : (
-                              <ChevronRight className="h-5 w-5 text-gray-600" />
-                            )}
-                            <TypeIcon className="h-5 w-5 text-gray-700" />
-                            <span>{type}</span>
-                            <span className={`ml-2 px-2 py-1 text-xs font-semibold rounded ${typeConfig[type as keyof typeof typeConfig].color}`}>
-                              {accounts.length} accounts
-                            </span>
-                          </div>
-                        </td>
-                      </tr>
-                      {isExpanded && accounts.filter(a => a.level === 0).map((account) => renderAccount(account))}
-                    </React.Fragment>
-                  );
-                })
-              ) : (
-                trialBalance.filter(a => a.level === 0).map((account) => renderAccount(account))
-              )}
-            </tbody>
-            <tfoot className="bg-gray-50 border-t-2 border-gray-300">
-              <tr className="font-bold">
-                <td className="px-6 py-4 text-gray-900">TOTAL</td>
-                <td className="px-6 py-4 text-right text-orange-700">₹{totals.totalOpeningDebit.toLocaleString()}</td>
-                <td className="px-6 py-4 text-right text-green-700">₹{totals.totalOpeningCredit.toLocaleString()}</td>
-                {showMovements && (
-                  <>
-                    <td className="px-6 py-4 text-right text-orange-600">₹{totals.totalDebitMovement.toLocaleString()}</td>
-                    <td className="px-6 py-4 text-right text-green-600">₹{totals.totalCreditMovement.toLocaleString()}</td>
-                  </>
-                )}
-                <td className="px-6 py-4 text-right text-orange-700 text-lg">₹{totals.totalClosingDebit.toLocaleString()}</td>
-                <td className="px-6 py-4 text-right text-green-700 text-lg">₹{totals.totalClosingCredit.toLocaleString()}</td>
-                <td className="px-6 py-4 text-center">
-                  {isBalanced ? (
-                    <CheckCircle className="h-5 w-5 text-green-600 mx-auto" />
+                      return (
+                        <React.Fragment key={type}>
+                          <tr className="bg-gray-100 hover:bg-gray-150 cursor-pointer" onClick={() => toggleGroup(type)}>
+                            <td className="px-6 py-4 font-bold text-gray-900" colSpan={showMovements ? 8 : 6}>
+                              <div className="flex items-center space-x-2">
+                                {isExpanded ? (
+                                  <ChevronDown className="h-5 w-5 text-gray-600" />
+                                ) : (
+                                  <ChevronRight className="h-5 w-5 text-gray-600" />
+                                )}
+                                <TypeIcon className="h-5 w-5 text-gray-700" />
+                                <span>{type}</span>
+                                <span className={`ml-2 px-2 py-1 text-xs font-semibold rounded ${typeConfig[type as keyof typeof typeConfig].color}`}>
+                                  {accounts.length} accounts
+                                </span>
+                              </div>
+                            </td>
+                          </tr>
+                          {isExpanded && accounts.filter(a => a.level === 0).map((account) => renderAccount(account))}
+                        </React.Fragment>
+                      );
+                    })
                   ) : (
-                    <AlertCircle className="h-5 w-5 text-red-600 mx-auto" />
+                    trialBalance.filter(a => a.level === 0).map((account) => renderAccount(account))
                   )}
-                </td>
-              </tr>
-            </tfoot>
-          </table>
-        </div>
+                </tbody>
+                <tfoot className="bg-gray-50 border-t-2 border-gray-300">
+                  <tr className="font-bold">
+                    <td className="px-6 py-4 text-gray-900">TOTAL</td>
+                    <td className="px-6 py-4 text-right text-orange-700">₹{totals.totalOpeningDebit.toLocaleString()}</td>
+                    <td className="px-6 py-4 text-right text-green-700">₹{totals.totalOpeningCredit.toLocaleString()}</td>
+                    {showMovements && (
+                      <>
+                        <td className="px-6 py-4 text-right text-orange-600">₹{totals.totalDebitMovement.toLocaleString()}</td>
+                        <td className="px-6 py-4 text-right text-green-600">₹{totals.totalCreditMovement.toLocaleString()}</td>
+                      </>
+                    )}
+                    <td className="px-6 py-4 text-right text-orange-700 text-lg">₹{totals.totalClosingDebit.toLocaleString()}</td>
+                    <td className="px-6 py-4 text-right text-green-700 text-lg">₹{totals.totalClosingCredit.toLocaleString()}</td>
+                    <td className="px-6 py-4 text-center">
+                      {isBalanced ? (
+                        <CheckCircle className="h-5 w-5 text-green-600 mx-auto" />
+                      ) : (
+                        <AlertCircle className="h-5 w-5 text-red-600 mx-auto" />
+                      )}
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
           </div>
         </div>
       </div>

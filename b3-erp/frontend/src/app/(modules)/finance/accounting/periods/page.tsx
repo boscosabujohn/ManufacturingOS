@@ -266,7 +266,7 @@ export default function FinancialPeriodsPage() {
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 to-purple-50">
       <div className="flex-1 overflow-y-auto overflow-x-hidden">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 max-w-7xl">
+        <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
           {/* Action Bar */}
           <div className="mb-6">
             <div className="flex items-center justify-end mb-4">
@@ -283,218 +283,119 @@ export default function FinancialPeriodsPage() {
 
             {/* Stats */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
-          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl shadow-lg p-6 text-white">
-            <div className="flex items-center justify-between mb-2">
-              <p className="text-purple-100 text-sm">Active Financial Years</p>
-              <Calendar className="w-8 h-8 text-purple-200" />
-            </div>
-            <p className="text-3xl font-bold">{financialYears.filter((y) => y.status === 'Open').length}</p>
-            <p className="text-sm text-purple-100 mt-2">Out of {financialYears.length} total</p>
-          </div>
-
-          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl shadow-lg p-6 text-white">
-            <div className="flex items-center justify-between mb-2">
-              <p className="text-green-100 text-sm">Open Periods</p>
-              <Unlock className="w-8 h-8 text-green-200" />
-            </div>
-            <p className="text-3xl font-bold">{periods.filter((p) => p.status === 'Open').length}</p>
-            <p className="text-sm text-green-100 mt-2">Current period: {periods.find((p) => p.isCurrent)?.periodName}</p>
-          </div>
-
-          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl shadow-lg p-6 text-white">
-            <div className="flex items-center justify-between mb-2">
-              <p className="text-blue-100 text-sm">Closed Periods</p>
-              <Lock className="w-8 h-8 text-blue-200" />
-            </div>
-            <p className="text-3xl font-bold">{periods.filter((p) => p.status === 'Closed').length}</p>
-            <p className="text-sm text-blue-100 mt-2">Locked for editing</p>
-          </div>
-
-          <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl shadow-lg p-6 text-white">
-            <div className="flex items-center justify-between mb-2">
-              <p className="text-orange-100 text-sm">Total Transactions</p>
-              <FileText className="w-8 h-8 text-orange-200" />
-            </div>
-            <p className="text-3xl font-bold">{periods.reduce((sum, p) => sum + p.transactionsCount, 0)}</p>
-            <p className="text-sm text-orange-100 mt-2">Across all periods</p>
-          </div>
-        </div>
-      </div>
-
-      {/* Financial Years Section */}
-      <div className="bg-white rounded-xl shadow-lg p-6 mb-6">
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
-            <Calendar className="w-6 h-6 text-purple-600" />
-            Financial Years
-          </h2>
-        </div>
-
-        <div className="space-y-3">
-          {financialYears.map((year) => (
-            <div
-              key={year.id}
-              className={`border-2 rounded-xl p-6 transition-all cursor-pointer ${
-                selectedYear === year.yearCode
-                  ? 'border-purple-500 bg-purple-50 shadow-md'
-                  : 'border-gray-200 hover:border-purple-300 hover:shadow-sm'
-              }`}
-              onClick={() => setSelectedYear(year.yearCode)}
-            >
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-4">
-                  <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${
-                    year.isCurrent ? 'bg-purple-600' : 'bg-gray-400'
-                  }`}>
-                    <Calendar className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <div className="flex items-center gap-3">
-                      <h3 className="text-lg font-bold text-gray-900">{year.yearName}</h3>
-                      {year.isCurrent && (
-                        <span className="bg-purple-600 text-white text-xs px-2 py-1 rounded-full font-semibold">
-                          CURRENT
-                        </span>
-                      )}
-                    </div>
-                    <p className="text-sm text-gray-600 mt-1">
-                      {year.yearCode} • {year.startDate} to {year.endDate}
-                    </p>
-                  </div>
+              <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl shadow-lg p-6 text-white">
+                <div className="flex items-center justify-between mb-2">
+                  <p className="text-purple-100 text-sm">Active Financial Years</p>
+                  <Calendar className="w-8 h-8 text-purple-200" />
                 </div>
+                <p className="text-3xl font-bold">{financialYears.filter((y) => y.status === 'Open').length}</p>
+                <p className="text-sm text-purple-100 mt-2">Out of {financialYears.length} total</p>
+              </div>
 
-                <div className="flex items-center gap-6">
-                  <div className="text-center">
-                    <p className="text-2xl font-bold text-gray-900">{year.periodsCount}</p>
-                    <p className="text-xs text-gray-500">Total Periods</p>
-                  </div>
-                  <div className="text-center">
-                    <p className="text-2xl font-bold text-green-600">{year.openPeriodsCount}</p>
-                    <p className="text-xs text-gray-500">Open</p>
-                  </div>
-                  <div className="text-center">
-                    <p className="text-2xl font-bold text-blue-600">{year.periodsCount - year.openPeriodsCount}</p>
-                    <p className="text-xs text-gray-500">Closed</p>
-                  </div>
-                  <span
-                    className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold border ${getStatusColor(
-                      year.status
-                    )}`}
-                  >
-                    {getStatusIcon(year.status)}
-                    {year.status}
-                  </span>
-                  <div className="flex items-center gap-2">
-                    <button
-                      className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-
-                    >
-                      <Eye className="w-5 h-5" />
-                    </button>
-                    <button
-                      className="p-2 text-purple-600 hover:bg-purple-50 rounded-lg transition-colors"
-
-                    >
-                      <Settings className="w-5 h-5" />
-                    </button>
-                  </div>
+              <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl shadow-lg p-6 text-white">
+                <div className="flex items-center justify-between mb-2">
+                  <p className="text-green-100 text-sm">Open Periods</p>
+                  <Unlock className="w-8 h-8 text-green-200" />
                 </div>
+                <p className="text-3xl font-bold">{periods.filter((p) => p.status === 'Open').length}</p>
+                <p className="text-sm text-green-100 mt-2">Current period: {periods.find((p) => p.isCurrent)?.periodName}</p>
+              </div>
+
+              <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl shadow-lg p-6 text-white">
+                <div className="flex items-center justify-between mb-2">
+                  <p className="text-blue-100 text-sm">Closed Periods</p>
+                  <Lock className="w-8 h-8 text-blue-200" />
+                </div>
+                <p className="text-3xl font-bold">{periods.filter((p) => p.status === 'Closed').length}</p>
+                <p className="text-sm text-blue-100 mt-2">Locked for editing</p>
+              </div>
+
+              <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl shadow-lg p-6 text-white">
+                <div className="flex items-center justify-between mb-2">
+                  <p className="text-orange-100 text-sm">Total Transactions</p>
+                  <FileText className="w-8 h-8 text-orange-200" />
+                </div>
+                <p className="text-3xl font-bold">{periods.reduce((sum, p) => sum + p.transactionsCount, 0)}</p>
+                <p className="text-sm text-orange-100 mt-2">Across all periods</p>
               </div>
             </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Periods for Selected Year */}
-      {currentYear && (
-        <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-          <div className="bg-gradient-to-r from-purple-600 to-purple-700 p-6 text-white">
-            <h2 className="text-2xl font-bold flex items-center gap-2">
-              <ChevronRight className="w-6 h-6" />
-              Periods for {currentYear.yearName}
-            </h2>
-            <p className="text-purple-100 mt-1">
-              Manage monthly accounting periods and their status
-            </p>
           </div>
 
-          <div className="p-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-              {yearPeriods.map((period) => (
+          {/* Financial Years Section */}
+          <div className="bg-white rounded-xl shadow-lg p-6 mb-6">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
+                <Calendar className="w-6 h-6 text-purple-600" />
+                Financial Years
+              </h2>
+            </div>
+
+            <div className="space-y-3">
+              {financialYears.map((year) => (
                 <div
-                  key={period.id}
-                  className={`border-2 rounded-xl p-4 transition-all ${
-                    period.isCurrent
+                  key={year.id}
+                  className={`border-2 rounded-xl p-6 transition-all cursor-pointer ${selectedYear === year.yearCode
                       ? 'border-purple-500 bg-purple-50 shadow-md'
-                      : period.status === 'Open'
-                      ? 'border-green-300 hover:shadow-md'
-                      : 'border-gray-200 hover:shadow-sm'
-                  }`}
+                      : 'border-gray-200 hover:border-purple-300 hover:shadow-sm'
+                    }`}
+                  onClick={() => setSelectedYear(year.yearCode)}
                 >
-                  <div className="flex items-center justify-between mb-3">
-                    <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
-                      period.isCurrent
-                        ? 'bg-purple-600'
-                        : period.status === 'Open'
-                        ? 'bg-green-500'
-                        : 'bg-blue-500'
-                    }`}>
-                      <Calendar className="w-5 h-5 text-white" />
-                    </div>
-                    {period.isCurrent && (
-                      <span className="bg-purple-600 text-white text-xs px-2 py-1 rounded-full font-semibold">
-                        CURRENT
-                      </span>
-                    )}
-                  </div>
-
-                  <h3 className="text-lg font-bold text-gray-900 mb-1">{period.periodName}</h3>
-                  <p className="text-sm text-gray-600 mb-3">{period.periodCode}</p>
-
-                  <div className="space-y-2 mb-3">
-                    <div className="flex items-center gap-2 text-xs text-gray-600">
-                      <Calendar className="w-3 h-3" />
-                      <span>{period.startDate} to {period.endDate}</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-xs text-gray-600">
-                      <FileText className="w-3 h-3" />
-                      <span>{period.transactionsCount} transactions</span>
-                    </div>
-                  </div>
-
                   <div className="flex items-center justify-between">
-                    <span
-                      className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold border ${getStatusColor(
-                        period.status
-                      )}`}
-                    >
-                      {getStatusIcon(period.status)}
-                      {period.status}
-                    </span>
+                    <div className="flex items-center gap-4">
+                      <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${year.isCurrent ? 'bg-purple-600' : 'bg-gray-400'
+                        }`}>
+                        <Calendar className="w-6 h-6 text-white" />
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-3">
+                          <h3 className="text-lg font-bold text-gray-900">{year.yearName}</h3>
+                          {year.isCurrent && (
+                            <span className="bg-purple-600 text-white text-xs px-2 py-1 rounded-full font-semibold">
+                              CURRENT
+                            </span>
+                          )}
+                        </div>
+                        <p className="text-sm text-gray-600 mt-1">
+                          {year.yearCode} • {year.startDate} to {year.endDate}
+                        </p>
+                      </div>
+                    </div>
 
-                    <div className="flex items-center gap-1">
-                      <button
-                        className="p-1.5 text-blue-600 hover:bg-blue-50 rounded transition-colors"
-
+                    <div className="flex items-center gap-6">
+                      <div className="text-center">
+                        <p className="text-2xl font-bold text-gray-900">{year.periodsCount}</p>
+                        <p className="text-xs text-gray-500">Total Periods</p>
+                      </div>
+                      <div className="text-center">
+                        <p className="text-2xl font-bold text-green-600">{year.openPeriodsCount}</p>
+                        <p className="text-xs text-gray-500">Open</p>
+                      </div>
+                      <div className="text-center">
+                        <p className="text-2xl font-bold text-blue-600">{year.periodsCount - year.openPeriodsCount}</p>
+                        <p className="text-xs text-gray-500">Closed</p>
+                      </div>
+                      <span
+                        className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold border ${getStatusColor(
+                          year.status
+                        )}`}
                       >
-                        <Eye className="w-4 h-4" />
-                      </button>
-                      {period.status === 'Open' && (
+                        {getStatusIcon(year.status)}
+                        {year.status}
+                      </span>
+                      <div className="flex items-center gap-2">
                         <button
-                          className="p-1.5 text-red-600 hover:bg-red-50 rounded transition-colors"
+                          className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
 
                         >
-                          <Lock className="w-4 h-4" />
+                          <Eye className="w-5 h-5" />
                         </button>
-                      )}
-                      {period.status === 'Closed' && (
                         <button
-                          className="p-1.5 text-green-600 hover:bg-green-50 rounded transition-colors"
+                          className="p-2 text-purple-600 hover:bg-purple-50 rounded-lg transition-colors"
 
                         >
-                          <Unlock className="w-4 h-4" />
+                          <Settings className="w-5 h-5" />
                         </button>
-                      )}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -502,95 +403,190 @@ export default function FinancialPeriodsPage() {
             </div>
           </div>
 
-          {/* Period Closing Checklist */}
-          <div className="border-t border-gray-200 p-6 bg-gray-50">
-            <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
-              <CheckCircle className="w-5 h-5 text-green-600" />
-              Period End Closing Checklist
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              <div className="bg-white border border-gray-200 rounded-lg p-4">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <CheckCircle className="w-5 h-5 text-green-600" />
-                    <span className="text-sm font-medium text-gray-900">All invoices posted</span>
-                  </div>
-                </div>
+          {/* Periods for Selected Year */}
+          {currentYear && (
+            <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+              <div className="bg-gradient-to-r from-purple-600 to-purple-700 p-6 text-white">
+                <h2 className="text-2xl font-bold flex items-center gap-2">
+                  <ChevronRight className="w-6 h-6" />
+                  Periods for {currentYear.yearName}
+                </h2>
+                <p className="text-purple-100 mt-1">
+                  Manage monthly accounting periods and their status
+                </p>
               </div>
-              <div className="bg-white border border-gray-200 rounded-lg p-4">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <CheckCircle className="w-5 h-5 text-green-600" />
-                    <span className="text-sm font-medium text-gray-900">Bank reconciliation completed</span>
-                  </div>
-                </div>
-              </div>
-              <div className="bg-white border border-gray-200 rounded-lg p-4">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <CheckCircle className="w-5 h-5 text-green-600" />
-                    <span className="text-sm font-medium text-gray-900">Depreciation calculated</span>
-                  </div>
+
+              <div className="p-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                  {yearPeriods.map((period) => (
+                    <div
+                      key={period.id}
+                      className={`border-2 rounded-xl p-4 transition-all ${period.isCurrent
+                          ? 'border-purple-500 bg-purple-50 shadow-md'
+                          : period.status === 'Open'
+                            ? 'border-green-300 hover:shadow-md'
+                            : 'border-gray-200 hover:shadow-sm'
+                        }`}
+                    >
+                      <div className="flex items-center justify-between mb-3">
+                        <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${period.isCurrent
+                            ? 'bg-purple-600'
+                            : period.status === 'Open'
+                              ? 'bg-green-500'
+                              : 'bg-blue-500'
+                          }`}>
+                          <Calendar className="w-5 h-5 text-white" />
+                        </div>
+                        {period.isCurrent && (
+                          <span className="bg-purple-600 text-white text-xs px-2 py-1 rounded-full font-semibold">
+                            CURRENT
+                          </span>
+                        )}
+                      </div>
+
+                      <h3 className="text-lg font-bold text-gray-900 mb-1">{period.periodName}</h3>
+                      <p className="text-sm text-gray-600 mb-3">{period.periodCode}</p>
+
+                      <div className="space-y-2 mb-3">
+                        <div className="flex items-center gap-2 text-xs text-gray-600">
+                          <Calendar className="w-3 h-3" />
+                          <span>{period.startDate} to {period.endDate}</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-xs text-gray-600">
+                          <FileText className="w-3 h-3" />
+                          <span>{period.transactionsCount} transactions</span>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center justify-between">
+                        <span
+                          className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold border ${getStatusColor(
+                            period.status
+                          )}`}
+                        >
+                          {getStatusIcon(period.status)}
+                          {period.status}
+                        </span>
+
+                        <div className="flex items-center gap-1">
+                          <button
+                            className="p-1.5 text-blue-600 hover:bg-blue-50 rounded transition-colors"
+
+                          >
+                            <Eye className="w-4 h-4" />
+                          </button>
+                          {period.status === 'Open' && (
+                            <button
+                              className="p-1.5 text-red-600 hover:bg-red-50 rounded transition-colors"
+
+                            >
+                              <Lock className="w-4 h-4" />
+                            </button>
+                          )}
+                          {period.status === 'Closed' && (
+                            <button
+                              className="p-1.5 text-green-600 hover:bg-green-50 rounded transition-colors"
+
+                            >
+                              <Unlock className="w-4 h-4" />
+                            </button>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
 
-              {/* Inventory Valuation - Clickable */}
-              <button
-                onClick={() => setShowInventoryModal(true)}
-                className="bg-white border border-gray-200 rounded-lg p-4 hover:border-orange-400 hover:bg-orange-50 transition-all"
-              >
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    {checklistStatus.inventoryValuation === 'completed' ? (
-                      <CheckCircle className="w-5 h-5 text-green-600" />
-                    ) : (
-                      <AlertCircle className="w-5 h-5 text-orange-600" />
-                    )}
-                    <span className="text-sm font-medium text-gray-900">Inventory valuation</span>
+              {/* Period Closing Checklist */}
+              <div className="border-t border-gray-200 p-6 bg-gray-50">
+                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                  <CheckCircle className="w-5 h-5 text-green-600" />
+                  Period End Closing Checklist
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  <div className="bg-white border border-gray-200 rounded-lg p-4">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <CheckCircle className="w-5 h-5 text-green-600" />
+                        <span className="text-sm font-medium text-gray-900">All invoices posted</span>
+                      </div>
+                    </div>
                   </div>
-                  <ChevronRight className="w-4 h-4 text-gray-400" />
-                </div>
-              </button>
+                  <div className="bg-white border border-gray-200 rounded-lg p-4">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <CheckCircle className="w-5 h-5 text-green-600" />
+                        <span className="text-sm font-medium text-gray-900">Bank reconciliation completed</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="bg-white border border-gray-200 rounded-lg p-4">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <CheckCircle className="w-5 h-5 text-green-600" />
+                        <span className="text-sm font-medium text-gray-900">Depreciation calculated</span>
+                      </div>
+                    </div>
+                  </div>
 
-              {/* Accruals and Provisions - Clickable */}
-              <button
-                onClick={() => setShowAccrualsModal(true)}
-                className="bg-white border border-gray-200 rounded-lg p-4 hover:border-red-400 hover:bg-red-50 transition-all"
-              >
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    {checklistStatus.accrualsProvisions === 'completed' ? (
-                      <CheckCircle className="w-5 h-5 text-green-600" />
-                    ) : (
-                      <XCircle className="w-5 h-5 text-red-600" />
-                    )}
-                    <span className="text-sm font-medium text-gray-900">Accruals and provisions</span>
-                  </div>
-                  <ChevronRight className="w-4 h-4 text-gray-400" />
-                </div>
-              </button>
+                  {/* Inventory Valuation - Clickable */}
+                  <button
+                    onClick={() => setShowInventoryModal(true)}
+                    className="bg-white border border-gray-200 rounded-lg p-4 hover:border-orange-400 hover:bg-orange-50 transition-all"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        {checklistStatus.inventoryValuation === 'completed' ? (
+                          <CheckCircle className="w-5 h-5 text-green-600" />
+                        ) : (
+                          <AlertCircle className="w-5 h-5 text-orange-600" />
+                        )}
+                        <span className="text-sm font-medium text-gray-900">Inventory valuation</span>
+                      </div>
+                      <ChevronRight className="w-4 h-4 text-gray-400" />
+                    </div>
+                  </button>
 
-              {/* Management Review - Clickable */}
-              <button
-                onClick={() => setShowReviewModal(true)}
-                className="bg-white border border-gray-200 rounded-lg p-4 hover:border-blue-400 hover:bg-blue-50 transition-all"
-              >
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    {checklistStatus.managementReview === 'completed' ? (
-                      <CheckCircle className="w-5 h-5 text-green-600" />
-                    ) : (
-                      <Clock className="w-5 h-5 text-gray-400" />
-                    )}
-                    <span className="text-sm font-medium text-gray-900">Management review</span>
-                  </div>
-                  <ChevronRight className="w-4 h-4 text-gray-400" />
+                  {/* Accruals and Provisions - Clickable */}
+                  <button
+                    onClick={() => setShowAccrualsModal(true)}
+                    className="bg-white border border-gray-200 rounded-lg p-4 hover:border-red-400 hover:bg-red-50 transition-all"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        {checklistStatus.accrualsProvisions === 'completed' ? (
+                          <CheckCircle className="w-5 h-5 text-green-600" />
+                        ) : (
+                          <XCircle className="w-5 h-5 text-red-600" />
+                        )}
+                        <span className="text-sm font-medium text-gray-900">Accruals and provisions</span>
+                      </div>
+                      <ChevronRight className="w-4 h-4 text-gray-400" />
+                    </div>
+                  </button>
+
+                  {/* Management Review - Clickable */}
+                  <button
+                    onClick={() => setShowReviewModal(true)}
+                    className="bg-white border border-gray-200 rounded-lg p-4 hover:border-blue-400 hover:bg-blue-50 transition-all"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        {checklistStatus.managementReview === 'completed' ? (
+                          <CheckCircle className="w-5 h-5 text-green-600" />
+                        ) : (
+                          <Clock className="w-5 h-5 text-gray-400" />
+                        )}
+                        <span className="text-sm font-medium text-gray-900">Management review</span>
+                      </div>
+                      <ChevronRight className="w-4 h-4 text-gray-400" />
+                    </div>
+                  </button>
                 </div>
-              </button>
+              </div>
             </div>
-          </div>
-        </div>
-      )}
+          )}
         </div>
       </div>
 

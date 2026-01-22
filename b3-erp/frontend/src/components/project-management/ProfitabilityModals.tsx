@@ -201,13 +201,77 @@ interface MarginAnalysisModalProps {
   isOpen: boolean;
   onClose: () => void;
   project: ProjectProfitability | null;
+  projects?: ProjectProfitability[];
 }
 
-export function MarginAnalysisModal({ isOpen, onClose, project }: MarginAnalysisModalProps) {
-  if (!isOpen || !project) return null;
+export function MarginAnalysisModal({ isOpen, onClose, project, projects }: MarginAnalysisModalProps) {
+  if (!isOpen) return null;
 
   const targetGrossMargin = 35;
   const targetNetMargin = 25;
+
+  // Aggregate View
+  if (!project && projects) {
+    const avgGrossMargin = projects.reduce((sum, p) => sum + p.grossMargin, 0) / projects.length;
+    const avgNetMargin = projects.reduce((sum, p) => sum + p.netMargin, 0) / projects.length;
+    const belowTargetProjects = projects.filter(p => p.grossMargin < targetGrossMargin);
+
+    return (
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
+          <div className="sticky top-0 bg-gradient-to-r from-green-600 to-green-700 text-white p-6 rounded-t-lg">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <Target className="w-6 h-6" />
+                <h2 className="text-xl font-semibold">Portfolio Margin Analysis</h2>
+              </div>
+              <button onClick={onClose} className="text-white hover:bg-white/20 rounded-lg p-1">
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+          </div>
+
+          <div className="p-6 space-y-4">
+            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+              <h3 className="font-semibold text-green-900">Aggregate Performance</h3>
+              <p className="text-sm text-green-700">Analysis across {projects.length} projects</p>
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <p className="text-sm text-blue-600 mb-2">Avg Gross Margin</p>
+                <p className="text-3xl font-bold text-blue-900">{avgGrossMargin.toFixed(1)}%</p>
+                <p className="text-xs text-blue-700 mt-1">Target: {targetGrossMargin}%</p>
+              </div>
+              <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                <p className="text-sm text-purple-600 mb-2">Avg Net Margin</p>
+                <p className="text-3xl font-bold text-purple-900">{avgNetMargin.toFixed(1)}%</p>
+                <p className="text-xs text-purple-700 mt-1">Target: {targetNetMargin}%</p>
+              </div>
+            </div>
+
+            {belowTargetProjects.length > 0 && (
+              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                <h4 className="font-semibold text-yellow-900 mb-2">Projects Below Target ({belowTargetProjects.length})</h4>
+                <ul className="list-disc list-inside text-sm text-yellow-800 space-y-1">
+                  {belowTargetProjects.slice(0, 5).map(p => (
+                    <li key={p.id}>{p.projectName} ({p.grossMargin.toFixed(1)}%)</li>
+                  ))}
+                  {belowTargetProjects.length > 5 && <li>...and {belowTargetProjects.length - 5} more</li>}
+                </ul>
+              </div>
+            )}
+          </div>
+
+          <div className="bg-gray-50 px-6 py-4 rounded-b-lg flex justify-end">
+            <button onClick={onClose} className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">Close</button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (!project) return null;
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
@@ -671,8 +735,11 @@ export function ExportProfitabilityModal({ isOpen, onClose, onExport }: { isOpen
   );
 }
 
+
 export function BenchmarkComparisonModal({ isOpen, onClose, projects }: { isOpen: boolean; onClose: () => void; projects: ProjectProfitability[] }) {
   if (!isOpen) return null;
+  const sortedProjects = [...projects].sort((a, b) => b.netMargin - a.netMargin);
+
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
       <div className="bg-white rounded-lg shadow-xl max-w-5xl w-full">
@@ -688,7 +755,29 @@ export function BenchmarkComparisonModal({ isOpen, onClose, projects }: { isOpen
           </div>
         </div>
         <div className="p-6">
-          <p className="text-gray-600">Compare profitability across projects</p>
+          <p className="text-gray-600 mb-4">Comparing Top 5 Projects by Net Margin</p>
+          <div className="overflow-x-auto">
+            <table className="min-w-full text-sm text-left">
+              <thead className="text-xs text-gray-700 uppercase bg-gray-50">
+                <tr>
+                  <th className="px-6 py-3">Project Name</th>
+                  <th className="px-6 py-3 text-right">Revenue</th>
+                  <th className="px-6 py-3 text-right">Net Profit</th>
+                  <th className="px-6 py-3 text-right">Net Margin</th>
+                </tr>
+              </thead>
+              <tbody>
+                {sortedProjects.slice(0, 5).map(project => (
+                  <tr key={project.id} className="bg-white border-b hover:bg-gray-50">
+                    <td className="px-6 py-4 font-medium text-gray-900">{project.projectName}</td>
+                    <td className="px-6 py-4 text-right">₹{project.revenueRecognized.toLocaleString('en-IN')}</td>
+                    <td className="px-6 py-4 text-right">₹{project.netProfit.toLocaleString('en-IN')}</td>
+                    <td className="px-6 py-4 text-right font-bold text-pink-600">{project.netMargin.toFixed(1)}%</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
         <div className="bg-gray-50 px-6 py-4 rounded-b-lg flex justify-end">
           <button onClick={onClose} className="px-4 py-2 bg-pink-600 text-white rounded-lg hover:bg-pink-700">
@@ -700,8 +789,67 @@ export function BenchmarkComparisonModal({ isOpen, onClose, projects }: { isOpen
   );
 }
 
-export function RiskAssessmentModal({ isOpen, onClose, project }: { isOpen: boolean; onClose: () => void; project: ProjectProfitability | null }) {
-  if (!isOpen || !project) return null;
+export function RiskAssessmentModal({ isOpen, onClose, project, projects }: { isOpen: boolean; onClose: () => void; project: ProjectProfitability | null, projects?: ProjectProfitability[] }) {
+  if (!isOpen) return null;
+
+  if (!project && projects) {
+    const highRisk = projects.filter(p => p.riskLevel === 'High' || p.riskLevel === 'Critical');
+    const mediumRisk = projects.filter(p => p.riskLevel === 'Medium');
+    const lowRisk = projects.filter(p => p.riskLevel === 'Low');
+
+    return (
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full">
+          <div className="bg-gradient-to-r from-red-600 to-red-700 text-white p-6 rounded-t-lg">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <AlertTriangle className="w-6 h-6" />
+                <h2 className="text-xl font-semibold">Portfolio Risk Assessment</h2>
+              </div>
+              <button onClick={onClose} className="text-white hover:bg-white/20 rounded-lg p-1">
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+          </div>
+          <div className="p-6 space-y-4">
+            <div className="grid grid-cols-3 gap-4">
+              <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-center">
+                <p className="text-2xl font-bold text-red-600">{highRisk.length}</p>
+                <p className="text-sm text-red-700">High Risk Projects</p>
+              </div>
+              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 text-center">
+                <p className="text-2xl font-bold text-yellow-600">{mediumRisk.length}</p>
+                <p className="text-sm text-yellow-700">Medium Risk Projects</p>
+              </div>
+              <div className="bg-green-50 border border-green-200 rounded-lg p-4 text-center">
+                <p className="text-2xl font-bold text-green-600">{lowRisk.length}</p>
+                <p className="text-sm text-green-700">Low Risk Projects</p>
+              </div>
+            </div>
+
+            {highRisk.length > 0 && (
+              <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                <h4 className="font-semibold text-red-900 mb-2">High Risk Projects Attention Needed</h4>
+                <ul className="list-disc list-inside text-sm text-red-800">
+                  {highRisk.map(p => (
+                    <li key={p.id}>{p.projectName} (Margin: {p.netMargin.toFixed(1)}%)</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+          <div className="bg-gray-50 px-6 py-4 rounded-b-lg flex justify-end">
+            <button onClick={onClose} className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (!project) return null;
+
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
       <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full">

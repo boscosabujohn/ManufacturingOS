@@ -537,8 +537,8 @@ export default function CostCentersPage() {
       (utilizationPercent > 100
         ? `⚠️ IMMEDIATE ACTION REQUIRED\n• Cost center is over budget\n• Review and reduce expenses\n• Consider budget reallocation\n• Implement cost control measures`
         : utilizationPercent > 90
-        ? `⚠️ MONITOR CLOSELY\n• Approaching budget limit\n• Review remaining expenses\n• Prepare for potential overage\n• Consider spending freeze`
-        : `✅ PERFORMING WELL\n• Budget utilization healthy\n• Continue current operations\n• Monitor for any anomalies\n• Maintain cost efficiency`
+          ? `⚠️ MONITOR CLOSELY\n• Approaching budget limit\n• Review remaining expenses\n• Prepare for potential overage\n• Consider spending freeze`
+          : `✅ PERFORMING WELL\n• Budget utilization healthy\n• Continue current operations\n• Monitor for any anomalies\n• Maintain cost efficiency`
       ) +
       `\n\n` +
       `In production, this would:\n` +
@@ -588,7 +588,7 @@ export default function CostCentersPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-indigo-900 to-gray-900 p-6">
-      <div className="max-w-7xl mx-auto space-y-6">
+      <div className="w-full space-y-6">
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
@@ -794,20 +794,18 @@ export default function CostCentersPage() {
                       </td>
                       <td className="px-6 py-4">
                         <div className="flex flex-col items-center">
-                          <span className={`text-sm font-medium mb-1 ${
-                            utilizationPercent > 100 ? 'text-red-400' :
-                            utilizationPercent > 90 ? 'text-orange-400' :
-                            'text-green-400'
-                          }`}>
+                          <span className={`text-sm font-medium mb-1 ${utilizationPercent > 100 ? 'text-red-400' :
+                              utilizationPercent > 90 ? 'text-orange-400' :
+                                'text-green-400'
+                            }`}>
                             {utilizationPercent.toFixed(1)}%
                           </span>
                           <div className="w-full bg-gray-700 rounded-full h-2">
                             <div
-                              className={`h-2 rounded-full ${
-                                utilizationPercent > 100 ? 'bg-red-500' :
-                                utilizationPercent > 90 ? 'bg-orange-500' :
-                                'bg-green-500'
-                              }`}
+                              className={`h-2 rounded-full ${utilizationPercent > 100 ? 'bg-red-500' :
+                                  utilizationPercent > 90 ? 'bg-orange-500' :
+                                    'bg-green-500'
+                                }`}
                               style={{ width: `${Math.min(utilizationPercent, 100)}%` }}
                             />
                           </div>
@@ -879,11 +877,10 @@ export default function CostCentersPage() {
               </button>
               <button
                 onClick={() => handlePageChange(1)}
-                className={`px-4 py-2 rounded-lg transition-colors ${
-                  currentPage === 1
+                className={`px-4 py-2 rounded-lg transition-colors ${currentPage === 1
                     ? 'bg-indigo-600 text-white'
                     : 'bg-gray-700 hover:bg-gray-600 text-white'
-                }`}
+                  }`}
               >
                 1
               </button>

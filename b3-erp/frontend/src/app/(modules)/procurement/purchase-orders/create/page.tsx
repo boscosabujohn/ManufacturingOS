@@ -287,7 +287,7 @@ export default function CreatePurchaseOrderPage() {
   }
 
   return (
-    <div className="p-6 max-w-7xl mx-auto">
+    <div className="p-6 w-full">
       {/* Header */}
       <div className="flex justify-between items-start mb-6">
         <div>
@@ -327,11 +327,10 @@ export default function CreatePurchaseOrderPage() {
         <div className="flex gap-8">
           <button
             onClick={() => setActiveTab('details')}
-            className={`pb-3 px-1 border-b-2 font-medium text-sm transition-colors ${
-              activeTab === 'details'
+            className={`pb-3 px-1 border-b-2 font-medium text-sm transition-colors ${activeTab === 'details'
                 ? 'border-blue-600 text-blue-600'
                 : 'border-transparent text-gray-500 hover:text-gray-700'
-            }`}
+              }`}
           >
             <div className="flex items-center gap-2">
               <FileText className="h-4 w-4" />
@@ -340,11 +339,10 @@ export default function CreatePurchaseOrderPage() {
           </button>
           <button
             onClick={() => setActiveTab('items')}
-            className={`pb-3 px-1 border-b-2 font-medium text-sm transition-colors ${
-              activeTab === 'items'
+            className={`pb-3 px-1 border-b-2 font-medium text-sm transition-colors ${activeTab === 'items'
                 ? 'border-blue-600 text-blue-600'
                 : 'border-transparent text-gray-500 hover:text-gray-700'
-            }`}
+              }`}
           >
             <div className="flex items-center gap-2">
               <Package className="h-4 w-4" />
@@ -353,11 +351,10 @@ export default function CreatePurchaseOrderPage() {
           </button>
           <button
             onClick={() => setActiveTab('terms')}
-            className={`pb-3 px-1 border-b-2 font-medium text-sm transition-colors ${
-              activeTab === 'terms'
+            className={`pb-3 px-1 border-b-2 font-medium text-sm transition-colors ${activeTab === 'terms'
                 ? 'border-blue-600 text-blue-600'
                 : 'border-transparent text-gray-500 hover:text-gray-700'
-            }`}
+              }`}
           >
             <div className="flex items-center gap-2">
               <CreditCard className="h-4 w-4" />
@@ -366,11 +363,10 @@ export default function CreatePurchaseOrderPage() {
           </button>
           <button
             onClick={() => setActiveTab('attachments')}
-            className={`pb-3 px-1 border-b-2 font-medium text-sm transition-colors ${
-              activeTab === 'attachments'
+            className={`pb-3 px-1 border-b-2 font-medium text-sm transition-colors ${activeTab === 'attachments'
                 ? 'border-blue-600 text-blue-600'
                 : 'border-transparent text-gray-500 hover:text-gray-700'
-            }`}
+              }`}
           >
             <div className="flex items-center gap-2">
               <FileSpreadsheet className="h-4 w-4" />

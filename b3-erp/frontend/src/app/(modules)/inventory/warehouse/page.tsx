@@ -360,31 +360,35 @@ const InventoryWarehousePage = () => {
 
   return (
     <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6">
-      <div className="max-w-[1600px] mx-auto space-y-6">
+      <div className="w-full h-full space-y-6">
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {stats.map((stat, index) => {
             const gradientMap: { [key: string]: string } = {
               'from-blue-500 to-blue-600': 'from-blue-50 to-blue-100',
               'from-green-500 to-green-600': 'from-green-50 to-green-100',
+              'from-purple-500 to-purple-600': 'from-purple-50 to-purple-100',
               'from-yellow-500 to-yellow-600': 'from-yellow-50 to-yellow-100',
               'from-orange-500 to-orange-600': 'from-orange-50 to-orange-100'
             }
             const borderMap: { [key: string]: string } = {
               'from-blue-500 to-blue-600': 'border-blue-200',
               'from-green-500 to-green-600': 'border-green-200',
+              'from-purple-500 to-purple-600': 'border-purple-200',
               'from-yellow-500 to-yellow-600': 'border-yellow-200',
               'from-orange-500 to-orange-600': 'border-orange-200'
             }
             const textMap: { [key: string]: { title: string; value: string } } = {
               'from-blue-500 to-blue-600': { title: 'text-blue-600', value: 'text-blue-900' },
               'from-green-500 to-green-600': { title: 'text-green-600', value: 'text-green-900' },
+              'from-purple-500 to-purple-600': { title: 'text-purple-600', value: 'text-purple-900' },
               'from-yellow-500 to-yellow-600': { title: 'text-yellow-600', value: 'text-yellow-900' },
               'from-orange-500 to-orange-600': { title: 'text-orange-600', value: 'text-orange-900' }
             }
             const iconMap: { [key: string]: string } = {
               'from-blue-500 to-blue-600': 'text-blue-600',
               'from-green-500 to-green-600': 'text-green-600',
+              'from-purple-500 to-purple-600': 'text-purple-600',
               'from-yellow-500 to-yellow-600': 'text-yellow-600',
               'from-orange-500 to-orange-600': 'text-orange-600'
             }
@@ -589,11 +593,10 @@ const InventoryWarehousePage = () => {
                     <button
                       key={page}
                       onClick={() => setCurrentPage(page)}
-                      className={`px-3 py-1 rounded-lg text-sm font-medium transition-colors ${
-                        currentPage === page
+                      className={`px-3 py-1 rounded-lg text-sm font-medium transition-colors ${currentPage === page
                           ? 'bg-blue-600 text-white'
                           : 'text-gray-600 hover:bg-gray-100'
-                      }`}
+                        }`}
                     >
                       {page}
                     </button>

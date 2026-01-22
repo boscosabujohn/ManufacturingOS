@@ -167,7 +167,7 @@ export default function RecurringTransactionsPage() {
 
   return (
     <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-emerald-50 to-teal-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="max-w-7xl mx-auto space-y-6">
+      <div className="w-full space-y-6">
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">Recurring Transactions</h1>
@@ -251,12 +251,11 @@ export default function RecurringTransactionsPage() {
                   <p className="text-sm text-gray-600">{txn.description}</p>
                 </div>
                 <div>
-                  <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                    txn.status === 'active' ? 'bg-green-100 text-green-700' :
-                    txn.status === 'paused' ? 'bg-yellow-100 text-yellow-700' :
-                    txn.status === 'completed' ? 'bg-blue-100 text-blue-700' :
-                    'bg-gray-100 text-gray-700'
-                  }`}>
+                  <span className={`px-3 py-1 rounded-full text-xs font-medium ${txn.status === 'active' ? 'bg-green-100 text-green-700' :
+                      txn.status === 'paused' ? 'bg-yellow-100 text-yellow-700' :
+                        txn.status === 'completed' ? 'bg-blue-100 text-blue-700' :
+                          'bg-gray-100 text-gray-700'
+                    }`}>
                     {txn.status.toUpperCase()}
                   </span>
                 </div>

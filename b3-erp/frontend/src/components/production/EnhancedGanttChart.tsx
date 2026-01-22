@@ -62,7 +62,7 @@ interface EnhancedGanttChartProps {
 type ViewMode = 'day' | 'week' | 'month';
 
 export function EnhancedGanttChart({
-  tasks,
+  tasks = [],
   groups = [],
   onTaskClick,
   onTaskUpdate,
@@ -179,7 +179,7 @@ export function EnhancedGanttChart({
     const grouped: { group: GanttGroup | null; tasks: GanttTask[] }[] = [];
     const tasksByGroup = new Map<string, GanttTask[]>();
 
-    tasks.forEach(task => {
+    tasks?.forEach(task => {
       const groupId = task.group || 'ungrouped';
       if (!tasksByGroup.has(groupId)) {
         tasksByGroup.set(groupId, []);
@@ -414,11 +414,10 @@ export function EnhancedGanttChart({
               <button
                 key={mode}
                 onClick={() => setViewMode(mode)}
-                className={`px-4 py-2 text-sm font-medium capitalize transition-colors ${
-                  viewMode === mode
-                    ? 'bg-blue-600 text-white'
-                    : 'text-gray-700 hover:bg-gray-100'
-                }`}
+                className={`px-4 py-2 text-sm font-medium capitalize transition-colors ${viewMode === mode
+                  ? 'bg-blue-600 text-white'
+                  : 'text-gray-700 hover:bg-gray-100'
+                  }`}
               >
                 {mode}
               </button>
@@ -493,9 +492,8 @@ export function EnhancedGanttChart({
                       onClick={() => toggleGroup(group.id)}
                     >
                       <ChevronRight
-                        className={`w-4 h-4 text-gray-500 transition-transform ${
-                          !collapsedGroups.has(group.id) ? 'rotate-90' : ''
-                        }`}
+                        className={`w-4 h-4 text-gray-500 transition-transform ${!collapsedGroups.has(group.id) ? 'rotate-90' : ''
+                          }`}
                       />
                       <span className="font-medium text-sm text-gray-700">{group.name}</span>
                       <span className="text-xs text-gray-500">({groupTasks.length})</span>
@@ -507,9 +505,8 @@ export function EnhancedGanttChart({
                     groupTasks.map(task => (
                       <div
                         key={task.id}
-                        className={`h-12 px-4 flex items-center gap-3 border-b border-gray-100 cursor-pointer hover:bg-blue-50 transition-colors ${
-                          selectedTask === task.id ? 'bg-blue-50' : ''
-                        } ${getPriorityBorder(task.priority)}`}
+                        className={`h-12 px-4 flex items-center gap-3 border-b border-gray-100 cursor-pointer hover:bg-blue-50 transition-colors ${selectedTask === task.id ? 'bg-blue-50' : ''
+                          } ${getPriorityBorder(task.priority)}`}
                         onClick={() => {
                           setSelectedTask(task.id);
                           onTaskClick?.(task);
@@ -543,9 +540,8 @@ export function EnhancedGanttChart({
               {timelineColumns.map((col, idx) => (
                 <div
                   key={idx}
-                  className={`flex-shrink-0 border-r border-gray-200 flex items-center justify-center text-xs ${
-                    col.isWeekend ? 'bg-gray-100' : ''
-                  } ${col.isToday ? 'bg-blue-50' : ''}`}
+                  className={`flex-shrink-0 border-r border-gray-200 flex items-center justify-center text-xs ${col.isWeekend ? 'bg-gray-100' : ''
+                    } ${col.isToday ? 'bg-blue-50' : ''}`}
                   style={{ width: columnWidth }}
                 >
                   {col.label && (
@@ -562,9 +558,8 @@ export function EnhancedGanttChart({
                 {timelineColumns.map((col, idx) => (
                   <div
                     key={idx}
-                    className={`flex-shrink-0 border-r ${
-                      col.isWeekend ? 'bg-gray-50' : ''
-                    } ${col.isToday && todayMarker ? 'bg-blue-50/50' : ''}`}
+                    className={`flex-shrink-0 border-r ${col.isWeekend ? 'bg-gray-50' : ''
+                      } ${col.isToday && todayMarker ? 'bg-blue-50/50' : ''}`}
                     style={{ width: columnWidth, height: '100%' }}
                   />
                 ))}
@@ -605,9 +600,8 @@ export function EnhancedGanttChart({
                         <div key={task.id} className="h-12 relative">
                           {/* Task Bar */}
                           <div
-                            className={`absolute top-2 h-8 rounded-lg shadow-sm cursor-pointer transition-all ${
-                              isDragging ? 'opacity-70 shadow-lg' : ''
-                            } ${isSelected || isHovered ? 'ring-2 ring-blue-400' : ''}`}
+                            className={`absolute top-2 h-8 rounded-lg shadow-sm cursor-pointer transition-all ${isDragging ? 'opacity-70 shadow-lg' : ''
+                              } ${isSelected || isHovered ? 'ring-2 ring-blue-400' : ''}`}
                             style={{
                               left: pos.left,
                               width: pos.width,

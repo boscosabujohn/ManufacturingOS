@@ -416,7 +416,7 @@ export default function AddJournalEntryPage() {
   };
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 max-w-7xl">
+    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-start justify-between mb-4">
@@ -797,7 +797,7 @@ export default function AddJournalEntryPage() {
                       <button
                         onClick={() => handleDuplicateLine(line.id)}
                         className="p-1.5 text-blue-600 hover:bg-blue-50 rounded transition-colors"
-                       
+
                       >
                         <Copy className="h-4 w-4" />
                       </button>
@@ -805,7 +805,7 @@ export default function AddJournalEntryPage() {
                         onClick={() => handleRemoveLine(line.id)}
                         disabled={journalLines.length <= 2}
                         className="p-1.5 text-red-600 hover:bg-red-50 rounded transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                       
+
                       >
                         <Trash2 className="h-4 w-4" />
                       </button>

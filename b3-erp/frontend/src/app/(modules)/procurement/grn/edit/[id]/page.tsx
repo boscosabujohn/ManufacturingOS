@@ -443,7 +443,7 @@ const GRNEditPage = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 p-6">
-      <div className="max-w-7xl mx-auto">
+      <div className="w-full">
         {/* Header */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
           <div className="flex items-center justify-between mb-4">
@@ -554,9 +554,8 @@ const GRNEditPage = () => {
                 type="date"
                 value={formData.receipt_date}
                 onChange={(e) => handleInputChange('receipt_date', e.target.value)}
-                className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                  errors.receipt_date ? 'border-red-500' : 'border-gray-300'
-                }`}
+                className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.receipt_date ? 'border-red-500' : 'border-gray-300'
+                  }`}
               />
               {errors.receipt_date && <p className="text-xs text-red-500 mt-1">{errors.receipt_date}</p>}
             </div>
@@ -609,9 +608,8 @@ const GRNEditPage = () => {
                 type="text"
                 value={formData.invoice_number}
                 onChange={(e) => handleInputChange('invoice_number', e.target.value)}
-                className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                  errors.invoice_number ? 'border-red-500' : 'border-gray-300'
-                }`}
+                className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.invoice_number ? 'border-red-500' : 'border-gray-300'
+                  }`}
               />
               {errors.invoice_number && <p className="text-xs text-red-500 mt-1">{errors.invoice_number}</p>}
             </div>
@@ -623,9 +621,8 @@ const GRNEditPage = () => {
                 type="date"
                 value={formData.invoice_date}
                 onChange={(e) => handleInputChange('invoice_date', e.target.value)}
-                className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                  errors.invoice_date ? 'border-red-500' : 'border-gray-300'
-                }`}
+                className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.invoice_date ? 'border-red-500' : 'border-gray-300'
+                  }`}
               />
               {errors.invoice_date && <p className="text-xs text-red-500 mt-1">{errors.invoice_date}</p>}
             </div>
@@ -637,9 +634,8 @@ const GRNEditPage = () => {
                 type="number"
                 value={formData.invoice_value}
                 onChange={(e) => handleInputChange('invoice_value', parseFloat(e.target.value))}
-                className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                  errors.invoice_value ? 'border-red-500' : 'border-gray-300'
-                }`}
+                className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.invoice_value ? 'border-red-500' : 'border-gray-300'
+                  }`}
               />
               {errors.invoice_value && <p className="text-xs text-red-500 mt-1">{errors.invoice_value}</p>}
             </div>
@@ -782,9 +778,8 @@ const GRNEditPage = () => {
                         value={item.received_quantity}
                         onChange={(e) => handleLineItemChange(index, 'received_quantity', parseFloat(e.target.value))}
                         max={item.pending_quantity}
-                        className={`w-24 px-2 py-1 border rounded text-sm text-right focus:ring-2 focus:ring-blue-500 ${
-                          errors[`line_item_${index}_received`] ? 'border-red-500' : 'border-gray-300'
-                        }`}
+                        className={`w-24 px-2 py-1 border rounded text-sm text-right focus:ring-2 focus:ring-blue-500 ${errors[`line_item_${index}_received`] ? 'border-red-500' : 'border-gray-300'
+                          }`}
                       />
                     </td>
                     <td className="p-3 border-b">
@@ -804,9 +799,8 @@ const GRNEditPage = () => {
                         <select
                           value={item.rejection_reason || ''}
                           onChange={(e) => handleLineItemChange(index, 'rejection_reason', e.target.value)}
-                          className={`w-full px-2 py-1 border rounded text-sm focus:ring-2 focus:ring-blue-500 ${
-                            errors[`line_item_${index}_rejection`] ? 'border-red-500' : 'border-gray-300'
-                          }`}
+                          className={`w-full px-2 py-1 border rounded text-sm focus:ring-2 focus:ring-blue-500 ${errors[`line_item_${index}_rejection`] ? 'border-red-500' : 'border-gray-300'
+                            }`}
                         >
                           <option value="">Select reason...</option>
                           {REJECTION_REASONS.map(reason => (

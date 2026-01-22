@@ -382,13 +382,13 @@ export default function LoanRequestsPage() {
                   <div className="flex items-center gap-4 mt-2 text-xs text-gray-500">
                     <span className="flex items-center gap-1">
                       <Calendar className="h-3 w-3" />
-                      Requested: {new Date(request.requestDate).toLocaleDateString('en-IN')}
+                      Requested: <DateDisplay date={request.requestDate} />
                     </span>
                     {request.approvedDate && (
-                      <span>Approved: {new Date(request.approvedDate).toLocaleDateString('en-IN')}</span>
+                      <span>Approved: <DateDisplay date={request.approvedDate} /></span>
                     )}
                     {request.disbursedDate && (
-                      <span>Disbursed: {new Date(request.disbursedDate).toLocaleDateString('en-IN')}</span>
+                      <span>Disbursed: <DateDisplay date={request.disbursedDate} /></span>
                     )}
                   </div>
                 </div>
@@ -509,7 +509,7 @@ export default function LoanRequestsPage() {
                           <div className="flex justify-between text-xs">
                             <span className="text-gray-700">Date</span>
                             <span className="font-medium text-gray-800">
-                              {request.approvedDate ? new Date(request.approvedDate).toLocaleDateString('en-IN') : '-'}
+                              <DateDisplay date={request.approvedDate} />
                             </span>
                           </div>
                         </>

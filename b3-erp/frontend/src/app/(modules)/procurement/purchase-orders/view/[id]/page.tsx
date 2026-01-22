@@ -87,7 +87,7 @@ export default function PurchaseOrderDetailPage() {
     };
 
     return (
-        <div className="container mx-auto p-6">
+        <div className="w-full p-6">
             {/* Header */}
             <div className="flex items-center justify-between mb-6">
                 <div>
@@ -211,8 +211,8 @@ export default function PurchaseOrderDetailPage() {
                                                 <div key={index} className="flex gap-4">
                                                     <div className="flex flex-col items-center">
                                                         <div className={`p-2 rounded-full ${item.action === 'approved' ? 'bg-green-100 text-green-600' :
-                                                                item.action === 'rejected' ? 'bg-red-100 text-red-600' :
-                                                                    'bg-yellow-100 text-yellow-600'
+                                                            item.action === 'rejected' ? 'bg-red-100 text-red-600' :
+                                                                'bg-yellow-100 text-yellow-600'
                                                             }`}>
                                                             {item.action === 'approved' ? <CheckCircle className="h-4 w-4" /> :
                                                                 item.action === 'rejected' ? <XCircle className="h-4 w-4" /> :

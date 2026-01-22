@@ -171,8 +171,8 @@ export default function ProcurementRFQPage() {
 
   const filteredRFQs = mockRFQs.filter(rfq => {
     const matchesSearch = rfq.rfqNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         rfq.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         rfq.createdBy.toLowerCase().includes(searchTerm.toLowerCase())
+      rfq.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      rfq.createdBy.toLowerCase().includes(searchTerm.toLowerCase())
     const matchesStatus = statusFilter === 'all' || rfq.status === statusFilter
     const matchesCategory = categoryFilter === 'all' || rfq.category === categoryFilter
     return matchesSearch && matchesStatus && matchesCategory
@@ -234,8 +234,8 @@ export default function ProcurementRFQPage() {
   }
 
   return (
-    <div className="container mx-auto min-h-screen px-4 sm:px-6 lg:px-8 py-6 max-w-7xl">
-      <div className="max-w-[1600px] mx-auto space-y-6">
+    <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6">
+      <div className="w-full space-y-6">
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
@@ -417,14 +417,14 @@ export default function ProcurementRFQPage() {
                         <button
                           onClick={() => handleView(rfq.id)}
                           className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-                         
+
                         >
                           <Eye className="w-4 h-4" />
                         </button>
                         <button
                           onClick={() => handleEdit(rfq.id)}
                           className="p-2 text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors"
-                         
+
                         >
                           <Edit2 className="w-4 h-4" />
                         </button>
@@ -432,7 +432,7 @@ export default function ProcurementRFQPage() {
                           <button
                             onClick={() => handleCompareQuotes(rfq.id)}
                             className="p-2 text-purple-600 hover:bg-purple-50 rounded-lg transition-colors"
-                           
+
                           >
                             <GitCompare className="w-4 h-4" />
                           </button>
@@ -467,11 +467,10 @@ export default function ProcurementRFQPage() {
                     <button
                       key={i + 1}
                       onClick={() => setCurrentPage(i + 1)}
-                      className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                        currentPage === i + 1
+                      className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${currentPage === i + 1
                           ? 'bg-purple-600 text-white'
                           : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
-                      }`}
+                        }`}
                     >
                       {i + 1}
                     </button>

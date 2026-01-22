@@ -206,9 +206,8 @@ export default function ChartOfAccountsPage() {
     return (
       <div key={account.code}>
         <div
-          className={`flex items-center py-3 px-4 hover:bg-gray-50 transition-colors border-b border-gray-100 ${
-            account.level === 0 ? 'bg-gray-50 font-semibold' : ''
-          }`}
+          className={`flex items-center py-3 px-4 hover:bg-gray-50 transition-colors border-b border-gray-100 ${account.level === 0 ? 'bg-gray-50 font-semibold' : ''
+            }`}
           style={{ paddingLeft: `${indentLevel + 1}rem` }}
         >
           <div className="flex items-center flex-1 space-x-3">
@@ -322,7 +321,7 @@ export default function ChartOfAccountsPage() {
   return (
     <div className="h-screen flex flex-col overflow-hidden">
       <div className="flex-1 overflow-y-auto overflow-x-hidden">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 max-w-7xl">
+        <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
           {/* Action Bar */}
           <div className="mb-6">
             <div className="flex items-center justify-end mb-4">
@@ -337,157 +336,157 @@ export default function ChartOfAccountsPage() {
 
             {/* Stats */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-blue-600">Total Accounts</p>
-                <p className="text-2xl font-bold text-blue-900 mt-1">{stats.totalAccounts}</p>
+              <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-medium text-blue-600">Total Accounts</p>
+                    <p className="text-2xl font-bold text-blue-900 mt-1">{stats.totalAccounts}</p>
+                  </div>
+                  <BarChart3 className="h-8 w-8 text-blue-600" />
+                </div>
               </div>
-              <BarChart3 className="h-8 w-8 text-blue-600" />
-            </div>
-          </div>
 
-          <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-purple-600">Assets Accounts</p>
-                <p className="text-2xl font-bold text-purple-900 mt-1">{stats.assetsAccounts}</p>
+              <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-medium text-purple-600">Assets Accounts</p>
+                    <p className="text-2xl font-bold text-purple-900 mt-1">{stats.assetsAccounts}</p>
+                  </div>
+                  <Building className="h-8 w-8 text-purple-600" />
+                </div>
               </div>
-              <Building className="h-8 w-8 text-purple-600" />
-            </div>
-          </div>
 
-          <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-4 border border-red-200">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-red-600">Liabilities Accounts</p>
-                <p className="text-2xl font-bold text-red-900 mt-1">{stats.liabilitiesAccounts}</p>
+              <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-4 border border-red-200">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-medium text-red-600">Liabilities Accounts</p>
+                    <p className="text-2xl font-bold text-red-900 mt-1">{stats.liabilitiesAccounts}</p>
+                  </div>
+                  <CreditCard className="h-8 w-8 text-red-600" />
+                </div>
               </div>
-              <CreditCard className="h-8 w-8 text-red-600" />
-            </div>
-          </div>
 
-          <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-green-600">Active Accounts</p>
-                <p className="text-2xl font-bold text-green-900 mt-1">{stats.activeAccounts}</p>
+              <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-medium text-green-600">Active Accounts</p>
+                    <p className="text-2xl font-bold text-green-900 mt-1">{stats.activeAccounts}</p>
+                  </div>
+                  <CheckCircle className="h-8 w-8 text-green-600" />
+                </div>
               </div>
-              <CheckCircle className="h-8 w-8 text-green-600" />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Filters */}
-      <div className="bg-white border border-gray-200 rounded-lg p-4 mb-6">
-        <div className="flex items-center space-x-2 mb-4">
-          <Filter className="h-5 w-5 text-gray-600" />
-          <h2 className="text-lg font-semibold text-gray-900">Filters</h2>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div className="lg:col-span-2">
-            <label className="block text-sm font-medium text-gray-700 mb-1">Search</label>
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-              <input
-                type="text"
-                placeholder="Account code or name..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
             </div>
           </div>
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Account Type</label>
-            <select
-              value={typeFilter}
-              onChange={(e) => setTypeFilter(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-              <option value="all">All Types</option>
-              <option value="Assets">Assets</option>
-              <option value="Liabilities">Liabilities</option>
-              <option value="Equity">Equity</option>
-              <option value="Income">Income</option>
-              <option value="Expenses">Expenses</option>
-            </select>
-          </div>
+          {/* Filters */}
+          <div className="bg-white border border-gray-200 rounded-lg p-4 mb-6">
+            <div className="flex items-center space-x-2 mb-4">
+              <Filter className="h-5 w-5 text-gray-600" />
+              <h2 className="text-lg font-semibold text-gray-900">Filters</h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              <div className="lg:col-span-2">
+                <label className="block text-sm font-medium text-gray-700 mb-1">Search</label>
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                  <input
+                    type="text"
+                    placeholder="Account code or name..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+              </div>
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
-            <select
-              value={statusFilter}
-              onChange={(e) => setStatusFilter(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-              <option value="all">All Status</option>
-              <option value="active">Active Only</option>
-              <option value="inactive">Inactive Only</option>
-            </select>
-          </div>
-        </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Account Type</label>
+                <select
+                  value={typeFilter}
+                  onChange={(e) => setTypeFilter(e.target.value)}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  <option value="all">All Types</option>
+                  <option value="Assets">Assets</option>
+                  <option value="Liabilities">Liabilities</option>
+                  <option value="Equity">Equity</option>
+                  <option value="Income">Income</option>
+                  <option value="Expenses">Expenses</option>
+                </select>
+              </div>
 
-        <div className="flex items-center space-x-2 mt-4">
-          <button
-            onClick={() => {
-              setSearchQuery('');
-              setTypeFilter('all');
-              setStatusFilter('all');
-            }}
-            className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-          >
-            <XCircle className="h-4 w-4" />
-            <span>Clear Filters</span>
-          </button>
-          <button
-            onClick={() => setExpandedNodes(new Set(accounts.filter(a => a.level === 0).map(a => a.code)))}
-            className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-          >
-            <ChevronDown className="h-4 w-4" />
-            <span>Expand All</span>
-          </button>
-          <button
-            onClick={() => setExpandedNodes(new Set())}
-            className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-          >
-            <ChevronRight className="h-4 w-4" />
-            <span>Collapse All</span>
-          </button>
-          <button
-            onClick={() => setIsExportModalOpen(true)}
-            className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-          >
-            <Download className="h-4 w-4" />
-            <span>Export</span>
-          </button>
-        </div>
-      </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
+                <select
+                  value={statusFilter}
+                  onChange={(e) => setStatusFilter(e.target.value)}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  <option value="all">All Status</option>
+                  <option value="active">Active Only</option>
+                  <option value="inactive">Inactive Only</option>
+                </select>
+              </div>
+            </div>
 
-      {/* Account Tree */}
-      <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
-        <div className="bg-gray-50 border-b border-gray-200 px-4 py-3">
-          <div className="flex items-center justify-between">
-            <h2 className="text-lg font-semibold text-gray-900">Account Hierarchy</h2>
-            <div className="text-sm text-gray-600">
-              Showing {filteredAccounts.length} of {accounts.length} accounts
+            <div className="flex items-center space-x-2 mt-4">
+              <button
+                onClick={() => {
+                  setSearchQuery('');
+                  setTypeFilter('all');
+                  setStatusFilter('all');
+                }}
+                className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                <XCircle className="h-4 w-4" />
+                <span>Clear Filters</span>
+              </button>
+              <button
+                onClick={() => setExpandedNodes(new Set(accounts.filter(a => a.level === 0).map(a => a.code)))}
+                className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                <ChevronDown className="h-4 w-4" />
+                <span>Expand All</span>
+              </button>
+              <button
+                onClick={() => setExpandedNodes(new Set())}
+                className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                <ChevronRight className="h-4 w-4" />
+                <span>Collapse All</span>
+              </button>
+              <button
+                onClick={() => setIsExportModalOpen(true)}
+                className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                <Download className="h-4 w-4" />
+                <span>Export</span>
+              </button>
             </div>
           </div>
-        </div>
 
-        <div className="divide-y divide-gray-100">
-          {accountTree.map((account) => renderAccount(account))}
-        </div>
+          {/* Account Tree */}
+          <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+            <div className="bg-gray-50 border-b border-gray-200 px-4 py-3">
+              <div className="flex items-center justify-between">
+                <h2 className="text-lg font-semibold text-gray-900">Account Hierarchy</h2>
+                <div className="text-sm text-gray-600">
+                  Showing {filteredAccounts.length} of {accounts.length} accounts
+                </div>
+              </div>
+            </div>
 
-        {filteredAccounts.length === 0 && (
-          <div className="p-12 text-center">
-            <AlertCircle className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">No Accounts Found</h3>
-            <p className="text-gray-600">Try adjusting your filters or search query</p>
-          </div>
-        )}
+            <div className="divide-y divide-gray-100">
+              {accountTree.map((account) => renderAccount(account))}
+            </div>
+
+            {filteredAccounts.length === 0 && (
+              <div className="p-12 text-center">
+                <AlertCircle className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">No Accounts Found</h3>
+                <p className="text-gray-600">Try adjusting your filters or search query</p>
+              </div>
+            )}
           </div>
         </div>
       </div>

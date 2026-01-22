@@ -286,11 +286,11 @@ const InventoryMovementsPage = () => {
       id: movement.id,
       movementNumber: movement.movementId,
       type: movement.movementType === 'inbound' ? 'receipt' :
-            movement.movementType === 'outbound' ? 'issue' :
-            movement.movementType === 'adjustment' ? 'transfer' : 'transfer',
+        movement.movementType === 'outbound' ? 'issue' :
+          movement.movementType === 'adjustment' ? 'transfer' : 'transfer',
       date: movement.date,
       status: movement.status === 'completed' ? 'completed' :
-              movement.status === 'pending' ? 'draft' : 'cancelled',
+        movement.status === 'pending' ? 'draft' : 'cancelled',
       fromLocation: movement.fromLocation,
       toLocation: movement.toLocation,
       supplier: movement.fromLocation.includes('Supplier') ? movement.fromLocation : undefined,
@@ -340,8 +340,8 @@ const InventoryMovementsPage = () => {
             }
             const Icon = stat.trend === 'up' ? TrendingUp : TrendingDown
             const iconColor = gradientMap[stat.gradient].includes('blue') ? 'text-blue-600' :
-                            gradientMap[stat.gradient].includes('green') ? 'text-green-600' :
-                            gradientMap[stat.gradient].includes('purple') ? 'text-purple-600' : 'text-orange-600'
+              gradientMap[stat.gradient].includes('green') ? 'text-green-600' :
+                gradientMap[stat.gradient].includes('purple') ? 'text-purple-600' : 'text-orange-600'
             return (
               <div
                 key={index}
@@ -574,11 +574,10 @@ const InventoryMovementsPage = () => {
                     <button
                       key={page}
                       onClick={() => setCurrentPage(page)}
-                      className={`px-3 py-1 rounded-lg text-sm font-medium transition-colors ${
-                        currentPage === page
+                      className={`px-3 py-1 rounded-lg text-sm font-medium transition-colors ${currentPage === page
                           ? 'bg-blue-600 text-white'
                           : 'text-gray-600 hover:bg-gray-100'
-                      }`}
+                        }`}
                     >
                       {page}
                     </button>
@@ -627,6 +626,30 @@ const InventoryMovementsPage = () => {
       <MovementHistoryModal
         isOpen={isHistoryOpen}
         onClose={() => setIsHistoryOpen(false)}
+        movements={movements.map(m => ({
+          id: m.id,
+          movementNumber: m.movementId,
+          type: m.movementType === 'inbound' ? 'receipt' :
+            m.movementType === 'outbound' ? 'issue' :
+              m.movementType === 'adjustment' ? 'transfer' : 'transfer',
+          date: m.date,
+          status: m.status === 'completed' ? 'completed' :
+            m.status === 'pending' ? 'draft' : 'cancelled',
+          fromLocation: m.fromLocation,
+          toLocation: m.toLocation,
+          supplier: m.fromLocation.includes('Supplier') ? m.fromLocation : undefined,
+          reference: m.referenceDoc,
+          items: [{
+            itemCode: m.itemCode,
+            itemName: m.itemName,
+            quantity: m.quantity,
+            uom: m.unitOfMeasure,
+            location: m.toLocation,
+            cost: 0
+          }],
+          createdBy: m.initiatedBy,
+          createdDate: m.date
+        }))}
         onViewDetails={handleViewMovement}
         onExport={() => console.log('Export history')}
       />

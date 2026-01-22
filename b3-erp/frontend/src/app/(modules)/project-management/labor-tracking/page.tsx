@@ -857,11 +857,10 @@ export default function LaborTrackingPage() {
                 <button
                   key={page}
                   onClick={() => setCurrentPage(page)}
-                  className={`px-3 py-1 border rounded-md text-sm font-medium ${
-                    currentPage === page
+                  className={`px-3 py-1 border rounded-md text-sm font-medium ${currentPage === page
                       ? 'bg-blue-600 text-white border-blue-600'
                       : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
-                  }`}
+                    }`}
                 >
                   {page}
                 </button>
@@ -973,6 +972,7 @@ export default function LaborTrackingPage() {
       <OvertimeAnalysisModal
         isOpen={showOvertimeAnalysisModal}
         onClose={() => setShowOvertimeAnalysisModal(false)}
+        entries={filteredEntries}
       />
 
       <GenerateTimesheetModal

@@ -354,9 +354,8 @@ export default function ScheduleSiteVisitEnhancedPage() {
                     updateFormData('address', 'Apollo Bunder, Colaba, Mumbai, Maharashtra 400001');
                   }
                 }}
-                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                  errors.project ? 'border-red-500' : 'border-gray-300'
-                }`}
+                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.project ? 'border-red-500' : 'border-gray-300'
+                  }`}
               >
                 <option value="">Select a project</option>
                 <option value="PRJ-2025-001">PRJ-2025-001 - Taj Hotels - Commercial Kitchen</option>
@@ -381,11 +380,10 @@ export default function ScheduleSiteVisitEnhancedPage() {
                     key={type.value}
                     type="button"
                     onClick={() => updateFormData('visitType', type.value)}
-                    className={`p-4 rounded-lg border-2 text-left transition-colors ${
-                      formData.visitType === type.value
+                    className={`p-4 rounded-lg border-2 text-left transition-colors ${formData.visitType === type.value
                         ? 'border-blue-500 bg-blue-50'
                         : 'border-gray-200 hover:border-gray-300'
-                    }`}
+                      }`}
                   >
                     <p className="font-medium text-gray-900">{type.label}</p>
                     <p className="text-sm text-gray-500">{type.desc}</p>
@@ -416,9 +414,8 @@ export default function ScheduleSiteVisitEnhancedPage() {
                     value={formData.date}
                     onChange={(e) => updateFormData('date', e.target.value)}
                     min={new Date().toISOString().split('T')[0]}
-                    className={`w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                      errors.date ? 'border-red-500' : 'border-gray-300'
-                    }`}
+                    className={`w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.date ? 'border-red-500' : 'border-gray-300'
+                      }`}
                   />
                 </div>
                 {errors.date && <p className="mt-1 text-sm text-red-500">{errors.date}</p>}
@@ -434,9 +431,8 @@ export default function ScheduleSiteVisitEnhancedPage() {
                     type="time"
                     value={formData.time}
                     onChange={(e) => updateFormData('time', e.target.value)}
-                    className={`w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                      errors.time ? 'border-red-500' : 'border-gray-300'
-                    }`}
+                    className={`w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.time ? 'border-red-500' : 'border-gray-300'
+                      }`}
                   />
                 </div>
                 {errors.time && <p className="mt-1 text-sm text-red-500">{errors.time}</p>}
@@ -488,9 +484,8 @@ export default function ScheduleSiteVisitEnhancedPage() {
                   type="text"
                   value={formData.location}
                   onChange={(e) => updateFormData('location', e.target.value)}
-                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                    errors.location ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.location ? 'border-red-500' : 'border-gray-300'
+                    }`}
                   placeholder="e.g., Taj Hotels, Mumbai"
                 />
                 {errors.location && <p className="mt-1 text-sm text-red-500">{errors.location}</p>}
@@ -515,9 +510,8 @@ export default function ScheduleSiteVisitEnhancedPage() {
                   value={formData.address}
                   onChange={(e) => updateFormData('address', e.target.value)}
                   rows={2}
-                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                    errors.address ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.address ? 'border-red-500' : 'border-gray-300'
+                    }`}
                   placeholder="Complete address with pin code"
                 />
                 {errors.address && <p className="mt-1 text-sm text-red-500">{errors.address}</p>}
@@ -562,9 +556,8 @@ export default function ScheduleSiteVisitEnhancedPage() {
                       type="text"
                       value={formData.clientName}
                       onChange={(e) => updateFormData('clientName', e.target.value)}
-                      className={`w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                        errors.clientName ? 'border-red-500' : 'border-gray-300'
-                      }`}
+                      className={`w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.clientName ? 'border-red-500' : 'border-gray-300'
+                        }`}
                       placeholder="Client contact name"
                     />
                   </div>
@@ -592,9 +585,8 @@ export default function ScheduleSiteVisitEnhancedPage() {
                       type="tel"
                       value={formData.clientPhone}
                       onChange={(e) => updateFormData('clientPhone', e.target.value)}
-                      className={`w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                        errors.clientPhone ? 'border-red-500' : 'border-gray-300'
-                      }`}
+                      className={`w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.clientPhone ? 'border-red-500' : 'border-gray-300'
+                        }`}
                       placeholder="+91 XXXXX XXXXX"
                     />
                   </div>
@@ -697,11 +689,10 @@ export default function ScheduleSiteVisitEnhancedPage() {
                       key={equip.id}
                       type="button"
                       onClick={() => toggleEquipment(equip.id)}
-                      className={`flex items-center gap-3 p-3 rounded-lg border-2 transition-colors ${
-                        isSelected
+                      className={`flex items-center gap-3 p-3 rounded-lg border-2 transition-colors ${isSelected
                           ? 'border-blue-500 bg-blue-50'
                           : 'border-gray-200 hover:border-gray-300'
-                      }`}
+                        }`}
                     >
                       <Icon className={`w-5 h-5 ${isSelected ? 'text-blue-600' : 'text-gray-400'}`} />
                       <span className={`text-sm ${isSelected ? 'text-blue-700 font-medium' : 'text-gray-600'}`}>
@@ -868,7 +859,7 @@ export default function ScheduleSiteVisitEnhancedPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="max-w-5xl mx-auto px-4 py-6">
+      <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
         {/* Header */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
           <div className="flex items-center gap-4 mb-4">
@@ -931,9 +922,8 @@ export default function ScheduleSiteVisitEnhancedPage() {
                 type="button"
                 onClick={goToPrevStep}
                 disabled={currentStep === 0}
-                className={`flex items-center gap-2 px-4 py-2 rounded-lg ${
-                  currentStep === 0 ? 'text-gray-400 cursor-not-allowed' : 'text-gray-700 hover:bg-gray-100'
-                }`}
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg ${currentStep === 0 ? 'text-gray-400 cursor-not-allowed' : 'text-gray-700 hover:bg-gray-100'
+                  }`}
               >
                 <ArrowLeft className="w-5 h-5" />
                 Previous

@@ -221,7 +221,7 @@ export default function GLEntryViewPage() {
   const TypeIcon = entryTypeConfig[entry.entryType].icon;
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 max-w-7xl">
+    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-start justify-between mb-4">
@@ -348,33 +348,30 @@ export default function GLEntryViewPage() {
         <nav className="flex space-x-8">
           <button
             onClick={() => setActiveTab('details')}
-            className={`py-3 px-1 border-b-2 font-medium text-sm transition-colors ${
-              activeTab === 'details'
+            className={`py-3 px-1 border-b-2 font-medium text-sm transition-colors ${activeTab === 'details'
                 ? 'border-blue-600 text-blue-600'
                 : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-            }`}
+              }`}
           >
             <Info className="h-4 w-4 inline mr-2" />
             Entry Details
           </button>
           <button
             onClick={() => setActiveTab('lines')}
-            className={`py-3 px-1 border-b-2 font-medium text-sm transition-colors ${
-              activeTab === 'lines'
+            className={`py-3 px-1 border-b-2 font-medium text-sm transition-colors ${activeTab === 'lines'
                 ? 'border-blue-600 text-blue-600'
                 : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-            }`}
+              }`}
           >
             <BookOpen className="h-4 w-4 inline mr-2" />
             Journal Lines ({entry.journalLines.length})
           </button>
           <button
             onClick={() => setActiveTab('audit')}
-            className={`py-3 px-1 border-b-2 font-medium text-sm transition-colors ${
-              activeTab === 'audit'
+            className={`py-3 px-1 border-b-2 font-medium text-sm transition-colors ${activeTab === 'audit'
                 ? 'border-blue-600 text-blue-600'
                 : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-            }`}
+              }`}
           >
             <Shield className="h-4 w-4 inline mr-2" />
             Audit Trail ({entry.auditTrail.length})
@@ -458,11 +455,10 @@ export default function GLEntryViewPage() {
                 </div>
               </div>
 
-              <div className={`bg-gradient-to-br rounded-lg p-4 border ${
-                entry.isBalanced
+              <div className={`bg-gradient-to-br rounded-lg p-4 border ${entry.isBalanced
                   ? 'from-blue-50 to-blue-100 border-blue-200'
                   : 'from-red-50 to-red-100 border-red-200'
-              }`}>
+                }`}>
                 <div className="flex items-center justify-between">
                   <div>
                     <p className={`text-sm font-medium ${entry.isBalanced ? 'text-blue-600' : 'text-red-600'}`}>
@@ -516,11 +512,10 @@ export default function GLEntryViewPage() {
                 <>
                   <div className="flex justify-between py-2 border-b border-gray-100">
                     <span className="text-sm text-gray-600">Approval Status:</span>
-                    <span className={`px-2 py-1 text-xs font-semibold rounded ${
-                      entry.approvalStatus === 'Approved' ? 'bg-green-100 text-green-700' :
-                      entry.approvalStatus === 'Rejected' ? 'bg-red-100 text-red-700' :
-                      'bg-yellow-100 text-yellow-700'
-                    }`}>
+                    <span className={`px-2 py-1 text-xs font-semibold rounded ${entry.approvalStatus === 'Approved' ? 'bg-green-100 text-green-700' :
+                        entry.approvalStatus === 'Rejected' ? 'bg-red-100 text-red-700' :
+                          'bg-yellow-100 text-yellow-700'
+                      }`}>
                       {entry.approvalStatus}
                     </span>
                   </div>

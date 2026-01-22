@@ -3,7 +3,7 @@
  * Provides offline support and caching for the PWA
  */
 
-const CACHE_NAME = 'factos-v1';
+const CACHE_NAME = 'factos-v3';
 const OFFLINE_URL = '/offline.html';
 
 // Assets to cache immediately on install
@@ -27,7 +27,7 @@ const CACHE_STRATEGIES = {
   ],
   // Cache first, update in background
   cacheFirst: [
-    '/_next/static/',
+    // '/_next/static/', // Removed to prevent stale bundles in dev
     '/icons/',
     '/images/',
     '.woff2',

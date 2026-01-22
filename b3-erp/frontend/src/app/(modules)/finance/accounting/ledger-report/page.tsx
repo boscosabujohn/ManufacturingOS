@@ -253,7 +253,7 @@ export default function LedgerReportPage() {
   };
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 max-w-7xl">
+    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-start justify-between mb-4">
@@ -441,11 +441,10 @@ export default function LedgerReportPage() {
           <div className="flex items-end">
             <button
               onClick={() => setShowMonthBreakdown(!showMonthBreakdown)}
-              className={`w-full flex items-center justify-center space-x-2 px-4 py-2 rounded-lg transition-colors ${
-                showMonthBreakdown
+              className={`w-full flex items-center justify-center space-x-2 px-4 py-2 rounded-lg transition-colors ${showMonthBreakdown
                   ? 'bg-blue-600 text-white hover:bg-blue-700'
                   : 'border border-gray-300 hover:bg-gray-50'
-              }`}
+                }`}
             >
               <BarChart3 className="h-4 w-4" />
               <span>Month Breakdown</span>
@@ -596,7 +595,7 @@ export default function LedgerReportPage() {
                     <button
                       onClick={() => router.push(`/finance/accounting/view/${transaction.entryNumber}`)}
                       className="p-1.5 text-blue-600 hover:bg-blue-50 rounded transition-colors"
-                     
+
                     >
                       <Eye className="h-4 w-4" />
                     </button>
@@ -649,9 +648,8 @@ export default function LedgerReportPage() {
                     {index > 0 && array[index - 1] !== page - 1 && <span className="px-2 text-gray-400">...</span>}
                     <button
                       onClick={() => setCurrentPage(page)}
-                      className={`px-3 py-1 rounded-lg ${
-                        currentPage === page ? 'bg-blue-600 text-white' : 'border border-gray-300 hover:bg-gray-50'
-                      }`}
+                      className={`px-3 py-1 rounded-lg ${currentPage === page ? 'bg-blue-600 text-white' : 'border border-gray-300 hover:bg-gray-50'
+                        }`}
                     >
                       {page}
                     </button>

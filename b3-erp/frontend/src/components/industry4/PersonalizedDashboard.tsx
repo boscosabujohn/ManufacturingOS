@@ -180,11 +180,10 @@ function WidgetContent({ type }: { type: string }) {
             { name: 'PKG-02', status: 'offline' },
           ].map(machine => (
             <div key={machine.name} className="text-center p-2 rounded bg-gray-50 dark:bg-gray-800">
-              <div className={`w-3 h-3 rounded-full mx-auto mb-1 ${
-                machine.status === 'running' ? 'bg-green-500' :
-                machine.status === 'idle' ? 'bg-blue-500' :
-                machine.status === 'warning' ? 'bg-amber-500' : 'bg-gray-400'
-              }`} />
+              <div className={`w-3 h-3 rounded-full mx-auto mb-1 ${machine.status === 'running' ? 'bg-green-500' :
+                  machine.status === 'idle' ? 'bg-blue-500' :
+                    machine.status === 'warning' ? 'bg-amber-500' : 'bg-gray-400'
+                }`} />
               <p className="text-xs font-medium">{machine.name}</p>
             </div>
           ))}
@@ -223,15 +222,13 @@ function WidgetContent({ type }: { type: string }) {
             { level: 'info', message: 'Shift change in 30 minutes', time: '10m ago' },
             { level: 'critical', message: 'PKG-02: Emergency stop', time: '15m ago' },
           ].map((alert, i) => (
-            <div key={i} className={`flex items-center gap-2 p-2 rounded text-sm ${
-              alert.level === 'critical' ? 'bg-red-100 dark:bg-red-900/30' :
-              alert.level === 'warning' ? 'bg-amber-100 dark:bg-amber-900/30' :
-              'bg-blue-100 dark:bg-blue-900/30'
-            }`}>
-              <AlertTriangle className={`w-4 h-4 ${
-                alert.level === 'critical' ? 'text-red-600' :
-                alert.level === 'warning' ? 'text-amber-600' : 'text-blue-600'
-              }`} />
+            <div key={i} className={`flex items-center gap-2 p-2 rounded text-sm ${alert.level === 'critical' ? 'bg-red-100 dark:bg-red-900/30' :
+                alert.level === 'warning' ? 'bg-amber-100 dark:bg-amber-900/30' :
+                  'bg-blue-100 dark:bg-blue-900/30'
+              }`}>
+              <AlertTriangle className={`w-4 h-4 ${alert.level === 'critical' ? 'text-red-600' :
+                  alert.level === 'warning' ? 'text-amber-600' : 'text-blue-600'
+                }`} />
               <span className="flex-1">{alert.message}</span>
               <span className="text-xs text-gray-500">{alert.time}</span>
             </div>
@@ -463,11 +460,10 @@ function WidgetPalette({
                 key={widget.type}
                 onClick={() => !isAdded && onAddWidget(widget.type)}
                 disabled={isAdded}
-                className={`p-2 rounded border text-left text-xs transition-colors ${
-                  isAdded
+                className={`p-2 rounded border text-left text-xs transition-colors ${isAdded
                     ? 'opacity-50 cursor-not-allowed bg-gray-100 dark:bg-gray-800'
                     : 'hover:bg-gray-100 dark:hover:bg-gray-700 border-gray-200 dark:border-gray-600'
-                }`}
+                  }`}
               >
                 <p className="font-medium">{widget.title}</p>
                 <p className="text-gray-500 capitalize">{widget.category}</p>
@@ -495,7 +491,7 @@ export function PersonalizedDashboard({
     const defaultConfig = defaultLayouts[role];
     return defaultConfig.map((w, i) => ({
       ...w,
-      id: `widget-${i}-${Date.now()}`,
+      id: `widget-${i}`,
     }));
   });
   const [draggedWidget, setDraggedWidget] = useState<string | null>(null);

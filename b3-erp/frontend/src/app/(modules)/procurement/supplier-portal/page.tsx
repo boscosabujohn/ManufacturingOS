@@ -6,7 +6,7 @@ import {
   Clock, CheckCircle, XCircle, AlertCircle, Upload, Download, Eye, Edit,
   Plus, Search, Filter, Calendar, Mail, Phone, MapPin, Globe, Shield,
   Award, BarChart3, ShoppingCart, Truck, CreditCard, MessageSquare, HelpCircle,
-  LogOut, ChevronRight, Star, ArrowUp, ArrowDown, Paperclip, Send
+  LogOut, ChevronRight, Star, ArrowUp, ArrowDown, Paperclip, Send, Zap, Target, Activity
 } from 'lucide-react'
 
 export default function SupplierPortal() {
@@ -207,11 +207,10 @@ export default function SupplierPortal() {
                     <div className="text-sm text-gray-500 mt-1">{po.items} items • ${po.value.toLocaleString()}</div>
                   </div>
                   <div className="text-right">
-                    <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                      po.status === 'Delivered' ? 'bg-green-100 text-green-700' :
+                    <span className={`px-3 py-1 rounded-full text-xs font-medium ${po.status === 'Delivered' ? 'bg-green-100 text-green-700' :
                       po.status === 'In Progress' ? 'bg-blue-100 text-blue-700' :
-                      'bg-amber-100 text-amber-700'
-                    }`}>
+                        'bg-amber-100 text-amber-700'
+                      }`}>
                       {po.status}
                     </span>
                     <div className="text-xs text-gray-500 mt-1">Due: {po.delivery}</div>
@@ -312,11 +311,10 @@ export default function SupplierPortal() {
                   <td className="py-3 px-4 text-gray-600">{po.items}</td>
                   <td className="py-3 px-4 text-right font-medium">${po.value.toLocaleString()}</td>
                   <td className="py-3 px-4">
-                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                      po.status === 'Delivered' ? 'bg-green-100 text-green-700' :
+                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${po.status === 'Delivered' ? 'bg-green-100 text-green-700' :
                       po.status === 'In Progress' ? 'bg-blue-100 text-blue-700' :
-                      'bg-amber-100 text-amber-700'
-                    }`}>
+                        'bg-amber-100 text-amber-700'
+                      }`}>
                       {po.status}
                     </span>
                   </td>
@@ -365,10 +363,9 @@ export default function SupplierPortal() {
         {rfqs.map((rfq) => (
           <div key={rfq.id} className="bg-white rounded-lg shadow-sm border p-6">
             <div className="flex justify-between items-start mb-4">
-              <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                rfq.status === 'Open' ? 'bg-green-100 text-green-700' :
+              <span className={`px-2 py-1 rounded-full text-xs font-medium ${rfq.status === 'Open' ? 'bg-green-100 text-green-700' :
                 'bg-blue-100 text-blue-700'
-              }`}>
+                }`}>
                 {rfq.status}
               </span>
               <button className="inline-flex items-center gap-1.5 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">
@@ -436,11 +433,10 @@ export default function SupplierPortal() {
                     <td className="py-3 px-4 text-right font-medium">${invoice.amount.toLocaleString()}</td>
                     <td className="py-3 px-4 text-gray-600">{invoice.dueDate}</td>
                     <td className="py-3 px-4">
-                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                        invoice.status === 'Paid' ? 'bg-green-100 text-green-700' :
+                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${invoice.status === 'Paid' ? 'bg-green-100 text-green-700' :
                         invoice.status === 'Pending' ? 'bg-amber-100 text-amber-700' :
-                        'bg-red-100 text-red-700'
-                      }`}>
+                          'bg-red-100 text-red-700'
+                        }`}>
                         {invoice.status}
                       </span>
                     </td>
@@ -679,7 +675,7 @@ export default function SupplierPortal() {
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <div className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center gap-3">
               <Building2 className="h-8 w-8 text-blue-600" />
@@ -717,7 +713,7 @@ export default function SupplierPortal() {
 
       {/* Navigation Tabs */}
       <div className="bg-white border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
           <nav className="flex space-x-8">
             {[
               { id: 'dashboard', label: 'Dashboard', icon: BarChart3 },
@@ -730,11 +726,10 @@ export default function SupplierPortal() {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`py-4 px-1 border-b-2 font-medium text-sm flex items-center gap-2 ${
-                  activeTab === tab.id
-                    ? 'border-blue-600 text-blue-600'
-                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                }`}
+                className={`py-4 px-1 border-b-2 font-medium text-sm flex items-center gap-2 ${activeTab === tab.id
+                  ? 'border-blue-600 text-blue-600'
+                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                  }`}
               >
                 <tab.icon className="h-4 w-4" />
                 {tab.label}
@@ -746,11 +741,11 @@ export default function SupplierPortal() {
 
       {/* Real-Time Monitoring Dashboard */}
       {showRealTimeMonitoring && (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
           <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl shadow-lg p-6 border border-indigo-200 mb-6">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
-                <Activity className="h-5 w-5 text-indigo-600" />
+                <TrendingUp className="h-5 w-5 text-indigo-600" />
                 Real-Time Performance Dashboard
               </h3>
               <div className="flex items-center gap-3">
@@ -841,7 +836,7 @@ export default function SupplierPortal() {
 
       {/* AI-Powered Insights */}
       {showAIInsights && (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-6">
+        <div className="w-full px-4 sm:px-6 lg:px-8 pb-6">
           <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl shadow-lg p-6 border border-purple-200 mb-6">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
@@ -916,7 +911,7 @@ export default function SupplierPortal() {
       )}
 
       {/* Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
         {activeTab === 'dashboard' && renderDashboard()}
         {activeTab === 'orders' && renderPurchaseOrders()}
         {activeTab === 'rfqs' && renderRFQs()}

@@ -189,8 +189,8 @@ export default function ProcurementGRNPage() {
 
   const filteredGRNs = mockGRNs.filter(grn => {
     const matchesSearch = grn.grnNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         grn.poNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         grn.vendorName.toLowerCase().includes(searchTerm.toLowerCase())
+      grn.poNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      grn.vendorName.toLowerCase().includes(searchTerm.toLowerCase())
     const matchesStatus = statusFilter === 'all' || grn.status === statusFilter
     const matchesVendor = vendorFilter === 'all' || grn.vendorName === vendorFilter
     return matchesSearch && matchesStatus && matchesVendor
@@ -308,8 +308,8 @@ export default function ProcurementGRNPage() {
   }
 
   return (
-    <div className="container mx-auto min-h-screen px-4 sm:px-6 lg:px-8 py-6 max-w-7xl">
-      <div className="max-w-[1600px] mx-auto space-y-6">
+    <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6">
+      <div className="w-full space-y-6">
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
@@ -606,11 +606,10 @@ export default function ProcurementGRNPage() {
                     <button
                       key={i + 1}
                       onClick={() => setCurrentPage(i + 1)}
-                      className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                        currentPage === i + 1
+                      className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${currentPage === i + 1
                           ? 'bg-green-600 text-white'
                           : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
-                      }`}
+                        }`}
                     >
                       {i + 1}
                     </button>

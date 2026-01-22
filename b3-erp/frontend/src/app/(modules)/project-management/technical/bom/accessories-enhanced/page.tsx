@@ -421,9 +421,8 @@ export default function AccessoriesBOMEnhancedPage() {
                     updateFormData('project', selected);
                     updateFormData('projectName', projectNames[selected] || '');
                   }}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                    errors.project ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.project ? 'border-red-500' : 'border-gray-300'
+                    }`}
                 >
                   <option value="">Select a project</option>
                   <option value="PRJ-2025-001">PRJ-2025-001 - Taj Hotels - Commercial Kitchen</option>
@@ -872,7 +871,7 @@ export default function AccessoriesBOMEnhancedPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="max-w-6xl mx-auto px-4 py-6">
+      <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
         {/* Header */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
           <div className="flex items-center gap-4 mb-4">
@@ -935,9 +934,8 @@ export default function AccessoriesBOMEnhancedPage() {
                 type="button"
                 onClick={goToPrevStep}
                 disabled={currentStep === 0}
-                className={`flex items-center gap-2 px-4 py-2 rounded-lg ${
-                  currentStep === 0 ? 'text-gray-400 cursor-not-allowed' : 'text-gray-700 hover:bg-gray-100'
-                }`}
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg ${currentStep === 0 ? 'text-gray-400 cursor-not-allowed' : 'text-gray-700 hover:bg-gray-100'
+                  }`}
               >
                 <ArrowLeft className="w-5 h-5" />
                 Previous

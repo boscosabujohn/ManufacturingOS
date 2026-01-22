@@ -1,9 +1,9 @@
 'use client';
 
 import React, { useState } from 'react';
-import { 
-  Calendar, 
-  Building, 
+import {
+  Calendar,
+  Building,
   DollarSign,
   AlertCircle,
   Clock,
@@ -189,14 +189,14 @@ export default function PayablesAgingPage() {
 
   const filteredVendors = vendorAging.filter(vendor => {
     const matchesSearch = vendor.vendorName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         vendor.vendorId.toLowerCase().includes(searchQuery.toLowerCase());
+      vendor.vendorId.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesRisk = selectedRisk === 'all' || vendor.riskRating === selectedRisk;
     const matchesPeriod = selectedPeriod === 'all' ||
       (selectedPeriod === 'current' && vendor.current > 0) ||
       (selectedPeriod === '31-60' && vendor.days31to60 > 0) ||
       (selectedPeriod === '61-90' && vendor.days61to90 > 0) ||
       (selectedPeriod === '90+' && vendor.over90days > 0);
-    
+
     return matchesSearch && matchesRisk && matchesPeriod;
   });
 
@@ -207,7 +207,7 @@ export default function PayablesAgingPage() {
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50">
       <div className="flex-1 overflow-y-auto overflow-x-hidden">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 max-w-7xl">
+        <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
           {/* Header with Action Buttons */}
           <div className="flex justify-between items-start mb-6">
             <div>
@@ -217,13 +217,12 @@ export default function PayablesAgingPage() {
               </div>
               <p className="text-sm text-gray-600">Track outstanding payables by aging period</p>
             </div>
-            
+
             <div className="flex gap-2">
               <button
                 onClick={() => setShowFilters(!showFilters)}
-                className={`flex items-center space-x-2 px-4 py-2 rounded-lg border transition-colors ${
-                  showFilters ? 'bg-blue-50 border-blue-300 text-blue-700' : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-50'
-                }`}
+                className={`flex items-center space-x-2 px-4 py-2 rounded-lg border transition-colors ${showFilters ? 'bg-blue-50 border-blue-300 text-blue-700' : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-50'
+                  }`}
               >
                 <Filter className="h-4 w-4" />
                 <span>Filters</span>
@@ -284,7 +283,7 @@ export default function PayablesAgingPage() {
                   <span className="font-medium text-gray-900">₹{(agingSummary.current / 1000).toFixed(0)}K ({calculatePercentage(agingSummary.current, agingSummary.totalOutstanding)}%)</span>
                 </div>
                 <div className="w-full bg-gray-200 rounded-full h-2">
-                  <div 
+                  <div
                     className="bg-green-500 h-2 rounded-full transition-all"
                     style={{ width: `${calculatePercentage(agingSummary.current, agingSummary.totalOutstanding)}%` }}
                   />
@@ -297,7 +296,7 @@ export default function PayablesAgingPage() {
                   <span className="font-medium text-gray-900">₹{(agingSummary.days31to60 / 1000).toFixed(0)}K ({calculatePercentage(agingSummary.days31to60, agingSummary.totalOutstanding)}%)</span>
                 </div>
                 <div className="w-full bg-gray-200 rounded-full h-2">
-                  <div 
+                  <div
                     className="bg-blue-500 h-2 rounded-full transition-all"
                     style={{ width: `${calculatePercentage(agingSummary.days31to60, agingSummary.totalOutstanding)}%` }}
                   />
@@ -310,7 +309,7 @@ export default function PayablesAgingPage() {
                   <span className="font-medium text-gray-900">₹{(agingSummary.days61to90 / 1000).toFixed(0)}K ({calculatePercentage(agingSummary.days61to90, agingSummary.totalOutstanding)}%)</span>
                 </div>
                 <div className="w-full bg-gray-200 rounded-full h-2">
-                  <div 
+                  <div
                     className="bg-yellow-500 h-2 rounded-full transition-all"
                     style={{ width: `${calculatePercentage(agingSummary.days61to90, agingSummary.totalOutstanding)}%` }}
                   />
@@ -323,7 +322,7 @@ export default function PayablesAgingPage() {
                   <span className="font-medium text-gray-900">₹{(agingSummary.over90days / 1000).toFixed(0)}K ({calculatePercentage(agingSummary.over90days, agingSummary.totalOutstanding)}%)</span>
                 </div>
                 <div className="w-full bg-gray-200 rounded-full h-2">
-                  <div 
+                  <div
                     className="bg-red-500 h-2 rounded-full transition-all"
                     style={{ width: `${calculatePercentage(agingSummary.over90days, agingSummary.totalOutstanding)}%` }}
                   />

@@ -360,11 +360,10 @@ export default function QualityInspectionEnhancedPage() {
 
             <div className="space-y-4">
               {formData.checklist.map((item, index) => (
-                <div key={item.id} className={`p-4 rounded-lg border ${
-                  item.status === 'pass' ? 'bg-green-50 border-green-200' :
-                  item.status === 'fail' ? 'bg-red-50 border-red-200' :
-                  'bg-gray-50 border-gray-200'
-                }`}>
+                <div key={item.id} className={`p-4 rounded-lg border ${item.status === 'pass' ? 'bg-green-50 border-green-200' :
+                    item.status === 'fail' ? 'bg-red-50 border-red-200' :
+                      'bg-gray-50 border-gray-200'
+                  }`}>
                   <div className="grid grid-cols-12 gap-4 items-start">
                     <div className="col-span-1 text-center">
                       <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-gray-200 text-gray-700 font-medium">
@@ -405,18 +404,16 @@ export default function QualityInspectionEnhancedPage() {
                         <button
                           type="button"
                           onClick={() => updateChecklist(item.id, 'status', 'pass')}
-                          className={`flex-1 py-1.5 rounded text-sm font-medium ${
-                            item.status === 'pass' ? 'bg-green-600 text-white' : 'bg-gray-200 text-gray-600 hover:bg-green-100'
-                          }`}
+                          className={`flex-1 py-1.5 rounded text-sm font-medium ${item.status === 'pass' ? 'bg-green-600 text-white' : 'bg-gray-200 text-gray-600 hover:bg-green-100'
+                            }`}
                         >
                           <CheckCircle className="w-4 h-4 mx-auto" />
                         </button>
                         <button
                           type="button"
                           onClick={() => updateChecklist(item.id, 'status', 'fail')}
-                          className={`flex-1 py-1.5 rounded text-sm font-medium ${
-                            item.status === 'fail' ? 'bg-red-600 text-white' : 'bg-gray-200 text-gray-600 hover:bg-red-100'
-                          }`}
+                          className={`flex-1 py-1.5 rounded text-sm font-medium ${item.status === 'fail' ? 'bg-red-600 text-white' : 'bg-gray-200 text-gray-600 hover:bg-red-100'
+                            }`}
                         >
                           <XCircle className="w-4 h-4 mx-auto" />
                         </button>
@@ -458,13 +455,12 @@ export default function QualityInspectionEnhancedPage() {
                     key={result}
                     type="button"
                     onClick={() => updateFormData('overallResult', result)}
-                    className={`p-4 rounded-lg border-2 text-center transition-colors ${
-                      formData.overallResult === result
+                    className={`p-4 rounded-lg border-2 text-center transition-colors ${formData.overallResult === result
                         ? result === 'Approved' ? 'border-green-500 bg-green-50' :
                           result === 'Conditional' ? 'border-yellow-500 bg-yellow-50' :
-                          'border-red-500 bg-red-50'
+                            'border-red-500 bg-red-50'
                         : 'border-gray-200 hover:border-gray-300'
-                    }`}
+                      }`}
                   >
                     {result === 'Approved' && <CheckCircle className="w-8 h-8 mx-auto mb-2 text-green-600" />}
                     {result === 'Conditional' && <AlertTriangle className="w-8 h-8 mx-auto mb-2 text-yellow-600" />}
@@ -538,16 +534,14 @@ export default function QualityInspectionEnhancedPage() {
                     <p className="text-2xl font-bold text-gray-900">{stats.total}</p>
                     <p className="text-sm text-gray-500">Total Checks</p>
                   </div>
-                  <div className={`rounded-lg p-3 border text-center ${
-                    formData.overallResult === 'Approved' ? 'bg-green-50 border-green-200' :
-                    formData.overallResult === 'Conditional' ? 'bg-yellow-50 border-yellow-200' :
-                    formData.overallResult === 'Rejected' ? 'bg-red-50 border-red-200' : 'bg-white'
-                  }`}>
-                    <p className={`text-lg font-bold ${
-                      formData.overallResult === 'Approved' ? 'text-green-600' :
-                      formData.overallResult === 'Conditional' ? 'text-yellow-600' :
-                      'text-red-600'
-                    }`}>{formData.overallResult || 'Pending'}</p>
+                  <div className={`rounded-lg p-3 border text-center ${formData.overallResult === 'Approved' ? 'bg-green-50 border-green-200' :
+                      formData.overallResult === 'Conditional' ? 'bg-yellow-50 border-yellow-200' :
+                        formData.overallResult === 'Rejected' ? 'bg-red-50 border-red-200' : 'bg-white'
+                    }`}>
+                    <p className={`text-lg font-bold ${formData.overallResult === 'Approved' ? 'text-green-600' :
+                        formData.overallResult === 'Conditional' ? 'text-yellow-600' :
+                          'text-red-600'
+                      }`}>{formData.overallResult || 'Pending'}</p>
                     <p className="text-sm text-gray-500">Overall</p>
                   </div>
                 </div>
@@ -570,7 +564,7 @@ export default function QualityInspectionEnhancedPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="max-w-5xl mx-auto px-4 py-6">
+      <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
           <div className="flex items-center gap-4 mb-4">
             <button onClick={() => router.back()} className="p-2 hover:bg-gray-100 rounded-lg">

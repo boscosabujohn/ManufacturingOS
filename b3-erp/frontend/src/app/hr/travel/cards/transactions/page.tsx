@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useMemo } from 'react';
-import { CreditCard, Calendar, MapPin, CheckCircle, XCircle, AlertTriangle, Download, Link as LinkIcon } from 'lucide-react';
+import React, { useState, useMemo } from 'react';
+import { CreditCard, Calendar, MapPin, CheckCircle, XCircle, AlertTriangle, Download, Link as LinkIcon, Search } from 'lucide-react';
 import DataTable from '@/components/DataTable';
 import { toast } from '@/hooks/use-toast';
 
@@ -31,6 +31,7 @@ export default function Page() {
   const [selectedStatus, setSelectedStatus] = useState('all');
   const [selectedMonth, setSelectedMonth] = useState('2025-11');
   const [selectedEmployee, setSelectedEmployee] = useState('all');
+  const [searchTerm, setSearchTerm] = useState('');
 
   const mockTransactions: CardTransaction[] = [
     {
@@ -183,15 +184,32 @@ export default function Page() {
     }
   ];
 
+  // Safe Date Display Component
+  const DateDisplay = ({ date, type = 'date' }: { date: string, type?: 'date' | 'time' }) => {
+    const [mounted, setMounted] = useState(false);
+    React.useEffect(() => setMounted(true), []);
+
+    if (!mounted) return <span>{date}</span>;
+
+    if (type === 'time') {
+      return <span>{new Date(date).toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' })}</span>;
+    }
+    return <span>{new Date(date).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' })}</span>;
+  };
+
   const filteredTransactions = useMemo(() => {
     return mockTransactions.filter(txn => {
       const matchesStatus = selectedStatus === 'all' || txn.status === selectedStatus;
-      const matchesMonth = txn.billingCycle.toLowerCase().includes(selectedMonth.split('-')[1]) &&
-                           txn.billingCycle.includes(selectedMonth.split('-')[0]);
+      const matchesMonth = txn.transactionDate.startsWith(selectedMonth);
       const matchesEmployee = selectedEmployee === 'all' || txn.employeeCode === selectedEmployee;
-      return matchesStatus && matchesMonth && matchesEmployee;
+      const matchesSearch = searchTerm === '' ||
+        txn.merchant.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        txn.employeeName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        txn.transactionId.toLowerCase().includes(searchTerm.toLowerCase());
+
+      return matchesStatus && matchesMonth && matchesEmployee && matchesSearch;
     });
-  }, [selectedStatus, selectedMonth, selectedEmployee]);
+  }, [selectedStatus, selectedMonth, selectedEmployee, searchTerm]);
 
   const stats = {
     totalTransactions: mockTransactions.length,
@@ -242,22 +260,25 @@ export default function Page() {
   };
 
   const columns = [
-    { key: 'transactionDate', label: 'Date', sortable: true,
+    {
+      key: 'transactionDate', label: 'Date', sortable: true,
       render: (v: string) => (
         <div className="text-sm">
           <div className="font-semibold text-gray-900">
-            {new Date(v).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' })}
+            <DateDisplay date={v} type="date" />
           </div>
           <div className="text-xs text-gray-500">
-            {new Date(v).toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' })}
+            <DateDisplay date={v} type="time" />
           </div>
         </div>
       )
     },
-    { key: 'transactionId', label: 'Transaction ID', sortable: true,
+    {
+      key: 'transactionId', label: 'Transaction ID', sortable: true,
       render: (v: string) => <div className="font-mono text-xs text-gray-700">{v}</div>
     },
-    { key: 'employeeName', label: 'Employee', sortable: true,
+    {
+      key: 'employeeName', label: 'Employee', sortable: true,
       render: (v: string, row: CardTransaction) => (
         <div>
           <div className="font-medium text-gray-900">{v}</div>
@@ -265,7 +286,8 @@ export default function Page() {
         </div>
       )
     },
-    { key: 'merchant', label: 'Merchant', sortable: true,
+    {
+      key: 'merchant', label: 'Merchant', sortable: true,
       render: (v: string, row: CardTransaction) => (
         <div>
           <div className="text-sm font-semibold text-gray-900">{v}</div>
@@ -277,7 +299,8 @@ export default function Page() {
         </div>
       )
     },
-    { key: 'location', label: 'Location', sortable: true,
+    {
+      key: 'location', label: 'Location', sortable: true,
       render: (v: string) => (
         <div className="flex items-center gap-1 text-sm text-gray-700">
           <MapPin className="h-3 w-3 text-gray-400" />
@@ -285,7 +308,8 @@ export default function Page() {
         </div>
       )
     },
-    { key: 'amount', label: 'Amount', sortable: true,
+    {
+      key: 'amount', label: 'Amount', sortable: true,
       render: (v: number, row: CardTransaction) => (
         <div>
           <div className="text-sm font-bold text-gray-900">₹{v.toLocaleString('en-IN')}</div>
@@ -295,7 +319,8 @@ export default function Page() {
         </div>
       )
     },
-    { key: 'status', label: 'Status', sortable: true,
+    {
+      key: 'status', label: 'Status', sortable: true,
       render: (v: string, row: CardTransaction) => (
         <div>
           <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusColor(v)}`}>
@@ -307,7 +332,8 @@ export default function Page() {
         </div>
       )
     },
-    { key: 'actions', label: 'Actions', sortable: false,
+    {
+      key: 'actions', label: 'Actions', sortable: false,
       render: (_: any, row: CardTransaction) => (
         <div className="flex gap-2">
           {row.status === 'captured' && (
@@ -343,6 +369,15 @@ export default function Page() {
         </div>
       )
     }
+  ];
+
+  const transactionTabs = [
+    { id: 'all', label: 'All Transactions' },
+    { id: 'captured', label: 'Captured' },
+    { id: 'linked', label: 'Linked' },
+    { id: 'unmatched', label: 'Unmatched' },
+    { id: 'disputed', label: 'Disputed' },
+    { id: 'personal', label: 'Personal' }
   ];
 
   return (
@@ -422,58 +457,67 @@ export default function Page() {
         </div>
       </div>
 
-      {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Filter by Status:</label>
-            <select
-              value={selectedStatus}
-              onChange={(e) => setSelectedStatus(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-            >
-              <option value="all">All Status</option>
-              <option value="captured">Captured</option>
-              <option value="linked">Linked</option>
-              <option value="unmatched">Unmatched</option>
-              <option value="disputed">Disputed</option>
-              <option value="personal">Personal</option>
-            </select>
+      {/* Main Content Area */}
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+        {/* Toolbar & Tabs */}
+        <div className="border-b border-gray-200">
+          <div className="p-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
+            {/* Search */}
+            <div className="relative w-full md:w-64">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+              <input
+                type="text"
+                placeholder="Search merchant, ID..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full pl-9 pr-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+
+            <div className="flex flex-wrap gap-2">
+              <input
+                type="month"
+                value={selectedMonth}
+                onChange={(e) => setSelectedMonth(e.target.value)}
+                className="px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <select
+                value={selectedEmployee}
+                onChange={(e) => setSelectedEmployee(e.target.value)}
+                className="px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                <option value="all">All Employees</option>
+                <option value="EMP456">Rajesh Kumar</option>
+                <option value="EMP789">Priya Sharma</option>
+                <option value="EMP234">Amit Singh</option>
+                <option value="EMP890">Suresh Patel</option>
+              </select>
+              <button className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium text-sm gap-2">
+                <Download className="h-4 w-4" />
+                Export
+              </button>
+            </div>
           </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Billing Month:</label>
-            <input
-              type="month"
-              value={selectedMonth}
-              onChange={(e) => setSelectedMonth(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Filter by Employee:</label>
-            <select
-              value={selectedEmployee}
-              onChange={(e) => setSelectedEmployee(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-            >
-              <option value="all">All Employees</option>
-              <option value="EMP456">Rajesh Kumar</option>
-              <option value="EMP789">Priya Sharma</option>
-              <option value="EMP234">Amit Singh</option>
-              <option value="EMP890">Suresh Patel</option>
-            </select>
-          </div>
-          <div className="flex items-end">
-            <button className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium text-sm">
-              <Download className="h-4 w-4" />
-              Export Report
-            </button>
+
+          <div className="px-4 flex overflow-x-auto hide-scrollbar gap-1">
+            {transactionTabs.map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setSelectedStatus(tab.id)}
+                className={`px-4 py-2.5 text-sm font-medium border-b-2 transition-colors whitespace-nowrap ${selectedStatus === tab.id
+                    ? 'border-blue-600 text-blue-600'
+                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                  }`}
+              >
+                {tab.label}
+              </button>
+            ))}
           </div>
         </div>
-      </div>
 
-      {/* Transactions Table */}
-      <DataTable data={filteredTransactions} columns={columns} />
+        {/* Transactions Table */}
+        <DataTable data={filteredTransactions} columns={columns} />
+      </div>
 
       {/* Transaction Status Info */}
       <div className="mt-6 bg-white border border-gray-200 rounded-lg p-6">

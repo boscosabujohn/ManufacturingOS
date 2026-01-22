@@ -366,7 +366,7 @@ export default function GSTManagementPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-green-900 to-gray-900 p-6">
-      <div className="max-w-7xl mx-auto space-y-6">
+      <div className="w-full space-y-6">
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
@@ -448,11 +448,10 @@ export default function GSTManagementPage() {
           <div className="flex border-b border-gray-700">
             <button
               onClick={() => setActiveTab('transactions')}
-              className={`flex-1 px-6 py-4 font-medium transition-colors ${
-                activeTab === 'transactions'
+              className={`flex-1 px-6 py-4 font-medium transition-colors ${activeTab === 'transactions'
                   ? 'bg-green-600 text-white'
                   : 'text-gray-400 hover:text-white hover:bg-gray-700/50'
-              }`}
+                }`}
             >
               <div className="flex items-center justify-center gap-2">
                 <FileText className="w-5 h-5" />
@@ -461,11 +460,10 @@ export default function GSTManagementPage() {
             </button>
             <button
               onClick={() => setActiveTab('returns')}
-              className={`flex-1 px-6 py-4 font-medium transition-colors ${
-                activeTab === 'returns'
+              className={`flex-1 px-6 py-4 font-medium transition-colors ${activeTab === 'returns'
                   ? 'bg-green-600 text-white'
                   : 'text-gray-400 hover:text-white hover:bg-gray-700/50'
-              }`}
+                }`}
             >
               <div className="flex items-center justify-center gap-2">
                 <Calendar className="w-5 h-5" />

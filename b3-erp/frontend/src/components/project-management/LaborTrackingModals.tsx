@@ -1057,17 +1057,23 @@ export function ShiftScheduleModal({ isOpen, onClose, onSchedule }: ShiftSchedul
 }
 
 // ==================== 12. Overtime Analysis Modal ====================
+// ==================== 12. Overtime Analysis Modal ====================
 interface OvertimeAnalysisModalProps {
   isOpen: boolean;
   onClose: () => void;
-  entry: any;
+  entries: any[];
 }
 
-export function OvertimeAnalysisModal({ isOpen, onClose, entry }: OvertimeAnalysisModalProps) {
-  if (!isOpen || !entry) return null;
+export function OvertimeAnalysisModal({ isOpen, onClose, entries }: OvertimeAnalysisModalProps) {
+  if (!isOpen) return null;
 
-  const overtimePercentage = ((entry.overtimeHours / entry.totalManhours) * 100).toFixed(1);
-  const overtimeCost = entry.overtimeHours * entry.overtimeRate;
+  const totalRegularHours = entries.reduce((sum, e) => sum + e.hoursWorked, 0);
+  const totalOvertimeHours = entries.reduce((sum, e) => sum + e.overtimeHours, 0);
+  const totalManhours = totalRegularHours + totalOvertimeHours;
+  const overtimePercentage = totalManhours > 0 ? ((totalOvertimeHours / totalManhours) * 100).toFixed(1) : '0';
+  const totalOvertimeCost = entries.reduce((sum, e) => sum + (e.overtimeHours * e.overtimeRate), 0);
+
+  const entriesWithHighOvertime = entries.filter(e => e.overtimeHours > 4); // Threshold for alert
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
@@ -1079,7 +1085,7 @@ export function OvertimeAnalysisModal({ isOpen, onClose, entry }: OvertimeAnalys
             </div>
             <div>
               <h2 className="text-xl font-bold text-white">Overtime Analysis</h2>
-              <p className="text-violet-100 text-sm">{entry.projectName}</p>
+              <p className="text-violet-100 text-sm">Aggregate View</p>
             </div>
           </div>
           <button onClick={onClose} className="text-white hover:bg-white/20 p-2 rounded-lg">
@@ -1090,12 +1096,12 @@ export function OvertimeAnalysisModal({ isOpen, onClose, entry }: OvertimeAnalys
         <div className="p-6 space-y-4">
           <div className="grid grid-cols-3 gap-4">
             <div className="bg-blue-50 rounded-lg p-3 text-center">
-              <p className="text-2xl font-bold text-blue-600">{entry.hoursWorked}h</p>
-              <p className="text-xs text-gray-600">Regular Hours</p>
+              <p className="text-2xl font-bold text-blue-600">{totalRegularHours}h</p>
+              <p className="text-xs text-gray-600">Total Regular Hours</p>
             </div>
             <div className="bg-orange-50 rounded-lg p-3 text-center">
-              <p className="text-2xl font-bold text-orange-600">{entry.overtimeHours}h</p>
-              <p className="text-xs text-gray-600">Overtime Hours</p>
+              <p className="text-2xl font-bold text-orange-600">{totalOvertimeHours}h</p>
+              <p className="text-xs text-gray-600">Total Overtime Hours</p>
             </div>
             <div className="bg-red-50 rounded-lg p-3 text-center">
               <p className="text-2xl font-bold text-red-600">{overtimePercentage}%</p>
@@ -1104,24 +1110,30 @@ export function OvertimeAnalysisModal({ isOpen, onClose, entry }: OvertimeAnalys
           </div>
 
           <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
-            <h4 className="font-medium text-yellow-800 mb-2">Overtime Cost Impact</h4>
+            <h4 className="font-medium text-yellow-800 mb-2">Total Overtime Cost Impact</h4>
             <p className="text-sm text-yellow-700">
-              Additional Cost: ₹{overtimeCost.toLocaleString('en-IN')}
+              Additional Cost: ₹{totalOvertimeCost.toLocaleString('en-IN')}
             </p>
             <p className="text-sm text-yellow-700 mt-1">
-              Reason: {entry.remarks || 'No reason provided'}
+              Analysis based on {entries.length} entries.
             </p>
           </div>
 
-          {entry.overtimeHours > 10 && (
+          {entriesWithHighOvertime.length > 0 && (
             <div className="bg-red-50 border border-red-200 rounded-lg p-4">
               <div className="flex items-start gap-2">
                 <AlertTriangle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
                 <div>
-                  <p className="text-sm font-medium text-red-800">High Overtime Alert</p>
+                  <p className="text-sm font-medium text-red-800">High Overtime Alerts ({entriesWithHighOvertime.length})</p>
                   <p className="text-sm text-red-700 mt-1">
-                    This entry has significant overtime hours. Consider reviewing resource allocation.
+                    {entriesWithHighOvertime.length} entries have significant overtime (>4h).
                   </p>
+                  <ul className="list-disc list-inside mt-2 text-xs text-red-600">
+                    {entriesWithHighOvertime.slice(0, 3).map(e => (
+                      <li key={e.id}>{e.projectName} ({e.overtimeHours}h)</li>
+                    ))}
+                    {entriesWithHighOvertime.length > 3 && <li>...and {entriesWithHighOvertime.length - 3} more</li>}
+                  </ul>
                 </div>
               </div>
             </div>

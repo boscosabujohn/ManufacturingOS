@@ -107,12 +107,12 @@ export default function StockAddPage() {
 
   const generateItemCode = () => {
     const prefix = formData.category === 'Raw Materials' ? 'RM' :
-                   formData.category === 'Components' ? 'COMP' :
-                   formData.category === 'Finished Goods' ? 'FG' :
-                   formData.category === 'Work in Progress' ? 'WIP' :
-                   formData.category === 'Consumables' ? 'CONS' :
-                   formData.category === 'Packaging Materials' ? 'PKG' :
-                   formData.category === 'Tools & Equipment' ? 'TOOL' : 'SP';
+      formData.category === 'Components' ? 'COMP' :
+        formData.category === 'Finished Goods' ? 'FG' :
+          formData.category === 'Work in Progress' ? 'WIP' :
+            formData.category === 'Consumables' ? 'CONS' :
+              formData.category === 'Packaging Materials' ? 'PKG' :
+                formData.category === 'Tools & Equipment' ? 'TOOL' : 'SP';
 
     const random = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
     handleInputChange('itemCode', `${prefix}-${random}`);
@@ -167,7 +167,7 @@ export default function StockAddPage() {
   };
 
   return (
-    <div className="p-6 max-w-6xl mx-auto">
+    <div className="w-full h-full p-6">
       {/* Header */}
       <div className="flex items-center gap-4 mb-6">
         <button
@@ -199,9 +199,8 @@ export default function StockAddPage() {
                   type="text"
                   value={formData.itemCode}
                   onChange={(e) => handleInputChange('itemCode', e.target.value)}
-                  className={`flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
-                    errors.itemCode ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'
-                  }`}
+                  className={`flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${errors.itemCode ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'
+                    }`}
                   placeholder="e.g., RM-SS304-2MM"
                 />
                 <button
@@ -227,9 +226,8 @@ export default function StockAddPage() {
                 type="text"
                 value={formData.itemName}
                 onChange={(e) => handleInputChange('itemName', e.target.value)}
-                className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
-                  errors.itemName ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'
-                }`}
+                className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${errors.itemName ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'
+                  }`}
                 placeholder="Enter item name"
               />
               {errors.itemName && (
@@ -260,9 +258,8 @@ export default function StockAddPage() {
                   handleInputChange('category', e.target.value);
                   handleInputChange('subCategory', '');
                 }}
-                className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
-                  errors.category ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'
-                }`}
+                className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${errors.category ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'
+                  }`}
               >
                 <option value="">Select Category</option>
                 {categories.map(cat => (
@@ -281,9 +278,8 @@ export default function StockAddPage() {
               <select
                 value={formData.subCategory}
                 onChange={(e) => handleInputChange('subCategory', e.target.value)}
-                className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
-                  errors.subCategory ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'
-                }`}
+                className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${errors.subCategory ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'
+                  }`}
                 disabled={!formData.category}
               >
                 <option value="">Select Sub-Category</option>
@@ -303,9 +299,8 @@ export default function StockAddPage() {
               <select
                 value={formData.uom}
                 onChange={(e) => handleInputChange('uom', e.target.value)}
-                className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
-                  errors.uom ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'
-                }`}
+                className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${errors.uom ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'
+                  }`}
               >
                 <option value="">Select UOM</option>
                 {uomOptions.map(uom => (
@@ -325,9 +320,8 @@ export default function StockAddPage() {
                 type="text"
                 value={formData.hsnCode}
                 onChange={(e) => handleInputChange('hsnCode', e.target.value)}
-                className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
-                  errors.hsnCode ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'
-                }`}
+                className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${errors.hsnCode ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'
+                  }`}
                 placeholder="e.g., 72193300"
               />
               {errors.hsnCode && (
@@ -357,9 +351,8 @@ export default function StockAddPage() {
                 type="number"
                 value={formData.initialStock}
                 onChange={(e) => handleInputChange('initialStock', parseFloat(e.target.value))}
-                className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
-                  errors.initialStock ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'
-                }`}
+                className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${errors.initialStock ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'
+                  }`}
                 placeholder="0"
                 min="0"
               />
@@ -386,9 +379,8 @@ export default function StockAddPage() {
                 type="number"
                 value={formData.safetyStock}
                 onChange={(e) => handleInputChange('safetyStock', parseFloat(e.target.value))}
-                className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
-                  errors.safetyStock ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'
-                }`}
+                className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${errors.safetyStock ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'
+                  }`}
                 placeholder="0"
                 min="0"
               />
@@ -406,9 +398,8 @@ export default function StockAddPage() {
                 type="number"
                 value={formData.reorderLevel}
                 onChange={(e) => handleInputChange('reorderLevel', parseFloat(e.target.value))}
-                className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
-                  errors.reorderLevel ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'
-                }`}
+                className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${errors.reorderLevel ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'
+                  }`}
                 placeholder="0"
                 min="0"
               />
@@ -426,9 +417,8 @@ export default function StockAddPage() {
                 type="number"
                 value={formData.maxLevel}
                 onChange={(e) => handleInputChange('maxLevel', parseFloat(e.target.value))}
-                className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
-                  errors.maxLevel ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'
-                }`}
+                className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${errors.maxLevel ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'
+                  }`}
                 placeholder="0"
                 min="0"
               />
@@ -446,9 +436,8 @@ export default function StockAddPage() {
                 type="number"
                 value={formData.leadTimeDays}
                 onChange={(e) => handleInputChange('leadTimeDays', parseInt(e.target.value))}
-                className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
-                  errors.leadTimeDays ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'
-                }`}
+                className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${errors.leadTimeDays ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'
+                  }`}
                 placeholder="7"
                 min="1"
               />
@@ -518,9 +507,8 @@ export default function StockAddPage() {
                 step="0.01"
                 value={formData.unitCost}
                 onChange={(e) => handleInputChange('unitCost', parseFloat(e.target.value))}
-                className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
-                  errors.unitCost ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'
-                }`}
+                className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${errors.unitCost ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'
+                  }`}
                 placeholder="0.00"
                 min="0"
               />
@@ -567,9 +555,8 @@ export default function StockAddPage() {
               <select
                 value={formData.warehouse}
                 onChange={(e) => handleInputChange('warehouse', e.target.value)}
-                className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
-                  errors.warehouse ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'
-                }`}
+                className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${errors.warehouse ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'
+                  }`}
               >
                 <option value="">Select Warehouse</option>
                 {warehouses.map(wh => (

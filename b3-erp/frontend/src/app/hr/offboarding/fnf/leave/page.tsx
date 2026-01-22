@@ -54,90 +54,84 @@ export default function FNFLeavePage() {
 
   const mockEncashments: FNFLeaveEncashment[] = [
     {
-      id: 'FNF-LV-001',
-      employeeId: 'EMP001',
-      employeeName: 'Rahul Sharma',
-      designation: 'Senior Software Engineer',
-      department: 'Engineering',
-      lastWorkingDay: '2025-12-14',
-      joiningDate: '2022-01-15',
-      leaveBalance: {
-        earnedLeave: 15,
-        casualLeave: 3,
-        sickLeave: 2,
-        privilegeLeave: 8
-      },
-      leavePolicy: {
-        earnedLeaveEncashable: true,
-        casualLeaveEncashable: false,
-        sickLeaveEncashable: false,
-        privilegeLeaveEncashable: true,
-        maxEncashableDays: 30
-      },
-      encashableDays: 23,
-      dailyRate: 3461,
-      encashmentAmount: 79603,
-      status: 'calculated',
-      calculatedBy: 'Priya Singh - HR Manager',
-      calculatedOn: '2025-12-10'
+      id: 'FNF-LV-001', employeeId: 'EMP001', employeeName: 'Rahul Sharma', designation: 'Senior Software Engineer', department: 'Engineering',
+      lastWorkingDay: '2025-12-14', joiningDate: '2020-01-15',
+      leaveBalance: { earnedLeave: 15, casualLeave: 3, sickLeave: 2, privilegeLeave: 8 },
+      leavePolicy: { earnedLeaveEncashable: true, casualLeaveEncashable: false, sickLeaveEncashable: false, privilegeLeaveEncashable: true, maxEncashableDays: 30 },
+      encashableDays: 23, dailyRate: 3461, encashmentAmount: 79603,
+      status: 'calculated', calculatedBy: 'Priya Singh - HR Manager', calculatedOn: '2025-12-10'
     },
     {
-      id: 'FNF-LV-002',
-      employeeId: 'EMP002',
-      employeeName: 'Priya Singh',
-      designation: 'Marketing Manager',
-      department: 'Marketing',
-      lastWorkingDay: '2025-11-30',
-      joiningDate: '2020-06-10',
-      leaveBalance: {
-        earnedLeave: 20,
-        casualLeave: 5,
-        sickLeave: 4,
-        privilegeLeave: 12
-      },
-      leavePolicy: {
-        earnedLeaveEncashable: true,
-        casualLeaveEncashable: false,
-        sickLeaveEncashable: false,
-        privilegeLeaveEncashable: true,
-        maxEncashableDays: 30
-      },
-      encashableDays: 30,
-      dailyRate: 4230,
-      encashmentAmount: 126900,
-      status: 'approved',
-      calculatedBy: 'Amit Kumar - Finance Head',
-      calculatedOn: '2025-11-25',
-      approvedBy: 'Rajesh Patel - CFO'
+      id: 'FNF-LV-002', employeeId: 'EMP002', employeeName: 'Priya Singh', designation: 'Marketing Manager', department: 'Marketing',
+      lastWorkingDay: '2025-11-30', joiningDate: '2016-06-10',
+      leaveBalance: { earnedLeave: 20, casualLeave: 5, sickLeave: 4, privilegeLeave: 12 },
+      leavePolicy: { earnedLeaveEncashable: true, casualLeaveEncashable: false, sickLeaveEncashable: false, privilegeLeaveEncashable: true, maxEncashableDays: 30 },
+      encashableDays: 30, dailyRate: 4230, encashmentAmount: 126900,
+      status: 'approved', calculatedBy: 'Amit Kumar - Finance Head', calculatedOn: '2025-11-25', approvedBy: 'Rajesh Patel - CFO'
     },
     {
-      id: 'FNF-LV-003',
-      employeeId: 'EMP003',
-      employeeName: 'Amit Kumar',
-      designation: 'Product Manager',
-      department: 'Product',
-      lastWorkingDay: '2025-10-31',
-      joiningDate: '2019-03-20',
-      leaveBalance: {
-        earnedLeave: 25,
-        casualLeave: 2,
-        sickLeave: 1,
-        privilegeLeave: 15
-      },
-      leavePolicy: {
-        earnedLeaveEncashable: true,
-        casualLeaveEncashable: false,
-        sickLeaveEncashable: false,
-        privilegeLeaveEncashable: true,
-        maxEncashableDays: 30
-      },
-      encashableDays: 30,
-      dailyRate: 5000,
-      encashmentAmount: 150000,
-      status: 'processed',
-      calculatedBy: 'Priya Singh - HR Manager',
-      calculatedOn: '2025-10-25',
-      approvedBy: 'Rajesh Patel - CFO'
+      id: 'FNF-LV-003', employeeId: 'EMP003', employeeName: 'Amit Kumar', designation: 'Product Manager', department: 'Product',
+      lastWorkingDay: '2025-10-31', joiningDate: '2010-03-20',
+      leaveBalance: { earnedLeave: 25, casualLeave: 2, sickLeave: 1, privilegeLeave: 15 },
+      leavePolicy: { earnedLeaveEncashable: true, casualLeaveEncashable: false, sickLeaveEncashable: false, privilegeLeaveEncashable: true, maxEncashableDays: 30 },
+      encashableDays: 30, dailyRate: 5000, encashmentAmount: 150000,
+      status: 'processed', calculatedBy: 'Priya Singh - HR Manager', calculatedOn: '2025-10-25', approvedBy: 'Rajesh Patel - CFO'
+    },
+    {
+      id: 'FNF-LV-004', employeeId: 'EMP004', employeeName: 'Neha Gupta', designation: 'Junior Developer', department: 'Engineering',
+      lastWorkingDay: '2025-12-31', joiningDate: '2022-05-15',
+      leaveBalance: { earnedLeave: 10, casualLeave: 0, sickLeave: 0, privilegeLeave: 5 },
+      leavePolicy: { earnedLeaveEncashable: true, casualLeaveEncashable: false, sickLeaveEncashable: false, privilegeLeaveEncashable: true, maxEncashableDays: 30 },
+      encashableDays: 15, dailyRate: 2000, encashmentAmount: 30000,
+      status: 'pending'
+    },
+    {
+      id: 'FNF-LV-005', employeeId: 'EMP005', employeeName: 'Vikram Malhotra', designation: 'VP of Sales', department: 'Sales',
+      lastWorkingDay: '2025-09-30', joiningDate: '2015-01-01',
+      leaveBalance: { earnedLeave: 40, casualLeave: 5, sickLeave: 5, privilegeLeave: 20 },
+      leavePolicy: { earnedLeaveEncashable: true, casualLeaveEncashable: false, sickLeaveEncashable: false, privilegeLeaveEncashable: true, maxEncashableDays: 45 },
+      encashableDays: 45, dailyRate: 6000, encashmentAmount: 270000,
+      status: 'calculated', calculatedBy: 'Priya Singh', calculatedOn: '2025-09-25'
+    },
+    {
+      id: 'FNF-LV-006', employeeId: 'EMP006', employeeName: 'Anjali Desai', designation: 'HR Executive', department: 'Human Resources',
+      lastWorkingDay: '2025-10-15', joiningDate: '2021-02-10',
+      leaveBalance: { earnedLeave: 5, casualLeave: 1, sickLeave: 0, privilegeLeave: 0 },
+      leavePolicy: { earnedLeaveEncashable: true, casualLeaveEncashable: false, sickLeaveEncashable: false, privilegeLeaveEncashable: false },
+      encashableDays: 5, dailyRate: 1500, encashmentAmount: 7500,
+      status: 'approved', calculatedBy: 'Priya Singh', calculatedOn: '2025-10-12', approvedBy: 'Rajesh Patel'
+    },
+    {
+      id: 'FNF-LV-007', employeeId: 'EMP007', employeeName: 'Rohan Mehra', designation: 'Content Strategist', department: 'Marketing',
+      lastWorkingDay: '2025-11-15', joiningDate: '2018-06-01',
+      leaveBalance: { earnedLeave: 12, casualLeave: 2, sickLeave: 2, privilegeLeave: 6 },
+      leavePolicy: { earnedLeaveEncashable: true, casualLeaveEncashable: false, sickLeaveEncashable: false, privilegeLeaveEncashable: true, maxEncashableDays: 30 },
+      encashableDays: 18, dailyRate: 2500, encashmentAmount: 45000,
+      status: 'pending'
+    },
+    {
+      id: 'FNF-LV-008', employeeId: 'EMP008', employeeName: 'Suresh Raina', designation: 'Operations Manager', department: 'Operations',
+      lastWorkingDay: '2025-08-31', joiningDate: '2005-04-01',
+      leaveBalance: { earnedLeave: 35, casualLeave: 5, sickLeave: 10, privilegeLeave: 15 },
+      leavePolicy: { earnedLeaveEncashable: true, casualLeaveEncashable: true, sickLeaveEncashable: false, privilegeLeaveEncashable: true, maxEncashableDays: 60 },
+      encashableDays: 55, dailyRate: 4000, encashmentAmount: 220000,
+      status: 'processed', calculatedBy: 'Amit Kumar', calculatedOn: '2025-08-28', approvedBy: 'Rajesh Patel'
+    },
+    {
+      id: 'FNF-LV-009', employeeId: 'EMP009', employeeName: 'Kavita Krishnan', designation: 'Lead Designer', department: 'Design',
+      lastWorkingDay: '2025-12-05', joiningDate: '2019-11-11',
+      leaveBalance: { earnedLeave: 18, casualLeave: 4, sickLeave: 1, privilegeLeave: 4 },
+      leavePolicy: { earnedLeaveEncashable: true, casualLeaveEncashable: false, sickLeaveEncashable: false, privilegeLeaveEncashable: true },
+      encashableDays: 22, dailyRate: 3000, encashmentAmount: 66000,
+      status: 'approved', calculatedBy: 'Priya Singh', calculatedOn: '2025-12-02', approvedBy: 'Rajesh Patel'
+    },
+    {
+      id: 'FNF-LV-010', employeeId: 'EMP010', employeeName: 'Deepak Verma', designation: 'System Admin', department: 'IT',
+      lastWorkingDay: '2025-11-20', joiningDate: '2023-01-15',
+      leaveBalance: { earnedLeave: 0, casualLeave: 0, sickLeave: 0, privilegeLeave: 0 },
+      leavePolicy: { earnedLeaveEncashable: true, casualLeaveEncashable: false, sickLeaveEncashable: false, privilegeLeaveEncashable: true },
+      encashableDays: 0, dailyRate: 1800, encashmentAmount: 0,
+      status: 'calculated', calculatedBy: 'Priya Singh', calculatedOn: '2025-11-18'
     }
   ];
 
@@ -284,41 +278,37 @@ export default function FNFLeavePage() {
       <div className="mb-4 flex gap-2">
         <button
           onClick={() => setSelectedTab('pending')}
-          className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${
-            selectedTab === 'pending'
+          className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${selectedTab === 'pending'
               ? 'bg-yellow-600 text-white'
               : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-          }`}
+            }`}
         >
           Pending ({stats.pending})
         </button>
         <button
           onClick={() => setSelectedTab('calculated')}
-          className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${
-            selectedTab === 'calculated'
+          className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${selectedTab === 'calculated'
               ? 'bg-blue-600 text-white'
               : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-          }`}
+            }`}
         >
           Calculated ({stats.calculated})
         </button>
         <button
           onClick={() => setSelectedTab('approved')}
-          className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${
-            selectedTab === 'approved'
+          className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${selectedTab === 'approved'
               ? 'bg-green-600 text-white'
               : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-          }`}
+            }`}
         >
           Approved ({stats.approved})
         </button>
         <button
           onClick={() => setSelectedTab('processed')}
-          className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${
-            selectedTab === 'processed'
+          className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${selectedTab === 'processed'
               ? 'bg-gray-600 text-white'
               : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-          }`}
+            }`}
         >
           Processed ({stats.processed})
         </button>
@@ -418,16 +408,16 @@ export default function FNFLeavePage() {
                     </p>
                   </div>
                   {encashment.leavePolicy.maxEncashableDays &&
-                   (encashment.leaveBalance.earnedLeave + encashment.leaveBalance.privilegeLeave) > encashment.leavePolicy.maxEncashableDays && (
-                    <div className="mt-3 p-2 bg-yellow-50 rounded border border-yellow-200">
-                      <div className="flex items-start gap-2">
-                        <AlertCircle className="h-4 w-4 text-yellow-600 mt-0.5" />
-                        <p className="text-xs text-yellow-700">
-                          Encashable days capped at {encashment.leavePolicy.maxEncashableDays} days as per policy
-                        </p>
+                    (encashment.leaveBalance.earnedLeave + encashment.leaveBalance.privilegeLeave) > encashment.leavePolicy.maxEncashableDays && (
+                      <div className="mt-3 p-2 bg-yellow-50 rounded border border-yellow-200">
+                        <div className="flex items-start gap-2">
+                          <AlertCircle className="h-4 w-4 text-yellow-600 mt-0.5" />
+                          <p className="text-xs text-yellow-700">
+                            Encashable days capped at {encashment.leavePolicy.maxEncashableDays} days as per policy
+                          </p>
+                        </div>
                       </div>
-                    </div>
-                  )}
+                    )}
                 </div>
               </div>
 
@@ -631,7 +621,7 @@ export default function FNFLeavePage() {
                     <input
                       type="number"
                       value={calculateFormData.encashableEL}
-                      onChange={(e) => setCalculateFormData({...calculateFormData, encashableEL: Number(e.target.value)})}
+                      onChange={(e) => setCalculateFormData({ ...calculateFormData, encashableEL: Number(e.target.value) })}
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       max={selectedEncashment.leaveBalance.earnedLeave}
                       min={0}
@@ -650,7 +640,7 @@ export default function FNFLeavePage() {
                     <input
                       type="number"
                       value={calculateFormData.encashablePL}
-                      onChange={(e) => setCalculateFormData({...calculateFormData, encashablePL: Number(e.target.value)})}
+                      onChange={(e) => setCalculateFormData({ ...calculateFormData, encashablePL: Number(e.target.value) })}
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       max={selectedEncashment.leaveBalance.privilegeLeave}
                       min={0}
@@ -672,7 +662,7 @@ export default function FNFLeavePage() {
                     <input
                       type="number"
                       value={calculateFormData.dailyRate}
-                      onChange={(e) => setCalculateFormData({...calculateFormData, dailyRate: Number(e.target.value)})}
+                      onChange={(e) => setCalculateFormData({ ...calculateFormData, dailyRate: Number(e.target.value) })}
                       className="w-full pl-8 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       placeholder="0"
                       min={0}
@@ -691,7 +681,7 @@ export default function FNFLeavePage() {
                   <input
                     type="text"
                     value={calculateFormData.calculatedBy}
-                    onChange={(e) => setCalculateFormData({...calculateFormData, calculatedBy: e.target.value})}
+                    onChange={(e) => setCalculateFormData({ ...calculateFormData, calculatedBy: e.target.value })}
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     placeholder="e.g., John Doe - HR Manager"
                     required
@@ -704,7 +694,7 @@ export default function FNFLeavePage() {
                   </label>
                   <textarea
                     value={calculateFormData.remarks}
-                    onChange={(e) => setCalculateFormData({...calculateFormData, remarks: e.target.value})}
+                    onChange={(e) => setCalculateFormData({ ...calculateFormData, remarks: e.target.value })}
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     rows={2}
                     placeholder="Any special notes or adjustments..."
@@ -725,17 +715,17 @@ export default function FNFLeavePage() {
                       <span className="font-semibold">{formatCurrency(calculateFormData.dailyRate)}</span>
                     </div>
                     {selectedEncashment.leavePolicy.maxEncashableDays &&
-                     (calculateFormData.encashableEL + calculateFormData.encashablePL) > selectedEncashment.leavePolicy.maxEncashableDays && (
-                      <div className="p-2 bg-yellow-50 rounded border border-yellow-200">
-                        <div className="flex items-start gap-2">
-                          <AlertCircle className="h-4 w-4 text-yellow-600 mt-0.5 flex-shrink-0" />
-                          <p className="text-xs text-yellow-700">
-                            Total days exceed policy limit of {selectedEncashment.leavePolicy.maxEncashableDays} days.
-                            Will be capped at {selectedEncashment.leavePolicy.maxEncashableDays} days.
-                          </p>
+                      (calculateFormData.encashableEL + calculateFormData.encashablePL) > selectedEncashment.leavePolicy.maxEncashableDays && (
+                        <div className="p-2 bg-yellow-50 rounded border border-yellow-200">
+                          <div className="flex items-start gap-2">
+                            <AlertCircle className="h-4 w-4 text-yellow-600 mt-0.5 flex-shrink-0" />
+                            <p className="text-xs text-yellow-700">
+                              Total days exceed policy limit of {selectedEncashment.leavePolicy.maxEncashableDays} days.
+                              Will be capped at {selectedEncashment.leavePolicy.maxEncashableDays} days.
+                            </p>
+                          </div>
                         </div>
-                      </div>
-                    )}
+                      )}
                     <div className="flex justify-between pt-2 border-t-2 border-gray-400 text-lg font-bold">
                       <span>Encashment Amount:</span>
                       <span className="text-green-600">
@@ -871,7 +861,7 @@ export default function FNFLeavePage() {
                   <input
                     type="text"
                     value={approveFormData.approvedBy}
-                    onChange={(e) => setApproveFormData({...approveFormData, approvedBy: e.target.value})}
+                    onChange={(e) => setApproveFormData({ ...approveFormData, approvedBy: e.target.value })}
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
                     placeholder="e.g., John Doe - CFO"
                     required
@@ -884,7 +874,7 @@ export default function FNFLeavePage() {
                   </label>
                   <textarea
                     value={approveFormData.remarks}
-                    onChange={(e) => setApproveFormData({...approveFormData, remarks: e.target.value})}
+                    onChange={(e) => setApproveFormData({ ...approveFormData, remarks: e.target.value })}
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
                     rows={3}
                     placeholder="Any additional notes or remarks..."

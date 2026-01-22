@@ -29,62 +29,64 @@ export default function ServiceCertificatePage() {
 
   const mockCertificates: ServiceCertificate[] = [
     {
-      id: 'SVC-001',
-      employeeId: 'EMP001',
-      employeeName: 'Rahul Sharma',
-      designation: 'Senior Software Engineer',
-      department: 'Engineering',
-      joiningDate: '2020-01-15',
-      lastWorkingDay: '2025-12-14',
-      serviceRecord: {
-        conduct: 'excellent',
-        performance: 'excellent',
-        attendance: 'good'
-      },
-      status: 'generated',
-      generatedBy: 'Priya Singh - HR Manager',
-      generatedOn: '2025-12-14',
-      certificateNumber: 'SVC/2025/001'
+      id: 'SVC-001', employeeId: 'EMP001', employeeName: 'Rahul Sharma', designation: 'Senior Software Engineer', department: 'Engineering',
+      joiningDate: '2020-01-15', lastWorkingDay: '2025-12-14',
+      serviceRecord: { conduct: 'excellent', performance: 'excellent', attendance: 'good' },
+      status: 'generated', generatedBy: 'Priya Singh - HR Manager', generatedOn: '2025-12-14', certificateNumber: 'SVC/2025/001'
     },
     {
-      id: 'SVC-002',
-      employeeId: 'EMP002',
-      employeeName: 'Priya Singh',
-      designation: 'Marketing Manager',
-      department: 'Marketing',
-      joiningDate: '2016-06-10',
-      lastWorkingDay: '2025-11-30',
-      serviceRecord: {
-        conduct: 'excellent',
-        performance: 'excellent',
-        attendance: 'excellent'
-      },
-      status: 'issued',
-      generatedBy: 'Amit Kumar - HR Head',
-      generatedOn: '2025-11-30',
-      approvedBy: 'Rajesh Patel - CEO',
-      issuedOn: '2025-12-01',
-      certificateNumber: 'SVC/2025/002'
+      id: 'SVC-002', employeeId: 'EMP002', employeeName: 'Priya Singh', designation: 'Marketing Manager', department: 'Marketing',
+      joiningDate: '2016-06-10', lastWorkingDay: '2025-11-30',
+      serviceRecord: { conduct: 'excellent', performance: 'excellent', attendance: 'excellent' },
+      status: 'issued', generatedBy: 'Amit Kumar - HR Head', generatedOn: '2025-11-30', approvedBy: 'Rajesh Patel - CEO', issuedOn: '2025-12-01', certificateNumber: 'SVC/2025/002'
     },
     {
-      id: 'SVC-003',
-      employeeId: 'EMP003',
-      employeeName: 'Amit Kumar',
-      designation: 'Product Manager',
-      department: 'Product',
-      joiningDate: '2010-03-20',
-      lastWorkingDay: '2025-10-31',
-      serviceRecord: {
-        conduct: 'excellent',
-        performance: 'excellent',
-        attendance: 'excellent'
-      },
-      status: 'issued',
-      generatedBy: 'Priya Singh - HR Manager',
-      generatedOn: '2025-10-31',
-      approvedBy: 'Rajesh Patel - CEO',
-      issuedOn: '2025-11-05',
-      certificateNumber: 'SVC/2025/003'
+      id: 'SVC-003', employeeId: 'EMP003', employeeName: 'Amit Kumar', designation: 'Product Manager', department: 'Product',
+      joiningDate: '2010-03-20', lastWorkingDay: '2025-10-31',
+      serviceRecord: { conduct: 'excellent', performance: 'excellent', attendance: 'excellent' },
+      status: 'issued', generatedBy: 'Priya Singh - HR Manager', generatedOn: '2025-10-31', approvedBy: 'Rajesh Patel - CEO', issuedOn: '2025-11-05', certificateNumber: 'SVC/2025/003'
+    },
+    {
+      id: 'SVC-004', employeeId: 'EMP004', employeeName: 'Neha Gupta', designation: 'Junior Developer', department: 'Engineering',
+      joiningDate: '2022-05-15', lastWorkingDay: '2025-12-31',
+      serviceRecord: { conduct: 'good', performance: 'satisfactory', attendance: 'good' },
+      status: 'pending'
+    },
+    {
+      id: 'SVC-005', employeeId: 'EMP005', employeeName: 'Vikram Malhotra', designation: 'VP of Sales', department: 'Sales',
+      joiningDate: '2015-01-01', lastWorkingDay: '2025-09-30',
+      serviceRecord: { conduct: 'excellent', performance: 'excellent', attendance: 'good' },
+      status: 'approved', generatedBy: 'Anjali Desai - HR Exec', generatedOn: '2025-09-30', approvedBy: 'Rajesh Patel - CEO'
+    },
+    {
+      id: 'SVC-006', employeeId: 'EMP006', employeeName: 'Anjali Desai', designation: 'HR Executive', department: 'Human Resources',
+      joiningDate: '2021-02-10', lastWorkingDay: '2025-10-15',
+      serviceRecord: { conduct: 'good', performance: 'excellent', attendance: 'excellent' },
+      status: 'generated', generatedBy: 'Priya Singh - HR Manager', generatedOn: '2025-10-15', certificateNumber: 'SVC/2025/006'
+    },
+    {
+      id: 'SVC-007', employeeId: 'EMP007', employeeName: 'Rohan Mehra', designation: 'Content Strategist', department: 'Marketing',
+      joiningDate: '2018-06-01', lastWorkingDay: '2025-11-15',
+      serviceRecord: { conduct: 'excellent', performance: 'good', attendance: 'good' },
+      status: 'pending'
+    },
+    {
+      id: 'SVC-008', employeeId: 'EMP008', employeeName: 'Suresh Raina', designation: 'Operations Manager', department: 'Operations',
+      joiningDate: '2005-04-01', lastWorkingDay: '2025-08-31',
+      serviceRecord: { conduct: 'excellent', performance: 'excellent', attendance: 'excellent' },
+      status: 'issued', generatedBy: 'Amit Kumar', generatedOn: '2025-08-31', approvedBy: 'Rajesh Patel', issuedOn: '2025-09-01', certificateNumber: 'SVC/2025/008'
+    },
+    {
+      id: 'SVC-009', employeeId: 'EMP009', employeeName: 'Kavita Krishnan', designation: 'Lead Designer', department: 'Design',
+      joiningDate: '2019-11-11', lastWorkingDay: '2025-12-05',
+      serviceRecord: { conduct: 'excellent', performance: 'excellent', attendance: 'good' },
+      status: 'approved', generatedBy: 'Priya Singh', generatedOn: '2025-12-05', approvedBy: 'Rajesh Patel'
+    },
+    {
+      id: 'SVC-010', employeeId: 'EMP010', employeeName: 'Deepak Verma', designation: 'System Admin', department: 'IT',
+      joiningDate: '2023-01-15', lastWorkingDay: '2025-11-20',
+      serviceRecord: { conduct: 'satisfactory', performance: 'good', attendance: 'satisfactory' },
+      status: 'pending'
     }
   ];
 
@@ -176,14 +178,13 @@ export default function ServiceCertificatePage() {
           <button
             key={tab}
             onClick={() => setSelectedTab(tab)}
-            className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${
-              selectedTab === tab
+            className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${selectedTab === tab
                 ? tab === 'pending' ? 'bg-yellow-600 text-white' :
                   tab === 'generated' ? 'bg-blue-600 text-white' :
-                  tab === 'approved' ? 'bg-green-600 text-white' :
-                  'bg-gray-600 text-white'
+                    tab === 'approved' ? 'bg-green-600 text-white' :
+                      'bg-gray-600 text-white'
                 : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-            }`}
+              }`}
           >
             {tab.charAt(0).toUpperCase() + tab.slice(1)} ({stats[tab]})
           </button>

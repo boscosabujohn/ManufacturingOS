@@ -61,6 +61,9 @@ export interface ErgonomicAlertsProps {
   className?: string;
 }
 
+// Fixed date for consistent rendering
+const MOCK_NOW = new Date('2024-03-10T10:30:00').getTime();
+
 // Mock data generators
 const generateMockAlerts = (): ErgonomicAlert[] => [
   {
@@ -69,7 +72,7 @@ const generateMockAlerts = (): ErgonomicAlert[] => [
     title: 'Break Time Reminder',
     message: 'You have been working for 2 hours. Time for a 15-minute break!',
     priority: 'warning',
-    timestamp: new Date(),
+    timestamp: new Date(MOCK_NOW),
     dismissed: false,
   },
   {
@@ -78,7 +81,7 @@ const generateMockAlerts = (): ErgonomicAlert[] => [
     title: 'Posture Alert',
     message: 'Poor posture detected. Please adjust your standing position.',
     priority: 'info',
-    timestamp: new Date(Date.now() - 300000),
+    timestamp: new Date(MOCK_NOW - 300000),
     dismissed: false,
     iotTriggered: true,
     sensorData: { spineAngle: 15, shoulderAlignment: 78 },
@@ -89,7 +92,7 @@ const generateMockAlerts = (): ErgonomicAlert[] => [
     title: 'Hydration Reminder',
     message: 'Remember to drink water! Stay hydrated for better performance.',
     priority: 'info',
-    timestamp: new Date(Date.now() - 600000),
+    timestamp: new Date(MOCK_NOW - 600000),
     dismissed: false,
   },
   {
@@ -98,7 +101,7 @@ const generateMockAlerts = (): ErgonomicAlert[] => [
     title: 'High Noise Level',
     message: 'Current noise level: 92dB. Consider using hearing protection.',
     priority: 'urgent',
-    timestamp: new Date(Date.now() - 120000),
+    timestamp: new Date(MOCK_NOW - 120000),
     dismissed: false,
     iotTriggered: true,
     sensorData: { noiseLevel: 92 },
@@ -109,7 +112,7 @@ const generateMockAlerts = (): ErgonomicAlert[] => [
     title: 'Fatigue Warning',
     message: 'Your activity patterns suggest fatigue. Consider taking a rest.',
     priority: 'warning',
-    timestamp: new Date(Date.now() - 1800000),
+    timestamp: new Date(MOCK_NOW - 1800000),
     dismissed: true,
     iotTriggered: true,
     sensorData: { heartRateVariability: 45, movementScore: 32 },
@@ -117,11 +120,11 @@ const generateMockAlerts = (): ErgonomicAlert[] => [
 ];
 
 const generateMockBreakSchedule = (): BreakSchedule[] => [
-  { id: 'b1', type: 'micro', scheduledTime: new Date(Date.now() - 7200000), duration: 5, completed: true, skipped: false },
-  { id: 'b2', type: 'micro', scheduledTime: new Date(Date.now() - 3600000), duration: 5, completed: true, skipped: false },
-  { id: 'b3', type: 'short', scheduledTime: new Date(Date.now() + 900000), duration: 15, completed: false, skipped: false },
-  { id: 'b4', type: 'meal', scheduledTime: new Date(Date.now() + 7200000), duration: 30, completed: false, skipped: false },
-  { id: 'b5', type: 'micro', scheduledTime: new Date(Date.now() + 10800000), duration: 5, completed: false, skipped: false },
+  { id: 'b1', type: 'micro', scheduledTime: new Date(MOCK_NOW - 7200000), duration: 5, completed: true, skipped: false },
+  { id: 'b2', type: 'micro', scheduledTime: new Date(MOCK_NOW - 3600000), duration: 5, completed: true, skipped: false },
+  { id: 'b3', type: 'short', scheduledTime: new Date(MOCK_NOW + 900000), duration: 15, completed: false, skipped: false },
+  { id: 'b4', type: 'meal', scheduledTime: new Date(MOCK_NOW + 7200000), duration: 30, completed: false, skipped: false },
+  { id: 'b5', type: 'micro', scheduledTime: new Date(MOCK_NOW + 10800000), duration: 5, completed: false, skipped: false },
 ];
 
 const generateMockMetrics = (): WellnessMetrics => ({
@@ -420,26 +423,24 @@ export function ErgonomicAlerts({
           {breakSchedule.map(breakItem => (
             <div
               key={breakItem.id}
-              className={`flex items-center gap-4 p-3 rounded-lg ${
-                breakItem.completed ? 'bg-green-900/20 border border-green-700' :
-                breakItem.skipped ? 'bg-gray-700/50 opacity-50' :
-                'bg-gray-700'
-              }`}
+              className={`flex items-center gap-4 p-3 rounded-lg ${breakItem.completed ? 'bg-green-900/20 border border-green-700' :
+                  breakItem.skipped ? 'bg-gray-700/50 opacity-50' :
+                    'bg-gray-700'
+                }`}
             >
-              <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
-                breakItem.completed ? 'bg-green-600' :
-                breakItem.skipped ? 'bg-gray-600' :
-                'bg-blue-600'
-              }`}>
+              <div className={`w-12 h-12 rounded-full flex items-center justify-center ${breakItem.completed ? 'bg-green-600' :
+                  breakItem.skipped ? 'bg-gray-600' :
+                    'bg-blue-600'
+                }`}>
                 {breakItem.completed ? '✓' :
-                 breakItem.skipped ? '—' :
-                 breakItem.type === 'meal' ? '🍽️' :
-                 breakItem.type === 'short' ? '☕' : '⚡'}
+                  breakItem.skipped ? '—' :
+                    breakItem.type === 'meal' ? '🍽️' :
+                      breakItem.type === 'short' ? '☕' : '⚡'}
               </div>
               <div className="flex-1">
                 <p className="text-white font-medium">
                   {breakItem.type === 'meal' ? 'Meal Break' :
-                   breakItem.type === 'short' ? 'Short Break' : 'Micro Break'}
+                    breakItem.type === 'short' ? 'Short Break' : 'Micro Break'}
                 </p>
                 <p className="text-sm text-gray-400">
                   {breakItem.scheduledTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
@@ -500,10 +501,9 @@ export function ErgonomicAlerts({
             </div>
             <div className="h-3 bg-gray-700 rounded-full overflow-hidden">
               <div
-                className={`h-full rounded-full transition-all ${
-                  metrics.fatigueLevel > 70 ? 'bg-red-600' :
-                  metrics.fatigueLevel > 50 ? 'bg-yellow-600' : 'bg-green-600'
-                }`}
+                className={`h-full rounded-full transition-all ${metrics.fatigueLevel > 70 ? 'bg-red-600' :
+                    metrics.fatigueLevel > 50 ? 'bg-yellow-600' : 'bg-green-600'
+                  }`}
                 style={{ width: `${metrics.fatigueLevel}%` }}
               />
             </div>
@@ -518,10 +518,9 @@ export function ErgonomicAlerts({
             </div>
             <div className="h-3 bg-gray-700 rounded-full overflow-hidden">
               <div
-                className={`h-full rounded-full transition-all ${
-                  metrics.stressLevel > 70 ? 'bg-red-600' :
-                  metrics.stressLevel > 50 ? 'bg-yellow-600' : 'bg-green-600'
-                }`}
+                className={`h-full rounded-full transition-all ${metrics.stressLevel > 70 ? 'bg-red-600' :
+                    metrics.stressLevel > 50 ? 'bg-yellow-600' : 'bg-green-600'
+                  }`}
                 style={{ width: `${metrics.stressLevel}%` }}
               />
             </div>
@@ -558,14 +557,12 @@ export function ErgonomicAlerts({
           {Object.entries(iotStatus).map(([sensor, status]) => (
             <div key={sensor} className="flex items-center justify-between p-3 bg-gray-700 rounded-lg">
               <span className="text-gray-300 capitalize">{sensor.replace(/([A-Z])/g, ' $1')}</span>
-              <span className={`flex items-center gap-2 ${
-                status === 'connected' || status === 'analyzing' ? 'text-green-400' : 'text-red-400'
-              }`}>
-                <span className={`w-2 h-2 rounded-full ${
-                  status === 'connected' ? 'bg-green-500' :
-                  status === 'analyzing' ? 'bg-blue-500 animate-pulse' :
-                  'bg-red-500'
-                }`} />
+              <span className={`flex items-center gap-2 ${status === 'connected' || status === 'analyzing' ? 'text-green-400' : 'text-red-400'
+                }`}>
+                <span className={`w-2 h-2 rounded-full ${status === 'connected' ? 'bg-green-500' :
+                    status === 'analyzing' ? 'bg-blue-500 animate-pulse' :
+                      'bg-red-500'
+                  }`} />
                 {status}
               </span>
             </div>
@@ -656,11 +653,10 @@ export function ErgonomicAlerts({
           <button
             key={tab.id}
             onClick={() => setView(tab.id as typeof view)}
-            className={`flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors ${
-              view === tab.id
+            className={`flex-1 flex items-center justify-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors ${view === tab.id
                 ? 'bg-blue-600 text-white'
                 : 'text-gray-400 hover:text-white'
-            }`}
+              }`}
           >
             <span>{tab.icon}</span>
             <span>{tab.label}</span>

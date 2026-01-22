@@ -205,8 +205,8 @@ export default function CollectionsPage() {
 
   const filteredCollections = collections.filter(collection => {
     const matchesSearch = collection.collectionNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         collection.customerName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         (collection.invoiceNumber && collection.invoiceNumber.toLowerCase().includes(searchTerm.toLowerCase()));
+      collection.customerName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (collection.invoiceNumber && collection.invoiceNumber.toLowerCase().includes(searchTerm.toLowerCase()));
     const matchesStatus = statusFilter === 'all' || collection.status === statusFilter;
     const matchesMethod = methodFilter === 'all' || collection.paymentMethod === methodFilter;
     return matchesSearch && matchesStatus && matchesMethod;
@@ -224,7 +224,7 @@ export default function CollectionsPage() {
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 via-green-50 to-emerald-50">
       <div className="flex-1 overflow-y-auto overflow-x-hidden">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 max-w-7xl">
+        <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
           {/* Header */}
           <div className="flex justify-between items-start mb-6">
             <div>
@@ -234,7 +234,7 @@ export default function CollectionsPage() {
               </div>
               <p className="text-sm text-gray-600">Track and manage customer payment collections</p>
             </div>
-            
+
             <div className="flex gap-2">
               <button className="flex items-center space-x-2 px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">
                 <Download className="h-4 w-4" />

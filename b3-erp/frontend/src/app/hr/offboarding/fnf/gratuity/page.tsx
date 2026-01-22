@@ -34,102 +34,74 @@ export default function FNFGratuityPage() {
 
   const mockGratuities: FNFGratuity[] = [
     {
-      id: 'FNF-GRT-001',
-      employeeId: 'EMP001',
-      employeeName: 'Rahul Sharma',
-      designation: 'Senior Software Engineer',
-      department: 'Engineering',
-      lastWorkingDay: '2025-12-14',
-      joiningDate: '2020-01-15',
-      yearsOfService: 5,
-      monthsOfService: 10,
-      daysOfService: 29,
-      lastDrawnBasic: 50000,
-      lastDrawnDA: 10000,
-      lastDrawnSalary: 60000,
-      isEligible: true,
-      gratuityFormula: 'standard',
-      gratuityAmount: 173076,
-      maxGratuityCap: 2000000,
-      finalGratuityAmount: 173076,
-      status: 'calculated',
-      calculatedBy: 'Priya Singh - HR Manager',
-      calculatedOn: '2025-12-10',
-      remarks: 'Eligible for gratuity payment as per Payment of Gratuity Act, 1972'
+      id: 'FNF-GRT-001', employeeId: 'EMP001', employeeName: 'Rahul Sharma', designation: 'Senior Software Engineer', department: 'Engineering',
+      lastWorkingDay: '2025-12-14', joiningDate: '2020-01-15', yearsOfService: 5, monthsOfService: 10, daysOfService: 29,
+      lastDrawnBasic: 50000, lastDrawnDA: 10000, lastDrawnSalary: 60000,
+      isEligible: true, gratuityFormula: 'standard', gratuityAmount: 173076, maxGratuityCap: 2000000, finalGratuityAmount: 173076,
+      status: 'calculated', calculatedBy: 'Priya Singh - HR Manager', calculatedOn: '2025-12-10', remarks: 'Eligible for gratuity payment.'
     },
     {
-      id: 'FNF-GRT-002',
-      employeeId: 'EMP002',
-      employeeName: 'Priya Singh',
-      designation: 'Marketing Manager',
-      department: 'Marketing',
-      lastWorkingDay: '2025-11-30',
-      joiningDate: '2016-06-10',
-      yearsOfService: 9,
-      monthsOfService: 5,
-      daysOfService: 20,
-      lastDrawnBasic: 60000,
-      lastDrawnDA: 12000,
-      lastDrawnSalary: 72000,
-      isEligible: true,
-      gratuityFormula: 'standard',
-      gratuityAmount: 333461,
-      maxGratuityCap: 2000000,
-      finalGratuityAmount: 333461,
-      status: 'approved',
-      calculatedBy: 'Amit Kumar - Finance Head',
-      calculatedOn: '2025-11-25',
-      approvedBy: 'Rajesh Patel - CFO',
-      remarks: 'Eligible for gratuity payment as per Payment of Gratuity Act, 1972'
+      id: 'FNF-GRT-002', employeeId: 'EMP002', employeeName: 'Priya Singh', designation: 'Marketing Manager', department: 'Marketing',
+      lastWorkingDay: '2025-11-30', joiningDate: '2016-06-10', yearsOfService: 9, monthsOfService: 5, daysOfService: 20,
+      lastDrawnBasic: 60000, lastDrawnDA: 12000, lastDrawnSalary: 72000,
+      isEligible: true, gratuityFormula: 'standard', gratuityAmount: 333461, maxGratuityCap: 2000000, finalGratuityAmount: 333461,
+      status: 'approved', calculatedBy: 'Amit Kumar - Finance Head', calculatedOn: '2025-11-25', approvedBy: 'Rajesh Patel - CFO', remarks: 'Approved.'
     },
     {
-      id: 'FNF-GRT-003',
-      employeeId: 'EMP003',
-      employeeName: 'Amit Kumar',
-      designation: 'Product Manager',
-      department: 'Product',
-      lastWorkingDay: '2025-10-31',
-      joiningDate: '2010-03-20',
-      yearsOfService: 15,
-      monthsOfService: 7,
-      daysOfService: 11,
-      lastDrawnBasic: 70000,
-      lastDrawnDA: 14000,
-      lastDrawnSalary: 84000,
-      isEligible: true,
-      gratuityFormula: 'standard',
-      gratuityAmount: 648461,
-      maxGratuityCap: 2000000,
-      finalGratuityAmount: 648461,
-      status: 'processed',
-      calculatedBy: 'Priya Singh - HR Manager',
-      calculatedOn: '2025-10-25',
-      approvedBy: 'Rajesh Patel - CFO',
-      remarks: 'Eligible for gratuity payment as per Payment of Gratuity Act, 1972'
+      id: 'FNF-GRT-003', employeeId: 'EMP003', employeeName: 'Amit Kumar', designation: 'Product Manager', department: 'Product',
+      lastWorkingDay: '2025-10-31', joiningDate: '2010-03-20', yearsOfService: 15, monthsOfService: 7, daysOfService: 11,
+      lastDrawnBasic: 70000, lastDrawnDA: 14000, lastDrawnSalary: 84000,
+      isEligible: true, gratuityFormula: 'standard', gratuityAmount: 648461, maxGratuityCap: 2000000, finalGratuityAmount: 648461,
+      status: 'processed', calculatedBy: 'Priya Singh - HR Manager', calculatedOn: '2025-10-25', approvedBy: 'Rajesh Patel - CFO', remarks: 'Processed.'
     },
     {
-      id: 'FNF-GRT-004',
-      employeeId: 'EMP004',
-      employeeName: 'Neha Gupta',
-      designation: 'Junior Developer',
-      department: 'Engineering',
-      lastWorkingDay: '2025-12-31',
-      joiningDate: '2022-05-15',
-      yearsOfService: 3,
-      monthsOfService: 7,
-      daysOfService: 16,
-      lastDrawnBasic: 35000,
-      lastDrawnDA: 7000,
-      lastDrawnSalary: 42000,
-      isEligible: false,
-      gratuityFormula: 'standard',
-      gratuityAmount: 0,
-      maxGratuityCap: 2000000,
-      finalGratuityAmount: 0,
-      status: 'calculated',
-      calculatedBy: 'Priya Singh - HR Manager',
-      calculatedOn: '2025-12-15',
-      remarks: 'Not eligible for gratuity payment (minimum 5 years of continuous service required as per Payment of Gratuity Act, 1972)'
+      id: 'FNF-GRT-004', employeeId: 'EMP004', employeeName: 'Neha Gupta', designation: 'Junior Developer', department: 'Engineering',
+      lastWorkingDay: '2025-12-31', joiningDate: '2022-05-15', yearsOfService: 3, monthsOfService: 7, daysOfService: 16,
+      lastDrawnBasic: 35000, lastDrawnDA: 7000, lastDrawnSalary: 42000,
+      isEligible: false, gratuityFormula: 'standard', gratuityAmount: 0, maxGratuityCap: 2000000, finalGratuityAmount: 0,
+      status: 'calculated', calculatedBy: 'Priya Singh - HR Manager', calculatedOn: '2025-12-15', remarks: 'Not eligible (< 5 years).'
+    },
+    {
+      id: 'FNF-GRT-005', employeeId: 'EMP005', employeeName: 'Vikram Malhotra', designation: 'VP of Sales', department: 'Sales',
+      lastWorkingDay: '2025-09-30', joiningDate: '2015-01-01', yearsOfService: 10, monthsOfService: 9, daysOfService: 0,
+      lastDrawnBasic: 120000, lastDrawnDA: 20000, lastDrawnSalary: 140000,
+      isEligible: true, gratuityFormula: 'standard', gratuityAmount: 888461, maxGratuityCap: 2000000, finalGratuityAmount: 888461,
+      status: 'pending'
+    },
+    {
+      id: 'FNF-GRT-006', employeeId: 'EMP006', employeeName: 'Anjali Desai', designation: 'HR Executive', department: 'Human Resources',
+      lastWorkingDay: '2025-10-15', joiningDate: '2021-02-10', yearsOfService: 4, monthsOfService: 8, daysOfService: 5,
+      lastDrawnBasic: 30000, lastDrawnDA: 5000, lastDrawnSalary: 35000,
+      isEligible: false, gratuityFormula: 'standard', gratuityAmount: 0, maxGratuityCap: 2000000, finalGratuityAmount: 0,
+      status: 'pending'
+    },
+    {
+      id: 'FNF-GRT-007', employeeId: 'EMP007', employeeName: 'Rohan Mehra', designation: 'Content Strategist', department: 'Marketing',
+      lastWorkingDay: '2025-11-15', joiningDate: '2018-06-01', yearsOfService: 7, monthsOfService: 5, daysOfService: 14,
+      lastDrawnBasic: 55000, lastDrawnDA: 11000, lastDrawnSalary: 66000,
+      isEligible: true, gratuityFormula: 'standard', gratuityAmount: 266538, maxGratuityCap: 2000000, finalGratuityAmount: 266538,
+      status: 'calculated', calculatedBy: 'Priya Singh - HR Manager', calculatedOn: '2025-11-10', remarks: 'Calculation verified.'
+    },
+    {
+      id: 'FNF-GRT-008', employeeId: 'EMP008', employeeName: 'Suresh Raina', designation: 'Operations Manager', department: 'Operations',
+      lastWorkingDay: '2025-08-31', joiningDate: '2005-04-01', yearsOfService: 20, monthsOfService: 5, daysOfService: 0,
+      lastDrawnBasic: 90000, lastDrawnDA: 18000, lastDrawnSalary: 108000,
+      isEligible: true, gratuityFormula: 'standard', gratuityAmount: 1246153, maxGratuityCap: 2000000, finalGratuityAmount: 1246153,
+      status: 'processed', calculatedBy: 'Amit Kumar', calculatedOn: '2025-08-25', approvedBy: 'Rajesh Patel', remarks: 'Long service gratuity.'
+    },
+    {
+      id: 'FNF-GRT-009', employeeId: 'EMP009', employeeName: 'Kavita Krishnan', designation: 'Lead Designer', department: 'Design',
+      lastWorkingDay: '2025-12-05', joiningDate: '2019-11-11', yearsOfService: 6, monthsOfService: 0, daysOfService: 24,
+      lastDrawnBasic: 65000, lastDrawnDA: 13000, lastDrawnSalary: 78000,
+      isEligible: true, gratuityFormula: 'standard', gratuityAmount: 270000, maxGratuityCap: 2000000, finalGratuityAmount: 270000,
+      status: 'approved', calculatedBy: 'Priya Singh', calculatedOn: '2025-12-01', approvedBy: 'Rajesh Patel', remarks: 'Approved for payment.'
+    },
+    {
+      id: 'FNF-GRT-010', employeeId: 'EMP010', employeeName: 'Deepak Verma', designation: 'System Admin', department: 'IT',
+      lastWorkingDay: '2025-11-20', joiningDate: '2023-01-15', yearsOfService: 2, monthsOfService: 10, daysOfService: 5,
+      lastDrawnBasic: 40000, lastDrawnDA: 8000, lastDrawnSalary: 48000,
+      isEligible: false, gratuityFormula: 'standard', gratuityAmount: 0, maxGratuityCap: 2000000, finalGratuityAmount: 0,
+      status: 'pending', remarks: 'Not eligible.'
     }
   ];
 
@@ -246,41 +218,37 @@ export default function FNFGratuityPage() {
       <div className="mb-4 flex gap-2">
         <button
           onClick={() => setSelectedTab('pending')}
-          className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${
-            selectedTab === 'pending'
+          className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${selectedTab === 'pending'
               ? 'bg-yellow-600 text-white'
               : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-          }`}
+            }`}
         >
           Pending ({stats.pending})
         </button>
         <button
           onClick={() => setSelectedTab('calculated')}
-          className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${
-            selectedTab === 'calculated'
+          className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${selectedTab === 'calculated'
               ? 'bg-blue-600 text-white'
               : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-          }`}
+            }`}
         >
           Calculated ({stats.calculated})
         </button>
         <button
           onClick={() => setSelectedTab('approved')}
-          className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${
-            selectedTab === 'approved'
+          className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${selectedTab === 'approved'
               ? 'bg-green-600 text-white'
               : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-          }`}
+            }`}
         >
           Approved ({stats.approved})
         </button>
         <button
           onClick={() => setSelectedTab('processed')}
-          className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${
-            selectedTab === 'processed'
+          className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${selectedTab === 'processed'
               ? 'bg-gray-600 text-white'
               : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-          }`}
+            }`}
         >
           Processed ({stats.processed})
         </button>

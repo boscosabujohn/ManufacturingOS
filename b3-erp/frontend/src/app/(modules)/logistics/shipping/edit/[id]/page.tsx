@@ -234,8 +234,8 @@ export default function EditShipmentPage({ params }: { params: { id: string } })
     const totalVolume = items.reduce((sum, item) => sum + item.volume, 0);
     const totalPackages = items.length;
     const totalCharges = formData.freightCharges + formData.insuranceCharges +
-                         formData.loadingCharges + formData.unloadingCharges +
-                         formData.packagingCharges + formData.otherCharges;
+      formData.loadingCharges + formData.unloadingCharges +
+      formData.packagingCharges + formData.otherCharges;
     return { totalWeight, totalVolume, totalPackages, totalCharges };
   };
 
@@ -296,7 +296,7 @@ export default function EditShipmentPage({ params }: { params: { id: string } })
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-6">
-      <div className="max-w-7xl mx-auto">
+      <div className="w-full">
         {/* Header */}
         <div className="mb-6 flex items-center justify-between">
           <div className="flex items-center gap-4">
@@ -398,9 +398,8 @@ export default function EditShipmentPage({ params }: { params: { id: string } })
                   type="text"
                   value={formData.trackingNumber}
                   onChange={(e) => handleInputChange('trackingNumber', e.target.value)}
-                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                    errors.trackingNumber ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.trackingNumber ? 'border-red-500' : 'border-gray-300'
+                    }`}
                   placeholder="Enter tracking number"
                 />
                 {errors.trackingNumber && (
@@ -433,9 +432,8 @@ export default function EditShipmentPage({ params }: { params: { id: string } })
                 <select
                   value={formData.carrier}
                   onChange={(e) => handleInputChange('carrier', e.target.value)}
-                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                    errors.carrier ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.carrier ? 'border-red-500' : 'border-gray-300'
+                    }`}
                 >
                   <option value="">Select carrier</option>
                   {carriers.map(carrier => (
@@ -501,9 +499,8 @@ export default function EditShipmentPage({ params }: { params: { id: string } })
                   type="text"
                   value={formData.vehicleNumber}
                   onChange={(e) => handleInputChange('vehicleNumber', e.target.value.toUpperCase())}
-                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent uppercase ${
-                    errors.vehicleNumber ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent uppercase ${errors.vehicleNumber ? 'border-red-500' : 'border-gray-300'
+                    }`}
                   placeholder="MH-12-AB-1234"
                 />
                 {errors.vehicleNumber && (
@@ -535,9 +532,8 @@ export default function EditShipmentPage({ params }: { params: { id: string } })
                   type="text"
                   value={formData.driverName}
                   onChange={(e) => handleInputChange('driverName', e.target.value)}
-                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                    errors.driverName ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.driverName ? 'border-red-500' : 'border-gray-300'
+                    }`}
                   placeholder="Enter driver name"
                 />
                 {errors.driverName && (
@@ -553,9 +549,8 @@ export default function EditShipmentPage({ params }: { params: { id: string } })
                   type="tel"
                   value={formData.driverPhone}
                   onChange={(e) => handleInputChange('driverPhone', e.target.value)}
-                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                    errors.driverPhone ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.driverPhone ? 'border-red-500' : 'border-gray-300'
+                    }`}
                   placeholder="+91 98765 43210"
                 />
                 {errors.driverPhone && (
@@ -625,9 +620,8 @@ export default function EditShipmentPage({ params }: { params: { id: string } })
                   value={formData.fromAddress}
                   onChange={(e) => handleInputChange('fromAddress', e.target.value)}
                   rows={2}
-                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                    errors.fromAddress ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.fromAddress ? 'border-red-500' : 'border-gray-300'
+                    }`}
                   placeholder="Enter pickup address"
                 />
                 {errors.fromAddress && (
@@ -737,9 +731,8 @@ export default function EditShipmentPage({ params }: { params: { id: string } })
                   value={formData.toAddress}
                   onChange={(e) => handleInputChange('toAddress', e.target.value)}
                   rows={2}
-                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                    errors.toAddress ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.toAddress ? 'border-red-500' : 'border-gray-300'
+                    }`}
                   placeholder="Enter delivery address"
                 />
                 {errors.toAddress && (
@@ -823,9 +816,8 @@ export default function EditShipmentPage({ params }: { params: { id: string } })
                   type="date"
                   value={formData.scheduledPickupDate}
                   onChange={(e) => handleInputChange('scheduledPickupDate', e.target.value)}
-                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                    errors.scheduledPickupDate ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.scheduledPickupDate ? 'border-red-500' : 'border-gray-300'
+                    }`}
                 />
                 {errors.scheduledPickupDate && (
                   <p className="mt-1 text-sm text-red-500">{errors.scheduledPickupDate}</p>
@@ -852,9 +844,8 @@ export default function EditShipmentPage({ params }: { params: { id: string } })
                   type="date"
                   value={formData.expectedDeliveryDate}
                   onChange={(e) => handleInputChange('expectedDeliveryDate', e.target.value)}
-                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                    errors.expectedDeliveryDate ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.expectedDeliveryDate ? 'border-red-500' : 'border-gray-300'
+                    }`}
                 />
                 {errors.expectedDeliveryDate && (
                   <p className="mt-1 text-sm text-red-500">{errors.expectedDeliveryDate}</p>
@@ -972,9 +963,8 @@ export default function EditShipmentPage({ params }: { params: { id: string } })
                         type="text"
                         value={item.itemCode}
                         onChange={(e) => handleItemChange(index, 'itemCode', e.target.value)}
-                        className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                          errors[`item_${index}_code`] ? 'border-red-500' : 'border-gray-300'
-                        }`}
+                        className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors[`item_${index}_code`] ? 'border-red-500' : 'border-gray-300'
+                          }`}
                         placeholder="RM-001"
                       />
                       {errors[`item_${index}_code`] && (
@@ -1003,9 +993,8 @@ export default function EditShipmentPage({ params }: { params: { id: string } })
                         type="number"
                         value={item.quantity || ''}
                         onChange={(e) => handleItemChange(index, 'quantity', parseFloat(e.target.value) || 0)}
-                        className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                          errors[`item_${index}_quantity`] ? 'border-red-500' : 'border-gray-300'
-                        }`}
+                        className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors[`item_${index}_quantity`] ? 'border-red-500' : 'border-gray-300'
+                          }`}
                         placeholder="0"
                         min="0"
                       />
@@ -1022,9 +1011,8 @@ export default function EditShipmentPage({ params }: { params: { id: string } })
                         type="number"
                         value={item.weight || ''}
                         onChange={(e) => handleItemChange(index, 'weight', parseFloat(e.target.value) || 0)}
-                        className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                          errors[`item_${index}_weight`] ? 'border-red-500' : 'border-gray-300'
-                        }`}
+                        className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors[`item_${index}_weight`] ? 'border-red-500' : 'border-gray-300'
+                          }`}
                         placeholder="0"
                         min="0"
                         step="0.01"

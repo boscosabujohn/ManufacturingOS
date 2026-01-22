@@ -253,9 +253,8 @@ export default function ViewCarrierPage({ params }: { params: { id: string } }) 
         {[1, 2, 3, 4, 5].map((star) => (
           <Star
             key={star}
-            className={`w-4 h-4 ${
-              star <= rating ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'
-            }`}
+            className={`w-4 h-4 ${star <= rating ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'
+              }`}
           />
         ))}
       </div>
@@ -264,7 +263,7 @@ export default function ViewCarrierPage({ params }: { params: { id: string } }) 
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-6">
-      <div className="max-w-7xl mx-auto">
+      <div className="w-full">
         {/* Header */}
         <div className="mb-6 flex items-center justify-between">
           <div className="flex items-center gap-4">
@@ -340,41 +339,37 @@ export default function ViewCarrierPage({ params }: { params: { id: string } }) 
             <div className="flex gap-8 px-6">
               <button
                 onClick={() => setActiveTab('overview')}
-                className={`py-4 border-b-2 font-medium transition-colors ${
-                  activeTab === 'overview'
+                className={`py-4 border-b-2 font-medium transition-colors ${activeTab === 'overview'
                     ? 'border-blue-600 text-blue-600'
                     : 'border-transparent text-gray-600 hover:text-gray-900'
-                }`}
+                  }`}
               >
                 Overview
               </button>
               <button
                 onClick={() => setActiveTab('shipments')}
-                className={`py-4 border-b-2 font-medium transition-colors ${
-                  activeTab === 'shipments'
+                className={`py-4 border-b-2 font-medium transition-colors ${activeTab === 'shipments'
                     ? 'border-blue-600 text-blue-600'
                     : 'border-transparent text-gray-600 hover:text-gray-900'
-                }`}
+                  }`}
               >
                 Shipment History
               </button>
               <button
                 onClick={() => setActiveTab('performance')}
-                className={`py-4 border-b-2 font-medium transition-colors ${
-                  activeTab === 'performance'
+                className={`py-4 border-b-2 font-medium transition-colors ${activeTab === 'performance'
                     ? 'border-blue-600 text-blue-600'
                     : 'border-transparent text-gray-600 hover:text-gray-900'
-                }`}
+                  }`}
               >
                 Performance Metrics
               </button>
               <button
                 onClick={() => setActiveTab('activity')}
-                className={`py-4 border-b-2 font-medium transition-colors ${
-                  activeTab === 'activity'
+                className={`py-4 border-b-2 font-medium transition-colors ${activeTab === 'activity'
                     ? 'border-blue-600 text-blue-600'
                     : 'border-transparent text-gray-600 hover:text-gray-900'
-                }`}
+                  }`}
               >
                 Activity
               </button>
@@ -816,12 +811,11 @@ export default function ViewCarrierPage({ params }: { params: { id: string } }) 
                   {activities.map((activity, index) => (
                     <div key={index} className="flex gap-4">
                       <div className="flex flex-col items-center">
-                        <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
-                          activity.type === 'success' ? 'bg-green-100' :
-                          activity.type === 'update' ? 'bg-blue-100' :
-                          activity.type === 'warning' ? 'bg-yellow-100' :
-                          'bg-gray-100'
-                        }`}>
+                        <div className={`w-10 h-10 rounded-full flex items-center justify-center ${activity.type === 'success' ? 'bg-green-100' :
+                            activity.type === 'update' ? 'bg-blue-100' :
+                              activity.type === 'warning' ? 'bg-yellow-100' :
+                                'bg-gray-100'
+                          }`}>
                           {activity.type === 'success' ? (
                             <CheckCircle2 className="w-5 h-5 text-green-600" />
                           ) : activity.type === 'update' ? (

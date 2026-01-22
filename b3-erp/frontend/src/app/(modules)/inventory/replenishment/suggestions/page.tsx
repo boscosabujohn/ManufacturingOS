@@ -2,463 +2,275 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { ArrowLeft, Search, TrendingUp, AlertTriangle, CheckCircle, XCircle, TrendingDown, Calendar, Plus } from 'lucide-react';
+import {
+    ArrowLeft,
+    Search,
+    TrendingUp,
+    AlertTriangle,
+    CheckCircle,
+    XCircle,
+    TrendingDown,
+    Calendar,
+    Plus,
+    ShoppingCart,
+    Filter,
+    Download
+} from 'lucide-react';
 
 interface ReplenishmentSuggestion {
-  id: string;
-  itemCode: string;
-  itemName: string;
-  currentStock: number;
-  minLevel: number;
-  maxLevel: number;
-  reorderPoint: number;
-  suggestedQty: number;
-  uom: string;
-  location: string;
-  supplier: string;
-  leadTime: number;
-  avgConsumption: number;
-  daysToStockout: number;
-  priority: 'critical' | 'high' | 'medium' | 'low';
-  category: string;
-  trend: 'increasing' | 'stable' | 'decreasing';
+    id: string;
+    itemCode: string;
+    itemName: string;
+    currentStock: number;
+    minLevel: number;
+    maxLevel: number;
+    reorderPoint: number;
+    suggestedQty: number;
+    uom: string;
+    location: string;
+    supplier: string;
+    leadTime: number;
+    avgConsumption: number;
+    status: 'critical' | 'warning' | 'normal';
+    lastRestockDate: string;
 }
 
-export default function ReplenishmentSuggestionsPage() {
-  const router = useRouter();
-  const [searchQuery, setSearchQuery] = useState('');
-  const [filterPriority, setFilterPriority] = useState('all');
-  const [selectedItems, setSelectedItems] = useState<string[]>([]);
+const ReplenishmentSuggestionsPage = () => {
+    const router = useRouter();
+    const [searchQuery, setSearchQuery] = useState('');
+    const [statusFilter, setStatusFilter] = useState('all');
 
-  const suggestions: ReplenishmentSuggestion[] = [
-    {
-      id: '1',
-      itemCode: 'RM-008',
-      itemName: 'Steel Plate 5mm',
-      currentStock: 45,
-      minLevel: 100,
-      maxLevel: 500,
-      reorderPoint: 120,
-      suggestedQty: 455,
-      uom: 'Sheets',
-      location: 'Zone A - Bin A-01',
-      supplier: 'SteelCorp Industries',
-      leadTime: 7,
-      avgConsumption: 8,
-      daysToStockout: 5,
-      priority: 'critical',
-      category: 'Raw Material',
-      trend: 'increasing'
-    },
-    {
-      id: '2',
-      itemCode: 'RM-034',
-      itemName: 'Copper Wire 4mm',
-      currentStock: 8,
-      minLevel: 25,
-      maxLevel: 200,
-      reorderPoint: 30,
-      suggestedQty: 192,
-      uom: 'Kg',
-      location: 'Zone A - Bin A-05',
-      supplier: 'WireTech Solutions',
-      leadTime: 6,
-      avgConsumption: 2,
-      daysToStockout: 4,
-      priority: 'critical',
-      category: 'Raw Material',
-      trend: 'stable'
-    },
-    {
-      id: '3',
-      itemCode: 'RM-089',
-      itemName: 'Aluminum Rod 20mm',
-      currentStock: 78,
-      minLevel: 50,
-      maxLevel: 300,
-      reorderPoint: 75,
-      suggestedQty: 222,
-      uom: 'Pcs',
-      location: 'Zone A - Bin A-04',
-      supplier: 'MetalSource Ltd',
-      leadTime: 5,
-      avgConsumption: 12,
-      daysToStockout: 6,
-      priority: 'high',
-      category: 'Raw Material',
-      trend: 'increasing'
-    },
-    {
-      id: '4',
-      itemCode: 'CP-045',
-      itemName: 'Hydraulic Cylinder',
-      currentStock: 12,
-      minLevel: 10,
-      maxLevel: 50,
-      reorderPoint: 15,
-      suggestedQty: 38,
-      uom: 'Nos',
-      location: 'Zone B - Bin B-03',
-      supplier: 'HydroTech Systems',
-      leadTime: 14,
-      avgConsumption: 1,
-      daysToStockout: 12,
-      priority: 'high',
-      category: 'Component',
-      trend: 'stable'
-    },
-    {
-      id: '5',
-      itemCode: 'CS-023',
-      itemName: 'Cutting Oil Premium',
-      currentStock: 35,
-      minLevel: 30,
-      maxLevel: 150,
-      reorderPoint: 40,
-      suggestedQty: 115,
-      uom: 'Liters',
-      location: 'Zone D - Bin D-02',
-      supplier: 'ChemSupply Co',
-      leadTime: 3,
-      avgConsumption: 5,
-      daysToStockout: 7,
-      priority: 'medium',
-      category: 'Consumable',
-      trend: 'stable'
-    },
-    {
-      id: '6',
-      itemCode: 'RM-112',
-      itemName: 'Brass Sheet 2mm',
-      currentStock: 22,
-      minLevel: 30,
-      maxLevel: 150,
-      reorderPoint: 35,
-      suggestedQty: 128,
-      uom: 'Sheets',
-      location: 'Zone A - Bin A-02',
-      supplier: 'MetalSource Ltd',
-      leadTime: 8,
-      avgConsumption: 3,
-      daysToStockout: 7,
-      priority: 'high',
-      category: 'Raw Material',
-      trend: 'decreasing'
-    },
-    {
-      id: '7',
-      itemCode: 'CP-078',
-      itemName: 'Ball Bearing 6208',
-      currentStock: 145,
-      minLevel: 100,
-      maxLevel: 400,
-      reorderPoint: 120,
-      suggestedQty: 255,
-      uom: 'Nos',
-      location: 'Zone B - Bin B-01',
-      supplier: 'BearingTech Industries',
-      leadTime: 10,
-      avgConsumption: 7,
-      daysToStockout: 20,
-      priority: 'medium',
-      category: 'Component',
-      trend: 'stable'
-    },
-    {
-      id: '8',
-      itemCode: 'CS-056',
-      itemName: 'Grinding Wheel 180mm',
-      currentStock: 56,
-      minLevel: 40,
-      maxLevel: 180,
-      reorderPoint: 50,
-      suggestedQty: 124,
-      uom: 'Nos',
-      location: 'Zone D - Bin D-03',
-      supplier: 'AbrasiveTech Co',
-      leadTime: 4,
-      avgConsumption: 4,
-      daysToStockout: 14,
-      priority: 'low',
-      category: 'Consumable',
-      trend: 'decreasing'
-    }
-  ];
+    // Mock data matching the interface
+    const suggestions: ReplenishmentSuggestion[] = [
+        {
+            id: '1',
+            itemCode: 'RM-STEEL-001',
+            itemName: 'Steel Sheet 2mm',
+            currentStock: 150,
+            minLevel: 200,
+            maxLevel: 1000,
+            reorderPoint: 300,
+            suggestedQty: 850,
+            uom: 'Sheets',
+            location: 'WH-01-A-01',
+            supplier: 'Steel Corp India',
+            leadTime: 5,
+            avgConsumption: 25,
+            status: 'critical',
+            lastRestockDate: '2024-01-10'
+        },
+        {
+            id: '2',
+            itemCode: 'COMP-ELEC-042',
+            itemName: 'Circuit Breaker 16A',
+            currentStock: 45,
+            minLevel: 50,
+            maxLevel: 200,
+            reorderPoint: 60,
+            suggestedQty: 155,
+            uom: 'Units',
+            location: 'WH-02-B-12',
+            supplier: 'Electronix Ltd',
+            leadTime: 3,
+            avgConsumption: 8,
+            status: 'warning',
+            lastRestockDate: '2024-01-05'
+        },
+        {
+            id: '3',
+            itemCode: 'PKG-BOX-L',
+            itemName: 'Large Cardboard Box',
+            currentStock: 450,
+            minLevel: 500,
+            maxLevel: 2000,
+            reorderPoint: 600,
+            suggestedQty: 1550,
+            uom: 'Pcs',
+            location: 'WH-03-P-05',
+            supplier: 'PackIt Solutions',
+            leadTime: 2,
+            avgConsumption: 120,
+            status: 'warning',
+            lastRestockDate: '2024-01-12'
+        }
+    ];
 
-  const filteredSuggestions = suggestions.filter(sug => {
-    const matchesSearch = sug.itemCode.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         sug.itemName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         sug.category.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesPriority = filterPriority === 'all' || sug.priority === filterPriority;
-    return matchesSearch && matchesPriority;
-  });
+    const filteredSuggestions = suggestions.filter(item => {
+        const matchesSearch =
+            item.itemCode.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            item.itemName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            item.supplier.toLowerCase().includes(searchQuery.toLowerCase());
 
-  const getPriorityColor = (priority: string) => {
-    switch (priority) {
-      case 'critical': return 'bg-red-100 text-red-700 border-red-200';
-      case 'high': return 'bg-orange-100 text-orange-700 border-orange-200';
-      case 'medium': return 'bg-yellow-100 text-yellow-700 border-yellow-200';
-      case 'low': return 'bg-green-100 text-green-700 border-green-200';
-      default: return 'bg-gray-100 text-gray-700 border-gray-200';
-    }
-  };
+        const matchesStatus = statusFilter === 'all' || item.status === statusFilter;
 
-  const getTrendIcon = (trend: string) => {
-    switch (trend) {
-      case 'increasing': return <TrendingUp className="w-3 h-3 text-red-600" />;
-      case 'decreasing': return <TrendingDown className="w-3 h-3 text-green-600" />;
-      case 'stable': return <span className="w-3 h-0.5 bg-blue-600 block" />;
-      default: return null;
-    }
-  };
+        return matchesSearch && matchesStatus;
+    });
 
-  const getTrendColor = (trend: string) => {
-    switch (trend) {
-      case 'increasing': return 'text-red-600';
-      case 'decreasing': return 'text-green-600';
-      case 'stable': return 'text-blue-600';
-      default: return 'text-gray-600';
-    }
-  };
+    const getStatusColor = (status: string) => {
+        switch (status) {
+            case 'critical': return 'bg-red-100 text-red-800 border-red-200';
+            case 'warning': return 'bg-yellow-100 text-yellow-800 border-yellow-200';
+            case 'normal': return 'bg-green-100 text-green-800 border-green-200';
+            default: return 'bg-gray-100 text-gray-800 border-gray-200';
+        }
+    };
 
-  const getStockHealthColor = (current: number, min: number, reorder: number) => {
-    if (current < min) return 'text-red-600';
-    if (current < reorder) return 'text-orange-600';
-    return 'text-green-600';
-  };
+    const currentDateTime = new Date().toISOString().split('T')[0];
 
-  const handleToggleSelect = (id: string) => {
-    setSelectedItems(prev =>
-      prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]
-    );
-  };
-
-  const handleSelectAll = () => {
-    if (selectedItems.length === filteredSuggestions.length) {
-      setSelectedItems([]);
-    } else {
-      setSelectedItems(filteredSuggestions.map(s => s.id));
-    }
-  };
-
-  const handleCreateRequests = () => {
-    if (selectedItems.length === 0) {
-      alert('Please select at least one item to create replenishment requests');
-      return;
-    }
-    alert(`Creating ${selectedItems.length} replenishment request(s)...`);
-    router.push('/inventory/replenishment');
-  };
-
-  return (
-    <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <div className="flex items-center gap-4">
-          <button onClick={() => router.back()} className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
-            <ArrowLeft className="w-5 h-5 text-gray-600" />
-          </button>
-          <div>
-            <h1 className="text-2xl font-bold text-gray-900">Replenishment Suggestions</h1>
-            <p className="text-sm text-gray-500 mt-1">AI-powered inventory replenishment recommendations</p>
-          </div>
-        </div>
-        <button
-          onClick={handleCreateRequests}
-          disabled={selectedItems.length === 0}
-          className={`px-4 py-2 rounded-lg font-medium flex items-center gap-2 ${
-            selectedItems.length > 0
-              ? 'bg-blue-600 text-white hover:bg-blue-700'
-              : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-          }`}
-        >
-          <Plus className="w-4 h-4" />
-          Create {selectedItems.length > 0 ? `(${selectedItems.length})` : ''} Request
-        </button>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-xl p-6 border border-red-200">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm font-medium text-red-600">Critical</p>
-              <p className="text-3xl font-bold text-red-900 mt-1">
-                {suggestions.filter(s => s.priority === 'critical').length}
-              </p>
-              <p className="text-xs text-red-600 mt-1">&lt; 5 days to stockout</p>
+    return (
+        <div className="w-full h-full p-6 space-y-6">
+            {/* Header */}
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <button
+                        onClick={() => router.back()}
+                        className="flex items-center text-gray-600 hover:text-gray-900 mb-2 transition-colors"
+                    >
+                        <ArrowLeft className="w-4 h-4 mr-1" />
+                        Back to Replenishment
+                    </button>
+                    <h1 className="text-2xl font-bold text-gray-900">Replenishment Suggestions</h1>
+                    <p className="text-gray-600">AI-driven stock replenishment recommendations based on consumption patterns</p>
+                </div>
+                <div className="flex gap-3">
+                    <button className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-gray-700 bg-white shadow-sm transition-all">
+                        <Download className="w-4 h-4" />
+                        Export
+                    </button>
+                    <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 shadow-sm transition-all">
+                        <ShoppingCart className="w-4 h-4" />
+                        Create Purchase Orders
+                    </button>
+                </div>
             </div>
-            <AlertTriangle className="w-6 h-6 text-red-700" />
-          </div>
-        </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-6 border border-orange-200">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm font-medium text-orange-600">High Priority</p>
-              <p className="text-3xl font-bold text-orange-900 mt-1">
-                {suggestions.filter(s => s.priority === 'high').length}
-              </p>
-              <p className="text-xs text-orange-600 mt-1">&lt; 10 days to stockout</p>
-            </div>
-            <TrendingUp className="w-6 h-6 text-orange-700" />
-          </div>
-        </div>
-
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-xl p-6 border border-yellow-200">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm font-medium text-yellow-600">Medium</p>
-              <p className="text-3xl font-bold text-yellow-900 mt-1">
-                {suggestions.filter(s => s.priority === 'medium').length}
-              </p>
-              <p className="text-xs text-yellow-600 mt-1">&lt; 15 days to stockout</p>
-            </div>
-            <Calendar className="w-6 h-6 text-yellow-700" />
-          </div>
-        </div>
-
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 border border-blue-200">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm font-medium text-blue-600">Total Items</p>
-              <p className="text-3xl font-bold text-blue-900 mt-1">{suggestions.length}</p>
-            </div>
-            <CheckCircle className="w-6 h-6 text-blue-700" />
-          </div>
-        </div>
-      </div>
-
-      <div className="bg-white rounded-xl border border-gray-200 p-4 mb-6">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div className="relative">
-            <Search className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" />
-            <input
-              type="text"
-              placeholder="Search by item code, name, or category..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            />
-          </div>
-          <select
-            value={filterPriority}
-            onChange={(e) => setFilterPriority(e.target.value)}
-            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          >
-            <option value="all">All Priorities</option>
-            <option value="critical">Critical</option>
-            <option value="high">High</option>
-            <option value="medium">Medium</option>
-            <option value="low">Low</option>
-          </select>
-        </div>
-      </div>
-
-      <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
-        <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead className="bg-gray-50 border-b border-gray-200">
-              <tr>
-                <th className="px-4 py-3 text-center">
-                  <input
-                    type="checkbox"
-                    checked={selectedItems.length === filteredSuggestions.length && filteredSuggestions.length > 0}
-                    onChange={handleSelectAll}
-                    className="w-4 h-4 text-blue-600 rounded focus:ring-2 focus:ring-blue-500"
-                  />
-                </th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Item</th>
-                <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase">Current Stock</th>
-                <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase">Min/ROP/Max</th>
-                <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase">Suggested Qty</th>
-                <th className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase">Avg Usage</th>
-                <th className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase">Days to Stockout</th>
-                <th className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase">Trend</th>
-                <th className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase">Priority</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-200">
-              {filteredSuggestions.map((sug) => (
-                <tr key={sug.id} className="hover:bg-gray-50">
-                  <td className="px-4 py-3 text-center">
+            {/* Filters */}
+            <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-200 flex flex-col md:flex-row gap-4 items-center justify-between">
+                <div className="relative w-full md:w-96">
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
                     <input
-                      type="checkbox"
-                      checked={selectedItems.includes(sug.id)}
-                      onChange={() => handleToggleSelect(sug.id)}
-                      className="w-4 h-4 text-blue-600 rounded focus:ring-2 focus:ring-blue-500"
+                        type="text"
+                        placeholder="Search items, codes, or suppliers..."
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
                     />
-                  </td>
-                  <td className="px-4 py-3">
-                    <div className="text-sm font-semibold text-gray-900">{sug.itemCode}</div>
-                    <div className="text-xs text-gray-500">{sug.itemName}</div>
-                    <div className="text-xs text-gray-400 mt-1">{sug.category} " {sug.location}</div>
-                  </td>
-                  <td className="px-4 py-3 text-right">
-                    <div className={`text-sm font-bold ${getStockHealthColor(sug.currentStock, sug.minLevel, sug.reorderPoint)}`}>
-                      {sug.currentStock} {sug.uom}
+                </div>
+
+                <div className="flex gap-3 w-full md:w-auto">
+                    <div className="flex items-center gap-2">
+                        <Filter className="w-4 h-4 text-gray-500" />
+                        <select
+                            value={statusFilter}
+                            onChange={(e) => setStatusFilter(e.target.value)}
+                            className="px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        >
+                            <option value="all">All Status</option>
+                            <option value="critical">Critical</option>
+                            <option value="warning">Warning</option>
+                            <option value="normal">Normal</option>
+                        </select>
                     </div>
-                  </td>
-                  <td className="px-4 py-3 text-right">
-                    <div className="text-xs text-gray-600">
-                      <div>Min: {sug.minLevel}</div>
-                      <div className="text-orange-600 font-semibold">ROP: {sug.reorderPoint}</div>
-                      <div>Max: {sug.maxLevel}</div>
+                    <input
+                        type="date"
+                        className="px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        defaultValue={currentDateTime}
+                    />
+                </div>
+            </div>
+
+            {/* Table */}
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                <div className="overflow-x-auto">
+                    <table className="w-full">
+                        <thead className="bg-gray-50 border-b border-gray-200">
+                            <tr>
+                                <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                    Item Details
+                                </th>
+                                <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                    Stock Status
+                                </th>
+                                <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                    Suggested Qty
+                                </th>
+                                <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                    Supplier info
+                                </th>
+                                <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                    Status
+                                </th>
+                                <th className="px-6 py-4 text-right text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                    Action
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody className="divide-y divide-gray-200">
+                            {filteredSuggestions.map((item) => (
+                                <tr key={item.id} className="hover:bg-gray-50 transition-colors">
+                                    <td className="px-6 py-4">
+                                        <div className="flex flex-col">
+                                            <span className="font-medium text-gray-900">{item.itemName}</span>
+                                            <span className="text-xs text-gray-500 text-nowrap">{item.itemCode}</span>
+                                        </div>
+                                    </td>
+                                    <td className="px-6 py-4">
+                                        <div className="space-y-1">
+                                            <div className="flex justify-between text-xs">
+                                                <span className="text-gray-500">Current:</span>
+                                                <span className="font-medium">{item.currentStock} {item.uom}</span>
+                                            </div>
+                                            <div className="flex justify-between text-xs">
+                                                <span className="text-gray-500">Reorder Pt:</span>
+                                                <span className="font-medium">{item.reorderPoint} {item.uom}</span>
+                                            </div>
+                                            <div className="w-24 h-1.5 bg-gray-200 rounded-full overflow-hidden">
+                                                <div
+                                                    className={`h-full rounded-full ${item.status === 'critical' ? 'bg-red-500' : 'bg-yellow-500'}`}
+                                                    style={{ width: `${(item.currentStock / item.maxLevel) * 100}%` }}
+                                                />
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td className="px-6 py-4">
+                                        <div className="flex items-center gap-2">
+                                            <span className="text-lg font-bold text-blue-600 bg-blue-50 px-3 py-1 rounded-lg border border-blue-100">
+                                                {item.suggestedQty}
+                                            </span>
+                                            <span className="text-sm text-gray-500">{item.uom}</span>
+                                        </div>
+                                    </td>
+                                    <td className="px-6 py-4">
+                                        <div className="flex flex-col">
+                                            <span className="text-sm font-medium text-gray-900">{item.supplier}</span>
+                                            <span className="text-xs text-gray-500">Lead Time: {item.leadTime} days</span>
+                                        </div>
+                                    </td>
+                                    <td className="px-6 py-4">
+                                        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border ${getStatusColor(item.status)}`}>
+                                            {item.status === 'critical' && <AlertTriangle className="w-3 h-3 mr-1" />}
+                                            {item.status.charAt(0).toUpperCase() + item.status.slice(1)}
+                                        </span>
+                                    </td>
+                                    <td className="px-6 py-4 text-right">
+                                        <button className="text-blue-600 hover:text-blue-800 text-sm font-medium hover:underline">
+                                            Create PO
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+
+                {filteredSuggestions.length === 0 && (
+                    <div className="p-8 text-center text-gray-500">
+                        <p>No replenishment suggestions found.</p>
                     </div>
-                  </td>
-                  <td className="px-4 py-3 text-right">
-                    <div className="text-sm font-bold text-blue-600">
-                      {sug.suggestedQty} {sug.uom}
-                    </div>
-                  </td>
-                  <td className="px-4 py-3 text-center">
-                    <div className="text-sm font-semibold text-gray-900">
-                      {sug.avgConsumption} {sug.uom}/day
-                    </div>
-                  </td>
-                  <td className="px-4 py-3 text-center">
-                    <div className={`text-sm font-bold ${
-                      sug.daysToStockout < 5 ? 'text-red-600' :
-                      sug.daysToStockout < 10 ? 'text-orange-600' :
-                      'text-green-600'
-                    }`}>
-                      {sug.daysToStockout} days
-                    </div>
-                  </td>
-                  <td className="px-4 py-3 text-center">
-                    <div className={`flex items-center justify-center gap-1 ${getTrendColor(sug.trend)}`}>
-                      {getTrendIcon(sug.trend)}
-                      <span className="text-xs font-medium capitalize">{sug.trend}</span>
-                    </div>
-                  </td>
-                  <td className="px-4 py-3 text-center">
-                    <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium border ${getPriorityColor(sug.priority)}`}>
-                      {sug.priority}
-                    </span>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                )}
+            </div>
         </div>
+    );
+};
 
-        {filteredSuggestions.length === 0 && (
-          <div className="text-center py-12">
-            <CheckCircle className="w-12 h-12 text-green-500 mx-auto mb-3" />
-            <p className="text-gray-500">No replenishment suggestions at this time</p>
-            <p className="text-sm text-gray-400 mt-1">All items are adequately stocked</p>
-          </div>
-        )}
-      </div>
-
-      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-xl p-4">
-        <h3 className="text-sm font-semibold text-blue-900 mb-2">How Suggestions Work:</h3>
-        <ul className="text-sm text-blue-700 space-y-1 list-disc list-inside">
-          <li><strong>AI-Powered Analysis:</strong> System analyzes consumption patterns, lead times, and stock levels</li>
-          <li><strong>Priority Levels:</strong> Based on days to stockout and consumption trends</li>
-          <li><strong>Trend Indicators:</strong> Increasing (—), Stable (), or Decreasing (˜) consumption</li>
-          <li><strong>Suggested Quantity:</strong> Calculated to bring stock to max level accounting for lead time usage</li>
-          <li>Select multiple items and create bulk replenishment requests with one click</li>
-        </ul>
-      </div>
-    </div>
-  );
-}
+export default ReplenishmentSuggestionsPage;

@@ -220,9 +220,14 @@ const movementTypeConfig = {
 
 export default function InventoryPage() {
   const router = useRouter();
+  const [isMounted, setIsMounted] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [filterCategory, setFilterCategory] = useState('all');
   const [filterStatus, setFilterStatus] = useState('all');
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   // Calculate statistics
   const totalItems = mockStockItems.reduce((sum, item) => sum + item.currentStock, 0);
@@ -244,6 +249,12 @@ export default function InventoryPage() {
     const matchesStatus = filterStatus === 'all' || item.status === filterStatus;
     return matchesSearch && matchesCategory && matchesStatus;
   });
+
+  if (!isMounted) {
+    return null;
+  }
+
+
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -391,9 +402,8 @@ export default function InventoryPage() {
                     </div>
                     <div className="w-full bg-gray-200 rounded-full h-2">
                       <div
-                        className={`h-2 rounded-full ${
-                          utilization > 80 ? 'bg-red-500' : utilization > 60 ? 'bg-yellow-500' : 'bg-green-500'
-                        }`}
+                        className={`h-2 rounded-full ${utilization > 80 ? 'bg-red-500' : utilization > 60 ? 'bg-yellow-500' : 'bg-green-500'
+                          }`}
                         style={{ width: `${utilization}%` }}
                       />
                     </div>
@@ -417,7 +427,7 @@ export default function InventoryPage() {
             <h3 className="text-lg font-semibold text-gray-900 mb-4">Recent Movements</h3>
             <div className="space-y-3">
               {mockRecentMovements.slice(0, 5).map(movement => {
-                const config = movementTypeConfig[movement.type];
+                const config = movementTypeConfig[movement.type] || movementTypeConfig.receipt;
                 const Icon = config.icon;
                 return (
                   <div key={movement.id} className="flex items-start space-x-2">
@@ -550,7 +560,7 @@ export default function InventoryPage() {
               </thead>
               <tbody className="divide-y divide-gray-200">
                 {filteredItems.map((item) => {
-                  const config = statusConfig[item.status];
+                  const config = statusConfig[item.status] || statusConfig.optimal;
                   const StatusIcon = config.icon;
                   return (
                     <tr key={item.id} className="hover:bg-gray-50 transition-colors">

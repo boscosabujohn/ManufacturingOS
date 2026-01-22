@@ -673,7 +673,7 @@ export default function ProfitabilityAnalysisPage() {
   };
 
   return (
-    <div className="p-6 max-w-[1600px] mx-auto">
+    <div className="p-6 mx-auto">
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-center justify-between mb-4">
@@ -1055,6 +1055,7 @@ export default function ProfitabilityAnalysisPage() {
         isOpen={showMarginAnalysisModal}
         onClose={() => setShowMarginAnalysisModal(false)}
         project={selectedProject}
+        projects={filteredProjects}
       />
 
       <RevenueRecognitionModal
@@ -1097,13 +1098,14 @@ export default function ProfitabilityAnalysisPage() {
       <BenchmarkComparisonModal
         isOpen={showComparisonModal}
         onClose={() => setShowComparisonModal(false)}
-        projects={mockProjects}
+        projects={filteredProjects}
       />
 
       <RiskAssessmentModal
         isOpen={showRiskAssessmentModal}
         onClose={() => setShowRiskAssessmentModal(false)}
         project={selectedProject}
+        projects={filteredProjects}
       />
     </div>
   );

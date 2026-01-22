@@ -592,7 +592,7 @@ const VendorManagementDashboard = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 p-6">
-      <div className="max-w-7xl mx-auto">
+      <div className="w-full">
         {/* Header */}
         <div className="mb-6">
           <div className="flex items-center justify-between mb-4">
@@ -900,11 +900,10 @@ const VendorManagementDashboard = () => {
               {riskVendors.map((vendor, index) => (
                 <div
                   key={index}
-                  className={`p-4 rounded-lg border ${
-                    vendor.risk_level === 'high' ? 'bg-red-50 border-red-200' :
-                    vendor.risk_level === 'medium' ? 'bg-yellow-50 border-yellow-200' :
-                    'bg-green-50 border-green-200'
-                  }`}
+                  className={`p-4 rounded-lg border ${vendor.risk_level === 'high' ? 'bg-red-50 border-red-200' :
+                      vendor.risk_level === 'medium' ? 'bg-yellow-50 border-yellow-200' :
+                        'bg-green-50 border-green-200'
+                    }`}
                 >
                   <div className="flex items-start justify-between mb-2">
                     <div>
@@ -973,11 +972,10 @@ const VendorManagementDashboard = () => {
             {pendingActions.map((action) => (
               <div key={action.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg border border-gray-200 hover:bg-gray-100 transition-colors">
                 <div className="flex items-center gap-3 flex-1">
-                  <div className={`p-2 rounded-lg ${
-                    action.priority === 'high' ? 'bg-red-100' :
-                    action.priority === 'medium' ? 'bg-yellow-100' :
-                    'bg-blue-100'
-                  }`}>
+                  <div className={`p-2 rounded-lg ${action.priority === 'high' ? 'bg-red-100' :
+                      action.priority === 'medium' ? 'bg-yellow-100' :
+                        'bg-blue-100'
+                    }`}>
                     {action.action_type === 'approval' && <CheckSquare className="w-4 h-4 text-red-600" />}
                     {action.action_type === 'review' && <Target className="w-4 h-4 text-yellow-600" />}
                     {action.action_type === 'contract_renewal' && <FileCheck className="w-4 h-4 text-blue-600" />}
@@ -992,11 +990,10 @@ const VendorManagementDashboard = () => {
                     <p className="text-xs text-gray-500">Due Date</p>
                     <p className="text-sm font-medium text-gray-900">{action.due_date}</p>
                   </div>
-                  <span className={`px-2 py-1 text-xs font-medium rounded-full ${
-                    action.priority === 'high' ? 'bg-red-100 text-red-700' :
-                    action.priority === 'medium' ? 'bg-yellow-100 text-yellow-700' :
-                    'bg-blue-100 text-blue-700'
-                  }`}>
+                  <span className={`px-2 py-1 text-xs font-medium rounded-full ${action.priority === 'high' ? 'bg-red-100 text-red-700' :
+                      action.priority === 'medium' ? 'bg-yellow-100 text-yellow-700' :
+                        'bg-blue-100 text-blue-700'
+                    }`}>
                     {action.priority.toUpperCase()}
                   </span>
                 </div>
@@ -1047,11 +1044,10 @@ const VendorManagementDashboard = () => {
                     </td>
                     <td className="p-3 border-b text-right">
                       <div className="flex items-center justify-end gap-1">
-                        <span className={`text-sm font-medium ${
-                          vendor.on_time_delivery_rate >= 95 ? 'text-green-600' :
-                          vendor.on_time_delivery_rate >= 85 ? 'text-yellow-600' :
-                          'text-red-600'
-                        }`}>
+                        <span className={`text-sm font-medium ${vendor.on_time_delivery_rate >= 95 ? 'text-green-600' :
+                            vendor.on_time_delivery_rate >= 85 ? 'text-yellow-600' :
+                              'text-red-600'
+                          }`}>
                           {vendor.on_time_delivery_rate}%
                         </span>
                         {vendor.on_time_delivery_rate >= 95 ? (
@@ -1062,20 +1058,18 @@ const VendorManagementDashboard = () => {
                       </div>
                     </td>
                     <td className="p-3 border-b text-right">
-                      <span className={`text-sm font-medium ${
-                        vendor.quality_acceptance_rate >= 98 ? 'text-green-600' :
-                        vendor.quality_acceptance_rate >= 95 ? 'text-yellow-600' :
-                        'text-red-600'
-                      }`}>
+                      <span className={`text-sm font-medium ${vendor.quality_acceptance_rate >= 98 ? 'text-green-600' :
+                          vendor.quality_acceptance_rate >= 95 ? 'text-yellow-600' :
+                            'text-red-600'
+                        }`}>
                         {vendor.quality_acceptance_rate}%
                       </span>
                     </td>
                     <td className="p-3 border-b text-right">
-                      <span className={`text-sm font-medium ${
-                        vendor.price_competitiveness >= 90 ? 'text-green-600' :
-                        vendor.price_competitiveness >= 85 ? 'text-yellow-600' :
-                        'text-red-600'
-                      }`}>
+                      <span className={`text-sm font-medium ${vendor.price_competitiveness >= 90 ? 'text-green-600' :
+                          vendor.price_competitiveness >= 85 ? 'text-yellow-600' :
+                            'text-red-600'
+                        }`}>
                         {vendor.price_competitiveness}%
                       </span>
                     </td>
@@ -1095,14 +1089,14 @@ const VendorManagementDashboard = () => {
                         <button
                           onClick={() => router.push(`/procurement/vendors/view/${vendor.vendor_id}`)}
                           className="p-1 text-blue-600 hover:bg-blue-50 rounded"
-                         
+
                         >
                           <Eye className="w-4 h-4" />
                         </button>
                         <button
                           onClick={() => router.push(`/procurement/vendors/edit/${vendor.vendor_id}`)}
                           className="p-1 text-gray-600 hover:bg-gray-50 rounded"
-                         
+
                         >
                           <Edit className="w-4 h-4" />
                         </button>

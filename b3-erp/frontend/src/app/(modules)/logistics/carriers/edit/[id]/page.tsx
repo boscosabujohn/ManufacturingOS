@@ -225,7 +225,7 @@ export default function EditCarrierPage({ params }: { params: { id: string } }) 
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-6">
-      <div className="max-w-7xl mx-auto">
+      <div className="w-full">
         {/* Header */}
         <div className="mb-6 flex items-center justify-between">
           <div className="flex items-center gap-4">
@@ -318,9 +318,8 @@ export default function EditCarrierPage({ params }: { params: { id: string } }) 
                   type="text"
                   value={formData.carrierName}
                   onChange={(e) => handleInputChange('carrierName', e.target.value)}
-                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                    errors.carrierName ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.carrierName ? 'border-red-500' : 'border-gray-300'
+                    }`}
                   placeholder="Enter carrier name"
                 />
                 {errors.carrierName && (
@@ -335,9 +334,8 @@ export default function EditCarrierPage({ params }: { params: { id: string } }) 
                 <select
                   value={formData.carrierType}
                   onChange={(e) => handleInputChange('carrierType', e.target.value)}
-                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                    errors.carrierType ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.carrierType ? 'border-red-500' : 'border-gray-300'
+                    }`}
                 >
                   <option value="">Select carrier type</option>
                   {carrierTypes.map(type => (
@@ -372,9 +370,8 @@ export default function EditCarrierPage({ params }: { params: { id: string } }) 
                   type="text"
                   value={formData.contactPerson}
                   onChange={(e) => handleInputChange('contactPerson', e.target.value)}
-                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                    errors.contactPerson ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.contactPerson ? 'border-red-500' : 'border-gray-300'
+                    }`}
                   placeholder="Enter contact person name"
                 />
                 {errors.contactPerson && (
@@ -390,9 +387,8 @@ export default function EditCarrierPage({ params }: { params: { id: string } }) 
                   type="email"
                   value={formData.email}
                   onChange={(e) => handleInputChange('email', e.target.value)}
-                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                    errors.email ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.email ? 'border-red-500' : 'border-gray-300'
+                    }`}
                   placeholder="contact@carrier.com"
                 />
                 {errors.email && (
@@ -408,9 +404,8 @@ export default function EditCarrierPage({ params }: { params: { id: string } }) 
                   type="tel"
                   value={formData.phone}
                   onChange={(e) => handleInputChange('phone', e.target.value)}
-                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                    errors.phone ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.phone ? 'border-red-500' : 'border-gray-300'
+                    }`}
                   placeholder="+91 98765 43210"
                 />
                 {errors.phone && (
@@ -454,9 +449,8 @@ export default function EditCarrierPage({ params }: { params: { id: string } }) 
                   value={formData.address}
                   onChange={(e) => handleInputChange('address', e.target.value)}
                   rows={2}
-                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                    errors.address ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.address ? 'border-red-500' : 'border-gray-300'
+                    }`}
                   placeholder="Enter full address"
                 />
                 {errors.address && (
@@ -473,9 +467,8 @@ export default function EditCarrierPage({ params }: { params: { id: string } }) 
                     type="text"
                     value={formData.city}
                     onChange={(e) => handleInputChange('city', e.target.value)}
-                    className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                      errors.city ? 'border-red-500' : 'border-gray-300'
-                    }`}
+                    className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.city ? 'border-red-500' : 'border-gray-300'
+                      }`}
                     placeholder="Enter city"
                   />
                   {errors.city && (
@@ -490,9 +483,8 @@ export default function EditCarrierPage({ params }: { params: { id: string } }) 
                   <select
                     value={formData.state}
                     onChange={(e) => handleInputChange('state', e.target.value)}
-                    className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                      errors.state ? 'border-red-500' : 'border-gray-300'
-                    }`}
+                    className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.state ? 'border-red-500' : 'border-gray-300'
+                      }`}
                   >
                     <option value="">Select state</option>
                     {indianStates.map(state => (
@@ -512,9 +504,8 @@ export default function EditCarrierPage({ params }: { params: { id: string } }) 
                     type="text"
                     value={formData.pincode}
                     onChange={(e) => handleInputChange('pincode', e.target.value)}
-                    className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                      errors.pincode ? 'border-red-500' : 'border-gray-300'
-                    }`}
+                    className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.pincode ? 'border-red-500' : 'border-gray-300'
+                      }`}
                     placeholder="110003"
                     maxLength={6}
                   />
@@ -562,11 +553,10 @@ export default function EditCarrierPage({ params }: { params: { id: string } }) 
                       key={service}
                       type="button"
                       onClick={() => handleServiceTypeToggle(service)}
-                      className={`px-4 py-2.5 rounded-lg border-2 font-medium transition-all ${
-                        formData.serviceTypes.includes(service)
+                      className={`px-4 py-2.5 rounded-lg border-2 font-medium transition-all ${formData.serviceTypes.includes(service)
                           ? 'bg-blue-50 border-blue-500 text-blue-700'
                           : 'bg-white border-gray-300 text-gray-700 hover:border-gray-400'
-                      }`}
+                        }`}
                     >
                       {service}
                     </button>
@@ -587,11 +577,10 @@ export default function EditCarrierPage({ params }: { params: { id: string } }) 
                       key={mode}
                       type="button"
                       onClick={() => handleTransportModeToggle(mode)}
-                      className={`px-4 py-2.5 rounded-lg border-2 font-medium transition-all ${
-                        formData.transportModes.includes(mode)
+                      className={`px-4 py-2.5 rounded-lg border-2 font-medium transition-all ${formData.transportModes.includes(mode)
                           ? 'bg-green-50 border-green-500 text-green-700'
                           : 'bg-white border-gray-300 text-gray-700 hover:border-gray-400'
-                      }`}
+                        }`}
                     >
                       {mode}
                     </button>
@@ -638,9 +627,8 @@ export default function EditCarrierPage({ params }: { params: { id: string } }) 
                   type="text"
                   value={formData.gstNumber}
                   onChange={(e) => handleInputChange('gstNumber', e.target.value.toUpperCase())}
-                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent uppercase font-mono ${
-                    errors.gstNumber ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent uppercase font-mono ${errors.gstNumber ? 'border-red-500' : 'border-gray-300'
+                    }`}
                   placeholder="07AAACB1234F1Z5"
                   maxLength={15}
                 />
@@ -657,9 +645,8 @@ export default function EditCarrierPage({ params }: { params: { id: string } }) 
                   type="text"
                   value={formData.panNumber}
                   onChange={(e) => handleInputChange('panNumber', e.target.value.toUpperCase())}
-                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent uppercase font-mono ${
-                    errors.panNumber ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent uppercase font-mono ${errors.panNumber ? 'border-red-500' : 'border-gray-300'
+                    }`}
                   placeholder="AAACB1234F"
                   maxLength={10}
                 />
@@ -717,9 +704,8 @@ export default function EditCarrierPage({ params }: { params: { id: string } }) 
                   type="text"
                   value={formData.ifscCode}
                   onChange={(e) => handleInputChange('ifscCode', e.target.value.toUpperCase())}
-                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent uppercase font-mono ${
-                    errors.ifscCode ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent uppercase font-mono ${errors.ifscCode ? 'border-red-500' : 'border-gray-300'
+                    }`}
                   placeholder="HDFC0001234"
                   maxLength={11}
                 />

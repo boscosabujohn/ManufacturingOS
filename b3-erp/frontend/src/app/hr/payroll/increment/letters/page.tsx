@@ -339,11 +339,11 @@ export default function IncrementLettersPage() {
     setLetters(prev => prev.map(l =>
       l.id === letterId
         ? {
-            ...l,
-            status: 'approved',
-            approvedBy: 'HR Manager',
-            approvedDate: new Date().toISOString().split('T')[0]
-          }
+          ...l,
+          status: 'approved',
+          approvedBy: 'HR Manager',
+          approvedDate: new Date().toISOString().split('T')[0]
+        }
         : l
     ))
   }
@@ -352,11 +352,11 @@ export default function IncrementLettersPage() {
     setLetters(prev => prev.map(l =>
       l.id === letterId
         ? {
-            ...l,
-            status: 'sent',
-            sentDate: new Date().toISOString().split('T')[0],
-            sentVia: via
-          }
+          ...l,
+          status: 'sent',
+          sentDate: new Date().toISOString().split('T')[0],
+          sentVia: via
+        }
         : l
     ))
   }
@@ -365,16 +365,16 @@ export default function IncrementLettersPage() {
     setLetters(prev => prev.map(l =>
       l.id === letterId
         ? {
-            ...l,
-            status: 'acknowledged',
-            acknowledgedDate: new Date().toISOString().split('T')[0]
-          }
+          ...l,
+          status: 'acknowledged',
+          acknowledgedDate: new Date().toISOString().split('T')[0]
+        }
         : l
     ))
   }
 
   return (
-    <div className="p-6 max-w-7xl mx-auto">
+    <div className="p-6 w-full">
       <div className="mb-6">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">Increment Letters</h1>
         <p className="text-gray-600">Generate, approve, and distribute increment letters to employees</p>
@@ -790,8 +790,8 @@ export default function IncrementLettersPage() {
 
                   <p>
                     We are pleased to inform you that based on your {selectedLetter.incrementType === 'performance' ? 'outstanding performance and contributions' :
-                    selectedLetter.incrementType === 'promotion' ? 'promotion to a higher role' :
-                    selectedLetter.incrementType === 'arrears' ? 'delayed increment processing' : 'annual appraisal'},
+                      selectedLetter.incrementType === 'promotion' ? 'promotion to a higher role' :
+                        selectedLetter.incrementType === 'arrears' ? 'delayed increment processing' : 'annual appraisal'},
                     the management has approved a salary increment for you.
                   </p>
 

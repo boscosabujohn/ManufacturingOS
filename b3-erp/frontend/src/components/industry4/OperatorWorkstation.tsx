@@ -50,6 +50,9 @@ export interface OperatorWorkstationProps {
   className?: string;
 }
 
+// Fixed date for consistent rendering
+const MOCK_NOW = new Date('2024-03-10T14:30:00').getTime();
+
 // Mock data
 const generateMockJob = (): CurrentJob => ({
   id: 'JOB-001',
@@ -59,7 +62,7 @@ const generateMockJob = (): CurrentJob => ({
   targetQuantity: 150,
   completedQuantity: 87,
   scrapQuantity: 3,
-  startTime: new Date(Date.now() - 3 * 60 * 60 * 1000),
+  startTime: new Date(MOCK_NOW - 3 * 60 * 60 * 1000),
   status: 'in_progress',
   machineId: 'MC-04',
   machineName: 'Assembly Station 4',
@@ -509,11 +512,10 @@ export function OperatorWorkstation({
             <button
               key={tab.id}
               onClick={() => setMode(tab.id as WorkstationMode)}
-              className={`py-3 rounded-xl font-bold text-lg transition-colors ${
-                mode === tab.id
+              className={`py-3 rounded-xl font-bold text-lg transition-colors ${mode === tab.id
                   ? 'bg-blue-600 text-white'
                   : 'bg-gray-700 text-gray-400 hover:bg-gray-600'
-              }`}
+                }`}
             >
               <span className="text-xl mr-2">{tab.icon}</span>
               {tab.label}

@@ -39,7 +39,7 @@ export default function PeriodClosePage() {
 
   return (
     <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-cyan-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="max-w-7xl mx-auto space-y-6">
+      <div className="w-full space-y-6">
         <div>
           <h1 className="text-3xl font-bold text-gray-900">Period-End Closing</h1>
           <p className="text-gray-600 mt-1">Month-end close checklist and procedures</p>
@@ -56,12 +56,11 @@ export default function PeriodClosePage() {
 
           <div className="space-y-3">
             {tasks.map((task) => (
-              <div key={task.id} className={`p-4 rounded-lg border-2 ${
-                task.status === 'completed' ? 'bg-green-50 border-green-200' :
-                task.status === 'in_progress' ? 'bg-blue-50 border-blue-200' :
-                task.status === 'blocked' ? 'bg-red-50 border-red-200' :
-                'bg-gray-50 border-gray-200'
-              }`}>
+              <div key={task.id} className={`p-4 rounded-lg border-2 ${task.status === 'completed' ? 'bg-green-50 border-green-200' :
+                  task.status === 'in_progress' ? 'bg-blue-50 border-blue-200' :
+                    task.status === 'blocked' ? 'bg-red-50 border-red-200' :
+                      'bg-gray-50 border-gray-200'
+                }`}>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     {getStatusIcon(task.status)}
@@ -70,11 +69,10 @@ export default function PeriodClosePage() {
                       <p className="text-sm text-gray-600">{task.assignedTo} • Due: {new Date(task.dueDate).toLocaleDateString('en-IN')}</p>
                     </div>
                   </div>
-                  <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                    task.status === 'completed' ? 'bg-green-100 text-green-700' :
-                    task.status === 'in_progress' ? 'bg-blue-100 text-blue-700' :
-                    'bg-gray-100 text-gray-700'
-                  }`}>
+                  <span className={`px-3 py-1 rounded-full text-xs font-medium ${task.status === 'completed' ? 'bg-green-100 text-green-700' :
+                      task.status === 'in_progress' ? 'bg-blue-100 text-blue-700' :
+                        'bg-gray-100 text-gray-700'
+                    }`}>
                     {task.status.replace('_', ' ').toUpperCase()}
                   </span>
                 </div>

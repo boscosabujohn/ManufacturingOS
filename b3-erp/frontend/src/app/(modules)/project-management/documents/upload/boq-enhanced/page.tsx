@@ -310,9 +310,8 @@ export default function UploadBOQEnhancedPage() {
                     updateFormData('project', selected);
                     updateFormData('projectName', projectNames[selected] || '');
                   }}
-                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                    errors.project ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.project ? 'border-red-500' : 'border-gray-300'
+                    }`}
                 >
                   <option value="">Select a project</option>
                   <option value="PRJ-2025-001">PRJ-2025-001 - Taj Hotels - Commercial Kitchen</option>
@@ -330,9 +329,8 @@ export default function UploadBOQEnhancedPage() {
                 <select
                   value={formData.phase}
                   onChange={(e) => updateFormData('phase', e.target.value)}
-                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                    errors.phase ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.phase ? 'border-red-500' : 'border-gray-300'
+                    }`}
                 >
                   <option value="">Select phase</option>
                   <option value="phase-1">Phase 1 - Project Initiation</option>
@@ -352,9 +350,8 @@ export default function UploadBOQEnhancedPage() {
                   type="text"
                   value={formData.version}
                   onChange={(e) => updateFormData('version', e.target.value)}
-                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                    errors.version ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.version ? 'border-red-500' : 'border-gray-300'
+                    }`}
                   placeholder="e.g., 1.0"
                 />
                 {errors.version && <p className="mt-1 text-sm text-red-500">{errors.version}</p>}
@@ -399,13 +396,12 @@ export default function UploadBOQEnhancedPage() {
               onDragOver={handleDragOver}
               onDragLeave={handleDragLeave}
               onDrop={handleDrop}
-              className={`border-2 border-dashed rounded-lg p-8 text-center transition-colors ${
-                isDragging
+              className={`border-2 border-dashed rounded-lg p-8 text-center transition-colors ${isDragging
                   ? 'border-blue-500 bg-blue-50'
                   : errors.file
-                  ? 'border-red-300 bg-red-50'
-                  : 'border-gray-300 hover:border-gray-400 hover:bg-gray-50'
-              }`}
+                    ? 'border-red-300 bg-red-50'
+                    : 'border-gray-300 hover:border-gray-400 hover:bg-gray-50'
+                }`}
             >
               <input
                 type="file"
@@ -691,7 +687,7 @@ export default function UploadBOQEnhancedPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="max-w-5xl mx-auto px-4 py-6">
+      <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
         {/* Header */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
           <div className="flex items-center gap-4 mb-4">
@@ -758,11 +754,10 @@ export default function UploadBOQEnhancedPage() {
                 type="button"
                 onClick={goToPrevStep}
                 disabled={currentStep === 0}
-                className={`flex items-center gap-2 px-4 py-2 rounded-lg ${
-                  currentStep === 0
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg ${currentStep === 0
                     ? 'text-gray-400 cursor-not-allowed'
                     : 'text-gray-700 hover:bg-gray-100'
-                }`}
+                  }`}
               >
                 <ArrowLeft className="w-5 h-5" />
                 Previous

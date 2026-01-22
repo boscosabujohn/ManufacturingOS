@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { Clock, CheckCircle, User, Wallet, TrendingUp, AlertTriangle, Eye, Check, X, XCircle } from 'lucide-react';
+import { Clock, CheckCircle, User, Wallet, TrendingUp, AlertTriangle, Eye, Check, X, XCircle, Download } from 'lucide-react';
 import DataTable from '@/components/DataTable';
 import { toast } from '@/hooks/use-toast';
 
@@ -198,10 +198,12 @@ export default function Page() {
   };
 
   const columns = [
-    { key: 'claimNumber', label: 'Claim No.', sortable: true,
+    {
+      key: 'claimNumber', label: 'Claim No.', sortable: true,
       render: (v: string) => <div className="font-semibold text-gray-900">{v}</div>
     },
-    { key: 'employeeName', label: 'Employee', sortable: true,
+    {
+      key: 'employeeName', label: 'Employee', sortable: true,
       render: (v: string, row: PendingReimbursement) => (
         <div>
           <div className="font-medium text-gray-900">{v}</div>
@@ -210,14 +212,16 @@ export default function Page() {
       )
     },
     { key: 'department', label: 'Department', sortable: true },
-    { key: 'claimType', label: 'Type', sortable: true,
+    {
+      key: 'claimType', label: 'Type', sortable: true,
       render: (v: string) => (
         <span className="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-purple-100 text-purple-800">
           {v}
         </span>
       )
     },
-    { key: 'description', label: 'Description', sortable: true,
+    {
+      key: 'description', label: 'Description', sortable: true,
       render: (v: string, row: PendingReimbursement) => (
         <div>
           <div className="text-sm text-gray-900">{v}</div>
@@ -228,24 +232,28 @@ export default function Page() {
         </div>
       )
     },
-    { key: 'amount', label: 'Amount', sortable: true,
+    {
+      key: 'amount', label: 'Amount', sortable: true,
       render: (v: number) => <div className="text-sm font-semibold text-gray-900">₹{v.toLocaleString('en-IN')}</div>
     },
-    { key: 'pendingDays', label: 'Pending', sortable: true,
+    {
+      key: 'pendingDays', label: 'Pending', sortable: true,
       render: (v: number) => (
         <div className={`text-sm font-semibold ${v > 7 ? 'text-red-600' : 'text-gray-700'}`}>
           {v} days
         </div>
       )
     },
-    { key: 'priority', label: 'Priority', sortable: true,
+    {
+      key: 'priority', label: 'Priority', sortable: true,
       render: (v: string) => (
         <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${getPriorityColor(v)}`}>
           {v.toUpperCase()}
         </span>
       )
     },
-    { key: 'actions', label: 'Actions', sortable: false,
+    {
+      key: 'actions', label: 'Actions', sortable: false,
       render: (_: any, row: PendingReimbursement) => (
         <div className="flex gap-2">
           <button

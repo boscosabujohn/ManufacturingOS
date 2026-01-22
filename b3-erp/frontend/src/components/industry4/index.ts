@@ -19,7 +19,7 @@ export { FactoryFloor3D } from './FactoryFloor3D';
 export type { FloorMachine, FloorZone, FactoryFloor3DProps } from './FactoryFloor3D';
 
 export { EquipmentHealthCards } from './EquipmentHealthCards';
-export type { Equipment, HealthStatus, HealthMetric, MaintenancePrediction, EquipmentHealthCardsProps } from './EquipmentHealthCards';
+export type { Equipment, HealthStatus as EquipmentHealthStatus, HealthMetric, MaintenancePrediction, EquipmentHealthCardsProps } from './EquipmentHealthCards';
 
 export { ProductionSimulation } from './ProductionSimulation';
 export type { SimulationScenario, SimulationParameters, SimulationResults, ProductionSimulationProps } from './ProductionSimulation';
@@ -48,13 +48,13 @@ export { SupplyChainMap } from './SupplyChainMap';
 export type { Shipment, SupplyNode, GeoLocation, ShipmentStatus, TransportMode, LocationType, SupplyChainMapProps } from './SupplyChainMap';
 
 export { VendorRiskHeatmap } from './VendorRiskHeatmap';
-export type { Vendor, RiskScore, RiskLevel, RiskCategory, VendorTier, VendorRiskHeatmapProps } from './VendorRiskHeatmap';
+export type { Vendor, RiskScore, RiskLevel as VendorRiskLevel, RiskCategory, VendorTier, VendorRiskHeatmapProps } from './VendorRiskHeatmap';
 
 export { LeadTimeTimeline } from './LeadTimeTimeline';
-export type { Order, Milestone, OrderStatus, MilestoneStatus, LeadTimeStats, LeadTimeTimelineProps } from './LeadTimeTimeline';
+export type { Order, Milestone as LeadTimeMilestone, OrderStatus, MilestoneStatus as LeadTimeMilestoneStatus, LeadTimeStats, LeadTimeTimelineProps } from './LeadTimeTimeline';
 
 export { InventoryOptimization } from './InventoryOptimization';
-export type { ReorderSuggestion, DemandForecast, CostImpact, ReorderUrgency, InventoryStatus, AIConfidence, InventoryMetrics, InventoryOptimizationProps } from './InventoryOptimization';
+export type { ReorderSuggestion, DemandForecast as InventoryDemandForecast, CostImpact, ReorderUrgency, InventoryStatus, AIConfidence, InventoryMetrics, InventoryOptimizationProps } from './InventoryOptimization';
 
 // Automation & Integration Components
 export { MESIntegrationDashboard } from './MESIntegrationDashboard';
@@ -109,16 +109,16 @@ export type { CertificationType, SupplierTier, GreenCertification, GreenSupplier
 
 // Industry 5.0 Resilience & Flexibility Components
 export { default as SupplyChainRiskDashboard } from './SupplyChainRiskDashboard';
-export type { RiskLevel, SourceType, StockStatus, SupplierRisk, BufferStock, RiskAlert } from './SupplyChainRiskDashboard';
+export type { RiskLevel as SupplyChainRiskLevel, SourceType, StockStatus, SupplierRisk, BufferStock, RiskAlert } from './SupplyChainRiskDashboard';
 
 export { default as ScenarioPlanningTool } from './ScenarioPlanningTool';
 export type { DisruptionType, ImpactSeverity, ScenarioStatus, ScenarioParameter, ImpactResult, MitigationAction, Scenario } from './ScenarioPlanningTool';
 
 export { default as CapacityFlexibilityView } from './CapacityFlexibilityView';
-export type { CapacityStatus, SurgeLevel, ResourceType, CapacityResource, DemandForecast, SurgeIndicator, FlexibilityOption } from './CapacityFlexibilityView';
+export type { CapacityStatus, SurgeLevel, ResourceType, CapacityResource, DemandForecast as CapacityDemandForecast, SurgeIndicator, FlexibilityOption } from './CapacityFlexibilityView';
 
 export { default as BusinessContinuityStatus } from './BusinessContinuityStatus';
-export type { HealthStatus, ProcessCategory, RecoveryPriority, CriticalProcess, IncidentHistory, RecoveryPlan, ContinuityMetric } from './BusinessContinuityStatus';
+export type { HealthStatus as ContinuityHealthStatus, ProcessCategory, RecoveryPriority, CriticalProcess, IncidentHistory, RecoveryPlan, ContinuityMetric } from './BusinessContinuityStatus';
 
 // Industry 5.0 Collaborative Manufacturing Components
 export { default as RealTimeCollaborationPanel } from './RealTimeCollaborationPanel';
@@ -131,7 +131,7 @@ export { default as HandoffChecklists } from './HandoffChecklists';
 export type { ShiftType, HandoffStatus, ItemPriority, ItemCategory, ChecklistItem, ActiveIssue, ProductionStatus, ShiftHandoff } from './HandoffChecklists';
 
 export { default as CrossFunctionalTimeline } from './CrossFunctionalTimeline';
-export type { MilestoneType, MilestoneStatus, Milestone, Project } from './CrossFunctionalTimeline';
+export type { MilestoneType, MilestoneStatus as ProjectMilestoneStatus, Milestone as ProjectMilestone, Project } from './CrossFunctionalTimeline';
 
 export { default as CustomerPortal } from './CustomerPortal';
 export type { ApprovalStatus, ProjectPhase, CustomerMilestone, CustomerDocument, CustomerOrder, CustomerUpdate, CustomerContact } from './CustomerPortal';

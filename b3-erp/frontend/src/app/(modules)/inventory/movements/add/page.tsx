@@ -197,7 +197,7 @@ export default function StockMovementAddPage() {
   const balanceAfter = calculateBalanceAfter();
 
   return (
-    <div className="p-6 max-w-7xl mx-auto">
+    <div className="p-6 w-full">
       {/* Header */}
       <div className="flex items-center gap-4 mb-6">
         <button
@@ -225,11 +225,10 @@ export default function StockMovementAddPage() {
                   handleInputChange('movementType', type.value);
                   handleInputChange('referenceType', '');
                 }}
-                className={`p-4 border-2 rounded-lg text-left transition-all ${
-                  formData.movementType === type.value
+                className={`p-4 border-2 rounded-lg text-left transition-all ${formData.movementType === type.value
                     ? 'border-blue-500 bg-blue-50'
                     : 'border-gray-200 hover:border-gray-300'
-                }`}
+                  }`}
               >
                 <div className="font-semibold text-gray-900 mb-1">{type.label}</div>
                 <div className="text-sm text-gray-600">{type.description}</div>
@@ -258,9 +257,8 @@ export default function StockMovementAddPage() {
                     type="date"
                     value={formData.movementDate}
                     onChange={(e) => handleInputChange('movementDate', e.target.value)}
-                    className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
-                      errors.movementDate ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'
-                    }`}
+                    className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${errors.movementDate ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'
+                      }`}
                   />
                   {errors.movementDate && (
                     <p className="mt-1 text-sm text-red-600">{errors.movementDate}</p>
@@ -274,9 +272,8 @@ export default function StockMovementAddPage() {
                   <select
                     value={formData.warehouse}
                     onChange={(e) => handleInputChange('warehouse', e.target.value)}
-                    className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
-                      errors.warehouse ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'
-                    }`}
+                    className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${errors.warehouse ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'
+                      }`}
                   >
                     <option value="">Select Warehouse</option>
                     {warehouses.map(wh => (
@@ -295,9 +292,8 @@ export default function StockMovementAddPage() {
                   <select
                     value={formData.referenceType}
                     onChange={(e) => handleInputChange('referenceType', e.target.value)}
-                    className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
-                      errors.referenceType ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'
-                    }`}
+                    className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${errors.referenceType ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'
+                      }`}
                   >
                     <option value="">Select Reference Type</option>
                     {formData.movementType && referenceTypes[formData.movementType as keyof typeof referenceTypes]?.map(type => (
@@ -317,9 +313,8 @@ export default function StockMovementAddPage() {
                     type="text"
                     value={formData.referenceNumber}
                     onChange={(e) => handleInputChange('referenceNumber', e.target.value)}
-                    className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
-                      errors.referenceNumber ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'
-                    }`}
+                    className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${errors.referenceNumber ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'
+                      }`}
                     placeholder="e.g., PO-2025-001"
                   />
                   {errors.referenceNumber && (
@@ -431,9 +426,8 @@ export default function StockMovementAddPage() {
                         type="number"
                         value={formData.quantity}
                         onChange={(e) => handleInputChange('quantity', parseFloat(e.target.value) || 0)}
-                        className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
-                          errors.quantity ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'
-                        }`}
+                        className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${errors.quantity ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'
+                          }`}
                         placeholder="0"
                         min="0"
                       />
@@ -552,9 +546,8 @@ export default function StockMovementAddPage() {
                     type="text"
                     value={formData.reason}
                     onChange={(e) => handleInputChange('reason', e.target.value)}
-                    className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${
-                      errors.reason ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'
-                    }`}
+                    className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 ${errors.reason ? 'border-red-500 focus:ring-red-500' : 'border-gray-300 focus:ring-blue-500'
+                      }`}
                     placeholder="Enter the reason for this movement"
                   />
                   {errors.reason && (

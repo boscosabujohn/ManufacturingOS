@@ -14,7 +14,7 @@ import {
 import {
   LineChart as RechartsLineChart, AreaChart, BarChart, ComposedChart,
   PieChart as RechartsPieChart, Cell, XAxis, YAxis, CartesianGrid,
-  Tooltip, Legend, ResponsiveContainer, Area, Bar, Line
+  Tooltip, Legend, ResponsiveContainer, Area, Bar, Line, Pie
 } from 'recharts';
 import {
   QuickJournalEntryModal,
@@ -353,17 +353,15 @@ export default function EnhancedFinanceDashboard() {
               {alerts.slice(0, 3).map((alert) => (
                 <div
                   key={alert.id}
-                  className={`flex items-center p-3 rounded-lg ${
-                    alert.type === 'warning' ? 'bg-yellow-50 border-yellow-200' :
-                    alert.type === 'success' ? 'bg-green-50 border-green-200' :
-                    'bg-blue-50 border-blue-200'
-                  } border`}
+                  className={`flex items-center p-3 rounded-lg ${alert.type === 'warning' ? 'bg-yellow-50 border-yellow-200' :
+                      alert.type === 'success' ? 'bg-green-50 border-green-200' :
+                        'bg-blue-50 border-blue-200'
+                    } border`}
                 >
-                  <div className={`p-1 rounded-full mr-3 ${
-                    alert.type === 'warning' ? 'bg-yellow-100' :
-                    alert.type === 'success' ? 'bg-green-100' :
-                    'bg-blue-100'
-                  }`}>
+                  <div className={`p-1 rounded-full mr-3 ${alert.type === 'warning' ? 'bg-yellow-100' :
+                      alert.type === 'success' ? 'bg-green-100' :
+                        'bg-blue-100'
+                    }`}>
                     {alert.type === 'warning' ? (
                       <AlertCircle className="h-4 w-4 text-yellow-600" />
                     ) : alert.type === 'success' ? (
@@ -580,11 +578,19 @@ export default function EnhancedFinanceDashboard() {
                   <ResponsiveContainer width="100%" height="100%">
                     <RechartsPieChart>
                       <Tooltip formatter={(value) => [formatCurrency(Number(value)), '']} />
-                      <RechartsPieChart>
+                      <Pie
+                        data={dashboardData.revenueByCategory}
+                        cx="50%"
+                        cy="50%"
+                        innerRadius={60}
+                        outerRadius={80}
+                        paddingAngle={5}
+                        dataKey="value"
+                      >
                         {dashboardData.revenueByCategory.map((entry, index) => (
                           <Cell key={`cell-${index}`} fill={entry.color} />
                         ))}
-                      </RechartsPieChart>
+                      </Pie>
                     </RechartsPieChart>
                   </ResponsiveContainer>
                 </div>
@@ -595,11 +601,19 @@ export default function EnhancedFinanceDashboard() {
                   <ResponsiveContainer width="100%" height="100%">
                     <RechartsPieChart>
                       <Tooltip formatter={(value) => [formatCurrency(Number(value)), '']} />
-                      <RechartsPieChart>
+                      <Pie
+                        data={dashboardData.expenseByCategory}
+                        cx="50%"
+                        cy="50%"
+                        innerRadius={60}
+                        outerRadius={80}
+                        paddingAngle={5}
+                        dataKey="value"
+                      >
                         {dashboardData.expenseByCategory.map((entry, index) => (
                           <Cell key={`cell-${index}`} fill={entry.color} />
                         ))}
-                      </RechartsPieChart>
+                      </Pie>
                     </RechartsPieChart>
                   </ResponsiveContainer>
                 </div>
@@ -670,12 +684,12 @@ export default function EnhancedFinanceDashboard() {
             <AreaChart data={dashboardData.kpiTrends}>
               <defs>
                 <linearGradient id="colorRevenue" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#3B82F6" stopOpacity={0.8}/>
-                  <stop offset="95%" stopColor="#3B82F6" stopOpacity={0.1}/>
+                  <stop offset="5%" stopColor="#3B82F6" stopOpacity={0.8} />
+                  <stop offset="95%" stopColor="#3B82F6" stopOpacity={0.1} />
                 </linearGradient>
                 <linearGradient id="colorProfit" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#10B981" stopOpacity={0.8}/>
-                  <stop offset="95%" stopColor="#10B981" stopOpacity={0.1}/>
+                  <stop offset="5%" stopColor="#10B981" stopOpacity={0.8} />
+                  <stop offset="95%" stopColor="#10B981" stopOpacity={0.1} />
                 </linearGradient>
               </defs>
               <CartesianGrid strokeDasharray="3 3" />
@@ -728,12 +742,11 @@ export default function EnhancedFinanceDashboard() {
                   <div className="flex items-center space-x-3">
                     <div className="w-32 bg-gray-200 rounded-full h-2">
                       <div
-                        className={`h-2 rounded-full ${
-                          index === 0 ? 'bg-green-500' :
-                          index === 1 ? 'bg-yellow-500' :
-                          index === 2 ? 'bg-orange-500' :
-                          'bg-red-500'
-                        }`}
+                        className={`h-2 rounded-full ${index === 0 ? 'bg-green-500' :
+                            index === 1 ? 'bg-yellow-500' :
+                              index === 2 ? 'bg-orange-500' :
+                                'bg-red-500'
+                          }`}
                         style={{ width: `${item.percentage}%` }}
                       />
                     </div>
@@ -775,12 +788,11 @@ export default function EnhancedFinanceDashboard() {
                   <div className="flex items-center space-x-3">
                     <div className="w-32 bg-gray-200 rounded-full h-2">
                       <div
-                        className={`h-2 rounded-full ${
-                          index === 0 ? 'bg-blue-500' :
-                          index === 1 ? 'bg-yellow-500' :
-                          index === 2 ? 'bg-orange-500' :
-                          'bg-red-500'
-                        }`}
+                        className={`h-2 rounded-full ${index === 0 ? 'bg-blue-500' :
+                            index === 1 ? 'bg-yellow-500' :
+                              index === 2 ? 'bg-orange-500' :
+                                'bg-red-500'
+                          }`}
                         style={{ width: `${item.percentage}%` }}
                       />
                     </div>

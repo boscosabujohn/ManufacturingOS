@@ -1,9 +1,9 @@
 'use client';
 
 import React, { useState } from 'react';
-import { 
-  Users, 
-  Building, 
+import {
+  Users,
+  Building,
   DollarSign,
   TrendingUp,
   TrendingDown,
@@ -274,19 +274,19 @@ export default function VendorManagementPage() {
 
   const filteredVendors = vendors.filter(vendor => {
     const matchesSearch = vendor.vendorName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         vendor.vendorId.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         vendor.contactPerson.toLowerCase().includes(searchQuery.toLowerCase());
+      vendor.vendorId.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      vendor.contactPerson.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesCategory = selectedCategory === 'all' || vendor.vendorCategory === selectedCategory;
     const matchesRisk = selectedRisk === 'all' || vendor.riskRating === selectedRisk;
     const matchesStatus = selectedStatus === 'all' || vendor.status === selectedStatus;
-    
+
     return matchesSearch && matchesCategory && matchesRisk && matchesStatus;
   });
 
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 via-purple-50 to-indigo-50">
       <div className="flex-1 overflow-y-auto overflow-x-hidden">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 max-w-7xl">
+        <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
           {/* Header */}
           <div className="flex justify-between items-start mb-6">
             <div>
@@ -296,13 +296,12 @@ export default function VendorManagementPage() {
               </div>
               <p className="text-sm text-gray-600">Manage vendor relationships and credit terms</p>
             </div>
-            
+
             <div className="flex gap-2">
               <button
                 onClick={() => setShowFilters(!showFilters)}
-                className={`flex items-center space-x-2 px-4 py-2 rounded-lg border transition-colors ${
-                  showFilters ? 'bg-purple-50 border-purple-300 text-purple-700' : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-50'
-                }`}
+                className={`flex items-center space-x-2 px-4 py-2 rounded-lg border transition-colors ${showFilters ? 'bg-purple-50 border-purple-300 text-purple-700' : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-50'
+                  }`}
               >
                 <Filter className="h-4 w-4" />
                 <span>Filters</span>
@@ -444,14 +443,13 @@ export default function VendorManagementPage() {
                       </span>
                     </div>
                     <div className="w-full bg-gray-200 rounded-full h-2">
-                      <div 
-                        className={`h-2 rounded-full transition-all ${
-                          parseFloat(getCreditUtilization(vendor.currentOutstanding, vendor.creditLimit)) > 80 
-                            ? 'bg-red-500' 
-                            : parseFloat(getCreditUtilization(vendor.currentOutstanding, vendor.creditLimit)) > 60 
-                            ? 'bg-yellow-500' 
-                            : 'bg-green-500'
-                        }`}
+                      <div
+                        className={`h-2 rounded-full transition-all ${parseFloat(getCreditUtilization(vendor.currentOutstanding, vendor.creditLimit)) > 80
+                            ? 'bg-red-500'
+                            : parseFloat(getCreditUtilization(vendor.currentOutstanding, vendor.creditLimit)) > 60
+                              ? 'bg-yellow-500'
+                              : 'bg-green-500'
+                          }`}
                         style={{ width: `${getCreditUtilization(vendor.currentOutstanding, vendor.creditLimit)}%` }}
                       />
                     </div>
@@ -517,7 +515,7 @@ export default function VendorManagementPage() {
 
                   {/* Action Buttons */}
                   <div className="flex gap-2">
-                    <button 
+                    <button
                       onClick={() => setSelectedVendor(vendor)}
                       className="flex-1 flex items-center justify-center gap-2 px-3 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors text-sm"
                     >
@@ -544,7 +542,7 @@ export default function VendorManagementPage() {
                       <h2 className="text-2xl font-bold text-gray-900">{selectedVendor.vendorName}</h2>
                       <p className="text-sm text-gray-500">{selectedVendor.vendorId}</p>
                     </div>
-                    <button 
+                    <button
                       onClick={() => setSelectedVendor(null)}
                       className="text-gray-400 hover:text-gray-600"
                     >

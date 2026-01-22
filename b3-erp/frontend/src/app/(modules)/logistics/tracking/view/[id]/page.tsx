@@ -255,7 +255,7 @@ export default function TrackingViewPage({ params }: { params: { id: string } })
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-6">
-      <div className="max-w-7xl mx-auto">
+      <div className="w-full">
         {/* Header */}
         <div className="mb-6 flex items-center justify-between">
           <div className="flex items-center gap-4">
@@ -404,31 +404,28 @@ export default function TrackingViewPage({ params }: { params: { id: string } })
             <div className="flex gap-8 px-6">
               <button
                 onClick={() => setActiveTab('timeline')}
-                className={`py-4 border-b-2 font-medium transition-colors ${
-                  activeTab === 'timeline'
+                className={`py-4 border-b-2 font-medium transition-colors ${activeTab === 'timeline'
                     ? 'border-blue-600 text-blue-600'
                     : 'border-transparent text-gray-600 hover:text-gray-900'
-                }`}
+                  }`}
               >
                 Timeline
               </button>
               <button
                 onClick={() => setActiveTab('route')}
-                className={`py-4 border-b-2 font-medium transition-colors ${
-                  activeTab === 'route'
+                className={`py-4 border-b-2 font-medium transition-colors ${activeTab === 'route'
                     ? 'border-blue-600 text-blue-600'
                     : 'border-transparent text-gray-600 hover:text-gray-900'
-                }`}
+                  }`}
               >
                 Route Map
               </button>
               <button
                 onClick={() => setActiveTab('details')}
-                className={`py-4 border-b-2 font-medium transition-colors ${
-                  activeTab === 'details'
+                className={`py-4 border-b-2 font-medium transition-colors ${activeTab === 'details'
                     ? 'border-blue-600 text-blue-600'
                     : 'border-transparent text-gray-600 hover:text-gray-900'
-                }`}
+                  }`}
               >
                 Shipment Details
               </button>
@@ -514,22 +511,20 @@ export default function TrackingViewPage({ params }: { params: { id: string } })
                   {routeCheckpoints.map((checkpoint, index) => (
                     <div
                       key={index}
-                      className={`flex items-center gap-4 p-4 rounded-lg border-2 ${
-                        checkpoint.status === 'completed'
+                      className={`flex items-center gap-4 p-4 rounded-lg border-2 ${checkpoint.status === 'completed'
                           ? 'bg-green-50 border-green-300'
                           : checkpoint.status === 'current'
-                          ? 'bg-blue-50 border-blue-300'
-                          : 'bg-gray-50 border-gray-200'
-                      }`}
+                            ? 'bg-blue-50 border-blue-300'
+                            : 'bg-gray-50 border-gray-200'
+                        }`}
                     >
                       <div
-                        className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${
-                          checkpoint.status === 'completed'
+                        className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${checkpoint.status === 'completed'
                             ? 'bg-green-600 text-white'
                             : checkpoint.status === 'current'
-                            ? 'bg-blue-600 text-white'
-                            : 'bg-gray-300 text-gray-600'
-                        }`}
+                              ? 'bg-blue-600 text-white'
+                              : 'bg-gray-300 text-gray-600'
+                          }`}
                       >
                         {checkpoint.status === 'completed' ? (
                           <CheckCircle2 className="w-5 h-5" />

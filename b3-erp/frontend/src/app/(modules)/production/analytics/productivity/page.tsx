@@ -339,7 +339,7 @@ export default function ProductivityAnalytics() {
   }
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 max-w-7xl">
+    <div className="w-full h-full px-4 py-6">
       {/* Inline Header */}
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-4">
@@ -500,15 +500,14 @@ export default function ProductivityAnalytics() {
                   </div>
                   <div className="w-full bg-gray-200 rounded-full h-2">
                     <div
-                      className={`h-2 rounded-full ${
-                        line.variance >= 5
+                      className={`h-2 rounded-full ${line.variance >= 5
                           ? 'bg-green-500'
                           : line.variance >= 0
-                          ? 'bg-blue-500'
-                          : line.variance >= -5
-                          ? 'bg-yellow-500'
-                          : 'bg-red-500'
-                      }`}
+                            ? 'bg-blue-500'
+                            : line.variance >= -5
+                              ? 'bg-yellow-500'
+                              : 'bg-red-500'
+                        }`}
                       style={{ width: `${Math.min((line.unitsPerHour / line.targetUnitsPerHour) * 100, 100)}%` }}
                     />
                   </div>
@@ -566,9 +565,8 @@ export default function ProductivityAnalytics() {
                       {worker.unitsProduced.toLocaleString()}
                     </td>
                     <td className="py-4 px-4 text-right">
-                      <span className={`font-semibold ${
-                        worker.productivityRate >= worker.targetRate ? 'text-green-600' : 'text-orange-600'
-                      }`}>
+                      <span className={`font-semibold ${worker.productivityRate >= worker.targetRate ? 'text-green-600' : 'text-orange-600'
+                        }`}>
                         {worker.productivityRate}
                       </span>
                       <span className="text-xs text-gray-600"> /hr</span>

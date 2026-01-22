@@ -81,7 +81,7 @@ export default function VendorDetailsPage() {
         <div className="min-h-screen bg-gray-50 pb-12">
             {/* Header */}
             <div className="bg-white border-b border-gray-200">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="w-full px-4 sm:px-6 lg:px-8">
                     <div className="py-6">
                         <button
                             onClick={() => router.back()}
@@ -130,8 +130,8 @@ export default function VendorDetailsPage() {
                                     key={tab}
                                     onClick={() => setActiveTab(tab as any)}
                                     className={`pb-4 text-sm font-medium capitalize transition-colors relative ${activeTab === tab
-                                            ? 'text-blue-600 border-b-2 border-blue-600 -mb-[1px]'
-                                            : 'text-gray-500 hover:text-gray-700'
+                                        ? 'text-blue-600 border-b-2 border-blue-600 -mb-[1px]'
+                                        : 'text-gray-500 hover:text-gray-700'
                                         }`}
                                 >
                                     {tab}
@@ -142,7 +142,7 @@ export default function VendorDetailsPage() {
                 </div>
             </div>
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div className="w-full px-4 sm:px-6 lg:px-8 py-8">
                 <div className="grid grid-cols-3 gap-8">
                     {/* Main Content */}
                     <div className="col-span-2 space-y-6">
@@ -175,8 +175,8 @@ export default function VendorDetailsPage() {
                                             <Star
                                                 key={star}
                                                 className={`h-4 w-4 ${star <= (vendor.averageRating || 0)
-                                                        ? 'text-yellow-400 fill-current'
-                                                        : 'text-gray-200'
+                                                    ? 'text-yellow-400 fill-current'
+                                                    : 'text-gray-200'
                                                     }`}
                                             />
                                         ))}

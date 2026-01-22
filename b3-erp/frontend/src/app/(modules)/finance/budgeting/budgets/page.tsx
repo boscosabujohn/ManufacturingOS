@@ -552,7 +552,7 @@ export default function BudgetsPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-green-900 to-gray-900 p-6">
-      <div className="max-w-7xl mx-auto space-y-6">
+      <div className="w-full space-y-6">
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
@@ -754,12 +754,11 @@ export default function BudgetsPage() {
                       </td>
                       <td className="px-6 py-4">
                         <div className="flex flex-col items-center">
-                          <span className={`text-sm font-medium mb-1 ${
-                            utilizationPercent > 100 ? 'text-red-400' :
-                            utilizationPercent > 90 ? 'text-orange-400' :
-                            utilizationPercent > 75 ? 'text-yellow-400' :
-                            'text-green-400'
-                          }`}>
+                          <span className={`text-sm font-medium mb-1 ${utilizationPercent > 100 ? 'text-red-400' :
+                              utilizationPercent > 90 ? 'text-orange-400' :
+                                utilizationPercent > 75 ? 'text-yellow-400' :
+                                  'text-green-400'
+                            }`}>
                             {utilizationPercent.toFixed(1)}%
                           </span>
                           <div className="w-full bg-gray-700 rounded-full h-2">
@@ -852,11 +851,10 @@ export default function BudgetsPage() {
                 <button
                   key={page}
                   onClick={() => handlePageChange(page)}
-                  className={`px-4 py-2 rounded-lg transition-colors ${
-                    currentPage === page
+                  className={`px-4 py-2 rounded-lg transition-colors ${currentPage === page
                       ? 'bg-green-600 text-white'
                       : 'bg-gray-700 hover:bg-gray-600 text-white'
-                  }`}
+                    }`}
                 >
                   {page}
                 </button>

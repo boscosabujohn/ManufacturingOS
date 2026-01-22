@@ -358,7 +358,7 @@ export default function BOMAddPage() {
         });
       };
       setComponents(addToParent(components));
-      setExpandedComponents(new Set(Array.from(expandedComponents).concat( parentId)));
+      setExpandedComponents(new Set(Array.from(expandedComponents).concat(parentId)));
     } else {
       setComponents([...components, newComponent]);
     }
@@ -704,7 +704,7 @@ export default function BOMAddPage() {
               <button
                 onClick={() => addComponent(component.level + 1, component.id)}
                 className="p-1 hover:bg-blue-100 rounded text-blue-600"
-               
+
               >
                 <Plus className="h-4 w-4" />
               </button>
@@ -712,7 +712,7 @@ export default function BOMAddPage() {
             <button
               onClick={() => removeComponent(component.id)}
               className="p-1 hover:bg-red-100 rounded text-red-600"
-             
+
             >
               <Trash2 className="h-4 w-4" />
             </button>
@@ -740,7 +740,7 @@ export default function BOMAddPage() {
   const suggestedPrice40 = grandTotal * 1.4;
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 max-w-7xl">
+    <div className="w-full h-full px-4 py-6">
       {/* Header */}
       <div className="mb-6">
         <button
@@ -969,11 +969,10 @@ export default function BOMAddPage() {
               setEntryMethod('manual');
               addComponent(0);
             }}
-            className={`p-4 border-2 rounded-lg text-left transition-all ${
-              entryMethod === 'manual'
+            className={`p-4 border-2 rounded-lg text-left transition-all ${entryMethod === 'manual'
                 ? 'border-blue-500 bg-blue-50'
                 : 'border-gray-300 hover:border-blue-300 hover:bg-gray-50'
-            }`}
+              }`}
           >
             <Plus className="h-6 w-6 text-blue-600 mb-2" />
             <div className="font-semibold text-gray-900">Manual Entry</div>
@@ -985,11 +984,10 @@ export default function BOMAddPage() {
               setEntryMethod('copy');
               setShowCopyModal(true);
             }}
-            className={`p-4 border-2 rounded-lg text-left transition-all ${
-              entryMethod === 'copy'
+            className={`p-4 border-2 rounded-lg text-left transition-all ${entryMethod === 'copy'
                 ? 'border-green-500 bg-green-50'
                 : 'border-gray-300 hover:border-green-300 hover:bg-gray-50'
-            }`}
+              }`}
           >
             <Copy className="h-6 w-6 text-green-600 mb-2" />
             <div className="font-semibold text-gray-900">Copy from Existing</div>
@@ -1001,11 +999,10 @@ export default function BOMAddPage() {
               setEntryMethod('import');
               handleImportFromExcel();
             }}
-            className={`p-4 border-2 rounded-lg text-left transition-all ${
-              entryMethod === 'import'
+            className={`p-4 border-2 rounded-lg text-left transition-all ${entryMethod === 'import'
                 ? 'border-purple-500 bg-purple-50'
                 : 'border-gray-300 hover:border-purple-300 hover:bg-gray-50'
-            }`}
+              }`}
           >
             <Upload className="h-6 w-6 text-purple-600 mb-2" />
             <div className="font-semibold text-gray-900">Import from Excel</div>
@@ -1017,11 +1014,10 @@ export default function BOMAddPage() {
               setEntryMethod('template');
               alert('Template functionality: Select from common assembly templates');
             }}
-            className={`p-4 border-2 rounded-lg text-left transition-all ${
-              entryMethod === 'template'
+            className={`p-4 border-2 rounded-lg text-left transition-all ${entryMethod === 'template'
                 ? 'border-orange-500 bg-orange-50'
                 : 'border-gray-300 hover:border-orange-300 hover:bg-gray-50'
-            }`}
+              }`}
           >
             <BookTemplate className="h-6 w-6 text-orange-600 mb-2" />
             <div className="font-semibold text-gray-900">Use Template</div>

@@ -414,7 +414,7 @@ export default function CPQWorkflowLegalPage() {
     setIsRejectOpen(false)
   }
 
-  const handleRevisionSubmit = (data: { issues: string; recommendations: string; dueDate: string }) => {
+  const handleRevisionSubmit = (data: { changes: string[] }) => {
     console.log('Revision requested:', selectedReview?.documentNumber, data)
     // TODO: API call to request revision
     setIsRevisionOpen(false)

@@ -203,8 +203,8 @@ export default function AssetsManagementPage() {
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50">
       <div className="flex-1 overflow-y-auto overflow-x-hidden">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 max-w-7xl">
-          <div className="max-w-7xl mx-auto space-y-6">
+        <div className="w-full p-6">
+          <div className="w-full space-y-6">
             {/* Header */}
             <div className="flex items-center justify-between">
               <div>
@@ -368,7 +368,7 @@ export default function AssetsManagementPage() {
                         {/* Progress bar */}
                         <div className="mt-3">
                           <div className="w-full bg-gray-200 rounded-full h-2">
-                            <div 
+                            <div
                               className={`bg-${category.color}-600 h-2 rounded-full`}
                               style={{ width: `${((category.nbv / category.cost) * 100)}%` }}
                             />
@@ -408,10 +408,10 @@ export default function AssetsManagementPage() {
                             </span>
                             <span className="text-xs text-gray-600 flex items-center gap-1">
                               <Calendar className="h-3 w-3" />
-                              {new Date(activity.date).toLocaleDateString('en-IN', { 
-                                year: 'numeric', 
-                                month: 'short', 
-                                day: 'numeric' 
+                              {new Date(activity.date).toLocaleDateString('en-IN', {
+                                year: 'numeric',
+                                month: 'short',
+                                day: 'numeric'
                               })}
                             </span>
                           </div>

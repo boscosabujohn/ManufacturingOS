@@ -58,88 +58,104 @@ export default function FNFSalaryPage() {
 
   const mockSettlements: FNFSalarySettlement[] = [
     {
-      id: 'FNF-SAL-001',
-      employeeId: 'EMP001',
-      employeeName: 'Rahul Sharma',
-      designation: 'Senior Software Engineer',
-      department: 'Engineering',
-      lastWorkingDay: '2025-12-14',
-      joiningDate: '2022-01-15',
-      basicSalary: 50000,
-      hra: 20000,
-      specialAllowance: 15000,
-      otherAllowances: 5000,
-      grossSalary: 90000,
-      workingDays: 26,
-      daysWorked: 14,
-      salaryForPeriod: 48461,
-      deductions: {
-        noticePeriodBuyout: 180000,
-        loanRecovery: 50000
-      },
-      additions: {
-        pendingReimbursements: 5000
-      },
+      id: 'FNF-SAL-001', employeeId: 'EMP001', employeeName: 'Rahul Sharma', designation: 'Senior Software Engineer', department: 'Engineering',
+      lastWorkingDay: '2025-12-14', joiningDate: '2020-01-15',
+      basicSalary: 50000, hra: 20000, specialAllowance: 15000, otherAllowances: 5000, grossSalary: 90000,
+      workingDays: 26, daysWorked: 14, salaryForPeriod: 48461,
+      deductions: { noticePeriodBuyout: 180000, loanRecovery: 50000 },
+      additions: { pendingReimbursements: 5000 },
       netSalaryComponent: -176539,
-      status: 'calculated',
-      calculatedBy: 'Priya Singh - HR Manager',
-      calculatedOn: '2025-12-10'
+      status: 'calculated', calculatedBy: 'Priya Singh - HR Manager', calculatedOn: '2025-12-10'
     },
     {
-      id: 'FNF-SAL-002',
-      employeeId: 'EMP002',
-      employeeName: 'Priya Singh',
-      designation: 'Marketing Manager',
-      department: 'Marketing',
-      lastWorkingDay: '2025-11-30',
-      joiningDate: '2020-06-10',
-      basicSalary: 60000,
-      hra: 24000,
-      specialAllowance: 18000,
-      otherAllowances: 8000,
-      grossSalary: 110000,
-      workingDays: 26,
-      daysWorked: 26,
-      salaryForPeriod: 110000,
-      deductions: {
-        advanceRecovery: 15000
-      },
-      additions: {
-        pendingReimbursements: 8000,
-        bonus: 20000
-      },
+      id: 'FNF-SAL-002', employeeId: 'EMP002', employeeName: 'Priya Singh', designation: 'Marketing Manager', department: 'Marketing',
+      lastWorkingDay: '2025-11-30', joiningDate: '2016-06-10',
+      basicSalary: 60000, hra: 24000, specialAllowance: 18000, otherAllowances: 8000, grossSalary: 110000,
+      workingDays: 26, daysWorked: 26, salaryForPeriod: 110000,
+      deductions: { advanceRecovery: 15000 },
+      additions: { pendingReimbursements: 8000, bonus: 20000 },
       netSalaryComponent: 123000,
-      status: 'approved',
-      calculatedBy: 'Amit Kumar - Finance Head',
-      calculatedOn: '2025-11-25',
-      approvedBy: 'Rajesh Patel - CFO'
+      status: 'approved', calculatedBy: 'Amit Kumar - Finance Head', calculatedOn: '2025-11-25', approvedBy: 'Rajesh Patel - CFO'
     },
     {
-      id: 'FNF-SAL-003',
-      employeeId: 'EMP003',
-      employeeName: 'Amit Kumar',
-      designation: 'Product Manager',
-      department: 'Product',
-      lastWorkingDay: '2025-10-31',
-      joiningDate: '2019-03-20',
-      basicSalary: 70000,
-      hra: 28000,
-      specialAllowance: 20000,
-      otherAllowances: 12000,
-      grossSalary: 130000,
-      workingDays: 26,
-      daysWorked: 26,
-      salaryForPeriod: 130000,
+      id: 'FNF-SAL-003', employeeId: 'EMP003', employeeName: 'Amit Kumar', designation: 'Product Manager', department: 'Product',
+      lastWorkingDay: '2025-10-31', joiningDate: '2010-03-20',
+      basicSalary: 70000, hra: 28000, specialAllowance: 20000, otherAllowances: 12000, grossSalary: 130000,
+      workingDays: 26, daysWorked: 26, salaryForPeriod: 130000,
       deductions: {},
-      additions: {
-        pendingReimbursements: 12000,
-        bonus: 50000
-      },
+      additions: { pendingReimbursements: 12000, bonus: 50000 },
       netSalaryComponent: 192000,
-      status: 'processed',
-      calculatedBy: 'Priya Singh - HR Manager',
-      calculatedOn: '2025-10-25',
-      approvedBy: 'Rajesh Patel - CFO'
+      status: 'processed', calculatedBy: 'Priya Singh - HR Manager', calculatedOn: '2025-10-25', approvedBy: 'Rajesh Patel - CFO'
+    },
+    {
+      id: 'FNF-SAL-004', employeeId: 'EMP004', employeeName: 'Neha Gupta', designation: 'Junior Developer', department: 'Engineering',
+      lastWorkingDay: '2025-12-31', joiningDate: '2022-05-15',
+      basicSalary: 35000, hra: 14000, specialAllowance: 10000, otherAllowances: 3000, grossSalary: 62000,
+      workingDays: 26, daysWorked: 26, salaryForPeriod: 62000,
+      deductions: {},
+      additions: { pendingReimbursements: 2000 },
+      netSalaryComponent: 64000,
+      status: 'pending'
+    },
+    {
+      id: 'FNF-SAL-005', employeeId: 'EMP005', employeeName: 'Vikram Malhotra', designation: 'VP of Sales', department: 'Sales',
+      lastWorkingDay: '2025-09-30', joiningDate: '2015-01-01',
+      basicSalary: 120000, hra: 48000, specialAllowance: 40000, otherAllowances: 15000, grossSalary: 223000,
+      workingDays: 26, daysWorked: 26, salaryForPeriod: 223000,
+      deductions: { otherDeductions: 5000 },
+      additions: { incentives: 150000 },
+      netSalaryComponent: 368000,
+      status: 'calculated', calculatedBy: 'Priya Singh', calculatedOn: '2025-09-28'
+    },
+    {
+      id: 'FNF-SAL-006', employeeId: 'EMP006', employeeName: 'Anjali Desai', designation: 'HR Executive', department: 'Human Resources',
+      lastWorkingDay: '2025-10-15', joiningDate: '2021-02-10',
+      basicSalary: 30000, hra: 12000, specialAllowance: 8000, otherAllowances: 2000, grossSalary: 52000,
+      workingDays: 26, daysWorked: 13, salaryForPeriod: 26000,
+      deductions: { noticePeriodBuyout: 30000 },
+      additions: {},
+      netSalaryComponent: -4000,
+      status: 'approved', calculatedBy: 'Priya Singh', calculatedOn: '2025-10-13', approvedBy: 'Rajesh Patel'
+    },
+    {
+      id: 'FNF-SAL-007', employeeId: 'EMP007', employeeName: 'Rohan Mehra', designation: 'Content Strategist', department: 'Marketing',
+      lastWorkingDay: '2025-11-15', joiningDate: '2018-06-01',
+      basicSalary: 55000, hra: 22000, specialAllowance: 15000, otherAllowances: 5000, grossSalary: 97000,
+      workingDays: 26, daysWorked: 13, salaryForPeriod: 48500,
+      deductions: {},
+      additions: { pendingReimbursements: 3000 },
+      netSalaryComponent: 51500,
+      status: 'pending'
+    },
+    {
+      id: 'FNF-SAL-008', employeeId: 'EMP008', employeeName: 'Suresh Raina', designation: 'Operations Manager', department: 'Operations',
+      lastWorkingDay: '2025-08-31', joiningDate: '2005-04-01',
+      basicSalary: 90000, hra: 36000, specialAllowance: 25000, otherAllowances: 10000, grossSalary: 161000,
+      workingDays: 26, daysWorked: 26, salaryForPeriod: 161000,
+      deductions: {},
+      additions: { bonus: 50000 },
+      netSalaryComponent: 211000,
+      status: 'processed', calculatedBy: 'Amit Kumar', calculatedOn: '2025-08-28', approvedBy: 'Rajesh Patel'
+    },
+    {
+      id: 'FNF-SAL-009', employeeId: 'EMP009', employeeName: 'Kavita Krishnan', designation: 'Lead Designer', department: 'Design',
+      lastWorkingDay: '2025-12-05', joiningDate: '2019-11-11',
+      basicSalary: 65000, hra: 26000, specialAllowance: 18000, otherAllowances: 6000, grossSalary: 115000,
+      workingDays: 26, daysWorked: 5, salaryForPeriod: 22115,
+      deductions: { loanRecovery: 10000 },
+      additions: {},
+      netSalaryComponent: 12115,
+      status: 'approved', calculatedBy: 'Priya Singh', calculatedOn: '2025-12-03', approvedBy: 'Rajesh Patel'
+    },
+    {
+      id: 'FNF-SAL-010', employeeId: 'EMP010', employeeName: 'Deepak Verma', designation: 'System Admin', department: 'IT',
+      lastWorkingDay: '2025-11-20', joiningDate: '2023-01-15',
+      basicSalary: 40000, hra: 16000, specialAllowance: 10000, otherAllowances: 4000, grossSalary: 70000,
+      workingDays: 26, daysWorked: 18, salaryForPeriod: 48461,
+      deductions: { advanceRecovery: 5000 },
+      additions: { pendingReimbursements: 1539 },
+      netSalaryComponent: 45000,
+      status: 'calculated', calculatedBy: 'Priya Singh', calculatedOn: '2025-11-18'
     }
   ];
 
@@ -285,41 +301,37 @@ export default function FNFSalaryPage() {
       <div className="mb-4 flex gap-2">
         <button
           onClick={() => setSelectedTab('pending')}
-          className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${
-            selectedTab === 'pending'
+          className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${selectedTab === 'pending'
               ? 'bg-yellow-600 text-white'
               : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-          }`}
+            }`}
         >
           Pending ({stats.pending})
         </button>
         <button
           onClick={() => setSelectedTab('calculated')}
-          className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${
-            selectedTab === 'calculated'
+          className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${selectedTab === 'calculated'
               ? 'bg-blue-600 text-white'
               : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-          }`}
+            }`}
         >
           Calculated ({stats.calculated})
         </button>
         <button
           onClick={() => setSelectedTab('approved')}
-          className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${
-            selectedTab === 'approved'
+          className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${selectedTab === 'approved'
               ? 'bg-green-600 text-white'
               : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-          }`}
+            }`}
         >
           Approved ({stats.approved})
         </button>
         <button
           onClick={() => setSelectedTab('processed')}
-          className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${
-            selectedTab === 'processed'
+          className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${selectedTab === 'processed'
               ? 'bg-gray-600 text-white'
               : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-          }`}
+            }`}
         >
           Processed ({stats.processed})
         </button>
@@ -483,24 +495,21 @@ export default function FNFSalaryPage() {
                 </div>
               )}
 
-              <div className={`rounded-lg p-4 border-2 ${
-                settlement.netSalaryComponent >= 0
+              <div className={`rounded-lg p-4 border-2 ${settlement.netSalaryComponent >= 0
                   ? 'bg-green-50 border-green-300'
                   : 'bg-red-50 border-red-300'
-              }`}>
+                }`}>
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-medium text-gray-600 mb-1">Net Salary Component (FNF)</p>
-                    <p className={`text-2xl font-bold ${
-                      settlement.netSalaryComponent >= 0 ? 'text-green-700' : 'text-red-700'
-                    }`}>
+                    <p className={`text-2xl font-bold ${settlement.netSalaryComponent >= 0 ? 'text-green-700' : 'text-red-700'
+                      }`}>
                       {settlement.netSalaryComponent >= 0 ? '+' : '-'}
                       {formatCurrency(settlement.netSalaryComponent)}
                     </p>
                   </div>
-                  <IndianRupee className={`h-12 w-12 ${
-                    settlement.netSalaryComponent >= 0 ? 'text-green-600' : 'text-red-600'
-                  }`} />
+                  <IndianRupee className={`h-12 w-12 ${settlement.netSalaryComponent >= 0 ? 'text-green-600' : 'text-red-600'
+                    }`} />
                 </div>
                 {settlement.netSalaryComponent < 0 && (
                   <div className="flex items-center gap-2 mt-2 text-xs text-red-700">
@@ -620,7 +629,7 @@ export default function FNFSalaryPage() {
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-semibold text-gray-900 mb-2">Days Worked <span className="text-red-500">*</span></label>
-                  <input type="number" value={calculateFormData.daysWorked} onChange={(e) => setCalculateFormData({...calculateFormData, daysWorked: Number(e.target.value)})} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required min="0" max={selectedSettlement.workingDays} />
+                  <input type="number" value={calculateFormData.daysWorked} onChange={(e) => setCalculateFormData({ ...calculateFormData, daysWorked: Number(e.target.value) })} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required min="0" max={selectedSettlement.workingDays} />
                   <p className="text-xs text-gray-500 mt-1">Out of {selectedSettlement.workingDays} working days</p>
                 </div>
                 <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
@@ -636,19 +645,19 @@ export default function FNFSalaryPage() {
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Notice Period Buyout</label>
-                    <input type="number" value={calculateFormData.noticePeriodBuyout} onChange={(e) => setCalculateFormData({...calculateFormData, noticePeriodBuyout: Number(e.target.value)})} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" min="0" />
+                    <input type="number" value={calculateFormData.noticePeriodBuyout} onChange={(e) => setCalculateFormData({ ...calculateFormData, noticePeriodBuyout: Number(e.target.value) })} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" min="0" />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Loan Recovery</label>
-                    <input type="number" value={calculateFormData.loanRecovery} onChange={(e) => setCalculateFormData({...calculateFormData, loanRecovery: Number(e.target.value)})} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" min="0" />
+                    <input type="number" value={calculateFormData.loanRecovery} onChange={(e) => setCalculateFormData({ ...calculateFormData, loanRecovery: Number(e.target.value) })} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" min="0" />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Advance Recovery</label>
-                    <input type="number" value={calculateFormData.advanceRecovery} onChange={(e) => setCalculateFormData({...calculateFormData, advanceRecovery: Number(e.target.value)})} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" min="0" />
+                    <input type="number" value={calculateFormData.advanceRecovery} onChange={(e) => setCalculateFormData({ ...calculateFormData, advanceRecovery: Number(e.target.value) })} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" min="0" />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Other Deductions</label>
-                    <input type="number" value={calculateFormData.otherDeductions} onChange={(e) => setCalculateFormData({...calculateFormData, otherDeductions: Number(e.target.value)})} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" min="0" />
+                    <input type="number" value={calculateFormData.otherDeductions} onChange={(e) => setCalculateFormData({ ...calculateFormData, otherDeductions: Number(e.target.value) })} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" min="0" />
                   </div>
                 </div>
               </div>
@@ -660,15 +669,15 @@ export default function FNFSalaryPage() {
                 <div className="grid grid-cols-3 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Pending Reimbursements</label>
-                    <input type="number" value={calculateFormData.pendingReimbursements} onChange={(e) => setCalculateFormData({...calculateFormData, pendingReimbursements: Number(e.target.value)})} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" min="0" />
+                    <input type="number" value={calculateFormData.pendingReimbursements} onChange={(e) => setCalculateFormData({ ...calculateFormData, pendingReimbursements: Number(e.target.value) })} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" min="0" />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Bonus</label>
-                    <input type="number" value={calculateFormData.bonus} onChange={(e) => setCalculateFormData({...calculateFormData, bonus: Number(e.target.value)})} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" min="0" />
+                    <input type="number" value={calculateFormData.bonus} onChange={(e) => setCalculateFormData({ ...calculateFormData, bonus: Number(e.target.value) })} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" min="0" />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Incentives</label>
-                    <input type="number" value={calculateFormData.incentives} onChange={(e) => setCalculateFormData({...calculateFormData, incentives: Number(e.target.value)})} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" min="0" />
+                    <input type="number" value={calculateFormData.incentives} onChange={(e) => setCalculateFormData({ ...calculateFormData, incentives: Number(e.target.value) })} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" min="0" />
                   </div>
                 </div>
               </div>

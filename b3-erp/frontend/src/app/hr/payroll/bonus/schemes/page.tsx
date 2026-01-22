@@ -300,8 +300,34 @@ export default function BonusSchemesPage() {
     ))
   }
 
+  // Stable date formatter to prevent hydration mismatch
+  const formatDate = (dateString: string) => {
+    return new Date(dateString).toLocaleDateString('en-IN', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit'
+    })
+  }
+
+  // Wrapper for rendering dates safely
+  const DateDisplay = ({ date, fallback = '-' }: { date?: string, fallback?: string }) => {
+    const [mounted, setMounted] = useState(false)
+
+    React.useEffect(() => {
+      setMounted(true)
+    }, [])
+
+    if (!mounted) {
+      // Render consistent server-side placeholder or raw date if deterministic
+      return <span>{date ? date : fallback}</span>
+    }
+
+    return <span>{date ? formatDate(date) : fallback}</span>
+  }
+
   return (
-    <div className="p-6 max-w-7xl mx-auto">
+    <div className="p-6 w-full mx-auto">
+
       <div className="mb-6">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">Bonus Schemes</h1>
         <p className="text-gray-600">Manage bonus and incentive schemes for employees</p>
@@ -439,9 +465,9 @@ export default function BonusSchemesPage() {
                     <span className="flex items-center gap-1">
                       <Users className="h-4 w-4" />
                       {scheme.applicableTo === 'all' ? 'All Employees' :
-                       scheme.applicableTo === 'department' ? `Depts: ${scheme.targetDepartments?.join(', ')}` :
-                       scheme.applicableTo === 'designation' ? `Desigs: ${scheme.targetDesignations?.join(', ')}` :
-                       'Individual'}
+                        scheme.applicableTo === 'department' ? `Depts: ${scheme.targetDepartments?.join(', ')}` :
+                          scheme.applicableTo === 'designation' ? `Desigs: ${scheme.targetDesignations?.join(', ')}` :
+                            'Individual'}
                     </span>
                     <span className="flex items-center gap-1">
                       <Calendar className="h-4 w-4" />
@@ -527,9 +553,11 @@ export default function BonusSchemesPage() {
                     Validity
                   </h4>
                   <div className="space-y-1">
-                    <p className="text-sm text-yellow-900">From: {new Date(scheme.effectiveFrom).toLocaleDateString('en-IN')}</p>
                     <p className="text-sm text-yellow-900">
-                      To: {scheme.effectiveTo ? new Date(scheme.effectiveTo).toLocaleDateString('en-IN') : 'Ongoing'}
+                      From: <DateDisplay date={scheme.effectiveFrom} />
+                    </p>
+                    <p className="text-sm text-yellow-900">
+                      To: <DateDisplay date={scheme.effectiveTo} fallback="Ongoing" />
                     </p>
                   </div>
                 </div>
@@ -551,10 +579,10 @@ export default function BonusSchemesPage() {
               {/* Meta Info */}
               <div className="mt-4 pt-4 border-t border-gray-200 flex items-center justify-between text-xs text-gray-500">
                 <div>
-                  Created by {scheme.createdBy} on {new Date(scheme.createdDate).toLocaleDateString('en-IN')}
+                  Created by {scheme.createdBy} on <DateDisplay date={scheme.createdDate} />
                 </div>
                 <div>
-                  Last modified: {new Date(scheme.lastModified).toLocaleDateString('en-IN')}
+                  Last modified: <DateDisplay date={scheme.lastModified} />
                 </div>
               </div>
             </div>

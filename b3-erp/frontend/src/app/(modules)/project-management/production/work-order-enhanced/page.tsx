@@ -733,7 +733,7 @@ export default function ProductionWorkOrderEnhancedPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="max-w-6xl mx-auto px-4 py-6">
+      <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
           <div className="flex items-center gap-4 mb-4">
             <button onClick={() => router.back()} className="p-2 hover:bg-gray-100 rounded-lg">

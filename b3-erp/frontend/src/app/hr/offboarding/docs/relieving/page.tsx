@@ -27,60 +27,66 @@ export default function RelievingLetterPage() {
   const [selectedTab, setSelectedTab] = useState<'pending' | 'generated' | 'approved' | 'issued'>('pending');
 
   const mockLetters: RelievingLetter[] = [
+
     {
-      id: 'REL-001',
-      employeeId: 'EMP001',
-      employeeName: 'Rahul Sharma',
-      designation: 'Senior Software Engineer',
-      department: 'Engineering',
-      joiningDate: '2020-01-15',
-      lastWorkingDay: '2025-12-14',
-      resignationAcceptedOn: '2025-10-14',
-      noticePeriod: 60,
-      noticePeriodServed: 60,
-      clearanceCompleted: true,
-      status: 'generated',
-      generatedBy: 'Priya Singh - HR Manager',
-      generatedOn: '2025-12-14',
-      letterNumber: 'REL/2025/001'
+      id: 'REL-001', employeeId: 'EMP001', employeeName: 'Rahul Sharma', designation: 'Senior Software Engineer', department: 'Engineering',
+      joiningDate: '2020-01-15', lastWorkingDay: '2025-12-14', resignationAcceptedOn: '2025-10-14',
+      noticePeriod: 60, noticePeriodServed: 60, clearanceCompleted: true,
+      status: 'generated', generatedBy: 'Priya Singh - HR Manager', generatedOn: '2025-12-14', letterNumber: 'REL/2025/001'
     },
     {
-      id: 'REL-002',
-      employeeId: 'EMP002',
-      employeeName: 'Priya Singh',
-      designation: 'Marketing Manager',
-      department: 'Marketing',
-      joiningDate: '2016-06-10',
-      lastWorkingDay: '2025-11-30',
-      resignationAcceptedOn: '2025-09-30',
-      noticePeriod: 60,
-      noticePeriodServed: 60,
-      clearanceCompleted: true,
-      status: 'issued',
-      generatedBy: 'Amit Kumar - HR Head',
-      generatedOn: '2025-11-30',
-      approvedBy: 'Rajesh Patel - CEO',
-      issuedOn: '2025-12-01',
-      letterNumber: 'REL/2025/002'
+      id: 'REL-002', employeeId: 'EMP002', employeeName: 'Priya Singh', designation: 'Marketing Manager', department: 'Marketing',
+      joiningDate: '2016-06-10', lastWorkingDay: '2025-11-30', resignationAcceptedOn: '2025-09-30',
+      noticePeriod: 60, noticePeriodServed: 60, clearanceCompleted: true,
+      status: 'issued', generatedBy: 'Amit Kumar - HR Head', generatedOn: '2025-11-30', approvedBy: 'Rajesh Patel - CEO', issuedOn: '2025-12-01', letterNumber: 'REL/2025/002'
     },
     {
-      id: 'REL-003',
-      employeeId: 'EMP003',
-      employeeName: 'Amit Kumar',
-      designation: 'Product Manager',
-      department: 'Product',
-      joiningDate: '2010-03-20',
-      lastWorkingDay: '2025-10-31',
-      resignationAcceptedOn: '2025-08-31',
-      noticePeriod: 90,
-      noticePeriodServed: 90,
-      clearanceCompleted: true,
-      status: 'issued',
-      generatedBy: 'Priya Singh - HR Manager',
-      generatedOn: '2025-10-31',
-      approvedBy: 'Rajesh Patel - CEO',
-      issuedOn: '2025-11-05',
-      letterNumber: 'REL/2025/003'
+      id: 'REL-003', employeeId: 'EMP003', employeeName: 'Amit Kumar', designation: 'Product Manager', department: 'Product',
+      joiningDate: '2010-03-20', lastWorkingDay: '2025-10-31', resignationAcceptedOn: '2025-08-31',
+      noticePeriod: 90, noticePeriodServed: 90, clearanceCompleted: true,
+      status: 'issued', generatedBy: 'Priya Singh - HR Manager', generatedOn: '2025-10-31', approvedBy: 'Rajesh Patel - CEO', issuedOn: '2025-11-05', letterNumber: 'REL/2025/003'
+    },
+    {
+      id: 'REL-004', employeeId: 'EMP004', employeeName: 'Neha Gupta', designation: 'Junior Developer', department: 'Engineering',
+      joiningDate: '2022-05-15', lastWorkingDay: '2025-12-31', resignationAcceptedOn: '2025-11-01',
+      noticePeriod: 60, noticePeriodServed: 60, clearanceCompleted: false,
+      status: 'pending'
+    },
+    {
+      id: 'REL-005', employeeId: 'EMP005', employeeName: 'Vikram Malhotra', designation: 'VP of Sales', department: 'Sales',
+      joiningDate: '2015-01-01', lastWorkingDay: '2025-09-30', resignationAcceptedOn: '2025-07-31',
+      noticePeriod: 90, noticePeriodServed: 60, clearanceCompleted: true,
+      status: 'approved', generatedBy: 'Anjali Desai - HR Exec', generatedOn: '2025-09-30', approvedBy: 'Rajesh Patel - CEO'
+    },
+    {
+      id: 'REL-006', employeeId: 'EMP006', employeeName: 'Anjali Desai', designation: 'HR Executive', department: 'Human Resources',
+      joiningDate: '2021-02-10', lastWorkingDay: '2025-10-15', resignationAcceptedOn: '2025-09-15',
+      noticePeriod: 30, noticePeriodServed: 30, clearanceCompleted: true,
+      status: 'generated', generatedBy: 'Priya Singh - HR Manager', generatedOn: '2025-10-15', letterNumber: 'REL/2025/006'
+    },
+    {
+      id: 'REL-007', employeeId: 'EMP007', employeeName: 'Rohan Mehra', designation: 'Content Strategist', department: 'Marketing',
+      joiningDate: '2018-06-01', lastWorkingDay: '2025-11-15', resignationAcceptedOn: '2025-09-15',
+      noticePeriod: 60, noticePeriodServed: 60, clearanceCompleted: false,
+      status: 'pending'
+    },
+    {
+      id: 'REL-008', employeeId: 'EMP008', employeeName: 'Suresh Raina', designation: 'Operations Manager', department: 'Operations',
+      joiningDate: '2005-04-01', lastWorkingDay: '2025-08-31', resignationAcceptedOn: '2025-06-31',
+      noticePeriod: 90, noticePeriodServed: 90, clearanceCompleted: true,
+      status: 'issued', generatedBy: 'Amit Kumar', generatedOn: '2025-08-31', approvedBy: 'Rajesh Patel', issuedOn: '2025-09-01', letterNumber: 'REL/2025/008'
+    },
+    {
+      id: 'REL-009', employeeId: 'EMP009', employeeName: 'Kavita Krishnan', designation: 'Lead Designer', department: 'Design',
+      joiningDate: '2019-11-11', lastWorkingDay: '2025-12-05', resignationAcceptedOn: '2025-10-05',
+      noticePeriod: 60, noticePeriodServed: 60, clearanceCompleted: true,
+      status: 'approved', generatedBy: 'Priya Singh', generatedOn: '2025-12-05', approvedBy: 'Rajesh Patel'
+    },
+    {
+      id: 'REL-010', employeeId: 'EMP010', employeeName: 'Deepak Verma', designation: 'System Admin', department: 'IT',
+      joiningDate: '2023-01-15', lastWorkingDay: '2025-11-20', resignationAcceptedOn: '2025-10-20',
+      noticePeriod: 30, noticePeriodServed: 30, clearanceCompleted: true,
+      status: 'pending'
     }
   ];
 
@@ -163,14 +169,13 @@ export default function RelievingLetterPage() {
           <button
             key={tab}
             onClick={() => setSelectedTab(tab)}
-            className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${
-              selectedTab === tab
-                ? tab === 'pending' ? 'bg-yellow-600 text-white' :
-                  tab === 'generated' ? 'bg-blue-600 text-white' :
+            className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${selectedTab === tab
+              ? tab === 'pending' ? 'bg-yellow-600 text-white' :
+                tab === 'generated' ? 'bg-blue-600 text-white' :
                   tab === 'approved' ? 'bg-green-600 text-white' :
-                  'bg-gray-600 text-white'
-                : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-            }`}
+                    'bg-gray-600 text-white'
+              : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+              }`}
           >
             {tab.charAt(0).toUpperCase() + tab.slice(1)} ({stats[tab]})
           </button>
@@ -241,9 +246,8 @@ export default function RelievingLetterPage() {
                   </div>
                   <div className="flex justify-between text-sm pt-2 border-t border-gray-200">
                     <span className="font-semibold text-gray-900">Status</span>
-                    <span className={`font-bold ${
-                      letter.noticePeriodServed >= letter.noticePeriod ? 'text-green-600' : 'text-yellow-600'
-                    }`}>
+                    <span className={`font-bold ${letter.noticePeriodServed >= letter.noticePeriod ? 'text-green-600' : 'text-yellow-600'
+                      }`}>
                       {letter.noticePeriodServed >= letter.noticePeriod ? 'Completed' : 'Partial'}
                     </span>
                   </div>

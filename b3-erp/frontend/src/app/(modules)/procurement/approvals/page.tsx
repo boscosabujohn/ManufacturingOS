@@ -26,30 +26,24 @@ import {
   ArrowRight,
   AlertTriangle,
   Timer,
-  Activity,
   TrendingUp,
   Package,
   Building2,
   Hash,
-  Zap,
-  Flag,
-  MoreVertical,
-  RefreshCw,
-  CheckSquare
+  Zap
 } from 'lucide-react'
 import { io } from 'socket.io-client'
 
-// Import Approval Modals
 import {
   ApproveModal,
   RejectModal,
-  DelegateModal,
-  ReturnModal,
+  DelegateModalFixed as DelegateModal,
+  ReturnModalFixed as ReturnModal,
   ViewHistoryModal,
   ViewDetailsModal,
   BulkActionsModal,
   ExportApprovalsModal
-} from '@/components/procurement/ApprovalModals'
+} from '@/components/procurement/ApprovalModalsFixed'
 
 import { approvalService, ApprovalRequest } from '@/services/ApprovalService'
 
@@ -61,6 +55,8 @@ interface ApprovalStats {
   overdueCount: number
   escalatedCount: number
 }
+
+
 
 export default function ApprovalsPage() {
   const [selectedTab, setSelectedTab] = useState<'my_approvals' | 'my_requests' | 'delegated' | 'all'>('my_approvals')
@@ -364,8 +360,8 @@ export default function ApprovalsPage() {
             <button
               onClick={() => setSelectedTab('my_approvals')}
               className={`px-6 py-3 text-sm font-medium border-b-2 transition-colors ${selectedTab === 'my_approvals'
-                  ? 'border-blue-600 text-blue-600'
-                  : 'border-transparent text-gray-500 hover:text-gray-700'
+                ? 'border-blue-600 text-blue-600'
+                : 'border-transparent text-gray-500 hover:text-gray-700'
                 }`}
             >
               My Approvals
@@ -378,8 +374,8 @@ export default function ApprovalsPage() {
             <button
               onClick={() => setSelectedTab('my_requests')}
               className={`px-6 py-3 text-sm font-medium border-b-2 transition-colors ${selectedTab === 'my_requests'
-                  ? 'border-blue-600 text-blue-600'
-                  : 'border-transparent text-gray-500 hover:text-gray-700'
+                ? 'border-blue-600 text-blue-600'
+                : 'border-transparent text-gray-500 hover:text-gray-700'
                 }`}
             >
               My Requests
@@ -387,8 +383,8 @@ export default function ApprovalsPage() {
             <button
               onClick={() => setSelectedTab('delegated')}
               className={`px-6 py-3 text-sm font-medium border-b-2 transition-colors ${selectedTab === 'delegated'
-                  ? 'border-blue-600 text-blue-600'
-                  : 'border-transparent text-gray-500 hover:text-gray-700'
+                ? 'border-blue-600 text-blue-600'
+                : 'border-transparent text-gray-500 hover:text-gray-700'
                 }`}
             >
               Delegated
@@ -396,8 +392,8 @@ export default function ApprovalsPage() {
             <button
               onClick={() => setSelectedTab('all')}
               className={`px-6 py-3 text-sm font-medium border-b-2 transition-colors ${selectedTab === 'all'
-                  ? 'border-blue-600 text-blue-600'
-                  : 'border-transparent text-gray-500 hover:text-gray-700'
+                ? 'border-blue-600 text-blue-600'
+                : 'border-transparent text-gray-500 hover:text-gray-700'
                 }`}
             >
               All Approvals
@@ -551,7 +547,7 @@ export default function ApprovalsPage() {
                         <div key={index} className="flex items-center">
                           <div className="flex items-center gap-2">
                             <div className={`p-1.5 rounded-full ${history.action === 'approved' ? 'bg-green-100' :
-                                history.action === 'rejected' ? 'bg-red-100' : 'bg-yellow-100'
+                              history.action === 'rejected' ? 'bg-red-100' : 'bg-yellow-100'
                               }`}>
                               {history.action === 'approved' ? (
                                 <CheckCircle className="h-4 w-4 text-green-600" />
@@ -699,6 +695,14 @@ export default function ApprovalsPage() {
             }}
             request={selectedApproval}
           />
+          {/*
+          <DelegateModal
+            isOpen={isDelegateModalOpen}
+            onClose={() => setIsDelegateModalOpen(false)}
+            onDelegate={() => handleActionComplete()}
+            request={selectedApproval}
+          />
+          */}
           <DelegateModal
             isOpen={isDelegateModalOpen}
             onClose={() => setIsDelegateModalOpen(false)}

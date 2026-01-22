@@ -198,6 +198,224 @@ class ProjectManagementService {
         { id: 'DIS-003', title: 'Material Finish Unavailable', description: 'Selected laminate out of stock', priority: 'Low', status: 'Resolved', date: '2025-01-18', reportedBy: 'Procurement' },
     ];
 
+    private mockProjectResources: any[] = [
+        {
+            id: 'RES-001',
+            projectId: 'proj-001',
+            userId: 'USR-001',
+            role: 'Project Manager',
+            allocationPercentage: 100,
+            startDate: '2024-01-01',
+            endDate: '2024-12-31',
+            user: {
+                id: 'USR-001',
+                name: 'Vikram Malhotra',
+                employeeId: 'EMP-2023-001',
+                email: 'vikram.m@optiforge.com',
+                phone: '+91 98765 43210',
+                department: 'Project Management',
+                skills: ['Project Planning', 'Risk Management', 'Stakeholder Management', 'Agile'],
+                avatar: '/avatars/vikram.jpg'
+            }
+        },
+        {
+            id: 'RES-002',
+            projectId: 'proj-001',
+            userId: 'USR-002',
+            role: 'Senior Electrical Engineer',
+            allocationPercentage: 80,
+            startDate: '2024-01-15',
+            endDate: '2024-11-30',
+            user: {
+                id: 'USR-002',
+                name: 'Anjali Sharma',
+                employeeId: 'EMP-2023-045',
+                email: 'anjali.s@optiforge.com',
+                phone: '+91 98765 43211',
+                department: 'Engineering',
+                skills: ['Electrical Design', 'AutoCAD', 'Power Systems', 'Safety Compliance'],
+                avatar: '/avatars/anjali.jpg'
+            }
+        },
+        {
+            id: 'RES-003',
+            projectId: 'proj-001',
+            userId: 'USR-003',
+            role: 'Site Supervisor',
+            allocationPercentage: 100,
+            startDate: '2024-02-01',
+            endDate: '2024-12-31',
+            user: {
+                id: 'USR-003',
+                name: 'Rahul Verma',
+                employeeId: 'EMP-2023-089',
+                email: 'rahul.v@optiforge.com',
+                phone: '+91 98765 43212',
+                department: 'Operations',
+                skills: ['Site Supervision', 'Team Leadership', 'Quality Control', 'Safety Regulations'],
+                avatar: '/avatars/rahul.jpg'
+            }
+        },
+        {
+            id: 'RES-004',
+            projectId: 'proj-001',
+            userId: 'USR-004',
+            role: 'HVAC Specialist',
+            allocationPercentage: 50,
+            startDate: '2024-03-01',
+            endDate: '2024-08-30',
+            user: {
+                id: 'USR-004',
+                name: 'David Fernades',
+                employeeId: 'EMP-2023-102',
+                email: 'david.f@optiforge.com',
+                phone: '+91 98765 43213',
+                department: 'Engineering',
+                skills: ['HVAC Systems', 'Thermal Analysis', 'Installation', 'Maintenance'],
+                avatar: '/avatars/david.jpg'
+            }
+        },
+        {
+            id: 'RES-005',
+            projectId: 'proj-001',
+            userId: 'USR-005',
+            role: 'Quality Inspector',
+            allocationPercentage: 40,
+            startDate: '2024-04-01',
+            endDate: '2024-12-31',
+            user: {
+                id: 'USR-005',
+                name: 'Priya Nair',
+                employeeId: 'EMP-2023-156',
+                email: 'priya.n@optiforge.com',
+                phone: '+91 98765 43214',
+                department: 'Quality Control',
+                skills: ['Quality Assurance', 'ISO Standards', 'Inspection', 'Reporting'],
+                avatar: '/avatars/priya.jpg'
+            }
+        },
+        {
+            id: 'RES-006',
+            projectId: 'proj-002',
+            userId: 'USR-006',
+            role: 'Project Manager',
+            allocationPercentage: 100,
+            startDate: '2024-01-01',
+            endDate: '2024-12-31',
+            user: {
+                id: 'USR-006',
+                name: 'Suresh Raina',
+                employeeId: 'EMP-2023-002',
+                email: 'suresh.r@optiforge.com',
+                phone: '+91 98765 43215',
+                department: 'Project Management',
+                skills: ['Project Coordination', 'Budgeting', 'Client Relations'],
+                avatar: '/avatars/suresh.jpg'
+            }
+        },
+        {
+            id: 'RES-007',
+            projectId: 'proj-002',
+            userId: 'USR-007',
+            role: 'Cold Storage Expert',
+            allocationPercentage: 100,
+            startDate: '2024-01-10',
+            endDate: '2024-09-30',
+            user: {
+                id: 'USR-007',
+                name: 'Michael Chen',
+                employeeId: 'EMP-2023-210',
+                email: 'michael.c@optiforge.com',
+                phone: '+91 98765 43216',
+                department: 'Engineering',
+                skills: ['Refrigeration', 'Insulation', 'Thermal Dynamics', 'Energy Efficiency'],
+                avatar: '/avatars/michael.jpg'
+            }
+        },
+        {
+            id: 'RES-008',
+            projectId: 'proj-001',
+            userId: 'USR-008',
+            role: 'Safety Officer',
+            allocationPercentage: 30,
+            startDate: '2024-01-01',
+            endDate: '2024-12-31',
+            user: {
+                id: 'USR-008',
+                name: 'Karthik S',
+                employeeId: 'EMP-2023-301',
+                email: 'karthik.s@optiforge.com',
+                phone: '+91 98765 43217',
+                department: 'Safety',
+                skills: ['Occupational Health', 'Risk Assessment', 'Safety Training', 'Compliance'],
+                avatar: '/avatars/karthik.jpg'
+            }
+        },
+        {
+            id: 'RES-009',
+            projectId: 'proj-001',
+            userId: 'USR-009',
+            role: 'Installation Technician',
+            allocationPercentage: 100,
+            startDate: '2024-06-01',
+            endDate: '2024-08-31',
+            user: {
+                id: 'USR-009',
+                name: 'Manoj Kumar',
+                employeeId: 'EMP-2023-405',
+                email: 'manoj.k@optiforge.com',
+                phone: '+91 98765 43218',
+                department: 'Operations',
+                skills: ['Equipment Installation', 'Blueprint Reading', 'Tool Handling', 'Physical Endurance'],
+                avatar: '/avatars/manoj.jpg'
+            }
+        },
+        {
+            id: 'RES-010',
+            projectId: 'proj-001',
+            userId: 'USR-010',
+            role: 'Junior Designer',
+            allocationPercentage: 60,
+            startDate: '2024-02-01',
+            endDate: '2024-10-31',
+            user: {
+                id: 'USR-010',
+                name: 'Sarah Lee',
+                employeeId: 'EMP-2023-512',
+                email: 'sarah.l@optiforge.com',
+                phone: '+91 98765 43219',
+                department: 'Design',
+                skills: ['CAD', '3D Modeling', 'Sketching', 'Material Selection'],
+                avatar: '/avatars/sarah.jpg'
+            }
+        }
+    ];
+
+
+    private mockProjectBudgets: ProjectBudget[] = [
+        // Project 1: Commercial Kitchen (On Track / Slightly Under)
+        { id: 'BUD-001', projectId: 'proj-001', category: 'Labor', budgetAllocated: 50000, budgetSpent: 45000, forecastCost: 48000 },
+        { id: 'BUD-002', projectId: 'proj-001', category: 'Materials', budgetAllocated: 120000, budgetSpent: 110000, forecastCost: 118000 },
+        { id: 'BUD-003', projectId: 'proj-001', category: 'Equipment', budgetAllocated: 80000, budgetSpent: 75000, forecastCost: 78000 },
+        { id: 'BUD-004', projectId: 'proj-001', category: 'Subcontractor', budgetAllocated: 30000, budgetSpent: 32000, forecastCost: 35000 }, // Overspend
+        { id: 'BUD-005', projectId: 'proj-001', category: 'Logistics', budgetAllocated: 15000, budgetSpent: 12000, forecastCost: 14000 },
+        { id: 'BUD-006', projectId: 'proj-001', category: 'Design', budgetAllocated: 25000, budgetSpent: 25000, forecastCost: 25000 },
+        { id: 'BUD-007', projectId: 'proj-001', category: 'Contingency', budgetAllocated: 20000, budgetSpent: 5000, forecastCost: 10000 },
+
+        // Project 2: Cold Storage (Over Budget)
+        { id: 'BUD-008', projectId: 'proj-002', category: 'Labor', budgetAllocated: 40000, budgetSpent: 48000, forecastCost: 55000 }, // Significant Overspend
+        { id: 'BUD-009', projectId: 'proj-002', category: 'Materials', budgetAllocated: 90000, budgetSpent: 95000, forecastCost: 100000 },
+        { id: 'BUD-010', projectId: 'proj-002', category: 'Equipment', budgetAllocated: 150000, budgetSpent: 145000, forecastCost: 152000 },
+        { id: 'BUD-011', projectId: 'proj-002', category: 'Subcontractor', budgetAllocated: 20000, budgetSpent: 22000, forecastCost: 24000 },
+        { id: 'BUD-012', projectId: 'proj-002', category: 'Logistics', budgetAllocated: 10000, budgetSpent: 11000, forecastCost: 12000 },
+
+        // Project 3: Industrial Kitchen (Under Budget)
+        { id: 'BUD-013', projectId: 'proj-003', category: 'Labor', budgetAllocated: 60000, budgetSpent: 40000, forecastCost: 55000 },
+        { id: 'BUD-014', projectId: 'proj-003', category: 'Materials', budgetAllocated: 140000, budgetSpent: 100000, forecastCost: 135000 },
+        { id: 'BUD-015', projectId: 'proj-003', category: 'Equipment', budgetAllocated: 100000, budgetSpent: 60000, forecastCost: 95000 },
+        { id: 'BUD-016', projectId: 'proj-003', category: 'Design', budgetAllocated: 30000, budgetSpent: 28000, forecastCost: 30000 },
+    ];
+
     private mockProjects: Project[] = [
         {
             id: 'proj-001',
@@ -287,8 +505,12 @@ class ProjectManagementService {
 
     // --- Resources ---
     async getResources(projectId: string): Promise<ProjectResource[]> {
-        const response = await apiClient.get<ProjectResource[]>(`/project-resources?projectId=${projectId}`);
-        return response.data || [];
+        // Simulate API call
+        await new Promise(resolve => setTimeout(resolve, 800));
+
+        // Return mock data if no real data is available (for verified frontend dev)
+        const projectResources = this.mockProjectResources.filter(r => r.projectId === projectId);
+        return projectResources.length > 0 ? projectResources : [];
     }
 
     async createResource(data: any): Promise<ProjectResource> {
@@ -307,8 +529,12 @@ class ProjectManagementService {
 
     // --- Budgets ---
     async getBudgets(projectId: string): Promise<ProjectBudget[]> {
-        const response = await apiClient.get<ProjectBudget[]>(`/project-budgets?projectId=${projectId}`);
-        return response.data || [];
+        // Simulate API call
+        await new Promise(resolve => setTimeout(resolve, 800));
+
+        // Return mock data if no real data (for verified frontend dev)
+        const budgets = this.mockProjectBudgets.filter(b => b.projectId === projectId);
+        return budgets.length > 0 ? budgets : [];
     }
 
     async createBudget(data: any): Promise<ProjectBudget> {

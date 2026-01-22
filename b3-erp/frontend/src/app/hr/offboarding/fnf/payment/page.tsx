@@ -69,99 +69,94 @@ export default function FNFPaymentPage() {
 
   const mockPayments: FNFPayment[] = [
     {
-      id: 'FNF-PAY-001',
-      employeeId: 'EMP001',
-      employeeName: 'Rahul Sharma',
-      designation: 'Senior Software Engineer',
-      department: 'Engineering',
+      id: 'FNF-PAY-001', employeeId: 'EMP001', employeeName: 'Rahul Sharma', designation: 'Senior Software Engineer', department: 'Engineering',
       lastWorkingDay: '2025-12-14',
-      bankDetails: {
-        accountName: 'Rahul Sharma',
-        accountNumber: '123456789012',
-        bankName: 'HDFC Bank',
-        ifscCode: 'HDFC0001234'
-      },
-      fnfComponents: {
-        salary: -176539,
-        leaveEncashment: 79603,
-        gratuity: 173076,
-        reimbursements: 5000
-      },
-      deductions: {
-        noticePeriodBuyout: 180000,
-        loanRecovery: 50000
-      },
-      totalGross: 257679,
-      totalDeductions: 230000,
-      netPayable: 27679,
-      status: 'approved',
-      approvedBy: 'Rajesh Patel - CFO',
-      approvedOn: '2025-12-12',
-      paymentMode: 'bank_transfer'
+      bankDetails: { accountName: 'Rahul Sharma', accountNumber: '123456789012', bankName: 'HDFC Bank', ifscCode: 'HDFC0001234' },
+      fnfComponents: { salary: -176539, leaveEncashment: 79603, gratuity: 173076, reimbursements: 5000 },
+      deductions: { noticePeriodBuyout: 180000, loanRecovery: 50000 },
+      totalGross: 257679, totalDeductions: 230000, netPayable: 27679,
+      status: 'approved', approvedBy: 'Rajesh Patel - CFO', approvedOn: '2025-12-12', paymentMode: 'bank_transfer'
     },
     {
-      id: 'FNF-PAY-002',
-      employeeId: 'EMP002',
-      employeeName: 'Priya Singh',
-      designation: 'Marketing Manager',
-      department: 'Marketing',
+      id: 'FNF-PAY-002', employeeId: 'EMP002', employeeName: 'Priya Singh', designation: 'Marketing Manager', department: 'Marketing',
       lastWorkingDay: '2025-11-30',
-      bankDetails: {
-        accountName: 'Priya Singh',
-        accountNumber: '987654321098',
-        bankName: 'ICICI Bank',
-        ifscCode: 'ICIC0009876'
-      },
-      fnfComponents: {
-        salary: 123000,
-        leaveEncashment: 126900,
-        gratuity: 333461,
-        bonus: 20000,
-        reimbursements: 8000
-      },
-      deductions: {
-        advanceRecovery: 15000
-      },
-      totalGross: 611361,
-      totalDeductions: 15000,
-      netPayable: 596361,
-      status: 'paid',
-      approvedBy: 'Rajesh Patel - CFO',
-      approvedOn: '2025-11-28',
-      paidOn: '2025-12-01',
-      paymentMode: 'bank_transfer',
-      transactionRef: 'TXN20251201123456'
+      bankDetails: { accountName: 'Priya Singh', accountNumber: '987654321098', bankName: 'ICICI Bank', ifscCode: 'ICIC0009876' },
+      fnfComponents: { salary: 123000, leaveEncashment: 126900, gratuity: 333461, bonus: 20000, reimbursements: 8000 },
+      deductions: { advanceRecovery: 15000 },
+      totalGross: 611361, totalDeductions: 15000, netPayable: 596361,
+      status: 'paid', approvedBy: 'Rajesh Patel - CFO', approvedOn: '2025-11-28', paidOn: '2025-12-01', paymentMode: 'bank_transfer', transactionRef: 'TXN20251201123456'
     },
     {
-      id: 'FNF-PAY-003',
-      employeeId: 'EMP003',
-      employeeName: 'Amit Kumar',
-      designation: 'Product Manager',
-      department: 'Product',
+      id: 'FNF-PAY-003', employeeId: 'EMP003', employeeName: 'Amit Kumar', designation: 'Product Manager', department: 'Product',
       lastWorkingDay: '2025-10-31',
-      bankDetails: {
-        accountName: 'Amit Kumar',
-        accountNumber: '456789012345',
-        bankName: 'SBI',
-        ifscCode: 'SBIN0004567'
-      },
-      fnfComponents: {
-        salary: 192000,
-        leaveEncashment: 150000,
-        gratuity: 648461,
-        bonus: 50000,
-        reimbursements: 12000
-      },
+      bankDetails: { accountName: 'Amit Kumar', accountNumber: '456789012345', bankName: 'SBI', ifscCode: 'SBIN0004567' },
+      fnfComponents: { salary: 192000, leaveEncashment: 150000, gratuity: 648461, bonus: 50000, reimbursements: 12000 },
       deductions: {},
-      totalGross: 1052461,
-      totalDeductions: 0,
-      netPayable: 1052461,
-      status: 'paid',
-      approvedBy: 'Rajesh Patel - CFO',
-      approvedOn: '2025-10-28',
-      paidOn: '2025-11-05',
-      paymentMode: 'bank_transfer',
-      transactionRef: 'TXN20251105987654'
+      totalGross: 1052461, totalDeductions: 0, netPayable: 1052461,
+      status: 'paid', approvedBy: 'Rajesh Patel - CFO', approvedOn: '2025-10-28', paidOn: '2025-11-05', paymentMode: 'bank_transfer', transactionRef: 'TXN20251105987654'
+    },
+    {
+      id: 'FNF-PAY-004', employeeId: 'EMP004', employeeName: 'Neha Gupta', designation: 'Junior Developer', department: 'Engineering',
+      lastWorkingDay: '2025-12-31',
+      bankDetails: { accountName: 'Neha Gupta', accountNumber: '112233445566', bankName: 'Axis Bank', ifscCode: 'UTIB0001122' },
+      fnfComponents: { salary: 64000, leaveEncashment: 30000, gratuity: 0, reimbursements: 2000 },
+      deductions: {},
+      totalGross: 96000, totalDeductions: 0, netPayable: 96000,
+      status: 'pending', paymentMode: 'bank_transfer'
+    },
+    {
+      id: 'FNF-PAY-005', employeeId: 'EMP005', employeeName: 'Vikram Malhotra', designation: 'VP of Sales', department: 'Sales',
+      lastWorkingDay: '2025-09-30',
+      bankDetails: { accountName: 'Vikram Malhotra', accountNumber: '998877665544', bankName: 'HDFC Bank', ifscCode: 'HDFC0009988' },
+      fnfComponents: { salary: 368000, leaveEncashment: 270000, gratuity: 888461, bonus: 150000, reimbursements: 25000 },
+      deductions: { otherDeductions: 5000 },
+      totalGross: 1696461, totalDeductions: 5000, netPayable: 1691461,
+      status: 'approved', approvedBy: 'Rajesh Patel - CFO', approvedOn: '2025-10-05', paymentMode: 'cheque'
+    },
+    {
+      id: 'FNF-PAY-006', employeeId: 'EMP006', employeeName: 'Anjali Desai', designation: 'HR Executive', department: 'Human Resources',
+      lastWorkingDay: '2025-10-15',
+      bankDetails: { accountName: 'Anjali Desai', accountNumber: '777777777777', bankName: 'Kotak Bank', ifscCode: 'KKBK0007777' },
+      fnfComponents: { salary: -4000, leaveEncashment: 7500, gratuity: 0 },
+      deductions: { noticePeriodBuyout: 30000 },
+      totalGross: 3500, totalDeductions: 30000, netPayable: 3500,
+      status: 'approved', approvedBy: 'Rajesh Patel - CFO', approvedOn: '2025-10-18', paymentMode: 'bank_transfer'
+    },
+    {
+      id: 'FNF-PAY-007', employeeId: 'EMP007', employeeName: 'Rohan Mehra', designation: 'Content Strategist', department: 'Marketing',
+      lastWorkingDay: '2025-11-15',
+      bankDetails: { accountName: 'Rohan Mehra', accountNumber: '554433221100', bankName: 'SBI', ifscCode: 'SBIN0005544' },
+      fnfComponents: { salary: 51500, leaveEncashment: 45000, gratuity: 266538, reimbursements: 3000 },
+      deductions: {},
+      totalGross: 366038, totalDeductions: 0, netPayable: 366038,
+      status: 'processing', paymentMode: 'bank_transfer'
+    },
+    {
+      id: 'FNF-PAY-008', employeeId: 'EMP008', employeeName: 'Suresh Raina', designation: 'Operations Manager', department: 'Operations',
+      lastWorkingDay: '2025-08-31',
+      bankDetails: { accountName: 'Suresh Raina', accountNumber: '111222333444', bankName: 'ICICI Bank', ifscCode: 'ICIC0001111' },
+      fnfComponents: { salary: 211000, leaveEncashment: 220000, gratuity: 1246153, bonus: 50000 },
+      deductions: {},
+      totalGross: 1727153, totalDeductions: 0, netPayable: 1727153,
+      status: 'paid', approvedBy: 'Rajesh Patel - CFO', approvedOn: '2025-09-02', paidOn: '2025-09-05', paymentMode: 'bank_transfer', transactionRef: 'TXN20250905111222'
+    },
+    {
+      id: 'FNF-PAY-009', employeeId: 'EMP009', employeeName: 'Kavita Krishnan', designation: 'Lead Designer', department: 'Design',
+      lastWorkingDay: '2025-12-05',
+      bankDetails: { accountName: 'Kavita Krishnan', accountNumber: '999888777666', bankName: 'HDFC Bank', ifscCode: 'HDFC0009999' },
+      fnfComponents: { salary: 12115, leaveEncashment: 66000, gratuity: 270000 },
+      deductions: { loanRecovery: 10000 },
+      totalGross: 348115, totalDeductions: 10000, netPayable: 338115,
+      status: 'approved', approvedBy: 'Rajesh Patel - CFO', approvedOn: '2025-12-04', paymentMode: 'bank_transfer'
+    },
+    {
+      id: 'FNF-PAY-010', employeeId: 'EMP010', employeeName: 'Deepak Verma', designation: 'System Admin', department: 'IT',
+      lastWorkingDay: '2025-11-20',
+      bankDetails: { accountName: 'Deepak Verma', accountNumber: '333333333333', bankName: 'Axis Bank', ifscCode: 'UTIB0003333' },
+      fnfComponents: { salary: 45000, leaveEncashment: 0, gratuity: 0, reimbursements: 1539 },
+      deductions: { advanceRecovery: 5000 },
+      totalGross: 46539, totalDeductions: 5000, netPayable: 41539,
+      status: 'pending', paymentMode: 'bank_transfer'
     }
   ];
 
@@ -333,41 +328,37 @@ export default function FNFPaymentPage() {
       <div className="mb-4 flex gap-2">
         <button
           onClick={() => setSelectedTab('pending')}
-          className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${
-            selectedTab === 'pending'
+          className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${selectedTab === 'pending'
               ? 'bg-yellow-600 text-white'
               : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-          }`}
+            }`}
         >
           Pending ({stats.pending})
         </button>
         <button
           onClick={() => setSelectedTab('approved')}
-          className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${
-            selectedTab === 'approved'
+          className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${selectedTab === 'approved'
               ? 'bg-blue-600 text-white'
               : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-          }`}
+            }`}
         >
           Approved ({stats.approved})
         </button>
         <button
           onClick={() => setSelectedTab('processing')}
-          className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${
-            selectedTab === 'processing'
+          className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${selectedTab === 'processing'
               ? 'bg-purple-600 text-white'
               : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-          }`}
+            }`}
         >
           Processing ({stats.processing})
         </button>
         <button
           onClick={() => setSelectedTab('paid')}
-          className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${
-            selectedTab === 'paid'
+          className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${selectedTab === 'paid'
               ? 'bg-green-600 text-white'
               : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-          }`}
+            }`}
         >
           Paid ({stats.paid})
         </button>
@@ -513,17 +504,15 @@ export default function FNFPaymentPage() {
                 </div>
               )}
 
-              <div className={`rounded-lg p-4 border-2 ${
-                payment.netPayable >= 0
+              <div className={`rounded-lg p-4 border-2 ${payment.netPayable >= 0
                   ? 'bg-gradient-to-r from-green-50 to-green-100 border-green-300'
                   : 'bg-gradient-to-r from-red-50 to-red-100 border-red-300'
-              }`}>
+                }`}>
                 <div className="flex items-center justify-between">
                   <div className="flex-1">
                     <p className="text-sm font-medium text-gray-700 mb-1">Net Payable Amount (FNF)</p>
-                    <p className={`text-3xl font-bold ${
-                      payment.netPayable >= 0 ? 'text-green-700' : 'text-red-700'
-                    }`}>
+                    <p className={`text-3xl font-bold ${payment.netPayable >= 0 ? 'text-green-700' : 'text-red-700'
+                      }`}>
                       {payment.netPayable >= 0 ? '' : '-'}{formatCurrency(payment.netPayable)}
                     </p>
                     <p className="text-xs text-gray-600 mt-1">
@@ -532,9 +521,8 @@ export default function FNFPaymentPage() {
                         : 'Amount recoverable from employee'}
                     </p>
                   </div>
-                  <IndianRupee className={`h-12 w-12 ${
-                    payment.netPayable >= 0 ? 'text-green-600' : 'text-red-600'
-                  }`} />
+                  <IndianRupee className={`h-12 w-12 ${payment.netPayable >= 0 ? 'text-green-600' : 'text-red-600'
+                    }`} />
                 </div>
               </div>
 
@@ -734,7 +722,7 @@ export default function FNFPaymentPage() {
                   <input
                     type="text"
                     value={approveFormData.approvedBy}
-                    onChange={(e) => setApproveFormData({...approveFormData, approvedBy: e.target.value})}
+                    onChange={(e) => setApproveFormData({ ...approveFormData, approvedBy: e.target.value })}
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     placeholder="e.g., John Doe - CFO"
                     required
@@ -747,7 +735,7 @@ export default function FNFPaymentPage() {
                   </label>
                   <textarea
                     value={approveFormData.approvalRemarks}
-                    onChange={(e) => setApproveFormData({...approveFormData, approvalRemarks: e.target.value})}
+                    onChange={(e) => setApproveFormData({ ...approveFormData, approvalRemarks: e.target.value })}
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     rows={3}
                     placeholder="Any additional notes or remarks..."
@@ -826,31 +814,27 @@ export default function FNFPaymentPage() {
                   <div className="grid grid-cols-2 gap-3">
                     <button
                       type="button"
-                      onClick={() => setInitiateFormData({...initiateFormData, paymentMethod: 'bank_transfer'})}
-                      className={`p-4 rounded-lg border-2 transition-all ${
-                        initiateFormData.paymentMethod === 'bank_transfer'
+                      onClick={() => setInitiateFormData({ ...initiateFormData, paymentMethod: 'bank_transfer' })}
+                      className={`p-4 rounded-lg border-2 transition-all ${initiateFormData.paymentMethod === 'bank_transfer'
                           ? 'border-purple-600 bg-purple-50'
                           : 'border-gray-200 hover:border-gray-300'
-                      }`}
+                        }`}
                     >
-                      <Building2 className={`h-8 w-8 mx-auto mb-2 ${
-                        initiateFormData.paymentMethod === 'bank_transfer' ? 'text-purple-600' : 'text-gray-400'
-                      }`} />
+                      <Building2 className={`h-8 w-8 mx-auto mb-2 ${initiateFormData.paymentMethod === 'bank_transfer' ? 'text-purple-600' : 'text-gray-400'
+                        }`} />
                       <p className="font-semibold text-sm">Bank Transfer</p>
                       <p className="text-xs text-gray-500 mt-1">NEFT/RTGS/IMPS</p>
                     </button>
                     <button
                       type="button"
-                      onClick={() => setInitiateFormData({...initiateFormData, paymentMethod: 'cheque'})}
-                      className={`p-4 rounded-lg border-2 transition-all ${
-                        initiateFormData.paymentMethod === 'cheque'
+                      onClick={() => setInitiateFormData({ ...initiateFormData, paymentMethod: 'cheque' })}
+                      className={`p-4 rounded-lg border-2 transition-all ${initiateFormData.paymentMethod === 'cheque'
                           ? 'border-purple-600 bg-purple-50'
                           : 'border-gray-200 hover:border-gray-300'
-                      }`}
+                        }`}
                     >
-                      <CreditCard className={`h-8 w-8 mx-auto mb-2 ${
-                        initiateFormData.paymentMethod === 'cheque' ? 'text-purple-600' : 'text-gray-400'
-                      }`} />
+                      <CreditCard className={`h-8 w-8 mx-auto mb-2 ${initiateFormData.paymentMethod === 'cheque' ? 'text-purple-600' : 'text-gray-400'
+                        }`} />
                       <p className="font-semibold text-sm">Cheque</p>
                       <p className="text-xs text-gray-500 mt-1">Physical Cheque</p>
                     </button>
@@ -867,7 +851,7 @@ export default function FNFPaymentPage() {
                         <input
                           type="date"
                           value={initiateFormData.paymentDate}
-                          onChange={(e) => setInitiateFormData({...initiateFormData, paymentDate: e.target.value})}
+                          onChange={(e) => setInitiateFormData({ ...initiateFormData, paymentDate: e.target.value })}
                           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                           required
                         />
@@ -879,7 +863,7 @@ export default function FNFPaymentPage() {
                         <input
                           type="text"
                           value={initiateFormData.transactionRef}
-                          onChange={(e) => setInitiateFormData({...initiateFormData, transactionRef: e.target.value})}
+                          onChange={(e) => setInitiateFormData({ ...initiateFormData, transactionRef: e.target.value })}
                           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                           placeholder="TXN20251107XXXXXX"
                           required
@@ -921,7 +905,7 @@ export default function FNFPaymentPage() {
                         <input
                           type="text"
                           value={initiateFormData.chequeNumber}
-                          onChange={(e) => setInitiateFormData({...initiateFormData, chequeNumber: e.target.value})}
+                          onChange={(e) => setInitiateFormData({ ...initiateFormData, chequeNumber: e.target.value })}
                           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                           placeholder="CHQ123456"
                           required
@@ -934,7 +918,7 @@ export default function FNFPaymentPage() {
                         <input
                           type="date"
                           value={initiateFormData.chequeDate}
-                          onChange={(e) => setInitiateFormData({...initiateFormData, chequeDate: e.target.value})}
+                          onChange={(e) => setInitiateFormData({ ...initiateFormData, chequeDate: e.target.value })}
                           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                           required
                         />
@@ -948,7 +932,7 @@ export default function FNFPaymentPage() {
                       <input
                         type="text"
                         value={initiateFormData.bankName}
-                        onChange={(e) => setInitiateFormData({...initiateFormData, bankName: e.target.value})}
+                        onChange={(e) => setInitiateFormData({ ...initiateFormData, bankName: e.target.value })}
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                         placeholder="Enter issuing bank name"
                         required
@@ -969,7 +953,7 @@ export default function FNFPaymentPage() {
                   </label>
                   <textarea
                     value={initiateFormData.remarks}
-                    onChange={(e) => setInitiateFormData({...initiateFormData, remarks: e.target.value})}
+                    onChange={(e) => setInitiateFormData({ ...initiateFormData, remarks: e.target.value })}
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                     rows={2}
                     placeholder="Any additional notes..."
@@ -1053,7 +1037,7 @@ export default function FNFPaymentPage() {
                     <input
                       type="date"
                       value={confirmFormData.actualPaymentDate}
-                      onChange={(e) => setConfirmFormData({...confirmFormData, actualPaymentDate: e.target.value})}
+                      onChange={(e) => setConfirmFormData({ ...confirmFormData, actualPaymentDate: e.target.value })}
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
                       required
                     />
@@ -1065,7 +1049,7 @@ export default function FNFPaymentPage() {
                     <input
                       type="text"
                       value={confirmFormData.transactionRef}
-                      onChange={(e) => setConfirmFormData({...confirmFormData, transactionRef: e.target.value})}
+                      onChange={(e) => setConfirmFormData({ ...confirmFormData, transactionRef: e.target.value })}
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
                       placeholder="Final transaction reference"
                       required
@@ -1079,7 +1063,7 @@ export default function FNFPaymentPage() {
                   </label>
                   <textarea
                     value={confirmFormData.confirmationRemarks}
-                    onChange={(e) => setConfirmFormData({...confirmFormData, confirmationRemarks: e.target.value})}
+                    onChange={(e) => setConfirmFormData({ ...confirmFormData, confirmationRemarks: e.target.value })}
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
                     rows={3}
                     placeholder="Confirmation notes, payment receipt details, etc..."

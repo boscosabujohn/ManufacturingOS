@@ -283,11 +283,11 @@ export default function BonusProcessingPage() {
     setBonusRecords(prev => prev.map(r =>
       r.id === recordId
         ? {
-            ...r,
-            status: 'approved',
-            approvedBy: 'HR Manager',
-            approvedDate: new Date().toISOString().split('T')[0]
-          }
+          ...r,
+          status: 'approved',
+          approvedBy: 'HR Manager',
+          approvedDate: new Date().toISOString().split('T')[0]
+        }
         : r
     ))
   }
@@ -302,16 +302,40 @@ export default function BonusProcessingPage() {
     setBonusRecords(prev => prev.map(r =>
       r.id === recordId
         ? {
-            ...r,
-            status: 'paid',
-            paymentDate: new Date().toISOString().split('T')[0]
-          }
+          ...r,
+          status: 'paid',
+          paymentDate: new Date().toISOString().split('T')[0]
+        }
         : r
     ))
   }
 
+  // Stable date formatter to prevent hydration mismatch
+  const formatDate = (dateString: string) => {
+    return new Date(dateString).toLocaleDateString('en-IN', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit'
+    })
+  }
+
+  // Wrapper for rendering dates safely
+  const DateDisplay = ({ date, fallback = '-' }: { date?: string, fallback?: string }) => {
+    const [mounted, setMounted] = useState(false)
+
+    React.useEffect(() => {
+      setMounted(true)
+    }, [])
+
+    if (!mounted) {
+      return <span>{date ? date : fallback}</span>
+    }
+
+    return <span>{date ? formatDate(date) : fallback}</span>
+  }
+
   return (
-    <div className="p-6 max-w-7xl mx-auto">
+    <div className="p-6 w-full mx-auto">
       <div className="mb-6">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">Bonus Processing</h1>
         <p className="text-gray-600">Calculate, approve, and process employee bonuses</p>
@@ -612,7 +636,7 @@ export default function BonusProcessingPage() {
                     <div>
                       <p className="text-xs text-yellow-600">Calculated Date</p>
                       <p className="text-sm font-semibold text-yellow-900">
-                        {new Date(record.calculatedDate).toLocaleDateString('en-IN')}
+                        <DateDisplay date={record.calculatedDate} />
                       </p>
                     </div>
                     <div>
@@ -624,7 +648,7 @@ export default function BonusProcessingPage() {
                     <div>
                       <p className="text-xs text-yellow-600">Approved Date</p>
                       <p className="text-sm font-semibold text-yellow-900">
-                        {record.approvedDate ? new Date(record.approvedDate).toLocaleDateString('en-IN') : '-'}
+                        <DateDisplay date={record.approvedDate} />
                       </p>
                     </div>
                   </div>
@@ -640,7 +664,7 @@ export default function BonusProcessingPage() {
                     <div>
                       <p className="text-xs text-indigo-600">Payment Date</p>
                       <p className="text-sm font-semibold text-indigo-900">
-                        {record.paymentDate ? new Date(record.paymentDate).toLocaleDateString('en-IN') : 'Pending'}
+                        <DateDisplay date={record.paymentDate} fallback="Pending" />
                       </p>
                     </div>
                     {record.performanceRating && (

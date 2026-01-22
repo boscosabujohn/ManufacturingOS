@@ -363,9 +363,8 @@ export default function AddRequisitionPage() {
                 <select
                   value={form.department}
                   onChange={(e) => setForm({ ...form, department: e.target.value })}
-                  className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                    errors.department ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.department ? 'border-red-500' : 'border-gray-300'
+                    }`}
                 >
                   <option value="">Select Department</option>
                   {departments.map(dept => (
@@ -391,17 +390,16 @@ export default function AddRequisitionPage() {
                       key={priority}
                       type="button"
                       onClick={() => setForm({ ...form, priority: priority as any })}
-                      className={`px-3 py-2 rounded-lg font-medium text-sm transition-all ${
-                        form.priority === priority
+                      className={`px-3 py-2 rounded-lg font-medium text-sm transition-all ${form.priority === priority
                           ? priority === 'urgent'
                             ? 'bg-red-600 text-white shadow-md'
                             : priority === 'high'
-                            ? 'bg-orange-600 text-white shadow-md'
-                            : priority === 'medium'
-                            ? 'bg-yellow-600 text-white shadow-md'
-                            : 'bg-gray-600 text-white shadow-md'
+                              ? 'bg-orange-600 text-white shadow-md'
+                              : priority === 'medium'
+                                ? 'bg-yellow-600 text-white shadow-md'
+                                : 'bg-gray-600 text-white shadow-md'
                           : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                      }`}
+                        }`}
                     >
                       {priority.charAt(0).toUpperCase() + priority.slice(1)}
                     </button>
@@ -421,9 +419,8 @@ export default function AddRequisitionPage() {
                     value={form.requestedBy}
                     onChange={(e) => setForm({ ...form, requestedBy: e.target.value })}
                     placeholder="Enter requester name"
-                    className={`w-full pl-10 pr-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                      errors.requestedBy ? 'border-red-500' : 'border-gray-300'
-                    }`}
+                    className={`w-full pl-10 pr-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.requestedBy ? 'border-red-500' : 'border-gray-300'
+                      }`}
                   />
                 </div>
                 {errors.requestedBy && (
@@ -444,9 +441,8 @@ export default function AddRequisitionPage() {
                   value={form.requestedByEmail}
                   onChange={(e) => setForm({ ...form, requestedByEmail: e.target.value })}
                   placeholder="requester@company.com"
-                  className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                    errors.requestedByEmail ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.requestedByEmail ? 'border-red-500' : 'border-gray-300'
+                    }`}
                 />
                 {errors.requestedByEmail && (
                   <p className="mt-1 text-sm text-red-600 flex items-center gap-1">
@@ -508,9 +504,8 @@ export default function AddRequisitionPage() {
                   onChange={(e) => setForm({ ...form, purpose: e.target.value })}
                   placeholder="Describe the purpose of this requisition..."
                   rows={4}
-                  className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                    errors.purpose ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.purpose ? 'border-red-500' : 'border-gray-300'
+                    }`}
                 />
                 {errors.purpose && (
                   <p className="mt-1 text-sm text-red-600 flex items-center gap-1">
@@ -617,7 +612,7 @@ export default function AddRequisitionPage() {
                             setShowItemModal(true)
                           }}
                           className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-                         
+
                         >
                           <Edit2 className="h-4 w-4" />
                         </button>
@@ -625,7 +620,7 @@ export default function AddRequisitionPage() {
                           type="button"
                           onClick={() => handleDuplicateItem(item)}
                           className="p-2 text-gray-600 hover:bg-gray-50 rounded-lg transition-colors"
-                         
+
                         >
                           <Copy className="h-4 w-4" />
                         </button>
@@ -633,7 +628,7 @@ export default function AddRequisitionPage() {
                           type="button"
                           onClick={() => handleDeleteItem(item.id)}
                           className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
-                         
+
                         >
                           <Trash2 className="h-4 w-4" />
                         </button>
@@ -690,10 +685,9 @@ export default function AddRequisitionPage() {
                     type="date"
                     value={form.deliveryDate}
                     onChange={(e) => setForm({ ...form, deliveryDate: e.target.value })}
-                    min={new Date(Date.now() + 24*60*60*1000).toISOString().split('T')[0]}
-                    className={`w-full pl-10 pr-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                      errors.deliveryDate ? 'border-red-500' : 'border-gray-300'
-                    }`}
+                    min={new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString().split('T')[0]}
+                    className={`w-full pl-10 pr-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.deliveryDate ? 'border-red-500' : 'border-gray-300'
+                      }`}
                   />
                 </div>
                 {errors.deliveryDate && (
@@ -719,9 +713,8 @@ export default function AddRequisitionPage() {
                       deliveryAddress: location?.address || ''
                     })
                   }}
-                  className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                    errors.deliveryLocation ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.deliveryLocation ? 'border-red-500' : 'border-gray-300'
+                    }`}
                 >
                   <option value="">Select Location</option>
                   {deliveryLocations.map(loc => (
@@ -831,9 +824,8 @@ export default function AddRequisitionPage() {
                   value={form.budgetCode}
                   onChange={(e) => setForm({ ...form, budgetCode: e.target.value })}
                   placeholder="BUD-2025-001"
-                  className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                    errors.budgetCode ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.budgetCode ? 'border-red-500' : 'border-gray-300'
+                    }`}
                 />
                 {errors.budgetCode && (
                   <p className="mt-1 text-sm text-red-600 flex items-center gap-1">
@@ -871,13 +863,12 @@ export default function AddRequisitionPage() {
                     return (
                       <div
                         key={approver.id}
-                        className={`p-4 border-2 rounded-lg cursor-pointer transition-all ${
-                          form.approver === approver.id
+                        className={`p-4 border-2 rounded-lg cursor-pointer transition-all ${form.approver === approver.id
                             ? 'border-blue-500 bg-blue-50'
                             : canApprove
-                            ? 'border-gray-200 hover:border-gray-300'
-                            : 'border-gray-200 bg-gray-50 opacity-60 cursor-not-allowed'
-                        }`}
+                              ? 'border-gray-200 hover:border-gray-300'
+                              : 'border-gray-200 bg-gray-50 opacity-60 cursor-not-allowed'
+                          }`}
                         onClick={() => canApprove && setForm({ ...form, approver: approver.id })}
                       >
                         <div className="flex items-start justify-between">
@@ -923,9 +914,8 @@ export default function AddRequisitionPage() {
                   onChange={(e) => setForm({ ...form, justification: e.target.value })}
                   placeholder="Provide detailed business justification for this requisition..."
                   rows={4}
-                  className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                    errors.justification ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${errors.justification ? 'border-red-500' : 'border-gray-300'
+                    }`}
                 />
                 {errors.justification && (
                   <p className="mt-1 text-sm text-red-600 flex items-center gap-1">
@@ -967,9 +957,8 @@ export default function AddRequisitionPage() {
                 </div>
                 <div className="flex items-center justify-between pt-3 border-t border-gray-200">
                   <span className="text-gray-700 font-medium">Remaining After Approval:</span>
-                  <span className={`font-bold text-lg ${
-                    form.budgetAvailable - form.estimatedTotal >= 0 ? 'text-green-700' : 'text-red-700'
-                  }`}>
+                  <span className={`font-bold text-lg ${form.budgetAvailable - form.estimatedTotal >= 0 ? 'text-green-700' : 'text-red-700'
+                    }`}>
                     ₹{Math.abs(form.budgetAvailable - form.estimatedTotal).toLocaleString()}
                     {form.budgetAvailable - form.estimatedTotal < 0 && ' (Over Budget)'}
                   </span>
@@ -1019,12 +1008,11 @@ export default function AddRequisitionPage() {
                     </div>
                     <div className="flex justify-between">
                       <span className="text-gray-600">Priority:</span>
-                      <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${
-                        form.priority === 'urgent' ? 'bg-red-100 text-red-700' :
-                        form.priority === 'high' ? 'bg-orange-100 text-orange-700' :
-                        form.priority === 'medium' ? 'bg-yellow-100 text-yellow-700' :
-                        'bg-gray-100 text-gray-700'
-                      }`}>
+                      <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${form.priority === 'urgent' ? 'bg-red-100 text-red-700' :
+                          form.priority === 'high' ? 'bg-orange-100 text-orange-700' :
+                            form.priority === 'medium' ? 'bg-yellow-100 text-yellow-700' :
+                              'bg-gray-100 text-gray-700'
+                        }`}>
                         {form.priority.toUpperCase()}
                       </span>
                     </div>
@@ -1218,7 +1206,7 @@ export default function AddRequisitionPage() {
 
   return (
     <div className="w-full min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="max-w-6xl mx-auto">
+      <div className="w-full">
         {/* Header */}
         <div className="mb-6">
           <button
@@ -1259,13 +1247,12 @@ export default function AddRequisitionPage() {
                     }}
                   >
                     <div
-                      className={`w-12 h-12 rounded-full flex items-center justify-center transition-all ${
-                        isCompleted
+                      className={`w-12 h-12 rounded-full flex items-center justify-center transition-all ${isCompleted
                           ? 'bg-green-600 text-white shadow-md'
                           : isCurrent
-                          ? 'bg-blue-600 text-white shadow-md animate-pulse'
-                          : 'bg-gray-200 text-gray-400'
-                      }`}
+                            ? 'bg-blue-600 text-white shadow-md animate-pulse'
+                            : 'bg-gray-200 text-gray-400'
+                        }`}
                     >
                       {isCompleted ? (
                         <Check className="h-6 w-6" />
@@ -1274,23 +1261,20 @@ export default function AddRequisitionPage() {
                       )}
                     </div>
                     <div className="mt-2 text-center">
-                      <p className={`text-sm font-medium ${
-                        isCompleted || isCurrent ? 'text-gray-900' : 'text-gray-400'
-                      }`}>
+                      <p className={`text-sm font-medium ${isCompleted || isCurrent ? 'text-gray-900' : 'text-gray-400'
+                        }`}>
                         {step.title}
                       </p>
-                      <p className={`text-xs mt-0.5 hidden md:block ${
-                        isCompleted || isCurrent ? 'text-gray-600' : 'text-gray-400'
-                      }`}>
+                      <p className={`text-xs mt-0.5 hidden md:block ${isCompleted || isCurrent ? 'text-gray-600' : 'text-gray-400'
+                        }`}>
                         {step.description}
                       </p>
                     </div>
                   </div>
                   {index < steps.length - 1 && (
                     <div
-                      className={`absolute top-6 left-[50%] w-full h-0.5 transition-all ${
-                        isCompleted ? 'bg-green-600' : 'bg-gray-200'
-                      }`}
+                      className={`absolute top-6 left-[50%] w-full h-0.5 transition-all ${isCompleted ? 'bg-green-600' : 'bg-gray-200'
+                        }`}
                       style={{ width: 'calc(100% - 3rem)' }}
                     />
                   )}

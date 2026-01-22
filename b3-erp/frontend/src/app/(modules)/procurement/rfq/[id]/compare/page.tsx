@@ -252,7 +252,7 @@ export default function QuotationComparisonPage() {
   }
 
   return (
-    <div className="p-6 max-w-[1600px] mx-auto space-y-6">
+    <div className="p-6 w-full space-y-6">
       {/* Header */}
       <div className="flex justify-between items-start">
         <div>
@@ -293,9 +293,8 @@ export default function QuotationComparisonPage() {
           return (
             <div
               key={vendor.id}
-              className={`bg-white rounded-lg border-2 ${
-                summary.ranking === 1 ? 'border-green-500' : 'border-gray-200'
-              } overflow-hidden`}
+              className={`bg-white rounded-lg border-2 ${summary.ranking === 1 ? 'border-green-500' : 'border-gray-200'
+                } overflow-hidden`}
             >
               {/* Ranking Badge */}
               {summary.ranking === 1 && (
@@ -476,9 +475,8 @@ export default function QuotationComparisonPage() {
                     return (
                       <React.Fragment key={vendor.id}>
                         <td className="px-3 py-4 text-center border-l">
-                          <div className={`text-sm font-medium ${
-                            isLowestPrice(item, vendor.id) ? 'text-green-600' : 'text-gray-900'
-                          }`}>
+                          <div className={`text-sm font-medium ${isLowestPrice(item, vendor.id) ? 'text-green-600' : 'text-gray-900'
+                            }`}>
                             ${vendorItem.unitPrice}
                             {isLowestPrice(item, vendor.id) && (
                               <TrendingDown className="h-3 w-3 inline ml-1" />
@@ -495,9 +493,8 @@ export default function QuotationComparisonPage() {
                           <div className="text-xs text-gray-500">+{vendorItem.tax}% tax</div>
                         </td>
                         <td className="px-3 py-4 text-center">
-                          <div className={`text-sm ${
-                            isBestDelivery(item, vendor.id) ? 'text-blue-600 font-medium' : 'text-gray-900'
-                          }`}>
+                          <div className={`text-sm ${isBestDelivery(item, vendor.id) ? 'text-blue-600 font-medium' : 'text-gray-900'
+                            }`}>
                             {vendorItem.deliveryDays} days
                             {isBestDelivery(item, vendor.id) && (
                               <Zap className="h-3 w-3 inline ml-1" />
@@ -525,9 +522,8 @@ export default function QuotationComparisonPage() {
                   const summary = comparisonData.summary[vendor.id]
                   return (
                     <td key={vendor.id} colSpan={4} className="px-6 py-3 text-center border-l">
-                      <div className={`text-lg font-bold ${
-                        summary.ranking === 1 ? 'text-green-600' : 'text-gray-900'
-                      }`}>
+                      <div className={`text-lg font-bold ${summary.ranking === 1 ? 'text-green-600' : 'text-gray-900'
+                        }`}>
                         ${summary.grandTotal.toLocaleString()}
                         {summary.ranking === 1 && (
                           <Trophy className="h-5 w-5 inline ml-2 text-yellow-500" />

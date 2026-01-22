@@ -672,9 +672,8 @@ export default function BOMViewPage() {
           </div>
         </td>
         <td className="px-4 py-3 text-center">
-          <span className={`px-2.5 py-1 text-xs font-semibold rounded-full ${
-            component.makeOrBuy === 'make' ? 'bg-green-100 text-green-700' : 'bg-blue-100 text-blue-700'
-          }`}>
+          <span className={`px-2.5 py-1 text-xs font-semibold rounded-full ${component.makeOrBuy === 'make' ? 'bg-green-100 text-green-700' : 'bg-blue-100 text-blue-700'
+            }`}>
             {component.makeOrBuy === 'make' ? 'Make' : 'Buy'}
           </span>
         </td>
@@ -714,7 +713,7 @@ export default function BOMViewPage() {
   };
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 max-w-7xl">
+    <div className="w-full h-full px-4 py-6">
       {/* Header */}
       <div className="mb-6">
         <button
@@ -836,44 +835,40 @@ export default function BOMViewPage() {
           <div className="flex space-x-1 p-1">
             <button
               onClick={() => setActiveTab('overview')}
-              className={`flex items-center space-x-2 px-4 py-2.5 rounded-lg font-medium transition-colors ${
-                activeTab === 'overview'
+              className={`flex items-center space-x-2 px-4 py-2.5 rounded-lg font-medium transition-colors ${activeTab === 'overview'
                   ? 'bg-blue-600 text-white'
                   : 'text-gray-600 hover:bg-gray-100'
-              }`}
+                }`}
             >
               <FileText className="h-4 w-4" />
               <span>Overview</span>
             </button>
             <button
               onClick={() => setActiveTab('tree')}
-              className={`flex items-center space-x-2 px-4 py-2.5 rounded-lg font-medium transition-colors ${
-                activeTab === 'tree'
+              className={`flex items-center space-x-2 px-4 py-2.5 rounded-lg font-medium transition-colors ${activeTab === 'tree'
                   ? 'bg-blue-600 text-white'
                   : 'text-gray-600 hover:bg-gray-100'
-              }`}
+                }`}
             >
               <Network className="h-4 w-4" />
               <span>Component Tree</span>
             </button>
             <button
               onClick={() => setActiveTab('cost')}
-              className={`flex items-center space-x-2 px-4 py-2.5 rounded-lg font-medium transition-colors ${
-                activeTab === 'cost'
+              className={`flex items-center space-x-2 px-4 py-2.5 rounded-lg font-medium transition-colors ${activeTab === 'cost'
                   ? 'bg-blue-600 text-white'
                   : 'text-gray-600 hover:bg-gray-100'
-              }`}
+                }`}
             >
               <IndianRupee className="h-4 w-4" />
               <span>Cost Analysis</span>
             </button>
             <button
               onClick={() => setActiveTab('where_used')}
-              className={`flex items-center space-x-2 px-4 py-2.5 rounded-lg font-medium transition-colors ${
-                activeTab === 'where_used'
+              className={`flex items-center space-x-2 px-4 py-2.5 rounded-lg font-medium transition-colors ${activeTab === 'where_used'
                   ? 'bg-blue-600 text-white'
                   : 'text-gray-600 hover:bg-gray-100'
-              }`}
+                }`}
             >
               <Link2 className="h-4 w-4" />
               <span>Where Used</span>
@@ -1341,11 +1336,10 @@ export default function BOMViewPage() {
                           <span className="text-sm font-bold text-gray-900">{wo.quantity}</span>
                         </td>
                         <td className="px-4 py-3">
-                          <span className={`px-2.5 py-1 text-xs font-semibold rounded-full ${
-                            wo.status === 'active' ? 'bg-yellow-100 text-yellow-700' :
-                            wo.status === 'completed' ? 'bg-green-100 text-green-700' :
-                            'bg-blue-100 text-blue-700'
-                          }`}>
+                          <span className={`px-2.5 py-1 text-xs font-semibold rounded-full ${wo.status === 'active' ? 'bg-yellow-100 text-yellow-700' :
+                              wo.status === 'completed' ? 'bg-green-100 text-green-700' :
+                                'bg-blue-100 text-blue-700'
+                            }`}>
                             {wo.status.charAt(0).toUpperCase() + wo.status.slice(1)}
                           </span>
                         </td>

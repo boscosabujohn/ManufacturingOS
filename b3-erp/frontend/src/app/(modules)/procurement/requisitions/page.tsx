@@ -135,8 +135,8 @@ export default function ProcurementRequisitionsPage() {
 
   const filteredRequisitions = mockRequisitions.filter(req => {
     const matchesSearch = req.prNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         req.requestedBy.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         req.department.toLowerCase().includes(searchTerm.toLowerCase())
+      req.requestedBy.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      req.department.toLowerCase().includes(searchTerm.toLowerCase())
     const matchesStatus = statusFilter === 'all' || req.status === statusFilter
     const matchesDepartment = departmentFilter === 'all' || req.department === departmentFilter
     return matchesSearch && matchesStatus && matchesDepartment
@@ -203,8 +203,8 @@ export default function ProcurementRequisitionsPage() {
   }
 
   return (
-    <div className="container mx-auto min-h-screen px-4 sm:px-6 lg:px-8 py-6 max-w-7xl">
-      <div className="max-w-[1600px] mx-auto space-y-6">
+    <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6">
+      <div className="w-full space-y-6">
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
@@ -387,14 +387,14 @@ export default function ProcurementRequisitionsPage() {
                         <button
                           onClick={() => handleView(req.id)}
                           className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-                         
+
                         >
                           <Eye className="w-4 h-4" />
                         </button>
                         <button
                           onClick={() => handleEdit(req.id)}
                           className="p-2 text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors"
-                         
+
                         >
                           <Edit2 className="w-4 h-4" />
                         </button>
@@ -402,7 +402,7 @@ export default function ProcurementRequisitionsPage() {
                           <button
                             onClick={() => handleApprove(req.id)}
                             className="p-2 text-green-600 hover:bg-green-50 rounded-lg transition-colors"
-                           
+
                           >
                             <CheckCircle className="w-4 h-4" />
                           </button>
@@ -437,11 +437,10 @@ export default function ProcurementRequisitionsPage() {
                     <button
                       key={i + 1}
                       onClick={() => setCurrentPage(i + 1)}
-                      className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                        currentPage === i + 1
+                      className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${currentPage === i + 1
                           ? 'bg-blue-600 text-white'
                           : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
-                      }`}
+                        }`}
                     >
                       {i + 1}
                     </button>

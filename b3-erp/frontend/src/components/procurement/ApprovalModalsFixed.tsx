@@ -1,5 +1,6 @@
 'use client'
 
+
 import { useState } from 'react'
 import {
   X,
@@ -67,11 +68,28 @@ interface ApprovalModalProps {
   onClose: () => void
   approval?: ApprovalData
   onSubmit?: (data: any) => void
+  onApprove?: (data: any) => void
+  onReject?: (data: any) => void
+  onDelegate?: (data: any) => void
+  onReturn?: (data: any) => void
+  request?: ApprovalData
+}
+
+interface BulkActionsModalProps {
+  isOpen: boolean
+  onClose: () => void
+  selectedCount: number
+  onComplete: () => void
+}
+
+interface ExportModalProps {
+  isOpen: boolean
+  onClose: () => void
 }
 
 // ==================== APPROVE MODAL ====================
 
-export function ApproveModal({ isOpen, onClose, approval, onSubmit }: ApprovalModalProps) {
+export function ApproveModal({ isOpen, onClose, request, onApprove }: ApprovalModalProps) {
   const [comments, setComments] = useState('')
   const [notifyNext, setNotifyNext] = useState(true)
   const [addConditions, setAddConditions] = useState(false)
@@ -82,7 +100,7 @@ export function ApproveModal({ isOpen, onClose, approval, onSubmit }: ApprovalMo
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    onSubmit?.({
+    onApprove?.({
       action: 'approved',
       comments,
       notifyNext,
@@ -101,7 +119,7 @@ export function ApproveModal({ isOpen, onClose, approval, onSubmit }: ApprovalMo
             </div>
             <div>
               <h2 className="text-xl font-bold">Approve Request</h2>
-              <p className="text-green-100 text-sm">{approval?.documentNumber} - {approval?.title}</p>
+              <p className="text-green-100 text-sm">{request?.documentNumber} - {request?.title}</p>
             </div>
           </div>
           <button onClick={onClose} className="p-2 hover:bg-white/20 rounded-lg transition-colors">
@@ -119,23 +137,23 @@ export function ApproveModal({ isOpen, onClose, approval, onSubmit }: ApprovalMo
             <div className="grid grid-cols-2 gap-4 text-sm">
               <div>
                 <span className="text-gray-600">Document:</span>
-                <p className="font-medium text-gray-900">{approval?.documentNumber}</p>
+                <p className="font-medium text-gray-900">{request?.documentNumber}</p>
               </div>
               <div>
                 <span className="text-gray-600">Requested By:</span>
-                <p className="font-medium text-gray-900">{approval?.requestedBy}</p>
+                <p className="font-medium text-gray-900">{request?.requestedBy}</p>
               </div>
               <div>
                 <span className="text-gray-600">Amount:</span>
-                <p className="font-medium text-gray-900">{approval?.currency} {approval?.amount?.toLocaleString()}</p>
+                <p className="font-medium text-gray-900">{request?.currency} {request?.amount?.toLocaleString()}</p>
               </div>
               <div>
                 <span className="text-gray-600">Department:</span>
-                <p className="font-medium text-gray-900">{approval?.department}</p>
+                <p className="font-medium text-gray-900">{request?.department}</p>
               </div>
               <div className="col-span-2">
                 <span className="text-gray-600">Justification:</span>
-                <p className="font-medium text-gray-900">{approval?.justification}</p>
+                <p className="font-medium text-gray-900">{request?.justification}</p>
               </div>
             </div>
           </div>
@@ -144,17 +162,17 @@ export function ApproveModal({ isOpen, onClose, approval, onSubmit }: ApprovalMo
           <div className="bg-blue-50 rounded-xl p-5 border border-blue-200">
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm font-medium text-blue-900">Approval Progress</span>
-              <span className="text-sm text-blue-700">Level {approval?.approvalLevel} of {approval?.totalLevels}</span>
+              <span className="text-sm text-blue-700">Level {request?.approvalLevel} of {request?.totalLevels}</span>
             </div>
             <div className="w-full bg-blue-200 rounded-full h-3">
               <div
                 className="bg-gradient-to-r from-blue-600 to-blue-500 h-3 rounded-full transition-all"
-                style={{ width: `${((approval?.approvalLevel || 1) / (approval?.totalLevels || 1)) * 100}%` }}
+                style={{ width: `${((request?.approvalLevel || 1) / (request?.totalLevels || 1)) * 100}%` }}
               />
             </div>
-            {approval?.nextApprovers && approval.nextApprovers.length > 0 && (
+            {request?.nextApprovers && request.nextApprovers.length > 0 && (
               <p className="text-sm text-blue-700 mt-2">
-                Next Approver: <span className="font-medium">{approval.nextApprovers.join(', ')}</span>
+                Next Approver: <span className="font-medium">{request.nextApprovers.join(', ')}</span>
               </p>
             )}
           </div>
@@ -235,9 +253,9 @@ export function ApproveModal({ isOpen, onClose, approval, onSubmit }: ApprovalMo
             <div className="flex-1">
               <h4 className="text-sm font-semibold text-green-900">Approval Impact</h4>
               <p className="text-sm text-green-700 mt-1">
-                Approving this request will {approval?.approvalLevel === approval?.totalLevels ?
+                Approving this request will {request?.approvalLevel === request?.totalLevels ?
                   'finalize the approval process and allow execution' :
-                  `move it to Level ${(approval?.approvalLevel || 0) + 1} (${approval?.nextApprovers?.[0]})`}
+                  `move it to Level ${(request?.approvalLevel || 0) + 1} (${request?.nextApprovers?.[0]})`}
               </p>
             </div>
           </div>
@@ -267,7 +285,7 @@ export function ApproveModal({ isOpen, onClose, approval, onSubmit }: ApprovalMo
 
 // ==================== REJECT MODAL ====================
 
-export function RejectModal({ isOpen, onClose, approval, onSubmit }: ApprovalModalProps) {
+export function RejectModal({ isOpen, onClose, request, onReject }: ApprovalModalProps) {
   const [reason, setReason] = useState('')
   const [category, setCategory] = useState('')
   const [notifyRequester, setNotifyRequester] = useState(true)
@@ -278,7 +296,7 @@ export function RejectModal({ isOpen, onClose, approval, onSubmit }: ApprovalMod
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    onSubmit?.({
+    onReject?.({
       action: 'rejected',
       reason,
       category,
@@ -299,7 +317,7 @@ export function RejectModal({ isOpen, onClose, approval, onSubmit }: ApprovalMod
             </div>
             <div>
               <h2 className="text-xl font-bold">Reject Request</h2>
-              <p className="text-red-100 text-sm">{approval?.documentNumber} - {approval?.title}</p>
+              <p className="text-red-100 text-sm">{request?.documentNumber} - {request?.title}</p>
             </div>
           </div>
           <button onClick={onClose} className="p-2 hover:bg-white/20 rounded-lg transition-colors">
@@ -317,19 +335,19 @@ export function RejectModal({ isOpen, onClose, approval, onSubmit }: ApprovalMod
             <div className="grid grid-cols-2 gap-4 text-sm">
               <div>
                 <span className="text-gray-600">Document:</span>
-                <p className="font-medium text-gray-900">{approval?.documentNumber}</p>
+                <p className="font-medium text-gray-900">{request?.documentNumber}</p>
               </div>
               <div>
                 <span className="text-gray-600">Requested By:</span>
-                <p className="font-medium text-gray-900">{approval?.requestedBy}</p>
+                <p className="font-medium text-gray-900">{request?.requestedBy}</p>
               </div>
               <div>
                 <span className="text-gray-600">Amount:</span>
-                <p className="font-medium text-gray-900">{approval?.currency} {approval?.amount?.toLocaleString()}</p>
+                <p className="font-medium text-gray-900">{request?.currency} {request?.amount?.toLocaleString()}</p>
               </div>
               <div>
                 <span className="text-gray-600">Department:</span>
-                <p className="font-medium text-gray-900">{approval?.department}</p>
+                <p className="font-medium text-gray-900">{request?.department}</p>
               </div>
             </div>
           </div>
@@ -455,7 +473,7 @@ export function RejectModal({ isOpen, onClose, approval, onSubmit }: ApprovalMod
 
 // ==================== DELEGATE MODAL ====================
 
-export function DelegateModal({ isOpen, onClose, approval, onSubmit }: ApprovalModalProps) {
+export function DelegateModalFixed({ isOpen, onClose, request, onDelegate }: ApprovalModalProps) {
   const [delegateTo, setDelegateTo] = useState('')
   const [startDate, setStartDate] = useState('')
   const [endDate, setEndDate] = useState('')
@@ -467,7 +485,7 @@ export function DelegateModal({ isOpen, onClose, approval, onSubmit }: ApprovalM
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    onSubmit?.({
+    onDelegate?.({
       delegateTo,
       startDate,
       endDate,
@@ -506,10 +524,10 @@ export function DelegateModal({ isOpen, onClose, approval, onSubmit }: ApprovalM
 
         <form onSubmit={handleSubmit} className="p-6 space-y-6">
           {/* Current Request Info (if specific) */}
-          {approval?.documentNumber && (
+          {request?.documentNumber && (
             <div className="bg-purple-50 rounded-lg p-4 border border-purple-200">
               <h3 className="text-sm font-semibold text-purple-900 mb-2">Delegating Approval For:</h3>
-              <p className="text-sm text-purple-800">{approval.documentNumber} - {approval.title}</p>
+              <p className="text-sm text-purple-800">{request.documentNumber} - {request.title}</p>
             </div>
           )}
 
@@ -646,4 +664,495 @@ export function DelegateModal({ isOpen, onClose, approval, onSubmit }: ApprovalM
   )
 }
 
-// To be continued in next message due to length...
+// ==================== RETURN MODAL ====================
+
+export function ReturnModalFixed({ isOpen, onClose, request, onReturn }: ApprovalModalProps) {
+  const [reason, setReason] = useState('')
+  const [questions, setQuestions] = useState('')
+
+  if (!isOpen) return null
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    onReturn?.({
+      action: 'returned',
+      reason,
+      questions,
+      timestamp: new Date().toISOString()
+    })
+  }
+
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+      <div className="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+        <div className="sticky top-0 bg-gradient-to-r from-yellow-500 to-amber-500 text-white px-6 py-4 flex items-center justify-between rounded-t-xl">
+          <div className="flex items-center gap-3">
+            <div className="p-2 bg-white/20 rounded-lg">
+              <RotateCcw className="w-6 h-6" />
+            </div>
+            <div>
+              <h2 className="text-xl font-bold">Return for Clarification</h2>
+              <p className="text-yellow-100 text-sm">{request?.documentNumber} - {request?.title}</p>
+            </div>
+          </div>
+          <button onClick={onClose} className="p-2 hover:bg-white/20 rounded-lg transition-colors">
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+
+        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+            <p className="text-sm text-yellow-800">
+              Returning a request allows the requester to provide additional information without rejecting the entire request. The workflow will pause until clarification is provided.
+            </p>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Reason for Return <span className="text-red-500">*</span>
+            </label>
+            <textarea
+              value={reason}
+              onChange={(e) => setReason(e.target.value)}
+              rows={3}
+              required
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent resize-none"
+              placeholder="Why are you returning this request?"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Specific Questions/Clarifications Needed <span className="text-red-500">*</span>
+            </label>
+            <textarea
+              value={questions}
+              onChange={(e) => setQuestions(e.target.value)}
+              rows={4}
+              required
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent resize-none"
+              placeholder="List specific questions or data points needed..."
+            />
+          </div>
+
+          <div className="flex gap-3 pt-4 border-t">
+            <button
+              type="button"
+              onClick={onClose}
+              className="flex-1 px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium transition-colors"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              className="flex-1 px-6 py-3 bg-gradient-to-r from-yellow-500 to-amber-500 text-white rounded-lg hover:from-yellow-600 hover:to-amber-600 font-medium transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+            >
+              <Send className="w-4 h-4" />
+              Return Request
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  )
+}
+
+// ==================== VIEW HISTORY MODAL ====================
+
+export function ViewHistoryModal({ isOpen, onClose, request }: ApprovalModalProps) {
+  if (!isOpen) return null
+
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+      <div className="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+        <div className="px-6 py-4 border-b flex items-center justify-between">
+          <h2 className="text-xl font-bold text-gray-900">Approval History</h2>
+          <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+            <X className="w-5 h-5 text-gray-500" />
+          </button>
+        </div>
+
+        <div className="p-6">
+          <div className="mb-6">
+            <h3 className="font-semibold text-gray-900 mb-1">{request?.title}</h3>
+            <p className="text-sm text-gray-500">{request?.documentNumber}</p>
+          </div>
+
+          <div className="relative pl-6 border-l-2 border-gray-200 space-y-8">
+            {request?.approvalHistory && request.approvalHistory.map((history, index) => (
+              <div key={index} className="relative">
+                <div className={`absolute -left-[33px] p-2 rounded-full border-2 ${history.action === 'approved' ? 'bg-green-100 border-green-500 text-green-600' :
+                  history.action === 'rejected' ? 'bg-red-100 border-red-500 text-red-600' :
+                    'bg-yellow-100 border-yellow-500 text-yellow-600'
+                  }`}>
+                  {history.action === 'approved' ? <CheckCircle className="w-4 h-4" /> :
+                    history.action === 'rejected' ? <XCircle className="w-4 h-4" /> :
+                      <RotateCcw className="w-4 h-4" />}
+                </div>
+                <div className="bg-gray-50 rounded-lg p-4 border border-gray-100">
+                  <div className="flex justify-between items-start mb-2">
+                    <div>
+                      <span className="font-semibold text-gray-900">{history.approver}</span>
+                      <span className="text-gray-500 text-sm ml-2">Level {history.level}</span>
+                    </div>
+                    <span className="text-xs text-gray-500 flex items-center gap-1">
+                      <Clock className="w-3 h-3" />
+                      {history.date}
+                    </span>
+                  </div>
+                  <div className={`text-sm font-medium mb-1 ${history.action === 'approved' ? 'text-green-700' :
+                    history.action === 'rejected' ? 'text-red-700' :
+                      'text-yellow-700'
+                    }`}>
+                    {history.action.charAt(0).toUpperCase() + history.action.slice(1)}
+                  </div>
+                  {history.comments && (
+                    <p className="text-sm text-gray-600 mt-2 bg-white p-2 rounded border border-gray-200 italic">
+                      "{history.comments}"
+                    </p>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// ==================== VIEW DETAILS MODAL ====================
+
+export function ViewDetailsModal({ isOpen, onClose, request }: ApprovalModalProps) {
+  if (!isOpen) return null
+
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+      <div className="bg-white rounded-xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+        <div className="sticky top-0 bg-white border-b px-6 py-4 flex items-center justify-between z-10">
+          <div>
+            <h2 className="text-xl font-bold text-gray-900">Request Details</h2>
+            <p className="text-sm text-gray-500">{request?.documentNumber}</p>
+          </div>
+          <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+            <X className="w-5 h-5 text-gray-500" />
+          </button>
+        </div>
+
+        <div className="p-6">
+          {/* Header Info */}
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8 bg-gray-50 p-4 rounded-xl border border-gray-200">
+            <div>
+              <h1 className="text-2xl font-bold text-gray-900 mb-1">{request?.title}</h1>
+              <div className="flex items-center gap-4 text-sm text-gray-500">
+                <span className="flex items-center gap-1">
+                  <Calendar className="w-4 h-4" />
+                  {request?.requestedDate}
+                </span>
+                <span className="flex items-center gap-1">
+                  <User className="w-4 h-4" />
+                  {request?.requestedBy}
+                </span>
+              </div>
+            </div>
+            <div className="text-right">
+              <p className="text-sm text-gray-500 mb-1">Total Amount</p>
+              <p className="text-3xl font-bold text-gray-900">{request?.currency} {request?.amount?.toLocaleString()}</p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="space-y-6">
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                  <Building2 className="w-5 h-5 text-gray-400" />
+                  General Information
+                </h3>
+                <div className="bg-white border rounded-lg overflow-hidden">
+                  <table className="w-full text-sm text-left">
+                    <tbody className="divide-y divide-gray-100">
+                      <tr className="hover:bg-gray-50">
+                        <td className="px-4 py-3 font-medium text-gray-600 bg-gray-50 w-1/3">Department</td>
+                        <td className="px-4 py-3">{request?.department}</td>
+                      </tr>
+                      <tr className="hover:bg-gray-50">
+                        <td className="px-4 py-3 font-medium text-gray-600 bg-gray-50">Document Type</td>
+                        <td className="px-4 py-3 capitalize">{request?.documentType?.replace('_', ' ')}</td>
+                      </tr>
+                      <tr className="hover:bg-gray-50">
+                        <td className="px-4 py-3 font-medium text-gray-600 bg-gray-50">Priority</td>
+                        <td className="px-4 py-3 capitalize">
+                          <span className={`px-2 py-1 rounded-full text-xs font-medium ${request?.priority === 'urgent' ? 'bg-red-100 text-red-800' :
+                            request?.priority === 'high' ? 'bg-orange-100 text-orange-800' :
+                              'bg-green-100 text-green-800'
+                            }`}>
+                            {request?.priority}
+                          </span>
+                        </td>
+                      </tr>
+                      <tr className="hover:bg-gray-50">
+                        <td className="px-4 py-3 font-medium text-gray-600 bg-gray-50">Due Date</td>
+                        <td className="px-4 py-3">{request?.dueDate}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                  <FileText className="w-5 h-5 text-gray-400" />
+                  Justification
+                </h3>
+                <div className="bg-gray-50 p-4 rounded-lg border text-gray-700 leading-relaxed">
+                  {request?.justification}
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-6">
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                  <Users className="w-5 h-5 text-gray-400" />
+                  Vendor Information
+                </h3>
+                <div className="bg-white border rounded-lg p-4">
+                  {request?.vendor ? (
+                    <>
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-bold">
+                          {request.vendor.charAt(0)}
+                        </div>
+                        <div>
+                          <p className="font-semibold text-gray-900">{request.vendor}</p>
+                          <p className="text-sm text-gray-500">Vendor ID: V-2024-001</p>
+                        </div>
+                      </div>
+                      <div className="grid grid-cols-2 gap-4 text-sm mt-4 pt-4 border-t">
+                        <div>
+                          <p className="text-gray-500 mb-1">Status</p>
+                          <span className="text-green-600 bg-green-50 px-2 py-1 rounded text-xs font-medium">Preferred</span>
+                        </div>
+                        <div>
+                          <p className="text-gray-500 mb-1">Contract</p>
+                          <p className="font-medium">MSA-2023-089</p>
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <p className="text-gray-500 italic">No vendor associated with this request.</p>
+                  )}
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+                  <Package className="w-5 h-5 text-gray-400" />
+                  Line Items (Summary)
+                </h3>
+                <div className="border rounded-lg overflow-hidden">
+                  <table className="w-full text-sm text-left">
+                    <thead className="bg-gray-50 text-gray-600">
+                      <tr>
+                        <th className="px-4 py-2">Item</th>
+                        <th className="px-4 py-2 text-right">Qty</th>
+                        <th className="px-4 py-2 text-right">Total</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y">
+                      <tr>
+                        <td className="px-4 py-2">Industrial Components</td>
+                        <td className="px-4 py-2 text-right">500</td>
+                        <td className="px-4 py-2 text-right">$45,000</td>
+                      </tr>
+                      <tr>
+                        <td className="px-4 py-2">Shipping</td>
+                        <td className="px-4 py-2 text-right">1</td>
+                        <td className="px-4 py-2 text-right">$5,000</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="sticky bottom-0 bg-white border-t px-6 py-4 flex justify-end gap-3 rounded-b-xl z-10 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]">
+          <button onClick={onClose} className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 font-medium">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// ==================== BULK ACTIONS MODAL ====================
+
+export function BulkActionsModal({ isOpen, onClose, selectedCount, onComplete }: BulkActionsModalProps) {
+  const [action, setAction] = useState<'approve' | 'reject'>('approve')
+  const [comments, setComments] = useState('')
+  const [isProcessing, setIsProcessing] = useState(false)
+
+  if (!isOpen) return null
+
+  const handleExecute = async () => {
+    setIsProcessing(true)
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 1500))
+    setIsProcessing(false)
+    onComplete()
+  }
+
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+      <div className="bg-white rounded-xl shadow-2xl w-full max-w-lg">
+        <div className="px-6 py-4 border-b">
+          <h2 className="text-xl font-bold flex items-center gap-2">
+            <Zap className="w-5 h-5 text-purple-600" />
+            Bulk Actions
+          </h2>
+        </div>
+
+        <div className="p-6 space-y-4">
+          <div className="bg-purple-50 p-4 rounded-lg border border-purple-100">
+            <p className="font-medium text-purple-900">
+              You defined {selectedCount} items for bulk action.
+            </p>
+            <p className="text-sm text-purple-700 mt-1">
+              All selected items receive the same action and comments.
+            </p>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Action</label>
+            <div className="flex gap-4">
+              <label className={`flex-1 p-3 rounded-lg border cursor-pointer transition-colors flex items-center justify-center gap-2 ${action === 'approve' ? 'bg-green-50 border-green-500 text-green-700' : 'hover:bg-gray-50'
+                }`}>
+                <input
+                  type="radio"
+                  name="action"
+                  value="approve"
+                  checked={action === 'approve'}
+                  onChange={() => setAction('approve')}
+                  className="hidden"
+                />
+                <ThumbsUp className="w-4 h-4" />
+                Approve All
+              </label>
+              <label className={`flex-1 p-3 rounded-lg border cursor-pointer transition-colors flex items-center justify-center gap-2 ${action === 'reject' ? 'bg-red-50 border-red-500 text-red-700' : 'hover:bg-gray-50'
+                }`}>
+                <input
+                  type="radio"
+                  name="action"
+                  value="reject"
+                  checked={action === 'reject'}
+                  onChange={() => setAction('reject')}
+                  className="hidden"
+                />
+                <ThumbsDown className="w-4 h-4" />
+                Reject All
+              </label>
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Comments <span className="text-red-500">*</span>
+            </label>
+            <textarea
+              value={comments}
+              onChange={(e) => setComments(e.target.value)}
+              rows={3}
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none"
+              placeholder="Enter bulk action comments..."
+              required
+            />
+          </div>
+        </div>
+
+        <div className="px-6 py-4 border-t flex justify-end gap-3 bg-gray-50 rounded-b-xl">
+          <button
+            onClick={onClose}
+            className="px-4 py-2 text-gray-600 hover:text-gray-800 font-medium"
+            disabled={isProcessing}
+          >
+            Cancel
+          </button>
+          <button
+            onClick={handleExecute}
+            disabled={isProcessing || !comments}
+            className={`px-6 py-2 rounded-lg text-white font-medium flex items-center gap-2 ${isProcessing ? 'bg-gray-400' : 'bg-purple-600 hover:bg-purple-700'
+              }`}
+          >
+            {isProcessing ? (
+              <span className="flex items-center gap-2">
+                <RotateCcw className="w-4 h-4 animate-spin" />
+                Processing...
+              </span>
+            ) : (
+              <span>Execute Bulk Action</span>
+            )}
+          </button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// ==================== EXPORT MODAL ====================
+
+export function ExportApprovalsModal({ isOpen, onClose }: ExportModalProps) {
+  if (!isOpen) return null
+
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+      <div className="bg-white rounded-xl shadow-2xl w-full max-w-md">
+        <div className="px-6 py-4 border-b flex justify-between items-center">
+          <h2 className="text-lg font-bold flex items-center gap-2">
+            <Download className="w-5 h-5 text-blue-600" />
+            Export Data
+          </h2>
+          <button onClick={onClose}>
+            <X className="w-5 h-5 text-gray-400 hover:text-gray-600" />
+          </button>
+        </div>
+
+        <div className="p-6 space-y-4">
+          <p className="text-gray-600 text-sm">
+            Select the format to export your approval history and current requests.
+          </p>
+
+          <div className="grid grid-cols-1 gap-3">
+            <button className="flex items-center justify-between p-4 border rounded-lg hover:bg-blue-50 hover:border-blue-200 group transition-colors">
+              <div className="flex items-center gap-3">
+                <div className="bg-red-100 p-2 rounded text-red-600">
+                  <FileText className="w-6 h-6" />
+                </div>
+                <div className="text-left">
+                  <p className="font-semibold text-gray-900 group-hover:text-blue-700">PDF Report</p>
+                  <p className="text-xs text-gray-500">Best for printing and formal records</p>
+                </div>
+              </div>
+              <Download className="w-4 h-4 text-gray-400 group-hover:text-blue-600" />
+            </button>
+
+            <button className="flex items-center justify-between p-4 border rounded-lg hover:bg-blue-50 hover:border-blue-200 group transition-colors">
+              <div className="flex items-center gap-3">
+                <div className="bg-green-100 p-2 rounded text-green-600">
+                  <FileText className="w-6 h-6" />
+                </div>
+                <div className="text-left">
+                  <p className="font-semibold text-gray-900 group-hover:text-blue-700">Excel / CSV</p>
+                  <p className="text-xs text-gray-500">Best for analysis and data manipulation</p>
+                </div>
+              </div>
+              <Download className="w-4 h-4 text-gray-400 group-hover:text-blue-600" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}

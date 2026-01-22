@@ -139,7 +139,7 @@ export default function SerialTrackingPage() {
 
   const filteredProducts = products.filter(product =>
     (product.serialNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
-     product.productName.toLowerCase().includes(searchTerm.toLowerCase())) &&
+      product.productName.toLowerCase().includes(searchTerm.toLowerCase())) &&
     (statusFilter === '' || product.status === statusFilter) &&
     (warrantyFilter === '' || product.warrantyStatus === warrantyFilter)
   );
@@ -165,7 +165,7 @@ export default function SerialTrackingPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-6">
-      <div className="max-w-7xl mx-auto">
+      <div className="w-full">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-4">

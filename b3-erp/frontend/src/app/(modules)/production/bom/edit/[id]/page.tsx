@@ -413,7 +413,7 @@ export default function BOMEditPage() {
         });
       };
       setComponents(addToParent(components));
-      setExpandedComponents(new Set(Array.from(expandedComponents).concat( parentId)));
+      setExpandedComponents(new Set(Array.from(expandedComponents).concat(parentId)));
     } else {
       setComponents([...components, newComponent]);
     }
@@ -714,7 +714,7 @@ export default function BOMEditPage() {
               <button
                 onClick={() => addComponent(component.level + 1, component.id)}
                 className="p-1 hover:bg-blue-100 rounded text-blue-600"
-               
+
               >
                 <Plus className="h-4 w-4" />
               </button>
@@ -722,14 +722,14 @@ export default function BOMEditPage() {
             <button
               onClick={() => moveComponentUp(component.id)}
               className="p-1 hover:bg-gray-200 rounded text-gray-600"
-             
+
             >
               <ArrowUp className="h-3.5 w-3.5" />
             </button>
             <button
               onClick={() => moveComponentDown(component.id)}
               className="p-1 hover:bg-gray-200 rounded text-gray-600"
-             
+
             >
               <ArrowDown className="h-3.5 w-3.5" />
             </button>
@@ -737,7 +737,7 @@ export default function BOMEditPage() {
               <button
                 onClick={() => outdentComponent(component.id)}
                 className="p-1 hover:bg-gray-200 rounded text-gray-600"
-               
+
               >
                 <Outdent className="h-3.5 w-3.5" />
               </button>
@@ -746,7 +746,7 @@ export default function BOMEditPage() {
               <button
                 onClick={() => indentComponent(component.id)}
                 className="p-1 hover:bg-gray-200 rounded text-gray-600"
-               
+
               >
                 <Indent className="h-3.5 w-3.5" />
               </button>
@@ -754,7 +754,7 @@ export default function BOMEditPage() {
             <button
               onClick={() => removeComponent(component.id)}
               className="p-1 hover:bg-red-100 rounded text-red-600"
-             
+
             >
               <Trash2 className="h-4 w-4" />
             </button>
@@ -773,7 +773,7 @@ export default function BOMEditPage() {
   };
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 max-w-7xl">
+    <div className="w-full h-full px-4 py-6">
       {/* Header */}
       <div className="mb-6">
         <button

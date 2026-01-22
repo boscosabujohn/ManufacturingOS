@@ -2,10 +2,10 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { 
-  FileText, 
-  Plus, 
-  Search, 
+import {
+  FileText,
+  Plus,
+  Search,
   Filter,
   Download,
   Eye,
@@ -265,17 +265,17 @@ export default function VendorBillsPage() {
 
   const filteredBills = vendorBills.filter(bill => {
     const matchesSearch = bill.billNumber.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         bill.vendorName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         (bill.poNumber && bill.poNumber.toLowerCase().includes(searchQuery.toLowerCase()));
+      bill.vendorName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (bill.poNumber && bill.poNumber.toLowerCase().includes(searchQuery.toLowerCase()));
     const matchesStatus = selectedStatus === 'all' || bill.status === selectedStatus;
     const matchesCategory = selectedCategory === 'all' || bill.category === selectedCategory;
-    
+
     return matchesSearch && matchesStatus && matchesCategory;
   });
 
   const handleSelectBill = (billId: string) => {
-    setSelectedBills(prev => 
-      prev.includes(billId) 
+    setSelectedBills(prev =>
+      prev.includes(billId)
         ? prev.filter(id => id !== billId)
         : [...prev, billId]
     );
@@ -337,7 +337,7 @@ export default function VendorBillsPage() {
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 via-green-50 to-blue-50">
       <div className="flex-1 overflow-y-auto overflow-x-hidden">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 max-w-7xl">
+        <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
           {/* Header */}
           <div className="flex justify-between items-start mb-6">
             <div>
@@ -347,13 +347,12 @@ export default function VendorBillsPage() {
               </div>
               <p className="text-sm text-gray-600">Manage vendor invoices and bills</p>
             </div>
-            
+
             <div className="flex gap-2">
               <button
                 onClick={() => setShowFilters(!showFilters)}
-                className={`flex items-center space-x-2 px-4 py-2 rounded-lg border transition-colors ${
-                  showFilters ? 'bg-green-50 border-green-300 text-green-700' : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-50'
-                }`}
+                className={`flex items-center space-x-2 px-4 py-2 rounded-lg border transition-colors ${showFilters ? 'bg-green-50 border-green-300 text-green-700' : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-50'
+                  }`}
               >
                 <Filter className="h-4 w-4" />
                 <span>Filters</span>
@@ -366,7 +365,7 @@ export default function VendorBillsPage() {
                 <Download className="h-4 w-4" />
                 <span>{isExporting ? 'Exporting...' : 'Export'}</span>
               </button>
-              <button 
+              <button
                 onClick={() => router.push('/finance/payables/add')}
                 className="flex items-center space-x-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
               >
@@ -569,13 +568,13 @@ export default function VendorBillsPage() {
                         </td>
                         <td className="px-6 py-4 text-center">
                           <div className="flex items-center justify-center gap-2">
-                            <button 
+                            <button
                               onClick={() => router.push(`/finance/payables/view/${bill.billId}`)}
                               className="text-blue-600 hover:text-blue-800"
                             >
                               <Eye className="h-4 w-4" />
                             </button>
-                            <button 
+                            <button
                               onClick={() => router.push(`/finance/payables/edit/${bill.billId}`)}
                               className="text-green-600 hover:text-green-800"
                             >

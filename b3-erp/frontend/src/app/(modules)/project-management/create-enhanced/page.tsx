@@ -351,9 +351,8 @@ export default function CreateProjectEnhancedPage() {
                   type="text"
                   value={formData.projectName}
                   onChange={(e) => updateFormData('projectName', e.target.value)}
-                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                    errors.projectName ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.projectName ? 'border-red-500' : 'border-gray-300'
+                    }`}
                   placeholder="e.g., Taj Hotel Commercial Kitchen Installation"
                 />
                 {errors.projectName && <p className="mt-1 text-sm text-red-500">{errors.projectName}</p>}
@@ -387,9 +386,8 @@ export default function CreateProjectEnhancedPage() {
                   type="text"
                   value={formData.salesOrderNumber}
                   onChange={(e) => updateFormData('salesOrderNumber', e.target.value)}
-                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                    errors.salesOrderNumber ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.salesOrderNumber ? 'border-red-500' : 'border-gray-300'
+                    }`}
                   placeholder="SO-2024-XXX"
                 />
                 {errors.salesOrderNumber && <p className="mt-1 text-sm text-red-500">{errors.salesOrderNumber}</p>}
@@ -414,9 +412,8 @@ export default function CreateProjectEnhancedPage() {
                   type="text"
                   value={formData.customerName}
                   onChange={(e) => updateFormData('customerName', e.target.value)}
-                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                    errors.customerName ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.customerName ? 'border-red-500' : 'border-gray-300'
+                    }`}
                   placeholder="e.g., Taj Hotels Limited"
                 />
                 {errors.customerName && <p className="mt-1 text-sm text-red-500">{errors.customerName}</p>}
@@ -430,9 +427,8 @@ export default function CreateProjectEnhancedPage() {
                   type="text"
                   value={formData.location}
                   onChange={(e) => updateFormData('location', e.target.value)}
-                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                    errors.location ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.location ? 'border-red-500' : 'border-gray-300'
+                    }`}
                   placeholder="e.g., Mumbai, Maharashtra"
                 />
                 {errors.location && <p className="mt-1 text-sm text-red-500">{errors.location}</p>}
@@ -469,9 +465,8 @@ export default function CreateProjectEnhancedPage() {
                   type="date"
                   value={formData.startDate}
                   onChange={(e) => updateFormData('startDate', e.target.value)}
-                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                    errors.startDate ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.startDate ? 'border-red-500' : 'border-gray-300'
+                    }`}
                 />
                 {errors.startDate && <p className="mt-1 text-sm text-red-500">{errors.startDate}</p>}
               </div>
@@ -484,9 +479,8 @@ export default function CreateProjectEnhancedPage() {
                   type="date"
                   value={formData.endDate}
                   onChange={(e) => updateFormData('endDate', e.target.value)}
-                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                    errors.endDate ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.endDate ? 'border-red-500' : 'border-gray-300'
+                    }`}
                 />
                 {errors.endDate && <p className="mt-1 text-sm text-red-500">{errors.endDate}</p>}
               </div>
@@ -512,9 +506,8 @@ export default function CreateProjectEnhancedPage() {
                     type="number"
                     value={formData.estimatedBudget}
                     onChange={(e) => updateFormData('estimatedBudget', e.target.value)}
-                    className={`w-full pl-8 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                      errors.estimatedBudget ? 'border-red-500' : 'border-gray-300'
-                    }`}
+                    className={`w-full pl-8 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.estimatedBudget ? 'border-red-500' : 'border-gray-300'
+                      }`}
                     placeholder="0"
                   />
                 </div>
@@ -532,9 +525,8 @@ export default function CreateProjectEnhancedPage() {
                     type="number"
                     value={formData.contractValue}
                     onChange={(e) => updateFormData('contractValue', e.target.value)}
-                    className={`w-full pl-8 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                      errors.contractValue ? 'border-red-500' : 'border-gray-300'
-                    }`}
+                    className={`w-full pl-8 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.contractValue ? 'border-red-500' : 'border-gray-300'
+                      }`}
                     placeholder="0"
                   />
                 </div>
@@ -571,9 +563,8 @@ export default function CreateProjectEnhancedPage() {
                 <select
                   value={formData.projectManager}
                   onChange={(e) => updateFormData('projectManager', e.target.value)}
-                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                    errors.projectManager ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.projectManager ? 'border-red-500' : 'border-gray-300'
+                    }`}
                 >
                   <option value="">Select Manager</option>
                   <option value="Rajesh Kumar">Rajesh Kumar</option>
@@ -915,7 +906,7 @@ export default function CreateProjectEnhancedPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="max-w-5xl mx-auto px-4 py-6">
+      <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
         {/* Header */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
           <div className="flex items-center justify-between mb-4">
@@ -976,11 +967,10 @@ export default function CreateProjectEnhancedPage() {
                 type="button"
                 onClick={goToPrevStep}
                 disabled={currentStep === 0}
-                className={`flex items-center gap-2 px-4 py-2 rounded-lg ${
-                  currentStep === 0
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg ${currentStep === 0
                     ? 'text-gray-400 cursor-not-allowed'
                     : 'text-gray-700 hover:bg-gray-100'
-                }`}
+                  }`}
               >
                 <ArrowLeft className="w-5 h-5" />
                 Previous

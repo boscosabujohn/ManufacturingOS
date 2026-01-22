@@ -316,7 +316,7 @@ export default function GRNInspectionPage() {
   const acceptanceRate = totals.received > 0 ? Math.round((totals.accepted / totals.received) * 100) : 0
 
   return (
-    <div className="p-6 max-w-[1600px] mx-auto">
+    <div className="p-6 w-full">
       {/* Header */}
       <div className="flex justify-between items-start mb-6">
         <div>
@@ -569,25 +569,22 @@ export default function GRNInspectionPage() {
                         <div className="flex gap-1">
                           <button
                             onClick={() => updateQualityCheck(item.id, check as keyof InspectionItem['qualityChecks'], 'pass')}
-                            className={`flex-1 p-1.5 rounded text-xs font-medium transition-colors ${
-                              status === 'pass' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
-                            }`}
+                            className={`flex-1 p-1.5 rounded text-xs font-medium transition-colors ${status === 'pass' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
+                              }`}
                           >
                             Pass
                           </button>
                           <button
                             onClick={() => updateQualityCheck(item.id, check as keyof InspectionItem['qualityChecks'], 'fail')}
-                            className={`flex-1 p-1.5 rounded text-xs font-medium transition-colors ${
-                              status === 'fail' ? 'bg-red-100 text-red-700' : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
-                            }`}
+                            className={`flex-1 p-1.5 rounded text-xs font-medium transition-colors ${status === 'fail' ? 'bg-red-100 text-red-700' : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
+                              }`}
                           >
                             Fail
                           </button>
                           <button
                             onClick={() => updateQualityCheck(item.id, check as keyof InspectionItem['qualityChecks'], 'na')}
-                            className={`px-2 py-1.5 rounded text-xs font-medium transition-colors ${
-                              status === 'na' ? 'bg-gray-300 text-gray-700' : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
-                            }`}
+                            className={`px-2 py-1.5 rounded text-xs font-medium transition-colors ${status === 'na' ? 'bg-gray-300 text-gray-700' : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
+                              }`}
                           >
                             N/A
                           </button>
@@ -632,7 +629,7 @@ export default function GRNInspectionPage() {
                       onKeyPress={(e) => {
                         if (e.key === 'Enter') {
                           addDefect(item.id, (e.target as HTMLInputElement).value)
-                          ;(e.target as HTMLInputElement).value = ''
+                            ; (e.target as HTMLInputElement).value = ''
                         }
                       }}
                     />

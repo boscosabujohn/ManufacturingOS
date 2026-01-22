@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X, Plus, Edit, Camera, FileText, AlertTriangle, CheckCircle, MapPin, Ruler, Upload, Download, Eye } from 'lucide-react';
 
 // ==================== 1. Schedule Survey Modal ====================
@@ -193,18 +193,34 @@ interface EditSurveyModalProps {
 
 export function EditSurveyModal({ isOpen, onClose, onEdit, survey }: EditSurveyModalProps) {
   const [formData, setFormData] = useState({
-    surveyDate: survey.surveyDate,
-    siteName: survey.siteName,
-    siteAddress: survey.siteAddress,
-    city: survey.city,
-    state: survey.state,
-    surveyorName: survey.surveyorName,
-    surveyorContact: survey.surveyorContact,
-    floorLevel: survey.floorLevel,
-    accessibility: survey.accessibility,
+    surveyDate: survey?.surveyDate || '',
+    siteName: survey?.siteName || '',
+    siteAddress: survey?.siteAddress || '',
+    city: survey?.city || '',
+    state: survey?.state || '',
+    surveyorName: survey?.surveyorName || '',
+    surveyorContact: survey?.surveyorContact || '',
+    floorLevel: survey?.floorLevel || '',
+    accessibility: survey?.accessibility || 'Good',
   });
 
-  if (!isOpen) return null;
+  useEffect(() => {
+    if (survey) {
+      setFormData({
+        surveyDate: survey.surveyDate || '',
+        siteName: survey.siteName || '',
+        siteAddress: survey.siteAddress || '',
+        city: survey.city || '',
+        state: survey.state || '',
+        surveyorName: survey.surveyorName || '',
+        surveyorContact: survey.surveyorContact || '',
+        floorLevel: survey.floorLevel || '',
+        accessibility: survey.accessibility || 'Good',
+      });
+    }
+  }, [survey]);
+
+  if (!isOpen || !survey) return null;
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
@@ -339,16 +355,30 @@ interface UpdateMeasurementsModalProps {
 
 export function UpdateMeasurementsModal({ isOpen, onClose, onUpdate, survey }: UpdateMeasurementsModalProps) {
   const [formData, setFormData] = useState({
-    length: survey.measurements.length.toString(),
-    width: survey.measurements.width.toString(),
-    height: survey.measurements.height.toString(),
-    ceilingType: survey.ceilingType,
-    wallCondition: survey.wallCondition,
-    ventilation: survey.ventilation,
-    naturalLight: survey.naturalLight,
+    length: survey?.measurements?.length?.toString() || '',
+    width: survey?.measurements?.width?.toString() || '',
+    height: survey?.measurements?.height?.toString() || '',
+    ceilingType: survey?.ceilingType || '',
+    wallCondition: survey?.wallCondition || '',
+    ventilation: survey?.ventilation || '',
+    naturalLight: survey?.naturalLight || '',
   });
 
-  if (!isOpen) return null;
+  useEffect(() => {
+    if (survey) {
+      setFormData({
+        length: survey.measurements?.length?.toString() || '',
+        width: survey.measurements?.width?.toString() || '',
+        height: survey.measurements?.height?.toString() || '',
+        ceilingType: survey.ceilingType || '',
+        wallCondition: survey.wallCondition || '',
+        ventilation: survey.ventilation || '',
+        naturalLight: survey.naturalLight || '',
+      });
+    }
+  }, [survey]);
+
+  if (!isOpen || !survey) return null;
 
   const calculateArea = () => {
     const area = parseFloat(formData.length) * parseFloat(formData.width);
@@ -487,7 +517,7 @@ export function UploadPhotosModal({ isOpen, onClose, onUpload, survey }: UploadP
   const [selectedFiles, setSelectedFiles] = useState<FileList | null>(null);
   const [category, setCategory] = useState('General');
 
-  if (!isOpen) return null;
+  if (!isOpen || !survey) return null;
 
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -601,7 +631,7 @@ export function AddDrawingsModal({ isOpen, onClose, onAdd, survey }: AddDrawings
   const [selectedFiles, setSelectedFiles] = useState<FileList | null>(null);
   const [drawingType, setDrawingType] = useState('Floor Plan');
 
-  if (!isOpen) return null;
+  if (!isOpen || !survey) return null;
 
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -710,16 +740,30 @@ interface RecordSiteConditionsModalProps {
 
 export function RecordSiteConditionsModal({ isOpen, onClose, onRecord, survey }: RecordSiteConditionsModalProps) {
   const [formData, setFormData] = useState({
-    powerAvailable: survey.powerAvailable,
-    waterAvailable: survey.waterAvailable,
-    drainageAvailable: survey.drainageAvailable,
-    existingEquipment: survey.existingEquipment,
-    obstacles: survey.obstacles,
-    specialRequirements: survey.specialRequirements,
-    estimatedBudget: survey.estimatedBudget.toString(),
+    powerAvailable: survey?.powerAvailable || false,
+    waterAvailable: survey?.waterAvailable || false,
+    drainageAvailable: survey?.drainageAvailable || false,
+    existingEquipment: survey?.existingEquipment || '',
+    obstacles: survey?.obstacles || '',
+    specialRequirements: survey?.specialRequirements || '',
+    estimatedBudget: survey?.estimatedBudget?.toString() || '',
   });
 
-  if (!isOpen) return null;
+  useEffect(() => {
+    if (survey) {
+      setFormData({
+        powerAvailable: survey.powerAvailable || false,
+        waterAvailable: survey.waterAvailable || false,
+        drainageAvailable: survey.drainageAvailable || false,
+        existingEquipment: survey.existingEquipment || '',
+        obstacles: survey.obstacles || '',
+        specialRequirements: survey.specialRequirements || '',
+        estimatedBudget: survey.estimatedBudget?.toString() || '',
+      });
+    }
+  }, [survey]);
+
+  if (!isOpen || !survey) return null;
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
@@ -846,7 +890,7 @@ export function AddIssuesModal({ isOpen, onClose, onAdd, survey }: AddIssuesModa
   const [issue, setIssue] = useState('');
   const [severity, setSeverity] = useState('Medium');
 
-  if (!isOpen) return null;
+  if (!isOpen || !survey) return null;
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
@@ -933,7 +977,7 @@ export function AddRecommendationsModal({ isOpen, onClose, onAdd, survey }: AddR
   const [recommendation, setRecommendation] = useState('');
   const [category, setCategory] = useState('General');
 
-  if (!isOpen) return null;
+  if (!isOpen || !survey) return null;
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
@@ -1021,12 +1065,22 @@ interface UpdateStatusModalProps {
 
 export function UpdateStatusModal({ isOpen, onClose, onUpdate, survey }: UpdateStatusModalProps) {
   const [formData, setFormData] = useState({
-    status: survey.status,
-    completionPercent: survey.completionPercent.toString(),
+    status: survey?.status || 'Scheduled',
+    completionPercent: survey?.completionPercent?.toString() || '0',
     remarks: '',
   });
 
-  if (!isOpen) return null;
+  useEffect(() => {
+    if (survey) {
+      setFormData({
+        status: survey.status || 'Scheduled',
+        completionPercent: survey.completionPercent?.toString() || '0',
+        remarks: '',
+      });
+    }
+  }, [survey]);
+
+  if (!isOpen || !survey) return null;
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
@@ -1363,7 +1417,7 @@ interface ViewFullDetailsModalProps {
 }
 
 export function ViewFullDetailsModal({ isOpen, onClose, survey }: ViewFullDetailsModalProps) {
-  if (!isOpen) return null;
+  if (!isOpen || !survey) return null;
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">

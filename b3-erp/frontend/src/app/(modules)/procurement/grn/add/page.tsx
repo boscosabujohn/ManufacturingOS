@@ -510,8 +510,8 @@ const GRNAddPage = () => {
 
       const message =
         submitType === 'draft' ? 'GRN saved as draft successfully!' :
-        submitType === 'inspection' ? 'GRN submitted for inspection successfully!' :
-        'GRN accepted and posted to inventory successfully!';
+          submitType === 'inspection' ? 'GRN submitted for inspection successfully!' :
+            'GRN accepted and posted to inventory successfully!';
 
       alert(message);
       router.push('/procurement/grn');
@@ -532,7 +532,7 @@ const GRNAddPage = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 p-6">
-      <div className="max-w-7xl mx-auto">
+      <div className="w-full">
         {/* Header */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
           <div className="flex items-center justify-between mb-4">
@@ -563,9 +563,8 @@ const GRNAddPage = () => {
           {/* Step Indicator */}
           <div className="flex items-center justify-center gap-4">
             <div className="flex items-center gap-2">
-              <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                step === 'po_selection' ? 'bg-blue-600 text-white' : 'bg-green-500 text-white'
-              }`}>
+              <div className={`w-8 h-8 rounded-full flex items-center justify-center ${step === 'po_selection' ? 'bg-blue-600 text-white' : 'bg-green-500 text-white'
+                }`}>
                 {step === 'po_selection' ? '1' : <CheckCircle className="w-5 h-5" />}
               </div>
               <span className={`text-sm font-medium ${step === 'po_selection' ? 'text-blue-600' : 'text-gray-600'}`}>
@@ -574,10 +573,9 @@ const GRNAddPage = () => {
             </div>
             <div className="w-24 h-1 bg-gray-300"></div>
             <div className="flex items-center gap-2">
-              <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                step === 'grn_details' ? 'bg-blue-600 text-white' :
-                step === 'qc_setup' ? 'bg-green-500 text-white' : 'bg-gray-300 text-gray-600'
-              }`}>
+              <div className={`w-8 h-8 rounded-full flex items-center justify-center ${step === 'grn_details' ? 'bg-blue-600 text-white' :
+                  step === 'qc_setup' ? 'bg-green-500 text-white' : 'bg-gray-300 text-gray-600'
+                }`}>
                 {step === 'qc_setup' ? <CheckCircle className="w-5 h-5" /> : '2'}
               </div>
               <span className={`text-sm font-medium ${step === 'grn_details' ? 'text-blue-600' : 'text-gray-600'}`}>
@@ -586,9 +584,8 @@ const GRNAddPage = () => {
             </div>
             <div className="w-24 h-1 bg-gray-300"></div>
             <div className="flex items-center gap-2">
-              <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                step === 'qc_setup' ? 'bg-blue-600 text-white' : 'bg-gray-300 text-gray-600'
-              }`}>
+              <div className={`w-8 h-8 rounded-full flex items-center justify-center ${step === 'qc_setup' ? 'bg-blue-600 text-white' : 'bg-gray-300 text-gray-600'
+                }`}>
                 3
               </div>
               <span className={`text-sm font-medium ${step === 'qc_setup' ? 'text-blue-600' : 'text-gray-600'}`}>
@@ -658,20 +655,18 @@ const GRNAddPage = () => {
                     <div
                       key={po.id}
                       onClick={() => handlePOSelection(po)}
-                      className={`p-4 border rounded-lg cursor-pointer transition-all ${
-                        selectedPO?.id === po.id
+                      className={`p-4 border rounded-lg cursor-pointer transition-all ${selectedPO?.id === po.id
                           ? 'border-blue-500 bg-blue-50 shadow-md'
                           : 'border-gray-200 hover:border-blue-300 hover:shadow-md'
-                      }`}
+                        }`}
                     >
                       <div className="flex items-start justify-between">
                         <div className="flex-1">
                           <div className="flex items-center gap-3 mb-2">
                             <h3 className="text-lg font-semibold text-gray-900">{po.po_number}</h3>
-                            <span className={`px-2 py-1 text-xs font-medium rounded-full ${
-                              po.status === 'open' ? 'bg-green-100 text-green-700' :
-                              'bg-yellow-100 text-yellow-700'
-                            }`}>
+                            <span className={`px-2 py-1 text-xs font-medium rounded-full ${po.status === 'open' ? 'bg-green-100 text-green-700' :
+                                'bg-yellow-100 text-yellow-700'
+                              }`}>
                               {po.status.replace('_', ' ').toUpperCase()}
                             </span>
                           </div>
@@ -702,9 +697,8 @@ const GRNAddPage = () => {
                             </span>
                           </div>
                         </div>
-                        <ChevronRight className={`w-5 h-5 ${
-                          selectedPO?.id === po.id ? 'text-blue-600' : 'text-gray-400'
-                        }`} />
+                        <ChevronRight className={`w-5 h-5 ${selectedPO?.id === po.id ? 'text-blue-600' : 'text-gray-400'
+                          }`} />
                       </div>
                     </div>
                   ))
@@ -779,9 +773,8 @@ const GRNAddPage = () => {
                     type="date"
                     value={formData.receipt_date}
                     onChange={(e) => handleInputChange('receipt_date', e.target.value)}
-                    className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 ${
-                      errors.receipt_date ? 'border-red-500' : 'border-gray-300'
-                    }`}
+                    className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 ${errors.receipt_date ? 'border-red-500' : 'border-gray-300'
+                      }`}
                   />
                 </div>
                 <div>
@@ -831,9 +824,8 @@ const GRNAddPage = () => {
                     type="text"
                     value={formData.invoice_number}
                     onChange={(e) => handleInputChange('invoice_number', e.target.value)}
-                    className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 ${
-                      errors.invoice_number ? 'border-red-500' : 'border-gray-300'
-                    }`}
+                    className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 ${errors.invoice_number ? 'border-red-500' : 'border-gray-300'
+                      }`}
                   />
                 </div>
                 <div>
@@ -844,9 +836,8 @@ const GRNAddPage = () => {
                     type="date"
                     value={formData.invoice_date}
                     onChange={(e) => handleInputChange('invoice_date', e.target.value)}
-                    className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 ${
-                      errors.invoice_date ? 'border-red-500' : 'border-gray-300'
-                    }`}
+                    className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 ${errors.invoice_date ? 'border-red-500' : 'border-gray-300'
+                      }`}
                   />
                 </div>
                 <div>
@@ -857,9 +848,8 @@ const GRNAddPage = () => {
                     type="number"
                     value={formData.invoice_value}
                     onChange={(e) => handleInputChange('invoice_value', parseFloat(e.target.value))}
-                    className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 ${
-                      errors.invoice_value ? 'border-red-500' : 'border-gray-300'
-                    }`}
+                    className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 ${errors.invoice_value ? 'border-red-500' : 'border-gray-300'
+                      }`}
                   />
                 </div>
               </div>
@@ -981,9 +971,8 @@ const GRNAddPage = () => {
                             value={item.receiving_now}
                             onChange={(e) => handleLineItemChange(index, 'receiving_now', parseFloat(e.target.value) || 0)}
                             max={item.pending_quantity}
-                            className={`w-24 px-2 py-1 border rounded text-sm text-right focus:ring-2 focus:ring-blue-500 ${
-                              errors[`line_item_${index}_receiving`] ? 'border-red-500' : 'border-gray-300'
-                            }`}
+                            className={`w-24 px-2 py-1 border rounded text-sm text-right focus:ring-2 focus:ring-blue-500 ${errors[`line_item_${index}_receiving`] ? 'border-red-500' : 'border-gray-300'
+                              }`}
                           />
                         </td>
                         <td className="p-3 border-b">
@@ -992,9 +981,8 @@ const GRNAddPage = () => {
                             value={item.batch_number}
                             onChange={(e) => handleLineItemChange(index, 'batch_number', e.target.value)}
                             placeholder="Batch..."
-                            className={`w-32 px-2 py-1 border rounded text-sm focus:ring-2 focus:ring-blue-500 ${
-                              errors[`line_item_${index}_batch`] ? 'border-red-500' : 'border-gray-300'
-                            }`}
+                            className={`w-32 px-2 py-1 border rounded text-sm focus:ring-2 focus:ring-blue-500 ${errors[`line_item_${index}_batch`] ? 'border-red-500' : 'border-gray-300'
+                              }`}
                           />
                         </td>
                         <td className="p-3 border-b">
@@ -1003,9 +991,8 @@ const GRNAddPage = () => {
                             value={item.lot_number}
                             onChange={(e) => handleLineItemChange(index, 'lot_number', e.target.value)}
                             placeholder="Lot..."
-                            className={`w-32 px-2 py-1 border rounded text-sm focus:ring-2 focus:ring-blue-500 ${
-                              errors[`line_item_${index}_lot`] ? 'border-red-500' : 'border-gray-300'
-                            }`}
+                            className={`w-32 px-2 py-1 border rounded text-sm focus:ring-2 focus:ring-blue-500 ${errors[`line_item_${index}_lot`] ? 'border-red-500' : 'border-gray-300'
+                              }`}
                           />
                         </td>
                         <td className="p-3 border-b">
@@ -1023,19 +1010,17 @@ const GRNAddPage = () => {
                           <div className="flex gap-1">
                             <button
                               onClick={() => handleLineItemChange(index, 'accept_reject', 'accept')}
-                              className={`p-1 rounded ${
-                                item.accept_reject === 'accept' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-600'
-                              }`}
-                             
+                              className={`p-1 rounded ${item.accept_reject === 'accept' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-600'
+                                }`}
+
                             >
                               <CheckCircle className="w-4 h-4" />
                             </button>
                             <button
                               onClick={() => handleLineItemChange(index, 'accept_reject', 'reject')}
-                              className={`p-1 rounded ${
-                                item.accept_reject === 'reject' ? 'bg-red-100 text-red-700' : 'bg-gray-100 text-gray-600'
-                              }`}
-                             
+                              className={`p-1 rounded ${item.accept_reject === 'reject' ? 'bg-red-100 text-red-700' : 'bg-gray-100 text-gray-600'
+                                }`}
+
                             >
                               <XCircle className="w-4 h-4" />
                             </button>

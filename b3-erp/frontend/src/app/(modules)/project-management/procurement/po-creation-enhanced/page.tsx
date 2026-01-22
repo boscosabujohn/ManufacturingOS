@@ -365,11 +365,10 @@ export default function POCreationEnhancedPage() {
                   key={vendor.id}
                   type="button"
                   onClick={() => selectVendor(vendor.id)}
-                  className={`p-4 rounded-lg border-2 text-left transition-colors ${
-                    formData.vendor === vendor.id
+                  className={`p-4 rounded-lg border-2 text-left transition-colors ${formData.vendor === vendor.id
                       ? 'border-blue-500 bg-blue-50'
                       : 'border-gray-200 hover:border-gray-300'
-                  }`}
+                    }`}
                 >
                   <div className="flex items-center justify-between mb-2">
                     <p className="font-semibold text-gray-900">{vendor.name}</p>
@@ -575,9 +574,8 @@ export default function POCreationEnhancedPage() {
                   value={formData.deliveryAddress}
                   onChange={(e) => updateFormData('deliveryAddress', e.target.value)}
                   rows={3}
-                  className={`w-full px-4 py-2 border rounded-lg ${
-                    errors.deliveryAddress ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-2 border rounded-lg ${errors.deliveryAddress ? 'border-red-500' : 'border-gray-300'
+                    }`}
                   placeholder="Factory/Site address for delivery"
                 />
                 {errors.deliveryAddress && <p className="mt-1 text-sm text-red-500">{errors.deliveryAddress}</p>}
@@ -592,9 +590,8 @@ export default function POCreationEnhancedPage() {
                   value={formData.expectedDelivery}
                   onChange={(e) => updateFormData('expectedDelivery', e.target.value)}
                   min={new Date().toISOString().split('T')[0]}
-                  className={`w-full px-4 py-2 border rounded-lg ${
-                    errors.expectedDelivery ? 'border-red-500' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-2 border rounded-lg ${errors.expectedDelivery ? 'border-red-500' : 'border-gray-300'
+                    }`}
                 />
                 {errors.expectedDelivery && <p className="mt-1 text-sm text-red-500">{errors.expectedDelivery}</p>}
               </div>
@@ -787,7 +784,7 @@ export default function POCreationEnhancedPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="max-w-6xl mx-auto px-4 py-6">
+      <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
         {/* Header */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
           <div className="flex items-center gap-4 mb-4">
@@ -836,9 +833,8 @@ export default function POCreationEnhancedPage() {
                 type="button"
                 onClick={goToPrevStep}
                 disabled={currentStep === 0}
-                className={`flex items-center gap-2 px-4 py-2 rounded-lg ${
-                  currentStep === 0 ? 'text-gray-400 cursor-not-allowed' : 'text-gray-700 hover:bg-gray-100'
-                }`}
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg ${currentStep === 0 ? 'text-gray-400 cursor-not-allowed' : 'text-gray-700 hover:bg-gray-100'
+                  }`}
               >
                 <ArrowLeft className="w-5 h-5" />
                 Previous

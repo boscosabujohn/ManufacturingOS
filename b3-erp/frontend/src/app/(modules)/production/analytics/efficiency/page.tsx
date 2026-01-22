@@ -311,7 +311,7 @@ export default function EfficiencyAnalytics() {
   }
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 max-w-7xl">
+    <div className="w-full h-full px-4 py-6">
       {/* Inline Header */}
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-4">
@@ -461,15 +461,14 @@ export default function EfficiencyAnalytics() {
                 <div className="mb-3">
                   <div className="w-full bg-gray-200 rounded-full h-2">
                     <div
-                      className={`h-2 rounded-full ${
-                        dept.efficiency >= dept.target * 0.95
+                      className={`h-2 rounded-full ${dept.efficiency >= dept.target * 0.95
                           ? 'bg-green-500'
                           : dept.efficiency >= dept.target * 0.85
-                          ? 'bg-blue-500'
-                          : dept.efficiency >= dept.target * 0.75
-                          ? 'bg-yellow-500'
-                          : 'bg-red-500'
-                      }`}
+                            ? 'bg-blue-500'
+                            : dept.efficiency >= dept.target * 0.75
+                              ? 'bg-yellow-500'
+                              : 'bg-red-500'
+                        }`}
                       style={{ width: `${Math.min((dept.efficiency / dept.target) * 100, 100)}%` }}
                     />
                   </div>

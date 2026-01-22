@@ -255,7 +255,7 @@ export default function AnticipatedPaymentsPage() {
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 via-orange-50 to-red-50">
       <div className="flex-1 overflow-y-auto overflow-x-hidden">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 max-w-7xl">
+        <div className="w-full p-6">
           {/* Header */}
           <div className="mb-6">
             <div className="flex items-center justify-between mb-4">
@@ -265,305 +265,304 @@ export default function AnticipatedPaymentsPage() {
                   Anticipated Payments
                 </h1>
                 <p className="text-gray-600 mt-1">Schedule and track upcoming vendor payments</p>
-          </div>
-          <Link
-            href="/finance/cash/anticipated-payments/create"
-            className="flex items-center gap-2 bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 rounded-lg shadow-lg transition-all hover:shadow-xl"
-          >
-            <Plus className="w-5 h-5" />
-            <span className="font-semibold">Add New Payment</span>
-          </Link>
-        </div>
-
-        {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-          <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl shadow-lg p-6 text-white">
-            <div className="flex items-center justify-between mb-2">
-              <p className="text-orange-100 text-sm">Total Expected</p>
-              <DollarSign className="w-8 h-8 text-orange-200" />
+              </div>
+              <Link
+                href="/finance/cash/anticipated-payments/create"
+                className="flex items-center gap-2 bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 rounded-lg shadow-lg transition-all hover:shadow-xl"
+              >
+                <Plus className="w-5 h-5" />
+                <span className="font-semibold">Add New Payment</span>
+              </Link>
             </div>
-            <p className="text-3xl font-bold">{formatCurrency(stats.totalExpected)}</p>
-            <p className="text-sm text-orange-100 mt-2">{payments.length} payments</p>
-          </div>
 
-          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl shadow-lg p-6 text-white">
-            <div className="flex items-center justify-between mb-2">
-              <p className="text-green-100 text-sm">Amount Paid</p>
-              <CheckCircle className="w-8 h-8 text-green-200" />
-            </div>
-            <p className="text-3xl font-bold">{formatCurrency(stats.totalPaid)}</p>
-            <p className="text-sm text-green-100 mt-2">
-              {((stats.totalPaid / stats.totalExpected) * 100).toFixed(1)}% completed
-            </p>
-          </div>
+            {/* Stats Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+              <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl shadow-lg p-6 text-white">
+                <div className="flex items-center justify-between mb-2">
+                  <p className="text-orange-100 text-sm">Total Expected</p>
+                  <DollarSign className="w-8 h-8 text-orange-200" />
+                </div>
+                <p className="text-3xl font-bold">{formatCurrency(stats.totalExpected)}</p>
+                <p className="text-sm text-orange-100 mt-2">{payments.length} payments</p>
+              </div>
 
-          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl shadow-lg p-6 text-white">
-            <div className="flex items-center justify-between mb-2">
-              <p className="text-blue-100 text-sm">Pending Amount</p>
-              <Clock className="w-8 h-8 text-blue-200" />
-            </div>
-            <p className="text-3xl font-bold">{formatCurrency(stats.totalPending)}</p>
-            <p className="text-sm text-blue-100 mt-2">{stats.thisWeek} due this week</p>
-          </div>
+              <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl shadow-lg p-6 text-white">
+                <div className="flex items-center justify-between mb-2">
+                  <p className="text-green-100 text-sm">Amount Paid</p>
+                  <CheckCircle className="w-8 h-8 text-green-200" />
+                </div>
+                <p className="text-3xl font-bold">{formatCurrency(stats.totalPaid)}</p>
+                <p className="text-sm text-green-100 mt-2">
+                  {((stats.totalPaid / stats.totalExpected) * 100).toFixed(1)}% completed
+                </p>
+              </div>
 
-          <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-xl shadow-lg p-6 text-white">
-            <div className="flex items-center justify-between mb-2">
-              <p className="text-red-100 text-sm">Urgent Payments</p>
-              <AlertTriangle className="w-8 h-8 text-red-200" />
-            </div>
-            <p className="text-3xl font-bold">{stats.overdueCount}</p>
-            <p className="text-sm text-red-100 mt-2">{stats.requiresApproval} need approval</p>
-          </div>
-        </div>
-      </div>
+              <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl shadow-lg p-6 text-white">
+                <div className="flex items-center justify-between mb-2">
+                  <p className="text-blue-100 text-sm">Pending Amount</p>
+                  <Clock className="w-8 h-8 text-blue-200" />
+                </div>
+                <p className="text-3xl font-bold">{formatCurrency(stats.totalPending)}</p>
+                <p className="text-sm text-blue-100 mt-2">{stats.thisWeek} due this week</p>
+              </div>
 
-      {/* Filters */}
-      <div className="bg-white rounded-xl shadow-lg p-6 mb-6">
-        <div className="flex items-center gap-2 mb-4">
-          <Filter className="w-5 h-5 text-gray-600" />
-          <h2 className="text-lg font-semibold text-gray-900">Filters</h2>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <div className="md:col-span-2">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
-              <input
-                type="text"
-                placeholder="Search by payment number, vendor, or reference..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
-              />
+              <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-xl shadow-lg p-6 text-white">
+                <div className="flex items-center justify-between mb-2">
+                  <p className="text-red-100 text-sm">Urgent Payments</p>
+                  <AlertTriangle className="w-8 h-8 text-red-200" />
+                </div>
+                <p className="text-3xl font-bold">{stats.overdueCount}</p>
+                <p className="text-sm text-red-100 mt-2">{stats.requiresApproval} need approval</p>
+              </div>
             </div>
           </div>
-          <select
-            value={statusFilter}
-            onChange={(e) => setStatusFilter(e.target.value)}
-            className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
-          >
-            <option value="All">All Status</option>
-            <option value="Pending">Pending</option>
-            <option value="Scheduled">Scheduled</option>
-            <option value="Partially Paid">Partially Paid</option>
-            <option value="Fully Paid">Fully Paid</option>
-            <option value="Overdue">Overdue</option>
-          </select>
-          <select
-            value={urgencyFilter}
-            onChange={(e) => setUrgencyFilter(e.target.value)}
-            className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
-          >
-            <option value="All">All Urgency</option>
-            <option value="Critical">Critical</option>
-            <option value="High">High</option>
-            <option value="Medium">Medium</option>
-            <option value="Low">Low</option>
-          </select>
-        </div>
 
-        <div className="flex items-center gap-4 mt-4">
-          <button className="flex items-center gap-2 px-4 py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-lg transition-colors">
-            <Download className="w-4 h-4" />
-            <span>Export to Excel</span>
-          </button>
-          <button className="flex items-center gap-2 px-4 py-2 border border-gray-300 hover:bg-gray-50 rounded-lg transition-colors">
-            <Target className="w-4 h-4" />
-            <span>Bulk Approval</span>
-          </button>
-        </div>
-      </div>
+          {/* Filters */}
+          <div className="bg-white rounded-xl shadow-lg p-6 mb-6">
+            <div className="flex items-center gap-2 mb-4">
+              <Filter className="w-5 h-5 text-gray-600" />
+              <h2 className="text-lg font-semibold text-gray-900">Filters</h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+              <div className="md:col-span-2">
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <input
+                    type="text"
+                    placeholder="Search by payment number, vendor, or reference..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  />
+                </div>
+              </div>
+              <select
+                value={statusFilter}
+                onChange={(e) => setStatusFilter(e.target.value)}
+                className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+              >
+                <option value="All">All Status</option>
+                <option value="Pending">Pending</option>
+                <option value="Scheduled">Scheduled</option>
+                <option value="Partially Paid">Partially Paid</option>
+                <option value="Fully Paid">Fully Paid</option>
+                <option value="Overdue">Overdue</option>
+              </select>
+              <select
+                value={urgencyFilter}
+                onChange={(e) => setUrgencyFilter(e.target.value)}
+                className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
+              >
+                <option value="All">All Urgency</option>
+                <option value="Critical">Critical</option>
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Low">Low</option>
+              </select>
+            </div>
 
-      {/* Payments Table */}
-      <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-        <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead className="bg-gradient-to-r from-gray-50 to-gray-100 border-b border-gray-200">
-              <tr>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                  Payment Details
-                </th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                  Vendor
-                </th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                  Due Date
-                </th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                  Amount
-                </th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                  Priority
-                </th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                  Status
-                </th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                  Approval
-                </th>
-                <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                  Actions
-                </th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-200">
-              {paginatedPayments.map((payment) => (
-                <tr key={payment.id} className="hover:bg-gray-50 transition-colors">
-                  <td className="px-6 py-4">
-                    <div className="flex items-start gap-3">
-                      <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <ArrowDownCircle className="w-5 h-5 text-orange-600" />
-                      </div>
-                      <div>
-                        <p className="font-semibold text-gray-900">{payment.paymentNumber}</p>
-                        <p className="text-sm text-gray-500">
-                          {payment.referenceType}: {payment.referenceNumber}
-                        </p>
-                        <p className="text-xs text-gray-400 mt-1">{payment.description}</p>
-                      </div>
-                    </div>
-                  </td>
-                  <td className="px-6 py-4">
-                    <div>
-                      <p className="font-medium text-gray-900">{payment.vendorName}</p>
-                      <p className="text-sm text-gray-500">{payment.vendorId}</p>
-                      <div className="flex items-center gap-2 mt-1">
-                        <User className="w-3 h-3 text-gray-400" />
-                        <span className="text-xs text-gray-500">{payment.contactPerson}</span>
-                      </div>
-                    </div>
-                  </td>
-                  <td className="px-6 py-4">
-                    <div className="flex items-center gap-2">
-                      <Calendar className="w-4 h-4 text-gray-400" />
-                      <div>
-                        <p className="text-sm font-medium text-gray-900">{payment.expectedDate}</p>
-                        <p
-                          className={`text-xs font-semibold ${
-                            payment.daysUntilDue < 0
-                              ? 'text-red-600'
-                              : payment.daysUntilDue <= 3
-                              ? 'text-orange-600'
-                              : 'text-gray-500'
-                          }`}
-                        >
-                          {payment.daysUntilDue < 0
-                            ? `${Math.abs(payment.daysUntilDue)} days overdue!`
-                            : payment.daysUntilDue === 0
-                            ? 'Due today!'
-                            : `${payment.daysUntilDue} days remaining`}
-                        </p>
-                      </div>
-                    </div>
-                  </td>
-                  <td className="px-6 py-4">
-                    <div>
-                      <p className="font-bold text-gray-900">{formatCurrency(payment.expectedAmount)}</p>
-                      {payment.paidAmount > 0 && (
-                        <>
-                          <p className="text-sm text-green-600">Paid: {formatCurrency(payment.paidAmount)}</p>
-                          <p className="text-sm text-orange-600">
-                            Balance: {formatCurrency(payment.balanceAmount)}
-                          </p>
-                        </>
-                      )}
-                      <p className="text-xs text-gray-500 mt-1">{payment.paymentMethod}</p>
-                    </div>
-                  </td>
-                  <td className="px-6 py-4">
-                    <div className="flex flex-col gap-2">
-                      <span className={`inline-flex items-center justify-center px-3 py-1 rounded-full text-xs font-bold ${getUrgencyColor(payment.urgency)}`}>
-                        {payment.urgency}
-                      </span>
-                      <span className="text-lg">{getPriorityBadge(payment.priority)}</span>
-                    </div>
-                  </td>
-                  <td className="px-6 py-4">
-                    <span
-                      className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border ${getStatusColor(
-                        payment.status
-                      )}`}
-                    >
-                      {getStatusIcon(payment.status)}
-                      {payment.status}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4">
-                    {payment.requiresApproval ? (
-                      payment.isApproved ? (
-                        <div className="flex items-center gap-2">
-                          <Check className="w-4 h-4 text-green-600" />
+            <div className="flex items-center gap-4 mt-4">
+              <button className="flex items-center gap-2 px-4 py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-lg transition-colors">
+                <Download className="w-4 h-4" />
+                <span>Export to Excel</span>
+              </button>
+              <button className="flex items-center gap-2 px-4 py-2 border border-gray-300 hover:bg-gray-50 rounded-lg transition-colors">
+                <Target className="w-4 h-4" />
+                <span>Bulk Approval</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Payments Table */}
+          <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead className="bg-gradient-to-r from-gray-50 to-gray-100 border-b border-gray-200">
+                  <tr>
+                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                      Payment Details
+                    </th>
+                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                      Vendor
+                    </th>
+                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                      Due Date
+                    </th>
+                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                      Amount
+                    </th>
+                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                      Priority
+                    </th>
+                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                      Status
+                    </th>
+                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                      Approval
+                    </th>
+                    <th className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                      Actions
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-200">
+                  {paginatedPayments.map((payment) => (
+                    <tr key={payment.id} className="hover:bg-gray-50 transition-colors">
+                      <td className="px-6 py-4">
+                        <div className="flex items-start gap-3">
+                          <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <ArrowDownCircle className="w-5 h-5 text-orange-600" />
+                          </div>
                           <div>
-                            <p className="text-xs font-semibold text-green-600">Approved</p>
-                            <p className="text-xs text-gray-500">{payment.approvedBy}</p>
+                            <p className="font-semibold text-gray-900">{payment.paymentNumber}</p>
+                            <p className="text-sm text-gray-500">
+                              {payment.referenceType}: {payment.referenceNumber}
+                            </p>
+                            <p className="text-xs text-gray-400 mt-1">{payment.description}</p>
                           </div>
                         </div>
-                      ) : (
-                        <div className="flex items-center gap-2">
-                          <X className="w-4 h-4 text-red-600" />
-                          <p className="text-xs font-semibold text-red-600">Pending</p>
+                      </td>
+                      <td className="px-6 py-4">
+                        <div>
+                          <p className="font-medium text-gray-900">{payment.vendorName}</p>
+                          <p className="text-sm text-gray-500">{payment.vendorId}</p>
+                          <div className="flex items-center gap-2 mt-1">
+                            <User className="w-3 h-3 text-gray-400" />
+                            <span className="text-xs text-gray-500">{payment.contactPerson}</span>
+                          </div>
                         </div>
-                      )
-                    ) : (
-                      <span className="text-xs text-gray-500">Not required</span>
-                    )}
-                  </td>
-                  <td className="px-6 py-4">
-                    <div className="flex items-center gap-2">
-                      <button
-                        className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-                       
-                      >
-                        <Eye className="w-4 h-4" />
-                      </button>
-                      <button
-                        className="p-2 text-orange-600 hover:bg-orange-50 rounded-lg transition-colors"
-                       
-                      >
-                        <Edit className="w-4 h-4" />
-                      </button>
-                      {payment.requiresApproval && !payment.isApproved && (
-                        <button
-                          className="p-2 text-green-600 hover:bg-green-50 rounded-lg transition-colors"
-                         
+                      </td>
+                      <td className="px-6 py-4">
+                        <div className="flex items-center gap-2">
+                          <Calendar className="w-4 h-4 text-gray-400" />
+                          <div>
+                            <p className="text-sm font-medium text-gray-900">{payment.expectedDate}</p>
+                            <p
+                              className={`text-xs font-semibold ${payment.daysUntilDue < 0
+                                  ? 'text-red-600'
+                                  : payment.daysUntilDue <= 3
+                                    ? 'text-orange-600'
+                                    : 'text-gray-500'
+                                }`}
+                            >
+                              {payment.daysUntilDue < 0
+                                ? `${Math.abs(payment.daysUntilDue)} days overdue!`
+                                : payment.daysUntilDue === 0
+                                  ? 'Due today!'
+                                  : `${payment.daysUntilDue} days remaining`}
+                            </p>
+                          </div>
+                        </div>
+                      </td>
+                      <td className="px-6 py-4">
+                        <div>
+                          <p className="font-bold text-gray-900">{formatCurrency(payment.expectedAmount)}</p>
+                          {payment.paidAmount > 0 && (
+                            <>
+                              <p className="text-sm text-green-600">Paid: {formatCurrency(payment.paidAmount)}</p>
+                              <p className="text-sm text-orange-600">
+                                Balance: {formatCurrency(payment.balanceAmount)}
+                              </p>
+                            </>
+                          )}
+                          <p className="text-xs text-gray-500 mt-1">{payment.paymentMethod}</p>
+                        </div>
+                      </td>
+                      <td className="px-6 py-4">
+                        <div className="flex flex-col gap-2">
+                          <span className={`inline-flex items-center justify-center px-3 py-1 rounded-full text-xs font-bold ${getUrgencyColor(payment.urgency)}`}>
+                            {payment.urgency}
+                          </span>
+                          <span className="text-lg">{getPriorityBadge(payment.priority)}</span>
+                        </div>
+                      </td>
+                      <td className="px-6 py-4">
+                        <span
+                          className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border ${getStatusColor(
+                            payment.status
+                          )}`}
                         >
-                          <Check className="w-4 h-4" />
-                        </button>
-                      )}
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+                          {getStatusIcon(payment.status)}
+                          {payment.status}
+                        </span>
+                      </td>
+                      <td className="px-6 py-4">
+                        {payment.requiresApproval ? (
+                          payment.isApproved ? (
+                            <div className="flex items-center gap-2">
+                              <Check className="w-4 h-4 text-green-600" />
+                              <div>
+                                <p className="text-xs font-semibold text-green-600">Approved</p>
+                                <p className="text-xs text-gray-500">{payment.approvedBy}</p>
+                              </div>
+                            </div>
+                          ) : (
+                            <div className="flex items-center gap-2">
+                              <X className="w-4 h-4 text-red-600" />
+                              <p className="text-xs font-semibold text-red-600">Pending</p>
+                            </div>
+                          )
+                        ) : (
+                          <span className="text-xs text-gray-500">Not required</span>
+                        )}
+                      </td>
+                      <td className="px-6 py-4">
+                        <div className="flex items-center gap-2">
+                          <button
+                            className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
 
-        {/* Pagination */}
-        <div className="bg-gray-50 px-6 py-4 border-t border-gray-200 flex items-center justify-between">
-          <div className="text-sm text-gray-700">
-            Showing {startIndex + 1} to {Math.min(startIndex + itemsPerPage, filteredPayments.length)} of{' '}
-            {filteredPayments.length} payments
+                          >
+                            <Eye className="w-4 h-4" />
+                          </button>
+                          <button
+                            className="p-2 text-orange-600 hover:bg-orange-50 rounded-lg transition-colors"
+
+                          >
+                            <Edit className="w-4 h-4" />
+                          </button>
+                          {payment.requiresApproval && !payment.isApproved && (
+                            <button
+                              className="p-2 text-green-600 hover:bg-green-50 rounded-lg transition-colors"
+
+                            >
+                              <Check className="w-4 h-4" />
+                            </button>
+                          )}
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Pagination */}
+            <div className="bg-gray-50 px-6 py-4 border-t border-gray-200 flex items-center justify-between">
+              <div className="text-sm text-gray-700">
+                Showing {startIndex + 1} to {Math.min(startIndex + itemsPerPage, filteredPayments.length)} of{' '}
+                {filteredPayments.length} payments
+              </div>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+                  disabled={currentPage === 1}
+                  className="p-2 border border-gray-300 rounded-lg hover:bg-white disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                </button>
+                <span className="px-4 py-2 bg-white border border-gray-300 rounded-lg">
+                  Page {currentPage} of {totalPages}
+                </span>
+                <button
+                  onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
+                  disabled={currentPage === totalPages}
+                  className="p-2 border border-gray-300 rounded-lg hover:bg-white disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                >
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
           </div>
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
-              disabled={currentPage === 1}
-              className="p-2 border border-gray-300 rounded-lg hover:bg-white disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-            >
-              <ChevronLeft className="w-4 h-4" />
-            </button>
-            <span className="px-4 py-2 bg-white border border-gray-300 rounded-lg">
-              Page {currentPage} of {totalPages}
-            </span>
-            <button
-              onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
-              disabled={currentPage === totalPages}
-              className="p-2 border border-gray-300 rounded-lg hover:bg-white disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-            >
-              <ChevronRight className="w-4 h-4" />
-            </button>
-          </div>
-        </div>
-      </div>
         </div>
       </div>
     </div>

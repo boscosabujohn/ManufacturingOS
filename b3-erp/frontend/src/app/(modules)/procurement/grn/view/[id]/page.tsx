@@ -617,21 +617,21 @@ const GRNViewPage = () => {
       {
         name: 'Under Inspection',
         status: grnData.status === 'under_inspection' ? 'current' :
-                grnData.status === 'draft' ? 'pending' : 'completed',
+          grnData.status === 'draft' ? 'pending' : 'completed',
         date: grnData.status !== 'draft' ? grnData.updated_at : undefined
       },
       {
         name: 'QC Result',
         status: grnData.status === 'rejected' ? 'failed' :
-                grnData.status === 'partially_accepted' || grnData.status === 'accepted' ? 'completed' :
-                'pending'
+          grnData.status === 'partially_accepted' || grnData.status === 'accepted' ? 'completed' :
+            'pending'
       },
       {
         name: grnData.status === 'rejected' ? 'Rejected' : 'Accepted',
         status: grnData.status === 'accepted' || grnData.status === 'invoice_matched' ? 'completed' :
-                grnData.status === 'rejected' ? 'failed' :
-                grnData.status === 'partially_accepted' ? 'completed' :
-                'pending',
+          grnData.status === 'rejected' ? 'failed' :
+            grnData.status === 'partially_accepted' ? 'completed' :
+              'pending',
         date: grnData.approved_at
       },
       {
@@ -751,7 +751,7 @@ const GRNViewPage = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 p-6">
-      <div className="max-w-7xl mx-auto">
+      <div className="w-full">
         {/* Header Section */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
           <div className="flex items-start justify-between mb-4">
@@ -936,15 +936,14 @@ const GRNViewPage = () => {
                 <React.Fragment key={index}>
                   <div className="flex flex-col items-center flex-1">
                     <div
-                      className={`w-10 h-10 rounded-full flex items-center justify-center mb-2 ${
-                        step.status === 'completed'
+                      className={`w-10 h-10 rounded-full flex items-center justify-center mb-2 ${step.status === 'completed'
                           ? 'bg-green-500 text-white'
                           : step.status === 'current'
-                          ? 'bg-blue-500 text-white animate-pulse'
-                          : step.status === 'failed'
-                          ? 'bg-red-500 text-white'
-                          : 'bg-gray-300 text-gray-500'
-                      }`}
+                            ? 'bg-blue-500 text-white animate-pulse'
+                            : step.status === 'failed'
+                              ? 'bg-red-500 text-white'
+                              : 'bg-gray-300 text-gray-500'
+                        }`}
                     >
                       {step.status === 'completed' ? (
                         <CheckCircle className="w-5 h-5" />
@@ -963,9 +962,8 @@ const GRNViewPage = () => {
                   </div>
                   {index < progressSteps.length - 1 && (
                     <div
-                      className={`h-1 flex-1 mx-2 mb-8 ${
-                        step.status === 'completed' ? 'bg-green-500' : 'bg-gray-300'
-                      }`}
+                      className={`h-1 flex-1 mx-2 mb-8 ${step.status === 'completed' ? 'bg-green-500' : 'bg-gray-300'
+                        }`}
                     ></div>
                   )}
                 </React.Fragment>
@@ -1021,31 +1019,28 @@ const GRNViewPage = () => {
             <div className="flex gap-6 px-6">
               <button
                 onClick={() => setActiveTab('overview')}
-                className={`py-4 px-2 font-medium text-sm border-b-2 transition-colors ${
-                  activeTab === 'overview'
+                className={`py-4 px-2 font-medium text-sm border-b-2 transition-colors ${activeTab === 'overview'
                     ? 'border-blue-600 text-blue-600'
                     : 'border-transparent text-gray-600 hover:text-gray-800'
-                }`}
+                  }`}
               >
                 Overview
               </button>
               <button
                 onClick={() => setActiveTab('line_items')}
-                className={`py-4 px-2 font-medium text-sm border-b-2 transition-colors ${
-                  activeTab === 'line_items'
+                className={`py-4 px-2 font-medium text-sm border-b-2 transition-colors ${activeTab === 'line_items'
                     ? 'border-blue-600 text-blue-600'
                     : 'border-transparent text-gray-600 hover:text-gray-800'
-                }`}
+                  }`}
               >
                 Line Items ({grnData.line_items.length})
               </button>
               <button
                 onClick={() => setActiveTab('quality_inspection')}
-                className={`py-4 px-2 font-medium text-sm border-b-2 transition-colors ${
-                  activeTab === 'quality_inspection'
+                className={`py-4 px-2 font-medium text-sm border-b-2 transition-colors ${activeTab === 'quality_inspection'
                     ? 'border-blue-600 text-blue-600'
                     : 'border-transparent text-gray-600 hover:text-gray-800'
-                }`}
+                  }`}
               >
                 Quality Inspection
               </button>
@@ -1107,9 +1102,8 @@ const GRNViewPage = () => {
                           {[1, 2, 3, 4, 5].map((star) => (
                             <span
                               key={star}
-                              className={`text-lg ${
-                                star <= grnData.vendor.rating ? 'text-yellow-400' : 'text-gray-300'
-                              }`}
+                              className={`text-lg ${star <= grnData.vendor.rating ? 'text-yellow-400' : 'text-gray-300'
+                                }`}
                             >
                               ★
                             </span>
@@ -1302,12 +1296,11 @@ const GRNViewPage = () => {
                         key={doc.id}
                         className="flex items-center gap-3 p-3 bg-white rounded-lg border border-gray-200 hover:shadow-md transition-shadow"
                       >
-                        <div className={`p-2 rounded-lg ${
-                          doc.document_type === 'photo' ? 'bg-purple-100' :
-                          doc.document_type === 'invoice' ? 'bg-green-100' :
-                          doc.document_type === 'test_certificate' ? 'bg-blue-100' :
-                          'bg-gray-100'
-                        }`}>
+                        <div className={`p-2 rounded-lg ${doc.document_type === 'photo' ? 'bg-purple-100' :
+                            doc.document_type === 'invoice' ? 'bg-green-100' :
+                              doc.document_type === 'test_certificate' ? 'bg-blue-100' :
+                                'bg-gray-100'
+                          }`}>
                           {doc.document_type === 'photo' ? (
                             <ImageIcon className="w-5 h-5 text-purple-600" />
                           ) : (
@@ -1439,9 +1432,8 @@ const GRNViewPage = () => {
                                   )}
                                 </>
                               )}
-                              <span className={`text-sm font-medium ${
-                                item.variance < 0 ? 'text-red-600' : item.variance > 0 ? 'text-green-600' : 'text-gray-600'
-                              }`}>
+                              <span className={`text-sm font-medium ${item.variance < 0 ? 'text-red-600' : item.variance > 0 ? 'text-green-600' : 'text-gray-600'
+                                }`}>
                                 {item.variance > 0 ? '+' : ''}{item.variance}
                               </span>
                               <span className="text-xs text-gray-500">
@@ -1451,11 +1443,10 @@ const GRNViewPage = () => {
                           </td>
                           <td className="p-3 border-b border-gray-200 text-center">
                             {item.qc_status && (
-                              <span className={`inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-full ${
-                                item.qc_status === 'pass' ? 'bg-green-100 text-green-700' :
-                                item.qc_status === 'fail' ? 'bg-red-100 text-red-700' :
-                                'bg-yellow-100 text-yellow-700'
-                              }`}>
+                              <span className={`inline-flex items-center gap-1 px-2 py-1 text-xs font-medium rounded-full ${item.qc_status === 'pass' ? 'bg-green-100 text-green-700' :
+                                  item.qc_status === 'fail' ? 'bg-red-100 text-red-700' :
+                                    'bg-yellow-100 text-yellow-700'
+                                }`}>
                                 {item.qc_status === 'pass' && <CheckCircle className="w-3 h-3" />}
                                 {item.qc_status === 'fail' && <XCircle className="w-3 h-3" />}
                                 {item.qc_status === 'pending' && <Clock className="w-3 h-3" />}
@@ -1529,17 +1520,15 @@ const GRNViewPage = () => {
                   <div className="grid grid-cols-3 gap-4">
                     <div>
                       <label className="text-xs font-medium text-blue-700">Total Variance</label>
-                      <p className={`text-lg font-bold ${
-                        grnData.qty_variance < 0 ? 'text-red-600' : 'text-green-600'
-                      }`}>
+                      <p className={`text-lg font-bold ${grnData.qty_variance < 0 ? 'text-red-600' : 'text-green-600'
+                        }`}>
                         {grnData.qty_variance > 0 ? '+' : ''}{grnData.qty_variance} units
                       </p>
                     </div>
                     <div>
                       <label className="text-xs font-medium text-blue-700">Variance Percentage</label>
-                      <p className={`text-lg font-bold ${
-                        grnData.qty_variance < 0 ? 'text-red-600' : 'text-green-600'
-                      }`}>
+                      <p className={`text-lg font-bold ${grnData.qty_variance < 0 ? 'text-red-600' : 'text-green-600'
+                        }`}>
                         {((grnData.qty_variance / grnData.total_ordered_qty) * 100).toFixed(2)}%
                       </p>
                     </div>
@@ -1602,11 +1591,10 @@ const GRNViewPage = () => {
                           {inspection.parameters.map((param) => (
                             <div
                               key={param.id}
-                              className={`flex items-center gap-3 p-3 rounded-lg border ${
-                                param.status === 'pass' ? 'bg-green-50 border-green-200' :
-                                param.status === 'fail' ? 'bg-red-50 border-red-200' :
-                                'bg-yellow-50 border-yellow-200'
-                              }`}
+                              className={`flex items-center gap-3 p-3 rounded-lg border ${param.status === 'pass' ? 'bg-green-50 border-green-200' :
+                                  param.status === 'fail' ? 'bg-red-50 border-red-200' :
+                                    'bg-yellow-50 border-yellow-200'
+                                }`}
                             >
                               <div className="flex-shrink-0">
                                 {param.status === 'pass' ? (
@@ -1620,11 +1608,10 @@ const GRNViewPage = () => {
                               <div className="flex-1 min-w-0">
                                 <div className="flex items-center justify-between mb-1">
                                   <p className="text-sm font-semibold text-gray-900">{param.parameter_name}</p>
-                                  <span className={`text-xs font-bold px-2 py-0.5 rounded ${
-                                    param.status === 'pass' ? 'bg-green-200 text-green-800' :
-                                    param.status === 'fail' ? 'bg-red-200 text-red-800' :
-                                    'bg-yellow-200 text-yellow-800'
-                                  }`}>
+                                  <span className={`text-xs font-bold px-2 py-0.5 rounded ${param.status === 'pass' ? 'bg-green-200 text-green-800' :
+                                      param.status === 'fail' ? 'bg-red-200 text-red-800' :
+                                        'bg-yellow-200 text-yellow-800'
+                                    }`}>
                                     {param.status.toUpperCase()}
                                   </span>
                                 </div>
@@ -1639,11 +1626,10 @@ const GRNViewPage = () => {
                                   </div>
                                   <div>
                                     <span className="text-gray-500">Actual:</span>
-                                    <span className={`ml-1 font-semibold ${
-                                      param.status === 'pass' ? 'text-green-700' :
-                                      param.status === 'fail' ? 'text-red-700' :
-                                      'text-yellow-700'
-                                    }`}>
+                                    <span className={`ml-1 font-semibold ${param.status === 'pass' ? 'text-green-700' :
+                                        param.status === 'fail' ? 'text-red-700' :
+                                          'text-yellow-700'
+                                      }`}>
                                       {param.actual_value} {param.unit}
                                     </span>
                                   </div>
@@ -1680,11 +1666,10 @@ const GRNViewPage = () => {
                       <div className="flex items-center justify-between">
                         <div>
                           <label className="text-xs font-medium text-gray-500">Disposition</label>
-                          <p className={`text-sm font-bold capitalize ${
-                            inspection.disposition === 'accept' ? 'text-green-600' :
-                            inspection.disposition === 'reject' ? 'text-red-600' :
-                            'text-yellow-600'
-                          }`}>
+                          <p className={`text-sm font-bold capitalize ${inspection.disposition === 'accept' ? 'text-green-600' :
+                              inspection.disposition === 'reject' ? 'text-red-600' :
+                                'text-yellow-600'
+                            }`}>
                             {inspection.disposition.replace('_', ' ')}
                           </p>
                         </div>

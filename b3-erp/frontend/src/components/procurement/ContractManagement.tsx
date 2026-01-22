@@ -122,7 +122,7 @@ export default function ContractManagement() {
     console.log('Editing contract:', contract.id);
 
     if (contract.status === 'active') {
-      alert(`Edit Active Contract: ${contract.id}\n\n⚠️ ACTIVE CONTRACT - AMENDMENT REQUIRED\n\nContract: ${contract.title}\nSupplier: ${contract.supplier}\nValue: $${(contract.value / 1000).toFixed(0)}K\n\nEDITABLE ACTIONS:\n\n1. CREATE AMENDMENT:\n   - Formal contract modification\n   - Requires both parties\' consent\n   - Legal review required\n   - All changes tracked\n\n2. UPDATE ADMINISTRATIVE DATA:\n   ✓ Owner/contact person\n   ✓ Department assignment\n   ✓ Internal reference notes\n   ✓ Notification settings\n   ✗ Cannot change terms\n\nAMENDMENT PROCESS:\n\nWhen to use amendments:\n- Change in scope or deliverables\n- Price adjustments\n- Timeline extensions\n- Additional services\n- Volume changes\n- Payment term modifications\n\nAmendment workflow:\n1. Draft amendment document\n2. Internal approval (same as original)\n3. Supplier negotiation\n4. Legal review\n5. Mutual signature\n6. Effective date\n\nADMIN UPDATES (No Amendment):\n- Owner reassignment\n- Tag/category changes\n- Alert preferences\n- Document uploads\n- Comments/notes\n\n⚠️ IMPORTANT:\nChanging contract terms requires formal amendment.\nChanges become part of permanent contract record.\n\nProceed with:\n1. Create Amendment?\n2. Update Admin Data?');
+      alert(`Edit Active Contract: ${contract.id}\n\n⚠️ ACTIVE CONTRACT - AMENDMENT REQUIRED\n\nContract: ${contract.title}\nSupplier: ${contract.supplier}\nValue: $${(contract.value / 1000).toFixed(0)}K\n\nEDITABLE ACTIONS:\n\n1. CREATE AMENDMENT:\n   - Formal contract modification\n   - Requires both parties' consent\n   - Legal review required\n   - All changes tracked\n\n2. UPDATE ADMINISTRATIVE DATA:\n   ✓ Owner/contact person\n   ✓ Department assignment\n   ✓ Internal reference notes\n   ✓ Notification settings\n   ✗ Cannot change terms\n\nAMENDMENT PROCESS:\n\nWhen to use amendments:\n- Change in scope or deliverables\n- Price adjustments\n- Timeline extensions\n- Additional services\n- Volume changes\n- Payment term modifications\n\nAmendment workflow:\n1. Draft amendment document\n2. Internal approval (same as original)\n3. Supplier negotiation\n4. Legal review\n5. Mutual signature\n6. Effective date\n\nADMIN UPDATES (No Amendment):\n- Owner reassignment\n- Tag/category changes\n- Alert preferences\n- Document uploads\n- Comments/notes\n\n⚠️ IMPORTANT:\nChanging contract terms requires formal amendment.\nChanges become part of permanent contract record.\n\nProceed with:\n1. Create Amendment?\n2. Update Admin Data?`);
       return;
     }
 
@@ -131,7 +131,7 @@ export default function ContractManagement() {
       return;
     }
 
-    alert(`Edit Contract: ${contract.id}\n\n${contract.status === 'draft' || contract.status === 'negotiation' ? '✓ FULL EDITING AVAILABLE' : '⚠️ LIMITED EDITING'}\n\nContract: ${contract.title}\nSupplier: ${contract.supplier}\nStatus: ${contract.status.toUpperCase()}\n\nEDITABLE FIELDS:\n\nBASIC INFORMATION:\n- Contract title ✓\n- Supplier ${contract.status === 'draft' ? '✓' : '✗'}\n- Type ${contract.status === 'draft' ? '✓' : '✗'}\n- Owner/Department ✓\n\nCOMMERCIAL TERMS:\n- Contract value ${contract.status === 'draft' ? '✓' : 'Amendment'}\n- Payment terms ${contract.status === 'draft' ? '✓' : 'Amendment'}\n- Pricing ${contract.status === 'draft' ? '✓' : 'Amendment'}\n\nTIMELINE:\n- Start date ${contract.status === 'draft' ? '✓' : '✗'}\n- End date ${contract.status === 'draft' ? '✓' : 'Amendment'}\n- Renewal options ✓\n- Milestones ✓\n\nSCOPE & SPECIFICATIONS:\n- Deliverables ${contract.status === 'draft' ? '✓' : 'Amendment'}\n- SLAs ${contract.status === 'draft' ? '✓' : 'Amendment'}\n- Quality standards ${contract.status === 'draft' ? '✓' : 'Amendment'}\n\nLEGAL TERMS:\n- Clauses ${contract.status === 'draft' ? '✓' : 'Legal review'}\n- Liability limits ${contract.status === 'draft' ? '✓' : 'Legal review'}\n- Termination terms ${contract.status === 'draft' ? '✓' : 'Legal review'}\n\nDOCUMENTS:\n- Attach documents ✓\n- Update versions ✓\n- Add appendices ✓\n\n${contract.status === 'negotiation' ? '\n⚠️ CONTRACT IN NEGOTIATION:\n- Track all changes\n- Document discussions\n- Version control maintained\n- All parties notified of updates' : ''}\n\nProceed with editing?');
+    alert(`Edit Contract: ${contract.id}\n\n${contract.status === 'draft' || contract.status === 'negotiation' ? '✓ FULL EDITING AVAILABLE' : '⚠️ LIMITED EDITING'}\n\nContract: ${contract.title}\nSupplier: ${contract.supplier}\nStatus: ${contract.status.toUpperCase()}\n\nEDITABLE FIELDS:\n\nBASIC INFORMATION:\n- Contract title ✓\n- Supplier ${contract.status === 'draft' ? '✓' : '✗'}\n- Type ${contract.status === 'draft' ? '✓' : '✗'}\n- Owner/Department ✓\n\nCOMMERCIAL TERMS:\n- Contract value ${contract.status === 'draft' ? '✓' : 'Amendment'}\n- Payment terms ${contract.status === 'draft' ? '✓' : 'Amendment'}\n- Pricing ${contract.status === 'draft' ? '✓' : 'Amendment'}\n\nTIMELINE:\n- Start date ${contract.status === 'draft' ? '✓' : '✗'}\n- End date ${contract.status === 'draft' ? '✓' : 'Amendment'}\n- Renewal options ✓\n- Milestones ✓\n\nSCOPE & SPECIFICATIONS:\n- Deliverables ${contract.status === 'draft' ? '✓' : 'Amendment'}\n- SLAs ${contract.status === 'draft' ? '✓' : 'Amendment'}\n- Quality standards ${contract.status === 'draft' ? '✓' : 'Amendment'}\n\nLEGAL TERMS:\n- Clauses ${contract.status === 'draft' ? '✓' : 'Legal review'}\n- Liability limits ${contract.status === 'draft' ? '✓' : 'Legal review'}\n- Termination terms ${contract.status === 'draft' ? '✓' : 'Legal review'}\n\nDOCUMENTS:\n- Attach documents ✓\n- Update versions ✓\n- Add appendices ✓\n\n${contract.status === 'negotiation' ? '\n⚠️ CONTRACT IN NEGOTIATION:\n- Track all changes\n- Document discussions\n- Version control maintained\n- All parties notified of updates' : ''}\n\nProceed with editing?`);
   };
 
   const handleRenewContract = (contract: Contract) => {
@@ -146,11 +146,11 @@ export default function ContractManagement() {
     console.log('Amending contract:', contract.id);
 
     if (contract.status !== 'active') {
-      alert(`Cannot Amend ${contract.status.toUpperCase()} Contract\n\nAmendments can only be created for ACTIVE contracts.\n\nCurrent status: ${contract.status}\n\nOptions:\n- Wait for contract activation\n- Edit draft contract directly\n- Contact contract owner`);
+      alert(`Cannot Amend ${ contract.status.toUpperCase() } Contract\n\nAmendments can only be created for ACTIVE contracts.\n\nCurrent status: ${ contract.status } \n\nOptions: \n - Wait for contract activation\n - Edit draft contract directly\n - Contact contract owner`);
       return;
     }
 
-    alert(`Create Contract Amendment: ${contract.id}\n\n${contract.title}\nSupplier: ${contract.supplier}\nCurrent Value: $${(contract.value / 1000).toFixed(0)}K\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\nAMENDMENT PURPOSE\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\nCommon Amendment Types:\n\n📊 SCOPE CHANGES:\n□ Additional deliverables/services\n□ Reduced scope\n□ Change in specifications\n□ New locations/sites\n\n💰 FINANCIAL CHANGES:\n□ Price adjustments\n□ Volume discounts\n□ Payment term changes\n□ Currency changes\n\n📅 TIMELINE CHANGES:\n□ Extension of contract period\n□ Accelerated delivery\n□ Milestone date changes\n□ Early termination\n\n📋 ADMINISTRATIVE CHANGES:\n□ Change of key personnel\n□ Updated contact information\n□ Reporting requirements\n□ Document updates\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\nAMENDMENT WORKFLOW\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n1. DRAFT AMENDMENT (Day 1-3):\n   - Document proposed changes\n   - Specify effective date\n   - Update contract value (if applicable)\n   - Attach supporting documents\n\n2. INTERNAL REVIEW (Day 4-7):\n   - Department head approval\n   - Finance review (if value changes)\n   - Legal review (mandatory)\n   - Procurement approval\n\n3. SUPPLIER NEGOTIATION (Day 8-15):\n   - Present amendment to supplier\n   - Negotiate terms if needed\n   - Reach mutual agreement\n   - Document discussions\n\n4. APPROVAL & SIGNATURE (Day 16-21):\n   - Final internal approvals:\n     ${contract.value > 1000000 ? '• CEO approval required' : contract.value > 500000 ? '• CFO approval required' : '• Procurement Director'}\n   - Prepare final amendment document\n   - Execute signatures\n   - Distribute executed copies\n\n5. IMPLEMENTATION (Day 22+):\n   - Update contract management system\n   - Notify all stakeholders\n   - Update PO/invoicing systems\n   - Communicate to operations\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\nAMENDMENT REQUIREMENTS\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n✓ MANDATORY:\n- Business justification\n- Impact analysis (cost, schedule, risk)\n- Supplier agreement letter/email\n- Legal review approval\n- Authorized signatures\n- Amendment number (sequential)\n\n📄 DOCUMENTS NEEDED:\n- Amendment cover sheet\n- Redline comparison (old vs new)\n- Clean amended sections\n- Supporting documentation\n- Approval chain\n\n⚠️ IMPORTANT NOTES:\n- All amendments part of contract\n- Cannot override original terms (unless specified)\n- Cumulative effect tracked\n- Material changes may require re-approval\n- Audit trail maintained\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\nFINANCIAL IMPACT\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\nCurrent Contract Value: $${(contract.value / 1000).toFixed(0)}K\n\nIf increasing scope/value:\n□ Budget availability confirmed?\n□ PO amendment required?\n□ Finance approval obtained?\n□ Value threshold approvals?\n\nProceed with amendment creation?');
+    alert(`Create Contract Amendment: ${ contract.id } \n\n${ contract.title } \nSupplier: ${ contract.supplier } \nCurrent Value: $${ (contract.value / 1000).toFixed(0) } K\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\nAMENDMENT PURPOSE\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\nCommon Amendment Types: \n\n📊 SCOPE CHANGES: \n□ Additional deliverables / services\n□ Reduced scope\n□ Change in specifications\n□ New locations / sites\n\n💰 FINANCIAL CHANGES: \n□ Price adjustments\n□ Volume discounts\n□ Payment term changes\n□ Currency changes\n\n📅 TIMELINE CHANGES: \n□ Extension of contract period\n□ Accelerated delivery\n□ Milestone date changes\n□ Early termination\n\n📋 ADMINISTRATIVE CHANGES: \n□ Change of key personnel\n□ Updated contact information\n□ Reporting requirements\n□ Document updates\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\nAMENDMENT WORKFLOW\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n1.DRAFT AMENDMENT(Day 1 - 3): \n - Document proposed changes\n - Specify effective date\n - Update contract value(if applicable) \n - Attach supporting documents\n\n2.INTERNAL REVIEW(Day 4 - 7): \n - Department head approval\n - Finance review(if value changes) \n - Legal review(mandatory) \n - Procurement approval\n\n3.SUPPLIER NEGOTIATION(Day 8 - 15): \n - Present amendment to supplier\n - Negotiate terms if needed\n - Reach mutual agreement\n - Document discussions\n\n4.APPROVAL & SIGNATURE(Day 16 - 21): \n - Final internal approvals: \n     ${ contract.value > 1000000 ? '• CEO approval required' : contract.value > 500000 ? '• CFO approval required' : '• Procurement Director' } \n - Prepare final amendment document\n - Execute signatures\n - Distribute executed copies\n\n5.IMPLEMENTATION(Day 22 +): \n - Update contract management system\n - Notify all stakeholders\n - Update PO / invoicing systems\n - Communicate to operations\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\nAMENDMENT REQUIREMENTS\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n✓ MANDATORY: \n - Business justification\n - Impact analysis(cost, schedule, risk) \n - Supplier agreement letter / email\n - Legal review approval\n - Authorized signatures\n - Amendment number(sequential) \n\n📄 DOCUMENTS NEEDED: \n - Amendment cover sheet\n - Redline comparison(old vs new) \n - Clean amended sections\n - Supporting documentation\n - Approval chain\n\n⚠️ IMPORTANT NOTES: \n - All amendments part of contract\n - Cannot override original terms(unless specified) \n - Cumulative effect tracked\n - Material changes may require re - approval\n - Audit trail maintained\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\nFINANCIAL IMPACT\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\nCurrent Contract Value: $${ (contract.value / 1000).toFixed(0) } K\n\nIf increasing scope / value: \n□ Budget availability confirmed ?\n□ PO amendment required ?\n□ Finance approval obtained ?\n□ Value threshold approvals ?\n\nProceed with amendment creation ? ');
   };
 
   const handleViewTerms = (contract: Contract) => {
@@ -181,7 +181,8 @@ export default function ContractManagement() {
     const contractDuration = Math.ceil((new Date(contract.endDate).getTime() - new Date(contract.startDate).getTime()) / (1000 * 60 * 60 * 24));
     const percentComplete = Math.min(100, Math.max(0, ((contractDuration - daysRemaining) / contractDuration) * 100));
 
-    alert(`Contract Details\n\n${contract.id}: ${contract.title}\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\nBASIC INFORMATION\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\nSupplier: ${contract.supplier}\nType: ${contract.type.toUpperCase()}\nStatus: ${contract.status.toUpperCase()}\nOwner: ${contract.owner}\nDepartment: ${contract.department}\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\nFINANCIAL\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\nTotal Value: $${(contract.value / 1000).toFixed(0)}K\nAnnual Value: $${(contract.value / (contractDuration / 365) / 1000).toFixed(0)}K\nSpend to Date: ~$${((contract.value * percentComplete / 100) / 1000).toFixed(0)}K (${percentComplete.toFixed(0)}%)\nRemaining: ~$${((contract.value * (100 - percentComplete) / 100) / 1000).toFixed(0)}K\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\nTIMELINE\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\nStart Date: ${contract.startDate}\nEnd Date: ${contract.endDate}\nDuration: ${(contractDuration / 365).toFixed(1)} years\n\nDays Remaining: ${daysRemaining}\nProgress: ${percentComplete.toFixed(0)}% complete\n\n${contract.renewalDate ? `Renewal Date: ${contract.renewalDate}\nDays to Renewal: ${Math.ceil((new Date(contract.renewalDate).getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24))}` : 'No renewal date set'}\n\n${daysRemaining < 90 ? '⚠️ CONTRACT EXPIRING SOON!' : daysRemaining < 0 ? '❌ CONTRACT EXPIRED' : '✓ Active and in good standing'}\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\nCOMPLIANCE & RISK\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\nCompliance Score: ${contract.compliance}%\n${contract.compliance >= 90 ? '✓ Excellent compliance' : contract.compliance >= 80 ? '⚠️ Good, minor issues' : '❌ Requires attention'}\n\nRisk Level: ${contract.risk.toUpperCase()}\n${contract.risk === 'low' ? '✓ Low risk - standard monitoring' : contract.risk === 'medium' ? '⚠️ Medium risk - increased oversight' : '❌ High risk - executive attention'}\n\nInsurance: ${contract.value > 500000 ? 'Verified current' : 'N/A'}\nAudit Status: Last audit ${contract.status === 'active' ? '6 months ago' : 'N/A'}\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\nRENEWAL SETTINGS\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\nAuto-Renewal: ${contract.autoRenew ? 'YES - Will auto-renew unless cancelled' : 'NO - Requires manual renewal'}\n${contract.autoRenew ? 'Cancellation Notice: 90 days\nRenewal Terms: Same as current\nPrice Escalation: CPI-based' : 'Renewal Decision: Required before expiry\nNotification Period: 90 days\nRenegotiation: Likely needed'}\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\nNOTIFICATIONS & ALERTS\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\nActive Alerts: ${contract.notifications}\n${contract.notifications > 0 ? `\nRecent notifications:\n- ${contract.renewalDate && daysRemaining < 90 ? 'Renewal decision needed' : ''}\n- ${contract.compliance < 90 ? 'Compliance review required' : ''}\n- ${daysRemaining < 30 ? 'Contract expiring soon' : ''}` : 'No active notifications'}\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\nQUICK ACTIONS\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n${contract.status === 'active' ? '• Create Amendment\n• Schedule Review\n• Request Performance Report\n• View Terms & Conditions' : contract.status === 'expiring' ? '• Initiate Renewal\n• Request Pricing\n• Evaluate Alternatives\n• Cancel if not renewing' : contract.status === 'negotiation' ? '• Review Draft\n• Track Changes\n• Request Legal Review\n• Schedule Meeting' : '• View Details\n• Edit Contract'}\n\nDOCUMENTS AVAILABLE:\n- Master agreement (PDF)\n- ${contract.status === 'active' ? 'Amendments (2)' : ''}\n- Statement of work\n- Performance reports\n- Insurance certificates\n\nView full contract repository?`);
+    alert(`Contract Details\n\n${ contract.id }: ${ contract.title }\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\nBASIC INFORMATION\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\nSupplier: ${ contract.supplier }\nType: ${ contract.type.toUpperCase() }\nStatus: ${ contract.status.toUpperCase() }\nOwner: ${ contract.owner }\nDepartment: ${ contract.department }\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\nFINANCIAL\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\nTotal Value: $${(contract.value / 1000).toFixed(0)}K\nAnnual Value: $${(contract.value / (contractDuration / 365) / 1000).toFixed(0)
+} K\nSpend to Date: ~$${ ((contract.value * percentComplete / 100) / 1000).toFixed(0) } K(${ percentComplete.toFixed(0) } %) \nRemaining: ~$${ ((contract.value * (100 - percentComplete) / 100) / 1000).toFixed(0) } K\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\nTIMELINE\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\nStart Date: ${ contract.startDate } \nEnd Date: ${ contract.endDate } \nDuration: ${ (contractDuration / 365).toFixed(1) } years\n\nDays Remaining: ${ daysRemaining } \nProgress: ${ percentComplete.toFixed(0) }% complete\n\n${ contract.renewalDate ? `Renewal Date: ${contract.renewalDate}\nDays to Renewal: ${Math.ceil((new Date(contract.renewalDate).getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24))}` : 'No renewal date set' } \n\n${ daysRemaining < 90 ? '⚠️ CONTRACT EXPIRING SOON!' : daysRemaining < 0 ? '❌ CONTRACT EXPIRED' : '✓ Active and in good standing' } \n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\nCOMPLIANCE & RISK\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\nCompliance Score: ${ contract.compliance }%\n${ contract.compliance >= 90 ? '✓ Excellent compliance' : contract.compliance >= 80 ? '⚠️ Good, minor issues' : '❌ Requires attention' } \n\nRisk Level: ${ contract.risk.toUpperCase() } \n${ contract.risk === 'low' ? '✓ Low risk - standard monitoring' : contract.risk === 'medium' ? '⚠️ Medium risk - increased oversight' : '❌ High risk - executive attention' } \n\nInsurance: ${ contract.value > 500000 ? 'Verified current' : 'N/A' } \nAudit Status: Last audit ${ contract.status === 'active' ? '6 months ago' : 'N/A' } \n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\nRENEWAL SETTINGS\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\nAuto - Renewal: ${ contract.autoRenew ? 'YES - Will auto-renew unless cancelled' : 'NO - Requires manual renewal' } \n${ contract.autoRenew ? 'Cancellation Notice: 90 days\nRenewal Terms: Same as current\nPrice Escalation: CPI-based' : 'Renewal Decision: Required before expiry\nNotification Period: 90 days\nRenegotiation: Likely needed' } \n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\nNOTIFICATIONS & ALERTS\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\nActive Alerts: ${ contract.notifications } \n${ contract.notifications > 0 ? `\nRecent notifications:\n- ${contract.renewalDate && daysRemaining < 90 ? 'Renewal decision needed' : ''}\n- ${contract.compliance < 90 ? 'Compliance review required' : ''}\n- ${daysRemaining < 30 ? 'Contract expiring soon' : ''}` : 'No active notifications' } \n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\nQUICK ACTIONS\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n${ contract.status === 'active' ? '• Create Amendment\n• Schedule Review\n• Request Performance Report\n• View Terms & Conditions' : contract.status === 'expiring' ? '• Initiate Renewal\n• Request Pricing\n• Evaluate Alternatives\n• Cancel if not renewing' : contract.status === 'negotiation' ? '• Review Draft\n• Track Changes\n• Request Legal Review\n• Schedule Meeting' : '• View Details\n• Edit Contract' } \n\nDOCUMENTS AVAILABLE: \n - Master agreement(PDF) \n - ${ contract.status === 'active' ? 'Amendments (2)' : '' } \n - Statement of work\n - Performance reports\n - Insurance certificates\n\nView full contract repository ? `);
   };
 
   // Mock data
@@ -613,11 +614,11 @@ export default function ContractManagement() {
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`flex-1 px-4 py-2 rounded-lg font-medium transition ${
-                activeTab === tab
-                  ? 'bg-white text-blue-600 shadow-sm'
-                  : 'text-gray-600 hover:text-gray-900'
-              }`}
+              className={`flex - 1 px - 4 py - 2 rounded - lg font - medium transition ${
+  activeTab === tab
+    ? 'bg-white text-blue-600 shadow-sm'
+    : 'text-gray-600 hover:text-gray-900'
+} `}
             >
               {tab.charAt(0).toUpperCase() + tab.slice(1)}
             </button>
@@ -634,9 +635,9 @@ export default function ContractManagement() {
                   <ComposedChart data={contractValueTrend}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
                     <XAxis dataKey="month" stroke="#6B7280" />
-                    <YAxis stroke="#6B7280" tickFormatter={(value) => `$${(value / 1000000).toFixed(1)}M`} />
+                    <YAxis stroke="#6B7280" tickFormatter={(value) => `$${ (value / 1000000).toFixed(1) } M`} />
                     <Tooltip
-                      formatter={(value: number) => `$${(value / 1000000).toFixed(2)}M`}
+                      formatter={(value: number) => `$${ (value / 1000000).toFixed(2) } M`}
                       contentStyle={{ backgroundColor: '#fff', borderRadius: '8px', border: '1px solid #E5E7EB' }}
                     />
                     <Legend />
@@ -658,13 +659,13 @@ export default function ContractManagement() {
                         cx="50%"
                         cy="50%"
                         labelLine={false}
-                        label={({ type, percent }) => `${type}: ${(percent * 100).toFixed(0)}%`}
+                        label={({ type, percent }) => `${ type }: ${ (percent * 100).toFixed(0) }% `}
                         outerRadius={100}
                         fill="#8884d8"
                         dataKey="count"
                       >
                         {contractsByType.map((entry, index) => (
-                          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                          <Cell key={`cell - ${ index } `} fill={COLORS[index % COLORS.length]} />
                         ))}
                       </Pie>
                       <Tooltip />
@@ -678,7 +679,7 @@ export default function ContractManagement() {
                     <RadialBarChart cx="50%" cy="50%" innerRadius="10%" outerRadius="100%" data={contractLifecycle}>
                       <RadialBar label={{ position: 'insideStart', fill: '#fff' }} background dataKey="contracts">
                         {contractLifecycle.map((entry, index) => (
-                          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                          <Cell key={`cell - ${ index } `} fill={COLORS[index % COLORS.length]} />
                         ))}
                       </RadialBar>
                       <Legend iconSize={10} layout="horizontal" verticalAlign="bottom" align="center" />
@@ -697,11 +698,11 @@ export default function ContractManagement() {
                   {milestones.filter(m => m.status === 'pending').map((milestone) => (
                     <div key={milestone.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition">
                       <div className="flex items-center gap-4">
-                        <div className={`p-2 rounded-lg ${
-                          milestone.status === 'completed' ? 'bg-green-100 text-green-600' :
-                          milestone.status === 'overdue' ? 'bg-red-100 text-red-600' :
-                          'bg-yellow-100 text-yellow-600'
-                        }`}>
+                        <div className={`p - 2 rounded - lg ${
+  milestone.status === 'completed' ? 'bg-green-100 text-green-600' :
+    milestone.status === 'overdue' ? 'bg-red-100 text-red-600' :
+      'bg-yellow-100 text-yellow-600'
+} `}>
                           <CheckSquare className="w-5 h-5" />
                         </div>
                         <div>
@@ -795,13 +796,13 @@ export default function ContractManagement() {
                           </div>
                         </td>
                         <td className="px-4 py-3">
-                          <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium ${
-                            contract.status === 'active' ? 'bg-green-100 text-green-700' :
-                            contract.status === 'expiring' ? 'bg-amber-100 text-amber-700' :
-                            contract.status === 'negotiation' ? 'bg-blue-100 text-blue-700' :
-                            contract.status === 'expired' ? 'bg-red-100 text-red-700' :
-                            'bg-gray-100 text-gray-700'
-                          }`}>
+                          <span className={`inline - flex items - center gap - 1 px - 2 py - 1 rounded - full text - xs font - medium ${
+  contract.status === 'active' ? 'bg-green-100 text-green-700' :
+    contract.status === 'expiring' ? 'bg-amber-100 text-amber-700' :
+      contract.status === 'negotiation' ? 'bg-blue-100 text-blue-700' :
+        contract.status === 'expired' ? 'bg-red-100 text-red-700' :
+          'bg-gray-100 text-gray-700'
+} `}>
                             {contract.status === 'active' && <CheckCircle className="w-3 h-3" />}
                             {contract.status === 'expiring' && <Clock className="w-3 h-3" />}
                             {contract.status === 'negotiation' && <RefreshCw className="w-3 h-3" />}
@@ -813,23 +814,23 @@ export default function ContractManagement() {
                           <div className="flex items-center gap-2">
                             <div className="flex-1 bg-gray-200 rounded-full h-2">
                               <div
-                                className={`h-2 rounded-full ${
-                                  contract.compliance >= 90 ? 'bg-green-500' :
-                                  contract.compliance >= 70 ? 'bg-yellow-500' :
-                                  'bg-red-500'
-                                }`}
-                                style={{ width: `${contract.compliance}%` }}
+                                className={`h - 2 rounded - full ${
+  contract.compliance >= 90 ? 'bg-green-500' :
+    contract.compliance >= 70 ? 'bg-yellow-500' :
+      'bg-red-500'
+} `}
+                                style={{ width: `${ contract.compliance }% ` }}
                               />
                             </div>
                             <span className="text-sm font-medium">{contract.compliance}%</span>
                           </div>
                         </td>
                         <td className="px-4 py-3">
-                          <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium ${
-                            contract.risk === 'low' ? 'bg-green-100 text-green-700' :
-                            contract.risk === 'medium' ? 'bg-yellow-100 text-yellow-700' :
-                            'bg-red-100 text-red-700'
-                          }`}>
+                          <span className={`inline - flex items - center gap - 1 px - 2 py - 1 rounded - full text - xs font - medium ${
+  contract.risk === 'low' ? 'bg-green-100 text-green-700' :
+    contract.risk === 'medium' ? 'bg-yellow-100 text-yellow-700' :
+      'bg-red-100 text-red-700'
+} `}>
                             <Shield className="w-3 h-3" />
                             {contract.risk}
                           </span>
@@ -889,7 +890,7 @@ export default function ContractManagement() {
 
                             <button
                               className="p-2 hover:bg-gray-100 rounded relative transition-colors"
-                              title={`${contract.notifications} notification${contract.notifications !== 1 ? 's' : ''}`}
+                              title={`${ contract.notifications } notification${ contract.notifications !== 1 ? 's' : '' } `}
                             >
                               <Bell className="w-4 h-4 text-gray-600" />
                               {contract.notifications > 0 && (
@@ -929,11 +930,11 @@ export default function ContractManagement() {
                   <div className="flex justify-between relative">
                     {['Request', 'Draft', 'Review', 'Negotiate', 'Approve', 'Execute', 'Manage', 'Renew/Close'].map((step, index) => (
                       <div key={step} className="flex flex-col items-center">
-                        <div className={`w-16 h-16 rounded-full flex items-center justify-center z-10 ${
-                          index <= 5 ? 'bg-green-500 text-white' :
-                          index === 6 ? 'bg-yellow-500 text-white animate-pulse' :
-                          'bg-gray-300 text-gray-600'
-                        }`}>
+                        <div className={`w - 16 h - 16 rounded - full flex items - center justify - center z - 10 ${
+  index <= 5 ? 'bg-green-500 text-white' :
+    index === 6 ? 'bg-yellow-500 text-white animate-pulse' :
+      'bg-gray-300 text-gray-600'
+} `}>
                           {index <= 5 ? (
                             <CheckCircle className="w-8 h-8" />
                           ) : index === 6 ? (
@@ -1038,11 +1039,11 @@ export default function ContractManagement() {
               {/* Compliance Dashboard */}
               <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
                 {complianceMetrics.map((metric) => (
-                  <div key={metric.metric} className={`p-4 rounded-lg border ${
-                    metric.status === 'good' ? 'bg-green-50 border-green-200' :
-                    metric.status === 'warning' ? 'bg-yellow-50 border-yellow-200' :
-                    'bg-red-50 border-red-200'
-                  }`}>
+                  <div key={metric.metric} className={`p - 4 rounded - lg border ${
+  metric.status === 'good' ? 'bg-green-50 border-green-200' :
+    metric.status === 'warning' ? 'bg-yellow-50 border-yellow-200' :
+      'bg-red-50 border-red-200'
+} `}>
                     <div className="text-sm font-medium text-gray-700 mb-2">{metric.metric}</div>
                     <div className="flex items-end gap-2">
                       <div className="text-2xl font-bold text-gray-900">{metric.value}%</div>
@@ -1050,12 +1051,12 @@ export default function ContractManagement() {
                     </div>
                     <div className="mt-2 bg-gray-200 rounded-full h-2">
                       <div
-                        className={`h-2 rounded-full ${
-                          metric.status === 'good' ? 'bg-green-500' :
-                          metric.status === 'warning' ? 'bg-yellow-500' :
-                          'bg-red-500'
-                        }`}
-                        style={{ width: `${(metric.value / metric.target) * 100}%` }}
+                        className={`h - 2 rounded - full ${
+  metric.status === 'good' ? 'bg-green-500' :
+    metric.status === 'warning' ? 'bg-yellow-500' :
+      'bg-red-500'
+} `}
+                        style={{ width: `${ (metric.value / metric.target) * 100 }% ` }}
                       />
                     </div>
                   </div>
@@ -1076,12 +1077,12 @@ export default function ContractManagement() {
                   ].map((issue, index) => (
                     <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                       <div className="flex items-center gap-3">
-                        <div className={`p-2 rounded-lg ${
-                          issue.severity === 'critical' ? 'bg-red-100 text-red-600' :
-                          issue.severity === 'high' ? 'bg-orange-100 text-orange-600' :
-                          issue.severity === 'medium' ? 'bg-yellow-100 text-yellow-600' :
-                          'bg-gray-100 text-gray-600'
-                        }`}>
+                        <div className={`p - 2 rounded - lg ${
+  issue.severity === 'critical' ? 'bg-red-100 text-red-600' :
+    issue.severity === 'high' ? 'bg-orange-100 text-orange-600' :
+      issue.severity === 'medium' ? 'bg-yellow-100 text-yellow-600' :
+        'bg-gray-100 text-gray-600'
+} `}>
                           <AlertTriangle className="w-5 h-5" />
                         </div>
                         <div>
@@ -1160,11 +1161,11 @@ export default function ContractManagement() {
                             </div>
                           </div>
                           <div className="text-right">
-                            <div className={`text-2xl font-bold ${
-                              daysUntilRenewal <= 30 ? 'text-red-600' :
-                              daysUntilRenewal <= 60 ? 'text-yellow-600' :
-                              'text-green-600'
-                            }`}>
+                            <div className={`text - 2xl font - bold ${
+  daysUntilRenewal <= 30 ? 'text-red-600' :
+    daysUntilRenewal <= 60 ? 'text-yellow-600' :
+      'text-green-600'
+} `}>
                               {daysUntilRenewal}
                             </div>
                             <div className="text-sm text-gray-500">days left</div>
@@ -1199,7 +1200,7 @@ export default function ContractManagement() {
                           className="rounded border-gray-300"
                           readOnly
                         />
-                        <span className={`text-sm ${task.completed ? 'text-gray-500 line-through' : 'text-gray-900'}`}>
+                        <span className={`text - sm ${ task.completed ? 'text-gray-500 line-through' : 'text-gray-900' } `}>
                           {task.task}
                         </span>
                       </label>
@@ -1262,8 +1263,8 @@ export default function ContractManagement() {
                     ]}>
                       <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
                       <XAxis dataKey="dept" stroke="#6B7280" />
-                      <YAxis stroke="#6B7280" tickFormatter={(value) => `$${(value / 1000000).toFixed(1)}M`} />
-                      <Tooltip formatter={(value: number) => `$${(value / 1000000).toFixed(2)}M`} />
+                      <YAxis stroke="#6B7280" tickFormatter={(value) => `$${ (value / 1000000).toFixed(1) } M`} />
+                      <Tooltip formatter={(value: number) => `$${ (value / 1000000).toFixed(2) } M`} />
                       <Bar dataKey="value" fill="#3B82F6" />
                     </BarChart>
                   </ResponsiveContainer>

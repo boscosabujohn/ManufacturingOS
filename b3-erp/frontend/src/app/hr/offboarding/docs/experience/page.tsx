@@ -28,59 +28,64 @@ export default function ExperienceCertificatePage() {
 
   const mockCertificates: ExperienceCertificate[] = [
     {
-      id: 'EXP-CERT-001',
-      employeeId: 'EMP001',
-      employeeName: 'Rahul Sharma',
-      designation: 'Senior Software Engineer',
-      department: 'Engineering',
-      joiningDate: '2020-01-15',
-      lastWorkingDay: '2025-12-14',
-      yearsOfService: 5,
-      monthsOfService: 10,
-      roles: ['Software Engineer', 'Senior Software Engineer'],
-      projects: ['ERP System', 'Manufacturing Portal', 'Inventory Management'],
-      status: 'generated',
-      generatedBy: 'Priya Singh - HR Manager',
-      generatedOn: '2025-12-12',
-      certificateNumber: 'EXP/2025/001'
+      id: 'EXP-CERT-001', employeeId: 'EMP001', employeeName: 'Rahul Sharma', designation: 'Senior Software Engineer', department: 'Engineering',
+      joiningDate: '2020-01-15', lastWorkingDay: '2025-12-14', yearsOfService: 5, monthsOfService: 10,
+      roles: ['Software Engineer', 'Senior Software Engineer'], projects: ['ERP System', 'Manufacturing Portal', 'Inventory Management'],
+      status: 'generated', generatedBy: 'Priya Singh - HR Manager', generatedOn: '2025-12-12', certificateNumber: 'EXP/2025/001'
     },
     {
-      id: 'EXP-CERT-002',
-      employeeId: 'EMP002',
-      employeeName: 'Priya Singh',
-      designation: 'Marketing Manager',
-      department: 'Marketing',
-      joiningDate: '2016-06-10',
-      lastWorkingDay: '2025-11-30',
-      yearsOfService: 9,
-      monthsOfService: 5,
-      roles: ['Marketing Executive', 'Senior Marketing Executive', 'Marketing Manager'],
-      projects: ['Brand Campaign 2020', 'Product Launch Q2', 'Digital Marketing Initiative'],
-      status: 'issued',
-      generatedBy: 'Amit Kumar - HR Head',
-      generatedOn: '2025-11-28',
-      approvedBy: 'Rajesh Patel - CEO',
-      issuedOn: '2025-12-01',
-      certificateNumber: 'EXP/2025/002'
+      id: 'EXP-CERT-002', employeeId: 'EMP002', employeeName: 'Priya Singh', designation: 'Marketing Manager', department: 'Marketing',
+      joiningDate: '2016-06-10', lastWorkingDay: '2025-11-30', yearsOfService: 9, monthsOfService: 5,
+      roles: ['Marketing Executive', 'Senior Marketing Executive', 'Marketing Manager'], projects: ['Brand Campaign 2020', 'Product Launch Q2', 'Digital Marketing Initiative'],
+      status: 'issued', generatedBy: 'Amit Kumar - HR Head', generatedOn: '2025-11-28', approvedBy: 'Rajesh Patel - CEO', issuedOn: '2025-12-01', certificateNumber: 'EXP/2025/002'
     },
     {
-      id: 'EXP-CERT-003',
-      employeeId: 'EMP003',
-      employeeName: 'Amit Kumar',
-      designation: 'Product Manager',
-      department: 'Product',
-      joiningDate: '2010-03-20',
-      lastWorkingDay: '2025-10-31',
-      yearsOfService: 15,
-      monthsOfService: 7,
-      roles: ['Associate Product Manager', 'Product Manager', 'Senior Product Manager'],
-      projects: ['Product Roadmap 2015-2020', 'Feature Development Q1', 'UX Improvement Initiative'],
-      status: 'issued',
-      generatedBy: 'Priya Singh - HR Manager',
-      generatedOn: '2025-10-28',
-      approvedBy: 'Rajesh Patel - CEO',
-      issuedOn: '2025-11-05',
-      certificateNumber: 'EXP/2025/003'
+      id: 'EXP-CERT-003', employeeId: 'EMP003', employeeName: 'Amit Kumar', designation: 'Product Manager', department: 'Product',
+      joiningDate: '2010-03-20', lastWorkingDay: '2025-10-31', yearsOfService: 15, monthsOfService: 7,
+      roles: ['Associate Product Manager', 'Product Manager', 'Senior Product Manager'], projects: ['Product Roadmap 2015-2020', 'Feature Development Q1', 'UX Improvement Initiative'],
+      status: 'issued', generatedBy: 'Priya Singh - HR Manager', generatedOn: '2025-10-28', approvedBy: 'Rajesh Patel - CEO', issuedOn: '2025-11-05', certificateNumber: 'EXP/2025/003'
+    },
+    {
+      id: 'EXP-CERT-004', employeeId: 'EMP004', employeeName: 'Neha Gupta', designation: 'Junior Developer', department: 'Engineering',
+      joiningDate: '2022-05-15', lastWorkingDay: '2025-12-31', yearsOfService: 3, monthsOfService: 7,
+      roles: ['Trainee', 'Junior Developer'], projects: ['Internal Tools', 'Bug Fix Sprint'],
+      status: 'pending'
+    },
+    {
+      id: 'EXP-CERT-005', employeeId: 'EMP005', employeeName: 'Vikram Malhotra', designation: 'VP of Sales', department: 'Sales',
+      joiningDate: '2015-01-01', lastWorkingDay: '2025-09-30', yearsOfService: 10, monthsOfService: 9,
+      roles: ['Sales Manager', 'Regional Sales Head', 'VP of Sales'], projects: ['Global Expansion 2018', 'Sales Force Automation'],
+      status: 'approved', generatedBy: 'Anjali Desai - HR Exec', generatedOn: '2025-09-25', approvedBy: 'Rajesh Patel - CEO'
+    },
+    {
+      id: 'EXP-CERT-006', employeeId: 'EMP006', employeeName: 'Anjali Desai', designation: 'HR Executive', department: 'Human Resources',
+      joiningDate: '2021-02-10', lastWorkingDay: '2025-10-15', yearsOfService: 4, monthsOfService: 8,
+      roles: ['HR Intern', 'HR Executive'], projects: ['Onboarding Process Revamp', 'Employee Engagement Survey'],
+      status: 'generated', generatedBy: 'Priya Singh - HR Manager', generatedOn: '2025-10-14'
+    },
+    {
+      id: 'EXP-CERT-007', employeeId: 'EMP007', employeeName: 'Rohan Mehra', designation: 'Content Strategist', department: 'Marketing',
+      joiningDate: '2018-06-01', lastWorkingDay: '2025-11-15', yearsOfService: 7, monthsOfService: 5,
+      roles: ['Content Writer', 'Senior Content Writer', 'Content Strategist'], projects: ['Blog Revamp', 'SEO Optimization 2023'],
+      status: 'pending'
+    },
+    {
+      id: 'EXP-CERT-008', employeeId: 'EMP008', employeeName: 'Suresh Raina', designation: 'Operations Manager', department: 'Operations',
+      joiningDate: '2005-04-01', lastWorkingDay: '2025-08-31', yearsOfService: 20, monthsOfService: 5,
+      roles: ['Operations Executive', 'Team Lead', 'Operations Manager'], projects: ['Factory Setup Phase 1', 'Supply Chain Optimization'],
+      status: 'issued', generatedBy: 'Amit Kumar', generatedOn: '2025-08-28', approvedBy: 'Rajesh Patel', issuedOn: '2025-09-01', certificateNumber: 'EXP/2025/008'
+    },
+    {
+      id: 'EXP-CERT-009', employeeId: 'EMP009', employeeName: 'Kavita Krishnan', designation: 'Lead Designer', department: 'Design',
+      joiningDate: '2019-11-11', lastWorkingDay: '2025-12-05', yearsOfService: 6, monthsOfService: 0,
+      roles: ['Graphic Designer', 'UI Designer', 'Lead Designer'], projects: ['Rebranding 2021', 'Mobile App Design System'],
+      status: 'approved', generatedBy: 'Priya Singh', generatedOn: '2025-12-02', approvedBy: 'Rajesh Patel'
+    },
+    {
+      id: 'EXP-CERT-010', employeeId: 'EMP010', employeeName: 'Deepak Verma', designation: 'System Admin', department: 'IT',
+      joiningDate: '2023-01-15', lastWorkingDay: '2025-11-20', yearsOfService: 2, monthsOfService: 10,
+      roles: ['IT Support', 'System Admin'], projects: ['Network Infrastructure Upgrade'],
+      status: 'pending'
     }
   ];
 
@@ -168,41 +173,37 @@ export default function ExperienceCertificatePage() {
       <div className="mb-4 flex gap-2">
         <button
           onClick={() => setSelectedTab('pending')}
-          className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${
-            selectedTab === 'pending'
+          className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${selectedTab === 'pending'
               ? 'bg-yellow-600 text-white'
               : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-          }`}
+            }`}
         >
           Pending ({stats.pending})
         </button>
         <button
           onClick={() => setSelectedTab('generated')}
-          className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${
-            selectedTab === 'generated'
+          className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${selectedTab === 'generated'
               ? 'bg-blue-600 text-white'
               : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-          }`}
+            }`}
         >
           Generated ({stats.generated})
         </button>
         <button
           onClick={() => setSelectedTab('approved')}
-          className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${
-            selectedTab === 'approved'
+          className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${selectedTab === 'approved'
               ? 'bg-green-600 text-white'
               : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-          }`}
+            }`}
         >
           Approved ({stats.approved})
         </button>
         <button
           onClick={() => setSelectedTab('issued')}
-          className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${
-            selectedTab === 'issued'
+          className={`px-4 py-2 rounded-lg font-medium text-sm transition-colors ${selectedTab === 'issued'
               ? 'bg-gray-600 text-white'
               : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-          }`}
+            }`}
         >
           Issued ({stats.issued})
         </button>
