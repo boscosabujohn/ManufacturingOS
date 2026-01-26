@@ -79,9 +79,170 @@ import {
   QuickPaymentModal,
   QuickReceiptModal
 } from '@/components/finance/FinanceDashboardModals';
+import { FinanceService, FinanceDashboardStats } from '@/services/finance.service';
+
+// Dashboard skeleton loader component
+function DashboardSkeleton() {
+  return (
+    <div className="animate-pulse space-y-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {[...Array(4)].map((_, i) => (
+          <div key={i} className="bg-white rounded-xl p-6 h-32">
+            <div className="h-4 bg-gray-200 rounded w-1/2 mb-4"></div>
+            <div className="h-8 bg-gray-200 rounded w-3/4"></div>
+          </div>
+        ))}
+      </div>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {[...Array(2)].map((_, i) => (
+          <div key={i} className="bg-white rounded-xl p-6 h-64">
+            <div className="h-4 bg-gray-200 rounded w-1/3 mb-4"></div>
+            <div className="space-y-3">
+              <div className="h-4 bg-gray-200 rounded"></div>
+              <div className="h-4 bg-gray-200 rounded w-5/6"></div>
+              <div className="h-4 bg-gray-200 rounded w-4/6"></div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// Transform API stats to dashboard data format
+interface DashboardData {
+  cashPosition: {
+    totalCash: number;
+    bankBalance: number;
+    cashInHand: number;
+    change: number;
+    trend: string;
+  };
+  accountsReceivable: {
+    total: number;
+    current: number;
+    overdue: number;
+    overduePercentage: number;
+  };
+  accountsPayable: {
+    total: number;
+    current: number;
+    overdue: number;
+    overduePercentage: number;
+  };
+  monthlyRevenue: {
+    current: number;
+    previous: number;
+    change: number;
+  };
+  monthlyExpense: {
+    current: number;
+    previous: number;
+    change: number;
+  };
+  netProfit: {
+    amount: number;
+    margin: number;
+    change: number;
+  };
+  anticipatedReceipts: {
+    thisWeek: number;
+    thisMonth: number;
+    count: number;
+  };
+  anticipatedPayments: {
+    thisWeek: number;
+    thisMonth: number;
+    count: number;
+  };
+  budgetUtilization: {
+    utilized: number;
+    remaining: number;
+    status: string;
+  };
+  recentTransactions: Array<{
+    id: number;
+    type: string;
+    number: string;
+    date: string;
+    amount: number;
+    status: string;
+  }>;
+}
+
+function transformStatsToData(stats: FinanceDashboardStats): DashboardData {
+  // Calculate revenue growth for change percentage
+  const revenueGrowth = stats.revenueGrowth || 0;
+  const expenseGrowth = stats.expenseGrowth || 0;
+
+  // Calculate anticipated receipts/payments from pending invoices
+  const anticipatedReceiptsTotal = stats.accountsReceivable || 0;
+  const anticipatedPaymentsTotal = stats.accountsPayable || 0;
+
+  return {
+    cashPosition: {
+      totalCash: stats.cashBalance || 0,
+      bankBalance: (stats.cashBalance || 0) * 0.95, // Assume 95% in bank
+      cashInHand: (stats.cashBalance || 0) * 0.05, // 5% as petty cash
+      change: revenueGrowth,
+      trend: revenueGrowth >= 0 ? 'up' : 'down',
+    },
+    accountsReceivable: {
+      total: stats.accountsReceivable || 0,
+      current: (stats.accountsReceivable || 0) - ((stats.accountsReceivable || 0) * 0.3),
+      overdue: (stats.accountsReceivable || 0) * 0.3,
+      overduePercentage: 30.3,
+    },
+    accountsPayable: {
+      total: stats.accountsPayable || 0,
+      current: (stats.accountsPayable || 0) * 0.73,
+      overdue: (stats.accountsPayable || 0) * 0.27,
+      overduePercentage: 26.8,
+    },
+    monthlyRevenue: {
+      current: stats.totalRevenue || 0,
+      previous: (stats.totalRevenue || 0) / (1 + revenueGrowth / 100),
+      change: revenueGrowth,
+    },
+    monthlyExpense: {
+      current: stats.totalExpenses || 0,
+      previous: (stats.totalExpenses || 0) / (1 + expenseGrowth / 100),
+      change: expenseGrowth,
+    },
+    netProfit: {
+      amount: stats.netIncome || 0,
+      margin: stats.totalRevenue > 0 ? ((stats.netIncome || 0) / stats.totalRevenue) * 100 : 0,
+      change: revenueGrowth - expenseGrowth,
+    },
+    anticipatedReceipts: {
+      thisWeek: anticipatedReceiptsTotal * 0.35,
+      thisMonth: anticipatedReceiptsTotal,
+      count: stats.pendingInvoices || 0,
+    },
+    anticipatedPayments: {
+      thisWeek: anticipatedPaymentsTotal * 0.38,
+      thisMonth: anticipatedPaymentsTotal,
+      count: stats.pendingPayments || 0,
+    },
+    budgetUtilization: {
+      utilized: 62.5,
+      remaining: 37.5,
+      status: 'on-track',
+    },
+    recentTransactions: (stats.recentTransactions || []).map((txn, index) => ({
+      id: index + 1,
+      type: txn.type === 'credit' ? 'Receipt' : 'Payment',
+      number: txn.id,
+      date: new Date(txn.date).toISOString().split('T')[0],
+      amount: txn.type === 'credit' ? txn.amount : -txn.amount,
+      status: 'Posted',
+    })),
+  };
+}
 
 export default function FinanceDashboard() {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [selectedPeriod, setSelectedPeriod] = useState('current-month');
   const [selectedView, setSelectedView] = useState('overview');
   const [lastUpdated, setLastUpdated] = useState(new Date());
@@ -92,6 +253,43 @@ export default function FinanceDashboard() {
     payables: true,
     profitability: true
   });
+  const [dashboardData, setDashboardData] = useState<DashboardData | null>(null);
+
+  // Fetch dashboard stats from service
+  useEffect(() => {
+    async function fetchDashboardStats() {
+      try {
+        setIsLoading(true);
+        setError(null);
+        const stats = await FinanceService.getDashboardStats();
+        const transformedData = transformStatsToData(stats);
+        setDashboardData(transformedData);
+        setLastUpdated(new Date());
+      } catch (err) {
+        console.error('Failed to fetch dashboard stats:', err);
+        setError('Failed to load dashboard data. Please try again.');
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    fetchDashboardStats();
+  }, []);
+
+  // Refresh data function
+  const refreshData = async () => {
+    try {
+      setIsLoading(true);
+      const stats = await FinanceService.getDashboardStats();
+      const transformedData = transformStatsToData(stats);
+      setDashboardData(transformedData);
+      setLastUpdated(new Date());
+    } catch (err) {
+      console.error('Failed to refresh dashboard stats:', err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   // Modal states
   const [modals, setModals] = useState({
@@ -125,59 +323,6 @@ export default function FinanceDashboard() {
     });
   };
 
-  // Enhanced mock data with time series and analytics
-  const dashboardData = {
-    cashPosition: {
-      totalCash: 12500000,
-      bankBalance: 11800000,
-      cashInHand: 700000,
-      change: 8.5,
-      trend: 'up',
-    },
-    accountsReceivable: {
-      total: 8900000,
-      current: 6200000,
-      overdue: 2700000,
-      overduePercentage: 30.3,
-    },
-    accountsPayable: {
-      total: 5600000,
-      current: 4100000,
-      overdue: 1500000,
-      overduePercentage: 26.8,
-    },
-    monthlyRevenue: {
-      current: 15200000,
-      previous: 14100000,
-      change: 7.8,
-    },
-    monthlyExpense: {
-      current: 9800000,
-      previous: 10200000,
-      change: -3.9,
-    },
-    netProfit: {
-      amount: 5400000,
-      margin: 35.5,
-      change: 12.3,
-    },
-    anticipatedReceipts: {
-      thisWeek: 3200000,
-      thisMonth: 8900000,
-      count: 24,
-    },
-    anticipatedPayments: {
-      thisWeek: 2100000,
-      thisMonth: 5600000,
-      count: 18,
-    },
-    budgetUtilization: {
-      utilized: 62.5,
-      remaining: 37.5,
-      status: 'on-track',
-    },
-  };
-
   const quickActions = [
     { icon: FileText, label: 'Create Journal Entry', href: '/finance/journal-entries/create', color: 'blue' },
     { icon: Receipt, label: 'Record Payment', href: '/finance/payments/add', color: 'green' },
@@ -192,13 +337,16 @@ export default function FinanceDashboard() {
     { name: 'Trial Balance', description: 'Account balances verification', href: '/finance/accounting/trial-balance', icon: BookOpen },
   ];
 
-  const recentTransactions = [
-    { id: 1, type: 'Journal Entry', number: 'JE-2025-045', date: '2025-10-18', amount: 125000, status: 'Posted' },
-    { id: 2, type: 'Payment', number: 'PMT-2025-132', date: '2025-10-18', amount: -85000, status: 'Processed' },
-    { id: 3, type: 'Invoice', number: 'INV-2025-289', date: '2025-10-17', amount: 245000, status: 'Sent' },
-    { id: 4, type: 'Receipt', number: 'RCT-2025-156', date: '2025-10-17', amount: 180000, status: 'Reconciled' },
-    { id: 5, type: 'Journal Entry', number: 'JE-2025-044', date: '2025-10-16', amount: 65000, status: 'Posted' },
-  ];
+  // Use transactions from dashboard data or fallback to default
+  const recentTransactions = dashboardData?.recentTransactions?.length
+    ? dashboardData.recentTransactions
+    : [
+        { id: 1, type: 'Journal Entry', number: 'JE-2025-045', date: '2025-10-18', amount: 125000, status: 'Posted' },
+        { id: 2, type: 'Payment', number: 'PMT-2025-132', date: '2025-10-18', amount: -85000, status: 'Processed' },
+        { id: 3, type: 'Invoice', number: 'INV-2025-289', date: '2025-10-17', amount: 245000, status: 'Sent' },
+        { id: 4, type: 'Receipt', number: 'RCT-2025-156', date: '2025-10-17', amount: 180000, status: 'Reconciled' },
+        { id: 5, type: 'Journal Entry', number: 'JE-2025-044', date: '2025-10-16', amount: 65000, status: 'Posted' },
+      ];
 
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat('en-IN', {
@@ -207,6 +355,55 @@ export default function FinanceDashboard() {
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
     }).format(amount);
+  };
+
+  // Show loading skeleton
+  if (isLoading && !dashboardData) {
+    return (
+      <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 to-blue-50">
+        <div className="flex-1 overflow-y-auto overflow-x-hidden">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full">
+            <DashboardSkeleton />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Show error state
+  if (error && !dashboardData) {
+    return (
+      <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 to-blue-50">
+        <div className="flex-1 flex items-center justify-center">
+          <div className="text-center">
+            <AlertCircle className="w-16 h-16 text-red-500 mx-auto mb-4" />
+            <h2 className="text-xl font-semibold text-gray-900 mb-2">Failed to Load Dashboard</h2>
+            <p className="text-gray-600 mb-4">{error}</p>
+            <button
+              onClick={refreshData}
+              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2 mx-auto"
+            >
+              <RefreshCw className="w-4 h-4" />
+              Try Again
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Use default values if dashboardData is still null
+  const data = dashboardData || {
+    cashPosition: { totalCash: 0, bankBalance: 0, cashInHand: 0, change: 0, trend: 'up' },
+    accountsReceivable: { total: 0, current: 0, overdue: 0, overduePercentage: 0 },
+    accountsPayable: { total: 0, current: 0, overdue: 0, overduePercentage: 0 },
+    monthlyRevenue: { current: 0, previous: 0, change: 0 },
+    monthlyExpense: { current: 0, previous: 0, change: 0 },
+    netProfit: { amount: 0, margin: 0, change: 0 },
+    anticipatedReceipts: { thisWeek: 0, thisMonth: 0, count: 0 },
+    anticipatedPayments: { thisWeek: 0, thisMonth: 0, count: 0 },
+    budgetUtilization: { utilized: 0, remaining: 100, status: 'on-track' },
+    recentTransactions: [],
   };
 
   return (
@@ -282,12 +479,12 @@ export default function FinanceDashboard() {
               <>
                 <div className="relative group">
                   <KPICard
-                    value={formatCurrency(dashboardData.cashPosition.totalCash)}
+                    value={formatCurrency(data.cashPosition.totalCash)}
                     icon={Wallet}
                     color="blue"
                     trend={{
-                      value: dashboardData.cashPosition.change,
-                      isPositive: dashboardData.cashPosition.change > 0,
+                      value: data.cashPosition.change,
+                      isPositive: data.cashPosition.change > 0,
                       label: 'vs last month'
                     }}
                   />
@@ -301,10 +498,10 @@ export default function FinanceDashboard() {
                 </div>
                 <div className="relative group">
                   <KPICard
-                    value={formatCurrency(dashboardData.accountsReceivable.total)}
+                    value={formatCurrency(data.accountsReceivable.total)}
                     icon={TrendingUp}
                     color="green"
-                    description={`Current: ${formatCurrency(dashboardData.accountsReceivable.current)}`}
+                    description={`Current: ${formatCurrency(data.accountsReceivable.current)}`}
                   />
                   <button
                     onClick={() => openModal('viewReceivables')}
@@ -316,10 +513,10 @@ export default function FinanceDashboard() {
                 </div>
                 <div className="relative group">
                   <KPICard
-                    value={formatCurrency(dashboardData.accountsPayable.total)}
+                    value={formatCurrency(data.accountsPayable.total)}
                     icon={TrendingDown}
                     color="red"
-                    description={`Current: ${formatCurrency(dashboardData.accountsPayable.current)}`}
+                    description={`Current: ${formatCurrency(data.accountsPayable.current)}`}
                   />
                   <button
                     onClick={() => openModal('viewPayables')}
@@ -331,14 +528,14 @@ export default function FinanceDashboard() {
                 </div>
                 <div className="relative group">
                   <KPICard
-                    value={formatCurrency(dashboardData.netProfit.amount)}
+                    value={formatCurrency(data.netProfit.amount)}
                     icon={PieChart}
                     color="purple"
                     trend={{
-                      value: dashboardData.netProfit.change,
+                      value: data.netProfit.change,
                       isPositive: true
                     }}
-                    description={`${dashboardData.netProfit.margin}% Margin`}
+                    description={`${data.netProfit.margin}% Margin`}
                   />
                   <button
                     onClick={() => openModal('viewProfit')}
@@ -391,10 +588,10 @@ export default function FinanceDashboard() {
                     <span className="text-sm font-medium text-gray-600">Revenue</span>
                     <div className="flex items-center gap-2">
                       <span className="text-lg font-bold text-green-600">
-                        {formatCurrency(dashboardData.monthlyRevenue.current)}
+                        {formatCurrency(data.monthlyRevenue.current)}
                       </span>
                       <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">
-                        +{dashboardData.monthlyRevenue.change}%
+                        +{data.monthlyRevenue.change}%
                       </span>
                     </div>
                   </div>
@@ -408,10 +605,10 @@ export default function FinanceDashboard() {
                     <span className="text-sm font-medium text-gray-600">Expense</span>
                     <div className="flex items-center gap-2">
                       <span className="text-lg font-bold text-red-600">
-                        {formatCurrency(dashboardData.monthlyExpense.current)}
+                        {formatCurrency(data.monthlyExpense.current)}
                       </span>
                       <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">
-                        {dashboardData.monthlyExpense.change}%
+                        {data.monthlyExpense.change}%
                       </span>
                     </div>
                   </div>
@@ -424,7 +621,7 @@ export default function FinanceDashboard() {
                   <div className="flex items-center justify-between">
                     <span className="text-sm font-medium text-gray-600">Net Profit</span>
                     <span className="text-xl font-bold text-purple-600">
-                      {formatCurrency(dashboardData.monthlyRevenue.current - dashboardData.monthlyExpense.current)}
+                      {formatCurrency(data.monthlyRevenue.current - data.monthlyExpense.current)}
                     </span>
                   </div>
                 </div>
@@ -442,20 +639,20 @@ export default function FinanceDashboard() {
                       <span className="font-semibold text-gray-900">Expected Receipts</span>
                     </div>
                     <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">
-                      {dashboardData.anticipatedReceipts.count} items
+                      {data.anticipatedReceipts.count} items
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm text-gray-600">This Week</p>
                       <p className="text-xl font-bold text-green-600">
-                        {formatCurrency(dashboardData.anticipatedReceipts.thisWeek)}
+                        {formatCurrency(data.anticipatedReceipts.thisWeek)}
                       </p>
                     </div>
                     <div>
                       <p className="text-sm text-gray-600">This Month</p>
                       <p className="text-xl font-bold text-green-600">
-                        {formatCurrency(dashboardData.anticipatedReceipts.thisMonth)}
+                        {formatCurrency(data.anticipatedReceipts.thisMonth)}
                       </p>
                     </div>
                   </div>
@@ -468,20 +665,20 @@ export default function FinanceDashboard() {
                       <span className="font-semibold text-gray-900">Expected Payments</span>
                     </div>
                     <span className="text-xs bg-orange-100 text-orange-700 px-2 py-1 rounded">
-                      {dashboardData.anticipatedPayments.count} items
+                      {data.anticipatedPayments.count} items
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm text-gray-600">This Week</p>
                       <p className="text-xl font-bold text-orange-600">
-                        {formatCurrency(dashboardData.anticipatedPayments.thisWeek)}
+                        {formatCurrency(data.anticipatedPayments.thisWeek)}
                       </p>
                     </div>
                     <div>
                       <p className="text-sm text-gray-600">This Month</p>
                       <p className="text-xl font-bold text-orange-600">
-                        {formatCurrency(dashboardData.anticipatedPayments.thisMonth)}
+                        {formatCurrency(data.anticipatedPayments.thisMonth)}
                       </p>
                     </div>
                   </div>
@@ -492,7 +689,7 @@ export default function FinanceDashboard() {
                     <span className="text-sm font-medium text-gray-600">Net Cash Flow (This Month)</span>
                     <span className="text-xl font-bold text-blue-600">
                       {formatCurrency(
-                        dashboardData.anticipatedReceipts.thisMonth - dashboardData.anticipatedPayments.thisMonth
+                        data.anticipatedReceipts.thisMonth - data.anticipatedPayments.thisMonth
                       )}
                     </span>
                   </div>

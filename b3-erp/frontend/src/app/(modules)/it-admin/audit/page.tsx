@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Search, Download, Eye, CheckCircle, XCircle, AlertCircle } from 'lucide-react';
+import { Search, Download, Eye, CheckCircle, XCircle, AlertCircle, RefreshCw } from 'lucide-react';
+import { AuditLogService, AuditLog as ServiceAuditLog } from '@/services/audit-log.service';
 
 interface AuditLog {
   id: string;
@@ -21,119 +22,61 @@ interface AuditLog {
   changes: string;
 }
 
-const mockAuditLogs: AuditLog[] = [
-  {
-    id: 'LOG001',
-    timestamp: '2025-10-17 09:30:15',
-    user: 'Ravi Kumar',
-    actionType: 'login',
-    module: 'Authentication',
-    description: 'User logged in successfully',
-    ipAddress: '192.168.1.101',
-    userAgent: 'Chrome 119.0.0.0',
-    severity: 'low',
-    status: 'Success',
-    affectedRecords: 0,
-    sessionId: 'SES-20251017-001',
-    location: 'Mumbai, India',
-    duration: '0s',
-    changes: 'N/A'
-  },
-  {
-    id: 'LOG002',
-    timestamp: '2025-10-17 09:15:42',
-    user: 'Priya Sharma',
-    actionType: 'update',
-    module: 'Production',
-    description: 'Updated production order PO-2025-1045',
-    ipAddress: '192.168.1.105',
-    userAgent: 'Firefox 118.0',
-    severity: 'medium',
-    status: 'Success',
-    affectedRecords: 1,
-    sessionId: 'SES-20251017-002',
-    location: 'Delhi, India',
-    duration: '2.3s',
-    changes: 'Quantity: 100 -> 150'
-  },
-  {
-    id: 'LOG003',
-    timestamp: '2025-10-17 08:45:28',
-    user: 'Unknown',
-    actionType: 'login',
-    module: 'Authentication',
-    description: 'Failed login attempt - Invalid credentials',
-    ipAddress: '203.192.45.78',
-    userAgent: 'Chrome 118.0.0.0',
-    severity: 'high',
-    status: 'Failed',
-    affectedRecords: 0,
-    sessionId: 'N/A',
-    location: 'Unknown',
-    duration: '0s',
-    changes: 'N/A'
-  },
-  {
-    id: 'LOG004',
-    timestamp: '2025-10-17 08:30:19',
-    user: 'Amit Patel',
-    actionType: 'delete',
-    module: 'Inventory',
-    description: 'Deleted obsolete inventory item INV-7823',
-    ipAddress: '192.168.1.112',
-    userAgent: 'Edge 119.0.0.0',
-    severity: 'critical',
-    status: 'Success',
-    affectedRecords: 1,
-    sessionId: 'SES-20251017-003',
-    location: 'Pune, India',
-    duration: '1.8s',
-    changes: 'Item permanently removed'
-  },
-  {
-    id: 'LOG005',
-    timestamp: '2025-10-17 07:55:03',
-    user: 'Neha Desai',
-    actionType: 'export',
-    module: 'Reports',
-    description: 'Exported inventory report for Q3 2025',
-    ipAddress: '192.168.1.118',
-    userAgent: 'Chrome 119.0.0.0',
-    severity: 'medium',
-    status: 'Success',
-    affectedRecords: 1547,
-    sessionId: 'SES-20251017-004',
-    location: 'Bangalore, India',
-    duration: '5.2s',
-    changes: 'CSV export generated'
-  },
-  {
-    id: 'LOG006',
-    timestamp: '2025-10-17 07:20:45',
-    user: 'Vikram Singh',
-    actionType: 'approve',
-    module: 'Purchase Orders',
-    description: 'Approved purchase order PO-2025-3421',
-    ipAddress: '192.168.1.125',
-    userAgent: 'Safari 17.0',
-    severity: 'medium',
-    status: 'Success',
-    affectedRecords: 1,
-    sessionId: 'SES-20251017-005',
-    location: 'Chennai, India',
-    duration: '1.5s',
-    changes: 'Status: Pending -> Approved'
-  }
-];
-
 export default function AuditPage() {
-  const [auditLogs] = useState<AuditLog[]>(mockAuditLogs);
+  const [auditLogs, setAuditLogs] = useState<AuditLog[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [eventTypeFilter, setEventTypeFilter] = useState('all');
   const [severityFilter, setSeverityFilter] = useState('all');
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
   const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' | 'info' } | null>(null);
+
+  useEffect(() => {
+    const fetchAuditLogs = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const result = await AuditLogService.getAuditLogs({ page: 1, limit: 100 });
+
+        // Transform service audit logs to page format
+        const transformedLogs: AuditLog[] = result.data.map((log: ServiceAuditLog) => ({
+          id: log.id,
+          timestamp: new Date(log.timestamp).toLocaleString('en-IN', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+          }),
+          user: log.userName || log.userId,
+          actionType: log.action as AuditLog['actionType'],
+          module: log.module,
+          description: log.description,
+          ipAddress: log.ipAddress || 'N/A',
+          userAgent: log.userAgent || 'N/A',
+          severity: log.severity as AuditLog['severity'],
+          status: log.status || 'Success',
+          affectedRecords: log.affectedRecords || 0,
+          sessionId: log.sessionId || 'N/A',
+          location: log.location || 'N/A',
+          duration: log.duration || '0s',
+          changes: log.changes || 'N/A',
+        }));
+
+        setAuditLogs(transformedLogs);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Failed to load audit logs');
+        console.error('Error fetching audit logs:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchAuditLogs();
+  }, []);
 
   useEffect(() => {
     if (toast) {
@@ -217,6 +160,25 @@ export default function AuditPage() {
         return 'bg-gray-100 text-gray-800';
     }
   };
+
+  if (loading) {
+    return (
+      <div className="h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 via-lime-50 to-yellow-50">
+        <RefreshCw className="h-8 w-8 text-lime-500 animate-spin" />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="p-6 bg-gradient-to-br from-gray-50 via-lime-50 to-yellow-50 min-h-screen">
+        <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
+          <p className="font-medium">Error loading audit logs</p>
+          <p className="text-sm">{error}</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 via-lime-50 to-yellow-50">

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import {
   ArrowLeft,
@@ -17,7 +17,8 @@ import {
   CheckCircle2,
   Clock,
   AlertCircle,
-  FileWarning
+  FileWarning,
+  Loader2
 } from 'lucide-react';
 import {
   CreateBOMModal,
@@ -29,6 +30,7 @@ import {
   type CopyBOMData,
   type BOMDetails
 } from '@/components/production/bom/BOMCoreModals';
+import { bomService, BOM as ServiceBOM } from '@/services/bom.service';
 
 interface BOM {
   id: string;
@@ -54,8 +56,47 @@ interface BOM {
   effectiveTo: string;
 }
 
+// Map service BOM to local display format
+function mapServiceBOMToLocal(bom: ServiceBOM): BOM {
+  const statusMap: Record<string, BOM['status']> = {
+    'Draft': 'draft',
+    'Submitted': 'pending-approval',
+    'Approved': 'active',
+    'Active': 'active',
+    'Obsolete': 'obsolete',
+    'Rejected': 'draft',
+  };
+
+  return {
+    id: bom.id,
+    bomCode: bom.bomCode,
+    productCode: bom.productCode,
+    productName: bom.productName,
+    category: bom.bomType,
+    version: bom.version,
+    revision: parseInt(bom.version.replace(/[^0-9]/g, '')) || 1,
+    levels: bom.components.filter(c => c.isPhantom).length + 1,
+    totalComponents: bom.components.length,
+    totalCost: bom.totalMaterialCost,
+    laborCost: bom.totalLaborCost,
+    overheadCost: bom.totalOverheadCost,
+    totalMfgCost: bom.totalCost,
+    status: statusMap[bom.status] || 'draft',
+    createdBy: bom.createdBy,
+    createdDate: bom.createdAt.split('T')[0],
+    lastModified: bom.updatedAt.split('T')[0],
+    approvedBy: bom.approvedBy || '',
+    approvedDate: bom.approvedAt ? bom.approvedAt.split('T')[0] : '',
+    effectiveFrom: bom.effectiveDate,
+    effectiveTo: bom.expiryDate || '',
+  };
+}
+
 export default function BOMPage() {
   const router = useRouter();
+  const [boms, setBoms] = useState<BOM[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterStatus, setFilterStatus] = useState<'all' | 'active' | 'draft' | 'pending-approval' | 'obsolete'>('all');
   const [filterCategory, setFilterCategory] = useState<string>('all');
@@ -67,284 +108,25 @@ export default function BOMPage() {
   const [isViewOpen, setIsViewOpen] = useState(false);
   const [selectedBOM, setSelectedBOM] = useState<BOM | null>(null);
 
-  const boms: BOM[] = [
-    {
-      id: '1',
-      bomCode: 'BOM-KIT-001',
-      productCode: 'KIT-SINK-001',
-      productName: 'Premium SS304 Kitchen Sink - Double Bowl',
-      category: 'Kitchen Sinks',
-      version: 'v2.1',
-      revision: 3,
-      levels: 3,
-      totalComponents: 24,
-      totalCost: 8450,
-      laborCost: 1850,
-      overheadCost: 950,
-      totalMfgCost: 11250,
-      status: 'active',
-      createdBy: 'Rajesh Kumar',
-      createdDate: '2024-03-15',
-      lastModified: '2025-09-20',
-      approvedBy: 'Production Manager',
-      approvedDate: '2025-09-22',
-      effectiveFrom: '2025-09-25',
-      effectiveTo: '2026-09-25'
-    },
-    {
-      id: '2',
-      bomCode: 'BOM-KIT-002',
-      productCode: 'KIT-FAUC-001',
-      productName: 'Chrome Finish Kitchen Faucet - Single Lever',
-      category: 'Kitchen Faucets',
-      version: 'v1.5',
-      revision: 2,
-      levels: 2,
-      totalComponents: 18,
-      totalCost: 3250,
-      laborCost: 850,
-      overheadCost: 420,
-      totalMfgCost: 4520,
-      status: 'active',
-      createdBy: 'Priya Sharma',
-      createdDate: '2024-05-10',
-      lastModified: '2025-08-15',
-      approvedBy: 'Production Manager',
-      approvedDate: '2025-08-18',
-      effectiveFrom: '2025-08-20',
-      effectiveTo: '2026-08-20'
-    },
-    {
-      id: '3',
-      bomCode: 'BOM-KIT-003',
-      productCode: 'KIT-SINK-002',
-      productName: 'Granite Composite Sink - Single Bowl',
-      category: 'Kitchen Sinks',
-      version: 'v1.0',
-      revision: 1,
-      levels: 2,
-      totalComponents: 15,
-      totalCost: 12500,
-      laborCost: 2200,
-      overheadCost: 1100,
-      totalMfgCost: 15800,
-      status: 'pending-approval',
-      createdBy: 'Amit Patel',
-      createdDate: '2025-10-01',
-      lastModified: '2025-10-15',
-      approvedBy: '',
-      approvedDate: '',
-      effectiveFrom: '',
-      effectiveTo: ''
-    },
-    {
-      id: '4',
-      bomCode: 'BOM-KIT-004',
-      productCode: 'KIT-APPL-001',
-      productName: 'Auto-Clean Kitchen Chimney - 90cm',
-      category: 'Kitchen Appliances',
-      version: 'v3.0',
-      revision: 5,
-      levels: 4,
-      totalComponents: 42,
-      totalCost: 28500,
-      laborCost: 5500,
-      overheadCost: 2850,
-      totalMfgCost: 36850,
-      status: 'active',
-      createdBy: 'Suresh Reddy',
-      createdDate: '2024-01-20',
-      lastModified: '2025-07-10',
-      approvedBy: 'Production Manager',
-      approvedDate: '2025-07-15',
-      effectiveFrom: '2025-07-20',
-      effectiveTo: '2026-07-20'
-    },
-    {
-      id: '5',
-      bomCode: 'BOM-KIT-005',
-      productCode: 'KIT-CAB-001',
-      productName: 'Modular Base Cabinet - 3 Drawer',
-      category: 'Kitchen Cabinets',
-      version: 'v2.0',
-      revision: 4,
-      levels: 3,
-      totalComponents: 38,
-      totalCost: 15800,
-      laborCost: 3800,
-      overheadCost: 1900,
-      totalMfgCost: 21500,
-      status: 'active',
-      createdBy: 'Vikram Singh',
-      createdDate: '2024-04-12',
-      lastModified: '2025-09-05',
-      approvedBy: 'Production Manager',
-      approvedDate: '2025-09-10',
-      effectiveFrom: '2025-09-15',
-      effectiveTo: '2026-09-15'
-    },
-    {
-      id: '6',
-      bomCode: 'BOM-KIT-006',
-      productCode: 'KIT-COUNT-001',
-      productName: 'Granite Countertop - Premium Black Galaxy',
-      category: 'Countertops',
-      version: 'v1.2',
-      revision: 2,
-      levels: 2,
-      totalComponents: 12,
-      totalCost: 18500,
-      laborCost: 4200,
-      overheadCost: 2100,
-      totalMfgCost: 24800,
-      status: 'active',
-      createdBy: 'Neha Gupta',
-      createdDate: '2024-06-18',
-      lastModified: '2025-08-22',
-      approvedBy: 'Production Manager',
-      approvedDate: '2025-08-25',
-      effectiveFrom: '2025-09-01',
-      effectiveTo: '2026-09-01'
-    },
-    {
-      id: '7',
-      bomCode: 'BOM-KIT-007',
-      productCode: 'KIT-COOK-001',
-      productName: 'Professional Cookware Set - 7 Piece',
-      category: 'Cookware',
-      version: 'v1.8',
-      revision: 3,
-      levels: 2,
-      totalComponents: 28,
-      totalCost: 6800,
-      laborCost: 1400,
-      overheadCost: 680,
-      totalMfgCost: 8880,
-      status: 'active',
-      createdBy: 'Arun Kumar',
-      createdDate: '2024-07-22',
-      lastModified: '2025-09-12',
-      approvedBy: 'Production Manager',
-      approvedDate: '2025-09-15',
-      effectiveFrom: '2025-09-18',
-      effectiveTo: '2026-09-18'
-    },
-    {
-      id: '8',
-      bomCode: 'BOM-KIT-008',
-      productCode: 'KIT-FAUC-002',
-      productName: 'Pull-Down Kitchen Faucet - Brushed Nickel',
-      category: 'Kitchen Faucets',
-      version: 'v1.0',
-      revision: 0,
-      levels: 2,
-      totalComponents: 22,
-      totalCost: 4500,
-      laborCost: 980,
-      overheadCost: 490,
-      totalMfgCost: 5970,
-      status: 'draft',
-      createdBy: 'Meera Iyer',
-      createdDate: '2025-10-10',
-      lastModified: '2025-10-18',
-      approvedBy: '',
-      approvedDate: '',
-      effectiveFrom: '',
-      effectiveTo: ''
-    },
-    {
-      id: '9',
-      bomCode: 'BOM-KIT-009',
-      productCode: 'KIT-SINK-003',
-      productName: 'Undermount SS Sink - Single Bowl Large',
-      category: 'Kitchen Sinks',
-      version: 'v2.5',
-      revision: 6,
-      levels: 3,
-      totalComponents: 26,
-      totalCost: 9200,
-      laborCost: 2100,
-      overheadCost: 1050,
-      totalMfgCost: 12350,
-      status: 'active',
-      createdBy: 'Rajesh Kumar',
-      createdDate: '2024-02-08',
-      lastModified: '2025-10-05',
-      approvedBy: 'Production Manager',
-      approvedDate: '2025-10-08',
-      effectiveFrom: '2025-10-12',
-      effectiveTo: '2026-10-12'
-    },
-    {
-      id: '10',
-      bomCode: 'BOM-KIT-010',
-      productCode: 'KIT-APPL-002',
-      productName: 'Built-in Microwave Oven - 30L',
-      category: 'Kitchen Appliances',
-      version: 'v1.3',
-      revision: 2,
-      levels: 3,
-      totalComponents: 35,
-      totalCost: 18900,
-      laborCost: 3800,
-      overheadCost: 1900,
-      totalMfgCost: 24600,
-      status: 'active',
-      createdBy: 'Kavita Desai',
-      createdDate: '2024-08-14',
-      lastModified: '2025-09-28',
-      approvedBy: 'Production Manager',
-      approvedDate: '2025-10-01',
-      effectiveFrom: '2025-10-05',
-      effectiveTo: '2026-10-05'
-    },
-    {
-      id: '11',
-      bomCode: 'BOM-KIT-011',
-      productCode: 'KIT-CAB-002',
-      productName: 'Wall Cabinet - Glass Door Double',
-      category: 'Kitchen Cabinets',
-      version: 'v1.0',
-      revision: 0,
-      levels: 2,
-      totalComponents: 20,
-      totalCost: 8900,
-      laborCost: 2200,
-      overheadCost: 1100,
-      totalMfgCost: 12200,
-      status: 'obsolete',
-      createdBy: 'Arjun Menon',
-      createdDate: '2023-11-05',
-      lastModified: '2024-12-15',
-      approvedBy: 'Production Manager',
-      approvedDate: '2023-11-10',
-      effectiveFrom: '2023-11-15',
-      effectiveTo: '2024-12-31'
-    },
-    {
-      id: '12',
-      bomCode: 'BOM-KIT-012',
-      productCode: 'KIT-ACC-001',
-      productName: 'Modular Kitchen Organizer Set - Premium',
-      category: 'Kitchen Accessories',
-      version: 'v1.1',
-      revision: 1,
-      levels: 2,
-      totalComponents: 16,
-      totalCost: 3800,
-      laborCost: 750,
-      overheadCost: 380,
-      totalMfgCost: 4930,
-      status: 'active',
-      createdBy: 'Pooja Nair',
-      createdDate: '2024-09-20',
-      lastModified: '2025-10-10',
-      approvedBy: 'Production Manager',
-      approvedDate: '2025-10-12',
-      effectiveFrom: '2025-10-15',
-      effectiveTo: '2026-10-15'
+  // Fetch BOMs from service
+  useEffect(() => {
+    async function fetchBOMs() {
+      setLoading(true);
+      setError(null);
+      try {
+        const data = await bomService.getAllBOMs();
+        setBoms(data.map(mapServiceBOMToLocal));
+      } catch (err) {
+        console.error('Error fetching BOMs:', err);
+        setError('Failed to load BOMs. Please try again.');
+      } finally {
+        setLoading(false);
+      }
     }
-  ];
+
+    fetchBOMs();
+  }, []);
+
 
   const categories = ['all', ...Array.from(new Set(boms.map(b => b.category)))];
 
@@ -448,6 +230,37 @@ export default function BOMPage() {
       approvedAt: bom.approvedDate
     };
   };
+
+  // Show loading state
+  if (loading) {
+    return (
+      <div className="w-full px-4 sm:px-6 lg:px-8 py-6 flex items-center justify-center min-h-[400px]">
+        <div className="text-center">
+          <Loader2 className="w-12 h-12 text-blue-600 animate-spin mx-auto mb-4" />
+          <p className="text-gray-600">Loading BOMs...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Show error state
+  if (error) {
+    return (
+      <div className="w-full px-4 sm:px-6 lg:px-8 py-6 flex items-center justify-center min-h-[400px]">
+        <div className="text-center">
+          <AlertCircle className="w-12 h-12 text-red-600 mx-auto mb-4" />
+          <p className="text-gray-900 font-semibold mb-2">Error Loading BOMs</p>
+          <p className="text-gray-600">{error}</p>
+          <button
+            onClick={() => window.location.reload()}
+            className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          >
+            Retry
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full px-4 sm:px-6 lg:px-8 py-6">

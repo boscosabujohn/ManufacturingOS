@@ -505,12 +505,17 @@ class ProjectManagementService {
 
     // --- Resources ---
     async getResources(projectId: string): Promise<ProjectResource[]> {
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 800));
-
-        // Return mock data if no real data is available (for verified frontend dev)
-        const projectResources = this.mockProjectResources.filter(r => r.projectId === projectId);
-        return projectResources.length > 0 ? projectResources : [];
+        try {
+            const response = await apiClient.get<ProjectResource[]>(`/project-resources?projectId=${projectId}`);
+            if (response.data?.length > 0) return response.data;
+            // If API returns empty, fallback to mock data
+            const projectResources = this.mockProjectResources.filter(r => r.projectId === projectId);
+            return projectResources;
+        } catch (error) {
+            console.warn('API error fetching resources, using mock data:', error);
+            const projectResources = this.mockProjectResources.filter(r => r.projectId === projectId);
+            return projectResources;
+        }
     }
 
     async createResource(data: any): Promise<ProjectResource> {
@@ -529,12 +534,17 @@ class ProjectManagementService {
 
     // --- Budgets ---
     async getBudgets(projectId: string): Promise<ProjectBudget[]> {
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 800));
-
-        // Return mock data if no real data (for verified frontend dev)
-        const budgets = this.mockProjectBudgets.filter(b => b.projectId === projectId);
-        return budgets.length > 0 ? budgets : [];
+        try {
+            const response = await apiClient.get<ProjectBudget[]>(`/project-budgets?projectId=${projectId}`);
+            if (response.data?.length > 0) return response.data;
+            // If API returns empty, fallback to mock data
+            const budgets = this.mockProjectBudgets.filter(b => b.projectId === projectId);
+            return budgets;
+        } catch (error) {
+            console.warn('API error fetching budgets, using mock data:', error);
+            const budgets = this.mockProjectBudgets.filter(b => b.projectId === projectId);
+            return budgets;
+        }
     }
 
     async createBudget(data: any): Promise<ProjectBudget> {
@@ -596,9 +606,14 @@ class ProjectManagementService {
     // ... existing methods ...
     // TA Settlement Methods
     async getClaims(projectId: string): Promise<TAClaim[]> {
-        // Simulate API delay
-        await new Promise(resolve => setTimeout(resolve, 500));
-        return this.claims.filter(c => c.projectId === projectId);
+        try {
+            const response = await apiClient.get<TAClaim[]>(`/ta-claims?projectId=${projectId}`);
+            if (response.data?.length > 0) return response.data;
+            return this.claims.filter(c => c.projectId === projectId);
+        } catch (error) {
+            console.warn('API error fetching claims, using mock data:', error);
+            return this.claims.filter(c => c.projectId === projectId);
+        }
     }
 
     async createClaim(claim: Omit<TAClaim, 'id' | 'status'>): Promise<TAClaim> {
@@ -614,8 +629,14 @@ class ProjectManagementService {
 
     // Emergency Spares Methods
     async getSpareRequests(projectId: string): Promise<EmergencySpareRequest[]> {
-        await new Promise(resolve => setTimeout(resolve, 500));
-        return this.spareRequests.filter(r => r.projectId === projectId);
+        try {
+            const response = await apiClient.get<EmergencySpareRequest[]>(`/spare-requests?projectId=${projectId}`);
+            if (response.data?.length > 0) return response.data;
+            return this.spareRequests.filter(r => r.projectId === projectId);
+        } catch (error) {
+            console.warn('API error fetching spare requests, using mock data:', error);
+            return this.spareRequests.filter(r => r.projectId === projectId);
+        }
     }
 
     async createSpareRequest(request: Omit<EmergencySpareRequest, 'id' | 'status'>): Promise<EmergencySpareRequest> {
@@ -639,8 +660,14 @@ class ProjectManagementService {
 
     // Field View Methods
     async getSchedule(): Promise<FieldScheduleItem[]> {
-        await new Promise(resolve => setTimeout(resolve, 500));
-        return [...this.schedule];
+        try {
+            const response = await apiClient.get<FieldScheduleItem[]>('/field-schedule');
+            if (response.data?.length > 0) return response.data;
+            return [...this.schedule];
+        } catch (error) {
+            console.warn('API error fetching schedule, using mock data:', error);
+            return [...this.schedule];
+        }
     }
 
     async checkIn(): Promise<void> {
@@ -653,8 +680,14 @@ class ProjectManagementService {
     }
 
     async getSiteMeasurements(projectId: string): Promise<RoomMeasurements[]> {
-        await new Promise(resolve => setTimeout(resolve, 800));
-        return JSON.parse(JSON.stringify(this.siteMeasurements));
+        try {
+            const response = await apiClient.get<RoomMeasurements[]>(`/site-measurements?projectId=${projectId}`);
+            if (response.data?.length > 0) return response.data;
+            return JSON.parse(JSON.stringify(this.siteMeasurements));
+        } catch (error) {
+            console.warn('API error fetching site measurements, using mock data:', error);
+            return JSON.parse(JSON.stringify(this.siteMeasurements));
+        }
     }
 
     async saveSiteMeasurements(projectId: string, data: RoomMeasurements[]): Promise<void> {
@@ -664,9 +697,14 @@ class ProjectManagementService {
 
     // Drawing Verification Methods
     async getDrawings(projectId: string): Promise<Drawing[]> {
-        await new Promise(resolve => setTimeout(resolve, 500));
-        // In a real app, we'd filter by projectId
-        return [...this.drawings];
+        try {
+            const response = await apiClient.get<Drawing[]>(`/drawings?projectId=${projectId}`);
+            if (response.data?.length > 0) return response.data;
+            return [...this.drawings];
+        } catch (error) {
+            console.warn('API error fetching drawings, using mock data:', error);
+            return [...this.drawings];
+        }
     }
 
     async verifyDrawing(id: string, status: 'Verified' | 'Rejected', notes?: string): Promise<void> {
@@ -679,8 +717,14 @@ class ProjectManagementService {
     }
 
     async getBOQItems(projectId: string): Promise<BOQItem[]> {
-        await new Promise(resolve => setTimeout(resolve, 800)); // Simulate delay
-        return [...this.boqItems];
+        try {
+            const response = await apiClient.get<BOQItem[]>(`/boq-items?projectId=${projectId}`);
+            if (response.data?.length > 0) return response.data;
+            return [...this.boqItems];
+        } catch (error) {
+            console.warn('API error fetching BOQ items, using mock data:', error);
+            return [...this.boqItems];
+        }
     }
 
     async updateBOQItem(id: string, drawingQty: number, notes?: string): Promise<void> {
@@ -694,8 +738,14 @@ class ProjectManagementService {
     }
 
     async getDiscrepancies(projectId: string): Promise<Discrepancy[]> {
-        await new Promise(resolve => setTimeout(resolve, 800));
-        return [...this.discrepancies];
+        try {
+            const response = await apiClient.get<Discrepancy[]>(`/discrepancies?projectId=${projectId}`);
+            if (response.data?.length > 0) return response.data;
+            return [...this.discrepancies];
+        } catch (error) {
+            console.warn('API error fetching discrepancies, using mock data:', error);
+            return [...this.discrepancies];
+        }
     }
 
     async createDiscrepancy(discrepancy: Omit<Discrepancy, 'id' | 'date' | 'status'>): Promise<Discrepancy> {

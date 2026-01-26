@@ -1,7 +1,12 @@
 'use client';
 
-import { useState } from 'react';
-import { Search, Filter, Download, Clock, CheckCircle, XCircle, AlertCircle } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Search, Filter, Download, Clock, CheckCircle, XCircle, AlertCircle, Loader2 } from 'lucide-react';
+import {
+  AttendanceService,
+  Attendance,
+  AttendanceStatus
+} from '@/services/attendance.service';
 
 interface AttendanceRecord {
   id: string;
@@ -21,119 +26,104 @@ interface AttendanceRecord {
   approvedBy: string | null;
 }
 
-const mockAttendance: AttendanceRecord[] = [
-  {
-    id: 'ATT-001',
-    employeeId: 'EMP-1001',
-    employeeName: 'Rajesh Kumar',
-    department: 'Production',
-    date: '2025-10-17',
-    checkIn: '08:55',
-    checkOut: '18:30',
-    workHours: 9.5,
-    status: 'present',
-    lateBy: 0,
+// Transform service attendance to page format
+const transformAttendance = (att: Attendance): AttendanceRecord => {
+  const statusMap: Record<AttendanceStatus, AttendanceRecord['status']> = {
+    [AttendanceStatus.PRESENT]: 'present',
+    [AttendanceStatus.ABSENT]: 'absent',
+    [AttendanceStatus.HALF_DAY]: 'half_day',
+    [AttendanceStatus.LATE]: 'late',
+    [AttendanceStatus.ON_LEAVE]: 'on_leave',
+    [AttendanceStatus.WORK_FROM_HOME]: 'work_from_home',
+    [AttendanceStatus.HOLIDAY]: 'present',
+    [AttendanceStatus.WEEKEND]: 'present',
+  };
+
+  const checkInTime = att.checkInTime ? new Date(att.checkInTime) : null;
+  const checkOutTime = att.checkOutTime ? new Date(att.checkOutTime) : null;
+
+  // Calculate late minutes (assuming 9:00 AM standard)
+  let lateBy = 0;
+  if (checkInTime) {
+    const standardStart = new Date(checkInTime);
+    standardStart.setHours(9, 0, 0, 0);
+    if (checkInTime > standardStart) {
+      lateBy = Math.round((checkInTime.getTime() - standardStart.getTime()) / (1000 * 60));
+    }
+  }
+
+  return {
+    id: att.id,
+    employeeId: att.employeeCode || att.employeeId,
+    employeeName: att.employeeName || 'Unknown',
+    department: att.departmentName || 'Unknown',
+    date: new Date(att.date).toISOString().split('T')[0],
+    checkIn: checkInTime ? checkInTime.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false }) : '-',
+    checkOut: checkOutTime ? checkOutTime.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false }) : null,
+    workHours: att.totalHours || 0,
+    status: statusMap[att.status],
+    lateBy,
     earlyExit: 0,
-    overtimeHours: 1.5,
-    location: 'Factory Floor A',
-    remarks: 'Overtime approved for urgent order',
-    approvedBy: 'Production Manager',
-  },
-  {
-    id: 'ATT-002',
-    employeeId: 'EMP-1002',
-    employeeName: 'Priya Sharma',
-    department: 'Quality Control',
-    date: '2025-10-17',
-    checkIn: '09:15',
-    checkOut: '17:45',
-    workHours: 8.5,
-    status: 'late',
-    lateBy: 15,
-    earlyExit: 0,
-    overtimeHours: 0.5,
-    location: 'QC Lab',
-    remarks: 'Traffic delay notified',
-    approvedBy: 'QC Head',
-  },
-  {
-    id: 'ATT-003',
-    employeeId: 'EMP-1003',
-    employeeName: 'Amit Patel',
-    department: 'Engineering',
-    date: '2025-10-17',
-    checkIn: '09:00',
-    checkOut: null,
-    workHours: 0,
-    status: 'work_from_home',
-    lateBy: 0,
-    earlyExit: 0,
-    overtimeHours: 0,
-    location: 'Remote',
-    remarks: 'WFH - Design review meeting',
-    approvedBy: 'Engineering Manager',
-  },
-  {
-    id: 'ATT-004',
-    employeeId: 'EMP-1004',
-    employeeName: 'Sneha Reddy',
-    department: 'Finance',
-    date: '2025-10-17',
-    checkIn: '09:00',
-    checkOut: '13:00',
-    workHours: 4,
-    status: 'half_day',
-    lateBy: 0,
-    earlyExit: 0,
-    overtimeHours: 0,
-    location: 'Finance Office',
-    remarks: 'Medical appointment - approved half day',
-    approvedBy: 'Finance Manager',
-  },
-  {
-    id: 'ATT-005',
-    employeeId: 'EMP-1005',
-    employeeName: 'Vikram Singh',
-    department: 'HR',
-    date: '2025-10-17',
-    checkIn: '-',
-    checkOut: null,
-    workHours: 0,
-    status: 'on_leave',
-    lateBy: 0,
-    earlyExit: 0,
-    overtimeHours: 0,
-    location: '-',
-    remarks: 'Planned leave - Sick leave',
-    approvedBy: 'HR Manager',
-  },
-  {
-    id: 'ATT-006',
-    employeeId: 'EMP-1006',
-    employeeName: 'Kavita Desai',
-    department: 'Procurement',
-    date: '2025-10-17',
-    checkIn: '-',
-    checkOut: null,
-    workHours: 0,
-    status: 'absent',
-    lateBy: 0,
-    earlyExit: 0,
-    overtimeHours: 0,
-    location: '-',
-    remarks: 'Unplanned absence - pending justification',
-    approvedBy: null,
-  },
-];
+    overtimeHours: att.overtimeHours || 0,
+    location: att.location || 'Office',
+    remarks: att.remarks || '',
+    approvedBy: att.approvedBy || null,
+  };
+};
 
 export default function AttendancePage() {
+  const [attendanceRecords, setAttendanceRecords] = useState<AttendanceRecord[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [departmentFilter, setDepartmentFilter] = useState<string>('all');
   const [currentPage, setCurrentPage] = useState(1);
+  const [stats, setStats] = useState({
+    present: 0,
+    onLeave: 0,
+    absent: 0,
+    avgWorkHours: 0
+  });
   const itemsPerPage = 10;
 
-  const filteredAttendance = mockAttendance.filter(record => {
+  // Load attendance data from service
+  useEffect(() => {
+    const loadAttendance = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+
+        // Fetch attendance records and today's statistics
+        const [records, todayStats] = await Promise.all([
+          AttendanceService.getAttendance({ limit: 100 }),
+          AttendanceService.getTodayStatistics()
+        ]);
+
+        setAttendanceRecords(records.map(transformAttendance));
+
+        // Calculate average work hours
+        const totalHours = records.reduce((sum, r) => sum + (r.totalHours || 0), 0);
+        const avgHours = records.length > 0 ? totalHours / records.length : 0;
+
+        setStats({
+          present: todayStats.present,
+          onLeave: todayStats.onLeave,
+          absent: todayStats.absent,
+          avgWorkHours: Math.round(avgHours * 10) / 10
+        });
+      } catch (err) {
+        console.error('Error loading attendance:', err);
+        setError('Failed to load attendance records. Please try again.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadAttendance();
+  }, []);
+
+  const filteredAttendance = attendanceRecords.filter(record => {
     const matchesSearch = record.employeeName.toLowerCase().includes(searchTerm.toLowerCase()) ||
       record.employeeId.toLowerCase().includes(searchTerm.toLowerCase()) ||
       record.department.toLowerCase().includes(searchTerm.toLowerCase());
@@ -166,45 +156,75 @@ export default function AttendancePage() {
     );
   };
 
-  const stats = [
+  const statsCards = [
     {
       title: 'Total Present',
-      value: '142',
-      change: '+8 from yesterday',
+      value: stats.present.toString(),
+      change: 'Today',
       icon: CheckCircle,
       gradient: 'from-green-500 to-emerald-600',
     },
     {
       title: 'On Leave',
-      value: '12',
+      value: stats.onLeave.toString(),
       change: 'Planned leaves',
       icon: AlertCircle,
       gradient: 'from-purple-500 to-pink-600',
     },
     {
       title: 'Absent',
-      value: '3',
-      change: '2 unplanned',
+      value: stats.absent.toString(),
+      change: 'Unplanned',
       icon: XCircle,
       gradient: 'from-red-500 to-rose-600',
     },
     {
       title: 'Avg Work Hours',
-      value: '8.5h',
-      change: '+0.5h this week',
+      value: `${stats.avgWorkHours}h`,
+      change: 'Average',
       icon: Clock,
       gradient: 'from-blue-500 to-cyan-600',
     },
   ];
 
-  const departments = ['all', 'Production', 'Quality Control', 'Engineering', 'Finance', 'HR', 'Procurement'];
+  // Get unique departments from attendance records
+  const departments = ['all', ...Array.from(new Set(attendanceRecords.map(r => r.department)))];
+
+  // Show loading state
+  if (loading) {
+    return (
+      <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6 flex items-center justify-center">
+        <div className="flex flex-col items-center gap-4">
+          <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+          <p className="text-gray-600">Loading attendance records...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Show error state
+  if (error) {
+    return (
+      <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6 flex items-center justify-center">
+        <div className="flex flex-col items-center gap-4 text-center">
+          <div className="text-red-500 text-lg font-medium">{error}</div>
+          <button
+            onClick={() => window.location.reload()}
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          >
+            Retry
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6">
       <div className="w-full max-w-full mx-auto">
         {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-          {stats.map((stat, index) => {
+          {statsCards.map((stat, index) => {
             const gradientMap: { [key: string]: string } = {
               'from-green-500 to-emerald-600': 'from-green-50 to-green-100',
               'from-yellow-500 to-orange-600': 'from-yellow-50 to-yellow-100',

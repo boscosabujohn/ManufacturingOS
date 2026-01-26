@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import {
   Search,
   Filter,
@@ -19,7 +19,8 @@ import {
   XCircle,
   Package,
   Printer,
-  History
+  History,
+  Loader2
 } from 'lucide-react'
 
 // Import GRN Modals
@@ -35,6 +36,7 @@ import {
   GRNHistoryModal,
   type GRNData
 } from '@/components/procurement/GRNModals'
+import { goodsReceiptService, GoodsReceipt as GRServiceType, GRStatus } from '@/services/goods-receipt.service'
 
 interface GRN {
   id: string
@@ -56,119 +58,10 @@ interface GRN {
   createdBy: string
 }
 
-const mockGRNs: GRN[] = [
-  {
-    id: '1',
-    grnNumber: 'GRN-2025-001',
-    poNumber: 'PO-2025-045',
-    vendorName: 'Tata Steel Ltd',
-    receiptDate: '2025-01-15',
-    itemsCount: 5,
-    orderedQty: 1000,
-    receivedQty: 950,
-    acceptedQty: 920,
-    rejectedQty: 30,
-    invoiceValue: 825000,
-    status: 'partially_accepted',
-    inspector: 'Suresh Reddy',
-    inspectionDate: '2025-01-15',
-    qualityStatus: 'passed',
-    discrepancyNotes: '50 units short delivery, 30 units failed quality check',
-    createdBy: 'Rajesh Kumar'
-  },
-  {
-    id: '2',
-    grnNumber: 'GRN-2025-002',
-    poNumber: 'PO-2025-042',
-    vendorName: 'Bosch Rexroth India',
-    receiptDate: '2025-01-14',
-    itemsCount: 3,
-    orderedQty: 150,
-    receivedQty: 150,
-    acceptedQty: 150,
-    rejectedQty: 0,
-    invoiceValue: 315000,
-    status: 'accepted',
-    inspector: 'Anita Desai',
-    inspectionDate: '2025-01-14',
-    qualityStatus: 'passed',
-    createdBy: 'Priya Patel'
-  },
-  {
-    id: '3',
-    grnNumber: 'GRN-2025-003',
-    poNumber: 'PO-2025-038',
-    vendorName: 'Hindustan Petroleum',
-    receiptDate: '2025-01-13',
-    itemsCount: 8,
-    orderedQty: 500,
-    receivedQty: 500,
-    acceptedQty: 0,
-    rejectedQty: 0,
-    invoiceValue: 165000,
-    status: 'under_inspection',
-    inspector: 'Suresh Reddy',
-    qualityStatus: 'pending',
-    createdBy: 'Karthik Iyer'
-  },
-  {
-    id: '4',
-    grnNumber: 'GRN-2025-004',
-    poNumber: 'PO-2025-041',
-    vendorName: 'SKF India',
-    receiptDate: '2025-01-12',
-    itemsCount: 12,
-    orderedQty: 800,
-    receivedQty: 800,
-    acceptedQty: 750,
-    rejectedQty: 50,
-    invoiceValue: 275000,
-    status: 'partially_accepted',
-    inspector: 'Anita Desai',
-    inspectionDate: '2025-01-13',
-    qualityStatus: 'passed',
-    discrepancyNotes: '50 units damaged during transit',
-    createdBy: 'Meena Nair'
-  },
-  {
-    id: '5',
-    grnNumber: 'GRN-2025-005',
-    poNumber: 'PO-2025-035',
-    vendorName: 'Parker Hannifin',
-    receiptDate: '2025-01-11',
-    itemsCount: 6,
-    orderedQty: 200,
-    receivedQty: 180,
-    acceptedQty: 0,
-    rejectedQty: 180,
-    invoiceValue: 95000,
-    status: 'rejected',
-    inspector: 'Suresh Reddy',
-    inspectionDate: '2025-01-12',
-    qualityStatus: 'failed',
-    discrepancyNotes: 'All units failed quality inspection - wrong specifications',
-    createdBy: 'Rajesh Kumar'
-  },
-  {
-    id: '6',
-    grnNumber: 'GRN-2025-006',
-    poNumber: 'PO-2025-047',
-    vendorName: 'Blue Star',
-    receiptDate: '2025-01-17',
-    itemsCount: 4,
-    orderedQty: 350,
-    receivedQty: 0,
-    acceptedQty: 0,
-    rejectedQty: 0,
-    invoiceValue: 425000,
-    status: 'draft',
-    inspector: '-',
-    qualityStatus: 'pending',
-    createdBy: 'Suresh Reddy'
-  },
-]
-
 export default function ProcurementGRNPage() {
+  const [grns, setGrns] = useState<GRN[]>([])
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
   const [searchTerm, setSearchTerm] = useState('')
   const [statusFilter, setStatusFilter] = useState('all')
   const [vendorFilter, setVendorFilter] = useState('all')
@@ -187,7 +80,69 @@ export default function ProcurementGRNPage() {
   const [isHistoryModalOpen, setIsHistoryModalOpen] = useState(false)
   const [selectedGRN, setSelectedGRN] = useState<GRN | null>(null)
 
-  const filteredGRNs = mockGRNs.filter(grn => {
+  // Map service status to local status
+  const mapStatus = (status: GRStatus): GRN['status'] => {
+    const statusMap: Record<GRStatus, GRN['status']> = {
+      'Pending': 'draft',
+      'Quality Check': 'under_inspection',
+      'Passed': 'accepted',
+      'Partially Passed': 'partially_accepted',
+      'Failed': 'rejected',
+      'Posted to Inventory': 'accepted',
+      'Returned': 'rejected'
+    }
+    return statusMap[status] || 'draft'
+  }
+
+  // Map service status to quality status
+  const mapQualityStatus = (status: GRStatus): GRN['qualityStatus'] => {
+    if (['Passed', 'Partially Passed', 'Posted to Inventory'].includes(status)) return 'passed'
+    if (['Failed', 'Returned'].includes(status)) return 'failed'
+    return 'pending'
+  }
+
+  // Load GRNs from service
+  const loadGRNs = async () => {
+    try {
+      setIsLoading(true)
+      setError(null)
+
+      const response = await goodsReceiptService.getAllGoodsReceipts()
+
+      const mappedGRNs: GRN[] = response.data.map(gr => ({
+        id: gr.id,
+        grnNumber: gr.grNumber,
+        poNumber: gr.poNumber,
+        vendorName: gr.vendorName,
+        receiptDate: gr.receiptDate,
+        itemsCount: gr.totalItems,
+        orderedQty: gr.totalQuantityOrdered,
+        receivedQty: gr.totalQuantityReceived,
+        acceptedQty: gr.totalQuantityAccepted,
+        rejectedQty: gr.totalQuantityRejected,
+        invoiceValue: gr.totalAmount,
+        status: mapStatus(gr.status),
+        inspector: gr.qualityInspectorName || '-',
+        inspectionDate: gr.items[0]?.qualityCheckDate?.split('T')[0],
+        qualityStatus: mapQualityStatus(gr.status),
+        discrepancyNotes: gr.notes,
+        createdBy: gr.receivedByName
+      }))
+
+      setGrns(mappedGRNs)
+    } catch (err) {
+      console.error('Error loading GRNs:', err)
+      setError('Failed to load goods receipts. Please try again.')
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    loadGRNs()
+  }, [])
+
+  const filteredGRNs = grns.filter(grn => {
     const matchesSearch = grn.grnNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
       grn.poNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
       grn.vendorName.toLowerCase().includes(searchTerm.toLowerCase())
@@ -200,14 +155,14 @@ export default function ProcurementGRNPage() {
   const startIndex = (currentPage - 1) * itemsPerPage
   const paginatedGRNs = filteredGRNs.slice(startIndex, startIndex + itemsPerPage)
 
-  const uniqueVendors = Array.from(new Set(mockGRNs.map(grn => grn.vendorName))).sort()
+  const uniqueVendors = Array.from(new Set(grns.map(grn => grn.vendorName))).sort()
 
   const today = new Date().toISOString().split('T')[0]
   const stats = {
-    pendingInspection: mockGRNs.filter(g => g.status === 'under_inspection').length,
-    approvedToday: mockGRNs.filter(g => g.status === 'accepted' && g.inspectionDate === today).length,
-    rejected: mockGRNs.filter(g => g.status === 'rejected').length,
-    totalValueReceived: mockGRNs.filter(g => g.status === 'accepted' || g.status === 'partially_accepted').reduce((sum, g) => sum + g.invoiceValue, 0)
+    pendingInspection: grns.filter(g => g.status === 'under_inspection').length,
+    approvedToday: grns.filter(g => g.status === 'accepted' && g.inspectionDate === today).length,
+    rejected: grns.filter(g => g.status === 'rejected').length,
+    totalValueReceived: grns.filter(g => g.status === 'accepted' || g.status === 'partially_accepted').reduce((sum, g) => sum + g.invoiceValue, 0)
   }
 
   const getStatusBadge = (status: string) => {
@@ -307,9 +262,34 @@ export default function ProcurementGRNPage() {
     setIsCreateModalOpen(true)
   }
 
+  if (isLoading) {
+    return (
+      <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6 flex items-center justify-center">
+        <div className="text-center">
+          <Loader2 className="h-12 w-12 animate-spin text-green-600 mx-auto" />
+          <p className="mt-4 text-gray-600">Loading goods receipts...</p>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6">
       <div className="w-full space-y-6">
+        {/* Error Display */}
+        {error && (
+          <div className="bg-red-50 border border-red-200 rounded-lg p-4 flex items-center gap-3">
+            <AlertCircle className="h-5 w-5 text-red-600" />
+            <span className="text-red-700">{error}</span>
+            <button
+              onClick={loadGRNs}
+              className="ml-auto px-3 py-1 bg-red-600 text-white rounded-lg hover:bg-red-700 text-sm"
+            >
+              Retry
+            </button>
+          </div>
+        )}
+
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">

@@ -22,9 +22,11 @@ import {
     Tag,
     AlertCircle,
     Eye,
-    Download
+    Download,
+    Loader2
 } from 'lucide-react';
 import Link from 'next/link';
+import { NCRService, NCR as ServiceNCR, NCRStatus, NCRSeverity, NCRPriority } from '@/services/ncr.service';
 
 interface NCR {
     id: string;
@@ -43,115 +45,81 @@ interface NCR {
     category: string;
 }
 
-const MOCK_NCRS: NCR[] = [
-    {
-        id: '1',
-        ncrNumber: 'NCR-2024-001',
-        title: 'Material Thickness Discrepancy in Shell Plate',
-        source: 'Incoming Inspection',
-        severity: 'critical',
-        priority: 'high',
-        status: 'open',
-        reportedBy: 'Arun Varma',
-        reportedDate: '2024-07-18T10:30:00Z',
-        description: 'Shell plates for project P-502 show 10% less thickness than specified in the design docs.',
-        project: 'L&T Pressure Vessel P-502',
-        location: 'Inbound Warehouse A',
-        assignedTo: 'Suresh Patil',
-        category: 'Raw Material'
-    },
-    {
-        id: '2',
-        ncrNumber: 'NCR-2024-002',
-        title: 'Welding Flux Porosity in Main Seam',
-        source: 'In-process QC',
-        severity: 'major',
-        priority: 'medium',
-        status: 'in-progress',
-        reportedBy: 'Meera Nair',
-        reportedDate: '2024-07-17T14:45:00Z',
-        description: 'X-ray inspection revealed porosity at the junction of seam 2 and 4 beyond permissible limits.',
-        project: 'Reliance Ethylene Tank ET-109',
-        location: 'Bay 4 - Welding Shop',
-        assignedTo: 'John Doe',
-        category: 'Workmanship'
-    },
-    {
-        id: '3',
-        ncrNumber: 'NCR-2024-003',
-        title: 'Incorrect Paint Shade on Support Structure',
-        source: 'Final Inspection',
-        severity: 'minor',
-        priority: 'low',
-        status: 'closed',
-        reportedBy: 'Karthik Rao',
-        reportedDate: '2024-07-15T09:15:00Z',
-        description: 'The support structure was painted in RAL 7035 instead of requested RAL 7040. Customer approved deviation.',
-        project: 'Modular Office Structure S-11',
-        location: 'Finishing Yard',
-        assignedTo: 'Rajesh G.',
-        category: 'Surface Finish'
-    },
-    {
-        id: '4',
-        ncrNumber: 'NCR-2024-004',
-        title: 'Calibration Out of Bounds for Torque Wrench',
-        source: 'Audit',
-        severity: 'major',
-        priority: 'high',
-        status: 'open',
-        reportedBy: 'Anita Desai',
-        reportedDate: '2024-07-19T11:00:00Z',
-        description: 'Torque wrench TW-087 found to be 15% out of calibration during an internal audit.',
-        project: 'General Equipment Maintenance',
-        location: 'Tool Room',
-        assignedTo: 'Manoj Singh',
-        category: 'Equipment Maintenance'
-    },
-    {
-        id: '5',
-        ncrNumber: 'NCR-2024-005',
-        title: 'Non-compliant Anchor Bolts Received',
-        source: 'Incoming Inspection',
-        severity: 'major',
-        priority: 'medium',
-        status: 'in-progress',
-        reportedBy: 'Sanjay K.',
-        reportedDate: '2024-07-18T16:20:00Z',
-        description: 'Supplied M36 bolts lack the required heat treatment certification stamps.',
-        project: 'Tata Steel Substation G-14',
-        location: 'Store 2',
-        assignedTo: 'Prakash L.',
-        category: 'Procurement'
-    }
-];
+// NCR data is now fetched from NCRService
 
 export default function NCRPage() {
     const [ncrs, setNcrs] = useState<NCR[]>([]);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
     const [filter, setFilter] = useState('all');
     const [searchTerm, setSearchTerm] = useState('');
     const [severityFilter, setSeverityFilter] = useState('all');
 
-    useEffect(() => {
-        const fetchNCRs = async () => {
-            try {
-                setLoading(true);
-                // Simulate API call with fallback to mock data
-                const response = await fetch('/api/quality/ncr');
-                if (response.ok) {
-                    const data = await response.json();
-                    setNcrs(data.length > 0 ? data : MOCK_NCRS);
-                } else {
-                    setNcrs(MOCK_NCRS);
-                }
-            } catch (error) {
-                console.error('Failed to fetch NCRs:', error);
-                setNcrs(MOCK_NCRS);
-            } finally {
-                setLoading(false);
-            }
+    // Transform service NCR to page format
+    const transformNCR = (ncr: ServiceNCR): NCR => {
+        // Map severity
+        const severityMap: Record<string, NCR['severity']> = {
+            'critical': 'critical',
+            'major': 'major',
+            'minor': 'minor',
         };
+
+        // Map priority
+        const priorityMap: Record<string, NCR['priority']> = {
+            'high': 'high',
+            'medium': 'medium',
+            'low': 'low',
+        };
+
+        // Map status - normalize the various statuses
+        let status: NCR['status'] = 'open';
+        if (ncr.status === NCRStatus.CLOSED) {
+            status = 'closed';
+        } else if (
+            ncr.status === NCRStatus.CONTAINMENT ||
+            ncr.status === NCRStatus.ROOT_CAUSE ||
+            ncr.status === NCRStatus.DISPOSITION ||
+            ncr.status === NCRStatus.CAPA_IN_PROGRESS ||
+            ncr.status === NCRStatus.VERIFICATION
+        ) {
+            status = 'in-progress';
+        }
+
+        return {
+            id: ncr.id,
+            ncrNumber: ncr.ncrNumber,
+            title: ncr.title,
+            source: ncr.sourceType.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase()),
+            severity: severityMap[ncr.severity] || 'minor',
+            priority: priorityMap[ncr.priority] || 'medium',
+            status: status,
+            reportedBy: ncr.discoveredByName,
+            reportedDate: new Date(ncr.reportedDate).toISOString(),
+            assignedTo: ncr.containmentActions[0]?.assignedToName,
+            description: ncr.description,
+            project: ncr.productName,
+            location: ncr.discoveredLocation,
+            category: ncr.category.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase()),
+        };
+    };
+
+    const fetchNCRs = async () => {
+        try {
+            setLoading(true);
+            setError(null);
+
+            const data = await NCRService.getAllNCRs();
+            const transformedData = data.map(transformNCR);
+            setNcrs(transformedData);
+        } catch (err) {
+            console.error('Failed to fetch NCRs:', err);
+            setError('Failed to load NCRs. Please try again.');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
         fetchNCRs();
     }, []);
 
@@ -316,9 +284,24 @@ export default function NCRPage() {
 
             {/* NCR List */}
             <div className="flex flex-col gap-4">
+                {error && (
+                    <Card className="border-red-200 bg-red-50">
+                        <CardContent className="p-4">
+                            <p className="text-red-600">{error}</p>
+                            <Button
+                                variant="link"
+                                onClick={fetchNCRs}
+                                className="text-red-700 p-0 h-auto mt-1"
+                            >
+                                Try again
+                            </Button>
+                        </CardContent>
+                    </Card>
+                )}
                 {loading ? (
                     <div className="flex items-center justify-center py-20">
-                        <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-blue-600"></div>
+                        <Loader2 className="h-10 w-10 animate-spin text-blue-600" />
+                        <span className="ml-3 text-gray-600">Loading NCRs...</span>
                     </div>
                 ) : filteredNCRs.length === 0 ? (
                     <Card className="border-dashed border-2 py-20 text-center">

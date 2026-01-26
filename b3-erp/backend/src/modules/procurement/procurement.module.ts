@@ -38,6 +38,7 @@ import {
   PurchaseReturnService,
   PurchaseInvoiceService,
   VendorEvaluationService,
+  ApprovalThresholdSeederService,
 } from './services';
 import { ThreeWayMatchingService } from './services/three-way-matching.service';
 import { ContractService } from './services/contract.service';
@@ -98,6 +99,7 @@ import { SpendAnalysisService } from './services/spend-analysis.service';
     ApprovalMatrixService,
     RFQPolicyService,
     SpendAnalysisService,
+    ApprovalThresholdSeederService,
   ],
   exports: [
     PurchaseRequisitionService,
@@ -113,6 +115,7 @@ import { SpendAnalysisService } from './services/spend-analysis.service';
     ApprovalMatrixService,
     RFQPolicyService,
     SpendAnalysisService,
+    ApprovalThresholdSeederService,
   ],
 })
 export class ProcurementModule {}

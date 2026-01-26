@@ -4,105 +4,13 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Plus, Search, Eye, Edit, Trash2, Phone, Mail, Building2, User, Users, Calendar, TrendingUp, X, Globe, Clock, CheckCircle, MessageSquare, FileText, PhoneCall, Video, Send, Activity, ArrowRight, Circle, ChevronLeft, ChevronRight, Download, RefreshCw, Upload, Filter, Save, Check, UserPlus, MoreVertical, FileSpreadsheet, ArrowUpDown } from 'lucide-react';
 import { DataTable, EmptyState, LoadingState, PageToolbar, ConfirmDialog, useToast } from '@/components/ui';
+import { LeadService, Lead as LeadFromService, MOCK_LEADS, MOCK_LEAD_ACTIVITIES } from '@/services/lead.service';
 
-interface Lead {
-  id: string;
-  name: string;
-  company: string;
-  email: string;
-  phone: string;
-  status: 'new' | 'contacted' | 'qualified' | 'proposal' | 'negotiation' | 'won' | 'lost';
-  source: string;
-  value: number;
-  assignedTo: string;
-  createdAt: string;
-  lastContact: string;
-}
+// Use Lead interface from service - local type alias for component
+type Lead = LeadFromService;
 
-const mockLeads: Lead[] = [
-  {
-    id: '1',
-    name: 'John Smith',
-    company: 'Tech Solutions Inc',
-    email: 'john.smith@techsolutions.com',
-    phone: '+1 234-567-8900',
-    status: 'qualified',
-    source: 'Website',
-    value: 45000,
-    assignedTo: 'Sarah Johnson',
-    createdAt: '2025-10-01',
-    lastContact: '2025-10-08',
-  },
-  {
-    id: '2',
-    name: 'Emily Davis',
-    company: 'Global Manufacturing Ltd',
-    email: 'emily.davis@globalmanuf.com',
-    phone: '+1 234-567-8901',
-    status: 'new',
-    source: 'Referral',
-    value: 75000,
-    assignedTo: 'Michael Chen',
-    createdAt: '2025-10-05',
-    lastContact: '2025-10-05',
-  },
-  {
-    id: '3',
-    name: 'Robert Wilson',
-    company: 'Precision Parts Co',
-    email: 'r.wilson@precisionparts.com',
-    phone: '+1 234-567-8902',
-    status: 'proposal',
-    source: 'Trade Show',
-    value: 120000,
-    assignedTo: 'Sarah Johnson',
-    createdAt: '2025-09-28',
-    lastContact: '2025-10-07',
-  },
-  {
-    id: '4',
-    name: 'Lisa Anderson',
-    company: 'Industrial Automation Inc',
-    email: 'l.anderson@indauto.com',
-    phone: '+1 234-567-8903',
-    status: 'negotiation',
-    source: 'LinkedIn',
-    value: 95000,
-    assignedTo: 'David Park',
-    createdAt: '2025-09-15',
-    lastContact: '2025-10-09',
-  },
-  {
-    id: '5',
-    name: 'James Martinez',
-    company: 'Smart Systems Corp',
-    email: 'j.martinez@smartsys.com',
-    phone: '+1 234-567-8904',
-    status: 'contacted',
-    source: 'Cold Call',
-    value: 60000,
-    assignedTo: 'Michael Chen',
-    createdAt: '2025-10-03',
-    lastContact: '2025-10-06',
-  },
-];
-
-interface LeadActivity {
-  id: string;
-  leadId: string;
-  type: 'call' | 'email' | 'meeting' | 'note' | 'status_change' | 'task' | 'proposal' | 'video_call';
-  title: string;
-  description: string;
-  performedBy: string;
-  timestamp: string;
-  metadata?: {
-    previousStatus?: string;
-    newStatus?: string;
-    duration?: string;
-    outcome?: string;
-    attachments?: number;
-  };
-}
+// LeadActivity imported from service
+const mockActivities = MOCK_LEAD_ACTIVITIES;
 
 interface LeadStage {
   id: string;
@@ -127,78 +35,6 @@ interface SavedFilter {
   };
 }
 
-// Mock activities for Lead ID 1
-const mockActivities: LeadActivity[] = [
-  {
-    id: 'a1',
-    leadId: '1',
-    type: 'status_change',
-    title: 'Status Changed',
-    description: 'Lead status updated from "Contacted" to "Qualified"',
-    performedBy: 'Sarah Johnson',
-    timestamp: '2025-10-08 14:30',
-    metadata: { previousStatus: 'contacted', newStatus: 'qualified' }
-  },
-  {
-    id: 'a2',
-    leadId: '1',
-    type: 'call',
-    title: 'Phone Call',
-    description: 'Discussed product requirements and pricing options. Client is interested in modular kitchen solutions.',
-    performedBy: 'Sarah Johnson',
-    timestamp: '2025-10-08 10:15',
-    metadata: { duration: '45 mins', outcome: 'Positive' }
-  },
-  {
-    id: 'a3',
-    leadId: '1',
-    type: 'email',
-    title: 'Email Sent',
-    description: 'Sent product catalog and pricing information',
-    performedBy: 'Sarah Johnson',
-    timestamp: '2025-10-07 16:20',
-    metadata: { attachments: 3 }
-  },
-  {
-    id: 'a4',
-    leadId: '1',
-    type: 'meeting',
-    title: 'Site Visit Scheduled',
-    description: 'Arranged site visit for kitchen measurement and design consultation on Oct 15, 2025',
-    performedBy: 'Sarah Johnson',
-    timestamp: '2025-10-06 11:00',
-    metadata: { duration: '2 hours' }
-  },
-  {
-    id: 'a5',
-    leadId: '1',
-    type: 'note',
-    title: 'Added Note',
-    description: 'Client has a budget of $45K-50K. Looking for premium finish with granite countertops.',
-    performedBy: 'Sarah Johnson',
-    timestamp: '2025-10-05 09:30'
-  },
-  {
-    id: 'a6',
-    leadId: '1',
-    type: 'call',
-    title: 'Initial Contact',
-    description: 'First contact call. Introduced our kitchen solutions and gathered basic requirements.',
-    performedBy: 'Sarah Johnson',
-    timestamp: '2025-10-02 14:45',
-    metadata: { duration: '20 mins', outcome: 'Interested' }
-  },
-  {
-    id: 'a7',
-    leadId: '1',
-    type: 'status_change',
-    title: 'Lead Created',
-    description: 'New lead created from website inquiry',
-    performedBy: 'System',
-    timestamp: '2025-10-01 09:00',
-    metadata: { newStatus: 'new' }
-  }
-];
 
 const getLeadStages = (lead: Lead): LeadStage[] => {
   const stages: LeadStage[] = [
@@ -253,13 +89,14 @@ export default function LeadsPage() {
   const router = useRouter();
   const { addToast } = useToast();
 
-  const [leads, setLeads] = useState<Lead[]>(mockLeads);
+  const [leads, setLeads] = useState<Lead[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [showDetailModal, setShowDetailModal] = useState(false);
   const [selectedLead, setSelectedLead] = useState<Lead | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<Error | null>(null);
 
   // Enhanced Delete State
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
@@ -292,6 +129,31 @@ export default function LeadsPage() {
   const [showImportDialog, setShowImportDialog] = useState(false);
 
   const itemsPerPage = 10;
+
+  // Fetch leads data on mount
+  useEffect(() => {
+    async function fetchLeads() {
+      try {
+        setIsLoading(true);
+        setError(null);
+        const data = await LeadService.getAllLeads();
+        setLeads(data);
+      } catch (err) {
+        console.error('Failed to fetch leads:', err);
+        setError(err instanceof Error ? err : new Error('Failed to fetch leads'));
+        // Fallback to mock data
+        setLeads(MOCK_LEADS);
+        addToast({
+          title: 'Connection Error',
+          message: 'Using cached data. Unable to connect to server.',
+          variant: 'warning'
+        });
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    fetchLeads();
+  }, []);
 
   // Keyboard shortcuts
   useEffect(() => {
@@ -593,6 +455,46 @@ export default function LeadsPage() {
     ];
   };
 
+  // Refetch function for refresh button
+  const handleRefresh = async () => {
+    try {
+      setIsLoading(true);
+      const data = await LeadService.getAllLeads();
+      setLeads(data);
+      addToast({
+        title: 'Refreshed',
+        message: 'Lead data has been refreshed.',
+        variant: 'success'
+      });
+    } catch (err) {
+      setError(err instanceof Error ? err : new Error('Failed to refresh leads'));
+      addToast({
+        title: 'Refresh Failed',
+        message: 'Unable to refresh data. Please try again.',
+        variant: 'error'
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // Show loading skeleton on initial load
+  if (isLoading && leads.length === 0) {
+    return (
+      <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6">
+        <div className="animate-pulse">
+          <div className="h-10 bg-gray-200 rounded w-1/4 mb-6"></div>
+          <div className="grid grid-cols-4 gap-4 mb-6">
+            {[1, 2, 3, 4].map((i) => (
+              <div key={i} className="h-24 bg-gray-200 rounded"></div>
+            ))}
+          </div>
+          <div className="bg-gray-200 rounded h-96"></div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 ">
       {/* Page Header with Toolbar */}
@@ -620,10 +522,7 @@ export default function LeadsPage() {
             label: 'Refresh',
             icon: RefreshCw,
             variant: 'secondary',
-            onClick: () => {
-              setIsLoading(true);
-              setTimeout(() => setIsLoading(false), 500);
-            }
+            onClick: handleRefresh
           },
           {
             label: 'Add New Lead',

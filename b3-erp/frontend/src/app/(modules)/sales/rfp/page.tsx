@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Search,
   Filter,
@@ -12,7 +12,11 @@ import {
   FileText,
   CheckCircle,
   Award,
+  Loader2,
+  AlertCircle,
 } from 'lucide-react';
+import { RFPService } from '@/services/rfp.service';
+import { RFP as ServiceRFP, RFPStatus } from '@/types/rfp';
 
 interface RFP {
   id: string;
@@ -31,111 +35,6 @@ interface RFP {
   competitorInfo: string;
   winProbability: number;
 }
-
-const mockRFPs: RFP[] = [
-  {
-    id: '1',
-    rfpNumber: 'RFP-2025-001',
-    clientName: 'Tata Steel Limited',
-    projectTitle: 'Manufacturing Process Automation System',
-    industry: 'manufacturing',
-    submissionDate: '2025-01-15',
-    closingDate: '2025-02-28',
-    estimatedValue: 8500000,
-    status: 'submitted',
-    salesOwner: 'Rajesh Kumar',
-    requirementDetails: 'Complete automation solution for steel rolling mill',
-    technicalSpecs: 'PLC-based control system with SCADA integration',
-    commercialTerms: 'Payment in 3 milestones, 90 days credit',
-    competitorInfo: 'Siemens, ABB competing',
-    winProbability: 75,
-  },
-  {
-    id: '2',
-    rfpNumber: 'RFP-2025-002',
-    clientName: 'Larsen & Toubro Construction',
-    projectTitle: 'Smart Building Management System',
-    industry: 'construction',
-    submissionDate: '2025-01-20',
-    closingDate: '2025-03-15',
-    estimatedValue: 6200000,
-    status: 'under_review',
-    salesOwner: 'Priya Sharma',
-    requirementDetails: 'Integrated BMS for commercial complex',
-    technicalSpecs: 'IoT-enabled sensors with cloud monitoring',
-    commercialTerms: 'BOT model with 5-year AMC',
-    competitorInfo: 'Honeywell, Johnson Controls',
-    winProbability: 60,
-  },
-  {
-    id: '3',
-    rfpNumber: 'RFP-2025-003',
-    clientName: 'Mahindra & Mahindra Auto',
-    projectTitle: 'Assembly Line Robotics Integration',
-    industry: 'automotive',
-    submissionDate: '2025-01-10',
-    closingDate: '2025-02-20',
-    estimatedValue: 12500000,
-    status: 'shortlisted',
-    salesOwner: 'Amit Patel',
-    requirementDetails: 'Robotic welding and painting systems',
-    technicalSpecs: '6-axis industrial robots with vision systems',
-    commercialTerms: 'Turnkey project with training included',
-    competitorInfo: 'Fanuc, KUKA in competition',
-    winProbability: 85,
-  },
-  {
-    id: '4',
-    rfpNumber: 'RFP-2025-004',
-    clientName: 'Sun Pharma Industries',
-    projectTitle: 'Pharmaceutical Manufacturing Equipment',
-    industry: 'pharma',
-    submissionDate: '2025-02-01',
-    closingDate: '2025-03-30',
-    estimatedValue: 15000000,
-    status: 'draft',
-    salesOwner: 'Sneha Reddy',
-    requirementDetails: 'Clean room equipment and packaging line',
-    technicalSpecs: 'FDA compliant systems with validation',
-    commercialTerms: 'Fixed price with performance guarantee',
-    competitorInfo: 'GEA, Bosch Packaging',
-    winProbability: 50,
-  },
-  {
-    id: '5',
-    rfpNumber: 'RFP-2025-005',
-    clientName: 'Reliance Energy Limited',
-    projectTitle: 'Power Plant Control & Monitoring System',
-    industry: 'energy',
-    submissionDate: '2024-12-15',
-    closingDate: '2025-01-31',
-    estimatedValue: 22000000,
-    status: 'won',
-    salesOwner: 'Vikram Singh',
-    requirementDetails: 'DCS and safety systems for thermal plant',
-    technicalSpecs: 'Redundant architecture with cybersecurity',
-    commercialTerms: '4 milestone payments, 2-year warranty',
-    competitorInfo: 'Beat Schneider Electric and Emerson',
-    winProbability: 100,
-  },
-  {
-    id: '6',
-    rfpNumber: 'RFP-2024-089',
-    clientName: 'Bharat Electronics Limited',
-    projectTitle: 'PCB Manufacturing Line Upgrade',
-    industry: 'electronics',
-    submissionDate: '2024-11-20',
-    closingDate: '2024-12-31',
-    estimatedValue: 4500000,
-    status: 'lost',
-    salesOwner: 'Anita Desai',
-    requirementDetails: 'SMT line with optical inspection',
-    technicalSpecs: 'High-speed pick and place machines',
-    commercialTerms: 'Competitive pricing with training',
-    competitorInfo: 'Lost to Juki Corporation on price',
-    winProbability: 0,
-  },
-];
 
 const statusColors = {
   draft: 'bg-gray-100 text-gray-700 border-gray-300',
@@ -167,13 +66,76 @@ const statusOptions = [
 ];
 
 export default function RFPPage() {
+  const [rfps, setRfps] = useState<RFP[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('');
   const [industryFilter, setIndustryFilter] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
-  const filteredRFPs = mockRFPs.filter((rfp) => {
+  useEffect(() => {
+    const loadRFPs = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const data = await RFPService.getAllRFPs();
+
+        // Map service RFPs to page format
+        const mappedRFPs: RFP[] = data.map((rfp: ServiceRFP) => {
+          // Map status from service format to page format
+          let pageStatus: RFP['status'] = 'draft';
+          const statusValue = rfp.status;
+          if (statusValue === RFPStatus.DRAFT) pageStatus = 'draft';
+          else if (statusValue === RFPStatus.SUBMITTED) pageStatus = 'submitted';
+          else if (statusValue === RFPStatus.UNDER_REVIEW) pageStatus = 'under_review';
+          else if (statusValue === RFPStatus.IN_PROGRESS) pageStatus = 'shortlisted';
+          else if (statusValue === RFPStatus.APPROVED) pageStatus = 'won';
+          else if (statusValue === RFPStatus.REJECTED) pageStatus = 'lost';
+          else if (statusValue === RFPStatus.AWAITING_APPROVAL) pageStatus = 'shortlisted';
+
+          // Map industry (default to manufacturing if not in our list)
+          let industry: RFP['industry'] = 'manufacturing';
+          const categoryLower = (rfp.category || '').toLowerCase();
+          if (categoryLower.includes('construction')) industry = 'construction';
+          else if (categoryLower.includes('auto')) industry = 'automotive';
+          else if (categoryLower.includes('pharma')) industry = 'pharma';
+          else if (categoryLower.includes('energy')) industry = 'energy';
+          else if (categoryLower.includes('electron')) industry = 'electronics';
+
+          return {
+            id: rfp.id,
+            rfpNumber: rfp.rfpNumber,
+            clientName: rfp.customerName,
+            projectTitle: rfp.title,
+            industry: industry,
+            submissionDate: rfp.issueDate.split('T')[0],
+            closingDate: rfp.submissionDeadline.split('T')[0],
+            estimatedValue: rfp.estimatedBudget || 0,
+            status: pageStatus,
+            salesOwner: rfp.salesPerson || rfp.assignedTo || 'Unassigned',
+            requirementDetails: rfp.projectScope || '',
+            technicalSpecs: rfp.technicalSpecifications || '',
+            commercialTerms: rfp.paymentTerms || '',
+            competitorInfo: rfp.competitorAnalysis || '',
+            winProbability: rfp.winProbability || 50,
+          };
+        });
+
+        setRfps(mappedRFPs);
+      } catch (err) {
+        console.error('Error loading RFPs:', err);
+        setError('Failed to load RFPs. Please try again.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadRFPs();
+  }, []);
+
+  const filteredRFPs = rfps.filter((rfp) => {
     const matchesSearch =
       rfp.rfpNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
       rfp.clientName.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -188,14 +150,16 @@ export default function RFPPage() {
   const paginatedRFPs = filteredRFPs.slice(startIndex, startIndex + itemsPerPage);
 
   const stats = {
-    activeRFPs: mockRFPs.filter((r) => ['submitted', 'under_review', 'shortlisted'].includes(r.status)).length,
-    underReview: mockRFPs.filter((r) => r.status === 'under_review').length,
-    won: mockRFPs.filter((r) => r.status === 'won').length,
-    winRate: Math.round(
-      (mockRFPs.filter((r) => r.status === 'won').length /
-        mockRFPs.filter((r) => ['won', 'lost'].includes(r.status)).length) *
-        100
-    ),
+    activeRFPs: rfps.filter((r) => ['submitted', 'under_review', 'shortlisted'].includes(r.status)).length,
+    underReview: rfps.filter((r) => r.status === 'under_review').length,
+    won: rfps.filter((r) => r.status === 'won').length,
+    winRate: rfps.filter((r) => ['won', 'lost'].includes(r.status)).length > 0
+      ? Math.round(
+          (rfps.filter((r) => r.status === 'won').length /
+            rfps.filter((r) => ['won', 'lost'].includes(r.status)).length) *
+            100
+        )
+      : 0,
   };
 
   const handleExport = () => {
@@ -213,6 +177,34 @@ export default function RFPPage() {
   const handleSubmit = (id: string) => {
     console.log('Submitting RFP:', id);
   };
+
+  if (loading) {
+    return (
+      <div className="w-full min-h-screen px-4 py-6 flex items-center justify-center">
+        <div className="flex flex-col items-center gap-4">
+          <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+          <p className="text-gray-600">Loading RFPs...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="w-full min-h-screen px-4 py-6 flex items-center justify-center">
+        <div className="flex flex-col items-center gap-4 text-center">
+          <AlertCircle className="h-12 w-12 text-red-500" />
+          <p className="text-red-600 font-medium">{error}</p>
+          <button
+            onClick={() => window.location.reload()}
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          >
+            Retry
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full min-h-screen px-4 py-6">

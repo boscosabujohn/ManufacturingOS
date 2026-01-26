@@ -1,219 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Plus, Search, Eye, Edit, Trash2, FileText, RefreshCw, AlertCircle, CheckCircle, Clock, XCircle, Download, Filter, Calendar, DollarSign, TrendingUp } from 'lucide-react';
-
-interface ServiceContract {
-  id: string;
-  contractNumber: string;
-  contractType: 'AMC' | 'CMC' | 'Pay Per Visit' | 'Parts & Labor' | 'Extended Warranty';
-  customerId: string;
-  customerName: string;
-  status: 'draft' | 'active' | 'expired' | 'renewed' | 'terminated' | 'suspended';
-  startDate: string;
-  endDate: string;
-  duration: number; // in months
-  pricingTier: 'Basic' | 'Standard' | 'Premium' | 'Enterprise';
-  contractValue: number;
-  responseTimeSLA: number; // in hours
-  resolutionTimeSLA: number; // in hours
-  renewalCount: number;
-  totalBilled: number;
-  totalPaid: number;
-  outstandingAmount: number;
-  equipmentCount: number;
-  accountManager: string;
-  billingFrequency: 'monthly' | 'quarterly' | 'half_yearly' | 'annual';
-  autoRenewal: boolean;
-}
-
-const mockContracts: ServiceContract[] = [
-  {
-    id: '1',
-    contractNumber: 'AMC-2025-0001',
-    contractType: 'AMC',
-    customerId: 'CUST001',
-    customerName: 'Sharma Modular Kitchens Pvt Ltd',
-    status: 'active',
-    startDate: '2025-01-01',
-    endDate: '2025-12-31',
-    duration: 12,
-    pricingTier: 'Premium',
-    contractValue: 450000,
-    responseTimeSLA: 4,
-    resolutionTimeSLA: 24,
-    renewalCount: 2,
-    totalBilled: 225000,
-    totalPaid: 225000,
-    outstandingAmount: 0,
-    equipmentCount: 45,
-    accountManager: 'Priya Patel',
-    billingFrequency: 'quarterly',
-    autoRenewal: true,
-  },
-  {
-    id: '2',
-    contractNumber: 'CMC-2025-0012',
-    contractType: 'CMC',
-    customerId: 'CUST002',
-    customerName: 'Prestige Developers Bangalore',
-    status: 'active',
-    startDate: '2025-03-15',
-    endDate: '2026-03-14',
-    duration: 12,
-    pricingTier: 'Enterprise',
-    contractValue: 1250000,
-    responseTimeSLA: 2,
-    resolutionTimeSLA: 6,
-    renewalCount: 0,
-    totalBilled: 625000,
-    totalPaid: 625000,
-    outstandingAmount: 0,
-    equipmentCount: 120,
-    accountManager: 'Amit Kumar',
-    billingFrequency: 'half_yearly',
-    autoRenewal: true,
-  },
-  {
-    id: '3',
-    contractNumber: 'AMC-2025-0035',
-    contractType: 'AMC',
-    customerId: 'CUST003',
-    customerName: 'Urban Interiors & Designers',
-    status: 'active',
-    startDate: '2025-06-01',
-    endDate: '2026-05-31',
-    duration: 12,
-    pricingTier: 'Standard',
-    contractValue: 280000,
-    responseTimeSLA: 8,
-    resolutionTimeSLA: 48,
-    renewalCount: 1,
-    totalBilled: 93333,
-    totalPaid: 93333,
-    outstandingAmount: 0,
-    equipmentCount: 28,
-    accountManager: 'Rahul Verma',
-    billingFrequency: 'quarterly',
-    autoRenewal: false,
-  },
-  {
-    id: '4',
-    contractNumber: 'AMC-2024-0234',
-    contractType: 'AMC',
-    customerId: 'CUST004',
-    customerName: 'Elite Contractors & Builders',
-    status: 'expired',
-    startDate: '2024-08-01',
-    endDate: '2025-07-31',
-    duration: 12,
-    pricingTier: 'Basic',
-    contractValue: 180000,
-    responseTimeSLA: 24,
-    resolutionTimeSLA: 72,
-    renewalCount: 0,
-    totalBilled: 180000,
-    totalPaid: 160000,
-    outstandingAmount: 20000,
-    equipmentCount: 18,
-    accountManager: 'Sanjay Gupta',
-    billingFrequency: 'annual',
-    autoRenewal: false,
-  },
-  {
-    id: '5',
-    contractNumber: 'CMC-2025-0045',
-    contractType: 'CMC',
-    customerId: 'CUST005',
-    customerName: 'DLF Universal Projects',
-    status: 'active',
-    startDate: '2025-04-01',
-    endDate: '2026-03-31',
-    duration: 12,
-    pricingTier: 'Premium',
-    contractValue: 850000,
-    responseTimeSLA: 4,
-    resolutionTimeSLA: 12,
-    renewalCount: 3,
-    totalBilled: 425000,
-    totalPaid: 425000,
-    outstandingAmount: 0,
-    equipmentCount: 85,
-    accountManager: 'Priya Patel',
-    billingFrequency: 'half_yearly',
-    autoRenewal: true,
-  },
-  {
-    id: '6',
-    contractNumber: 'AMC-2025-0078',
-    contractType: 'Extended Warranty',
-    customerId: 'CUST006',
-    customerName: 'Signature Interiors Pune',
-    status: 'suspended',
-    startDate: '2025-02-15',
-    endDate: '2026-02-14',
-    duration: 12,
-    pricingTier: 'Standard',
-    contractValue: 320000,
-    responseTimeSLA: 8,
-    resolutionTimeSLA: 24,
-    renewalCount: 0,
-    totalBilled: 160000,
-    totalPaid: 80000,
-    outstandingAmount: 80000,
-    equipmentCount: 32,
-    accountManager: 'Amit Kumar',
-    billingFrequency: 'half_yearly',
-    autoRenewal: false,
-  },
-  {
-    id: '7',
-    contractNumber: 'AMC-2025-0103',
-    contractType: 'AMC',
-    customerId: 'CUST007',
-    customerName: 'Royal Homes Hyderabad',
-    status: 'draft',
-    startDate: '2025-11-01',
-    endDate: '2026-10-31',
-    duration: 12,
-    pricingTier: 'Premium',
-    contractValue: 720000,
-    responseTimeSLA: 4,
-    resolutionTimeSLA: 24,
-    renewalCount: 0,
-    totalBilled: 0,
-    totalPaid: 0,
-    outstandingAmount: 0,
-    equipmentCount: 68,
-    accountManager: 'Rahul Verma',
-    billingFrequency: 'quarterly',
-    autoRenewal: true,
-  },
-  {
-    id: '8',
-    contractNumber: 'CMC-2025-0089',
-    contractType: 'CMC',
-    customerId: 'CUST008',
-    customerName: 'Modern Living Ahmedabad',
-    status: 'active',
-    startDate: '2025-05-01',
-    endDate: '2026-04-30',
-    duration: 12,
-    pricingTier: 'Enterprise',
-    contractValue: 950000,
-    responseTimeSLA: 2,
-    resolutionTimeSLA: 8,
-    renewalCount: 1,
-    totalBilled: 475000,
-    totalPaid: 475000,
-    outstandingAmount: 0,
-    equipmentCount: 95,
-    accountManager: 'Priya Patel',
-    billingFrequency: 'half_yearly',
-    autoRenewal: true,
-  },
-];
+import { Plus, Search, Eye, Edit, Trash2, FileText, RefreshCw, AlertCircle, CheckCircle, Clock, XCircle, Download, Filter, Calendar, DollarSign, TrendingUp, Loader2 } from 'lucide-react';
+import { ServiceContractService, ServiceContract } from '@/services/service-contract.service';
 
 const statusColors = {
   draft: 'bg-gray-100 text-gray-700',
@@ -256,8 +46,32 @@ export default function ServiceContractsPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
+  // Data fetching states
+  const [contracts, setContracts] = useState<ServiceContract[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // Fetch contracts on mount
+  useEffect(() => {
+    const fetchContracts = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const data = await ServiceContractService.getAllServiceContracts();
+        setContracts(data);
+      } catch (err) {
+        setError('Failed to load service contracts. Please try again.');
+        console.error('Error fetching service contracts:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchContracts();
+  }, []);
+
   // Filter contracts
-  const filteredContracts = mockContracts.filter((contract) => {
+  const filteredContracts = contracts.filter((contract) => {
     const matchesSearch =
       contract.contractNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
       contract.customerName.toLowerCase().includes(searchTerm.toLowerCase());
@@ -274,18 +88,49 @@ export default function ServiceContractsPage() {
   );
 
   // Calculate statistics
+  const now = new Date();
   const stats = {
-    totalContracts: mockContracts.length,
-    activeContracts: mockContracts.filter(c => c.status === 'active').length,
-    expiringIn30Days: mockContracts.filter(c => {
-      const daysUntilExpiry = Math.ceil((new Date(c.endDate).getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24));
+    totalContracts: contracts.length,
+    activeContracts: contracts.filter(c => c.status === 'active').length,
+    expiringIn30Days: contracts.filter(c => {
+      const daysUntilExpiry = Math.ceil((new Date(c.endDate).getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
       return c.status === 'active' && daysUntilExpiry <= 30 && daysUntilExpiry > 0;
     }).length,
-    totalActiveValue: mockContracts
+    totalActiveValue: contracts
       .filter(c => c.status === 'active')
       .reduce((sum, c) => sum + c.contractValue, 0),
-    totalOutstanding: mockContracts.reduce((sum, c) => sum + c.outstandingAmount, 0),
+    totalOutstanding: contracts.reduce((sum, c) => sum + c.outstandingAmount, 0),
   };
+
+  // Loading state
+  if (loading) {
+    return (
+      <div className="p-6 w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/20 to-indigo-50/20 flex items-center justify-center">
+        <div className="flex flex-col items-center gap-4">
+          <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+          <p className="text-gray-600">Loading service contracts...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Error state
+  if (error) {
+    return (
+      <div className="p-6 w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/20 to-indigo-50/20 flex items-center justify-center">
+        <div className="flex flex-col items-center gap-4 text-center">
+          <AlertCircle className="h-12 w-12 text-red-500" />
+          <p className="text-gray-900 font-medium">{error}</p>
+          <button
+            onClick={() => window.location.reload()}
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          >
+            Try Again
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat('en-IN', {

@@ -1,4 +1,9 @@
 import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
+
+// Entities
+import { ServiceType } from './entities/service-type.entity';
+import { WarrantyTypeEntity } from './entities/warranty-type.entity';
 
 // Service Contracts
 import { ServiceContractsController } from './service-contracts/service-contracts.controller';
@@ -24,7 +29,17 @@ import { FieldServiceService } from './field-service/field-service.service';
 import { ServiceBillingController } from './service-billing/service-billing.controller';
 import { ServiceBillingService } from './service-billing/service-billing.service';
 
+// Seeders
+import { ServiceTypeSeederService } from './services/service-type-seeder.service';
+import { WarrantyTypeSeederService } from './services/warranty-type-seeder.service';
+
 @Module({
+  imports: [
+    TypeOrmModule.forFeature([
+      ServiceType,
+      WarrantyTypeEntity,
+    ]),
+  ],
   controllers: [
     ServiceContractsController,
     WarrantiesController,
@@ -40,6 +55,8 @@ import { ServiceBillingService } from './service-billing/service-billing.service
     InstallationsService,
     FieldServiceService,
     ServiceBillingService,
+    ServiceTypeSeederService,
+    WarrantyTypeSeederService,
   ],
   exports: [
     ServiceContractsService,

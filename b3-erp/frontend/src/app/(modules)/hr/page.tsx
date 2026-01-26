@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import {
   Users,
@@ -21,6 +21,11 @@ import {
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { KPICard, CardSkeleton } from '@/components/ui';
+import { EmployeeService } from '@/services/employee.service';
+import { DepartmentService } from '@/services/department.service';
+import { AttendanceService } from '@/services/attendance.service';
+import { LeaveService, LeaveApplicationStatus } from '@/services/leave.service';
+import { PayrollService } from '@/services/payroll.service';
 
 interface DashboardStats {
   totalEmployees: number;
@@ -42,65 +47,111 @@ interface RecentActivity {
   status: 'pending' | 'approved' | 'completed' | 'rejected';
 }
 
+interface DepartmentStat {
+  name: string;
+  count: number;
+  color: string;
+}
+
 export default function HRDashboardPage() {
   const router = useRouter();
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [stats, setStats] = useState<DashboardStats>({
+    totalEmployees: 0,
+    activeEmployees: 0,
+    onLeaveToday: 0,
+    pendingApprovals: 0,
+    monthlyPayroll: 0,
+    averageSalary: 0,
+    newHiresThisMonth: 0,
+    attritionRate: 0
+  });
+  const [departmentStats, setDepartmentStats] = useState<DepartmentStat[]>([]);
+  const [recentActivities, setRecentActivities] = useState<RecentActivity[]>([]);
 
-  // Sample dashboard data
-  const stats: DashboardStats = {
-    totalEmployees: 245,
-    activeEmployees: 238,
-    onLeaveToday: 12,
-    pendingApprovals: 8,
-    monthlyPayroll: 18500000,
-    averageSalary: 75000,
-    newHiresThisMonth: 5,
-    attritionRate: 8.5
-  };
+  useEffect(() => {
+    const loadDashboardData = async () => {
+      try {
+        setIsLoading(true);
+        setError(null);
 
-  const recentActivities: RecentActivity[] = [
-    {
-      id: '1',
-      type: 'leave',
-      title: 'Leave Request',
-      description: 'John Doe requested leave from Jan 25 to Jan 27',
-      timestamp: '2 hours ago',
-      status: 'pending'
-    },
-    {
-      id: '2',
-      type: 'payroll',
-      title: 'Payroll Processed',
-      description: 'January 2025 payroll has been processed successfully',
-      timestamp: '5 hours ago',
-      status: 'completed'
-    },
-    {
-      id: '3',
-      type: 'recruitment',
-      title: 'New Employee Onboarded',
-      description: 'Sarah Wilson joined as Senior Developer',
-      timestamp: '1 day ago',
-      status: 'completed'
-    },
-    {
-      id: '4',
-      type: 'attendance',
-      title: 'Attendance Report',
-      description: 'Weekly attendance report generated',
-      timestamp: '2 days ago',
-      status: 'completed'
-    }
-  ];
+        // Fetch data from all services in parallel
+        const [
+          employeeStats,
+          departmentData,
+          attendanceStats,
+          leaveStats,
+          payrollStats,
+          recentLeaves
+        ] = await Promise.all([
+          EmployeeService.getStatistics(),
+          DepartmentService.getAllDepartments(),
+          AttendanceService.getTodayStatistics(),
+          LeaveService.getStatistics(),
+          PayrollService.getStatistics(),
+          LeaveService.getLeaveApplications({ limit: 4 })
+        ]);
 
-  const departmentStats = [
-    { name: 'Engineering', count: 85, color: 'from-blue-500 to-blue-600' },
-    { name: 'Sales', count: 45, color: 'from-green-500 to-green-600' },
-    { name: 'Operations', count: 52, color: 'from-purple-500 to-purple-600' },
-    { name: 'HR & Admin', count: 28, color: 'from-orange-500 to-orange-600' },
-    { name: 'Finance', count: 22, color: 'from-cyan-500 to-cyan-600' },
-    { name: 'Others', count: 13, color: 'from-pink-500 to-pink-600' }
-  ];
+        // Calculate dashboard stats
+        const totalPayroll = payrollStats.averageMonthlyPayroll || 0;
+        const avgSalary = employeeStats.totalEmployees > 0
+          ? Math.round(totalPayroll / employeeStats.totalEmployees)
+          : 0;
+
+        setStats({
+          totalEmployees: employeeStats.totalEmployees,
+          activeEmployees: employeeStats.activeEmployees,
+          onLeaveToday: attendanceStats.onLeave,
+          pendingApprovals: leaveStats.pendingApplications,
+          monthlyPayroll: totalPayroll,
+          averageSalary: avgSalary,
+          newHiresThisMonth: employeeStats.newHiresThisMonth,
+          attritionRate: 8.5 // This would need a separate calculation
+        });
+
+        // Transform department data for display
+        const colors = [
+          'from-blue-500 to-blue-600',
+          'from-green-500 to-green-600',
+          'from-purple-500 to-purple-600',
+          'from-orange-500 to-orange-600',
+          'from-cyan-500 to-cyan-600',
+          'from-pink-500 to-pink-600'
+        ];
+        const deptStats = departmentData
+          .filter(dept => dept.employeeCount > 0)
+          .slice(0, 6)
+          .map((dept, index) => ({
+            name: dept.name,
+            count: dept.employeeCount,
+            color: colors[index % colors.length]
+          }));
+        setDepartmentStats(deptStats);
+
+        // Transform recent leave applications to activities
+        const activities: RecentActivity[] = recentLeaves.map(leave => ({
+          id: leave.id,
+          type: 'leave' as const,
+          title: leave.leaveTypeName || 'Leave Request',
+          description: `${leave.employeeName} requested ${leave.totalDays} day(s) leave`,
+          timestamp: new Date(leave.appliedAt).toLocaleDateString(),
+          status: leave.status === LeaveApplicationStatus.PENDING ? 'pending' :
+                 leave.status === LeaveApplicationStatus.APPROVED ? 'approved' :
+                 leave.status === LeaveApplicationStatus.REJECTED ? 'rejected' : 'completed'
+        }));
+        setRecentActivities(activities);
+
+      } catch (err) {
+        console.error('Error loading dashboard data:', err);
+        setError('Failed to load dashboard data. Please try again.');
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadDashboardData();
+  }, []);
 
   const upcomingEvents = [
     { title: 'Performance Reviews', date: '2025-02-01', type: 'review' },

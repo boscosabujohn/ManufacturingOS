@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { BarChart3, TrendingUp, TrendingDown, DollarSign, Clock, CheckCircle, AlertTriangle, Users, Package, Target, Settings, Calendar, Download, Target as TargetIcon, GitCompare, Bell, Send, Share2, Bookmark } from 'lucide-react';
 import {
  CustomDashboardModal,
@@ -14,6 +14,7 @@ import {
  ShareAnalyticsModal,
  SavedViewsModal,
 } from '@/components/project-management/AnalyticsModals';
+import { projectManagementService, Project } from '@/services/ProjectManagementService';
 
 interface ProjectMetrics {
  totalProjects: number;
@@ -56,6 +57,8 @@ interface ResourceUtilization {
 export default function ProjectAnalyticsPage() {
  const [timeRange, setTimeRange] = useState<'month' | 'quarter' | 'year'>('month');
  const [selectedMetric, setSelectedMetric] = useState<'revenue' | 'profit' | 'projects'>('revenue');
+ const [isLoading, setIsLoading] = useState(true);
+ const [projects, setProjects] = useState<Project[]>([]);
 
  // Modal states
  const [isCustomDashboardModalOpen, setIsCustomDashboardModalOpen] = useState(false);
@@ -71,8 +74,39 @@ export default function ProjectAnalyticsPage() {
  const [drillDownMetric, setDrillDownMetric] = useState<string | null>(null);
  const [drillDownData, setDrillDownData] = useState<any>(null);
 
- // Mock Data
- const metrics: ProjectMetrics = {
+ // Fetch projects from service
+ useEffect(() => {
+  const fetchProjects = async () => {
+   setIsLoading(true);
+   try {
+    const data = await projectManagementService.getProjects();
+    setProjects(data);
+   } catch (error) {
+    console.error('Error fetching projects for analytics:', error);
+   } finally {
+    setIsLoading(false);
+   }
+  };
+  fetchProjects();
+ }, []);
+
+ // Compute metrics from fetched projects or use defaults
+ const computedMetrics: ProjectMetrics = projects.length > 0 ? {
+  totalProjects: projects.length,
+  activeProjects: projects.filter(p => p.status === 'In Progress').length,
+  completedProjects: projects.filter(p => p.status === 'Completed').length,
+  delayedProjects: projects.filter(p => p.status === 'Delayed').length,
+  totalRevenue: projects.reduce((sum, p) => sum + (p.budgetAllocated || 0), 0),
+  totalCost: projects.reduce((sum, p) => sum + (p.budgetSpent || 0), 0),
+  profitMargin: projects.length > 0
+   ? Math.round(((projects.reduce((sum, p) => sum + (p.budgetAllocated || 0), 0) - projects.reduce((sum, p) => sum + (p.budgetSpent || 0), 0)) / projects.reduce((sum, p) => sum + (p.budgetAllocated || 0), 0)) * 100 * 10) / 10
+   : 28.4,
+  avgProjectDuration: 92,
+  onTimeDelivery: projects.length > 0
+   ? Math.round((projects.filter(p => p.status !== 'Delayed').length / projects.length) * 100)
+   : 78,
+  customerSatisfaction: 4.2,
+ } : {
   totalProjects: 45,
   activeProjects: 18,
   completedProjects: 22,
@@ -84,6 +118,9 @@ export default function ProjectAnalyticsPage() {
   onTimeDelivery: 78,
   customerSatisfaction: 4.2,
  };
+
+ // Use computed metrics
+ const metrics = computedMetrics;
 
  const monthlyData: MonthlyData[] = [
   { month: 'Jul 24', revenue: 8500000, cost: 6200000, profit: 2300000, projectsCompleted: 2 },
@@ -180,6 +217,17 @@ export default function ProjectAnalyticsPage() {
   setDrillDownData(data);
   setIsDrillDownDetailsModalOpen(true);
  };
+
+ if (isLoading) {
+  return (
+   <div className="flex items-center justify-center min-h-screen">
+    <div className="text-center">
+     <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+     <p className="text-gray-600">Loading analytics data...</p>
+    </div>
+   </div>
+  );
+ }
 
  return (
   <div className="w-full h-screen overflow-y-auto overflow-x-hidden">

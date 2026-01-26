@@ -1,9 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { Plus, Search, Eye, Edit, Download, Building, Calendar, DollarSign, TrendingDown, AlertCircle, CheckCircle, Clock, ChevronLeft, ChevronRight, FileText, User, CreditCard, ArrowRight, Users } from 'lucide-react';
+import { Plus, Search, Eye, Edit, Download, Building, Calendar, DollarSign, TrendingDown, AlertCircle, CheckCircle, Clock, ChevronLeft, ChevronRight, FileText, User, CreditCard, ArrowRight, Users, RefreshCw, Loader2 } from 'lucide-react';
+import { InvoiceService, Invoice as ServiceInvoice, InvoiceStatus, InvoiceType } from '@/services/invoice.service';
 
 interface Payable {
   id: string;
@@ -25,122 +26,65 @@ interface Payable {
   assignedTo: string;
 }
 
-const mockPayables: Payable[] = [
-  {
-    id: 'AP-001',
-    payableNumber: 'AP-2025-001',
-    vendorName: 'Global Materials Supply Co',
-    vendorId: 'VEND-001',
-    invoiceNumber: 'GMSC-INV-4521',
-    invoiceDate: '2025-10-01',
-    dueDate: '2025-10-31',
-    amount: 125000,
-    taxAmount: 18750,
-    totalAmount: 143750,
-    paidAmount: 143750,
-    status: 'paid',
-    paymentTerms: 'Net 30',
-    purchaseOrder: 'PO-2025-101',
-    category: 'Raw Materials',
-    agingDays: 0,
-    assignedTo: 'Finance Team',
-  },
-  {
-    id: 'AP-002',
-    payableNumber: 'AP-2025-002',
-    vendorName: 'Precision Tools Manufacturing',
-    vendorId: 'VEND-002',
-    invoiceNumber: 'PTM-INV-8934',
-    invoiceDate: '2025-10-08',
-    dueDate: '2025-10-22',
-    amount: 85000,
-    taxAmount: 12750,
-    totalAmount: 97750,
-    paidAmount: 50000,
-    status: 'partially_paid',
-    paymentTerms: 'Net 14',
-    purchaseOrder: 'PO-2025-115',
-    category: 'Equipment',
-    agingDays: 9,
-    assignedTo: 'John Accounts',
-  },
-  {
-    id: 'AP-003',
-    payableNumber: 'AP-2025-003',
-    vendorName: 'Industrial Logistics Ltd',
-    vendorId: 'VEND-003',
-    invoiceNumber: 'ILL-INV-2341',
-    invoiceDate: '2025-10-10',
-    dueDate: '2025-10-24',
-    amount: 42000,
-    taxAmount: 6300,
-    totalAmount: 48300,
-    paidAmount: 0,
-    status: 'due_soon',
-    paymentTerms: 'Net 14',
-    purchaseOrder: 'PO-2025-122',
-    category: 'Freight & Shipping',
-    agingDays: 7,
-    assignedTo: 'Sarah Finance',
-  },
-  {
-    id: 'AP-004',
-    payableNumber: 'AP-2025-004',
-    vendorName: 'Energy Power Solutions',
-    vendorId: 'VEND-004',
-    invoiceNumber: 'EPS-INV-7821',
-    invoiceDate: '2025-09-15',
-    dueDate: '2025-10-15',
-    amount: 38000,
-    taxAmount: 5700,
-    totalAmount: 43700,
-    paidAmount: 0,
-    status: 'overdue',
-    paymentTerms: 'Net 30',
-    purchaseOrder: 'PO-2025-089',
-    category: 'Utilities',
-    agingDays: 32,
-    assignedTo: 'Finance Team',
-  },
-  {
-    id: 'AP-005',
-    payableNumber: 'AP-2025-005',
-    vendorName: 'Quality Packaging Inc',
-    vendorId: 'VEND-005',
-    invoiceNumber: 'QPI-INV-5612',
-    invoiceDate: '2025-10-12',
-    dueDate: '2025-11-11',
-    amount: 67000,
-    taxAmount: 10050,
-    totalAmount: 77050,
-    paidAmount: 0,
-    status: 'pending',
-    paymentTerms: 'Net 30',
-    purchaseOrder: 'PO-2025-128',
-    category: 'Packaging',
-    agingDays: 5,
-    assignedTo: 'Michael AP',
-  },
-  {
-    id: 'AP-006',
-    payableNumber: 'AP-2025-006',
-    vendorName: 'Tech Maintenance Services',
-    vendorId: 'VEND-006',
-    invoiceNumber: 'TMS-INV-9123',
-    invoiceDate: '2025-09-20',
-    dueDate: '2025-10-10',
-    amount: 15000,
-    taxAmount: 2250,
-    totalAmount: 17250,
-    paidAmount: 0,
-    status: 'overdue',
-    paymentTerms: 'Net 20',
-    purchaseOrder: 'PO-2025-095',
-    category: 'Maintenance',
-    agingDays: 27,
-    assignedTo: 'Finance Team',
-  },
-];
+// Calculate aging days
+function calculateAgingDays(dueDate: Date): number {
+  const today = new Date();
+  const days = Math.floor((today.getTime() - dueDate.getTime()) / (1000 * 60 * 60 * 24));
+  return Math.max(0, days);
+}
+
+// Determine payable status based on invoice
+function determinePayableStatus(invoice: ServiceInvoice): Payable['status'] {
+  const today = new Date();
+  const dueDate = new Date(invoice.dueDate);
+  const amountDue = invoice.amountDue;
+
+  if (amountDue <= 0) return 'paid';
+  if (invoice.amountPaid > 0 && amountDue > 0) return 'partially_paid';
+  if (invoice.status === InvoiceStatus.OVERDUE || dueDate < today) return 'overdue';
+
+  // Check if due within 7 days
+  const daysUntilDue = Math.floor((dueDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
+  if (daysUntilDue <= 7 && daysUntilDue >= 0) return 'due_soon';
+
+  return 'pending';
+}
+
+// Determine category based on vendor name (simplified)
+function determineCategory(vendorName: string): string {
+  const lowerName = vendorName.toLowerCase();
+  if (lowerName.includes('steel') || lowerName.includes('material') || lowerName.includes('supply')) return 'Raw Materials';
+  if (lowerName.includes('tool') || lowerName.includes('equipment')) return 'Equipment';
+  if (lowerName.includes('logistics') || lowerName.includes('shipping')) return 'Freight & Shipping';
+  if (lowerName.includes('power') || lowerName.includes('energy')) return 'Utilities';
+  if (lowerName.includes('package') || lowerName.includes('packaging')) return 'Packaging';
+  if (lowerName.includes('maintenance') || lowerName.includes('service')) return 'Maintenance';
+  return 'General';
+}
+
+// Transform service invoice to payable
+function transformToPayable(invoice: ServiceInvoice): Payable {
+  const dueDate = new Date(invoice.dueDate);
+  return {
+    id: `AP-${invoice.id}`,
+    payableNumber: `AP-${invoice.invoiceNumber.replace('INV-', '')}`,
+    vendorName: invoice.vendorName || invoice.customerName,
+    vendorId: invoice.vendorId || '',
+    invoiceNumber: invoice.reference || invoice.invoiceNumber,
+    invoiceDate: new Date(invoice.invoiceDate).toISOString().split('T')[0],
+    dueDate: dueDate.toISOString().split('T')[0],
+    amount: invoice.subtotal,
+    taxAmount: invoice.totalTax,
+    totalAmount: invoice.totalAmount,
+    paidAmount: invoice.amountPaid,
+    status: determinePayableStatus(invoice),
+    paymentTerms: invoice.paymentTerms.replace('_', ' '),
+    purchaseOrder: invoice.poNumber || '',
+    category: determineCategory(invoice.vendorName || invoice.customerName),
+    agingDays: calculateAgingDays(dueDate),
+    assignedTo: invoice.submittedBy || 'Finance Team',
+  };
+}
 
 const statusColors = {
   pending: 'bg-gray-100 text-gray-700',
@@ -158,14 +102,92 @@ const statusLabels = {
   partially_paid: 'Partially Paid',
 };
 
+// Loading skeleton for payables table
+function PayablesTableSkeleton() {
+  return (
+    <div className="animate-pulse">
+      <div className="mb-6 flex items-start gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 flex-1">
+          {[...Array(4)].map((_, i) => (
+            <div key={i} className="bg-gray-100 rounded-lg p-4 h-24">
+              <div className="h-3 bg-gray-200 rounded w-1/2 mb-2"></div>
+              <div className="h-6 bg-gray-200 rounded w-2/3"></div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+        <div className="p-4 border-b border-gray-200">
+          <div className="h-10 bg-gray-100 rounded"></div>
+        </div>
+        <div className="divide-y divide-gray-200">
+          {[...Array(5)].map((_, i) => (
+            <div key={i} className="p-4 flex items-center gap-4">
+              <div className="h-10 w-10 bg-gray-100 rounded-full"></div>
+              <div className="flex-1 space-y-2">
+                <div className="h-4 bg-gray-100 rounded w-1/4"></div>
+                <div className="h-3 bg-gray-100 rounded w-1/3"></div>
+              </div>
+              <div className="h-8 w-20 bg-gray-100 rounded"></div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function PayablesPage() {
   const router = useRouter();
-  const [payables, setPayables] = useState<Payable[]>(mockPayables);
+  const [payables, setPayables] = useState<Payable[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [categoryFilter, setCategoryFilter] = useState<string>('all');
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
+
+  // Fetch payables from invoice service (purchase invoices)
+  useEffect(() => {
+    async function fetchPayables() {
+      try {
+        setLoading(true);
+        setError(null);
+        const response = await InvoiceService.getAllInvoices({
+          type: InvoiceType.PURCHASE,
+          limit: 100,
+        });
+        // Transform purchase invoices to payables
+        const payableInvoices = response.data.map(transformToPayable);
+        setPayables(payableInvoices);
+      } catch (err) {
+        console.error('Failed to fetch payables:', err);
+        setError('Failed to load payables. Please try again.');
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchPayables();
+  }, []);
+
+  // Refresh function
+  const refreshPayables = async () => {
+    try {
+      setLoading(true);
+      const response = await InvoiceService.getAllInvoices({
+        type: InvoiceType.PURCHASE,
+        limit: 100,
+      });
+      const payableInvoices = response.data.map(transformToPayable);
+      setPayables(payableInvoices);
+    } catch (err) {
+      console.error('Failed to refresh payables:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const filteredPayables = payables.filter((payable) => {
     const matchesSearch =
@@ -199,6 +221,35 @@ export default function PayablesPage() {
       })
       .reduce((sum, p) => sum + p.paidAmount, 0),
   };
+
+  // Show loading skeleton
+  if (loading && payables.length === 0) {
+    return (
+      <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
+        <PayablesTableSkeleton />
+      </div>
+    );
+  }
+
+  // Show error state
+  if (error && payables.length === 0) {
+    return (
+      <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
+        <div className="flex flex-col items-center justify-center h-64">
+          <AlertCircle className="w-12 h-12 text-red-500 mb-4" />
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">Failed to Load Payables</h2>
+          <p className="text-gray-600 mb-4">{error}</p>
+          <button
+            onClick={refreshPayables}
+            className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          >
+            <RefreshCw className="h-4 w-4" />
+            <span>Try Again</span>
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">

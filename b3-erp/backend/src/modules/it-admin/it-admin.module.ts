@@ -27,6 +27,13 @@ import { SystemConfigService } from './services/system-config.service';
 import { NotificationService } from './services/notification.service';
 import { NotificationPreferenceService } from './services/notification-preference.service';
 
+// Seeders
+import { RoleSeederService } from './services/role-seeder.service';
+import { PermissionSeederService } from './services/permission-seeder.service';
+import { SystemConfigSeederService } from './services/system-config-seeder.service';
+import { RolePermissionSeederService } from './services/role-permission-seeder.service';
+import { AdminUserSeederService } from './services/admin-user-seeder.service';
+
 // Controllers
 import { UserController } from './controllers/user.controller';
 import { RoleController } from './controllers/role.controller';
@@ -77,6 +84,12 @@ import { NotificationPreferenceController } from './controllers/notification-pre
     SystemConfigService,
     NotificationService,
     NotificationPreferenceService,
+    // Seeders
+    RoleSeederService,
+    PermissionSeederService,
+    SystemConfigSeederService,
+    RolePermissionSeederService,
+    AdminUserSeederService,
   ],
   exports: [
     UserService,

@@ -4,80 +4,9 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Plus, Search, Eye, Edit, Trash2, TrendingUp, DollarSign, Target, Calendar, User, Building2, ChevronLeft, ChevronRight, Phone, Mail, FileText, Video, CheckCircle, X, Download, Upload, Filter, Save, UserPlus, FileSpreadsheet, ArrowUpDown, Check, Trophy, ThumbsDown, MessageSquare } from 'lucide-react';
 import { ConfirmDialog, useToast } from '@/components/ui';
+import { OpportunityService, Opportunity, MOCK_OPPORTUNITIES } from '@/services/opportunity.service';
 
-interface Opportunity {
-  id: string;
-  name: string;
-  account: string;
-  stage: 'prospecting' | 'qualification' | 'proposal' | 'negotiation' | 'closed_won' | 'closed_lost';
-  amount: number;
-  probability: number;
-  expectedCloseDate: string;
-  owner: string;
-  createdAt: string;
-  winReason?: string;
-  lossReason?: string;
-  competitor?: string;
-}
-
-const mockOpportunities: Opportunity[] = [
-  {
-    id: '1',
-    name: 'Premium Kitchen Installation - Luxury Apartments',
-    account: 'Skyline Properties Inc',
-    stage: 'proposal',
-    amount: 350000,
-    probability: 70,
-    expectedCloseDate: '2025-11-15',
-    owner: 'Sarah Johnson',
-    createdAt: '2025-09-15',
-  },
-  {
-    id: '2',
-    name: 'Commercial Kitchen Equipment - Restaurant Chain',
-    account: 'Golden Fork Restaurants',
-    stage: 'negotiation',
-    amount: 580000,
-    probability: 85,
-    expectedCloseDate: '2025-10-30',
-    owner: 'Michael Chen',
-    createdAt: '2025-08-20',
-  },
-  {
-    id: '3',
-    name: 'Modular Kitchen Solutions - Office Complex',
-    account: 'Tech Solutions Inc',
-    stage: 'qualification',
-    amount: 125000,
-    probability: 50,
-    expectedCloseDate: '2025-12-20',
-    owner: 'Sarah Johnson',
-    createdAt: '2025-10-01',
-  },
-  {
-    id: '4',
-    name: 'Custom Cabinetry - Residential Development',
-    account: 'Urban Living Developers',
-    stage: 'closed_won',
-    amount: 425000,
-    probability: 100,
-    expectedCloseDate: '2025-10-05',
-    owner: 'David Park',
-    createdAt: '2025-07-10',
-    winReason: 'Competitive pricing and superior design quality',
-  },
-  {
-    id: '5',
-    name: 'Kitchen Renovation - Hotel Chain',
-    account: 'Grand Stay Hotels',
-    stage: 'prospecting',
-    amount: 750000,
-    probability: 30,
-    expectedCloseDate: '2026-01-15',
-    owner: 'Emily Davis',
-    createdAt: '2025-10-05',
-  },
-];
+// Using MOCK_OPPORTUNITIES from service as fallback
 
 const stageColors = {
   prospecting: 'bg-blue-100 text-blue-700',
@@ -119,7 +48,9 @@ export default function OpportunitiesPage() {
   const router = useRouter();
   const { addToast } = useToast();
 
-  const [opportunities, setOpportunities] = useState<Opportunity[]>(mockOpportunities);
+  const [opportunities, setOpportunities] = useState<Opportunity[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<Error | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [stageFilter, setStageFilter] = useState<string>('all');
   const [currentPage, setCurrentPage] = useState(1);
@@ -165,6 +96,31 @@ export default function OpportunitiesPage() {
   const [winReason, setWinReason] = useState('');
   const [lossReason, setLossReason] = useState('');
   const [competitor, setCompetitor] = useState('');
+
+  // Fetch opportunities data on mount
+  useEffect(() => {
+    async function fetchOpportunities() {
+      try {
+        setIsLoading(true);
+        setError(null);
+        const data = await OpportunityService.getAllOpportunities();
+        setOpportunities(data);
+      } catch (err) {
+        console.error('Failed to fetch opportunities:', err);
+        setError(err instanceof Error ? err : new Error('Failed to fetch opportunities'));
+        // Fallback to mock data
+        setOpportunities(MOCK_OPPORTUNITIES);
+        addToast({
+          title: 'Connection Error',
+          message: 'Using cached data. Unable to connect to server.',
+          variant: 'warning'
+        });
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    fetchOpportunities();
+  }, []);
 
   // Keyboard shortcuts
   useEffect(() => {
@@ -550,6 +506,45 @@ export default function OpportunitiesPage() {
       { label: 'Related Leads', count: 1 }
     ];
   };
+
+  // Refresh function
+  const handleRefresh = async () => {
+    try {
+      setIsLoading(true);
+      const data = await OpportunityService.getAllOpportunities();
+      setOpportunities(data);
+      addToast({
+        title: 'Refreshed',
+        message: 'Opportunity data has been refreshed.',
+        variant: 'success'
+      });
+    } catch (err) {
+      addToast({
+        title: 'Refresh Failed',
+        message: 'Unable to refresh data. Please try again.',
+        variant: 'error'
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // Show loading skeleton on initial load
+  if (isLoading && opportunities.length === 0) {
+    return (
+      <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6">
+        <div className="animate-pulse">
+          <div className="h-10 bg-gray-200 rounded w-1/4 mb-6"></div>
+          <div className="grid grid-cols-4 gap-4 mb-6">
+            {[1, 2, 3, 4].map((i) => (
+              <div key={i} className="h-24 bg-gray-200 rounded"></div>
+            ))}
+          </div>
+          <div className="bg-gray-200 rounded h-96"></div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 ">

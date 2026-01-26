@@ -19,7 +19,9 @@ import {
     Zap,
     ChevronDown,
     ChevronUp,
+    RefreshCw,
 } from 'lucide-react'
+import { WorkflowService, WorkflowTemplate, WorkflowStatus } from '@/services/workflow.service'
 
 interface ApprovalLevel {
     id: string
@@ -87,31 +89,48 @@ export default function WorkflowBuilderPage() {
     const [expandedLevel, setExpandedLevel] = useState<string | null>(null)
     const [showPreview, setShowPreview] = useState(false)
     const [isSaving, setIsSaving] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
+    const [error, setError] = useState<string | null>(null)
 
     // Load workflow if editing
     useEffect(() => {
-        if (workflowId) {
-            // TODO: Fetch workflow from API
-            // For now, mock data
-            setWorkflow({
-                id: workflowId,
-                name: 'Purchase Order Approval',
-                entityType: 'purchase_order',
-                isActive: true,
-                levels: [
-                    {
-                        id: '1',
-                        sequence: 1,
-                        approverType: 'role',
-                        approverIds: ['department_head'],
-                        requiredCount: 1,
-                        slaHours: 24,
-                        conditions: {},
-                        escalationRules: {},
-                    },
-                ],
-            })
+        const fetchWorkflow = async () => {
+            if (workflowId) {
+                setIsLoading(true)
+                setError(null)
+                try {
+                    const templates = await WorkflowService.getAllWorkflowTemplates()
+                    const template = templates.find((t: WorkflowTemplate) => t.id === workflowId)
+
+                    if (template) {
+                        // Transform template to WorkflowConfig format
+                        setWorkflow({
+                            id: template.id,
+                            name: template.name,
+                            entityType: template.entityType || template.category.toLowerCase().replace(' ', '_'),
+                            isActive: template.status === WorkflowStatus.ACTIVE,
+                            levels: template.steps.map((step, index) => ({
+                                id: step.id || `${index + 1}`,
+                                sequence: step.order || index + 1,
+                                approverType: 'role' as const,
+                                approverIds: step.assignees?.map((a) => a.id) || ['department_head'],
+                                requiredCount: 1,
+                                slaHours: template.slaSettings?.warningDays ? template.slaSettings.warningDays * 24 : 24,
+                                conditions: step.conditions || {},
+                                escalationRules: {},
+                            })),
+                        })
+                    }
+                } catch (err) {
+                    setError(err instanceof Error ? err.message : 'Failed to load workflow')
+                    console.error('Error fetching workflow:', err)
+                } finally {
+                    setIsLoading(false)
+                }
+            }
         }
+
+        fetchWorkflow()
     }, [workflowId])
 
     const addLevel = () => {
@@ -176,12 +195,61 @@ export default function WorkflowBuilderPage() {
         }
 
         setIsSaving(true)
-        // TODO: Save to API
-        setTimeout(() => {
-            setIsSaving(false)
+        try {
+            // Transform to service format
+            const templateData = {
+                name: workflow.name,
+                entityType: workflow.entityType,
+                category: workflow.entityType.split('_').map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(' '),
+                description: `${workflow.name} workflow`,
+                status: workflow.isActive ? WorkflowStatus.ACTIVE : WorkflowStatus.DRAFT,
+                steps: workflow.levels.map((level) => ({
+                    id: level.id,
+                    name: `Level ${level.sequence}`,
+                    type: 'approval',
+                    order: level.sequence,
+                    assignees: level.approverIds.map((id) => ({ type: level.approverType, id })),
+                    conditions: level.conditions,
+                })),
+                slaSettings: {
+                    warningDays: Math.floor(workflow.levels.reduce((sum, l) => sum + l.slaHours, 0) / 24),
+                    criticalDays: Math.floor(workflow.levels.reduce((sum, l) => sum + l.slaHours, 0) / 24) + 1,
+                },
+            }
+
+            if (workflow.id) {
+                await WorkflowService.updateWorkflowTemplate(workflow.id, templateData)
+            } else {
+                await WorkflowService.createWorkflowTemplate(templateData)
+            }
+
             alert('Workflow saved successfully!')
             router.push('/admin/workflows')
-        }, 1000)
+        } catch (err) {
+            alert(err instanceof Error ? err.message : 'Failed to save workflow')
+            console.error('Error saving workflow:', err)
+        } finally {
+            setIsSaving(false)
+        }
+    }
+
+    if (isLoading) {
+        return (
+            <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+                <RefreshCw className="h-8 w-8 text-blue-500 animate-spin" />
+            </div>
+        )
+    }
+
+    if (error) {
+        return (
+            <div className="min-h-screen bg-gray-50 p-6">
+                <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
+                    <p className="font-medium">Error loading workflow</p>
+                    <p className="text-sm">{error}</p>
+                </div>
+            </div>
+        )
     }
 
     return (

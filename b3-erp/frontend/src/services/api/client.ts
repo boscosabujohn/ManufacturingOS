@@ -1,5 +1,7 @@
+import { config } from '@/lib/config';
+
 // Base API client configuration
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
+const API_BASE_URL = config.apiUrl;
 
 export interface ApiResponse<T> {
     success: boolean;

@@ -15,6 +15,7 @@ import {
   Routing,
   ProductionEntry,
 } from './entities';
+import { WorkOrderStatusEntity } from './entities/work-order-status.entity';
 
 // Services
 import {
@@ -26,7 +27,10 @@ import {
   WorkCenterService,
   RoutingService,
   ProductionEntryService,
+  WorkCenterSeederService,
+  OperationSeederService,
 } from './services';
+import { WorkOrderStatusSeederService } from './services/work-order-status-seeder.service';
 import { EscalationManagementService } from './services/escalation-management.service';
 import { MRPRequisitionService } from './services/mrp-requisition.service';
 import { DemandForecastingService } from './services/demand-forecasting.service';
@@ -59,6 +63,7 @@ import { DiesToolsController } from './controllers/dies-tools.controller';
       WorkCenter,
       Routing,
       ProductionEntry,
+      WorkOrderStatusEntity,
     ]),
     WorkflowModule,
   ],
@@ -86,6 +91,9 @@ import { DiesToolsController } from './controllers/dies-tools.controller';
     MRPRequisitionService,
     DemandForecastingService,
     DiesToolsService,
+    WorkCenterSeederService,
+    OperationSeederService,
+    WorkOrderStatusSeederService,
   ],
   exports: [
     BOMService,

@@ -2,36 +2,10 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Plus, Search, Eye, Edit, MapPin, Navigation, CheckCircle, Clock, XCircle, Wrench, User, Phone, TrendingUp, Download, Package, BarChart3, X, AlertTriangle, Calendar, CalendarDays, Filter, ChevronLeft, ChevronRight, Grid3x3, List, UserPlus, FileEdit, Trash2, Copy } from 'lucide-react';
+import { Plus, Search, Eye, Edit, MapPin, Navigation, CheckCircle, Clock, XCircle, Wrench, User, Phone, TrendingUp, Download, Package, BarChart3, X, AlertTriangle, Calendar, CalendarDays, Filter, ChevronLeft, ChevronRight, Grid3x3, List, UserPlus, FileEdit, Trash2, Copy, Loader2, AlertCircle } from 'lucide-react';
+import { FieldServiceService, FieldServiceJob, FieldServicePriority } from '@/services/field-service.service';
 
-interface FieldServiceJob {
-  id: string;
-  jobNumber: string;
-  customerId: string;
-  customerName: string;
-  status: 'scheduled' | 'dispatched' | 'in_progress' | 'completed' | 'cancelled';
-  priority: 'P1 - Critical' | 'P2 - High' | 'P3 - Medium' | 'P4 - Low';
-  engineerId?: string;
-  engineerName?: string;
-  scheduledDate: string;
-  scheduledTimeSlot: string;
-  estimatedDuration: number; // hours
-  actualDuration?: number; // hours
-  equipmentModel: string;
-  issueType: string;
-  siteAddress: string;
-  siteContactPerson: string;
-  siteContactPhone: string;
-  checkInTime?: string;
-  checkOutTime?: string;
-  travelDistance?: number; // km
-  partsConsumed: number;
-  totalPartsValue: number;
-  serviceReportSubmitted: boolean;
-  customerSignature: boolean;
-}
-
-const mockFieldServiceJobs: FieldServiceJob[] = [
+const fieldServiceJobsForFallback: FieldServiceJob[] = [
   {
     id: '1',
     jobNumber: 'FS-2025-000456',
@@ -317,10 +291,34 @@ export default function FieldServicePage() {
   const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
   const [calendarDate, setCalendarDate] = useState(new Date());
 
+  // Data fetching states
+  const [fieldServiceJobs, setFieldServiceJobs] = useState<FieldServiceJob[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // Fetch field service jobs on mount
+  useEffect(() => {
+    const fetchFieldServiceJobs = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const data = await FieldServiceService.getAllFieldServiceJobs();
+        setFieldServiceJobs(data);
+      } catch (err) {
+        setError('Failed to load field service jobs. Please try again.');
+        console.error('Error fetching field service jobs:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchFieldServiceJobs();
+  }, []);
+
   // New job form state
   const [newJob, setNewJob] = useState({
     customerName: '',
-    priority: 'P3 - Medium' as FieldServiceJob['priority'],
+    priority: 'P3 - Medium' as FieldServicePriority,
     engineerName: '',
     scheduledDate: '',
     scheduledTimeSlot: '',
@@ -443,7 +441,7 @@ export default function FieldServicePage() {
   };
 
   // Filter jobs
-  const filteredJobs = mockFieldServiceJobs.filter((job) => {
+  const filteredJobs = fieldServiceJobs.filter((job) => {
     const matchesSearch =
       job.jobNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
       job.customerName.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -473,23 +471,21 @@ export default function FieldServicePage() {
   );
 
   // Calculate statistics
+  const jobsWithDuration = fieldServiceJobs.filter(j => j.actualDuration);
   const stats = {
-    totalJobs: mockFieldServiceJobs.length,
-    scheduledJobs: mockFieldServiceJobs.filter(j => j.status === 'scheduled').length,
-    dispatchedJobs: mockFieldServiceJobs.filter(j => j.status === 'dispatched').length,
-    inProgressJobs: mockFieldServiceJobs.filter(j => j.status === 'in_progress').length,
-    completedJobs: mockFieldServiceJobs.filter(j => j.status === 'completed').length,
-    avgJobDuration: mockFieldServiceJobs.filter(j => j.actualDuration).length > 0
-      ? mockFieldServiceJobs
-        .filter(j => j.actualDuration)
-        .reduce((sum, j) => sum + (j.actualDuration || 0), 0) /
-      mockFieldServiceJobs.filter(j => j.actualDuration).length
+    totalJobs: fieldServiceJobs.length,
+    scheduledJobs: fieldServiceJobs.filter(j => j.status === 'scheduled').length,
+    dispatchedJobs: fieldServiceJobs.filter(j => j.status === 'dispatched').length,
+    inProgressJobs: fieldServiceJobs.filter(j => j.status === 'in_progress').length,
+    completedJobs: fieldServiceJobs.filter(j => j.status === 'completed').length,
+    avgJobDuration: jobsWithDuration.length > 0
+      ? jobsWithDuration.reduce((sum, j) => sum + (j.actualDuration || 0), 0) / jobsWithDuration.length
       : 0,
-    totalPartsValue: mockFieldServiceJobs.reduce((sum, j) => sum + j.totalPartsValue, 0),
+    totalPartsValue: fieldServiceJobs.reduce((sum, j) => sum + j.totalPartsValue, 0),
   };
 
   // Get unique engineers
-  const uniqueEngineers = Array.from(new Set(mockFieldServiceJobs.filter(j => j.engineerName).map(j => j.engineerName)));
+  const uniqueEngineers = Array.from(new Set(fieldServiceJobs.filter(j => j.engineerName).map(j => j.engineerName)));
 
   // Calendar helpers
   const getDaysInMonth = (date: Date) => {
@@ -505,7 +501,7 @@ export default function FieldServicePage() {
 
   const getJobsForDate = (date: Date) => {
     const dateStr = date.toISOString().split('T')[0];
-    return mockFieldServiceJobs.filter(job => job.scheduledDate === dateStr);
+    return fieldServiceJobs.filter(job => job.scheduledDate === dateStr);
   };
 
   const formatCurrency = (amount: number) => {
@@ -515,6 +511,36 @@ export default function FieldServicePage() {
       maximumFractionDigits: 0,
     }).format(amount);
   };
+
+  // Loading state
+  if (loading) {
+    return (
+      <div className="p-6 w-full flex items-center justify-center min-h-[400px]">
+        <div className="flex flex-col items-center gap-4">
+          <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+          <p className="text-gray-600">Loading field service jobs...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Error state
+  if (error) {
+    return (
+      <div className="p-6 w-full flex items-center justify-center min-h-[400px]">
+        <div className="flex flex-col items-center gap-4 text-center">
+          <AlertCircle className="h-12 w-12 text-red-500" />
+          <p className="text-gray-900 font-medium">{error}</p>
+          <button
+            onClick={() => window.location.reload()}
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          >
+            Try Again
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="p-6 w-full">
@@ -1642,7 +1668,7 @@ export default function FieldServicePage() {
                   <h3 className="text-lg font-semibold text-gray-900 mb-4">Priority Breakdown</h3>
                   <div className="space-y-3">
                     {['P1 - Critical', 'P2 - High', 'P3 - Medium', 'P4 - Low'].map((priority) => {
-                      const count = mockFieldServiceJobs.filter(j => j.priority === priority).length;
+                      const count = fieldServiceJobs.filter(j => j.priority === priority).length;
                       const colorMap: Record<string, string> = {
                         'P1 - Critical': 'red',
                         'P2 - High': 'orange',
@@ -1671,8 +1697,8 @@ export default function FieldServicePage() {
                 <div className="bg-white rounded-lg border border-gray-200 p-6">
                   <h3 className="text-lg font-semibold text-gray-900 mb-4">Engineer Performance</h3>
                   <div className="space-y-3">
-                    {Array.from(new Set(mockFieldServiceJobs.filter(j => j.engineerName).map(j => j.engineerName))).map((engineer) => {
-                      const engineerJobs = mockFieldServiceJobs.filter(j => j.engineerName === engineer);
+                    {Array.from(new Set(fieldServiceJobs.filter(j => j.engineerName).map(j => j.engineerName))).map((engineer) => {
+                      const engineerJobs = fieldServiceJobs.filter(j => j.engineerName === engineer);
                       const completed = engineerJobs.filter(j => j.status === 'completed').length;
                       return (
                         <div key={engineer} className="bg-gray-50 rounded-lg p-3">
@@ -1706,13 +1732,13 @@ export default function FieldServicePage() {
                   <div className="bg-purple-50 rounded-lg p-4 border border-purple-200 text-center">
                     <div className="text-sm text-gray-600 mb-1">Total Parts Used</div>
                     <div className="text-3xl font-bold text-purple-600">
-                      {mockFieldServiceJobs.reduce((sum, j) => sum + j.partsConsumed, 0)}
+                      {fieldServiceJobs.reduce((sum, j) => sum + j.partsConsumed, 0)}
                     </div>
                   </div>
                   <div className="bg-purple-50 rounded-lg p-4 border border-purple-200 text-center">
                     <div className="text-sm text-gray-600 mb-1">Jobs with Parts</div>
                     <div className="text-3xl font-bold text-purple-600">
-                      {mockFieldServiceJobs.filter(j => j.partsConsumed > 0).length}
+                      {fieldServiceJobs.filter(j => j.partsConsumed > 0).length}
                     </div>
                   </div>
                   <div className="bg-purple-50 rounded-lg p-4 border border-purple-200 text-center">
@@ -1722,7 +1748,7 @@ export default function FieldServicePage() {
                   <div className="bg-purple-50 rounded-lg p-4 border border-purple-200 text-center">
                     <div className="text-sm text-gray-600 mb-1">Avg Value/Job</div>
                     <div className="text-2xl font-bold text-purple-600">
-                      {formatCurrency(stats.totalPartsValue / mockFieldServiceJobs.filter(j => j.partsConsumed > 0).length || 0)}
+                      {formatCurrency(stats.totalPartsValue / fieldServiceJobs.filter(j => j.partsConsumed > 0).length || 0)}
                     </div>
                   </div>
                 </div>
@@ -1735,26 +1761,26 @@ export default function FieldServicePage() {
                   <div className="bg-green-50 rounded-lg p-4 border border-green-200">
                     <div className="text-sm text-gray-600 mb-2">Reports Submitted</div>
                     <div className="text-3xl font-bold text-green-600">
-                      {mockFieldServiceJobs.filter(j => j.serviceReportSubmitted).length}
+                      {fieldServiceJobs.filter(j => j.serviceReportSubmitted).length}
                     </div>
                     <div className="text-xs text-green-600 mt-1">
-                      {((mockFieldServiceJobs.filter(j => j.serviceReportSubmitted).length / stats.completedJobs) * 100).toFixed(0)}% of completed
+                      {((fieldServiceJobs.filter(j => j.serviceReportSubmitted).length / stats.completedJobs) * 100).toFixed(0)}% of completed
                     </div>
                   </div>
                   <div className="bg-orange-50 rounded-lg p-4 border border-orange-200">
                     <div className="text-sm text-gray-600 mb-2">Reports Pending</div>
                     <div className="text-3xl font-bold text-orange-600">
-                      {mockFieldServiceJobs.filter(j => j.status === 'completed' && !j.serviceReportSubmitted).length}
+                      {fieldServiceJobs.filter(j => j.status === 'completed' && !j.serviceReportSubmitted).length}
                     </div>
                     <div className="text-xs text-orange-600 mt-1">Awaiting submission</div>
                   </div>
                   <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
                     <div className="text-sm text-gray-600 mb-2">Customer Signatures</div>
                     <div className="text-3xl font-bold text-blue-600">
-                      {mockFieldServiceJobs.filter(j => j.customerSignature).length}
+                      {fieldServiceJobs.filter(j => j.customerSignature).length}
                     </div>
                     <div className="text-xs text-blue-600 mt-1">
-                      {((mockFieldServiceJobs.filter(j => j.customerSignature).length / stats.completedJobs) * 100).toFixed(0)}% of completed
+                      {((fieldServiceJobs.filter(j => j.customerSignature).length / stats.completedJobs) * 100).toFixed(0)}% of completed
                     </div>
                   </div>
                 </div>

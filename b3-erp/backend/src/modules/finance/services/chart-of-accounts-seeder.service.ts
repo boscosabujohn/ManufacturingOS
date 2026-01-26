@@ -1,4 +1,4 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { ChartOfAccounts } from '../entities/chart-of-accounts.entity';
@@ -8,13 +8,32 @@ import {
 } from '../data/default-chart-of-accounts.data';
 
 @Injectable()
-export class ChartOfAccountsSeederService {
+export class ChartOfAccountsSeederService implements OnModuleInit {
   private readonly logger = new Logger(ChartOfAccountsSeederService.name);
 
   constructor(
     @InjectRepository(ChartOfAccounts)
     private readonly chartOfAccountsRepository: Repository<ChartOfAccounts>,
   ) {}
+
+  /**
+   * Automatically seeds chart of accounts on module initialization
+   * This is idempotent - only creates accounts if none exist
+   */
+  async onModuleInit(): Promise<void> {
+    this.logger.log('ChartOfAccountsSeederService initializing...');
+    try {
+      const existingCount = await this.chartOfAccountsRepository.count();
+      if (existingCount === 0) {
+        this.logger.log('No chart of accounts found. Seeding default accounts...');
+        await this.seed(false);
+      } else {
+        this.logger.log(`Chart of accounts already has ${existingCount} accounts. Skipping auto-seed.`);
+      }
+    } catch (error) {
+      this.logger.error(`Failed to auto-seed chart of accounts: ${error.message}`);
+    }
+  }
 
   /**
    * Seeds the database with the default chart of accounts

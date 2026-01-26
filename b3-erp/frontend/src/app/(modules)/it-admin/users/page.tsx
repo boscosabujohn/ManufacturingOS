@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
-import { Search, Download, Eye, Edit, Key } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Search, Download, Eye, Edit, Key, RefreshCw } from 'lucide-react';
+import { UserManagementService, User as ServiceUser } from '@/services/user-management.service';
 
 interface User {
   id: string;
@@ -21,118 +22,53 @@ interface User {
   reportingTo: string;
 }
 
-const mockUsers: User[] = [
-  {
-    id: 'USR001',
-    username: 'ravi.kumar',
-    fullName: 'Ravi Kumar',
-    email: 'ravi.kumar@b3erp.com',
-    role: 'Admin',
-    department: 'IT Administration',
-    phoneNumber: '+91 98765 43210',
-    lastLogin: '2025-10-17 09:30 AM',
-    loginCount: 1247,
-    accountCreated: '2023-01-15',
-    status: 'active',
-    failedAttempts: 0,
-    lastPasswordChange: '2025-09-15',
-    permissions: ['Read', 'Write', 'Delete', 'Approve', 'Export'],
-    reportingTo: 'N/A'
-  },
-  {
-    id: 'USR002',
-    username: 'priya.sharma',
-    fullName: 'Priya Sharma',
-    email: 'priya.sharma@b3erp.com',
-    role: 'Manager',
-    department: 'Production',
-    phoneNumber: '+91 98765 43211',
-    lastLogin: '2025-10-17 08:15 AM',
-    loginCount: 892,
-    accountCreated: '2023-03-22',
-    status: 'active',
-    failedAttempts: 0,
-    lastPasswordChange: '2025-08-20',
-    permissions: ['Read', 'Write', 'Approve', 'Export'],
-    reportingTo: 'Ravi Kumar'
-  },
-  {
-    id: 'USR003',
-    username: 'amit.patel',
-    fullName: 'Amit Patel',
-    email: 'amit.patel@b3erp.com',
-    role: 'Supervisor',
-    department: 'Quality Control',
-    phoneNumber: '+91 98765 43212',
-    lastLogin: '2025-10-15 05:45 PM',
-    loginCount: 654,
-    accountCreated: '2023-05-10',
-    status: 'inactive',
-    failedAttempts: 0,
-    lastPasswordChange: '2025-07-10',
-    permissions: ['Read', 'Write', 'Export'],
-    reportingTo: 'Priya Sharma'
-  },
-  {
-    id: 'USR004',
-    username: 'neha.desai',
-    fullName: 'Neha Desai',
-    email: 'neha.desai@b3erp.com',
-    role: 'User',
-    department: 'Inventory',
-    phoneNumber: '+91 98765 43213',
-    lastLogin: '2025-10-17 07:00 AM',
-    loginCount: 423,
-    accountCreated: '2023-08-18',
-    status: 'active',
-    failedAttempts: 0,
-    lastPasswordChange: '2025-09-01',
-    permissions: ['Read', 'Write'],
-    reportingTo: 'Amit Patel'
-  },
-  {
-    id: 'USR005',
-    username: 'vikram.singh',
-    fullName: 'Vikram Singh',
-    email: 'vikram.singh@b3erp.com',
-    role: 'Viewer',
-    department: 'Sales',
-    phoneNumber: '+91 98765 43214',
-    lastLogin: '2025-10-10 02:30 PM',
-    loginCount: 189,
-    accountCreated: '2024-02-05',
-    status: 'locked',
-    failedAttempts: 5,
-    lastPasswordChange: '2025-05-15',
-    permissions: ['Read'],
-    reportingTo: 'Priya Sharma'
-  },
-  {
-    id: 'USR006',
-    username: 'anjali.mehta',
-    fullName: 'Anjali Mehta',
-    email: 'anjali.mehta@b3erp.com',
-    role: 'User',
-    department: 'Finance',
-    phoneNumber: '+91 98765 43215',
-    lastLogin: 'Never',
-    loginCount: 0,
-    accountCreated: '2025-10-16',
-    status: 'pending',
-    failedAttempts: 0,
-    lastPasswordChange: 'N/A',
-    permissions: ['Read', 'Write'],
-    reportingTo: 'Ravi Kumar'
-  }
-];
-
 export default function UsersPage() {
-  const [users] = useState<User[]>(mockUsers);
+  const [users, setUsers] = useState<User[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
   const [roleFilter, setRoleFilter] = useState('all');
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const fetchedUsers = await UserManagementService.getAllUsers();
+
+        // Transform service users to page format
+        const transformedUsers: User[] = fetchedUsers.map((user: ServiceUser) => ({
+          id: user.id,
+          username: user.username,
+          fullName: user.fullName,
+          email: user.email,
+          role: user.role,
+          department: user.department,
+          phoneNumber: user.phoneNumber || '',
+          lastLogin: user.lastLogin || 'Never',
+          loginCount: user.loginCount || 0,
+          accountCreated: new Date(user.createdAt).toISOString().split('T')[0],
+          status: user.status as 'active' | 'inactive' | 'locked' | 'pending',
+          failedAttempts: user.failedAttempts || 0,
+          lastPasswordChange: user.lastPasswordChange || 'N/A',
+          permissions: user.permissions || [],
+          reportingTo: user.reportingTo || 'N/A',
+        }));
+
+        setUsers(transformedUsers);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Failed to load users');
+        console.error('Error fetching users:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUsers();
+  }, []);
 
   const filteredUsers = users.filter(user => {
     const matchesSearch =
@@ -187,6 +123,25 @@ export default function UsersPage() {
   const handleResetPassword = (userId: string) => {
     console.log('Resetting password for user:', userId);
   };
+
+  if (loading) {
+    return (
+      <div className="p-6 flex items-center justify-center min-h-screen">
+        <RefreshCw className="h-8 w-8 text-blue-500 animate-spin" />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="p-6">
+        <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
+          <p className="font-medium">Error loading users</p>
+          <p className="text-sm">{error}</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="p-6 space-y-6">

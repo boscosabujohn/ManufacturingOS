@@ -8,3 +8,4 @@ export * from './operation.entity';
 export * from './work-center.entity';
 export * from './routing.entity';
 export * from './production-entry.entity';
+export * from './work-order-status.entity';

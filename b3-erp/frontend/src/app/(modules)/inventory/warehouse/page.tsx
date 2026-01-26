@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   Search,
   Download,
@@ -21,6 +21,13 @@ import {
   WarehouseData,
   ZoneData
 } from '@/components/inventory/InventoryWarehouseModals'
+import {
+  warehouseService,
+  Warehouse as ServiceWarehouse,
+  WarehouseStatus,
+  WarehouseType,
+  CapacityUtilization
+} from '@/services/warehouse.service'
 
 interface Warehouse {
   id: string
@@ -55,116 +62,79 @@ const InventoryWarehousePage = () => {
   const [warehouseList, setWarehouseList] = useState<Warehouse[]>([])
   const [selectedWarehouseIdForZone, setSelectedWarehouseIdForZone] = useState<string>('')
 
-  const warehouses: Warehouse[] = [
-    {
-      id: '1',
-      warehouseId: 'WH-001',
-      name: 'Mumbai Central Warehouse',
-      location: 'Andheri East, Mumbai',
-      type: 'main',
-      capacity: 15000,
-      currentStockValue: 8500000,
-      utilizationPercent: 78,
-      manager: 'Rajesh Kumar',
-      status: 'active',
-      address: 'Plot 45, MIDC Industrial Area, Andheri East',
-      contactNumber: '+91-22-2850-1234',
-      establishedDate: '2018-03-15',
-      totalItems: 2450,
-      city: 'Mumbai'
-    },
-    {
-      id: '2',
-      warehouseId: 'WH-002',
-      name: 'Delhi Regional Hub',
-      location: 'Okhla Industrial Area, Delhi',
-      type: 'regional',
-      capacity: 10000,
-      currentStockValue: 6200000,
-      utilizationPercent: 65,
-      manager: 'Priya Sharma',
-      status: 'active',
-      address: 'Sector 63, Okhla Phase III',
-      contactNumber: '+91-11-4567-8901',
-      establishedDate: '2019-06-20',
-      totalItems: 1850,
-      city: 'Delhi'
-    },
-    {
-      id: '3',
-      warehouseId: 'WH-003',
-      name: 'Bangalore Factory Store',
-      location: 'Whitefield, Bangalore',
-      type: 'factory',
-      capacity: 8000,
-      currentStockValue: 7200000,
-      utilizationPercent: 92,
-      manager: 'Amit Patel',
-      status: 'active',
-      address: 'KIADB Industrial Area, Whitefield',
-      contactNumber: '+91-80-2345-6789',
-      establishedDate: '2020-01-10',
-      totalItems: 3200,
-      city: 'Bangalore'
-    },
-    {
-      id: '4',
-      warehouseId: 'WH-004',
-      name: 'Chennai Distribution Center',
-      location: 'Ambattur Industrial Estate, Chennai',
-      type: 'distribution',
-      capacity: 12000,
-      currentStockValue: 5800000,
-      utilizationPercent: 55,
-      manager: 'Suresh Rao',
-      status: 'active',
-      address: 'Phase 2, Ambattur Industrial Estate',
-      contactNumber: '+91-44-2678-9012',
-      establishedDate: '2019-09-05',
-      totalItems: 1650,
-      city: 'Chennai'
-    },
-    {
-      id: '5',
-      warehouseId: 'WH-005',
-      name: 'Pune Manufacturing Warehouse',
-      location: 'Chakan MIDC, Pune',
-      type: 'factory',
-      capacity: 9000,
-      currentStockValue: 4500000,
-      utilizationPercent: 45,
-      manager: 'Neha Gupta',
-      status: 'maintenance',
-      address: 'Plot 78, Phase II, Chakan MIDC',
-      contactNumber: '+91-20-2789-3456',
-      establishedDate: '2021-02-28',
-      totalItems: 1420,
-      city: 'Pune'
-    },
-    {
-      id: '6',
-      warehouseId: 'WH-006',
-      name: 'Hyderabad Regional Depot',
-      location: 'Patancheru, Hyderabad',
-      type: 'regional',
-      capacity: 7000,
-      currentStockValue: 2100000,
-      utilizationPercent: 32,
-      manager: 'Vikram Singh',
-      status: 'inactive',
-      address: 'Survey No. 234, Patancheru Industrial Area',
-      contactNumber: '+91-40-2890-4567',
-      establishedDate: '2017-11-12',
-      totalItems: 890,
-      city: 'Hyderabad'
+  // Loading and data states
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+  const [warehouses, setWarehouses] = useState<Warehouse[]>([])
+
+  // Fetch warehouses on mount
+  useEffect(() => {
+    fetchWarehouses()
+  }, [])
+
+  const fetchWarehouses = async () => {
+    try {
+      setLoading(true)
+      setError(null)
+      const [warehouseData, capacityData] = await Promise.all([
+        warehouseService.getAllWarehouses(),
+        warehouseService.getCapacityUtilization()
+      ])
+
+      // Create a map for quick capacity lookup
+      const capacityMap = new Map<string, CapacityUtilization>()
+      capacityData.forEach(cap => capacityMap.set(cap.warehouseId, cap))
+
+      // Map service warehouses to page format
+      const mappedWarehouses: Warehouse[] = warehouseData.map(wh => {
+        const capacity = capacityMap.get(wh.id)
+        const typeMapping: Record<string, 'main' | 'regional' | 'factory' | 'distribution'> = {
+          [WarehouseType.FINISHED_GOODS]: 'main',
+          [WarehouseType.RAW_MATERIAL]: 'factory',
+          [WarehouseType.WIP]: 'factory',
+          [WarehouseType.SPARE_PARTS]: 'distribution',
+          [WarehouseType.GENERAL]: 'regional',
+          [WarehouseType.COLD_STORAGE]: 'distribution',
+        }
+        const statusMapping: Record<string, 'active' | 'inactive' | 'maintenance'> = {
+          [WarehouseStatus.ACTIVE]: 'active',
+          [WarehouseStatus.INACTIVE]: 'inactive',
+          [WarehouseStatus.MAINTENANCE]: 'maintenance',
+        }
+
+        return {
+          id: wh.id,
+          warehouseId: wh.code,
+          name: wh.name,
+          location: `${wh.address.street}, ${wh.address.city}`,
+          type: typeMapping[wh.type] || 'regional',
+          capacity: wh.totalCapacity,
+          currentStockValue: Math.round(wh.usedCapacity * 100), // Placeholder value
+          utilizationPercent: capacity ? Math.round(capacity.utilizationPercentage) : Math.round((wh.usedCapacity / wh.totalCapacity) * 100),
+          manager: wh.managerName || wh.contactPerson || 'Unassigned',
+          status: statusMapping[wh.status] || 'inactive',
+          address: wh.address.street,
+          contactNumber: wh.contactPhone || '',
+          establishedDate: wh.createdAt.split('T')[0],
+          totalItems: Math.round(wh.usedCapacity / 10), // Placeholder
+          city: wh.address.city
+        }
+      })
+
+      setWarehouses(mappedWarehouses)
+    } catch (err) {
+      console.error('Failed to fetch warehouses:', err)
+      setError('Failed to load warehouses. Please try again.')
+    } finally {
+      setLoading(false)
     }
-  ]
+  }
 
   const totalCapacity = warehouses.reduce((sum, wh) => sum + wh.capacity, 0)
   const activeWarehouses = warehouses.filter(wh => wh.status === 'active').length
   const totalStockValue = warehouses.reduce((sum, wh) => sum + wh.currentStockValue, 0)
   const usedCapacity = warehouses.reduce((sum, wh) => sum + (wh.capacity * wh.utilizationPercent / 100), 0)
-  const avgUtilization = Math.round((usedCapacity / totalCapacity) * 100)
+  const avgUtilization = totalCapacity > 0 ? Math.round((usedCapacity / totalCapacity) * 100) : 0
 
   const stats = [
     {
@@ -289,31 +259,40 @@ const InventoryWarehousePage = () => {
   }
 
   // Handle warehouse creation
-  const handleCreateWarehouse = (data: WarehouseData) => {
-    // TODO: Integrate with API to create warehouse
-    console.log('Creating warehouse:', data)
+  const handleCreateWarehouse = async (data: WarehouseData) => {
+    try {
+      const typeMapping: Record<string, WarehouseType> = {
+        'main': WarehouseType.FINISHED_GOODS,
+        'production': WarehouseType.WIP,
+        'distribution': WarehouseType.SPARE_PARTS,
+        'regional': WarehouseType.GENERAL,
+      }
 
-    // Update local state
-    const newWarehouse: Warehouse = {
-      id: (warehouses.length + 1).toString(),
-      warehouseId: data.warehouseId,
-      name: data.warehouseName,
-      location: data.location.address,
-      type: data.warehouseType === 'production' ? 'factory' : data.warehouseType as any,
-      capacity: data.capacity.totalArea,
-      currentStockValue: 0,
-      utilizationPercent: 0,
-      manager: data.contact.managerName,
-      status: data.status,
-      address: data.location.address,
-      contactNumber: data.contact.phone,
-      establishedDate: new Date().toISOString().split('T')[0],
-      totalItems: 0,
-      city: data.location.city
+      await warehouseService.createWarehouse({
+        code: data.warehouseId,
+        name: data.warehouseName,
+        type: typeMapping[data.warehouseType] || WarehouseType.GENERAL,
+        address: {
+          street: data.location.address,
+          city: data.location.city,
+          state: data.location.state,
+          country: data.location.country,
+          postalCode: data.location.zipCode,
+        },
+        contactPerson: data.contact.managerName,
+        contactPhone: data.contact.phone,
+        contactEmail: data.contact.email,
+        totalCapacity: data.capacity.totalArea,
+        capacityUom: data.capacity.unit,
+      })
+
+      // Refresh the list after creating
+      await fetchWarehouses()
+      setIsCreateWarehouseOpen(false)
+    } catch (err) {
+      console.error('Failed to create warehouse:', err)
+      // Could show a toast or error message here
     }
-
-    setWarehouseList([...warehouseList, newWarehouse])
-    setIsCreateWarehouseOpen(false)
   }
 
   // Handle warehouse view
@@ -356,6 +335,33 @@ const InventoryWarehousePage = () => {
 
     setIsCreateZoneOpen(false)
     setSelectedWarehouseIdForZone('')
+  }
+
+  if (loading) {
+    return (
+      <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+          <p className="mt-4 text-gray-600">Loading warehouses...</p>
+        </div>
+      </div>
+    )
+  }
+
+  if (error) {
+    return (
+      <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6 flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-red-600 mb-4">{error}</p>
+          <button
+            onClick={fetchWarehouses}
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          >
+            Retry
+          </button>
+        </div>
+      </div>
+    )
   }
 
   return (

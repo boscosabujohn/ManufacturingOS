@@ -70,6 +70,12 @@ import { OnboardingWorkflowService } from './services/onboarding-workflow.servic
 import { SeparationService } from './services/separation.service';
 import { TrainingService } from './services/training.service';
 import { SkillSeederService } from './services/skill-seeder.service';
+import { DepartmentSeederService } from './services/department-seeder.service';
+import { DesignationSeederService } from './services/designation-seeder.service';
+import { ShiftSeederService } from './services/shift-seeder.service';
+import { HolidaySeederService } from './services/holiday-seeder.service';
+import { LeaveTypeSeederService } from './services/leave-type-seeder.service';
+import { EmployeeSeederService } from './services/employee-seeder.service';
 
 @Module({
   imports: [
@@ -150,6 +156,12 @@ import { SkillSeederService } from './services/skill-seeder.service';
     UserSkillService,
     SkillGapService,
     SkillSeederService,
+    DepartmentSeederService,
+    DesignationSeederService,
+    ShiftSeederService,
+    HolidaySeederService,
+    LeaveTypeSeederService,
+    EmployeeSeederService,
   ],
   exports: [
     DepartmentService,

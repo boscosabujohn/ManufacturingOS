@@ -6,3 +6,6 @@ export * from './stock-transfer.service';
 export * from './stock-adjustment.service';
 export * from './serial-number.service';
 export * from './batch-number.service';
+export * from './warehouse-seeder.service';
+export * from './stock-location-seeder.service';
+export * from './adjustment-reason-seeder.service';

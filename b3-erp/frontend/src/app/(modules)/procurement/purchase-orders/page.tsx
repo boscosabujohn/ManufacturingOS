@@ -35,8 +35,10 @@ import {
   TrendingDown,
   BarChart3,
   RefreshCw,
-  Settings
+  Settings,
+  Loader2
 } from 'lucide-react'
+import { purchaseOrderService, PurchaseOrder as POServiceType, POStatus } from '@/services/purchase-order.service'
 
 interface PurchaseOrder {
   id: string
@@ -78,141 +80,86 @@ export default function PurchaseOrdersPage() {
   const [showFilters, setShowFilters] = useState(false)
   const [dateRange, setDateRange] = useState<'today' | 'week' | 'month' | 'quarter' | 'all'>('month')
 
-  // Mock data
-  useEffect(() => {
-    const mockOrders: PurchaseOrder[] = [
-      {
-        id: '1',
-        poNumber: 'PO-2024-001',
-        requisitionNumber: 'REQ-2024-045',
-        vendorName: 'Kitchen Accessories Supplier',
-        vendorCode: 'VEND-001',
-        category: 'Accessories',
-        status: 'approved',
-        priority: 'high',
-        totalAmount: 125000,
-        currency: 'USD',
-        itemCount: 15,
-        createdDate: '2024-01-15',
-        deliveryDate: '2024-02-15',
-        lastModified: '2024-01-20',
-        createdBy: 'John Smith',
-        approvedBy: 'Sarah Johnson',
-        paymentTerms: 'Net 30',
-        deliveryStatus: 45,
-        invoiceStatus: 'partially_invoiced',
-        tags: ['Accessories', 'Handles', 'Hinges']
-      },
-      {
-        id: '2',
-        poNumber: 'PO-2024-002',
-        vendorName: 'Plumbing Fittings Inc',
-        vendorCode: 'VEND-002',
-        category: 'Fittings',
-        status: 'sent',
-        priority: 'medium',
-        totalAmount: 45000,
-        currency: 'USD',
-        itemCount: 8,
-        createdDate: '2024-01-18',
-        deliveryDate: '2024-02-28',
-        lastModified: '2024-01-19',
-        createdBy: 'Mike Davis',
-        paymentTerms: 'Net 45',
-        deliveryStatus: 0,
-        invoiceStatus: 'not_invoiced',
-        tags: ['Fittings', 'Valves', 'Pipes']
-      },
-      {
-        id: '3',
-        poNumber: 'PO-2024-003',
-        requisitionNumber: 'REQ-2024-048',
-        vendorName: 'Stainless Steel Suppliers',
-        vendorCode: 'VEND-003',
-        category: 'Raw Materials',
-        status: 'partially_delivered',
-        priority: 'urgent',
-        totalAmount: 285000,
-        currency: 'USD',
-        itemCount: 42,
-        createdDate: '2024-01-10',
-        deliveryDate: '2024-01-25',
-        lastModified: '2024-01-22',
-        createdBy: 'Emma Wilson',
-        approvedBy: 'Robert Chen',
-        paymentTerms: 'Immediate',
-        deliveryStatus: 75,
-        invoiceStatus: 'partially_invoiced',
-        tags: ['SS304', 'Raw Materials']
-      },
-      {
-        id: '4',
-        poNumber: 'PO-2024-004',
-        vendorName: 'Safety Equipment Pro',
-        vendorCode: 'VEND-004',
-        category: 'Equipment',
-        status: 'pending_approval',
-        priority: 'low',
-        totalAmount: 15000,
-        currency: 'USD',
-        itemCount: 20,
-        createdDate: '2024-01-22',
-        deliveryDate: '2024-03-01',
-        lastModified: '2024-01-22',
-        createdBy: 'Lisa Anderson',
-        paymentTerms: 'Net 60',
-        deliveryStatus: 0,
-        invoiceStatus: 'not_invoiced',
-        tags: ['Safety', 'PPE']
-      },
-      {
-        id: '5',
-        poNumber: 'PO-2024-005',
-        vendorName: 'Chemical Supplies Global',
-        vendorCode: 'VEND-005',
-        category: 'Consumables',
-        status: 'delivered',
-        priority: 'medium',
-        totalAmount: 92000,
-        currency: 'USD',
-        itemCount: 18,
-        createdDate: '2024-01-05',
-        deliveryDate: '2024-01-20',
-        lastModified: '2024-01-21',
-        createdBy: 'James Brown',
-        approvedBy: 'Sarah Johnson',
-        paymentTerms: 'Net 15',
-        deliveryStatus: 100,
-        invoiceStatus: 'fully_invoiced',
-        tags: ['Chemicals', 'Production']
-      },
-      {
-        id: '6',
-        poNumber: 'PO-2024-006',
-        vendorName: 'HVAC Accessories Ltd',
-        vendorCode: 'VEND-006',
-        category: 'Accessories',
-        status: 'draft',
-        priority: 'medium',
-        totalAmount: 67500,
-        currency: 'USD',
-        itemCount: 12,
-        createdDate: '2024-01-23',
-        deliveryDate: '2024-02-20',
-        lastModified: '2024-01-23',
-        createdBy: 'John Smith',
-        paymentTerms: 'Net 30',
-        deliveryStatus: 0,
-        invoiceStatus: 'not_invoiced',
-        tags: ['Accessories', 'HVAC Parts']
-      }
-    ]
+  const [error, setError] = useState<string | null>(null)
 
-    setTimeout(() => {
-      setPurchaseOrders(mockOrders)
-      setFilteredOrders(mockOrders)
+  // Map service PO status to local status
+  const mapStatus = (status: POStatus): PurchaseOrder['status'] => {
+    const statusMap: Record<POStatus, PurchaseOrder['status']> = {
+      'Draft': 'draft',
+      'Pending Approval': 'pending_approval',
+      'Approved': 'approved',
+      'Sent to Vendor': 'sent',
+      'Acknowledged': 'acknowledged',
+      'Partially Received': 'partially_delivered',
+      'Fully Received': 'delivered',
+      'Closed': 'closed',
+      'Cancelled': 'cancelled'
+    }
+    return statusMap[status] || 'draft'
+  }
+
+  // Determine priority based on delivery date
+  const determinePriority = (deliveryDate: string): PurchaseOrder['priority'] => {
+    const today = new Date()
+    const delivery = new Date(deliveryDate)
+    const daysUntilDelivery = Math.ceil((delivery.getTime() - today.getTime()) / (1000 * 60 * 60 * 24))
+
+    if (daysUntilDelivery <= 3) return 'urgent'
+    if (daysUntilDelivery <= 7) return 'high'
+    if (daysUntilDelivery <= 14) return 'medium'
+    return 'low'
+  }
+
+  // Load purchase orders from service
+  const loadPurchaseOrders = async () => {
+    try {
+      setIsLoading(true)
+      setError(null)
+
+      const response = await purchaseOrderService.getAllPurchaseOrders()
+
+      const mappedOrders: PurchaseOrder[] = response.data.map(po => {
+        // Calculate delivery status percentage
+        const totalQty = po.items.reduce((sum, item) => sum + item.quantity, 0)
+        const receivedQty = po.items.reduce((sum, item) => sum + (item.receivedQuantity || 0), 0)
+        const deliveryStatus = totalQty > 0 ? Math.round((receivedQty / totalQty) * 100) : 0
+
+        return {
+          id: po.id,
+          poNumber: po.poNumber,
+          requisitionNumber: po.requisitionId ? `REQ-${po.requisitionId.slice(-4)}` : undefined,
+          vendorName: po.vendorName,
+          vendorCode: po.vendorCode,
+          category: 'Raw Materials' as const,
+          status: mapStatus(po.status),
+          priority: determinePriority(po.deliveryDate),
+          totalAmount: po.totalAmount,
+          currency: po.currency,
+          itemCount: po.items.length,
+          createdDate: po.orderDate,
+          deliveryDate: po.deliveryDate,
+          lastModified: po.updatedAt.split('T')[0],
+          createdBy: po.createdByName,
+          approvedBy: po.approvedByName,
+          paymentTerms: po.paymentTerms,
+          deliveryStatus: deliveryStatus,
+          invoiceStatus: 'not_invoiced' as const,
+          tags: po.items.slice(0, 2).map(item => item.itemCode)
+        }
+      })
+
+      setPurchaseOrders(mappedOrders)
+      setFilteredOrders(mappedOrders)
+    } catch (err) {
+      console.error('Error loading purchase orders:', err)
+      setError('Failed to load purchase orders. Please try again.')
+    } finally {
       setIsLoading(false)
-    }, 1000)
+    }
+  }
+
+  useEffect(() => {
+    loadPurchaseOrders()
   }, [])
 
   // Filter and search logic
@@ -672,11 +619,26 @@ export default function PurchaseOrdersPage() {
         </div>
       )}
 
+      {/* Error Display */}
+      {error && (
+        <div className="bg-red-50 border border-red-200 rounded-lg p-4 flex items-center gap-3">
+          <AlertCircle className="h-5 w-5 text-red-600" />
+          <span className="text-red-700">{error}</span>
+          <button
+            onClick={loadPurchaseOrders}
+            className="ml-auto px-3 py-1 bg-red-600 text-white rounded-lg hover:bg-red-700 text-sm"
+          >
+            Retry
+          </button>
+        </div>
+      )}
+
       {/* Purchase Orders List/Grid */}
       {isLoading ? (
-        <div className="bg-white rounded-lg border border-gray-200 p-8">
-          <div className="flex items-center justify-center">
-            <RefreshCw className="h-8 w-8 text-gray-400 animate-spin" />
+        <div className="bg-white rounded-lg border border-gray-200 p-12">
+          <div className="flex flex-col items-center justify-center">
+            <Loader2 className="h-10 w-10 text-blue-600 animate-spin" />
+            <p className="mt-4 text-gray-600">Loading purchase orders...</p>
           </div>
         </div>
       ) : viewMode === 'list' ? (

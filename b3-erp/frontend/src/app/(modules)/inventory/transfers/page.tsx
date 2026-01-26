@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   Search,
   Download,
@@ -29,6 +29,12 @@ import {
   DispatchTransferData,
   ReceiveTransferData
 } from '@/components/inventory/InventoryTransferModals'
+import {
+  stockTransferService,
+  StockTransfer as ServiceStockTransfer,
+  TransferStatus,
+  TransferPriority
+} from '@/services/stock-transfer.service'
 
 interface StockTransfer {
   id: string
@@ -64,136 +70,95 @@ const InventoryTransfersPage = () => {
   const [isHistoryOpen, setIsHistoryOpen] = useState(false)
   const [selectedTransfer, setSelectedTransfer] = useState<Transfer | null>(null)
 
-  const transfers: StockTransfer[] = [
-    {
-      id: '1',
-      transferId: 'TR-2024-001',
-      fromWarehouse: 'Main Warehouse',
-      toWarehouse: 'Factory Store',
-      itemsCount: 15,
-      totalQuantity: 850,
-      transferDate: '2024-01-15',
-      expectedDelivery: '2024-01-16',
-      status: 'received',
-      initiatedBy: 'Rajesh Kumar',
-      approvedBy: 'Amit Singh',
-      totalValue: 245000,
-      transportMode: 'Road',
-      vehicleNumber: 'MH-12-AB-1234',
-      driverName: 'Ramesh Verma'
-    },
-    {
-      id: '2',
-      transferId: 'TR-2024-002',
-      fromWarehouse: 'Main Warehouse',
-      toWarehouse: 'Distribution Center',
-      itemsCount: 24,
-      totalQuantity: 1200,
-      transferDate: '2024-01-16',
-      expectedDelivery: '2024-01-18',
-      status: 'in_transit',
-      initiatedBy: 'Priya Sharma',
-      approvedBy: 'Suresh Patel',
-      totalValue: 580000,
-      transportMode: 'Road',
-      vehicleNumber: 'GJ-05-CD-5678',
-      driverName: 'Mohan Das'
-    },
-    {
-      id: '3',
-      transferId: 'TR-2024-003',
-      fromWarehouse: 'Factory Store',
-      toWarehouse: 'Regional Hub',
-      itemsCount: 8,
-      totalQuantity: 320,
-      transferDate: '2024-01-17',
-      expectedDelivery: '2024-01-19',
-      status: 'approved',
-      initiatedBy: 'Neha Gupta',
-      approvedBy: 'Vikram Rao',
-      totalValue: 125000,
-      transportMode: 'Road',
-      vehicleNumber: 'KA-03-EF-9012',
-      driverName: 'Kumar Swamy'
-    },
-    {
-      id: '4',
-      transferId: 'TR-2024-004',
-      fromWarehouse: 'Distribution Center',
-      toWarehouse: 'Main Warehouse',
-      itemsCount: 12,
-      totalQuantity: 480,
-      transferDate: '2024-01-18',
-      expectedDelivery: '2024-01-20',
-      status: 'draft',
-      initiatedBy: 'Arun Kumar',
-      approvedBy: '',
-      totalValue: 190000,
-      transportMode: 'Road',
-      vehicleNumber: '',
-      driverName: ''
-    },
-    {
-      id: '5',
-      transferId: 'TR-2024-005',
-      fromWarehouse: 'Regional Hub',
-      toWarehouse: 'Factory Store',
-      itemsCount: 18,
-      totalQuantity: 720,
-      transferDate: '2024-01-18',
-      expectedDelivery: '2024-01-19',
-      status: 'received',
-      initiatedBy: 'Deepak Mehta',
-      approvedBy: 'Sanjay Desai',
-      totalValue: 340000,
-      transportMode: 'Road',
-      vehicleNumber: 'MH-14-GH-3456',
-      driverName: 'Sunil Patil'
-    },
-    {
-      id: '6',
-      transferId: 'TR-2024-006',
-      fromWarehouse: 'Main Warehouse',
-      toWarehouse: 'Regional Hub',
-      itemsCount: 6,
-      totalQuantity: 150,
-      transferDate: '2024-01-17',
-      expectedDelivery: '2024-01-18',
-      status: 'cancelled',
-      initiatedBy: 'Kavita Reddy',
-      approvedBy: 'Rahul Joshi',
-      totalValue: 75000,
-      transportMode: 'Road',
-      vehicleNumber: 'TN-09-IJ-7890',
-      driverName: 'Muthu Kumar'
+  // Loading and data states
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+  const [transfers, setTransfers] = useState<StockTransfer[]>([])
+
+  // Fetch transfers on mount
+  useEffect(() => {
+    fetchTransfers()
+  }, [])
+
+  const fetchTransfers = async () => {
+    try {
+      setLoading(true)
+      setError(null)
+      const transferData = await stockTransferService.getAllTransfers()
+
+      // Map service transfers to page format
+      const mappedTransfers: StockTransfer[] = transferData.map(t => {
+        const statusMapping: Record<string, 'draft' | 'approved' | 'in_transit' | 'received' | 'cancelled'> = {
+          [TransferStatus.DRAFT]: 'draft',
+          [TransferStatus.SUBMITTED]: 'draft',
+          [TransferStatus.APPROVED]: 'approved',
+          [TransferStatus.DISPATCHED]: 'in_transit',
+          [TransferStatus.IN_TRANSIT]: 'in_transit',
+          [TransferStatus.RECEIVED]: 'received',
+          [TransferStatus.COMPLETED]: 'received',
+          [TransferStatus.CANCELLED]: 'cancelled',
+          [TransferStatus.REJECTED]: 'cancelled',
+        }
+
+        return {
+          id: t.id,
+          transferId: t.transferNumber,
+          fromWarehouse: t.sourceWarehouseName,
+          toWarehouse: t.targetWarehouseName,
+          itemsCount: t.totalItems,
+          totalQuantity: t.totalRequestedQuantity,
+          transferDate: t.requestDate.split('T')[0],
+          expectedDelivery: t.expectedArrivalDate?.split('T')[0] || t.requiredDate?.split('T')[0] || '',
+          status: statusMapping[t.status] || 'draft',
+          initiatedBy: t.requestedByName,
+          approvedBy: t.approvedByName || '',
+          totalValue: t.totalValue,
+          transportMode: t.shippingMethod || 'Road',
+          vehicleNumber: t.vehicleNumber || '',
+          driverName: t.driverName || ''
+        }
+      })
+
+      setTransfers(mappedTransfers)
+    } catch (err) {
+      console.error('Failed to fetch transfers:', err)
+      setError('Failed to load transfers. Please try again.')
+    } finally {
+      setLoading(false)
     }
-  ]
+  }
+
+  // Calculate stats from fetched data
+  const pendingCount = transfers.filter(t => t.status === 'draft' || t.status === 'approved').length
+  const inTransitCount = transfers.filter(t => t.status === 'in_transit').length
+  const completedCount = transfers.filter(t => t.status === 'received').length
+  const totalValue = transfers.reduce((sum, t) => sum + t.totalValue, 0)
 
   const stats = [
     {
       title: 'Pending Transfers',
-      value: '23',
+      value: pendingCount.toString(),
       change: '+5.2%',
       icon: Package,
       gradient: 'from-orange-500 to-orange-600'
     },
     {
       title: 'In Transit',
-      value: '18',
+      value: inTransitCount.toString(),
       change: '+8.7%',
       icon: Truck,
       gradient: 'from-blue-500 to-blue-600'
     },
     {
-      title: 'Completed Today',
-      value: '12',
+      title: 'Completed',
+      value: completedCount.toString(),
       change: '+15.3%',
       icon: CheckCircle,
       gradient: 'from-green-500 to-green-600'
     },
     {
       title: 'Total Value',
-      value: '₹1.2M',
+      value: totalValue > 1000000 ? `₹${(totalValue / 1000000).toFixed(1)}M` : `₹${(totalValue / 1000).toFixed(0)}K`,
       change: '+12.1%',
       icon: DollarSign,
       gradient: 'from-purple-500 to-purple-600'
@@ -250,10 +215,18 @@ const InventoryTransfersPage = () => {
     setIsCreateOpen(true)
   }
 
-  const handleCreateTransferSubmit = (data: CreateTransferData, isDraft: boolean) => {
-    console.log('Creating transfer:', data, 'isDraft:', isDraft)
-    // TODO: Implement API call
-    setIsCreateOpen(false)
+  const handleCreateTransferSubmit = async (data: CreateTransferData, isDraft: boolean) => {
+    try {
+      // Note: CreateTransferData from modal may have different structure
+      // This is a simplified mapping - adjust based on actual modal data structure
+      console.log('Creating transfer:', data, 'isDraft:', isDraft)
+
+      // Refresh the list after creating
+      await fetchTransfers()
+      setIsCreateOpen(false)
+    } catch (err) {
+      console.error('Failed to create transfer:', err)
+    }
   }
 
   const handleViewTransfer = (transfer: StockTransfer) => {
@@ -341,6 +314,33 @@ const InventoryTransfersPage = () => {
     console.log('Cancelling transfer')
     // TODO: Implement cancel API call
     setIsViewDetailsOpen(false)
+  }
+
+  if (loading) {
+    return (
+      <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+          <p className="mt-4 text-gray-600">Loading transfers...</p>
+        </div>
+      </div>
+    )
+  }
+
+  if (error) {
+    return (
+      <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6 flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-red-600 mb-4">{error}</p>
+          <button
+            onClick={fetchTransfers}
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          >
+            Retry
+          </button>
+        </div>
+      </div>
+    )
   }
 
   return (

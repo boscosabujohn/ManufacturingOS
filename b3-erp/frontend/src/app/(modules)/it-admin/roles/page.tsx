@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Search, Download, Eye, Edit, Copy, CheckCircle, XCircle, AlertCircle } from 'lucide-react';
+import { Search, Download, Eye, Edit, Copy, CheckCircle, XCircle, AlertCircle, RefreshCw } from 'lucide-react';
+import { RoleService, Role as ServiceRole } from '@/services/role.service';
 
 interface Role {
   id: string;
@@ -21,119 +22,54 @@ interface Role {
   isDefault: boolean;
 }
 
-const mockRoles: Role[] = [
-  {
-    id: 'ROLE001',
-    roleName: 'System Administrator',
-    roleType: 'system',
-    usersCount: 3,
-    permissionsCount: 50,
-    description: 'Full system access with all permissions',
-    createdDate: '2023-01-01',
-    createdBy: 'System',
-    lastModified: '2025-09-15',
-    modifiedBy: 'Ravi Kumar',
-    status: 'active',
-    permissions: ['Read', 'Write', 'Delete', 'Approve', 'Export'],
-    modules: ['All Modules'],
-    priority: 1,
-    isDefault: true
-  },
-  {
-    id: 'ROLE002',
-    roleName: 'Production Manager',
-    roleType: 'custom',
-    usersCount: 5,
-    permissionsCount: 35,
-    description: 'Manage production operations and workflows',
-    createdDate: '2023-02-15',
-    createdBy: 'Ravi Kumar',
-    lastModified: '2025-08-20',
-    modifiedBy: 'Ravi Kumar',
-    status: 'active',
-    permissions: ['Read', 'Write', 'Approve', 'Export'],
-    modules: ['Production', 'Inventory', 'Quality Control'],
-    priority: 2,
-    isDefault: false
-  },
-  {
-    id: 'ROLE003',
-    roleName: 'Quality Inspector',
-    roleType: 'custom',
-    usersCount: 8,
-    permissionsCount: 20,
-    description: 'Quality control and inspection permissions',
-    createdDate: '2023-03-10',
-    createdBy: 'Priya Sharma',
-    lastModified: '2025-07-05',
-    modifiedBy: 'Amit Patel',
-    status: 'active',
-    permissions: ['Read', 'Write', 'Export'],
-    modules: ['Quality Control', 'Production', 'Reports'],
-    priority: 3,
-    isDefault: false
-  },
-  {
-    id: 'ROLE004',
-    roleName: 'Inventory Supervisor',
-    roleType: 'custom',
-    usersCount: 6,
-    permissionsCount: 25,
-    description: 'Inventory management and stock control',
-    createdDate: '2023-04-22',
-    createdBy: 'Ravi Kumar',
-    lastModified: '2025-06-10',
-    modifiedBy: 'Neha Desai',
-    status: 'active',
-    permissions: ['Read', 'Write', 'Approve', 'Export'],
-    modules: ['Inventory', 'Warehouse', 'Purchasing'],
-    priority: 3,
-    isDefault: false
-  },
-  {
-    id: 'ROLE005',
-    roleName: 'Sales Representative',
-    roleType: 'system',
-    usersCount: 12,
-    permissionsCount: 15,
-    description: 'Sales operations and customer management',
-    createdDate: '2023-01-01',
-    createdBy: 'System',
-    lastModified: '2025-05-18',
-    modifiedBy: 'Ravi Kumar',
-    status: 'active',
-    permissions: ['Read', 'Write', 'Export'],
-    modules: ['Sales', 'Customers', 'Orders'],
-    priority: 4,
-    isDefault: true
-  },
-  {
-    id: 'ROLE006',
-    roleName: 'Finance Auditor',
-    roleType: 'custom',
-    usersCount: 2,
-    permissionsCount: 18,
-    description: 'Financial reporting and audit access',
-    createdDate: '2024-01-15',
-    createdBy: 'Ravi Kumar',
-    lastModified: '2025-03-25',
-    modifiedBy: 'Ravi Kumar',
-    status: 'inactive',
-    permissions: ['Read', 'Export'],
-    modules: ['Finance', 'Reports', 'Audit'],
-    priority: 5,
-    isDefault: false
-  }
-];
-
 export default function RolesPage() {
-  const [roles] = useState<Role[]>(mockRoles);
+  const [roles, setRoles] = useState<Role[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [roleTypeFilter, setRoleTypeFilter] = useState('all');
   const [statusFilter, setStatusFilter] = useState('all');
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
   const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' | 'info' } | null>(null);
+
+  useEffect(() => {
+    const fetchRoles = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const fetchedRoles = await RoleService.getAllRoles();
+
+        // Transform service roles to page format
+        const transformedRoles: Role[] = fetchedRoles.map((role: ServiceRole) => ({
+          id: role.id,
+          roleName: role.name,
+          roleType: role.isSystemRole ? 'system' as const : 'custom' as const,
+          usersCount: role.userCount || 0,
+          permissionsCount: role.permissions?.length || 0,
+          description: role.description,
+          createdDate: new Date(role.createdAt).toISOString().split('T')[0],
+          createdBy: role.createdBy || 'System',
+          lastModified: new Date(role.updatedAt).toISOString().split('T')[0],
+          modifiedBy: role.modifiedBy || 'System',
+          status: role.status as 'active' | 'inactive',
+          permissions: role.permissions || [],
+          modules: role.modules || [],
+          priority: role.priority || 5,
+          isDefault: role.isDefault || false,
+        }));
+
+        setRoles(transformedRoles);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Failed to load roles');
+        console.error('Error fetching roles:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchRoles();
+  }, []);
 
   useEffect(() => {
     if (toast) {
@@ -182,7 +118,7 @@ export default function RolesPage() {
   const totalRoles = roles.length;
   const activeRoles = roles.filter(r => r.status === 'active').length;
   const customRoles = roles.filter(r => r.roleType === 'custom').length;
-  const avgPermissions = Math.round(roles.reduce((sum, r) => sum + r.permissionsCount, 0) / roles.length);
+  const avgPermissions = roles.length > 0 ? Math.round(roles.reduce((sum, r) => sum + r.permissionsCount, 0) / roles.length) : 0;
 
   const getStatusBadgeClass = (status: string) => {
     switch (status) {
@@ -205,6 +141,25 @@ export default function RolesPage() {
         return 'bg-gray-100 text-gray-800 border-gray-300';
     }
   };
+
+  if (loading) {
+    return (
+      <div className="h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 via-teal-50 to-cyan-50">
+        <RefreshCw className="h-8 w-8 text-teal-500 animate-spin" />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="p-6 bg-gradient-to-br from-gray-50 via-teal-50 to-cyan-50 min-h-screen">
+        <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
+          <p className="font-medium">Error loading roles</p>
+          <p className="text-sm">{error}</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 via-teal-50 to-cyan-50">

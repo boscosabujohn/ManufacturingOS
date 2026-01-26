@@ -22,6 +22,7 @@ import {
     Activity,
     AlertCircle,
 } from 'lucide-react'
+import { WorkflowService, WorkflowTemplate, WorkflowStatus } from '@/services/workflow.service'
 
 interface WorkflowChain {
     id: string
@@ -43,334 +44,41 @@ export default function WorkflowsListPage() {
     const [filterStatus, setFilterStatus] = useState<'all' | 'active' | 'inactive'>('all')
     const [filterPhase, setFilterPhase] = useState('all')
     const [isLoading, setIsLoading] = useState(true)
+    const [error, setError] = useState<string | null>(null)
 
-    // Mock data - replace with API call
+    // Fetch workflows from service
     useEffect(() => {
-        const mockWorkflows: WorkflowChain[] = [
-            // Phase 1: Sales & Order Management
-            {
-                id: '1',
-                name: 'Quote Approval',
-                entityType: 'quotation',
-                isActive: true,
-                levelCount: 3,
-                avgSlaHours: 48,
-                createdAt: '2024-01-01',
-                updatedAt: '2024-01-15',
-                usageCount: 156,
-                successRate: 89,
-            },
-            {
-                id: '2',
-                name: 'Sales Order Confirmation',
-                entityType: 'sales_order',
-                isActive: true,
-                levelCount: 2,
-                avgSlaHours: 18,
-                createdAt: '2024-01-01',
-                updatedAt: '2024-01-12',
-                usageCount: 203,
-                successRate: 95,
-            },
-            {
-                id: '3',
-                name: 'Credit Limit Approval',
-                entityType: 'credit_limit',
-                isActive: true,
-                levelCount: 2,
-                avgSlaHours: 16,
-                createdAt: '2024-01-01',
-                updatedAt: '2024-01-18',
-                usageCount: 78,
-                successRate: 92,
-            },
+        const fetchWorkflows = async () => {
+            setIsLoading(true)
+            setError(null)
+            try {
+                const templates = await WorkflowService.getAllWorkflowTemplates()
 
-            // Phase 2: Design & Estimation
-            {
-                id: '4',
-                name: 'Design Approval',
-                entityType: 'design',
-                isActive: true,
-                levelCount: 3,
-                avgSlaHours: 72,
-                createdAt: '2024-01-01',
-                updatedAt: '2024-01-20',
-                usageCount: 134,
-                successRate: 91,
-            },
-            {
-                id: '5',
-                name: 'Cost Estimation Approval',
-                entityType: 'cost_estimation',
-                isActive: true,
-                levelCount: 2,
-                avgSlaHours: 36,
-                createdAt: '2024-01-01',
-                updatedAt: '2024-01-14',
-                usageCount: 167,
-                successRate: 94,
-            },
+                // Transform WorkflowTemplate to WorkflowChain format
+                const transformedWorkflows: WorkflowChain[] = templates.map((template: WorkflowTemplate) => ({
+                    id: template.id,
+                    name: template.name,
+                    entityType: template.entityType || template.category.toLowerCase().replace(' ', '_'),
+                    isActive: template.status === WorkflowStatus.ACTIVE,
+                    levelCount: template.steps.length || 2,
+                    avgSlaHours: template.slaSettings?.warningDays ? template.slaSettings.warningDays * 24 : 48,
+                    createdAt: new Date(template.createdAt).toISOString().split('T')[0],
+                    updatedAt: new Date(template.updatedAt).toISOString().split('T')[0],
+                    usageCount: template.instanceCount || 0,
+                    successRate: Math.floor(Math.random() * 15) + 85, // Mock success rate for now
+                }))
 
-            // Phase 3: BOM & Material Planning
-            {
-                id: '6',
-                name: 'BOM Approval',
-                entityType: 'bom',
-                isActive: true,
-                levelCount: 3,
-                avgSlaHours: 48,
-                createdAt: '2024-01-01',
-                updatedAt: '2024-01-16',
-                usageCount: 189,
-                successRate: 96,
-            },
-            {
-                id: '7',
-                name: 'Material Requisition Approval',
-                entityType: 'material_requisition',
-                isActive: true,
-                levelCount: 2,
-                avgSlaHours: 18,
-                createdAt: '2024-01-01',
-                updatedAt: '2024-01-22',
-                usageCount: 312,
-                successRate: 97,
-            },
+                setWorkflows(transformedWorkflows)
+                setFilteredWorkflows(transformedWorkflows)
+            } catch (err) {
+                setError(err instanceof Error ? err.message : 'Failed to load workflows')
+                console.error('Error fetching workflows:', err)
+            } finally {
+                setIsLoading(false)
+            }
+        }
 
-            // Phase 4: Procurement & Material Management
-            {
-                id: '8',
-                name: 'Purchase Order Approval',
-                entityType: 'purchase_order',
-                isActive: true,
-                levelCount: 3,
-                avgSlaHours: 48,
-                createdAt: '2024-01-01',
-                updatedAt: '2024-01-10',
-                usageCount: 245,
-                successRate: 94,
-            },
-            {
-                id: '9',
-                name: 'Vendor Selection Approval',
-                entityType: 'vendor_selection',
-                isActive: true,
-                levelCount: 2,
-                avgSlaHours: 60,
-                createdAt: '2024-01-01',
-                updatedAt: '2024-01-11',
-                usageCount: 45,
-                successRate: 88,
-            },
-            {
-                id: '10',
-                name: 'RFQ/RFP Approval',
-                entityType: 'rfq_rfp',
-                isActive: true,
-                levelCount: 2,
-                avgSlaHours: 36,
-                createdAt: '2024-01-01',
-                updatedAt: '2024-01-13',
-                usageCount: 67,
-                successRate: 90,
-            },
-
-            // Phase 5: Production Management
-            {
-                id: '11',
-                name: 'Work Order Release Approval',
-                entityType: 'work_order',
-                isActive: true,
-                levelCount: 2,
-                avgSlaHours: 18,
-                createdAt: '2024-01-01',
-                updatedAt: '2024-01-17',
-                usageCount: 278,
-                successRate: 98,
-            },
-            {
-                id: '12',
-                name: 'Production Deviation Approval',
-                entityType: 'production_deviation',
-                isActive: true,
-                levelCount: 3,
-                avgSlaHours: 12,
-                createdAt: '2024-01-01',
-                updatedAt: '2024-01-19',
-                usageCount: 56,
-                successRate: 85,
-            },
-            {
-                id: '13',
-                name: 'Overtime Approval',
-                entityType: 'overtime',
-                isActive: true,
-                levelCount: 2,
-                avgSlaHours: 16,
-                createdAt: '2024-01-01',
-                updatedAt: '2024-01-21',
-                usageCount: 123,
-                successRate: 93,
-            },
-
-            // Phase 6: Quality Control
-            {
-                id: '14',
-                name: 'NCR Approval',
-                entityType: 'ncr',
-                isActive: true,
-                levelCount: 3,
-                avgSlaHours: 13,
-                createdAt: '2024-01-01',
-                updatedAt: '2024-01-18',
-                usageCount: 89,
-                successRate: 88,
-            },
-            {
-                id: '15',
-                name: 'Rework Authorization',
-                entityType: 'rework',
-                isActive: true,
-                levelCount: 2,
-                avgSlaHours: 16,
-                createdAt: '2024-01-01',
-                updatedAt: '2024-01-15',
-                usageCount: 67,
-                successRate: 91,
-            },
-            {
-                id: '16',
-                name: 'Final Inspection Approval',
-                entityType: 'final_inspection',
-                isActive: true,
-                levelCount: 2,
-                avgSlaHours: 18,
-                createdAt: '2024-01-01',
-                updatedAt: '2024-01-20',
-                usageCount: 234,
-                successRate: 97,
-            },
-
-            // Phase 7: Logistics & Accounts
-            {
-                id: '17',
-                name: 'Shipment Authorization',
-                entityType: 'shipment',
-                isActive: true,
-                levelCount: 3,
-                avgSlaHours: 27,
-                createdAt: '2024-01-01',
-                updatedAt: '2024-01-16',
-                usageCount: 198,
-                successRate: 96,
-            },
-            {
-                id: '18',
-                name: 'Invoice Approval',
-                entityType: 'invoice',
-                isActive: true,
-                levelCount: 2,
-                avgSlaHours: 18,
-                createdAt: '2024-01-01',
-                updatedAt: '2024-01-14',
-                usageCount: 267,
-                successRate: 95,
-            },
-            {
-                id: '19',
-                name: 'Payment Authorization',
-                entityType: 'payment',
-                isActive: true,
-                levelCount: 3,
-                avgSlaHours: 48,
-                createdAt: '2024-01-01',
-                updatedAt: '2024-01-12',
-                usageCount: 189,
-                successRate: 93,
-            },
-
-            // Phase 8: Installation & Handover
-            {
-                id: '20',
-                name: 'Installation Schedule Approval',
-                entityType: 'installation_schedule',
-                isActive: true,
-                levelCount: 2,
-                avgSlaHours: 36,
-                createdAt: '2024-01-01',
-                updatedAt: '2024-01-11',
-                usageCount: 156,
-                successRate: 94,
-            },
-            {
-                id: '21',
-                name: 'Site Modification Approval',
-                entityType: 'site_modification',
-                isActive: true,
-                levelCount: 3,
-                avgSlaHours: 11,
-                createdAt: '2024-01-01',
-                updatedAt: '2024-01-17',
-                usageCount: 34,
-                successRate: 87,
-            },
-            {
-                id: '22',
-                name: 'Project Closure Approval',
-                entityType: 'project_closure',
-                isActive: true,
-                levelCount: 4,
-                avgSlaHours: 54,
-                createdAt: '2024-01-01',
-                updatedAt: '2024-01-13',
-                usageCount: 145,
-                successRate: 98,
-            },
-
-            // Cross-Phase Workflows
-            {
-                id: '23',
-                name: 'Budget Override Approval',
-                entityType: 'budget_override',
-                isActive: true,
-                levelCount: 3,
-                avgSlaHours: 28,
-                createdAt: '2024-01-01',
-                updatedAt: '2024-01-19',
-                usageCount: 23,
-                successRate: 82,
-            },
-            {
-                id: '24',
-                name: 'Emergency Change Approval',
-                entityType: 'emergency_change',
-                isActive: true,
-                levelCount: 2,
-                avgSlaHours: 14,
-                createdAt: '2024-01-01',
-                updatedAt: '2024-01-21',
-                usageCount: 12,
-                successRate: 100,
-            },
-            {
-                id: '25',
-                name: 'Expense Approval',
-                entityType: 'expense',
-                isActive: true,
-                levelCount: 2,
-                avgSlaHours: 36,
-                createdAt: '2024-01-01',
-                updatedAt: '2024-01-15',
-                usageCount: 456,
-                successRate: 96,
-            },
-        ]
-
-        setTimeout(() => {
-            setWorkflows(mockWorkflows)
-            setFilteredWorkflows(mockWorkflows)
-            setIsLoading(false)
-        }, 500)
+        fetchWorkflows()
     }, [])
 
     // Filter workflows

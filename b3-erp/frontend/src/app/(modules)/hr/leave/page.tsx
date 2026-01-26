@@ -1,7 +1,13 @@
 'use client';
 
-import { useState } from 'react';
-import { Search, Filter, Download, CalendarDays, CheckCircle, Clock, XCircle } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Search, Filter, Download, CalendarDays, CheckCircle, Clock, XCircle, Loader2 } from 'lucide-react';
+import {
+  LeaveService,
+  LeaveApplication,
+  LeaveApplicationStatus,
+  LeaveTypeCode
+} from '@/services/leave.service';
 
 interface LeaveRequest {
   id: string;
@@ -25,119 +31,128 @@ interface LeaveRequest {
   };
 }
 
-const mockLeaveRequests: LeaveRequest[] = [
-  {
-    id: 'LV-001',
-    employeeId: 'EMP-1001',
-    employeeName: 'Rajesh Kumar',
-    department: 'Production',
-    leaveType: 'sick',
-    startDate: '2025-10-20',
-    endDate: '2025-10-22',
-    totalDays: 3,
-    reason: 'Medical treatment for fever',
-    status: 'approved',
-    appliedOn: '2025-10-15',
-    approvedBy: 'Production Manager',
-    approvedOn: '2025-10-16',
-    rejectionReason: null,
-    balance: { sick: 7, casual: 12, annual: 18 },
-  },
-  {
-    id: 'LV-002',
-    employeeId: 'EMP-1002',
-    employeeName: 'Priya Sharma',
-    department: 'Quality Control',
-    leaveType: 'annual',
-    startDate: '2025-11-01',
-    endDate: '2025-11-10',
-    totalDays: 10,
-    reason: 'Family vacation',
-    status: 'pending',
-    appliedOn: '2025-10-17',
-    approvedBy: null,
-    approvedOn: null,
-    rejectionReason: null,
-    balance: { sick: 10, casual: 10, annual: 20 },
-  },
-  {
-    id: 'LV-003',
-    employeeId: 'EMP-1003',
-    employeeName: 'Amit Patel',
-    department: 'Engineering',
-    leaveType: 'casual',
-    startDate: '2025-10-25',
-    endDate: '2025-10-25',
-    totalDays: 1,
-    reason: 'Personal work',
-    status: 'approved',
-    appliedOn: '2025-10-16',
-    approvedBy: 'Engineering Manager',
-    approvedOn: '2025-10-17',
-    rejectionReason: null,
-    balance: { sick: 12, casual: 9, annual: 15 },
-  },
-  {
-    id: 'LV-004',
-    employeeId: 'EMP-1004',
-    employeeName: 'Sneha Reddy',
-    department: 'Finance',
-    leaveType: 'maternity',
-    startDate: '2025-11-15',
-    endDate: '2026-03-15',
-    totalDays: 120,
-    reason: 'Maternity leave',
-    status: 'approved',
-    appliedOn: '2025-10-10',
-    approvedBy: 'HR Manager',
-    approvedOn: '2025-10-11',
-    rejectionReason: null,
-    balance: { sick: 10, casual: 12, annual: 18 },
-  },
-  {
-    id: 'LV-005',
-    employeeId: 'EMP-1005',
-    employeeName: 'Vikram Singh',
-    department: 'HR',
-    leaveType: 'casual',
-    startDate: '2025-10-30',
-    endDate: '2025-10-31',
-    totalDays: 2,
-    reason: 'Family function',
-    status: 'rejected',
-    appliedOn: '2025-10-17',
-    approvedBy: 'HR Manager',
-    approvedOn: '2025-10-17',
-    rejectionReason: 'Insufficient coverage during this period',
-    balance: { sick: 8, casual: 12, annual: 16 },
-  },
-  {
-    id: 'LV-006',
-    employeeId: 'EMP-1006',
-    employeeName: 'Kavita Desai',
-    department: 'Procurement',
-    leaveType: 'comp_off',
-    startDate: '2025-10-28',
-    endDate: '2025-10-28',
-    totalDays: 1,
-    reason: 'Compensatory off for weekend work',
-    status: 'pending',
-    appliedOn: '2025-10-17',
-    approvedBy: null,
-    approvedOn: null,
-    rejectionReason: null,
-    balance: { sick: 10, casual: 12, annual: 20 },
-  },
-];
+// Transform service leave application to page format
+const transformLeaveApplication = (leave: LeaveApplication): LeaveRequest => {
+  const statusMap: Record<LeaveApplicationStatus, LeaveRequest['status']> = {
+    [LeaveApplicationStatus.PENDING]: 'pending',
+    [LeaveApplicationStatus.APPROVED]: 'approved',
+    [LeaveApplicationStatus.REJECTED]: 'rejected',
+    [LeaveApplicationStatus.CANCELLED]: 'cancelled',
+    [LeaveApplicationStatus.WITHDRAWN]: 'cancelled',
+  };
+
+  const leaveTypeMap: Record<LeaveTypeCode, LeaveRequest['leaveType']> = {
+    [LeaveTypeCode.SICK]: 'sick',
+    [LeaveTypeCode.CASUAL]: 'casual',
+    [LeaveTypeCode.ANNUAL]: 'annual',
+    [LeaveTypeCode.MATERNITY]: 'maternity',
+    [LeaveTypeCode.PATERNITY]: 'paternity',
+    [LeaveTypeCode.UNPAID]: 'unpaid',
+    [LeaveTypeCode.COMPENSATORY]: 'comp_off',
+    [LeaveTypeCode.BEREAVEMENT]: 'casual',
+    [LeaveTypeCode.STUDY]: 'casual',
+    [LeaveTypeCode.MARRIAGE]: 'casual',
+  };
+
+  return {
+    id: leave.id,
+    employeeId: leave.employeeCode || leave.employeeId,
+    employeeName: leave.employeeName || 'Unknown',
+    department: leave.departmentName || 'Unknown',
+    leaveType: leave.leaveTypeCode ? leaveTypeMap[leave.leaveTypeCode] : 'casual',
+    startDate: new Date(leave.startDate).toISOString().split('T')[0],
+    endDate: new Date(leave.endDate).toISOString().split('T')[0],
+    totalDays: leave.totalDays,
+    reason: leave.reason,
+    status: statusMap[leave.status],
+    appliedOn: new Date(leave.appliedAt).toISOString().split('T')[0],
+    approvedBy: leave.approverName || null,
+    approvedOn: leave.approvedAt ? new Date(leave.approvedAt).toISOString().split('T')[0] : null,
+    rejectionReason: leave.rejectionReason || null,
+    balance: { sick: 10, casual: 12, annual: 20 }, // Default values - would come from balance service
+  };
+};
 
 export default function LeavePage() {
+  const [leaveRequests, setLeaveRequests] = useState<LeaveRequest[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [leaveTypeFilter, setLeaveTypeFilter] = useState<string>('all');
   const [currentPage, setCurrentPage] = useState(1);
+  const [stats, setStats] = useState({
+    pending: 0,
+    approved: 0,
+    rejected: 0,
+    avgLeaveDays: 0
+  });
   const itemsPerPage = 10;
 
-  const filteredLeaveRequests = mockLeaveRequests.filter(request => {
+  // Load leave applications from service
+  useEffect(() => {
+    const loadLeaveData = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+
+        // Fetch leave applications and statistics
+        const [applications, leaveStats] = await Promise.all([
+          LeaveService.getLeaveApplications(),
+          LeaveService.getStatistics()
+        ]);
+
+        setLeaveRequests(applications.map(transformLeaveApplication));
+
+        // Calculate average leave days
+        const totalDays = applications.reduce((sum, app) => sum + app.totalDays, 0);
+        const avgDays = applications.length > 0 ? totalDays / applications.length : 0;
+
+        setStats({
+          pending: leaveStats.pendingApplications,
+          approved: leaveStats.approvedApplications,
+          rejected: leaveStats.rejectedApplications,
+          avgLeaveDays: Math.round(avgDays * 10) / 10
+        });
+      } catch (err) {
+        console.error('Error loading leave data:', err);
+        setError('Failed to load leave requests. Please try again.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadLeaveData();
+  }, []);
+
+  const handleApprove = async (id: string) => {
+    try {
+      await LeaveService.approveLeave(id);
+      // Refresh the data
+      const applications = await LeaveService.getLeaveApplications();
+      setLeaveRequests(applications.map(transformLeaveApplication));
+    } catch (err) {
+      console.error('Error approving leave:', err);
+      alert('Failed to approve leave. Please try again.');
+    }
+  };
+
+  const handleReject = async (id: string) => {
+    const reason = prompt('Please enter the rejection reason:');
+    if (reason) {
+      try {
+        await LeaveService.rejectLeave(id, reason);
+        // Refresh the data
+        const applications = await LeaveService.getLeaveApplications();
+        setLeaveRequests(applications.map(transformLeaveApplication));
+      } catch (err) {
+        console.error('Error rejecting leave:', err);
+        alert('Failed to reject leave. Please try again.');
+      }
+    }
+  };
+
+  const filteredLeaveRequests = leaveRequests.filter(request => {
     const matchesSearch = request.employeeName.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          request.employeeId.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          request.department.toLowerCase().includes(searchTerm.toLowerCase());
@@ -187,43 +202,72 @@ export default function LeavePage() {
     );
   };
 
-  const stats = [
+  const statsCards = [
     {
       title: 'Pending Requests',
-      value: '18',
-      change: '8 this week',
+      value: stats.pending.toString(),
+      change: 'Awaiting approval',
       icon: Clock,
       gradient: 'from-yellow-500 to-orange-600',
     },
     {
       title: 'Approved',
-      value: '124',
-      change: 'This month',
+      value: stats.approved.toString(),
+      change: 'This period',
       icon: CheckCircle,
       gradient: 'from-green-500 to-emerald-600',
     },
     {
       title: 'Rejected',
-      value: '5',
-      change: 'This month',
+      value: stats.rejected.toString(),
+      change: 'This period',
       icon: XCircle,
       gradient: 'from-red-500 to-rose-600',
     },
     {
       title: 'Avg Leave Days',
-      value: '12.5',
-      change: 'Per employee/year',
+      value: stats.avgLeaveDays.toString(),
+      change: 'Per request',
       icon: CalendarDays,
       gradient: 'from-blue-500 to-cyan-600',
     },
   ];
+
+  // Show loading state
+  if (loading) {
+    return (
+      <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6 flex items-center justify-center">
+        <div className="flex flex-col items-center gap-4">
+          <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+          <p className="text-gray-600">Loading leave requests...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Show error state
+  if (error) {
+    return (
+      <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6 flex items-center justify-center">
+        <div className="flex flex-col items-center gap-4 text-center">
+          <div className="text-red-500 text-lg font-medium">{error}</div>
+          <button
+            onClick={() => window.location.reload()}
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          >
+            Retry
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6">
       <div className="max-w-7xl mx-auto">
         {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-          {stats.map((stat, index) => {
+          {statsCards.map((stat, index) => {
             const gradientMap: { [key: string]: string } = {
               'from-yellow-500 to-orange-600': 'from-yellow-50 to-yellow-100',
               'from-green-500 to-emerald-600': 'from-green-50 to-green-100',
@@ -395,10 +439,16 @@ export default function LeavePage() {
                       </button>
                       {request.status === 'pending' && (
                         <>
-                          <button className="text-green-600 hover:text-green-800 font-medium mr-3">
+                          <button
+                            onClick={() => handleApprove(request.id)}
+                            className="text-green-600 hover:text-green-800 font-medium mr-3"
+                          >
                             Approve
                           </button>
-                          <button className="text-red-600 hover:text-red-800 font-medium">
+                          <button
+                            onClick={() => handleReject(request.id)}
+                            className="text-red-600 hover:text-red-800 font-medium"
+                          >
                             Reject
                           </button>
                         </>

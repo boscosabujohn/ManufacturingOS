@@ -15,6 +15,7 @@ import {
   StockAdjustmentLine,
   SerialNumber,
   BatchNumber,
+  AdjustmentReason,
 } from './entities';
 
 // Controllers
@@ -40,6 +41,9 @@ import {
   StockAdjustmentService,
   SerialNumberService,
   BatchNumberService,
+  WarehouseSeederService,
+  StockLocationSeederService,
+  AdjustmentReasonSeederService,
 } from './services';
 import { ReorderManagementService } from './services/reorder-management.service';
 import { StorageLocationService as StorageLocationClassificationService } from './services/storage-location.service';
@@ -60,6 +64,7 @@ import { VEDAnalysisService } from './services/ved-analysis.service';
       StockAdjustmentLine,
       SerialNumber,
       BatchNumber,
+      AdjustmentReason,
     ]),
     WorkflowModule,
   ],
@@ -87,6 +92,9 @@ import { VEDAnalysisService } from './services/ved-analysis.service';
     StorageLocationClassificationService,
     PutawayStrategyService,
     VEDAnalysisService,
+    WarehouseSeederService,
+    StockLocationSeederService,
+    AdjustmentReasonSeederService,
   ],
   exports: [
     WarehouseService,
@@ -101,6 +109,9 @@ import { VEDAnalysisService } from './services/ved-analysis.service';
     StorageLocationClassificationService,
     PutawayStrategyService,
     VEDAnalysisService,
+    WarehouseSeederService,
+    StockLocationSeederService,
+    AdjustmentReasonSeederService,
   ],
 })
 export class InventoryModule { }

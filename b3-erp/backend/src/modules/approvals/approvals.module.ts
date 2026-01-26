@@ -11,6 +11,7 @@ import {
 } from './entities';
 import { ApprovalChainService } from './services/approval-chain.service';
 import { ApprovalWorkflowService } from './services/approval-workflow.service';
+import { ApprovalChainSeederService } from './services/approval-chain-seeder.service';
 import { ApprovalsController } from './approvals.controller';
 
 @Module({
@@ -26,8 +27,8 @@ import { ApprovalsController } from './approvals.controller';
         ]),
     ],
     controllers: [ApprovalsController],
-    providers: [ApprovalChainService, ApprovalWorkflowService],
-    exports: [ApprovalChainService, ApprovalWorkflowService],
+    providers: [ApprovalChainService, ApprovalWorkflowService, ApprovalChainSeederService],
+    exports: [ApprovalChainService, ApprovalWorkflowService, ApprovalChainSeederService],
 })
 export class ApprovalsModule implements OnModuleInit {
     constructor(private readonly chainService: ApprovalChainService) { }

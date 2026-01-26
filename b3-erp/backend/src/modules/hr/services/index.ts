@@ -18,3 +18,12 @@ export * from './skill.service';
 export * from './proficiency-level.service';
 export * from './user-skill.service';
 export * from './skill-gap.service';
+
+// Seeders
+export * from './department-seeder.service';
+export * from './designation-seeder.service';
+export * from './shift-seeder.service';
+export * from './holiday-seeder.service';
+export * from './leave-type-seeder.service';
+export * from './skill-seeder.service';
+export * from './employee-seeder.service';

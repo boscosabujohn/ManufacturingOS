@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import {
   Search,
   FileDown,
@@ -10,8 +10,15 @@ import {
   DollarSign,
   Users,
   AlertCircle,
-  TrendingUp
+  TrendingUp,
+  Loader2
 } from 'lucide-react'
+import {
+  PayrollService,
+  SalarySlip,
+  SalarySlipStatus,
+  PaymentMethod
+} from '@/services/payroll.service'
 
 interface PayrollRecord {
   id: string
@@ -31,128 +38,105 @@ interface PayrollRecord {
   status: 'draft' | 'processed' | 'paid' | 'on_hold'
 }
 
-const mockPayrollData: PayrollRecord[] = [
-  {
-    id: 'PAY-2025-001',
-    employeeId: 'EMP-001',
-    employeeName: 'Rajesh Kumar',
-    department: 'Production',
-    payPeriod: 'October 2025',
-    basicSalary: 75000,
-    hra: 30000,
-    transportAllowance: 3200,
-    medicalAllowance: 1250,
-    taxDeduction: 16425,
-    pfDeduction: 9000,
-    insurance: 1500,
-    netSalary: 82525,
-    paymentMethod: 'Bank Transfer',
-    status: 'paid'
-  },
-  {
-    id: 'PAY-2025-002',
-    employeeId: 'EMP-002',
-    employeeName: 'Priya Sharma',
-    department: 'Quality Control',
-    payPeriod: 'October 2025',
-    basicSalary: 65000,
-    hra: 26000,
-    transportAllowance: 2800,
-    medicalAllowance: 1250,
-    taxDeduction: 14265,
-    pfDeduction: 7800,
-    insurance: 1200,
-    netSalary: 71785,
-    paymentMethod: 'Bank Transfer',
-    status: 'processed'
-  },
-  {
-    id: 'PAY-2025-003',
-    employeeId: 'EMP-003',
-    employeeName: 'Amit Patel',
-    department: 'Engineering',
-    payPeriod: 'October 2025',
-    basicSalary: 85000,
-    hra: 34000,
-    transportAllowance: 3200,
-    medicalAllowance: 1250,
-    taxDeduction: 24690,
-    pfDeduction: 10200,
-    insurance: 1500,
-    netSalary: 87060,
-    paymentMethod: 'Bank Transfer',
-    status: 'draft'
-  },
-  {
-    id: 'PAY-2025-004',
-    employeeId: 'EMP-004',
-    employeeName: 'Sneha Gupta',
-    department: 'HR',
-    payPeriod: 'Sep 2025',
-    basicSalary: 55000,
-    hra: 22000,
-    transportAllowance: 2400,
-    medicalAllowance: 1250,
-    taxDeduction: 8067,
-    pfDeduction: 6600,
-    insurance: 1000,
-    netSalary: 64983,
-    paymentMethod: 'Bank Transfer',
-    status: 'paid'
-  },
-  {
-    id: 'PAY-2025-005',
-    employeeId: 'EMP-005',
-    employeeName: 'Vikram Singh',
-    department: 'Maintenance',
-    payPeriod: 'October 2025',
-    basicSalary: 45000,
-    hra: 18000,
-    transportAllowance: 1600,
-    medicalAllowance: 1250,
-    taxDeduction: 6585,
-    pfDeduction: 5400,
-    insurance: 800,
-    netSalary: 53065,
-    paymentMethod: 'Check',
-    status: 'on_hold'
-  },
-  {
-    id: 'PAY-2025-006',
-    employeeId: 'EMP-006',
-    employeeName: 'Anjali Reddy',
-    department: 'Finance',
-    payPeriod: 'October 2025',
-    basicSalary: 70000,
-    hra: 28000,
-    transportAllowance: 3000,
-    medicalAllowance: 1250,
-    taxDeduction: 15345,
-    pfDeduction: 8400,
-    insurance: 1200,
-    netSalary: 77305,
-    paymentMethod: 'Bank Transfer',
-    status: 'draft'
+// Transform service salary slip to page format
+const transformSalarySlip = (slip: SalarySlip): PayrollRecord => {
+  const statusMap: Record<SalarySlipStatus, PayrollRecord['status']> = {
+    [SalarySlipStatus.DRAFT]: 'draft',
+    [SalarySlipStatus.GENERATED]: 'processed',
+    [SalarySlipStatus.SENT]: 'paid',
+    [SalarySlipStatus.ACKNOWLEDGED]: 'paid',
   }
-]
+
+  const paymentMethodMap: Record<PaymentMethod, string> = {
+    [PaymentMethod.BANK_TRANSFER]: 'Bank Transfer',
+    [PaymentMethod.CHEQUE]: 'Check',
+    [PaymentMethod.CASH]: 'Cash',
+    [PaymentMethod.UPI]: 'UPI',
+  }
+
+  const monthNames = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ]
+
+  return {
+    id: slip.id,
+    employeeId: slip.employeeCode || slip.employeeId,
+    employeeName: slip.employeeName || 'Unknown',
+    department: slip.departmentName || 'Unknown',
+    payPeriod: `${monthNames[slip.month - 1]} ${slip.year}`,
+    basicSalary: slip.basicSalary,
+    hra: slip.houseRentAllowance,
+    transportAllowance: slip.conveyanceAllowance,
+    medicalAllowance: slip.medicalAllowance,
+    taxDeduction: slip.incomeTax,
+    pfDeduction: slip.providentFund,
+    insurance: slip.esiContribution,
+    netSalary: slip.netSalary,
+    paymentMethod: paymentMethodMap[slip.paymentMethod],
+    status: statusMap[slip.status],
+  }
+}
 
 export default function PayrollPage() {
+  const [payrollData, setPayrollData] = useState<PayrollRecord[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
   const [searchTerm, setSearchTerm] = useState('')
   const [statusFilter, setStatusFilter] = useState('all')
   const [departmentFilter, setDepartmentFilter] = useState('all')
   const [currentPage, setCurrentPage] = useState(1)
+  const [stats, setStats] = useState({
+    totalPayroll: 0,
+    paidThisMonth: 0,
+    pendingPayments: 0,
+    avgSalary: 0
+  })
   const itemsPerPage = 10
 
-  const totalPayroll = mockPayrollData.reduce((sum, record) => sum + record.netSalary, 0)
-  const paidThisMonth = mockPayrollData
-    .filter(r => r.status === 'paid' && r.payPeriod === 'October 2025')
-    .reduce((sum, record) => sum + record.netSalary, 0)
-  const pendingPayments = mockPayrollData
-    .filter(r => r.status === 'draft' || r.status === 'processed')
-    .reduce((sum, record) => sum + record.netSalary, 0)
-  const avgSalary = totalPayroll / mockPayrollData.length
+  // Load payroll data from service
+  useEffect(() => {
+    const loadPayrollData = async () => {
+      try {
+        setLoading(true)
+        setError(null)
 
-  const filteredData = mockPayrollData.filter(record => {
+        // Fetch salary slips and statistics
+        const [salarySlips, payrollStats] = await Promise.all([
+          PayrollService.getSalarySlips(),
+          PayrollService.getStatistics()
+        ])
+
+        const records = salarySlips.map(transformSalarySlip)
+        setPayrollData(records)
+
+        const totalPayroll = records.reduce((sum, record) => sum + record.netSalary, 0)
+        const paidAmount = records
+          .filter(r => r.status === 'paid')
+          .reduce((sum, record) => sum + record.netSalary, 0)
+        const pendingAmount = records
+          .filter(r => r.status === 'draft' || r.status === 'processed')
+          .reduce((sum, record) => sum + record.netSalary, 0)
+        const avgSalary = records.length > 0 ? totalPayroll / records.length : 0
+
+        setStats({
+          totalPayroll,
+          paidThisMonth: paidAmount,
+          pendingPayments: pendingAmount,
+          avgSalary: Math.round(avgSalary)
+        })
+      } catch (err) {
+        console.error('Error loading payroll data:', err)
+        setError('Failed to load payroll data. Please try again.')
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    loadPayrollData()
+  }, [])
+
+  const filteredData = payrollData.filter(record => {
     const matchesSearch = record.employeeName.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          record.id.toLowerCase().includes(searchTerm.toLowerCase())
     const matchesStatus = statusFilter === 'all' || record.status === statusFilter
@@ -192,6 +176,35 @@ export default function PayrollPage() {
     console.log('Processing payroll:', id)
   }
 
+  // Show loading state
+  if (loading) {
+    return (
+      <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6 flex items-center justify-center">
+        <div className="flex flex-col items-center gap-4">
+          <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+          <p className="text-gray-600">Loading payroll data...</p>
+        </div>
+      </div>
+    )
+  }
+
+  // Show error state
+  if (error) {
+    return (
+      <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6 flex items-center justify-center">
+        <div className="flex flex-col items-center gap-4 text-center">
+          <div className="text-red-500 text-lg font-medium">{error}</div>
+          <button
+            onClick={() => window.location.reload()}
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          >
+            Retry
+          </button>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6">
       <div className="space-y-6">
@@ -200,7 +213,7 @@ export default function PayrollPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-blue-600">Total Payroll</p>
-                <p className="text-2xl font-bold text-blue-900 mt-1">₹{totalPayroll.toLocaleString()}</p>
+                <p className="text-2xl font-bold text-blue-900 mt-1">₹{stats.totalPayroll.toLocaleString()}</p>
               </div>
               <DollarSign className="h-8 w-8 text-blue-600" />
             </div>
@@ -210,7 +223,7 @@ export default function PayrollPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-green-600">Paid This Month</p>
-                <p className="text-2xl font-bold text-green-900 mt-1">₹{paidThisMonth.toLocaleString()}</p>
+                <p className="text-2xl font-bold text-green-900 mt-1">₹{stats.paidThisMonth.toLocaleString()}</p>
               </div>
               <CheckCircle className="h-8 w-8 text-green-600" />
             </div>
@@ -220,7 +233,7 @@ export default function PayrollPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-orange-600">Pending Payments</p>
-                <p className="text-2xl font-bold text-orange-900 mt-1">₹{pendingPayments.toLocaleString()}</p>
+                <p className="text-2xl font-bold text-orange-900 mt-1">₹{stats.pendingPayments.toLocaleString()}</p>
               </div>
               <AlertCircle className="h-8 w-8 text-orange-600" />
             </div>
@@ -230,7 +243,7 @@ export default function PayrollPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-purple-600">Avg Salary</p>
-                <p className="text-2xl font-bold text-purple-900 mt-1">₹{Math.round(avgSalary).toLocaleString()}</p>
+                <p className="text-2xl font-bold text-purple-900 mt-1">₹{stats.avgSalary.toLocaleString()}</p>
               </div>
               <TrendingUp className="h-8 w-8 text-purple-600" />
             </div>

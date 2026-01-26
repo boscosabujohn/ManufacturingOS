@@ -6,3 +6,6 @@ export * from './operation.service';
 export * from './work-center.service';
 export * from './routing.service';
 export * from './production-entry.service';
+export * from './work-center-seeder.service';
+export * from './operation-seeder.service';
+export * from './work-order-status-seeder.service';

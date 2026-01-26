@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import {
  Search,
@@ -38,6 +38,7 @@ import {
  QuickNotesModal,
 } from '@/components/project-management/ProjectListModals';
 import { WorkflowQuickActions } from '@/components/project-management/WorkflowQuickActions';
+import { projectManagementService, Project as ServiceProject } from '@/services/ProjectManagementService';
 
 interface Project {
  id: string;
@@ -286,17 +287,39 @@ export default function ProjectsListPage() {
  const [currentPage, setCurrentPage] = useState(1);
  const itemsPerPage = 10;
 
- // Fetch projects from backend
- React.useEffect(() => {
+ // Fetch projects from backend using ProjectManagementService
+ useEffect(() => {
   const fetchProjects = async () => {
+   setLoading(true);
    try {
-    const response = await fetch('http://localhost:3000/projects');
-    if (response.ok) {
-     const data = await response.json();
-     setProjects(data);
+    const data = await projectManagementService.getProjects();
+    // Map service data to local Project interface
+    const mappedProjects: Project[] = data.map((p: ServiceProject) => ({
+     id: p.id,
+     projectNumber: p.projectCode || `PRJ-${p.id}`,
+     projectName: p.name,
+     projectType: (p.projectType as Project['projectType']) || 'Commercial Kitchen',
+     customer: p.clientName,
+     location: p.location || 'N/A',
+     salesOrderNumber: `SO-${p.id}`,
+     projectManager: p.projectManagerId || 'Unassigned',
+     startDate: p.startDate || new Date().toISOString().split('T')[0],
+     endDate: p.endDate || new Date().toISOString().split('T')[0],
+     status: (p.status as Project['status']) || 'Planning',
+     progress: p.progress || 0,
+     budget: p.budgetAllocated || 0,
+     actualCost: p.budgetSpent || 0,
+     phase: p.status || 'Planning',
+     priority: (p.priority as Project['priority']) || 'P2',
+     team: 0,
+     deliverables: 0,
+     completedDeliverables: 0,
+    }));
+
+    // If no projects returned from service, fallback to mockProjects
+    if (mappedProjects.length > 0) {
+     setProjects(mappedProjects);
     } else {
-     console.error('Failed to fetch projects');
-     // Fallback to mock data if API fails
      setProjects(mockProjects);
     }
    } catch (error) {

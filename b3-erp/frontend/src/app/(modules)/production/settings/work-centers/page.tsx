@@ -1,8 +1,9 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { ArrowLeft, Plus, Search, Edit2, Trash2, Settings, MapPin, Users, Clock, Activity } from 'lucide-react';
+import { ArrowLeft, Plus, Search, Edit2, Trash2, Settings, MapPin, Users, Clock, Activity, Loader2, AlertCircle } from 'lucide-react';
+import { workCenterService, WorkCenter as ServiceWorkCenter } from '@/services/work-center.service';
 
 interface WorkCenter {
   id: string;
@@ -19,154 +20,58 @@ interface WorkCenter {
   workingHours: string;
 }
 
+// Map service work center to local display format
+function mapServiceWorkCenterToLocal(wc: ServiceWorkCenter): WorkCenter {
+  const statusMap: Record<string, WorkCenter['status']> = {
+    'Active': 'active',
+    'Inactive': 'inactive',
+    'Maintenance': 'maintenance',
+    'Decommissioned': 'inactive',
+  };
+
+  return {
+    id: wc.id,
+    code: wc.workCenterCode,
+    name: wc.workCenterName,
+    department: wc.department || 'Production',
+    location: wc.location || 'Main Facility',
+    type: wc.workCenterType,
+    capacity: wc.capacity.maxCapacity,
+    operators: wc.capacity.currentLoad > 0 ? Math.ceil(wc.capacity.currentLoad / 10) : 4, // Estimate
+    efficiency: wc.capacity.efficiency,
+    status: statusMap[wc.status] || 'active',
+    costPerHour: wc.costPerHour,
+    workingHours: wc.operatingHours || '08:00 - 17:00',
+  };
+}
+
 export default function WorkCentersSettingsPage() {
   const router = useRouter();
+  const [workCenters, setWorkCenters] = useState<WorkCenter[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [filterStatus, setFilterStatus] = useState<string>('all');
 
-  // Mock work centers data
-  const workCenters: WorkCenter[] = [
-    {
-      id: 'WC-001',
-      code: 'ASSY-LINE-01',
-      name: 'Assembly Line 1',
-      department: 'Assembly Department',
-      location: 'Building A - Floor 1',
-      type: 'Assembly Line',
-      capacity: 100,
-      operators: 8,
-      efficiency: 92.5,
-      status: 'active',
-      costPerHour: 450,
-      workingHours: '08:00 - 17:00'
-    },
-    {
-      id: 'WC-002',
-      code: 'CNC-CUT-01',
-      name: 'CNC Cutting Station 1',
-      department: 'Cutting Department',
-      location: 'Building A - Bay A',
-      type: 'CNC Machine',
-      capacity: 50,
-      operators: 3,
-      efficiency: 95.2,
-      status: 'active',
-      costPerHour: 380,
-      workingHours: '08:00 - 20:00'
-    },
-    {
-      id: 'WC-003',
-      code: 'WELD-ST-01',
-      name: 'Welding Station 1',
-      department: 'Welding Department',
-      location: 'Building A - Bay B',
-      type: 'Welding Station',
-      capacity: 40,
-      operators: 4,
-      efficiency: 88.7,
-      status: 'active',
-      costPerHour: 320,
-      workingHours: '08:00 - 17:00'
-    },
-    {
-      id: 'WC-004',
-      code: 'POLISH-01',
-      name: 'Polishing Station 1',
-      department: 'Finishing Department',
-      location: 'Building B - Floor 1',
-      type: 'Manual Station',
-      capacity: 30,
-      operators: 6,
-      efficiency: 85.3,
-      status: 'active',
-      costPerHour: 280,
-      workingHours: '08:00 - 17:00'
-    },
-    {
-      id: 'WC-005',
-      code: 'PAINT-BOOTH-01',
-      name: 'Paint Booth 1',
-      department: 'Finishing Department',
-      location: 'Building B - Floor 2',
-      type: 'Paint Booth',
-      capacity: 25,
-      operators: 3,
-      efficiency: 90.8,
-      status: 'maintenance',
-      costPerHour: 350,
-      workingHours: '08:00 - 17:00'
-    },
-    {
-      id: 'WC-006',
-      code: 'PRESS-HYDRO-01',
-      name: 'Hydraulic Press 1',
-      department: 'Forming Department',
-      location: 'Building C - Bay A',
-      type: 'Press Machine',
-      capacity: 60,
-      operators: 2,
-      efficiency: 93.5,
-      status: 'active',
-      costPerHour: 420,
-      workingHours: '08:00 - 20:00'
-    },
-    {
-      id: 'WC-007',
-      code: 'LASER-CUT-02',
-      name: 'Laser Cutting Station 2',
-      department: 'Cutting Department',
-      location: 'Building A - Bay B',
-      type: 'Laser Cutter',
-      capacity: 45,
-      operators: 2,
-      efficiency: 91.2,
-      status: 'active',
-      costPerHour: 400,
-      workingHours: '08:00 - 20:00'
-    },
-    {
-      id: 'WC-008',
-      code: 'QC-STATION-01',
-      name: 'Quality Control Station 1',
-      department: 'Quality Department',
-      location: 'Building B - Floor 1',
-      type: 'Inspection Station',
-      capacity: 35,
-      operators: 4,
-      efficiency: 96.5,
-      status: 'active',
-      costPerHour: 300,
-      workingHours: '08:00 - 17:00'
-    },
-    {
-      id: 'WC-009',
-      code: 'PACK-LINE-01',
-      name: 'Packaging Line 1',
-      department: 'Packaging Department',
-      location: 'Building C - Floor 1',
-      type: 'Packaging Line',
-      capacity: 80,
-      operators: 5,
-      efficiency: 87.9,
-      status: 'active',
-      costPerHour: 250,
-      workingHours: '08:00 - 17:00'
-    },
-    {
-      id: 'WC-010',
-      code: 'MAINT-SHOP-01',
-      name: 'Maintenance Workshop',
-      department: 'Maintenance Department',
-      location: 'Building D - Floor 1',
-      type: 'Service Center',
-      capacity: 20,
-      operators: 6,
-      efficiency: 82.4,
-      status: 'inactive',
-      costPerHour: 280,
-      workingHours: '08:00 - 17:00'
+  // Fetch work centers from service
+  useEffect(() => {
+    async function fetchWorkCenters() {
+      setLoading(true);
+      setError(null);
+      try {
+        const data = await workCenterService.getAllWorkCenters();
+        setWorkCenters(data.map(mapServiceWorkCenterToLocal));
+      } catch (err) {
+        console.error('Error fetching work centers:', err);
+        setError('Failed to load work centers. Please try again.');
+      } finally {
+        setLoading(false);
+      }
     }
-  ];
+
+    fetchWorkCenters();
+  }, []);
+
 
   const filteredWorkCenters = workCenters.filter(wc => {
     const matchesSearch = wc.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -190,6 +95,37 @@ export default function WorkCentersSettingsPage() {
     if (efficiency >= 80) return 'text-yellow-600';
     return 'text-red-600';
   };
+
+  // Show loading state
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <Loader2 className="w-12 h-12 text-blue-600 animate-spin mx-auto mb-4" />
+          <p className="text-gray-600">Loading work centers...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Show error state
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <AlertCircle className="w-12 h-12 text-red-600 mx-auto mb-4" />
+          <p className="text-gray-900 font-semibold mb-2">Error Loading Work Centers</p>
+          <p className="text-gray-600">{error}</p>
+          <button
+            onClick={() => window.location.reload()}
+            className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          >
+            Retry
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
@@ -262,7 +198,7 @@ export default function WorkCentersSettingsPage() {
             <div>
               <p className="text-sm font-medium text-orange-600">Avg Efficiency</p>
               <p className="text-3xl font-bold text-orange-900 mt-1">
-                {(workCenters.reduce((sum, wc) => sum + wc.efficiency, 0) / workCenters.length).toFixed(1)}%
+                {workCenters.length > 0 ? (workCenters.reduce((sum, wc) => sum + wc.efficiency, 0) / workCenters.length).toFixed(1) : 0}%
               </p>
             </div>
             <div className="p-3 bg-orange-200 rounded-lg">

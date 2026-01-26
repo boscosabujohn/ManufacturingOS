@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Route,
   Plus,
@@ -14,8 +14,11 @@ import {
   TrendingUp,
   Calendar,
   Truck,
-  AlertCircle
+  AlertCircle,
+  Loader2,
+  RefreshCw
 } from 'lucide-react';
+import { routeService, Route as ServiceRoute, Trip } from '@/services/route.service';
 
 interface RouteDetails {
   id: number;
@@ -40,11 +43,97 @@ interface RouteDetails {
   createdDate: string;
 }
 
+// Helper function to map service route to UI format
+const mapServiceRouteToUI = (route: ServiceRoute, trips: Trip[]): RouteDetails => {
+  const routeTrips = trips.filter(t => t.routeId === route.id);
+  const activeTrips = routeTrips.filter(t => t.status === 'In Progress' || t.status === 'Planned').length;
+  const completedTrips = routeTrips.filter(t => t.status === 'Completed');
+  const delayedTrips = routeTrips.filter(t => t.status === 'Delayed' || (t.delays && t.delays.length > 0));
+
+  const avgDelay = delayedTrips.length > 0
+    ? delayedTrips.reduce((sum, t) => sum + (t.delays?.reduce((s, d) => s + d.duration, 0) || 0), 0) / delayedTrips.length
+    : 0;
+
+  const reliability = completedTrips.length > 0
+    ? Math.round(((completedTrips.length - delayedTrips.length) / completedTrips.length) * 100)
+    : 95;
+
+  const routeTypeMap: Record<ServiceRoute['routeType'], RouteDetails['routeType']> = {
+    'Regular': 'primary',
+    'Express': 'primary',
+    'Economy': 'alternate'
+  };
+
+  const statusMap: Record<ServiceRoute['status'], RouteDetails['status']> = {
+    'Active': 'active',
+    'Inactive': 'inactive',
+    'Under Review': 'under-review'
+  };
+
+  return {
+    id: parseInt(route.id.replace(/\D/g, '')) || Date.now(),
+    routeCode: route.routeCode,
+    routeName: route.routeName,
+    origin: route.origin,
+    destination: route.destination,
+    waypoints: route.stops.map(s => s.locationName),
+    distance: route.totalDistance,
+    estimatedTime: Math.round(route.estimatedDuration / 60), // Convert minutes to hours
+    routeType: route.routeType === 'Express' ? 'primary' : routeTypeMap[route.routeType] || 'primary',
+    transportMode: 'road', // Default to road
+    routeCost: (route.tollCost || 0) + (route.fuelCostEstimate || 0) + 2000, // Add base cost
+    fuelCost: route.fuelCostEstimate || 0,
+    tollCost: route.tollCost || 0,
+    frequency: activeTrips > 5 ? 'daily' : activeTrips > 2 ? 'weekly' : 'on-demand',
+    activeTrips,
+    avgDelay: Math.round(avgDelay),
+    reliability: reliability > 100 ? 95 : reliability,
+    status: statusMap[route.status] || 'active',
+    lastUsed: routeTrips.length > 0 ? routeTrips[0].createdAt.split('T')[0] : route.updatedAt.split('T')[0],
+    createdDate: route.createdAt.split('T')[0]
+  };
+};
+
 export default function RoutePlanningPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedType, setSelectedType] = useState('all');
   const [selectedMode, setSelectedMode] = useState('all');
   const [selectedStatus, setSelectedStatus] = useState('all');
+
+  // State for routes loaded from service
+  const [routes, setRoutes] = useState<RouteDetails[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadError, setLoadError] = useState<string | null>(null);
+
+  // Load routes from service
+  useEffect(() => {
+    loadRouteData();
+  }, []);
+
+  const loadRouteData = async () => {
+    setIsLoading(true);
+    setLoadError(null);
+    try {
+      // Fetch routes and trips in parallel
+      const [serviceRoutes, tripsResult] = await Promise.all([
+        routeService.getAllRoutes(),
+        routeService.getAllTrips()
+      ]);
+
+      // Map service data to UI format
+      const mappedRoutes = serviceRoutes.map(r => mapServiceRouteToUI(r, tripsResult.data));
+      setRoutes(mappedRoutes);
+    } catch (error) {
+      console.error('Error loading route data:', error);
+      setLoadError('Failed to load route data. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleRefresh = async () => {
+    await loadRouteData();
+  };
 
   const handleCreateRoute = () => {
     alert(`Create New Route
@@ -268,228 +357,6 @@ Note: Saved changes will:
 • Update connected shipment schedules`);
   };
 
-  const [routes, setRoutes] = useState<RouteDetails[]>([
-    {
-      id: 1,
-      routeCode: 'RT-MUM-DEL-001',
-      routeName: 'Mumbai to Delhi - NH48',
-      origin: 'Mumbai Warehouse',
-      destination: 'Delhi Distribution Center',
-      waypoints: ['Vadodara Hub', 'Udaipur Transit', 'Jaipur Hub'],
-      distance: 1425,
-      estimatedTime: 24,
-      routeType: 'primary',
-      transportMode: 'road',
-      routeCost: 45000,
-      fuelCost: 35000,
-      tollCost: 8000,
-      frequency: 'daily',
-      activeTrips: 12,
-      avgDelay: 45,
-      reliability: 94,
-      status: 'active',
-      lastUsed: '2024-10-21',
-      createdDate: '2024-01-15'
-    },
-    {
-      id: 2,
-      routeCode: 'RT-BLR-CHN-001',
-      routeName: 'Bangalore to Chennai - NH44',
-      origin: 'Bangalore Plant',
-      destination: 'Chennai Port',
-      waypoints: ['Krishnagiri Transit'],
-      distance: 350,
-      estimatedTime: 7,
-      routeType: 'primary',
-      transportMode: 'road',
-      routeCost: 12000,
-      fuelCost: 9000,
-      tollCost: 2500,
-      frequency: 'weekly',
-      activeTrips: 5,
-      avgDelay: 15,
-      reliability: 98,
-      status: 'active',
-      lastUsed: '2024-10-20',
-      createdDate: '2024-02-01'
-    },
-    {
-      id: 3,
-      routeCode: 'RT-KOL-MUM-001',
-      routeName: 'Kolkata to Mumbai - NH16/NH44',
-      origin: 'Kolkata Depot',
-      destination: 'Mumbai Warehouse',
-      waypoints: ['Bhubaneswar Hub', 'Visakhapatnam Transit', 'Hyderabad Hub', 'Pune Hub'],
-      distance: 2050,
-      estimatedTime: 36,
-      routeType: 'primary',
-      transportMode: 'road',
-      routeCost: 68000,
-      fuelCost: 52000,
-      tollCost: 12000,
-      frequency: 'bi-weekly',
-      activeTrips: 3,
-      avgDelay: 65,
-      reliability: 89,
-      status: 'active',
-      lastUsed: '2024-10-19',
-      createdDate: '2024-01-20'
-    },
-    {
-      id: 4,
-      routeCode: 'RT-MUM-DEL-002',
-      routeName: 'Mumbai to Delhi - Alternate (NH48/NH62)',
-      origin: 'Mumbai Warehouse',
-      destination: 'Delhi Distribution Center',
-      waypoints: ['Nashik Hub', 'Indore Transit', 'Gwalior Hub', 'Agra Hub'],
-      distance: 1520,
-      estimatedTime: 26,
-      routeType: 'alternate',
-      transportMode: 'road',
-      routeCost: 48000,
-      fuelCost: 38000,
-      tollCost: 7500,
-      frequency: 'on-demand',
-      activeTrips: 2,
-      avgDelay: 30,
-      reliability: 92,
-      status: 'active',
-      lastUsed: '2024-10-18',
-      createdDate: '2024-03-10'
-    },
-    {
-      id: 5,
-      routeCode: 'RT-HYD-BLR-001',
-      routeName: 'Hyderabad to Bangalore - NH44',
-      origin: 'Hyderabad Factory',
-      destination: 'Bangalore Plant',
-      waypoints: ['Kurnool Transit'],
-      distance: 575,
-      estimatedTime: 10,
-      routeType: 'primary',
-      transportMode: 'road',
-      routeCost: 18000,
-      fuelCost: 14000,
-      tollCost: 3000,
-      frequency: 'weekly',
-      activeTrips: 4,
-      avgDelay: 20,
-      reliability: 96,
-      status: 'active',
-      lastUsed: '2024-10-21',
-      createdDate: '2024-02-15'
-    },
-    {
-      id: 6,
-      routeCode: 'RT-PUN-GOA-001',
-      routeName: 'Pune to Goa - NH48',
-      origin: 'Pune Hub',
-      destination: 'Goa Distribution',
-      waypoints: ['Kolhapur Transit'],
-      distance: 485,
-      estimatedTime: 9,
-      routeType: 'primary',
-      transportMode: 'road',
-      routeCost: 16000,
-      fuelCost: 12000,
-      tollCost: 3200,
-      frequency: 'monthly',
-      activeTrips: 1,
-      avgDelay: 10,
-      reliability: 97,
-      status: 'active',
-      lastUsed: '2024-10-15',
-      createdDate: '2024-04-05'
-    },
-    {
-      id: 7,
-      routeCode: 'RT-DEL-JAM-001',
-      routeName: 'Delhi to Jammu - NH44',
-      origin: 'Delhi Distribution Center',
-      destination: 'Jammu Depot',
-      waypoints: ['Ambala Transit', 'Ludhiana Hub'],
-      distance: 585,
-      estimatedTime: 11,
-      routeType: 'primary',
-      transportMode: 'road',
-      routeCost: 19000,
-      fuelCost: 15000,
-      tollCost: 3500,
-      frequency: 'bi-weekly',
-      activeTrips: 2,
-      avgDelay: 40,
-      reliability: 88,
-      status: 'active',
-      lastUsed: '2024-10-17',
-      createdDate: '2024-03-20'
-    },
-    {
-      id: 8,
-      routeCode: 'RT-CHN-KOC-001',
-      routeName: 'Chennai to Kochi - NH66',
-      origin: 'Chennai Port',
-      destination: 'Kochi Depot',
-      waypoints: ['Salem Transit', 'Coimbatore Hub'],
-      distance: 695,
-      estimatedTime: 12,
-      routeType: 'primary',
-      transportMode: 'road',
-      routeCost: 22000,
-      fuelCost: 17000,
-      tollCost: 4000,
-      frequency: 'weekly',
-      activeTrips: 3,
-      avgDelay: 25,
-      reliability: 95,
-      status: 'active',
-      lastUsed: '2024-10-20',
-      createdDate: '2024-02-28'
-    },
-    {
-      id: 9,
-      routeCode: 'RT-MUM-DEL-003',
-      routeName: 'Mumbai to Delhi - Emergency (Air)',
-      origin: 'Mumbai Airport',
-      destination: 'Delhi Airport',
-      waypoints: [],
-      distance: 1150,
-      estimatedTime: 2.5,
-      routeType: 'emergency',
-      transportMode: 'air',
-      routeCost: 250000,
-      fuelCost: 200000,
-      tollCost: 0,
-      frequency: 'on-demand',
-      activeTrips: 0,
-      avgDelay: 5,
-      reliability: 99,
-      status: 'inactive',
-      lastUsed: '2024-09-15',
-      createdDate: '2024-05-10'
-    },
-    {
-      id: 10,
-      routeCode: 'RT-AHM-MUM-001',
-      routeName: 'Ahmedabad to Mumbai - NH48',
-      origin: 'Ahmedabad Factory',
-      destination: 'Mumbai Warehouse',
-      waypoints: ['Vadodara Hub', 'Surat Transit'],
-      distance: 535,
-      estimatedTime: 9,
-      routeType: 'primary',
-      transportMode: 'road',
-      routeCost: 17000,
-      fuelCost: 13000,
-      tollCost: 3500,
-      frequency: 'daily',
-      activeTrips: 6,
-      avgDelay: 18,
-      reliability: 97,
-      status: 'active',
-      lastUsed: '2024-10-21',
-      createdDate: '2024-01-25'
-    }
-  ]);
 
   const getTypeColor = (type: string) => {
     const colors: { [key: string]: string } = {
@@ -557,6 +424,14 @@ Note: Saved changes will:
           <p className="text-gray-600 mt-1">Manage transportation routes and optimize delivery paths</p>
         </div>
         <div className="flex items-center space-x-3">
+          <button
+            onClick={handleRefresh}
+            disabled={isLoading}
+            className="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 flex items-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <RefreshCw className={`w-4 h-4 ${isLoading ? 'animate-spin' : ''}`} />
+            <span>{isLoading ? 'Loading...' : 'Refresh'}</span>
+          </button>
           <button
             onClick={handleCreateRoute}
             className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center space-x-2"
@@ -676,7 +551,40 @@ Note: Saved changes will:
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {filteredRoutes.map((route) => (
+              {isLoading ? (
+                <tr>
+                  <td colSpan={11} className="px-6 py-12 text-center">
+                    <div className="flex flex-col items-center justify-center">
+                      <Loader2 className="w-8 h-8 text-blue-600 animate-spin mb-2" />
+                      <span className="text-gray-500">Loading routes...</span>
+                    </div>
+                  </td>
+                </tr>
+              ) : loadError ? (
+                <tr>
+                  <td colSpan={11} className="px-6 py-12 text-center">
+                    <div className="flex flex-col items-center justify-center">
+                      <AlertCircle className="w-8 h-8 text-red-500 mb-2" />
+                      <span className="text-red-500">{loadError}</span>
+                      <button
+                        onClick={handleRefresh}
+                        className="mt-2 text-blue-600 hover:text-blue-700"
+                      >
+                        Try again
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ) : filteredRoutes.length === 0 ? (
+                <tr>
+                  <td colSpan={11} className="px-6 py-12 text-center">
+                    <div className="flex flex-col items-center justify-center">
+                      <Route className="w-8 h-8 text-gray-400 mb-2" />
+                      <span className="text-gray-500">No routes found</span>
+                    </div>
+                  </td>
+                </tr>
+              ) : filteredRoutes.map((route) => (
                 <tr key={route.id} className="hover:bg-gray-50">
                   <td className="px-6 py-4">
                     <div className="font-medium text-gray-900">{route.routeCode}</div>
