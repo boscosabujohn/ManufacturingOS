@@ -90,7 +90,7 @@ export class EmployeeService {
       const middleName = updateDto.middleName || employee.middleName || '';
       const lastName = updateDto.lastName || employee.lastName;
       const fullName = `${firstName} ${middleName} ${lastName}`.replace(/\s+/g, ' ').trim();
-      updateDto['fullName'] = fullName;
+      (updateDto as Record<string, any>).fullName = fullName;
     }
 
     Object.assign(employee, updateDto);

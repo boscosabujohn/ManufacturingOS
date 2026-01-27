@@ -155,7 +155,7 @@ export class DocumentService {
 
     private getMetadataDiff(meta1: any, meta2: any): any {
         // Simple key-value diff
-        const diff = {};
+        const diff: Record<string, any> = {};
         const keys = new Set([...Object.keys(meta1 || {}), ...Object.keys(meta2 || {})]);
 
         keys.forEach(key => {

@@ -365,7 +365,7 @@ export default function OutboundShippingPage() {
                       <MapPin className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
                       <div>
                         <div className="text-xs text-gray-700">{shipment.origin}</div>
-                        <div className="text-xs text-gray-400 my-1">-></div>
+                        <div className="text-xs text-gray-400 my-1">{'->'}</div>
                         <div className="text-xs font-semibold text-gray-900">{shipment.destination}</div>
                       </div>
                     </div>

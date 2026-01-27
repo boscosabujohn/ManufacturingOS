@@ -428,7 +428,6 @@ export default function HolidayMasterPage() {
         </div>
       </div>
       </div>
-      </div>
     </div>
   );
 }

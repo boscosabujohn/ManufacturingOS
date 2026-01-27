@@ -163,7 +163,7 @@ export class BOMService {
     bom.status = BOMStatus.ACTIVE;
     bom.approvedBy = approvedBy;
     bom.approvedAt = new Date();
-    bom.approvalComments = comments;
+    bom.approvalComments = comments ?? '';
 
     const updatedBOM = await this.bomRepository.save(bom);
     return this.mapToResponseDto(updatedBOM);

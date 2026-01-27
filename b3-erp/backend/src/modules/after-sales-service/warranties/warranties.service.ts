@@ -201,14 +201,14 @@ export class WarrantiesService {
     }
 
     const claim: WarrantyClaim = {
+      ...createWarrantyClaimDto,
       id: `CLAIM-${String(this.claimIdCounter++).padStart(6, '0')}`,
       claimNumber: `WCL-${new Date().getFullYear()}-${String(this.claimIdCounter).padStart(5, '0')}`,
       warrantyId,
       // warrantyNumber: warranty.warrantyNumber, // Not in entity
       status: ClaimStatus.SUBMITTED,
-      ...createWarrantyClaimDto,
-      // evaluationDate: null, // Not in entity
-      approvalDate: null,
+      // evaluationDate: undefined, // Not in entity
+      approvalDate: undefined,
       // rejectionDate: null, // Not in entity
       // completionDate: null, // Not in entity
       createdAt: new Date(),
@@ -286,7 +286,7 @@ export class WarrantiesService {
     claim.status = ClaimStatus.CLOSED;
     claim.resolutionDate = new Date();
     claim.resolutionNotes = resolution;
-    claim.totalCost = actualCost;
+    claim.totalCost = actualCost ?? claim.totalCost;
     // claim.partsReplaced = partsReplaced; // Type mismatch. Service receives string[], entity expects object[].
     // We need to map string[] to object[] or change service signature.
     // For now, let's assume partsReplaced in service is just names and map to basic objects.

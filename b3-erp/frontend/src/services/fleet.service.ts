@@ -505,7 +505,6 @@ const MOCK_DRIVERS: Driver[] = [
         emergencyContactName: 'Geeta Yadav',
         emergencyContactPhone: '+91 98765 99990',
         bloodGroup: 'AB+',
-        notes: 'Suspended pending investigation',
         createdAt: '2016-11-28T10:00:00Z',
         updatedAt: '2025-01-10T09:00:00Z',
     },

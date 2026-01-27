@@ -90,13 +90,15 @@ export class RFPService {
         rfps = rfps.filter((rfp) => rfp.assignedTo === filters.assignedTo);
       }
       if (filters.fromDate) {
+        const fromDate = new Date(filters.fromDate);
         rfps = rfps.filter(
-          (rfp) => new Date(rfp.issueDate) >= new Date(filters.fromDate),
+          (rfp) => new Date(rfp.issueDate) >= fromDate,
         );
       }
       if (filters.toDate) {
+        const toDate = new Date(filters.toDate);
         rfps = rfps.filter(
-          (rfp) => new Date(rfp.issueDate) <= new Date(filters.toDate),
+          (rfp) => new Date(rfp.issueDate) <= toDate,
         );
       }
       if (filters.search) {

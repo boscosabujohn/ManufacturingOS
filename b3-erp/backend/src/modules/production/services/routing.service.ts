@@ -170,7 +170,7 @@ export class RoutingService {
     routing.status = RoutingStatus.ACTIVE;
     routing.approvedBy = approvedBy;
     routing.approvedAt = new Date();
-    routing.approvalComments = comments;
+    routing.approvalComments = comments ?? '';
 
     const updatedRouting = await this.routingRepository.save(routing);
     return this.mapToResponseDto(updatedRouting);

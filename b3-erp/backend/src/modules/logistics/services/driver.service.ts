@@ -135,7 +135,7 @@ export class DriverService {
 
     driver.status = DriverStatus.ACTIVE;
     driver.isAvailable = true;
-    driver.currentTripId = null;
+    driver.currentTripId = null as unknown as string;
 
     const updated = await this.driverRepository.save(driver);
     return this.mapToResponseDto(updated);

@@ -133,7 +133,7 @@ export class NotificationService {
     const notification = await this.findOne(id, userId);
 
     notification.isRead = false;
-    notification.readAt = null;
+    notification.readAt = null as unknown as Date;
     notification.status = NotificationStatus.UNREAD;
 
     return await this.repository.save(notification);
@@ -166,7 +166,7 @@ export class NotificationService {
     const notification = await this.findOne(id, userId);
 
     notification.isArchived = false;
-    notification.archivedAt = null;
+    notification.archivedAt = null as unknown as Date;
     notification.status = notification.isRead
       ? NotificationStatus.READ
       : NotificationStatus.UNREAD;

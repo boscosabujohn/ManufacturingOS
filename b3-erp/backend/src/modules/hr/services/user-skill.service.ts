@@ -130,7 +130,7 @@ export class UserSkillService {
     userSkill.verifiedById = verifiedById;
     userSkill.verifiedByName = verifiedByName;
     userSkill.verifiedAt = new Date();
-    userSkill.verificationNotes = notes;
+    userSkill.verificationNotes = notes ?? '';
     userSkill.status = UserSkillStatus.VERIFIED;
 
     const updated = await this.repository.save(userSkill);

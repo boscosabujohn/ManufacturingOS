@@ -48,9 +48,9 @@ export class CacheService {
    */
   async deleteByPattern(pattern: string): Promise<void> {
     try {
-      const store = this.cacheManager.store as any;
-      if (store.keys) {
-        const keys = await store.keys(pattern);
+      const stores = (this.cacheManager as any).stores;
+      if (stores && stores[0] && stores[0].keys) {
+        const keys = await stores[0].keys(pattern);
         await Promise.all(keys.map((key: string) => this.cacheManager.del(key)));
       }
     } catch (error) {
@@ -89,10 +89,19 @@ export class CacheService {
 
   /**
    * Clear all cache
+   * Note: In cache-manager v5+, use clear() instead of reset()
    */
   async clear(): Promise<void> {
     try {
-      await this.cacheManager.reset();
+      // Try different methods based on cache-manager version
+      const cm = this.cacheManager as any;
+      if (typeof cm.clear === 'function') {
+        await cm.clear();
+      } else if (typeof cm.reset === 'function') {
+        await cm.reset();
+      } else if (cm.stores && cm.stores[0] && typeof cm.stores[0].clear === 'function') {
+        await cm.stores[0].clear();
+      }
       this.logger.log('Cache cleared');
     } catch (error) {
       this.logger.error('Error clearing cache:', error);
@@ -104,9 +113,9 @@ export class CacheService {
    */
   async getStats(): Promise<{ keys: number; size?: number } | null> {
     try {
-      const store = this.cacheManager.store as any;
-      if (store.keys) {
-        const keys = await store.keys('*');
+      const stores = (this.cacheManager as any).stores;
+      if (stores && stores[0] && stores[0].keys) {
+        const keys = await stores[0].keys('*');
         return { keys: keys.length };
       }
       return null;

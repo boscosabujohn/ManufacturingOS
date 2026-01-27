@@ -606,19 +606,21 @@ export class SkillService {
   }
 
   static async assignSkill(data: CreateUserSkillDto): Promise<UserSkill> {
-    const createMockUserSkill = () => {
+    const createMockUserSkill = (): UserSkill => {
       const skill = MOCK_SKILLS.find((s) => s.id === data.skillId);
-      const newUserSkill: UserSkill = {
+      return {
         id: `user-skill-${Date.now()}`,
-        ...data,
-        skill,
+        employeeId: data.employeeId,
+        skillId: data.skillId,
+        ...(skill ? { skill } : {}),
         proficiencyLevel: data.proficiencyLevel || 1,
         isEnabled: data.isEnabled !== false,
         status: data.status || UserSkillStatus.ACTIVE,
+        notes: data.notes,
+        metadata: data.metadata,
         createdAt: new Date(),
         updatedAt: new Date(),
       };
-      return newUserSkill;
     };
 
     if (USE_MOCK_DATA) {
@@ -636,16 +638,17 @@ export class SkillService {
   }
 
   static async updateUserSkill(id: string, data: UpdateUserSkillDto): Promise<UserSkill> {
-    const createMockResponse = () => {
+    const createMockResponse = (): UserSkill => {
       // In mock, just return with updated data
       return {
         id,
-        employeeId: '',
-        skillId: '',
-        ...data,
-        proficiencyLevel: data.proficiencyLevel || 1,
-        isEnabled: data.isEnabled !== false,
-        status: data.status || UserSkillStatus.ACTIVE,
+        employeeId: 'mock-employee',
+        skillId: 'mock-skill',
+        proficiencyLevel: data.proficiencyLevel ?? 1,
+        isEnabled: data.isEnabled ?? true,
+        status: data.status ?? UserSkillStatus.ACTIVE,
+        notes: data.notes,
+        metadata: data.metadata,
         createdAt: new Date(),
         updatedAt: new Date(),
       };

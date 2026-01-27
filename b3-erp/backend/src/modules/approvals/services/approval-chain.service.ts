@@ -100,10 +100,14 @@ export class ApprovalChainService {
 
         await this.levelRepository.save(levelEntities);
 
-        return this.chainRepository.findOne({
+        const result = await this.chainRepository.findOne({
             where: { id: savedChain.id },
             relations: ['levels'],
         });
+        if (!result) {
+            throw new Error('Failed to retrieve created approval chain');
+        }
+        return result;
     }
 
     /**

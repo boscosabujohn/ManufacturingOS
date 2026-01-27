@@ -131,8 +131,8 @@ export class LeadsService {
 
     const stats = {
       total: leads.length,
-      byStatus: {},
-      byRating: {},
+      byStatus: {} as Record<string, number>,
+      byRating: {} as Record<string, number>,
       totalValue: 0,
     };
 

@@ -72,7 +72,7 @@ export class DepartmentService {
     return this.buildHierarchy(departments);
   }
 
-  private buildHierarchy(departments: Department[], parentId: string = null): any[] {
+  private buildHierarchy(departments: Department[], parentId: string | null = null): any[] {
     return departments
       .filter((d) => d.parentDepartmentId === parentId)
       .map((d) => ({

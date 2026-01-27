@@ -173,7 +173,7 @@ export class InstallationsService {
     job.testResults = testResults;
     job.commissioningDate = now;
     job.commissioningNotes = commissioningNotes;
-    job.trainingProvided = trainingProvided;
+    job.trainingProvided = trainingProvided ?? false;
     job.documentationHandedOver = documentationHandedOver;
     job.updatedBy = completedBy;
     job.updatedAt = now;

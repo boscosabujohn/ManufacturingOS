@@ -316,7 +316,9 @@ export class OrderTrackingService {
       }
 
       tracking.status = OrderTrackingStatus.DELIVERED;
-      tracking.actualDeliveryDate = payload.actualDelivery;
+      if (payload.actualDelivery) {
+        tracking.actualDeliveryDate = payload.actualDelivery;
+      }
       tracking.events.push({
         status: OrderTrackingStatus.DELIVERED,
         timestamp: new Date(),

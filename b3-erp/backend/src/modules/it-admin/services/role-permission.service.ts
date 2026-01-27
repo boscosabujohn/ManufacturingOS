@@ -34,7 +34,7 @@ export class RolePermissionService {
       } else {
         rolePermission.isGranted = true;
         rolePermission.grantedAt = new Date();
-        rolePermission.grantedBy = grantedBy;
+        rolePermission.grantedBy = grantedBy ?? 'SYSTEM';
       }
 
       const saved = await this.repository.save(rolePermission);

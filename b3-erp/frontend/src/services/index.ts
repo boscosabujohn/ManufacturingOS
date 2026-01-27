@@ -42,14 +42,45 @@ export * from './ApprovalService';
 // =============================================================================
 // Project Management Services
 // =============================================================================
-export * from './ProjectManagementService';
+export {
+  type Project,
+  type ProjectTask,
+  type ProjectResource,
+  type ProjectBudget,
+  type ProjectMilestone,
+  type TimeLog,
+  // TAClaim and EmergencySpareRequest are exported from api module
+  type FieldScheduleItem,
+  type Measurement,
+  type RoomMeasurements,
+  type Discrepancy,
+  type BOQItem,
+  type Drawing,
+  projectManagementService
+} from './ProjectManagementService';
 
 // =============================================================================
 // Quality Services
 // =============================================================================
 export * from './inspection.service';
 export * from './ncr.service';
-export * from './capa.service';
+export {
+  CAPAStatus,
+  CAPAType,
+  CAPAPriority,
+  CAPASource,
+  ActionStatus,
+  type CAPA,
+  type CAPAAction,
+  type CAPAAttachment,
+  type CAPAApproval,
+  type EffectivenessReview,
+  type CreateCAPADto,
+  type UpdateCAPADto,
+  type CAPAFilters,
+  CAPAService,
+  capaService
+} from './capa.service';
 
 // =============================================================================
 // IT Admin Services

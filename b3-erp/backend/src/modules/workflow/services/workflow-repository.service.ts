@@ -202,7 +202,7 @@ export class WorkflowRepositoryService {
     const instance = await this.getInstance(id);
     instance.status = InstanceStatus.RUNNING;
     instance.startedAt = new Date();
-    instance.updatedBy = userId;
+    instance.updatedBy = userId ?? 'SYSTEM';
 
     const saved = await this.instanceRepository.save(instance);
 
@@ -221,7 +221,7 @@ export class WorkflowRepositoryService {
     instance.status = InstanceStatus.COMPLETED;
     instance.completedAt = new Date();
     instance.progressPercentage = 100;
-    instance.updatedBy = userId;
+    instance.updatedBy = userId ?? 'SYSTEM';
 
     const saved = await this.instanceRepository.save(instance);
 
@@ -245,8 +245,8 @@ export class WorkflowRepositoryService {
     instance.status = InstanceStatus.FAILED;
     instance.completedAt = new Date();
     instance.errorMessage = errorMessage;
-    instance.errorDetails = errorDetails;
-    instance.updatedBy = userId;
+    instance.errorDetails = errorDetails ?? {};
+    instance.updatedBy = userId ?? 'SYSTEM';
 
     const saved = await this.instanceRepository.save(instance);
 
@@ -291,7 +291,7 @@ export class WorkflowRepositoryService {
     const instance = await this.getInstance(id);
     const previousContext = { ...instance.context };
     instance.context = { ...instance.context, ...context };
-    instance.updatedBy = userId;
+    instance.updatedBy = userId ?? 'SYSTEM';
 
     const saved = await this.instanceRepository.save(instance);
 
@@ -346,7 +346,7 @@ export class WorkflowRepositoryService {
     if (jobId) {
       step.jobId = jobId;
     }
-    step.executedBy = userId;
+    step.executedBy = userId ?? 'SYSTEM';
 
     const saved = await this.stepRepository.save(step);
 

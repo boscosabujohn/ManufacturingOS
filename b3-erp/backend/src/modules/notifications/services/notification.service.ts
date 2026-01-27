@@ -93,7 +93,7 @@ export class NotificationService {
             { isRead: true },
         );
 
-        if (result.affected > 0) {
+        if ((result.affected ?? 0) > 0) {
             this.eventEmitter.emit('notification.read', { userId, notificationId });
             return true;
         }

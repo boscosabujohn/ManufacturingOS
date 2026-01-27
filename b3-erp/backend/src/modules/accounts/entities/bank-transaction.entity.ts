@@ -35,7 +35,7 @@ export class BankTransaction {
     reconciled: boolean;
 
     @Column({ type: 'date', nullable: true })
-    reconciledDate: Date;
+    reconciledDate: Date | null;
 
     @Column({ nullable: true })
     reconciledBy: string;
@@ -44,7 +44,7 @@ export class BankTransaction {
     statementLineId: string;
 
     @Column({ nullable: true })
-    journalEntryId: string;
+    journalEntryId: string | null;
 
     @CreateDateColumn()
     createdAt: Date;

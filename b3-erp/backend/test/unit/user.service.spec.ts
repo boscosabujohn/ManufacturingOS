@@ -8,6 +8,9 @@ import { AuditLogService } from '../../src/modules/it-admin/services/audit-log.s
 import { UserRoleService } from '../../src/modules/it-admin/services/user-role.service';
 import { createMockRepository, createMockService } from '../utils/test-setup';
 import { UserFactory, UserStatus } from '../factories/user.factory';
+import { AuditLog } from '../../src/modules/it-admin/entities/audit-log.entity';
+import { PasswordHistory } from '../../src/modules/it-admin/entities/password-history.entity';
+import { UserRole } from '../../src/modules/it-admin/entities/user-role.entity';
 
 describe('UserService', () => {
   let service: UserService;
@@ -66,8 +69,8 @@ describe('UserService', () => {
       mockRepository.findOne.mockResolvedValue(null);
       mockRepository.create.mockReturnValue(expectedUser as any);
       mockRepository.save.mockResolvedValue(expectedUser as any);
-      mockPasswordHistoryService.createHistory.mockResolvedValue(undefined);
-      mockAuditLogService.log.mockResolvedValue(undefined);
+      mockPasswordHistoryService.createHistory.mockResolvedValue({} as PasswordHistory);
+      mockAuditLogService.log.mockResolvedValue({} as AuditLog);
 
       const result = await service.create(createDto as any);
 
@@ -114,9 +117,9 @@ describe('UserService', () => {
       mockRepository.findOne.mockResolvedValue(null);
       mockRepository.create.mockReturnValue(expectedUser as any);
       mockRepository.save.mockResolvedValue(expectedUser as any);
-      mockPasswordHistoryService.createHistory.mockResolvedValue(undefined);
-      mockUserRoleService.assignRoles.mockResolvedValue(undefined);
-      mockAuditLogService.log.mockResolvedValue(undefined);
+      mockPasswordHistoryService.createHistory.mockResolvedValue({} as PasswordHistory);
+      mockUserRoleService.assignRoles.mockResolvedValue([] as UserRole[]);
+      mockAuditLogService.log.mockResolvedValue({} as AuditLog);
 
       await service.create(createDto as any);
 
@@ -238,7 +241,7 @@ describe('UserService', () => {
 
       mockRepository.findOne.mockResolvedValue(user as any);
       mockRepository.save.mockResolvedValue(updatedUser as any);
-      mockAuditLogService.log.mockResolvedValue(undefined);
+      mockAuditLogService.log.mockResolvedValue({} as AuditLog);
 
       const result = await service.update(user.id, updateDto as any);
 
@@ -269,7 +272,7 @@ describe('UserService', () => {
 
       mockRepository.findOne.mockResolvedValue(user as any);
       mockRepository.save.mockResolvedValue(activatedUser as any);
-      mockAuditLogService.log.mockResolvedValue(undefined);
+      mockAuditLogService.log.mockResolvedValue({} as AuditLog);
 
       const result = await service.activate(user.id, 'admin');
 
@@ -290,7 +293,7 @@ describe('UserService', () => {
 
       mockRepository.findOne.mockResolvedValue(user as any);
       mockRepository.save.mockResolvedValue(deactivatedUser as any);
-      mockAuditLogService.log.mockResolvedValue(undefined);
+      mockAuditLogService.log.mockResolvedValue({} as AuditLog);
 
       const result = await service.deactivate(user.id, reason, 'admin');
 
@@ -311,7 +314,7 @@ describe('UserService', () => {
 
       mockRepository.findOne.mockResolvedValue(user as any);
       mockRepository.save.mockResolvedValue(unlockedUser as any);
-      mockAuditLogService.log.mockResolvedValue(undefined);
+      mockAuditLogService.log.mockResolvedValue({} as AuditLog);
 
       const result = await service.unlock(user.id, 'admin');
 

@@ -1,4 +1,4 @@
-import { RFP, RFPStatus, RFPDashboard, RFPStatistics } from '@/types/rfp';
+import { RFP, RFPStatus, RFPPriority, RFPDashboard, RFPStatistics } from '@/types/rfp';
 import { MOCK_RFPS } from '@/data/mock-rfps';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
@@ -255,13 +255,23 @@ export class RFPService {
       return await this.request<RFPStatistics>('/sales/rfp/statistics');
     } catch (error) {
       console.warn('API error fetching statistics, using mock data:', error);
+      // Build status counts
+      const byStatus = {} as Record<RFPStatus, number>;
+      Object.values(RFPStatus).forEach(status => {
+        byStatus[status] = MOCK_RFPS.filter(r => r.status === status).length;
+      });
       // Return mock statistics
       return {
-        totalRFPs: MOCK_RFPS.length,
-        pendingRFPs: MOCK_RFPS.filter(r => r.status === 'Pending').length,
-        approvedRFPs: MOCK_RFPS.filter(r => r.status === 'Approved').length,
-        rejectedRFPs: MOCK_RFPS.filter(r => r.status === 'Rejected').length,
-      } as RFPStatistics;
+        total: MOCK_RFPS.length,
+        byStatus,
+        byPriority: {},
+        byType: {},
+        totalEstimatedValue: MOCK_RFPS.reduce((sum, r) => sum + (r.estimatedBudget || 0), 0),
+        totalProposalValue: MOCK_RFPS.reduce((sum, r) => sum + (r.proposalValue || 0), 0),
+        averageWinProbability: 0,
+        upcoming: 0,
+        overdue: 0,
+      };
     }
   }
 
@@ -270,16 +280,28 @@ export class RFPService {
       return await this.request<RFPDashboard>('/sales/rfp/dashboard');
     } catch (error) {
       console.warn('API error fetching dashboard, using mock data:', error);
+      // Build status counts
+      const byStatus = {} as Record<RFPStatus, number>;
+      Object.values(RFPStatus).forEach(status => {
+        byStatus[status] = MOCK_RFPS.filter(r => r.status === status).length;
+      });
       // Return mock dashboard data
       return {
         recentRFPs: MOCK_RFPS.slice(0, 5),
+        highPriorityRFPs: MOCK_RFPS.filter(r => r.priority === RFPPriority.HIGH || r.priority === RFPPriority.URGENT).slice(0, 5),
+        upcomingDeadlines: MOCK_RFPS.slice(0, 5),
         statistics: {
-          totalRFPs: MOCK_RFPS.length,
-          pendingRFPs: MOCK_RFPS.filter(r => r.status === 'Pending').length,
-          approvedRFPs: MOCK_RFPS.filter(r => r.status === 'Approved').length,
-          rejectedRFPs: MOCK_RFPS.filter(r => r.status === 'Rejected').length,
+          total: MOCK_RFPS.length,
+          byStatus,
+          byPriority: {},
+          byType: {},
+          totalEstimatedValue: MOCK_RFPS.reduce((sum, r) => sum + (r.estimatedBudget || 0), 0),
+          totalProposalValue: MOCK_RFPS.reduce((sum, r) => sum + (r.proposalValue || 0), 0),
+          averageWinProbability: 0,
+          upcoming: 0,
+          overdue: 0,
         },
-      } as RFPDashboard;
+      };
     }
   }
 }

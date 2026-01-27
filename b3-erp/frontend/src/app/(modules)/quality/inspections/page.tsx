@@ -452,6 +452,7 @@ const ProductionQualityPage = () => {
             <span className="ml-2 text-gray-600">Loading inspections...</span>
           </div>
         ) : (
+        <>
         <div className="overflow-x-auto overflow-y-auto max-h-[calc(100vh-24rem)]">
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
@@ -613,6 +614,7 @@ const ProductionQualityPage = () => {
             </div>
           </div>
         </div>
+        </>
         )}
       </div>
 

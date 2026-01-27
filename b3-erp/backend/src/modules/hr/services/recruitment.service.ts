@@ -439,7 +439,7 @@ export class RecruitmentService {
 
     // Update candidate
     const candidate = this.candidates.find(c => c.id === interview.candidateId);
-    if (candidate) {
+    if (candidate && feedback) {
       candidate.interviewScore = feedback.rating;
       candidate.status = CandidateStatus.INTERVIEWED;
       candidate.lastActivityAt = new Date().toISOString();

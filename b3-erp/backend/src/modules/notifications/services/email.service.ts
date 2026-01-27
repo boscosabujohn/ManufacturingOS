@@ -8,7 +8,7 @@ export class EmailService {
 
     constructor() {
         // Configure email transporter
-        this.transporter = nodemailer.createTransporter({
+        this.transporter = nodemailer.createTransport({
             host: process.env.SMTP_HOST || 'smtp.gmail.com',
             port: parseInt(process.env.SMTP_PORT || '587'),
             secure: process.env.SMTP_SECURE === 'true',
@@ -79,7 +79,7 @@ export class EmailService {
      * Generate HTML email template
      */
     private generateEmailTemplate(notification: Notification): string {
-        const priorityColors = {
+        const priorityColors: Record<string, string> = {
             info: '#3b82f6',
             warning: '#f59e0b',
             urgent: '#ef4444',

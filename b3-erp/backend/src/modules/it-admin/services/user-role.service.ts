@@ -37,7 +37,7 @@ export class UserRoleService {
       } else {
         userRole.status = UserRoleStatus.ACTIVE;
         userRole.assignedAt = new Date();
-        userRole.assignedBy = assignedBy;
+        userRole.assignedBy = assignedBy ?? 'SYSTEM';
         userRole.isPrimary = primaryRoleId ? roleId === primaryRoleId : false;
       }
 
@@ -61,8 +61,8 @@ export class UserRoleService {
     for (const userRole of userRoles) {
       userRole.status = UserRoleStatus.INACTIVE;
       userRole.revokedAt = new Date();
-      userRole.revokedBy = revokedBy;
-      userRole.revokedReason = reason;
+      userRole.revokedBy = revokedBy ?? 'SYSTEM';
+      userRole.revokedReason = reason ?? '';
       await this.repository.save(userRole);
     }
   }
