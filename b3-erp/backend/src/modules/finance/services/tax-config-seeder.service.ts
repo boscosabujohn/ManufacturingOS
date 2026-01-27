@@ -334,11 +334,10 @@ export class TaxConfigSeederService implements OnModuleInit {
             taxCategory: taxData.taxCategory,
             taxRate: taxData.taxRate,
             effectiveFrom,
-            effectiveTo: null, // Currently active
             description: taxData.description,
             isActive: true,
             createdBy: 'SYSTEM',
-          });
+          } as Partial<TaxMaster>);
 
           await this.taxMasterRepository.save(taxMaster);
           result.created++;
@@ -398,11 +397,10 @@ export class TaxConfigSeederService implements OnModuleInit {
           taxCategory: taxData.taxCategory,
           taxRate: taxData.taxRate,
           effectiveFrom,
-          effectiveTo: null,
           description: taxData.description,
           isActive: true,
           createdBy: 'SYSTEM',
-        });
+        } as Partial<TaxMaster>);
 
         await this.taxMasterRepository.save(taxMaster);
         result.created++;

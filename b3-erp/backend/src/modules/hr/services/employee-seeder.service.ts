@@ -183,7 +183,7 @@ export class EmployeeSeederService implements OnModuleInit {
           shiftId: shift?.id,
           employmentType: empData.employmentType,
           joiningDate,
-          confirmationDate: empData.yearsOfExperience > 0 ? new Date(joiningDate.getTime() + 180 * 24 * 60 * 60 * 1000) : null,
+          confirmationDate: empData.yearsOfExperience > 0 ? new Date(joiningDate.getTime() + 180 * 24 * 60 * 60 * 1000) : undefined,
           status,
           basicSalary: empData.basicSalary,
           grossSalary,
@@ -214,7 +214,7 @@ export class EmployeeSeederService implements OnModuleInit {
             source: 'system-seeder',
           },
           createdBy: 'system',
-        });
+        } as Partial<Employee>);
 
         await this.employeeRepository.save(employee);
         this.logger.log(`Created employee: ${employeeCode} - ${empData.firstName} ${empData.lastName} (${department.name})`);

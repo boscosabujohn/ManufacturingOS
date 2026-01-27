@@ -120,7 +120,6 @@ export class AdminUserSeederService implements OnModuleInit {
           assignedAt: new Date(),
           assignedBy: 'system',
           effectiveFrom: new Date(),
-          effectiveUntil: null, // No expiration
           approvedBy: 'system',
           approvedAt: new Date(),
           metadata: {
@@ -129,7 +128,7 @@ export class AdminUserSeederService implements OnModuleInit {
             reason: 'Default system administrator',
           },
           createdBy: 'system',
-        });
+        } as Partial<UserRole>);
 
         await this.userRoleRepository.save(userRole);
         this.logger.log(`Assigned SUPER_ADMIN role to admin user`);

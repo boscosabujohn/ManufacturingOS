@@ -140,7 +140,21 @@ export class PaymentTermsSeederService implements OnModuleInit {
           where: { code: term.code },
         });
         if (!existing) {
-          await this.paymentTermsRepository.save(term);
+          const paymentTerm = this.paymentTermsRepository.create({
+            code: term.code,
+            name: term.name,
+            description: term.description,
+            dueDays: term.dueDays,
+            discountPercent: term.discountPercent,
+            discountDays: term.discountDays,
+            advancePercent: term.advancePercent,
+            balancePercent: term.balancePercent,
+            balanceCondition: term.balanceCondition ?? undefined,
+            sortOrder: term.sortOrder,
+            status: term.status,
+            isSystem: term.isSystem,
+          } as Partial<PaymentTerms>);
+          await this.paymentTermsRepository.save(paymentTerm);
           this.logger.log(`Created payment term: ${term.name}`);
         }
       } catch (error) {

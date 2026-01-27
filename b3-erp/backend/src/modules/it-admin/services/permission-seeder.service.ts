@@ -547,9 +547,9 @@ export class PermissionSeederService implements OnModuleInit {
             status: PermissionStatus.ACTIVE,
             isSystemPermission: true,
             requiresApproval: permission.requiresApproval || false,
-            dependsOn: permission.dependsOn || null,
-            apiEndpoint: permission.apiEndpoint || null,
-            httpMethod: permission.httpMethod || null,
+            dependsOn: permission.dependsOn,
+            apiEndpoint: permission.apiEndpoint,
+            httpMethod: permission.httpMethod,
             constraints: {
               dataScope: 'all',
             },
@@ -557,7 +557,7 @@ export class PermissionSeederService implements OnModuleInit {
               seededAt: new Date().toISOString(),
             },
             createdBy: 'system',
-          });
+          } as Partial<Permission>);
           await this.permissionRepository.save(permissionEntity);
           this.logger.log(`Created permission: ${permission.code}`);
         } else {

@@ -535,16 +535,16 @@ export class SystemConfigSeederService implements OnModuleInit {
             isEditable: config.isEditable ?? true,
             isSystemConfig: config.isSystemConfig ?? true,
             requiresRestart: config.requiresRestart ?? false,
-            allowedValues: config.allowedValues || null,
-            validationRegex: config.validationRegex || null,
-            validationMessage: config.validationMessage || null,
-            constraints: config.constraints || null,
-            module: config.module || null,
+            allowedValues: config.allowedValues,
+            validationRegex: config.validationRegex,
+            validationMessage: config.validationMessage,
+            constraints: config.constraints,
+            module: config.module,
             metadata: {
               seededAt: new Date().toISOString(),
             },
             createdBy: 'system',
-          });
+          } as Partial<SystemConfig>);
           await this.configRepository.save(configEntity);
           this.logger.log(`Created config: ${config.key}`);
         } else {
