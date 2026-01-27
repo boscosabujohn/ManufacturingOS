@@ -36,7 +36,7 @@ import {
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/Select';
 import { ModalWrapper } from '@/components/ui/ModalWrapper';
 
 // Drill-down Mock Data
@@ -208,7 +208,7 @@ export default function ManufacturingWorkflowReportPage() {
           <div className="flex items-center gap-4 mt-6 pb-2">
             <div className="flex items-center gap-2 bg-gray-100 p-1 rounded-lg">
               <Button
-                variant={dateRange === 'this-month' ? 'secondary' : 'ghost'}
+                variant={dateRange === 'this-month' ? 'default' : 'ghost'}
                 size="sm"
                 onClick={() => setDateRange('this-month')}
                 className={dateRange === 'this-month' ? 'shadow-sm' : ''}
@@ -216,7 +216,7 @@ export default function ManufacturingWorkflowReportPage() {
                 This Month
               </Button>
               <Button
-                variant={dateRange === 'last-month' ? 'secondary' : 'ghost'}
+                variant={dateRange === 'last-month' ? 'default' : 'ghost'}
                 size="sm"
                 onClick={() => setDateRange('last-month')}
                 className={dateRange === 'last-month' ? 'shadow-sm' : ''}
@@ -224,7 +224,7 @@ export default function ManufacturingWorkflowReportPage() {
                 Last Month
               </Button>
               <Button
-                variant={dateRange === 'quarter' ? 'secondary' : 'ghost'}
+                variant={dateRange === 'quarter' ? 'default' : 'ghost'}
                 size="sm"
                 onClick={() => setDateRange('quarter')}
                 className={dateRange === 'quarter' ? 'shadow-sm' : ''}

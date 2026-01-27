@@ -832,13 +832,13 @@ export class InvoiceService {
           totalAmount,
           amountDue: totalAmount - invoice.amountPaid,
           updatedAt: new Date(),
-        };
+        } as Invoice;
       } else {
         MOCK_INVOICES[index] = {
           ...invoice,
           ...data,
           updatedAt: new Date(),
-        };
+        } as Invoice;
       }
 
       return MOCK_INVOICES[index];

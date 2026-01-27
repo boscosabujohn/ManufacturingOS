@@ -585,15 +585,3 @@ export function AccessibilitySettings({ className = '' }: AccessibilitySettingsP
   );
 }
 
-export type {
-  ReducedMotionContextValue,
-  ReducedMotionProviderProps,
-  MotionSafeProps,
-  RGB,
-  WCAGLevel,
-  TextSize,
-  ContrastCheckerProps,
-  HighContrastContextValue,
-  HighContrastProviderProps,
-  AccessibilitySettingsProps,
-};

@@ -1143,7 +1143,7 @@ class ProcurementRFQService {
         ...MOCK_RFQS[index],
         ...data,
         updatedAt: new Date().toISOString()
-      };
+      } as ProcurementRFQ;
       return MOCK_RFQS[index];
     }
 

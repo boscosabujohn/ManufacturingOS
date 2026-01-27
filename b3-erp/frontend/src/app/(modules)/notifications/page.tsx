@@ -24,15 +24,15 @@ import {
 import { useNotifications, Notification, NotificationCategory } from '@/context/NotificationContext';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
+import { Input } from '@/components/ui/Input';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
-import { Checkbox } from '@/components/ui/checkbox';
+} from '@/components/ui/Select';
+import { Checkbox } from '@/components/ui/Checkbox';
 
 // ============================================================================
 // Category Config
@@ -298,13 +298,13 @@ export default function NotificationHistoryPage() {
               <Input
                 placeholder="Search notifications..."
                 value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchTerm(e.target.value)}
                 className="pl-9"
               />
             </div>
 
             {/* Category Filter */}
-            <Select value={categoryFilter} onValueChange={(v) => setCategoryFilter(v as NotificationCategory | 'all')}>
+            <Select value={categoryFilter} onValueChange={(v: string) => setCategoryFilter(v as NotificationCategory | 'all')}>
               <SelectTrigger className="w-[150px]">
                 <SelectValue placeholder="Category" />
               </SelectTrigger>
@@ -322,7 +322,7 @@ export default function NotificationHistoryPage() {
             </Select>
 
             {/* Status Filter */}
-            <Select value={statusFilter} onValueChange={(v) => setStatusFilter(v as 'all' | 'unread' | 'read' | 'archived')}>
+            <Select value={statusFilter} onValueChange={(v: string) => setStatusFilter(v as 'all' | 'unread' | 'read' | 'archived')}>
               <SelectTrigger className="w-[130px]">
                 <SelectValue placeholder="Status" />
               </SelectTrigger>
@@ -335,7 +335,7 @@ export default function NotificationHistoryPage() {
             </Select>
 
             {/* Date Filter */}
-            <Select value={dateFilter} onValueChange={(v) => setDateFilter(v as 'all' | 'today' | 'week' | 'month')}>
+            <Select value={dateFilter} onValueChange={(v: string) => setDateFilter(v as 'all' | 'today' | 'week' | 'month')}>
               <SelectTrigger className="w-[130px]">
                 <SelectValue placeholder="Date" />
               </SelectTrigger>
@@ -409,7 +409,7 @@ export default function NotificationHistoryPage() {
               <div className="px-4 py-3 border-b border-gray-100 flex items-center gap-3 bg-gray-50">
                 <Checkbox
                   checked={selectedIds.size === filteredNotifications.length && filteredNotifications.length > 0}
-                  onCheckedChange={selectAll}
+                  onChange={selectAll}
                 />
                 <span className="text-sm text-gray-600">
                   {filteredNotifications.length} notification(s)
@@ -445,7 +445,7 @@ export default function NotificationHistoryPage() {
                           {/* Checkbox */}
                           <Checkbox
                             checked={isSelected}
-                            onCheckedChange={() => toggleSelection(notification.id)}
+                            onChange={() => toggleSelection(notification.id)}
                             className="mt-1"
                           />
 

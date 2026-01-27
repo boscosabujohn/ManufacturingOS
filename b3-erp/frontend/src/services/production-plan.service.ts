@@ -797,7 +797,7 @@ class ProductionPlanService {
         ...data,
         version: MOCK_PRODUCTION_PLANS[index].version + 1,
         updatedAt: new Date().toISOString(),
-      };
+      } as ProductionPlan;
       return MOCK_PRODUCTION_PLANS[index];
     }
 

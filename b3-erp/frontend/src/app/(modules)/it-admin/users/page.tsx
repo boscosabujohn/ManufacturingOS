@@ -6,20 +6,15 @@ import { UserManagementService, User as ServiceUser } from '@/services/user-mana
 
 interface User {
   id: string;
-  username: string;
-  fullName: string;
+  displayName: string;
   email: string;
-  role: string;
+  roleName: string;
   department: string;
-  phoneNumber: string;
-  lastLogin: string;
-  loginCount: number;
+  phone?: string;
+  lastLogin?: Date;
   accountCreated: string;
-  status: 'active' | 'inactive' | 'locked' | 'pending';
-  failedAttempts: number;
-  lastPasswordChange: string;
-  permissions: string[];
-  reportingTo: string;
+  status: 'active' | 'inactive' | 'locked' | 'pending' | 'suspended';
+  passwordChangedAt?: Date;
 }
 
 export default function UsersPage() {
@@ -42,20 +37,15 @@ export default function UsersPage() {
         // Transform service users to page format
         const transformedUsers: User[] = fetchedUsers.map((user: ServiceUser) => ({
           id: user.id,
-          username: user.username,
-          fullName: user.fullName,
+          displayName: user.displayName,
           email: user.email,
-          role: user.role,
+          roleName: user.roleName,
           department: user.department,
-          phoneNumber: user.phoneNumber || '',
-          lastLogin: user.lastLogin || 'Never',
-          loginCount: user.loginCount || 0,
+          phone: user.phone,
+          lastLogin: user.lastLogin,
           accountCreated: new Date(user.createdAt).toISOString().split('T')[0],
-          status: user.status as 'active' | 'inactive' | 'locked' | 'pending',
-          failedAttempts: user.failedAttempts || 0,
-          lastPasswordChange: user.lastPasswordChange || 'N/A',
-          permissions: user.permissions || [],
-          reportingTo: user.reportingTo || 'N/A',
+          status: user.status as 'active' | 'inactive' | 'locked' | 'pending' | 'suspended',
+          passwordChangedAt: user.passwordChangedAt,
         }));
 
         setUsers(transformedUsers);
@@ -72,13 +62,12 @@ export default function UsersPage() {
 
   const filteredUsers = users.filter(user => {
     const matchesSearch =
-      user.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      user.fullName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user.displayName.toLowerCase().includes(searchTerm.toLowerCase()) ||
       user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
       user.id.toLowerCase().includes(searchTerm.toLowerCase());
 
     const matchesStatus = statusFilter === 'all' || user.status === statusFilter;
-    const matchesRole = roleFilter === 'all' || user.role === roleFilter;
+    const matchesRole = roleFilter === 'all' || user.roleName === roleFilter;
 
     return matchesSearch && matchesStatus && matchesRole;
   });
@@ -307,22 +296,28 @@ export default function UsersPage() {
                     {user.id}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                    {user.username}
+                    {user.displayName}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                    {user.fullName}
+                    {user.displayName}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
                     {user.email}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                    <span className="font-medium">{user.role}</span>
+                    <span className="font-medium">{user.roleName}</span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
                     {user.department}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                    {user.lastLogin}
+                    {user.lastLogin ? new Date(user.lastLogin).toLocaleString('en-IN', {
+                      year: 'numeric',
+                      month: '2-digit',
+                      day: '2-digit',
+                      hour: '2-digit',
+                      minute: '2-digit',
+                    }) : 'Never'}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <span className={`px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full border ${getStatusBadgeClass(user.status)}`}>

@@ -315,7 +315,6 @@ export default function CPQProductsConfiguratorPage() {
         quote={generatedQuote}
         onDownload={handleDownloadQuote}
         onViewQuote={handleViewQuote}
-        onEmail={handleEmailQuote}
       />
 
       <SaveConfigModal

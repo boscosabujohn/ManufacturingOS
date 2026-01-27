@@ -471,10 +471,3 @@ export function generatePerformanceReport(metrics: PerformanceMetrics): string {
   return lines.join('\n');
 }
 
-export type {
-  PerformanceMetrics,
-  ResourceMetric,
-  UsePerformanceMonitorOptions,
-  PerformanceDashboardProps,
-  BundleSizeWarningProps,
-};

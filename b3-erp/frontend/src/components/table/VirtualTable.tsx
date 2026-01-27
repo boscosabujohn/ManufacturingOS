@@ -25,7 +25,7 @@ export interface VirtualColumn<T> {
   renderCell?: (value: any, row: T, rowIndex: number) => React.ReactNode;
 }
 
-interface VirtualTableProps<T> {
+export interface VirtualTableProps<T> {
   data: T[];
   columns: VirtualColumn<T>[];
   keyField: keyof T;

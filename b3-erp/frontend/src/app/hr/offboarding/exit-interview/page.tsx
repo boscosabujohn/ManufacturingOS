@@ -459,7 +459,7 @@ export default function ExitInterviewPage() {
                     <label className="block text-sm font-medium text-gray-700 mb-2 capitalize">{field.replace(/([A-Z])/g, ' $1')}</label>
                     <div className="flex gap-2">
                       {[1, 2, 3, 4, 5].map((rating) => (
-                        <button key={rating} type="button" onClick={() => setConductFormData({...conductFormData, [field]: rating})} className={`text-3xl ${conductFormData[field as keyof typeof conductFormData] >= rating ? 'text-yellow-500' : 'text-gray-300'}`}>★</button>
+                        <button key={rating} type="button" onClick={() => setConductFormData({...conductFormData, [field]: rating})} className={`text-3xl ${(conductFormData[field as keyof typeof conductFormData] as number) >= rating ? 'text-yellow-500' : 'text-gray-300'}`}>★</button>
                       ))}
                     </div>
                   </div>

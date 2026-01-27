@@ -205,9 +205,11 @@ export function useOfflineStorage<T = any>(storeName: string = 'cachedData') {
       request.onerror = () => reject(request.error);
       request.onsuccess = () => {
         // Trigger background sync if available
-        if ('serviceWorker' in navigator && 'sync' in registration) {
+        if ('serviceWorker' in navigator) {
           navigator.serviceWorker.ready.then((reg) => {
-            (reg as any).sync?.register('sync-offline-actions');
+            if ('sync' in reg) {
+              (reg as any).sync?.register('sync-offline-actions');
+            }
           });
         }
         resolve();

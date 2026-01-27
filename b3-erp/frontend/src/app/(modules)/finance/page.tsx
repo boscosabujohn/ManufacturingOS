@@ -797,7 +797,7 @@ export default function FinanceDashboard() {
       <SearchTransactionsModal
         isOpen={modals.searchTransactions}
         onClose={() => closeModal('searchTransactions')}
-        onSearch={(criteria) => handleModalAction('search', criteria)}
+        onSearch={(criteria: Record<string, unknown>) => handleModalAction('search', criteria)}
       />
       <RecentActivitiesModal
         isOpen={modals.recentActivities}
@@ -806,17 +806,17 @@ export default function FinanceDashboard() {
       <QuickJournalEntryModal
         isOpen={modals.quickJournal}
         onClose={() => closeModal('quickJournal')}
-        onCreate={(data) => handleModalAction('createJournal', data)}
+        onCreate={(data: Record<string, unknown>) => handleModalAction('createJournal', data)}
       />
       <QuickPaymentModal
         isOpen={modals.quickPayment}
         onClose={() => closeModal('quickPayment')}
-        onCreate={(data) => handleModalAction('createPayment', data)}
+        onCreate={(data: Record<string, unknown>) => handleModalAction('createPayment', data)}
       />
       <QuickReceiptModal
         isOpen={modals.quickReceipt}
         onClose={() => closeModal('quickReceipt')}
-        onCreate={(data) => handleModalAction('createReceipt', data)}
+        onCreate={(data: Record<string, unknown>) => handleModalAction('createReceipt', data)}
       />
     </div>
   );

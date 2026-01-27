@@ -320,7 +320,7 @@ export function ProductionLineFlow({
 
           let newProgress = item.progress + 5 + Math.random() * 5;
           let newStation = item.currentStation;
-          let newStatus = item.status;
+          let newStatus: WorkItem['status'] = item.status;
 
           if (newProgress >= 100) {
             if (newStation >= stations.length - 1) {
@@ -354,10 +354,10 @@ export function ProductionLineFlow({
         });
 
         // Remove completed/rejected items after a delay
-        return updated.filter(item =>
-          item.status === 'processing' ||
-          (item.status !== 'processing' && item.progress < 150)
-        );
+        return updated.filter(item => {
+          if (item.status === 'processing' || item.status === 'pending') return true;
+          return item.progress < 150;
+        });
       });
 
       // Randomly update station status

@@ -5,7 +5,7 @@ import {
   Shield, CheckCircle, AlertTriangle, XCircle, Clock,
   FileText, Award, Users, Target, Activity, BarChart3,
   Settings, Download, Upload, Eye, Edit3, Plus, Search,
-  Filter, Bell, Calendar, Globe, Lock, Key, Database, RefreshCw
+  Filter, Bell, Calendar, Globe, Lock, Key, Database, RefreshCw, Zap
 } from 'lucide-react';
 import {
   LineChart, Line, BarChart, Bar, PieChart as RePieChart, Pie,

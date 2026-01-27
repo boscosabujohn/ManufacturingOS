@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
-import { CheckCircle, Search, Filter, X, AlertCircle, DollarSign, Clock, User } from 'lucide-react';
+import { CheckCircle, Search, Filter, X, AlertCircle, DollarSign, Clock, User, ArrowRight } from 'lucide-react';
 import { DataTable, Column } from '@/components/ui/DataTable';
 import { StatusBadge } from '@/components/ui/StatusBadge';
 

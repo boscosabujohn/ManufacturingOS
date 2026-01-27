@@ -710,13 +710,3 @@ export function LoadingPlaceholder({
   );
 }
 
-export type {
-  SpinnerSize,
-  SpinnerVariant,
-  SpinnerProps,
-  LoadingOverlayProps,
-  InlineLoadingProps,
-  ButtonLoadingProps,
-  ProgressSpinnerProps,
-  LoadingPlaceholderProps,
-};

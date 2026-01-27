@@ -16,7 +16,7 @@ import {
   Barcode
 } from 'lucide-react';
 
-interface ScanResult {
+export interface ScanResult {
   format: string;
   rawValue: string;
   timestamp: Date;

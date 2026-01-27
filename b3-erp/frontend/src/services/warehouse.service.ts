@@ -539,14 +539,14 @@ class WarehouseService {
   async createWarehouse(data: CreateWarehouseDto): Promise<Warehouse> {
     if (USE_MOCK_DATA) {
       await this.simulateDelay(500);
-      const newWarehouse: Warehouse = {
+      const newWarehouse = {
         id: `wh-${Date.now()}`,
         ...data,
         status: WarehouseStatus.ACTIVE,
         usedCapacity: 0,
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
-      };
+      } as Warehouse;
       MOCK_WAREHOUSES.push(newWarehouse);
       return newWarehouse;
     }

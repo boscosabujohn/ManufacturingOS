@@ -533,14 +533,3 @@ export function PrintList({
   );
 }
 
-export type {
-  PageBreakProps,
-  AvoidBreakProps,
-  PrintTableColumn,
-  PrintTableProps,
-  PrintChartProps,
-  PrintSectionProps,
-  AutoPaginateProps,
-  OrphanControlProps,
-  PrintListProps,
-};

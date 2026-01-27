@@ -106,7 +106,7 @@ function getComparisonPeriod(currentPeriod: TimePeriod, preset: ComparisonPreset
 }
 
 // Calculate summary statistics
-interface ComparisonStats {
+export interface ComparisonStats {
   currentTotal: number;
   comparisonTotal: number;
   absoluteChange: number;
@@ -144,8 +144,8 @@ export function PeriodComparison({
   currentData,
   comparisonData,
   title,
-  valueFormatter = (v) => v.toLocaleString(),
-  dateFormatter = (d) => d.toLocaleDateString(),
+  valueFormatter = (v: number) => v.toLocaleString(),
+  dateFormatter = (d: Date) => d.toLocaleDateString(),
   onPeriodChange,
   showPercentChange = true,
   showOverlay: initialShowOverlay = true,
@@ -344,7 +344,7 @@ export function PeriodComparison({
               <input
                 type="color"
                 value={currentColor}
-                onChange={() => {}}
+                onChange={(_e: React.ChangeEvent<HTMLInputElement>) => {}}
                 className="w-6 h-6 rounded border border-gray-300"
               />
             </div>
@@ -353,7 +353,7 @@ export function PeriodComparison({
               <input
                 type="color"
                 value={comparisonColor}
-                onChange={() => {}}
+                onChange={(_e: React.ChangeEvent<HTMLInputElement>) => {}}
                 className="w-6 h-6 rounded border border-gray-300"
               />
             </div>
@@ -391,7 +391,7 @@ export function PeriodComparison({
 }
 
 // Comparison summary card
-interface ComparisonCardProps {
+export interface ComparisonCardProps {
   label: string;
   currentValue: number;
   previousValue: number;
@@ -404,7 +404,7 @@ export function ComparisonCard({
   label,
   currentValue,
   previousValue,
-  valueFormatter = (v) => v.toLocaleString(),
+  valueFormatter = (v: number) => v.toLocaleString(),
   icon,
   className = '',
 }: ComparisonCardProps) {
@@ -480,4 +480,4 @@ export function usePeriodComparison(initialPeriod?: TimePeriod) {
 }
 
 export { getComparisonPeriod, calculateStats, presetLabels };
-export type { TimePeriod, ComparisonDataPoint, ComparisonSeries, ComparisonStats, ComparisonPreset, ComparisonCardProps };
+// Types are already exported at their definitions above

@@ -6,7 +6,7 @@ import { ArrowLeft, CheckCircle, AlertTriangle, FileText, Package, Layers, Send 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
-import { Checkbox } from '@/components/ui/checkbox';
+import { Checkbox } from '@/components/ui/Checkbox';
 import { Label } from '@/components/ui/label';
 
 export default function BOMValidationPage() {
@@ -121,25 +121,25 @@ export default function BOMValidationPage() {
             <CardContent className="space-y-4">
               <div className="space-y-3">
                 <div className="flex items-center space-x-2">
-                  <Checkbox id="check1" checked={checks.drawings} onCheckedChange={() => handleCheck('drawings')} />
+                  <Checkbox id="check1" checked={checks.drawings} onChange={() => handleCheck('drawings')} />
                   <Label htmlFor="check1" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
                     Drawings are production-ready
                   </Label>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <Checkbox id="check2" checked={checks.accessories} onCheckedChange={() => handleCheck('accessories')} />
+                  <Checkbox id="check2" checked={checks.accessories} onChange={() => handleCheck('accessories')} />
                   <Label htmlFor="check2" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
                     Accessories list is complete
                   </Label>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <Checkbox id="check3" checked={checks.specs} onCheckedChange={() => handleCheck('specs')} />
+                  <Checkbox id="check3" checked={checks.specs} onChange={() => handleCheck('specs')} />
                   <Label htmlFor="check3" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
                     Material specs are verified
                   </Label>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <Checkbox id="check4" checked={checks.quantities} onCheckedChange={() => handleCheck('quantities')} />
+                  <Checkbox id="check4" checked={checks.quantities} onChange={() => handleCheck('quantities')} />
                   <Label htmlFor="check4" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
                     Quantities match BOQ
                   </Label>

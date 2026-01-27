@@ -41,6 +41,7 @@ export interface RecentActivity {
   userAvatar: string;
   action: string;
   resourceType: ResourceType;
+  resourceId?: string;
   resourceName: string;
   timestamp: Date;
   details?: string;
@@ -315,7 +316,7 @@ const RealTimeCollaborationPanel: React.FC<RealTimeCollaborationPanelProps> = ({
     return date.toLocaleDateString();
   };
 
-  const departments = ['all', ...new Set(activeUsers.map(u => u.department))];
+  const departments = ['all', ...Array.from(new Set(activeUsers.map(u => u.department)))];
   const filteredUsers = activeUsers.filter(u =>
     selectedDepartment === 'all' || u.department === selectedDepartment
   );

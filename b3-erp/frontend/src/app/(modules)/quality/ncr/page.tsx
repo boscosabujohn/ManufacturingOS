@@ -4,7 +4,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Input } from '@/components/ui/input';
+import { Input } from '@/components/ui/Input';
 import {
     Plus,
     AlertTriangle,
@@ -249,7 +249,7 @@ export default function NCRPage() {
                                 placeholder="Search by NCR #, title, or project..."
                                 className="pl-10 w-full"
                                 value={searchTerm}
-                                onChange={(e) => setSearchTerm(e.target.value)}
+                                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchTerm(e.target.value)}
                             />
                         </div>
                         <div className="flex flex-wrap items-center gap-2 w-full lg:w-auto">

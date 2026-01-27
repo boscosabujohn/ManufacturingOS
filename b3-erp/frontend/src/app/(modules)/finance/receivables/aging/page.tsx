@@ -518,22 +518,31 @@ export default function ARAgingPage() {
       <ViewInvoiceModal
         isOpen={isViewInvoiceModalOpen}
         onClose={() => setIsViewInvoiceModalOpen(false)}
-        invoice={selectedCustomer ? {
-          invoiceNumber: selectedCustomer.oldestInvoice,
-          customerName: selectedCustomer.customerName,
-          totalAmount: selectedCustomer.totalOutstanding,
-          balanceAmount: selectedCustomer.totalOutstanding
-        } : null}
+        invoiceId={selectedCustomer?.oldestInvoice}
       />
 
       <SendCustomerStatementModal
         isOpen={isStatementModalOpen}
         onClose={() => setIsStatementModalOpen(false)}
         customer={selectedCustomer ? {
-          customerCode: selectedCustomer.customerCode,
-          customerName: selectedCustomer.customerName,
-          email: selectedCustomer.email
-        } : null}
+          id: selectedCustomer.id,
+          code: selectedCustomer.customerCode,
+          name: selectedCustomer.customerName,
+          type: 'customer',
+          contactPerson: selectedCustomer.contactPerson,
+          email: selectedCustomer.email,
+          phone: selectedCustomer.phone,
+          billingAddress: '',
+          shippingAddress: '',
+          creditLimit: selectedCustomer.creditLimit,
+          creditUsed: selectedCustomer.totalOutstanding,
+          paymentTerms: `${selectedCustomer.creditDays} days`,
+          status: 'active',
+          createdDate: '',
+          totalInvoices: selectedCustomer.invoiceCount,
+          totalRevenue: selectedCustomer.totalOutstanding,
+          averagePaymentDays: selectedCustomer.creditDays,
+        } : undefined}
       />
     </div>
   )

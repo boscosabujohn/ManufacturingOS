@@ -412,7 +412,3 @@ export function PrintPreviewTrigger({
   );
 }
 
-export type {
-  PrintPreviewProps,
-  PrintPreviewTriggerProps,
-};

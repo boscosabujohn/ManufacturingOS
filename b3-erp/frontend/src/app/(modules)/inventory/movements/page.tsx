@@ -280,9 +280,8 @@ const InventoryMovementsPage = () => {
     setIsReturnOpen(false)
   }
 
-  const handleViewMovement = (movement: InventoryMovement) => {
-    // Convert to Movement format
-    const movementData: Movement = {
+  const convertToMovement = (movement: InventoryMovement): Movement => {
+    return {
       id: movement.id,
       movementNumber: movement.movementId,
       type: movement.movementType === 'inbound' ? 'receipt' :
@@ -306,7 +305,16 @@ const InventoryMovementsPage = () => {
       createdBy: movement.initiatedBy,
       createdDate: movement.date
     }
+  }
+
+  const handleViewMovement = (movement: InventoryMovement) => {
+    const movementData = convertToMovement(movement)
     setSelectedMovement(movementData)
+    setIsViewDetailsOpen(true)
+  }
+
+  const handleViewMovementFromHistory = (movement: Movement) => {
+    setSelectedMovement(movement)
     setIsViewDetailsOpen(true)
   }
 
@@ -619,39 +627,13 @@ const InventoryMovementsPage = () => {
         isOpen={isViewDetailsOpen}
         onClose={() => setIsViewDetailsOpen(false)}
         movement={selectedMovement}
-        onPrint={() => console.log('Print movement:', selectedMovement)}
-        onExport={() => console.log('Export movement:', selectedMovement)}
       />
 
       <MovementHistoryModal
         isOpen={isHistoryOpen}
         onClose={() => setIsHistoryOpen(false)}
-        movements={movements.map(m => ({
-          id: m.id,
-          movementNumber: m.movementId,
-          type: m.movementType === 'inbound' ? 'receipt' :
-            m.movementType === 'outbound' ? 'issue' :
-              m.movementType === 'adjustment' ? 'transfer' : 'transfer',
-          date: m.date,
-          status: m.status === 'completed' ? 'completed' :
-            m.status === 'pending' ? 'draft' : 'cancelled',
-          fromLocation: m.fromLocation,
-          toLocation: m.toLocation,
-          supplier: m.fromLocation.includes('Supplier') ? m.fromLocation : undefined,
-          reference: m.referenceDoc,
-          items: [{
-            itemCode: m.itemCode,
-            itemName: m.itemName,
-            quantity: m.quantity,
-            uom: m.unitOfMeasure,
-            location: m.toLocation,
-            cost: 0
-          }],
-          createdBy: m.initiatedBy,
-          createdDate: m.date
-        }))}
-        onViewDetails={handleViewMovement}
-        onExport={() => console.log('Export history')}
+        movements={movements.map(m => convertToMovement(m))}
+        onViewDetails={handleViewMovementFromHistory}
       />
     </div>
   )

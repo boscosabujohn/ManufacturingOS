@@ -341,8 +341,8 @@ export default function FinanceDashboard() {
   const handleAlertAction = (alert: Alert) => {
     if (alert.link) {
       router.push(alert.link);
-    } else {
-      alert(`Action: ${alert.action}\n\nThis will ${alert.action.toLowerCase()} for: ${alert.message}`);
+    } else if (alert.action) {
+      window.alert(`Action: ${alert.action}\n\nThis will ${alert.action.toLowerCase()} for: ${alert.message}`);
     }
   };
 

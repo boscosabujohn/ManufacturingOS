@@ -734,13 +734,3 @@ export function useSuccess(options: UseSuccessOptions = {}) {
   return { isSuccess, triggerSuccess, clearSuccess };
 }
 
-export type {
-  SuccessVariant,
-  AnimatedCheckmarkProps,
-  CheckmarkCircleProps,
-  SuccessBurstProps,
-  ConfettiProps,
-  SuccessScaleProps,
-  SuccessFeedbackProps,
-  UseSuccessOptions,
-};

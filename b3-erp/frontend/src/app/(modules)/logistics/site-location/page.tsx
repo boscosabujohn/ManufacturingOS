@@ -4,9 +4,9 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
+import { Input } from '@/components/ui/Input';
 import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
+import { Textarea } from '@/components/ui/Textarea';
 import { useToast } from '@/hooks/use-toast';
 import {
     ArrowLeft,
@@ -90,7 +90,7 @@ export default function SiteLocationPage() {
                             <Textarea
                                 id="siteAddress"
                                 value={formData.siteAddress}
-                                onChange={(e) => handleInputChange('siteAddress', e.target.value)}
+                                onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => handleInputChange('siteAddress', e.target.value)}
                                 rows={2}
                             />
                         </div>
@@ -100,7 +100,7 @@ export default function SiteLocationPage() {
                                 <Input
                                     id="city"
                                     value={formData.city}
-                                    onChange={(e) => handleInputChange('city', e.target.value)}
+                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleInputChange('city', e.target.value)}
                                 />
                             </div>
                             <div className="space-y-2">
@@ -108,7 +108,7 @@ export default function SiteLocationPage() {
                                 <Input
                                     id="state"
                                     value={formData.state}
-                                    onChange={(e) => handleInputChange('state', e.target.value)}
+                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleInputChange('state', e.target.value)}
                                 />
                             </div>
                         </div>
@@ -117,7 +117,7 @@ export default function SiteLocationPage() {
                             <Input
                                 id="pincode"
                                 value={formData.pincode}
-                                onChange={(e) => handleInputChange('pincode', e.target.value)}
+                                onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleInputChange('pincode', e.target.value)}
                                 className="w-48"
                             />
                         </div>
@@ -126,7 +126,7 @@ export default function SiteLocationPage() {
                             <Textarea
                                 id="landmarks"
                                 value={formData.landmarks}
-                                onChange={(e) => handleInputChange('landmarks', e.target.value)}
+                                onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => handleInputChange('landmarks', e.target.value)}
                                 rows={2}
                                 placeholder="Landmarks or directions to help locate the site"
                             />
@@ -179,7 +179,7 @@ export default function SiteLocationPage() {
                                 <Input
                                     id="contactPerson"
                                     value={formData.contactPerson}
-                                    onChange={(e) => handleInputChange('contactPerson', e.target.value)}
+                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleInputChange('contactPerson', e.target.value)}
                                 />
                             </div>
                         </div>
@@ -190,7 +190,7 @@ export default function SiteLocationPage() {
                                 <Input
                                     id="contactPhone"
                                     value={formData.contactPhone}
-                                    onChange={(e) => handleInputChange('contactPhone', e.target.value)}
+                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleInputChange('contactPhone', e.target.value)}
                                 />
                             </div>
                         </div>
@@ -203,7 +203,7 @@ export default function SiteLocationPage() {
                                 <Input
                                     id="alternatePhone"
                                     value={formData.alternatePhone}
-                                    onChange={(e) => handleInputChange('alternatePhone', e.target.value)}
+                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleInputChange('alternatePhone', e.target.value)}
                                 />
                             </div>
                         </div>
@@ -224,7 +224,7 @@ export default function SiteLocationPage() {
                                 type="date"
                                 id="deliveryDate"
                                 value={formData.deliveryDate}
-                                onChange={(e) => handleInputChange('deliveryDate', e.target.value)}
+                                onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleInputChange('deliveryDate', e.target.value)}
                             />
                         </div>
                         <div className="space-y-2">
@@ -232,7 +232,7 @@ export default function SiteLocationPage() {
                             <Input
                                 id="preferredTime"
                                 value={formData.preferredTime}
-                                onChange={(e) => handleInputChange('preferredTime', e.target.value)}
+                                onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleInputChange('preferredTime', e.target.value)}
                                 placeholder="e.g., 10:00 AM - 2:00 PM"
                             />
                         </div>
@@ -242,7 +242,7 @@ export default function SiteLocationPage() {
                         <Textarea
                             id="specialInstructions"
                             value={formData.specialInstructions}
-                            onChange={(e) => handleInputChange('specialInstructions', e.target.value)}
+                            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => handleInputChange('specialInstructions', e.target.value)}
                             rows={3}
                             placeholder="Any special delivery instructions, access restrictions, or requirements"
                         />

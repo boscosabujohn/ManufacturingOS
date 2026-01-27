@@ -4,7 +4,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Input } from '@/components/ui/input';
+import { Input } from '@/components/ui/Input';
 import {
     Plus,
     Activity,
@@ -91,11 +91,11 @@ export default function CAPAPage() {
                 status = capa.effectivenessVerified ? 'verified' : 'completed';
                 break;
             default:
-                // Check if overdue
-                const now = new Date();
-                const dueDate = new Date(capa.targetCompletionDate);
-                if (dueDate < now && capa.status !== CAPAStatus.CLOSED) {
-                    status = 'overdue';
+                // Check if rejected or cancelled
+                if (capa.status === CAPAStatus.REJECTED || capa.status === CAPAStatus.CANCELLED) {
+                    status = 'completed';
+                } else {
+                    status = 'planned';
                 }
         }
 
@@ -277,7 +277,7 @@ export default function CAPAPage() {
                                 placeholder="Search by CAPA #, title, or department..."
                                 className="pl-10 w-full"
                                 value={searchTerm}
-                                onChange={(e) => setSearchTerm(e.target.value)}
+                                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchTerm(e.target.value)}
                             />
                         </div>
                         <div className="flex flex-wrap items-center gap-2 w-full lg:w-auto">

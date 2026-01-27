@@ -30,7 +30,8 @@ import {
   AreaChart,
   Area,
   ComposedChart,
-  ReferenceLine
+  ReferenceLine,
+  Cell
 } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -61,6 +62,19 @@ export interface SeasonalityAnalysis {
   seasonalityIndex: { month: string; index: number }[];
   peakSeason: string;
   lowSeason: string;
+}
+
+export interface SafetyStockCalculation {
+  itemId: string;
+  itemName: string;
+  sku: string;
+  safetyStock: number;
+  reorderPoint: number;
+  economicOrderQuantity: number;
+  method: 'normal-distribution' | 'service-level' | 'fixed-percentage';
+  serviceLevel: number;
+  leadTime: number;
+  demandVariability: number;
 }
 
 export default function DemandPlanning() {
@@ -410,7 +424,7 @@ export default function DemandPlanning() {
                         <ReferenceLine y={1} stroke="#94a3b8" strokeDasharray="3 3" />
                         <Bar dataKey="index" name="Seasonality Index" radius={[4, 4, 0, 0]}>
                           {item.seasonalityIndex.map((entry, index) => (
-                            <cell key={`cell-${index}`} fill={entry.index > 1.05 ? '#22c55e' : entry.index < 0.95 ? '#ef4444' : '#94a3b8'} />
+                            <Cell key={`cell-${index}`} fill={entry.index > 1.05 ? '#22c55e' : entry.index < 0.95 ? '#ef4444' : '#94a3b8'} />
                           ))}
                         </Bar>
                       </RechartsBarChart>

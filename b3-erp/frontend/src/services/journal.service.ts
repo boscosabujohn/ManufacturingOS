@@ -800,13 +800,13 @@ export class JournalService {
           totalDebit,
           totalCredit,
           updatedAt: new Date(),
-        };
+        } as JournalEntry;
       } else {
         MOCK_JOURNAL_ENTRIES[index] = {
           ...entry,
           ...data,
           updatedAt: new Date(),
-        };
+        } as JournalEntry;
       }
 
       return MOCK_JOURNAL_ENTRIES[index];

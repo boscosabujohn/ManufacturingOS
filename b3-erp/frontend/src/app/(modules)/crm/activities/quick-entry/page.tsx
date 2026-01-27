@@ -30,7 +30,7 @@ export default function ActivityQuickEntryPage() {
       {/* Activity Quick Entry Component */}
       <div className="p-6">
         <ActivityQuickEntry
-          onActivitySaved={(activity) => {
+          onSubmit={(activity: { type: string; contact: { id: string; name: string; company: string; email: string; phone: string }; subject: string; notes: string; outcome?: string; duration?: number; scheduledDate?: Date }) => {
             console.log('Activity saved:', activity);
             // In a real app, this would refresh the activities list or show a success message
           }}

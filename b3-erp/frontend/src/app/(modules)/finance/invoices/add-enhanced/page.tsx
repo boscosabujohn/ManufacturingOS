@@ -123,10 +123,10 @@ export default function AddInvoiceEnhancedPage() {
     return Math.round((filled / total) * 100);
   }, [formData, currentStep]);
 
-  const { lastSaved, isSaving, hasDraft, clearDraft, restoreDraft } = useAutoSaveDraft(formData, {
+  const { lastSaved, isSaving, hasDraft, clearDraft, restoreDraft } = useAutoSaveDraft(formData as unknown as Record<string, unknown>, {
     key: 'invoice-draft',
     debounceMs: 2000,
-    onRestore: (data) => { setFormData(data); setShowDraftBanner(false); },
+    onRestore: (data) => { setFormData(data as unknown as InvoiceFormData); setShowDraftBanner(false); },
   });
 
   const hasChanges = useMemo(() => {
@@ -258,9 +258,9 @@ export default function AddInvoiceEnhancedPage() {
     <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6 overflow-auto">
       {showDraftBanner && (
         <DraftRecoveryBanner
+          hasDraft={hasDraft}
           onRestore={() => { restoreDraft(); setShowDraftBanner(false); }}
           onDiscard={() => { clearDraft(); setShowDraftBanner(false); }}
-          lastSaved={lastSaved}
         />
       )}
 
@@ -285,7 +285,15 @@ export default function AddInvoiceEnhancedPage() {
       </div>
 
       <div className="mb-4">
-        <FormProgressIndicator completedFields={completionPercentage} totalFields={100} variant="bar" showPercentage label="Form completion" />
+        <div className="flex items-center gap-3">
+          <div className="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden">
+            <div
+              className="h-full bg-green-500 transition-all duration-300"
+              style={{ width: `${completionPercentage}%` }}
+            />
+          </div>
+          <span className="text-sm text-gray-600 min-w-[3rem]">{completionPercentage}%</span>
+        </div>
       </div>
 
       <div className="mb-8">

@@ -14,6 +14,7 @@ import {
   BarChart3,
   Activity,
   AlertTriangle,
+  AlertCircle,
   CheckCircle,
   Clock,
   Mail,
@@ -1444,8 +1445,6 @@ Focus Areas:
 
 Last updated: ${new Date().toLocaleString()}`);
   };
-
-  const COLORS = ['#3B82F6', '#10B981', '#F59E0B', '#EF4444', '#8B5CF6', '#EC4899']
 
   return (
     <div className="p-6 space-y-6 bg-gray-50 min-h-screen">

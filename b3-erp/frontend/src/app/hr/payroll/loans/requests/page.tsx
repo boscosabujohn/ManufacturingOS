@@ -215,6 +215,12 @@ export default function LoanRequestsPage() {
     closed: CheckCircle
   };
 
+  // Helper component for date display
+  const DateDisplay = ({ date }: { date?: string }) => {
+    if (!date) return null;
+    return <>{new Date(date).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' })}</>;
+  };
+
   const loanTypeColors = {
     personal: 'bg-blue-100 text-blue-700',
     vehicle: 'bg-purple-100 text-purple-700',

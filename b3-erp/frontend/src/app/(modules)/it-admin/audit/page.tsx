@@ -13,13 +13,7 @@ interface AuditLog {
   description: string;
   ipAddress: string;
   userAgent: string;
-  severity: 'low' | 'medium' | 'high' | 'critical';
-  status: string;
-  affectedRecords: number;
-  sessionId: string;
-  location: string;
-  duration: string;
-  changes: string;
+  severity: 'info' | 'warning' | 'error' | 'critical';
 }
 
 export default function AuditPage() {
@@ -38,7 +32,7 @@ export default function AuditPage() {
       setLoading(true);
       setError(null);
       try {
-        const result = await AuditLogService.getAuditLogs({ page: 1, limit: 100 });
+        const result = await AuditLogService.getAuditLogs({ offset: 0, limit: 100 });
 
         // Transform service audit logs to page format
         const transformedLogs: AuditLog[] = result.data.map((log: ServiceAuditLog) => ({
@@ -58,12 +52,6 @@ export default function AuditPage() {
           ipAddress: log.ipAddress || 'N/A',
           userAgent: log.userAgent || 'N/A',
           severity: log.severity as AuditLog['severity'],
-          status: log.status || 'Success',
-          affectedRecords: log.affectedRecords || 0,
-          sessionId: log.sessionId || 'N/A',
-          location: log.location || 'N/A',
-          duration: log.duration || '0s',
-          changes: log.changes || 'N/A',
         }));
 
         setAuditLogs(transformedLogs);
@@ -117,7 +105,7 @@ export default function AuditPage() {
 
   const totalLogs = auditLogs.length;
   const criticalEvents = auditLogs.filter(l => l.severity === 'critical').length;
-  const failedLogins = auditLogs.filter(l => l.actionType === 'login' && l.status === 'Failed').length;
+  const failedLogins = auditLogs.filter(l => l.actionType === 'login' && (l.severity === 'warning' || l.severity === 'error')).length;
   const changesToday = auditLogs.filter(l =>
     l.timestamp.startsWith('2025-10-17') &&
     (l.actionType === 'create' || l.actionType === 'update' || l.actionType === 'delete')
@@ -125,12 +113,12 @@ export default function AuditPage() {
 
   const getSeverityBadgeClass = (severity: string) => {
     switch (severity) {
-      case 'low':
+      case 'info':
         return 'bg-green-100 text-green-800 border-green-300';
-      case 'medium':
-        return 'bg-blue-100 text-blue-800 border-blue-300';
-      case 'high':
+      case 'warning':
         return 'bg-yellow-100 text-yellow-800 border-yellow-300';
+      case 'error':
+        return 'bg-blue-100 text-blue-800 border-blue-300';
       case 'critical':
         return 'bg-red-100 text-red-800 border-red-300';
       default:

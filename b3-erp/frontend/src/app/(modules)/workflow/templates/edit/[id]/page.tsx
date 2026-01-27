@@ -3,10 +3,10 @@
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import { Input } from '@/components/ui/Input';
 import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Textarea } from '@/components/ui/Textarea';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/Select';
 import { Plus, Trash2, GripVertical, Save, ArrowLeft, AlertCircle } from 'lucide-react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { useRouter } from 'next/navigation';
@@ -221,7 +221,7 @@ export default function TemplateEditorPage({ params }: { params: { id: string } 
                         <Input
                             id="name"
                             value={template.name}
-                            onChange={(e) => setTemplate({ ...template, name: e.target.value })}
+                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTemplate({ ...template, name: e.target.value })}
                             placeholder="e.g., Purchase Requisition Approval"
                         />
                     </div>
@@ -231,7 +231,7 @@ export default function TemplateEditorPage({ params }: { params: { id: string } 
                         <Textarea
                             id="description"
                             value={template.description}
-                            onChange={(e) => setTemplate({ ...template, description: e.target.value })}
+                            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setTemplate({ ...template, description: e.target.value })}
                             placeholder="Describe the purpose of this workflow"
                             rows={3}
                         />
@@ -242,7 +242,7 @@ export default function TemplateEditorPage({ params }: { params: { id: string } 
                             <Label htmlFor="category">Category</Label>
                             <Select
                                 value={template.category}
-                                onValueChange={(value) => setTemplate({ ...template, category: value })}
+                                onValueChange={(value: string) => setTemplate({ ...template, category: value })}
                             >
                                 <SelectTrigger>
                                     <SelectValue />
@@ -337,7 +337,7 @@ export default function TemplateEditorPage({ params }: { params: { id: string } 
                                                     <Label>Step Name *</Label>
                                                     <Input
                                                         value={step.name}
-                                                        onChange={(e) => updateStep(index, 'name', e.target.value)}
+                                                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => updateStep(index, 'name', e.target.value)}
                                                         placeholder="e.g., Manager Approval"
                                                     />
                                                 </div>
@@ -347,7 +347,7 @@ export default function TemplateEditorPage({ params }: { params: { id: string } 
                                                         <Label>Approver Role *</Label>
                                                         <Select
                                                             value={step.approverRole || ''}
-                                                            onValueChange={(value) => updateStep(index, 'approverRole', value)}
+                                                            onValueChange={(value: string) => updateStep(index, 'approverRole', value)}
                                                         >
                                                             <SelectTrigger>
                                                                 <SelectValue placeholder="Select role" />
@@ -371,7 +371,7 @@ export default function TemplateEditorPage({ params }: { params: { id: string } 
                                                         <Input
                                                             type="number"
                                                             value={step.slaHours || ''}
-                                                            onChange={(e) => updateStep(index, 'slaHours', parseInt(e.target.value) || 0)}
+                                                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => updateStep(index, 'slaHours', parseInt(e.target.value) || 0)}
                                                             placeholder="24"
                                                         />
                                                     </div>
@@ -381,7 +381,7 @@ export default function TemplateEditorPage({ params }: { params: { id: string } 
                                                     <Label>Condition (Optional)</Label>
                                                     <Input
                                                         value={step.condition || ''}
-                                                        onChange={(e) => updateStep(index, 'condition', e.target.value)}
+                                                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => updateStep(index, 'condition', e.target.value)}
                                                         placeholder="e.g., amount > 10000"
                                                     />
                                                     <p className="text-xs text-gray-500 mt-1">

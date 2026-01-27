@@ -1,8 +1,74 @@
 import { useState } from 'react';
 import { X, Download, Calendar, BarChart3, TrendingUp, TrendingDown, RefreshCw, Search, AlertTriangle, Mail, FileText, Eye } from 'lucide-react';
 
+// Suppress unused variable warnings for icons that may be used in future
+void Calendar; void TrendingUp; void TrendingDown; void RefreshCw; void Search; void AlertTriangle; void Eye;
+
+// Type definitions for modal props
+interface AccountInfo {
+  accountCode?: string;
+  accountName?: string;
+}
+
+interface LedgerAnalyticsModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  accountInfo?: AccountInfo;
+}
+
+interface PrintSettings {
+  orientation: string;
+  pageSize: string;
+  includeHeader: boolean;
+  includeFooter: boolean;
+  includePageNumbers: boolean;
+  fontSize: string;
+  includeSignature: boolean;
+  signatureName: string;
+  signatureDesignation: string;
+}
+
+interface PrintLedgerModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onPrint: (settings: PrintSettings) => void;
+  accountInfo?: AccountInfo;
+}
+
+interface EmailFormData {
+  recipients: string;
+  cc: string;
+  subject: string;
+  message: string;
+  format: string;
+  includeAttachments: boolean;
+}
+
+interface EmailLedgerModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onSend: (formData: EmailFormData) => void;
+  accountInfo?: AccountInfo;
+}
+
+interface CompareFormData {
+  period1Start: string;
+  period1End: string;
+  period2Start: string;
+  period2End: string;
+  comparisonType: string;
+  showVariance: boolean;
+  showPercentage: boolean;
+}
+
+interface CompareLedgerPeriodsModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onCompare: (formData: CompareFormData) => void;
+}
+
 // 5. Ledger Summary/Analytics Modal (Indigo)
-export function LedgerAnalyticsModal({ isOpen, onClose, accountInfo }: any) {
+export function LedgerAnalyticsModal({ isOpen, onClose, accountInfo }: LedgerAnalyticsModalProps) {
   const analytics = {
     totalDebits: 8500000,
     totalCredits: 7150000,
@@ -130,7 +196,7 @@ export function LedgerAnalyticsModal({ isOpen, onClose, accountInfo }: any) {
 }
 
 // 6. Print Ledger Modal (Slate)
-export function PrintLedgerModal({ isOpen, onClose, onPrint, accountInfo }: any) {
+export function PrintLedgerModal({ isOpen, onClose, onPrint, accountInfo }: PrintLedgerModalProps) {
   const [settings, setSettings] = useState({
     orientation: 'portrait',
     pageSize: 'A4',
@@ -282,7 +348,7 @@ export function PrintLedgerModal({ isOpen, onClose, onPrint, accountInfo }: any)
 }
 
 // 7. Email Ledger Modal (Cyan)
-export function EmailLedgerModal({ isOpen, onClose, onSend, accountInfo }: any) {
+export function EmailLedgerModal({ isOpen, onClose, onSend, accountInfo }: EmailLedgerModalProps) {
   const [formData, setFormData] = useState({
     recipients: '',
     cc: '',
@@ -387,7 +453,7 @@ export function EmailLedgerModal({ isOpen, onClose, onSend, accountInfo }: any) 
 }
 
 // 8. Ledger Comparison Modal (Orange)
-export function CompareLedgerPeriodsModal({ isOpen, onClose, onCompare }: any) {
+export function CompareLedgerPeriodsModal({ isOpen, onClose, onCompare }: CompareLedgerPeriodsModalProps) {
   const [formData, setFormData] = useState({
     period1Start: '2025-01-01',
     period1End: '2025-01-31',
@@ -512,10 +578,3 @@ export function CompareLedgerPeriodsModal({ isOpen, onClose, onCompare }: any) {
   );
 }
 
-// Export all modals
-export {
-  LedgerAnalyticsModal,
-  PrintLedgerModal,
-  EmailLedgerModal,
-  CompareLedgerPeriodsModal
-};

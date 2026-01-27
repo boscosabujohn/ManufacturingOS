@@ -200,4 +200,4 @@ export function useMobileSidebar() {
   };
 }
 
-export type { SidebarState, SidebarContextValue };
+export type { SidebarContextValue };

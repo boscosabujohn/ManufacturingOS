@@ -14,9 +14,9 @@ import React, {
 // ARIA Live Region for Screen Reader Announcements
 // ============================================================================
 
-type AriaLivePoliteness = 'polite' | 'assertive' | 'off';
+export type AriaLivePoliteness = 'polite' | 'assertive' | 'off';
 
-interface LiveRegionContextValue {
+export interface LiveRegionContextValue {
   announce: (message: string, politeness?: AriaLivePoliteness) => void;
   announcePolite: (message: string) => void;
   announceAssertive: (message: string) => void;
@@ -545,17 +545,3 @@ export function AccessibleToggle({
   );
 }
 
-export type {
-  AriaLivePoliteness,
-  LiveRegionContextValue,
-  LiveRegionProviderProps,
-  VisuallyHiddenProps,
-  AriaDescribedByProps,
-  LoadingAnnouncerProps,
-  AccessibleErrorProps,
-  AccessibleFieldProps,
-  AccessibleProgressProps,
-  TabItem,
-  AccessibleTabsProps,
-  AccessibleToggleProps,
-};

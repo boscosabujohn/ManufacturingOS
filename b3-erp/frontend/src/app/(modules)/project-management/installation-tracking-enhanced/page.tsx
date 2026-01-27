@@ -23,9 +23,9 @@ import {
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
+import { Input } from '@/components/ui/Input';
 import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
+import { Textarea } from '@/components/ui/Textarea';
 import { useToast } from '@/hooks/use-toast';
 import {
  Select,
@@ -33,8 +33,8 @@ import {
  SelectItem,
  SelectTrigger,
  SelectValue
-} from '@/components/ui/select';
-import { Checkbox } from '@/components/ui/checkbox';
+} from '@/components/ui/Select';
+import { Checkbox } from '@/components/ui/Checkbox';
 import { StepIndicator } from '@/components/ui/StepIndicator';
 import {
  useAutoSaveDraft,
@@ -767,7 +767,7 @@ export default function InstallationTrackingEnhancedPage() {
            <div key={item.id} className="flex items-center gap-4 py-2 border-b last:border-b-0">
             <Checkbox
              checked={item.checked}
-             onCheckedChange={(checked) => updateSafetyItem(item.id, 'checked', checked)}
+             onChange={(checked) => updateSafetyItem(item.id, 'checked', checked)}
             />
             <span className={`flex-1 ${item.checked ? 'text-gray-500 line-through' : ''}`}>
              {item.item}

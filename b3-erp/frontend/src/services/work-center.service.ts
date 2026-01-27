@@ -586,7 +586,7 @@ class WorkCenterService {
           ? { ...MOCK_WORK_CENTERS[index].costs, ...data.costs }
           : MOCK_WORK_CENTERS[index].costs,
         updatedAt: new Date().toISOString(),
-      };
+      } as WorkCenter;
       return MOCK_WORK_CENTERS[index];
     }
 

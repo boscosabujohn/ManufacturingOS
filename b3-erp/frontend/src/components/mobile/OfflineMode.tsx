@@ -81,7 +81,7 @@ const LAST_SYNC_KEY = 'offline_last_sync';
 const DEFAULT_TTL = 24 * 60 * 60 * 1000;
 
 // Provider component
-interface OfflineProviderProps {
+export interface OfflineProviderProps {
   children: ReactNode;
   onSync?: (actions: PendingAction[]) => Promise<void>;
   autoSync?: boolean;
@@ -118,17 +118,16 @@ export function OfflineProvider({
         const now = Date.now();
 
         // Filter out expired items
-        Object.entries(parsed).forEach(([key, item]) => {
-          const cachedItem = item as CachedItem;
-          if (!cachedItem.expiresAt || cachedItem.expiresAt > now) {
-            map.set(key, cachedItem);
+        Object.entries(parsed as Record<string, CachedItem>).forEach(([key, item]) => {
+          if (!item.expiresAt || item.expiresAt > now) {
+            map.set(key, item);
           }
         });
 
         setCachedData(map);
       }
-    } catch (e) {
-      console.error('Failed to load cache:', e);
+    } catch (err) {
+      console.error('Failed to load cache:', err);
     }
 
     // Load pending actions
@@ -137,8 +136,8 @@ export function OfflineProvider({
       if (stored) {
         setPendingActions(JSON.parse(stored));
       }
-    } catch (e) {
-      console.error('Failed to load pending actions:', e);
+    } catch (err) {
+      console.error('Failed to load pending actions:', err);
     }
 
     // Load last sync time
@@ -150,8 +149,8 @@ export function OfflineProvider({
           lastSync: new Date(parseInt(stored)),
         }));
       }
-    } catch (e) {
-      console.error('Failed to load last sync:', e);
+    } catch (err) {
+      console.error('Failed to load last sync:', err);
     }
 
     // Check online status
@@ -199,8 +198,8 @@ export function OfflineProvider({
         obj[key] = value;
       });
       localStorage.setItem(CACHE_STORAGE_KEY, JSON.stringify(obj));
-    } catch (e) {
-      console.error('Failed to persist cache:', e);
+    } catch (err) {
+      console.error('Failed to persist cache:', err);
     }
   }, []);
 
@@ -208,8 +207,8 @@ export function OfflineProvider({
   const persistPendingActions = useCallback((actions: PendingAction[]) => {
     try {
       localStorage.setItem(PENDING_ACTIONS_KEY, JSON.stringify(actions));
-    } catch (e) {
-      console.error('Failed to persist pending actions:', e);
+    } catch (err) {
+      console.error('Failed to persist pending actions:', err);
     }
   }, []);
 
@@ -302,9 +301,9 @@ export function OfflineProvider({
               headers: { 'Content-Type': 'application/json' },
               body: action.payload ? JSON.stringify(action.payload) : undefined,
             });
-          } catch (e) {
-            console.error(`Failed to sync action ${action.id}:`, e);
-            throw e;
+          } catch (syncError) {
+            console.error(`Failed to sync action ${action.id}:`, syncError);
+            throw syncError;
           }
         }
       }
@@ -322,11 +321,11 @@ export function OfflineProvider({
         isSyncing: false,
         pendingCount: 0,
       }));
-    } catch (e) {
+    } catch (err) {
       setSyncStatus(prev => ({
         ...prev,
         isSyncing: false,
-        error: e instanceof Error ? e.message : 'Sync failed',
+        error: err instanceof Error ? err.message : 'Sync failed',
       }));
     }
   }, [isOnline, pendingActions, onSync]);
@@ -403,7 +402,7 @@ export function useOffline() {
 }
 
 // Offline Status Indicator
-interface OfflineIndicatorProps {
+export interface OfflineIndicatorProps {
   variant?: 'banner' | 'badge' | 'minimal';
   showSyncButton?: boolean;
   className?: string;
@@ -498,7 +497,7 @@ export function OfflineIndicator({
 }
 
 // Sync Status Panel
-interface SyncStatusPanelProps {
+export interface SyncStatusPanelProps {
   className?: string;
 }
 
@@ -636,7 +635,7 @@ export function SyncStatusPanel({ className = '' }: SyncStatusPanelProps) {
 }
 
 // Offline Data Wrapper
-interface OfflineDataWrapperProps<T> {
+export interface OfflineDataWrapperProps<T> {
   cacheKey: string;
   fetchData: () => Promise<T>;
   ttlMs?: number;
@@ -677,13 +676,13 @@ export function OfflineDataWrapper<T>({
       const result = await fetchData();
       setData(result);
       cacheData(cacheKey, result, ttlMs);
-    } catch (e) {
+    } catch (err) {
       // Fall back to cache on error
       const cached = getCachedData<T>(cacheKey);
       if (cached) {
         setData(cached);
       } else {
-        setError(e instanceof Error ? e : new Error('Failed to load data'));
+        setError(err instanceof Error ? err : new Error('Failed to load data'));
       }
     } finally {
       setLoading(false);
@@ -702,7 +701,7 @@ export function OfflineDataWrapper<T>({
 }
 
 // Offline Action Button
-interface OfflineActionButtonProps {
+export interface OfflineActionButtonProps {
   action: Omit<PendingAction, 'id' | 'timestamp' | 'retries'>;
   onSuccess?: () => void;
   children: ReactNode;
@@ -742,7 +741,7 @@ export function OfflineActionButton({
       setSuccess(true);
       setTimeout(() => setSuccess(false), 2000);
       onSuccess?.();
-    } catch (e) {
+    } catch {
       // Queue on failure
       queueAction(action);
       setSuccess(true);
@@ -773,7 +772,7 @@ export function OfflineActionButton({
 }
 
 // Cache Manager Component
-interface CacheManagerProps {
+export interface CacheManagerProps {
   className?: string;
 }
 
@@ -856,15 +855,3 @@ export function CacheManager({ className = '' }: CacheManagerProps) {
   );
 }
 
-export type {
-  CachedItem,
-  PendingAction,
-  SyncStatus,
-  OfflineContextValue,
-  OfflineProviderProps,
-  OfflineIndicatorProps,
-  SyncStatusPanelProps,
-  OfflineDataWrapperProps,
-  OfflineActionButtonProps,
-  CacheManagerProps,
-};

@@ -26,7 +26,7 @@ export interface DrillDownDataPoint {
   value: number;
   color?: string;
   children?: DrillDownDataPoint[];
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
 }
 
 export interface DrillDownPath {
@@ -35,7 +35,7 @@ export interface DrillDownPath {
   label: string;
 }
 
-interface DrillDownChartProps {
+export interface DrillDownChartProps {
   data: DrillDownDataPoint[];
   levels: DrillDownLevel[];
   title?: string;
@@ -277,7 +277,7 @@ function DataTable({ data, onRowClick, canDrill }: DataTableProps) {
           </tr>
         </thead>
         <tbody>
-          {data.map((point, index) => (
+          {data.map((point) => (
             <tr
               key={point.id}
               onClick={() => onRowClick(point)}
@@ -333,7 +333,7 @@ export function useDrillDown<T extends DrillDownDataPoint>(
   levels: DrillDownLevel[]
 ) {
   const [path, setPath] = useState<DrillDownPath[]>([]);
-  const [history, setHistory] = useState<{ path: DrillDownPath[]; data: T[] }[]>([]);
+  const [_history, setHistory] = useState<{ path: DrillDownPath[]; data: T[] }[]>([]);
 
   const currentData = useMemo(() => {
     let result = initialData;
@@ -392,4 +392,4 @@ export function useDrillDown<T extends DrillDownDataPoint>(
   };
 }
 
-export type { DrillDownChartProps, DrillDownLevel, DrillDownDataPoint, DrillDownPath };
+// DrillDownLevel, DrillDownDataPoint, and DrillDownPath are already exported at their definitions

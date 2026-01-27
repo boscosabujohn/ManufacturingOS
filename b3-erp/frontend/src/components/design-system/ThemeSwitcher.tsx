@@ -224,7 +224,7 @@ export function ThemeSwitcher({
                     className={`w-8 h-8 rounded-full flex items-center justify-center ${
                       config.colorTheme === theme ? 'ring-2 ring-offset-2' : ''
                     }`}
-                    style={{ backgroundColor: primary, ringColor: primary }}
+                    style={{ backgroundColor: primary }}
                   >
                     {config.colorTheme === theme && <Check className="w-4 h-4 text-white" />}
                   </div>
@@ -333,7 +333,7 @@ export function ThemeSwitcher({
                         className={`w-8 h-8 rounded-full flex items-center justify-center transition-transform ${
                           config.colorTheme === theme ? 'ring-2 ring-offset-2 scale-110' : 'hover:scale-105'
                         }`}
-                        style={{ backgroundColor: primary, ringColor: primary }}
+                        style={{ backgroundColor: primary }}
                       >
                         {config.colorTheme === theme && <Check className="w-4 h-4 text-white" />}
                       </div>

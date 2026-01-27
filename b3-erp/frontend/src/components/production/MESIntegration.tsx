@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Activity, Cpu, Database, Wifi, WifiOff, TrendingUp, Download, RefreshCw, Settings, Play, Pause, AlertTriangle, Tool } from 'lucide-react';
+import { Activity, Cpu, Database, Wifi, WifiOff, TrendingUp, Download, RefreshCw, Settings, Play, Pause, AlertTriangle } from 'lucide-react';
 
 export type ConnectionStatus = 'connected' | 'disconnected' | 'error';
 export type DataStreamType = 'plc' | 'scada' | 'sensor' | 'machine';

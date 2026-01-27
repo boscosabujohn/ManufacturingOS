@@ -814,7 +814,7 @@ class PurchaseRequisitionService {
         ...MOCK_PURCHASE_REQUISITIONS[index],
         ...data,
         updatedAt: new Date().toISOString()
-      };
+      } as PurchaseRequisition;
       return MOCK_PURCHASE_REQUISITIONS[index];
     }
 

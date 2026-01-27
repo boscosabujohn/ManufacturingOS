@@ -12,6 +12,10 @@ import {
   Input,
   Textarea,
   Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
   useToast,
   ToastProvider,
   PageToolbar
@@ -490,14 +494,16 @@ function OmnichannelSupportPageContent() {
             <div className="bg-white rounded-lg border border-gray-200 p-4">
               <h3 className="text-sm font-semibold text-gray-900 mb-3">Send Reply</h3>
               <div className="space-y-3">
-                <Select
-                  options={[
-                    { value: 'reply', label: 'Reply to customer' },
-                    { value: 'internal', label: 'Internal note' },
-                    { value: 'forward', label: 'Forward to team' }
-                  ]}
-                  value="reply"
-                />
+                <Select value="reply">
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Select action" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="reply">Reply to customer</SelectItem>
+                    <SelectItem value="internal">Internal note</SelectItem>
+                    <SelectItem value="forward">Forward to team</SelectItem>
+                  </SelectContent>
+                </Select>
                 <Textarea
                   placeholder="Type your message..."
                   rows={4}

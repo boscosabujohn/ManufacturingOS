@@ -753,13 +753,3 @@ export function LocationField({
   );
 }
 
-export type {
-  LargeInputProps,
-  AutocompleteItem,
-  AutocompleteInputProps,
-  QuantityInputProps,
-  SelectOption,
-  LargeSelectProps,
-  QuickEntryFormProps,
-  PartNumberFieldProps,
-};

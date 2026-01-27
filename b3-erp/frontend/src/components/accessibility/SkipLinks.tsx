@@ -209,11 +209,3 @@ export function useSkipToContent() {
   };
 }
 
-export type {
-  SkipLinkItem,
-  SkipLinksProps,
-  MainContentProps,
-  NavigationLandmarkProps,
-  SearchLandmarkProps,
-  FooterLandmarkProps,
-};

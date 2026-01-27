@@ -4,10 +4,10 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import { Input } from '@/components/ui/Input';
 import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Textarea } from '@/components/ui/Textarea';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/Select';
 import { ClipboardCheck, ArrowLeft, Save } from 'lucide-react';
 import { useToast } from '@/components/ui/Toast';
 
@@ -124,7 +124,7 @@ export default function CreateInspectionPage() {
                                 <Label htmlFor="inspectionType">Type *</Label>
                                 <Select
                                     value={formData.inspectionType}
-                                    onValueChange={(value) => handleSelectChange('inspectionType', value)}
+                                    onValueChange={(value: string) => handleSelectChange('inspectionType', value)}
                                     required
                                 >
                                     <SelectTrigger>
@@ -143,7 +143,7 @@ export default function CreateInspectionPage() {
                                 <Label htmlFor="priority">Priority *</Label>
                                 <Select
                                     value={formData.priority}
-                                    onValueChange={(value) => handleSelectChange('priority', value)}
+                                    onValueChange={(value: string) => handleSelectChange('priority', value)}
                                     required
                                 >
                                     <SelectTrigger>

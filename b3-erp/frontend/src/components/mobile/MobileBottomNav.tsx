@@ -34,7 +34,7 @@ export interface MoreMenuItem extends NavItem {
   category?: string;
 }
 
-interface MobileBottomNavProps {
+export interface MobileBottomNavProps {
   items?: NavItem[];
   moreItems?: MoreMenuItem[];
   maxVisibleItems?: number;
@@ -126,9 +126,10 @@ export function MobileBottomNav({
 
   // Group more items by category
   const groupedMoreItems = allMoreItems.reduce((acc, item) => {
-    const category = item.category || 'Other';
+    const moreItem = item as MoreMenuItem;
+    const category = moreItem.category || 'Other';
     if (!acc[category]) acc[category] = [];
-    acc[category].push(item);
+    acc[category].push(moreItem);
     return acc;
   }, {} as Record<string, MoreMenuItem[]>);
 
@@ -358,7 +359,7 @@ export function MobileBottomNav({
 }
 
 // Mobile Header with search
-interface MobileHeaderProps {
+export interface MobileHeaderProps {
   title: string;
   showSearch?: boolean;
   onSearch?: (query: string) => void;
@@ -447,4 +448,3 @@ export function MobileHeader({
   );
 }
 
-export type { NavItem, MoreMenuItem, MobileBottomNavProps, MobileHeaderProps };

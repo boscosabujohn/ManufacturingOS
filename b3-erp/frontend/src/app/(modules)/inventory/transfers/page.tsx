@@ -301,8 +301,38 @@ const InventoryTransfersPage = () => {
     setIsReceiveOpen(false)
   }
 
+  const handleReceiveReject = () => {
+    console.log('Rejecting transfer receipt')
+    // TODO: Implement API call
+    setIsReceiveOpen(false)
+    setIsViewDetailsOpen(true)
+  }
+
   const handleViewHistory = () => {
     setIsHistoryOpen(true)
+  }
+
+  const handleHistoryViewDetails = (transfer: Transfer) => {
+    // Convert Transfer type to StockTransfer for view handler
+    const stockTransfer: StockTransfer = {
+      id: transfer.id,
+      transferId: transfer.transferNumber,
+      fromWarehouse: transfer.fromLocation.warehouse,
+      toWarehouse: transfer.toLocation.warehouse,
+      itemsCount: transfer.items?.length || 0,
+      totalQuantity: transfer.items?.reduce((sum, item) => sum + (item.quantity || 0), 0) || 0,
+      transferDate: transfer.transferDate,
+      expectedDelivery: transfer.expectedDelivery,
+      status: (transfer.status === 'in-transit' ? 'in_transit' : transfer.status) as 'draft' | 'approved' | 'in_transit' | 'received' | 'cancelled',
+      initiatedBy: transfer.createdBy,
+      approvedBy: transfer.approvedBy || '',
+      totalValue: transfer.value || 0,
+      transportMode: 'Road',
+      vehicleNumber: '',
+      driverName: ''
+    }
+    handleViewTransfer(stockTransfer)
+    setIsHistoryOpen(false)
   }
 
   const handleEdit = () => {
@@ -670,13 +700,14 @@ const InventoryTransfersPage = () => {
             setIsViewDetailsOpen(true)
           }}
           onSubmit={handleReceiveSubmit}
+          onReject={handleReceiveReject}
           transfer={selectedTransfer}
         />
 
         <TransferHistoryModal
           isOpen={isHistoryOpen}
           onClose={() => setIsHistoryOpen(false)}
-          onViewDetails={handleViewTransfer}
+          onViewDetails={handleHistoryViewDetails}
           onExport={() => console.log('Export history')}
         />
       </div>

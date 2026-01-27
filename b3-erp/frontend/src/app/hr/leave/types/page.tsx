@@ -412,7 +412,7 @@ export default function LeaveTypesPage() {
         isOpen={editingLeaveType !== null}
         onClose={() => setEditingLeaveType(null)}
         onSubmit={handleEditLeaveType}
-        editData={editingLeaveType}
+        editData={editingLeaveType as any}
       />
     </div>
   );

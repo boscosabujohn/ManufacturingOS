@@ -75,7 +75,7 @@ export default function PIPReviewPage() {
     {
       key: 'actions',
       label: 'Actions',
-      render: (_, row: PIPReview) => (
+      render: (_: string, row: PIPReview) => (
         <button
           onClick={() => setSelectedReview(row)}
           className="text-purple-600 hover:text-purple-800 text-sm font-medium"

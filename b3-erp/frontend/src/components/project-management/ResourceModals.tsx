@@ -2252,8 +2252,8 @@ export function ResourceComparisonModal({ isOpen, onClose, resources, onSelect }
                         <div className="w-16 bg-gray-200 rounded-full h-2">
                           <div
                             className={`h-2 rounded-full ${
-                              resource.availability >= 50 ? 'bg-green-500' :
-                              resource.availability >= 20 ? 'bg-yellow-500' :
+                              (resource.availability ?? 0) >= 50 ? 'bg-green-500' :
+                              (resource.availability ?? 0) >= 20 ? 'bg-yellow-500' :
                               'bg-red-500'
                             }`}
                             style={{ width: `${resource.availability}%` }}
@@ -2268,8 +2268,8 @@ export function ResourceComparisonModal({ isOpen, onClose, resources, onSelect }
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-2">
                         <TrendingUp className={`w-4 h-4 ${
-                          resource.efficiency >= 90 ? 'text-green-500' :
-                          resource.efficiency >= 80 ? 'text-blue-500' :
+                          (resource.efficiency ?? 0) >= 90 ? 'text-green-500' :
+                          (resource.efficiency ?? 0) >= 80 ? 'text-blue-500' :
                           'text-yellow-500'
                         }`} />
                         <span className="text-sm font-medium">{resource.efficiency}%</span>

@@ -153,8 +153,8 @@ export default function CPQProductsRulesPage() {
     } else {
       // Create new rule
       const newRule: ConfigurationRule = {
-        id: `RULE-${String(rules.length + 1).padStart(3, '0')}`,
-        ...ruleData as ConfigurationRule
+        ...ruleData as ConfigurationRule,
+        id: `RULE-${String(rules.length + 1).padStart(3, '0')}`
       }
       setRules([...rules, newRule])
     }

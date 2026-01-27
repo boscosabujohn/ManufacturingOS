@@ -30,9 +30,9 @@ export default function PipelineKanbanPage() {
       {/* Pipeline Kanban Component */}
       <div className="p-6">
         <PipelineKanban
-          onOpportunityClick={(id) => console.log('Opportunity clicked:', id)}
-          onStageChange={(id, stage) => console.log('Stage changed:', id, stage)}
-          onQuickAction={(id, action) => console.log('Quick action:', id, action)}
+          onOpportunityClick={(id: string) => console.log('Opportunity clicked:', id)}
+          onOpportunityMove={(opportunityId: string, fromStage: string, toStage: string) => console.log('Stage changed:', opportunityId, fromStage, toStage)}
+          onOpportunityEdit={(id: string) => console.log('Quick action:', id)}
         />
       </div>
     </div>

@@ -279,11 +279,11 @@ function ReviewStep() {
           </h4>
           <div className="grid grid-cols-2 gap-2 text-sm">
             <span className="text-gray-600 dark:text-gray-400">Name:</span>
-            <span className="text-gray-900 dark:text-white">{formData.firstName} {formData.lastName}</span>
+            <span className="text-gray-900 dark:text-white">{String(formData.firstName)} {String(formData.lastName)}</span>
             <span className="text-gray-600 dark:text-gray-400">Email:</span>
-            <span className="text-gray-900 dark:text-white">{formData.email || '-'}</span>
+            <span className="text-gray-900 dark:text-white">{String(formData.email || '') || '-'}</span>
             <span className="text-gray-600 dark:text-gray-400">Phone:</span>
-            <span className="text-gray-900 dark:text-white">{formData.phone || '-'}</span>
+            <span className="text-gray-900 dark:text-white">{String(formData.phone || '') || '-'}</span>
           </div>
         </div>
 
@@ -293,11 +293,11 @@ function ReviewStep() {
           </h4>
           <div className="grid grid-cols-2 gap-2 text-sm">
             <span className="text-gray-600 dark:text-gray-400">Company:</span>
-            <span className="text-gray-900 dark:text-white">{formData.companyName || '-'}</span>
+            <span className="text-gray-900 dark:text-white">{String(formData.companyName || '') || '-'}</span>
             <span className="text-gray-600 dark:text-gray-400">Industry:</span>
-            <span className="text-gray-900 dark:text-white">{formData.industry || '-'}</span>
+            <span className="text-gray-900 dark:text-white">{String(formData.industry || '') || '-'}</span>
             <span className="text-gray-600 dark:text-gray-400">Size:</span>
-            <span className="text-gray-900 dark:text-white">{formData.companySize || '-'}</span>
+            <span className="text-gray-900 dark:text-white">{String(formData.companySize || '') || '-'}</span>
           </div>
         </div>
 

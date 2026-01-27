@@ -23,9 +23,9 @@ import {
   DraftRecoveryBanner,
   useUnsavedChangesWarning,
   HelpIcon,
-  FormProgressIndicator,
 } from '@/components/ui/FormUX';
 import { StepIndicator, Step } from '@/components/ui/StepIndicator';
+import { ProgressBar } from '@/components/ui/ProgressBar';
 
 interface ChecklistItem {
   id: string;
@@ -163,10 +163,10 @@ export default function NewInspectionEnhancedPage() {
     return Math.round((filled / total) * 100);
   }, [formData, currentStep]);
 
-  const { lastSaved, isSaving, hasDraft, clearDraft, restoreDraft } = useAutoSaveDraft(formData, {
+  const { lastSaved, isSaving, hasDraft, clearDraft, restoreDraft } = useAutoSaveDraft(formData as unknown as Record<string, unknown>, {
     key: 'quality-inspection-draft',
     debounceMs: 2000,
-    onRestore: (data) => { setFormData(data); setShowDraftBanner(false); },
+    onRestore: (data: Record<string, unknown>) => { setFormData(data as unknown as InspectionFormData); setShowDraftBanner(false); },
   });
 
   const hasChanges = useMemo(() => {
@@ -286,13 +286,11 @@ export default function NewInspectionEnhancedPage() {
 
   return (
     <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6 overflow-auto">
-      {showDraftBanner && (
-        <DraftRecoveryBanner
-          onRestore={() => { restoreDraft(); setShowDraftBanner(false); }}
-          onDiscard={() => { clearDraft(); setShowDraftBanner(false); }}
-          lastSaved={lastSaved}
-        />
-      )}
+      <DraftRecoveryBanner
+        hasDraft={showDraftBanner}
+        onRestore={() => { restoreDraft(); setShowDraftBanner(false); }}
+        onDiscard={() => { clearDraft(); setShowDraftBanner(false); }}
+      />
 
       <div className="mb-6">
         <button onClick={handleCancel} className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-4">
@@ -315,7 +313,7 @@ export default function NewInspectionEnhancedPage() {
       </div>
 
       <div className="mb-4">
-        <FormProgressIndicator completedFields={completionPercentage} totalFields={100} variant="bar" showPercentage label="Form completion" />
+        <ProgressBar value={completionPercentage} max={100} label="Form completion" showValue variant="gradient" color="blue" />
       </div>
 
       <div className="mb-8">

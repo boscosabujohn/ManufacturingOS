@@ -233,7 +233,7 @@ export function ResourceConflictAlerts({
   }), [conflicts, acknowledgedConflicts]);
 
   const handleAcknowledge = (conflictId: string) => {
-    setAcknowledgedConflicts(prev => new Set([...prev, conflictId]));
+    setAcknowledgedConflicts(prev => new Set([...Array.from(prev), conflictId]));
     onAcknowledge?.(conflictId);
   };
 

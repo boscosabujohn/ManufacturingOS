@@ -549,11 +549,3 @@ export function useCommonShortcuts(options: CommonShortcutsOptions) {
   }, [options, registerShortcut, unregisterShortcut]);
 }
 
-export type {
-  KeyboardShortcut,
-  KeyboardShortcutsContextValue,
-  KeyboardShortcutsProviderProps,
-  ShortcutsHelpDialogProps,
-  KeyComboProps,
-  CommonShortcutsOptions,
-};

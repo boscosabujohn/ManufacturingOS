@@ -598,18 +598,3 @@ export function SkeletonWrapper({
   return <>{showSkeleton ? skeleton : children}</>;
 }
 
-export type {
-  SkeletonProps,
-  SkeletonTextProps,
-  SkeletonAvatarProps,
-  SkeletonButtonProps,
-  SkeletonCardProps,
-  SkeletonTableProps,
-  SkeletonListItemProps,
-  SkeletonListProps,
-  SkeletonFormFieldProps,
-  SkeletonFormProps,
-  SkeletonDashboardProps,
-  SkeletonPageProps,
-  SkeletonWrapperProps,
-};

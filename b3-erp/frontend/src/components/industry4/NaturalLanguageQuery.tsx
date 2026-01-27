@@ -136,7 +136,8 @@ function ResultCard({
           <div className="h-48 flex items-end gap-2 p-4 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
             {Array.isArray(result.data) && result.data.map((item, index) => {
               const value = Number(Object.values(item)[1]);
-              const maxValue = Math.max(...result.data!.map(d => Number(Object.values(d)[1])));
+              const dataArray = result.data as Record<string, number | string>[];
+              const maxValue = Math.max(...dataArray.map((d: Record<string, number | string>) => Number(Object.values(d)[1])));
               const height = (value / maxValue) * 100;
               return (
                 <div key={index} className="flex-1 flex flex-col items-center gap-2">

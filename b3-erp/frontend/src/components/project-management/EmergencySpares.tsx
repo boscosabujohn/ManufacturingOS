@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import { Input } from '@/components/ui/Input';
 import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
+import { Textarea } from '@/components/ui/Textarea';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/Select';
 import { useToast } from '@/hooks/use-toast';
 import { projectManagementService, EmergencySpareRequest } from '@/services/ProjectManagementService';
 
@@ -102,7 +102,7 @@ const EmergencySpares: React.FC<EmergencySparesProps> = ({ projectId }) => {
                                 <Input
                                     id="partId"
                                     value={partId}
-                                    onChange={(e) => setPartId(e.target.value)}
+                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPartId(e.target.value)}
                                     placeholder="Enter part ID"
                                     required
                                 />
@@ -113,7 +113,7 @@ const EmergencySpares: React.FC<EmergencySparesProps> = ({ projectId }) => {
                                     id="quantity"
                                     type="number"
                                     value={quantity}
-                                    onChange={(e) => setQuantity(e.target.value)}
+                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setQuantity(e.target.value)}
                                     placeholder="Enter quantity"
                                     required
                                 />
@@ -140,7 +140,7 @@ const EmergencySpares: React.FC<EmergencySparesProps> = ({ projectId }) => {
                                 <Textarea
                                     id="reason"
                                     value={reason}
-                                    onChange={(e) => setReason(e.target.value)}
+                                    onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setReason(e.target.value)}
                                     placeholder="Enter reason for emergency request"
                                     required
                                 />
