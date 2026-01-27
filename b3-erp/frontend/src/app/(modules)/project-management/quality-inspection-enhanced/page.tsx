@@ -104,7 +104,7 @@ export default function QualityInspectionEnhancedPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const { lastSaved, isSaving, hasDraft, clearDraft, restoreDraft } = useAutoSaveDraft(
-    formData,
+    formData as unknown as Record<string, unknown>,
     { key: 'quality-inspection-form', debounceMs: 3000 }
   );
 
@@ -113,7 +113,7 @@ export default function QualityInspectionEnhancedPage() {
 
   const handleRestoreDraft = () => {
     const draft = restoreDraft();
-    if (draft) setFormData(draft as FormData);
+    if (draft) setFormData(draft as unknown as FormData);
   };
 
   const formFields = useMemo(() => [
@@ -576,7 +576,7 @@ export default function QualityInspectionEnhancedPage() {
             </div>
             <div className="flex items-center gap-4">
               <AutoSaveIndicator lastSaved={lastSaved} isSaving={isSaving} />
-              <FormProgressIndicator fields={formFields} values={formData} variant="circular" size="md" />
+              <FormProgressIndicator fields={formFields} values={formData as unknown as Record<string, unknown>} variant="circular" size="md" />
             </div>
           </div>
           {hasDraft && currentStep === 0 && (

@@ -8,9 +8,28 @@ import {
   AddCorrectiveActionModal, AddPreventiveActionModal,
   UpdateActionStatusModal, VerifyRCAModal,
   CreateRCAData, RCAInvestigation as RCAInvestigationType, AddRootCauseData,
-  CorrectiveAction, PreventiveAction, UpdateActionStatusData, VerifyRCAData
+  UpdateActionStatusData, VerifyRCAData
 } from '@/components/production/downtime/DowntimeRCAModals';
 import { ExportRCAReportModal, ExportRCAConfig } from '@/components/production/downtime/DowntimeExportModals';
+
+// Local interface definitions for page-specific mock data
+interface CorrectiveAction {
+  id: string;
+  action: string;
+  assignedTo: string;
+  targetDate: string;
+  status: 'pending' | 'in-progress' | 'completed';
+  completionDate: string | null;
+}
+
+interface PreventiveAction {
+  id: string;
+  action: string;
+  assignedTo: string;
+  targetDate: string;
+  status: 'pending' | 'in-progress' | 'completed';
+  completionDate: string | null;
+}
 
 interface RCAInvestigation {
   id: string;
@@ -43,24 +62,6 @@ interface RootCause {
   contribution: number; // percentage
 }
 
-interface CorrectiveAction {
-  id: string;
-  action: string;
-  assignedTo: string;
-  targetDate: string;
-  status: 'pending' | 'in-progress' | 'completed';
-  completionDate: string | null;
-}
-
-interface PreventiveAction {
-  id: string;
-  action: string;
-  assignedTo: string;
-  targetDate: string;
-  status: 'pending' | 'in-progress' | 'completed';
-  completionDate: string | null;
-}
-
 export default function DowntimeRCAPage() {
   const router = useRouter();
   const [filterStatus, setFilterStatus] = useState<string>('all');
@@ -77,6 +78,7 @@ export default function DowntimeRCAPage() {
   const [isExportOpen, setIsExportOpen] = useState(false);
   const [selectedRCA, setSelectedRCA] = useState<RCAInvestigationType | null>(null);
   const [selectedAction, setSelectedAction] = useState<any>(null);
+  const [selectedActionType, setSelectedActionType] = useState<'corrective' | 'preventive'>('corrective');
 
   // Mock RCA investigations
   const rcaInvestigations: RCAInvestigation[] = [
@@ -518,8 +520,9 @@ export default function DowntimeRCAPage() {
     // TODO: Implement API call
   };
 
-  const handleUpdateActionStatus = (action: any) => {
+  const handleUpdateActionStatus = (action: any, actionType: 'corrective' | 'preventive') => {
     setSelectedAction(action);
+    setSelectedActionType(actionType);
     setIsViewRCAOpen(false);
     setIsUpdateActionOpen(true);
   };
@@ -546,7 +549,7 @@ export default function DowntimeRCAPage() {
     setIsExportOpen(true);
   };
 
-  const handleExportSubmit = (config: ExportRCAConfig) => {
+  const handleExportSubmit = async (config: ExportRCAConfig): Promise<void> => {
     console.log('Exporting RCA:', config);
     // TODO: Implement API call
     setIsExportOpen(false);
@@ -824,14 +827,13 @@ export default function DowntimeRCAPage() {
       <ViewRCADetailsModal
         isOpen={isViewRCAOpen}
         onClose={() => setIsViewRCAOpen(false)}
-        rca={selectedRCA}
+        investigation={selectedRCA}
         onEdit={() => alert('Edit RCA not implemented')}
         onAddRootCause={handleAddRootCause}
         onAddCorrectiveAction={handleAddCorrectiveAction}
         onAddPreventiveAction={handleAddPreventiveAction}
-        onUpdateActionStatus={handleUpdateActionStatus}
-        onVerify={handleVerifyRCA}
-        onExport={() => {
+        onVerifyClose={handleVerifyRCA}
+        onExportReport={() => {
           setIsViewRCAOpen(false);
           handleExport();
         }}
@@ -884,6 +886,7 @@ export default function DowntimeRCAPage() {
         }}
         onSubmit={handleUpdateActionStatusSubmit}
         action={selectedAction}
+        actionType={selectedActionType}
       />
 
       <VerifyRCAModal
@@ -893,13 +896,18 @@ export default function DowntimeRCAPage() {
           setIsViewRCAOpen(true);
         }}
         onSubmit={handleVerifyRCASubmit}
-        rca={selectedRCA}
+        onRequestRevisions={() => {
+          console.log('Revisions requested');
+          setIsVerifyRCAOpen(false);
+          setIsViewRCAOpen(true);
+        }}
+        investigation={selectedRCA}
       />
 
       <ExportRCAReportModal
         isOpen={isExportOpen}
         onClose={() => setIsExportOpen(false)}
-        onSubmit={handleExportSubmit}
+        onExport={handleExportSubmit}
       />
     </div>
   );

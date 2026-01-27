@@ -47,7 +47,7 @@ export default function SiteMeasurementsPage() {
       measurements: []
     };
     setRooms([...rooms, newRoom]);
-    setExpandedRooms(new Set([...expandedRooms, newRoom.id]));
+    setExpandedRooms(new Set([...Array.from(expandedRooms), newRoom.id]));
   };
 
   const handleDeleteRoom = (roomId: string) => {

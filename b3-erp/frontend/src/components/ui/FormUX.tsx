@@ -42,8 +42,14 @@ export interface MultiStepFormProps {
 }
 
 export interface FormProgressIndicatorProps {
-  fields: FormFieldConfig[];
-  values: Record<string, unknown>;
+  // Field-based API (original)
+  fields?: FormFieldConfig[];
+  values?: Record<string, unknown>;
+  // Number-based API (alternative)
+  completedFields?: number;
+  totalFields?: number;
+  label?: string;
+  // Common options
   showPercentage?: boolean;
   showFieldCount?: boolean;
   variant?: 'bar' | 'circular' | 'segments';
@@ -449,6 +455,9 @@ function StepList({
 export function FormProgressIndicator({
   fields,
   values,
+  completedFields: completedFieldsProp,
+  totalFields: totalFieldsProp,
+  label,
   showPercentage = true,
   showFieldCount = true,
   variant = 'bar',
@@ -456,24 +465,33 @@ export function FormProgressIndicator({
   className = '',
 }: FormProgressIndicatorProps) {
   const calculateProgress = useCallback(() => {
+    // Use number-based API if provided
+    if (completedFieldsProp !== undefined && totalFieldsProp !== undefined) {
+      const percentage = totalFieldsProp > 0 ? (completedFieldsProp / totalFieldsProp) * 100 : completedFieldsProp;
+      return { completed: completedFieldsProp, total: totalFieldsProp, percentage };
+    }
+
+    // Fall back to field-based API
     let completed = 0;
     let total = 0;
 
-    fields.forEach(field => {
-      if (field.required) {
-        total++;
-        const value = values[field.name];
+    if (fields && values) {
+      fields.forEach(field => {
+        if (field.required) {
+          total++;
+          const value = values[field.name];
 
-        if (field.validate) {
-          if (field.validate(value)) completed++;
-        } else if (value !== undefined && value !== null && value !== '') {
-          completed++;
+          if (field.validate) {
+            if (field.validate(value)) completed++;
+          } else if (value !== undefined && value !== null && value !== '') {
+            completed++;
+          }
         }
-      }
-    });
+      });
+    }
 
     return { completed, total, percentage: total > 0 ? (completed / total) * 100 : 0 };
-  }, [fields, values]);
+  }, [fields, values, completedFieldsProp, totalFieldsProp]);
 
   const { completed, total, percentage } = calculateProgress();
 
@@ -538,11 +556,11 @@ export function FormProgressIndicator({
     );
   }
 
-  if (variant === 'segments') {
+  if (variant === 'segments' && fields && values) {
     return (
       <div className={className}>
         <div className="flex items-center gap-1 mb-1">
-          {fields.filter(f => f.required).map((field, index) => {
+          {fields.filter(f => f.required).map((field) => {
             const value = values[field.name];
             const isComplete = field.validate
               ? field.validate(value)
@@ -727,14 +745,16 @@ export function AutoSaveIndicator({
 
 // Draft Recovery Banner
 export function DraftRecoveryBanner({
-  hasDraft,
+  hasDraft = true,
   onRestore,
   onDiscard,
+  lastSaved,
   className = '',
 }: {
-  hasDraft: boolean;
+  hasDraft?: boolean;
   onRestore: () => void;
   onDiscard: () => void;
+  lastSaved?: Date | null;
   className?: string;
 }) {
   if (!hasDraft) return null;

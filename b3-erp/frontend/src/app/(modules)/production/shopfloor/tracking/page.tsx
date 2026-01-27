@@ -317,7 +317,6 @@ export default function ShopFloorTrackingPage() {
     // Convert station data to StationDetail format
     const stationDetail: StationDetail = {
       id: station.id,
-      stationId: station.id,
       stationCode: station.stationCode,
       name: station.stationName,
       type: station.department,

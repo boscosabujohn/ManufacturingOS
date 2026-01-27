@@ -863,7 +863,7 @@ export default function QualityPlansPage() {
           setSelectedPlanForModal(null);
         }}
         onSave={handleEditSubmit}
-        plan={selectedPlanForModal}
+        plan={selectedPlanForModal as any}
       />
 
       <ApproveQualityPlanModal
@@ -873,7 +873,7 @@ export default function QualityPlansPage() {
           setSelectedPlanForModal(null);
         }}
         onApprove={handleApproveSubmit}
-        plan={selectedPlanForModal}
+        plan={selectedPlanForModal as any}
       />
 
       <ExportQualityPlansModal

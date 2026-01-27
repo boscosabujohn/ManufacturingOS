@@ -1020,7 +1020,6 @@ export default function SiteSurveyPage() {
      setSelectedSurvey(null);
     }}
     onGenerate={handleGenerateReport}
-    survey={selectedSurvey}
    />
 
    <ExportDataModal

@@ -719,11 +719,11 @@ export default function ResourcesListPage() {
    <ResourceComparisonModal
     isOpen={modals.resourceComparison}
     onClose={() => closeModal('resourceComparison')}
-    resources={resources}
+    resources={resources as any}
     onSelect={(resource) => {
-     setSelectedResource(resource);
+     setSelectedResource(resource as any);
      closeModal('resourceComparison');
-     openModal('editResource', resource);
+     openModal('editResource', resource as any);
     }}
    />
   </div>

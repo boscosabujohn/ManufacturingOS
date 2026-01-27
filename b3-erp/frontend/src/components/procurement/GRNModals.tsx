@@ -25,6 +25,7 @@ export interface GRNItem {
 }
 
 export interface GRNData {
+  id?: string
   grnNumber: string
   poNumber: string
   vendorName: string
@@ -39,6 +40,13 @@ export interface GRNData {
   qualityStatus: 'passed' | 'failed' | 'pending'
   inspector?: string
   inspectionDate?: string
+  // Alternative field names for summary view (used by page)
+  itemsCount?: number
+  orderedQty?: number
+  receivedQty?: number
+  acceptedQty?: number
+  rejectedQty?: number
+  // Original detailed field names
   totalOrderedQty: number
   totalReceivedQty: number
   totalAcceptedQty: number

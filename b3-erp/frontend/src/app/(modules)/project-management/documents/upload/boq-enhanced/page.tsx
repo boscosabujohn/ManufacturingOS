@@ -120,7 +120,7 @@ export default function UploadBOQEnhancedPage() {
 
   // Auto-save draft
   const { lastSaved, isSaving, hasDraft, clearDraft, restoreDraft } = useAutoSaveDraft(
-    formData,
+    formData as unknown as Record<string, unknown>,
     {
       key: 'boq-upload-form',
       debounceMs: 3000,
@@ -705,7 +705,7 @@ export default function UploadBOQEnhancedPage() {
               <AutoSaveIndicator lastSaved={lastSaved} isSaving={isSaving} />
               <FormProgressIndicator
                 fields={formFields}
-                values={formData}
+                values={formData as unknown as Record<string, unknown>}
                 variant="circular"
                 size="md"
               />

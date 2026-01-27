@@ -51,14 +51,17 @@ interface OperatorDetailModalProps {
 
 export interface StationDetail {
   id: string
+  stationId?: string
   name: string
   stationCode: string
   type: string
   location: string
   status: 'running' | 'idle' | 'maintenance' | 'offline' | 'error'
+  equipment?: string
   currentWorkOrder?: string
   currentOperator?: string
   currentOperation?: string
+  progress?: number
   operationProgress: number
   utilizationRate: number
   availableCapacity: number

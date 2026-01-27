@@ -639,7 +639,7 @@ export default function ProcurementGRNPage() {
           inspectionDate: selectedGRN.inspectionDate,
           qualityStatus: selectedGRN.qualityStatus,
           discrepancyNotes: selectedGRN.discrepancyNotes
-        } : undefined}
+        } as GRNData : null}
       />
 
       <EditGRNModal
@@ -662,7 +662,7 @@ export default function ProcurementGRNPage() {
           inspectionDate: selectedGRN.inspectionDate,
           qualityStatus: selectedGRN.qualityStatus,
           discrepancyNotes: selectedGRN.discrepancyNotes
-        } : undefined}
+        } as GRNData : null}
         onSubmit={(data) => {
           console.log('Updating GRN:', data)
           setIsEditModalOpen(false)
@@ -677,7 +677,7 @@ export default function ProcurementGRNPage() {
           grnNumber: selectedGRN.grnNumber,
           poNumber: selectedGRN.poNumber,
           vendorName: selectedGRN.vendorName
-        } : undefined}
+        } as GRNData : null}
         onSubmit={(data) => {
           console.log('Quality Inspection:', data)
           setIsInspectionModalOpen(false)
@@ -695,9 +695,10 @@ export default function ProcurementGRNPage() {
           receivedQty: selectedGRN.receivedQty,
           acceptedQty: selectedGRN.acceptedQty,
           rejectedQty: selectedGRN.rejectedQty
-        } : undefined}
-        onSubmit={(data) => {
-          console.log('Accept/Reject GRN:', data)
+        } as GRNData : null}
+        action="accept"
+        onSubmit={(action, data) => {
+          console.log('Accept/Reject GRN:', action, data)
           setIsAcceptRejectModalOpen(false)
         }}
       />
@@ -711,7 +712,7 @@ export default function ProcurementGRNPage() {
           poNumber: selectedGRN.poNumber,
           vendorName: selectedGRN.vendorName,
           acceptedQty: selectedGRN.acceptedQty
-        } : undefined}
+        } as GRNData : null}
         onSubmit={(data) => {
           console.log('Posting to Inventory:', data)
           setIsPostToInventoryModalOpen(false)
@@ -720,7 +721,10 @@ export default function ProcurementGRNPage() {
 
       <PrintGRNModal
         isOpen={isPrintModalOpen}
-        onClose={() => setIsPrintModalOpen(false)}
+        onClose={() => {
+          console.log('Print modal closed')
+          setIsPrintModalOpen(false)
+        }}
         grn={selectedGRN ? {
           id: selectedGRN.id,
           grnNumber: selectedGRN.grnNumber,
@@ -734,17 +738,13 @@ export default function ProcurementGRNPage() {
           rejectedQty: selectedGRN.rejectedQty,
           invoiceValue: selectedGRN.invoiceValue,
           status: selectedGRN.status
-        } : undefined}
-        onPrint={(options: any) => {
-          console.log('Printing GRN with options:', options)
-          setIsPrintModalOpen(false)
-        }}
+        } as GRNData : null}
       />
 
       <ExportGRNsModal
         isOpen={isExportModalOpen}
         onClose={() => setIsExportModalOpen(false)}
-        onExport={(options: any) => {
+        onSubmit={(options: any) => {
           console.log('Exporting GRNs with options:', options)
           setIsExportModalOpen(false)
         }}
@@ -758,7 +758,7 @@ export default function ProcurementGRNPage() {
           grnNumber: selectedGRN.grnNumber,
           poNumber: selectedGRN.poNumber,
           vendorName: selectedGRN.vendorName
-        } : undefined}
+        } as GRNData : null}
       />
     </div>
   )

@@ -51,7 +51,8 @@ import {
   ViewContractDetailsModal,
   RenewContractModal,
   AmendContractModal,
-  TerminateContractModal
+  TerminateContractModal,
+  ContractData
 } from '@/components/procurement/ContractModals'
 
 interface Contract {
@@ -848,34 +849,13 @@ export default function ContractsPage() {
       <ViewContractDetailsModal
         isOpen={isViewModalOpen}
         onClose={() => setIsViewModalOpen(false)}
-        contract={selectedContract ? {
-          contractNumber: selectedContract.contractNumber,
-          title: selectedContract.title,
-          vendorName: selectedContract.vendorName,
-          type: selectedContract.type,
-          status: selectedContract.status,
-          value: selectedContract.value,
-          currency: selectedContract.currency,
-          startDate: selectedContract.startDate,
-          endDate: selectedContract.endDate,
-          department: selectedContract.department,
-          owner: selectedContract.owner,
-          paymentTerms: selectedContract.paymentTerms,
-          compliance: selectedContract.compliance,
-          risk: selectedContract.risk
-        } : undefined}
+        contract={selectedContract as ContractData | null}
       />
 
       <RenewContractModal
         isOpen={isRenewModalOpen}
         onClose={() => setIsRenewModalOpen(false)}
-        contract={selectedContract ? {
-          contractNumber: selectedContract.contractNumber,
-          title: selectedContract.title,
-          vendorName: selectedContract.vendorName,
-          endDate: selectedContract.endDate,
-          value: selectedContract.value
-        } : undefined}
+        contract={selectedContract as ContractData | null}
         onSubmit={(data) => {
           console.log('Renewing contract:', data)
           setIsRenewModalOpen(false)
@@ -885,11 +865,7 @@ export default function ContractsPage() {
       <AmendContractModal
         isOpen={isAmendModalOpen}
         onClose={() => setIsAmendModalOpen(false)}
-        contract={selectedContract ? {
-          contractNumber: selectedContract.contractNumber,
-          title: selectedContract.title,
-          vendorName: selectedContract.vendorName
-        } : undefined}
+        contract={selectedContract as ContractData | null}
         onSubmit={(data) => {
           console.log('Amending contract:', data)
           setIsAmendModalOpen(false)
@@ -899,12 +875,7 @@ export default function ContractsPage() {
       <TerminateContractModal
         isOpen={isTerminateModalOpen}
         onClose={() => setIsTerminateModalOpen(false)}
-        contract={selectedContract ? {
-          contractNumber: selectedContract.contractNumber,
-          title: selectedContract.title,
-          vendorName: selectedContract.vendorName,
-          endDate: selectedContract.endDate
-        } : undefined}
+        contract={selectedContract as ContractData | null}
         onSubmit={(data) => {
           console.log('Terminating contract:', data)
           setIsTerminateModalOpen(false)

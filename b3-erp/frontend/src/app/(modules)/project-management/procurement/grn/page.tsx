@@ -105,7 +105,7 @@ export default function GRNEntryPage() {
                       <TableCell>
                         <Checkbox
                           checked={item.accepted}
-                          onChange={(checked) => handleAcceptChange(item.id, checked as boolean)}
+                          onChange={(e) => handleAcceptChange(item.id, e.target.checked)}
                         />
                       </TableCell>
                       <TableCell>{item.description}</TableCell>

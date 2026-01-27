@@ -29,19 +29,25 @@ function mapServiceWorkCenterToLocal(wc: ServiceWorkCenter): WorkCenter {
     'Decommissioned': 'inactive',
   };
 
+  // Derive operating hours from schedule if available
+  const workingDay = wc.schedule?.find(s => s.isWorkingDay);
+  const operatingHours = workingDay
+    ? `${workingDay.startTime} - ${workingDay.endTime}`
+    : '08:00 - 17:00';
+
   return {
     id: wc.id,
     code: wc.workCenterCode,
     name: wc.workCenterName,
-    department: wc.department || 'Production',
-    location: wc.location || 'Main Facility',
-    type: wc.workCenterType,
-    capacity: wc.capacity.maxCapacity,
-    operators: wc.capacity.currentLoad > 0 ? Math.ceil(wc.capacity.currentLoad / 10) : 4, // Estimate
+    department: wc.departmentName || 'Production',
+    location: wc.locationName || 'Main Facility',
+    type: wc.type,
+    capacity: wc.capacity.capacityPerDay,
+    operators: wc.operators?.length > 0 ? wc.operators.length : 4, // Use actual operators count or default
     efficiency: wc.capacity.efficiency,
     status: statusMap[wc.status] || 'active',
-    costPerHour: wc.costPerHour,
-    workingHours: wc.operatingHours || '08:00 - 17:00',
+    costPerHour: wc.costs.laborRate + wc.costs.overheadRate,
+    workingHours: operatingHours,
   };
 }
 

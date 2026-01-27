@@ -390,7 +390,7 @@ export default function BOMVersionsPage() {
     id: version.id,
     versionNumber: version.version,
     revisionNumber: version.revision.toString(),
-    status: version.status,
+    status: version.status as 'current' | 'previous' | 'obsolete',
     effectiveFrom: version.effectiveFrom,
     effectiveUntil: version.effectiveTo,
     changeReason: version.changeReason,

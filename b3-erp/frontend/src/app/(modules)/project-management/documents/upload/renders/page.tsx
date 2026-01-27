@@ -137,7 +137,7 @@ export default function UploadRendersPage() {
                     )}
 
                     <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all flex items-center justify-center opacity-0 group-hover:opacity-100 gap-2">
-                      <Button variant="secondary" size="sm" className="h-8 w-8 p-0 rounded-full" onClick={() => setPreviewFile(file)}>
+                      <Button variant="outline" size="sm" className="h-8 w-8 p-0 rounded-full" onClick={() => setPreviewFile(file)}>
                         <Eye className="w-4 h-4" />
                       </Button>
                       <Button variant="destructive" size="sm" className="h-8 w-8 p-0 rounded-full" onClick={() => removeFile(index)}>

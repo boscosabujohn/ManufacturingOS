@@ -212,11 +212,11 @@ export default function AddRequisitionEnhancedPage() {
   }, [form.items]);
 
   // Auto-save
-  const { lastSaved, isSaving, hasDraft, clearDraft, restoreDraft } = useAutoSaveDraft(form, {
+  const { lastSaved, isSaving, hasDraft, clearDraft, restoreDraft } = useAutoSaveDraft(form as unknown as Record<string, unknown>, {
     key: 'purchase-requisition-draft',
     debounceMs: 2000,
     onRestore: (data) => {
-      setForm(data);
+      setForm(data as unknown as RequisitionForm);
       setShowDraftBanner(false);
     },
   });

@@ -174,11 +174,11 @@ export default function AddWorkOrderEnhancedPage() {
     return Math.round((filled / total) * 100);
   }, [formData, currentStep]);
 
-  const { lastSaved, isSaving, hasDraft, clearDraft, restoreDraft } = useAutoSaveDraft(formData, {
+  const { lastSaved, isSaving, hasDraft, clearDraft, restoreDraft } = useAutoSaveDraft(formData as unknown as Record<string, unknown>, {
     key: 'work-order-draft',
     debounceMs: 2000,
     onRestore: (data) => {
-      setFormData(data);
+      setFormData(data as unknown as WorkOrderFormData);
       setShowDraftBanner(false);
     },
   });

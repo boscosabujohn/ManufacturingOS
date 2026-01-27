@@ -684,7 +684,7 @@ export default function NCRPage() {
       <ViewNCRDetailsModal
         isOpen={isViewOpen}
         onClose={handleViewClose}
-        ncr={selectedNCR}
+        ncr={selectedNCR as any}
         onEdit={(ncr) => handleEdit(ncr as any)}
         onCloseNCR={handleCloseNCR}
       />
@@ -693,7 +693,7 @@ export default function NCRPage() {
         isOpen={isEditOpen}
         onClose={() => setIsEditOpen(false)}
         onSave={handleEditSubmit}
-        ncr={selectedNCR}
+        ncr={selectedNCR as any}
       />
 
       <ExportNCRModal

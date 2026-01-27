@@ -996,7 +996,7 @@ export default function ProjectTemplatesPage() {
      setShowEditModal(false);
      setSelectedTemplate(null);
     }}
-    onSave={handleEditSave}
+    onUpdate={handleEditSave}
     template={selectedTemplate}
    />
 
