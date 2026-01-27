@@ -592,12 +592,3 @@ export function ReportTemplate({
   );
 }
 
-export type {
-  CompanyInfo,
-  PDFTemplateProps,
-  QuoteLineItem,
-  QuoteTemplateProps,
-  InvoiceTemplateProps,
-  ReportSection,
-  ReportTemplateProps,
-};

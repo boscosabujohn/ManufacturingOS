@@ -13,7 +13,6 @@ import {
   RotateCcw,
   Save,
   Plus,
-  Filter,
 } from 'lucide-react';
 
 // Types
@@ -43,7 +42,7 @@ export interface KPICategory {
 // Storage key
 const STORAGE_KEY_PREFIX = 'kpi-preferences-';
 
-interface KPIPersonalizationProps {
+export interface KPIPersonalizationProps {
   isOpen: boolean;
   onClose: () => void;
   availableKPIs: KPIDefinition[];
@@ -495,8 +494,8 @@ export function useKPIPreferences(
       if (stored) {
         try {
           return JSON.parse(stored);
-        } catch (e) {
-          console.error('Failed to parse KPI preferences:', e);
+        } catch (err) {
+          console.error('Failed to parse KPI preferences:', err);
         }
       }
     }
@@ -554,4 +553,3 @@ export function useKPIPreferences(
   };
 }
 
-export type { KPIPersonalizationProps, KPIDefinition, KPIPreference, KPICategory };

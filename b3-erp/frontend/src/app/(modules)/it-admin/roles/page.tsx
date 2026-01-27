@@ -14,12 +14,7 @@ interface Role {
   createdDate: string;
   createdBy: string;
   lastModified: string;
-  modifiedBy: string;
   status: 'active' | 'inactive';
-  permissions: string[];
-  modules: string[];
-  priority: number;
-  isDefault: boolean;
 }
 
 export default function RolesPage() {
@@ -51,12 +46,7 @@ export default function RolesPage() {
           createdDate: new Date(role.createdAt).toISOString().split('T')[0],
           createdBy: role.createdBy || 'System',
           lastModified: new Date(role.updatedAt).toISOString().split('T')[0],
-          modifiedBy: role.modifiedBy || 'System',
           status: role.status as 'active' | 'inactive',
-          permissions: role.permissions || [],
-          modules: role.modules || [],
-          priority: role.priority || 5,
-          isDefault: role.isDefault || false,
         }));
 
         setRoles(transformedRoles);

@@ -78,7 +78,9 @@ import {
   SendRFQToSuppliersModal,
   CompareBidsModal,
   AwardBidModal,
-  ExportRFQModal
+  ExportRFQModal,
+  RFQData,
+  BidResponse as ModalBidResponse
 } from '@/components/procurement/RFQModals'
 
 interface RFQ {
@@ -505,11 +507,11 @@ export default function RFQRFPManagement() {
                         fill="#8884d8"
                         dataKey="value"
                       >
-                        {categoryDistribution.map((entry, index) => (
+                        {categoryDistribution.map((_, index) => (
                           <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                         ))}
                       </Pie>
-                      <Tooltip formatter={(value: number) => `$${(value / 1000000).toFixed(2)}M`} />
+                      <Tooltip formatter={(value) => `$${(Number(value) / 1000000).toFixed(2)}M`} />
                     </RePieChart>
                   </ResponsiveContainer>
                 </div>
@@ -669,7 +671,7 @@ export default function RFQRFPManagement() {
                         <td className="px-4 py-3">
                           <div className="flex items-center gap-2">
                             <div className="flex -space-x-2">
-                              {[...Array(Math.min(3, rfq.responsesReceived))].map((_, i) => (
+                              {Array.from({ length: Math.min(3, rfq.responsesReceived) }).map((_, i) => (
                                 <div key={i} className="w-6 h-6 bg-gray-300 rounded-full border-2 border-white"></div>
                               ))}
                               {rfq.responsesReceived > 3 && (
@@ -929,7 +931,7 @@ export default function RFQRFPManagement() {
                         <span className="text-sm text-gray-600">{item}</span>
                         <div className="flex items-center gap-2">
                           <div className="flex gap-1">
-                            {[...Array(5)].map((_, i) => (
+                            {Array.from({ length: 5 }).map((_, i) => (
                               <Star key={i} className={`w-4 h-4 ${i < 4 ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'}`} />
                             ))}
                           </div>
@@ -948,7 +950,7 @@ export default function RFQRFPManagement() {
                         <span className="text-sm text-gray-600">{item}</span>
                         <div className="flex items-center gap-2">
                           <div className="flex gap-1">
-                            {[...Array(5)].map((_, i) => (
+                            {Array.from({ length: 5 }).map((_, i) => (
                               <Star key={i} className={`w-4 h-4 ${i < 4 ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'}`} />
                             ))}
                           </div>
@@ -1136,30 +1138,13 @@ export default function RFQRFPManagement() {
       <ViewRFQDetailsModal
         isOpen={isViewModalOpen}
         onClose={() => setIsViewModalOpen(false)}
-        rfq={selectedRFQ ? {
-          id: selectedRFQ.id,
-          title: selectedRFQ.title,
-          type: selectedRFQ.type,
-          status: selectedRFQ.status,
-          category: selectedRFQ.category,
-          estimatedValue: selectedRFQ.estimatedValue,
-          responseDeadline: selectedRFQ.responseDeadline,
-          publishDate: selectedRFQ.publishDate,
-          bidders: selectedRFQ.bidders,
-          responsesReceived: selectedRFQ.responsesReceived,
-          owner: selectedRFQ.owner,
-          priority: selectedRFQ.priority
-        } : undefined}
+        rfq={selectedRFQ as RFQData | null}
       />
 
       <SendRFQToSuppliersModal
         isOpen={isSendToSuppliersModalOpen}
         onClose={() => setIsSendToSuppliersModalOpen(false)}
-        rfq={selectedRFQ ? {
-          id: selectedRFQ.id,
-          title: selectedRFQ.title,
-          type: selectedRFQ.type
-        } : undefined}
+        rfq={selectedRFQ as RFQData | null}
         onSubmit={(data) => {
           console.log('Sending RFQ to suppliers:', data)
           setIsSendToSuppliersModalOpen(false)
@@ -1169,22 +1154,15 @@ export default function RFQRFPManagement() {
       <CompareBidsModal
         isOpen={isCompareBidsModalOpen}
         onClose={() => setIsCompareBidsModalOpen(false)}
-        rfq={selectedRFQ ? {
-          id: selectedRFQ.id,
-          title: selectedRFQ.title
-        } : undefined}
+        rfq={selectedRFQ as RFQData | null}
+        bids={[]}
       />
 
       <AwardBidModal
         isOpen={isAwardBidModalOpen}
         onClose={() => setIsAwardBidModalOpen(false)}
-        bid={selectedBid ? {
-          id: selectedBid.id,
-          rfqId: selectedBid.rfqId,
-          supplier: selectedBid.supplier,
-          totalAmount: selectedBid.totalAmount,
-          score: selectedBid.score
-        } : undefined}
+        bid={selectedBid as ModalBidResponse | null}
+        rfq={selectedRFQ as RFQData | null}
         onSubmit={(data) => {
           console.log('Awarding bid:', data)
           setIsAwardBidModalOpen(false)
@@ -1194,7 +1172,7 @@ export default function RFQRFPManagement() {
       <ExportRFQModal
         isOpen={isExportModalOpen}
         onClose={() => setIsExportModalOpen(false)}
-        onExport={(options) => {
+        onSubmit={(options: Record<string, unknown>) => {
           console.log('Exporting RFQ data:', options)
           setIsExportModalOpen(false)
         }}

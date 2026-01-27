@@ -879,7 +879,7 @@ class PurchaseOrderService {
         ...MOCK_PURCHASE_ORDERS[index],
         ...data,
         updatedAt: new Date().toISOString()
-      };
+      } as PurchaseOrder;
       return MOCK_PURCHASE_ORDERS[index];
     }
 

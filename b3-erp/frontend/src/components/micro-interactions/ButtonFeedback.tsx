@@ -467,11 +467,3 @@ export function Pressable({
   );
 }
 
-export type {
-  ButtonFeedbackVariant,
-  ButtonFeedbackProps,
-  InteractiveButtonState,
-  InteractiveButtonProps,
-  IconButtonFeedbackProps,
-  PressableProps,
-};

@@ -33,7 +33,7 @@ export interface BulkAction {
   onClick: () => void;
 }
 
-export interface FilterOption {
+interface FilterOption {
   id: string;
   label: string;
   type: 'select' | 'text' | 'date' | 'number';

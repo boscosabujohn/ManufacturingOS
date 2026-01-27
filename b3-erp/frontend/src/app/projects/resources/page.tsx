@@ -21,7 +21,7 @@ import {
 import { AssignToProjectModal } from "@/components/project-management/ResourceModals";
 import { AdvancedFilterModal } from "@/components/project-management/ProjectListModals";
 import { ConfirmDialog } from "@/components/modals/ConfirmDialog";
-import { useToast } from "@/components/ui";
+import { useToast } from "@/hooks/use-toast";
 import {
   AllocateResourceModal,
   BulkAllocationModal,
@@ -45,7 +45,7 @@ const TOP_OVER: Res[] = [
 ];
 
 export default function ResourceAllocationPage() {
-  const { toast } = useToast?.() || { toast: (args: any) => console.log(args) };
+  const { toast } = useToast();
   const [searchTerm, setSearchTerm] = useState("");
   const list = useMemo(() => TOP_OVER, []);
 

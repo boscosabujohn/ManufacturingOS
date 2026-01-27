@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Textarea } from '@/components/ui/textarea';
+import { Textarea } from '@/components/ui/Textarea';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { CheckCircle, XCircle, RotateCcw, AlertTriangle, MessageSquare } from 'lucide-react';
 
@@ -25,7 +25,7 @@ interface InContextApprovalProps {
 }
 
 export default function InContextApproval({
-    referenceId,
+    referenceId: _referenceId,
     approvalId,
     title,
     description,
@@ -194,7 +194,7 @@ export default function InContextApproval({
                         </label>
                         <Textarea
                             value={comment}
-                            onChange={(e) => setComment(e.target.value)}
+                            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setComment(e.target.value)}
                             placeholder="Please provide a reason..."
                             rows={3}
                             className="mb-3"

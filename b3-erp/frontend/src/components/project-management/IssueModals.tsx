@@ -639,7 +639,7 @@ export function UpdateStatusModal({ isOpen, onClose, issue, onSubmit }: UpdateSt
             <select
               required
               value={formData.status}
-              onChange={(e) => setFormData({ ...formData, status: e.target.value })}
+              onChange={(e) => setFormData({ ...formData, status: e.target.value as IssueRisk['status'] })}
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
             >
               <option value="Open">Open</option>
@@ -1703,7 +1703,8 @@ export function IssueReportModal({ isOpen, onClose, onSubmit }: IssueReportModal
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit(formData);
+    const { reportType, format, ...filters } = formData;
+    onSubmit({ reportType, format, filters });
     onClose();
   };
 

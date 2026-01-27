@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { ArrowLeft, FileText, CheckCircle, Share2, AlertCircle, FileCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Checkbox } from '@/components/ui/checkbox';
+import { Checkbox } from '@/components/ui/Checkbox';
 import { useToast } from '@/hooks/use-toast';
 
 interface ProjectDocument {
@@ -97,7 +97,7 @@ export default function ShareDocumentsPage() {
                     <Checkbox
                       id={doc.id}
                       checked={selectedDocs.includes(doc.id)}
-                      onCheckedChange={() => handleToggle(doc.id)}
+                      onChange={() => handleToggle(doc.id)}
                     />
                     <div className="p-2 bg-blue-50 rounded-lg">
                       <FileText className="w-5 h-5 text-blue-600" />

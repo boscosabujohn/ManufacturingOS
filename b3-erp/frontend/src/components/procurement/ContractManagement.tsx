@@ -50,7 +50,9 @@ import {
   Key,
   Lock,
   Unlock,
-  FileEdit
+  FileEdit,
+  Zap,
+  Target
 } from 'lucide-react'
 import {
   LineChart,

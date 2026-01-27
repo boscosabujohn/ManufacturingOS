@@ -63,7 +63,7 @@ export default function EnhancedFinanceDashboard() {
     setModals({ ...modals, [modalName]: false });
   };
 
-  const handleModalAction = (action: string, data: any) => {
+  const handleModalAction = (action: string, data: unknown) => {
     console.log(`Action: ${action}`, data);
     // Close all modals after action
     Object.keys(modals).forEach(key => {
@@ -291,7 +291,7 @@ export default function EnhancedFinanceDashboard() {
             <h1 className="text-3xl font-bold text-gray-900 mb-2">Finance Dashboard</h1>
             <p className="text-gray-600">
               Last updated: {lastUpdated.toLocaleTimeString()} |
-              Period: {selectedPeriod.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())}
+              Period: {selectedPeriod.replace('-', ' ').replace(/\b\w/g, (l: string) => l.toUpperCase())}
             </p>
           </div>
           <div className="flex items-center space-x-3">
@@ -300,7 +300,7 @@ export default function EnhancedFinanceDashboard() {
               className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-lg bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-amber-500"
             >
               <Calendar className="h-4 w-4 mr-2" />
-              {selectedPeriod.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())}
+              {selectedPeriod.replace('-', ' ').replace(/\b\w/g, (l: string) => l.toUpperCase())}
             </button>
             <button
               onClick={() => openModal('filterDashboard')}
@@ -824,32 +824,32 @@ export default function EnhancedFinanceDashboard() {
       <QuickJournalEntryModal
         isOpen={modals.quickJournal}
         onClose={() => closeModal('quickJournal')}
-        onCreate={(data) => handleModalAction('createJournal', data)}
+        onCreate={(data: unknown) => handleModalAction('createJournal', data)}
       />
       <QuickPaymentModal
         isOpen={modals.quickPayment}
         onClose={() => closeModal('quickPayment')}
-        onCreate={(data) => handleModalAction('createPayment', data)}
+        onCreate={(data: unknown) => handleModalAction('createPayment', data)}
       />
       <QuickReceiptModal
         isOpen={modals.quickReceipt}
         onClose={() => closeModal('quickReceipt')}
-        onCreate={(data) => handleModalAction('createReceipt', data)}
+        onCreate={(data: unknown) => handleModalAction('createReceipt', data)}
       />
       <FilterDashboardModal
         isOpen={modals.filterDashboard}
         onClose={() => closeModal('filterDashboard')}
-        onApply={(filters) => handleModalAction('applyFilters', filters)}
+        onApply={(filters: unknown) => handleModalAction('applyFilters', filters)}
       />
       <CustomizeWidgetsModal
         isOpen={modals.customizeWidgets}
         onClose={() => closeModal('customizeWidgets')}
-        onSave={(widgets) => handleModalAction('saveWidgets', widgets)}
+        onSave={(widgets: unknown) => handleModalAction('saveWidgets', widgets)}
       />
       <ExportDashboardModal
         isOpen={modals.exportDashboard}
         onClose={() => closeModal('exportDashboard')}
-        onExport={(settings) => handleModalAction('export', settings)}
+        onExport={(settings: unknown) => handleModalAction('export', settings)}
       />
       <ViewAlertsModal
         isOpen={modals.viewAlerts}
@@ -866,7 +866,7 @@ export default function EnhancedFinanceDashboard() {
       <PeriodSelectorModal
         isOpen={modals.periodSelector}
         onClose={() => closeModal('periodSelector')}
-        onSelect={(period) => {
+        onSelect={(period: { type: string }) => {
           setSelectedPeriod(period.type === 'custom' ? 'custom' : period.type);
           handleModalAction('selectPeriod', period);
         }}

@@ -13,7 +13,9 @@ import {
     ArrowUpRight,
     Target,
     BarChart3,
-    Calendar
+    Calendar,
+    AlertTriangle,
+    DollarSign
 } from 'lucide-react';
 
 export default function CustomerGrowthReport() {

@@ -752,7 +752,7 @@ class ShopFloorService {
         ...MOCK_PRODUCTION_ENTRIES[index],
         ...data,
         updatedAt: new Date().toISOString(),
-      };
+      } as ProductionEntry;
       return MOCK_PRODUCTION_ENTRIES[index];
     }
 

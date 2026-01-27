@@ -23,9 +23,9 @@ import {
 import { useNotifications, NotificationCategory, NotificationPreferences } from '@/context/NotificationContext';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
+import { Input } from '@/components/ui/Input';
 import { Label } from '@/components/ui/label';
-import { Switch } from '@/components/ui/switch';
+import { Checkbox } from '@/components/ui/Checkbox';
 import { useToast } from '@/hooks/use-toast';
 
 // ============================================================================
@@ -208,9 +208,9 @@ export default function NotificationPreferencesPage() {
                 <p className="text-sm text-gray-500">Receive notifications across all channels</p>
               </div>
             </div>
-            <Switch
+            <Checkbox
               checked={localPrefs.enabled}
-              onCheckedChange={(checked) => handleChange('enabled', checked)}
+              onChange={(checked) => handleChange('enabled', checked)}
             />
           </div>
         </CardContent>
@@ -238,9 +238,9 @@ export default function NotificationPreferencesPage() {
               isPushEnabled ? (
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-5 h-5 text-green-600" />
-                  <Switch
+                  <Checkbox
                     checked={localPrefs.pushEnabled}
-                    onCheckedChange={(checked) => handleChange('pushEnabled', checked)}
+                    onChange={(checked) => handleChange('pushEnabled', checked)}
                   />
                 </div>
               ) : (
@@ -268,9 +268,9 @@ export default function NotificationPreferencesPage() {
                 <p className="text-sm text-gray-500">Play sound for new notifications</p>
               </div>
             </div>
-            <Switch
+            <Checkbox
               checked={localPrefs.soundEnabled}
-              onCheckedChange={(checked) => handleChange('soundEnabled', checked)}
+              onChange={(checked) => handleChange('soundEnabled', checked)}
             />
           </div>
         </CardContent>
@@ -291,9 +291,9 @@ export default function NotificationPreferencesPage() {
               <h4 className="font-medium text-gray-900">Enable Quiet Hours</h4>
               <p className="text-sm text-gray-500">Silence non-critical notifications</p>
             </div>
-            <Switch
+            <Checkbox
               checked={localPrefs.quietHours.enabled}
-              onCheckedChange={(checked) => handleChange('quietHours.enabled', checked)}
+              onChange={(checked) => handleChange('quietHours.enabled', checked)}
             />
           </div>
 
@@ -345,9 +345,9 @@ export default function NotificationPreferencesPage() {
                         <p className="text-sm text-gray-500">{config.description}</p>
                       </div>
                     </div>
-                    <Switch
+                    <Checkbox
                       checked={catPrefs.enabled}
-                      onCheckedChange={(checked) => handleChange(`categories.${category}.enabled`, checked)}
+                      onChange={(checked) => handleChange(`categories.${category}.enabled`, checked)}
                     />
                   </div>
 
@@ -355,17 +355,17 @@ export default function NotificationPreferencesPage() {
                     <div className="grid grid-cols-2 gap-4 pt-4 border-t ml-13">
                       <div className="flex items-center justify-between">
                         <span className="text-sm text-gray-600">Push notifications</span>
-                        <Switch
+                        <Checkbox
                           checked={catPrefs.push}
-                          onCheckedChange={(checked) => handleChange(`categories.${category}.push`, checked)}
+                          onChange={(checked) => handleChange(`categories.${category}.push`, checked)}
                           disabled={!localPrefs.pushEnabled}
                         />
                       </div>
                       <div className="flex items-center justify-between">
                         <span className="text-sm text-gray-600">Sound</span>
-                        <Switch
+                        <Checkbox
                           checked={catPrefs.sound}
-                          onCheckedChange={(checked) => handleChange(`categories.${category}.sound`, checked)}
+                          onChange={(checked) => handleChange(`categories.${category}.sound`, checked)}
                           disabled={!localPrefs.soundEnabled}
                         />
                       </div>
@@ -392,9 +392,9 @@ export default function NotificationPreferencesPage() {
                   <h4 className="font-medium text-gray-900">{module.label}</h4>
                   <p className="text-sm text-gray-500">{module.description}</p>
                 </div>
-                <Switch
+                <Checkbox
                   checked={localPrefs.modules[module.id] !== false}
-                  onCheckedChange={(checked) => handleChange(`modules.${module.id}`, checked)}
+                  onChange={(checked) => handleChange(`modules.${module.id}`, checked)}
                 />
               </div>
             ))}

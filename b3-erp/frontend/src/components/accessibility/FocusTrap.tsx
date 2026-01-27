@@ -340,7 +340,7 @@ export function AccessibleModal({
 // Focus Management Context
 // ============================================================================
 
-interface FocusContextValue {
+export interface FocusContextValue {
   pushFocusTrap: (id: string) => void;
   popFocusTrap: (id: string) => void;
   isTopFocusTrap: (id: string) => boolean;
@@ -481,9 +481,3 @@ export function useRovingTabIndex(
   };
 }
 
-export type {
-  FocusTrapProps,
-  AccessibleModalProps,
-  FocusContextValue,
-  UseRovingTabIndexOptions,
-};

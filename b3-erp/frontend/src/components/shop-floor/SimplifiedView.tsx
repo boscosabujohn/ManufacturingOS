@@ -679,17 +679,3 @@ export function MachineStatus({
   );
 }
 
-export type {
-  OperationStatus,
-  QualityStatus,
-  StatusIndicatorProps,
-  WorkOrderCardProps,
-  ShopFloorKPIProps,
-  OperationStep,
-  OperationStepsProps,
-  QualityCheckItem,
-  QualityCheckListProps,
-  InfoRowProps,
-  ShopFloorAlertProps,
-  MachineStatusProps,
-};

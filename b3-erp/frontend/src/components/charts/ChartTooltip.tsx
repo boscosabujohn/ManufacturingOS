@@ -202,7 +202,7 @@ export function ChartTooltip({
 }
 
 // Crosshair tooltip for line/area charts
-interface CrosshairTooltipProps {
+export interface CrosshairTooltipProps {
   visible: boolean;
   position: TooltipPosition;
   xValue: string | number | Date;
@@ -212,7 +212,7 @@ interface CrosshairTooltipProps {
     color: string;
     active?: boolean;
   }[];
-  formatXValue?: (value: any) => string;
+  formatXValue?: (value: string | number | Date) => string;
   formatYValue?: (value: number) => string;
 }
 
@@ -249,7 +249,7 @@ export function CrosshairTooltip({
 }
 
 // Status tooltip with indicator
-interface StatusTooltipProps {
+export interface StatusTooltipProps {
   visible: boolean;
   position: TooltipPosition;
   status: 'success' | 'warning' | 'error' | 'info';
@@ -308,18 +308,18 @@ export function StatusTooltip({
 }
 
 // Hook for managing tooltip state
-export function useChartTooltip() {
+export function useChartTooltip<T = unknown>() {
   const [state, setState] = useState<{
     visible: boolean;
     position: TooltipPosition;
-    data: any;
+    data: T | null;
   }>({
     visible: false,
     position: { x: 0, y: 0 },
     data: null,
   });
 
-  const show = useCallback((position: TooltipPosition, data: any) => {
+  const show = useCallback((position: TooltipPosition, data: T) => {
     setState({ visible: true, position, data });
   }, []);
 
@@ -340,7 +340,7 @@ export function useChartTooltip() {
 }
 
 // Tooltip trigger wrapper
-interface TooltipTriggerProps {
+export interface TooltipTriggerProps {
   children: React.ReactNode;
   content: React.ReactNode;
   delay?: number;
@@ -401,10 +401,4 @@ export function TooltipTrigger({ children, content, delay = 0 }: TooltipTriggerP
   );
 }
 
-export type {
-  TooltipDataItem,
-  TooltipPosition,
-  CrosshairTooltipProps,
-  StatusTooltipProps,
-  TooltipTriggerProps,
-};
+// TooltipDataItem and TooltipPosition are already exported at their definitions

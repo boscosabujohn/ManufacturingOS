@@ -5,7 +5,8 @@ import {
   Package, TrendingUp, DollarSign, Users, BarChart3, Plus,
   Edit, Trash2, Eye, Settings, Download, RefreshCw, AlertCircle,
   CheckCircle, Target, Activity, PieChart, Layers, Tag, Shield,
-  FileText, Share2, Filter, Search, ArrowUpRight, ArrowDownRight
+  FileText, Share2, Filter, Search, ArrowUpRight, ArrowDownRight,
+  AlertTriangle, Award
 } from 'lucide-react';
 import {
   LineChart, Line, BarChart, Bar, PieChart as RePieChart, Pie,

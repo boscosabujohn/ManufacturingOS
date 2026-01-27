@@ -529,14 +529,3 @@ export function ImageGallery({
   );
 }
 
-export type {
-  ImageFit,
-  ImagePosition,
-  OptimizedImageProps,
-  ImageSource,
-  ResponsiveImageProps,
-  AvatarImageProps,
-  BackgroundImageProps,
-  GalleryImage,
-  ImageGalleryProps,
-};

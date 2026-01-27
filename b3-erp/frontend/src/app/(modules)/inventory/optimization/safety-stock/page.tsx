@@ -6,6 +6,7 @@ import {
     ArrowLeft,
     ShieldCheck,
     TrendingUp,
+    TrendingDown,
     DollarSign,
     AlertTriangle,
     RefreshCw,

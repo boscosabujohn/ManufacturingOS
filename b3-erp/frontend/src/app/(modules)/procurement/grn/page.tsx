@@ -199,7 +199,7 @@ export default function ProcurementGRNPage() {
 
   // Modal handlers
   const handleView = (id: string) => {
-    const grn = mockGRNs.find(g => g.id === id)
+    const grn = grns.find(g => g.id === id)
     if (grn) {
       setSelectedGRN(grn)
       setIsViewModalOpen(true)
@@ -207,7 +207,7 @@ export default function ProcurementGRNPage() {
   }
 
   const handleEdit = (id: string) => {
-    const grn = mockGRNs.find(g => g.id === id)
+    const grn = grns.find(g => g.id === id)
     if (grn) {
       setSelectedGRN(grn)
       setIsEditModalOpen(true)
@@ -215,7 +215,7 @@ export default function ProcurementGRNPage() {
   }
 
   const handleInspection = (id: string) => {
-    const grn = mockGRNs.find(g => g.id === id)
+    const grn = grns.find(g => g.id === id)
     if (grn) {
       setSelectedGRN(grn)
       setIsInspectionModalOpen(true)
@@ -223,7 +223,7 @@ export default function ProcurementGRNPage() {
   }
 
   const handleAcceptReject = (id: string) => {
-    const grn = mockGRNs.find(g => g.id === id)
+    const grn = grns.find(g => g.id === id)
     if (grn) {
       setSelectedGRN(grn)
       setIsAcceptRejectModalOpen(true)
@@ -231,7 +231,7 @@ export default function ProcurementGRNPage() {
   }
 
   const handlePostToInventory = (id: string) => {
-    const grn = mockGRNs.find(g => g.id === id)
+    const grn = grns.find(g => g.id === id)
     if (grn) {
       setSelectedGRN(grn)
       setIsPostToInventoryModalOpen(true)
@@ -239,7 +239,7 @@ export default function ProcurementGRNPage() {
   }
 
   const handlePrint = (id: string) => {
-    const grn = mockGRNs.find(g => g.id === id)
+    const grn = grns.find(g => g.id === id)
     if (grn) {
       setSelectedGRN(grn)
       setIsPrintModalOpen(true)
@@ -247,7 +247,7 @@ export default function ProcurementGRNPage() {
   }
 
   const handleHistory = (id: string) => {
-    const grn = mockGRNs.find(g => g.id === id)
+    const grn = grns.find(g => g.id === id)
     if (grn) {
       setSelectedGRN(grn)
       setIsHistoryModalOpen(true)
@@ -735,7 +735,7 @@ export default function ProcurementGRNPage() {
           invoiceValue: selectedGRN.invoiceValue,
           status: selectedGRN.status
         } : undefined}
-        onPrint={(options) => {
+        onPrint={(options: any) => {
           console.log('Printing GRN with options:', options)
           setIsPrintModalOpen(false)
         }}
@@ -744,7 +744,7 @@ export default function ProcurementGRNPage() {
       <ExportGRNsModal
         isOpen={isExportModalOpen}
         onClose={() => setIsExportModalOpen(false)}
-        onExport={(options) => {
+        onExport={(options: any) => {
           console.log('Exporting GRNs with options:', options)
           setIsExportModalOpen(false)
         }}

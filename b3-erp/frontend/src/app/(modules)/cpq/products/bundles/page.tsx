@@ -146,8 +146,8 @@ export default function CPQProductsBundlesPage() {
     } else {
       // Create new bundle
       const newBundle: Bundle = {
-        id: `BUN-${String(bundles.length + 1).padStart(3, '0')}`,
-        ...bundleData as Bundle
+        ...bundleData as Bundle,
+        id: `BUN-${String(bundles.length + 1).padStart(3, '0')}`
       }
       setBundles([...bundles, newBundle])
     }

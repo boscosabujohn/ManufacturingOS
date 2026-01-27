@@ -28,7 +28,7 @@ import { SkillService, MOCK_SKILLS, MOCK_SKILL_CATEGORIES } from '@/services/ski
 import { Skill, SkillCategory, SkillStatus, SkillType } from '@/types/skill';
 
 const getIconComponent = (iconName?: string) => {
-  const icons: Record<string, React.ComponentType<{ className?: string }>> = {
+  const icons: Record<string, React.ComponentType<any>> = {
     Briefcase,
     Brain,
     Code,

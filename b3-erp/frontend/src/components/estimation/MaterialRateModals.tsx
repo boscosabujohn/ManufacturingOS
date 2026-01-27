@@ -463,7 +463,7 @@ export function EditMaterialRateModal({ isOpen, onClose, onSave, rate }: EditRat
               <label className="block text-sm font-medium text-gray-700 mb-2">Status</label>
               <select
                 value={formData.status}
-                onChange={(e) => setFormData({ ...formData, status: e.target.value })}
+                onChange={(e) => setFormData({ ...formData, status: e.target.value as 'active' | 'inactive' | 'discontinued' })}
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 <option value="active">Active</option>

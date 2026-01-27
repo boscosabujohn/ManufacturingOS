@@ -4,10 +4,10 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import { Input } from '@/components/ui/Input';
 import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Textarea } from '@/components/ui/Textarea';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/Select';
 import { AlertTriangle, ArrowLeft, Save } from 'lucide-react';
 import { useToast } from '@/components/ui/Toast';
 
@@ -101,7 +101,7 @@ export default function CreateNCRPage() {
                                 <Label htmlFor="severity">Severity *</Label>
                                 <Select
                                     value={formData.severity}
-                                    onValueChange={(value) => handleSelectChange('severity', value)}
+                                    onValueChange={(value: string) => handleSelectChange('severity', value)}
                                     required
                                 >
                                     <SelectTrigger>
@@ -119,7 +119,7 @@ export default function CreateNCRPage() {
                                 <Label htmlFor="source">Source *</Label>
                                 <Select
                                     value={formData.source}
-                                    onValueChange={(value) => handleSelectChange('source', value)}
+                                    onValueChange={(value: string) => handleSelectChange('source', value)}
                                     required
                                 >
                                     <SelectTrigger>

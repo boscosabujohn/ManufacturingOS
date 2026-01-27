@@ -711,15 +711,3 @@ export function ToastError({
   );
 }
 
-export type {
-  ErrorVariant,
-  ErrorShakeProps,
-  ErrorInputProps,
-  ErrorMessageProps,
-  FormFieldErrorProps,
-  ErrorBoundaryShakeProps,
-  UseErrorShakeOptions,
-  ValidationError,
-  ValidationErrorListProps,
-  ToastErrorProps,
-};

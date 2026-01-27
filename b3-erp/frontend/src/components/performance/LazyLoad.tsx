@@ -436,12 +436,3 @@ export function PageTransition({
   );
 }
 
-export type {
-  LazyLoadOptions,
-  LazyLoadWrapperProps,
-  RouteConfig,
-  PreloadLinkProps,
-  UseDynamicImportResult,
-  LazyOnViewProps,
-  PageTransitionProps,
-};

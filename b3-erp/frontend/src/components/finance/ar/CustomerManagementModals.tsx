@@ -3,6 +3,30 @@
 import React, { useState } from 'react';
 import { X, UserPlus, Eye, Edit2, Trash2, CreditCard, Mail } from 'lucide-react';
 
+// Customer interface for modal props
+interface Customer {
+  id: string;
+  code: string;
+  name: string;
+  type: string;
+  contactPerson: string;
+  email: string;
+  phone: string;
+  billingAddress: string;
+  shippingAddress: string;
+  gstNumber?: string;
+  panNumber?: string;
+  creditLimit: number;
+  creditUsed: number;
+  paymentTerms: string;
+  status: string;
+  createdDate: string;
+  lastInvoiceDate?: string;
+  totalInvoices: number;
+  totalRevenue: number;
+  averagePaymentDays: number;
+}
+
 // ==================== CREATE CUSTOMER MODAL ====================
 interface CreateCustomerModalProps {
   isOpen: boolean;
@@ -17,7 +41,7 @@ export const CreateCustomerModal: React.FC<CreateCustomerModalProps> = ({ isOpen
   const [phone, setPhone] = useState('');
   const [billingAddress, setBillingAddress] = useState('');
   const [shippingAddress, setShippingAddress] = useState('');
-  const [sameAsbilling, setSameAsBinding] = useState(true);
+  const [sameAsBilling, setSameAsBilling] = useState(true);
   const [gstNumber, setGstNumber] = useState('');
   const [panNumber, setPanNumber] = useState('');
   const [creditLimit, setCreditLimit] = useState('');
@@ -36,7 +60,7 @@ export const CreateCustomerModal: React.FC<CreateCustomerModalProps> = ({ isOpen
       email,
       phone,
       billingAddress,
-      shippingAddress: sameAsBinding ? billingAddress : shippingAddress,
+      shippingAddress: sameAsBilling ? billingAddress : shippingAddress,
       gstNumber,
       panNumber,
       creditLimit,
@@ -183,15 +207,15 @@ export const CreateCustomerModal: React.FC<CreateCustomerModalProps> = ({ isOpen
                 <label className="flex items-center gap-2 mb-2">
                   <input
                     type="checkbox"
-                    checked={sameAsBinding}
-                    onChange={(e) => setSameAsBinding(e.target.checked)}
+                    checked={sameAsBilling}
+                    onChange={(e) => setSameAsBilling(e.target.checked)}
                     className="w-4 h-4 text-blue-600 rounded focus:ring-blue-500"
                   />
                   <span className="text-sm text-gray-700">Shipping address same as billing address</span>
                 </label>
               </div>
 
-              {!sameAsBinding && (
+              {!sameAsBilling && (
                 <div className="col-span-2">
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Shipping Address <span className="text-red-500">*</span>
@@ -202,7 +226,7 @@ export const CreateCustomerModal: React.FC<CreateCustomerModalProps> = ({ isOpen
                     rows={3}
                     placeholder="Street, City, State, PIN Code"
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    required={!sameAsBinding}
+                    required={!sameAsBilling}
                   />
                 </div>
               )}
@@ -319,10 +343,10 @@ export const CreateCustomerModal: React.FC<CreateCustomerModalProps> = ({ isOpen
 interface ViewCustomerModalProps {
   isOpen: boolean;
   onClose: () => void;
-  customer?: any;
+  customer?: Customer;
 }
 
-export const ViewCustomerModal: React.FC<ViewCustomerModalProps> = ({ isOpen, onClose, customer }) => {
+export const ViewCustomerModal: React.FC<ViewCustomerModalProps> = ({ isOpen, onClose, customer: _customer }) => {
   if (!isOpen) return null;
 
   const customerData = {
@@ -538,10 +562,10 @@ export const ViewCustomerModal: React.FC<ViewCustomerModalProps> = ({ isOpen, on
 interface EditCustomerModalProps {
   isOpen: boolean;
   onClose: () => void;
-  customer?: any;
+  customer?: Customer;
 }
 
-export const EditCustomerModal: React.FC<EditCustomerModalProps> = ({ isOpen, onClose, customer }) => {
+export const EditCustomerModal: React.FC<EditCustomerModalProps> = ({ isOpen, onClose, customer: _customer }) => {
   const [customerName, setCustomerName] = useState('ABC Corporation');
   const [contactPerson, setContactPerson] = useState('Rajesh Kumar');
   const [email, setEmail] = useState('rajesh@abccorp.com');
@@ -759,10 +783,10 @@ export const EditCustomerModal: React.FC<EditCustomerModalProps> = ({ isOpen, on
 interface DeleteCustomerModalProps {
   isOpen: boolean;
   onClose: () => void;
-  customer?: any;
+  customer?: Customer;
 }
 
-export const DeleteCustomerModal: React.FC<DeleteCustomerModalProps> = ({ isOpen, onClose, customer }) => {
+export const DeleteCustomerModal: React.FC<DeleteCustomerModalProps> = ({ isOpen, onClose, customer: _customer }) => {
   const [confirmText, setConfirmText] = useState('');
   const [archiveInstead, setArchiveInstead] = useState(false);
 
@@ -872,10 +896,10 @@ export const DeleteCustomerModal: React.FC<DeleteCustomerModalProps> = ({ isOpen
 interface CreditLimitChangeModalProps {
   isOpen: boolean;
   onClose: () => void;
-  customer?: any;
+  customer?: Customer;
 }
 
-export const CreditLimitChangeModal: React.FC<CreditLimitChangeModalProps> = ({ isOpen, onClose, customer }) => {
+export const CreditLimitChangeModal: React.FC<CreditLimitChangeModalProps> = ({ isOpen, onClose, customer: _customer }) => {
   const [currentLimit, setCurrentLimit] = useState(500000);
   const [newLimit, setNewLimit] = useState('500000');
   const [reason, setReason] = useState('');
@@ -1032,10 +1056,10 @@ export const CreditLimitChangeModal: React.FC<CreditLimitChangeModalProps> = ({ 
 interface SendCustomerStatementModalProps {
   isOpen: boolean;
   onClose: () => void;
-  customer?: any;
+  customer?: Customer;
 }
 
-export const SendCustomerStatementModal: React.FC<SendCustomerStatementModalProps> = ({ isOpen, onClose, customer }) => {
+export const SendCustomerStatementModal: React.FC<SendCustomerStatementModalProps> = ({ isOpen, onClose, customer: _customer }) => {
   const [statementPeriod, setStatementPeriod] = useState('current_month');
   const [startDate, setStartDate] = useState('2025-01-01');
   const [endDate, setEndDate] = useState('2025-01-31');

@@ -839,7 +839,7 @@ class BOMService {
         ...MOCK_BOMS[index],
         ...data,
         updatedAt: new Date().toISOString(),
-      };
+      } as BOM;
       return MOCK_BOMS[index];
     }
 

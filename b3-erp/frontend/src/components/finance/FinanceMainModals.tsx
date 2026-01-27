@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { X, Plus, Search, Filter, Download, TrendingUp, FileText, Calendar, DollarSign, Users, Building } from 'lucide-react';
+import { X, Plus, Search, Filter, Download, TrendingUp, FileText, Calendar, DollarSign, Users, Building, Receipt, Banknote } from 'lucide-react';
 
 // 1. View Cash Position Details Modal (Blue)
 export function ViewCashPositionModal({ isOpen, onClose }: any) {

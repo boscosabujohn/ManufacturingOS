@@ -264,7 +264,7 @@ const TreeNode: React.FC<TreeNodeProps> = ({
                     <div className="flex items-center gap-2 text-blue-600 col-span-2">
                       <Globe className="w-4 h-4 flex-shrink-0" />
                       <span
-                        onClick={() => window.open(node.website.startsWith('http') ? node.website : `https://${node.website}`, '_blank')}
+                        onClick={() => window.open(node.website?.startsWith('http') ? node.website : `https://${node.website}`, '_blank')}
                         className="truncate hover:underline cursor-pointer"
                       >
                         {node.website}

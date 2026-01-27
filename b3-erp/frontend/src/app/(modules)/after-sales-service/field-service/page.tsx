@@ -374,7 +374,7 @@ export default function FieldServicePage() {
     setSelectedJob(job);
   };
 
-  const handleSelectJob = (jobId: string, e: React.MouseEvent) => {
+  const handleSelectJob = (jobId: string, e: React.MouseEvent | React.ChangeEvent<HTMLInputElement>) => {
     e.stopPropagation();
     const newSelection = new Set(selectedJobs);
     if (newSelection.has(jobId)) {

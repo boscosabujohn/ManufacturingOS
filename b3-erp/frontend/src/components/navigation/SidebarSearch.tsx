@@ -259,4 +259,4 @@ export function useFlattenedMenuItems(menuItems: any[]): SearchableMenuItem[] {
   }, [menuItems]);
 }
 
-export type { SidebarSearchProps, SearchableMenuItem };
+export type { SidebarSearchProps };

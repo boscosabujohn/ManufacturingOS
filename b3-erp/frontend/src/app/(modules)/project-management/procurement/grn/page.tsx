@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { ArrowLeft, PackageCheck, ClipboardCheck, AlertTriangle, Save } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
+import { Input } from '@/components/ui/Input';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 import {
@@ -16,8 +16,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Textarea } from '@/components/ui/textarea';
+import { Checkbox } from "@/components/ui/Checkbox";
+import { Textarea } from '@/components/ui/Textarea';
 
 interface GRNItem {
   id: string;
@@ -105,7 +105,7 @@ export default function GRNEntryPage() {
                       <TableCell>
                         <Checkbox
                           checked={item.accepted}
-                          onCheckedChange={(checked) => handleAcceptChange(item.id, checked as boolean)}
+                          onChange={(checked) => handleAcceptChange(item.id, checked as boolean)}
                         />
                       </TableCell>
                       <TableCell>{item.description}</TableCell>

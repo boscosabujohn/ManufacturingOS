@@ -352,4 +352,4 @@ export function CompactBreadcrumb({ className = '' }: { className?: string }) {
   );
 }
 
-export type { BreadcrumbNavProps, BreadcrumbItem };
+export type { BreadcrumbNavProps };

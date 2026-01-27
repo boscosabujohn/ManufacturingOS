@@ -5,7 +5,7 @@ import {
   DollarSign, TrendingUp, AlertCircle, Target, BarChart3, Plus,
   Edit, Download, RefreshCw, Settings, Calendar, FileText, CheckCircle,
   XCircle, TrendingDown, Activity, PieChart, ArrowUpRight, ArrowDownRight,
-  Percent, Users, Package, Clock, Filter, Search, Eye, Send, Bell
+  Percent, Users, Package, Clock, Filter, Search, Eye, Send, Bell, Zap
 } from 'lucide-react';
 import {
   LineChart, Line, BarChart, Bar, PieChart as RePieChart, Pie,

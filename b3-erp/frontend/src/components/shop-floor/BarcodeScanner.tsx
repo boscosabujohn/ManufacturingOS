@@ -7,6 +7,24 @@ import React, {
   useCallback,
   ReactNode,
 } from 'react';
+
+// Type declaration for BarcodeDetector API (not available in all browsers)
+interface BarcodeDetectorOptions {
+  formats?: string[];
+}
+
+interface DetectedBarcode {
+  rawValue: string;
+  format: string;
+  boundingBox?: DOMRectReadOnly;
+  cornerPoints?: { x: number; y: number }[];
+}
+
+declare class BarcodeDetector {
+  constructor(options?: BarcodeDetectorOptions);
+  detect(image: ImageBitmapSource): Promise<DetectedBarcode[]>;
+  static getSupportedFormats(): Promise<string[]>;
+}
 import {
   Camera,
   CameraOff,
@@ -285,9 +303,9 @@ export function BarcodeScanner({
     if (!track) return;
 
     try {
-      // @ts-ignore - torch may not be in types
+      // torch is a non-standard property supported by some mobile browsers
       await track.applyConstraints({
-        advanced: [{ torch: !torchOn }],
+        advanced: [{ torch: !torchOn } as MediaTrackConstraintSet],
       });
       setTorchOn(!torchOn);
     } catch (e) {
@@ -733,11 +751,3 @@ export function ScanButton({
   );
 }
 
-export type {
-  CodeType,
-  ScanResult,
-  BarcodeScannerProps,
-  ManualCodeEntryProps,
-  ScannerWithFallbackProps,
-  ScanButtonProps,
-};

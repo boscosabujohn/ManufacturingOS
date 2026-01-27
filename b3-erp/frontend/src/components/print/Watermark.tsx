@@ -463,13 +463,3 @@ export function WatermarkStyles() {
   );
 }
 
-export type {
-  WatermarkPreset,
-  WatermarkStyle,
-  WatermarkProps,
-  WatermarkContainerProps,
-  SecurityWatermarkProps,
-  DocumentStatus,
-  StatusWatermarkProps,
-  LogoWatermarkProps,
-};

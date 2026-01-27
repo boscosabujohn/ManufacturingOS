@@ -460,14 +460,3 @@ export const ShopFloorIcons = {
   Minus: <Minus className="w-full h-full" />,
 };
 
-export type {
-  LargeButtonSize,
-  LargeButtonVariant,
-  LargeButtonProps,
-  ActionButtonProps,
-  NumberPadProps,
-  LargeToggleProps,
-  QuickActionItem,
-  QuickActionGridProps,
-  LargeNavArrowsProps,
-};

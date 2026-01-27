@@ -836,7 +836,7 @@ class GoodsReceiptService {
         ...MOCK_GOODS_RECEIPTS[index],
         ...data,
         updatedAt: new Date().toISOString()
-      };
+      } as GoodsReceipt;
       return MOCK_GOODS_RECEIPTS[index];
     }
 

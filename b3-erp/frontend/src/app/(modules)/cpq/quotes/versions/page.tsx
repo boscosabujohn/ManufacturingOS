@@ -639,13 +639,20 @@ export default function CPQQuotesVersionsPage() {
           setSelectedVersion(null)
         }}
         version={selectedVersion}
-        onCompare={(v1, v2) => {
-          setIsViewModalOpen(false)
-          handleCompareVersions(v1, v2)
+        onCompare={() => {
+          if (selectedVersion) {
+            setIsViewModalOpen(false)
+            const sameQuoteVersions = versions.filter(v => v.quoteNumber === selectedVersion.quoteNumber)
+            if (sameQuoteVersions.length > 1) {
+              handleCompareVersions(sameQuoteVersions[0], sameQuoteVersions[1])
+            }
+          }
         }}
-        onCreateNew={(version) => {
-          setIsViewModalOpen(false)
-          router.push(`/cpq/quotes/builder?basedOn=${version.id}`)
+        onCreateNew={() => {
+          if (selectedVersion) {
+            setIsViewModalOpen(false)
+            router.push(`/cpq/quotes/builder?basedOn=${selectedVersion.id}`)
+          }
         }}
       />
 
@@ -668,10 +675,6 @@ export default function CPQQuotesVersionsPage() {
         }}
         quoteNumber={selectedQuoteForTimeline}
         versions={versions.filter(v => v.quoteNumber === selectedQuoteForTimeline)}
-        onViewVersion={(version) => {
-          setIsTimelineModalOpen(false)
-          handleViewVersion(version)
-        }}
       />
 
       <FilterModal

@@ -62,7 +62,7 @@ export function NewPlanModal({ isOpen, onClose, plan, onSave }: NewPlanModalProp
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    onSave({ ...formData, monthlyPlans })
+    onSave(formData)
     onClose()
   }
 

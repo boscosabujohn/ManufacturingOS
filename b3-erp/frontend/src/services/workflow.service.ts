@@ -33,14 +33,22 @@ export enum StepType {
   SUBPROCESS = 'subprocess',
 }
 
+export interface WorkflowStepAssignee {
+  type?: string;
+  id: string;
+  name?: string;
+}
+
 export interface WorkflowStep {
   id: string;
   name: string;
   type: StepType;
   description?: string;
+  order?: number;
   assigneeType: 'user' | 'role' | 'department' | 'dynamic';
   assigneeId?: string;
   assigneeName?: string;
+  assignees?: WorkflowStepAssignee[];
   dueInDays?: number;
   escalationDays?: number;
   escalateTo?: string;
@@ -116,17 +124,40 @@ export interface WorkflowInstance {
   metadata?: Record<string, any>;
 }
 
-export interface CreateTemplateDto {
-  code: string;
+export interface CreateWorkflowStepDto {
+  id?: string;
   name: string;
-  description: string;
-  category: string;
-  steps: Omit<WorkflowStep, 'id'>[];
-  triggerType: 'manual' | 'automatic' | 'scheduled';
+  type: StepType | string;
+  description?: string;
+  order?: number;
+  assigneeType?: 'user' | 'role' | 'department' | 'dynamic' | 'position' | string;
+  assigneeId?: string;
+  assigneeName?: string;
+  assignees?: Array<{ type?: string; id: string; name?: string }>;
+  dueInDays?: number;
+  escalationDays?: number;
+  escalateTo?: string;
+  actions?: string[];
+  nextSteps?: {
+    action: string;
+    targetStepId: string;
+  }[];
+  conditions?: any;
+  metadata?: Record<string, any>;
+}
+
+export interface CreateTemplateDto {
+  code?: string;
+  name: string;
+  description?: string;
+  category?: string;
+  status?: WorkflowStatus;
+  steps?: Array<CreateWorkflowStepDto | Record<string, any>>;
+  triggerType?: 'manual' | 'automatic' | 'scheduled';
   triggerConditions?: Record<string, any>;
   entityType?: string;
   notificationSettings?: WorkflowTemplate['notificationSettings'];
-  slaSettings?: WorkflowTemplate['slaSettings'];
+  slaSettings?: Partial<WorkflowTemplate['slaSettings']>;
 }
 
 export interface InstanceFilters {
@@ -138,6 +169,16 @@ export interface InstanceFilters {
   fromDate?: string;
   toDate?: string;
   search?: string;
+}
+
+export interface WorkflowStatistics {
+  totalTemplates: number;
+  activeTemplates: number;
+  totalInstances: number;
+  pendingInstances: number;
+  completedInstances: number;
+  instancesByStatus: Record<string, number>;
+  avgCompletionDays: number;
 }
 
 // ============================================================================
@@ -703,23 +744,39 @@ export class WorkflowService {
   static async createTemplate(data: CreateTemplateDto): Promise<WorkflowTemplate> {
     if (USE_MOCK_DATA) {
       await new Promise((resolve) => setTimeout(resolve, 500));
+      const steps: WorkflowStep[] = (data.steps ?? []).map((step, index) => ({
+        id: step.id || `step-${index + 1}`,
+        name: step.name || `Step ${index + 1}`,
+        type: (step.type as StepType) || StepType.APPROVAL,
+        description: step.description,
+        order: step.order ?? index + 1,
+        assigneeType: step.assigneeType || 'role',
+        assigneeId: step.assigneeId,
+        assigneeName: step.assigneeName,
+        assignees: step.assignees,
+        dueInDays: step.dueInDays,
+        escalationDays: step.escalationDays,
+        escalateTo: step.escalateTo,
+        actions: step.actions || ['approve', 'reject'],
+        nextSteps: step.nextSteps || [],
+        conditions: Array.isArray(step.conditions) ? step.conditions : [],
+        metadata: step.metadata,
+      } as WorkflowStep));
+
       const newTemplate: WorkflowTemplate = {
         id: `template-${Date.now()}`,
-        code: data.code,
+        code: data.code || `WF_${Date.now()}`,
         name: data.name,
-        description: data.description,
-        category: data.category,
+        description: data.description || '',
+        category: data.category || 'General',
         version: 1,
-        status: WorkflowStatus.DRAFT,
-        steps: data.steps.map((step, index) => ({
-          ...step,
-          id: `step-${index + 1}`,
-        })),
-        triggerType: data.triggerType,
+        status: data.status || WorkflowStatus.DRAFT,
+        steps,
+        triggerType: data.triggerType || 'manual',
         triggerConditions: data.triggerConditions,
         entityType: data.entityType,
         notificationSettings: data.notificationSettings,
-        slaSettings: data.slaSettings,
+        slaSettings: data.slaSettings as WorkflowTemplate['slaSettings'],
         createdAt: new Date(),
         updatedAt: new Date(),
         createdBy: 'current-user',
@@ -746,12 +803,12 @@ export class WorkflowService {
         throw new Error('Workflow template not found');
       }
 
-      const updatedTemplate = {
+      const updatedTemplate: WorkflowTemplate = {
         ...MOCK_WORKFLOW_TEMPLATES[index],
         ...data,
         version: MOCK_WORKFLOW_TEMPLATES[index].version + 1,
         updatedAt: new Date(),
-      };
+      } as WorkflowTemplate;
       MOCK_WORKFLOW_TEMPLATES[index] = updatedTemplate;
       return updatedTemplate;
     }
@@ -760,6 +817,20 @@ export class WorkflowService {
       method: 'PUT',
       body: JSON.stringify(data),
     });
+  }
+
+  /**
+   * Create a new workflow template (alias for createTemplate)
+   */
+  static async createWorkflowTemplate(data: Partial<CreateTemplateDto>): Promise<WorkflowTemplate> {
+    return this.createTemplate(data as CreateTemplateDto);
+  }
+
+  /**
+   * Update a workflow template (alias for updateTemplate)
+   */
+  static async updateWorkflowTemplate(id: string, data: Partial<CreateTemplateDto>): Promise<WorkflowTemplate> {
+    return this.updateTemplate(id, data);
   }
 
   /**
@@ -889,13 +960,7 @@ export class WorkflowService {
   /**
    * Get workflow statistics
    */
-  static async getWorkflowStatistics(): Promise<{
-    totalTemplates: number;
-    activeTemplates: number;
-    totalInstances: number;
-    instancesByStatus: Record<string, number>;
-    avgCompletionDays: number;
-  }> {
+  static async getWorkflowStatistics(): Promise<WorkflowStatistics> {
     if (USE_MOCK_DATA) {
       await new Promise((resolve) => setTimeout(resolve, 300));
 
@@ -908,18 +973,14 @@ export class WorkflowService {
         totalTemplates: MOCK_WORKFLOW_TEMPLATES.length,
         activeTemplates: MOCK_WORKFLOW_TEMPLATES.filter((t) => t.status === WorkflowStatus.ACTIVE).length,
         totalInstances: MOCK_WORKFLOW_INSTANCES.length,
+        pendingInstances: instancesByStatus[InstanceStatus.PENDING] || 0,
+        completedInstances: instancesByStatus[InstanceStatus.COMPLETED] || 0,
         instancesByStatus,
         avgCompletionDays: 3.5,
       };
     }
 
-    return this.request<{
-      totalTemplates: number;
-      activeTemplates: number;
-      totalInstances: number;
-      instancesByStatus: Record<string, number>;
-      avgCompletionDays: number;
-    }>('/api/workflow/statistics');
+    return this.request<WorkflowStatistics>('/api/workflow/statistics');
   }
 }
 

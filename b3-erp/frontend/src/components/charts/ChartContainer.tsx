@@ -171,12 +171,12 @@ export function ChartContainer({
   }, [timeRange, onTimeRangeChange]);
 
   // Preset time range selection
-  const handlePresetSelect = useCallback((preset: typeof timeRangePresets[0]) => {
+  const handlePresetSelect = useCallback((preset: { label: string; days: number }) => {
     if (!onTimeRangeChange) return;
 
     const now = new Date();
     let start: Date;
-    let end = now;
+    const end = now;
 
     if (preset.days === -1) {
       // YTD
@@ -364,11 +364,13 @@ export function ChartContainer({
 }
 
 // Zoom controls hook for external use
-export function useChartZoom(options?: {
+interface ChartZoomOptions {
   minZoom?: number;
   maxZoom?: number;
   zoomStep?: number;
-}) {
+}
+
+export function useChartZoom(options?: ChartZoomOptions) {
   const { minZoom = 0.5, maxZoom = 4, zoomStep = 0.25 } = options || {};
 
   const [zoom, setZoom] = useState<ZoomState>({
@@ -412,4 +414,4 @@ export function useChartZoom(options?: {
   };
 }
 
-export type { ZoomState, TimeRange };
+// ZoomState and TimeRange are already exported at their definitions

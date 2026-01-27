@@ -491,8 +491,8 @@ export const ViewVersionModal: React.FC<ViewVersionModalProps> = ({ isOpen, onCl
                 </p>
               </div>
               <div>
-                <p className="text-xs text-blue-700">Execution Count</p>
-                <p className="text-2xl font-bold text-blue-900">{version.executionCount || 0}</p>
+                <p className="text-xs text-blue-700">Status</p>
+                <p className="text-2xl font-bold text-blue-900 capitalize">{version.status}</p>
               </div>
             </div>
           </div>

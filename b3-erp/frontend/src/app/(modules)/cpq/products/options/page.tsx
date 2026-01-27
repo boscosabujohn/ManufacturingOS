@@ -148,8 +148,8 @@ export default function CPQProductsOptionsPage() {
     } else {
       // Create new option
       const newOption: ProductOption = {
-        id: `OPT-${String(productOptions.length + 1).padStart(3, '0')}`,
-        ...optionData as ProductOption
+        ...optionData as ProductOption,
+        id: `OPT-${String(productOptions.length + 1).padStart(3, '0')}`
       }
       setProductOptions([...productOptions, newOption])
     }

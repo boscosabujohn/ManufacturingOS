@@ -22,7 +22,7 @@ import {
   RejectExecutiveDealModal,
   PutOnHoldModal,
   AddExecutiveCommentModal,
-  ViewExecutiveDealModal,
+  ViewExecutiveDetailsModal,
   ExecutiveApproval as ImportedExecutiveApproval
 } from '@/components/cpq/ExecutiveWorkflowModals'
 
@@ -498,7 +498,7 @@ export default function CPQWorkflowExecutivePage() {
     setIsRejectOpen(false)
   }
 
-  const handleHoldSubmit = (data: { reason: string; requiredInfo: string; reviewDate: string }) => {
+  const handleHoldSubmit = (data: { reason: string; reviewDate: string }) => {
     console.log('Put on Hold:', selectedApproval?.documentNumber, data)
     // TODO: API call to put deal on hold
     setIsHoldOpen(false)
@@ -862,7 +862,7 @@ export default function CPQWorkflowExecutivePage() {
       <PutOnHoldModal
         isOpen={isHoldOpen}
         onClose={() => setIsHoldOpen(false)}
-        onPutOnHold={handleHoldSubmit}
+        onHold={handleHoldSubmit}
         approval={selectedApproval}
       />
 
@@ -873,7 +873,7 @@ export default function CPQWorkflowExecutivePage() {
         approval={selectedApproval}
       />
 
-      <ViewExecutiveDealModal
+      <ViewExecutiveDetailsModal
         isOpen={isViewOpen}
         onClose={() => setIsViewOpen(false)}
         approval={selectedApproval}

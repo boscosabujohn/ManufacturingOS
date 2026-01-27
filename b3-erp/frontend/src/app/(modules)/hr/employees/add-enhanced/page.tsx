@@ -25,7 +25,6 @@ import {
   DraftRecoveryBanner,
   useUnsavedChangesWarning,
   HelpIcon,
-  FormProgressIndicator,
 } from '@/components/ui/FormUX';
 import { StepIndicator, Step } from '@/components/ui/StepIndicator';
 
@@ -192,11 +191,11 @@ export default function AddEmployeeEnhancedPage() {
   }, [formData, currentStep]);
 
   // Auto-save
-  const { lastSaved, isSaving, hasDraft, clearDraft, restoreDraft } = useAutoSaveDraft(formData, {
+  const { lastSaved, isSaving, hasDraft, clearDraft, restoreDraft } = useAutoSaveDraft(formData as unknown as Record<string, unknown>, {
     key: 'hr-employee-onboarding-draft',
     debounceMs: 2000,
     onRestore: (data) => {
-      setFormData(data);
+      setFormData(data as unknown as EmployeeForm);
       setShowDraftBanner(false);
     },
   });
@@ -329,9 +328,9 @@ export default function AddEmployeeEnhancedPage() {
       {/* Draft Recovery */}
       {showDraftBanner && (
         <DraftRecoveryBanner
+          hasDraft={hasDraft}
           onRestore={() => { restoreDraft(); setShowDraftBanner(false); }}
           onDiscard={() => { clearDraft(); setShowDraftBanner(false); }}
-          lastSaved={lastSaved}
         />
       )}
 
@@ -358,7 +357,16 @@ export default function AddEmployeeEnhancedPage() {
 
       {/* Progress */}
       <div className="mb-4">
-        <FormProgressIndicator completedFields={completionPercentage} totalFields={100} variant="bar" showPercentage label="Onboarding progress" />
+        <div className="flex items-center justify-between mb-1">
+          <span className="text-sm text-gray-600">Onboarding progress</span>
+          <span className="text-sm font-medium text-gray-900">{completionPercentage}%</span>
+        </div>
+        <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
+          <div
+            className={`h-full rounded-full transition-all duration-300 ${completionPercentage === 100 ? 'bg-green-500' : completionPercentage >= 75 ? 'bg-blue-500' : completionPercentage >= 50 ? 'bg-yellow-500' : 'bg-orange-500'}`}
+            style={{ width: `${completionPercentage}%` }}
+          />
+        </div>
       </div>
 
       {/* Steps */}

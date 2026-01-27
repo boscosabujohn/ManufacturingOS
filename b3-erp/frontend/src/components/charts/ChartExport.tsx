@@ -29,7 +29,7 @@ export interface ExportOptions {
   quality?: number; // For JPG (0-1)
 }
 
-interface ChartExportProps {
+export interface ChartExportProps {
   chartRef: React.RefObject<HTMLElement | SVGElement>;
   filename?: string;
   title?: string;
@@ -232,8 +232,8 @@ export async function exportToSVG(
 
   // Inline styles
   const computedStyles = window.getComputedStyle(svg);
-  const styleString = Array.from(computedStyles)
-    .map((key) => `${key}:${computedStyles.getPropertyValue(key)}`)
+  const _styleString = Array.from(computedStyles)
+    .map((key: string) => `${key}:${computedStyles.getPropertyValue(key)}`)
     .join(';');
 
   // Add title if requested
@@ -567,7 +567,7 @@ export function useChartExport(options?: Partial<ExportOptions>) {
   const chartRef = useRef<HTMLElement | SVGElement>(null);
   const [isExporting, setIsExporting] = useState(false);
 
-  const exportAs = useCallback(async (format: ChartExportFormat, customOptions?: Partial<ExportOptions>) => {
+  const exportAs = useCallback(async (format: ChartExportFormat, customOptions?: Partial<ExportOptions>): Promise<void> => {
     if (!chartRef.current) return;
 
     setIsExporting(true);
@@ -594,4 +594,4 @@ export function useChartExport(options?: Partial<ExportOptions>) {
   };
 }
 
-export type { ChartExportProps, ExportOptions, ChartExportFormat };
+// ExportOptions and ChartExportFormat are already exported at their definitions

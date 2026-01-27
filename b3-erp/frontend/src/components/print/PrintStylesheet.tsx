@@ -582,10 +582,3 @@ export function PrintButton({
   );
 }
 
-export type {
-  PrintStylesheetProps,
-  PrintVisibilityProps,
-  PrintHeaderProps,
-  PrintFooterProps,
-  PrintButtonProps,
-};

@@ -60,7 +60,7 @@ interface LocaleContextValue {
   formatPercent: (value: number, options?: Intl.NumberFormatOptions) => string;
   formatCompact: (value: number) => string;
   formatUnit: (value: number, unit: string, options?: Intl.NumberFormatOptions) => string;
-  formatList: (items: string[], style?: 'conjunction' | 'disjunction' | 'unit') => string;
+  formatList: (items: string[], type?: 'conjunction' | 'disjunction' | 'unit') => string;
   formatPlural: (count: number, singular: string, plural: string) => string;
 }
 
@@ -237,8 +237,8 @@ export function LocaleProvider({
 
   // List formatting
   const formatList = useCallback(
-    (items: string[], style: 'conjunction' | 'disjunction' | 'unit' = 'conjunction'): string => {
-      return new Intl.ListFormat(config.locale, { style, type: style }).format(items);
+    (items: string[], type: 'conjunction' | 'disjunction' | 'unit' = 'conjunction'): string => {
+      return new Intl.ListFormat(config.locale, { style: 'long', type }).format(items);
     },
     [config.locale]
   );

@@ -523,4 +523,3 @@ export function ResponsiveTable<T extends Record<string, any>>({
 }
 
 export { useIsMobile };
-export type { ResponsiveColumn };

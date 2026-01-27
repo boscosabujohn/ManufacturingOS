@@ -563,13 +563,13 @@ export default function InvoicesPage() {
       <ViewInvoiceModal
         isOpen={isViewModalOpen}
         onClose={() => setIsViewModalOpen(false)}
-        invoice={selectedInvoice}
+        invoiceId={selectedInvoice?.id}
       />
 
       <SendInvoiceModal
         isOpen={isSendModalOpen}
         onClose={() => setIsSendModalOpen(false)}
-        invoice={selectedInvoice}
+        invoiceNumber={selectedInvoice?.invoiceNumber}
       />
 
       <RecordPaymentModal

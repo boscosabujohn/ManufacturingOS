@@ -232,4 +232,4 @@ export function FloatingQuickAction({
   );
 }
 
-export type { QuickAccessButtonsProps, QuickAction };
+export type { QuickAccessButtonsProps };

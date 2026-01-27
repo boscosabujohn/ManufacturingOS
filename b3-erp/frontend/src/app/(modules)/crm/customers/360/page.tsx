@@ -30,11 +30,9 @@ export default function Customer360Page() {
       {/* Customer 360 Component */}
       <div className="p-6">
         <Customer360Unified
-          onContactClick={(contactId) => console.log('Contact clicked:', contactId)}
-          onOpportunityClick={(oppId) => console.log('Opportunity clicked:', oppId)}
-          onOrderClick={(orderId) => console.log('Order clicked:', orderId)}
-          onTicketClick={(ticketId) => console.log('Ticket clicked:', ticketId)}
-          onActivityClick={(activityId) => console.log('Activity clicked:', activityId)}
+          onViewOpportunity={(id: string) => console.log('Opportunity clicked:', id)}
+          onViewOrder={(id: string) => console.log('Order clicked:', id)}
+          onViewTicket={(id: string) => console.log('Ticket clicked:', id)}
         />
       </div>
     </div>

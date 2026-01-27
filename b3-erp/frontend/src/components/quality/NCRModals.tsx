@@ -790,7 +790,7 @@ export const ViewNCRDetailsModal: React.FC<ViewNCRDetailsModalProps> = ({
                   <span>Edit</span>
                 </button>
                 <button
-                  onClick={() => handleCloseNCR(ncr.id)}
+                  onClick={() => handleCloseNCR?.(ncr.id)}
                   className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors flex items-center space-x-2"
                 >
                   <CheckCircle className="h-4 w-4" />

@@ -456,13 +456,13 @@ export default function CPQPricingRulesPage() {
         isOpen={isEditModalOpen}
         onClose={() => setIsEditModalOpen(false)}
         onSave={handleSaveEdit}
-        rule={selectedRule}
+        rule={selectedRule as any}
       />
 
       <TestRuleModal
         isOpen={isTestModalOpen}
         onClose={() => setIsTestModalOpen(false)}
-        rule={selectedRule}
+        rule={selectedRule as any}
       />
     </div>
   )

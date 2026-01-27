@@ -107,7 +107,7 @@ function NotificationItem({ notification, onMarkAsRead, onArchive, onDelete, onC
   const Icon = config.icon;
   const isEscalated = notification.metadata?.escalated;
 
-  const handleActionClick = (action: Notification['actions'][0]) => {
+  const handleActionClick = (action: NonNullable<Notification['actions']>[number]) => {
     if (action.onClick) {
       action.onClick();
     }

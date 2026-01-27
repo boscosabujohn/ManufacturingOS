@@ -31,6 +31,7 @@ interface LegalReview extends ImportedLegalReview {
   priority: 'low' | 'medium' | 'high' | 'urgent'
   status: 'pending' | 'in-review' | 'approved' | 'rejected' | 'revision-needed'
   riskLevel: 'low' | 'medium' | 'high' | 'critical'
+  comments: Comment[]
 }
 
 interface LegalIssue {

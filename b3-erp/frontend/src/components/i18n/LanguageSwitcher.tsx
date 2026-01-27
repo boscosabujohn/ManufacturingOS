@@ -273,7 +273,7 @@ export interface LanguageProviderProps {
   children: ReactNode;
   defaultLanguage?: LanguageCode;
   supportedLanguages?: LanguageCode[];
-  translations?: Record<LanguageCode, Record<string, string>>;
+  translations?: Partial<Record<LanguageCode, Record<string, string>>>;
   onLanguageChange?: (language: Language) => void;
 }
 

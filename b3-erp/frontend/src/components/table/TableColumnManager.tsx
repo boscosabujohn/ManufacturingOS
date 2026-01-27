@@ -13,7 +13,7 @@ import {
 } from 'lucide-react';
 
 // Types
-export interface ManagedColumn {
+interface ManagedColumn {
   id: string;
   header: string;
   visible: boolean;

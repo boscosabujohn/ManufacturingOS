@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState } from 'react'
-import { X, Plus, Building2, Mail, Phone, MapPin, Star, CheckCircle, XCircle, AlertTriangle, Award, TrendingUp, BarChart3, FileText, Upload, Download, Edit, Eye, Ban, Calendar } from 'lucide-react'
+import { X, Plus, Building2, Mail, Phone, MapPin, Star, CheckCircle, XCircle, AlertTriangle, Award, TrendingUp, BarChart3, FileText, Upload, Download, Edit, Eye, Ban, Calendar, TrendingDown } from 'lucide-react'
 
 // ==================== INTERFACES ====================
 

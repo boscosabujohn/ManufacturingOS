@@ -499,17 +499,3 @@ export function TransitionStyles() {
   );
 }
 
-export type {
-  TransitionDuration,
-  TransitionEasing,
-  TransitionPreset,
-  TransitionConfig,
-  TransitionState,
-  TransitionProps,
-  FadeProps,
-  SlideDirection,
-  SlideProps,
-  ScaleProps,
-  CollapseProps,
-  TransitionGroupProps,
-};

@@ -247,7 +247,7 @@ const generateCurrentHandoff = (): ShiftHandoff => ({
 const HandoffChecklists: React.FC<HandoffChecklistsProps> = ({ className = '' }) => {
   const [handoff, setHandoff] = useState<ShiftHandoff | null>(null);
   const [activeTab, setActiveTab] = useState<'checklist' | 'issues' | 'production' | 'notes'>('checklist');
-  const [expandedCategories, setExpandedCategories] = useState<Set<ItemCategory>>(new Set(['safety', 'production', 'quality', 'maintenance']));
+  const [expandedCategories, setExpandedCategories] = useState<Set<ItemCategory>>(new Set<ItemCategory>(['safety', 'production', 'quality', 'maintenance']));
 
   useEffect(() => {
     setHandoff(generateCurrentHandoff());

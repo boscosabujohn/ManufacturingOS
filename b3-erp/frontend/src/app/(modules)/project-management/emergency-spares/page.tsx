@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import EmergencySpares from '@/components/project-management/EmergencySpares';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/Select';
 
 export default function EmergencySparesPage() {
   const [selectedProject, setSelectedProject] = useState<string>('proj-001');
