@@ -152,8 +152,8 @@ export class SystemConfigService {
     }
 
     config.value = stringValue;
-    config.updatedBy = updatedBy;
-    config.lastModifiedBy = updatedBy;
+    config.updatedBy = updatedBy ?? 'SYSTEM';
+    config.lastModifiedBy = updatedBy ?? 'SYSTEM';
     config.lastModifiedAt = new Date();
 
     const updated = await this.repository.save(config);

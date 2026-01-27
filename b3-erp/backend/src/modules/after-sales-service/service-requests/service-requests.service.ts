@@ -44,11 +44,11 @@ export class ServiceRequestsService {
     );
 
     const request: ServiceRequest = {
+      ...createServiceRequestDto,
       id: `SR-${String(this.idCounter++).padStart(6, '0')}`,
       requestNumber: `SR-${new Date().getFullYear()}-${String(this.idCounter).padStart(6, '0')}`,
       status: ServiceRequestStatus.OPEN,
       priority,
-      ...createServiceRequestDto,
       responseDeadline,
       resolutionDeadline,
       slaStatus: 'on_track',

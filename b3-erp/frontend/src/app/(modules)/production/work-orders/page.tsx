@@ -1,9 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Plus, Search, Eye, Edit, Trash2, ClipboardCheck, Factory, AlertCircle, CheckCircle, Clock, TrendingUp, Calendar, ChevronLeft, ChevronRight, Download, Users } from 'lucide-react';
+import { Plus, Search, Eye, Edit, Trash2, ClipboardCheck, Factory, AlertCircle, CheckCircle, Clock, TrendingUp, Calendar, ChevronLeft, ChevronRight, Download, Users, Loader2 } from 'lucide-react';
 import { ExportWorkOrdersModal } from '@/components/production/WorkOrderModals';
+import { workOrderService, WorkOrder as ServiceWorkOrder } from '@/services/work-order.service';
 
 interface WorkOrder {
   id: string;
@@ -27,129 +28,52 @@ interface WorkOrder {
   notes: string;
 }
 
-const mockWorkOrders: WorkOrder[] = [
-  {
-    id: 'WO-001',
-    woNumber: 'WO-2025-001',
-    productName: 'Commercial Kitchen Set - Model A',
-    productCode: 'PROD-KIT-A001',
-    quantity: 5,
-    unit: 'sets',
-    startDate: '2025-10-01',
-    dueDate: '2025-10-20',
-    completionDate: '2025-10-19',
-    status: 'completed',
-    priority: 'high',
-    completionPercentage: 100,
-    assignedTo: 'Production Team A',
-    workCenter: 'Assembly Line 1',
+// Map service work order to local display format
+function mapServiceWorkOrderToLocal(wo: ServiceWorkOrder): WorkOrder {
+  const statusMap: Record<string, WorkOrder['status']> = {
+    'Draft': 'draft',
+    'Planned': 'planned',
+    'Released': 'released',
+    'In Progress': 'in_progress',
+    'On Hold': 'on_hold',
+    'Completed': 'completed',
+    'Cancelled': 'cancelled',
+  };
+
+  const priorityMap: Record<string, WorkOrder['priority']> = {
+    'Low': 'low',
+    'Medium': 'medium',
+    'High': 'high',
+    'Critical': 'urgent',
+  };
+
+  const completionPercentage = wo.plannedQuantity > 0
+    ? Math.round((wo.completedQuantity / wo.plannedQuantity) * 100)
+    : 0;
+
+  return {
+    id: wo.id,
+    woNumber: wo.workOrderNumber,
+    productName: wo.productName,
+    productCode: wo.productCode,
+    quantity: wo.plannedQuantity,
+    unit: wo.uom,
+    startDate: wo.plannedStartDate,
+    dueDate: wo.plannedEndDate,
+    completionDate: wo.actualEndDate,
+    status: statusMap[wo.status] || 'draft',
+    priority: priorityMap[wo.priority] || 'medium',
+    completionPercentage,
+    assignedTo: 'Production Team',
+    workCenter: wo.scheduledWorkCenterName || 'Not Assigned',
     shiftSchedule: 'Day Shift',
-    bomReference: 'BOM-KIT-A001',
-    customer: 'Hotel Paradise Ltd',
-    salesOrder: 'SO-2025-145',
-    notes: 'Completed ahead of schedule',
-  },
-  {
-    id: 'WO-002',
-    woNumber: 'WO-2025-002',
-    productName: 'Industrial Oven - 10 Tray',
-    productCode: 'PROD-OVN-B002',
-    quantity: 3,
-    unit: 'units',
-    startDate: '2025-10-05',
-    dueDate: '2025-10-25',
-    status: 'in_progress',
-    priority: 'medium',
-    completionPercentage: 65,
-    assignedTo: 'Production Team B',
-    workCenter: 'Manufacturing Cell 2',
-    shiftSchedule: 'Day Shift',
-    bomReference: 'BOM-OVN-B002',
-    customer: 'Culinary Delights Inc',
-    salesOrder: 'SO-2025-156',
-    notes: 'On track for delivery',
-  },
-  {
-    id: 'WO-003',
-    woNumber: 'WO-2025-003',
-    productName: 'Refrigeration Unit - Walk-in',
-    productCode: 'PROD-REF-C003',
-    quantity: 2,
-    unit: 'units',
-    startDate: '2025-10-10',
-    dueDate: '2025-11-10',
-    status: 'released',
-    priority: 'urgent',
-    completionPercentage: 15,
-    assignedTo: 'Production Team C',
-    workCenter: 'Heavy Assembly 3',
-    shiftSchedule: 'Day + Night Shift',
-    bomReference: 'BOM-REF-C003',
-    customer: 'City General Hospital',
-    salesOrder: 'SO-2025-167',
-    notes: 'Rush order - priority handling',
-  },
-  {
-    id: 'WO-004',
-    woNumber: 'WO-2025-004',
-    productName: 'Stainless Steel Worktable',
-    productCode: 'PROD-TBL-D004',
-    quantity: 15,
-    unit: 'units',
-    startDate: '2025-10-12',
-    dueDate: '2025-10-30',
-    status: 'in_progress',
-    priority: 'low',
-    completionPercentage: 40,
-    assignedTo: 'Production Team A',
-    workCenter: 'Fabrication Shop 1',
-    shiftSchedule: 'Day Shift',
-    bomReference: 'BOM-TBL-D004',
-    customer: 'Springfield Academy',
-    salesOrder: 'SO-2025-178',
-    notes: 'Standard production batch',
-  },
-  {
-    id: 'WO-005',
-    woNumber: 'WO-2025-005',
-    productName: 'Commercial Mixer - 60L',
-    productCode: 'PROD-MIX-E005',
-    quantity: 4,
-    unit: 'units',
-    startDate: '2025-10-15',
-    dueDate: '2025-11-05',
-    status: 'on_hold',
-    priority: 'medium',
-    completionPercentage: 25,
-    assignedTo: 'Production Team B',
-    workCenter: 'Assembly Line 2',
-    shiftSchedule: 'Day Shift',
-    bomReference: 'BOM-MIX-E005',
-    customer: 'Artisan Bakers Co',
-    salesOrder: 'SO-2025-189',
-    notes: 'Waiting for component delivery',
-  },
-  {
-    id: 'WO-006',
-    woNumber: 'WO-2025-006',
-    productName: 'Dishwasher System - Industrial',
-    productCode: 'PROD-DSH-F006',
-    quantity: 2,
-    unit: 'units',
-    startDate: '2025-10-18',
-    dueDate: '2025-11-15',
-    status: 'planned',
-    priority: 'medium',
-    completionPercentage: 0,
-    assignedTo: 'Production Team C',
-    workCenter: 'Assembly Line 1',
-    shiftSchedule: 'Day Shift',
-    bomReference: 'BOM-DSH-F006',
-    customer: 'Restaurant Group LLC',
-    salesOrder: 'SO-2025-190',
-    notes: 'Scheduled for next week',
-  },
-];
+    bomReference: wo.bomCode || 'N/A',
+    customer: wo.customerName || 'N/A',
+    salesOrder: wo.salesOrderNumber || 'N/A',
+    notes: wo.notes || '',
+  };
+}
+
 
 const statusColors = {
   draft: 'bg-gray-100 text-gray-700',
@@ -187,13 +111,34 @@ const priorityLabels = {
 
 export default function WorkOrdersPage() {
   const router = useRouter();
-  const [workOrders, setWorkOrders] = useState<WorkOrder[]>(mockWorkOrders);
+  const [workOrders, setWorkOrders] = useState<WorkOrder[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [priorityFilter, setPriorityFilter] = useState<string>('all');
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
   const [isExportModalOpen, setIsExportModalOpen] = useState(false);
+
+  // Fetch work orders from service
+  useEffect(() => {
+    async function fetchWorkOrders() {
+      setLoading(true);
+      setError(null);
+      try {
+        const data = await workOrderService.getAllWorkOrders();
+        setWorkOrders(data.map(mapServiceWorkOrderToLocal));
+      } catch (err) {
+        console.error('Error fetching work orders:', err);
+        setError('Failed to load work orders. Please try again.');
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchWorkOrders();
+  }, []);
 
   const filteredWOs = workOrders.filter((wo) => {
     const matchesSearch =
@@ -231,6 +176,37 @@ export default function WorkOrdersPage() {
     console.log('Exporting work orders as:', format, 'with options:', options);
     alert(`Exporting Work Orders as ${format.toUpperCase()}!\n\nDate Range: ${options.dateRange}\nStatuses: ${Object.keys(options.statuses).filter(k => options.statuses[k]).join(', ')}\nSections: ${Object.keys(options.sections).filter(k => options.sections[k]).join(', ')}`);
   };
+
+  // Show loading state
+  if (loading) {
+    return (
+      <div className="w-full h-full px-4 py-6 flex items-center justify-center">
+        <div className="text-center">
+          <Loader2 className="w-12 h-12 text-blue-600 animate-spin mx-auto mb-4" />
+          <p className="text-gray-600">Loading work orders...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Show error state
+  if (error) {
+    return (
+      <div className="w-full h-full px-4 py-6 flex items-center justify-center">
+        <div className="text-center">
+          <AlertCircle className="w-12 h-12 text-red-600 mx-auto mb-4" />
+          <p className="text-gray-900 font-semibold mb-2">Error Loading Work Orders</p>
+          <p className="text-gray-600">{error}</p>
+          <button
+            onClick={() => window.location.reload()}
+            className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          >
+            Retry
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full h-full px-4 py-6">

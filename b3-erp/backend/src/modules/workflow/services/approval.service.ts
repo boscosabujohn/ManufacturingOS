@@ -97,7 +97,7 @@ export class ApprovalService {
         // Update step
         step.status = action === 'approve' ? 'approved' : 'rejected';
         step.decidedAt = new Date();
-        step.comments = comments;
+        step.comments = comments ?? '';
         await this.stepRepository.save(step);
 
         // Check if we need to move to next step or complete workflow

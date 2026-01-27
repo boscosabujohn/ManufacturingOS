@@ -1,11 +1,13 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import {
   Award, Plus, Search, Edit2, Trash2, CheckCircle2,
   XCircle, Star, TrendingUp, BookOpen, Briefcase,
-  GraduationCap, Wrench, Target, BarChart3
+  GraduationCap, Wrench, Target, BarChart3, Loader2
 } from 'lucide-react';
+import { SkillService, MOCK_SKILLS } from '@/services/skill.service';
+import { Skill as ServiceSkill, SkillStatus } from '@/types/skill';
 
 interface Skill {
   id: string;
@@ -31,109 +33,89 @@ interface Skill {
   };
 }
 
-const mockSkills: Skill[] = [
-  {
-    id: '1',
-    code: 'SKL-TEC-001',
-    name: 'CNC Machine Operation',
-    category: 'Technical',
-    level: 'Advanced',
-    description: 'Ability to set up, program, and operate CNC milling and turning machines',
-    prerequisites: ['Basic Machining', 'Blueprint Reading', 'CAD/CAM Basics'],
-    certificationRequired: true,
-    certificationName: 'Certified CNC Operator',
-    validityPeriod: 36,
-    trainingHours: 120,
-    assessmentMethod: 'Practical test + Written exam',
-    competencyIndicators: [
-      'Can program CNC machines using G-code',
-      'Sets up fixtures and tooling correctly',
-      'Maintains dimensional accuracy within ±0.01mm',
-      'Troubleshoots machine errors'
-    ],
-    applicableRoles: ['CNC Operator', 'Machinist', 'Production Technician'],
-    status: 'Active',
-    metadata: {
-      createdAt: new Date('2024-01-10'),
-      updatedAt: new Date('2024-03-15'),
-      createdBy: 'HR Manager',
-      updatedBy: 'Training Coordinator'
-    }
-  },
-  {
-    id: '2',
-    code: 'SKL-QUA-001',
-    name: 'Quality Inspection',
-    category: 'Quality',
-    level: 'Intermediate',
-    description: 'Proficiency in using measurement tools and conducting quality inspections',
-    prerequisites: ['Basic Mathematics', 'Measurement Fundamentals'],
-    certificationRequired: true,
-    certificationName: 'Quality Inspector Level II',
-    validityPeriod: 24,
-    trainingHours: 80,
-    assessmentMethod: 'Practical measurement tests + Theory exam',
-    competencyIndicators: [
-      'Proficient with micrometers, calipers, and gauges',
-      'Can interpret GD&T symbols',
-      'Conducts first article inspections',
-      'Completes inspection reports accurately'
-    ],
-    applicableRoles: ['QC Inspector', 'Quality Technician', 'Final Inspector'],
-    status: 'Active',
-    metadata: {
-      createdAt: new Date('2024-01-15'),
-      updatedAt: new Date('2024-02-20'),
-      createdBy: 'QA Manager',
-      updatedBy: 'QA Manager'
-    }
-  },
-  {
-    id: '3',
-    code: 'SKL-SAF-001',
-    name: 'Safety Compliance',
-    category: 'Safety',
-    level: 'Beginner',
-    description: 'Understanding of workplace safety regulations and emergency procedures',
+// Transform service skill to component skill format
+const transformServiceSkill = (skill: ServiceSkill): Skill => {
+  const categoryMap: Record<string, Skill['category']> = {
+    'DOMAIN': 'Operational',
+    'TECHNICAL': 'Technical',
+    'SOFT': 'Soft Skills',
+    'MANAGERIAL': 'Managerial',
+  };
+
+  const statusMap: Record<SkillStatus, Skill['status']> = {
+    [SkillStatus.ACTIVE]: 'Active',
+    [SkillStatus.INACTIVE]: 'Inactive',
+    [SkillStatus.DEPRECATED]: 'Inactive',
+  };
+
+  return {
+    id: skill.id,
+    code: skill.code,
+    name: skill.name,
+    category: categoryMap[skill.skillType] || 'Technical',
+    level: 'Intermediate', // Default level - could be enhanced with proficiency level mapping
+    description: skill.description || '',
     prerequisites: [],
-    certificationRequired: true,
-    certificationName: 'OSHA 30-Hour General Industry',
-    validityPeriod: 12,
-    trainingHours: 30,
-    assessmentMethod: 'Written exam + Practical demonstration',
-    competencyIndicators: [
-      'Identifies workplace hazards',
-      'Uses PPE correctly',
-      'Follows lockout/tagout procedures',
-      'Responds appropriately to emergencies'
-    ],
-    applicableRoles: ['All Manufacturing Roles'],
-    status: 'Active',
+    certificationRequired: skill.requiresCertification,
+    certificationName: skill.requiresCertification ? skill.name + ' Certification' : undefined,
+    validityPeriod: 24,
+    trainingHours: 40, // Default training hours
+    assessmentMethod: 'Assessment required',
+    competencyIndicators: skill.useCases ? [skill.useCases] : [],
+    applicableRoles: skill.tags || [],
+    status: statusMap[skill.status],
     metadata: {
-      createdAt: new Date('2024-01-05'),
-      updatedAt: new Date('2024-03-01'),
-      createdBy: 'Safety Officer',
-      updatedBy: 'Safety Officer'
+      createdAt: new Date(skill.createdAt),
+      updatedAt: new Date(skill.updatedAt),
+      createdBy: 'System',
+      updatedBy: 'System'
     }
-  }
-];
+  };
+};
 
 export default function SkillMaster() {
-  const [skills, setSkills] = useState<Skill[]>(mockSkills);
+  const [skills, setSkills] = useState<Skill[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [selectedSkill, setSelectedSkill] = useState<Skill | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterCategory, setFilterCategory] = useState<string>('All');
   const [filterLevel, setFilterLevel] = useState<string>('All');
 
+  // Load skills from service
+  useEffect(() => {
+    const loadSkills = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const data = await SkillService.getAllSkills();
+        setSkills(data.map(transformServiceSkill));
+      } catch (err) {
+        console.error('Error loading skills:', err);
+        setError('Failed to load skills. Please try again.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadSkills();
+  }, []);
+
   const handleEdit = (skill: Skill) => {
     setSelectedSkill(skill);
     setIsModalOpen(true);
   };
 
-  const handleDelete = (id: string) => {
+  const handleDelete = async (id: string) => {
     if (confirm('Are you sure you want to delete this skill?')) {
-      setSkills(skills.filter(s => s.id !== id));
+      try {
+        await SkillService.deleteSkill(id);
+        setSkills(skills.filter(s => s.id !== id));
+      } catch (err) {
+        console.error('Error deleting skill:', err);
+        alert('Failed to delete skill. Please try again.');
+      }
     }
   };
 
@@ -192,6 +174,35 @@ export default function SkillMaster() {
       return matchesSearch && matchesCategory && matchesLevel;
     });
   }, [skills, searchTerm, filterCategory, filterLevel]);
+
+  // Show loading state
+  if (loading) {
+    return (
+      <div className="p-6 max-w-7xl mx-auto flex items-center justify-center min-h-[400px]">
+        <div className="flex flex-col items-center gap-4">
+          <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+          <p className="text-gray-600">Loading skills...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Show error state
+  if (error) {
+    return (
+      <div className="p-6 max-w-7xl mx-auto flex items-center justify-center min-h-[400px]">
+        <div className="flex flex-col items-center gap-4 text-center">
+          <div className="text-red-500 text-lg font-medium">{error}</div>
+          <button
+            onClick={() => window.location.reload()}
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          >
+            Retry
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="p-6 max-w-7xl mx-auto">

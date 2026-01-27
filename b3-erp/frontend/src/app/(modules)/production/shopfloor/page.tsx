@@ -31,8 +31,11 @@ import {
   BarChart3,
   ArrowLeft,
   RefreshCw,
+  Loader2,
 } from 'lucide-react';
 import { QualityAlertModal, SupervisorCallModal, QuickDowntimeModal, QualityAlertData, SupervisorCallData, QuickDowntimeData } from '@/components/shopfloor/ShopFloorActionModals';
+import { workOrderService, WorkOrder as ServiceWorkOrder } from '@/services/work-order.service';
+import { workCenterService, WorkCenter as ServiceWorkCenter } from '@/services/work-center.service';
 
 // TypeScript Interfaces
 interface Operator {
@@ -53,6 +56,29 @@ interface WorkOrder {
   status: 'active' | 'next' | 'queued';
   cycleTime: number; // seconds
   targetCycleTime: number; // seconds
+}
+
+// Map service work order to local shopfloor format
+function mapServiceWorkOrderToShopfloor(wo: ServiceWorkOrder, index: number): WorkOrder {
+  const priorityMap: Record<string, WorkOrder['priority']> = {
+    'Low': 'low',
+    'Medium': 'medium',
+    'High': 'high',
+    'Critical': 'high',
+  };
+
+  return {
+    id: wo.id,
+    woNumber: wo.workOrderNumber,
+    productName: wo.productName,
+    operationName: wo.bomCode ? `BOM: ${wo.bomCode}` : 'Production',
+    targetQuantity: wo.plannedQuantity,
+    producedQuantity: wo.completedQuantity,
+    priority: priorityMap[wo.priority] || 'medium',
+    status: index === 0 ? 'next' : 'queued',
+    cycleTime: 180, // Default cycle time
+    targetCycleTime: 180, // Default target cycle time
+  };
 }
 
 export default function ShopfloorTerminalPage() {
@@ -103,8 +129,40 @@ export default function ShopfloorTerminalPage() {
   const [isSupervisorCallOpen, setIsSupervisorCallOpen] = useState(false);
   const [isQuickDowntimeOpen, setIsQuickDowntimeOpen] = useState(false);
 
-  // Options
-  const workCenters = [
+  // Loading state
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
+
+  // Work Centers from service
+  const [workCenterOptions, setWorkCenterOptions] = useState<string[]>([]);
+  const [loadingWorkCenters, setLoadingWorkCenters] = useState(true);
+
+  // Fetch work centers on mount
+  useEffect(() => {
+    async function fetchWorkCenters() {
+      try {
+        const data = await workCenterService.getAllWorkCenters();
+        setWorkCenterOptions(data.map((wc: ServiceWorkCenter) => wc.workCenterName));
+      } catch (err) {
+        console.error('Error fetching work centers:', err);
+        // Fallback to static list if service fails
+        setWorkCenterOptions([
+          'Assembly Line 1',
+          'Assembly Line 2',
+          'Machining Center 1',
+          'Welding Station 1',
+          'Paint Shop 1',
+          'CNC Machine 1',
+          'QC Station 1',
+        ]);
+      } finally {
+        setLoadingWorkCenters(false);
+      }
+    }
+    fetchWorkCenters();
+  }, []);
+
+  // Fallback work centers (used if loading)
+  const workCenters = workCenterOptions.length > 0 ? workCenterOptions : [
     'Assembly Line 1',
     'Assembly Line 2',
     'Machining Center 1',
@@ -215,67 +273,49 @@ export default function ShopfloorTerminalPage() {
     return () => clearInterval(timer);
   }, [screen, downtimeStartTime]);
 
-  // Mock Login
-  const handleLogin = () => {
+  // Login with service call
+  const handleLogin = async () => {
     if (!employeeId || !pin || !selectedWorkCenter || !selectedShift) {
       alert('Please fill all fields');
       return;
     }
 
-    // Mock operator data
-    setOperator({
-      id: employeeId,
-      name: 'Amit Sharma',
-      photo: '/avatars/amit.jpg',
-      employeeId: employeeId,
-    });
+    setIsLoggingIn(true);
 
-    setLoginTime(new Date().toLocaleTimeString());
-    setIsLoggedIn(true);
-    setScreen('dashboard');
+    try {
+      // Mock operator data (in real app, would authenticate via API)
+      setOperator({
+        id: employeeId,
+        name: 'Amit Sharma',
+        photo: '/avatars/amit.jpg',
+        employeeId: employeeId,
+      });
 
-    // Load mock work orders
-    setWorkOrders([
-      {
-        id: '1',
-        woNumber: 'WO-2025-0145',
-        productName: 'Electric Motor - 5HP',
-        operationName: 'OP-060 - Assembly',
-        targetQuantity: 200,
-        producedQuantity: 0,
-        priority: 'high',
-        status: 'next',
-        cycleTime: 180,
-        targetCycleTime: 180,
-      },
-      {
-        id: '2',
-        woNumber: 'WO-2025-0146',
-        productName: 'Shaft - 50mm Dia',
-        operationName: 'OP-020 - Machining',
-        targetQuantity: 150,
-        producedQuantity: 0,
-        priority: 'medium',
-        status: 'queued',
-        cycleTime: 240,
-        targetCycleTime: 240,
-      },
-      {
-        id: '3',
-        woNumber: 'WO-2025-0147',
-        productName: 'Frame Assembly',
-        operationName: 'OP-040 - Welding',
-        targetQuantity: 80,
-        producedQuantity: 0,
-        priority: 'low',
-        status: 'queued',
-        cycleTime: 420,
-        targetCycleTime: 420,
-      },
-    ]);
+      setLoginTime(new Date().toLocaleTimeString());
 
-    // Play audio feedback
-    playAudioFeedback('success');
+      // Fetch work orders from service
+      const serviceWorkOrders = await workOrderService.getAllWorkOrders();
+      // Filter to only show Released or In Progress work orders
+      const activeWorkOrders = serviceWorkOrders.filter(
+        (wo: ServiceWorkOrder) => wo.status === 'Released' || wo.status === 'In Progress'
+      );
+      // Map to local format and take first 5
+      const mappedWorkOrders = activeWorkOrders
+        .slice(0, 5)
+        .map((wo: ServiceWorkOrder, idx: number) => mapServiceWorkOrderToShopfloor(wo, idx));
+
+      setWorkOrders(mappedWorkOrders);
+      setIsLoggedIn(true);
+      setScreen('dashboard');
+
+      // Play audio feedback
+      playAudioFeedback('success');
+    } catch (err) {
+      console.error('Error during login:', err);
+      alert('Failed to load work orders. Please try again.');
+    } finally {
+      setIsLoggingIn(false);
+    }
   };
 
   // Logout
@@ -539,10 +579,20 @@ export default function ShopfloorTerminalPage() {
 
             <button
               onClick={handleLogin}
-              className="w-full flex items-center justify-center space-x-3 px-8 py-6 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-colors text-2xl font-semibold shadow-lg"
+              disabled={isLoggingIn || loadingWorkCenters}
+              className="w-full flex items-center justify-center space-x-3 px-8 py-6 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-colors text-2xl font-semibold shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              <LogIn className="w-8 h-8" />
-              <span>Login to Shopfloor</span>
+              {isLoggingIn ? (
+                <>
+                  <Loader2 className="w-8 h-8 animate-spin" />
+                  <span>Logging in...</span>
+                </>
+              ) : (
+                <>
+                  <LogIn className="w-8 h-8" />
+                  <span>Login to Shopfloor</span>
+                </>
+              )}
             </button>
           </div>
 

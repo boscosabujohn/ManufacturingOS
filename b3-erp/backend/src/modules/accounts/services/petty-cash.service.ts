@@ -62,7 +62,7 @@ export class PettyCashService {
         }
 
         const transactions = await query.getMany();
-        return transactions.reduce((sum, t) => sum + Number(t.amount), 0);
+        return transactions.reduce((sum: number, t: PettyCash) => sum + Number(t.amount), 0);
     }
 
     async requestReplenishment(custodian: string, amount: number, remarks: string): Promise<PettyCash> {

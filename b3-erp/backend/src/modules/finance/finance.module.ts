@@ -52,6 +52,9 @@ import {
   InvoiceService,
   PaymentService,
   FinancialReportsService,
+  FinancialPeriodSeederService,
+  TaxConfigSeederService,
+  CostCenterSeederService,
 } from './services';
 import { AccountsReceivableService } from './services/accounts-receivable.service';
 import { AccountsPayableService } from './services/accounts-payable.service';
@@ -130,6 +133,9 @@ import { BankReconciliationService } from './services/bank-reconciliation.servic
     AccountsReceivableService,
     AccountsPayableService,
     BankReconciliationService,
+    FinancialPeriodSeederService,
+    TaxConfigSeederService,
+    CostCenterSeederService,
   ],
   exports: [
     ChartOfAccountsService,
@@ -141,6 +147,9 @@ import { BankReconciliationService } from './services/bank-reconciliation.servic
     AccountsReceivableService,
     AccountsPayableService,
     BankReconciliationService,
+    FinancialPeriodSeederService,
+    TaxConfigSeederService,
+    CostCenterSeederService,
   ],
 })
 export class FinanceModule {}

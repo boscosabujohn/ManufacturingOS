@@ -76,7 +76,7 @@ export class PurchaseOrderService {
         taxRate: item.taxRate || 0,
         taxAmount: itemTaxAmount,
         totalAmount: netLineTotal + itemTaxAmount,
-        requiredDate: item.requiredDate ? new Date(item.requiredDate) : null,
+        requiredDate: item.requiredDate ? new Date(item.requiredDate) : undefined,
         accountCode: item.accountCode,
         status: POItemStatus.PENDING,
       });

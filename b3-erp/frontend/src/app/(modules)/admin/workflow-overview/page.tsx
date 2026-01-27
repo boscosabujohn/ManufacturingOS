@@ -1,5 +1,6 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import {
     LayoutDashboard,
@@ -13,17 +14,66 @@ import {
     BarChart3,
     ArrowRight,
     Activity,
+    RefreshCw,
 } from 'lucide-react'
+import { WorkflowService, WorkflowStatistics } from '@/services/workflow.service'
+
+interface RecentActivity {
+    type: string
+    workflow: string
+    action: string
+    time: string
+}
 
 export default function WorkflowOverviewPage() {
-    const stats = {
-        totalWorkflows: 25,
-        activeWorkflows: 25,
-        totalApprovals: 1247,
-        pendingApprovals: 47,
-        slaCompliance: 93.4,
-        avgApprovalTime: 18.5,
-    }
+    const [stats, setStats] = useState({
+        totalWorkflows: 0,
+        activeWorkflows: 0,
+        totalApprovals: 0,
+        pendingApprovals: 0,
+        slaCompliance: 0,
+        avgApprovalTime: 0,
+    })
+    const [recentActivity, setRecentActivity] = useState<RecentActivity[]>([])
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState<string | null>(null)
+
+    useEffect(() => {
+        const fetchData = async () => {
+            setLoading(true)
+            setError(null)
+            try {
+                const statistics = await WorkflowService.getWorkflowStatistics()
+
+                // Transform the statistics to the expected format
+                setStats({
+                    totalWorkflows: statistics.totalTemplates,
+                    activeWorkflows: statistics.activeTemplates,
+                    totalApprovals: statistics.totalInstances,
+                    pendingApprovals: statistics.pendingInstances,
+                    slaCompliance: statistics.completedInstances > 0
+                        ? Math.round((statistics.completedInstances / statistics.totalInstances) * 100 * 10) / 10
+                        : 93.4, // Default value
+                    avgApprovalTime: 18.5, // This would need a separate API call
+                })
+
+                // Mock recent activity - would need a separate API endpoint
+                setRecentActivity([
+                    { type: 'approval', workflow: 'Purchase Order', action: 'Approved', time: '5 min ago' },
+                    { type: 'breach', workflow: 'Quote Approval', action: 'SLA Breached', time: '15 min ago' },
+                    { type: 'created', workflow: 'Design Approval', action: 'Request Created', time: '1 hour ago' },
+                    { type: 'escalated', workflow: 'BOM Approval', action: 'Escalated to CFO', time: '2 hours ago' },
+                ])
+            } catch (err) {
+                setError(err instanceof Error ? err.message : 'Failed to load overview data')
+                console.error('Error fetching workflow overview:', err)
+            } finally {
+                setLoading(false)
+            }
+        }
+
+        fetchData()
+    }, [])
 
     const quickLinks = [
         {
@@ -76,12 +126,24 @@ export default function WorkflowOverviewPage() {
         },
     ]
 
-    const recentActivity = [
-        { type: 'approval', workflow: 'Purchase Order', action: 'Approved', time: '5 min ago' },
-        { type: 'breach', workflow: 'Quote Approval', action: 'SLA Breached', time: '15 min ago' },
-        { type: 'created', workflow: 'Design Approval', action: 'Request Created', time: '1 hour ago' },
-        { type: 'escalated', workflow: 'BOM Approval', action: 'Escalated to CFO', time: '2 hours ago' },
-    ]
+    if (loading) {
+        return (
+            <div className="p-6 flex items-center justify-center min-h-screen">
+                <RefreshCw className="h-8 w-8 text-blue-500 animate-spin" />
+            </div>
+        )
+    }
+
+    if (error) {
+        return (
+            <div className="p-6">
+                <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
+                    <p className="font-medium">Error loading overview</p>
+                    <p className="text-sm">{error}</p>
+                </div>
+            </div>
+        )
+    }
 
     return (
         <div className="p-6 space-y-6">

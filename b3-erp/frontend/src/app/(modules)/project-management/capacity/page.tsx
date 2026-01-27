@@ -295,7 +295,7 @@ export default function ResourceCapacityPage() {
         <div className="bg-white p-6 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-gray-500">Overallocated (>100%)</p>
+              <p className="text-sm text-gray-500">Overallocated ({'>'} 100%)</p>
               <p className="text-3xl font-bold text-gray-900 mt-2">{stats.overallocated}</p>
               {stats.overallocated > 0 && (
                 <p className="text-sm text-red-600 mt-1 flex items-center gap-1">
@@ -538,7 +538,7 @@ export default function ResourceCapacityPage() {
 
           <div className="mt-6 grid grid-cols-3 gap-4 text-center">
             <div>
-              <p className="text-sm text-gray-500">Available (<80%)</p>
+              <p className="text-sm text-gray-500">Available ({'<'} 80%)</p>
               <div className="flex items-center justify-center gap-2 mt-2">
                 <div className="w-4 h-4 bg-green-500 rounded"></div>
                 <p className="text-2xl font-bold text-gray-900">
@@ -560,7 +560,7 @@ export default function ResourceCapacityPage() {
               </div>
             </div>
             <div>
-              <p className="text-sm text-gray-500">Overallocated (>100%)</p>
+              <p className="text-sm text-gray-500">Overallocated ({'>'} 100%)</p>
               <div className="flex items-center justify-center gap-2 mt-2">
                 <div className="w-4 h-4 bg-red-500 rounded"></div>
                 <p className="text-2xl font-bold text-gray-900">

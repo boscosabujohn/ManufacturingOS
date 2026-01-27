@@ -91,7 +91,7 @@ export class UserFactory {
       phone: '123-456-7890',
       mobile: '098-765-4321',
       employeeId: `EMP${this.counter.toString().padStart(4, '0')}`,
-      profileImageUrl: null,
+      profileImageUrl: undefined,
       mustChangePassword: false,
       passwordChangedAt: new Date(),
       failedLoginAttempts: 0,

@@ -40,6 +40,8 @@ import {
   TrackingEventService,
   FreightChargeService,
   TransportCompanyService,
+  TransportCompanySeederService,
+  VehicleTypeSeederService,
 } from './services';
 import { ConsolidationService } from './services/consolidation.service';
 import { ReturnManagementService } from './services/return-management.service';
@@ -89,6 +91,8 @@ import { GatePassService } from './services/gate-pass.service';
     GPSTrackingService,
     CustomerNotificationService,
     GatePassService,
+    TransportCompanySeederService,
+    VehicleTypeSeederService,
   ],
   exports: [
     ShipmentService,
@@ -105,6 +109,8 @@ import { GatePassService } from './services/gate-pass.service';
     GPSTrackingService,
     CustomerNotificationService,
     GatePassService,
+    TransportCompanySeederService,
+    VehicleTypeSeederService,
   ],
 })
 export class LogisticsModule { }

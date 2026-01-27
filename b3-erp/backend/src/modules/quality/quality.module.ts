@@ -15,7 +15,8 @@ import {
   QualityAlert,
   AuditPlan,
   AuditFindings,
-  NCR, // Added NCR
+  NCR,
+  DefectCode,
 } from './entities';
 
 // Services
@@ -31,7 +32,10 @@ import {
   QualityAlertService,
   AuditPlanService,
   AuditFindingsService,
-  NCRService, // Added NCRService
+  NCRService,
+  QCTemplateSeederService,
+  QCParameterSeederService,
+  DefectCodeSeederService,
 } from './services';
 import { CAPAManagementService } from './services/capa-management.service';
 
@@ -66,7 +70,8 @@ import {
       QualityAlert,
       AuditPlan,
       AuditFindings,
-      NCR, // Added NCR
+      NCR,
+      DefectCode,
     ]),
     WorkflowModule,
   ],
@@ -97,7 +102,11 @@ import {
     AuditPlanService,
     AuditFindingsService,
     CAPAManagementService,
-    NCRService, // Added NCRService
+    NCRService,
+    // Seeders
+    QCTemplateSeederService,
+    QCParameterSeederService,
+    DefectCodeSeederService,
   ],
   exports: [
     QCTemplateService,
@@ -112,7 +121,11 @@ import {
     AuditPlanService,
     AuditFindingsService,
     CAPAManagementService,
-    NCRService, // Added NCRService
+    NCRService,
+    // Seeders
+    QCTemplateSeederService,
+    QCParameterSeederService,
+    DefectCodeSeederService,
   ],
 })
 export class QualityModule { }

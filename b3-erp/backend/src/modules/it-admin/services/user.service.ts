@@ -301,7 +301,7 @@ export class UserService {
     user.passwordChangedAt = new Date();
     user.mustChangePassword = true;
     user.failedLoginAttempts = 0;
-    user.lockedUntil = null;
+    user.lockedUntil = null as unknown as Date;
     await this.repository.save(user);
 
     // Save to history
@@ -332,7 +332,7 @@ export class UserService {
 
     user.status = UserStatus.ACTIVE;
     user.activatedAt = new Date();
-    user.activatedBy = activatedBy;
+    user.activatedBy = activatedBy ?? 'SYSTEM';
 
     const updated = await this.repository.save(user);
 
@@ -360,7 +360,7 @@ export class UserService {
 
     user.status = UserStatus.INACTIVE;
     user.deactivatedAt = new Date();
-    user.deactivatedBy = deactivatedBy;
+    user.deactivatedBy = deactivatedBy ?? 'SYSTEM';
     user.deactivationReason = reason;
 
     const updated = await this.repository.save(user);
@@ -407,7 +407,7 @@ export class UserService {
 
     user.status = UserStatus.ACTIVE;
     user.failedLoginAttempts = 0;
-    user.lockedUntil = null;
+    user.lockedUntil = null as unknown as Date;
 
     const updated = await this.repository.save(user);
 

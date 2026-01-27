@@ -65,6 +65,7 @@ export interface NotificationPreference {
     email: boolean;
     whatsapp: boolean;
     push: boolean;
+    in_app: boolean;
   };
   notificationTypes: {
     orderUpdates: boolean;
@@ -314,7 +315,7 @@ export class CustomerNotificationService {
     if (!existing) {
       existing = {
         customerId,
-        channels: { sms: true, email: true, whatsapp: true, push: true },
+        channels: { sms: true, email: true, whatsapp: true, push: true, in_app: true },
         notificationTypes: {
           orderUpdates: true,
           deliveryUpdates: true,

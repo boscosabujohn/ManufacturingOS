@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import {
   Search,
   Filter,
@@ -13,8 +13,11 @@ import {
   FileText,
   Users,
   Clock,
-  DollarSign
+  DollarSign,
+  Loader2,
+  AlertCircle
 } from 'lucide-react'
+import { purchaseRequisitionService, PurchaseRequisition as PRServiceType, PRStatus, PRPriority } from '@/services/purchase-requisition.service'
 
 interface PurchaseRequisition {
   id: string
@@ -33,107 +36,79 @@ interface PurchaseRequisition {
   notes?: string
 }
 
-const mockRequisitions: PurchaseRequisition[] = [
-  {
-    id: '1',
-    prNumber: 'PR-2025-001',
-    requestedBy: 'Rajesh Kumar',
-    department: 'Production',
-    requestDate: '2025-01-15',
-    itemsCount: 5,
-    totalValue: 245000,
-    priority: 'urgent',
-    status: 'pending_approval',
-    approver: 'Amit Sharma',
-    deliveryDate: '2025-01-25',
-    purpose: 'Production line raw materials',
-    notes: 'Urgent requirement for ongoing production'
-  },
-  {
-    id: '2',
-    prNumber: 'PR-2025-002',
-    requestedBy: 'Priya Patel',
-    department: 'Maintenance',
-    requestDate: '2025-01-14',
-    itemsCount: 3,
-    totalValue: 85000,
-    priority: 'high',
-    status: 'approved',
-    approver: 'Vijay Singh',
-    approvalDate: '2025-01-15',
-    deliveryDate: '2025-01-28',
-    purpose: 'Preventive maintenance supplies',
-  },
-  {
-    id: '3',
-    prNumber: 'PR-2025-003',
-    requestedBy: 'Suresh Reddy',
-    department: 'Quality Control',
-    requestDate: '2025-01-13',
-    itemsCount: 8,
-    totalValue: 125000,
-    priority: 'medium',
-    status: 'converted_to_po',
-    approver: 'Amit Sharma',
-    approvalDate: '2025-01-14',
-    deliveryDate: '2025-02-05',
-    purpose: 'Testing equipment and consumables',
-  },
-  {
-    id: '4',
-    prNumber: 'PR-2025-004',
-    requestedBy: 'Anita Desai',
-    department: 'R&D',
-    requestDate: '2025-01-12',
-    itemsCount: 12,
-    totalValue: 450000,
-    priority: 'medium',
-    status: 'approved',
-    approver: 'Vijay Singh',
-    approvalDate: '2025-01-13',
-    deliveryDate: '2025-02-10',
-    purpose: 'Research project materials',
-  },
-  {
-    id: '5',
-    prNumber: 'PR-2025-005',
-    requestedBy: 'Karthik Iyer',
-    department: 'Administration',
-    requestDate: '2025-01-11',
-    itemsCount: 6,
-    totalValue: 35000,
-    priority: 'low',
-    status: 'draft',
-    approver: '-',
-    deliveryDate: '2025-02-15',
-    purpose: 'Office supplies and stationery',
-  },
-  {
-    id: '6',
-    prNumber: 'PR-2025-006',
-    requestedBy: 'Meena Nair',
-    department: 'Production',
-    requestDate: '2025-01-10',
-    itemsCount: 4,
-    totalValue: 175000,
-    priority: 'high',
-    status: 'rejected',
-    approver: 'Amit Sharma',
-    approvalDate: '2025-01-11',
-    deliveryDate: '2025-01-30',
-    purpose: 'Alternative materials procurement',
-    notes: 'Rejected due to budget constraints'
-  },
-]
-
 export default function ProcurementRequisitionsPage() {
+  const [requisitions, setRequisitions] = useState<PurchaseRequisition[]>([])
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
   const [searchTerm, setSearchTerm] = useState('')
   const [statusFilter, setStatusFilter] = useState('all')
   const [departmentFilter, setDepartmentFilter] = useState('all')
   const [currentPage, setCurrentPage] = useState(1)
   const itemsPerPage = 10
 
-  const filteredRequisitions = mockRequisitions.filter(req => {
+  // Map service status to local status
+  const mapStatus = (status: PRStatus): PurchaseRequisition['status'] => {
+    const statusMap: Record<PRStatus, PurchaseRequisition['status']> = {
+      'Draft': 'draft',
+      'Pending Approval': 'pending_approval',
+      'Approved': 'approved',
+      'Rejected': 'rejected',
+      'Converted to PO': 'converted_to_po',
+      'Cancelled': 'rejected'
+    }
+    return statusMap[status] || 'draft'
+  }
+
+  // Map service priority to local priority
+  const mapPriority = (priority: PRPriority): PurchaseRequisition['priority'] => {
+    const priorityMap: Record<PRPriority, PurchaseRequisition['priority']> = {
+      'Low': 'low',
+      'Medium': 'medium',
+      'High': 'high',
+      'Urgent': 'urgent'
+    }
+    return priorityMap[priority] || 'medium'
+  }
+
+  // Load requisitions from service
+  const loadRequisitions = async () => {
+    try {
+      setIsLoading(true)
+      setError(null)
+
+      const response = await purchaseRequisitionService.getAllRequisitions()
+
+      const mappedRequisitions: PurchaseRequisition[] = response.data.map(pr => ({
+        id: pr.id,
+        prNumber: pr.prNumber,
+        requestedBy: pr.requestedByName,
+        department: pr.department,
+        requestDate: pr.requestDate,
+        itemsCount: pr.items.length,
+        totalValue: pr.estimatedTotal,
+        priority: mapPriority(pr.priority),
+        status: mapStatus(pr.status),
+        approver: pr.approvedByName || '-',
+        approvalDate: pr.approvedAt?.split('T')[0],
+        deliveryDate: pr.requiredDate,
+        purpose: pr.title,
+        notes: pr.description || pr.rejectionReason
+      }))
+
+      setRequisitions(mappedRequisitions)
+    } catch (err) {
+      console.error('Error loading requisitions:', err)
+      setError('Failed to load requisitions. Please try again.')
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    loadRequisitions()
+  }, [])
+
+  const filteredRequisitions = requisitions.filter(req => {
     const matchesSearch = req.prNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
       req.requestedBy.toLowerCase().includes(searchTerm.toLowerCase()) ||
       req.department.toLowerCase().includes(searchTerm.toLowerCase())
@@ -147,10 +122,10 @@ export default function ProcurementRequisitionsPage() {
   const paginatedRequisitions = filteredRequisitions.slice(startIndex, startIndex + itemsPerPage)
 
   const stats = {
-    pendingApprovals: mockRequisitions.filter(r => r.status === 'pending_approval').length,
-    approved: mockRequisitions.filter(r => r.status === 'approved').length,
-    inProgress: mockRequisitions.filter(r => r.status === 'draft' || r.status === 'pending_approval').length,
-    totalValue: mockRequisitions.reduce((sum, r) => sum + r.totalValue, 0)
+    pendingApprovals: requisitions.filter(r => r.status === 'pending_approval').length,
+    approved: requisitions.filter(r => r.status === 'approved').length,
+    inProgress: requisitions.filter(r => r.status === 'draft' || r.status === 'pending_approval').length,
+    totalValue: requisitions.reduce((sum, r) => sum + r.totalValue, 0)
   }
 
   const getPriorityBadge = (priority: string) => {
@@ -202,9 +177,34 @@ export default function ProcurementRequisitionsPage() {
     console.log('Approving requisition:', id)
   }
 
+  if (isLoading) {
+    return (
+      <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6 flex items-center justify-center">
+        <div className="text-center">
+          <Loader2 className="h-12 w-12 animate-spin text-blue-600 mx-auto" />
+          <p className="mt-4 text-gray-600">Loading requisitions...</p>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6">
       <div className="w-full space-y-6">
+        {/* Error Display */}
+        {error && (
+          <div className="bg-red-50 border border-red-200 rounded-lg p-4 flex items-center gap-3">
+            <AlertCircle className="h-5 w-5 text-red-600" />
+            <span className="text-red-700">{error}</span>
+            <button
+              onClick={loadRequisitions}
+              className="ml-auto px-3 py-1 bg-red-600 text-white rounded-lg hover:bg-red-700 text-sm"
+            >
+              Retry
+            </button>
+          </div>
+        )}
+
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">

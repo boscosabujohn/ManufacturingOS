@@ -1,8 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Plus, Search, Eye, Edit, CreditCard, Calendar, DollarSign, CheckCircle, XCircle, Clock, Download, ChevronLeft, ChevronRight, AlertCircle, Building, FileText } from 'lucide-react';
+import { Plus, Search, Eye, Edit, CreditCard, Calendar, DollarSign, CheckCircle, XCircle, Clock, Download, ChevronLeft, ChevronRight, AlertCircle, Building, FileText, RefreshCw, Loader2 } from 'lucide-react';
+import { PaymentService, Payment as ServicePayment, PaymentStatus, PaymentMethod as ServicePaymentMethod, PaymentType } from '@/services/payment.service';
 
 interface Payment {
   id: string;
@@ -19,92 +20,52 @@ interface Payment {
   notes: string;
 }
 
-const mockPayments: Payment[] = [
-  {
-    id: 'PAY-001',
-    paymentNumber: 'PAY-2025-001',
-    invoiceNumber: 'INV-2025-001',
-    customerName: 'Hotel Paradise Ltd',
-    paymentDate: '2025-10-15',
-    amount: 172500,
-    paymentMethod: 'bank_transfer',
-    status: 'completed',
-    referenceNumber: 'BT-20251015-001',
-    transactionId: 'TXN-HP-987654',
+// Map service payment status to UI status
+function mapPaymentStatus(status: PaymentStatus): Payment['status'] {
+  const statusMap: Record<PaymentStatus, Payment['status']> = {
+    [PaymentStatus.PENDING]: 'pending',
+    [PaymentStatus.PROCESSING]: 'processing',
+    [PaymentStatus.COMPLETED]: 'completed',
+    [PaymentStatus.FAILED]: 'failed',
+    [PaymentStatus.CANCELLED]: 'failed',
+    [PaymentStatus.REFUNDED]: 'refunded',
+  };
+  return statusMap[status] || 'pending';
+}
+
+// Map service payment method to UI payment method
+function mapPaymentMethod(method: ServicePaymentMethod): Payment['paymentMethod'] {
+  const methodMap: Record<ServicePaymentMethod, Payment['paymentMethod']> = {
+    [ServicePaymentMethod.BANK_TRANSFER]: 'bank_transfer',
+    [ServicePaymentMethod.CHECK]: 'check',
+    [ServicePaymentMethod.CREDIT_CARD]: 'credit_card',
+    [ServicePaymentMethod.CASH]: 'cash',
+    [ServicePaymentMethod.WIRE_TRANSFER]: 'wire_transfer',
+    [ServicePaymentMethod.ACH]: 'bank_transfer',
+    [ServicePaymentMethod.PAYPAL]: 'credit_card',
+    [ServicePaymentMethod.OTHER]: 'bank_transfer',
+  };
+  return methodMap[method] || 'bank_transfer';
+}
+
+// Transform service payment to UI payment
+function transformPayment(pay: ServicePayment): Payment {
+  const allocatedInvoice = pay.allocations.length > 0 ? pay.allocations[0].invoiceNumber : '';
+  return {
+    id: pay.id,
+    paymentNumber: pay.paymentNumber,
+    invoiceNumber: allocatedInvoice,
+    customerName: pay.customerName || pay.vendorName || 'Unknown',
+    paymentDate: new Date(pay.paymentDate).toISOString().split('T')[0],
+    amount: pay.amount,
+    paymentMethod: mapPaymentMethod(pay.method),
+    status: mapPaymentStatus(pay.status),
+    referenceNumber: pay.reference || '',
+    transactionId: pay.transactionId || '',
     processedBy: 'Finance Team',
-    notes: 'Full payment received',
-  },
-  {
-    id: 'PAY-002',
-    paymentNumber: 'PAY-2025-002',
-    invoiceNumber: 'INV-2025-002',
-    customerName: 'Culinary Delights Inc',
-    paymentDate: '2025-10-12',
-    amount: 50000,
-    paymentMethod: 'credit_card',
-    status: 'completed',
-    referenceNumber: 'CC-20251012-002',
-    transactionId: 'TXN-CD-876543',
-    processedBy: 'Finance Team',
-    notes: 'Partial payment - 1 of 2',
-  },
-  {
-    id: 'PAY-003',
-    paymentNumber: 'PAY-2025-003',
-    invoiceNumber: 'INV-2025-006',
-    customerName: 'Restaurant Group LLC',
-    paymentDate: '2025-10-16',
-    amount: 109250,
-    paymentMethod: 'wire_transfer',
-    status: 'processing',
-    referenceNumber: 'WT-20251016-003',
-    transactionId: 'TXN-RG-765432',
-    processedBy: 'John Finance',
-    notes: 'Wire transfer in progress',
-  },
-  {
-    id: 'PAY-004',
-    paymentNumber: 'PAY-2025-004',
-    invoiceNumber: 'INV-2025-004',
-    customerName: 'Springfield Academy',
-    paymentDate: '2025-10-10',
-    amount: 62100,
-    paymentMethod: 'check',
-    status: 'failed',
-    referenceNumber: 'CHK-20251010-004',
-    transactionId: 'TXN-SA-654321',
-    processedBy: 'Sarah Finance',
-    notes: 'Check bounced - insufficient funds',
-  },
-  {
-    id: 'PAY-005',
-    paymentNumber: 'PAY-2025-005',
-    invoiceNumber: 'INV-2025-007',
-    customerName: 'Tech Startup Inc',
-    paymentDate: '2025-10-17',
-    amount: 25000,
-    paymentMethod: 'bank_transfer',
-    status: 'pending',
-    referenceNumber: 'BT-20251017-005',
-    transactionId: 'TXN-TS-543210',
-    processedBy: 'Finance Team',
-    notes: 'Awaiting bank confirmation',
-  },
-  {
-    id: 'PAY-006',
-    paymentNumber: 'PAY-2025-006',
-    invoiceNumber: 'INV-2025-003',
-    customerName: 'City General Hospital',
-    paymentDate: '2025-10-14',
-    amount: 15000,
-    paymentMethod: 'credit_card',
-    status: 'refunded',
-    referenceNumber: 'CC-20251014-006',
-    transactionId: 'TXN-CGH-432109',
-    processedBy: 'Michael Finance',
-    notes: 'Refunded due to order cancellation',
-  },
-];
+    notes: pay.notes || '',
+  };
+}
 
 const statusColors = {
   pending: 'bg-yellow-100 text-yellow-700',
@@ -138,14 +99,91 @@ const methodLabels = {
   wire_transfer: 'Wire Transfer',
 };
 
+// Loading skeleton for payments table
+function PaymentsTableSkeleton() {
+  return (
+    <div className="animate-pulse">
+      <div className="mb-6 flex items-start gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 flex-1">
+          {[...Array(4)].map((_, i) => (
+            <div key={i} className="bg-gray-100 rounded-lg p-4 h-24">
+              <div className="h-3 bg-gray-200 rounded w-1/2 mb-2"></div>
+              <div className="h-6 bg-gray-200 rounded w-2/3"></div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+        <div className="p-4 border-b border-gray-200">
+          <div className="h-10 bg-gray-100 rounded"></div>
+        </div>
+        <div className="divide-y divide-gray-200">
+          {[...Array(5)].map((_, i) => (
+            <div key={i} className="p-4 flex items-center gap-4">
+              <div className="h-10 w-10 bg-gray-100 rounded-full"></div>
+              <div className="flex-1 space-y-2">
+                <div className="h-4 bg-gray-100 rounded w-1/4"></div>
+                <div className="h-3 bg-gray-100 rounded w-1/3"></div>
+              </div>
+              <div className="h-8 w-20 bg-gray-100 rounded"></div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function PaymentsPage() {
   const router = useRouter();
-  const [payments, setPayments] = useState<Payment[]>(mockPayments);
+  const [payments, setPayments] = useState<Payment[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [methodFilter, setMethodFilter] = useState<string>('all');
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
+
+  // Fetch payments from service
+  useEffect(() => {
+    async function fetchPayments() {
+      try {
+        setLoading(true);
+        setError(null);
+        const response = await PaymentService.getAllPayments({
+          type: PaymentType.RECEIVED, // Get received payments
+          limit: 100,
+        });
+        const transformedPayments = response.data.map(transformPayment);
+        setPayments(transformedPayments);
+      } catch (err) {
+        console.error('Failed to fetch payments:', err);
+        setError('Failed to load payments. Please try again.');
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchPayments();
+  }, []);
+
+  // Refresh function
+  const refreshPayments = async () => {
+    try {
+      setLoading(true);
+      const response = await PaymentService.getAllPayments({
+        type: PaymentType.RECEIVED,
+        limit: 100,
+      });
+      const transformedPayments = response.data.map(transformPayment);
+      setPayments(transformedPayments);
+    } catch (err) {
+      console.error('Failed to refresh payments:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const filteredPayments = payments.filter((payment) => {
     const matchesSearch =
@@ -169,6 +207,35 @@ export default function PaymentsPage() {
     pending: payments.filter((p) => p.status === 'pending').length,
     failed: payments.filter((p) => p.status === 'failed').length,
   };
+
+  // Show loading skeleton
+  if (loading && payments.length === 0) {
+    return (
+      <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 max-w-7xl">
+        <PaymentsTableSkeleton />
+      </div>
+    );
+  }
+
+  // Show error state
+  if (error && payments.length === 0) {
+    return (
+      <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 max-w-7xl">
+        <div className="flex flex-col items-center justify-center h-64">
+          <AlertCircle className="w-12 h-12 text-red-500 mb-4" />
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">Failed to Load Payments</h2>
+          <p className="text-gray-600 mb-4">{error}</p>
+          <button
+            onClick={refreshPayments}
+            className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          >
+            <RefreshCw className="h-4 w-4" />
+            <span>Try Again</span>
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 max-w-7xl">

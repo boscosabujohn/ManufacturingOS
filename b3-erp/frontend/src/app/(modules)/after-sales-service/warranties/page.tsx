@@ -1,214 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Plus, Search, Eye, Edit, FileText, AlertCircle, CheckCircle, Clock, XCircle, Shield, Calendar, DollarSign, TrendingUp, Download } from 'lucide-react';
-
-interface Warranty {
-  id: string;
-  warrantyNumber: string;
-  warrantyType: 'Standard' | 'Extended' | 'Manufacturer' | 'Dealer';
-  customerId: string;
-  customerName: string;
-  equipmentId: string;
-  equipmentModel: string;
-  status: 'active' | 'expired' | 'void' | 'extended' | 'transferred';
-  startDate: string;
-  endDate: string;
-  durationMonths: number;
-  coverage: 'Parts Only' | 'Labor Only' | 'Parts & Labor' | 'Comprehensive';
-  claimCount: number;
-  totalClaimValue: number;
-  remainingCoverage: number; // percentage
-  isExtended: boolean;
-  baseWarrantyId?: string;
-}
-
-const mockWarranties: Warranty[] = [
-  {
-    id: '1',
-    warrantyNumber: 'WRN-2025-00001',
-    warrantyType: 'Standard',
-    customerId: 'CUST001',
-    customerName: 'Sharma Modular Kitchens Pvt Ltd',
-    equipmentId: 'EQP-MK-2025-001',
-    equipmentModel: 'Modular Kitchen Premium SS-304',
-    status: 'active',
-    startDate: '2025-01-15',
-    endDate: '2026-01-14',
-    durationMonths: 12,
-    coverage: 'Parts & Labor',
-    claimCount: 0,
-    totalClaimValue: 0,
-    remainingCoverage: 100,
-    isExtended: false,
-  },
-  {
-    id: '2',
-    warrantyNumber: 'WRN-2025-00045',
-    warrantyType: 'Extended',
-    customerId: 'CUST002',
-    customerName: 'Prestige Developers Bangalore',
-    equipmentId: 'EQP-HB-2024-234',
-    equipmentModel: 'Built-in Hob 4 Burner Gas',
-    status: 'active',
-    startDate: '2024-03-20',
-    endDate: '2027-03-19',
-    durationMonths: 36,
-    coverage: 'Comprehensive',
-    claimCount: 2,
-    totalClaimValue: 28500,
-    remainingCoverage: 85,
-    isExtended: true,
-    baseWarrantyId: 'WRN-2024-00012',
-  },
-  {
-    id: '3',
-    warrantyNumber: 'WRN-2025-00123',
-    warrantyType: 'Manufacturer',
-    customerId: 'CUST003',
-    customerName: 'Urban Interiors & Designers',
-    equipmentId: 'EQP-CH-2025-067',
-    equipmentModel: 'Chimney Auto Clean 90cm',
-    status: 'active',
-    startDate: '2025-05-10',
-    endDate: '2027-05-09',
-    durationMonths: 24,
-    coverage: 'Parts Only',
-    claimCount: 1,
-    totalClaimValue: 8500,
-    remainingCoverage: 95,
-    isExtended: false,
-  },
-  {
-    id: '4',
-    warrantyNumber: 'WRN-2024-00876',
-    warrantyType: 'Standard',
-    customerId: 'CUST004',
-    customerName: 'Elite Contractors & Builders',
-    equipmentId: 'EQP-OV-2024-543',
-    equipmentModel: 'Built-in Oven 60L',
-    status: 'expired',
-    startDate: '2024-02-01',
-    endDate: '2025-01-31',
-    durationMonths: 12,
-    coverage: 'Parts & Labor',
-    claimCount: 3,
-    totalClaimValue: 45000,
-    remainingCoverage: 0,
-    isExtended: false,
-  },
-  {
-    id: '5',
-    warrantyNumber: 'WRN-2025-00234',
-    warrantyType: 'Extended',
-    customerId: 'CUST005',
-    customerName: 'DLF Universal Projects',
-    equipmentId: 'EQP-DW-2023-890',
-    equipmentModel: 'Dishwasher 14 Place Settings',
-    status: 'active',
-    startDate: '2023-08-15',
-    endDate: '2026-08-14',
-    durationMonths: 36,
-    coverage: 'Comprehensive',
-    claimCount: 4,
-    totalClaimValue: 67000,
-    remainingCoverage: 70,
-    isExtended: true,
-    baseWarrantyId: 'WRN-2023-00456',
-  },
-  {
-    id: '6',
-    warrantyNumber: 'WRN-2025-00345',
-    warrantyType: 'Dealer',
-    customerId: 'CUST006',
-    customerName: 'Signature Interiors Pune',
-    equipmentId: 'EQP-MK-2025-234',
-    equipmentModel: 'Modular Kitchen L-Shape',
-    status: 'active',
-    startDate: '2025-04-01',
-    endDate: '2026-03-31',
-    durationMonths: 12,
-    coverage: 'Labor Only',
-    claimCount: 0,
-    totalClaimValue: 0,
-    remainingCoverage: 100,
-    isExtended: false,
-  },
-  {
-    id: '7',
-    warrantyNumber: 'WRN-2024-00567',
-    warrantyType: 'Standard',
-    customerId: 'CUST007',
-    customerName: 'Royal Homes Hyderabad',
-    equipmentId: 'EQP-HB-2024-789',
-    equipmentModel: 'Induction Hob 4 Burner',
-    status: 'transferred',
-    startDate: '2024-06-15',
-    endDate: '2025-06-14',
-    durationMonths: 12,
-    coverage: 'Parts & Labor',
-    claimCount: 1,
-    totalClaimValue: 12000,
-    remainingCoverage: 90,
-    isExtended: false,
-  },
-  {
-    id: '8',
-    warrantyNumber: 'WRN-2025-00456',
-    warrantyType: 'Manufacturer',
-    customerId: 'CUST008',
-    customerName: 'Modern Living Ahmedabad',
-    equipmentId: 'EQP-MW-2025-123',
-    equipmentModel: 'Microwave Oven 30L Convection',
-    status: 'active',
-    startDate: '2025-07-20',
-    endDate: '2027-07-19',
-    durationMonths: 24,
-    coverage: 'Comprehensive',
-    claimCount: 0,
-    totalClaimValue: 0,
-    remainingCoverage: 100,
-    isExtended: false,
-  },
-  {
-    id: '9',
-    warrantyNumber: 'WRN-2023-00234',
-    warrantyType: 'Standard',
-    customerId: 'CUST009',
-    customerName: 'Decor Studio Chennai',
-    equipmentId: 'EQP-CH-2023-456',
-    equipmentModel: 'Chimney Curved Glass 60cm',
-    status: 'void',
-    startDate: '2023-12-01',
-    endDate: '2024-11-30',
-    durationMonths: 12,
-    coverage: 'Parts Only',
-    claimCount: 5,
-    totalClaimValue: 89000,
-    remainingCoverage: 0,
-    isExtended: false,
-  },
-  {
-    id: '10',
-    warrantyNumber: 'WRN-2025-00789',
-    warrantyType: 'Extended',
-    customerId: 'CUST010',
-    customerName: 'Cosmos Furniture Mart',
-    equipmentId: 'EQP-RO-2024-678',
-    equipmentModel: 'RO Water Purifier 10L',
-    status: 'active',
-    startDate: '2024-09-01',
-    endDate: '2027-08-31',
-    durationMonths: 36,
-    coverage: 'Parts & Labor',
-    claimCount: 2,
-    totalClaimValue: 15000,
-    remainingCoverage: 88,
-    isExtended: true,
-    baseWarrantyId: 'WRN-2024-00345',
-  },
-];
+import { Plus, Search, Eye, Edit, FileText, AlertCircle, CheckCircle, Clock, XCircle, Shield, Calendar, DollarSign, TrendingUp, Download, Loader2 } from 'lucide-react';
+import { WarrantyService, Warranty } from '@/services/warranty.service';
 
 const statusColors = {
   active: 'bg-green-100 text-green-700',
@@ -248,8 +43,32 @@ export default function WarrantiesPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
+  // Data fetching states
+  const [warranties, setWarranties] = useState<Warranty[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // Fetch warranties on mount
+  useEffect(() => {
+    const fetchWarranties = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const data = await WarrantyService.getAllWarranties();
+        setWarranties(data);
+      } catch (err) {
+        setError('Failed to load warranties. Please try again.');
+        console.error('Error fetching warranties:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchWarranties();
+  }, []);
+
   // Filter warranties
-  const filteredWarranties = mockWarranties.filter((warranty) => {
+  const filteredWarranties = warranties.filter((warranty) => {
     const matchesSearch =
       warranty.warrantyNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
       warranty.customerName.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -267,16 +86,47 @@ export default function WarrantiesPage() {
   );
 
   // Calculate statistics
+  const now = new Date();
   const stats = {
-    totalWarranties: mockWarranties.length,
-    activeWarranties: mockWarranties.filter(w => w.status === 'active').length,
-    expiringIn30Days: mockWarranties.filter(w => {
-      const daysUntilExpiry = Math.ceil((new Date(w.endDate).getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24));
+    totalWarranties: warranties.length,
+    activeWarranties: warranties.filter(w => w.status === 'active').length,
+    expiringIn30Days: warranties.filter(w => {
+      const daysUntilExpiry = Math.ceil((new Date(w.endDate).getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
       return w.status === 'active' && daysUntilExpiry <= 30 && daysUntilExpiry > 0;
     }).length,
-    totalClaims: mockWarranties.reduce((sum, w) => sum + w.claimCount, 0),
-    totalClaimValue: mockWarranties.reduce((sum, w) => sum + w.totalClaimValue, 0),
+    totalClaims: warranties.reduce((sum, w) => sum + w.claimCount, 0),
+    totalClaimValue: warranties.reduce((sum, w) => sum + w.totalClaimValue, 0),
   };
+
+  // Loading state
+  if (loading) {
+    return (
+      <div className="p-6 w-full flex items-center justify-center min-h-[400px]">
+        <div className="flex flex-col items-center gap-4">
+          <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+          <p className="text-gray-600">Loading warranties...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Error state
+  if (error) {
+    return (
+      <div className="p-6 w-full flex items-center justify-center min-h-[400px]">
+        <div className="flex flex-col items-center gap-4 text-center">
+          <AlertCircle className="h-12 w-12 text-red-500" />
+          <p className="text-gray-900 font-medium">{error}</p>
+          <button
+            onClick={() => window.location.reload()}
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          >
+            Try Again
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat('en-IN', {

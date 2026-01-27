@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Truck,
   Plus,
@@ -15,8 +15,11 @@ import {
   CheckCircle,
   TrendingUp,
   Fuel,
-  Settings
+  Settings,
+  Loader2,
+  RefreshCw
 } from 'lucide-react';
+import { fleetService, Vehicle, Driver } from '@/services/fleet.service';
 
 interface VehicleTracking {
   id: number;
@@ -48,245 +51,92 @@ interface VehicleTracking {
   nextMaintenanceKm: number;
 }
 
+// Helper function to map service vehicle to UI format
+const mapServiceVehicleToUI = (vehicle: Vehicle, drivers: Driver[]): VehicleTracking => {
+  const driver = drivers.find(d => d.id === vehicle.assignedDriverId);
+
+  const statusMap: Record<Vehicle['status'], VehicleTracking['currentStatus']> = {
+    'Available': 'idle',
+    'In Transit': 'in-transit',
+    'Under Maintenance': 'maintenance',
+    'Out of Service': 'offline'
+  };
+
+  // Generate simulated real-time data
+  const isInTransit = vehicle.status === 'In Transit';
+  const speed = isInTransit ? Math.floor(Math.random() * 40) + 40 : 0;
+  const fuelLevel = Math.floor(Math.random() * 60) + 30;
+
+  return {
+    id: parseInt(vehicle.id.replace(/\D/g, '')) || Date.now(),
+    vehicleId: vehicle.id,
+    vehicleNumber: vehicle.vehicleNumber,
+    vehicleType: `${vehicle.vehicleType}`,
+    make: vehicle.make,
+    model: vehicle.model,
+    year: vehicle.year,
+    currentLocation: vehicle.currentLocation || 'Warehouse Hub',
+    latitude: 19.0760 + Math.random() * 5,
+    longitude: 72.8777 + Math.random() * 5,
+    currentStatus: statusMap[vehicle.status] || 'idle',
+    driverName: vehicle.assignedDriverName || driver?.fullName || 'Not Assigned',
+    driverPhone: driver?.phone || '+91-0000000000',
+    currentTrip: isInTransit ? `TRP-${Date.now().toString().slice(-6)}` : null,
+    currentLoad: isInTransit ? `LD-${Date.now().toString().slice(-6)}` : null,
+    speed,
+    fuelLevel,
+    odometer: vehicle.currentMileage,
+    lastUpdated: new Date().toISOString().replace('T', ' ').slice(0, 16),
+    destination: isInTransit ? 'Destination Hub' : null,
+    eta: isInTransit ? new Date(Date.now() + 86400000).toISOString().replace('T', ' ').slice(0, 16) : null,
+    distanceRemaining: isInTransit ? Math.floor(Math.random() * 500) + 100 : null,
+    engineStatus: isInTransit ? 'on' : 'off',
+    gpsStatus: vehicle.gpsEnabled ? 'active' : 'lost',
+    alertCount: vehicle.status === 'Out of Service' ? 3 : vehicle.status === 'Under Maintenance' ? 2 : 0,
+    nextMaintenance: vehicle.nextServiceDue || '2025-03-01',
+    nextMaintenanceKm: vehicle.currentMileage + 5000
+  };
+};
+
 export default function FleetTrackingPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedStatus, setSelectedStatus] = useState('all');
   const [selectedType, setSelectedType] = useState('all');
 
-  const [vehicles, setVehicles] = useState<VehicleTracking[]>([
-    {
-      id: 1,
-      vehicleId: 'VEH-001',
-      vehicleNumber: 'MH-01-AB-1234',
-      vehicleType: '32-Ft Truck',
-      make: 'Tata',
-      model: 'LPT 3118',
-      year: 2022,
-      currentLocation: 'Vadodara Hub, Gujarat',
-      latitude: 22.3072,
-      longitude: 73.1812,
-      currentStatus: 'in-transit',
-      driverName: 'Ramesh Sharma',
-      driverPhone: '+91-9876543210',
-      currentTrip: 'TRP-2024-001',
-      currentLoad: 'LD-2024-001',
-      speed: 65,
-      fuelLevel: 72,
-      odometer: 125680,
-      lastUpdated: '2024-10-21 14:30',
-      destination: 'Delhi Distribution Center',
-      eta: '2024-10-23 18:00',
-      distanceRemaining: 850,
-      engineStatus: 'on',
-      gpsStatus: 'active',
-      alertCount: 0,
-      nextMaintenance: '2024-11-15',
-      nextMaintenanceKm: 130000
-    },
-    {
-      id: 2,
-      vehicleId: 'VEH-002',
-      vehicleNumber: 'KA-05-CD-5678',
-      vehicleType: '20-Ft Container',
-      make: 'Ashok Leyland',
-      model: 'Ecomet 1615',
-      year: 2023,
-      currentLocation: 'Bangalore Plant, Karnataka',
-      latitude: 12.9716,
-      longitude: 77.5946,
-      currentStatus: 'idle',
-      driverName: 'Suresh Kumar',
-      driverPhone: '+91-9876543211',
-      currentTrip: null,
-      currentLoad: null,
-      speed: 0,
-      fuelLevel: 85,
-      odometer: 89450,
-      lastUpdated: '2024-10-21 14:25',
-      destination: null,
-      eta: null,
-      distanceRemaining: null,
-      engineStatus: 'off',
-      gpsStatus: 'active',
-      alertCount: 0,
-      nextMaintenance: '2024-10-28',
-      nextMaintenanceKm: 90000
-    },
-    {
-      id: 3,
-      vehicleId: 'VEH-003',
-      vehicleNumber: 'WB-02-EF-9012',
-      vehicleType: '40-Ft Truck',
-      make: 'Mahindra',
-      model: 'Blazo X 42',
-      year: 2021,
-      currentLocation: 'Bhubaneswar Hub, Odisha',
-      latitude: 20.2961,
-      longitude: 85.8245,
-      currentStatus: 'in-transit',
-      driverName: 'Mohan Das',
-      driverPhone: '+91-9876543212',
-      currentTrip: 'TRP-2024-003',
-      currentLoad: 'LD-2024-003',
-      speed: 58,
-      fuelLevel: 45,
-      distanceRemaining: 1500,
-      odometer: 215680,
-      lastUpdated: '2024-10-21 14:28',
-      destination: 'Mumbai Warehouse',
-      eta: '2024-10-23 18:00',
-      engineStatus: 'on',
-      gpsStatus: 'active',
-      alertCount: 1,
-      nextMaintenance: '2024-11-05',
-      nextMaintenanceKm: 220000
-    },
-    {
-      id: 4,
-      vehicleId: 'VEH-004',
-      vehicleNumber: 'TS-09-GH-3456',
-      vehicleType: '24-Ft Truck',
-      make: 'BharatBenz',
-      model: '2826R',
-      year: 2023,
-      currentLocation: 'Hyderabad Workshop, Telangana',
-      latitude: 17.3850,
-      longitude: 78.4867,
-      currentStatus: 'maintenance',
-      driverName: 'Prakash Reddy',
-      driverPhone: '+91-9876543213',
-      currentTrip: null,
-      currentLoad: null,
-      speed: 0,
-      fuelLevel: 30,
-      odometer: 145280,
-      lastUpdated: '2024-10-21 09:00',
-      destination: null,
-      eta: null,
-      distanceRemaining: null,
-      engineStatus: 'off',
-      gpsStatus: 'active',
-      alertCount: 2,
-      nextMaintenance: '2024-10-21',
-      nextMaintenanceKm: 145000
-    },
-    {
-      id: 5,
-      vehicleId: 'VEH-005',
-      vehicleNumber: 'MH-12-IJ-7890',
-      vehicleType: '18-Ft Truck',
-      make: 'Eicher',
-      model: 'Pro 6025T',
-      year: 2022,
-      currentLocation: 'Pune Hub, Maharashtra',
-      latitude: 18.5204,
-      longitude: 73.8567,
-      currentStatus: 'idle',
-      driverName: 'Ganesh Patil',
-      driverPhone: '+91-9876543214',
-      currentTrip: null,
-      currentLoad: null,
-      speed: 0,
-      fuelLevel: 90,
-      odometer: 98750,
-      lastUpdated: '2024-10-21 14:20',
-      destination: null,
-      eta: null,
-      distanceRemaining: null,
-      engineStatus: 'off',
-      gpsStatus: 'active',
-      alertCount: 0,
-      nextMaintenance: '2024-11-20',
-      nextMaintenanceKm: 105000
-    },
-    {
-      id: 6,
-      vehicleId: 'VEH-006',
-      vehicleNumber: 'DL-03-KL-2468',
-      vehicleType: '28-Ft Truck',
-      make: 'Tata',
-      model: 'Signa 2823.K',
-      year: 2021,
-      currentLocation: 'Ambala Transit, Haryana',
-      latitude: 30.3782,
-      longitude: 76.7821,
-      currentStatus: 'in-transit',
-      driverName: 'Vijay Singh',
-      driverPhone: '+91-9876543215',
-      currentTrip: 'TRP-2024-006',
-      currentLoad: 'LD-2024-006',
-      speed: 70,
-      fuelLevel: 65,
-      odometer: 178920,
-      lastUpdated: '2024-10-21 14:32',
-      destination: 'Jammu Depot',
-      eta: '2024-10-23 09:00',
-      distanceRemaining: 320,
-      engineStatus: 'on',
-      gpsStatus: 'active',
-      alertCount: 0,
-      nextMaintenance: '2024-12-10',
-      nextMaintenanceKm: 185000
-    },
-    {
-      id: 7,
-      vehicleId: 'VEH-007',
-      vehicleNumber: 'TN-01-MN-1357',
-      vehicleType: '32-Ft Truck',
-      make: 'Volvo',
-      model: 'FH16',
-      year: 2023,
-      currentLocation: 'Chennai Port, Tamil Nadu',
-      latitude: 13.0827,
-      longitude: 80.2707,
-      currentStatus: 'idle',
-      driverName: 'Murugan Subramanian',
-      driverPhone: '+91-9876543216',
-      currentTrip: null,
-      currentLoad: null,
-      speed: 0,
-      fuelLevel: 78,
-      odometer: 156890,
-      lastUpdated: '2024-10-21 14:15',
-      destination: null,
-      eta: null,
-      distanceRemaining: null,
-      engineStatus: 'off',
-      gpsStatus: 'active',
-      alertCount: 0,
-      nextMaintenance: '2024-11-30',
-      nextMaintenanceKm: 165000
-    },
-    {
-      id: 8,
-      vehicleId: 'VEH-008',
-      vehicleNumber: 'GJ-01-OP-2580',
-      vehicleType: '20-Ft Truck',
-      make: 'Ashok Leyland',
-      model: 'Partner',
-      year: 2020,
-      currentLocation: 'Unknown',
-      latitude: 0,
-      longitude: 0,
-      currentStatus: 'offline',
-      driverName: 'Bharat Patel',
-      driverPhone: '+91-9876543217',
-      currentTrip: null,
-      currentLoad: null,
-      speed: 0,
-      fuelLevel: 0,
-      odometer: 134560,
-      lastUpdated: '2024-10-21 10:45',
-      destination: null,
-      eta: null,
-      distanceRemaining: null,
-      engineStatus: 'off',
-      gpsStatus: 'lost',
-      alertCount: 3,
-      nextMaintenance: '2024-10-25',
-      nextMaintenanceKm: 135000
+  // State for vehicles loaded from service
+  const [vehicles, setVehicles] = useState<VehicleTracking[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadError, setLoadError] = useState<string | null>(null);
+
+  // Load vehicles and drivers from service
+  useEffect(() => {
+    loadFleetData();
+  }, []);
+
+  const loadFleetData = async () => {
+    setIsLoading(true);
+    setLoadError(null);
+    try {
+      // Fetch vehicles and drivers in parallel
+      const [serviceVehicles, drivers] = await Promise.all([
+        fleetService.getAllVehicles(),
+        fleetService.getAllDrivers()
+      ]);
+
+      // Map service data to UI format
+      const mappedVehicles = serviceVehicles.map(v => mapServiceVehicleToUI(v, drivers));
+      setVehicles(mappedVehicles);
+    } catch (error) {
+      console.error('Error loading fleet data:', error);
+      setLoadError('Failed to load fleet data. Please try again.');
+    } finally {
+      setIsLoading(false);
     }
-  ]);
+  };
+
+  const handleRefresh = async () => {
+    await loadFleetData();
+  };
 
   const getStatusColor = (status: string) => {
     const colors: { [key: string]: string } = {
@@ -360,6 +210,14 @@ export default function FleetTrackingPage() {
           <p className="text-gray-600 mt-1">Real-time vehicle location and status monitoring</p>
         </div>
         <div className="flex items-center space-x-3">
+          <button
+            onClick={handleRefresh}
+            disabled={isLoading}
+            className="px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 flex items-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <RefreshCw className={`w-4 h-4 ${isLoading ? 'animate-spin' : ''}`} />
+            <span>{isLoading ? 'Loading...' : 'Refresh'}</span>
+          </button>
           <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center space-x-2">
             <Plus className="w-4 h-4" />
             <span>Add Vehicle</span>
@@ -467,7 +325,40 @@ export default function FleetTrackingPage() {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {filteredVehicles.map((vehicle) => (
+              {isLoading ? (
+                <tr>
+                  <td colSpan={9} className="px-6 py-12 text-center">
+                    <div className="flex flex-col items-center justify-center">
+                      <Loader2 className="w-8 h-8 text-blue-600 animate-spin mb-2" />
+                      <span className="text-gray-500">Loading fleet data...</span>
+                    </div>
+                  </td>
+                </tr>
+              ) : loadError ? (
+                <tr>
+                  <td colSpan={9} className="px-6 py-12 text-center">
+                    <div className="flex flex-col items-center justify-center">
+                      <AlertTriangle className="w-8 h-8 text-red-500 mb-2" />
+                      <span className="text-red-500">{loadError}</span>
+                      <button
+                        onClick={handleRefresh}
+                        className="mt-2 text-blue-600 hover:text-blue-700"
+                      >
+                        Try again
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ) : filteredVehicles.length === 0 ? (
+                <tr>
+                  <td colSpan={9} className="px-6 py-12 text-center">
+                    <div className="flex flex-col items-center justify-center">
+                      <Truck className="w-8 h-8 text-gray-400 mb-2" />
+                      <span className="text-gray-500">No vehicles found</span>
+                    </div>
+                  </td>
+                </tr>
+              ) : filteredVehicles.map((vehicle) => (
                 <tr key={vehicle.id} className="hover:bg-gray-50">
                   <td className="px-6 py-4">
                     <div className="font-medium text-gray-900">{vehicle.vehicleNumber}</div>

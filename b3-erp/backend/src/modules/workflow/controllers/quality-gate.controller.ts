@@ -44,7 +44,7 @@ export class QualityGateController {
         @Body('passed') passed: boolean,
         @Body('comments') comments?: string,
     ) {
-        return this.qualityGateService.finalizeInspection(id, passed, comments);
+        return this.qualityGateService.finalizeInspection(id, passed, comments ?? '');
     }
 
     @Post('defects')

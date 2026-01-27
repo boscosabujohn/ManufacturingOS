@@ -88,7 +88,7 @@ export class PurchaseRequisitionService {
         (sum, item) => sum + item.estimatedTotal,
         0
       );
-      updateDto['totalAmount'] = totalAmount;
+      (updateDto as any).totalAmount = totalAmount;
     }
 
     Object.assign(pr, updateDto);
@@ -139,7 +139,7 @@ export class PurchaseRequisitionService {
     pr.approvedBy = approverData.approvedBy;
     pr.approverName = approverData.approverName;
     pr.approvedAt = new Date();
-    pr.approvalNotes = approverData.notes;
+    pr.approvalNotes = approverData.notes || '';
 
     const updatedPR = await this.prRepository.save(pr);
     return this.mapToResponse(updatedPR);

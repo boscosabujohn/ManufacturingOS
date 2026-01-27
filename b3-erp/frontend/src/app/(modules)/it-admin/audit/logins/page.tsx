@@ -609,7 +609,6 @@ const LoginAuditLogsPage = () => {
           </div>
         )}
       </div>
-        </div>
       </div>
 
       {/* Details Modal */}

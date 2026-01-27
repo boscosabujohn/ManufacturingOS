@@ -74,10 +74,14 @@ export class ApprovalWorkflowService {
         // Create tasks for level 1 approvers
         await this.createApproverTasks(savedRequest, chain.levels[0]);
 
-        return this.requestRepository.findOne({
+        const result = await this.requestRepository.findOne({
             where: { id: savedRequest.id },
             relations: ['history', 'comments', 'attachments'],
         });
+        if (!result) {
+            throw new NotFoundException('Failed to retrieve created approval request');
+        }
+        return result;
     }
 
     /**
@@ -109,9 +113,17 @@ export class ApprovalWorkflowService {
             { amount: request.amount },
         );
 
+        if (!chain) {
+            throw new NotFoundException('Approval chain not found');
+        }
+
         const currentLevel = chain.levels.find(
-            (l) => l.sequence === request.currentLevel,
+            (l: { sequence: number }) => l.sequence === request.currentLevel,
         );
+
+        if (!currentLevel) {
+            throw new NotFoundException('Current approval level not found');
+        }
 
         // Record the approval
         await this.historyRepository.save({
@@ -140,10 +152,14 @@ export class ApprovalWorkflowService {
             }
         }
 
-        return this.requestRepository.findOne({
+        const approvedResult = await this.requestRepository.findOne({
             where: { id: requestId },
             relations: ['history', 'comments', 'attachments'],
         });
+        if (!approvedResult) {
+            throw new NotFoundException('Approval request not found after approval');
+        }
+        return approvedResult;
     }
 
     /**
@@ -188,10 +204,14 @@ export class ApprovalWorkflowService {
         // TODO: Notify requester of rejection
         // TODO: Update entity status (e.g., PO status = "rejected")
 
-        return this.requestRepository.findOne({
+        const rejectedResult = await this.requestRepository.findOne({
             where: { id: requestId },
             relations: ['history', 'comments', 'attachments'],
         });
+        if (!rejectedResult) {
+            throw new NotFoundException('Approval request not found after rejection');
+        }
+        return rejectedResult;
     }
 
     /**
@@ -220,9 +240,9 @@ export class ApprovalWorkflowService {
     /**
      * Move approval request to the next level
      */
-    private async moveToNextLevel(request: ApprovalRequest, chain: any) {
+    private async moveToNextLevel(request: ApprovalRequest, chain: any): Promise<ApprovalRequest> {
         const nextLevel = request.currentLevel + 1;
-        const nextLevelConfig = chain.levels.find((l) => l.sequence === nextLevel);
+        const nextLevelConfig = chain.levels.find((l: { sequence: number }) => l.sequence === nextLevel);
 
         if (!nextLevelConfig) {
             throw new Error('Next level configuration not found');
@@ -251,20 +271,27 @@ export class ApprovalWorkflowService {
         const updatedRequest = await this.requestRepository.findOne({
             where: { id: request.id },
         });
+        if (!updatedRequest) {
+            throw new NotFoundException('Approval request not found after update');
+        }
         await this.createApproverTasks(updatedRequest, nextLevelConfig);
 
         // TODO: Send notifications to next level approvers
 
-        return this.requestRepository.findOne({
+        const nextLevelResult = await this.requestRepository.findOne({
             where: { id: request.id },
             relations: ['history', 'comments', 'attachments'],
         });
+        if (!nextLevelResult) {
+            throw new NotFoundException('Approval request not found');
+        }
+        return nextLevelResult;
     }
 
     /**
      * Complete the approval workflow
      */
-    private async completeApproval(request: ApprovalRequest) {
+    private async completeApproval(request: ApprovalRequest): Promise<ApprovalRequest> {
         await this.requestRepository.update(request.id, {
             status: ApprovalStatus.APPROVED,
         });
@@ -272,10 +299,14 @@ export class ApprovalWorkflowService {
         // TODO: Update entity status (e.g., PO status = "approved")
         // TODO: Notify requester of approval
 
-        return this.requestRepository.findOne({
+        const completedResult = await this.requestRepository.findOne({
             where: { id: request.id },
             relations: ['history', 'comments', 'attachments'],
         });
+        if (!completedResult) {
+            throw new NotFoundException('Approval request not found after completion');
+        }
+        return completedResult;
     }
 
     /**
@@ -284,7 +315,7 @@ export class ApprovalWorkflowService {
     private async createApproverTasks(request: ApprovalRequest, level: any) {
         // For now, create tasks for all approvers in approverIds
         // TODO: Implement role-based user lookup
-        const tasks = level.approverIds.map((approverId) =>
+        const tasks = level.approverIds.map((approverId: string) =>
             this.taskRepository.create({
                 userId: approverId,
                 taskType: TaskType.APPROVAL,

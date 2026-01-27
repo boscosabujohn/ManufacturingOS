@@ -13,6 +13,8 @@ import { ProjectBudget } from './entities/project-budget.entity';
 import { ProjectMilestone } from './entities/project-milestone.entity';
 import { ResourceCapacity } from './entities/resource-capacity.entity';
 import { TimeLog } from './entities/time-log.entity';
+import { ProjectStatusEntity } from './entities/project-status.entity';
+import { ProjectTypeEntity } from './entities/project-type.entity';
 
 import { ProjectTasksService } from './services/project-tasks.service';
 import { ProjectResourcesService } from './services/project-resources.service';
@@ -23,6 +25,9 @@ import { TimeLogsService } from './services/time-logs.service';
 import { ProjectFinancialsService } from './services/project-financials.service';
 import { TASettlementService } from './services/ta-settlement.service';
 import { EmergencySpareService } from './services/emergency-spare.service';
+
+import { ProjectStatusSeederService } from './services/project-status-seeder.service';
+import { ProjectTypeSeederService } from './services/project-type-seeder.service';
 
 import { ProjectTasksController } from './controllers/project-tasks.controller';
 import { ProjectResourcesController } from './controllers/project-resources.controller';
@@ -38,7 +43,9 @@ import { TimeLogsController } from './controllers/time-logs.controller';
         ProjectBudget,
         ProjectMilestone,
         ResourceCapacity,
-        TimeLog
+        TimeLog,
+        ProjectStatusEntity,
+        ProjectTypeEntity
     ])],
     controllers: [
         ProjectController,
@@ -61,7 +68,9 @@ import { TimeLogsController } from './controllers/time-logs.controller';
         ProjectResourcesService,
         ProjectBudgetsService,
         ProjectMilestonesService,
-        TimeLogsService
+        TimeLogsService,
+        ProjectStatusSeederService,
+        ProjectTypeSeederService
     ],
     exports: [
         ProjectService,

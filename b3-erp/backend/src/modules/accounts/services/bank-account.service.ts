@@ -72,7 +72,9 @@ export class BankAccountService {
         const saved = await this.transactionRepository.save(transaction);
 
         // Update account balance
-        await this.updateBalance(data.bankAccountId, Number(data.credit) - Number(data.debit));
+        if (data.bankAccountId) {
+            await this.updateBalance(data.bankAccountId, Number(data.credit) - Number(data.debit));
+        }
 
         return saved;
     }

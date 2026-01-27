@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Search,
   Filter,
@@ -30,11 +30,13 @@ import {
   Navigation,
   BoxSelect,
   Archive,
-  X
+  X,
+  Loader2
 } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
+import { shipmentService, Shipment } from '@/services/shipment.service';
 
-// ShipmentOrder Interface
+// ShipmentOrder Interface for UI display
 interface ShipmentOrder {
   id: string;
   shipment_id: string;
@@ -60,6 +62,52 @@ interface ShipmentOrder {
   payment_method: string;
   created_by: string;
 }
+
+// Helper function to map service shipment to UI format
+const mapServiceShipmentToUI = (shipment: Shipment): ShipmentOrder => {
+  const statusMap: Record<Shipment['status'], ShipmentOrder['status']> = {
+    'Draft': 'pending',
+    'Pending': 'pending',
+    'Dispatched': 'picked',
+    'In Transit': 'in_transit',
+    'Delivered': 'delivered',
+    'Cancelled': 'cancelled',
+    'Returned': 'delayed'
+  };
+
+  const priorityMap: Record<Shipment['priority'], ShipmentOrder['priority']> = {
+    'Low': 'low',
+    'Normal': 'medium',
+    'High': 'high',
+    'Urgent': 'urgent'
+  };
+
+  return {
+    id: shipment.id,
+    shipment_id: shipment.shipmentNumber,
+    order_number: shipment.orderNumber || shipment.shipmentNumber,
+    customer_name: shipment.customerName,
+    customer_contact: '+91-9876543210',
+    customer_email: `contact@${shipment.customerName.toLowerCase().replace(/\s+/g, '')}.com`,
+    origin: 'Mumbai, Maharashtra',
+    destination: `${shipment.city}, ${shipment.state}`,
+    carrier_name: shipment.carrierName || 'Not Assigned',
+    carrier_contact: '+91-1800-123-4567',
+    shipped_date: shipment.shipmentDate,
+    expected_delivery: shipment.expectedDeliveryDate,
+    actual_delivery: shipment.actualDeliveryDate,
+    weight_kg: shipment.totalWeight,
+    dimensions: `${Math.round(shipment.totalVolume || 1 * 30)}x${Math.round((shipment.totalVolume || 1) * 20)}x${Math.round((shipment.totalVolume || 1) * 15)} cm`,
+    tracking_number: shipment.trackingNumber || `TRK${shipment.id.replace(/\D/g, '')}`,
+    status: statusMap[shipment.status] || 'pending',
+    shipping_cost: shipment.shippingCost || 0,
+    insurance_value: (shipment.shippingCost || 0) * 10,
+    priority: priorityMap[shipment.priority] || 'medium',
+    notes: shipment.notes || '',
+    payment_method: 'Credit',
+    created_by: 'System'
+  };
+};
 
 export default function LogisticsShippingPage() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -97,202 +145,35 @@ export default function LogisticsShippingPage() {
     notes: ''
   });
 
-  // Sample shipment orders data
-  const shipmentOrders: ShipmentOrder[] = [
-    {
-      id: '1',
-      shipment_id: 'SHP-2025-001',
-      order_number: 'ORD-10234',
-      customer_name: 'Tata Steel Ltd',
-      customer_contact: '+91-9876543210',
-      customer_email: 'procurement@tatasteel.com',
-      origin: 'Mumbai, Maharashtra',
-      destination: 'Jamshedpur, Jharkhand',
-      carrier_name: 'BlueDart Express',
-      carrier_contact: '+91-1800-233-1234',
-      shipped_date: '2025-01-15',
-      expected_delivery: '2025-01-18',
-      weight_kg: 250.5,
-      dimensions: '120x80x60 cm',
-      tracking_number: 'BD123456789IN',
-      status: 'in_transit',
-      shipping_cost: 12500,
-      insurance_value: 500000,
-      priority: 'high',
-      notes: 'Handle with care - Industrial equipment parts',
-      payment_method: 'Credit',
-      created_by: 'Rajesh Kumar'
-    },
-    {
-      id: '2',
-      shipment_id: 'SHP-2025-002',
-      order_number: 'ORD-10235',
-      customer_name: 'Reliance Industries',
-      customer_contact: '+91-9876543211',
-      customer_email: 'logistics@ril.com',
-      origin: 'Delhi, NCR',
-      destination: 'Ahmedabad, Gujarat',
-      carrier_name: 'DTDC Courier',
-      carrier_contact: '+91-1860-208-8208',
-      shipped_date: '2025-01-16',
-      expected_delivery: '2025-01-19',
-      weight_kg: 180.0,
-      dimensions: '100x70x50 cm',
-      tracking_number: 'DTDC987654321IN',
-      status: 'picked',
-      shipping_cost: 9800,
-      insurance_value: 350000,
-      priority: 'urgent',
-      notes: 'Urgent delivery required',
-      payment_method: 'Prepaid',
-      created_by: 'Priya Sharma'
-    },
-    {
-      id: '3',
-      shipment_id: 'SHP-2025-003',
-      order_number: 'ORD-10236',
-      customer_name: 'Mahindra & Mahindra',
-      customer_contact: '+91-9876543212',
-      customer_email: 'supply@mahindra.com',
-      origin: 'Chennai, Tamil Nadu',
-      destination: 'Pune, Maharashtra',
-      carrier_name: 'Delhivery',
-      carrier_contact: '+91-124-4643-000',
-      shipped_date: '2025-01-14',
-      expected_delivery: '2025-01-17',
-      actual_delivery: '2025-01-17',
-      weight_kg: 320.8,
-      dimensions: '150x90x70 cm',
-      tracking_number: 'DLV456789123IN',
-      status: 'delivered',
-      shipping_cost: 15600,
-      insurance_value: 650000,
-      priority: 'medium',
-      notes: 'Successfully delivered to warehouse',
-      payment_method: 'Credit',
-      created_by: 'Amit Patel'
-    },
-    {
-      id: '4',
-      shipment_id: 'SHP-2025-004',
-      order_number: 'ORD-10237',
-      customer_name: 'Larsen & Toubro',
-      customer_contact: '+91-9876543213',
-      customer_email: 'projects@lnt.com',
-      origin: 'Bangalore, Karnataka',
-      destination: 'Hyderabad, Telangana',
-      carrier_name: 'FedEx India',
-      carrier_contact: '+91-1800-103-9000',
-      shipped_date: '2025-01-13',
-      expected_delivery: '2025-01-16',
-      weight_kg: 450.2,
-      dimensions: '180x100x80 cm',
-      tracking_number: 'FDX789456123IN',
-      status: 'delayed',
-      shipping_cost: 21000,
-      insurance_value: 800000,
-      priority: 'high',
-      notes: 'Delayed due to weather conditions',
-      payment_method: 'Credit',
-      created_by: 'Vikram Singh'
-    },
-    {
-      id: '5',
-      shipment_id: 'SHP-2025-005',
-      order_number: 'ORD-10238',
-      customer_name: 'Hindalco Industries',
-      customer_contact: '+91-9876543214',
-      customer_email: 'operations@hindalco.com',
-      origin: 'Kolkata, West Bengal',
-      destination: 'Bhubaneswar, Odisha',
-      carrier_name: 'Gati-KWE',
-      carrier_contact: '+91-1800-180-4284',
-      shipped_date: '2025-01-17',
-      expected_delivery: '2025-01-20',
-      weight_kg: 195.5,
-      dimensions: '110x75x55 cm',
-      tracking_number: 'GATI321654987IN',
-      status: 'pending',
-      shipping_cost: 10200,
-      insurance_value: 420000,
-      priority: 'low',
-      notes: 'Awaiting pickup confirmation',
-      payment_method: 'COD',
-      created_by: 'Sneha Reddy'
-    },
-    {
-      id: '6',
-      shipment_id: 'SHP-2025-006',
-      order_number: 'ORD-10239',
-      customer_name: 'JSW Steel',
-      customer_contact: '+91-9876543215',
-      customer_email: 'logistics@jsw.com',
-      origin: 'Mumbai, Maharashtra',
-      destination: 'Visakhapatnam, Andhra Pradesh',
-      carrier_name: 'BlueDart Express',
-      carrier_contact: '+91-1800-233-1234',
-      shipped_date: '2025-01-12',
-      expected_delivery: '2025-01-15',
-      weight_kg: 280.0,
-      dimensions: '130x85x65 cm',
-      tracking_number: 'BD987123456IN',
-      status: 'cancelled',
-      shipping_cost: 0,
-      insurance_value: 0,
-      priority: 'medium',
-      notes: 'Order cancelled by customer',
-      payment_method: 'Refunded',
-      created_by: 'Manoj Kumar'
-    },
-    {
-      id: '7',
-      shipment_id: 'SHP-2025-007',
-      order_number: 'ORD-10240',
-      customer_name: 'Adani Group',
-      customer_contact: '+91-9876543216',
-      customer_email: 'logistics@adani.com',
-      origin: 'Ahmedabad, Gujarat',
-      destination: 'Mumbai, Maharashtra',
-      carrier_name: 'Delhivery',
-      carrier_contact: '+91-124-4643-000',
-      shipped_date: '2025-01-16',
-      expected_delivery: '2025-01-19',
-      weight_kg: 310.5,
-      dimensions: '140x90x70 cm',
-      tracking_number: 'DLV789123456IN',
-      status: 'in_transit',
-      shipping_cost: 14500,
-      insurance_value: 720000,
-      priority: 'high',
-      notes: 'Fragile items - Handle with care',
-      payment_method: 'Prepaid',
-      created_by: 'Anil Desai'
-    },
-    {
-      id: '8',
-      shipment_id: 'SHP-2025-008',
-      order_number: 'ORD-10241',
-      customer_name: 'Wipro Ltd',
-      customer_contact: '+91-9876543217',
-      customer_email: 'supply@wipro.com',
-      origin: 'Bangalore, Karnataka',
-      destination: 'Chennai, Tamil Nadu',
-      carrier_name: 'DTDC Courier',
-      carrier_contact: '+91-1860-208-8208',
-      shipped_date: '2025-01-17',
-      expected_delivery: '2025-01-20',
-      weight_kg: 95.0,
-      dimensions: '80x60x40 cm',
-      tracking_number: 'DTDC456123789IN',
-      status: 'picked',
-      shipping_cost: 6800,
-      insurance_value: 280000,
-      priority: 'medium',
-      notes: 'IT equipment shipment',
-      payment_method: 'Credit',
-      created_by: 'Ramesh Nair'
-    }
-  ];
+  // State for shipment orders loaded from service
+  const [shipmentOrders, setShipmentOrders] = useState<ShipmentOrder[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadError, setLoadError] = useState<string | null>(null);
+
+  // Load shipments from service
+  useEffect(() => {
+    const loadShipments = async () => {
+      setIsLoading(true);
+      setLoadError(null);
+      try {
+        const { data: shipments } = await shipmentService.getAllShipments();
+        const mappedShipments = shipments.map(mapServiceShipmentToUI);
+        setShipmentOrders(mappedShipments);
+      } catch (error) {
+        console.error('Error loading shipments:', error);
+        setLoadError('Failed to load shipments. Please try again.');
+        toast({
+          title: "Error",
+          description: "Failed to load shipments. Please refresh the page.",
+          variant: "destructive"
+        });
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadShipments();
+  }, []);
 
   // Calculate stats
   const stats = {
@@ -434,11 +315,26 @@ export default function LogisticsShippingPage() {
     });
   };
 
-  const handleRefresh = () => {
-    toast({
-      title: "Data Refreshed",
-      description: "Shipment data has been updated."
-    });
+  const handleRefresh = async () => {
+    setIsLoading(true);
+    try {
+      const { data: shipments } = await shipmentService.getAllShipments();
+      const mappedShipments = shipments.map(mapServiceShipmentToUI);
+      setShipmentOrders(mappedShipments);
+      toast({
+        title: "Data Refreshed",
+        description: "Shipment data has been updated."
+      });
+    } catch (error) {
+      console.error('Error refreshing shipments:', error);
+      toast({
+        title: "Error",
+        description: "Failed to refresh shipments.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleDelete = (shipment: ShipmentOrder) => {
@@ -470,10 +366,11 @@ export default function LogisticsShippingPage() {
         <div className="flex gap-2">
           <button
             onClick={handleRefresh}
-            className="flex items-center gap-2 bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+            disabled={isLoading}
+            className="flex items-center gap-2 bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            <RefreshCw className="w-4 h-4" />
-            Refresh
+            <RefreshCw className={`w-4 h-4 ${isLoading ? 'animate-spin' : ''}`} />
+            {isLoading ? 'Loading...' : 'Refresh'}
           </button>
           <button
             onClick={handleCreateShipment}
@@ -670,7 +567,40 @@ export default function LogisticsShippingPage() {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {paginatedShipments.map((shipment) => (
+              {isLoading ? (
+                <tr>
+                  <td colSpan={10} className="px-6 py-12 text-center">
+                    <div className="flex flex-col items-center justify-center">
+                      <Loader2 className="w-8 h-8 text-blue-600 animate-spin mb-2" />
+                      <span className="text-gray-500">Loading shipments...</span>
+                    </div>
+                  </td>
+                </tr>
+              ) : loadError ? (
+                <tr>
+                  <td colSpan={10} className="px-6 py-12 text-center">
+                    <div className="flex flex-col items-center justify-center">
+                      <AlertCircle className="w-8 h-8 text-red-500 mb-2" />
+                      <span className="text-red-500">{loadError}</span>
+                      <button
+                        onClick={handleRefresh}
+                        className="mt-2 text-blue-600 hover:text-blue-700"
+                      >
+                        Try again
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ) : paginatedShipments.length === 0 ? (
+                <tr>
+                  <td colSpan={10} className="px-6 py-12 text-center">
+                    <div className="flex flex-col items-center justify-center">
+                      <Package className="w-8 h-8 text-gray-400 mb-2" />
+                      <span className="text-gray-500">No shipments found</span>
+                    </div>
+                  </td>
+                </tr>
+              ) : paginatedShipments.map((shipment) => (
                 <tr key={shipment.id} className="hover:bg-gray-50">
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex items-center gap-2">

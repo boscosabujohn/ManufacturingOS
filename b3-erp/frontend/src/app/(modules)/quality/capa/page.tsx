@@ -22,9 +22,11 @@ import {
     MoreHorizontal,
     Download,
     ShieldCheck,
-    RefreshCw
+    RefreshCw,
+    Loader2
 } from 'lucide-react';
 import Link from 'next/link';
+import { CAPAService, CAPA as ServiceCAPA, CAPAStatus, CAPAType, CAPAPriority } from '@/services/capa.service';
 
 interface CAPA {
     id: string;
@@ -43,122 +45,95 @@ interface CAPA {
     verifiedBy?: string;
 }
 
-const MOCK_CAPAS: CAPA[] = [
-    {
-        id: '1',
-        capaNumber: 'CAPA-2024-001',
-        title: 'Implement dimensional inspection jig for shell plates',
-        type: 'corrective',
-        priority: 'high',
-        status: 'in-progress',
-        owner: 'Suresh Patil',
-        dueDate: '2024-08-01',
-        progress: 65,
-        linkedNCR: 'NCR-2024-001',
-        description: 'Design and implement a dedicated inspection jig for verifying shell plate thickness during incoming inspection.',
-        department: 'Quality Assurance',
-        rootCause: 'Lack of standardized measurement fixtures led to inconsistencies in incoming inspection.'
-    },
-    {
-        id: '2',
-        capaNumber: 'CAPA-2024-002',
-        title: 'Upgrade welding process with automated flux monitoring',
-        type: 'corrective',
-        priority: 'high',
-        status: 'planned',
-        owner: 'John Doe',
-        dueDate: '2024-08-15',
-        progress: 20,
-        linkedNCR: 'NCR-2024-002',
-        description: 'Install automated flux monitoring sensors on all welding stations to detect porosity issues in real-time.',
-        department: 'Production Engineering',
-        rootCause: 'Manual inspection of welding parameters is ineffective for detecting porosity before X-ray stage.'
-    },
-    {
-        id: '3',
-        capaNumber: 'CAPA-2024-003',
-        title: 'Implement supplier quality audit program',
-        type: 'preventive',
-        priority: 'medium',
-        status: 'completed',
-        owner: 'Anita Desai',
-        dueDate: '2024-07-20',
-        progress: 100,
-        description: 'Establish quarterly quality audits for all critical suppliers to ensure compliance with specifications.',
-        department: 'Supplier Quality',
-        verifiedBy: 'Quality Manager'
-    },
-    {
-        id: '4',
-        capaNumber: 'CAPA-2024-004',
-        title: 'Calibration management system upgrade',
-        type: 'preventive',
-        priority: 'medium',
-        status: 'verified',
-        owner: 'Manoj Singh',
-        dueDate: '2024-07-25',
-        progress: 100,
-        linkedNCR: 'NCR-2024-004',
-        description: 'Deploy digital calibration tracking system with automated alerts for all measurement equipment.',
-        department: 'Metrology',
-        rootCause: 'Manual tracking of calibration schedules resulted in missed calibration deadlines.',
-        verifiedBy: 'Metrology Head'
-    },
-    {
-        id: '5',
-        capaNumber: 'CAPA-2024-005',
-        title: 'Enhance operator training for surface preparation',
-        type: 'corrective',
-        priority: 'high',
-        status: 'overdue',
-        owner: 'Rajesh G.',
-        dueDate: '2024-07-15',
-        progress: 45,
-        description: 'Develop comprehensive training module for operators on degreasing and surface preparation procedures.',
-        department: 'Training',
-        rootCause: 'Inadequate operator training led to inconsistent surface preparation quality.'
-    },
-    {
-        id: '6',
-        capaNumber: 'CAPA-2024-006',
-        title: 'Implement barcode verification at receiving',
-        type: 'preventive',
-        priority: 'low',
-        status: 'in-progress',
-        owner: 'Prakash L.',
-        dueDate: '2024-08-30',
-        progress: 75,
-        linkedNCR: 'NCR-2024-005',
-        description: 'Install barcode scanning system at receiving dock to verify material certifications automatically.',
-        department: 'Receiving Inspection'
-    }
-];
+// CAPA data is now fetched from CAPAService
 
 export default function CAPAPage() {
     const [capas, setCapas] = useState<CAPA[]>([]);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
     const [filter, setFilter] = useState('all');
     const [searchTerm, setSearchTerm] = useState('');
     const [typeFilter, setTypeFilter] = useState('all');
 
-    useEffect(() => {
-        const fetchCAPAs = async () => {
-            try {
-                setLoading(true);
-                const response = await fetch('/api/quality/capa');
-                if (response.ok) {
-                    const data = await response.json();
-                    setCapas(data.data?.length > 0 ? data.data : MOCK_CAPAS);
-                } else {
-                    setCapas(MOCK_CAPAS);
-                }
-            } catch (error) {
-                console.error('Failed to fetch CAPAs:', error);
-                setCapas(MOCK_CAPAS);
-            } finally {
-                setLoading(false);
-            }
+    // Transform service CAPA to page format
+    const transformCAPA = (capa: ServiceCAPA): CAPA => {
+        // Map type
+        const typeMap: Record<string, CAPA['type']> = {
+            'corrective': 'corrective',
+            'preventive': 'preventive',
+            'both': 'corrective', // Default to corrective for "both" type
         };
+
+        // Map priority
+        const priorityMap: Record<string, CAPA['priority']> = {
+            'critical': 'high',
+            'high': 'high',
+            'medium': 'medium',
+            'low': 'low',
+        };
+
+        // Map status
+        let status: CAPA['status'] = 'planned';
+        switch (capa.status) {
+            case CAPAStatus.DRAFT:
+            case CAPAStatus.PENDING_APPROVAL:
+            case CAPAStatus.APPROVED:
+                status = 'planned';
+                break;
+            case CAPAStatus.INITIATED:
+            case CAPAStatus.IN_PROGRESS:
+            case CAPAStatus.IMPLEMENTATION:
+            case CAPAStatus.VERIFICATION:
+                status = 'in-progress';
+                break;
+            case CAPAStatus.EFFECTIVENESS_REVIEW:
+            case CAPAStatus.CLOSED:
+                status = capa.effectivenessVerified ? 'verified' : 'completed';
+                break;
+            default:
+                // Check if overdue
+                const now = new Date();
+                const dueDate = new Date(capa.targetCompletionDate);
+                if (dueDate < now && capa.status !== CAPAStatus.CLOSED) {
+                    status = 'overdue';
+                }
+        }
+
+        return {
+            id: capa.id,
+            capaNumber: capa.capaNumber,
+            title: capa.title,
+            type: typeMap[capa.type] || 'corrective',
+            priority: priorityMap[capa.priority] || 'medium',
+            status: status,
+            owner: capa.ownerName,
+            dueDate: new Date(capa.targetCompletionDate).toISOString().split('T')[0],
+            progress: capa.overallProgress,
+            linkedNCR: capa.ncrNumber,
+            description: capa.description,
+            department: capa.ownerDepartment,
+            rootCause: capa.rootCauseAnalysis?.rootCause,
+            verifiedBy: capa.effectivenessVerifiedBy,
+        };
+    };
+
+    const fetchCAPAs = async () => {
+        try {
+            setLoading(true);
+            setError(null);
+
+            const data = await CAPAService.getAllCAPAs();
+            const transformedData = data.map(transformCAPA);
+            setCapas(transformedData);
+        } catch (err) {
+            console.error('Failed to fetch CAPAs:', err);
+            setError('Failed to load CAPAs. Please try again.');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
         fetchCAPAs();
     }, []);
 
@@ -336,9 +311,24 @@ export default function CAPAPage() {
 
             {/* CAPA List */}
             <div className="flex flex-col gap-4">
+                {error && (
+                    <Card className="border-red-200 bg-red-50">
+                        <CardContent className="p-4">
+                            <p className="text-red-600">{error}</p>
+                            <Button
+                                variant="link"
+                                onClick={fetchCAPAs}
+                                className="text-red-700 p-0 h-auto mt-1"
+                            >
+                                Try again
+                            </Button>
+                        </CardContent>
+                    </Card>
+                )}
                 {loading ? (
                     <div className="flex items-center justify-center py-20">
-                        <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-blue-600"></div>
+                        <Loader2 className="h-10 w-10 animate-spin text-blue-600" />
+                        <span className="ml-3 text-gray-600">Loading CAPAs...</span>
                     </div>
                 ) : filteredCAPAs.length === 0 ? (
                     <Card className="border-dashed border-2 py-20 text-center">

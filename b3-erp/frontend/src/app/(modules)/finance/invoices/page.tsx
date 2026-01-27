@@ -1,8 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Plus, Search, Eye, Edit, Download, FileText, Calendar, DollarSign, TrendingUp, AlertCircle, CheckCircle, Clock, ChevronLeft, ChevronRight, Send } from 'lucide-react';
+import { Plus, Search, Eye, Edit, Download, FileText, Calendar, DollarSign, TrendingUp, AlertCircle, CheckCircle, Clock, ChevronLeft, ChevronRight, Send, RefreshCw, Loader2 } from 'lucide-react';
+import { InvoiceService, Invoice as ServiceInvoice, InvoiceStatus, InvoiceType } from '@/services/invoice.service';
 
 interface Invoice {
   id: string;
@@ -22,106 +23,42 @@ interface Invoice {
   paymentMethod?: string;
 }
 
-const mockInvoices: Invoice[] = [
-  {
-    id: 'INV-001',
-    invoiceNumber: 'INV-2025-001',
-    customerName: 'Hotel Paradise Ltd',
-    customerId: 'CUST-001',
-    invoiceDate: '2025-10-01',
-    dueDate: '2025-10-31',
-    amount: 150000,
-    taxAmount: 22500,
-    totalAmount: 172500,
-    paidAmount: 172500,
-    status: 'paid',
-    paymentTerms: 'Net 30',
-    salesOrder: 'SO-2025-145',
-    createdBy: 'Finance Team',
-    paymentMethod: 'Bank Transfer',
-  },
-  {
-    id: 'INV-002',
-    invoiceNumber: 'INV-2025-002',
-    customerName: 'Culinary Delights Inc',
-    customerId: 'CUST-002',
-    invoiceDate: '2025-10-05',
-    dueDate: '2025-11-04',
-    amount: 102000,
-    taxAmount: 15300,
-    totalAmount: 117300,
-    paidAmount: 50000,
-    status: 'partially_paid',
-    paymentTerms: 'Net 30',
-    salesOrder: 'SO-2025-156',
-    createdBy: 'Finance Team',
-  },
-  {
-    id: 'INV-003',
-    invoiceNumber: 'INV-2025-003',
-    customerName: 'City General Hospital',
-    customerId: 'CUST-003',
-    invoiceDate: '2025-10-08',
-    dueDate: '2025-11-07',
-    amount: 240000,
-    taxAmount: 36000,
-    totalAmount: 276000,
-    paidAmount: 0,
-    status: 'sent',
-    paymentTerms: 'Net 30',
-    salesOrder: 'SO-2025-167',
-    createdBy: 'Finance Team',
-  },
-  {
-    id: 'INV-004',
-    invoiceNumber: 'INV-2025-004',
-    customerName: 'Springfield Academy',
-    customerId: 'CUST-004',
-    invoiceDate: '2025-09-15',
-    dueDate: '2025-10-15',
-    amount: 54000,
-    taxAmount: 8100,
-    totalAmount: 62100,
-    paidAmount: 0,
-    status: 'overdue',
-    paymentTerms: 'Net 30',
-    salesOrder: 'SO-2025-178',
-    createdBy: 'Finance Team',
-  },
-  {
-    id: 'INV-005',
-    invoiceNumber: 'INV-2025-005',
-    customerName: 'Artisan Bakers Co',
-    customerId: 'CUST-005',
-    invoiceDate: '2025-10-12',
-    dueDate: '2025-11-11',
-    amount: 210000,
-    taxAmount: 31500,
-    totalAmount: 241500,
-    paidAmount: 0,
-    status: 'draft',
-    paymentTerms: 'Net 30',
-    salesOrder: 'SO-2025-189',
-    createdBy: 'Finance Team',
-  },
-  {
-    id: 'INV-006',
-    invoiceNumber: 'INV-2025-006',
-    customerName: 'Restaurant Group LLC',
-    customerId: 'CUST-006',
-    invoiceDate: '2025-10-14',
-    dueDate: '2025-11-13',
-    amount: 95000,
-    taxAmount: 14250,
-    totalAmount: 109250,
-    paidAmount: 109250,
-    status: 'paid',
-    paymentTerms: 'Net 30',
-    salesOrder: 'SO-2025-190',
-    createdBy: 'Finance Team',
-    paymentMethod: 'Credit Card',
-  },
-];
+// Map service invoice status to UI status
+function mapInvoiceStatus(status: InvoiceStatus): Invoice['status'] {
+  const statusMap: Record<InvoiceStatus, Invoice['status']> = {
+    [InvoiceStatus.DRAFT]: 'draft',
+    [InvoiceStatus.PENDING_APPROVAL]: 'draft',
+    [InvoiceStatus.APPROVED]: 'sent',
+    [InvoiceStatus.POSTED]: 'sent',
+    [InvoiceStatus.PARTIALLY_PAID]: 'partially_paid',
+    [InvoiceStatus.PAID]: 'paid',
+    [InvoiceStatus.OVERDUE]: 'overdue',
+    [InvoiceStatus.CANCELLED]: 'cancelled',
+    [InvoiceStatus.VOID]: 'cancelled',
+  };
+  return statusMap[status] || 'draft';
+}
+
+// Transform service invoice to UI invoice
+function transformInvoice(inv: ServiceInvoice): Invoice {
+  return {
+    id: inv.id,
+    invoiceNumber: inv.invoiceNumber,
+    customerName: inv.customerName,
+    customerId: inv.customerId || '',
+    invoiceDate: new Date(inv.invoiceDate).toISOString().split('T')[0],
+    dueDate: new Date(inv.dueDate).toISOString().split('T')[0],
+    amount: inv.subtotal,
+    taxAmount: inv.totalTax,
+    totalAmount: inv.totalAmount,
+    paidAmount: inv.amountPaid,
+    status: mapInvoiceStatus(inv.status),
+    paymentTerms: inv.paymentTerms.replace('_', ' '),
+    salesOrder: inv.poNumber || '',
+    createdBy: inv.submittedBy || 'Finance Team',
+    paymentMethod: inv.status === InvoiceStatus.PAID ? 'Bank Transfer' : undefined,
+  };
+}
 
 const statusColors = {
   draft: 'bg-gray-100 text-gray-700',
@@ -141,13 +78,93 @@ const statusLabels = {
   cancelled: 'Cancelled',
 };
 
+// Loading skeleton for invoices table
+function InvoicesTableSkeleton() {
+  return (
+    <div className="animate-pulse">
+      <div className="mb-6 flex items-start gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 flex-1">
+          {[...Array(4)].map((_, i) => (
+            <div key={i} className="bg-gray-100 rounded-lg p-4 h-24">
+              <div className="h-3 bg-gray-200 rounded w-1/2 mb-2"></div>
+              <div className="h-6 bg-gray-200 rounded w-2/3"></div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+        <div className="p-4 border-b border-gray-200">
+          <div className="h-10 bg-gray-100 rounded"></div>
+        </div>
+        <div className="divide-y divide-gray-200">
+          {[...Array(5)].map((_, i) => (
+            <div key={i} className="p-4 flex items-center gap-4">
+              <div className="h-10 w-10 bg-gray-100 rounded-full"></div>
+              <div className="flex-1 space-y-2">
+                <div className="h-4 bg-gray-100 rounded w-1/4"></div>
+                <div className="h-3 bg-gray-100 rounded w-1/3"></div>
+              </div>
+              <div className="h-8 w-20 bg-gray-100 rounded"></div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function InvoicesPage() {
   const router = useRouter();
-  const [invoices, setInvoices] = useState<Invoice[]>(mockInvoices);
+  const [invoices, setInvoices] = useState<Invoice[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [currentPage, setCurrentPage] = useState(1);
+  const [totalRecords, setTotalRecords] = useState(0);
   const itemsPerPage = 10;
+
+  // Fetch invoices from service
+  useEffect(() => {
+    async function fetchInvoices() {
+      try {
+        setLoading(true);
+        setError(null);
+        const response = await InvoiceService.getAllInvoices({
+          type: InvoiceType.SALES,
+          limit: 100, // Get all for client-side filtering
+        });
+        const transformedInvoices = response.data.map(transformInvoice);
+        setInvoices(transformedInvoices);
+        setTotalRecords(response.total);
+      } catch (err) {
+        console.error('Failed to fetch invoices:', err);
+        setError('Failed to load invoices. Please try again.');
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchInvoices();
+  }, []);
+
+  // Refresh function
+  const refreshInvoices = async () => {
+    try {
+      setLoading(true);
+      const response = await InvoiceService.getAllInvoices({
+        type: InvoiceType.SALES,
+        limit: 100,
+      });
+      const transformedInvoices = response.data.map(transformInvoice);
+      setInvoices(transformedInvoices);
+      setTotalRecords(response.total);
+    } catch (err) {
+      console.error('Failed to refresh invoices:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const filteredInvoices = invoices.filter((inv) => {
     const matchesSearch =
@@ -169,6 +186,35 @@ export default function InvoicesPage() {
     pendingAmount: invoices.reduce((sum, inv) => sum + (inv.totalAmount - inv.paidAmount), 0),
     overdueCount: invoices.filter((inv) => inv.status === 'overdue').length,
   };
+
+  // Show loading skeleton
+  if (loading && invoices.length === 0) {
+    return (
+      <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 w-full max-w-full">
+        <InvoicesTableSkeleton />
+      </div>
+    );
+  }
+
+  // Show error state
+  if (error && invoices.length === 0) {
+    return (
+      <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 w-full max-w-full">
+        <div className="flex flex-col items-center justify-center h-64">
+          <AlertCircle className="w-12 h-12 text-red-500 mb-4" />
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">Failed to Load Invoices</h2>
+          <p className="text-gray-600 mb-4">{error}</p>
+          <button
+            onClick={refreshInvoices}
+            className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          >
+            <RefreshCw className="h-4 w-4" />
+            <span>Try Again</span>
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 w-full max-w-full">

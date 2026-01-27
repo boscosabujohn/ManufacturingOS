@@ -1,181 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Plus, Search, Eye, Edit, AlertTriangle, CheckCircle, Clock, XCircle, ArrowUpCircle, User, Calendar, Download, Filter, X, UserCheck, MessageSquare, Phone, Mail, MapPin, Package, AlertCircle } from 'lucide-react';
+import { Plus, Search, Eye, Edit, AlertTriangle, CheckCircle, Clock, XCircle, ArrowUpCircle, User, Calendar, Download, Filter, X, UserCheck, MessageSquare, Phone, Mail, MapPin, Package, AlertCircle, Loader2 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-
-interface ServiceRequest {
-  id: string;
-  ticketNumber: string;
-  priority: 'P1 - Critical' | 'P2 - High' | 'P3 - Medium' | 'P4 - Low';
-  status: 'open' | 'acknowledged' | 'in_progress' | 'resolved' | 'closed' | 'cancelled';
-  customerId: string;
-  customerName: string;
-  issueDescription: string;
-  channel: 'Phone' | 'Email' | 'Web' | 'Mobile' | 'WhatsApp' | 'Chat';
-  assignedTo?: string;
-  assignedToName?: string;
-  createdAt: string;
-  responseDeadline: string;
-  resolutionDeadline: string;
-  slaStatus: 'on_track' | 'at_risk' | 'breached' | 'met';
-  responseTime?: number; // hours
-  resolutionTime?: number; // hours
-  escalationLevel: number;
-  equipmentModel?: string;
-}
-
-const mockServiceRequests: ServiceRequest[] = [
-  {
-    id: '1',
-    ticketNumber: 'TICKET-2025-000123',
-    priority: 'P1 - Critical',
-    status: 'in_progress',
-    customerId: 'CUST001',
-    customerName: 'Sharma Modular Kitchens Pvt Ltd',
-    issueDescription: 'Chimney motor not working - smoke entering kitchen',
-    channel: 'Phone',
-    assignedTo: 'ENG001',
-    assignedToName: 'Rajesh Kumar',
-    createdAt: '2025-10-17T09:30:00',
-    responseDeadline: '2025-10-17T11:30:00',
-    resolutionDeadline: '2025-10-17T15:30:00',
-    slaStatus: 'on_track',
-    responseTime: 0.5,
-    escalationLevel: 0,
-    equipmentModel: 'Chimney Auto Clean 90cm',
-  },
-  {
-    id: '2',
-    ticketNumber: 'TICKET-2025-000118',
-    priority: 'P2 - High',
-    status: 'acknowledged',
-    customerId: 'CUST002',
-    customerName: 'Prestige Developers Bangalore',
-    issueDescription: 'Built-in oven temperature not reaching set level',
-    channel: 'Email',
-    assignedTo: 'ENG002',
-    assignedToName: 'Amit Sharma',
-    createdAt: '2025-10-17T08:00:00',
-    responseDeadline: '2025-10-17T12:00:00',
-    resolutionDeadline: '2025-10-18T08:00:00',
-    slaStatus: 'on_track',
-    responseTime: 2,
-    escalationLevel: 0,
-    equipmentModel: 'Built-in Oven 60L',
-  },
-  {
-    id: '3',
-    ticketNumber: 'TICKET-2025-000115',
-    priority: 'P3 - Medium',
-    status: 'resolved',
-    customerId: 'CUST003',
-    customerName: 'Urban Interiors & Designers',
-    issueDescription: 'Hob auto-ignition not sparking on burner 3',
-    channel: 'Web',
-    assignedTo: 'ENG003',
-    assignedToName: 'Priya Patel',
-    createdAt: '2025-10-16T14:00:00',
-    responseDeadline: '2025-10-16T22:00:00',
-    resolutionDeadline: '2025-10-18T14:00:00',
-    slaStatus: 'met',
-    responseTime: 3,
-    resolutionTime: 18,
-    escalationLevel: 0,
-    equipmentModel: 'Built-in Hob 4 Burner Gas',
-  },
-  {
-    id: '4',
-    ticketNumber: 'TICKET-2025-000089',
-    priority: 'P1 - Critical',
-    status: 'open',
-    customerId: 'CUST004',
-    customerName: 'Elite Contractors & Builders',
-    issueDescription: 'Dishwasher water leaking - flooding issue',
-    channel: 'Phone',
-    createdAt: '2025-10-17T10:15:00',
-    responseDeadline: '2025-10-17T12:15:00',
-    resolutionDeadline: '2025-10-17T16:15:00',
-    slaStatus: 'at_risk',
-    escalationLevel: 1,
-    equipmentModel: 'Dishwasher 14 Place Settings',
-  },
-  {
-    id: '5',
-    ticketNumber: 'TICKET-2025-000102',
-    priority: 'P4 - Low',
-    status: 'closed',
-    customerId: 'CUST005',
-    customerName: 'DLF Universal Projects',
-    issueDescription: 'Microwave turntable making noise',
-    channel: 'WhatsApp',
-    assignedTo: 'ENG004',
-    assignedToName: 'Sanjay Gupta',
-    createdAt: '2025-10-15T11:00:00',
-    responseDeadline: '2025-10-16T11:00:00',
-    resolutionDeadline: '2025-10-18T11:00:00',
-    slaStatus: 'met',
-    responseTime: 20,
-    resolutionTime: 48,
-    escalationLevel: 0,
-    equipmentModel: 'Microwave Oven 30L',
-  },
-  {
-    id: '6',
-    ticketNumber: 'TICKET-2025-000095',
-    priority: 'P2 - High',
-    status: 'in_progress',
-    customerId: 'CUST006',
-    customerName: 'Signature Interiors Pune',
-    issueDescription: 'Induction hob not detecting cookware',
-    channel: 'Mobile',
-    assignedTo: 'ENG001',
-    assignedToName: 'Rajesh Kumar',
-    createdAt: '2025-10-16T16:00:00',
-    responseDeadline: '2025-10-16T20:00:00',
-    resolutionDeadline: '2025-10-17T16:00:00',
-    slaStatus: 'breached',
-    responseTime: 5,
-    escalationLevel: 1,
-    equipmentModel: 'Induction Hob 4 Burner',
-  },
-  {
-    id: '7',
-    ticketNumber: 'TICKET-2025-000077',
-    priority: 'P3 - Medium',
-    status: 'acknowledged',
-    customerId: 'CUST007',
-    customerName: 'Royal Homes Hyderabad',
-    issueDescription: 'RO filter replacement required - TDS high',
-    channel: 'Email',
-    assignedTo: 'ENG005',
-    assignedToName: 'Neha Singh',
-    createdAt: '2025-10-17T07:00:00',
-    responseDeadline: '2025-10-17T15:00:00',
-    resolutionDeadline: '2025-10-19T07:00:00',
-    slaStatus: 'on_track',
-    responseTime: 4,
-    escalationLevel: 0,
-    equipmentModel: 'RO Water Purifier 10L',
-  },
-  {
-    id: '8',
-    ticketNumber: 'TICKET-2025-000134',
-    priority: 'P2 - High',
-    status: 'open',
-    customerId: 'CUST008',
-    customerName: 'Modern Living Ahmedabad',
-    issueDescription: 'Chimney suction power reduced - not effective',
-    channel: 'Chat',
-    createdAt: '2025-10-17T09:00:00',
-    responseDeadline: '2025-10-17T13:00:00',
-    resolutionDeadline: '2025-10-18T09:00:00',
-    slaStatus: 'on_track',
-    escalationLevel: 0,
-    equipmentModel: 'Chimney Curved Glass 60cm',
-  },
-];
+import { ServiceRequestService, ServiceRequest, ServiceRequestStatus } from '@/services/service-request.service';
 
 const priorityColors = {
   'P1 - Critical': 'bg-red-100 text-red-700 border-red-300',
@@ -242,8 +71,32 @@ export default function ServiceRequestsPage() {
     notes: ''
   });
 
+  // Data fetching states
+  const [serviceRequests, setServiceRequests] = useState<ServiceRequest[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // Fetch service requests on mount
+  useEffect(() => {
+    const fetchServiceRequests = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const data = await ServiceRequestService.getAllServiceRequests();
+        setServiceRequests(data);
+      } catch (err) {
+        setError('Failed to load service requests. Please try again.');
+        console.error('Error fetching service requests:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchServiceRequests();
+  }, []);
+
   // Filter service requests
-  const filteredRequests = mockServiceRequests.filter((request) => {
+  const filteredRequests = serviceRequests.filter((request) => {
     const matchesSearch =
       request.ticketNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
       request.customerName.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -260,13 +113,47 @@ export default function ServiceRequestsPage() {
   );
 
   // Calculate statistics
+  const activeStatuses: ServiceRequestStatus[] = ['open', 'acknowledged', 'in_progress'];
+  const requestsWithResponse = serviceRequests.filter(r => r.responseTime);
   const stats = {
-    totalRequests: mockServiceRequests.length,
-    openRequests: mockServiceRequests.filter(r => ['open', 'acknowledged', 'in_progress'].includes(r.status)).length,
-    slaBreached: mockServiceRequests.filter(r => r.slaStatus === 'breached').length,
-    p1Critical: mockServiceRequests.filter(r => r.priority === 'P1 - Critical' && ['open', 'acknowledged', 'in_progress'].includes(r.status)).length,
-    avgResponseTime: mockServiceRequests.filter(r => r.responseTime).reduce((sum, r) => sum + (r.responseTime || 0), 0) / mockServiceRequests.filter(r => r.responseTime).length || 0,
+    totalRequests: serviceRequests.length,
+    openRequests: serviceRequests.filter(r => activeStatuses.includes(r.status)).length,
+    slaBreached: serviceRequests.filter(r => r.slaStatus === 'breached').length,
+    p1Critical: serviceRequests.filter(r => r.priority === 'P1 - Critical' && activeStatuses.includes(r.status)).length,
+    avgResponseTime: requestsWithResponse.length > 0
+      ? requestsWithResponse.reduce((sum, r) => sum + (r.responseTime || 0), 0) / requestsWithResponse.length
+      : 0,
   };
+
+  // Loading state
+  if (loading) {
+    return (
+      <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/30 px-4 sm:px-6 lg:px-8 py-6 flex items-center justify-center">
+        <div className="flex flex-col items-center gap-4">
+          <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+          <p className="text-gray-600">Loading service requests...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Error state
+  if (error) {
+    return (
+      <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/30 px-4 sm:px-6 lg:px-8 py-6 flex items-center justify-center">
+        <div className="flex flex-col items-center gap-4 text-center">
+          <AlertCircle className="h-12 w-12 text-red-500" />
+          <p className="text-gray-900 font-medium">{error}</p>
+          <button
+            onClick={() => window.location.reload()}
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          >
+            Try Again
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   const getTimeRemaining = (deadline: string) => {
     const now = new Date().getTime();

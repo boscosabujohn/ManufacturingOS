@@ -140,7 +140,7 @@ export class ShopFloorControlService {
     entry.downtimeCategory = downtimeData.category as any;
     entry.downtimeMinutes = downtimeData.minutes;
     entry.downtimeReason = downtimeData.reason;
-    entry.downtimeRemarks = downtimeData.remarks;
+    entry.downtimeRemarks = downtimeData.remarks ?? '';
 
     const updatedEntry = await this.shopFloorRepository.save(entry);
     return this.mapToResponseDto(updatedEntry);

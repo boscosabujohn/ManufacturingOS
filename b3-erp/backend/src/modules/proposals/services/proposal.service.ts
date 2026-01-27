@@ -127,19 +127,17 @@ export class ProposalService {
     const original = await this.findOne(id);
     const proposalNumber = await this.generateProposalNumber();
 
+    const { id: _id, createdAt: _createdAt, updatedAt: _updatedAt, ...originalData } = original;
     const duplicate = this.proposalRepository.create({
-      ...original,
-      id: undefined,
+      ...originalData,
       proposalNumber,
       title: `Copy of ${original.title}`,
       status: ProposalStatus.DRAFT,
       version: 1,
       parentVersionId: original.id,
-      sentAt: null,
-      respondedAt: null,
-      pdfUrl: null,
-      createdAt: undefined,
-      updatedAt: undefined,
+      sentAt: undefined,
+      respondedAt: undefined,
+      pdfUrl: undefined,
     });
 
     return this.proposalRepository.save(duplicate);

@@ -1126,7 +1126,7 @@ export function OvertimeAnalysisModal({ isOpen, onClose, entries }: OvertimeAnal
                 <div>
                   <p className="text-sm font-medium text-red-800">High Overtime Alerts ({entriesWithHighOvertime.length})</p>
                   <p className="text-sm text-red-700 mt-1">
-                    {entriesWithHighOvertime.length} entries have significant overtime (>4h).
+                    {entriesWithHighOvertime.length} entries have significant overtime ({'>'} 4h).
                   </p>
                   <ul className="list-disc list-inside mt-2 text-xs text-red-600">
                     {entriesWithHighOvertime.slice(0, 3).map(e => (

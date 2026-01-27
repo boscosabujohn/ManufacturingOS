@@ -70,8 +70,12 @@ export class QualityGateService {
         }
 
         item.passed = passed;
-        item.comments = comments;
-        item.photos = photos;
+        if (comments !== undefined) {
+            item.comments = comments;
+        }
+        if (photos !== undefined) {
+            item.photos = photos;
+        }
 
         return this.itemRepository.save(item);
     }
@@ -98,7 +102,9 @@ export class QualityGateService {
         gate.passed = passed;
         gate.status = passed ? 'passed' : 'failed';
         gate.inspectionDate = new Date();
-        gate.comments = comments;
+        if (comments !== undefined) {
+            gate.comments = comments;
+        }
 
         const savedGate = await this.gateRepository.save(gate);
 
@@ -135,12 +141,12 @@ export class QualityGateService {
     ): Promise<Defect> {
         const defect = this.defectRepository.create({
             projectId,
-            qualityGateId,
+            qualityGateId: qualityGateId ?? undefined,
             severity,
             description,
-            location,
-            assignedTo,
-            photos,
+            location: location ?? undefined,
+            assignedTo: assignedTo ?? undefined,
+            photos: photos ?? undefined,
             status: 'open',
         });
 

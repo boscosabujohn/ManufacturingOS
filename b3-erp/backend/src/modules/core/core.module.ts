@@ -22,6 +22,13 @@ import { ItemService } from './services/item.service';
 import { UomService } from './services/uom.service';
 import { CategoryService } from './services/category.service';
 
+// Seeders
+import { UomSeederService } from './services/uom-seeder.service';
+import { CategorySeederService } from './services/category-seeder.service';
+import { CustomerSeederService } from './services/customer-seeder.service';
+import { VendorSeederService } from './services/vendor-seeder.service';
+import { ItemSeederService } from './services/item-seeder.service';
+
 @Global()
 @Module({
   imports: [
@@ -46,6 +53,12 @@ import { CategoryService } from './services/category.service';
     ItemService,
     UomService,
     CategoryService,
+    // Seeders
+    UomSeederService,
+    CategorySeederService,
+    CustomerSeederService,
+    VendorSeederService,
+    ItemSeederService,
   ],
   exports: [
     CustomerService,

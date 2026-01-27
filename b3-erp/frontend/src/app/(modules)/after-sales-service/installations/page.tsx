@@ -1,200 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Plus, Search, Eye, Edit, Calendar, CheckCircle, Clock, XCircle, Users, Wrench, AlertCircle, TrendingUp, Download, MapPin } from 'lucide-react';
-
-interface InstallationJob {
-  id: string;
-  jobNumber: string;
-  customerId: string;
-  customerName: string;
-  status: 'scheduled' | 'in_progress' | 'completed' | 'handed_over' | 'cancelled';
-  scheduledDate: string;
-  estimatedDuration: number; // hours
-  actualDuration?: number; // hours
-  equipmentList: string[];
-  equipmentCount: number;
-  siteAddress: string;
-  teamLeaderId: string;
-  teamLeaderName: string;
-  teamMembers: string[];
-  teamSize: number;
-  siteSurveyCompleted: boolean;
-  installationProgress: number; // 0-100%
-  testingCompleted: boolean;
-  customerSignature?: boolean;
-  orderValue: number;
-}
-
-const mockInstallationJobs: InstallationJob[] = [
-  {
-    id: '1',
-    jobNumber: 'INS-2025-00123',
-    customerId: 'CUST001',
-    customerName: 'Sharma Modular Kitchens Pvt Ltd',
-    status: 'in_progress',
-    scheduledDate: '2025-10-17',
-    estimatedDuration: 8,
-    actualDuration: 6,
-    equipmentList: ['Modular Kitchen Premium', 'Built-in Hob', 'Chimney 90cm', 'Built-in Oven'],
-    equipmentCount: 4,
-    siteAddress: 'Flat 501, Tower A, Prestige Lakeside, Bangalore - 560037',
-    teamLeaderId: 'TL001',
-    teamLeaderName: 'Rajesh Kumar',
-    teamMembers: ['Amit Sharma', 'Suresh Rao', 'Prakash M'],
-    teamSize: 4,
-    siteSurveyCompleted: true,
-    installationProgress: 75,
-    testingCompleted: false,
-    orderValue: 850000,
-  },
-  {
-    id: '2',
-    jobNumber: 'INS-2025-00118',
-    customerId: 'CUST002',
-    customerName: 'Prestige Developers Bangalore',
-    status: 'scheduled',
-    scheduledDate: '2025-10-19',
-    estimatedDuration: 12,
-    equipmentList: ['Modular Kitchen L-Shape', 'Dishwasher', 'Chimney', 'Hob', 'Microwave'],
-    equipmentCount: 5,
-    siteAddress: '3BHK Model Flat, Prestige Sunrise Park, Bangalore - 560102',
-    teamLeaderId: 'TL002',
-    teamLeaderName: 'Vijay Patil',
-    teamMembers: ['Ravi K', 'Mohan S', 'Ganesh R', 'Kiran P'],
-    teamSize: 5,
-    siteSurveyCompleted: true,
-    installationProgress: 0,
-    testingCompleted: false,
-    orderValue: 1250000,
-  },
-  {
-    id: '3',
-    jobNumber: 'INS-2025-00095',
-    customerId: 'CUST003',
-    customerName: 'Urban Interiors & Designers',
-    status: 'completed',
-    scheduledDate: '2025-10-15',
-    estimatedDuration: 6,
-    actualDuration: 5.5,
-    equipmentList: ['Built-in Hob 4 Burner', 'Chimney Auto Clean'],
-    equipmentCount: 2,
-    siteAddress: 'Showroom 3, Interior Design Hub, Koramangala, Bangalore - 560095',
-    teamLeaderId: 'TL001',
-    teamLeaderName: 'Rajesh Kumar',
-    teamMembers: ['Suresh Rao', 'Prakash M'],
-    teamSize: 3,
-    siteSurveyCompleted: true,
-    installationProgress: 100,
-    testingCompleted: true,
-    customerSignature: true,
-    orderValue: 285000,
-  },
-  {
-    id: '4',
-    jobNumber: 'INS-2025-00134',
-    customerId: 'CUST004',
-    customerName: 'DLF Universal Projects',
-    status: 'handed_over',
-    scheduledDate: '2025-10-12',
-    estimatedDuration: 10,
-    actualDuration: 9,
-    equipmentList: ['Premium Modular Kitchen', 'Built-in Appliances Package', 'Chimney', 'RO System'],
-    equipmentCount: 7,
-    siteAddress: 'Villa 12, DLF Garden City, Phase 2, Bangalore - 560067',
-    teamLeaderId: 'TL003',
-    teamLeaderName: 'Arun Reddy',
-    teamMembers: ['Venkat M', 'Srikanth K', 'Naveen R', 'Mahesh B'],
-    teamSize: 5,
-    siteSurveyCompleted: true,
-    installationProgress: 100,
-    testingCompleted: true,
-    customerSignature: true,
-    orderValue: 1850000,
-  },
-  {
-    id: '5',
-    jobNumber: 'INS-2025-00142',
-    customerId: 'CUST005',
-    customerName: 'Elite Contractors & Builders',
-    status: 'scheduled',
-    scheduledDate: '2025-10-20',
-    estimatedDuration: 8,
-    equipmentList: ['Modular Kitchen Standard', 'Hob', 'Chimney'],
-    equipmentCount: 3,
-    siteAddress: '2BHK Sample Flat, Elite Heights, Whitefield, Bangalore - 560066',
-    teamLeaderId: 'TL002',
-    teamLeaderName: 'Vijay Patil',
-    teamMembers: ['Ravi K', 'Mohan S', 'Ganesh R'],
-    teamSize: 4,
-    siteSurveyCompleted: false,
-    installationProgress: 0,
-    testingCompleted: false,
-    orderValue: 580000,
-  },
-  {
-    id: '6',
-    jobNumber: 'INS-2025-00087',
-    customerId: 'CUST006',
-    customerName: 'Royal Homes Hyderabad',
-    status: 'in_progress',
-    scheduledDate: '2025-10-17',
-    estimatedDuration: 7,
-    actualDuration: 4,
-    equipmentList: ['Induction Hob', 'Chimney', 'Built-in Microwave'],
-    equipmentCount: 3,
-    siteAddress: 'Penthouse, Royal Towers, Banjara Hills, Hyderabad - 500034',
-    teamLeaderId: 'TL004',
-    teamLeaderName: 'Krishna Murthy',
-    teamMembers: ['Satish K', 'Ramesh G'],
-    teamSize: 3,
-    siteSurveyCompleted: true,
-    installationProgress: 60,
-    testingCompleted: false,
-    orderValue: 420000,
-  },
-  {
-    id: '7',
-    jobNumber: 'INS-2025-00156',
-    customerId: 'CUST007',
-    customerName: 'Modern Living Ahmedabad',
-    status: 'cancelled',
-    scheduledDate: '2025-10-18',
-    estimatedDuration: 6,
-    equipmentList: ['Modular Kitchen Compact', 'Hob 2 Burner'],
-    equipmentCount: 2,
-    siteAddress: '1BHK, Modern Residency, SG Highway, Ahmedabad - 380015',
-    teamLeaderId: 'TL001',
-    teamLeaderName: 'Rajesh Kumar',
-    teamMembers: ['Amit Sharma'],
-    teamSize: 2,
-    siteSurveyCompleted: true,
-    installationProgress: 0,
-    testingCompleted: false,
-    orderValue: 180000,
-  },
-  {
-    id: '8',
-    jobNumber: 'INS-2025-00101',
-    customerId: 'CUST008',
-    customerName: 'Signature Interiors Pune',
-    status: 'scheduled',
-    scheduledDate: '2025-10-21',
-    estimatedDuration: 9,
-    equipmentList: ['Premium Kitchen Island', 'Chimney Designer', 'Hob 5 Burner', 'Wine Cooler'],
-    equipmentCount: 4,
-    siteAddress: 'Bungalow 7, Amanora Park Town, Pune - 411028',
-    teamLeaderId: 'TL003',
-    teamLeaderName: 'Arun Reddy',
-    teamMembers: ['Venkat M', 'Srikanth K', 'Naveen R'],
-    teamSize: 4,
-    siteSurveyCompleted: true,
-    installationProgress: 0,
-    testingCompleted: false,
-    orderValue: 1650000,
-  },
-];
+import { Plus, Search, Eye, Edit, Calendar, CheckCircle, Clock, XCircle, Users, Wrench, AlertCircle, TrendingUp, Download, MapPin, Loader2 } from 'lucide-react';
+import { InstallationService, InstallationJob } from '@/services/installation.service';
 
 const statusColors = {
   scheduled: 'bg-blue-100 text-blue-700',
@@ -219,8 +28,32 @@ export default function InstallationsPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
+  // Data fetching states
+  const [installationJobs, setInstallationJobs] = useState<InstallationJob[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // Fetch installation jobs on mount
+  useEffect(() => {
+    const fetchInstallationJobs = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const data = await InstallationService.getAllInstallationJobs();
+        setInstallationJobs(data);
+      } catch (err) {
+        setError('Failed to load installation jobs. Please try again.');
+        console.error('Error fetching installation jobs:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchInstallationJobs();
+  }, []);
+
   // Filter jobs
-  const filteredJobs = mockInstallationJobs.filter((job) => {
+  const filteredJobs = installationJobs.filter((job) => {
     const matchesSearch =
       job.jobNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
       job.customerName.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -237,18 +70,46 @@ export default function InstallationsPage() {
   );
 
   // Calculate statistics
+  const jobsWithActual = installationJobs.filter(j => j.actualDuration && j.estimatedDuration);
   const stats = {
-    totalJobs: mockInstallationJobs.length,
-    scheduledJobs: mockInstallationJobs.filter(j => j.status === 'scheduled').length,
-    inProgressJobs: mockInstallationJobs.filter(j => j.status === 'in_progress').length,
-    completedJobs: mockInstallationJobs.filter(j => j.status === 'completed' || j.status === 'handed_over').length,
-    avgCompletionRate: mockInstallationJobs.filter(j => j.actualDuration && j.estimatedDuration).length > 0
-      ? mockInstallationJobs
-        .filter(j => j.actualDuration && j.estimatedDuration)
-        .reduce((sum, j) => sum + ((j.actualDuration! / j.estimatedDuration) * 100), 0) /
-      mockInstallationJobs.filter(j => j.actualDuration && j.estimatedDuration).length
+    totalJobs: installationJobs.length,
+    scheduledJobs: installationJobs.filter(j => j.status === 'scheduled').length,
+    inProgressJobs: installationJobs.filter(j => j.status === 'in_progress').length,
+    completedJobs: installationJobs.filter(j => j.status === 'completed' || j.status === 'handed_over').length,
+    avgCompletionRate: jobsWithActual.length > 0
+      ? jobsWithActual.reduce((sum, j) => sum + ((j.actualDuration! / j.estimatedDuration) * 100), 0) / jobsWithActual.length
       : 0,
   };
+
+  // Loading state
+  if (loading) {
+    return (
+      <div className="p-6 w-full flex items-center justify-center min-h-[400px]">
+        <div className="flex flex-col items-center gap-4">
+          <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+          <p className="text-gray-600">Loading installation jobs...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Error state
+  if (error) {
+    return (
+      <div className="p-6 w-full flex items-center justify-center min-h-[400px]">
+        <div className="flex flex-col items-center gap-4 text-center">
+          <AlertCircle className="h-12 w-12 text-red-500" />
+          <p className="text-gray-900 font-medium">{error}</p>
+          <button
+            onClick={() => window.location.reload()}
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          >
+            Try Again
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat('en-IN', {

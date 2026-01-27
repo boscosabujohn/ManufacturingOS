@@ -4,35 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Plus, Search, Eye, Edit, Trash2, Phone, Mail, Building2, User, Users, Star, TrendingUp, ChevronLeft, ChevronRight, Download, Upload, Filter, Save, Check, UserPlus, List, X, Linkedin, Calendar, MapPin, Briefcase, Clock, FileSpreadsheet } from 'lucide-react';
 import { ConfirmDialog, useToast } from '@/components/ui';
-
-type ContactRole = 'Decision Maker' | 'Influencer' | 'User' | 'Gatekeeper' | 'Technical Buyer' | 'Economic Buyer';
-type Department = 'Sales' | 'Marketing' | 'IT' | 'Finance' | 'Operations' | 'HR' | 'Executive';
-
-interface ContactRoleData {
-  id: string;
-  role: ContactRole;
-  department: Department;
-  isPrimary: boolean;
-}
-
-interface Contact {
-  id: string;
-  firstName: string;
-  lastName: string;
-  company: string;
-  email: string;
-  phone: string;
-  position: string;
-  type: 'primary' | 'secondary' | 'billing' | 'technical';
-  status: 'active' | 'inactive' | 'vip';
-  value: number;
-  createdAt: string;
-  roles: ContactRoleData[];
-  department?: Department;
-  location?: string;
-  lastContactDate?: string;
-  linkedIn?: string;
-}
+import { ContactService, Contact, ContactRole, Department, ContactRoleData, MOCK_CONTACTS } from '@/services/contact.service';
 
 interface ContactList {
   id: string;
@@ -55,107 +27,7 @@ interface SavedFilter {
   };
 }
 
-const mockContacts: Contact[] = [
-  {
-    id: '1',
-    firstName: 'Sarah',
-    lastName: 'Williams',
-    company: 'Premier Kitchen Designs Ltd',
-    email: 'sarah.williams@premierkitchen.com',
-    phone: '+1 234-567-1001',
-    position: 'Head of Procurement',
-    type: 'primary',
-    status: 'vip',
-    value: 125000,
-    createdAt: '2025-09-15',
-    roles: [
-      { id: 'r1', role: 'Decision Maker', department: 'Executive', isPrimary: true },
-      { id: 'r2', role: 'Economic Buyer', department: 'Finance', isPrimary: false }
-    ],
-    department: 'Executive',
-    location: 'New York, NY',
-    lastContactDate: '2025-10-20',
-    linkedIn: 'https://linkedin.com/in/sarahwilliams'
-  },
-  {
-    id: '2',
-    firstName: 'Michael',
-    lastName: 'Chen',
-    company: 'Urban Kitchen Solutions',
-    email: 'm.chen@urbankitchen.com',
-    phone: '+1 234-567-1002',
-    position: 'Operations Manager',
-    type: 'primary',
-    status: 'active',
-    value: 85000,
-    createdAt: '2025-09-20',
-    roles: [
-      { id: 'r3', role: 'Influencer', department: 'Operations', isPrimary: true }
-    ],
-    department: 'Operations',
-    location: 'Los Angeles, CA',
-    lastContactDate: '2025-10-18',
-  },
-  {
-    id: '3',
-    firstName: 'Jennifer',
-    lastName: 'Rodriguez',
-    company: 'Metro Manufacturing Inc',
-    email: 'j.rodriguez@metromanuf.com',
-    phone: '+1 234-567-1003',
-    position: 'Purchase Director',
-    type: 'primary',
-    status: 'active',
-    value: 95000,
-    createdAt: '2025-10-01',
-    roles: [
-      { id: 'r4', role: 'Decision Maker', department: 'Sales', isPrimary: true }
-    ],
-    department: 'Sales',
-    location: 'Chicago, IL',
-    lastContactDate: '2025-10-15',
-  },
-  {
-    id: '4',
-    firstName: 'David',
-    lastName: 'Thompson',
-    company: 'Premier Kitchen Designs Ltd',
-    email: 'd.thompson@premierkitchen.com',
-    phone: '+1 234-567-1004',
-    position: 'Finance Manager',
-    type: 'billing',
-    status: 'active',
-    value: 0,
-    createdAt: '2025-10-02',
-    roles: [
-      { id: 'r5', role: 'Economic Buyer', department: 'Finance', isPrimary: true }
-    ],
-    department: 'Finance',
-    location: 'New York, NY',
-    lastContactDate: '2025-10-10',
-  },
-  {
-    id: '5',
-    firstName: 'Lisa',
-    lastName: 'Anderson',
-    company: 'Signature Kitchens Co',
-    email: 'l.anderson@signaturekitchens.com',
-    phone: '+1 234-567-1005',
-    position: 'CEO',
-    type: 'primary',
-    status: 'vip',
-    value: 150000,
-    createdAt: '2025-10-05',
-    roles: [
-      { id: 'r6', role: 'Decision Maker', department: 'Executive', isPrimary: true },
-      { id: 'r7', role: 'Economic Buyer', department: 'Executive', isPrimary: false }
-    ],
-    department: 'Executive',
-    location: 'San Francisco, CA',
-    lastContactDate: '2025-10-22',
-    linkedIn: 'https://linkedin.com/in/lisaanderson'
-  },
-];
+// Using MOCK_CONTACTS from service as fallback
 
 const mockContactLists: ContactList[] = [
   { id: '1', name: 'Marketing Campaign 2025', description: 'Q1 2025 Marketing Campaign', contactCount: 45 },
@@ -192,7 +64,9 @@ const allDepartments: Department[] = ['Sales', 'Marketing', 'IT', 'Finance', 'Op
 export default function ContactsPage() {
   const router = useRouter();
   const { addToast } = useToast();
-  const [contacts, setContacts] = useState<Contact[]>(mockContacts);
+  const [contacts, setContacts] = useState<Contact[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<Error | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [roleFilter, setRoleFilter] = useState<string>('all');
@@ -220,6 +94,31 @@ export default function ContactsPage() {
   });
 
   const itemsPerPage = 10;
+
+  // Fetch contacts data on mount
+  useEffect(() => {
+    async function fetchContacts() {
+      try {
+        setIsLoading(true);
+        setError(null);
+        const data = await ContactService.getAllContacts();
+        setContacts(data);
+      } catch (err) {
+        console.error('Failed to fetch contacts:', err);
+        setError(err instanceof Error ? err : new Error('Failed to fetch contacts'));
+        // Fallback to mock data
+        setContacts(MOCK_CONTACTS);
+        addToast({
+          title: 'Connection Error',
+          message: 'Using cached data. Unable to connect to server.',
+          variant: 'warning'
+        });
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    fetchContacts();
+  }, []);
 
   // Keyboard shortcuts
   useEffect(() => {
@@ -524,6 +423,45 @@ export default function ContactsPage() {
       { label: 'Linked Opportunities', count: count * 2 },
     ];
   };
+
+  // Refresh function
+  const handleRefresh = async () => {
+    try {
+      setIsLoading(true);
+      const data = await ContactService.getAllContacts();
+      setContacts(data);
+      addToast({
+        title: 'Refreshed',
+        message: 'Contact data has been refreshed.',
+        variant: 'success'
+      });
+    } catch (err) {
+      addToast({
+        title: 'Refresh Failed',
+        message: 'Unable to refresh data. Please try again.',
+        variant: 'error'
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // Show loading skeleton on initial load
+  if (isLoading && contacts.length === 0) {
+    return (
+      <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6">
+        <div className="animate-pulse">
+          <div className="h-10 bg-gray-200 rounded w-1/4 mb-6"></div>
+          <div className="grid grid-cols-4 gap-4 mb-6">
+            {[1, 2, 3, 4].map((i) => (
+              <div key={i} className="h-24 bg-gray-200 rounded"></div>
+            ))}
+          </div>
+          <div className="bg-gray-200 rounded h-96"></div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 ">

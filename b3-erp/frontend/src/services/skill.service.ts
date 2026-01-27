@@ -15,7 +15,7 @@ import {
 } from '@/types/skill';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
-const USE_MOCK_DATA = true;
+const USE_MOCK_DATA = process.env.NEXT_PUBLIC_USE_MOCK_DATA === 'true';
 
 // Mock Data - Categories
 export const MOCK_SKILL_CATEGORIES: SkillCategory[] = [
@@ -347,20 +347,30 @@ export class SkillService {
   // Skill Category Methods
   static async getAllCategories(): Promise<SkillCategory[]> {
     if (USE_MOCK_DATA) {
-      await new Promise((resolve) => setTimeout(resolve, 300));
       return [...MOCK_SKILL_CATEGORIES];
     }
-    return this.request<SkillCategory[]>('/hr/skill-categories');
+    try {
+      return await this.request<SkillCategory[]>('/hr/skill-categories');
+    } catch (error) {
+      console.warn('API error fetching categories, using mock data:', error);
+      return [...MOCK_SKILL_CATEGORIES];
+    }
   }
 
   static async getCategoryById(id: string): Promise<SkillCategory> {
     if (USE_MOCK_DATA) {
-      await new Promise((resolve) => setTimeout(resolve, 200));
       const category = MOCK_SKILL_CATEGORIES.find((c) => c.id === id);
       if (!category) throw new Error('Category not found');
       return category;
     }
-    return this.request<SkillCategory>(`/hr/skill-categories/${id}`);
+    try {
+      return await this.request<SkillCategory>(`/hr/skill-categories/${id}`);
+    } catch (error) {
+      console.warn('API error fetching category, using mock data:', error);
+      const category = MOCK_SKILL_CATEGORIES.find((c) => c.id === id);
+      if (!category) throw new Error('Category not found');
+      return category;
+    }
   }
 
   // Skill Methods
@@ -370,8 +380,7 @@ export class SkillService {
     status?: string;
     search?: string;
   }): Promise<Skill[]> {
-    if (USE_MOCK_DATA) {
-      await new Promise((resolve) => setTimeout(resolve, 300));
+    const getFilteredMockSkills = () => {
       let filteredSkills = [...MOCK_SKILLS];
 
       if (filters?.categoryId) {
@@ -398,46 +407,70 @@ export class SkillService {
         ...skill,
         category: MOCK_SKILL_CATEGORIES.find((c) => c.id === skill.categoryId),
       }));
+    };
+
+    if (USE_MOCK_DATA) {
+      return getFilteredMockSkills();
     }
 
-    const queryParams = new URLSearchParams();
-    if (filters?.categoryId) queryParams.set('categoryId', filters.categoryId);
-    if (filters?.skillType) queryParams.set('skillType', filters.skillType);
-    if (filters?.status) queryParams.set('status', filters.status);
-    if (filters?.search) queryParams.set('search', filters.search);
+    try {
+      const queryParams = new URLSearchParams();
+      if (filters?.categoryId) queryParams.set('categoryId', filters.categoryId);
+      if (filters?.skillType) queryParams.set('skillType', filters.skillType);
+      if (filters?.status) queryParams.set('status', filters.status);
+      if (filters?.search) queryParams.set('search', filters.search);
 
-    return this.request<Skill[]>(`/hr/skills?${queryParams.toString()}`);
+      return await this.request<Skill[]>(`/hr/skills?${queryParams.toString()}`);
+    } catch (error) {
+      console.warn('API error fetching skills, using mock data:', error);
+      return getFilteredMockSkills();
+    }
   }
 
   static async getSkillById(id: string): Promise<Skill> {
-    if (USE_MOCK_DATA) {
-      await new Promise((resolve) => setTimeout(resolve, 200));
+    const getMockSkill = () => {
       const skill = MOCK_SKILLS.find((s) => s.id === id);
       if (!skill) throw new Error('Skill not found');
       return {
         ...skill,
         category: MOCK_SKILL_CATEGORIES.find((c) => c.id === skill.categoryId),
       };
+    };
+
+    if (USE_MOCK_DATA) {
+      return getMockSkill();
     }
-    return this.request<Skill>(`/hr/skills/${id}`);
+    try {
+      return await this.request<Skill>(`/hr/skills/${id}`);
+    } catch (error) {
+      console.warn('API error fetching skill by id, using mock data:', error);
+      return getMockSkill();
+    }
   }
 
   static async getSkillByCode(code: string): Promise<Skill> {
-    if (USE_MOCK_DATA) {
-      await new Promise((resolve) => setTimeout(resolve, 200));
+    const getMockSkill = () => {
       const skill = MOCK_SKILLS.find((s) => s.code === code);
       if (!skill) throw new Error('Skill not found');
       return {
         ...skill,
         category: MOCK_SKILL_CATEGORIES.find((c) => c.id === skill.categoryId),
       };
+    };
+
+    if (USE_MOCK_DATA) {
+      return getMockSkill();
     }
-    return this.request<Skill>(`/hr/skills/code/${code}`);
+    try {
+      return await this.request<Skill>(`/hr/skills/code/${code}`);
+    } catch (error) {
+      console.warn('API error fetching skill by code, using mock data:', error);
+      return getMockSkill();
+    }
   }
 
   static async getSkillsGroupedByCategory(): Promise<Record<string, Skill[]>> {
-    if (USE_MOCK_DATA) {
-      await new Promise((resolve) => setTimeout(resolve, 300));
+    const getMockGrouped = () => {
       const grouped: Record<string, Skill[]> = {};
 
       MOCK_SKILLS.forEach((skill) => {
@@ -454,13 +487,21 @@ export class SkillService {
       });
 
       return grouped;
+    };
+
+    if (USE_MOCK_DATA) {
+      return getMockGrouped();
     }
-    return this.request<Record<string, Skill[]>>('/hr/skills/grouped');
+    try {
+      return await this.request<Record<string, Skill[]>>('/hr/skills/grouped');
+    } catch (error) {
+      console.warn('API error fetching grouped skills, using mock data:', error);
+      return getMockGrouped();
+    }
   }
 
   static async createSkill(data: CreateSkillDto): Promise<Skill> {
-    if (USE_MOCK_DATA) {
-      await new Promise((resolve) => setTimeout(resolve, 500));
+    const createMockSkill = () => {
       const newSkill: Skill = {
         id: `skill-${Date.now()}`,
         ...data,
@@ -473,16 +514,24 @@ export class SkillService {
       };
       MOCK_SKILLS.push(newSkill);
       return newSkill;
+    };
+
+    if (USE_MOCK_DATA) {
+      return createMockSkill();
     }
-    return this.request<Skill>('/hr/skills', {
-      method: 'POST',
-      body: JSON.stringify(data),
-    });
+    try {
+      return await this.request<Skill>('/hr/skills', {
+        method: 'POST',
+        body: JSON.stringify(data),
+      });
+    } catch (error) {
+      console.warn('API error creating skill, using mock data:', error);
+      return createMockSkill();
+    }
   }
 
   static async updateSkill(id: string, data: UpdateSkillDto): Promise<Skill> {
-    if (USE_MOCK_DATA) {
-      await new Promise((resolve) => setTimeout(resolve, 500));
+    const updateMockSkill = () => {
       const index = MOCK_SKILLS.findIndex((s) => s.id === id);
       if (index === -1) throw new Error('Skill not found');
 
@@ -492,97 +541,145 @@ export class SkillService {
         updatedAt: new Date(),
       };
       return MOCK_SKILLS[index];
+    };
+
+    if (USE_MOCK_DATA) {
+      return updateMockSkill();
     }
-    return this.request<Skill>(`/hr/skills/${id}`, {
-      method: 'PUT',
-      body: JSON.stringify(data),
-    });
+    try {
+      return await this.request<Skill>(`/hr/skills/${id}`, {
+        method: 'PUT',
+        body: JSON.stringify(data),
+      });
+    } catch (error) {
+      console.warn('API error updating skill, using mock data:', error);
+      return updateMockSkill();
+    }
   }
 
   static async deleteSkill(id: string): Promise<void> {
-    if (USE_MOCK_DATA) {
-      await new Promise((resolve) => setTimeout(resolve, 300));
+    const deleteMockSkill = () => {
       const index = MOCK_SKILLS.findIndex((s) => s.id === id);
       if (index === -1) throw new Error('Skill not found');
       MOCK_SKILLS.splice(index, 1);
+    };
+
+    if (USE_MOCK_DATA) {
+      deleteMockSkill();
       return;
     }
-    await this.request<void>(`/hr/skills/${id}`, {
-      method: 'DELETE',
-    });
+    try {
+      await this.request<void>(`/hr/skills/${id}`, {
+        method: 'DELETE',
+      });
+    } catch (error) {
+      console.warn('API error deleting skill, using mock data:', error);
+      deleteMockSkill();
+    }
   }
 
   // Proficiency Level Methods
   static async getAllProficiencyLevels(): Promise<ProficiencyLevel[]> {
     if (USE_MOCK_DATA) {
-      await new Promise((resolve) => setTimeout(resolve, 200));
       return [...MOCK_PROFICIENCY_LEVELS];
     }
-    return this.request<ProficiencyLevel[]>('/hr/proficiency-levels');
+    try {
+      return await this.request<ProficiencyLevel[]>('/hr/proficiency-levels');
+    } catch (error) {
+      console.warn('API error fetching proficiency levels, using mock data:', error);
+      return [...MOCK_PROFICIENCY_LEVELS];
+    }
   }
 
   // User Skill Methods
   static async getEmployeeSkills(employeeId: string): Promise<UserSkill[]> {
     if (USE_MOCK_DATA) {
-      await new Promise((resolve) => setTimeout(resolve, 300));
       // Return empty array for mock - in real implementation, this would return user's skills
       return [];
     }
-    return this.request<UserSkill[]>(`/hr/user-skills/employee/${employeeId}`);
+    try {
+      return await this.request<UserSkill[]>(`/hr/user-skills/employee/${employeeId}`);
+    } catch (error) {
+      console.warn('API error fetching employee skills, using mock data:', error);
+      return [];
+    }
   }
 
   static async assignSkill(data: CreateUserSkillDto): Promise<UserSkill> {
-    if (USE_MOCK_DATA) {
-      await new Promise((resolve) => setTimeout(resolve, 500));
+    const createMockUserSkill = (): UserSkill => {
       const skill = MOCK_SKILLS.find((s) => s.id === data.skillId);
-      const newUserSkill: UserSkill = {
+      return {
         id: `user-skill-${Date.now()}`,
-        ...data,
-        skill,
+        employeeId: data.employeeId,
+        skillId: data.skillId,
+        ...(skill ? { skill } : {}),
         proficiencyLevel: data.proficiencyLevel || 1,
         isEnabled: data.isEnabled !== false,
         status: data.status || UserSkillStatus.ACTIVE,
+        notes: data.notes,
+        metadata: data.metadata,
         createdAt: new Date(),
         updatedAt: new Date(),
       };
-      return newUserSkill;
+    };
+
+    if (USE_MOCK_DATA) {
+      return createMockUserSkill();
     }
-    return this.request<UserSkill>('/hr/user-skills', {
-      method: 'POST',
-      body: JSON.stringify(data),
-    });
+    try {
+      return await this.request<UserSkill>('/hr/user-skills', {
+        method: 'POST',
+        body: JSON.stringify(data),
+      });
+    } catch (error) {
+      console.warn('API error assigning skill, using mock data:', error);
+      return createMockUserSkill();
+    }
   }
 
   static async updateUserSkill(id: string, data: UpdateUserSkillDto): Promise<UserSkill> {
-    if (USE_MOCK_DATA) {
-      await new Promise((resolve) => setTimeout(resolve, 500));
+    const createMockResponse = (): UserSkill => {
       // In mock, just return with updated data
       return {
         id,
-        employeeId: '',
-        skillId: '',
-        ...data,
-        proficiencyLevel: data.proficiencyLevel || 1,
-        isEnabled: data.isEnabled !== false,
-        status: data.status || UserSkillStatus.ACTIVE,
+        employeeId: 'mock-employee',
+        skillId: 'mock-skill',
+        proficiencyLevel: data.proficiencyLevel ?? 1,
+        isEnabled: data.isEnabled ?? true,
+        status: data.status ?? UserSkillStatus.ACTIVE,
+        notes: data.notes,
+        metadata: data.metadata,
         createdAt: new Date(),
         updatedAt: new Date(),
       };
+    };
+
+    if (USE_MOCK_DATA) {
+      return createMockResponse();
     }
-    return this.request<UserSkill>(`/hr/user-skills/${id}`, {
-      method: 'PUT',
-      body: JSON.stringify(data),
-    });
+    try {
+      return await this.request<UserSkill>(`/hr/user-skills/${id}`, {
+        method: 'PUT',
+        body: JSON.stringify(data),
+      });
+    } catch (error) {
+      console.warn('API error updating user skill, using mock data:', error);
+      return createMockResponse();
+    }
   }
 
   static async removeUserSkill(id: string): Promise<void> {
     if (USE_MOCK_DATA) {
-      await new Promise((resolve) => setTimeout(resolve, 300));
       return;
     }
-    await this.request<void>(`/hr/user-skills/${id}`, {
-      method: 'DELETE',
-    });
+    try {
+      await this.request<void>(`/hr/user-skills/${id}`, {
+        method: 'DELETE',
+      });
+    } catch (error) {
+      console.warn('API error removing user skill, using mock data:', error);
+      // Silent fallback for delete operation
+    }
   }
 
   // Analytics
@@ -593,9 +690,7 @@ export class SkillService {
     skillsByCategory: Record<string, number>;
     skillsByType: Record<string, number>;
   }> {
-    if (USE_MOCK_DATA) {
-      await new Promise((resolve) => setTimeout(resolve, 300));
-
+    const getMockStatistics = () => {
       const skillsByCategory: Record<string, number> = {};
       const skillsByType: Record<string, number> = {};
 
@@ -612,27 +707,36 @@ export class SkillService {
         skillsByCategory,
         skillsByType,
       };
+    };
+
+    if (USE_MOCK_DATA) {
+      return getMockStatistics();
     }
 
-    // In real implementation, this would be a dedicated endpoint
-    const skills = await this.getAllSkills();
-    const categories = await this.getAllCategories();
+    try {
+      // In real implementation, this would be a dedicated endpoint
+      const skills = await this.getAllSkills();
+      const categories = await this.getAllCategories();
 
-    const skillsByCategory: Record<string, number> = {};
-    const skillsByType: Record<string, number> = {};
+      const skillsByCategory: Record<string, number> = {};
+      const skillsByType: Record<string, number> = {};
 
-    skills.forEach((skill) => {
-      const categoryName = skill.category?.name || 'Uncategorized';
-      skillsByCategory[categoryName] = (skillsByCategory[categoryName] || 0) + 1;
-      skillsByType[skill.skillType] = (skillsByType[skill.skillType] || 0) + 1;
-    });
+      skills.forEach((skill) => {
+        const categoryName = skill.category?.name || 'Uncategorized';
+        skillsByCategory[categoryName] = (skillsByCategory[categoryName] || 0) + 1;
+        skillsByType[skill.skillType] = (skillsByType[skill.skillType] || 0) + 1;
+      });
 
-    return {
-      totalSkills: skills.length,
-      activeSkills: skills.filter((s) => s.status === SkillStatus.ACTIVE).length,
-      totalCategories: categories.length,
-      skillsByCategory,
-      skillsByType,
-    };
+      return {
+        totalSkills: skills.length,
+        activeSkills: skills.filter((s) => s.status === SkillStatus.ACTIVE).length,
+        totalCategories: categories.length,
+        skillsByCategory,
+        skillsByType,
+      };
+    } catch (error) {
+      console.warn('API error fetching skill statistics, using mock data:', error);
+      return getMockStatistics();
+    }
   }
 }

@@ -93,14 +93,14 @@ export class BankReconciliationService {
             },
         });
 
-        const monthTransactions = transactions.filter(t =>
+        const monthTransactions = transactions.filter((t: BankTransaction) =>
             t.transactionDate >= startDate && t.transactionDate <= endDate
         );
 
-        const reconciledCount = monthTransactions.filter(t => t.reconciled).length;
+        const reconciledCount = monthTransactions.filter((t: BankTransaction) => t.reconciled).length;
         const unreconciledCount = monthTransactions.length - reconciledCount;
-        const totalDebits = monthTransactions.reduce((sum, t) => sum + Number(t.debit), 0);
-        const totalCredits = monthTransactions.reduce((sum, t) => sum + Number(t.credit), 0);
+        const totalDebits = monthTransactions.reduce((sum: number, t: BankTransaction) => sum + Number(t.debit), 0);
+        const totalCredits = monthTransactions.reduce((sum: number, t: BankTransaction) => sum + Number(t.credit), 0);
 
         return {
             openingBalance: 0, // Calculate from previous month's closing

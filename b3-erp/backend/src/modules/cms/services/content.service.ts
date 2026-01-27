@@ -132,7 +132,7 @@ export class ContentService {
     const content = this.contentRepository.create({
       ...createDto,
       slug,
-      publishedAt: createDto.status === ContentStatus.PUBLISHED ? new Date() : null,
+      publishedAt: createDto.status === ContentStatus.PUBLISHED ? new Date() : undefined,
     });
 
     return this.contentRepository.save(content);

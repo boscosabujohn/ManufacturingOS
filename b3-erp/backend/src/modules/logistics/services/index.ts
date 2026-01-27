@@ -7,3 +7,5 @@ export * from './trip.service';
 export * from './tracking-event.service';
 export * from './freight-charge.service';
 export * from './transport-company.service';
+export * from './transport-company-seeder.service';
+export * from './vehicle-type-seeder.service';

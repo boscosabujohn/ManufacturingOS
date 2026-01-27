@@ -150,13 +150,13 @@ export class QCTemplateService {
       throw new NotFoundException(`QC Template with ID ${id} not found`);
     }
 
+    const { id: _id, ...templateData } = template;
     const newTemplate = this.qcTemplateRepository.create({
-      ...template,
-      id: undefined,
+      ...templateData,
       version: template.version + 1,
       status: QCTemplateStatus.DRAFT,
-      approvedBy: null,
-      approvedAt: null,
+      approvedBy: undefined,
+      approvedAt: undefined,
     });
 
     const savedTemplate = await this.qcTemplateRepository.save(newTemplate);

@@ -30,60 +30,57 @@ const SpendAnalytics: React.FC = () => {
   const [selectedPeriod, setSelectedPeriod] = useState<string>('YTD');
   const [selectedView, setSelectedView] = useState<string>('category');
 
-  // Handler functions
+
+  // Handler functions (simplified)
   const handleRefresh = () => {
     console.log('Refreshing spend analytics data...');
-    alert('Refreshing Spend Analytics...\n\nUpdating:\n- Category spend data\n- Supplier spend rankings\n- Monthly trend analysis\n- Budget variance calculations\n- Spend concentration metrics\n\nSyncing with ERP and procurement systems.\nEstimated time: 10 seconds');
+    alert('Refreshing Spend Analytics - Updating category spend, supplier rankings, and budget variance data.');
   };
 
   const handleSettings = () => {
     console.log('Opening spend analytics settings...');
-    alert('Spend Analytics Settings\n\nConfigure:\n- Default time period (Monthly, Quarterly, YTD, Annual)\n- Category definitions and mapping\n- Budget thresholds and alerts\n- Supplier grouping rules\n- Variance calculation methods\n- Currency and exchange rates\n- Cost center allocations\n- Dashboard widgets and metrics\n\nCustomization Options:\n- Chart types and visualizations\n- KPI calculations\n- Automatic report scheduling\n- Export templates\n- Alert notifications');
+    alert('Spend Analytics Settings - Configure time periods, category mappings, budget thresholds, and dashboard preferences.');
   };
 
   const handleExport = () => {
     console.log('Exporting spend analytics report...');
-    alert('Exporting Spend Analytics Report to Excel...\n\nIncludes:\n- Summary dashboard with KPIs\n- Category spend breakdown with trends\n- Top suppliers by spend\n- Monthly spend trend vs budget\n- Spend concentration analysis\n- Variance analysis details\n- Supplier transaction details\n- YoY growth analysis\n- Custom pivot tables for drill-down\n\nFormat: Excel workbook with multiple sheets\nCharts: Embedded visualizations\nData: Raw data for custom analysis');
+    alert('Exporting Spend Analytics Report - This would generate a comprehensive Excel report with spend data and trends.');
   };
 
   const handleFilterPeriod = () => {
     console.log('Opening period filter...');
-    alert('Select Time Period\n\nAvailable Periods:\n- Current Month\n- Current Quarter\n- Year-to-Date (YTD)\n- Last 12 Months\n- Fiscal Year\n- Custom Date Range\n\nComparison Options:\n- vs Previous Period\n- vs Same Period Last Year\n- vs Budget\n- vs Forecast\n\nApply filters to update all analytics and charts.');
+    alert('Select Time Period - Choose from current month, quarter, YTD, or custom date range for analysis.');
   };
 
   const handleViewCategoryDetails = (category: CategorySpend) => {
-    const savingsOpportunity = category.growth > 5 ? category.spend * 0.05 : 0;
-    alert(`Category Deep Dive: ${category.category}\n\nSPEND ANALYSIS:\nTotal Spend: $${(category.spend / 1000000).toFixed(2)}M\nPercent of Total: ${category.percent}%\nYoY Growth: ${category.growth > 0 ? '+' : ''}${category.growth}%\nActive Suppliers: ${category.supplierCount}\n\nSUPPLIER CONCENTRATION:\n- Top 3 suppliers: ~60-70% of category spend\n- Diversification score: ${category.supplierCount > 8 ? 'Good' : category.supplierCount > 5 ? 'Moderate' : 'Low'}\n- Risk level: ${category.supplierCount < 5 ? 'HIGH - Limited alternatives' : category.supplierCount < 10 ? 'MEDIUM' : 'LOW'}\n\nTRENDS & INSIGHTS:\n${category.growth > 10 ? '⚠️ High growth rate - investigate drivers\n- Check for price increases\n- Review volume changes\n- Assess market conditions' : category.growth > 5 ? '📊 Moderate growth - within expectations' : category.growth > 0 ? '✅ Controlled growth' : '📉 Declining spend - cost optimization opportunity'}\n\nSAVINGS OPPORTUNITIES:\n${savingsOpportunity > 0 ? `Estimated potential: $${(savingsOpportunity / 1000000).toFixed(2)}M\n- Negotiate volume discounts\n- Consolidate suppliers\n- Explore alternatives` : 'Monitor for future optimization'}\n\nRECOMMENDED ACTIONS:\n1. Conduct supplier benchmarking\n2. Review contract terms and pricing\n3. Explore strategic sourcing initiatives\n4. Assess supplier diversification needs`);
+    console.log('Viewing category details:', category.category);
+    alert(`Category Details: ${category.category} - Spend: $${(category.spend / 1000000).toFixed(2)}M, Growth: ${category.growth}%, Suppliers: ${category.supplierCount}`);
   };
 
   const handleViewSupplierDetails = (supplier: SupplierSpend) => {
-    const concentration = supplier.percent;
-    const riskLevel = concentration > 25 ? 'HIGH' : concentration > 15 ? 'MEDIUM' : 'LOW';
-
-    alert(`Supplier Deep Dive: ${supplier.supplier}\n\nSPEND METRICS:\nTotal Spend: $${(supplier.spend / 1000000).toFixed(2)}M\nPercent of Total: ${supplier.percent}%\nTransactions: ${supplier.transactions}\nAvg Order Value: $${supplier.avgOrderValue.toLocaleString()}\n\nBUSINESS RELATIONSHIP:\n- Supplier concentration risk: ${riskLevel}\n- Transaction frequency: ${(supplier.transactions / 12).toFixed(0)} per month\n- Order consistency: ${supplier.avgOrderValue > 50000 ? 'Large orders' : supplier.avgOrderValue > 20000 ? 'Medium orders' : 'Small frequent orders'}\n\nPERFORMANCE INDICATORS:\n${concentration > 20 ? '⚠️ HIGH CONCENTRATION RISK\n- This supplier represents significant portion of spend\n- Single point of failure risk\n- Limited negotiation leverage\n\nRECOMMENDATION: Develop alternative suppliers' : concentration > 10 ? '📊 Moderate concentration - monitor closely' : '✅ Healthy diversification'}\n\nCOST OPTIMIZATION:\nOpportunities:\n- ${supplier.transactions > 100 ? 'Negotiate volume discounts' : 'Consolidate orders for better pricing'}\n- Review payment terms for early payment discounts\n- Benchmark pricing against market rates\n- Explore long-term contracts for price stability\n\nRISK MITIGATION:\n- Establish backup suppliers\n- Regular performance reviews\n- Contract compliance monitoring\n- Diversify supplier base for critical categories`);
+    console.log('Viewing supplier details:', supplier.supplier);
+    alert(`Supplier Details: ${supplier.supplier} - Spend: $${(supplier.spend / 1000000).toFixed(2)}M, Transactions: ${supplier.transactions}, Avg Order: $${supplier.avgOrderValue.toLocaleString()}`);
   };
 
-  const handleComparePerio ds = () => {
-    alert('Period Comparison Analysis\n\nCompare Spend Across Periods:\n\n1. Period Selection:\n   - Current vs Previous Quarter\n   - Current vs Same Quarter Last Year\n   - This Year vs Last Year\n   - Custom period comparison\n\n2. Comparison Metrics:\n   - Total spend variance\n   - Category-wise changes\n   - Supplier spend shifts\n   - Budget adherence trends\n   - Savings realized\n\n3. Analysis Outputs:\n   - Side-by-side comparison charts\n   - Variance explanations\n   - Trend identification\n   - Anomaly detection\n   - Predictive insights\n\n4. Key Questions Answered:\n   - Where did spending increase/decrease?\n   - Which suppliers gained/lost share?\n   - Are we on track with budget?\n   - What drove the changes?\n   - What\'s the forecast impact?\n\nGenerate detailed comparison report with actionable insights.');
+  const handleComparePeriods = () => {
+    alert('Period Comparison - This would show side-by-side spend comparison across different time periods.');
   };
 
   const handleBudgetAlert = () => {
-    alert('Budget Alert Configuration\n\nSet Up Spend Alerts:\n\n1. Threshold Alerts:\n   - 80% of category budget\n   - 90% of category budget\n   - 100% budget exceeded\n   - Custom thresholds\n\n2. Variance Alerts:\n   - >10% over budget\n   - >15% over budget\n   - Continuous overspend (3+ months)\n   - Unusual spending patterns\n\n3. Trend Alerts:\n   - Accelerating spend growth\n   - Supplier concentration increasing\n   - Price inflation detected\n   - Volume changes significant\n\n4. Notification Channels:\n   - Email notifications\n   - Dashboard widgets\n   - Mobile app alerts\n   - Weekly summary reports\n\n5. Recipients:\n   - Procurement managers\n   - Category managers\n   - Finance controllers\n   - Executive stakeholders\n\nAlerts help proactive spend management and budget control.');
+    alert('Budget Alert Configuration - Set up spend alerts for threshold breaches and variance notifications.');
   };
 
   const handleDrillDownMonth = (month: MonthlySpend) => {
-    const varianceAmount = month.spend - month.budget;
-    const status = month.variance > 5 ? 'OVER BUDGET' : month.variance > 0 ? 'Slightly Over' : month.variance > -5 ? 'On Target' : 'Under Budget';
-
-    alert(`Monthly Spend Analysis: ${month.month} 2025\n\nSPEND SUMMARY:\nActual Spend: $${(month.spend / 1000).toFixed(0)}K\nBudget: $${(month.budget / 1000).toFixed(0)}K\nVariance: $${(varianceAmount / 1000).toFixed(0)}K (${month.variance > 0 ? '+' : ''}${month.variance}%)\nStatus: ${status}\n\nSPEND BREAKDOWN:\n- PO Count: ~${Math.floor(month.spend / 25000)} orders\n- Average PO Value: ~$25K\n- Emergency POs: ~5% of total\n\nBUDGET PERFORMANCE:\n${Math.abs(month.variance) > 5 ? `⚠️ SIGNIFICANT VARIANCE DETECTED\n\nRoot Causes:\n${month.variance > 0 ? '- Unplanned purchases\n- Price increases\n- Higher volumes\n- Emergency orders\n\nRequired Actions:\n- Review and justify overspend\n- Update forecast if trend\n- Implement spend controls\n- Get budget adjustment if needed' : '- Lower than expected demand\n- Delayed projects\n- Deferred purchases\n- Cost savings realized\n\nConsideration:\n- Reallocate unused budget\n- Accelerate planned purchases\n- Update forecast downward'}` : '✅ Within acceptable variance\n\nSpend is well-controlled and aligned with budget expectations.'}\n\nCATEGORY DRIVERS:\nTop spending categories this month:\n1. Raw Materials: 42%\n2. Components: 20%\n3. Services: 15%\n\nNEXT STEPS:\n- Review major purchase orders\n- Validate budget allocations\n- Plan upcoming month spend\n- Adjust forecast if needed`);
+    console.log('Drilling down month:', month.month);
+    alert(`Monthly Analysis: ${month.month} - Spend: $${(month.spend / 1000).toFixed(0)}K, Budget: $${(month.budget / 1000).toFixed(0)}K, Variance: ${month.variance}%`);
   };
 
   const handleGenerateReport = () => {
-    alert('Generate Custom Spend Report\n\nReport Builder Options:\n\n1. Report Type:\n   - Executive Summary\n   - Detailed Analytics\n   - Category Deep Dive\n   - Supplier Performance\n   - Budget Variance Analysis\n   - Savings Opportunities\n   - Trend Analysis\n   - Custom Report\n\n2. Time Period:\n   - Current Month\n   - Quarter\n   - Year-to-Date\n   - Last 12 Months\n   - Custom Range\n\n3. Dimensions:\n   - By Category\n   - By Supplier\n   - By Cost Center\n   - By Buyer\n   - By Geography\n   - Multi-dimensional\n\n4. Metrics:\n   - Total Spend\n   - Budget Variance\n   - YoY Growth\n   - Supplier Count\n   - Avg Order Value\n   - Concentration\n   - Savings\n\n5. Visualizations:\n   - Tables\n   - Charts (Bar, Pie, Line)\n   - Heatmaps\n   - Treemaps\n   - Custom dashboards\n\n6. Output Format:\n   - PDF Report\n   - Excel Workbook\n   - PowerPoint\n   - Interactive Dashboard\n\nSchedule: One-time or recurring\nDistribution: Email, Shared folder, Portal');
+    alert('Generate Custom Report - Build a customized spend report with selected dimensions, metrics, and visualizations.');
   };
 
   const handleIdentifySavings = () => {
-    alert('Spend Savings Opportunities\n\nAUTOMATED SAVINGS IDENTIFICATION:\n\n1. Price Variance Analysis:\n   - Same items, different prices across POs\n   - Opportunity: Standardize pricing\n   - Estimated savings: $150K-$200K\n\n2. Supplier Consolidation:\n   - 15 suppliers for similar items\n   - Opportunity: Consolidate to 5-7 suppliers\n   - Estimated savings: $100K-$150K via volume discounts\n\n3. Contract Compliance:\n   - 12% of spend off-contract\n   - Opportunity: Enforce contract usage\n   - Estimated savings: $80K-$120K\n\n4. Payment Terms Optimization:\n   - Early payment discounts available\n   - Opportunity: Capture 2% discounts\n   - Estimated savings: $60K-$80K\n\n5. Demand Management:\n   - Emergency POs: 8% premium\n   - Opportunity: Better planning\n   - Estimated savings: $40K-$60K\n\n6. Category-Specific:\n   - Raw Materials: Negotiate long-term contracts\n   - IT Services: Cloud optimization\n   - Logistics: Route optimization\n   - Packaging: Alternative materials\n\nTOTAL POTENTIAL SAVINGS:\n$430K - $610K (3.5% - 5% of total spend)\n\nIMPLEMENTATION ROADMAP:\nQ1: Quick wins (pricing, compliance)\nQ2: Supplier consolidation\nQ3: Contract negotiations\nQ4: Process improvements\n\nSTART WITH: Highest impact, lowest effort initiatives');
+    alert('Spend Savings Opportunities - This would analyze spend data to identify cost optimization opportunities.');
   };
 
   // Mock data - Category spend

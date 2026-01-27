@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import {
   ArrowLeft,
@@ -21,10 +21,14 @@ import {
   StopCircle,
   Wrench,
   Target,
-  Zap
+  Zap,
+  Loader2
 } from 'lucide-react';
+import { workOrderService, WorkOrder } from '@/services/work-order.service';
+import { workCenterService, WorkCenter } from '@/services/work-center.service';
 
-interface ProductionOrder {
+// UI interfaces for display - mapped from service data
+interface ProductionOrderDisplay {
   id: string;
   orderNumber: string;
   productName: string;
@@ -40,7 +44,7 @@ interface ProductionOrder {
   efficiency: number;
 }
 
-interface WorkCenter {
+interface WorkCenterDisplay {
   id: string;
   name: string;
   code: string;
@@ -62,179 +66,101 @@ interface QualityMetric {
   defectRate: number;
 }
 
+// Helper functions to map service data to display format
+function mapWorkOrderToDisplay(wo: WorkOrder): ProductionOrderDisplay {
+  const statusMap: Record<string, ProductionOrderDisplay['status']> = {
+    'Draft': 'scheduled',
+    'Planned': 'scheduled',
+    'Released': 'scheduled',
+    'In Progress': 'in-progress',
+    'On Hold': 'paused',
+    'Completed': 'completed',
+    'Cancelled': 'delayed',
+  };
+
+  const priorityMap: Record<string, ProductionOrderDisplay['priority']> = {
+    'Low': 'low',
+    'Medium': 'medium',
+    'High': 'high',
+    'Critical': 'critical',
+  };
+
+  // Check if delayed (past due date and not completed)
+  const today = new Date();
+  const dueDate = new Date(wo.plannedEndDate);
+  const isDelayed = dueDate < today && wo.status !== 'Completed';
+
+  return {
+    id: wo.id,
+    orderNumber: wo.workOrderNumber,
+    productName: wo.productName,
+    productCode: wo.productCode,
+    quantity: wo.plannedQuantity,
+    producedQty: wo.completedQuantity,
+    status: isDelayed ? 'delayed' : (statusMap[wo.status] || 'scheduled'),
+    priority: priorityMap[wo.priority] || 'medium',
+    startDate: wo.plannedStartDate,
+    dueDate: wo.plannedEndDate,
+    workCenter: wo.scheduledWorkCenterName || 'Not Assigned',
+    operator: 'Production Team',
+    efficiency: wo.plannedQuantity > 0 ? Math.round((wo.completedQuantity / wo.plannedQuantity) * 100) : 0,
+  };
+}
+
+function mapWorkCenterToDisplay(wc: WorkCenter): WorkCenterDisplay {
+  const statusMap: Record<string, WorkCenterDisplay['status']> = {
+    'Active': wc.currentJobNumber ? 'running' : 'idle',
+    'Inactive': 'idle',
+    'Maintenance': 'maintenance',
+    'Decommissioned': 'breakdown',
+  };
+
+  return {
+    id: wc.id,
+    name: wc.workCenterName,
+    code: wc.workCenterCode,
+    status: statusMap[wc.status] || 'idle',
+    currentJob: wc.currentJobNumber || 'None',
+    utilizationRate: wc.capacity.utilization,
+    oee: Math.round((wc.capacity.efficiency * wc.capacity.utilization) / 100),
+    availability: Math.round(wc.capacity.efficiency * 0.95), // Estimate
+    performance: Math.round(wc.capacity.efficiency),
+    quality: 95, // Default quality metric
+  };
+}
+
 export default function ProductionPage() {
   const [selectedView, setSelectedView] = useState<'overview' | 'orders' | 'machines'>('overview');
   const [timeFilter, setTimeFilter] = useState<'today' | 'week' | 'month'>('today');
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [productionOrders, setProductionOrders] = useState<ProductionOrderDisplay[]>([]);
+  const [workCenters, setWorkCenters] = useState<WorkCenterDisplay[]>([]);
 
-  // Production Orders Data
-  const productionOrders: ProductionOrder[] = [
-    {
-      id: '1',
-      orderNumber: 'PO-2025-001',
-      productName: 'Precision Shaft Assembly',
-      productCode: 'PSA-2400',
-      quantity: 500,
-      producedQty: 425,
-      status: 'in-progress',
-      priority: 'high',
-      startDate: '2025-11-12',
-      dueDate: '2025-11-15',
-      workCenter: 'CNC-CUT-01',
-      operator: 'Rajesh Kumar',
-      efficiency: 85
-    },
-    {
-      id: '2',
-      orderNumber: 'PO-2025-002',
-      productName: 'Hydraulic Cylinder Body',
-      productCode: 'HCB-1800',
-      quantity: 200,
-      producedQty: 200,
-      status: 'completed',
-      priority: 'medium',
-      startDate: '2025-11-10',
-      dueDate: '2025-11-13',
-      workCenter: 'PRESS-HYDRO-01',
-      operator: 'Sunil Technician',
-      efficiency: 92
-    },
-    {
-      id: '3',
-      orderNumber: 'PO-2025-003',
-      productName: 'Gear Box Housing',
-      productCode: 'GBH-3200',
-      quantity: 150,
-      producedQty: 0,
-      status: 'scheduled',
-      priority: 'critical',
-      startDate: '2025-11-15',
-      dueDate: '2025-11-18',
-      workCenter: 'LASER-CUT-02',
-      operator: 'Not Assigned',
-      efficiency: 0
-    },
-    {
-      id: '4',
-      orderNumber: 'PO-2025-004',
-      productName: 'Conveyor Roller Assembly',
-      productCode: 'CRA-1500',
-      quantity: 300,
-      producedQty: 180,
-      status: 'delayed',
-      priority: 'high',
-      startDate: '2025-11-08',
-      dueDate: '2025-11-14',
-      workCenter: 'ASSY-LINE-01',
-      operator: 'Maintenance Team A',
-      efficiency: 60
-    },
-    {
-      id: '5',
-      orderNumber: 'PO-2025-005',
-      productName: 'Motor Mounting Bracket',
-      productCode: 'MMB-0800',
-      quantity: 800,
-      producedQty: 450,
-      status: 'paused',
-      priority: 'medium',
-      startDate: '2025-11-11',
-      dueDate: '2025-11-16',
-      workCenter: 'WELD-ST-01',
-      operator: 'Ramesh Technician',
-      efficiency: 56
-    },
-    {
-      id: '6',
-      orderNumber: 'PO-2025-006',
-      productName: 'Control Panel Enclosure',
-      productCode: 'CPE-2200',
-      quantity: 100,
-      producedQty: 75,
-      status: 'in-progress',
-      priority: 'high',
-      startDate: '2025-11-13',
-      dueDate: '2025-11-15',
-      workCenter: 'PAINT-BOOTH-01',
-      operator: 'Cleaning Crew',
-      efficiency: 75
-    }
-  ];
+  // Fetch data from services
+  useEffect(() => {
+    async function fetchData() {
+      setLoading(true);
+      setError(null);
+      try {
+        const [workOrders, workCenterData] = await Promise.all([
+          workOrderService.getAllWorkOrders(),
+          workCenterService.getAllWorkCenters(),
+        ]);
 
-  // Work Centers Data
-  const workCenters: WorkCenter[] = [
-    {
-      id: '1',
-      name: 'CNC Cutting Machine #1',
-      code: 'CNC-CUT-01',
-      status: 'running',
-      currentJob: 'PO-2025-001',
-      utilizationRate: 85,
-      oee: 72,
-      availability: 90,
-      performance: 85,
-      quality: 94
-    },
-    {
-      id: '2',
-      name: 'Hydraulic Press Machine',
-      code: 'PRESS-HYDRO-01',
-      status: 'idle',
-      currentJob: 'None',
-      utilizationRate: 45,
-      oee: 68,
-      availability: 75,
-      performance: 88,
-      quality: 97
-    },
-    {
-      id: '3',
-      name: 'Laser Cutting Machine #2',
-      code: 'LASER-CUT-02',
-      status: 'idle',
-      currentJob: 'None',
-      utilizationRate: 30,
-      oee: 65,
-      availability: 72,
-      performance: 82,
-      quality: 95
-    },
-    {
-      id: '4',
-      name: 'TIG Welding Station #1',
-      code: 'WELD-ST-01',
-      status: 'maintenance',
-      currentJob: 'PO-2025-005 (Paused)',
-      utilizationRate: 20,
-      oee: 45,
-      availability: 50,
-      performance: 78,
-      quality: 92
-    },
-    {
-      id: '5',
-      name: 'Assembly Conveyor Line #1',
-      code: 'ASSY-LINE-01',
-      status: 'running',
-      currentJob: 'PO-2025-004',
-      utilizationRate: 78,
-      oee: 70,
-      availability: 88,
-      performance: 80,
-      quality: 96
-    },
-    {
-      id: '6',
-      name: 'Powder Coating Booth #1',
-      code: 'PAINT-BOOTH-01',
-      status: 'running',
-      currentJob: 'PO-2025-006',
-      utilizationRate: 82,
-      oee: 75,
-      availability: 92,
-      performance: 83,
-      quality: 98
+        setProductionOrders(workOrders.map(mapWorkOrderToDisplay));
+        setWorkCenters(workCenterData.map(mapWorkCenterToDisplay));
+      } catch (err) {
+        console.error('Error fetching production data:', err);
+        setError('Failed to load production data. Please try again.');
+      } finally {
+        setLoading(false);
+      }
     }
-  ];
+
+    fetchData();
+  }, []);
+
 
   // Quality Metrics Data
   const qualityMetrics: QualityMetric[] = [
@@ -308,6 +234,37 @@ export default function ProductionPage() {
         return <Clock className="w-4 h-4" />;
     }
   };
+
+  // Show loading state
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <Loader2 className="w-12 h-12 text-blue-600 animate-spin mx-auto mb-4" />
+          <p className="text-gray-600">Loading production data...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Show error state
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <AlertTriangle className="w-12 h-12 text-red-600 mx-auto mb-4" />
+          <p className="text-gray-900 font-semibold mb-2">Error Loading Data</p>
+          <p className="text-gray-600">{error}</p>
+          <button
+            onClick={() => window.location.reload()}
+            className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          >
+            Retry
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">

@@ -1,8 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Plus, Search, Eye, Edit, FileText, Calendar, DollarSign, TrendingUp, Send, CheckCircle, Clock, Download, ChevronLeft, ChevronRight, User, Percent } from 'lucide-react';
+import { Plus, Search, Eye, Edit, FileText, Calendar, DollarSign, TrendingUp, Send, CheckCircle, Clock, Download, ChevronLeft, ChevronRight, User, Percent, Loader2, AlertCircle } from 'lucide-react';
+import { quotationService, Quotation as ServiceQuotation } from '@/services/quotation.service';
 
 interface Quotation {
   id: string;
@@ -19,99 +20,6 @@ interface Quotation {
   notes: string;
   convertedToOrder: string | null;
 }
-
-const mockQuotations: Quotation[] = [
-  {
-    id: 'QT-001',
-    quoteNumber: 'QT-2025-001',
-    customerName: 'Hotel Paradise Ltd',
-    customerId: 'CUST-001',
-    quoteDate: '2025-09-15',
-    validityDate: '2025-10-15',
-    status: 'converted',
-    totalAmount: 150000,
-    items: 12,
-    assignedTo: 'John Anderson',
-    discount: 5,
-    notes: 'Premium kitchen setup',
-    convertedToOrder: 'SO-2025-001',
-  },
-  {
-    id: 'QT-002',
-    quoteNumber: 'QT-2025-002',
-    customerName: 'Culinary Delights Inc',
-    customerId: 'CUST-002',
-    quoteDate: '2025-09-20',
-    validityDate: '2025-10-20',
-    status: 'sent',
-    totalAmount: 102000,
-    items: 8,
-    assignedTo: 'Sarah Johnson',
-    discount: 3,
-    notes: 'Commercial restaurant equipment',
-    convertedToOrder: null,
-  },
-  {
-    id: 'QT-003',
-    quoteNumber: 'QT-2025-003',
-    customerName: 'City General Hospital',
-    customerId: 'CUST-003',
-    quoteDate: '2025-09-25',
-    validityDate: '2025-10-25',
-    status: 'accepted',
-    totalAmount: 240000,
-    items: 15,
-    assignedTo: 'Michael Chen',
-    discount: 8,
-    notes: 'Hospital cafeteria renovation',
-    convertedToOrder: 'SO-2025-003',
-  },
-  {
-    id: 'QT-004',
-    quoteNumber: 'QT-2025-004',
-    customerName: 'Tech Startup Inc',
-    customerId: 'CUST-007',
-    quoteDate: '2025-10-01',
-    validityDate: '2025-11-01',
-    status: 'sent',
-    totalAmount: 85000,
-    items: 7,
-    assignedTo: 'Emily Davis',
-    discount: 0,
-    notes: 'Office pantry setup',
-    convertedToOrder: null,
-  },
-  {
-    id: 'QT-005',
-    quoteNumber: 'QT-2025-005',
-    customerName: 'Budget Cafe Chain',
-    customerId: 'CUST-008',
-    quoteDate: '2025-10-08',
-    validityDate: '2025-11-08',
-    status: 'rejected',
-    totalAmount: 45000,
-    items: 5,
-    assignedTo: 'Robert Wilson',
-    discount: 10,
-    notes: 'Budget constraints cited',
-    convertedToOrder: null,
-  },
-  {
-    id: 'QT-006',
-    quoteNumber: 'QT-2025-006',
-    customerName: 'Luxury Resort Group',
-    customerId: 'CUST-009',
-    quoteDate: '2025-10-12',
-    validityDate: '2025-11-12',
-    status: 'draft',
-    totalAmount: 320000,
-    items: 25,
-    assignedTo: 'Lisa Martinez',
-    discount: 7,
-    notes: 'Multiple location rollout',
-    convertedToOrder: null,
-  },
-];
 
 const statusColors = {
   draft: 'bg-gray-100 text-gray-700',
@@ -133,11 +41,67 @@ const statusLabels = {
 
 export default function QuotationsPage() {
   const router = useRouter();
-  const [quotations, setQuotations] = useState<Quotation[]>(mockQuotations);
+  const [quotations, setQuotations] = useState<Quotation[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
+
+  useEffect(() => {
+    const loadQuotations = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const response = await quotationService.getAllQuotations();
+
+        // Map service quotations to page format
+        const mappedQuotations: Quotation[] = response.data.map((quote: ServiceQuotation) => {
+          // Map status
+          let pageStatus: Quotation['status'] = 'draft';
+          const statusLower = quote.status.toLowerCase();
+          if (statusLower === 'draft') pageStatus = 'draft';
+          else if (statusLower === 'sent') pageStatus = 'sent';
+          else if (statusLower === 'accepted') pageStatus = 'accepted';
+          else if (statusLower === 'rejected') pageStatus = 'rejected';
+          else if (statusLower === 'expired') pageStatus = 'expired';
+          else if (statusLower === 'converted') pageStatus = 'converted';
+          else if (statusLower === 'under review') pageStatus = 'sent';
+
+          // Calculate discount percentage
+          const discountPercent = quote.subtotal > 0
+            ? Math.round((quote.discountAmount / quote.subtotal) * 100)
+            : 0;
+
+          return {
+            id: quote.id,
+            quoteNumber: quote.quotationNumber,
+            customerName: quote.customerName,
+            customerId: quote.customerId,
+            quoteDate: quote.quotationDate,
+            validityDate: quote.validUntil,
+            status: pageStatus,
+            totalAmount: quote.totalAmount,
+            items: quote.items.length,
+            assignedTo: quote.salesPersonName || 'Unassigned',
+            discount: discountPercent,
+            notes: quote.notes || '',
+            convertedToOrder: quote.convertedToOrderNumber || null,
+          };
+        });
+
+        setQuotations(mappedQuotations);
+      } catch (err) {
+        console.error('Error loading quotations:', err);
+        setError('Failed to load quotations. Please try again.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadQuotations();
+  }, []);
 
   const filteredQuotations = quotations.filter((quote) => {
     const matchesSearch =
@@ -168,6 +132,34 @@ export default function QuotationsPage() {
   const handleSendQuote = (id: string) => {
     console.log(`Sending quotation ${id}...`);
   };
+
+  if (loading) {
+    return (
+      <div className="w-full h-full px-4 py-6 flex items-center justify-center">
+        <div className="flex flex-col items-center gap-4">
+          <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+          <p className="text-gray-600">Loading quotations...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="w-full h-full px-4 py-6 flex items-center justify-center">
+        <div className="flex flex-col items-center gap-4 text-center">
+          <AlertCircle className="h-12 w-12 text-red-500" />
+          <p className="text-red-600 font-medium">{error}</p>
+          <button
+            onClick={() => window.location.reload()}
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          >
+            Retry
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full h-full px-4 py-6">

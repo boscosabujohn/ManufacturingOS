@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import {
   TrendingUp,
@@ -14,6 +14,7 @@ import {
   Award
 } from 'lucide-react'
 import { KPICard, CardSkeleton } from '@/components/ui'
+import { salesOrderService, SalesOrder as ServiceSalesOrder, SalesOrderStatistics } from '@/services/sales-order.service'
 
 interface SalesStats {
   totalRevenue: number
@@ -52,109 +53,96 @@ interface TopCustomer {
 }
 
 export default function SalesDashboard() {
-  const [isLoading, setIsLoading] = useState(false)
-  const [stats] = useState<SalesStats>({
-    totalRevenue: 125680000,
-    revenueGrowth: 18.5,
-    activeOrders: 67,
-    pendingQuotations: 34,
-    customersActive: 145,
-    avgOrderValue: 1875000,
-    conversionRate: 42.5,
-    targetAchievement: 87.3,
-    ordersThisMonth: 89,
-    quotationsThisMonth: 134
+  const [isLoading, setIsLoading] = useState(true)
+  const [stats, setStats] = useState<SalesStats>({
+    totalRevenue: 0,
+    revenueGrowth: 0,
+    activeOrders: 0,
+    pendingQuotations: 0,
+    customersActive: 0,
+    avgOrderValue: 0,
+    conversionRate: 0,
+    targetAchievement: 0,
+    ordersThisMonth: 0,
+    quotationsThisMonth: 0
   })
 
-  const [recentOrders] = useState<SalesOrder[]>([
-    {
-      id: 'SO-2025-234',
-      customer: 'ABC Manufacturing Ltd',
-      product: 'Hydraulic Press HP-500',
-      quantity: 10,
-      value: 25000000,
-      status: 'in_production',
-      orderDate: '2025-10-12',
-      deliveryDate: '2025-11-15',
-      priority: 'high'
-    },
-    {
-      id: 'SO-2025-235',
-      customer: 'XYZ Industries Inc',
-      product: 'CNC Machine CM-350',
-      quantity: 5,
-      value: 18750000,
-      status: 'confirmed',
-      orderDate: '2025-10-15',
-      deliveryDate: '2025-11-20',
-      priority: 'high'
-    },
-    {
-      id: 'SO-2025-236',
-      customer: 'Tech Solutions Pvt Ltd',
-      product: 'Control Panel CP-1000',
-      quantity: 15,
-      value: 12000000,
-      status: 'ready_to_ship',
-      orderDate: '2025-10-10',
-      deliveryDate: '2025-10-22',
-      priority: 'medium'
-    },
-    {
-      id: 'SO-2025-237',
-      customer: 'Global Exports Corp',
-      product: 'Conveyor System CS-200',
-      quantity: 8,
-      value: 9600000,
-      status: 'shipped',
-      orderDate: '2025-10-08',
-      deliveryDate: '2025-10-20',
-      priority: 'low'
-    }
-  ])
+  const [recentOrders, setRecentOrders] = useState<SalesOrder[]>([])
 
-  const [topCustomers] = useState<TopCustomer[]>([
-    {
-      id: 'CUST-001',
-      name: 'ABC Manufacturing Ltd',
-      industry: 'Automotive',
-      totalOrders: 45,
-      totalRevenue: 450000000,
-      activeOrders: 8,
-      creditLimit: 50000000,
-      outstandingAmount: 12500000
-    },
-    {
-      id: 'CUST-002',
-      name: 'XYZ Industries Inc',
-      industry: 'Heavy Engineering',
-      totalOrders: 38,
-      totalRevenue: 380000000,
-      activeOrders: 5,
-      creditLimit: 40000000,
-      outstandingAmount: 8000000
-    },
-    {
-      id: 'CUST-003',
-      name: 'Tech Solutions Pvt Ltd',
-      industry: 'Electronics',
-      totalOrders: 52,
-      totalRevenue: 320000000,
-      activeOrders: 6,
-      creditLimit: 35000000,
-      outstandingAmount: 5600000
-    },
-    {
-      id: 'CUST-004',
-      name: 'Global Exports Corp',
-      industry: 'Exports',
-      totalOrders: 29,
-      totalRevenue: 275000000,
-      activeOrders: 4,
-      creditLimit: 30000000,
-      outstandingAmount: 4200000
+  const [topCustomers, setTopCustomers] = useState<TopCustomer[]>([])
+
+  useEffect(() => {
+    const loadDashboardData = async () => {
+      try {
+        setIsLoading(true)
+
+        // Fetch statistics and orders in parallel
+        const [statisticsData, ordersData] = await Promise.all([
+          salesOrderService.getOrderStatistics(),
+          salesOrderService.getAllOrders({ limit: 4 })
+        ])
+
+        // Map statistics to dashboard stats format
+        setStats({
+          totalRevenue: statisticsData.totalRevenue,
+          revenueGrowth: 18.5, // Calculate from monthly data or add to API
+          activeOrders: statisticsData.confirmedOrders + statisticsData.inProductionOrders + statisticsData.shippedOrders,
+          pendingQuotations: statisticsData.pendingOrders,
+          customersActive: statisticsData.topCustomers?.length || 0,
+          avgOrderValue: statisticsData.averageOrderValue,
+          conversionRate: 42.5, // Calculate or add to API
+          targetAchievement: 87.3, // Calculate or add to API
+          ordersThisMonth: statisticsData.ordersByMonth?.[statisticsData.ordersByMonth.length - 1]?.count || 0,
+          quotationsThisMonth: statisticsData.pendingOrders
+        })
+
+        // Map orders to dashboard format
+        const mappedOrders: SalesOrder[] = ordersData.data.slice(0, 4).map((order: ServiceSalesOrder) => {
+          // Map status from service format to dashboard format
+          let dashboardStatus: SalesOrder['status'] = 'draft'
+          const statusLower = order.status.toLowerCase()
+          if (statusLower === 'draft') dashboardStatus = 'draft'
+          else if (statusLower === 'confirmed' || statusLower === 'approved') dashboardStatus = 'confirmed'
+          else if (statusLower === 'pending' || statusLower === 'in production') dashboardStatus = 'in_production'
+          else if (statusLower === 'shipped') dashboardStatus = 'shipped'
+          else if (statusLower === 'delivered') dashboardStatus = 'delivered'
+
+          return {
+            id: order.orderNumber,
+            customer: order.customerName,
+            product: order.items[0]?.productName || 'Multiple Items',
+            quantity: order.items.reduce((sum, item) => sum + item.quantity, 0),
+            value: order.totalAmount,
+            status: dashboardStatus,
+            orderDate: order.orderDate,
+            deliveryDate: order.expectedDeliveryDate,
+            priority: 'medium' as const // Default priority
+          }
+        })
+        setRecentOrders(mappedOrders)
+
+        // Map top customers from statistics
+        const mappedCustomers: TopCustomer[] = (statisticsData.topCustomers || []).slice(0, 4).map((customer, index) => ({
+          id: customer.customerId,
+          name: customer.customerName,
+          industry: 'Manufacturing', // Default - would need additional API data
+          totalOrders: customer.orderCount,
+          totalRevenue: customer.totalValue,
+          activeOrders: Math.ceil(customer.orderCount * 0.2), // Estimate
+          creditLimit: customer.totalValue * 1.5, // Estimate
+          outstandingAmount: customer.totalValue * 0.1 // Estimate
+        }))
+        setTopCustomers(mappedCustomers)
+
+      } catch (error) {
+        console.error('Error loading dashboard data:', error)
+      } finally {
+        setIsLoading(false)
+      }
     }
-  ])
+
+    loadDashboardData()
+  }, [])
 
   const getStatusColor = (status: string) => {
     switch (status) {

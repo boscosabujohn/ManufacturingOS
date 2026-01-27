@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { RFPController } from './rfp.controller';
 import { RFPService } from './rfp.service';
 import { OrderController } from './controllers/order.controller';
@@ -8,10 +9,15 @@ import { PricingService } from './services/pricing.service';
 import { BOQValidationService } from './services/boq-validation.service';
 import { Customer360Service } from './services/customer-360.service';
 import { InformationRequestService } from './services/information-request.service';
+import { PaymentTermsSeederService } from './services/payment-terms-seeder.service';
+import { PaymentTerms } from './entities/payment-terms.entity';
 import { WorkflowModule } from '../workflow/workflow.module';
 
 @Module({
-  imports: [WorkflowModule],
+  imports: [
+    WorkflowModule,
+    TypeOrmModule.forFeature([PaymentTerms]),
+  ],
   controllers: [RFPController, OrderController],
   providers: [
     RFPService,
@@ -21,6 +27,7 @@ import { WorkflowModule } from '../workflow/workflow.module';
     BOQValidationService,
     Customer360Service,
     InformationRequestService,
+    PaymentTermsSeederService,
   ],
   exports: [
     RFPService,

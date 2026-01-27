@@ -159,14 +159,14 @@ export class ServiceBillingService {
     this.payments.push(payment);
 
     // Update invoice payment status
-    invoice.paidAmount += paymentData.amount;
-    invoice.balanceAmount = invoice.totalAmount - invoice.paidAmount;
+    invoice.paidAmount = (invoice.paidAmount ?? 0) + paymentData.amount;
+    invoice.balanceAmount = invoice.totalAmount - (invoice.paidAmount ?? 0);
 
-    if (invoice.balanceAmount <= 0) {
+    if ((invoice.balanceAmount ?? 0) <= 0) {
       invoice.status = InvoiceStatus.PAID;
       invoice.paymentStatus = 'paid';
       invoice.paidDate = paymentData.paymentDate;
-    } else if (invoice.paidAmount > 0) {
+    } else if ((invoice.paidAmount ?? 0) > 0) {
       invoice.status = InvoiceStatus.PARTIALLY_PAID;
       invoice.paymentStatus = 'partial';
     }
@@ -212,7 +212,7 @@ export class ServiceBillingService {
       return (
         [InvoiceStatus.SENT, InvoiceStatus.PARTIALLY_PAID].includes(invoice.status) &&
         invoice.dueDate < now &&
-        invoice.balanceAmount > 0
+        (invoice.balanceAmount ?? 0) > 0
       );
     });
   }
@@ -222,7 +222,7 @@ export class ServiceBillingService {
     if (
       [InvoiceStatus.SENT, InvoiceStatus.PARTIALLY_PAID].includes(invoice.status) &&
       invoice.dueDate < now &&
-      invoice.balanceAmount > 0
+      (invoice.balanceAmount ?? 0) > 0
     ) {
       invoice.isOverdue = true;
 
@@ -261,8 +261,8 @@ export class ServiceBillingService {
     }
 
     const totalInvoiced = filtered.reduce((sum, i) => sum + i.totalAmount, 0);
-    const totalCollected = filtered.reduce((sum, i) => sum + i.paidAmount, 0);
-    const totalOutstanding = filtered.reduce((sum, i) => sum + i.balanceAmount, 0);
+    const totalCollected = filtered.reduce((sum, i) => sum + (i.paidAmount ?? 0), 0);
+    const totalOutstanding = filtered.reduce((sum, i) => sum + (i.balanceAmount ?? 0), 0);
 
     const paidInvoices = filtered.filter(
       (i) => i.status === InvoiceStatus.PAID,
@@ -333,9 +333,9 @@ export class ServiceBillingService {
     const overdue = this.getOverdueInvoices().length;
 
     const totalInvoiced = this.invoices.reduce((sum, i) => sum + i.totalAmount, 0);
-    const totalCollected = this.invoices.reduce((sum, i) => sum + i.paidAmount, 0);
+    const totalCollected = this.invoices.reduce((sum, i) => sum + (i.paidAmount ?? 0), 0);
     const totalOutstanding = this.invoices.reduce(
-      (sum, i) => sum + i.balanceAmount,
+      (sum, i) => sum + (i.balanceAmount ?? 0),
       0,
     );
 

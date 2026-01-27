@@ -40,7 +40,7 @@ interface UseTemplateModalProps {
   isOpen: boolean
   onClose: () => void
   template: ContractTemplate | null
-  on Generate: (data: any) => void
+  onGenerate: (data: any) => void
 }
 
 interface FilterModalProps {

@@ -10,3 +10,6 @@ export { QualityAlertService } from './quality-alert.service';
 export { AuditPlanService } from './audit-plan.service';
 export { AuditFindingsService } from './audit-findings.service';
 export { NCRService } from './ncr.service';
+export { QCTemplateSeederService } from './qc-template-seeder.service';
+export { QCParameterSeederService } from './qc-parameter-seeder.service';
+export { DefectCodeSeederService } from './defect-code-seeder.service';

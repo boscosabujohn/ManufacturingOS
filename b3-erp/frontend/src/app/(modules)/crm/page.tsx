@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import {
   Users,
@@ -13,6 +13,9 @@ import {
   ArrowUpRight
 } from 'lucide-react'
 import { KPICard, CardSkeleton } from '@/components/ui'
+import { LeadService, Lead as ServiceLead, MOCK_LEADS } from '@/services/lead.service'
+import { OpportunityService, Opportunity as ServiceOpportunity, MOCK_OPPORTUNITIES } from '@/services/opportunity.service'
+import { ContactService, MOCK_CONTACTS } from '@/services/contact.service'
 
 interface CRMStats {
   totalLeads: number
@@ -53,117 +56,157 @@ interface Opportunity {
 }
 
 export default function CRMDashboard() {
-  const [isLoading, setIsLoading] = useState(false)
-  const [stats] = useState<CRMStats>({
-    totalLeads: 234,
-    activeLeads: 145,
-    convertedLeads: 67,
-    totalCustomers: 423,
-    activeOpportunities: 56,
-    opportunityValue: 235000000,
-    conversionRate: 28.6,
-    avgDealSize: 4196428,
-    interactionsThisMonth: 567,
-    meetingsScheduled: 34
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState<Error | null>(null)
+  const [stats, setStats] = useState<CRMStats>({
+    totalLeads: 0,
+    activeLeads: 0,
+    convertedLeads: 0,
+    totalCustomers: 0,
+    activeOpportunities: 0,
+    opportunityValue: 0,
+    conversionRate: 0,
+    avgDealSize: 0,
+    interactionsThisMonth: 0,
+    meetingsScheduled: 0
   })
 
-  const [recentLeads] = useState<Lead[]>([
-    {
-      id: 'LEAD-001',
-      name: 'Rajesh Sharma',
-      company: 'Tech Innovations Pvt Ltd',
-      email: 'rajesh@techinnovations.com',
-      phone: '+91 98765 43210',
-      status: 'qualified',
-      source: 'Website',
-      value: 5000000,
-      lastContact: '2025-10-17',
-      assignedTo: 'Sales Team A'
-    },
-    {
-      id: 'LEAD-002',
-      name: 'Priya Menon',
-      company: 'Manufacturing Solutions Inc',
-      email: 'priya.menon@mansol.com',
-      phone: '+91 98123 45678',
-      status: 'proposal',
-      source: 'Referral',
-      value: 8500000,
-      lastContact: '2025-10-16',
-      assignedTo: 'Sales Team B'
-    },
-    {
-      id: 'LEAD-003',
-      name: 'Amit Kumar',
-      company: 'Industrial Automation Ltd',
-      email: 'amit@indauto.com',
-      phone: '+91 97654 32109',
-      status: 'new',
-      source: 'Trade Show',
-      value: 3200000,
-      lastContact: '2025-10-18',
-      assignedTo: 'Sales Team A'
-    },
-    {
-      id: 'LEAD-004',
-      name: 'Sneha Patel',
-      company: 'Global Machinery Corp',
-      email: 'sneha.p@globalmach.com',
-      phone: '+91 98234 56789',
-      status: 'negotiation',
-      source: 'Cold Call',
-      value: 12000000,
-      lastContact: '2025-10-15',
-      assignedTo: 'Sales Team C'
-    }
-  ])
+  const [recentLeads, setRecentLeads] = useState<Lead[]>([])
+  const [topOpportunities, setTopOpportunities] = useState<Opportunity[]>([])
 
-  const [topOpportunities] = useState<Opportunity[]>([
-    {
-      id: 'OPP-001',
-      title: 'Hydraulic Press System - ABC Corp',
-      customer: 'ABC Manufacturing Ltd',
-      value: 45000000,
-      probability: 75,
-      stage: 'negotiation',
-      expectedCloseDate: '2025-11-15',
-      owner: 'Sales Manager A',
-      daysOpen: 45
-    },
-    {
-      id: 'OPP-002',
-      title: 'CNC Machine Upgrade - XYZ Inc',
-      customer: 'XYZ Industries Inc',
-      value: 32000000,
-      probability: 60,
-      stage: 'proposal',
-      expectedCloseDate: '2025-11-25',
-      owner: 'Sales Manager B',
-      daysOpen: 32
-    },
-    {
-      id: 'OPP-003',
-      title: 'Automation Solution - Tech Solutions',
-      customer: 'Tech Solutions Pvt Ltd',
-      value: 28000000,
-      probability: 85,
-      stage: 'closing',
-      expectedCloseDate: '2025-10-28',
-      owner: 'Sales Manager A',
-      daysOpen: 28
-    },
-    {
-      id: 'OPP-004',
-      title: 'Production Line Setup - Global Exports',
-      customer: 'Global Exports Corp',
-      value: 56000000,
-      probability: 45,
-      stage: 'qualification',
-      expectedCloseDate: '2025-12-10',
-      owner: 'Sales Manager C',
-      daysOpen: 15
+  // Fetch dashboard data on mount
+  useEffect(() => {
+    async function fetchDashboardData() {
+      try {
+        setIsLoading(true)
+        setError(null)
+
+        // Fetch data from all services in parallel
+        const [leads, opportunities, contacts] = await Promise.all([
+          LeadService.getAllLeads(),
+          OpportunityService.getAllOpportunities(),
+          ContactService.getAllContacts()
+        ])
+
+        // Transform leads for dashboard display
+        const transformedLeads: Lead[] = leads.slice(0, 4).map(lead => ({
+          id: lead.id,
+          name: lead.name,
+          company: lead.company,
+          email: lead.email,
+          phone: lead.phone,
+          status: lead.status,
+          source: lead.source,
+          value: lead.value,
+          lastContact: lead.lastContact,
+          assignedTo: lead.assignedTo
+        }))
+
+        // Transform opportunities for dashboard display
+        const transformedOpps: Opportunity[] = opportunities
+          .filter(opp => !['closed_won', 'closed_lost'].includes(opp.stage))
+          .slice(0, 4)
+          .map(opp => {
+            const createdDate = new Date(opp.createdAt)
+            const today = new Date()
+            const daysOpen = Math.floor((today.getTime() - createdDate.getTime()) / (1000 * 60 * 60 * 24))
+
+            return {
+              id: opp.id,
+              title: opp.name,
+              customer: opp.account,
+              value: opp.amount,
+              probability: opp.probability,
+              stage: opp.stage === 'prospecting' ? 'prospecting' :
+                     opp.stage === 'qualification' ? 'qualification' :
+                     opp.stage === 'proposal' ? 'proposal' :
+                     opp.stage === 'negotiation' ? 'negotiation' : 'closing',
+              expectedCloseDate: opp.expectedCloseDate,
+              owner: opp.owner,
+              daysOpen
+            }
+          })
+
+        // Calculate stats
+        const activeLeads = leads.filter(l => !['won', 'lost'].includes(l.status)).length
+        const convertedLeads = leads.filter(l => l.status === 'won').length
+        const openOpps = opportunities.filter(o => !['closed_won', 'closed_lost'].includes(o.stage))
+        const totalOppValue = openOpps.reduce((sum, o) => sum + o.amount, 0)
+        const conversionRate = leads.length > 0 ? (convertedLeads / leads.length) * 100 : 0
+        const avgDealSize = openOpps.length > 0 ? totalOppValue / openOpps.length : 0
+
+        setStats({
+          totalLeads: leads.length,
+          activeLeads,
+          convertedLeads,
+          totalCustomers: contacts.length,
+          activeOpportunities: openOpps.length,
+          opportunityValue: totalOppValue,
+          conversionRate: parseFloat(conversionRate.toFixed(1)),
+          avgDealSize: Math.round(avgDealSize),
+          interactionsThisMonth: Math.floor(Math.random() * 500) + 100, // Mock value
+          meetingsScheduled: Math.floor(Math.random() * 30) + 10 // Mock value
+        })
+
+        setRecentLeads(transformedLeads)
+        setTopOpportunities(transformedOpps)
+      } catch (err) {
+        console.error('Failed to fetch dashboard data:', err)
+        setError(err instanceof Error ? err : new Error('Failed to fetch dashboard data'))
+
+        // Fallback to mock data
+        const fallbackLeads: Lead[] = MOCK_LEADS.slice(0, 4).map(lead => ({
+          id: lead.id,
+          name: lead.name,
+          company: lead.company,
+          email: lead.email,
+          phone: lead.phone,
+          status: lead.status,
+          source: lead.source,
+          value: lead.value,
+          lastContact: lead.lastContact,
+          assignedTo: lead.assignedTo
+        }))
+
+        const fallbackOpps: Opportunity[] = MOCK_OPPORTUNITIES
+          .filter(opp => !['closed_won', 'closed_lost'].includes(opp.stage))
+          .slice(0, 4)
+          .map(opp => ({
+            id: opp.id,
+            title: opp.name,
+            customer: opp.account,
+            value: opp.amount,
+            probability: opp.probability,
+            stage: opp.stage === 'prospecting' ? 'prospecting' :
+                   opp.stage === 'qualification' ? 'qualification' :
+                   opp.stage === 'proposal' ? 'proposal' :
+                   opp.stage === 'negotiation' ? 'negotiation' : 'closing',
+            expectedCloseDate: opp.expectedCloseDate,
+            owner: opp.owner,
+            daysOpen: 30
+          }))
+
+        setStats({
+          totalLeads: MOCK_LEADS.length,
+          activeLeads: MOCK_LEADS.filter(l => !['won', 'lost'].includes(l.status)).length,
+          convertedLeads: MOCK_LEADS.filter(l => l.status === 'won').length,
+          totalCustomers: MOCK_CONTACTS.length,
+          activeOpportunities: MOCK_OPPORTUNITIES.filter(o => !['closed_won', 'closed_lost'].includes(o.stage)).length,
+          opportunityValue: MOCK_OPPORTUNITIES.reduce((sum, o) => sum + o.amount, 0),
+          conversionRate: 20,
+          avgDealSize: 350000,
+          interactionsThisMonth: 150,
+          meetingsScheduled: 12
+        })
+
+        setRecentLeads(fallbackLeads)
+        setTopOpportunities(fallbackOpps)
+      } finally {
+        setIsLoading(false)
+      }
     }
-  ])
+    fetchDashboardData()
+  }, [])
 
   const getLeadStatusColor = (status: string) => {
     switch (status) {

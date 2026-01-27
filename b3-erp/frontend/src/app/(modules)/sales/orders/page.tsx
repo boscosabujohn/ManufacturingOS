@@ -1,8 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Plus, Search, Eye, Edit, ShoppingCart, User, Calendar, DollarSign, TrendingUp, Package, Truck, CheckCircle, Clock, Download, ChevronLeft, ChevronRight, AlertCircle } from 'lucide-react';
+import { Plus, Search, Eye, Edit, ShoppingCart, User, Calendar, DollarSign, TrendingUp, Package, Truck, CheckCircle, Clock, Download, ChevronLeft, ChevronRight, AlertCircle, Loader2 } from 'lucide-react';
+import { salesOrderService, SalesOrder as ServiceSalesOrder } from '@/services/sales-order.service';
 
 interface SalesOrder {
   id: string;
@@ -20,105 +21,6 @@ interface SalesOrder {
   priority: 'low' | 'medium' | 'high' | 'urgent';
   shippingAddress: string;
 }
-
-const mockOrders: SalesOrder[] = [
-  {
-    id: 'SO-001',
-    orderNumber: 'SO-2025-001',
-    customerName: 'Hotel Paradise Ltd',
-    customerId: 'CUST-001',
-    orderDate: '2025-10-01',
-    deliveryDate: '2025-10-25',
-    status: 'processing',
-    totalAmount: 150000,
-    paidAmount: 75000,
-    paymentStatus: 'partial',
-    items: 12,
-    assignedTo: 'John Anderson',
-    priority: 'high',
-    shippingAddress: '123 Beach Road, Miami, FL',
-  },
-  {
-    id: 'SO-002',
-    orderNumber: 'SO-2025-002',
-    customerName: 'Culinary Delights Inc',
-    customerId: 'CUST-002',
-    orderDate: '2025-10-05',
-    deliveryDate: '2025-10-28',
-    status: 'shipped',
-    totalAmount: 102000,
-    paidAmount: 102000,
-    paymentStatus: 'paid',
-    items: 8,
-    assignedTo: 'Sarah Johnson',
-    priority: 'medium',
-    shippingAddress: '456 Market Street, Boston, MA',
-  },
-  {
-    id: 'SO-003',
-    orderNumber: 'SO-2025-003',
-    customerName: 'City General Hospital',
-    customerId: 'CUST-003',
-    orderDate: '2025-10-08',
-    deliveryDate: '2025-11-05',
-    status: 'confirmed',
-    totalAmount: 240000,
-    paidAmount: 0,
-    paymentStatus: 'pending',
-    items: 15,
-    assignedTo: 'Michael Chen',
-    priority: 'urgent',
-    shippingAddress: '789 Health Avenue, Chicago, IL',
-  },
-  {
-    id: 'SO-004',
-    orderNumber: 'SO-2025-004',
-    customerName: 'Springfield Academy',
-    customerId: 'CUST-004',
-    orderDate: '2025-10-10',
-    deliveryDate: '2025-10-30',
-    status: 'processing',
-    totalAmount: 54000,
-    paidAmount: 54000,
-    paymentStatus: 'paid',
-    items: 6,
-    assignedTo: 'Emily Davis',
-    priority: 'low',
-    shippingAddress: '321 Education Lane, Springfield, IL',
-  },
-  {
-    id: 'SO-005',
-    orderNumber: 'SO-2025-005',
-    customerName: 'Artisan Bakers Co',
-    customerId: 'CUST-005',
-    orderDate: '2025-10-12',
-    deliveryDate: '2025-11-08',
-    status: 'shipped',
-    totalAmount: 210000,
-    paidAmount: 105000,
-    paymentStatus: 'partial',
-    items: 18,
-    assignedTo: 'Robert Wilson',
-    priority: 'high',
-    shippingAddress: '555 Baker Street, Portland, OR',
-  },
-  {
-    id: 'SO-006',
-    orderNumber: 'SO-2025-006',
-    customerName: 'Restaurant Group LLC',
-    customerId: 'CUST-006',
-    orderDate: '2025-10-14',
-    deliveryDate: '2025-11-10',
-    status: 'delivered',
-    totalAmount: 95000,
-    paidAmount: 95000,
-    paymentStatus: 'paid',
-    items: 10,
-    assignedTo: 'Lisa Martinez',
-    priority: 'medium',
-    shippingAddress: '888 Dining Plaza, Seattle, WA',
-  },
-];
 
 const statusColors = {
   draft: 'bg-gray-100 text-gray-700',
@@ -159,11 +61,69 @@ const priorityColors = {
 
 export default function SalesOrdersPage() {
   const router = useRouter();
-  const [orders, setOrders] = useState<SalesOrder[]>(mockOrders);
+  const [orders, setOrders] = useState<SalesOrder[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
+
+  useEffect(() => {
+    const loadOrders = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const response = await salesOrderService.getAllOrders();
+
+        // Map service orders to page format
+        const mappedOrders: SalesOrder[] = response.data.map((order: ServiceSalesOrder) => {
+          // Map status
+          let pageStatus: SalesOrder['status'] = 'draft';
+          const statusLower = order.status.toLowerCase();
+          if (statusLower === 'draft') pageStatus = 'draft';
+          else if (statusLower === 'confirmed' || statusLower === 'approved' || statusLower === 'pending') pageStatus = 'confirmed';
+          else if (statusLower === 'in production') pageStatus = 'processing';
+          else if (statusLower === 'shipped') pageStatus = 'shipped';
+          else if (statusLower === 'delivered') pageStatus = 'delivered';
+          else if (statusLower === 'cancelled') pageStatus = 'cancelled';
+
+          // Map payment status
+          let paymentStatus: SalesOrder['paymentStatus'] = 'pending';
+          const paymentLower = order.paymentStatus.toLowerCase();
+          if (paymentLower === 'paid') paymentStatus = 'paid';
+          else if (paymentLower === 'partial') paymentStatus = 'partial';
+          else paymentStatus = 'pending';
+
+          return {
+            id: order.id,
+            orderNumber: order.orderNumber,
+            customerName: order.customerName,
+            customerId: order.customerId,
+            orderDate: order.orderDate,
+            deliveryDate: order.expectedDeliveryDate,
+            status: pageStatus,
+            totalAmount: order.totalAmount,
+            paidAmount: paymentStatus === 'paid' ? order.totalAmount : (paymentStatus === 'partial' ? order.totalAmount * 0.5 : 0),
+            paymentStatus: paymentStatus,
+            items: order.items.length,
+            assignedTo: order.salesPersonName || 'Unassigned',
+            priority: 'medium' as const,
+            shippingAddress: order.shippingAddress,
+          };
+        });
+
+        setOrders(mappedOrders);
+      } catch (err) {
+        console.error('Error loading orders:', err);
+        setError('Failed to load orders. Please try again.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadOrders();
+  }, []);
 
   const filteredOrders = orders.filter((order) => {
     const matchesSearch =
@@ -188,6 +148,34 @@ export default function SalesOrdersPage() {
   const handleExport = () => {
     console.log('Exporting sales orders data...');
   };
+
+  if (loading) {
+    return (
+      <div className="w-full h-full px-4 py-6 flex items-center justify-center">
+        <div className="flex flex-col items-center gap-4">
+          <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+          <p className="text-gray-600">Loading orders...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="w-full h-full px-4 py-6 flex items-center justify-center">
+        <div className="flex flex-col items-center gap-4 text-center">
+          <AlertCircle className="h-12 w-12 text-red-500" />
+          <p className="text-red-600 font-medium">{error}</p>
+          <button
+            onClick={() => window.location.reload()}
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          >
+            Retry
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full h-full px-4 py-6">

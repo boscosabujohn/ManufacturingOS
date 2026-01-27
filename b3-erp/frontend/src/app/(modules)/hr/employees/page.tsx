@@ -1,9 +1,15 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Plus, Search, Eye, Edit, Trash2, User, Users, Briefcase, Calendar, Mail, Phone, MapPin, TrendingUp, Download, ChevronLeft, ChevronRight, Award, Clock } from 'lucide-react';
+import { Plus, Search, Eye, Edit, Trash2, User, Users, Briefcase, Calendar, Mail, Phone, MapPin, TrendingUp, Download, ChevronLeft, ChevronRight, Award, Clock, Loader2 } from 'lucide-react';
 import { ExportEmployeesModal } from '@/components/hr/EmployeeDirectoryModals';
+import {
+  EmployeeService,
+  Employee as EmployeeModel,
+  EmployeeStatus,
+  EmploymentType
+} from '@/services/employee.service';
 
 interface Employee {
   id: string;
@@ -24,116 +30,43 @@ interface Employee {
   leaveBalance: number;
 }
 
-const mockEmployees: Employee[] = [
-  {
-    id: 'EMP-001',
-    employeeId: 'B3-001',
-    firstName: 'John',
-    lastName: 'Anderson',
-    email: 'john.anderson@b3macbis.com',
-    phone: '+1 234-567-8901',
-    department: 'Production',
-    position: 'Production Manager',
-    employmentType: 'full_time',
-    status: 'active',
-    joinDate: '2020-03-15',
-    manager: 'Sarah Johnson',
-    location: 'Factory - Building A',
-    salary: 75000,
-    performanceRating: 4.5,
-    leaveBalance: 18,
-  },
-  {
-    id: 'EMP-002',
-    employeeId: 'B3-002',
-    firstName: 'Emily',
-    lastName: 'Chen',
-    email: 'emily.chen@b3macbis.com',
-    phone: '+1 234-567-8902',
-    department: 'Engineering',
-    position: 'Senior Design Engineer',
-    employmentType: 'full_time',
-    status: 'active',
-    joinDate: '2019-07-20',
-    manager: 'Michael Brown',
-    location: 'Office - Floor 2',
-    salary: 85000,
-    performanceRating: 4.8,
-    leaveBalance: 15,
-  },
-  {
-    id: 'EMP-003',
-    employeeId: 'B3-003',
-    firstName: 'Robert',
-    lastName: 'Wilson',
-    email: 'robert.wilson@b3macbis.com',
-    phone: '+1 234-567-8903',
-    department: 'Sales',
-    position: 'Sales Executive',
-    employmentType: 'full_time',
-    status: 'on_leave',
-    joinDate: '2021-01-10',
-    manager: 'Lisa Martinez',
-    location: 'Office - Floor 1',
-    salary: 65000,
-    performanceRating: 4.2,
-    leaveBalance: 8,
-  },
-  {
-    id: 'EMP-004',
-    employeeId: 'B3-004',
-    firstName: 'Maria',
-    lastName: 'Garcia',
-    email: 'maria.garcia@b3macbis.com',
-    phone: '+1 234-567-8904',
-    department: 'Quality Control',
-    position: 'QC Inspector',
-    employmentType: 'full_time',
-    status: 'active',
-    joinDate: '2022-05-12',
-    manager: 'John Anderson',
-    location: 'Factory - QC Lab',
-    salary: 55000,
-    performanceRating: 4.6,
-    leaveBalance: 20,
-  },
-  {
-    id: 'EMP-005',
-    employeeId: 'B3-005',
-    firstName: 'David',
-    lastName: 'Kumar',
-    email: 'david.kumar@b3macbis.com',
-    phone: '+1 234-567-8905',
-    department: 'IT',
-    position: 'Software Developer',
-    employmentType: 'contract',
-    status: 'active',
-    joinDate: '2023-02-01',
-    manager: 'Tech Lead',
-    location: 'Remote',
-    salary: 70000,
-    performanceRating: 4.4,
-    leaveBalance: 12,
-  },
-  {
-    id: 'EMP-006',
-    employeeId: 'B3-006',
-    firstName: 'Jennifer',
-    lastName: 'Taylor',
-    email: 'jennifer.taylor@b3macbis.com',
-    phone: '+1 234-567-8906',
-    department: 'HR',
-    position: 'HR Specialist',
-    employmentType: 'full_time',
-    status: 'active',
-    joinDate: '2021-09-15',
-    manager: 'HR Director',
-    location: 'Office - Floor 3',
-    salary: 60000,
-    performanceRating: 4.7,
-    leaveBalance: 16,
-  },
-];
+// Transform service employee to page employee format
+const transformEmployee = (emp: EmployeeModel): Employee => {
+  const statusMap: Record<EmployeeStatus, 'active' | 'on_leave' | 'inactive' | 'terminated'> = {
+    [EmployeeStatus.ACTIVE]: 'active',
+    [EmployeeStatus.ON_LEAVE]: 'on_leave',
+    [EmployeeStatus.INACTIVE]: 'inactive',
+    [EmployeeStatus.TERMINATED]: 'terminated',
+    [EmployeeStatus.PROBATION]: 'active',
+  };
+
+  const employmentTypeMap: Record<EmploymentType, 'full_time' | 'part_time' | 'contract' | 'intern'> = {
+    [EmploymentType.FULL_TIME]: 'full_time',
+    [EmploymentType.PART_TIME]: 'part_time',
+    [EmploymentType.CONTRACT]: 'contract',
+    [EmploymentType.INTERN]: 'intern',
+    [EmploymentType.TEMPORARY]: 'contract',
+  };
+
+  return {
+    id: emp.id,
+    employeeId: emp.employeeCode,
+    firstName: emp.firstName,
+    lastName: emp.lastName,
+    email: emp.email,
+    phone: emp.phone,
+    department: emp.departmentName || 'Unknown',
+    position: emp.designation,
+    employmentType: employmentTypeMap[emp.employmentType],
+    status: statusMap[emp.status],
+    joinDate: new Date(emp.dateOfJoining).toISOString().split('T')[0],
+    manager: emp.reportingManagerName || 'N/A',
+    location: `${emp.city}, ${emp.state}`,
+    salary: emp.salary,
+    performanceRating: 4.0, // Default value - would come from performance service
+    leaveBalance: 15, // Default value - would come from leave service
+  };
+};
 
 const statusColors = {
   active: 'bg-green-100 text-green-700',
@@ -172,7 +105,9 @@ const getRatingColor = (rating: number) => {
 
 export default function EmployeesPage() {
   const router = useRouter();
-  const [employees, setEmployees] = useState<Employee[]>(mockEmployees);
+  const [employees, setEmployees] = useState<Employee[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [departmentFilter, setDepartmentFilter] = useState<string>('all');
@@ -181,6 +116,25 @@ export default function EmployeesPage() {
 
   // Modal states
   const [isExportModalOpen, setIsExportModalOpen] = useState(false);
+
+  // Load employees from service
+  useEffect(() => {
+    const loadEmployees = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const data = await EmployeeService.getAllEmployees();
+        setEmployees(data.map(transformEmployee));
+      } catch (err) {
+        console.error('Error loading employees:', err);
+        setError('Failed to load employees. Please try again.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadEmployees();
+  }, []);
 
   const filteredEmployees = employees.filter((emp) => {
     const matchesSearch =
@@ -211,11 +165,46 @@ export default function EmployeesPage() {
 
   const departments = Array.from(new Set(employees.map((e) => e.department)));
 
-  const handleDelete = (id: string) => {
+  const handleDelete = async (id: string) => {
     if (confirm('Are you sure you want to delete this employee record?')) {
-      setEmployees(employees.filter((e) => e.id !== id));
+      try {
+        await EmployeeService.deleteEmployee(id);
+        setEmployees(employees.filter((e) => e.id !== id));
+      } catch (err) {
+        console.error('Error deleting employee:', err);
+        alert('Failed to delete employee. Please try again.');
+      }
     }
   };
+
+  // Show loading state
+  if (loading) {
+    return (
+      <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 w-full max-w-full flex items-center justify-center">
+        <div className="flex flex-col items-center gap-4">
+          <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+          <p className="text-gray-600">Loading employees...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Show error state
+  if (error) {
+    return (
+      <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 w-full max-w-full flex items-center justify-center">
+        <div className="flex flex-col items-center gap-4 text-center">
+          <div className="text-red-500 text-lg font-medium">{error}</div>
+          <button
+            onClick={() => window.location.reload()}
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          >
+            Retry
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 w-full max-w-full">

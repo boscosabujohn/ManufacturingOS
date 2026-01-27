@@ -18,7 +18,8 @@ import {
   Calendar,
   Filter,
   Download,
-  RefreshCw
+  RefreshCw,
+  Loader2
 } from 'lucide-react'
 import {
   AreaChart,
@@ -42,6 +43,10 @@ import {
   PolarRadiusAxis,
   Radar
 } from 'recharts'
+import { purchaseOrderService, PurchaseOrder as POType } from '@/services/purchase-order.service'
+import { purchaseRequisitionService } from '@/services/purchase-requisition.service'
+import { goodsReceiptService } from '@/services/goods-receipt.service'
+import { procurementRFQService } from '@/services/procurement-rfq.service'
 
 interface ProcurementStats {
   totalPOs: number
@@ -108,64 +113,24 @@ interface POStatusData {
 
 export default function ProcurementDashboard() {
   const [stats, setStats] = useState<ProcurementStats>({
-    totalPOs: 234,
-    pendingApprovals: 12,
-    activePOs: 45,
-    completedThisMonth: 67,
-    totalSpend: 35680000,
+    totalPOs: 0,
+    pendingApprovals: 0,
+    activePOs: 0,
+    completedThisMonth: 0,
+    totalSpend: 0,
     avgLeadTime: 12,
-    activeVendors: 56,
-    pendingGRNs: 8,
+    activeVendors: 0,
+    pendingGRNs: 0,
     savingsThisMonth: 456000,
-    requisitionsOpen: 18
+    requisitionsOpen: 0
   })
 
+  const [isLoading, setIsLoading] = useState(true)
   const [isRefreshing, setIsRefreshing] = useState(false)
   const [selectedPeriod, setSelectedPeriod] = useState('month')
   const [selectedCategory, setSelectedCategory] = useState('all')
 
-  const [recentPOs] = useState<PurchaseOrder[]>([
-    {
-      id: 'PO-2025-145',
-      vendor: 'Steel Suppliers Ltd',
-      items: 5,
-      totalAmount: 2450000,
-      status: 'sent',
-      createdDate: '2025-10-15',
-      expectedDelivery: '2025-10-25',
-      priority: 'high'
-    },
-    {
-      id: 'PO-2025-146',
-      vendor: 'Hydraulics International',
-      items: 3,
-      totalAmount: 1850000,
-      status: 'partially_received',
-      createdDate: '2025-10-14',
-      expectedDelivery: '2025-10-22',
-      priority: 'medium'
-    },
-    {
-      id: 'PO-2025-147',
-      vendor: 'Electronic Components Co',
-      items: 12,
-      totalAmount: 567000,
-      status: 'pending_approval',
-      createdDate: '2025-10-17',
-      expectedDelivery: '2025-10-27',
-      priority: 'high'
-    },
-    {
-      id: 'PO-2025-148',
-      vendor: 'Industrial Supplies Inc',
-      items: 8,
-      totalAmount: 890000,
-      status: 'approved',
-      createdDate: '2025-10-16',
-      expectedDelivery: '2025-10-26',
-      priority: 'low'
-    }
-  ])
+  const [recentPOs, setRecentPOs] = useState<PurchaseOrder[]>([])
 
   // Monthly spending trend data
   const [spendTrend] = useState<SpendTrend[]>([
@@ -192,14 +157,7 @@ export default function ProcurementDashboard() {
   ])
 
   // PO Status Distribution
-  const [poStatusData] = useState<POStatusData[]>([
-    { status: 'Draft', count: 8, value: 450000 },
-    { status: 'Pending Approval', count: 12, value: 1850000 },
-    { status: 'Approved', count: 15, value: 2340000 },
-    { status: 'Sent to Vendor', count: 25, value: 8900000 },
-    { status: 'Partially Received', count: 18, value: 6700000 },
-    { status: 'Completed', count: 156, value: 15440000 }
-  ])
+  const [poStatusData, setPOStatusData] = useState<POStatusData[]>([])
 
   // Vendor performance metrics for radar chart
   const [vendorMetrics] = useState<VendorMetrics[]>([
@@ -261,31 +219,123 @@ export default function ProcurementDashboard() {
     pink: '#EC4899'
   }
 
-  // Auto-refresh simulation
-  useEffect(() => {
-    const interval = setInterval(() => {
-      // Simulate real-time updates
-      setStats(prev => ({
-        ...prev,
-        totalSpend: prev.totalSpend + Math.floor(Math.random() * 10000),
-        activePOs: prev.activePOs + Math.floor(Math.random() * 3) - 1
-      }))
-    }, 30000) // Update every 30 seconds
+  // Load dashboard data from services
+  const loadDashboardData = async () => {
+    try {
+      setIsLoading(true)
 
-    return () => clearInterval(interval)
+      // Fetch all data in parallel
+      const [poData, prData, grStats, rfqStats] = await Promise.all([
+        purchaseOrderService.getAllPurchaseOrders(),
+        purchaseRequisitionService.getAllRequisitions(),
+        goodsReceiptService.getReceiptStats(),
+        procurementRFQService.getRFQStats()
+      ])
+
+      // Calculate PO stats
+      const purchaseOrders = poData.data
+      const totalSpend = purchaseOrders.reduce((sum, po) => sum + po.totalAmount, 0)
+      const activePOs = purchaseOrders.filter(po =>
+        ['Approved', 'Sent to Vendor', 'Partially Received'].includes(po.status)
+      ).length
+      const pendingApprovalPOs = purchaseOrders.filter(po => po.status === 'Pending Approval').length
+      const completedPOs = purchaseOrders.filter(po =>
+        ['Fully Received', 'Closed'].includes(po.status)
+      ).length
+
+      // Get unique vendors
+      const uniqueVendors = new Set(purchaseOrders.map(po => po.vendorId))
+
+      // Calculate pending requisitions
+      const pendingRequisitions = prData.data.filter(pr =>
+        ['Draft', 'Pending Approval'].includes(pr.status)
+      ).length
+
+      // Update stats
+      setStats({
+        totalPOs: purchaseOrders.length,
+        pendingApprovals: pendingApprovalPOs,
+        activePOs: activePOs,
+        completedThisMonth: completedPOs,
+        totalSpend: totalSpend,
+        avgLeadTime: 12,
+        activeVendors: uniqueVendors.size,
+        pendingGRNs: grStats.pendingCount + grStats.qualityCheckCount,
+        savingsThisMonth: 456000,
+        requisitionsOpen: pendingRequisitions
+      })
+
+      // Map recent POs for display
+      const mappedPOs: PurchaseOrder[] = purchaseOrders.slice(0, 4).map(po => ({
+        id: po.poNumber,
+        vendor: po.vendorName,
+        items: po.items.length,
+        totalAmount: po.totalAmount,
+        status: mapPOStatus(po.status),
+        createdDate: po.orderDate,
+        expectedDelivery: po.deliveryDate,
+        priority: determinePriority(po)
+      }))
+      setRecentPOs(mappedPOs)
+
+      // Calculate PO status distribution
+      const statusCounts: Record<string, { count: number; value: number }> = {}
+      purchaseOrders.forEach(po => {
+        if (!statusCounts[po.status]) {
+          statusCounts[po.status] = { count: 0, value: 0 }
+        }
+        statusCounts[po.status].count++
+        statusCounts[po.status].value += po.totalAmount
+      })
+
+      const statusData: POStatusData[] = Object.entries(statusCounts).map(([status, data]) => ({
+        status,
+        count: data.count,
+        value: data.value
+      }))
+      setPOStatusData(statusData)
+
+    } catch (error) {
+      console.error('Error loading dashboard data:', error)
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  // Helper function to map PO status
+  const mapPOStatus = (status: string): PurchaseOrder['status'] => {
+    const statusMap: Record<string, PurchaseOrder['status']> = {
+      'Draft': 'draft',
+      'Pending Approval': 'pending_approval',
+      'Approved': 'approved',
+      'Sent to Vendor': 'sent',
+      'Partially Received': 'partially_received',
+      'Fully Received': 'completed',
+      'Closed': 'completed',
+      'Cancelled': 'draft'
+    }
+    return statusMap[status] || 'draft'
+  }
+
+  // Helper function to determine priority based on delivery date
+  const determinePriority = (po: POType): 'high' | 'medium' | 'low' => {
+    const today = new Date()
+    const deliveryDate = new Date(po.deliveryDate)
+    const daysUntilDelivery = Math.ceil((deliveryDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24))
+
+    if (daysUntilDelivery <= 7) return 'high'
+    if (daysUntilDelivery <= 14) return 'medium'
+    return 'low'
+  }
+
+  useEffect(() => {
+    loadDashboardData()
   }, [])
 
-  const handleRefresh = () => {
+  const handleRefresh = async () => {
     setIsRefreshing(true)
-    setTimeout(() => {
-      setIsRefreshing(false)
-      // Simulate data refresh
-      setStats(prev => ({
-        ...prev,
-        pendingApprovals: Math.floor(Math.random() * 20) + 5,
-        pendingGRNs: Math.floor(Math.random() * 15) + 3
-      }))
-    }, 1000)
+    await loadDashboardData()
+    setIsRefreshing(false)
   }
 
   const getStatusColor = (status: string) => {
@@ -337,6 +387,17 @@ export default function ProcurementDashboard() {
     return null
   }
 
+  if (isLoading) {
+    return (
+      <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-green-50 to-emerald-50 px-4 sm:px-6 lg:px-8 py-6 flex items-center justify-center">
+        <div className="text-center">
+          <Loader2 className="h-12 w-12 animate-spin text-green-600 mx-auto" />
+          <p className="mt-4 text-gray-600">Loading procurement data...</p>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-green-50 to-emerald-50 px-4 sm:px-6 lg:px-8 py-6">
       <div className="w-full space-y-6">
@@ -349,11 +410,12 @@ export default function ProcurementDashboard() {
           <div className="flex items-center gap-3">
             <button
               onClick={handleRefresh}
-              className={`flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-all ${isRefreshing ? 'animate-pulse' : ''
+              disabled={isRefreshing}
+              className={`flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-all disabled:opacity-50 ${isRefreshing ? 'animate-pulse' : ''
                 }`}
             >
               <RefreshCw className={`h-4 w-4 ${isRefreshing ? 'animate-spin' : ''}`} />
-              Refresh
+              {isRefreshing ? 'Refreshing...' : 'Refresh'}
             </button>
             <select
               value={selectedPeriod}

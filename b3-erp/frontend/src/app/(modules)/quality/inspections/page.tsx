@@ -1,10 +1,11 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { Search, Filter, Download, Eye, Edit2, CheckCircle as CheckIcon, ClipboardCheck, XCircle, AlertTriangle, TrendingUp, Plus, Play } from 'lucide-react'
+import { Search, Filter, Download, Eye, Edit2, CheckCircle as CheckIcon, ClipboardCheck, XCircle, AlertTriangle, TrendingUp, Plus, Play, Loader2 } from 'lucide-react'
 import { ViewInspectionModal, EditInspectionModal, ApproveInspectionModal, type Inspection } from '@/components/quality/QualityModals'
 import { ExportInspectionReportModal } from '@/components/quality/QualityExportModals'
 import Link from 'next/link'
+import { InspectionService, Inspection as ServiceInspection, InspectionStatus, InspectionResult } from '@/services/inspection.service'
 
 interface QualityInspection {
   id: string
@@ -26,6 +27,7 @@ interface QualityInspection {
 const ProductionQualityPage = () => {
   const [inspections, setInspections] = useState<QualityInspection[]>([])
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
   const [searchTerm, setSearchTerm] = useState('')
   const [statusFilter, setStatusFilter] = useState('all')
   const [inspectionTypeFilter, setInspectionTypeFilter] = useState('all')
@@ -36,87 +38,80 @@ const ProductionQualityPage = () => {
     fetchInspections()
   }, [])
 
-  const mockInspections: QualityInspection[] = [
-    {
-      id: '1',
-      inspection_id: 'INS-2024-001',
-      work_order_id: 'WO-2024-101',
-      product_name: 'Premium Kitchen Cabinet',
-      product_code: 'PKC-001',
-      inspection_type: 'in_process',
-      inspection_date: '2024-03-20',
-      inspector_name: 'John Smith',
-      sample_size: 50,
-      defects_found: 0,
-      defect_categories: {},
-      pass_fail_status: 'pending',
-      remarks: 'Initial inspection scheduled',
-      work_center: 'Assembly Line 1'
-    },
-    {
-      id: '2',
-      inspection_id: 'INS-2024-002',
-      work_order_id: 'WO-2024-102',
-      product_name: 'Modular Wardrobe Unit',
-      product_code: 'MWU-005',
-      inspection_type: 'final',
-      inspection_date: '2024-03-19',
-      inspector_name: 'Sarah Johnson',
-      sample_size: 100,
-      defects_found: 2,
-      defect_categories: { 'Scratch': 2 },
-      pass_fail_status: 'passed',
-      remarks: 'Minor scratches observed but within tolerance',
-      work_center: 'Finishing Station'
-    },
-    {
-      id: '3',
-      inspection_id: 'INS-2024-003',
-      work_order_id: 'WO-2024-103',
-      product_name: 'Office Desk Set',
-      product_code: 'ODS-010',
-      inspection_type: 'receiving',
-      inspection_date: '2024-03-21',
-      inspector_name: 'Mike Chen',
-      sample_size: 200,
-      defects_found: 15,
-      defect_categories: { 'Dent': 10, 'Paint Peel': 5 },
-      pass_fail_status: 'failed',
-      remarks: 'High defect rate in raw material',
-      work_center: 'Receiving Dock'
-    },
-    {
-      id: '4',
-      inspection_id: 'INS-2024-004',
-      work_order_id: 'WO-2024-104',
-      product_name: 'Conference Table',
-      product_code: 'CT-002',
-      inspection_type: 'first_article',
-      inspection_date: '2024-03-22',
-      inspector_name: 'Emily Davis',
-      sample_size: 5,
-      defects_found: 0,
-      defect_categories: {},
-      pass_fail_status: 'scheduled',
-      remarks: 'First article inspection for new design',
-      work_center: 'Prototype Lab'
+  // Transform service inspection to page format
+  const transformInspection = (insp: ServiceInspection): QualityInspection => {
+    // Map inspection type
+    const typeMap: Record<string, QualityInspection['inspection_type']> = {
+      'incoming': 'receiving',
+      'in_process': 'in_process',
+      'final': 'final',
+      'first_article': 'first_article',
+      'periodic': 'in_process',
+      'supplier': 'audit',
+      'customer': 'final',
+    };
+
+    // Map status
+    const statusMap: Record<string, QualityInspection['pass_fail_status']> = {
+      'draft': 'draft',
+      'scheduled': 'scheduled',
+      'in_progress': 'in_progress',
+      'pending_review': 'pending',
+      'approved': 'passed',
+      'rejected': 'failed',
+      'cancelled': 'failed',
+    };
+
+    // Map result
+    const resultMap: Record<string, QualityInspection['pass_fail_status']> = {
+      'pass': 'passed',
+      'fail': 'failed',
+      'conditional': 'conditional',
+      'pending': 'pending',
+    };
+
+    // Determine the final status based on both status and result
+    let finalStatus: QualityInspection['pass_fail_status'] = statusMap[insp.status] || 'pending';
+    if (insp.status === InspectionStatus.APPROVED || insp.status === InspectionStatus.REJECTED) {
+      finalStatus = resultMap[insp.overallResult] || finalStatus;
     }
-  ]
+
+    // Build defect categories from defect summary
+    const defectCategories: { [key: string]: number } = {};
+    if (insp.defectSummary.critical > 0) defectCategories['Critical'] = insp.defectSummary.critical;
+    if (insp.defectSummary.major > 0) defectCategories['Major'] = insp.defectSummary.major;
+    if (insp.defectSummary.minor > 0) defectCategories['Minor'] = insp.defectSummary.minor;
+    if (insp.defectSummary.cosmetic > 0) defectCategories['Cosmetic'] = insp.defectSummary.cosmetic;
+
+    return {
+      id: insp.id,
+      inspection_id: insp.inspectionNumber,
+      work_order_id: insp.workOrderNumber || '-',
+      product_name: insp.productName,
+      product_code: insp.productCode,
+      inspection_type: typeMap[insp.type] || 'in_process',
+      inspection_date: new Date(insp.scheduledDate).toISOString().split('T')[0],
+      inspector_name: insp.inspectorName,
+      sample_size: insp.sampledQuantity,
+      defects_found: insp.defectSummary.total,
+      defect_categories: defectCategories,
+      pass_fail_status: finalStatus,
+      remarks: insp.notes || '',
+      work_center: insp.location || insp.workstation || '-',
+    };
+  };
 
   const fetchInspections = async () => {
     try {
       setLoading(true)
-      const response = await fetch('/api/quality/inspection')
-      if (!response.ok) throw new Error('Failed to fetch inspections')
-      const data = await response.json()
-      if (Array.isArray(data) && data.length > 0) {
-        setInspections(data)
-      } else {
-        setInspections(mockInspections)
-      }
-    } catch (error) {
-      console.error('Failed to fetch inspections:', error)
-      setInspections(mockInspections)
+      setError(null)
+
+      const data = await InspectionService.getAllInspections()
+      const transformedData = data.map(transformInspection)
+      setInspections(transformedData)
+    } catch (err) {
+      console.error('Failed to fetch inspections:', err)
+      setError('Failed to load inspections. Please try again.')
     } finally {
       setLoading(false)
     }
@@ -439,6 +434,25 @@ const ProductionQualityPage = () => {
           </div>
         </div>
 
+        {error && (
+          <div className="p-4 bg-red-50 border-b border-red-100">
+            <p className="text-red-600 text-sm">{error}</p>
+            <button
+              onClick={fetchInspections}
+              className="text-red-700 underline text-sm hover:no-underline mt-1"
+            >
+              Try again
+            </button>
+          </div>
+        )}
+
+        {loading ? (
+          <div className="flex items-center justify-center py-20">
+            <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+            <span className="ml-2 text-gray-600">Loading inspections...</span>
+          </div>
+        ) : (
+        <>
         <div className="overflow-x-auto overflow-y-auto max-h-[calc(100vh-24rem)]">
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
@@ -600,6 +614,8 @@ const ProductionQualityPage = () => {
             </div>
           </div>
         </div>
+        </>
+        )}
       </div>
 
       {/* Modal Components */}

@@ -37,8 +37,10 @@ import {
   Edit2,
   GitCompare,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  Loader2
 } from 'lucide-react'
+import { procurementRFQService, ProcurementRFQ as RFQServiceType, RFQStatus } from '@/services/procurement-rfq.service'
 
 interface RFQ {
   id: string
@@ -58,118 +60,70 @@ interface RFQ {
   responseTimeAvg?: number
 }
 
-const mockRFQs: RFQ[] = [
-  {
-    id: '1',
-    rfqNumber: 'RFQ-2025-001',
-    title: 'Mild Steel Sheets and Plates',
-    issueDate: '2025-01-10',
-    closingDate: '2025-01-20',
-    vendorsInvited: 5,
-    quotesReceived: 3,
-    category: 'raw_materials',
-    estimatedValue: 850000,
-    status: 'quotes_received',
-    createdBy: 'Rajesh Kumar',
-    assignedTo: 'Amit Sharma',
-    description: 'Various grades of mild steel sheets for production',
-    vendors: ['Tata Steel Ltd', 'JSW Steel', 'SAIL'],
-    responseTimeAvg: 6
-  },
-  {
-    id: '2',
-    rfqNumber: 'RFQ-2025-002',
-    title: 'Hydraulic Cylinders and Components',
-    issueDate: '2025-01-08',
-    closingDate: '2025-01-18',
-    vendorsInvited: 4,
-    quotesReceived: 4,
-    category: 'components',
-    estimatedValue: 325000,
-    status: 'evaluated',
-    createdBy: 'Priya Patel',
-    assignedTo: 'Vijay Singh',
-    description: 'Hydraulic cylinders for assembly line',
-    vendors: ['Bosch Rexroth India', 'Parker Hannifin', 'Eaton Hydraulics', 'Hydraulics India'],
-    responseTimeAvg: 4
-  },
-  {
-    id: '3',
-    rfqNumber: 'RFQ-2025-003',
-    title: 'Annual Maintenance Contract - HVAC Systems',
-    issueDate: '2025-01-12',
-    closingDate: '2025-01-25',
-    vendorsInvited: 6,
-    quotesReceived: 2,
-    category: 'services',
-    estimatedValue: 450000,
-    status: 'issued',
-    createdBy: 'Suresh Reddy',
-    assignedTo: 'Amit Sharma',
-    description: 'Comprehensive HVAC maintenance for facility',
-    vendors: ['Blue Star', 'Voltas', 'Carrier Aircon', 'Daikin India', 'Johnson Controls', 'Hitachi India'],
-    responseTimeAvg: 8
-  },
-  {
-    id: '4',
-    rfqNumber: 'RFQ-2025-004',
-    title: 'CNC Milling Machine - 5 Axis',
-    issueDate: '2025-01-05',
-    closingDate: '2025-01-15',
-    vendorsInvited: 3,
-    quotesReceived: 3,
-    category: 'equipment',
-    estimatedValue: 2500000,
-    status: 'awarded',
-    createdBy: 'Anita Desai',
-    assignedTo: 'Vijay Singh',
-    description: 'High precision 5-axis CNC milling machine',
-    vendors: ['DMG Mori India', 'Haas Automation', 'Makino India'],
-    responseTimeAvg: 5
-  },
-  {
-    id: '5',
-    rfqNumber: 'RFQ-2025-005',
-    title: 'Industrial Lubricants and Cutting Fluids',
-    issueDate: '2025-01-14',
-    closingDate: '2025-01-28',
-    vendorsInvited: 5,
-    quotesReceived: 0,
-    category: 'consumables',
-    estimatedValue: 175000,
-    status: 'issued',
-    createdBy: 'Karthik Iyer',
-    assignedTo: 'Amit Sharma',
-    description: 'Bulk procurement of lubricants and cutting fluids',
-    vendors: ['Castrol India', 'Shell Lubricants', 'Hindustan Petroleum', 'Indian Oil', 'Bharat Petroleum'],
-  },
-  {
-    id: '6',
-    rfqNumber: 'RFQ-2025-006',
-    title: 'Precision Ball Bearings',
-    issueDate: '2025-01-03',
-    closingDate: '2025-01-13',
-    vendorsInvited: 4,
-    quotesReceived: 2,
-    category: 'components',
-    estimatedValue: 285000,
-    status: 'cancelled',
-    createdBy: 'Meena Nair',
-    assignedTo: 'Vijay Singh',
-    description: 'High-grade precision ball bearings',
-    vendors: ['SKF India', 'NTN Bearings', 'Timken India', 'FAG Bearings'],
-    responseTimeAvg: 7
-  },
-]
-
 export default function ProcurementRFQPage() {
+  const [rfqs, setRfqs] = useState<RFQ[]>([])
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
   const [searchTerm, setSearchTerm] = useState('')
   const [statusFilter, setStatusFilter] = useState('all')
   const [categoryFilter, setCategoryFilter] = useState('all')
   const [currentPage, setCurrentPage] = useState(1)
   const itemsPerPage = 10
 
-  const filteredRFQs = mockRFQs.filter(rfq => {
+  // Map service status to local status
+  const mapStatus = (status: RFQStatus): RFQ['status'] => {
+    const statusMap: Record<RFQStatus, RFQ['status']> = {
+      'Draft': 'draft',
+      'Sent': 'issued',
+      'Responses Received': 'quotes_received',
+      'Under Evaluation': 'evaluated',
+      'Awarded': 'awarded',
+      'Cancelled': 'cancelled',
+      'Expired': 'cancelled'
+    }
+    return statusMap[status] || 'draft'
+  }
+
+  // Load RFQs from service
+  const loadRFQs = async () => {
+    try {
+      setIsLoading(true)
+      setError(null)
+
+      const response = await procurementRFQService.getAllRFQs()
+
+      const mappedRFQs: RFQ[] = response.data.map(rfq => ({
+        id: rfq.id,
+        rfqNumber: rfq.rfqNumber,
+        title: rfq.title,
+        issueDate: rfq.createdDate,
+        closingDate: rfq.responseDeadline,
+        vendorsInvited: rfq.invitedVendors.length,
+        quotesReceived: rfq.quotes.length,
+        category: 'raw_materials' as const,
+        estimatedValue: rfq.estimatedBudget || 0,
+        status: mapStatus(rfq.status),
+        createdBy: rfq.requestedByName,
+        assignedTo: rfq.requestedByName,
+        description: rfq.description || rfq.title,
+        vendors: rfq.invitedVendors.map(v => v.vendorName),
+        responseTimeAvg: rfq.quotes.length > 0 ? 5 : undefined
+      }))
+
+      setRfqs(mappedRFQs)
+    } catch (err) {
+      console.error('Error loading RFQs:', err)
+      setError('Failed to load RFQs. Please try again.')
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    loadRFQs()
+  }, [])
+
+  const filteredRFQs = rfqs.filter(rfq => {
     const matchesSearch = rfq.rfqNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
       rfq.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       rfq.createdBy.toLowerCase().includes(searchTerm.toLowerCase())
@@ -183,10 +137,12 @@ export default function ProcurementRFQPage() {
   const paginatedRFQs = filteredRFQs.slice(startIndex, startIndex + itemsPerPage)
 
   const stats = {
-    openRFQs: mockRFQs.filter(r => r.status === 'issued').length,
-    quotesReceived: mockRFQs.reduce((sum, r) => sum + r.quotesReceived, 0),
-    awarded: mockRFQs.filter(r => r.status === 'awarded').length,
-    avgResponseTime: Math.round(mockRFQs.filter(r => r.responseTimeAvg).reduce((sum, r) => sum + (r.responseTimeAvg || 0), 0) / mockRFQs.filter(r => r.responseTimeAvg).length)
+    openRFQs: rfqs.filter(r => r.status === 'issued').length,
+    quotesReceived: rfqs.reduce((sum, r) => sum + r.quotesReceived, 0),
+    awarded: rfqs.filter(r => r.status === 'awarded').length,
+    avgResponseTime: rfqs.filter(r => r.responseTimeAvg).length > 0
+      ? Math.round(rfqs.filter(r => r.responseTimeAvg).reduce((sum, r) => sum + (r.responseTimeAvg || 0), 0) / rfqs.filter(r => r.responseTimeAvg).length)
+      : 0
   }
 
   const getStatusBadge = (status: string) => {
@@ -233,9 +189,34 @@ export default function ProcurementRFQPage() {
     console.log('Comparing quotes for RFQ:', id)
   }
 
+  if (isLoading) {
+    return (
+      <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6 flex items-center justify-center">
+        <div className="text-center">
+          <Loader2 className="h-12 w-12 animate-spin text-purple-600 mx-auto" />
+          <p className="mt-4 text-gray-600">Loading RFQs...</p>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6">
       <div className="w-full space-y-6">
+        {/* Error Display */}
+        {error && (
+          <div className="bg-red-50 border border-red-200 rounded-lg p-4 flex items-center gap-3">
+            <AlertCircle className="h-5 w-5 text-red-600" />
+            <span className="text-red-700">{error}</span>
+            <button
+              onClick={loadRFQs}
+              className="ml-auto px-3 py-1 bg-red-600 text-white rounded-lg hover:bg-red-700 text-sm"
+            >
+              Retry
+            </button>
+          </div>
+        )}
+
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">

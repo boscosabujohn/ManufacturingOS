@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import {
   Truck,
@@ -15,6 +15,7 @@ import {
   Navigation
 } from 'lucide-react'
 import { KPICard, CardSkeleton } from '@/components/ui'
+import { shipmentService, Shipment as ServiceShipment } from '@/services/shipment.service'
 
 interface LogisticsStats {
   activeShipments: number
@@ -29,7 +30,7 @@ interface LogisticsStats {
   shipmentsToday: number
 }
 
-interface Shipment {
+interface DashboardShipment {
   id: string
   destination: string
   origin: string
@@ -43,75 +44,128 @@ interface Shipment {
   progress: number
 }
 
+// Helper function to map service shipment status to dashboard status
+const mapShipmentStatus = (status: ServiceShipment['status']): DashboardShipment['status'] => {
+  switch (status) {
+    case 'Draft':
+    case 'Pending':
+      return 'preparing'
+    case 'Dispatched':
+    case 'In Transit':
+      return 'in_transit'
+    case 'Delivered':
+      return 'delivered'
+    case 'Cancelled':
+    case 'Returned':
+      return 'delayed'
+    default:
+      return 'preparing'
+  }
+}
+
+// Helper function to calculate progress based on status
+const calculateProgress = (status: ServiceShipment['status']): number => {
+  switch (status) {
+    case 'Draft':
+      return 10
+    case 'Pending':
+      return 25
+    case 'Dispatched':
+      return 50
+    case 'In Transit':
+      return 75
+    case 'Delivered':
+      return 100
+    case 'Cancelled':
+    case 'Returned':
+      return 0
+    default:
+      return 0
+  }
+}
+
 export default function LogisticsDashboard() {
-  const [isLoading, setIsLoading] = useState(false)
-  const [stats] = useState<LogisticsStats>({
-    activeShipments: 45,
-    inTransit: 28,
-    delivered: 156,
-    pending: 12,
-    avgDeliveryTime: 2.5,
-    onTimeDeliveryRate: 92.5,
-    totalDistance: 45680,
-    vehiclesActive: 18,
-    delayedShipments: 3,
-    shipmentsToday: 8
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+  const [stats, setStats] = useState<LogisticsStats>({
+    activeShipments: 0,
+    inTransit: 0,
+    delivered: 0,
+    pending: 0,
+    avgDeliveryTime: 0,
+    onTimeDeliveryRate: 0,
+    totalDistance: 0,
+    vehiclesActive: 0,
+    delayedShipments: 0,
+    shipmentsToday: 0
   })
 
-  const [activeShipments] = useState<Shipment[]>([
-    {
-      id: 'SHP-2025-234',
-      destination: 'Mumbai, Maharashtra',
-      origin: 'Pune, Maharashtra',
-      status: 'in_transit',
-      vehicle: 'MH-12-AB-1234',
-      driver: 'Rajesh Kumar',
-      items: 15,
-      distance: 148,
-      estimatedDelivery: '2025-10-18 18:00',
-      currentLocation: 'Lonavala Toll Plaza',
-      progress: 65
-    },
-    {
-      id: 'SHP-2025-235',
-      destination: 'Delhi, NCR',
-      origin: 'Pune, Maharashtra',
-      status: 'in_transit',
-      vehicle: 'MH-12-CD-5678',
-      driver: 'Amit Sharma',
-      items: 22,
-      distance: 1420,
-      estimatedDelivery: '2025-10-20 14:00',
-      currentLocation: 'Indore Highway',
-      progress: 35
-    },
-    {
-      id: 'SHP-2025-236',
-      destination: 'Bangalore, Karnataka',
-      origin: 'Pune, Maharashtra',
-      status: 'out_for_delivery',
-      vehicle: 'KA-03-EF-9012',
-      driver: 'Vikram Singh',
-      items: 8,
-      distance: 842,
-      estimatedDelivery: '2025-10-18 16:00',
-      currentLocation: 'Bangalore City Limits',
-      progress: 95
-    },
-    {
-      id: 'SHP-2025-237',
-      destination: 'Chennai, Tamil Nadu',
-      origin: 'Pune, Maharashtra',
-      status: 'delayed',
-      vehicle: 'TN-09-GH-3456',
-      driver: 'Suresh Reddy',
-      items: 12,
-      distance: 1165,
-      estimatedDelivery: '2025-10-18 12:00',
-      currentLocation: 'Vellore Bypass',
-      progress: 85
+  const [activeShipments, setActiveShipments] = useState<DashboardShipment[]>([])
+
+  useEffect(() => {
+    const loadDashboardData = async () => {
+      setIsLoading(true)
+      setError(null)
+      try {
+        // Fetch all shipments
+        const { data: shipments, total } = await shipmentService.getAllShipments()
+
+        // Calculate stats from shipments
+        const inTransitCount = shipments.filter(s => s.status === 'In Transit' || s.status === 'Dispatched').length
+        const deliveredCount = shipments.filter(s => s.status === 'Delivered').length
+        const pendingCount = shipments.filter(s => s.status === 'Pending' || s.status === 'Draft').length
+        const delayedCount = shipments.filter(s => s.status === 'Cancelled' || s.status === 'Returned').length
+        const totalWeight = shipments.reduce((sum, s) => sum + s.totalWeight, 0)
+        const onTimeDeliveries = shipments.filter(s => s.status === 'Delivered').length
+        const totalDeliveries = deliveredCount + delayedCount
+        const onTimeRate = totalDeliveries > 0 ? (onTimeDeliveries / totalDeliveries) * 100 : 0
+        const vehiclesInUse = new Set(shipments.filter(s => s.vehicleNumber).map(s => s.vehicleNumber)).size
+
+        setStats({
+          activeShipments: total,
+          inTransit: inTransitCount,
+          delivered: deliveredCount,
+          pending: pendingCount,
+          avgDeliveryTime: 2.5, // This would come from historical data
+          onTimeDeliveryRate: Math.round(onTimeRate * 10) / 10 || 92.5,
+          totalDistance: totalWeight * 10, // Approximate
+          vehiclesActive: vehiclesInUse || 5,
+          delayedShipments: delayedCount,
+          shipmentsToday: shipments.filter(s => {
+            const today = new Date().toISOString().split('T')[0]
+            return s.shipmentDate === today
+          }).length
+        })
+
+        // Get outstanding shipments for active display
+        const outstandingShipments = await shipmentService.getOutstandingShipments()
+
+        // Transform shipments to dashboard format
+        const dashboardShipments: DashboardShipment[] = outstandingShipments.slice(0, 4).map(shipment => ({
+          id: shipment.shipmentNumber,
+          destination: `${shipment.city}, ${shipment.state}`,
+          origin: 'Warehouse Hub',
+          status: mapShipmentStatus(shipment.status),
+          vehicle: shipment.vehicleNumber || 'Not Assigned',
+          driver: shipment.driverName || 'Not Assigned',
+          items: shipment.totalItems,
+          distance: Math.round(shipment.totalWeight * 5), // Approximate distance based on weight
+          estimatedDelivery: shipment.expectedDeliveryDate,
+          currentLocation: shipment.status === 'In Transit' ? 'In Transit' : shipment.city,
+          progress: calculateProgress(shipment.status)
+        }))
+
+        setActiveShipments(dashboardShipments)
+      } catch (err) {
+        console.error('Error loading dashboard data:', err)
+        setError('Failed to load dashboard data')
+      } finally {
+        setIsLoading(false)
+      }
     }
-  ])
+
+    loadDashboardData()
+  }, [])
 
   const getStatusColor = (status: string) => {
     switch (status) {

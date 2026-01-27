@@ -3,8 +3,11 @@
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
-import { ClipboardCheck, AlertTriangle, CheckCircle2, Clock, TrendingUp, Activity } from 'lucide-react';
+import { ClipboardCheck, AlertTriangle, CheckCircle2, Clock, TrendingUp, Activity, Loader2 } from 'lucide-react';
 import Link from 'next/link';
+import { InspectionService, InspectionStatus } from '@/services/inspection.service';
+import { NCRService, NCRStatus } from '@/services/ncr.service';
+import { CAPAService, CAPAStatus } from '@/services/capa.service';
 
 interface QualityStats {
     totalInspections: number;
@@ -13,6 +16,13 @@ interface QualityStats {
     activeCAPAs: number;
     passRate: number;
     complianceRate: number;
+}
+
+interface QualityAlert {
+    type: string;
+    message: string;
+    severity: 'high' | 'medium' | 'low';
+    time: string;
 }
 
 export default function QualityDashboard() {
@@ -24,7 +34,9 @@ export default function QualityDashboard() {
         passRate: 0,
         complianceRate: 0,
     });
+    const [alerts, setAlerts] = useState<QualityAlert[]>([]);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         fetchQualityStats();
@@ -33,21 +45,99 @@ export default function QualityDashboard() {
     const fetchQualityStats = async () => {
         try {
             setLoading(true);
-            // Mock data - replace with actual API calls
+            setError(null);
+
+            // Fetch data from all three services in parallel
+            const [inspectionStats, ncrStats, capaStats] = await Promise.all([
+                InspectionService.getInspectionStatistics(),
+                NCRService.getNCRStatistics(),
+                CAPAService.getCAPAStatistics(),
+            ]);
+
+            // Calculate stats from service responses
+            const pendingCount = inspectionStats.byStatus[InspectionStatus.SCHEDULED] || 0 +
+                                 inspectionStats.byStatus[InspectionStatus.DRAFT] || 0;
+
             setStats({
-                totalInspections: 156,
-                pendingInspections: 12,
-                openNCRs: 8,
-                activeCAPAs: 5,
-                passRate: 94.5,
-                complianceRate: 98.2,
+                totalInspections: inspectionStats.totalInspections,
+                pendingInspections: pendingCount,
+                openNCRs: ncrStats.open,
+                activeCAPAs: capaStats.open,
+                passRate: Math.round(inspectionStats.passRate * 10) / 10,
+                complianceRate: 98.2, // This would come from audit data when available
             });
-        } catch (error) {
-            console.error('Failed to fetch stats:', error);
+
+            // Generate alerts based on real data
+            const newAlerts: QualityAlert[] = [];
+
+            // Check for overdue CAPAs
+            if (capaStats.overdue > 0) {
+                newAlerts.push({
+                    type: 'CAPA',
+                    message: `${capaStats.overdue} CAPA(s) overdue for completion`,
+                    severity: 'high',
+                    time: 'Action required',
+                });
+            }
+
+            // Check for open NCRs
+            if (ncrStats.open > 0) {
+                newAlerts.push({
+                    type: 'NCR',
+                    message: `${ncrStats.open} NCR(s) require attention`,
+                    severity: ncrStats.bySeverity?.critical > 0 ? 'high' : 'medium',
+                    time: 'Review pending',
+                });
+            }
+
+            // Check for pending inspections
+            if (pendingCount > 0) {
+                newAlerts.push({
+                    type: 'Inspection',
+                    message: `${pendingCount} inspection(s) scheduled or pending`,
+                    severity: 'low',
+                    time: 'Upcoming',
+                });
+            }
+
+            setAlerts(newAlerts.length > 0 ? newAlerts : [
+                { type: 'System', message: 'All quality metrics within targets', severity: 'low', time: 'Now' }
+            ]);
+
+        } catch (err) {
+            console.error('Failed to fetch stats:', err);
+            setError('Failed to load quality statistics. Please try again.');
         } finally {
             setLoading(false);
         }
     };
+
+    if (loading) {
+        return (
+            <div className="container mx-auto p-6 flex items-center justify-center min-h-[400px]">
+                <div className="flex flex-col items-center gap-4">
+                    <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+                    <p className="text-gray-600">Loading quality dashboard...</p>
+                </div>
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="container mx-auto p-6">
+                <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                    <p className="text-red-600">{error}</p>
+                    <button
+                        onClick={fetchQualityStats}
+                        className="mt-2 text-sm text-red-700 underline hover:no-underline"
+                    >
+                        Try again
+                    </button>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="container mx-auto p-6">
@@ -179,24 +269,27 @@ export default function QualityDashboard() {
                 </CardHeader>
                 <CardContent>
                     <div className="space-y-3">
-                        {[
-                            { type: 'NCR', message: 'NCR-2025-001 overdue for closure', severity: 'high', time: '2 hours ago' },
-                            { type: 'Inspection', message: 'Final inspection pending for WO-1234', severity: 'medium', time: '5 hours ago' },
-                            { type: 'CAPA', message: 'CAPA effectiveness review due', severity: 'low', time: '1 day ago' },
-                        ].map((alert, idx) => (
-                            <div key={idx} className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg">
-                                <AlertTriangle className={`h-5 w-5 ${alert.severity === 'high' ? 'text-red-600' :
-                                        alert.severity === 'medium' ? 'text-orange-600' : 'text-yellow-600'
-                                    }`} />
-                                <div className="flex-1">
-                                    <div className="flex items-center justify-between">
-                                        <p className="text-sm font-medium">{alert.message}</p>
-                                        <Badge variant="outline">{alert.type}</Badge>
-                                    </div>
-                                    <p className="text-xs text-gray-500 mt-1">{alert.time}</p>
-                                </div>
+                        {alerts.length === 0 ? (
+                            <div className="text-center py-4 text-gray-500">
+                                <CheckCircle2 className="h-8 w-8 mx-auto mb-2 text-green-500" />
+                                <p>No quality alerts at this time</p>
                             </div>
-                        ))}
+                        ) : (
+                            alerts.map((alert, idx) => (
+                                <div key={idx} className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg">
+                                    <AlertTriangle className={`h-5 w-5 ${alert.severity === 'high' ? 'text-red-600' :
+                                            alert.severity === 'medium' ? 'text-orange-600' : 'text-yellow-600'
+                                        }`} />
+                                    <div className="flex-1">
+                                        <div className="flex items-center justify-between">
+                                            <p className="text-sm font-medium">{alert.message}</p>
+                                            <Badge variant="outline">{alert.type}</Badge>
+                                        </div>
+                                        <p className="text-xs text-gray-500 mt-1">{alert.time}</p>
+                                    </div>
+                                </div>
+                            ))
+                        )}
                     </div>
                 </CardContent>
             </Card>

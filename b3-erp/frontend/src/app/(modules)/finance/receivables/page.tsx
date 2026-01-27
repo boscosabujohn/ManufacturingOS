@@ -1,9 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { Plus, Search, Eye, Edit, Download, Building, Calendar, DollarSign, TrendingUp, AlertCircle, CheckCircle, Clock, ChevronLeft, ChevronRight, FileText, User, BarChart3, CreditCard, ArrowRight } from 'lucide-react';
+import { Plus, Search, Eye, Edit, Download, Building, Calendar, DollarSign, TrendingUp, AlertCircle, CheckCircle, Clock, ChevronLeft, ChevronRight, FileText, User, BarChart3, CreditCard, ArrowRight, RefreshCw, Loader2 } from 'lucide-react';
+import { InvoiceService, Invoice as ServiceInvoice, InvoiceStatus, InvoiceType } from '@/services/invoice.service';
 
 interface Receivable {
   id: string;
@@ -25,122 +26,65 @@ interface Receivable {
   collectionAgent: string;
 }
 
-const mockReceivables: Receivable[] = [
-  {
-    id: 'AR-001',
-    receivableNumber: 'AR-2025-001',
-    customerName: 'Hotel Paradise Ltd',
-    customerId: 'CUST-001',
-    invoiceNumber: 'INV-2025-001',
-    invoiceDate: '2025-10-01',
-    dueDate: '2025-10-31',
-    amount: 150000,
-    taxAmount: 22500,
-    totalAmount: 172500,
-    collectedAmount: 172500,
-    status: 'collected',
-    paymentTerms: 'Net 30',
-    salesOrder: 'SO-2025-145',
-    agingBucket: '0-30',
-    agingDays: 0,
-    collectionAgent: 'Finance Team',
-  },
-  {
-    id: 'AR-002',
-    receivableNumber: 'AR-2025-002',
-    customerName: 'Culinary Delights Inc',
-    customerId: 'CUST-002',
-    invoiceNumber: 'INV-2025-002',
-    invoiceDate: '2025-10-05',
-    dueDate: '2025-11-04',
-    amount: 102000,
-    taxAmount: 15300,
-    totalAmount: 117300,
-    collectedAmount: 60000,
-    status: 'partially_collected',
-    paymentTerms: 'Net 30',
-    salesOrder: 'SO-2025-156',
-    agingBucket: '0-30',
-    agingDays: 12,
-    collectionAgent: 'Sarah Collections',
-  },
-  {
-    id: 'AR-003',
-    receivableNumber: 'AR-2025-003',
-    customerName: 'City General Hospital',
-    customerId: 'CUST-003',
-    invoiceNumber: 'INV-2025-003',
-    invoiceDate: '2025-10-08',
-    dueDate: '2025-10-22',
-    amount: 240000,
-    taxAmount: 36000,
-    totalAmount: 276000,
-    collectedAmount: 0,
-    status: 'due_soon',
-    paymentTerms: 'Net 14',
-    salesOrder: 'SO-2025-167',
-    agingBucket: '0-30',
-    agingDays: 9,
-    collectionAgent: 'John AR',
-  },
-  {
-    id: 'AR-004',
-    receivableNumber: 'AR-2025-004',
-    customerName: 'Springfield Academy',
-    customerId: 'CUST-004',
-    invoiceNumber: 'INV-2025-004',
-    invoiceDate: '2025-08-15',
-    dueDate: '2025-09-14',
-    amount: 54000,
-    taxAmount: 8100,
-    totalAmount: 62100,
-    collectedAmount: 0,
-    status: 'overdue',
-    paymentTerms: 'Net 30',
-    salesOrder: 'SO-2025-178',
-    agingBucket: '90+',
-    agingDays: 98,
-    collectionAgent: 'Michael Collections',
-  },
-  {
-    id: 'AR-005',
-    receivableNumber: 'AR-2025-005',
-    customerName: 'Artisan Bakers Co',
-    customerId: 'CUST-005',
-    invoiceNumber: 'INV-2025-005',
-    invoiceDate: '2025-09-10',
-    dueDate: '2025-10-10',
-    amount: 210000,
-    taxAmount: 31500,
-    totalAmount: 241500,
-    collectedAmount: 0,
-    status: 'overdue',
-    paymentTerms: 'Net 30',
-    salesOrder: 'SO-2025-189',
-    agingBucket: '31-60',
-    agingDays: 37,
-    collectionAgent: 'Finance Team',
-  },
-  {
-    id: 'AR-006',
-    receivableNumber: 'AR-2025-006',
-    customerName: 'Restaurant Group LLC',
-    customerId: 'CUST-006',
-    invoiceNumber: 'INV-2025-006',
-    invoiceDate: '2025-10-14',
-    dueDate: '2025-11-13',
-    amount: 95000,
-    taxAmount: 14250,
-    totalAmount: 109250,
-    collectedAmount: 0,
-    status: 'pending',
-    paymentTerms: 'Net 30',
-    salesOrder: 'SO-2025-190',
-    agingBucket: '0-30',
-    agingDays: 3,
-    collectionAgent: 'Sarah Collections',
-  },
-];
+// Calculate aging bucket based on days since due date
+function calculateAgingBucket(dueDate: Date): Receivable['agingBucket'] {
+  const today = new Date();
+  const daysOverdue = Math.floor((today.getTime() - dueDate.getTime()) / (1000 * 60 * 60 * 24));
+
+  if (daysOverdue <= 30) return '0-30';
+  if (daysOverdue <= 60) return '31-60';
+  if (daysOverdue <= 90) return '61-90';
+  return '90+';
+}
+
+// Calculate aging days
+function calculateAgingDays(dueDate: Date): number {
+  const today = new Date();
+  const days = Math.floor((today.getTime() - dueDate.getTime()) / (1000 * 60 * 60 * 24));
+  return Math.max(0, days);
+}
+
+// Determine receivable status based on invoice
+function determineReceivableStatus(invoice: ServiceInvoice): Receivable['status'] {
+  const today = new Date();
+  const dueDate = new Date(invoice.dueDate);
+  const amountDue = invoice.amountDue;
+  const totalAmount = invoice.totalAmount;
+
+  if (amountDue <= 0) return 'collected';
+  if (invoice.amountPaid > 0 && amountDue > 0) return 'partially_collected';
+  if (invoice.status === InvoiceStatus.OVERDUE || dueDate < today) return 'overdue';
+
+  // Check if due within 7 days
+  const daysUntilDue = Math.floor((dueDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
+  if (daysUntilDue <= 7 && daysUntilDue >= 0) return 'due_soon';
+
+  return 'pending';
+}
+
+// Transform service invoice to receivable
+function transformToReceivable(invoice: ServiceInvoice, index: number): Receivable {
+  const dueDate = new Date(invoice.dueDate);
+  return {
+    id: `AR-${invoice.id}`,
+    receivableNumber: `AR-${invoice.invoiceNumber.replace('INV-', '')}`,
+    customerName: invoice.customerName,
+    customerId: invoice.customerId || '',
+    invoiceNumber: invoice.invoiceNumber,
+    invoiceDate: new Date(invoice.invoiceDate).toISOString().split('T')[0],
+    dueDate: dueDate.toISOString().split('T')[0],
+    amount: invoice.subtotal,
+    taxAmount: invoice.totalTax,
+    totalAmount: invoice.totalAmount,
+    collectedAmount: invoice.amountPaid,
+    status: determineReceivableStatus(invoice),
+    paymentTerms: invoice.paymentTerms.replace('_', ' '),
+    salesOrder: invoice.poNumber || '',
+    agingBucket: calculateAgingBucket(dueDate),
+    agingDays: calculateAgingDays(dueDate),
+    collectionAgent: invoice.submittedBy || 'Finance Team',
+  };
+}
 
 const statusColors = {
   pending: 'bg-gray-100 text-gray-700',
@@ -165,15 +109,101 @@ const agingBucketColors = {
   '90+': 'bg-red-100 text-red-700',
 };
 
+// Loading skeleton for receivables table
+function ReceivablesTableSkeleton() {
+  return (
+    <div className="animate-pulse">
+      <div className="mb-6 flex items-start gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 flex-1">
+          {[...Array(4)].map((_, i) => (
+            <div key={i} className="bg-gray-100 rounded-lg p-4 h-24">
+              <div className="h-3 bg-gray-200 rounded w-1/2 mb-2"></div>
+              <div className="h-6 bg-gray-200 rounded w-2/3"></div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+        <div className="p-4 border-b border-gray-200">
+          <div className="h-10 bg-gray-100 rounded"></div>
+        </div>
+        <div className="divide-y divide-gray-200">
+          {[...Array(5)].map((_, i) => (
+            <div key={i} className="p-4 flex items-center gap-4">
+              <div className="h-10 w-10 bg-gray-100 rounded-full"></div>
+              <div className="flex-1 space-y-2">
+                <div className="h-4 bg-gray-100 rounded w-1/4"></div>
+                <div className="h-3 bg-gray-100 rounded w-1/3"></div>
+              </div>
+              <div className="h-8 w-20 bg-gray-100 rounded"></div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function ReceivablesPage() {
   const router = useRouter();
-  const [receivables, setReceivables] = useState<Receivable[]>(mockReceivables);
+  const [receivables, setReceivables] = useState<Receivable[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [agingFilter, setAgingFilter] = useState<string>('all');
   const [currentPage, setCurrentPage] = useState(1);
   const [isExporting, setIsExporting] = useState(false);
   const itemsPerPage = 10;
+
+  // Fetch receivables from invoice service (sales invoices with outstanding amounts)
+  useEffect(() => {
+    async function fetchReceivables() {
+      try {
+        setLoading(true);
+        setError(null);
+        const response = await InvoiceService.getAllInvoices({
+          type: InvoiceType.SALES,
+          limit: 100,
+        });
+        // Filter to only include invoices with outstanding amounts and transform
+        const receivableInvoices = response.data
+          .filter((inv) =>
+            [InvoiceStatus.POSTED, InvoiceStatus.PARTIALLY_PAID, InvoiceStatus.OVERDUE, InvoiceStatus.PAID].includes(inv.status)
+          )
+          .map(transformToReceivable);
+        setReceivables(receivableInvoices);
+      } catch (err) {
+        console.error('Failed to fetch receivables:', err);
+        setError('Failed to load receivables. Please try again.');
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchReceivables();
+  }, []);
+
+  // Refresh function
+  const refreshReceivables = async () => {
+    try {
+      setLoading(true);
+      const response = await InvoiceService.getAllInvoices({
+        type: InvoiceType.SALES,
+        limit: 100,
+      });
+      const receivableInvoices = response.data
+        .filter((inv) =>
+          [InvoiceStatus.POSTED, InvoiceStatus.PARTIALLY_PAID, InvoiceStatus.OVERDUE, InvoiceStatus.PAID].includes(inv.status)
+        )
+        .map(transformToReceivable);
+      setReceivables(receivableInvoices);
+    } catch (err) {
+      console.error('Failed to refresh receivables:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const filteredReceivables = receivables.filter((receivable) => {
     const matchesSearch =
@@ -246,6 +276,41 @@ export default function ReceivablesPage() {
       setIsExporting(false);
     }, 500);
   };
+
+  // Show loading skeleton
+  if (loading && receivables.length === 0) {
+    return (
+      <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50">
+        <div className="flex-1 overflow-y-auto overflow-x-hidden">
+          <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6">
+            <ReceivablesTableSkeleton />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Show error state
+  if (error && receivables.length === 0) {
+    return (
+      <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50">
+        <div className="flex-1 flex items-center justify-center">
+          <div className="text-center">
+            <AlertCircle className="w-12 h-12 text-red-500 mx-auto mb-4" />
+            <h2 className="text-lg font-semibold text-gray-900 mb-2">Failed to Load Receivables</h2>
+            <p className="text-gray-600 mb-4">{error}</p>
+            <button
+              onClick={refreshReceivables}
+              className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors mx-auto"
+            >
+              <RefreshCw className="h-4 w-4" />
+              <span>Try Again</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50">

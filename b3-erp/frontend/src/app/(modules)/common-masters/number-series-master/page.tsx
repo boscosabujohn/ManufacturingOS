@@ -400,7 +400,6 @@ export default function NumberSeriesMasterPage() {
           </div>
         </div>
       </div>
-      </div>
     </div>
   );
 }

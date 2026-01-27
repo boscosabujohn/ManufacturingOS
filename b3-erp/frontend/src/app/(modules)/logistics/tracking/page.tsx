@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Search,
   Filter,
@@ -29,8 +29,10 @@ import {
   Wind,
   BarChart3,
   Target,
-  Zap
+  Zap,
+  Loader2
 } from 'lucide-react';
+import { shipmentService, Shipment } from '@/services/shipment.service';
 
 // TrackingEvent Interface
 interface TrackingEvent {
@@ -57,6 +59,55 @@ interface TrackingEvent {
   priority: 'low' | 'medium' | 'high' | 'critical';
 }
 
+// Helper function to map shipment to tracking event
+const mapShipmentToTrackingEvent = (shipment: Shipment, index: number): TrackingEvent => {
+  const eventTypeMap: Record<Shipment['status'], TrackingEvent['event_type']> = {
+    'Draft': 'picked_up',
+    'Pending': 'picked_up',
+    'Dispatched': 'in_transit',
+    'In Transit': 'in_transit',
+    'Delivered': 'delivered',
+    'Cancelled': 'exception',
+    'Returned': 'exception'
+  };
+
+  const priorityMap: Record<Shipment['priority'], TrackingEvent['priority']> = {
+    'Low': 'low',
+    'Normal': 'medium',
+    'High': 'high',
+    'Urgent': 'critical'
+  };
+
+  const isDelivered = shipment.status === 'Delivered';
+  const isInTransit = shipment.status === 'In Transit' || shipment.status === 'Dispatched';
+  const checkpointsPassed = isDelivered ? 5 : isInTransit ? 3 : 1;
+  const distanceRemaining = isDelivered ? 0 : Math.floor(Math.random() * 500) + 100;
+
+  return {
+    id: shipment.id,
+    tracking_id: `TRK-2025-${String(index + 1).padStart(3, '0')}`,
+    shipment_number: shipment.shipmentNumber,
+    current_location: isDelivered ? `${shipment.city}, ${shipment.state}` : isInTransit ? 'In Transit Hub' : 'Origin Warehouse',
+    last_update: shipment.updatedAt.replace('T', ' ').slice(0, 16),
+    event_type: eventTypeMap[shipment.status] || 'in_transit',
+    status: shipment.status,
+    temperature: Math.floor(Math.random() * 10) + 20,
+    humidity: Math.floor(Math.random() * 30) + 40,
+    estimated_delivery: shipment.expectedDeliveryDate,
+    actual_delivery: shipment.actualDeliveryDate,
+    carrier: shipment.carrierName || 'Internal Fleet',
+    origin: 'Mumbai, Maharashtra',
+    destination: `${shipment.city}, ${shipment.state}`,
+    distance_remaining_km: distanceRemaining,
+    notes: shipment.notes || 'Package in transit',
+    checkpoints_passed: checkpointsPassed,
+    total_checkpoints: 5,
+    delay_hours: shipment.status === 'Cancelled' || shipment.status === 'Returned' ? 24 : 0,
+    customer_name: shipment.customerName,
+    priority: priorityMap[shipment.priority] || 'medium'
+  };
+};
+
 export default function LogisticsTrackingPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
@@ -70,225 +121,32 @@ export default function LogisticsTrackingPage() {
   const [isTracking, setIsTracking] = useState(false);
   const [isExporting, setIsExporting] = useState(false);
 
-  // Sample tracking events data
-  const trackingEvents: TrackingEvent[] = [
-    {
-      id: '1',
-      tracking_id: 'TRK-2025-001',
-      shipment_number: 'SHP-2025-001',
-      current_location: 'Nagpur Hub, Maharashtra',
-      last_update: '2025-01-17 14:30:00',
-      event_type: 'in_transit',
-      status: 'In Transit - On Schedule',
-      temperature: 22,
-      humidity: 45,
-      estimated_delivery: '2025-01-18 16:00:00',
-      carrier: 'BlueDart Express',
-      origin: 'Mumbai, Maharashtra',
-      destination: 'Jamshedpur, Jharkhand',
-      distance_remaining_km: 850,
-      notes: 'Package on schedule, weather conditions favorable',
-      checkpoints_passed: 3,
-      total_checkpoints: 5,
-      delay_hours: 0,
-      customer_name: 'Tata Steel Ltd',
-      priority: 'high'
-    },
-    {
-      id: '2',
-      tracking_id: 'TRK-2025-002',
-      shipment_number: 'SHP-2025-002',
-      current_location: 'Ahmedabad Sorting Center',
-      last_update: '2025-01-17 12:15:00',
-      event_type: 'picked_up',
-      status: 'Picked Up - Processing',
-      estimated_delivery: '2025-01-19 10:00:00',
-      carrier: 'DTDC Courier',
-      origin: 'Delhi, NCR',
-      destination: 'Ahmedabad, Gujarat',
-      distance_remaining_km: 920,
-      notes: 'Collected from sender, sorting in progress',
-      checkpoints_passed: 1,
-      total_checkpoints: 4,
-      delay_hours: 0,
-      customer_name: 'Reliance Industries',
-      priority: 'critical'
-    },
-    {
-      id: '3',
-      tracking_id: 'TRK-2025-003',
-      shipment_number: 'SHP-2025-003',
-      current_location: 'Pune Warehouse',
-      last_update: '2025-01-17 09:45:00',
-      event_type: 'delivered',
-      status: 'Delivered Successfully',
-      temperature: 24,
-      estimated_delivery: '2025-01-17 10:00:00',
-      actual_delivery: '2025-01-17 09:45:00',
-      carrier: 'Delhivery',
-      origin: 'Chennai, Tamil Nadu',
-      destination: 'Pune, Maharashtra',
-      distance_remaining_km: 0,
-      notes: 'Successfully delivered to receiver, signature obtained',
-      checkpoints_passed: 5,
-      total_checkpoints: 5,
-      delay_hours: 0,
-      customer_name: 'Mahindra & Mahindra',
-      priority: 'medium'
-    },
-    {
-      id: '4',
-      tracking_id: 'TRK-2025-004',
-      shipment_number: 'SHP-2025-004',
-      current_location: 'Bangalore Hub',
-      last_update: '2025-01-17 16:20:00',
-      event_type: 'exception',
-      status: 'Delayed - Weather Conditions',
-      temperature: 28,
-      humidity: 72,
-      estimated_delivery: '2025-01-18 14:00:00',
-      carrier: 'FedEx India',
-      origin: 'Bangalore, Karnataka',
-      destination: 'Hyderabad, Telangana',
-      distance_remaining_km: 562,
-      notes: 'Delayed due to heavy rain, expecting clearance soon',
-      checkpoints_passed: 2,
-      total_checkpoints: 4,
-      delay_hours: 6,
-      customer_name: 'Larsen & Toubro',
-      priority: 'high'
-    },
-    {
-      id: '5',
-      tracking_id: 'TRK-2025-005',
-      shipment_number: 'SHP-2025-005',
-      current_location: 'Kolkata Facility',
-      last_update: '2025-01-17 11:00:00',
-      event_type: 'in_transit',
-      status: 'In Transit',
-      temperature: 26,
-      estimated_delivery: '2025-01-20 15:00:00',
-      carrier: 'Gati-KWE',
-      origin: 'Kolkata, West Bengal',
-      destination: 'Bhubaneswar, Odisha',
-      distance_remaining_km: 440,
-      notes: 'On route to destination',
-      checkpoints_passed: 2,
-      total_checkpoints: 3,
-      delay_hours: 0,
-      customer_name: 'Hindalco Industries',
-      priority: 'low'
-    },
-    {
-      id: '6',
-      tracking_id: 'TRK-2025-006',
-      shipment_number: 'SHP-2025-007',
-      current_location: 'Chennai Local Office',
-      last_update: '2025-01-17 08:30:00',
-      event_type: 'out_for_delivery',
-      status: 'Out for Delivery',
-      temperature: 26,
-      humidity: 60,
-      estimated_delivery: '2025-01-17 18:00:00',
-      carrier: 'BlueDart Express',
-      origin: 'Mumbai, Maharashtra',
-      destination: 'Chennai, Tamil Nadu',
-      distance_remaining_km: 15,
-      notes: 'Delivery scheduled for today, driver en route',
-      checkpoints_passed: 4,
-      total_checkpoints: 5,
-      delay_hours: 0,
-      customer_name: 'Adani Group',
-      priority: 'high'
-    },
-    {
-      id: '7',
-      tracking_id: 'TRK-2025-007',
-      shipment_number: 'SHP-2025-008',
-      current_location: 'Mumbai Customs',
-      last_update: '2025-01-17 15:45:00',
-      event_type: 'customs_clearance',
-      status: 'Customs Clearance in Progress',
-      temperature: 23,
-      humidity: 55,
-      estimated_delivery: '2025-01-20 12:00:00',
-      carrier: 'DHL Express',
-      origin: 'Singapore',
-      destination: 'Mumbai, Maharashtra',
-      distance_remaining_km: 0,
-      notes: 'International shipment - customs documentation under review',
-      checkpoints_passed: 3,
-      total_checkpoints: 6,
-      delay_hours: 12,
-      customer_name: 'Infosys Technologies',
-      priority: 'critical'
-    },
-    {
-      id: '8',
-      tracking_id: 'TRK-2025-008',
-      shipment_number: 'SHP-2025-009',
-      current_location: 'Delhi Distribution Center',
-      last_update: '2025-01-17 13:20:00',
-      event_type: 'in_transit',
-      status: 'In Transit',
-      temperature: 21,
-      humidity: 42,
-      estimated_delivery: '2025-01-19 09:00:00',
-      carrier: 'Safexpress',
-      origin: 'Jaipur, Rajasthan',
-      destination: 'Delhi, NCR',
-      distance_remaining_km: 285,
-      notes: 'Standard transit, no issues reported',
-      checkpoints_passed: 2,
-      total_checkpoints: 3,
-      delay_hours: 0,
-      customer_name: 'Hero MotoCorp',
-      priority: 'medium'
-    },
-    {
-      id: '9',
-      tracking_id: 'TRK-2025-009',
-      shipment_number: 'SHP-2025-010',
-      current_location: 'Hyderabad Warehouse',
-      last_update: '2025-01-17 10:15:00',
-      event_type: 'delivered',
-      status: 'Delivered',
-      temperature: 25,
-      estimated_delivery: '2025-01-17 11:00:00',
-      actual_delivery: '2025-01-17 10:15:00',
-      carrier: 'VRL Logistics',
-      origin: 'Bangalore, Karnataka',
-      destination: 'Hyderabad, Telangana',
-      distance_remaining_km: 0,
-      notes: 'Early delivery completed',
-      checkpoints_passed: 4,
-      total_checkpoints: 4,
-      delay_hours: 0,
-      customer_name: 'Wipro Ltd',
-      priority: 'medium'
-    },
-    {
-      id: '10',
-      tracking_id: 'TRK-2025-010',
-      shipment_number: 'SHP-2025-011',
-      current_location: 'Pune Sorting Hub',
-      last_update: '2025-01-17 17:00:00',
-      event_type: 'exception',
-      status: 'Exception - Address Verification Required',
-      temperature: 27,
-      estimated_delivery: '2025-01-19 14:00:00',
-      carrier: 'XpressBees',
-      origin: 'Mumbai, Maharashtra',
-      destination: 'Pune, Maharashtra',
-      distance_remaining_km: 145,
-      notes: 'Customer contact required for address verification',
-      checkpoints_passed: 1,
-      total_checkpoints: 3,
-      delay_hours: 24,
-      customer_name: 'Tech Mahindra',
-      priority: 'medium'
+  // State for tracking events loaded from service
+  const [trackingEvents, setTrackingEvents] = useState<TrackingEvent[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadError, setLoadError] = useState<string | null>(null);
+
+  // Load tracking events from shipment service
+  useEffect(() => {
+    loadTrackingData();
+  }, []);
+
+  const loadTrackingData = async () => {
+    setIsLoading(true);
+    setLoadError(null);
+    try {
+      const { data: shipments } = await shipmentService.getAllShipments();
+      const events = shipments.map((shipment, index) => mapShipmentToTrackingEvent(shipment, index));
+      setTrackingEvents(events);
+    } catch (error) {
+      console.error('Error loading tracking data:', error);
+      setLoadError('Failed to load tracking data. Please try again.');
+    } finally {
+      setIsLoading(false);
     }
-  ];
+  };
+
+  // Tracking events are now loaded from service via loadTrackingData()
 
   // Calculate stats
   const stats = {
@@ -328,17 +186,10 @@ export default function LogisticsTrackingPage() {
   const handleRefresh = async () => {
     setIsRefreshing(true);
     try {
-      // Simulate API call to refresh tracking data
-      await new Promise(resolve => setTimeout(resolve, 1500));
-
-      alert('✓ Tracking data refreshed successfully!\n\n' +
-            `Updated ${trackingEvents.length} shipments\n` +
-            `Active routes: ${stats.activeRoutes}\n` +
-            `Delivered today: ${stats.deliveredToday}\n` +
-            `Exceptions: ${stats.exceptions}\n\n` +
-            'All tracking information is now up-to-date.');
+      await loadTrackingData();
+      alert('Tracking data refreshed successfully!');
     } catch (error) {
-      alert('✗ Failed to refresh tracking data. Please try again.');
+      alert('Failed to refresh tracking data. Please try again.');
     } finally {
       setIsRefreshing(false);
     }
@@ -926,7 +777,40 @@ export default function LogisticsTrackingPage() {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {paginatedEvents.map((event) => (
+              {isLoading ? (
+                <tr>
+                  <td colSpan={10} className="px-6 py-12 text-center">
+                    <div className="flex flex-col items-center justify-center">
+                      <Loader2 className="w-8 h-8 text-blue-600 animate-spin mb-2" />
+                      <span className="text-gray-500">Loading tracking data...</span>
+                    </div>
+                  </td>
+                </tr>
+              ) : loadError ? (
+                <tr>
+                  <td colSpan={10} className="px-6 py-12 text-center">
+                    <div className="flex flex-col items-center justify-center">
+                      <AlertCircle className="w-8 h-8 text-red-500 mb-2" />
+                      <span className="text-red-500">{loadError}</span>
+                      <button
+                        onClick={handleRefresh}
+                        className="mt-2 text-blue-600 hover:text-blue-700"
+                      >
+                        Try again
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ) : paginatedEvents.length === 0 ? (
+                <tr>
+                  <td colSpan={10} className="px-6 py-12 text-center">
+                    <div className="flex flex-col items-center justify-center">
+                      <Package className="w-8 h-8 text-gray-400 mb-2" />
+                      <span className="text-gray-500">No tracking events found</span>
+                    </div>
+                  </td>
+                </tr>
+              ) : paginatedEvents.map((event) => (
                 <tr key={event.id} className="hover:bg-gray-50">
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-2">
