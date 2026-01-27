@@ -116,7 +116,7 @@ export default function PhotoDocumentationPage() {
                 </div>
               )}
               <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
-                <Button variant="secondary" size="sm" onClick={() => window.open(photo.url || '#', '_blank')}>
+                <Button variant="outline" size="sm" onClick={() => window.open(photo.url || '#', '_blank')}>
                   View
                 </Button>
                 <Button variant="destructive" size="sm" onClick={() => handleDelete(photo.id)}>

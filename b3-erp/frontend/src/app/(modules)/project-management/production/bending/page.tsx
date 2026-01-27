@@ -107,7 +107,7 @@ export default function BendingPage() {
                     </Button>
                   )}
                   {job.status === 'In Progress' && (
-                    <Button className="w-full" variant="secondary" onClick={() => handleStatusChange(job.id, 'Completed')}>
+                    <Button className="w-full" variant="outline" onClick={() => handleStatusChange(job.id, 'Completed')}>
                       Mark Complete
                     </Button>
                   )}

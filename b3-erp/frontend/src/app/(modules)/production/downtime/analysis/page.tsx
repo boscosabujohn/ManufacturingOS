@@ -315,7 +315,7 @@ export default function DowntimeAnalysisPage() {
     setIsExportOpen(true);
   };
 
-  const handleExportSubmit = (config: ExportAnalysisConfig) => {
+  const handleExportSubmit = async (config: ExportAnalysisConfig): Promise<void> => {
     console.log('Exporting analysis:', config);
     // TODO: Implement API call
     setIsExportOpen(false);
@@ -568,22 +568,72 @@ export default function DowntimeAnalysisPage() {
       </div>
 
       {/* Modal Components */}
-      <EquipmentAnalysisModal
-        isOpen={isEquipmentAnalysisOpen}
-        onClose={() => setIsEquipmentAnalysisOpen(false)}
-        data={selectedEquipmentData}
-      />
+      {selectedEquipmentData && (
+        <EquipmentAnalysisModal
+          isOpen={isEquipmentAnalysisOpen}
+          onClose={() => setIsEquipmentAnalysisOpen(false)}
+          data={selectedEquipmentData}
+        />
+      )}
 
-      <CategoryTrendModal
-        isOpen={isCategoryTrendOpen}
-        onClose={() => setIsCategoryTrendOpen(false)}
-        data={selectedCategoryData}
-      />
+      {selectedCategoryData && (
+        <CategoryTrendModal
+          isOpen={isCategoryTrendOpen}
+          onClose={() => setIsCategoryTrendOpen(false)}
+          data={selectedCategoryData}
+        />
+      )}
 
       <PeriodComparisonModal
         isOpen={isPeriodComparisonOpen}
         onClose={() => setIsPeriodComparisonOpen(false)}
-        data={null}
+        data={{
+          period1: {
+            start: '2025-09-01',
+            end: '2025-09-30',
+            metrics: {
+              totalDowntime: 52.3,
+              eventCount: 28,
+              mtbf: 445,
+              mttr: 6.2,
+              totalCost: 125000,
+              availability: 93.2,
+              categoryBreakdown: [
+                { category: 'Breakdown', count: 15, totalHours: 24.8, percentage: 47.4, avgDuration: 99, trend: 'stable' },
+                { category: 'Maintenance', count: 6, totalHours: 11.2, percentage: 21.4, avgDuration: 112, trend: 'stable' },
+              ],
+            },
+          },
+          period2: {
+            start: '2025-10-01',
+            end: '2025-10-31',
+            metrics: {
+              totalDowntime: 58.5,
+              eventCount: 32,
+              mtbf: 420,
+              mttr: 6.8,
+              totalCost: 145000,
+              availability: 92.5,
+              categoryBreakdown: [
+                { category: 'Breakdown', count: 19, totalHours: 28.5, percentage: 48.7, avgDuration: 90, trend: 'increasing' },
+                { category: 'Maintenance', count: 8, totalHours: 12.5, percentage: 21.4, avgDuration: 94, trend: 'stable' },
+              ],
+            },
+          },
+          variance: {
+            totalDowntime: 11.9,
+            eventCount: 14.3,
+            mtbf: -5.6,
+            mttr: 9.7,
+            totalCost: 16.0,
+            availability: -0.8,
+          },
+          insights: [
+            'Total downtime increased by 11.9% compared to previous period',
+            'MTBF decreased by 5.6%, indicating more frequent failures',
+            'Availability dropped from 93.2% to 92.5%',
+          ],
+        }}
       />
 
       <ExportAnalysisReportModal

@@ -417,7 +417,7 @@ export default function LaborTrackingPage() {
     setSelectedEntry(null);
   };
 
-  const handleCalculateEfficiency = () => {
+  const handleCalculateEfficiency = (_data: any) => {
     setShowEfficiencyModal(false);
     setSelectedEntry(null);
   };
@@ -437,7 +437,7 @@ export default function LaborTrackingPage() {
     setShowAssignWorkersModal(false);
   };
 
-  const handleCalculateCost = () => {
+  const handleCalculateCost = (_data: any) => {
     setShowCalculateCostModal(false);
     setSelectedEntry(null);
   };
@@ -892,7 +892,7 @@ export default function LaborTrackingPage() {
               setShowEditModal(false);
               setSelectedEntry(null);
             }}
-            onEdit={handleEditEntry}
+            onSave={handleEditEntry}
             entry={selectedEntry}
           />
 
@@ -931,6 +931,7 @@ export default function LaborTrackingPage() {
               setShowEfficiencyModal(false);
               setSelectedEntry(null);
             }}
+            onCalculate={handleCalculateEfficiency}
             entry={selectedEntry}
           />
 
@@ -940,6 +941,7 @@ export default function LaborTrackingPage() {
               setShowCalculateCostModal(false);
               setSelectedEntry(null);
             }}
+            onCalculate={handleCalculateCost}
             entry={selectedEntry}
           />
         </>

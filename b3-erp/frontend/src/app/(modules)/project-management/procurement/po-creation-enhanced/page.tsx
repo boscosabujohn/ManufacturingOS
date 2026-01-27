@@ -156,7 +156,7 @@ export default function POCreationEnhancedPage() {
 
   // Auto-save draft
   const { lastSaved, isSaving, hasDraft, clearDraft, restoreDraft } = useAutoSaveDraft(
-    formData,
+    formData as unknown as Record<string, unknown>,
     { key: 'po-creation-form', debounceMs: 3000 }
   );
 
@@ -167,7 +167,7 @@ export default function POCreationEnhancedPage() {
   // Handle draft restoration
   const handleRestoreDraft = () => {
     const draft = restoreDraft();
-    if (draft) setFormData(draft as FormData);
+    if (draft) setFormData(draft as unknown as FormData);
   };
 
   // Form fields for progress
@@ -797,7 +797,7 @@ export default function POCreationEnhancedPage() {
             </div>
             <div className="flex items-center gap-4">
               <AutoSaveIndicator lastSaved={lastSaved} isSaving={isSaving} />
-              <FormProgressIndicator fields={formFields} values={formData} variant="circular" size="md" />
+              <FormProgressIndicator fields={formFields} values={formData as unknown as Record<string, unknown>} variant="circular" size="md" />
             </div>
           </div>
 

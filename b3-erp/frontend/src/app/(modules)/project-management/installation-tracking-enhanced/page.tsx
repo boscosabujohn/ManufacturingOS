@@ -207,7 +207,7 @@ export default function InstallationTrackingEnhancedPage() {
 
  // Auto-save functionality
  const { lastSaved, isSaving, hasDraft, clearDraft, restoreDraft } = useAutoSaveDraft(
-  formData,
+  formData as unknown as Record<string, unknown>,
   { key: 'installation-tracking-enhanced' }
  );
 
@@ -218,7 +218,7 @@ export default function InstallationTrackingEnhancedPage() {
  const handleRestoreDraft = () => {
   const draft = restoreDraft();
   if (draft) {
-   setFormData(draft as InstallationFormData);
+   setFormData(draft as unknown as InstallationFormData);
    toast({ title: 'Draft Restored', description: 'Your previous progress has been restored.' });
   }
   setShowDraftBanner(false);
@@ -374,7 +374,7 @@ export default function InstallationTrackingEnhancedPage() {
      <AutoSaveIndicator lastSaved={lastSaved} isSaving={isSaving} />
      <FormProgressIndicator
       fields={FORM_FIELDS}
-      values={formData}
+      values={formData as unknown as Record<string, unknown>}
       variant="circular"
       size="sm"
       showFieldCount={false}
@@ -395,7 +395,7 @@ export default function InstallationTrackingEnhancedPage() {
    <Card>
     <CardContent className="pt-6">
      <StepIndicator
-      steps={STEPS.map(s => ({ label: s.label, description: s.description }))}
+      steps={STEPS.map(s => ({ id: s.id, label: s.label, description: s.description }))}
       currentStep={currentStep}
       variant="default"
      />

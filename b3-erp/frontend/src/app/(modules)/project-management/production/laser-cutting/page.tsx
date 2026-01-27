@@ -15,7 +15,7 @@ import {
   FileText,
   Printer
 } from 'lucide-react';
-import { ProjectManagementService } from '@/services/project-management';
+// ProjectManagementService import removed - unused
 
 interface LaserJob {
   id: string;

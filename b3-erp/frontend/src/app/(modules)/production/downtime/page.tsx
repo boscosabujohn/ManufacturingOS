@@ -613,28 +613,54 @@ export default function DowntimeDashboardPage() {
       <EditDowntimeEventModal
         isOpen={isEditOpen}
         onClose={() => setIsEditOpen(false)}
-        onSave={handleEditSubmit}
+        onSubmit={handleEditSubmit}
         event={selectedEvent}
       />
 
       <ResolveDowntimeModal
         isOpen={isResolveOpen}
         onClose={() => setIsResolveOpen(false)}
-        onResolve={handleResolveSubmit}
+        onSubmit={handleResolveSubmit}
+        onSubmitWithRCA={(data: ResolveDowntimeData) => {
+          handleResolveSubmit(data);
+          router.push('/production/downtime/rca');
+        }}
         event={selectedEvent}
       />
 
       <DeleteDowntimeModal
         isOpen={isDeleteOpen}
         onClose={() => setIsDeleteOpen(false)}
-        onDelete={handleDeleteSubmit}
+        onConfirm={handleDeleteSubmit}
         event={selectedEvent}
       />
 
       <QuickAnalysisModal
         isOpen={isQuickAnalysisOpen}
         onClose={() => setIsQuickAnalysisOpen(false)}
-        data={null}
+        data={{
+          period: 'Last 30 Days',
+          summary: {
+            totalDowntime: 58.5,
+            totalEvents: 32,
+            availability: 92.5,
+          },
+          topEquipment: [
+            { rank: 1, equipment: 'ASSY-LINE-01', downtimeHours: 18.5, eventCount: 6, severity: 'critical' },
+            { rank: 2, equipment: 'POLISH-01', downtimeHours: 12.8, eventCount: 4, severity: 'high' },
+            { rank: 3, equipment: 'CNC-CUT-01', downtimeHours: 8.2, eventCount: 2, severity: 'medium' },
+          ],
+          topCategories: [
+            { category: 'Breakdown', percentage: 48.7, hours: 28.5, count: 19 },
+            { category: 'Maintenance', percentage: 21.4, hours: 12.5, count: 8 },
+            { category: 'Changeover', percentage: 14.0, hours: 8.2, count: 12 },
+          ],
+          recommendations: [
+            { text: 'Schedule preventive maintenance for ASSY-LINE-01', priority: 'high' },
+            { text: 'Review breakdown patterns for recurring issues', priority: 'medium' },
+            { text: 'Optimize changeover procedures', priority: 'low' },
+          ],
+        }}
       />
 
       <ExportDowntimeDataModal

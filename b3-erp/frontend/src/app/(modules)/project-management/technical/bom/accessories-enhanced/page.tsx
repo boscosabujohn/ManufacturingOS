@@ -191,7 +191,7 @@ export default function AccessoriesBOMEnhancedPage() {
 
   // Auto-save draft
   const { lastSaved, isSaving, hasDraft, clearDraft, restoreDraft } = useAutoSaveDraft(
-    formData,
+    formData as unknown as Record<string, unknown>,
     {
       key: 'accessories-bom-form',
       debounceMs: 3000,
@@ -206,7 +206,7 @@ export default function AccessoriesBOMEnhancedPage() {
   const handleRestoreDraft = () => {
     const draft = restoreDraft();
     if (draft) {
-      setFormData(draft as FormData);
+      setFormData(draft as unknown as FormData);
     }
   };
 
@@ -886,7 +886,7 @@ export default function AccessoriesBOMEnhancedPage() {
               <AutoSaveIndicator lastSaved={lastSaved} isSaving={isSaving} />
               <FormProgressIndicator
                 fields={formFields}
-                values={formData}
+                values={formData as unknown as Record<string, unknown>}
                 variant="circular"
                 size="md"
               />

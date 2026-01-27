@@ -793,7 +793,7 @@ export default function ProjectAnalyticsPage() {
    <SavedViewsModal
     isOpen={isSavedViewsModalOpen}
     onClose={() => setIsSavedViewsModalOpen(false)}
-    onLoadView={handleLoadView}
+    onLoad={handleLoadView}
    />
   </div>
  );

@@ -505,7 +505,7 @@ export default function TasksListPage() {
       <CreateTaskModal
         isOpen={showCreateModal}
         onClose={() => setShowCreateModal(false)}
-        onCreate={(data) => {
+        onCreate={(data: { taskName: string; projectId: string; assignedTo: string; startDate: string; dueDate: string; priority: string; status: string; description: string }) => {
           console.log('Create:', data);
           setShowCreateModal(false);
         }}

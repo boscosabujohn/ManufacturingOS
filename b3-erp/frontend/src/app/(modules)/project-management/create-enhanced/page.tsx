@@ -144,7 +144,7 @@ export default function CreateProjectEnhancedPage() {
 
   // Auto-save draft
   const { lastSaved, isSaving, hasDraft, clearDraft, restoreDraft } = useAutoSaveDraft(
-    formData,
+    formData as unknown as Record<string, unknown>,
     {
       key: 'project-create-form',
       debounceMs: 3000,
@@ -159,7 +159,7 @@ export default function CreateProjectEnhancedPage() {
   const handleRestoreDraft = () => {
     const draft = restoreDraft();
     if (draft) {
-      setFormData(draft as FormData);
+      setFormData(draft as unknown as FormData);
       setDraftRestored(true);
     }
   };
@@ -918,7 +918,7 @@ export default function CreateProjectEnhancedPage() {
               <AutoSaveIndicator lastSaved={lastSaved} isSaving={isSaving} />
               <FormProgressIndicator
                 fields={formFields}
-                values={formData}
+                values={formData as unknown as Record<string, unknown>}
                 variant="circular"
                 size="md"
               />

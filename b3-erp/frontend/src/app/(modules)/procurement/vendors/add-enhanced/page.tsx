@@ -248,12 +248,12 @@ export default function VendorAddEnhancedPage() {
 
   // Auto-save hook
   const { lastSaved, isSaving, hasDraft, clearDraft, restoreDraft } = useAutoSaveDraft(
-    formData,
+    formData as unknown as Record<string, unknown>,
     {
       key: 'vendor-onboarding-draft',
       debounceMs: 2000,
       onRestore: (data) => {
-        setFormData(data);
+        setFormData(data as unknown as VendorFormData);
         setShowDraftBanner(false);
       },
     }
