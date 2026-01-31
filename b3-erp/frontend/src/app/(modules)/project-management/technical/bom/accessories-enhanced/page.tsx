@@ -28,6 +28,7 @@ import {
   HelpIcon,
   FormProgressIndicator,
 } from '@/components/ui/FormUX';
+import { SearchableSelect } from '@/components/ui/SearchableSelect';
 
 // Field help content
 const FIELD_HELP = {
@@ -110,6 +111,12 @@ const CATEGORIES = [
 ];
 
 const BRANDS = ['Hettich', 'Blum', 'Hafele', 'Grass', 'Ebco', 'Godrej', 'Any'];
+
+const PROJECTS = [
+  { label: 'PRJ-2025-001 - Taj Hotels - Commercial Kitchen', value: 'PRJ-2025-001' },
+  { label: 'PRJ-2025-002 - BigBasket - Cold Room', value: 'PRJ-2025-002' },
+  { label: 'PRJ-2025-003 - L&T Campus - Industrial Kitchen', value: 'PRJ-2025-003' },
+];
 
 const initialItems: AccessoryItem[] = [
   {
@@ -409,26 +416,21 @@ export default function AccessoriesBOMEnhancedPage() {
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Project <span className="text-red-500">*</span>
                 </label>
-                <select
+                <SearchableSelect
+                  options={PROJECTS}
                   value={formData.project}
-                  onChange={(e) => {
-                    const selected = e.target.value;
-                    const projectNames: Record<string, string> = {
-                      'PRJ-2025-001': 'Taj Hotels - Commercial Kitchen',
-                      'PRJ-2025-002': 'BigBasket - Cold Room',
-                      'PRJ-2025-003': 'L&T Campus - Industrial Kitchen',
-                    };
-                    updateFormData('project', selected);
-                    updateFormData('projectName', projectNames[selected] || '');
+                  onChange={(val) => {
+                    updateFormData('project', val);
+                    const selectedProject = PROJECTS.find(p => p.value === val);
+                    if (selectedProject) {
+                      updateFormData('projectName', selectedProject.label.split(' - ')[1] || '');
+                    }
                   }}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.project ? 'border-red-500' : 'border-gray-300'
-                    }`}
-                >
-                  <option value="">Select a project</option>
-                  <option value="PRJ-2025-001">PRJ-2025-001 - Taj Hotels - Commercial Kitchen</option>
-                  <option value="PRJ-2025-002">PRJ-2025-002 - BigBasket - Cold Room</option>
-                  <option value="PRJ-2025-003">PRJ-2025-003 - L&T Campus - Industrial Kitchen</option>
-                </select>
+                  placeholder="Select a project"
+                  addNewLabel="Create Project"
+                  addNewHref="/project-management/create-enhanced"
+                  error={!!errors.project}
+                />
                 {errors.project && <p className="mt-1 text-sm text-red-500">{errors.project}</p>}
               </div>
 
@@ -636,30 +638,22 @@ export default function AccessoriesBOMEnhancedPage() {
                           Category
                           <HelpIcon content={FIELD_HELP.category.content} size="sm" />
                         </label>
-                        <select
+                        <SearchableSelect
+                          options={CATEGORIES.map(cat => ({ label: cat.name, value: cat.name }))}
                           value={newItem.category}
-                          onChange={(e) => setNewItem({ ...newItem, category: e.target.value, subcategory: '' })}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-                        >
-                          <option value="">Select</option>
-                          {CATEGORIES.map(cat => (
-                            <option key={cat.name} value={cat.name}>{cat.name}</option>
-                          ))}
-                        </select>
+                          onChange={(val) => setNewItem({ ...newItem, category: val, subcategory: '' })}
+                          placeholder="Select Category"
+                        />
                       </div>
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1">Subcategory</label>
-                        <select
+                        <SearchableSelect
+                          options={(newItem.category && CATEGORIES.find(c => c.name === newItem.category)?.subcategories.map(sub => ({ label: sub, value: sub }))) || []}
                           value={newItem.subcategory}
-                          onChange={(e) => setNewItem({ ...newItem, subcategory: e.target.value })}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                          onChange={(val) => setNewItem({ ...newItem, subcategory: val })}
+                          placeholder="Select Subcategory"
                           disabled={!newItem.category}
-                        >
-                          <option value="">Select</option>
-                          {newItem.category && CATEGORIES.find(c => c.name === newItem.category)?.subcategories.map(sub => (
-                            <option key={sub} value={sub}>{sub}</option>
-                          ))}
-                        </select>
+                        />
                       </div>
                     </div>
 
@@ -716,15 +710,12 @@ export default function AccessoriesBOMEnhancedPage() {
                           Brand
                           <HelpIcon content={FIELD_HELP.brand.content} size="sm" />
                         </label>
-                        <select
+                        <SearchableSelect
+                          options={BRANDS.map(brand => ({ label: brand, value: brand }))}
                           value={newItem.brand}
-                          onChange={(e) => setNewItem({ ...newItem, brand: e.target.value })}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-lg"
-                        >
-                          {BRANDS.map(brand => (
-                            <option key={brand} value={brand}>{brand}</option>
-                          ))}
-                        </select>
+                          onChange={(val) => setNewItem({ ...newItem, brand: val })}
+                          placeholder="Select Brand"
+                        />
                       </div>
                       <div>
                         <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-1">

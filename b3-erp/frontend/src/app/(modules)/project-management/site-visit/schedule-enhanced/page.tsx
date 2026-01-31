@@ -32,6 +32,7 @@ import {
   HelpIcon,
   FormProgressIndicator,
 } from '@/components/ui/FormUX';
+import { SearchableSelect } from '@/components/ui/SearchableSelect';
 
 // Field help content
 const FIELD_HELP = {
@@ -117,6 +118,21 @@ const EQUIPMENT_OPTIONS = [
   { id: 'clipboard', label: 'Checklist/Forms', icon: ClipboardList },
   { id: 'level', label: 'Spirit Level', icon: Ruler },
   { id: 'ppe', label: 'Safety Gear (PPE)', icon: AlertTriangle },
+];
+
+const PROJECTS = [
+  { label: 'PRJ-2025-001 - Taj Hotels - Commercial Kitchen', value: 'PRJ-2025-001', location: 'Taj Hotels, Mumbai', address: 'Apollo Bunder, Colaba, Mumbai, Maharashtra 400001' },
+  { label: 'PRJ-2025-002 - BigBasket - Cold Room', value: 'PRJ-2025-002', location: 'BigBasket Warehouse, Bengaluru', address: 'Survey No. 12/1, Whitefield Main Rd, Bengaluru, Karnataka 560066' },
+  { label: 'PRJ-2025-003 - L&T Campus - Industrial Kitchen', value: 'PRJ-2025-003', location: 'L&T Campus, Powai', address: 'Saki Vihar Rd, Powai, Mumbai, Maharashtra 400072' },
+];
+
+const EMPLOYEES = [
+  { label: 'Rajesh Kumar', value: 'Rajesh Kumar', phone: '+91 98765 43210' },
+  { label: 'Priya Sharma', value: 'Priya Sharma', phone: '+91 98765 43211' },
+  { label: 'Amit Patel', value: 'Amit Patel', phone: '+91 98765 43212' },
+  { label: 'Sunita Reddy', value: 'Sunita Reddy', phone: '+91 98765 43213' },
+  { label: 'Vikram Singh', value: 'Vikram Singh', phone: '+91 98765 43214' },
+  { label: 'Anjali Gupta', value: 'Anjali Gupta', phone: '+91 98765 43215' },
 ];
 
 const initialFormData: FormData = {
@@ -337,31 +353,23 @@ export default function ScheduleSiteVisitEnhancedPage() {
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Project <span className="text-red-500">*</span>
               </label>
-              <select
+              <SearchableSelect
+                options={PROJECTS}
                 value={formData.project}
-                onChange={(e) => {
-                  const selected = e.target.value;
-                  const projectNames: Record<string, string> = {
-                    'PRJ-2025-001': 'Taj Hotels - Commercial Kitchen',
-                    'PRJ-2025-002': 'BigBasket - Cold Room',
-                    'PRJ-2025-003': 'L&T Campus - Industrial Kitchen',
-                  };
-                  updateFormData('project', selected);
-                  updateFormData('projectName', projectNames[selected] || '');
-                  // Auto-fill location based on project
-                  if (selected === 'PRJ-2025-001') {
-                    updateFormData('location', 'Taj Hotels, Mumbai');
-                    updateFormData('address', 'Apollo Bunder, Colaba, Mumbai, Maharashtra 400001');
+                onChange={(val) => {
+                  updateFormData('project', val);
+                  const selectedProject = PROJECTS.find(p => p.value === val);
+                  if (selectedProject) {
+                    updateFormData('projectName', selectedProject.label.split(' - ')[1] || '');
+                    updateFormData('location', selectedProject.location);
+                    updateFormData('address', selectedProject.address);
                   }
                 }}
-                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.project ? 'border-red-500' : 'border-gray-300'
-                  }`}
-              >
-                <option value="">Select a project</option>
-                <option value="PRJ-2025-001">PRJ-2025-001 - Taj Hotels - Commercial Kitchen</option>
-                <option value="PRJ-2025-002">PRJ-2025-002 - BigBasket - Cold Room</option>
-                <option value="PRJ-2025-003">PRJ-2025-003 - L&T Campus - Industrial Kitchen</option>
-              </select>
+                placeholder="Select a project"
+                addNewLabel="Create Project"
+                addNewHref="/project-management/create-enhanced"
+                error={!!errors.project}
+              />
               {errors.project && <p className="mt-1 text-sm text-red-500">{errors.project}</p>}
             </div>
 
@@ -381,8 +389,8 @@ export default function ScheduleSiteVisitEnhancedPage() {
                     type="button"
                     onClick={() => updateFormData('visitType', type.value)}
                     className={`p-4 rounded-lg border-2 text-left transition-colors ${formData.visitType === type.value
-                        ? 'border-blue-500 bg-blue-50'
-                        : 'border-gray-200 hover:border-gray-300'
+                      ? 'border-blue-500 bg-blue-50'
+                      : 'border-gray-200 hover:border-gray-300'
                       }`}
                   >
                     <p className="font-medium text-gray-900">{type.label}</p>
@@ -628,12 +636,19 @@ export default function ScheduleSiteVisitEnhancedPage() {
                 {formData.teamMembers.map((member) => (
                   <div key={member.id} className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg">
                     <div className="flex-1 grid grid-cols-3 gap-4">
-                      <input
-                        type="text"
+                      <SearchableSelect
+                        options={EMPLOYEES}
                         value={member.name}
-                        onChange={(e) => updateTeamMember(member.id, 'name', e.target.value)}
-                        className="px-3 py-2 border border-gray-300 rounded-lg text-sm"
-                        placeholder="Name"
+                        onChange={(val) => {
+                          updateTeamMember(member.id, 'name', val);
+                          const selectedEmp = EMPLOYEES.find(e => e.value === val);
+                          if (selectedEmp) {
+                            updateTeamMember(member.id, 'phone', selectedEmp.phone);
+                          }
+                        }}
+                        placeholder="Search Member"
+                        addNewLabel="Add Employee"
+                        addNewHref="/common-masters/employee-master"
                       />
                       <input
                         type="text"
@@ -690,8 +705,8 @@ export default function ScheduleSiteVisitEnhancedPage() {
                       type="button"
                       onClick={() => toggleEquipment(equip.id)}
                       className={`flex items-center gap-3 p-3 rounded-lg border-2 transition-colors ${isSelected
-                          ? 'border-blue-500 bg-blue-50'
-                          : 'border-gray-200 hover:border-gray-300'
+                        ? 'border-blue-500 bg-blue-50'
+                        : 'border-gray-200 hover:border-gray-300'
                         }`}
                     >
                       <Icon className={`w-5 h-5 ${isSelected ? 'text-blue-600' : 'text-gray-400'}`} />

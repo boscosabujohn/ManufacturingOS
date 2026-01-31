@@ -19,6 +19,7 @@ import {
   Cog,
 } from 'lucide-react';
 import { StepIndicator } from '@/components/ui/StepIndicator';
+import { SearchableSelect } from '@/components/ui/SearchableSelect';
 import {
   useAutoSaveDraft,
   AutoSaveIndicator,
@@ -106,6 +107,60 @@ const defaultOperations: Operation[] = [
 const defaultMaterials: Material[] = [
   { id: '1', itemCode: 'SS304-2MM', description: 'Stainless Steel 304 Sheet 2mm', quantity: 10, unit: 'sheets', available: 25, reserved: 5 },
   { id: '2', itemCode: 'WELD-ROD', description: 'Welding Rod SS 308L', quantity: 5, unit: 'kg', available: 20, reserved: 8 },
+];
+
+const PROJECTS = [
+  { label: 'PRJ-2025-001 - Taj Hotels - Commercial Kitchen', value: 'PRJ-001', projectName: 'Taj Hotels - Commercial Kitchen' },
+  { label: 'PRJ-2025-002 - BigBasket - Cold Room', value: 'PRJ-002', projectName: 'BigBasket - Cold Room' },
+  { label: 'PRJ-2025-003 - Reliance Retail - Display Shelves', value: 'PRJ-003', projectName: 'Reliance Retail - Display Shelves' },
+];
+
+const PRODUCTS = [
+  { label: 'COOK-RANGE-6B - 6-Burner Gas Cooking Range', value: 'COOK-RANGE-6B', name: '6-Burner Gas Cooking Range' },
+  { label: 'SS-TABLE-4FT - Stainless Steel Prep Table 4ft', value: 'SS-TABLE-4FT', name: 'Stainless Steel Prep Table 4ft' },
+  { label: 'COLD-UNIT-L - Industrial Cooling Unit (Large)', value: 'COLD-UNIT-L', name: 'Industrial Cooling Unit (Large)' },
+];
+
+const WORK_CENTERS = [
+  { label: 'Laser Cutting - Line 1 (Laser-01)', value: 'Laser-01' },
+  { label: 'Laser Cutting - Line 2 (Laser-02)', value: 'Laser-02' },
+  { label: 'Bending - Line 1 (Bend-01)', value: 'Bend-01' },
+  { label: 'Bending - Line 2 (Bend-02)', value: 'Bend-02' },
+  { label: 'Fabrication - Bay 1 (Fab-01)', value: 'Fab-01' },
+  { label: 'Welding - Bay 1 (Weld-01)', value: 'Weld-01' },
+  { label: 'Buffing - Line 1 (Buff-01)', value: 'Buff-01' },
+  { label: 'Assembly Line 1 (Assembly-01)', value: 'Assembly-01' },
+];
+
+const PRIORITIES = [
+  { label: 'Urgent (Immediate Start)', value: 'Urgent' },
+  { label: 'High (Within 24 Hours)', value: 'High' },
+  { label: 'Normal (Standard Queue)', value: 'Normal' },
+  { label: 'Low (Fillers)', value: 'Low' },
+];
+
+const UNITS = [
+  { label: 'Pieces (pcs)', value: 'pcs' },
+  { label: 'Sets (sets)', value: 'sets' },
+  { label: 'Units (units)', value: 'units' },
+  { label: 'Kilograms (kg)', value: 'kg' },
+  { label: 'Running Meters (rm)', value: 'rm' },
+];
+
+const RAW_MATERIALS = [
+  { label: 'SS304-2MM - Stainless Steel 304 Sheet 2mm', value: 'SS304-2MM', description: 'Stainless Steel 304 Sheet 2mm', unit: 'sheets', available: 25, reserved: 5 },
+  { label: 'SS316-3MM - Stainless Steel 316 Sheet 3mm', value: 'SS316-3MM', description: 'Stainless Steel 316 Sheet 3mm', unit: 'sheets', available: 12, reserved: 2 },
+  { label: 'WELD-ROD - Welding Rod SS 308L', value: 'WELD-ROD', description: 'Welding Rod SS 308L', unit: 'kg', available: 20, reserved: 8 },
+  { label: 'GAS-ARGON - Argon Gas Cylinder', value: 'GAS-ARGON', description: 'Argon Gas Cylinder', unit: 'cyl', available: 15, reserved: 3 },
+];
+
+const STANDARD_OPERATIONS = [
+  { label: 'Laser Cutting', value: 'Laser Cutting' },
+  { label: 'Bending', value: 'Bending' },
+  { label: 'Welding', value: 'Welding' },
+  { label: 'Fabrication', value: 'Fabrication' },
+  { label: 'Buffing/Finishing', value: 'Buffing/Finishing' },
+  { label: 'Powder Coating', value: 'Powder Coating' },
 ];
 
 const initialFormData: FormData = {
@@ -286,22 +341,19 @@ export default function ProductionWorkOrderEnhancedPage() {
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Project <span className="text-red-500">*</span>
                 </label>
-                <select
+                <SearchableSelect
+                  options={PROJECTS}
                   value={formData.project}
-                  onChange={(e) => {
-                    const names: Record<string, string> = {
-                      'PRJ-001': 'Taj Hotels - Commercial Kitchen',
-                      'PRJ-002': 'BigBasket - Cold Room',
-                    };
-                    updateFormData('project', e.target.value);
-                    updateFormData('projectName', names[e.target.value] || '');
+                  onChange={(val) => {
+                    const project = PROJECTS.find(p => p.value === val);
+                    updateFormData('project', val);
+                    updateFormData('projectName', project?.projectName || '');
                   }}
-                  className={`w-full px-4 py-2 border rounded-lg ${errors.project ? 'border-red-500' : 'border-gray-300'}`}
-                >
-                  <option value="">Select project</option>
-                  <option value="PRJ-001">PRJ-001 - Taj Hotels - Commercial Kitchen</option>
-                  <option value="PRJ-002">PRJ-002 - BigBasket - Cold Room</option>
-                </select>
+                  placeholder="Select project"
+                  error={!!errors.project}
+                  addNewLabel="Create New Project"
+                  addNewHref="/project-management/create-enhanced"
+                />
                 {errors.project && <p className="mt-1 text-sm text-red-500">{errors.project}</p>}
               </div>
 
@@ -319,12 +371,15 @@ export default function ProductionWorkOrderEnhancedPage() {
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Product Code
                 </label>
-                <input
-                  type="text"
+                <SearchableSelect
+                  options={PRODUCTS}
                   value={formData.productCode}
-                  onChange={(e) => updateFormData('productCode', e.target.value)}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg"
-                  placeholder="e.g., COOK-RANGE-6B"
+                  onChange={(val) => {
+                    const product = PRODUCTS.find(p => p.value === val);
+                    updateFormData('productCode', val);
+                    updateFormData('productName', product?.name || '');
+                  }}
+                  placeholder="Select product code"
                 />
               </div>
 
@@ -358,15 +413,12 @@ export default function ProductionWorkOrderEnhancedPage() {
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Unit</label>
-                <select
+                <SearchableSelect
+                  options={UNITS}
                   value={formData.unit}
-                  onChange={(e) => updateFormData('unit', e.target.value)}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg"
-                >
-                  <option value="pcs">Pieces</option>
-                  <option value="sets">Sets</option>
-                  <option value="units">Units</option>
-                </select>
+                  onChange={(val) => updateFormData('unit', val)}
+                  placeholder="Select unit"
+                />
               </div>
             </div>
           </div>
@@ -412,16 +464,11 @@ export default function ProductionWorkOrderEnhancedPage() {
                   Priority
                   <HelpIcon content={FIELD_HELP.priority.content} title={FIELD_HELP.priority.title} />
                 </label>
-                <select
+                <SearchableSelect
+                  options={PRIORITIES}
                   value={formData.priority}
-                  onChange={(e) => updateFormData('priority', e.target.value)}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg"
-                >
-                  <option value="Urgent">Urgent</option>
-                  <option value="High">High</option>
-                  <option value="Normal">Normal</option>
-                  <option value="Low">Low</option>
-                </select>
+                  onChange={(val) => updateFormData('priority', val)}
+                />
               </div>
 
               <div>
@@ -429,17 +476,13 @@ export default function ProductionWorkOrderEnhancedPage() {
                   Work Center <span className="text-red-500">*</span>
                   <HelpIcon content={FIELD_HELP.workCenter.content} title={FIELD_HELP.workCenter.title} />
                 </label>
-                <select
+                <SearchableSelect
+                  options={WORK_CENTERS}
                   value={formData.workCenter}
-                  onChange={(e) => updateFormData('workCenter', e.target.value)}
-                  className={`w-full px-4 py-2 border rounded-lg ${errors.workCenter ? 'border-red-500' : 'border-gray-300'}`}
-                >
-                  <option value="">Select work center</option>
-                  <option value="Laser-01">Laser Cutting - Line 1</option>
-                  <option value="Laser-02">Laser Cutting - Line 2</option>
-                  <option value="Fab-01">Fabrication - Bay 1</option>
-                  <option value="Assembly-01">Assembly Line 1</option>
-                </select>
+                  onChange={(val) => updateFormData('workCenter', val)}
+                  placeholder="Select work center"
+                  error={!!errors.workCenter}
+                />
                 {errors.workCenter && <p className="mt-1 text-sm text-red-500">{errors.workCenter}</p>}
               </div>
             </div>
@@ -488,27 +531,23 @@ export default function ProductionWorkOrderEnhancedPage() {
                   </div>
                   <div className="flex-1">
                     <label className="block text-xs text-gray-500 mb-1">Operation Name</label>
-                    <input
-                      type="text"
+                    <SearchableSelect
+                      options={STANDARD_OPERATIONS}
                       value={op.name}
-                      onChange={(e) => updateOperation(op.id, 'name', e.target.value)}
-                      className="w-full px-3 py-1 border border-gray-300 rounded text-sm"
-                      placeholder="e.g., Laser Cutting"
+                      onChange={(val) => updateOperation(op.id, 'name', val)}
+                      className="min-h-[32px]"
+                      placeholder="Select operation"
                     />
                   </div>
-                  <div className="w-36">
+                  <div className="w-48">
                     <label className="block text-xs text-gray-500 mb-1">Work Center</label>
-                    <select
+                    <SearchableSelect
+                      options={WORK_CENTERS}
                       value={op.workCenter}
-                      onChange={(e) => updateOperation(op.id, 'workCenter', e.target.value)}
-                      className="w-full px-2 py-1 border border-gray-300 rounded text-sm"
-                    >
-                      <option value="">Select</option>
-                      <option value="Laser-01">Laser-01</option>
-                      <option value="Bend-01">Bend-01</option>
-                      <option value="Weld-01">Weld-01</option>
-                      <option value="Buff-01">Buff-01</option>
-                    </select>
+                      onChange={(val) => updateOperation(op.id, 'workCenter', val)}
+                      className="min-h-[32px]"
+                      placeholder="Select"
+                    />
                   </div>
                   <div className="w-20">
                     <label className="block text-xs text-gray-500 mb-1">Setup (min)</label>
@@ -577,12 +616,22 @@ export default function ProductionWorkOrderEnhancedPage() {
                     const shortfall = mat.quantity > mat.available - mat.reserved;
                     return (
                       <tr key={mat.id} className={shortfall ? 'bg-red-50' : ''}>
-                        <td className="px-4 py-2">
-                          <input
-                            type="text"
+                        <td className="px-4 py-2 w-48">
+                          <SearchableSelect
+                            options={RAW_MATERIALS}
                             value={mat.itemCode}
-                            onChange={(e) => updateMaterial(mat.id, 'itemCode', e.target.value)}
-                            className="w-24 px-2 py-1 border border-gray-300 rounded text-sm"
+                            onChange={(val) => {
+                              const item = RAW_MATERIALS.find(i => i.value === val);
+                              if (item) {
+                                updateMaterial(mat.id, 'itemCode', val);
+                                updateMaterial(mat.id, 'description', item.description);
+                                updateMaterial(mat.id, 'unit', item.unit);
+                                updateMaterial(mat.id, 'available', item.available);
+                                updateMaterial(mat.id, 'reserved', item.reserved);
+                              }
+                            }}
+                            className="min-h-[32px]"
+                            placeholder="Select item"
                           />
                         </td>
                         <td className="px-4 py-2">

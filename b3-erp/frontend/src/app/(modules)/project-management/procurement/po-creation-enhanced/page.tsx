@@ -29,6 +29,9 @@ import {
   HelpIcon,
   FormProgressIndicator,
 } from '@/components/ui/FormUX';
+import { SearchableSelect } from '@/components/ui/SearchableSelect';
+import { PrintPreview } from '@/components/print/PrintPreview';
+import { POTemplate, CompanyInfo } from '@/components/print/PDFTemplates';
 
 // Field help content
 const FIELD_HELP = {
@@ -146,6 +149,68 @@ const initialFormData: FormData = {
   termsAndConditions: '1. Delivery within specified date is mandatory.\n2. Quality as per approved samples.\n3. Packing must be adequate for safe transport.',
 };
 
+const MOCK_COMPANY: CompanyInfo = {
+  name: 'OptiForge Manufacturing Solutions',
+  logo: 'https://img.freepik.com/free-vector/industrial-factory-logo-template_23-2148111956.jpg',
+  address: [
+    'Plot No. 42, Industrial Model Township (IMT)',
+    'Sector 15, Manesar, Gurugram',
+    'Haryana, India - 122051',
+  ],
+  phone: '+91 124 456 7890',
+  email: 'ops@optiforge.in',
+  website: 'www.optiforge.in',
+  taxId: '06AAXCO1234F1ZN',
+};
+
+const VENDORS = [
+  { label: 'Merino Industries Ltd.', value: 'VND-001', gstin: '29AAACM1234A1Z5', address: 'Industrial Area, Sector 6, Bangalore - 560058', contact: 'Rajesh Kumar - +91 98765 43210' },
+  { label: 'Hettich India Pvt Ltd', value: 'VND-002', gstin: '27AAACH5678B2Z3', address: 'Faridabad Industrial Estate, Haryana - 121001', contact: 'Amit Sharma - +91 98123 45678' },
+  { label: 'Hafele India Pvt Ltd', value: 'VND-003', gstin: '27AAACH9012C3Z1', address: 'Thane Industrial Park, Mumbai - 400601', contact: 'Priya Patel - +91 99887 66543' },
+];
+
+const PROJECTS = [
+  { label: 'PRJ-2025-001 - Taj Hotels - Commercial Kitchen', value: 'PRJ-2025-001' },
+  { label: 'PRJ-2025-002 - BigBasket - Cold Room', value: 'PRJ-2025-002' },
+  { label: 'PRJ-2025-003 - L&T Campus - Industrial Kitchen', value: 'PRJ-2025-003' },
+];
+
+const UNITS = [
+  { label: 'pcs', value: 'pcs' },
+  { label: 'sets', value: 'sets' },
+  { label: 'sheets', value: 'sheets' },
+  { label: 'kg', value: 'kg' },
+  { label: 'm', value: 'm' },
+];
+
+const TAX_RATES = [
+  { label: '0%', value: '0' },
+  { label: '5%', value: '5' },
+  { label: '12%', value: '12' },
+  { label: '18%', value: '18' },
+  { label: '28%', value: '28' },
+];
+
+const DELIVERY_TERMS = [
+  { label: 'Delivered to Site', value: 'Delivered' },
+  { label: 'Ex-Works (Pickup)', value: 'Ex-Works' },
+  { label: 'FOB (Free on Board)', value: 'FOB' },
+  { label: 'CIF (Cost Insurance Freight)', value: 'CIF' },
+];
+
+const PAYMENT_TERMS = [
+  { label: '100% Advance', value: 'Advance' },
+  { label: '50% Advance, 50% on Delivery', value: '50-50' },
+  { label: 'Net 15 Days', value: 'Net 15' },
+  { label: 'Net 30 Days', value: 'Net 30' },
+  { label: 'Net 60 Days', value: 'Net 60' },
+];
+
+const TAX_TYPES = [
+  { label: 'CGST + SGST (Same State)', value: 'CGST+SGST' },
+  { label: 'IGST (Inter State)', value: 'IGST' },
+];
+
 export default function POCreationEnhancedPage() {
   const router = useRouter();
   const [currentStep, setCurrentStep] = useState(0);
@@ -153,6 +218,7 @@ export default function POCreationEnhancedPage() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
+  const [showPrintPreview, setShowPrintPreview] = useState(false);
 
   // Auto-save draft
   const { lastSaved, isSaving, hasDraft, clearDraft, restoreDraft } = useAutoSaveDraft(
@@ -257,30 +323,10 @@ export default function POCreationEnhancedPage() {
 
   // Vendor selection
   const selectVendor = (vendorId: string) => {
-    const vendors: Record<string, { name: string; gstin: string; address: string; contact: string }> = {
-      'VND-001': {
-        name: 'Merino Industries Ltd.',
-        gstin: '29AAACM1234A1Z5',
-        address: 'Industrial Area, Sector 6, Bangalore - 560058',
-        contact: 'Rajesh Kumar - +91 98765 43210',
-      },
-      'VND-002': {
-        name: 'Hettich India Pvt Ltd',
-        gstin: '27AAACH5678B2Z3',
-        address: 'Faridabad Industrial Estate, Haryana - 121001',
-        contact: 'Amit Sharma - +91 98123 45678',
-      },
-      'VND-003': {
-        name: 'Hafele India Pvt Ltd',
-        gstin: '27AAACH9012C3Z1',
-        address: 'Thane Industrial Park, Mumbai - 400601',
-        contact: 'Priya Patel - +91 99887 66543',
-      },
-    };
-    const vendor = vendors[vendorId];
+    const vendor = VENDORS.find(v => v.value === vendorId);
     if (vendor) {
       updateFormData('vendor', vendorId);
-      updateFormData('vendorName', vendor.name);
+      updateFormData('vendorName', vendor.label);
       updateFormData('vendorGstin', vendor.gstin);
       updateFormData('vendorAddress', vendor.address);
       updateFormData('vendorContact', vendor.contact);
@@ -341,51 +387,50 @@ export default function POCreationEnhancedPage() {
           <div className="space-y-6">
             <div className="flex items-center gap-2 mb-4">
               <Building2 className="w-5 h-5 text-blue-600" />
-              <h2 className="text-xl font-semibold text-gray-900">Select Vendor</h2>
+              <h2 className="text-xl font-semibold text-gray-900">PO Details & Vendor</h2>
             </div>
 
-            <div className="relative mb-4">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-              <input
-                type="text"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                placeholder="Search vendors..."
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg"
-              />
-            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Project <span className="text-red-500">*</span>
+                </label>
+                <SearchableSelect
+                  options={PROJECTS}
+                  value={formData.projectId}
+                  onChange={(val) => {
+                    updateFormData('projectId', val);
+                    const project = PROJECTS.find(p => p.value === val);
+                    if (project) {
+                      updateFormData('projectName', project.label.split(' - ')[1] || '');
+                    }
+                  }}
+                  placeholder="Select Project"
+                  error={!!errors.projectId}
+                  addNewHref="/project-management/create-enhanced"
+                  addNewLabel="Create New Project"
+                />
+              </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {[
-                { id: 'VND-001', name: 'Merino Industries Ltd.', rating: 4.5, category: 'Laminates' },
-                { id: 'VND-002', name: 'Hettich India Pvt Ltd', rating: 4.8, category: 'Hardware' },
-                { id: 'VND-003', name: 'Hafele India Pvt Ltd', rating: 4.6, category: 'Hardware' },
-              ].map((vendor) => (
-                <button
-                  key={vendor.id}
-                  type="button"
-                  onClick={() => selectVendor(vendor.id)}
-                  className={`p-4 rounded-lg border-2 text-left transition-colors ${formData.vendor === vendor.id
-                      ? 'border-blue-500 bg-blue-50'
-                      : 'border-gray-200 hover:border-gray-300'
-                    }`}
-                >
-                  <div className="flex items-center justify-between mb-2">
-                    <p className="font-semibold text-gray-900">{vendor.name}</p>
-                    <span className="text-xs bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded">
-                      {vendor.rating} ★
-                    </span>
-                  </div>
-                  <p className="text-sm text-gray-500">{vendor.category}</p>
-                  <p className="text-xs text-gray-400 mt-1">{vendor.id}</p>
-                </button>
-              ))}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Vendor <span className="text-red-500">*</span>
+                </label>
+                <SearchableSelect
+                  options={VENDORS}
+                  value={formData.vendor}
+                  onChange={selectVendor}
+                  placeholder="Select Vendor"
+                  error={!!errors.vendor}
+                  addNewHref="/common-masters/vendor-master"
+                  addNewLabel="Add New Vendor"
+                />
+              </div>
             </div>
-            {errors.vendor && <p className="text-sm text-red-500">{errors.vendor}</p>}
 
             {formData.vendor && (
-              <div className="bg-green-50 rounded-lg p-4 border border-green-200 mt-4">
-                <h3 className="font-semibold text-green-800 mb-2">Selected Vendor</h3>
+              <div className="bg-blue-50 rounded-lg p-4 border border-blue-200 mt-4">
+                <h3 className="font-semibold text-blue-800 mb-2">Selected Vendor Details</h3>
                 <div className="grid grid-cols-2 gap-4 text-sm">
                   <div>
                     <span className="text-gray-500">Name:</span>
@@ -467,18 +512,13 @@ export default function POCreationEnhancedPage() {
                           min="1"
                         />
                       </td>
-                      <td className="px-3 py-2">
-                        <select
+                      <td className="px-3 py-2 min-w-[100px]">
+                        <SearchableSelect
+                          options={UNITS}
                           value={item.unit}
-                          onChange={(e) => updateItem(item.id, 'unit', e.target.value)}
-                          className="w-16 px-1 py-1 border border-gray-300 rounded text-sm"
-                        >
-                          <option value="pcs">pcs</option>
-                          <option value="sets">sets</option>
-                          <option value="sheets">sheets</option>
-                          <option value="kg">kg</option>
-                          <option value="m">m</option>
-                        </select>
+                          onChange={(val) => updateItem(item.id, 'unit', val)}
+                          placeholder="Unit"
+                        />
                       </td>
                       <td className="px-3 py-2">
                         <input
@@ -499,18 +539,13 @@ export default function POCreationEnhancedPage() {
                           max="100"
                         />
                       </td>
-                      <td className="px-3 py-2">
-                        <select
-                          value={item.taxRate}
-                          onChange={(e) => updateItem(item.id, 'taxRate', parseFloat(e.target.value))}
-                          className="w-14 px-1 py-1 border border-gray-300 rounded text-sm"
-                        >
-                          <option value="0">0%</option>
-                          <option value="5">5%</option>
-                          <option value="12">12%</option>
-                          <option value="18">18%</option>
-                          <option value="28">28%</option>
-                        </select>
+                      <td className="px-3 py-2 min-w-[100px]">
+                        <SearchableSelect
+                          options={TAX_RATES}
+                          value={item.taxRate.toString()}
+                          onChange={(val) => updateItem(item.id, 'taxRate', parseFloat(val))}
+                          placeholder="Tax"
+                        />
                       </td>
                       <td className="px-3 py-2 text-right font-semibold text-gray-900">
                         {formatCurrency(item.amount)}
@@ -601,16 +636,12 @@ export default function POCreationEnhancedPage() {
                   Delivery Terms
                   <HelpIcon content={FIELD_HELP.deliveryTerms.content} title={FIELD_HELP.deliveryTerms.title} />
                 </label>
-                <select
+                <SearchableSelect
+                  options={DELIVERY_TERMS}
                   value={formData.deliveryTerms}
-                  onChange={(e) => updateFormData('deliveryTerms', e.target.value)}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg"
-                >
-                  <option value="Delivered">Delivered to Site</option>
-                  <option value="Ex-Works">Ex-Works (Pickup)</option>
-                  <option value="FOB">FOB (Free on Board)</option>
-                  <option value="CIF">CIF (Cost Insurance Freight)</option>
-                </select>
+                  onChange={(val) => updateFormData('deliveryTerms', val)}
+                  placeholder="Select Terms"
+                />
               </div>
             </div>
           </div>
@@ -630,17 +661,12 @@ export default function POCreationEnhancedPage() {
                   Payment Terms
                   <HelpIcon content={FIELD_HELP.paymentTerms.content} title={FIELD_HELP.paymentTerms.title} />
                 </label>
-                <select
+                <SearchableSelect
+                  options={PAYMENT_TERMS}
                   value={formData.paymentTerms}
-                  onChange={(e) => updateFormData('paymentTerms', e.target.value)}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg"
-                >
-                  <option value="Advance">100% Advance</option>
-                  <option value="50-50">50% Advance, 50% on Delivery</option>
-                  <option value="Net 15">Net 15 Days</option>
-                  <option value="Net 30">Net 30 Days</option>
-                  <option value="Net 60">Net 60 Days</option>
-                </select>
+                  onChange={(val) => updateFormData('paymentTerms', val)}
+                  placeholder="Select Terms"
+                />
               </div>
 
               <div>
@@ -648,14 +674,12 @@ export default function POCreationEnhancedPage() {
                   Tax Type
                   <HelpIcon content={FIELD_HELP.gst.content} title={FIELD_HELP.gst.title} />
                 </label>
-                <select
+                <SearchableSelect
+                  options={TAX_TYPES}
                   value={formData.taxType}
-                  onChange={(e) => updateFormData('taxType', e.target.value)}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg"
-                >
-                  <option value="CGST+SGST">CGST + SGST (Same State)</option>
-                  <option value="IGST">IGST (Inter State)</option>
-                </select>
+                  onChange={(val) => updateFormData('taxType', val)}
+                  placeholder="Select Type"
+                />
               </div>
 
               <div className="md:col-span-2">
@@ -765,11 +789,14 @@ export default function POCreationEnhancedPage() {
             </div>
 
             <div className="flex gap-3">
-              <button className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+              <button className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-gray-700">
                 <Download className="w-4 h-4" />
                 Download Draft
               </button>
-              <button className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+              <button
+                onClick={() => setShowPrintPreview(true)}
+                className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-gray-700"
+              >
                 <Printer className="w-4 h-4" />
                 Print Preview
               </button>
@@ -873,6 +900,40 @@ export default function POCreationEnhancedPage() {
           </div>
         </div>
       </div>
+
+      <PrintPreview
+        isOpen={showPrintPreview}
+        onClose={() => setShowPrintPreview(false)}
+        onPrint={() => window.print()}
+        title={`Purchase Order Preview - ${formData.vendorName || 'New PO'}`}
+      >
+        <POTemplate
+          company={MOCK_COMPANY}
+          poNumber={`PO-${new Date().getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`}
+          poDate={new Date(formData.poDate)}
+          prReference={formData.prReference}
+          projectId={formData.projectId}
+          projectName={formData.projectName}
+          vendor={{
+            name: formData.vendorName || 'Selected Vendor',
+            gstin: formData.vendorGstin,
+            address: formData.vendorAddress,
+            contact: formData.vendorContact,
+          }}
+          lineItems={formData.items}
+          subtotal={totals.subtotal}
+          tax={totals.tax}
+          discount={totals.discount}
+          total={totals.grandTotal}
+          deliveryAddress={formData.deliveryAddress}
+          expectedDelivery={formData.expectedDelivery}
+          deliveryTerms={formData.deliveryTerms}
+          paymentTerms={formData.paymentTerms}
+          taxType={formData.taxType}
+          notes={formData.notes}
+          termsAndConditions={formData.termsAndConditions}
+        />
+      </PrintPreview>
     </div>
   );
 }

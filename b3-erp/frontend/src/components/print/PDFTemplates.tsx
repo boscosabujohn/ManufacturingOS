@@ -491,6 +491,222 @@ export function InvoiceTemplate({
 }
 
 // ============================================================================
+// Purchase Order Template
+// ============================================================================
+
+export interface POTemplateProps {
+  company: CompanyInfo;
+  poNumber: string;
+  poDate?: Date;
+  prReference?: string;
+  projectId?: string;
+  projectName?: string;
+  vendor: {
+    name: string;
+    gstin?: string;
+    address?: string;
+    contact?: string;
+  };
+  lineItems: any[];
+  subtotal: number;
+  tax: number;
+  discount: number;
+  total: number;
+  deliveryAddress: string;
+  expectedDelivery?: string;
+  deliveryTerms?: string;
+  paymentTerms?: string;
+  taxType?: string;
+  notes?: string;
+  termsAndConditions?: string;
+  className?: string;
+}
+
+export function POTemplate({
+  company,
+  poNumber,
+  poDate = new Date(),
+  prReference,
+  projectId,
+  projectName,
+  vendor,
+  lineItems,
+  subtotal,
+  tax,
+  discount,
+  total,
+  deliveryAddress,
+  expectedDelivery,
+  deliveryTerms,
+  paymentTerms,
+  taxType,
+  notes,
+  termsAndConditions,
+  className = '',
+}: POTemplateProps) {
+  const formatCurrency = (val: number) => {
+    return new Intl.NumberFormat('en-IN', {
+      style: 'currency',
+      currency: 'INR',
+      maximumFractionDigits: 0,
+    }).format(val);
+  };
+
+  return (
+    <PDFTemplate
+      company={company}
+      documentNumber={poNumber}
+      documentDate={poDate}
+      watermark="PURCHASE ORDER"
+      className={className}
+    >
+      {/* Title */}
+      <div className="text-center mb-8">
+        <h2 className="text-3xl font-bold text-blue-700">PURCHASE ORDER</h2>
+        <p className="text-gray-600">PO #{poNumber}</p>
+      </div>
+
+      {/* PO Header Info */}
+      <div className="grid grid-cols-2 gap-8 mb-8">
+        <div>
+          <h3 className="text-sm font-semibold text-gray-500 uppercase mb-2">Vendor</h3>
+          <p className="font-bold text-lg">{vendor.name}</p>
+          {vendor.gstin && <p className="text-sm">GSTIN: {vendor.gstin}</p>}
+          {vendor.address && <p className="text-sm text-gray-600 mt-1">{vendor.address}</p>}
+          {vendor.contact && <p className="text-sm text-gray-600">{vendor.contact}</p>}
+        </div>
+        <div className="text-right">
+          <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-sm">
+            <span className="text-gray-500">PO Date:</span>
+            <span className="font-medium text-gray-900">{poDate.toLocaleDateString()}</span>
+            {prReference && (
+              <>
+                <span className="text-gray-500">PR Ref:</span>
+                <span className="font-medium text-gray-900">{prReference}</span>
+              </>
+            )}
+            {projectId && (
+              <>
+                <span className="text-gray-500">Project ID:</span>
+                <span className="font-medium text-gray-900">{projectId}</span>
+              </>
+            )}
+            {projectName && (
+              <>
+                <span className="text-gray-500">Project Name:</span>
+                <span className="font-medium text-gray-900">{projectName}</span>
+              </>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* Line Items */}
+      <table className="w-full mb-8 border-collapse">
+        <thead>
+          <tr className="bg-gray-800 text-white text-xs uppercase">
+            <th className="px-3 py-2 text-left">Item / Description</th>
+            <th className="px-3 py-2 text-center">HSN</th>
+            <th className="px-3 py-2 text-center">Qty</th>
+            <th className="px-3 py-2 text-center">Unit</th>
+            <th className="px-3 py-2 text-right">Rate</th>
+            <th className="px-3 py-2 text-right">Disc %</th>
+            <th className="px-3 py-2 text-right">Tax %</th>
+            <th className="px-3 py-2 text-right">Amount</th>
+          </tr>
+        </thead>
+        <tbody className="text-sm">
+          {lineItems.map((item, index) => (
+            <tr key={index} className="border-b border-gray-200">
+              <td className="px-3 py-3">
+                <div className="font-medium text-gray-900">{item.itemCode}</div>
+                <div className="text-gray-600 text-xs">{item.description}</div>
+              </td>
+              <td className="px-3 py-3 text-center">{item.hsnCode}</td>
+              <td className="px-3 py-3 text-center">{item.quantity}</td>
+              <td className="px-3 py-3 text-center">{item.unit}</td>
+              <td className="px-3 py-3 text-right">{formatCurrency(item.unitPrice)}</td>
+              <td className="px-3 py-3 text-right">{item.discount}%</td>
+              <td className="px-3 py-3 text-right">{item.taxRate}%</td>
+              <td className="px-3 py-3 text-right font-medium">{formatCurrency(item.amount)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      {/* Totals & Terms */}
+      <div className="grid grid-cols-2 gap-8">
+        <div>
+          <div className="mb-4">
+            <h3 className="text-xs font-semibold text-gray-500 uppercase mb-2">Delivery Details</h3>
+            <p className="text-xs text-gray-700 font-medium">Expected: {expectedDelivery ? new Date(expectedDelivery).toLocaleDateString() : 'N/A'}</p>
+            <p className="text-xs text-gray-600 mt-1">Address: {deliveryAddress}</p>
+            <p className="text-xs text-gray-600">Terms: {deliveryTerms}</p>
+          </div>
+          <div className="mb-4">
+            <h3 className="text-xs font-semibold text-gray-500 uppercase mb-2">Payment Info</h3>
+            <p className="text-xs text-gray-600">Terms: {paymentTerms}</p>
+            <p className="text-xs text-gray-600">Tax Type: {taxType}</p>
+          </div>
+        </div>
+
+        <div className="bg-gray-50 p-4 rounded-lg">
+          <div className="space-y-2 text-sm">
+            <div className="flex justify-between text-gray-500">
+              <span>Subtotal:</span>
+              <span className="text-gray-900 font-medium">{formatCurrency(subtotal)}</span>
+            </div>
+            {discount > 0 && (
+              <div className="flex justify-between text-red-600">
+                <span>Discount:</span>
+                <span>-{formatCurrency(discount)}</span>
+              </div>
+            )}
+            <div className="flex justify-between text-gray-500">
+              <span>Tax (GST):</span>
+              <span className="text-gray-900 font-medium">{formatCurrency(tax)}</span>
+            </div>
+            <div className="flex justify-between pt-2 border-t border-gray-300 text-lg font-bold">
+              <span className="text-gray-900">Grand Total:</span>
+              <span className="text-blue-700">{formatCurrency(total)}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Notes & Terms */}
+      <div className="mt-8 grid grid-cols-1 gap-6">
+        {notes && (
+          <div className="bg-yellow-50 p-3 rounded border border-yellow-200">
+            <h3 className="text-xs font-semibold text-yellow-800 uppercase mb-1">Notes to Vendor</h3>
+            <p className="text-xs text-yellow-700 whitespace-pre-line">{notes}</p>
+          </div>
+        )}
+        {termsAndConditions && (
+          <div>
+            <h3 className="text-xs font-semibold text-gray-500 uppercase mb-2 text-center border-t pt-4">Standard Terms & Conditions</h3>
+            <p className="text-[10px] text-gray-500 whitespace-pre-line leading-relaxed italic">{termsAndConditions}</p>
+          </div>
+        )}
+      </div>
+
+      {/* Authorization Section */}
+      <div className="mt-12 flex justify-between items-end">
+        <div className="text-center">
+          <div className="w-48 border-b border-gray-400 mb-2 h-16"></div>
+          <p className="text-xs text-gray-500 uppercase">Vendor Acknowledgment</p>
+        </div>
+        <div className="text-center">
+          <div className="w-48 border-b border-gray-400 mb-2 h-16 flex items-center justify-center font-serif text-gray-300 italic">Signature Not Required</div>
+          <p className="text-xs text-gray-500 uppercase">Authorized Signatory</p>
+          <p className="text-[10px] text-gray-400 mt-1">Computer Generated Document</p>
+        </div>
+      </div>
+    </PDFTemplate>
+  );
+}
+
+// ============================================================================
 // Report Template
 // ============================================================================
 
@@ -592,3 +808,14 @@ export function ReportTemplate({
   );
 }
 
+
+export type {
+  CompanyInfo,
+  PDFTemplateProps,
+  QuoteLineItem,
+  QuoteTemplateProps,
+  InvoiceTemplateProps,
+  POTemplateProps,
+  ReportSection,
+  ReportTemplateProps,
+};

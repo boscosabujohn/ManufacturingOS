@@ -138,7 +138,7 @@ const megaMenuData: Record<string, MegaMenuSection[]> = {
       items: [
         { id: 'pm-dashboard', name: 'Dashboard', href: '/project-management/dashboard', description: 'Overview & analytics' },
         { id: 'all-projects', name: 'All Projects', href: '/project-management', description: 'Project list' },
-        { id: 'create-project', name: 'Create Project', href: '/project-management/create', description: 'New project' },
+        { id: 'create-project', name: 'Create Project', href: '/project-management/create-enhanced', description: 'New project' },
         { id: 'analytics', name: 'Analytics', href: '/project-management/analytics', description: 'Project analytics' },
         { id: 'templates', name: 'Templates', href: '/project-management/templates', description: 'Project templates' },
         { id: 'project-types', name: 'Project Types', href: '/project-management/project-types', description: 'Type management' },

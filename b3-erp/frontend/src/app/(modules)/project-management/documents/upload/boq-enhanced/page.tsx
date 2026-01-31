@@ -26,6 +26,7 @@ import {
   HelpIcon,
   FormProgressIndicator,
 } from '@/components/ui/FormUX';
+import { SearchableSelect } from '@/components/ui/SearchableSelect';
 
 // Field help content
 const FIELD_HELP = {
@@ -107,6 +108,19 @@ const mockBOQItems: BOQItem[] = [
   { id: '6', item: '6.0', description: 'Plastering (Internal)', unit: 'm2', quantity: 1200, rate: 320, amount: 384000, isValid: true },
   { id: '7', item: '7.0', description: 'Electrical Wiring', unit: 'lot', quantity: 1, rate: 450000, amount: 450000, isValid: false, issues: ['Rate exceeds budget estimate'] },
   { id: '8', item: '8.0', description: 'Plumbing Works', unit: 'lot', quantity: 1, rate: 280000, amount: 280000, isValid: true },
+];
+
+const PROJECTS = [
+  { label: 'PRJ-2025-001 - Taj Hotels - Commercial Kitchen', value: 'PRJ-2025-001' },
+  { label: 'PRJ-2025-002 - BigBasket - Cold Room', value: 'PRJ-2025-002' },
+  { label: 'PRJ-2025-003 - L&T Campus - Industrial Kitchen', value: 'PRJ-2025-003' },
+];
+
+const PHASES = [
+  { label: 'Phase 1 - Project Initiation', value: 'phase-1' },
+  { label: 'Phase 2 - Design & Site Assessment', value: 'phase-2' },
+  { label: 'Phase 3 - Technical Design & BOM', value: 'phase-3' },
+  { label: 'Phase 4 - Procurement', value: 'phase-4' },
 ];
 
 export default function UploadBOQEnhancedPage() {
@@ -298,26 +312,26 @@ export default function UploadBOQEnhancedPage() {
                   Select Project <span className="text-red-500">*</span>
                   <HelpIcon content={FIELD_HELP.project.content} title={FIELD_HELP.project.title} />
                 </label>
-                <select
+                <SearchableSelect
+                  options={PROJECTS}
                   value={formData.project}
-                  onChange={(e) => {
-                    const selected = e.target.value;
-                    const projectNames: Record<string, string> = {
-                      'PRJ-2025-001': 'Taj Hotels - Commercial Kitchen',
-                      'PRJ-2025-002': 'BigBasket - Cold Room',
-                      'PRJ-2025-003': 'L&T Campus - Industrial Kitchen',
-                    };
-                    updateFormData('project', selected);
-                    updateFormData('projectName', projectNames[selected] || '');
+                  onChange={(val) => {
+                    updateFormData('project', val);
+                    const selectedProject = PROJECTS.find(p => p.value === val);
+                    if (selectedProject) {
+                      const projectNames: Record<string, string> = {
+                        'PRJ-2025-001': 'Taj Hotels - Commercial Kitchen',
+                        'PRJ-2025-002': 'BigBasket - Cold Room',
+                        'PRJ-2025-003': 'L&T Campus - Industrial Kitchen',
+                      };
+                      updateFormData('projectName', projectNames[val] || '');
+                    }
                   }}
-                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.project ? 'border-red-500' : 'border-gray-300'
-                    }`}
-                >
-                  <option value="">Select a project</option>
-                  <option value="PRJ-2025-001">PRJ-2025-001 - Taj Hotels - Commercial Kitchen</option>
-                  <option value="PRJ-2025-002">PRJ-2025-002 - BigBasket - Cold Room</option>
-                  <option value="PRJ-2025-003">PRJ-2025-003 - L&T Campus - Industrial Kitchen</option>
-                </select>
+                  placeholder="Select a project"
+                  addNewLabel="Create Project"
+                  addNewHref="/project-management/create-enhanced"
+                  error={!!errors.project}
+                />
                 {errors.project && <p className="mt-1 text-sm text-red-500">{errors.project}</p>}
               </div>
 
@@ -326,18 +340,13 @@ export default function UploadBOQEnhancedPage() {
                   Project Phase <span className="text-red-500">*</span>
                   <HelpIcon content={FIELD_HELP.phase.content} title={FIELD_HELP.phase.title} />
                 </label>
-                <select
+                <SearchableSelect
+                  options={PHASES}
                   value={formData.phase}
-                  onChange={(e) => updateFormData('phase', e.target.value)}
-                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.phase ? 'border-red-500' : 'border-gray-300'
-                    }`}
-                >
-                  <option value="">Select phase</option>
-                  <option value="phase-1">Phase 1 - Project Initiation</option>
-                  <option value="phase-2">Phase 2 - Design & Site Assessment</option>
-                  <option value="phase-3">Phase 3 - Technical Design & BOM</option>
-                  <option value="phase-4">Phase 4 - Procurement</option>
-                </select>
+                  onChange={(val) => updateFormData('phase', val)}
+                  placeholder="Select phase"
+                  error={!!errors.phase}
+                />
                 {errors.phase && <p className="mt-1 text-sm text-red-500">{errors.phase}</p>}
               </div>
 
@@ -397,10 +406,10 @@ export default function UploadBOQEnhancedPage() {
               onDragLeave={handleDragLeave}
               onDrop={handleDrop}
               className={`border-2 border-dashed rounded-lg p-8 text-center transition-colors ${isDragging
-                  ? 'border-blue-500 bg-blue-50'
-                  : errors.file
-                    ? 'border-red-300 bg-red-50'
-                    : 'border-gray-300 hover:border-gray-400 hover:bg-gray-50'
+                ? 'border-blue-500 bg-blue-50'
+                : errors.file
+                  ? 'border-red-300 bg-red-50'
+                  : 'border-gray-300 hover:border-gray-400 hover:bg-gray-50'
                 }`}
             >
               <input
@@ -755,8 +764,8 @@ export default function UploadBOQEnhancedPage() {
                 onClick={goToPrevStep}
                 disabled={currentStep === 0}
                 className={`flex items-center gap-2 px-4 py-2 rounded-lg ${currentStep === 0
-                    ? 'text-gray-400 cursor-not-allowed'
-                    : 'text-gray-700 hover:bg-gray-100'
+                  ? 'text-gray-400 cursor-not-allowed'
+                  : 'text-gray-700 hover:bg-gray-100'
                   }`}
               >
                 <ArrowLeft className="w-5 h-5" />

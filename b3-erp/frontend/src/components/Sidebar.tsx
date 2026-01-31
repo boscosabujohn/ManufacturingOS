@@ -67,7 +67,7 @@ const menuItems: MenuItem[] = [
     hoverColor: 'hover:bg-orange-100',
     subItems: [
       { id: 'pm-dashboard', name: 'Projects Dashboard', href: '/project-management', description: 'All projects overview' },
-      { id: 'create-project', name: 'Create Project', href: '/project-management/create', description: 'Start new project' },
+      { id: 'create-project', name: 'Create Project', href: '/project-management/create-enhanced', description: 'Start new project' },
       { id: 'project-documents', name: 'Documents', href: '/project-management/documents', description: 'Project documents' },
       { id: 'project-financials', name: 'Project Financials', href: '/project-management/financials', description: 'IoE tracking & budget' },
       { id: 'ta-settlement', name: 'TA Settlement', href: '/project-management/ta-settlement', description: 'Travel allowance claims' },

@@ -12,10 +12,18 @@ import {
   Save,
   X,
   Plus,
-  Trash2,
   CheckCircle,
   ArrowLeft,
   ArrowRight,
+  Layers,
+  FileUp,
+  Settings,
+  FileDown,
+  Copy,
+  Trash2 as Trash,
+  Star,
+  Archive,
+  Share2,
 } from 'lucide-react';
 import { StepIndicator } from '@/components/ui/StepIndicator';
 import {
@@ -26,6 +34,21 @@ import {
   HelpIcon,
   FormProgressIndicator,
 } from '@/components/ui/FormUX';
+import { SearchableSelect } from '@/components/ui/SearchableSelect';
+import { DragDropUpload, type FileItem } from '@/components/procurement/DragDropUpload';
+import { Paperclip } from 'lucide-react';
+import {
+  CreateTemplateModal,
+  EditTemplateModal,
+  DuplicateTemplateModal,
+  DeleteTemplateModal,
+  TemplateSettingsModal,
+  ShareTemplateModal,
+  ExportTemplateModal,
+  ImportTemplateModal,
+  ArchiveTemplateModal,
+  FavoriteTemplateModal,
+} from '@/components/project-management/TemplatesModals';
 
 // Field help content
 const FIELD_HELP = {
@@ -59,6 +82,49 @@ const FIELD_HELP = {
   },
 };
 
+// Mock Options
+const PROJECT_TYPES = [
+  { label: 'Commercial Kitchen', value: 'Commercial Kitchen' },
+  { label: 'Cold Room', value: 'Cold Room' },
+  { label: 'Switchgear', value: 'Switchgear' },
+  { label: 'HVAC System', value: 'HVAC System' },
+  { label: 'Modular Kitchen', value: 'Modular Kitchen' },
+  { label: 'Food Processing', value: 'Food Processing' },
+];
+
+const CUSTOMERS = [
+  { label: 'Taj Hotels Limited', value: 'Taj Hotels Limited' },
+  { label: 'Oberoi Group', value: 'Oberoi Group' },
+  { label: 'ITC Hotels', value: 'ITC Hotels' },
+  { label: 'Marriott International', value: 'Marriott International' },
+  { label: 'Hyatt Regency', value: 'Hyatt Regency' },
+];
+
+const EMPLOYEES = [
+  { label: 'Rajesh Kumar', value: 'Rajesh Kumar' },
+  { label: 'Priya Sharma', value: 'Priya Sharma' },
+  { label: 'Amit Patel', value: 'Amit Patel' },
+  { label: 'Sunita Reddy', value: 'Sunita Reddy' },
+  { label: 'Vikram Singh', value: 'Vikram Singh' },
+  { label: 'Anjali Gupta', value: 'Anjali Gupta' },
+];
+
+const DEPARTMENTS = [
+  { label: 'Project Management', value: 'Project Management' },
+  { label: 'Engineering', value: 'Engineering' },
+  { label: 'Operations', value: 'Operations' },
+  { label: 'Manufacturing', value: 'Manufacturing' },
+  { label: 'Sales & Marketing', value: 'Sales & Marketing' },
+];
+
+const SALES_ORDERS = [
+  { label: 'SO-2024-001', value: 'SO-2024-001', customerName: 'Taj Hotels Limited', customerId: 'CUST-001' },
+  { label: 'SO-2024-002', value: 'SO-2024-002', customerName: 'Oberoi Group', customerId: 'CUST-002' },
+  { label: 'SO-2024-003', value: 'SO-2024-003', customerName: 'ITC Hotels', customerId: 'CUST-003' },
+  { label: 'SO-2024-004', value: 'SO-2024-004', customerName: 'Marriott International', customerId: 'CUST-004' },
+  { label: 'SO-2024-005', value: 'SO-2024-005', customerName: 'Hyatt Regency', customerId: 'CUST-005' },
+];
+
 // Types
 interface TeamMember {
   id: string;
@@ -72,6 +138,7 @@ interface Deliverable {
   name: string;
   type: string;
   plannedDate: string;
+  details: string;
 }
 
 interface FormData {
@@ -100,6 +167,8 @@ interface FormData {
   scope: string;
   specialRequirements: string;
   safetyRequirements: string;
+  // Documents
+  attachments: FileItem[];
 }
 
 const STEPS = [
@@ -108,6 +177,7 @@ const STEPS = [
   { id: 'team', label: 'Team', description: 'Assign team members', icon: Users },
   { id: 'deliverables', label: 'Deliverables', description: 'Key milestones', icon: Package },
   { id: 'scope', label: 'Scope', description: 'Requirements', icon: FileText },
+  { id: 'attachments', label: 'Attachments', description: 'Project documents', icon: Paperclip },
   { id: 'review', label: 'Review', description: 'Confirm and create', icon: CheckCircle },
 ];
 
@@ -128,10 +198,11 @@ const initialFormData: FormData = {
   priority: 'P2',
   department: 'Project Management',
   teamMembers: [{ id: '1', role: 'Project Manager', name: '', allocation: 100 }],
-  deliverables: [{ id: '1', name: '', type: 'Equipment', plannedDate: '' }],
+  deliverables: [{ id: '1', name: '', type: 'Equipment', plannedDate: '', details: '' }],
   scope: '',
   specialRequirements: '',
   safetyRequirements: '',
+  attachments: [],
 };
 
 export default function CreateProjectEnhancedPage() {
@@ -141,10 +212,29 @@ export default function CreateProjectEnhancedPage() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [draftRestored, setDraftRestored] = useState(false);
+  const [viewMode, setViewMode] = useState<'wizard' | 'preview'>('wizard');
 
-  // Auto-save draft
+  // Template Modal States
+  const [showCreateTemplateModal, setShowCreateTemplateModal] = useState(false);
+  const [showEditTemplateModal, setShowEditTemplateModal] = useState(false);
+  const [showDuplicateTemplateModal, setShowDuplicateTemplateModal] = useState(false);
+  const [showDeleteTemplateModal, setShowDeleteTemplateModal] = useState(false);
+  const [showTemplateSettingsModal, setShowTemplateSettingsModal] = useState(false);
+  const [showShareTemplateModal, setShowShareTemplateModal] = useState(false);
+  const [showExportTemplateModal, setShowExportTemplateModal] = useState(false);
+  const [showImportTemplateModal, setShowImportTemplateModal] = useState(false);
+  const [showArchiveTemplateModal, setShowArchiveTemplateModal] = useState(false);
+  const [showFavoriteTemplateModal, setShowFavoriteTemplateModal] = useState(false);
+  const [selectedTemplate, setSelectedTemplate] = useState<any | null>(null);
+
+  // Auto-save draft - exclude attachments to prevent localStorage quota issues
+  const persistableData = useMemo(() => {
+    const { attachments, ...rest } = formData;
+    return rest;
+  }, [formData]);
+
   const { lastSaved, isSaving, hasDraft, clearDraft, restoreDraft } = useAutoSaveDraft(
-    formData as unknown as Record<string, unknown>,
+    persistableData as any,
     {
       key: 'project-create-form',
       debounceMs: 3000,
@@ -251,7 +341,7 @@ export default function CreateProjectEnhancedPage() {
       ...prev,
       deliverables: [
         ...prev.deliverables,
-        { id: Date.now().toString(), name: '', type: 'Equipment', plannedDate: '' },
+        { id: Math.random().toString(36).substr(2, 9), name: '', type: 'Equipment', plannedDate: '', details: '' },
       ],
     }));
   };
@@ -330,9 +420,82 @@ export default function CreateProjectEnhancedPage() {
     }
   };
 
+  // Template Modal Handlers
+  const handleCreateTemplate = (data: any) => {
+    console.log('Creating template:', data);
+    setShowCreateTemplateModal(false);
+  };
+
+  const handleEditTemplate = (data: any) => {
+    console.log('Updating template:', data);
+    setShowEditTemplateModal(false);
+    setSelectedTemplate(null);
+  };
+
+  const handleDuplicateTemplate = (data: any) => {
+    console.log('Duplicating template:', data);
+    setShowDuplicateTemplateModal(false);
+    setSelectedTemplate(null);
+  };
+
+  const handleDeleteTemplate = () => {
+    console.log('Deleting template:', selectedTemplate);
+    setShowDeleteTemplateModal(false);
+    setSelectedTemplate(null);
+  };
+
+  const handleTemplateSettings = (data: any) => {
+    console.log('Saving template settings:', data);
+    setShowTemplateSettingsModal(false);
+    setSelectedTemplate(null);
+  };
+
+  const handleShareTemplate = (data: any) => {
+    console.log('Sharing template:', data);
+    setShowShareTemplateModal(false);
+    setSelectedTemplate(null);
+  };
+
+  const handleExportTemplate = (data: any) => {
+    console.log('Exporting template:', data);
+    setShowExportTemplateModal(false);
+    setSelectedTemplate(null);
+  };
+
+  const handleImportTemplate = (file: File | null) => {
+    console.log('Importing template file:', file?.name);
+    setShowImportTemplateModal(false);
+  };
+
+  const handleArchiveTemplate = () => {
+    console.log('Archiving template:', selectedTemplate);
+    setShowArchiveTemplateModal(false);
+    setSelectedTemplate(null);
+  };
+
+  const handleToggleFavorite = () => {
+    console.log('Toggling favorite for template:', selectedTemplate);
+    setShowFavoriteTemplateModal(false);
+    setSelectedTemplate(null);
+  };
+
+  // Render all steps for preview mode
+  const renderAllSteps = () => {
+    return (
+      <div className="space-y-12">
+        {[0, 1, 2, 3, 4, 5].map((step) => (
+          <div key={step} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+            {renderStepContent(step)}
+          </div>
+        ))}
+      </div>
+    );
+  };
+
   // Render step content
-  const renderStepContent = () => {
-    switch (currentStep) {
+  const renderStepContent = (stepOverride?: number) => {
+    const activeStep = stepOverride !== undefined ? stepOverride : currentStep;
+    switch (activeStep) {
       case 0:
         return (
           <div className="space-y-6">
@@ -363,18 +526,14 @@ export default function CreateProjectEnhancedPage() {
                   Project Type <span className="text-red-500">*</span>
                   <HelpIcon content={FIELD_HELP.projectType.content} title={FIELD_HELP.projectType.title} />
                 </label>
-                <select
+                <SearchableSelect
+                  options={PROJECT_TYPES}
                   value={formData.projectType}
-                  onChange={(e) => updateFormData('projectType', e.target.value)}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                >
-                  <option value="Commercial Kitchen">Commercial Kitchen</option>
-                  <option value="Cold Room">Cold Room</option>
-                  <option value="Switchgear">Switchgear</option>
-                  <option value="HVAC System">HVAC System</option>
-                  <option value="Modular Kitchen">Modular Kitchen</option>
-                  <option value="Food Processing">Food Processing</option>
-                </select>
+                  onChange={(val) => updateFormData('projectType', val)}
+                  placeholder="Select Project Type"
+                  addNewLabel="Add Project Type"
+                  addNewHref="/project-management/project-types"
+                />
               </div>
 
               <div>
@@ -382,13 +541,21 @@ export default function CreateProjectEnhancedPage() {
                   Sales Order Number <span className="text-red-500">*</span>
                   <HelpIcon content={FIELD_HELP.salesOrderNumber.content} title={FIELD_HELP.salesOrderNumber.title} />
                 </label>
-                <input
-                  type="text"
+                <SearchableSelect
+                  options={SALES_ORDERS}
                   value={formData.salesOrderNumber}
-                  onChange={(e) => updateFormData('salesOrderNumber', e.target.value)}
-                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.salesOrderNumber ? 'border-red-500' : 'border-gray-300'
-                    }`}
-                  placeholder="SO-2024-XXX"
+                  onChange={(val) => {
+                    updateFormData('salesOrderNumber', val);
+                    const so = SALES_ORDERS.find(s => s.value === val);
+                    if (so) {
+                      updateFormData('customerName', so.customerName);
+                      updateFormData('customerId', so.customerId);
+                    }
+                  }}
+                  placeholder="Select Sales Order"
+                  addNewLabel="Add Sales Order"
+                  addNewHref="/sales/orders/create"
+                  error={!!errors.salesOrderNumber}
                 />
                 {errors.salesOrderNumber && <p className="mt-1 text-sm text-red-500">{errors.salesOrderNumber}</p>}
               </div>
@@ -408,13 +575,25 @@ export default function CreateProjectEnhancedPage() {
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Customer Name <span className="text-red-500">*</span>
                 </label>
-                <input
-                  type="text"
+                <SearchableSelect
+                  options={CUSTOMERS}
                   value={formData.customerName}
-                  onChange={(e) => updateFormData('customerName', e.target.value)}
-                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.customerName ? 'border-red-500' : 'border-gray-300'
-                    }`}
-                  placeholder="e.g., Taj Hotels Limited"
+                  onChange={(val) => {
+                    updateFormData('customerName', val);
+                    const customerIdMap: Record<string, string> = {
+                      'Taj Hotels Limited': 'CUST-001',
+                      'Oberoi Group': 'CUST-002',
+                      'ITC Hotels': 'CUST-003',
+                    };
+                    if (customerIdMap[val]) {
+                      updateFormData('customerId', customerIdMap[val]);
+                    }
+                  }
+                  }
+                  placeholder="Select Customer"
+                  addNewLabel="Add Customer"
+                  addNewHref="/common-masters/customer-master"
+                  error={!!errors.customerName}
                 />
                 {errors.customerName && <p className="mt-1 text-sm text-red-500">{errors.customerName}</p>}
               </div>
@@ -560,18 +739,15 @@ export default function CreateProjectEnhancedPage() {
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Project Manager <span className="text-red-500">*</span>
                 </label>
-                <select
+                <SearchableSelect
+                  options={EMPLOYEES}
                   value={formData.projectManager}
-                  onChange={(e) => updateFormData('projectManager', e.target.value)}
-                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.projectManager ? 'border-red-500' : 'border-gray-300'
-                    }`}
-                >
-                  <option value="">Select Manager</option>
-                  <option value="Rajesh Kumar">Rajesh Kumar</option>
-                  <option value="Priya Sharma">Priya Sharma</option>
-                  <option value="Amit Patel">Amit Patel</option>
-                  <option value="Sunita Reddy">Sunita Reddy</option>
-                </select>
+                  onChange={(val) => updateFormData('projectManager', val)}
+                  placeholder="Select Manager"
+                  addNewLabel="Add Employee"
+                  addNewHref="/common-masters/employee-master"
+                  error={!!errors.projectManager}
+                />
                 {errors.projectManager && <p className="mt-1 text-sm text-red-500">{errors.projectManager}</p>}
               </div>
 
@@ -594,16 +770,14 @@ export default function CreateProjectEnhancedPage() {
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Department</label>
-                <select
+                <SearchableSelect
+                  options={DEPARTMENTS}
                   value={formData.department}
-                  onChange={(e) => updateFormData('department', e.target.value)}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                >
-                  <option value="Project Management">Project Management</option>
-                  <option value="Engineering">Engineering</option>
-                  <option value="Operations">Operations</option>
-                  <option value="Manufacturing">Manufacturing</option>
-                </select>
+                  onChange={(val) => updateFormData('department', val)}
+                  placeholder="Select Department"
+                  addNewLabel="Add Department"
+                  addNewHref="/common-masters/department-master"
+                />
               </div>
             </div>
 
@@ -636,12 +810,14 @@ export default function CreateProjectEnhancedPage() {
                       </div>
                       <div>
                         <label className="block text-xs font-medium text-gray-700 mb-1">Name</label>
-                        <input
-                          type="text"
+                        <SearchableSelect
+                          options={EMPLOYEES}
                           value={member.name}
-                          onChange={(e) => updateTeamMember(member.id, 'name', e.target.value)}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm"
-                          placeholder="Employee name"
+                          onChange={(val) => updateTeamMember(member.id, 'name', val)}
+                          placeholder="Search Employee"
+                          addNewLabel="Add Employee"
+                          addNewHref="/common-masters/employee-master"
+                          className="w-full"
                         />
                       </div>
                       <div>
@@ -695,51 +871,63 @@ export default function CreateProjectEnhancedPage() {
 
             <div className="space-y-3">
               {formData.deliverables.map((deliverable) => (
-                <div key={deliverable.id} className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg">
-                  <div className="flex-1 grid grid-cols-3 gap-4">
-                    <div>
-                      <label className="block text-xs font-medium text-gray-700 mb-1">Deliverable Name</label>
-                      <input
-                        type="text"
-                        value={deliverable.name}
-                        onChange={(e) => updateDeliverable(deliverable.id, 'name', e.target.value)}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm"
-                        placeholder="e.g., Equipment Installation"
-                      />
+                <div key={deliverable.id} className="p-4 bg-gray-50 rounded-lg space-y-4">
+                  <div className="flex items-center gap-4">
+                    <div className="flex-1 grid grid-cols-3 gap-4">
+                      <div>
+                        <label className="block text-xs font-medium text-gray-700 mb-1">Deliverable Name</label>
+                        <input
+                          type="text"
+                          value={deliverable.name}
+                          onChange={(e) => updateDeliverable(deliverable.id, 'name', e.target.value)}
+                          className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm"
+                          placeholder="e.g., Equipment Installation"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-xs font-medium text-gray-700 mb-1">Type</label>
+                        <select
+                          value={deliverable.type}
+                          onChange={(e) => updateDeliverable(deliverable.id, 'type', e.target.value)}
+                          className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm"
+                        >
+                          <option value="Equipment">Equipment</option>
+                          <option value="Installation">Installation</option>
+                          <option value="Documentation">Documentation</option>
+                          <option value="Training">Training</option>
+                          <option value="Service">Service</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label className="block text-xs font-medium text-gray-700 mb-1">Planned Date</label>
+                        <input
+                          type="date"
+                          value={deliverable.plannedDate}
+                          onChange={(e) => updateDeliverable(deliverable.id, 'plannedDate', e.target.value)}
+                          className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm"
+                        />
+                      </div>
                     </div>
-                    <div>
-                      <label className="block text-xs font-medium text-gray-700 mb-1">Type</label>
-                      <select
-                        value={deliverable.type}
-                        onChange={(e) => updateDeliverable(deliverable.id, 'type', e.target.value)}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm"
+                    {formData.deliverables.length > 1 && (
+                      <button
+                        type="button"
+                        onClick={() => removeDeliverable(deliverable.id)}
+                        className="p-2 text-red-600 hover:bg-red-50 rounded-lg"
                       >
-                        <option value="Equipment">Equipment</option>
-                        <option value="Installation">Installation</option>
-                        <option value="Documentation">Documentation</option>
-                        <option value="Training">Training</option>
-                        <option value="Service">Service</option>
-                      </select>
-                    </div>
-                    <div>
-                      <label className="block text-xs font-medium text-gray-700 mb-1">Planned Date</label>
-                      <input
-                        type="date"
-                        value={deliverable.plannedDate}
-                        onChange={(e) => updateDeliverable(deliverable.id, 'plannedDate', e.target.value)}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm"
-                      />
-                    </div>
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    )}
                   </div>
-                  {formData.deliverables.length > 1 && (
-                    <button
-                      type="button"
-                      onClick={() => removeDeliverable(deliverable.id)}
-                      className="p-2 text-red-600 hover:bg-red-50 rounded-lg"
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </button>
-                  )}
+                  <div>
+                    <label className="block text-xs font-medium text-gray-700 mb-1">Deliverable Details</label>
+                    <textarea
+                      value={deliverable.details}
+                      onChange={(e) => updateDeliverable(deliverable.id, 'details', e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm"
+                      rows={3}
+                      placeholder="Enter additional details for this deliverable..."
+                    />
+                  </div>
                 </div>
               ))}
             </div>
@@ -795,6 +983,28 @@ export default function CreateProjectEnhancedPage() {
         return (
           <div className="space-y-6">
             <div className="flex items-center gap-2 mb-4">
+              <Paperclip className="w-5 h-5 text-blue-600" />
+              <h2 className="text-xl font-semibold text-gray-900">Project Attachments</h2>
+            </div>
+            <div className="bg-blue-50 border border-blue-100 rounded-lg p-4 mb-6">
+              <p className="text-sm text-blue-800">
+                Upload relevant project documents such as contracts, engineering drawings, site photos, or technical specifications.
+              </p>
+            </div>
+            <DragDropUpload
+              onFilesChange={(files) => updateFormData('attachments', files)}
+              accept={['.pdf', '.doc', '.docx', '.xls', '.xlsx', '.png', '.jpg', '.jpeg']}
+              maxFiles={10}
+              maxSize={20 * 1024 * 1024}
+              autoUpload={false}
+            />
+          </div>
+        );
+
+      case 6:
+        return (
+          <div className="space-y-6">
+            <div className="flex items-center gap-2 mb-4">
               <CheckCircle className="w-5 h-5 text-green-600" />
               <h2 className="text-xl font-semibold text-gray-900">Review & Create Project</h2>
             </div>
@@ -811,6 +1021,10 @@ export default function CreateProjectEnhancedPage() {
                   <div>
                     <span className="text-gray-500">Project Type:</span>
                     <p className="font-medium text-gray-900">{formData.projectType}</p>
+                  </div>
+                  <div>
+                    <span className="text-gray-500">Sales Order:</span>
+                    <p className="font-medium text-gray-900">{formData.salesOrderNumber || '-'}</p>
                   </div>
                   <div>
                     <span className="text-gray-500">Customer:</span>
@@ -883,16 +1097,40 @@ export default function CreateProjectEnhancedPage() {
                 {formData.deliverables.filter(d => d.name).length > 0 ? (
                   <ul className="space-y-2">
                     {formData.deliverables.filter(d => d.name).map((d) => (
-                      <li key={d.id} className="flex items-center gap-2 text-sm">
-                        <CheckCircle className="w-4 h-4 text-green-500" />
-                        <span className="text-gray-900">{d.name}</span>
-                        <span className="text-gray-500">({d.type})</span>
-                        {d.plannedDate && <span className="text-gray-400">- {d.plannedDate}</span>}
+                      <li key={d.id} className="p-3 bg-white border border-gray-200 rounded-lg">
+                        <div className="flex items-center gap-2 mb-1">
+                          <CheckCircle className="w-4 h-4 text-green-500" />
+                          <span className="font-medium text-gray-900">{d.name}</span>
+                          <span className="text-gray-500 text-xs">({d.type})</span>
+                          {d.plannedDate && <span className="text-gray-400 text-xs">- {d.plannedDate}</span>}
+                        </div>
+                        {d.details && (
+                          <p className="text-sm text-gray-600 pl-6 border-l-2 border-gray-100 ml-2">
+                            {d.details}
+                          </p>
+                        )}
                       </li>
                     ))}
                   </ul>
                 ) : (
                   <p className="text-sm text-gray-500">No deliverables defined</p>
+                )}
+              </div>
+
+              {/* Attachments Summary */}
+              <div className="border-t pt-4">
+                <h3 className="text-sm font-semibold text-gray-500 uppercase mb-3">Attachments</h3>
+                {formData.attachments.length > 0 ? (
+                  <div className="flex flex-wrap gap-3">
+                    {formData.attachments.map((file) => (
+                      <div key={file.id} className="flex items-center gap-2 px-3 py-1.5 bg-white border border-gray-200 rounded-lg text-sm">
+                        <Paperclip className="w-4 h-4 text-gray-400" />
+                        <span className="text-gray-900">{file.name}</span>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="text-sm text-gray-500">No attachments uploaded</p>
                 )}
               </div>
             </div>
@@ -912,7 +1150,24 @@ export default function CreateProjectEnhancedPage() {
           <div className="flex items-center justify-between mb-4">
             <div>
               <h1 className="text-2xl font-bold text-gray-900">Create New Project</h1>
-              <p className="text-sm text-gray-600 mt-1">Phase 1: Project Initiation</p>
+              <div className="flex items-center gap-4 mt-1">
+                <p className="text-sm text-gray-600">Phase 1: Project Initiation</p>
+                <div className="h-4 w-px bg-gray-300" />
+                <div className="flex bg-gray-100 p-0.5 rounded-lg border border-gray-200">
+                  <button
+                    onClick={() => setViewMode('wizard')}
+                    className={`px-3 py-1 text-xs font-medium rounded-md transition-all ${viewMode === 'wizard' ? 'bg-white text-blue-600 shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}
+                  >
+                    Wizard Mode
+                  </button>
+                  <button
+                    onClick={() => setViewMode('preview')}
+                    className={`px-3 py-1 text-xs font-medium rounded-md transition-all ${viewMode === 'preview' ? 'bg-white text-blue-600 shadow-sm' : 'text-gray-500 hover:text-gray-700'}`}
+                  >
+                    Preview Mode
+                  </button>
+                </div>
+              </div>
             </div>
             <div className="flex items-center gap-4">
               <AutoSaveIndicator lastSaved={lastSaved} isSaving={isSaving} />
@@ -927,28 +1182,74 @@ export default function CreateProjectEnhancedPage() {
 
           {/* Draft Recovery Banner */}
           {hasDraft && !draftRestored && (
-            <DraftRecoveryBanner
-              hasDraft={hasDraft}
-              onRestore={handleRestoreDraft}
-              onDiscard={clearDraft}
-            />
+            <div className="mt-6">
+              <DraftRecoveryBanner
+                hasDraft={hasDraft}
+                onRestore={handleRestoreDraft}
+                onDiscard={clearDraft}
+              />
+            </div>
           )}
+
+          {/* Template Quick Actions */}
+          <div className="flex flex-wrap gap-3 mt-6 pt-6 border-t border-gray-100">
+            <button
+              type="button"
+              onClick={() => setShowImportTemplateModal(true)}
+              className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-50 to-blue-100 text-blue-700 rounded-lg hover:from-blue-100 hover:to-blue-200 transition-all border border-blue-200 text-sm font-medium"
+            >
+              <Layers className="w-4 h-4" />
+              Use Template
+            </button>
+            <button
+              type="button"
+              onClick={() => setShowCreateTemplateModal(true)}
+              className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-green-50 to-green-100 text-green-700 rounded-lg hover:from-green-100 hover:to-green-200 transition-all border border-green-200 text-sm font-medium"
+            >
+              <Plus className="w-4 h-4" />
+              Create Template
+            </button>
+            <button
+              type="button"
+              onClick={() => setShowImportTemplateModal(true)}
+              className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-indigo-50 to-indigo-100 text-indigo-700 rounded-lg hover:from-indigo-100 hover:to-indigo-200 transition-all border border-indigo-200 text-sm font-medium"
+            >
+              <FileUp className="w-4 h-4" />
+              Import Template
+            </button>
+            <button
+              type="button"
+              onClick={() => setShowTemplateSettingsModal(true)}
+              className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-orange-50 to-orange-100 text-orange-700 rounded-lg hover:from-orange-100 hover:to-orange-200 transition-all border border-orange-200 text-sm font-medium"
+            >
+              <Settings className="w-4 h-4" />
+              Template Settings
+            </button>
+          </div>
         </div>
 
-        {/* Step Indicator */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-          <StepIndicator
-            steps={STEPS}
-            currentStep={currentStep}
-            onStepClick={setCurrentStep}
-            variant="default"
-          />
-        </div>
+        {/* Step Indicator - Only in Wizard Mode */}
+        {viewMode === 'wizard' && (
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
+            <StepIndicator
+              steps={STEPS}
+              currentStep={currentStep}
+              onStepClick={setCurrentStep}
+              variant="default"
+            />
+          </div>
+        )}
 
         {/* Form Content */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-          {renderStepContent()}
-        </div>
+        {viewMode === 'wizard' ? (
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
+            {renderStepContent()}
+          </div>
+        ) : (
+          <div className="mb-6">
+            {renderAllSteps()}
+          </div>
+        )}
 
         {/* Navigation */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
@@ -963,27 +1264,38 @@ export default function CreateProjectEnhancedPage() {
             </button>
 
             <div className="flex items-center gap-3">
-              <button
-                type="button"
-                onClick={goToPrevStep}
-                disabled={currentStep === 0}
-                className={`flex items-center gap-2 px-4 py-2 rounded-lg ${currentStep === 0
-                    ? 'text-gray-400 cursor-not-allowed'
-                    : 'text-gray-700 hover:bg-gray-100'
-                  }`}
-              >
-                <ArrowLeft className="w-5 h-5" />
-                Previous
-              </button>
-
-              {currentStep < STEPS.length - 1 ? (
+              {viewMode === 'wizard' && (
                 <button
                   type="button"
-                  onClick={goToNextStep}
+                  onClick={goToPrevStep}
+                  disabled={currentStep === 0}
+                  className={`flex items-center gap-2 px-4 py-2 rounded-lg ${currentStep === 0
+                    ? 'text-gray-400 cursor-not-allowed'
+                    : 'text-gray-700 hover:bg-gray-100'
+                    }`}
+                >
+                  <ArrowLeft className="w-5 h-5" />
+                  Previous
+                </button>
+              )}
+
+              {(viewMode === 'preview' || currentStep < STEPS.length - 1) ? (
+                <button
+                  type="button"
+                  onClick={viewMode === 'preview' ? handleSubmit : goToNextStep}
                   className="flex items-center gap-2 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
                 >
-                  Next
-                  <ArrowRight className="w-5 h-5" />
+                  {viewMode === 'preview' ? (
+                    <>
+                      <Save className="w-5 h-5" />
+                      Create Project
+                    </>
+                  ) : (
+                    <>
+                      Next
+                      <ArrowRight className="w-5 h-5" />
+                    </>
+                  )}
                 </button>
               ) : (
                 <button
@@ -1008,6 +1320,66 @@ export default function CreateProjectEnhancedPage() {
             </div>
           </div>
         </div>
+
+        {/* Template Modals */}
+        <CreateTemplateModal
+          isOpen={showCreateTemplateModal}
+          onClose={() => setShowCreateTemplateModal(false)}
+          onCreate={handleCreateTemplate}
+        />
+        <EditTemplateModal
+          isOpen={showEditTemplateModal}
+          onClose={() => setShowEditTemplateModal(false)}
+          onUpdate={handleEditTemplate}
+          template={selectedTemplate}
+        />
+        <DuplicateTemplateModal
+          isOpen={showDuplicateTemplateModal}
+          onClose={() => setShowDuplicateTemplateModal(false)}
+          onDuplicate={handleDuplicateTemplate}
+          template={selectedTemplate}
+        />
+        <DeleteTemplateModal
+          isOpen={showDeleteTemplateModal}
+          onClose={() => setShowDeleteTemplateModal(false)}
+          onDelete={handleDeleteTemplate}
+          template={selectedTemplate}
+        />
+        <TemplateSettingsModal
+          isOpen={showTemplateSettingsModal}
+          onClose={() => setShowTemplateSettingsModal(false)}
+          onSave={handleTemplateSettings}
+          template={selectedTemplate}
+        />
+        <ShareTemplateModal
+          isOpen={showShareTemplateModal}
+          onClose={() => setShowShareTemplateModal(false)}
+          onShare={handleShareTemplate}
+          template={selectedTemplate}
+        />
+        <ExportTemplateModal
+          isOpen={showExportTemplateModal}
+          onClose={() => setShowExportTemplateModal(false)}
+          onExport={handleExportTemplate}
+          template={selectedTemplate}
+        />
+        <ImportTemplateModal
+          isOpen={showImportTemplateModal}
+          onClose={() => setShowImportTemplateModal(false)}
+          onImport={handleImportTemplate}
+        />
+        <ArchiveTemplateModal
+          isOpen={showArchiveTemplateModal}
+          onClose={() => setShowArchiveTemplateModal(false)}
+          onArchive={handleArchiveTemplate}
+          template={selectedTemplate}
+        />
+        <FavoriteTemplateModal
+          isOpen={showFavoriteTemplateModal}
+          onClose={() => setShowFavoriteTemplateModal(false)}
+          onToggleFavorite={handleToggleFavorite}
+          template={selectedTemplate}
+        />
       </div>
     </div>
   );
