@@ -293,9 +293,9 @@ export default function PricingMarkupPage() {
   const activeRules = markupRules.filter(r => r.status === 'active').length
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Header */}
-      <div className="mb-6 flex items-center justify-end gap-3">
+      <div className="mb-3 flex items-center justify-end gap-3">
         <button className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
           <Calculator className="h-4 w-4" />
           Calculator
@@ -311,7 +311,7 @@ export default function PricingMarkupPage() {
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
         <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-5 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
@@ -358,12 +358,12 @@ export default function PricingMarkupPage() {
       </div>
 
       {/* Category Markup Summary */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-6">
+      <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-3">
         <div className="p-6 border-b border-gray-200">
           <h2 className="text-lg font-semibold text-gray-900">Category Markup Guidelines</h2>
         </div>
         <div className="p-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
             {categoryMarkups.map((cat) => (
               <div key={cat.category} className="p-4 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
                 <div className="flex items-start justify-between mb-3">
@@ -418,35 +418,35 @@ export default function PricingMarkupPage() {
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Rule</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Category</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Cost Basis</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Markup %</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Price Range</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Products</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Avg Results</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Action</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Rule</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Category</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Cost Basis</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Markup %</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Price Range</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Products</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Avg Results</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Action</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
               {markupRules.map((rule) => (
                 <tr key={rule.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div>
                       <p className="font-medium text-gray-900 text-sm">{rule.ruleName}</p>
                       <p className="text-xs text-gray-600 mt-1">{rule.ruleCode} - {rule.subcategory}</p>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <p className="text-sm text-gray-900">{rule.category}</p>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <span className={`px-2 py-1 rounded-full text-xs font-medium border ${getCostBasisColor(rule.costBasis)}`}>
                       {rule.costBasis.toUpperCase().replace('-', ' ')}
                     </span>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     {editingId === rule.id ? (
                       <div className="flex items-center gap-2">
                         <input
@@ -461,25 +461,25 @@ export default function PricingMarkupPage() {
                       <p className="text-sm font-bold text-green-600">{rule.markupPercent.toFixed(1)}%</p>
                     )}
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <p className="text-sm text-gray-900">
                       ₹{(rule.minimumPrice! / 1000).toFixed(0)}K - ₹{(rule.maximumPrice! / 1000).toFixed(0)}K
                     </p>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <p className="text-sm font-medium text-gray-900">{rule.products}</p>
                     <p className="text-xs text-gray-600">products</p>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <p className="text-sm text-gray-900">₹{(rule.avgSellingPrice / 1000).toFixed(1)}K</p>
                     <p className="text-xs text-green-600">{rule.avgMargin.toFixed(1)}% margin</p>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <span className={`px-2 py-1 rounded-full text-xs font-medium border ${getStatusColor(rule.status)}`}>
                       {rule.status.toUpperCase()}
                     </span>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     {editingId === rule.id ? (
                       <button
                         onClick={() => setEditingId(null)}

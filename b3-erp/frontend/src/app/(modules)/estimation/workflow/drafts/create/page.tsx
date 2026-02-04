@@ -125,9 +125,9 @@ export default function CreateDraftPage() {
 
   return (
     <div className="w-full h-full flex flex-col bg-gray-50">
-      <div className="flex-none bg-white border-b border-gray-200 px-6 py-4">
+      <div className="flex-none bg-white border-b border-gray-200 px-3 py-2">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
             <button
               onClick={handleCancel}
               className="flex items-center gap-2 text-gray-600 hover:text-gray-900"
@@ -159,16 +159,16 @@ export default function CreateDraftPage() {
         </div>
       </div>
 
-      <div className="flex-1 overflow-auto p-6">
-        <div className="space-y-6">
+      <div className="flex-1 overflow-auto p-3">
+        <div className="space-y-3">
           {/* Basic Information */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <h2 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <FileText className="w-5 h-5 text-blue-600" />
               Basic Information
             </h2>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Project Name <span className="text-red-500">*</span>
@@ -239,8 +239,8 @@ export default function CreateDraftPage() {
           </div>
 
           {/* Estimate Items */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <div className="flex items-center justify-between mb-4">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <div className="flex items-center justify-between mb-2">
               <h2 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
                 <Calculator className="w-5 h-5 text-blue-600" />
                 Estimate Items ({items.length})
@@ -361,7 +361,7 @@ export default function CreateDraftPage() {
               <div className="text-center py-12 bg-gray-50 rounded-lg border-2 border-dashed border-gray-300">
                 <Calculator className="h-12 w-12 text-gray-400 mb-3" />
                 <p className="text-gray-600 font-medium mb-2">No items added yet</p>
-                <p className="text-sm text-gray-500 mb-4">Start by adding items to your estimate</p>
+                <p className="text-sm text-gray-500 mb-2">Start by adding items to your estimate</p>
                 <button
                   onClick={handleAddItem}
                   className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2"

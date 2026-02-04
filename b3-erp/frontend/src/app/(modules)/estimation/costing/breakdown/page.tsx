@@ -285,10 +285,10 @@ export default function CostBreakdownPage() {
   const avgProfitMargin = costBreakdowns.reduce((sum, c) => sum + c.profitPercent, 0) / costBreakdowns.length
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Header */}
-      <div className="mb-6 flex items-center justify-between">
-        <div className="flex items-center gap-4">
+      <div className="mb-3 flex items-center justify-between">
+        <div className="flex items-center gap-2">
           <button
             onClick={() => router.back()}
             className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -313,7 +313,7 @@ export default function CostBreakdownPage() {
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
         <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-5 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
@@ -359,14 +359,14 @@ export default function CostBreakdownPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 mb-3">
         {/* Cost Component Distribution */}
         <div className="bg-white rounded-xl shadow-sm border border-gray-200">
           <div className="p-6 border-b border-gray-200">
             <h2 className="text-lg font-semibold text-gray-900">Cost Distribution</h2>
           </div>
           <div className="p-6">
-            <div className="space-y-4">
+            <div className="space-y-2">
               {costComponents.map((comp) => (
                 <div key={comp.component} className="p-4 rounded-lg border border-gray-200">
                   <div className="flex items-center justify-between mb-2">
@@ -399,12 +399,12 @@ export default function CostBreakdownPage() {
             <p className="text-sm text-gray-600 mt-1">Click any product from the table below to view details</p>
           </div>
           <div className="p-6">
-            <div className="mb-4">
+            <div className="mb-2">
               <h3 className="font-semibold text-gray-900 text-lg">{selectedProduct.productName}</h3>
               <p className="text-sm text-gray-600 mt-1">{selectedProduct.productCode} - {selectedProduct.category}</p>
             </div>
 
-            <div className="grid grid-cols-2 gap-4 mb-4">
+            <div className="grid grid-cols-2 gap-2 mb-2">
               <div className="p-4 rounded-lg bg-gray-50 border border-gray-200">
                 <p className="text-xs text-gray-600 mb-1">Total Cost per Unit</p>
                 <p className="text-2xl font-bold text-gray-900">₹{selectedProduct.costPerUnit.toLocaleString()}</p>
@@ -459,7 +459,7 @@ export default function CostBreakdownPage() {
               </div>
             </div>
 
-            <div className="mt-4 p-4 rounded-lg border-2 border-purple-300 bg-purple-50">
+            <div className="mt-4 p-3 rounded-lg border-2 border-purple-300 bg-purple-50">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-purple-600">Profit Margin</p>
@@ -494,14 +494,14 @@ export default function CostBreakdownPage() {
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Product</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Total Cost</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Material</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Labor</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Overhead</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Units</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Selling Price</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Profit</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Product</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Total Cost</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Material</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Labor</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Overhead</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Units</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Selling Price</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Profit</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
@@ -513,34 +513,34 @@ export default function CostBreakdownPage() {
                     selectedProduct.id === product.id ? 'bg-blue-50' : ''
                   }`}
                 >
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div>
                       <p className="font-medium text-gray-900 text-sm">{product.productName}</p>
                       <p className="text-xs text-gray-600 mt-1">{product.productCode}</p>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <p className="text-sm font-bold text-gray-900">₹{product.totalCost.toLocaleString()}</p>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <p className="text-sm font-medium text-blue-600">₹{product.materialCost.toLocaleString()}</p>
                     <p className="text-xs text-blue-600">{product.materialPercent.toFixed(1)}%</p>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <p className="text-sm font-medium text-green-600">₹{product.laborCost.toLocaleString()}</p>
                     <p className="text-xs text-green-600">{product.laborPercent.toFixed(1)}%</p>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <p className="text-sm font-medium text-orange-600">₹{product.overheadCost.toLocaleString()}</p>
                     <p className="text-xs text-orange-600">{product.overheadPercent.toFixed(1)}%</p>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <p className="text-sm text-gray-900">{product.unitsProduced}</p>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <p className="text-sm font-semibold text-gray-900">₹{product.sellingPrice.toLocaleString()}</p>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <p className="text-sm font-semibold text-purple-600">₹{product.profitMargin.toLocaleString()}</p>
                     <p className="text-xs text-purple-600">{product.profitPercent.toFixed(1)}%</p>
                   </td>

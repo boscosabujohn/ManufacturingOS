@@ -116,9 +116,9 @@ export default function AddEquipmentRatePage() {
 
   return (
     <div className="w-full h-full flex flex-col bg-gray-50">
-      <div className="flex-none bg-white border-b border-gray-200 px-6 py-4">
+      <div className="flex-none bg-white border-b border-gray-200 px-3 py-2">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
             <button
               onClick={handleBack}
               className="flex items-center gap-2 text-gray-600 hover:text-gray-900"
@@ -141,10 +141,10 @@ export default function AddEquipmentRatePage() {
         </div>
       </div>
 
-      <div className="flex-1 overflow-auto p-6">
-        <div className="space-y-6">
+      <div className="flex-1 overflow-auto p-3">
+        <div className="space-y-3">
           {/* Info Banner */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 flex items-start gap-3">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 flex items-start gap-3">
             <AlertCircle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
             <div className="text-sm text-blue-900">
               <p className="font-semibold mb-1">Important Note</p>
@@ -152,17 +152,17 @@ export default function AddEquipmentRatePage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-3 gap-6">
+          <div className="grid grid-cols-3 gap-3">
             {/* Left Column - Main Information */}
-            <div className="col-span-2 space-y-6">
+            <div className="col-span-2 space-y-3">
               {/* Equipment Information */}
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <h2 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                   <Wrench className="w-5 h-5 text-blue-600" />
                   Equipment Information
                 </h2>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Equipment Code <span className="text-red-500">*</span>
@@ -223,14 +223,14 @@ export default function AddEquipmentRatePage() {
               </div>
 
               {/* Rate Information */}
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <h2 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                   <DollarSign className="w-5 h-5 text-green-600" />
                   Rate Information
                 </h2>
 
-                <div className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <div className="grid grid-cols-2 gap-2">
                     <div className="col-span-2">
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Hourly Rate (₹) <span className="text-red-500">*</span>
@@ -257,7 +257,7 @@ export default function AddEquipmentRatePage() {
                       Auto-Calculated Rates
                     </h3>
 
-                    <div className="grid grid-cols-3 gap-4">
+                    <div className="grid grid-cols-3 gap-2">
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
                           Daily Multiplier
@@ -359,13 +359,13 @@ export default function AddEquipmentRatePage() {
               </div>
 
               {/* Additional Settings */}
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <h2 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                   <Settings className="w-5 h-5 text-purple-600" />
                   Additional Settings
                 </h2>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Minimum Hours <span className="text-red-500">*</span>
@@ -464,9 +464,9 @@ export default function AddEquipmentRatePage() {
             </div>
 
             {/* Right Column - Rate Preview */}
-            <div className="space-y-6">
-              <div className="bg-white rounded-lg border border-gray-200 p-6 sticky top-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+            <div className="space-y-3">
+              <div className="bg-white rounded-lg border border-gray-200 p-3 sticky top-6">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                   <Calculator className="w-5 h-5 text-green-600" />
                   Rate Preview
                 </h3>

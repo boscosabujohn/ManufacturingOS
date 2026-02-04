@@ -300,9 +300,9 @@ export default function PricingMarginsPage() {
   const belowTargetCount = pricingMargins.filter(p => p.status === 'below-target').length
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Header */}
-      <div className="mb-6 flex items-center justify-end gap-3">
+      <div className="mb-3 flex items-center justify-end gap-3">
         <button className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
           <Filter className="h-4 w-4" />
           Filter
@@ -314,7 +314,7 @@ export default function PricingMarginsPage() {
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
         <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-5 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
@@ -361,12 +361,12 @@ export default function PricingMarginsPage() {
       </div>
 
       {/* Category Margins */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-6">
+      <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-3">
         <div className="p-6 border-b border-gray-200">
           <h2 className="text-lg font-semibold text-gray-900">Category Performance</h2>
         </div>
         <div className="p-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
             {categoryMargins.map((cat) => (
               <div key={cat.category} className="p-4 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
                 <div className="flex items-start justify-between mb-3">
@@ -425,41 +425,41 @@ export default function PricingMarginsPage() {
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Product</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Cost Price</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Selling Price</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Margin</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Target</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Variance</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Position</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Volume</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Product</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Cost Price</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Selling Price</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Margin</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Target</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Variance</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Position</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Volume</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
               {pricingMargins.map((product) => (
                 <tr key={product.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div>
                       <p className="font-medium text-gray-900 text-sm">{product.productName}</p>
                       <p className="text-xs text-gray-600 mt-1">{product.productCode}</p>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <p className="text-sm font-medium text-gray-900">₹{product.costPrice.toLocaleString()}</p>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <p className="text-sm font-medium text-gray-900">₹{product.sellingPrice.toLocaleString()}</p>
                     <p className="text-xs text-gray-600">vs ₹{product.competitorPrice.toLocaleString()}</p>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <p className="text-sm font-bold text-green-600">{product.marginPercent.toFixed(1)}%</p>
                     <p className="text-xs text-gray-600">₹{product.marginAmount.toLocaleString()}</p>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <p className="text-sm font-medium text-gray-900">{product.targetMargin.toFixed(1)}%</p>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="flex items-center gap-1">
                       {product.varianceFromTarget >= 0 ? (
                         <TrendingUp className="h-4 w-4 text-green-600" />
@@ -471,16 +471,16 @@ export default function PricingMarginsPage() {
                       </span>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <span className={`px-2 py-1 rounded-full text-xs font-medium border ${getPricePositionColor(product.pricePosition)}`}>
                       {product.pricePosition.toUpperCase()}
                     </span>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <p className="text-sm text-gray-900">{product.volumeSold} units</p>
                     <p className="text-xs text-green-600">₹{(product.revenue / 100000).toFixed(1)}L</p>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <span className={`px-2 py-1 rounded-full text-xs font-medium border ${getStatusColor(product.status)}`}>
                       {product.status.toUpperCase().replace('-', ' ')}
                     </span>

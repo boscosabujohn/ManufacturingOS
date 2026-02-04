@@ -437,18 +437,18 @@ export default function AddRFQPage() {
   const evaluationTotal = Object.values(formData.evaluationCriteria).reduce((sum, val) => sum + val, 0);
 
   return (
-    <div className="w-full min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
+    <div className="w-full min-h-screen bg-gray-50 px-3 py-2">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <button
           onClick={handleCancel}
-          className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-4"
+          className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-2"
         >
           <ArrowLeft className="h-5 w-5" />
           <span className="font-medium">Back to RFQs</span>
         </button>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="flex items-start justify-between">
             <div>
               <h1 className="text-3xl font-bold text-gray-900 mb-2">New Request for Quotation</h1>
@@ -476,14 +476,14 @@ export default function AddRFQPage() {
         </div>
       </div>
 
-      <form onSubmit={handleIssueRFQ} className="space-y-6">
+      <form onSubmit={handleIssueRFQ} className="space-y-3">
         {/* RFQ Details */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <h2 className="text-xl font-bold text-gray-900 mb-3 flex items-center">
             <FileText className="h-6 w-6 mr-2 text-blue-600" />
             RFQ Details
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div className="md:col-span-2">
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 RFQ Title & Description <span className="text-red-500">*</span>
@@ -606,24 +606,24 @@ export default function AddRFQPage() {
         </div>
 
         {/* Line Items */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <h2 className="text-xl font-bold text-gray-900 mb-3 flex items-center">
             <Package className="h-6 w-6 mr-2 text-blue-600" />
             Line Items with Full Specifications <span className="text-red-500 ml-1">*</span>
             <span className="ml-3 text-sm font-normal text-gray-600">({formData.items.length} items)</span>
           </h2>
 
           {errors.items && (
-            <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg text-sm text-red-700">
+            <div className="mb-2 p-3 bg-red-50 border border-red-200 rounded-lg text-sm text-red-700">
               {errors.items}
             </div>
           )}
 
           {/* Existing Items */}
           {formData.items.length > 0 && (
-            <div className="space-y-4 mb-6">
+            <div className="space-y-2 mb-3">
               {formData.items.map((item, index) => (
-                <div key={item.id} className="border border-gray-200 rounded-lg p-4 bg-gray-50">
+                <div key={item.id} className="border border-gray-200 rounded-lg p-3 bg-gray-50">
                   <div className="flex items-start justify-between mb-3">
                     <div>
                       <h4 className="text-sm font-bold text-gray-900">Item {index + 1}</h4>
@@ -658,14 +658,14 @@ export default function AddRFQPage() {
           )}
 
           {/* Add New Item */}
-          <div className="border-2 border-dashed border-blue-300 rounded-lg p-6 bg-blue-50">
-            <h4 className="text-sm font-bold text-gray-900 mb-4 flex items-center">
+          <div className="border-2 border-dashed border-blue-300 rounded-lg p-3 bg-blue-50">
+            <h4 className="text-sm font-bold text-gray-900 mb-2 flex items-center">
               <Plus className="h-5 w-5 mr-2 text-blue-600" />
               Add New Item
             </h4>
 
-            <div className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="space-y-2">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
                 <div>
                   <label className="block text-xs font-medium text-gray-700 mb-1">Item Code</label>
                   <input
@@ -752,8 +752,8 @@ export default function AddRFQPage() {
         </div>
 
         {/* Vendor Selection Wizard */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <div className="flex items-center justify-between mb-6">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <div className="flex items-center justify-between mb-3">
             <h2 className="text-xl font-bold text-gray-900 flex items-center">
               <Users className="h-6 w-6 mr-2 text-blue-600" />
               Vendor Selection Wizard <span className="text-red-500 ml-1">*</span>
@@ -771,13 +771,13 @@ export default function AddRFQPage() {
           </div>
 
           {errors.selectedVendors && (
-            <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg text-sm text-red-700">
+            <div className="mb-2 p-3 bg-red-50 border border-red-200 rounded-lg text-sm text-red-700">
               {errors.selectedVendors}
             </div>
           )}
 
           {/* Filters */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-3">
             <div className="relative">
               <input
                 type="text"
@@ -819,12 +819,12 @@ export default function AddRFQPage() {
           </div>
 
           {/* Vendor Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
             {filteredVendors.map((vendor) => (
               <div
                 key={vendor.id}
                 onClick={() => toggleVendor(vendor.id)}
-                className={`border-2 rounded-lg p-4 cursor-pointer transition-all ${
+                className={`border-2 rounded-lg p-3 cursor-pointer transition-all ${
                   formData.selectedVendors.includes(vendor.id)
                     ? 'border-blue-500 bg-blue-50 shadow-md'
                     : 'border-gray-200 hover:border-gray-300 hover:shadow-sm'
@@ -871,12 +871,12 @@ export default function AddRFQPage() {
         </div>
 
         {/* Commercial Terms */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <h2 className="text-xl font-bold text-gray-900 mb-3 flex items-center">
             <DollarSign className="h-6 w-6 mr-2 text-blue-600" />
             Commercial Terms
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Payment Terms</label>
               <select
@@ -929,12 +929,12 @@ export default function AddRFQPage() {
         </div>
 
         {/* Evaluation Criteria Configuration */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <h2 className="text-xl font-bold text-gray-900 mb-3 flex items-center">
             <TrendingUp className="h-6 w-6 mr-2 text-blue-600" />
             Evaluation Criteria Configuration (Weighted Scoring)
           </h2>
-          <div className="space-y-4">
+          <div className="space-y-2">
             {Object.entries(formData.evaluationCriteria).map(([key, value]) => (
               <div key={key}>
                 <div className="flex items-center justify-between mb-2">
@@ -972,8 +972,8 @@ export default function AddRFQPage() {
         </div>
 
         {/* Terms & Conditions Templates */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <h2 className="text-xl font-bold text-gray-900 mb-3 flex items-center">
             <FileSignature className="h-6 w-6 mr-2 text-blue-600" />
             Terms & Conditions
           </h2>
@@ -987,8 +987,8 @@ export default function AddRFQPage() {
         </div>
 
         {/* Notes to Vendors */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <h2 className="text-xl font-bold text-gray-900 mb-3 flex items-center">
             <Info className="h-6 w-6 mr-2 text-blue-600" />
             Notes to Vendors
           </h2>
@@ -1002,8 +1002,8 @@ export default function AddRFQPage() {
         </div>
 
         {/* Technical Specifications Upload */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <h2 className="text-xl font-bold text-gray-900 mb-3 flex items-center">
             <Upload className="h-6 w-6 mr-2 text-blue-600" />
             Technical Drawings/Specifications Upload
           </h2>
@@ -1021,8 +1021,8 @@ export default function AddRFQPage() {
         </div>
 
         {/* Email Template Preview */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <div className="flex items-center justify-between mb-6">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <div className="flex items-center justify-between mb-3">
             <h2 className="text-xl font-bold text-gray-900 flex items-center">
               <Mail className="h-6 w-6 mr-2 text-blue-600" />
               Email Template Preview
@@ -1037,7 +1037,7 @@ export default function AddRFQPage() {
           </div>
 
           {showEmailPreview && (
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
               <p className="text-sm font-semibold text-gray-900 mb-2">Subject: {formData.title} - RFQ {formData.rfqNumber}</p>
               <div className="text-sm text-gray-700 space-y-2">
                 <p>Dear Vendor,</p>
@@ -1059,7 +1059,7 @@ export default function AddRFQPage() {
         </div>
 
         {/* Action Buttons */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="flex items-center justify-between">
             <div className="text-sm text-gray-600">
               <AlertCircle className="inline h-4 w-4 mr-1" />
@@ -1069,21 +1069,21 @@ export default function AddRFQPage() {
               <button
                 type="button"
                 onClick={handleCancel}
-                className="px-6 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors font-semibold"
+                className="px-3 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors font-semibold"
               >
                 Cancel
               </button>
               <button
                 type="button"
                 onClick={handleSaveDraft}
-                className="flex items-center space-x-2 px-6 py-3 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors font-semibold"
+                className="flex items-center space-x-2 px-3 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors font-semibold"
               >
                 <Save className="h-5 w-5" />
                 <span>Save as Draft</span>
               </button>
               <button
                 type="submit"
-                className="flex items-center space-x-2 px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-semibold"
+                className="flex items-center space-x-2 px-3 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-semibold"
               >
                 <Send className="h-5 w-5" />
                 <span>Issue RFQ</span>

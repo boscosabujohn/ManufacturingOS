@@ -293,20 +293,20 @@ export default function ViewRFQPage() {
   };
 
   return (
-    <div className="w-full min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
+    <div className="w-full min-h-screen bg-gray-50 px-3 py-2">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <button
           onClick={() => router.push('/rfq')}
-          className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-4"
+          className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-2"
         >
           <ArrowLeft className="h-5 w-5" />
           <span className="font-medium">Back to RFQs</span>
         </button>
 
         {/* RFQ Header Card */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <div className="flex items-start justify-between mb-6">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <div className="flex items-start justify-between mb-3">
             <div className="flex items-start space-x-4">
               <div className="h-16 w-16 bg-gradient-to-br from-purple-500 to-blue-600 rounded-full flex items-center justify-center">
                 <FileCheck className="h-8 w-8 text-white" />
@@ -380,8 +380,8 @@ export default function ViewRFQPage() {
           </div>
 
           {/* Quick Stats */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
               <div className="flex items-center space-x-2 mb-2">
                 <Building2 className="h-5 w-5 text-blue-600" />
                 <p className="text-xs font-medium text-blue-600 uppercase">Vendors Invited</p>
@@ -390,7 +390,7 @@ export default function ViewRFQPage() {
               <p className="text-xs text-blue-600 mt-1">Suppliers contacted</p>
             </div>
 
-            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
               <div className="flex items-center space-x-2 mb-2">
                 <CheckCircle className="h-5 w-5 text-green-600" />
                 <p className="text-xs font-medium text-green-600 uppercase">Quotes Received</p>
@@ -399,7 +399,7 @@ export default function ViewRFQPage() {
               <p className="text-xs text-green-600 mt-1">Responses received</p>
             </div>
 
-            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
               <div className="flex items-center space-x-2 mb-2">
                 <DollarSign className="h-5 w-5 text-purple-600" />
                 <p className="text-xs font-medium text-purple-600 uppercase">Lowest Quote</p>
@@ -408,7 +408,7 @@ export default function ViewRFQPage() {
               <p className="text-xs text-purple-600 mt-1">Best price received</p>
             </div>
 
-            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
               <div className="flex items-center space-x-2 mb-2">
                 <Clock className="h-5 w-5 text-orange-600" />
                 <p className="text-xs font-medium text-orange-600 uppercase">Closing Date</p>
@@ -419,7 +419,7 @@ export default function ViewRFQPage() {
           </div>
 
           {/* Progress Tracker */}
-          <div className="mt-6 bg-gray-50 rounded-lg p-4 border border-gray-200">
+          <div className="mt-6 bg-gray-50 rounded-lg p-3 border border-gray-200">
             <h3 className="text-sm font-semibold text-gray-700 mb-3">RFQ Process</h3>
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-2">
@@ -496,7 +496,7 @@ export default function ViewRFQPage() {
       </div>
 
       {/* Tabs */}
-      <div className="mb-6">
+      <div className="mb-3">
         <div className="border-b border-gray-200 bg-white rounded-t-lg">
           <nav className="flex space-x-8 px-6">
             {tabs.map((tab) => {
@@ -521,15 +521,15 @@ export default function ViewRFQPage() {
       </div>
 
       {/* Tab Content */}
-      <div className="bg-white rounded-lg border border-gray-200 p-6">
+      <div className="bg-white rounded-lg border border-gray-200 p-3">
         {/* Overview Tab */}
         {activeTab === 'overview' && (
-          <div className="space-y-6">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">RFQ Overview</h2>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="space-y-3">
+            <h2 className="text-2xl font-bold text-gray-900 mb-3">RFQ Overview</h2>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
               {/* RFQ Details */}
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <FileText className="h-5 w-5 mr-2 text-blue-600" />
                   RFQ Details
                 </h3>
@@ -564,8 +564,8 @@ export default function ViewRFQPage() {
               </div>
 
               {/* Linked Documents */}
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <FileCheck className="h-5 w-5 mr-2 text-blue-600" />
                   Linked Documents
                 </h3>
@@ -599,8 +599,8 @@ export default function ViewRFQPage() {
               </div>
 
               {/* Item Specifications */}
-              <div className="md:col-span-2 border border-gray-200 rounded-lg p-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="md:col-span-2 border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <Package className="h-5 w-5 mr-2 text-blue-600" />
                   Item Specifications ({rfq.items.length})
                 </h3>
@@ -633,8 +633,8 @@ export default function ViewRFQPage() {
               </div>
 
               {/* Commercial Terms */}
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <DollarSign className="h-5 w-5 mr-2 text-blue-600" />
                   Commercial Terms
                 </h3>
@@ -659,8 +659,8 @@ export default function ViewRFQPage() {
               </div>
 
               {/* Evaluation Criteria */}
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <BarChart3 className="h-5 w-5 mr-2 text-blue-600" />
                   Evaluation Criteria (Weighted)
                 </h3>
@@ -705,12 +705,12 @@ export default function ViewRFQPage() {
               </div>
 
               {/* Vendors Invited */}
-              <div className="md:col-span-2 border border-gray-200 rounded-lg p-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="md:col-span-2 border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <Building2 className="h-5 w-5 mr-2 text-blue-600" />
                   Vendors Invited ({rfq.vendors.length})
                 </h3>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                   {rfq.vendors.map((vendor) => (
                     <div key={vendor.id} className="border border-gray-200 rounded-lg p-3 bg-gray-50">
                       <div className="flex items-start justify-between mb-2">
@@ -741,23 +741,23 @@ export default function ViewRFQPage() {
               </div>
 
               {/* Terms & Conditions */}
-              <div className="md:col-span-2 border border-gray-200 rounded-lg p-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="md:col-span-2 border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <FileText className="h-5 w-5 mr-2 text-blue-600" />
                   Terms & Conditions
                 </h3>
-                <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
                   <pre className="text-sm text-gray-700 whitespace-pre-wrap font-sans">{rfq.termsAndConditions}</pre>
                 </div>
               </div>
 
               {/* Notes to Vendors */}
-              <div className="md:col-span-2 border border-gray-200 rounded-lg p-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="md:col-span-2 border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <MessageSquare className="h-5 w-5 mr-2 text-blue-600" />
                   Notes to Vendors
                 </h3>
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                   <p className="text-sm text-gray-700">{rfq.notesToVendors}</p>
                 </div>
               </div>
@@ -768,14 +768,14 @@ export default function ViewRFQPage() {
         {/* Vendor Quotes Tab */}
         {activeTab === 'quotes' && (
           <div>
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center justify-between mb-3">
               <h3 className="text-xl font-bold text-gray-900">Vendor Quotes ({rfq.quotesReceived}/{rfq.vendorsInvited})</h3>
             </div>
 
-            <div className="space-y-6">
+            <div className="space-y-3">
               {rfq.vendors.filter(v => v.status === 'submitted').map((vendor) => (
-                <div key={vendor.id} className="border border-gray-200 rounded-lg p-6 bg-gray-50">
-                  <div className="flex items-start justify-between mb-4">
+                <div key={vendor.id} className="border border-gray-200 rounded-lg p-3 bg-gray-50">
+                  <div className="flex items-start justify-between mb-2">
                     <div>
                       <h4 className="text-lg font-bold text-gray-900">{vendor.vendorName}</h4>
                       <p className="text-sm text-gray-600">{vendor.contactPerson} • {vendor.email} • {vendor.phone}</p>
@@ -788,7 +788,7 @@ export default function ViewRFQPage() {
                   </div>
 
                   {/* Quote Items */}
-                  <div className="mb-4">
+                  <div className="mb-2">
                     <h5 className="text-sm font-bold text-gray-900 mb-2">Line Items</h5>
                     <div className="overflow-x-auto">
                       <table className="w-full text-sm">
@@ -820,7 +820,7 @@ export default function ViewRFQPage() {
                   </div>
 
                   {/* Terms */}
-                  <div className="grid grid-cols-3 gap-4 mb-4">
+                  <div className="grid grid-cols-3 gap-2 mb-2">
                     <div>
                       <p className="text-xs font-medium text-gray-500 uppercase mb-1">Payment Terms</p>
                       <p className="text-sm text-gray-900">{vendor.paymentTerms}</p>
@@ -851,7 +851,7 @@ export default function ViewRFQPage() {
         {/* Comparison Tab */}
         {activeTab === 'comparison' && (
           <div>
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center justify-between mb-3">
               <h3 className="text-xl font-bold text-gray-900">Quote Comparison</h3>
               <button className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
                 <Filter className="h-4 w-4" />
@@ -927,8 +927,8 @@ export default function ViewRFQPage() {
             </div>
 
             {/* Winner Recommendation */}
-            <div className="bg-green-50 border border-green-200 rounded-lg p-6">
-              <div className="flex items-center space-x-3 mb-4">
+            <div className="bg-green-50 border border-green-200 rounded-lg p-3">
+              <div className="flex items-center space-x-3 mb-2">
                 <Award className="h-8 w-8 text-green-600" />
                 <div>
                   <h4 className="text-lg font-bold text-gray-900">Recommended Vendor</h4>
@@ -943,7 +943,7 @@ export default function ViewRFQPage() {
                     Score: <span className="font-bold">{calculateScore(getLowestQuoteVendor())}/100</span>
                   </p>
                 </div>
-                <button className="flex items-center space-x-2 px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-semibold">
+                <button className="flex items-center space-x-2 px-3 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-semibold">
                   <Award className="h-5 w-5" />
                   <span>Award Contract</span>
                 </button>

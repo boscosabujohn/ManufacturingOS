@@ -191,9 +191,9 @@ export default function EstimationAnalyticsPerformancePage() {
   ).toFixed(1)
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Action Buttons */}
-      <div className="mb-6 flex justify-end">
+      <div className="mb-3 flex justify-end">
         <div className="flex items-center gap-3">
           <button className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
             <Filter className="h-4 w-4" />
@@ -211,7 +211,7 @@ export default function EstimationAnalyticsPerformancePage() {
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
         <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-5 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
@@ -258,8 +258,8 @@ export default function EstimationAnalyticsPerformancePage() {
       </div>
 
       {/* Estimator Performance Table */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 mb-6 overflow-hidden">
-        <div className="px-6 py-4 border-b border-gray-200">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 mb-3 overflow-hidden">
+        <div className="px-3 py-2 border-b border-gray-200">
           <h2 className="text-lg font-semibold text-gray-900">Estimator Performance</h2>
           <p className="text-sm text-gray-600 mt-1">Individual performance metrics and KPIs</p>
         </div>
@@ -376,7 +376,7 @@ export default function EstimationAnalyticsPerformancePage() {
 
       {/* Category Performance */}
       <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-        <div className="px-6 py-4 border-b border-gray-200">
+        <div className="px-3 py-2 border-b border-gray-200">
           <h2 className="text-lg font-semibold text-gray-900">Category Performance</h2>
           <p className="text-sm text-gray-600 mt-1">Performance metrics by kitchen category</p>
         </div>

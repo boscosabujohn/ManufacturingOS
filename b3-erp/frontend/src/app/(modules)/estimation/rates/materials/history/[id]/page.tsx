@@ -160,9 +160,9 @@ export default function MaterialRateHistoryPage() {
 
   return (
     <div className="w-full h-full flex flex-col bg-gray-50">
-      <div className="flex-none bg-white border-b border-gray-200 px-6 py-4">
+      <div className="flex-none bg-white border-b border-gray-200 px-3 py-2">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
             <button
               onClick={handleBack}
               className="flex items-center gap-2 text-gray-600 hover:text-gray-900"
@@ -185,15 +185,15 @@ export default function MaterialRateHistoryPage() {
         </div>
       </div>
 
-      <div className="flex-1 overflow-auto p-6">
-        <div className="space-y-6">
+      <div className="flex-1 overflow-auto p-3">
+        <div className="space-y-3">
           {/* Material Summary */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <h2 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <Package className="w-5 h-5 text-blue-600" />
               Material Information
             </h2>
-            <div className="grid grid-cols-4 gap-6">
+            <div className="grid grid-cols-4 gap-3">
               <div>
                 <p className="text-sm text-gray-500 mb-1">Material Code</p>
                 <p className="text-base font-semibold text-gray-900">{materialInfo.materialCode}</p>
@@ -214,7 +214,7 @@ export default function MaterialRateHistoryPage() {
           </div>
 
           {/* Statistics */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
             <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-5 border border-blue-200">
               <div className="flex items-center justify-between">
                 <div>
@@ -261,13 +261,13 @@ export default function MaterialRateHistoryPage() {
           </div>
 
           {/* Rate History Timeline */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <h2 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <Clock className="w-5 h-5 text-blue-600" />
               Rate Change History
             </h2>
 
-            <div className="space-y-4">
+            <div className="space-y-2">
               {history.map((record, index) => (
                 <div
                   key={record.id}
@@ -275,7 +275,7 @@ export default function MaterialRateHistoryPage() {
                     index === 0 ? 'border-blue-300 bg-blue-50' : 'border-gray-200 bg-white'
                   }`}
                 >
-                  <div className="flex items-start justify-between mb-4">
+                  <div className="flex items-start justify-between mb-2">
                     <div className="flex items-center gap-3">
                       <div className={`p-2 rounded-lg ${getTrendBgColor(record.changePercentage)}`}>
                         {getTrendIcon(record.changePercentage) || <DollarSign className="w-4 h-4 text-gray-500" />}
@@ -299,7 +299,7 @@ export default function MaterialRateHistoryPage() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-2">
                     <div>
                       <p className="text-xs text-gray-500 mb-1 flex items-center gap-1">
                         <Calendar className="w-3 h-3" />
@@ -338,7 +338,7 @@ export default function MaterialRateHistoryPage() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4 mb-4">
+                  <div className="grid grid-cols-2 gap-2 mb-2">
                     <div>
                       <p className="text-xs text-gray-500 mb-1">Minimum Order Quantity</p>
                       <p className="text-sm font-medium text-gray-900">{record.minimumOrderQty} {materialInfo.unit}</p>

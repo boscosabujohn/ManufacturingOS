@@ -136,10 +136,10 @@ export default function BOQAnalysisPage() {
   }
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Inline Header */}
-      <div className="flex items-center justify-between mb-6">
-        <div className="flex items-center gap-4">
+      <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center gap-2">
           <button
             onClick={() => router.back()}
             className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -154,7 +154,7 @@ export default function BOQAnalysisPage() {
       </div>
 
       {/* Project Selector */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
         <label className="block text-sm font-medium text-gray-700 mb-2">Select Project</label>
         <select
           value={selectedProject}
@@ -170,8 +170,8 @@ export default function BOQAnalysisPage() {
       </div>
 
       {/* Project Overview */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-        <div className="flex items-start justify-between mb-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex items-start justify-between mb-2">
           <div>
             <h2 className="text-xl font-bold text-gray-900">{selectedProjectData.projectName}</h2>
             <p className="text-sm text-gray-600 mt-1">{selectedProjectData.projectCode} • {selectedProjectData.location}</p>
@@ -180,22 +180,22 @@ export default function BOQAnalysisPage() {
             {selectedProjectData.status.toUpperCase()}
           </span>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
+          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
             <p className="text-sm text-blue-700 mb-1">Total Project Value</p>
             <p className="text-2xl font-bold text-blue-900">₹{(selectedProjectData.totalValue / 100000).toFixed(2)}L</p>
           </div>
-          <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+          <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
             <p className="text-sm text-green-700 mb-1">Material Cost</p>
             <p className="text-2xl font-bold text-green-900">₹{(selectedProjectData.materialCost / 100000).toFixed(2)}L</p>
             <p className="text-xs text-green-700 mt-1">{((selectedProjectData.materialCost / selectedProjectData.totalValue) * 100).toFixed(1)}% of total</p>
           </div>
-          <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+          <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
             <p className="text-sm text-purple-700 mb-1">Labor Cost</p>
             <p className="text-2xl font-bold text-purple-900">₹{(selectedProjectData.laborCost / 100000).toFixed(2)}L</p>
             <p className="text-xs text-purple-700 mt-1">{((selectedProjectData.laborCost / selectedProjectData.totalValue) * 100).toFixed(1)}% of total</p>
           </div>
-          <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+          <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
             <p className="text-sm text-orange-700 mb-1">Profit Margin</p>
             <p className="text-2xl font-bold text-orange-900">{selectedProjectData.profitMargin}%</p>
             <p className="text-xs text-orange-700 mt-1">₹{((selectedProjectData.totalValue * selectedProjectData.profitMargin) / 100 / 1000).toFixed(0)}K profit</p>
@@ -204,12 +204,12 @@ export default function BOQAnalysisPage() {
       </div>
 
       {/* Cost Breakdown Chart */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-        <div className="flex items-center justify-between mb-6">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex items-center justify-between mb-3">
           <h2 className="text-lg font-semibold text-gray-900">Cost Breakdown</h2>
           <PieChart className="h-5 w-5 text-gray-600" />
         </div>
-        <div className="space-y-4">
+        <div className="space-y-2">
           {costBreakdown.map((item, index) => (
             <div key={index} className="space-y-2">
               <div className="flex items-center justify-between text-sm">
@@ -231,14 +231,14 @@ export default function BOQAnalysisPage() {
       </div>
 
       {/* Category-wise Analysis */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-        <div className="flex items-center justify-between mb-6">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <div className="flex items-center justify-between mb-3">
           <h2 className="text-lg font-semibold text-gray-900">Category-wise Analysis</h2>
           <BarChart3 className="h-5 w-5 text-gray-600" />
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
           {selectedProjectData.categories.map((category, index) => (
-            <div key={index} className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+            <div key={index} className="border border-gray-200 rounded-lg p-3 hover:shadow-md transition-shadow">
               <div className="flex items-start justify-between mb-3">
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-1">
@@ -279,9 +279,9 @@ export default function BOQAnalysisPage() {
       </div>
 
       {/* Summary Statistics */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-6 border border-indigo-200">
-          <div className="flex items-center gap-3 mb-4">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
+        <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-3 border border-indigo-200">
+          <div className="flex items-center gap-3 mb-2">
             <div className="p-3 bg-indigo-200 rounded-lg">
               <DollarSign className="h-6 w-6 text-indigo-700" />
             </div>
@@ -294,8 +294,8 @@ export default function BOQAnalysisPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-6 border border-green-200">
-          <div className="flex items-center gap-3 mb-4">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
+          <div className="flex items-center gap-3 mb-2">
             <div className="p-3 bg-green-200 rounded-lg">
               <Percent className="h-6 w-6 text-green-700" />
             </div>
@@ -308,8 +308,8 @@ export default function BOQAnalysisPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-6 border border-orange-200">
-          <div className="flex items-center gap-3 mb-4">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
+          <div className="flex items-center gap-3 mb-2">
             <div className="p-3 bg-orange-200 rounded-lg">
               <FileText className="h-6 w-6 text-orange-700" />
             </div>

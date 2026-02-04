@@ -258,9 +258,9 @@ export default function EditCostingPage() {
   return (
     <div className="w-full h-screen flex flex-col bg-gray-50">
       <div className="flex-1 overflow-y-auto">
-        <div className="px-4 sm:px-6 lg:px-8 py-6">
+        <div className="px-3 py-2">
           {/* Header */}
-          <div className="mb-6 flex items-center justify-between">
+          <div className="mb-3 flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <button
                 onClick={() => router.back()}
@@ -276,13 +276,13 @@ export default function EditCostingPage() {
           </div>
 
           {/* Basic Information */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6 mb-6">
-            <div className="flex items-center space-x-3 mb-6">
+          <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
+            <div className="flex items-center space-x-3 mb-3">
               <DollarSign className="h-6 w-6 text-blue-600" />
               <h2 className="text-xl font-bold text-gray-900">Basic Information</h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Costing Number</label>
                 <input
@@ -357,8 +357,8 @@ export default function EditCostingPage() {
           </div>
 
           {/* Cost Items */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6 mb-6">
-            <div className="flex items-center justify-between mb-6">
+          <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
+            <div className="flex items-center justify-between mb-3">
               <div className="flex items-center space-x-3">
                 <Package className="h-6 w-6 text-blue-600" />
                 <h2 className="text-xl font-bold text-gray-900">Cost Items</h2>
@@ -475,20 +475,20 @@ export default function EditCostingPage() {
             </div>
 
             {/* Category Totals */}
-            <div className="mt-6 grid grid-cols-1 md:grid-cols-4 gap-4">
-              <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+            <div className="mt-6 grid grid-cols-1 md:grid-cols-4 gap-2">
+              <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
                 <p className="text-xs font-medium text-blue-600 uppercase mb-1">Materials</p>
                 <p className="text-lg font-bold text-blue-900">₹{formData.totalMaterialCost.toLocaleString()}</p>
               </div>
-              <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+              <div className="bg-green-50 rounded-lg p-3 border border-green-200">
                 <p className="text-xs font-medium text-green-600 uppercase mb-1">Labor</p>
                 <p className="text-lg font-bold text-green-900">₹{formData.totalLaborCost.toLocaleString()}</p>
               </div>
-              <div className="bg-orange-50 rounded-lg p-4 border border-orange-200">
+              <div className="bg-orange-50 rounded-lg p-3 border border-orange-200">
                 <p className="text-xs font-medium text-orange-600 uppercase mb-1">Equipment</p>
                 <p className="text-lg font-bold text-orange-900">₹{formData.totalEquipmentCost.toLocaleString()}</p>
               </div>
-              <div className="bg-purple-50 rounded-lg p-4 border border-purple-200">
+              <div className="bg-purple-50 rounded-lg p-3 border border-purple-200">
                 <p className="text-xs font-medium text-purple-600 uppercase mb-1">Overhead</p>
                 <p className="text-lg font-bold text-purple-900">₹{formData.totalOverheadCost.toLocaleString()}</p>
               </div>
@@ -496,13 +496,13 @@ export default function EditCostingPage() {
           </div>
 
           {/* Overheads & Margins */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6 mb-6">
-            <div className="flex items-center space-x-3 mb-6">
+          <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
+            <div className="flex items-center space-x-3 mb-3">
               <Percent className="h-6 w-6 text-blue-600" />
               <h2 className="text-xl font-bold text-gray-900">Overheads & Profit Margin</h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Manufacturing Overhead (%)
@@ -555,8 +555,8 @@ export default function EditCostingPage() {
             </div>
 
             {/* Cost Summary */}
-            <div className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-lg p-6 border border-gray-200">
-              <div className="flex items-center space-x-3 mb-4">
+            <div className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-lg p-3 border border-gray-200">
+              <div className="flex items-center space-x-3 mb-2">
                 <Calculator className="h-6 w-6 text-blue-600" />
                 <h3 className="text-lg font-bold text-gray-900">Cost Calculation Summary</h3>
               </div>
@@ -595,7 +595,7 @@ export default function EditCostingPage() {
           </div>
 
           {/* Notes */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6 mb-6">
+          <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
             <label className="block text-sm font-medium text-gray-700 mb-2">Notes / Comments</label>
             <textarea
               value={formData.notes}
@@ -609,7 +609,7 @@ export default function EditCostingPage() {
       </div>
 
       {/* Fixed Footer */}
-      <div className="border-t border-gray-200 bg-white px-4 sm:px-6 lg:px-8 py-4 flex-shrink-0">
+      <div className="border-t border-gray-200 bg-white px-3 py-4 flex-shrink-0">
         <div className="flex items-center justify-between">
           <button
             onClick={handleCancel}

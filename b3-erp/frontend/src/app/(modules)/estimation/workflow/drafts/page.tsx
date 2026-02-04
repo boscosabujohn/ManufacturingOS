@@ -219,9 +219,9 @@ export default function EstimateWorkflowDraftsPage() {
   const nearComplete = drafts.filter(d => d.completionPercent >= 80).length
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Action Buttons */}
-      <div className="mb-6 flex justify-end">
+      <div className="mb-3 flex justify-end">
         <div className="flex items-center gap-3">
           <button
             onClick={handleNewDraft}
@@ -234,7 +234,7 @@ export default function EstimateWorkflowDraftsPage() {
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
         <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-5 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
@@ -283,11 +283,11 @@ export default function EstimateWorkflowDraftsPage() {
       </div>
 
       {/* Drafts Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {drafts.map((draft) => (
           <div key={draft.id} className="bg-white rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
             <div className="p-6">
-              <div className="flex items-start justify-between mb-4">
+              <div className="flex items-start justify-between mb-2">
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-2">
                     <span className="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs font-medium">
@@ -302,7 +302,7 @@ export default function EstimateWorkflowDraftsPage() {
                 </div>
               </div>
 
-              <div className="space-y-3 mb-4">
+              <div className="space-y-3 mb-2">
                 <div className="flex items-center gap-2 text-sm">
                   <User className="h-4 w-4 text-gray-400" />
                   <span className="text-gray-900 font-medium">{draft.customerName}</span>
@@ -323,7 +323,7 @@ export default function EstimateWorkflowDraftsPage() {
               </div>
 
               {/* Progress Bar */}
-              <div className="mb-4">
+              <div className="mb-2">
                 <div className="flex items-center justify-between text-xs text-gray-600 mb-1">
                   <span>Completion Progress</span>
                   <span className="font-semibold">{draft.completionPercent}%</span>
@@ -337,14 +337,14 @@ export default function EstimateWorkflowDraftsPage() {
               </div>
 
               {/* Notes */}
-              <div className="mb-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+              <div className="mb-2 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
                 <p className="text-xs text-gray-700">
                   <span className="font-semibold">Notes: </span>
                   {draft.notes}
                 </p>
               </div>
 
-              <div className="flex items-center gap-2 text-xs text-gray-600 mb-4">
+              <div className="flex items-center gap-2 text-xs text-gray-600 mb-2">
                 <User className="h-3 w-3" />
                 <span>Created by {draft.createdBy}</span>
               </div>

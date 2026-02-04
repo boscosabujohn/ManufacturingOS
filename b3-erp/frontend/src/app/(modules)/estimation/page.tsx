@@ -182,8 +182,8 @@ export default function EstimationDashboard() {
   }
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-teal-50 to-cyan-50 px-4 sm:px-6 lg:px-8 py-6">
-      <div className="w-full space-y-6">
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-teal-50 to-cyan-50 px-3 py-2">
+      <div className="w-full space-y-3">
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
@@ -197,7 +197,7 @@ export default function EstimationDashboard() {
         </div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
           <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-5 border border-blue-200 shadow-sm">
             <div className="flex items-center justify-between">
               <div>
@@ -244,7 +244,7 @@ export default function EstimationDashboard() {
         </div>
 
         {/* Main Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
           {/* Recent Estimates */}
           <div className="bg-white rounded-xl shadow-sm border border-gray-200">
             <div className="p-6 border-b border-gray-200">
@@ -257,7 +257,7 @@ export default function EstimationDashboard() {
               </div>
             </div>
             <div className="p-6">
-              <div className="space-y-4">
+              <div className="space-y-2">
                 {recentEstimates.map((estimate) => (
                   <div key={estimate.id} className="p-4 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
                     <div className="flex items-start justify-between mb-3">
@@ -303,7 +303,7 @@ export default function EstimationDashboard() {
               </div>
             </div>
             <div className="p-6">
-              <div className="space-y-4">
+              <div className="space-y-2">
                 {recentActivities.map((activity) => (
                   <div key={activity.id} className="flex items-start gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
                     <div className="p-2 bg-blue-100 rounded-full">
@@ -329,7 +329,7 @@ export default function EstimationDashboard() {
         </div>
 
         {/* Additional Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           <div className="bg-white rounded-lg p-5 border border-gray-200 shadow-sm">
             <div className="flex items-center justify-between">
               <div>

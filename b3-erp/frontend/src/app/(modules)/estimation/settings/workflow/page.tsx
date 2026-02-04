@@ -249,10 +249,10 @@ export default function EstimationSettingsWorkflowPage() {
   const escalationEnabled = workflowStages.filter(s => s.escalationEnabled).length
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Header */}
-      <div className="mb-6 flex items-center justify-between">
-        <div className="flex items-center gap-4">
+      <div className="mb-3 flex items-center justify-between">
+        <div className="flex items-center gap-2">
           <button
             onClick={() => router.back()}
             className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -281,7 +281,7 @@ export default function EstimationSettingsWorkflowPage() {
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
         <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-5 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
@@ -346,36 +346,36 @@ export default function EstimationSettingsWorkflowPage() {
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Order</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Stage</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Approver Role</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Approval Required</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Max Days</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Escalation</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions Allowed</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Edit</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Order</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Stage</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Approver Role</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Approval Required</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Max Days</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Escalation</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Actions Allowed</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Edit</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
               {workflowStages.sort((a, b) => a.stageOrder - b.stageOrder).map((stage) => (
                 <tr key={stage.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-bold">
                       {stage.stageOrder}
                     </span>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div>
                       <p className="font-medium text-gray-900 text-sm">{stage.stageName}</p>
                       <p className="text-xs text-gray-600 mt-1">{stage.stageCode}</p>
                       <p className="text-xs text-gray-600 mt-1">{stage.description}</p>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <p className="text-sm text-gray-900">{stage.approverRole}</p>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <span className={`px-2 py-1 rounded-full text-xs font-medium border ${
                       stage.approvalRequired
                         ? 'bg-orange-100 text-orange-700 border-orange-200'
@@ -384,13 +384,13 @@ export default function EstimationSettingsWorkflowPage() {
                       {stage.approvalRequired ? 'Yes' : 'No'}
                     </span>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <p className="text-sm font-medium text-gray-900">{stage.maxDaysInStage || '-'}</p>
                     {stage.maxDaysInStage > 0 && (
                       <p className="text-xs text-gray-600 mt-1">days</p>
                     )}
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     {stage.escalationEnabled ? (
                       <div>
                         <p className="text-sm text-orange-600 font-medium">After {stage.escalationDays} days</p>
@@ -400,7 +400,7 @@ export default function EstimationSettingsWorkflowPage() {
                       <span className="text-sm text-gray-600">-</span>
                     )}
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="flex flex-wrap gap-1">
                       {stage.allowReject && (
                         <span className="px-2 py-0.5 bg-red-100 text-red-700 rounded text-xs">Reject</span>
@@ -413,12 +413,12 @@ export default function EstimationSettingsWorkflowPage() {
                       )}
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <span className={`px-2 py-1 rounded-full text-xs font-medium border ${getStatusColor(stage.status)}`}>
                       {stage.status.toUpperCase()}
                     </span>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="flex items-center gap-2">
                       {editingId === stage.id ? (
                         <button

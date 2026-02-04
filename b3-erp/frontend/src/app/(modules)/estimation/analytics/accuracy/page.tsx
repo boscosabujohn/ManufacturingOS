@@ -198,9 +198,9 @@ export default function EstimationAnalyticsAccuracyPage() {
   ).toFixed(1)
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Action Buttons */}
-      <div className="mb-6 flex justify-end">
+      <div className="mb-3 flex justify-end">
         <div className="flex items-center gap-3">
           <button className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
             <Filter className="h-4 w-4" />
@@ -218,7 +218,7 @@ export default function EstimationAnalyticsAccuracyPage() {
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-2 mb-3">
         <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-5 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
@@ -276,10 +276,10 @@ export default function EstimationAnalyticsAccuracyPage() {
       </div>
 
       {/* Accuracy Breakdown */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 mb-6 p-6">
-        <h2 className="text-lg font-semibold text-gray-900 mb-4">Accuracy Distribution</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="border border-green-200 rounded-lg p-4 bg-green-50">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 mb-3 p-3">
+        <h2 className="text-lg font-semibold text-gray-900 mb-2">Accuracy Distribution</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+          <div className="border border-green-200 rounded-lg p-3 bg-green-50">
             <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-2">
                 <CheckCircle className="h-5 w-5 text-green-600" />
@@ -298,7 +298,7 @@ export default function EstimationAnalyticsAccuracyPage() {
             </p>
           </div>
 
-          <div className="border border-red-200 rounded-lg p-4 bg-red-50">
+          <div className="border border-red-200 rounded-lg p-3 bg-red-50">
             <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-2">
                 <AlertTriangle className="h-5 w-5 text-red-600" />
@@ -317,7 +317,7 @@ export default function EstimationAnalyticsAccuracyPage() {
             </p>
           </div>
 
-          <div className="border border-blue-200 rounded-lg p-4 bg-blue-50">
+          <div className="border border-blue-200 rounded-lg p-3 bg-blue-50">
             <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-2">
                 <TrendingDown className="h-5 w-5 text-blue-600" />
@@ -340,7 +340,7 @@ export default function EstimationAnalyticsAccuracyPage() {
 
       {/* Detailed Accuracy Data */}
       <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-        <div className="px-6 py-4 border-b border-gray-200">
+        <div className="px-3 py-2 border-b border-gray-200">
           <h2 className="text-lg font-semibold text-gray-900">Estimation vs Actual Cost Analysis</h2>
           <p className="text-sm text-gray-600 mt-1">Completed projects with cost comparison</p>
         </div>

@@ -304,10 +304,10 @@ export default function LaborCostingPage() {
   const totalMonthlyCost = laborRates.reduce((sum, l) => sum + (l.actualRate * l.headcount * l.avgHoursPerMonth), 0)
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Header */}
-      <div className="mb-6 flex items-center justify-between">
-        <div className="flex items-center gap-4">
+      <div className="mb-3 flex items-center justify-between">
+        <div className="flex items-center gap-2">
           <button
             onClick={() => router.back()}
             className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -332,7 +332,7 @@ export default function LaborCostingPage() {
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-2 mb-3">
         <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-5 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
@@ -390,12 +390,12 @@ export default function LaborCostingPage() {
       </div>
 
       {/* Department Summary */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-6">
+      <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-3">
         <div className="p-6 border-b border-gray-200">
           <h2 className="text-lg font-semibold text-gray-900">Department Summary</h2>
         </div>
         <div className="p-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
             {departmentStats.map((dept) => (
               <div key={dept.department} className="p-4 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
                 <div className="flex items-start justify-between mb-3">
@@ -448,53 +448,53 @@ export default function LaborCostingPage() {
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Skill</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Department</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Category</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Standard Rate</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actual Rate</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Variance</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Headcount</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Performance</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Skill</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Department</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Category</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Standard Rate</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Actual Rate</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Variance</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Headcount</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Performance</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
               {laborRates.map((labor) => (
                 <tr key={labor.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div>
                       <p className="font-medium text-gray-900 text-sm">{labor.skillName}</p>
                       <p className="text-xs text-gray-600 mt-1">{labor.skillCode}</p>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <p className="text-sm text-gray-900">{labor.department}</p>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <span className={`px-2 py-1 rounded-full text-xs font-medium border ${getCategoryColor(labor.category)}`}>
                       {labor.category.toUpperCase()}
                     </span>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <p className="text-sm font-medium text-gray-900">₹{labor.standardRate}/hr</p>
                     <p className="text-xs text-gray-600">OT: ₹{labor.overtimeRate}/hr</p>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <p className="text-sm font-medium text-gray-900">₹{labor.actualRate}/hr</p>
                     <p className="text-xs text-gray-600">{labor.avgHoursPerMonth} hrs/month</p>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <p className={`text-sm font-semibold ${getVarianceColor(labor.variancePercent)}`}>
                       {labor.variancePercent > 0 ? '+' : ''}{labor.variancePercent.toFixed(1)}%
                     </p>
                     <p className="text-xs text-gray-600">₹{labor.variance > 0 ? '+' : ''}{labor.variance}/hr</p>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <p className="text-sm font-medium text-gray-900">{labor.headcount}</p>
                     <p className="text-xs text-gray-600">workers</p>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="space-y-1">
                       <div className="flex items-center gap-2 text-xs">
                         <span className="text-gray-600">Eff:</span>
@@ -506,7 +506,7 @@ export default function LaborCostingPage() {
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <span className={`px-2 py-1 rounded-full text-xs font-medium border ${getStatusColor(labor.status)}`}>
                       {labor.status.toUpperCase().replace('-', ' ')}
                     </span>

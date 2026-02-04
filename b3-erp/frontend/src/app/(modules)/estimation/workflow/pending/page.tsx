@@ -240,9 +240,9 @@ export default function EstimateWorkflowPendingPage() {
   const overdue = pendingEstimates.filter(e => e.pendingDays >= 5).length
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Action Buttons */}
-      <div className="mb-6 flex justify-end">
+      <div className="mb-3 flex justify-end">
         <div className="flex items-center gap-3">
           <button
             onClick={handleExport}
@@ -255,7 +255,7 @@ export default function EstimateWorkflowPendingPage() {
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
         <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-5 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
@@ -320,33 +320,33 @@ export default function EstimateWorkflowPendingPage() {
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Estimate</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Customer</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Value</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Submitted</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Pending Days</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Pending With</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Priority</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Estimate</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Customer</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Value</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Submitted</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Pending Days</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Pending With</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Priority</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
               {pendingEstimates.map((estimate) => (
                 <tr key={estimate.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div>
                       <p className="font-medium text-gray-900 text-sm">{estimate.estimateNumber}</p>
                       <p className="text-sm text-gray-900 mt-1">{estimate.projectName}</p>
                       <p className="text-xs text-gray-600 mt-1">{estimate.category} • {estimate.items} items</p>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <p className="text-sm text-gray-900">{estimate.customerName}</p>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <p className="text-sm font-bold text-green-600">₹{(estimate.estimatedValue / 100000).toFixed(2)}L</p>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="flex items-center gap-1 text-sm text-gray-900">
                       <Calendar className="h-4 w-4 text-gray-400" />
                       <span>{estimate.submittedDate}</span>
@@ -354,7 +354,7 @@ export default function EstimateWorkflowPendingPage() {
                     <p className="text-xs text-gray-600 mt-1">{estimate.submittedTime}</p>
                     <p className="text-xs text-gray-600">by {estimate.submittedBy}</p>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="flex items-center gap-1">
                       <Clock className={`h-4 w-4 ${getPendingDaysColor(estimate.pendingDays)}`} />
                       <span className={`text-sm font-bold ${getPendingDaysColor(estimate.pendingDays)}`}>
@@ -362,18 +362,18 @@ export default function EstimateWorkflowPendingPage() {
                       </span>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div>
                       <p className="text-sm text-gray-900 font-medium">{estimate.pendingWith}</p>
                       <p className="text-xs text-gray-600 mt-1">{estimate.approvalLevel}</p>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <span className={`px-2 py-1 rounded-full text-xs font-medium border ${getPriorityColor(estimate.priority)}`}>
                       {estimate.priority.toUpperCase()}
                     </span>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="flex items-center gap-2">
                       <button
                         onClick={() => handleViewEstimate(estimate.id)}

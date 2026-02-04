@@ -50,9 +50,9 @@ export default function ScheduleReportByIdPage() {
 
   return (
     <div className="w-full h-full flex flex-col bg-gray-50">
-      <div className="flex-none bg-white border-b border-gray-200 px-6 py-4">
+      <div className="flex-none bg-white border-b border-gray-200 px-3 py-2">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
             <button
               onClick={handleBack}
               className="flex items-center gap-2 text-gray-600 hover:text-gray-900"
@@ -75,16 +75,16 @@ export default function ScheduleReportByIdPage() {
         </div>
       </div>
 
-      <div className="flex-1 overflow-auto p-6">
-        <div className="w-full space-y-6">
+      <div className="flex-1 overflow-auto p-3">
+        <div className="w-full space-y-3">
           {/* Report Details */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <h2 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <FileText className="w-5 h-5 text-blue-600" />
               Report Details
             </h2>
 
-            <div className="space-y-4">
+            <div className="space-y-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Report Name
@@ -116,13 +116,13 @@ export default function ScheduleReportByIdPage() {
           </div>
 
           {/* Schedule Configuration */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <h2 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <Calendar className="w-5 h-5 text-green-600" />
               Schedule Configuration
             </h2>
 
-            <div className="space-y-4">
+            <div className="space-y-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Frequency
@@ -193,13 +193,13 @@ export default function ScheduleReportByIdPage() {
           </div>
 
           {/* Recipients */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <h2 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
               <Mail className="w-5 h-5 text-purple-600" />
               Recipients
             </h2>
 
-            <div className="space-y-4">
+            <div className="space-y-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Email Addresses <span className="text-red-500">*</span>
@@ -229,8 +229,8 @@ export default function ScheduleReportByIdPage() {
           </div>
 
           {/* Summary */}
-          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-6 border border-blue-200">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Schedule Summary</h3>
+          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-3 border border-blue-200">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Schedule Summary</h3>
             <div className="space-y-2 text-sm">
               <div className="flex items-start gap-2">
                 <FileText className="w-4 h-4 text-blue-600 mt-0.5" />

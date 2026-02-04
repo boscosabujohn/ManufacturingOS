@@ -295,10 +295,10 @@ export default function SubcontractorsRatesPage() {
   const totalProjects = subcontractorRates.reduce((sum, s) => sum + s.projectsCompleted, 0)
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Header */}
-      <div className="mb-6 flex items-center justify-between">
-        <div className="flex items-center gap-4">
+      <div className="mb-3 flex items-center justify-between">
+        <div className="flex items-center gap-2">
           <button
             onClick={() => router.back()}
             className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -331,7 +331,7 @@ export default function SubcontractorsRatesPage() {
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
         <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-5 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
@@ -396,21 +396,21 @@ export default function SubcontractorsRatesPage() {
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Subcontractor</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Service Type</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Rate</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Rating</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Projects</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Contact</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Terms</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Subcontractor</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Service Type</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Rate</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Rating</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Projects</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Contact</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Terms</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
               {subcontractorRates.map((subcontractor) => (
                 <tr key={subcontractor.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div>
                       <p className="font-medium text-gray-900 text-sm">{subcontractor.contractorName}</p>
                       <p className="text-xs text-gray-600 mt-1">{subcontractor.contractorCode}</p>
@@ -423,10 +423,10 @@ export default function SubcontractorsRatesPage() {
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <p className="text-sm text-gray-900">{subcontractor.serviceType}</p>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     {editingId === subcontractor.id ? (
                       <div className="flex items-center gap-2">
                         <input
@@ -444,7 +444,7 @@ export default function SubcontractorsRatesPage() {
                       </div>
                     )}
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="flex items-center gap-1">
                       <Star className={`h-4 w-4 ${getRatingColor(subcontractor.rating)} fill-current`} />
                       <span className={`text-sm font-bold ${getRatingColor(subcontractor.rating)}`}>
@@ -452,11 +452,11 @@ export default function SubcontractorsRatesPage() {
                       </span>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <p className="text-sm font-medium text-gray-900">{subcontractor.projectsCompleted}</p>
                     <p className="text-xs text-gray-600">completed</p>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="space-y-1">
                       <p className="text-sm text-gray-900">{subcontractor.contactPerson}</p>
                       <div className="flex items-center gap-1 text-xs text-gray-600">
@@ -469,18 +469,18 @@ export default function SubcontractorsRatesPage() {
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div>
                       <p className="text-sm text-gray-900">{subcontractor.paymentTerms}</p>
                       <p className="text-xs text-gray-600 mt-1">{subcontractor.leadTime} days lead</p>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <span className={`px-2 py-1 rounded-full text-xs font-medium border ${getStatusColor(subcontractor.status)}`}>
                       {subcontractor.status.toUpperCase()}
                     </span>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="flex items-center gap-2">
                       {editingId === subcontractor.id ? (
                         <button

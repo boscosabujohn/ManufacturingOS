@@ -220,21 +220,21 @@ export default function EditPricingPage() {
     : formData.priceItems.filter(item => item.category === selectedCategory);
 
   return (
-    <div className="w-full min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
+    <div className="w-full min-h-screen bg-gray-50 px-3 py-2">
       <form onSubmit={handleSubmit}>
         {/* Header */}
-        <div className="mb-6">
+        <div className="mb-3">
           <button
             type="button"
             onClick={() => router.push('/estimation/pricing')}
-            className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-4"
+            className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-2"
           >
             <ArrowLeft className="h-5 w-5" />
             <span className="font-medium">Back to Price Lists</span>
           </button>
 
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <div className="flex items-center justify-between mb-6">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <div className="flex items-center justify-between mb-3">
               <div className="flex items-center space-x-4">
                 <div className="h-16 w-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center">
                   <DollarSign className="h-8 w-8 text-white" />
@@ -267,13 +267,13 @@ export default function EditPricingPage() {
         </div>
 
         {/* Price List Header Form */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6 mb-6">
-          <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
+        <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
+          <h2 className="text-xl font-bold text-gray-900 mb-3 flex items-center">
             <FileText className="h-6 w-6 mr-2 text-blue-600" />
             Price List Information
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
             {/* Price List Name */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -397,8 +397,8 @@ export default function EditPricingPage() {
         </div>
 
         {/* Price Items Section */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6 mb-6">
-          <div className="flex items-center justify-between mb-6">
+        <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
+          <div className="flex items-center justify-between mb-3">
             <h2 className="text-xl font-bold text-gray-900 flex items-center">
               <Package className="h-6 w-6 mr-2 text-blue-600" />
               Price Items ({formData.priceItems.length})
@@ -423,12 +423,12 @@ export default function EditPricingPage() {
           </div>
 
           {/* Bulk Actions */}
-          <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-lg p-4 mb-6 border border-blue-200">
+          <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-lg p-3 mb-3 border border-blue-200">
             <h3 className="text-sm font-bold text-gray-900 mb-3 flex items-center">
               <TrendingUp className="h-4 w-4 mr-2 text-blue-600" />
               Bulk Actions
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
               {/* Category Filter */}
               <div>
                 <label className="block text-xs font-medium text-gray-700 mb-1">
@@ -597,16 +597,16 @@ export default function EditPricingPage() {
 
           {filteredItems.length === 0 && (
             <div className="text-center py-12">
-              <Package className="h-12 w-12 text-gray-400 mb-4" />
+              <Package className="h-12 w-12 text-gray-400 mb-2" />
               <p className="text-gray-600">No items in this category</p>
             </div>
           )}
         </div>
 
         {/* Summary Card */}
-        <div className="bg-gradient-to-br from-blue-50 to-green-50 rounded-lg border border-blue-200 p-6 mb-6">
-          <h2 className="text-lg font-bold text-gray-900 mb-4">Price List Summary</h2>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="bg-gradient-to-br from-blue-50 to-green-50 rounded-lg border border-blue-200 p-3 mb-3">
+          <h2 className="text-lg font-bold text-gray-900 mb-2">Price List Summary</h2>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
             <div>
               <p className="text-xs font-medium text-gray-600 uppercase mb-1">Total Items</p>
               <p className="text-2xl font-bold text-blue-900">{formData.priceItems.length}</p>
@@ -641,7 +641,7 @@ export default function EditPricingPage() {
           <button
             type="button"
             onClick={() => router.push('/estimation/pricing')}
-            className="px-6 py-3 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors font-medium"
+            className="px-3 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors font-medium"
           >
             Cancel
           </button>

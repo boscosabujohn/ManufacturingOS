@@ -180,10 +180,10 @@ export default function BOQComparisonPage() {
   })
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Inline Header */}
-      <div className="flex items-center justify-between mb-6">
-        <div className="flex items-center gap-4">
+      <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center gap-2">
           <button
             onClick={() => router.back()}
             className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -198,7 +198,7 @@ export default function BOQComparisonPage() {
       </div>
 
       {/* Project Name */}
-      <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg p-6 text-white mb-6 shadow-lg">
+      <div className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg p-3 text-white mb-3 shadow-lg">
         <div className="flex items-center gap-3">
           <GitCompare className="h-8 w-8" />
           <div>
@@ -209,7 +209,7 @@ export default function BOQComparisonPage() {
       </div>
 
       {/* Quick Insights */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-3">
         <div className="bg-green-50 rounded-lg p-5 border-2 border-green-200">
           <div className="flex items-center gap-3 mb-3">
             <DollarSign className="h-6 w-6 text-green-600" />
@@ -242,7 +242,7 @@ export default function BOQComparisonPage() {
       </div>
 
       {/* Comparison Table */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden mb-6">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden mb-3">
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
@@ -366,11 +366,11 @@ export default function BOQComparisonPage() {
       </div>
 
       {/* Item-wise Comparison */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-        <h2 className="text-lg font-semibold text-gray-900 mb-4">Item-wise Rate Comparison</h2>
-        <div className="space-y-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
+        <h2 className="text-lg font-semibold text-gray-900 mb-2">Item-wise Rate Comparison</h2>
+        <div className="space-y-2">
           {selectedData.versions[0].items.map((item, index) => (
-            <div key={index} className="border border-gray-200 rounded-lg p-4">
+            <div key={index} className="border border-gray-200 rounded-lg p-3">
               <h3 className="font-semibold text-gray-900 mb-3">{item.itemName}</h3>
               <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
                 {selectedData.versions.map((version) => {
@@ -398,14 +398,14 @@ export default function BOQComparisonPage() {
       </div>
 
       {/* Recommendations */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-green-50 rounded-lg p-6 border-2 border-green-200">
-          <div className="flex items-center gap-3 mb-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        <div className="bg-green-50 rounded-lg p-3 border-2 border-green-200">
+          <div className="flex items-center gap-3 mb-2">
             <CheckCircle className="h-6 w-6 text-green-600" />
             <h3 className="font-bold text-green-900">Recommended Choice</h3>
           </div>
           <p className="text-lg font-semibold text-green-900 mb-2">{bestValueVersion.versionName}</p>
-          <p className="text-sm text-green-700 mb-4">{bestValueVersion.notes}</p>
+          <p className="text-sm text-green-700 mb-2">{bestValueVersion.notes}</p>
           <div className="space-y-2 text-sm">
             <div className="flex justify-between">
               <span className="text-green-700">Cost:</span>
@@ -422,8 +422,8 @@ export default function BOQComparisonPage() {
           </div>
         </div>
 
-        <div className="bg-orange-50 rounded-lg p-6 border-2 border-orange-200">
-          <div className="flex items-center gap-3 mb-4">
+        <div className="bg-orange-50 rounded-lg p-3 border-2 border-orange-200">
+          <div className="flex items-center gap-3 mb-2">
             <AlertTriangle className="h-6 w-6 text-orange-600" />
             <h3 className="font-bold text-orange-900">Key Considerations</h3>
           </div>

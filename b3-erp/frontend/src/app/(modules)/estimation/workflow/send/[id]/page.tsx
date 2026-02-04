@@ -62,9 +62,9 @@ Estimation Team`)
 
   return (
     <div className="w-full h-full flex flex-col bg-gray-50">
-      <div className="flex-none bg-white border-b border-gray-200 px-6 py-4">
+      <div className="flex-none bg-white border-b border-gray-200 px-3 py-2">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
             <button
               onClick={handleCancel}
               className="flex items-center gap-2 text-gray-600 hover:text-gray-900"
@@ -87,18 +87,18 @@ Estimation Team`)
         </div>
       </div>
 
-      <div className="flex-1 overflow-auto p-6">
-        <div className="grid grid-cols-3 gap-6">
+      <div className="flex-1 overflow-auto p-3">
+        <div className="grid grid-cols-3 gap-3">
           {/* Main Content */}
-          <div className="col-span-2 space-y-6">
+          <div className="col-span-2 space-y-3">
             {/* Estimate Summary */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+            <div className="bg-white rounded-lg border border-gray-200 p-3">
+              <h2 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                 <FileText className="w-5 h-5 text-blue-600" />
                 Estimate Summary
               </h2>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <p className="text-sm text-gray-500 mb-1">Project Name</p>
                   <p className="font-medium text-gray-900">{draftData.projectName}</p>
@@ -129,10 +129,10 @@ Estimation Team`)
             </div>
 
             {/* Delivery Method */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4">Delivery Method</h2>
+            <div className="bg-white rounded-lg border border-gray-200 p-3">
+              <h2 className="text-lg font-semibold text-gray-900 mb-2">Delivery Method</h2>
 
-              <div className="grid grid-cols-2 gap-4 mb-4">
+              <div className="grid grid-cols-2 gap-2 mb-2">
                 <button
                   onClick={() => setSendMethod('email')}
                   className={`p-4 rounded-lg border-2 transition-all ${
@@ -161,7 +161,7 @@ Estimation Team`)
               </div>
 
               {sendMethod === 'email' ? (
-                <div className="space-y-4">
+                <div className="space-y-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Recipient Email <span className="text-red-500">*</span>
@@ -199,7 +199,7 @@ Estimation Team`)
                   </div>
                 </div>
               ) : (
-                <div className="space-y-4">
+                <div className="space-y-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Recipient Phone <span className="text-red-500">*</span>
@@ -230,8 +230,8 @@ Estimation Team`)
             </div>
 
             {/* Additional Options */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4">Additional Options</h2>
+            <div className="bg-white rounded-lg border border-gray-200 p-3">
+              <h2 className="text-lg font-semibold text-gray-900 mb-2">Additional Options</h2>
 
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
@@ -280,10 +280,10 @@ Estimation Team`)
           </div>
 
           {/* Sidebar */}
-          <div className="col-span-1 space-y-6">
+          <div className="col-span-1 space-y-3">
             {/* Checklist */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6 sticky top-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Pre-send Checklist</h3>
+            <div className="bg-white rounded-lg border border-gray-200 p-3 sticky top-6">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Pre-send Checklist</h3>
 
               <div className="space-y-3">
                 <div className="flex items-start gap-3">

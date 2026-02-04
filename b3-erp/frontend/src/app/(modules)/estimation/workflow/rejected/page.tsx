@@ -202,9 +202,9 @@ export default function EstimateWorkflowRejectedPage() {
   ]
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Action Buttons */}
-      <div className="mb-6 flex justify-end">
+      <div className="mb-3 flex justify-end">
         <div className="flex items-center gap-3">
           <button className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
             <Filter className="h-4 w-4" />
@@ -218,7 +218,7 @@ export default function EstimateWorkflowRejectedPage() {
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
         <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-5 border border-red-200">
           <div className="flex items-center justify-between">
             <div>
@@ -265,12 +265,12 @@ export default function EstimateWorkflowRejectedPage() {
       </div>
 
       {/* Rejection Reasons Summary */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-6">
+      <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-3">
         <div className="p-6 border-b border-gray-200">
           <h2 className="text-lg font-semibold text-gray-900">Rejection Reasons Breakdown</h2>
         </div>
         <div className="p-6">
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
             {rejectionStats.map((stat) => (
               <div key={stat.category} className="p-4 rounded-lg border border-gray-200 text-center">
                 <span className={`px-3 py-1 rounded-full text-xs font-medium border ${getCategoryColor(stat.category)}`}>
@@ -303,19 +303,19 @@ export default function EstimateWorkflowRejectedPage() {
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Estimate</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Customer</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Value</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Rejected</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Reason Category</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Rejection Reason</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Estimate</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Customer</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Value</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Rejected</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Reason Category</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Rejection Reason</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
               {rejectedEstimates.map((estimate) => (
                 <tr key={estimate.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div>
                       <p className="font-medium text-gray-900 text-sm">{estimate.estimateNumber}</p>
                       <p className="text-sm text-gray-900 mt-1">{estimate.projectName}</p>
@@ -328,28 +328,28 @@ export default function EstimateWorkflowRejectedPage() {
                       )}
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <p className="text-sm text-gray-900">{estimate.customerName}</p>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <p className="text-sm font-bold text-gray-600">₹{(estimate.estimatedValue / 100000).toFixed(2)}L</p>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="flex items-center gap-1 text-sm text-gray-900">
                       <XCircle className="h-4 w-4 text-red-500" />
                       <span>{estimate.rejectedDate}</span>
                     </div>
                     <p className="text-xs text-gray-600 mt-1">by {estimate.rejectedBy}</p>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <span className={`px-2 py-1 rounded-full text-xs font-medium border ${getCategoryColor(estimate.rejectionCategory)}`}>
                       {estimate.rejectionCategory.toUpperCase()}
                     </span>
                   </td>
-                  <td className="px-6 py-4 max-w-xs">
+                  <td className="px-3 py-2 max-w-xs">
                     <p className="text-sm text-gray-700 line-clamp-2">{estimate.rejectionReason}</p>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="flex items-center gap-2">
                       <button className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg">
                         <Eye className="h-4 w-4" />

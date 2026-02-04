@@ -103,9 +103,9 @@ export default function EstimateCommentsPage() {
 
   return (
     <div className="w-full h-full flex flex-col bg-gray-50">
-      <div className="flex-none bg-white border-b border-gray-200 px-6 py-4">
+      <div className="flex-none bg-white border-b border-gray-200 px-3 py-2">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
             <button
               onClick={handleBack}
               className="flex items-center gap-2 text-gray-600 hover:text-gray-900"
@@ -125,13 +125,13 @@ export default function EstimateCommentsPage() {
         </div>
       </div>
 
-      <div className="flex-1 overflow-auto p-6">
+      <div className="flex-1 overflow-auto p-3">
         <div className="w-full">
-          <div className="grid grid-cols-3 gap-6">
+          <div className="grid grid-cols-3 gap-3">
             {/* Main Content - Comments Thread */}
-            <div className="col-span-2 space-y-6">
+            <div className="col-span-2 space-y-3">
               {/* Estimate Summary */}
-              <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+              <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-sm font-medium text-blue-600">Estimate Details</p>
@@ -145,7 +145,7 @@ export default function EstimateCommentsPage() {
               </div>
 
               {/* Comments List */}
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <h2 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
                   <MessageSquare className="w-5 h-5 text-blue-600" />
                   Discussion Thread ({comments.length})
@@ -154,7 +154,7 @@ export default function EstimateCommentsPage() {
                 {comments.map((comment) => (
                   <div
                     key={comment.id}
-                    className={`rounded-lg border p-4 ${getCommentTypeColor(comment.type)}`}
+                    className={`rounded-lg border p-3 ${getCommentTypeColor(comment.type)}`}
                   >
                     <div className="flex items-start justify-between mb-3">
                       <div className="flex items-center gap-3">
@@ -182,10 +182,10 @@ export default function EstimateCommentsPage() {
               </div>
 
               {/* Add Comment Form */}
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h3 className="text-base font-semibold text-gray-900 mb-4">Add Comment</h3>
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <h3 className="text-base font-semibold text-gray-900 mb-2">Add Comment</h3>
 
-                <div className="space-y-4">
+                <div className="space-y-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Your Comment
@@ -214,10 +214,10 @@ export default function EstimateCommentsPage() {
 
             {/* Sidebar - Activity Summary */}
             <div className="col-span-1">
-              <div className="bg-white rounded-lg border border-gray-200 p-6 sticky top-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Activity Summary</h3>
+              <div className="bg-white rounded-lg border border-gray-200 p-3 sticky top-6">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Activity Summary</h3>
 
-                <div className="space-y-4">
+                <div className="space-y-2">
                   <div>
                     <p className="text-sm text-gray-500 mb-1">Total Comments</p>
                     <p className="text-2xl font-bold text-blue-600">{comments.length}</p>

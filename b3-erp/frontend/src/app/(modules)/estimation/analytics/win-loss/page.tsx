@@ -170,9 +170,9 @@ export default function EstimationAnalyticsWinLossPage() {
   const totalLostValue = winLossData.reduce((sum, d) => sum + d.totalLostValue, 0)
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Action Buttons */}
-      <div className="mb-6 flex justify-end">
+      <div className="mb-3 flex justify-end">
         <div className="flex items-center gap-3">
           <button className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
             <Filter className="h-4 w-4" />
@@ -190,7 +190,7 @@ export default function EstimationAnalyticsWinLossPage() {
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
         <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-5 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
@@ -237,8 +237,8 @@ export default function EstimationAnalyticsWinLossPage() {
       </div>
 
       {/* Win/Loss by Category */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 mb-6">
-        <div className="px-6 py-4 border-b border-gray-200">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 mb-3">
+        <div className="px-3 py-2 border-b border-gray-200">
           <h2 className="text-lg font-semibold text-gray-900">Win/Loss Analysis by Category</h2>
           <p className="text-sm text-gray-600 mt-1">Performance metrics across kitchen categories</p>
         </div>
@@ -328,16 +328,16 @@ export default function EstimationAnalyticsWinLossPage() {
       </div>
 
       {/* Loss Reasons Analysis */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         <div className="bg-white rounded-lg shadow-sm border border-gray-200">
-          <div className="px-6 py-4 border-b border-gray-200">
+          <div className="px-3 py-2 border-b border-gray-200">
             <h2 className="text-lg font-semibold text-gray-900">Top Loss Reasons</h2>
             <p className="text-sm text-gray-600 mt-1">Why estimates were not converted</p>
           </div>
           <div className="p-6">
-            <div className="space-y-4">
+            <div className="space-y-2">
               {lossReasons.map((reason, index) => (
-                <div key={reason.reason} className="flex items-center gap-4">
+                <div key={reason.reason} className="flex items-center gap-2">
                   <div className="flex-shrink-0 w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
                     <span className="text-sm font-bold text-red-600">{index + 1}</span>
                   </div>
@@ -364,7 +364,7 @@ export default function EstimationAnalyticsWinLossPage() {
         </div>
 
         <div className="bg-white rounded-lg shadow-sm border border-gray-200">
-          <div className="px-6 py-4 border-b border-gray-200">
+          <div className="px-3 py-2 border-b border-gray-200">
             <h2 className="text-lg font-semibold text-gray-900">Win Rate Trends</h2>
             <p className="text-sm text-gray-600 mt-1">Monthly performance over time</p>
           </div>
@@ -373,7 +373,7 @@ export default function EstimationAnalyticsWinLossPage() {
               {['October 2025', 'September 2025', 'August 2025', 'July 2025', 'June 2025', 'May 2025'].map((month, index) => {
                 const rate = 72 - index * 2 + Math.random() * 4
                 return (
-                  <div key={month} className="flex items-center gap-4">
+                  <div key={month} className="flex items-center gap-2">
                     <span className="text-sm font-medium text-gray-700 w-32">{month}</span>
                     <div className="flex-1">
                       <div className="w-full bg-gray-200 rounded-full h-3">

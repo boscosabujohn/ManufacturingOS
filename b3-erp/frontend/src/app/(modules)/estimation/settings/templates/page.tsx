@@ -218,10 +218,10 @@ export default function EstimationSettingsTemplatesPage() {
   const totalUsage = templates.reduce((sum, t) => sum + t.usageCount, 0)
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Header */}
-      <div className="mb-6 flex items-center justify-between">
-        <div className="flex items-center gap-4">
+      <div className="mb-3 flex items-center justify-between">
+        <div className="flex items-center gap-2">
           <button
             onClick={() => router.back()}
             className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -250,7 +250,7 @@ export default function EstimationSettingsTemplatesPage() {
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
         <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-5 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
@@ -297,11 +297,11 @@ export default function EstimationSettingsTemplatesPage() {
       </div>
 
       {/* Templates Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {templates.map((template) => (
           <div key={template.id} className="bg-white rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
             <div className="p-6">
-              <div className="flex items-start justify-between mb-4">
+              <div className="flex items-start justify-between mb-2">
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-2">
                     <span className="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs font-medium">
@@ -319,9 +319,9 @@ export default function EstimationSettingsTemplatesPage() {
                 </div>
               </div>
 
-              <p className="text-sm text-gray-700 mb-4">{template.description}</p>
+              <p className="text-sm text-gray-700 mb-2">{template.description}</p>
 
-              <div className="grid grid-cols-2 gap-4 mb-4">
+              <div className="grid grid-cols-2 gap-2 mb-2">
                 <div className="p-3 bg-blue-50 rounded-lg">
                   <p className="text-xs text-blue-600 mb-1">Sections</p>
                   <p className="text-lg font-bold text-blue-900">{template.sections}</p>
@@ -340,7 +340,7 @@ export default function EstimationSettingsTemplatesPage() {
                 </div>
               </div>
 
-              <div className="text-xs text-gray-600 mb-4 space-y-1">
+              <div className="text-xs text-gray-600 mb-2 space-y-1">
                 <p>Created by {template.createdBy} on {template.createdDate}</p>
                 <p>Last used: {template.lastUsed}</p>
               </div>

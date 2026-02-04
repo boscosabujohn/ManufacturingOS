@@ -125,9 +125,9 @@ export default function CustomReportPage() {
 
   return (
     <div className="w-full h-full flex flex-col bg-gray-50">
-      <div className="flex-none bg-white border-b border-gray-200 px-6 py-4">
+      <div className="flex-none bg-white border-b border-gray-200 px-3 py-2">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
             <button
               onClick={handleBack}
               className="flex items-center gap-2 text-gray-600 hover:text-gray-900"
@@ -150,18 +150,18 @@ export default function CustomReportPage() {
         </div>
       </div>
 
-      <div className="flex-1 overflow-auto p-6">
-        <div className="grid grid-cols-3 gap-6">
+      <div className="flex-1 overflow-auto p-3">
+        <div className="grid grid-cols-3 gap-3">
           {/* Left Column - Configuration */}
-          <div className="col-span-2 space-y-6">
+          <div className="col-span-2 space-y-3">
             {/* Basic Information */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+            <div className="bg-white rounded-lg border border-gray-200 p-3">
+              <h2 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                 <FileText className="w-5 h-5 text-blue-600" />
                 Report Information
               </h2>
 
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Report Name <span className="text-red-500">*</span>
@@ -191,13 +191,13 @@ export default function CustomReportPage() {
             </div>
 
             {/* Date Range */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+            <div className="bg-white rounded-lg border border-gray-200 p-3">
+              <h2 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                 <Calendar className="w-5 h-5 text-green-600" />
                 Date Range
               </h2>
 
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Time Period
@@ -220,7 +220,7 @@ export default function CustomReportPage() {
                 </div>
 
                 {dateRange === 'custom' && (
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Start Date
@@ -249,12 +249,12 @@ export default function CustomReportPage() {
             </div>
 
             {/* Metrics Selection */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4">
+            <div className="bg-white rounded-lg border border-gray-200 p-3">
+              <h2 className="text-lg font-semibold text-gray-900 mb-2">
                 Select Metrics <span className="text-red-500">*</span>
               </h2>
 
-              <div className="space-y-4">
+              <div className="space-y-2">
                 {Object.entries(metricsByCategory).map(([category, metrics]) => (
                   <div key={category}>
                     <h3 className="text-sm font-semibold text-gray-700 mb-2">{category}</h3>
@@ -284,8 +284,8 @@ export default function CustomReportPage() {
             </div>
 
             {/* Filters */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+            <div className="bg-white rounded-lg border border-gray-200 p-3">
+              <h2 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                 <Filter className="w-5 h-5 text-purple-600" />
                 Apply Filters
               </h2>
@@ -318,8 +318,8 @@ export default function CustomReportPage() {
             </div>
 
             {/* Group By */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4">
+            <div className="bg-white rounded-lg border border-gray-200 p-3">
+              <h2 className="text-lg font-semibold text-gray-900 mb-2">
                 Group Results By
               </h2>
 
@@ -342,11 +342,11 @@ export default function CustomReportPage() {
           </div>
 
           {/* Right Column - Preview & Options */}
-          <div className="space-y-6">
-            <div className="bg-white rounded-lg border border-gray-200 p-6 sticky top-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Output Options</h3>
+          <div className="space-y-3">
+            <div className="bg-white rounded-lg border border-gray-200 p-3 sticky top-6">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Output Options</h3>
 
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Format

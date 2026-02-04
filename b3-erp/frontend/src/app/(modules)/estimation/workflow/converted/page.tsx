@@ -251,9 +251,9 @@ export default function EstimateWorkflowConvertedPage() {
   const conversionRate = ((totalOrderValue - totalEstimatedValue) / totalEstimatedValue) * 100
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Action Buttons */}
-      <div className="mb-6 flex justify-end">
+      <div className="mb-3 flex justify-end">
         <div className="flex items-center gap-3">
           <button className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
             <Filter className="h-4 w-4" />
@@ -267,7 +267,7 @@ export default function EstimateWorkflowConvertedPage() {
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
         <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-5 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
@@ -334,20 +334,20 @@ export default function EstimateWorkflowConvertedPage() {
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Estimate → Order</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Customer</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Estimate Value</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Order Value</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Variance</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Conversion</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Estimate → Order</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Customer</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Estimate Value</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Order Value</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Variance</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Conversion</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
               {convertedEstimates.map((estimate) => (
                 <tr key={estimate.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div>
                       <div className="flex items-center gap-2">
                         <p className="font-medium text-blue-600 text-sm">{estimate.estimateNumber}</p>
@@ -358,19 +358,19 @@ export default function EstimateWorkflowConvertedPage() {
                       <p className="text-xs text-gray-600 mt-1">{estimate.category} • {estimate.items} items</p>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div>
                       <p className="text-sm font-medium text-gray-900">{estimate.customerName}</p>
                       <p className="text-xs text-gray-600 mt-1">{estimate.contactPerson}</p>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <p className="text-sm font-medium text-gray-600">₹{(estimate.estimatedValue / 100000).toFixed(2)}L</p>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <p className="text-sm font-bold text-green-600">₹{(estimate.finalOrderValue / 100000).toFixed(2)}L</p>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div>
                       <p className={`text-sm font-semibold ${getVarianceColor(estimate.variance)}`}>
                         {estimate.variance > 0 ? '+' : ''}₹{(Math.abs(estimate.variance) / 1000).toFixed(0)}K
@@ -380,19 +380,19 @@ export default function EstimateWorkflowConvertedPage() {
                       </p>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="flex items-center gap-1 text-sm">
                       <Calendar className="h-4 w-4 text-gray-400" />
                       <span className="text-gray-900">{estimate.conversionTime} days</span>
                     </div>
                     <p className="text-xs text-gray-600 mt-1">{estimate.convertedDate}</p>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <span className={`px-2 py-1 rounded-full text-xs font-medium border ${getStatusColor(estimate.status)}`}>
                       {estimate.status.toUpperCase().replace('-', ' ')}
                     </span>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="flex items-center gap-2">
                       <button className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg">
                         <Eye className="h-4 w-4" />

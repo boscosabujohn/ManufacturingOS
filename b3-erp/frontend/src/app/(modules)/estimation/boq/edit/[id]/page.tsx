@@ -214,9 +214,9 @@ export default function EditBOQPage() {
   return (
     <div className="w-full h-screen flex flex-col bg-gray-50">
       <div className="flex-1 overflow-y-auto">
-        <div className="px-4 sm:px-6 lg:px-8 py-6">
+        <div className="px-3 py-2">
           {/* Header */}
-          <div className="mb-6 flex items-center justify-between">
+          <div className="mb-3 flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <button
                 onClick={() => router.back()}
@@ -232,13 +232,13 @@ export default function EditBOQPage() {
           </div>
 
           {/* Basic Information */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6 mb-6">
-            <div className="flex items-center space-x-3 mb-6">
+          <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
+            <div className="flex items-center space-x-3 mb-3">
               <Building2 className="h-6 w-6 text-blue-600" />
               <h2 className="text-xl font-bold text-gray-900">Basic Information</h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   BOQ Number <span className="text-red-500">*</span>
@@ -364,8 +364,8 @@ export default function EditBOQPage() {
           </div>
 
           {/* BOQ Items */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6 mb-6">
-            <div className="flex items-center justify-between mb-6">
+          <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
+            <div className="flex items-center justify-between mb-3">
               <div className="flex items-center space-x-3">
                 <Package className="h-6 w-6 text-blue-600" />
                 <h2 className="text-xl font-bold text-gray-900">BOQ Items</h2>
@@ -380,7 +380,7 @@ export default function EditBOQPage() {
             </div>
 
             {errors.items && (
-              <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg flex items-start space-x-2">
+              <div className="mb-2 p-3 bg-red-50 border border-red-200 rounded-lg flex items-start space-x-2">
                 <AlertCircle className="h-5 w-5 text-red-600 mt-0.5" />
                 <p className="text-sm text-red-600">{errors.items}</p>
               </div>
@@ -525,7 +525,7 @@ export default function EditBOQPage() {
       </div>
 
       {/* Fixed Footer */}
-      <div className="border-t border-gray-200 bg-white px-4 sm:px-6 lg:px-8 py-4 flex-shrink-0">
+      <div className="border-t border-gray-200 bg-white px-3 py-4 flex-shrink-0">
         <div className="flex items-center justify-between">
           <button
             onClick={handleCancel}

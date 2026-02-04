@@ -184,11 +184,11 @@ export default function PricingPage() {
   };
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Stats */}
-      <div className="mb-6 flex items-start gap-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 flex-1">
-          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+      <div className="mb-3 flex items-start gap-2">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2 flex-1">
+          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-blue-600">Total Price Lists</p>
@@ -198,7 +198,7 @@ export default function PricingPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+          <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-green-600">Active Lists</p>
@@ -208,7 +208,7 @@ export default function PricingPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+          <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-purple-600">Total Products</p>
@@ -218,7 +218,7 @@ export default function PricingPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
+          <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-yellow-600">Avg Margin</p>
@@ -239,7 +239,7 @@ export default function PricingPage() {
       </div>
 
       {/* Filters */}
-      <div className="flex gap-4 mb-6">
+      <div className="flex gap-2 mb-3">
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
           <input
@@ -284,15 +284,15 @@ export default function PricingPage() {
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Price List</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Type</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Segment</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Products</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Effective Period</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Margin</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Last Updated</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Price List</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Type</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Segment</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Products</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Effective Period</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Margin</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Last Updated</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
@@ -302,7 +302,7 @@ export default function PricingPage() {
 
                 return (
                   <tr key={pl.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="flex items-start space-x-3">
                         <div className="h-10 w-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center flex-shrink-0">
                           <DollarSign className="h-5 w-5 text-white" />
@@ -314,22 +314,22 @@ export default function PricingPage() {
                         </div>
                       </div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <span className={`px-2.5 py-1 text-xs font-semibold rounded-full ${priceTypeColors[pl.priceType]}`}>
                         {priceTypeLabels[pl.priceType]}
                       </span>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="font-medium text-gray-900">{pl.customerSegment}</div>
                       <div className="text-sm text-gray-500">{pl.currency}</div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="flex items-center space-x-1">
                         <Package className="h-4 w-4 text-gray-400" />
                         <span className="font-semibold text-gray-900">{pl.totalItems}</span>
                       </div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="space-y-1">
                         <div className="flex items-center text-xs text-gray-600">
                           <Calendar className="h-3 w-3 mr-1" />
@@ -341,7 +341,7 @@ export default function PricingPage() {
                         </div>
                       </div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="flex items-center space-x-1">
                         <Percent className={`h-4 w-4 ${getMarginColor(pl.averageMargin)}`} />
                         <span className={`text-lg font-bold ${getMarginColor(pl.averageMargin)}`}>
@@ -349,16 +349,16 @@ export default function PricingPage() {
                         </span>
                       </div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <span className={`px-3 py-1 text-xs font-semibold rounded-full ${statusColors[pl.status]}`}>
                         {statusLabels[pl.status]}
                       </span>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="text-sm text-gray-900">{pl.lastUpdated}</div>
                       <div className="text-xs text-gray-500">By {pl.updatedBy}</div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="flex items-center space-x-1">
                         <button
                           onClick={() => router.push(`/estimation/pricing/view/${pl.id}`)}
@@ -394,7 +394,7 @@ export default function PricingPage() {
         </div>
 
         {/* Pagination */}
-        <div className="px-6 py-4 border-t border-gray-200 flex items-center justify-between">
+        <div className="px-3 py-2 border-t border-gray-200 flex items-center justify-between">
           <div className="text-sm text-gray-700">
             Showing {startIndex + 1} to {Math.min(startIndex + itemsPerPage, filteredPriceLists.length)} of{' '}
             {filteredPriceLists.length} items

@@ -232,9 +232,9 @@ export default function EstimationAnalyticsReportsPage() {
   ]
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Action Buttons */}
-      <div className="mb-6 flex justify-end">
+      <div className="mb-3 flex justify-end">
         <div className="flex items-center gap-3">
           <button
             onClick={handleScheduleRecurring}
@@ -252,7 +252,7 @@ export default function EstimationAnalyticsReportsPage() {
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
         <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-5 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
@@ -299,7 +299,7 @@ export default function EstimationAnalyticsReportsPage() {
       </div>
 
       {/* Category Filters */}
-      <div className="mb-6">
+      <div className="mb-3">
         <div className="flex flex-wrap gap-2">
           <button
             onClick={() => setSelectedCategory('all')}
@@ -327,7 +327,7 @@ export default function EstimationAnalyticsReportsPage() {
       </div>
 
       {/* Reports Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
         {filteredReports.map((report) => (
           <div
             key={report.id}
@@ -348,9 +348,9 @@ export default function EstimationAnalyticsReportsPage() {
               </span>
             </div>
 
-            <p className="text-sm text-gray-600 mb-4">{report.description}</p>
+            <p className="text-sm text-gray-600 mb-2">{report.description}</p>
 
-            <div className="space-y-2 mb-4">
+            <div className="space-y-2 mb-2">
               <div className="flex items-center justify-between text-xs">
                 <span className="text-gray-500">Frequency:</span>
                 <span className="font-medium text-gray-700">{report.frequency}</span>
@@ -403,9 +403,9 @@ export default function EstimationAnalyticsReportsPage() {
       </div>
 
       {/* Quick Actions */}
-      <div className="mt-8 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-6 border border-blue-200">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="mt-8 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-3 border border-blue-200">
+        <h3 className="text-lg font-semibold text-gray-900 mb-2">Quick Actions</h3>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           <button
             onClick={handleScheduleRecurring}
             className="px-4 py-3 bg-white text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50 text-left">

@@ -244,18 +244,18 @@ export default function EditRFQPage() {
   const evaluationTotal = Object.values(formData.evaluationCriteria).reduce((sum, val) => sum + val, 0);
 
   return (
-    <div className="w-full min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
+    <div className="w-full min-h-screen bg-gray-50 px-3 py-2">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <button
           onClick={handleCancel}
-          className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-4"
+          className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-2"
         >
           <ArrowLeft className="h-5 w-5" />
           <span className="font-medium">Back to RFQ</span>
         </button>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="flex items-start justify-between">
             <div>
               <h1 className="text-3xl font-bold text-gray-900 mb-2">Edit Request for Quotation</h1>
@@ -281,14 +281,14 @@ export default function EditRFQPage() {
         </div>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} className="space-y-3">
         {/* RFQ Details */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <h2 className="text-xl font-bold text-gray-900 mb-3 flex items-center">
             <FileText className="h-6 w-6 mr-2 text-blue-600" />
             RFQ Details
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 RFQ Title <span className="text-red-500">*</span>
@@ -377,17 +377,17 @@ export default function EditRFQPage() {
         </div>
 
         {/* Line Items */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <h2 className="text-xl font-bold text-gray-900 mb-3 flex items-center">
             <Package className="h-6 w-6 mr-2 text-blue-600" />
             Line Items ({formData.items.length})
           </h2>
 
           {/* Existing Items */}
-          <div className="space-y-4 mb-6">
+          <div className="space-y-2 mb-3">
             {formData.items.map((item, index) => (
-              <div key={item.id} className="border border-gray-200 rounded-lg p-4 bg-gray-50">
-                <div className="flex items-start justify-between mb-4">
+              <div key={item.id} className="border border-gray-200 rounded-lg p-3 bg-gray-50">
+                <div className="flex items-start justify-between mb-2">
                   <h4 className="text-sm font-bold text-gray-900">Item {index + 1}</h4>
                   <button
                     type="button"
@@ -398,7 +398,7 @@ export default function EditRFQPage() {
                   </button>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
                   <div>
                     <label className="block text-xs font-medium text-gray-700 mb-1">Item Code</label>
                     <input
@@ -467,9 +467,9 @@ export default function EditRFQPage() {
           </div>
 
           {/* Add New Item */}
-          <div className="border-2 border-dashed border-blue-300 rounded-lg p-4 bg-blue-50">
-            <h4 className="text-sm font-bold text-gray-900 mb-4">Add New Item</h4>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="border-2 border-dashed border-blue-300 rounded-lg p-3 bg-blue-50">
+            <h4 className="text-sm font-bold text-gray-900 mb-2">Add New Item</h4>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
               <div>
                 <label className="block text-xs font-medium text-gray-700 mb-1">Item Code</label>
                 <input
@@ -548,13 +548,13 @@ export default function EditRFQPage() {
         </div>
 
         {/* Vendor Selection */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <h2 className="text-xl font-bold text-gray-900 mb-3 flex items-center">
             <Users className="h-6 w-6 mr-2 text-blue-600" />
             Vendor Selection ({formData.selectedVendors.length} selected)
           </h2>
 
-          <div className="mb-4">
+          <div className="mb-2">
             <div className="relative">
               <input
                 type="text"
@@ -570,12 +570,12 @@ export default function EditRFQPage() {
             )}
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
             {filteredVendors.map((vendor) => (
               <div
                 key={vendor.id}
                 onClick={() => toggleVendor(vendor.id)}
-                className={`border-2 rounded-lg p-4 cursor-pointer transition-all ${
+                className={`border-2 rounded-lg p-3 cursor-pointer transition-all ${
                   formData.selectedVendors.includes(vendor.id)
                     ? 'border-blue-500 bg-blue-50'
                     : 'border-gray-200 hover:border-gray-300'
@@ -604,12 +604,12 @@ export default function EditRFQPage() {
         </div>
 
         {/* Commercial Terms */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <h2 className="text-xl font-bold text-gray-900 mb-3 flex items-center">
             <DollarSign className="h-6 w-6 mr-2 text-blue-600" />
             Commercial Terms
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Payment Terms</label>
               <select
@@ -662,12 +662,12 @@ export default function EditRFQPage() {
         </div>
 
         {/* Evaluation Criteria */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <h2 className="text-xl font-bold text-gray-900 mb-3 flex items-center">
             <CheckCircle className="h-6 w-6 mr-2 text-blue-600" />
             Evaluation Criteria (Weighted %)
           </h2>
-          <div className="space-y-4">
+          <div className="space-y-2">
             {Object.entries(formData.evaluationCriteria).map(([key, value]) => (
               <div key={key}>
                 <div className="flex items-center justify-between mb-2">
@@ -695,8 +695,8 @@ export default function EditRFQPage() {
         </div>
 
         {/* Terms & Conditions */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <h2 className="text-xl font-bold text-gray-900 mb-3 flex items-center">
             <FileText className="h-6 w-6 mr-2 text-blue-600" />
             Terms & Conditions
           </h2>
@@ -710,8 +710,8 @@ export default function EditRFQPage() {
         </div>
 
         {/* Notes to Vendors */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <h2 className="text-xl font-bold text-gray-900 mb-3 flex items-center">
             <Info className="h-6 w-6 mr-2 text-blue-600" />
             Notes to Vendors
           </h2>
@@ -725,12 +725,12 @@ export default function EditRFQPage() {
         </div>
 
         {/* Attachments */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <h2 className="text-xl font-bold text-gray-900 mb-3 flex items-center">
             <Upload className="h-6 w-6 mr-2 text-blue-600" />
             Technical Specifications & Attachments
           </h2>
-          <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
+          <div className="border-2 border-dashed border-gray-300 rounded-lg p-3 text-center">
             <Upload className="h-12 w-12 text-gray-400 mb-3" />
             <p className="text-sm text-gray-600 mb-2">Upload drawings, specifications, or additional documents</p>
             <button
@@ -759,7 +759,7 @@ export default function EditRFQPage() {
         </div>
 
         {/* Action Buttons */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="flex items-center justify-between">
             <div className="text-sm text-gray-600">
               <AlertCircle className="inline h-4 w-4 mr-1" />
@@ -769,13 +769,13 @@ export default function EditRFQPage() {
               <button
                 type="button"
                 onClick={handleCancel}
-                className="px-6 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors font-semibold"
+                className="px-3 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors font-semibold"
               >
                 Cancel
               </button>
               <button
                 type="submit"
-                className="flex items-center space-x-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-semibold"
+                className="flex items-center space-x-2 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-semibold"
               >
                 <Save className="h-5 w-5" />
                 <span>Save Changes</span>

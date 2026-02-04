@@ -296,20 +296,20 @@ export default function ViewPricingPage() {
   ];
 
   return (
-    <div className="w-full min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
+    <div className="w-full min-h-screen bg-gray-50 px-3 py-2">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <button
           onClick={() => router.push('/estimation/pricing')}
-          className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-4"
+          className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-2"
         >
           <ArrowLeft className="h-5 w-5" />
           <span className="font-medium">Back to Price Lists</span>
         </button>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           {/* Price List Header Info */}
-          <div className="flex items-start justify-between mb-6">
+          <div className="flex items-start justify-between mb-3">
             <div className="flex items-start space-x-4">
               <div className="h-16 w-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center">
                 <DollarSign className="h-8 w-8 text-white" />
@@ -358,8 +358,8 @@ export default function ViewPricingPage() {
           </div>
 
           {/* Quick Stats */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
               <div className="flex items-center space-x-2 mb-2">
                 <Package className="h-5 w-5 text-blue-600" />
                 <p className="text-xs font-medium text-blue-600 uppercase">Total Items</p>
@@ -367,7 +367,7 @@ export default function ViewPricingPage() {
               <p className="text-2xl font-bold text-blue-900">{priceList.totalItems}</p>
               <p className="text-xs text-blue-600 mt-1">{priceList.linkedProducts} products linked</p>
             </div>
-            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
               <div className="flex items-center space-x-2 mb-2">
                 <TrendingUp className="h-5 w-5 text-green-600" />
                 <p className="text-xs font-medium text-green-600 uppercase">Average Margin</p>
@@ -375,7 +375,7 @@ export default function ViewPricingPage() {
               <p className="text-2xl font-bold text-green-900">{priceList.averageMarginPercent}%</p>
               <p className="text-xs text-green-600 mt-1">Discount: {priceList.discountRange}</p>
             </div>
-            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
               <div className="flex items-center space-x-2 mb-2">
                 <Calendar className="h-5 w-5 text-purple-600" />
                 <p className="text-xs font-medium text-purple-600 uppercase">Effective Period</p>
@@ -383,7 +383,7 @@ export default function ViewPricingPage() {
               <p className="text-sm font-bold text-purple-900">{priceList.effectiveFrom}</p>
               <p className="text-xs text-purple-600 mt-1">to {priceList.effectiveTo}</p>
             </div>
-            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
               <div className="flex items-center space-x-2 mb-2">
                 <CheckCircle className="h-5 w-5 text-orange-600" />
                 <p className="text-xs font-medium text-orange-600 uppercase">Status</p>
@@ -394,8 +394,8 @@ export default function ViewPricingPage() {
           </div>
 
           {/* Progress Tracker */}
-          <div className="bg-gradient-to-br from-gray-50 to-green-50 rounded-lg p-6 border border-gray-200">
-            <h3 className="text-sm font-bold text-gray-700 uppercase mb-4">Price List Progress</h3>
+          <div className="bg-gradient-to-br from-gray-50 to-green-50 rounded-lg p-3 border border-gray-200">
+            <h3 className="text-sm font-bold text-gray-700 uppercase mb-2">Price List Progress</h3>
             <div className="relative">
               <div className="flex items-center justify-between">
                 {getPriceStages(priceList).map((stage, index) => {
@@ -449,7 +449,7 @@ export default function ViewPricingPage() {
       </div>
 
       {/* Tabs */}
-      <div className="mb-6">
+      <div className="mb-3">
         <div className="border-b border-gray-200 bg-white rounded-t-lg">
           <nav className="flex space-x-8 px-6">
             {tabs.map((tab) => {
@@ -474,17 +474,17 @@ export default function ViewPricingPage() {
       </div>
 
       {/* Tab Content */}
-      <div className="bg-white rounded-lg border border-gray-200 p-6">
+      <div className="bg-white rounded-lg border border-gray-200 p-3">
         {/* Overview Tab */}
         {activeTab === 'overview' && (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
             {/* Price List Information */}
             <div>
-              <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                 <FileText className="h-5 w-5 mr-2 text-blue-600" />
                 Price List Details
               </h3>
-              <div className="bg-gray-50 rounded-lg p-4 space-y-3">
+              <div className="bg-gray-50 rounded-lg p-3 space-y-3">
                 <div>
                   <p className="text-xs font-medium text-gray-500 uppercase mb-1">Price List Name</p>
                   <p className="text-sm font-semibold text-gray-900">{priceList.priceListName}</p>
@@ -514,11 +514,11 @@ export default function ViewPricingPage() {
 
             {/* Customer Segment */}
             <div>
-              <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                 <Users className="h-5 w-5 mr-2 text-blue-600" />
                 Customer Segment
               </h3>
-              <div className="bg-gray-50 rounded-lg p-4 space-y-3">
+              <div className="bg-gray-50 rounded-lg p-3 space-y-3">
                 <div>
                   <p className="text-xs font-medium text-gray-500 uppercase mb-1">Segment</p>
                   <span className={`px-3 py-1 text-sm font-semibold rounded-full ${segmentColors[priceList.customerSegment]}`}>
@@ -542,11 +542,11 @@ export default function ViewPricingPage() {
 
             {/* Effective Dates */}
             <div>
-              <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                 <Calendar className="h-5 w-5 mr-2 text-blue-600" />
                 Effective Period
               </h3>
-              <div className="bg-gray-50 rounded-lg p-4 space-y-3">
+              <div className="bg-gray-50 rounded-lg p-3 space-y-3">
                 <div>
                   <p className="text-xs font-medium text-gray-500 uppercase mb-1">Effective From</p>
                   <p className="text-sm font-semibold text-gray-900">{priceList.effectiveFrom}</p>
@@ -566,11 +566,11 @@ export default function ViewPricingPage() {
 
             {/* Key Dates & Users */}
             <div>
-              <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                 <User className="h-5 w-5 mr-2 text-blue-600" />
                 Created & Approved By
               </h3>
-              <div className="bg-gray-50 rounded-lg p-4 space-y-3">
+              <div className="bg-gray-50 rounded-lg p-3 space-y-3">
                 <div>
                   <p className="text-xs font-medium text-gray-500 uppercase mb-1">Created Date</p>
                   <p className="text-sm font-semibold text-gray-900">{priceList.createdDate}</p>
@@ -599,7 +599,7 @@ export default function ViewPricingPage() {
         {/* Price Items Tab */}
         {activeTab === 'items' && (
           <div>
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center justify-between mb-3">
               <h3 className="text-xl font-bold text-gray-900">Price Items Breakdown</h3>
               <button className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
                 <Download className="h-4 w-4" />
@@ -649,7 +649,7 @@ export default function ViewPricingPage() {
         {/* Price History Tab */}
         {activeTab === 'history' && (
           <div>
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center justify-between mb-3">
               <h3 className="text-xl font-bold text-gray-900">Price Change History</h3>
               <button className="flex items-center space-x-2 px-4 py-2 bg-yellow-50 text-yellow-600 hover:bg-yellow-100 rounded-lg transition-colors">
                 <FileText className="h-4 w-4" />
@@ -658,7 +658,7 @@ export default function ViewPricingPage() {
             </div>
 
             {/* History Timeline */}
-            <div className="space-y-4">
+            <div className="space-y-2">
               {mockPriceHistory
                 .filter(history => history.priceListId === priceListId)
                 .map((history, index) => {
@@ -676,7 +676,7 @@ export default function ViewPricingPage() {
                           <HistoryIcon className="h-5 w-5" />
                         </div>
 
-                        <div className="flex-1 bg-gray-50 rounded-lg p-4 border border-gray-200 hover:shadow-md transition-shadow">
+                        <div className="flex-1 bg-gray-50 rounded-lg p-3 border border-gray-200 hover:shadow-md transition-shadow">
                           <div className="flex items-start justify-between mb-2">
                             <div>
                               <h4 className="text-base font-bold text-gray-900">{history.title}</h4>
@@ -689,7 +689,7 @@ export default function ViewPricingPage() {
                           <p className="text-sm text-gray-700 mb-3">{history.description}</p>
 
                           {history.metadata && (
-                            <div className="flex flex-wrap gap-4 text-xs text-gray-600">
+                            <div className="flex flex-wrap gap-2 text-xs text-gray-600">
                               {history.metadata.itemsAffected && (
                                 <div className="flex items-center space-x-1">
                                   <Package className="h-4 w-4" />

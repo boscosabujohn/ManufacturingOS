@@ -387,9 +387,9 @@ export default function CompetitivePricingPage() {
   const overpricedCount = competitivePrices.filter(p => p.status === 'overpriced').length
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Header */}
-      <div className="mb-6 flex items-center justify-end gap-3">
+      <div className="mb-3 flex items-center justify-end gap-3">
         <button className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 flex items-center gap-2">
           <Filter className="h-4 w-4" />
           Filter
@@ -401,7 +401,7 @@ export default function CompetitivePricingPage() {
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
         <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-5 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
@@ -448,12 +448,12 @@ export default function CompetitivePricingPage() {
       </div>
 
       {/* Competitor Profiles */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-6">
+      <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-3">
         <div className="p-6 border-b border-gray-200">
           <h2 className="text-lg font-semibold text-gray-900">Key Competitor Profiles</h2>
         </div>
         <div className="p-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
             {competitorProfiles.map((comp) => (
               <div key={comp.name} className="p-4 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
                 <div className="flex items-start justify-between mb-3">
@@ -508,30 +508,30 @@ export default function CompetitivePricingPage() {
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Product</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Our Price</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Competitors</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Market Avg</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Index</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Differential</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Recommendation</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Product</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Our Price</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Competitors</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Market Avg</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Index</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Differential</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Recommendation</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
               {competitivePrices.map((product) => (
                 <tr key={product.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div>
                       <p className="font-medium text-gray-900 text-sm">{product.productName}</p>
                       <p className="text-xs text-gray-600 mt-1">{product.productCode}</p>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <p className="text-sm font-bold text-blue-600">₹{product.ourPrice.toLocaleString()}</p>
                     <p className="text-xs text-gray-600">{product.ourMargin.toFixed(1)}% margin</p>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="space-y-1">
                       <div className="flex items-center gap-2 text-xs">
                         <span className="text-gray-600">{product.competitor1}:</span>
@@ -553,10 +553,10 @@ export default function CompetitivePricingPage() {
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <p className="text-sm font-medium text-gray-900">₹{product.marketAvg.toLocaleString()}</p>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <p className={`text-sm font-bold ${
                       product.priceIndex < 95 ? 'text-yellow-600' :
                       product.priceIndex > 105 ? 'text-red-600' :
@@ -565,7 +565,7 @@ export default function CompetitivePricingPage() {
                       {product.priceIndex.toFixed(1)}
                     </p>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="flex items-center gap-1">
                       {product.priceDifferential > 0 ? (
                         <TrendingUp className="h-4 w-4 text-red-600" />
@@ -579,12 +579,12 @@ export default function CompetitivePricingPage() {
                       </span>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <span className={`px-2 py-1 rounded-full text-xs font-medium border ${getRecommendationColor(product.recommendation)}`}>
                       {product.recommendation.toUpperCase()}
                     </span>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <span className={`px-2 py-1 rounded-full text-xs font-medium border ${getStatusColor(product.status)}`}>
                       {product.status.toUpperCase()}
                     </span>

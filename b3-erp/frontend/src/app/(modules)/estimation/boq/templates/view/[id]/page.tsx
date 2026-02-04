@@ -171,9 +171,9 @@ export default function ViewBOQTemplate() {
 
   return (
     <div className="w-full h-full flex flex-col bg-gray-50">
-      <div className="flex-none bg-white border-b border-gray-200 px-6 py-4">
+      <div className="flex-none bg-white border-b border-gray-200 px-3 py-2">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
             <button
               onClick={handleBack}
               className="flex items-center gap-2 text-gray-600 hover:text-gray-900"
@@ -219,12 +219,12 @@ export default function ViewBOQTemplate() {
         </div>
       </div>
 
-      <div className="flex-1 overflow-auto p-6">
-        <div className="space-y-6">
+      <div className="flex-1 overflow-auto p-3">
+        <div className="space-y-3">
           {/* Template Information */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Template Information</h2>
-            <div className="grid grid-cols-4 gap-6">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <h2 className="text-lg font-semibold text-gray-900 mb-2">Template Information</h2>
+            <div className="grid grid-cols-4 gap-3">
               <div>
                 <p className="text-sm text-gray-500 mb-1">Category</p>
                 <p className="text-base font-medium text-gray-900">{templateData.category}</p>
@@ -254,7 +254,7 @@ export default function ViewBOQTemplate() {
               <p className="text-sm text-gray-500 mb-1">Description</p>
               <p className="text-base text-gray-700">{templateData.description}</p>
             </div>
-            <div className="mt-4 pt-4 border-t border-gray-200 grid grid-cols-3 gap-6">
+            <div className="mt-4 pt-4 border-t border-gray-200 grid grid-cols-3 gap-3">
               <div>
                 <p className="text-sm text-gray-500 mb-1 flex items-center gap-2">
                   <User className="w-4 h-4" />
@@ -292,8 +292,8 @@ export default function ViewBOQTemplate() {
           </div>
 
           {/* BOQ Items by Category */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">BOQ Items</h2>
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <h2 className="text-lg font-semibold text-gray-900 mb-2">BOQ Items</h2>
 
             {Object.entries(itemsByCategory).map(([category, items]) => (
               <div key={category} className="mb-8 last:mb-0">

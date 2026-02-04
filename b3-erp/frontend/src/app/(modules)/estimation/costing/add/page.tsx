@@ -252,9 +252,9 @@ export default function AddCostingPage() {
   return (
     <div className="w-full h-screen flex flex-col bg-gray-50">
       <div className="flex-1 overflow-y-auto">
-        <div className="px-4 sm:px-6 lg:px-8 py-6">
+        <div className="px-3 py-2">
           {/* Header */}
-          <div className="mb-6 flex items-center justify-between">
+          <div className="mb-3 flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <button
                 onClick={() => router.back()}
@@ -270,7 +270,7 @@ export default function AddCostingPage() {
           </div>
 
           {/* Progress Steps */}
-          <div className="mb-6 bg-white rounded-lg border border-gray-200 p-6">
+          <div className="mb-3 bg-white rounded-lg border border-gray-200 p-3">
             <div className="flex items-center justify-between">
               {steps.map((step, index) => {
                 const Icon = step.icon;
@@ -316,11 +316,11 @@ export default function AddCostingPage() {
           </div>
 
           {/* Step Content */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
             {/* Step 1: Basic Info */}
             {currentStep === 1 && (
-              <div className="space-y-6">
-                <div className="flex items-center space-x-3 mb-4">
+              <div className="space-y-3">
+                <div className="flex items-center space-x-3 mb-2">
                   <Building2 className="h-6 w-6 text-blue-600" />
                   <h2 className="text-xl font-bold text-gray-900">Step 1: Basic Information</h2>
                 </div>
@@ -348,7 +348,7 @@ export default function AddCostingPage() {
                   )}
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Project Name <span className="text-red-500">*</span>
@@ -403,8 +403,8 @@ export default function AddCostingPage() {
 
             {/* Step 2: Cost Items */}
             {currentStep === 2 && (
-              <div className="space-y-6">
-                <div className="flex items-center justify-between mb-4">
+              <div className="space-y-3">
+                <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center space-x-3">
                     <Package className="h-6 w-6 text-blue-600" />
                     <h2 className="text-xl font-bold text-gray-900">Step 2: Cost Items</h2>
@@ -514,20 +514,20 @@ export default function AddCostingPage() {
                   </table>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                  <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+                  <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
                     <p className="text-xs font-medium text-blue-600 uppercase mb-1">Materials</p>
                     <p className="text-lg font-bold text-blue-900">₹{formData.totalMaterialCost.toLocaleString()}</p>
                   </div>
-                  <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+                  <div className="bg-green-50 rounded-lg p-3 border border-green-200">
                     <p className="text-xs font-medium text-green-600 uppercase mb-1">Labor</p>
                     <p className="text-lg font-bold text-green-900">₹{formData.totalLaborCost.toLocaleString()}</p>
                   </div>
-                  <div className="bg-orange-50 rounded-lg p-4 border border-orange-200">
+                  <div className="bg-orange-50 rounded-lg p-3 border border-orange-200">
                     <p className="text-xs font-medium text-orange-600 uppercase mb-1">Equipment</p>
                     <p className="text-lg font-bold text-orange-900">₹{formData.totalEquipmentCost.toLocaleString()}</p>
                   </div>
-                  <div className="bg-purple-50 rounded-lg p-4 border border-purple-200">
+                  <div className="bg-purple-50 rounded-lg p-3 border border-purple-200">
                     <p className="text-xs font-medium text-purple-600 uppercase mb-1">Subtotal</p>
                     <p className="text-lg font-bold text-purple-900">₹{formData.subtotalCost.toLocaleString()}</p>
                   </div>
@@ -553,13 +553,13 @@ export default function AddCostingPage() {
 
             {/* Step 3: Overheads & Margins */}
             {currentStep === 3 && (
-              <div className="space-y-6">
-                <div className="flex items-center space-x-3 mb-4">
+              <div className="space-y-3">
+                <div className="flex items-center space-x-3 mb-2">
                   <Percent className="h-6 w-6 text-blue-600" />
                   <h2 className="text-xl font-bold text-gray-900">Step 3: Overheads & Profit Margin</h2>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Manufacturing Overhead (%)
@@ -606,8 +606,8 @@ export default function AddCostingPage() {
                   </div>
                 </div>
 
-                <div className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-lg p-6 border border-gray-200">
-                  <div className="flex items-center space-x-3 mb-4">
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-lg p-3 border border-gray-200">
+                  <div className="flex items-center space-x-3 mb-2">
                     <Calculator className="h-6 w-6 text-blue-600" />
                     <h3 className="text-lg font-bold text-gray-900">Live Cost Calculation</h3>
                   </div>
@@ -660,15 +660,15 @@ export default function AddCostingPage() {
 
             {/* Step 4: Review & Submit */}
             {currentStep === 4 && (
-              <div className="space-y-6">
-                <div className="flex items-center space-x-3 mb-4">
+              <div className="space-y-3">
+                <div className="flex items-center space-x-3 mb-2">
                   <CheckCircle className="h-6 w-6 text-blue-600" />
                   <h2 className="text-xl font-bold text-gray-900">Step 4: Review & Submit</h2>
                 </div>
 
-                <div className="bg-blue-50 rounded-lg p-6 border border-blue-200">
-                  <h3 className="text-lg font-bold text-gray-900 mb-4">Cost Estimation Summary</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
+                  <h3 className="text-lg font-bold text-gray-900 mb-2">Cost Estimation Summary</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <div>
                       <p className="text-sm text-gray-600 mb-1">Project Name</p>
                       <p className="text-base font-semibold text-gray-900">{formData.projectName}</p>
@@ -688,8 +688,8 @@ export default function AddCostingPage() {
                   </div>
                 </div>
 
-                <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-6 border border-green-200">
-                  <h3 className="text-lg font-bold text-gray-900 mb-4">Final Pricing</h3>
+                <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-3 border border-green-200">
+                  <h3 className="text-lg font-bold text-gray-900 mb-2">Final Pricing</h3>
                   <div className="space-y-2">
                     <div className="flex justify-between">
                       <span>Total Cost:</span>
@@ -732,7 +732,7 @@ export default function AddCostingPage() {
       </div>
 
       {/* Fixed Footer */}
-      <div className="border-t border-gray-200 bg-white px-4 sm:px-6 lg:px-8 py-4 flex-shrink-0">
+      <div className="border-t border-gray-200 bg-white px-3 py-4 flex-shrink-0">
         <div className="flex items-center justify-between">
           <button
             onClick={() => router.back()}

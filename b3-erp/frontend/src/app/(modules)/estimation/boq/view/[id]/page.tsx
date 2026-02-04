@@ -252,20 +252,20 @@ export default function ViewBOQPage() {
   ];
 
   return (
-    <div className="w-full min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
+    <div className="w-full min-h-screen bg-gray-50 px-3 py-2">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <button
           onClick={() => router.push('/estimation/boq')}
-          className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-4"
+          className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-2"
         >
           <ArrowLeft className="h-5 w-5" />
           <span className="font-medium">Back to BOQ List</span>
         </button>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           {/* BOQ Header Info */}
-          <div className="flex items-start justify-between mb-6">
+          <div className="flex items-start justify-between mb-3">
             <div className="flex items-start space-x-4">
               <div className="h-16 w-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center">
                 <FileText className="h-8 w-8 text-white" />
@@ -307,28 +307,28 @@ export default function ViewBOQPage() {
           </div>
 
           {/* Quick Stats */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
               <p className="text-xs font-medium text-blue-600 uppercase mb-1">Estimated Value</p>
               <p className="text-2xl font-bold text-blue-900">₹{(boq.estimatedValue / 10000000).toFixed(2)}Cr</p>
             </div>
-            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
               <p className="text-xs font-medium text-purple-600 uppercase mb-1">Total Items</p>
               <p className="text-lg font-semibold text-purple-900">{boq.totalItems} Items</p>
             </div>
-            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
               <p className="text-xs font-medium text-green-600 uppercase mb-1">Client</p>
               <p className="text-lg font-semibold text-green-900">{boq.clientName}</p>
             </div>
-            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
               <p className="text-xs font-medium text-orange-600 uppercase mb-1">Duration</p>
               <p className="text-lg font-semibold text-orange-900">{boq.projectDuration}</p>
             </div>
           </div>
 
           {/* Progress Tracker */}
-          <div className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-lg p-6 border border-gray-200">
-            <h3 className="text-sm font-bold text-gray-700 uppercase mb-4">BOQ Progress</h3>
+          <div className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-lg p-3 border border-gray-200">
+            <h3 className="text-sm font-bold text-gray-700 uppercase mb-2">BOQ Progress</h3>
             <div className="relative">
               <div className="flex items-center justify-between">
                 {getBOQStages(boq).map((stage, index) => {
@@ -382,7 +382,7 @@ export default function ViewBOQPage() {
       </div>
 
       {/* Tabs */}
-      <div className="mb-6">
+      <div className="mb-3">
         <div className="border-b border-gray-200 bg-white rounded-t-lg">
           <nav className="flex space-x-8 px-6">
             {tabs.map((tab) => {
@@ -407,17 +407,17 @@ export default function ViewBOQPage() {
       </div>
 
       {/* Tab Content */}
-      <div className="bg-white rounded-lg border border-gray-200 p-6">
+      <div className="bg-white rounded-lg border border-gray-200 p-3">
         {/* Overview Tab */}
         {activeTab === 'overview' && (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
             {/* Project Information */}
             <div>
-              <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                 <Building2 className="h-5 w-5 mr-2 text-blue-600" />
                 Project Information
               </h3>
-              <div className="bg-gray-50 rounded-lg p-4 space-y-3">
+              <div className="bg-gray-50 rounded-lg p-3 space-y-3">
                 <div>
                   <p className="text-xs font-medium text-gray-500 uppercase mb-1">Project Name</p>
                   <p className="text-sm font-semibold text-gray-900">{boq.projectName}</p>
@@ -439,11 +439,11 @@ export default function ViewBOQPage() {
 
             {/* BOQ Details */}
             <div>
-              <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                 <FileText className="h-5 w-5 mr-2 text-blue-600" />
                 BOQ Details
               </h3>
-              <div className="bg-gray-50 rounded-lg p-4 space-y-3">
+              <div className="bg-gray-50 rounded-lg p-3 space-y-3">
                 <div>
                   <p className="text-xs font-medium text-gray-500 uppercase mb-1">BOQ Number</p>
                   <p className="text-sm font-semibold text-gray-900">{boq.boqNumber}</p>
@@ -465,11 +465,11 @@ export default function ViewBOQPage() {
 
             {/* Financial Summary */}
             <div>
-              <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                 <DollarSign className="h-5 w-5 mr-2 text-blue-600" />
                 Financial Summary
               </h3>
-              <div className="bg-gray-50 rounded-lg p-4 space-y-3">
+              <div className="bg-gray-50 rounded-lg p-3 space-y-3">
                 <div>
                   <p className="text-xs font-medium text-gray-500 uppercase mb-1">Estimated Value</p>
                   <p className="text-xl font-bold text-blue-900">₹{boq.estimatedValue.toLocaleString()}</p>
@@ -487,11 +487,11 @@ export default function ViewBOQPage() {
 
             {/* Key Dates */}
             <div>
-              <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                 <Clock className="h-5 w-5 mr-2 text-blue-600" />
                 Key Dates
               </h3>
-              <div className="bg-gray-50 rounded-lg p-4 space-y-3">
+              <div className="bg-gray-50 rounded-lg p-3 space-y-3">
                 <div>
                   <p className="text-xs font-medium text-gray-500 uppercase mb-1">Created Date</p>
                   <p className="text-sm font-semibold text-gray-900">{boq.createdDate}</p>
@@ -516,7 +516,7 @@ export default function ViewBOQPage() {
         {/* BOQ Items Tab */}
         {activeTab === 'items' && (
           <div>
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center justify-between mb-3">
               <h3 className="text-xl font-bold text-gray-900">BOQ Items Breakdown</h3>
               <button className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
                 <Download className="h-4 w-4" />
@@ -574,7 +574,7 @@ export default function ViewBOQPage() {
         {/* Activity Timeline Tab */}
         {activeTab === 'activity' && (
           <div>
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center justify-between mb-3">
               <h3 className="text-xl font-bold text-gray-900">Activity Timeline</h3>
               <button className="flex items-center space-x-2 px-4 py-2 bg-yellow-50 text-yellow-600 hover:bg-yellow-100 rounded-lg transition-colors">
                 <FileText className="h-4 w-4" />
@@ -583,7 +583,7 @@ export default function ViewBOQPage() {
             </div>
 
             {/* Activities List */}
-            <div className="space-y-4">
+            <div className="space-y-2">
               {mockActivities
                 .filter(activity => activity.boqId === boqId)
                 .map((activity, index) => {
@@ -601,7 +601,7 @@ export default function ViewBOQPage() {
                           <ActivityIcon className="h-5 w-5" />
                         </div>
 
-                        <div className="flex-1 bg-gray-50 rounded-lg p-4 border border-gray-200 hover:shadow-md transition-shadow">
+                        <div className="flex-1 bg-gray-50 rounded-lg p-3 border border-gray-200 hover:shadow-md transition-shadow">
                           <div className="flex items-start justify-between mb-2">
                             <div>
                               <h4 className="text-base font-bold text-gray-900">{activity.title}</h4>
@@ -614,7 +614,7 @@ export default function ViewBOQPage() {
                           <p className="text-sm text-gray-700 mb-3">{activity.description}</p>
 
                           {activity.metadata && (
-                            <div className="flex flex-wrap gap-4 text-xs text-gray-600">
+                            <div className="flex flex-wrap gap-2 text-xs text-gray-600">
                               {activity.metadata.revisionFrom && activity.metadata.revisionTo && (
                                 <div className="flex items-center space-x-1">
                                   <Copy className="h-4 w-4" />

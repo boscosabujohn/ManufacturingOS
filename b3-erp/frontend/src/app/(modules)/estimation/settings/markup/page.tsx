@@ -234,10 +234,10 @@ export default function EstimationSettingsMarkupPage() {
   const requireApproval = markupSettings.filter(s => s.approvalRequired).length
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Header */}
-      <div className="mb-6 flex items-center justify-between">
-        <div className="flex items-center gap-4">
+      <div className="mb-3 flex items-center justify-between">
+        <div className="flex items-center gap-2">
           <button
             onClick={() => router.back()}
             className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -266,7 +266,7 @@ export default function EstimationSettingsMarkupPage() {
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
         <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-5 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
@@ -331,26 +331,26 @@ export default function EstimationSettingsMarkupPage() {
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Category</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Subcategory</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Default Markup</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Min - Max Range</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Cost Basis</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Approval</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Category</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Subcategory</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Default Markup</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Min - Max Range</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Cost Basis</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Approval</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
               {markupSettings.map((setting) => (
                 <tr key={setting.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <p className="font-medium text-gray-900 text-sm">{setting.category}</p>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <p className="text-sm text-gray-900">{setting.subcategory}</p>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     {editingId === setting.id ? (
                       <div className="flex items-center gap-2">
                         <input
@@ -365,19 +365,19 @@ export default function EstimationSettingsMarkupPage() {
                       <p className="text-sm font-bold text-green-600">{setting.defaultMarkup.toFixed(1)}%</p>
                     )}
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="flex items-center gap-2">
                       <span className="text-sm text-gray-900">{setting.minMarkup.toFixed(1)}%</span>
                       <span className="text-gray-400">-</span>
                       <span className="text-sm text-gray-900">{setting.maxMarkup.toFixed(1)}%</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <span className={`px-2 py-1 rounded-full text-xs font-medium border ${getCostBasisColor(setting.costBasis)}`}>
                       {setting.costBasis.toUpperCase().replace('-', ' ')}
                     </span>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div>
                       <p className={`text-sm font-medium ${setting.approvalRequired ? 'text-orange-600' : 'text-gray-600'}`}>
                         {setting.approvalRequired ? 'Required' : 'Not Required'}
@@ -387,12 +387,12 @@ export default function EstimationSettingsMarkupPage() {
                       )}
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <span className={`px-2 py-1 rounded-full text-xs font-medium border ${getStatusColor(setting.status)}`}>
                       {setting.status.toUpperCase()}
                     </span>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="flex items-center gap-2">
                       {editingId === setting.id ? (
                         <button

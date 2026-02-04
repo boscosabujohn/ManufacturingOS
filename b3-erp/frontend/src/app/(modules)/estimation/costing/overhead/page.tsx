@@ -285,10 +285,10 @@ export default function OverheadCostingPage() {
   const withinBudgetCount = overheadCosts.filter(c => c.status === 'within-budget').length
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="w-full h-full px-4 py-2">
       {/* Header */}
-      <div className="mb-6 flex items-center justify-between">
-        <div className="flex items-center gap-4">
+      <div className="mb-3 flex items-center justify-between">
+        <div className="flex items-center gap-2">
           <button
             onClick={() => router.back()}
             className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -313,7 +313,7 @@ export default function OverheadCostingPage() {
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
         <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-5 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
@@ -362,12 +362,12 @@ export default function OverheadCostingPage() {
       </div>
 
       {/* Category Totals */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-6">
+      <div className="bg-white rounded-xl shadow-sm border border-gray-200 mb-3">
         <div className="p-6 border-b border-gray-200">
           <h2 className="text-lg font-semibold text-gray-900">Overhead by Category</h2>
         </div>
         <div className="p-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
             {categoryTotals.map((cat) => (
               <div key={cat.category} className="p-4 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
                 <div className="flex items-start justify-between mb-3">
@@ -420,38 +420,38 @@ export default function OverheadCostingPage() {
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Cost Item</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Category</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Allocation Basis</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Budgeted</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actual</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Variance</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Rate</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Cost Item</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Category</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Allocation Basis</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Budgeted</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Actual</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Variance</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Rate</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
               {overheadCosts.map((cost) => (
                 <tr key={cost.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div>
                       <p className="font-medium text-gray-900 text-sm">{cost.costName}</p>
                       <p className="text-xs text-gray-600 mt-1">{cost.costCode} - {cost.subcategory}</p>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <p className="text-sm text-gray-900">{cost.category}</p>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <p className="text-sm text-gray-900">{cost.allocationBasis}</p>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <p className="text-sm font-medium text-gray-900">₹{(cost.budgetedAmount / 1000).toFixed(0)}K</p>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <p className="text-sm font-medium text-gray-900">₹{(cost.actualAmount / 1000).toFixed(0)}K</p>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div>
                       <p className={`text-sm font-semibold ${getVarianceColor(cost.variance)}`}>
                         {cost.variance > 0 ? '+' : ''}₹{(Math.abs(cost.variance) / 1000).toFixed(0)}K
@@ -461,11 +461,11 @@ export default function OverheadCostingPage() {
                       </p>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <p className="text-sm font-medium text-gray-900">₹{cost.allocationRate}</p>
                     <p className="text-xs text-gray-600">per unit</p>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <span className={`px-2 py-1 rounded-full text-xs font-medium border ${getStatusColor(cost.status)}`}>
                       {cost.status.toUpperCase().replace('-', ' ')}
                     </span>

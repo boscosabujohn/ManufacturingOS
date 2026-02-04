@@ -251,21 +251,21 @@ export default function AddPricingPage() {
   };
 
   return (
-    <div className="w-full min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
+    <div className="w-full min-h-screen bg-gray-50 px-3 py-2">
       <form onSubmit={handleSubmitDraft}>
         {/* Header */}
-        <div className="mb-6">
+        <div className="mb-3">
           <button
             type="button"
             onClick={() => router.push('/estimation/pricing')}
-            className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-4"
+            className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-2"
           >
             <ArrowLeft className="h-5 w-5" />
             <span className="font-medium">Back to Price Lists</span>
           </button>
 
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <div className="flex items-center justify-between mb-6">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <div className="flex items-center justify-between mb-3">
               <div className="flex items-center space-x-4">
                 <div className="h-16 w-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center">
                   <DollarSign className="h-8 w-8 text-white" />
@@ -289,9 +289,9 @@ export default function AddPricingPage() {
             </div>
 
             {showPreview && (
-              <div className="bg-blue-50 rounded-lg p-4 border border-blue-200 mb-4">
+              <div className="bg-blue-50 rounded-lg p-3 border border-blue-200 mb-2">
                 <h3 className="text-sm font-bold text-blue-900 mb-2">Preview Summary</h3>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-sm">
                   <div>
                     <p className="text-blue-600 font-medium">Name:</p>
                     <p className="text-blue-900">{formData.priceListName || 'Not set'}</p>
@@ -319,13 +319,13 @@ export default function AddPricingPage() {
         </div>
 
         {/* Section 1: Price List Details */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6 mb-6">
-          <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
+        <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
+          <h2 className="text-xl font-bold text-gray-900 mb-3 flex items-center">
             <FileText className="h-6 w-6 mr-2 text-blue-600" />
             Section 1: Price List Details
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
             {/* Price List Name */}
             <div className="lg:col-span-2">
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -424,13 +424,13 @@ export default function AddPricingPage() {
         </div>
 
         {/* Section 2: Effective Dates */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6 mb-6">
-          <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
+        <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
+          <h2 className="text-xl font-bold text-gray-900 mb-3 flex items-center">
             <Calendar className="h-6 w-6 mr-2 text-blue-600" />
             Section 2: Effective Dates
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {/* Effective From */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -464,8 +464,8 @@ export default function AddPricingPage() {
         </div>
 
         {/* Section 3: Price Items */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6 mb-6">
-          <div className="flex items-center justify-between mb-6">
+        <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
+          <div className="flex items-center justify-between mb-3">
             <h2 className="text-xl font-bold text-gray-900 flex items-center">
               <Package className="h-6 w-6 mr-2 text-blue-600" />
               Section 3: Price Items ({formData.priceItems.length})
@@ -473,12 +473,12 @@ export default function AddPricingPage() {
           </div>
 
           {/* Import Options */}
-          <div className="bg-gradient-to-br from-purple-50 to-blue-50 rounded-lg p-4 mb-6 border border-purple-200">
+          <div className="bg-gradient-to-br from-purple-50 to-blue-50 rounded-lg p-3 mb-3 border border-purple-200">
             <h3 className="text-sm font-bold text-gray-900 mb-3 flex items-center">
               <Upload className="h-4 w-4 mr-2 text-purple-600" />
               How would you like to add items?
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
               <button
                 type="button"
                 onClick={handleAddManually}
@@ -524,7 +524,7 @@ export default function AddPricingPage() {
           </div>
 
           {/* Add Item Button */}
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center justify-between mb-2">
             <div className="flex items-center space-x-2">
               <button
                 type="button"
@@ -672,9 +672,9 @@ export default function AddPricingPage() {
             </div>
           ) : (
             <div className="text-center py-12 bg-gray-50 rounded-lg border-2 border-dashed border-gray-300">
-              <Package className="h-16 w-16 text-gray-400 mb-4" />
+              <Package className="h-16 w-16 text-gray-400 mb-2" />
               <p className="text-gray-600 font-medium mb-2">No price items added yet</p>
-              <p className="text-sm text-gray-500 mb-4">Start by adding items manually or import from existing sources</p>
+              <p className="text-sm text-gray-500 mb-2">Start by adding items manually or import from existing sources</p>
               <button
                 type="button"
                 onClick={handleAddItem}
@@ -689,12 +689,12 @@ export default function AddPricingPage() {
 
         {/* Summary Card */}
         {formData.priceItems.length > 0 && (
-          <div className="bg-gradient-to-br from-green-50 to-blue-50 rounded-lg border border-green-200 p-6 mb-6">
-            <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+          <div className="bg-gradient-to-br from-green-50 to-blue-50 rounded-lg border border-green-200 p-3 mb-3">
+            <h2 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
               <TrendingUp className="h-5 w-5 mr-2 text-green-600" />
               Price List Summary
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
               <div>
                 <p className="text-xs font-medium text-gray-600 uppercase mb-1">Total Items</p>
                 <p className="text-2xl font-bold text-blue-900">{formData.priceItems.length}</p>
@@ -730,7 +730,7 @@ export default function AddPricingPage() {
           <button
             type="button"
             onClick={() => router.push('/estimation/pricing')}
-            className="px-6 py-3 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors font-medium"
+            className="px-3 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors font-medium"
           >
             Cancel
           </button>
@@ -738,7 +738,7 @@ export default function AddPricingPage() {
           <div className="flex items-center space-x-4">
             <button
               type="submit"
-              className="px-6 py-3 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 transition-colors font-medium flex items-center space-x-2"
+              className="px-3 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 transition-colors font-medium flex items-center space-x-2"
             >
               <Save className="h-5 w-5" />
               <span>Save as Draft</span>
