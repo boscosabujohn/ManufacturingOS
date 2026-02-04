@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   Users,
   ShoppingCart,
@@ -165,14 +166,20 @@ export default function DashboardPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
+      <header className="bg-gradient-to-r from-white via-white to-brand-blue/5 border-b border-gray-100 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             {/* Logo and Title */}
             <div className="flex items-center">
-              <div className="flex-shrink-0">
-                <h1 className="text-2xl font-bold text-gray-900">OptiForge</h1>
-                <p className="text-xs text-gray-500">Manufacturing ERP</p>
+              <div className="flex items-center overflow-hidden h-16 w-20">
+                <div className="relative w-12 h-12 transform scale-[2] origin-left">
+                  <Image
+                    src="/optiforge-logo.png"
+                    alt="OptiForge Icon"
+                    fill
+                    className="object-contain"
+                  />
+                </div>
               </div>
             </div>
 

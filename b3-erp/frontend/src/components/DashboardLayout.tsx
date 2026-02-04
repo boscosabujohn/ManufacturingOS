@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Search, User, Menu, ChevronDown } from 'lucide-react';
 import Sidebar from '@/components/Sidebar';
 import MegaMenu from '@/components/MegaMenu';
@@ -33,7 +34,7 @@ export default function DashboardLayout({ children, pageTitle }: DashboardLayout
       {/* Main Content Area */}
       <div className={`flex-1 flex flex-col transition-all duration-300 ${sidebarOpen ? 'lg:ml-[315px]' : 'lg:ml-20'} overflow-hidden`}>
         {/* Header */}
-        <header className="bg-white/95 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-40 shadow-sm flex-shrink-0">
+        <header className="bg-gradient-to-r from-white via-white to-brand-blue/5 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-40 shadow-sm flex-shrink-0">
           <div className="w-full px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center h-16 gap-4">
               {/* Logo and Menu Toggle */}
@@ -44,9 +45,15 @@ export default function DashboardLayout({ children, pageTitle }: DashboardLayout
                 >
                   <Menu className="h-6 w-6 text-gray-600" />
                 </button>
-                <div className="flex-shrink-0">
-                  <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">OptiForge</h1>
-                  <p className="text-xs text-gray-600 font-medium">Manufacturing ERP System</p>
+                <div className="flex items-center overflow-hidden h-16 w-20">
+                  <div className="relative w-12 h-12 transform scale-[2] origin-left">
+                    <Image
+                      src="/optiforge-logo.png"
+                      alt="OptiForge Icon"
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
                 </div>
               </div>
 
@@ -56,13 +63,13 @@ export default function DashboardLayout({ children, pageTitle }: DashboardLayout
                   <button
                     key={item.id}
                     onClick={() => setActiveMegaMenu(activeMegaMenu === item.id ? null : item.id)}
-                    className={`flex items-center space-x-1 px-3 py-2 rounded-lg transition-colors ${activeMegaMenu === item.id
-                      ? 'bg-blue-50 text-blue-600'
-                      : 'text-gray-700 hover:bg-gray-100'
+                    className={`flex items-center space-x-1 px-3 py-1.5 rounded-lg transition-all duration-200 ${activeMegaMenu === item.id
+                      ? 'bg-brand-red text-white shadow-lg shadow-brand-red/20'
+                      : 'text-gray-600 hover:bg-gray-50 hover:text-brand-blue'
                       }`}
                   >
-                    <span className="font-medium text-sm">{item.name}</span>
-                    <ChevronDown className={`h-4 w-4 transition-transform ${activeMegaMenu === item.id ? 'rotate-180' : ''}`} />
+                    <span className="font-bold text-[13px] uppercase tracking-wide">{item.name}</span>
+                    <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${activeMegaMenu === item.id ? 'rotate-180' : ''}`} />
                   </button>
                 ))}
               </nav>
@@ -94,11 +101,14 @@ export default function DashboardLayout({ children, pageTitle }: DashboardLayout
                 <NotificationCenter />
 
                 {/* User Profile */}
-                <button className="flex items-center space-x-2 px-2 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all">
-                  <div className="h-8 w-8 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center">
-                    <User className="h-4 w-4 text-white" />
+                <button className="flex items-center space-x-2 p-1.5 text-gray-700 hover:bg-gray-50 rounded-xl transition-all group">
+                  <div className="h-9 w-9 bg-brand-darkBlue rounded-lg flex items-center justify-center shadow-lg shadow-brand-darkBlue/10 group-hover:scale-105 transition-transform">
+                    <User className="h-5 w-5 text-white" />
                   </div>
-                  <span className="hidden xl:block font-medium text-sm">Admin</span>
+                  <div className="hidden xl:flex flex-col items-start pr-2">
+                    <span className="font-bold text-[13px] leading-tight">Administrator</span>
+                    <span className="text-[10px] text-gray-400 font-medium leading-tight">Super User</span>
+                  </div>
                 </button>
               </div>
             </div>

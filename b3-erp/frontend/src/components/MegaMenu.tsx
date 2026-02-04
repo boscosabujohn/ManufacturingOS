@@ -44,7 +44,7 @@ const megaMenuData: Record<string, MegaMenuSection[]> = {
       id: 'crm',
       name: 'CRM',
       icon: Users,
-      color: 'text-blue-600 bg-blue-50',
+      color: 'text-brand-blue bg-blue-50/50',
       items: [
         { id: 'customers', name: 'Customers', href: '/crm/customers', description: 'Manage customer database and profiles' },
         { id: 'leads', name: 'Leads', href: '/crm/leads', description: 'Track and convert leads' },
@@ -94,7 +94,7 @@ const megaMenuData: Record<string, MegaMenuSection[]> = {
       id: 'production',
       name: 'Production',
       icon: Factory,
-      color: 'text-red-600 bg-red-50',
+      color: 'text-brand-red bg-brand-red/5',
       items: [
         { id: 'ppg', name: 'PPG Planning', href: '/production/ppg', description: 'Production planning group' },
         { id: 'work-orders', name: 'Work Orders', href: '/production/work-orders', description: 'Manufacturing work orders' },
@@ -148,7 +148,7 @@ const megaMenuData: Record<string, MegaMenuSection[]> = {
       id: 'project-execution',
       name: 'Execution & Tracking',
       icon: FolderKanban,
-      color: 'text-blue-600 bg-blue-50',
+      color: 'text-brand-blue bg-blue-50/50',
       items: [
         { id: 'deliverables', name: 'Deliverables', href: '/project-management/deliverables', description: 'Track deliverables' },
         { id: 'tasks', name: 'Tasks', href: '/project-management/tasks', description: 'Task management' },
@@ -246,7 +246,7 @@ const megaMenuData: Record<string, MegaMenuSection[]> = {
       id: 'workflow-automation',
       name: 'Workflow Automation',
       icon: Workflow,
-      color: 'text-blue-600 bg-blue-50',
+      color: 'text-brand-blue bg-blue-50/50',
       items: [
         { id: 'workflow-overview', name: 'Overview Dashboard', href: '/admin/workflow-overview', description: 'Central hub for workflows' },
         { id: 'workflows', name: 'Manage Workflows', href: '/admin/workflows', description: 'View and edit all workflows' },
@@ -313,15 +313,15 @@ export default function MegaMenu({ activeMenu, onClose }: MegaMenuProps) {
                         key={item.id}
                         href={item.href}
                         onClick={onClose}
-                        className="block p-2 rounded-lg hover:bg-blue-50 transition-colors group"
+                        className="block p-2 rounded-lg hover:bg-gray-50 transition-all duration-200 group border border-transparent hover:border-gray-100"
                       >
                         <div className="flex items-start justify-between">
                           <div className="flex-1">
-                            <h4 className="text-sm font-semibold text-gray-900 group-hover:text-blue-600 transition-colors flex items-center">
+                            <h4 className="text-[13px] font-bold text-gray-800 group-hover:text-brand-red transition-colors flex items-center">
                               {item.name}
                               <ArrowRight className="h-3 w-3 ml-1.5 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
                             </h4>
-                            <p className="text-xs text-gray-600 mt-0.5">{item.description}</p>
+                            <p className="text-[11px] text-gray-500 mt-0.5 line-clamp-1">{item.description}</p>
                           </div>
                         </div>
                       </Link>
@@ -333,23 +333,23 @@ export default function MegaMenu({ activeMenu, onClose }: MegaMenuProps) {
           </div>
 
           {/* Quick Actions Footer */}
-          <div className="mt-6 pt-4 border-t border-gray-200">
+          <div className="mt-6 pt-4 border-t border-gray-100 bg-gray-50/50 -mx-8 -mb-6 px-8 py-4">
             <div className="flex items-center justify-between">
               <div>
-                <h4 className="text-sm font-semibold text-gray-900 mb-0.5">Need help navigating?</h4>
-                <p className="text-xs text-gray-600">Check our documentation or contact support</p>
+                <h4 className="text-[13px] font-bold text-gray-800">Need help navigating?</h4>
+                <p className="text-[11px] text-gray-500">Check our documentation or contact support</p>
               </div>
-              <div className="flex space-x-4">
+              <div className="flex space-x-6">
                 <Link
                   href="/help"
-                  className="text-sm font-medium text-blue-600 hover:text-blue-700"
+                  className="text-[12px] font-bold text-brand-blue hover:text-brand-red transition-colors"
                   onClick={onClose}
                 >
-                  View Documentation →
+                  Documentation →
                 </Link>
                 <Link
                   href="/support"
-                  className="text-sm font-medium text-blue-600 hover:text-blue-700"
+                  className="text-[12px] font-bold text-brand-blue hover:text-brand-red transition-colors"
                   onClick={onClose}
                 >
                   Contact Support →
@@ -362,17 +362,11 @@ export default function MegaMenu({ activeMenu, onClose }: MegaMenuProps) {
 
       <style jsx>{`
         @keyframes slideDown {
-          from {
-            opacity: 0;
-            transform: translateY(-10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
+          from { opacity: 0; transform: translateY(-8px); }
+          to { opacity: 1; transform: translateY(0); }
         }
         .animate-slideDown {
-          animation: slideDown 0.2s ease-out;
+          animation: slideDown 0.2s ease-out forwards;
         }
       `}</style>
     </>

@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   Users,
   ShoppingCart,
@@ -27,6 +28,7 @@ import {
   BarChart3,
   ClipboardCheck,
   Palette,
+  Search,
 } from 'lucide-react';
 
 interface SubMenuItem {
@@ -54,17 +56,17 @@ const menuItems: MenuItem[] = [
     name: 'Dashboard',
     icon: Home,
     href: '/dashboard',
-    color: 'text-blue-600',
-    bgColor: 'bg-blue-50',
-    hoverColor: 'hover:bg-blue-100',
+    color: 'text-white',
+    bgColor: 'bg-brand-red',
+    hoverColor: 'hover:bg-white/5',
   },
   {
     id: 'project-management',
-    name: 'Project Management',
+    name: 'Projects Focus',
     icon: FolderKanban,
-    color: 'text-orange-600',
-    bgColor: 'bg-orange-50',
-    hoverColor: 'hover:bg-orange-100',
+    color: 'text-white',
+    bgColor: 'bg-brand-red',
+    hoverColor: 'hover:bg-white/5',
     subItems: [
       { id: 'pm-dashboard', name: 'Projects Dashboard', href: '/project-management', description: 'All projects overview' },
       { id: 'create-project', name: 'Create Project', href: '/project-management/create-enhanced', description: 'Start new project' },
@@ -230,9 +232,9 @@ const menuItems: MenuItem[] = [
     id: 'crm',
     name: 'CRM',
     icon: Users,
-    color: 'text-indigo-600',
-    bgColor: 'bg-indigo-50',
-    hoverColor: 'hover:bg-indigo-100',
+    color: 'text-white',
+    bgColor: 'bg-brand-red',
+    hoverColor: 'hover:bg-white/5',
     subItems: [
       { id: 'crm-dashboard-summary', name: 'CRM Dashboard', href: '/crm', description: 'CRM overview' },
       {
@@ -417,9 +419,9 @@ const menuItems: MenuItem[] = [
     id: 'sales',
     name: 'Sales',
     icon: ShoppingCart,
-    color: 'text-green-600',
-    bgColor: 'bg-green-50',
-    hoverColor: 'hover:bg-green-100',
+    color: 'text-white',
+    bgColor: 'bg-brand-red',
+    hoverColor: 'hover:bg-white/5',
     subItems: [
       { id: 'sales-dashboard', name: 'Sales Dashboard', href: '/sales', description: 'Sales overview' },
       {
@@ -590,9 +592,9 @@ const menuItems: MenuItem[] = [
     id: 'estimation',
     name: 'Estimation',
     icon: Calculator,
-    color: 'text-purple-600',
-    bgColor: 'bg-purple-50',
-    hoverColor: 'hover:bg-purple-100',
+    color: 'text-white',
+    bgColor: 'bg-brand-red',
+    hoverColor: 'hover:bg-white/5',
     subItems: [
       { id: 'estimation-dashboard', name: 'Estimation Dashboard', href: '/estimation', description: 'Overview of estimates' },
       {
@@ -862,9 +864,9 @@ const menuItems: MenuItem[] = [
     id: 'production',
     name: 'Production',
     icon: Factory,
-    color: 'text-red-600',
-    bgColor: 'bg-red-50',
-    hoverColor: 'hover:bg-red-100',
+    color: 'text-white',
+    bgColor: 'bg-brand-red',
+    hoverColor: 'hover:bg-white/5',
     subItems: [
       { id: 'production-dashboard', name: 'Production Dashboard', href: '/production', description: 'Production overview' },
       { id: 'dies-tools', name: 'Dies & Tools Manager', href: '/production/dies-tools', description: 'Tool lifecycle management' },
@@ -1149,9 +1151,9 @@ const menuItems: MenuItem[] = [
     id: 'quality',
     name: 'Quality',
     icon: ClipboardCheck,
-    color: 'text-indigo-600',
-    bgColor: 'bg-indigo-50',
-    hoverColor: 'hover:bg-indigo-100',
+    color: 'text-white',
+    bgColor: 'bg-brand-red',
+    hoverColor: 'hover:bg-white/5',
     subItems: [
       { id: 'production-quality-dashboard', name: 'Quality Dashboard', href: '/quality', description: 'Quality overview' },
       {
@@ -1193,9 +1195,9 @@ const menuItems: MenuItem[] = [
     id: 'inventory',
     name: 'Inventory',
     icon: Package,
-    color: 'text-orange-600',
-    bgColor: 'bg-orange-50',
-    hoverColor: 'hover:bg-orange-100',
+    color: 'text-white',
+    bgColor: 'bg-brand-red',
+    hoverColor: 'hover:bg-white/5',
     subItems: [
       { id: 'inventory-dashboard', name: 'Inventory Dashboard', href: '/inventory', description: 'Inventory overview' },
       {
@@ -1374,9 +1376,9 @@ const menuItems: MenuItem[] = [
     id: 'procurement',
     name: 'Procurement',
     icon: ShoppingBag,
-    color: 'text-cyan-600',
-    bgColor: 'bg-cyan-50',
-    hoverColor: 'hover:bg-cyan-100',
+    color: 'text-white',
+    bgColor: 'bg-brand-red',
+    hoverColor: 'hover:bg-white/5',
     subItems: [
       { id: 'procurement-dashboard', name: 'Procurement Dashboard', href: '/procurement', description: 'Overview & analytics' },
       { id: 'calendar', name: 'Procurement Calendar', href: '/procurement/calendar', description: 'Schedule & deadlines' },
@@ -1653,9 +1655,9 @@ const menuItems: MenuItem[] = [
     id: 'finance',
     name: 'Finance',
     icon: DollarSign,
-    color: 'text-yellow-600',
-    bgColor: 'bg-yellow-50',
-    hoverColor: 'hover:bg-yellow-100',
+    color: 'text-white',
+    bgColor: 'bg-brand-red',
+    hoverColor: 'hover:bg-white/5',
     subItems: [
       { id: 'finance-dashboard-main', name: 'Finance Dashboard', href: '/finance/dashboard', description: 'Financial overview' },
       {
@@ -3492,9 +3494,9 @@ const menuItems: MenuItem[] = [
     id: 'workflow',
     name: 'Workflow',
     icon: GitBranch,
-    color: 'text-indigo-600',
-    bgColor: 'bg-indigo-50',
-    hoverColor: 'hover:bg-indigo-100',
+    color: 'text-white',
+    bgColor: 'bg-brand-red',
+    hoverColor: 'hover:bg-white/5',
     subItems: [
       { id: 'workflow-dashboard', name: 'Workflow Dashboard', href: '/workflow', description: 'Workflow overview' },
       { id: 'task-inbox', name: '📥 My Task Inbox', href: '/workflow/inbox', description: 'Your pending tasks \u0026 approvals' },
@@ -3551,9 +3553,9 @@ const menuItems: MenuItem[] = [
     id: 'reports',
     name: 'Reports & Analytics',
     icon: BarChart3,
-    color: 'text-cyan-600',
-    bgColor: 'bg-cyan-50',
-    hoverColor: 'hover:bg-cyan-100',
+    color: 'text-white',
+    bgColor: 'bg-brand-red',
+    hoverColor: 'hover:bg-white/5',
     subItems: [
       { id: 'reports-dashboard', name: 'Reports Dashboard', href: '/reports', description: 'All reports overview' },
       {
@@ -3830,9 +3832,9 @@ const menuItems: MenuItem[] = [
     id: 'it-admin',
     name: 'IT Admin',
     icon: Settings,
-    color: 'text-gray-600',
-    bgColor: 'bg-gray-50',
-    hoverColor: 'hover:bg-gray-100',
+    color: 'text-white',
+    bgColor: 'bg-brand-red',
+    hoverColor: 'hover:bg-white/5',
     subItems: [
       { id: 'it-admin-dashboard', name: 'Admin Dashboard', href: '/it-admin', description: 'System overview' },
       {
@@ -3964,9 +3966,9 @@ const menuItems: MenuItem[] = [
     id: 'design-system',
     name: 'Design System',
     icon: Palette,
-    color: 'text-pink-600',
-    bgColor: 'bg-pink-50',
-    hoverColor: 'hover:bg-pink-100',
+    color: 'text-white',
+    bgColor: 'bg-brand-red',
+    hoverColor: 'hover:bg-white/5',
     subItems: [
       { id: 'ds-overview', name: 'Design System Overview', href: '/design-system', description: 'Full documentation' },
       { id: 'ds-tokens', name: 'Design Tokens', href: '/design-system#tokens', description: 'Colors, spacing, typography' },
@@ -3987,6 +3989,59 @@ interface SidebarProps {
 export default function Sidebar({ isOpen, onToggle }: SidebarProps) {
   const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
   const [expandedSubItems, setExpandedSubItems] = useState<Set<string>>(new Set());
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const matchesSearch = (item: MenuItem | SubMenuItem, query: string): boolean => {
+    if (!query) return true;
+    const q = query.toLowerCase();
+    const nameMatches = item.name.toLowerCase().includes(q);
+    const descMatches = item.description?.toLowerCase().includes(q) || false;
+
+    if (nameMatches || descMatches) return true;
+
+    if ('subItems' in item && item.subItems) {
+      return item.subItems.some(sub => matchesSearch(sub, query));
+    }
+
+    return false;
+  };
+
+  const getFilteredItems = (items: MenuItem[], query: string): MenuItem[] => {
+    if (!query) return items;
+    return items.filter(item => matchesSearch(item, query));
+  };
+
+  const filteredItems = getFilteredItems(menuItems, searchQuery);
+
+  useEffect(() => {
+    if (searchQuery) {
+      const matchIds = new Set<string>();
+
+      const checkMatches = (item: MenuItem | SubMenuItem, parentId?: string) => {
+        const q = searchQuery.toLowerCase();
+        const matches = item.name.toLowerCase().includes(q) ||
+          item.description?.toLowerCase().includes(q);
+
+        if (matches && parentId) {
+          matchIds.add(parentId);
+        }
+
+        if (item.subItems) {
+          item.subItems.forEach(sub => checkMatches(sub, parentId || item.id));
+        }
+      };
+
+      menuItems.forEach(item => checkMatches(item));
+
+      if (matchIds.size > 0) {
+        setExpandedItems(prev => {
+          const next = new Set(prev);
+          matchIds.forEach(id => next.add(id));
+          return next;
+        });
+      }
+    }
+  }, [searchQuery]);
 
   const toggleItem = (itemId: string) => {
     const newExpanded = new Set(expandedItems);
@@ -4025,53 +4080,47 @@ export default function Sidebar({ isOpen, onToggle }: SidebarProps) {
 
   const renderSubMenu = (subItems: SubMenuItem[], parentId: string, level: number = 1) => {
     return (
-      <div className={`${level === 1 ? 'bg-gradient-to-r from-slate-50 to-white' : 'bg-white'} border-l-2 border-slate-300 ml-4`}>
+      <div className={`${level === 1 ? 'bg-brand-blue/10' : 'bg-transparent'} border-l border-brand-lightBlue/30 ml-3`}>
         {subItems.map((subItem) => {
           const hasNestedItems = subItem.subItems && subItem.subItems.length > 0;
           const fullId = `${parentId}-${subItem.id}`;
           const isExpanded = expandedSubItems.has(fullId);
-          const paddingLeft = `${(level + 1) * 1}rem`; // Dynamic padding
+          const paddingLeft = `${(level + 1) * 0.75}rem`;
 
           return (
             <div key={subItem.id}>
               {hasNestedItems ? (
                 <button
                   onClick={() => toggleSubItem(parentId, subItem.id)}
-                  className={`w-full flex items-center justify-between py-2.5 text-sm hover:bg-slate-100 transition-all duration-200 group ${isExpanded ? 'bg-slate-100 font-medium' : 'text-gray-700'
+                  className={`w-full flex items-center justify-between py-1.5 text-[13px] hover:bg-brand-blue/10 transition-all duration-200 group ${isExpanded ? 'bg-brand-blue/20 text-brand-lightBlue font-medium' : 'text-white'
                     }`}
-                  style={{ paddingLeft, paddingRight: '1rem' }}
+                  style={{ paddingLeft, paddingRight: '0.75rem' }}
                 >
                   <div className="flex items-center space-x-2">
-                    <ChevronRight className={`h-3 w-3 text-slate-400 transition-transform duration-200 ${isExpanded ? 'rotate-90' : ''}`} />
-                    <span className="group-hover:translate-x-1 transition-transform duration-200">
+                    <ChevronRight className={`h-3 w-3 ${isExpanded ? 'text-brand-lightBlue' : 'text-brand-blue'} transition-transform duration-200 ${isExpanded ? 'rotate-90' : ''}`} />
+                    <span className="group-hover:translate-x-0.5 transition-transform duration-200">
                       {subItem.name}
                     </span>
                   </div>
                   <ChevronDown
-                    className={`h-3 w-3 text-slate-500 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''
+                    className={`h-3 w-3 ${isExpanded ? 'text-brand-lightBlue' : 'text-brand-blue'} transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''
                       }`}
                   />
                 </button>
               ) : (
                 <Link
                   href={subItem.href}
-                  className={`block py-2.5 text-sm text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-all duration-200 group`}
-                  style={{ paddingLeft, paddingRight: '1rem' }}
+                  className={`block py-1.5 text-[13px] text-white hover:text-brand-lightBlue hover:bg-brand-blue/20 transition-all duration-200 group`}
+                  style={{ paddingLeft, paddingRight: '0.75rem' }}
                 >
                   <div className="flex items-center justify-between">
-                    <span className="font-medium group-hover:translate-x-1 transition-transform duration-200">
+                    <span className="group-hover:translate-x-0.5 transition-transform duration-200">
                       {subItem.name}
                     </span>
                   </div>
-                  {subItem.description && (
-                    <span className="text-xs text-gray-500 block mt-0.5">
-                      {subItem.description}
-                    </span>
-                  )}
                 </Link>
               )}
 
-              {/* Nested sub-items */}
               {hasNestedItems && isExpanded && isOpen && (
                 <div className="animate-slideDown">
                   {renderSubMenu(subItem.subItems!, fullId, level + 1)}
@@ -4086,128 +4135,141 @@ export default function Sidebar({ isOpen, onToggle }: SidebarProps) {
 
   return (
     <>
-      {/* Overlay for mobile */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden"
           onClick={onToggle}
         />
       )}
 
-      {/* Sidebar */}
       <aside
-        className={`fixed top-0 left-0 h-full bg-white border-r border-gray-200 z-50 transition-all duration-300 ${isOpen ? 'w-[315px]' : 'w-0 lg:w-20'
-          } overflow-hidden flex flex-col shadow-xl`}
+        className={`fixed top-0 left-0 h-full bg-gradient-to-br from-brand-darkBlue via-[#001a33] to-brand-blue/30 text-white z-50 transition-all duration-300 ${isOpen ? 'w-[280px]' : 'w-0 lg:w-16'
+          } overflow-hidden flex flex-col shadow-2xl border-r border-white/10`}
       >
-        {/* Header */}
-        <div className="h-16 border-b border-gray-200 flex items-center justify-between px-4 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600">
+        <div className="h-16 flex items-center justify-between px-4 border-b border-gray-100 bg-gradient-to-r from-white via-white to-brand-red/5">
           {isOpen && (
-            <h2 className="text-lg font-bold text-white tracking-wide">OptiForge</h2>
+            <div className="flex items-center justify-start w-full overflow-hidden h-14 pl-2">
+              <div className="relative w-10 h-10 transform scale-[2] origin-left">
+                <Image
+                  src="/optiforge-logo.png"
+                  alt="OptiForge Icon"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+            </div>
           )}
           <button
             onClick={onToggle}
-            className="p-2 rounded-lg hover:bg-white/20 text-white transition-all duration-200 hover:scale-110"
+            className="p-1.5 rounded-lg hover:bg-gray-100 text-gray-400 hover:text-gray-600 transition-all duration-200"
           >
             <ChevronRight className={`h-5 w-5 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
           </button>
         </div>
 
-        {/* Menu Items */}
-        <nav className="flex-1 overflow-y-auto py-4 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
-          {menuItems.map((item) => {
-            const Icon = item.icon;
-            const isExpanded = expandedItems.has(item.id);
-            const hasSubItems = item.subItems && item.subItems.length > 0;
-
-            return (
-              <div key={item.id} className="mb-1">
-                {hasSubItems ? (
-                  <button
-                    onClick={() => toggleItem(item.id)}
-                    className={`w-full flex items-center justify-between px-4 py-3 transition-all duration-200 ${isExpanded
-                      ? `${item.bgColor} border-l-4 border-${item.color.replace('text-', '')}`
-                      : item.hoverColor
-                      }`}
-                  >
-                    <div className="flex items-center space-x-3">
-                      <Icon className={`h-5 w-5 ${item.color} ${isExpanded ? 'scale-110' : ''} transition-transform duration-200`} />
-                      {isOpen && (
-                        <span className={`font-medium ${isExpanded ? item.color : 'text-gray-700'} transition-colors duration-200`}>
-                          {item.name}
-                        </span>
-                      )}
-                    </div>
-                    {isOpen && (
-                      <ChevronDown
-                        className={`h-4 w-4 ${item.color} transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''
-                          }`}
-                      />
-                    )}
-                  </button>
-                ) : (
-                  <Link
-                    href={item.href || '#'}
-                    className={`flex items-center space-x-3 px-4 py-3 ${item.hoverColor} transition-all duration-200 border-l-4 border-transparent hover:border-${item.color.replace('text-', '')}`}
-                  >
-                    <Icon className={`h-5 w-5 ${item.color} hover:scale-110 transition-transform duration-200`} />
-                    {isOpen && (
-                      <span className="font-medium text-gray-700">{item.name}</span>
-                    )}
-                  </Link>
-                )}
-
-                {/* Sub-items with smooth animation */}
-                {hasSubItems && isExpanded && isOpen && (
-                  <div className="animate-slideDown">
-                    {renderSubMenu(item.subItems!, item.id)}
-                  </div>
-                )}
-              </div>
-            );
-          })}
-        </nav>
-
-        {/* Footer */}
+        {/* Search Box */}
         {isOpen && (
-          <div className="border-t border-gray-200 p-4 bg-gradient-to-r from-slate-50 to-white">
-            <p className="text-xs text-gray-600 text-center font-semibold">
-              OptiForge - Solution to manufacturers
-            </p>
-            <p className="text-xs text-gray-400 text-center mt-1">
-              Powered by KreupAI Technologies LLC
-            </p>
+          <div className="px-4 py-3 border-b border-brand-blue/20">
+            <div className="relative group">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-3.5 w-3.5 text-brand-lightBlue group-focus-within:text-brand-red transition-colors" />
+              <input
+                type="text"
+                placeholder="SEARCH MODULES..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full bg-brand-blue/10 border border-brand-blue/20 rounded-lg py-1.5 pl-9 pr-3 text-sm text-white placeholder:text-brand-lightBlue/50 focus:outline-none focus:ring-1 focus:ring-brand-red focus:border-brand-red transition-all font-bold tracking-wider"
+              />
+            </div>
           </div>
         )}
-      </aside>
 
-      {/* Add custom CSS for animations */}
+        <nav className="flex-1 overflow-y-auto py-3 scrollbar-hide">
+          {filteredItems.length > 0 ? (
+            filteredItems.map((item) => {
+              const Icon = item.icon;
+              const isExpanded = expandedItems.has(item.id);
+              const hasSubItems = item.subItems && item.subItems.length > 0;
+
+              return (
+                <div key={item.id} className="px-2 mb-0.5">
+                  {hasSubItems ? (
+                    <button
+                      onClick={() => toggleItem(item.id)}
+                      className={`w-full flex items-center justify-between px-3 py-2 rounded-lg transition-all duration-200 group ${isExpanded
+                        ? 'bg-brand-blue/20 text-brand-lightBlue shadow-lg shadow-brand-blue/10'
+                        : 'text-white hover:bg-brand-blue/10 hover:text-brand-lightBlue'
+                        }`}
+                    >
+                      <div className="flex items-center space-x-3">
+                        <Icon className={`h-5 w-5 ${isExpanded ? 'text-brand-lightBlue' : 'text-white'} group-hover:scale-110 transition-transform duration-200 group-hover:text-brand-lightBlue`} />
+                        {isOpen && (
+                          <span className="text-[14px] font-semibold transition-colors duration-200">
+                            {item.name}
+                          </span>
+                        )}
+                      </div>
+                      {isOpen && (
+                        <ChevronDown
+                          className={`h-3 w-3 ${isExpanded ? 'text-brand-lightBlue' : 'text-brand-blue'} transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''
+                            }`}
+                        />
+                      )}
+                    </button>
+                  ) : (
+                    <Link
+                      href={item.href || '#'}
+                      className={`flex items-center space-x-3 px-3 py-2 rounded-lg text-white hover:bg-brand-blue/10 hover:text-brand-lightBlue transition-all duration-200 group border-l-2 border-transparent hover:border-brand-lightBlue`}
+                    >
+                      <Icon className="h-5 w-5 text-white group-hover:scale-110 group-hover:text-brand-lightBlue transition-transform duration-200" />
+                      {isOpen && (
+                        <span className="text-[14px] font-semibold">{item.name}</span>
+                      )}
+                    </Link>
+                  )}
+
+                  {hasSubItems && isExpanded && isOpen && (
+                    <div className="mt-1">
+                      {renderSubMenu(item.subItems!, item.id)}
+                    </div>
+                  )}
+                </div>
+              );
+            })
+          ) : searchQuery && (
+            <div className="px-6 py-10 text-center">
+              <Search className="h-8 w-8 text-brand-blue/30 mx-auto mb-3" />
+              <p className="text-sm text-brand-lightBlue/60 font-medium">No modules found matching "{searchQuery}"</p>
+            </div>
+          )}
+        </nav>
+
+        {isOpen && (
+          <div className="p-4 bg-transparent border-t border-brand-blue/20">
+            <p className="text-[10px] text-brand-lightBlue text-center font-black uppercase tracking-widest">
+              OptiForge Manufacturing
+            </p>
+            <p className="text-[9px] text-brand-blue text-center mt-0.5 font-bold">
+              Powered by KreupAI Technologies
+            </p>
+          </div>
+        )
+        }
+      </aside >
+
       <style jsx global>{`
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
         @keyframes slideDown {
-          from {
-            opacity: 0;
-            transform: translateY(-10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
+          from { opacity: 0; transform: translateY(-4px); }
+          to { opacity: 1; transform: translateY(0); }
         }
-
         .animate-slideDown {
-          animation: slideDown 0.3s ease-out;
-        }
-
-        .scrollbar-thin::-webkit-scrollbar {
-          width: 6px;
-        }
-
-        .scrollbar-thumb-gray-300::-webkit-scrollbar-thumb {
-          background-color: #d1d5db;
-          border-radius: 3px;
-        }
-
-        .scrollbar-track-gray-100::-webkit-scrollbar-track {
-          background-color: #f3f4f6;
+          animation: slideDown 0.2s ease-out forwards;
         }
       `}</style>
     </>

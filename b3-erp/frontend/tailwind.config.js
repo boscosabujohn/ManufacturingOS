@@ -50,6 +50,13 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        brand: {
+          red: "#E31E24",
+          darkBlue: "#001529",
+          blue: "#0074D9",
+          lightBlue: "#60A5FA",
+          white: "#FFFFFF",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
