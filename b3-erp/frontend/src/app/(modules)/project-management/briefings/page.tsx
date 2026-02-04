@@ -194,9 +194,9 @@ export default function LayoutBriefingsPage() {
 
   return (
     <div className="w-full h-screen overflow-y-auto overflow-x-hidden bg-gray-50">
-      <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+      <div className="px-3 py-2 space-y-3">
         {/* Header */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-4">
               <Link
@@ -382,7 +382,7 @@ export default function LayoutBriefingsPage() {
         {/* Details Modal */}
         {showDetailsModal && selectedBriefing && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div className="bg-white rounded-lg p-6 max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+            <div className="bg-white rounded-lg p-3 max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-2xl font-bold text-gray-900">Briefing Details</h2>
                 <button
@@ -393,7 +393,7 @@ export default function LayoutBriefingsPage() {
                 </button>
               </div>
 
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <div>
                   <h3 className="text-sm font-semibold text-gray-900 mb-2">Attendees</h3>
                   <div className="space-y-2">

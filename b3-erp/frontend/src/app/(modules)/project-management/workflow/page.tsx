@@ -9,7 +9,7 @@ import { PhaseProgressVisualization } from '@/components/project-management/Phas
 
 export default function WorkflowPage() {
  return (
-  <div className="w-full py-6 space-y-6">
+  <div className="w-full py-2 space-y-3">
    {/* Header */}
    <div className="flex items-center justify-between">
     <div className="flex items-center gap-4">
@@ -43,7 +43,7 @@ export default function WorkflowPage() {
    <WorkflowQuickActions variant="list" />
 
    {/* Features Info */}
-   <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl border border-blue-100 p-6">
+   <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl border border-blue-100 p-3">
     <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
      <Sparkles className="w-5 h-5 text-yellow-500" />
      Enhanced Form Features

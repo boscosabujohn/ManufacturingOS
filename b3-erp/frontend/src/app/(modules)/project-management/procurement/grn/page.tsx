@@ -63,8 +63,8 @@ export default function GRNEntryPage() {
   };
 
   return (
-    <div className="w-full py-6 space-y-6">
-      <div className="flex items-center justify-between mb-6">
+    <div className="w-full py-2 space-y-3">
+      <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-4">
           <Button variant="ghost" onClick={() => router.back()} className="p-0 hover:bg-transparent">
             <ArrowLeft className="w-6 h-6 text-gray-600" />
@@ -80,8 +80,8 @@ export default function GRNEntryPage() {
         </Button>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2 space-y-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
+        <div className="lg:col-span-2 space-y-3">
           <Card>
             <CardHeader>
               <CardTitle>Received Items</CardTitle>
@@ -135,12 +135,12 @@ export default function GRNEntryPage() {
           </Card>
         </div>
 
-        <div className="space-y-6">
+        <div className="space-y-3">
           <Card>
             <CardHeader>
               <CardTitle>Receipt Details</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-2">
               <div className="space-y-2">
                 <Label>PO Reference</Label>
                 <Input value="PO-2025-088" readOnly className="bg-gray-50" />

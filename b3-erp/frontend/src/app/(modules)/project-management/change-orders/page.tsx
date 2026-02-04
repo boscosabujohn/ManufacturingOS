@@ -495,7 +495,7 @@ export default function ChangeOrdersPage() {
 
  return (
   <div className="w-full h-screen overflow-y-auto overflow-x-hidden">
-   <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+   <div className="px-3 py-2 space-y-3">
     {/* Header Actions */}
     <div className="flex justify-between mb-4">
      <div className="flex gap-2">
@@ -846,7 +846,7 @@ export default function ChangeOrdersPage() {
        </button>
       </div>
 
-      <div className="p-6 space-y-6">
+      <div className="p-6 space-y-3">
        {/* Status & Priority */}
        <div className="flex items-center space-x-4">
         <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${getStatusColor(selectedOrder.status)}`}>
@@ -873,7 +873,7 @@ export default function ChangeOrdersPage() {
        </div>
 
        {/* Impact Analysis */}
-       <div className="grid grid-cols-2 gap-6">
+       <div className="grid grid-cols-2 gap-3">
         <div>
          <h4 className="text-sm font-semibold text-gray-900 mb-3">Cost Impact</h4>
          <div className="space-y-2">

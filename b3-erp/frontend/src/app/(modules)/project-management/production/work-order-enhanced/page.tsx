@@ -330,13 +330,13 @@ export default function ProductionWorkOrderEnhancedPage() {
     switch (currentStep) {
       case 0:
         return (
-          <div className="space-y-6">
+          <div className="space-y-3">
             <div className="flex items-center gap-2 mb-4">
               <Package className="w-5 h-5 text-blue-600" />
               <h2 className="text-xl font-semibold text-gray-900">Product Information</h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Project <span className="text-red-500">*</span>
@@ -426,13 +426,13 @@ export default function ProductionWorkOrderEnhancedPage() {
 
       case 1:
         return (
-          <div className="space-y-6">
+          <div className="space-y-3">
             <div className="flex items-center gap-2 mb-4">
               <Clock className="w-5 h-5 text-blue-600" />
               <h2 className="text-xl font-semibold text-gray-900">Schedule & Priority</h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Planned Start <span className="text-red-500">*</span>
@@ -491,7 +491,7 @@ export default function ProductionWorkOrderEnhancedPage() {
 
       case 2:
         return (
-          <div className="space-y-6">
+          <div className="space-y-3">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2">
                 <Cog className="w-5 h-5 text-blue-600" />
@@ -583,7 +583,7 @@ export default function ProductionWorkOrderEnhancedPage() {
 
       case 3:
         return (
-          <div className="space-y-6">
+          <div className="space-y-3">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2">
                 <Wrench className="w-5 h-5 text-blue-600" />
@@ -674,7 +674,7 @@ export default function ProductionWorkOrderEnhancedPage() {
               </table>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Production Instructions</label>
                 <textarea
@@ -701,13 +701,13 @@ export default function ProductionWorkOrderEnhancedPage() {
 
       case 4:
         return (
-          <div className="space-y-6">
+          <div className="space-y-3">
             <div className="flex items-center gap-2 mb-4">
               <CheckCircle className="w-6 h-6 text-green-600" />
               <h2 className="text-xl font-semibold text-gray-900">Review Work Order</h2>
             </div>
 
-            <div className="bg-gray-50 rounded-lg p-6 space-y-6">
+            <div className="bg-gray-50 rounded-lg p-3 space-y-3">
               <div>
                 <h3 className="text-sm font-semibold text-gray-500 uppercase mb-3">Product</h3>
                 <div className="grid grid-cols-3 gap-4 text-sm">
@@ -782,8 +782,8 @@ export default function ProductionWorkOrderEnhancedPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
+      <div className="w-full px-4 sm:px-6 lg:px-8 py-2">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
           <div className="flex items-center gap-4 mb-4">
             <button onClick={() => router.back()} className="p-2 hover:bg-gray-100 rounded-lg">
               <ArrowLeft className="w-5 h-5 text-gray-600" />
@@ -802,15 +802,15 @@ export default function ProductionWorkOrderEnhancedPage() {
           )}
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
           <StepIndicator steps={STEPS} currentStep={currentStep} onStepClick={setCurrentStep} variant="default" />
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
           {renderStepContent()}
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between">
             <button onClick={() => router.push('/project-management/production')} className="flex items-center gap-2 px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg">
               <X className="w-5 h-5" /> Cancel

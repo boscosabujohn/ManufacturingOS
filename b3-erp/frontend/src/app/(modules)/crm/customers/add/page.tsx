@@ -574,9 +574,9 @@ export default function AddCustomerPage() {
   return (
     <div className="w-full h-screen flex flex-col">
       <div className="flex-1 overflow-y-auto">
-        <div className="px-4 sm:px-6 lg:px-8 py-6">
+        <div className="px-3 py-2">
           {/* Header */}
-          <div className="mb-6 flex items-center justify-between">
+          <div className="mb-3 flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <button
                 onClick={() => router.back()}
@@ -592,7 +592,7 @@ export default function AddCustomerPage() {
           </div>
 
           {/* Progress Steps */}
-          <div className="mb-6 bg-white rounded-lg border border-gray-200 p-6">
+          <div className="mb-3 bg-white rounded-lg border border-gray-200 p-3">
             <div className="flex items-center justify-between">
               {steps.map((step, index) => {
                 const Icon = step.icon;
@@ -637,16 +637,16 @@ export default function AddCustomerPage() {
           </div>
 
           {/* Form Content */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
             {/* Step 1: General Data */}
             {currentStep === 1 && (
-              <div className="space-y-6">
-                <div className="flex items-center space-x-3 mb-4">
+              <div className="space-y-3">
+                <div className="flex items-center space-x-3 mb-2">
                   <Building2 className="h-6 w-6 text-blue-600" />
                   <h2 className="text-xl font-bold text-gray-900">General Data</h2>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Customer Number <span className="text-red-500">*</span>
@@ -892,19 +892,19 @@ export default function AddCustomerPage() {
 
             {/* Step 2: Address Management */}
             {currentStep === 2 && (
-              <div className="space-y-6">
-                <div className="flex items-center space-x-3 mb-4">
+              <div className="space-y-3">
+                <div className="flex items-center space-x-3 mb-2">
                   <MapPin className="h-6 w-6 text-blue-600" />
                   <h2 className="text-xl font-bold text-gray-900">Address Management</h2>
                 </div>
 
                 {/* Existing Addresses */}
                 {formData.addresses.length > 0 && (
-                  <div className="mb-6">
+                  <div className="mb-3">
                     <h3 className="text-lg font-semibold text-gray-900 mb-3">Existing Addresses</h3>
                     <div className="space-y-3">
                       {formData.addresses.map(address => (
-                        <div key={address.id} className="border border-gray-300 rounded-lg p-4 bg-gray-50">
+                        <div key={address.id} className="border border-gray-300 rounded-lg p-3 bg-gray-50">
                           <div className="flex items-start justify-between">
                             <div className="flex-1">
                               <div className="flex items-center space-x-2 mb-2">
@@ -943,9 +943,9 @@ export default function AddCustomerPage() {
                 )}
 
                 {/* Add New Address */}
-                <div className="border border-blue-300 rounded-lg p-4 bg-blue-50">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Add New Address</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div className="border border-blue-300 rounded-lg p-3 bg-blue-50">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Add New Address</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">Address Type</label>
                       <select
@@ -1082,19 +1082,19 @@ export default function AddCustomerPage() {
 
             {/* Step 3: Contact Persons */}
             {currentStep === 3 && (
-              <div className="space-y-6">
-                <div className="flex items-center space-x-3 mb-4">
+              <div className="space-y-3">
+                <div className="flex items-center space-x-3 mb-2">
                   <Users className="h-6 w-6 text-blue-600" />
                   <h2 className="text-xl font-bold text-gray-900">Contact Persons</h2>
                 </div>
 
                 {/* Existing Contacts */}
                 {formData.contacts.length > 0 && (
-                  <div className="mb-6">
+                  <div className="mb-3">
                     <h3 className="text-lg font-semibold text-gray-900 mb-3">Existing Contacts</h3>
                     <div className="space-y-3">
                       {formData.contacts.map(contact => (
-                        <div key={contact.id} className="border border-gray-300 rounded-lg p-4 bg-gray-50">
+                        <div key={contact.id} className="border border-gray-300 rounded-lg p-3 bg-gray-50">
                           <div className="flex items-start justify-between">
                             <div className="flex-1">
                               <div className="flex items-center space-x-2 mb-2">
@@ -1130,9 +1130,9 @@ export default function AddCustomerPage() {
                 )}
 
                 {/* Add New Contact */}
-                <div className="border border-blue-300 rounded-lg p-4 bg-blue-50">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Add New Contact</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div className="border border-blue-300 rounded-lg p-3 bg-blue-50">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Add New Contact</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">Role</label>
                       <select
@@ -1280,16 +1280,16 @@ export default function AddCustomerPage() {
 
             {/* Step 4: Financial & Credit - Due to character limits, continuing in next message */}
             {currentStep === 4 && (
-              <div className="space-y-6">
-                <div className="flex items-center space-x-3 mb-4">
+              <div className="space-y-3">
+                <div className="flex items-center space-x-3 mb-2">
                   <DollarSign className="h-6 w-6 text-blue-600" />
                   <h2 className="text-xl font-bold text-gray-900">Financial & Credit Information</h2>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                   {/* Credit Information */}
                   <div className="lg:col-span-3">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Credit Management</h3>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Credit Management</h3>
                   </div>
 
                   <div>
@@ -1364,7 +1364,7 @@ export default function AddCustomerPage() {
 
                   {/* Payment Terms */}
                   <div className="lg:col-span-3 mt-4">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Payment Information</h3>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Payment Information</h3>
                   </div>
 
                   <div>
@@ -1420,7 +1420,7 @@ export default function AddCustomerPage() {
 
                   {/* Bank Details */}
                   <div className="lg:col-span-3 mt-4">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Bank Details</h3>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Bank Details</h3>
                   </div>
 
                   <div>
@@ -1483,7 +1483,7 @@ export default function AddCustomerPage() {
 
                   {/* Currency and Tax */}
                   <div className="lg:col-span-3 mt-4">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Currency & Tax Information</h3>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Currency & Tax Information</h3>
                   </div>
 
                   <div>
@@ -1599,16 +1599,16 @@ export default function AddCustomerPage() {
 
             {/* Step 5: Sales & Marketing */}
             {currentStep === 5 && (
-              <div className="space-y-6">
-                <div className="flex items-center space-x-3 mb-4">
+              <div className="space-y-3">
+                <div className="flex items-center space-x-3 mb-2">
                   <ShoppingCart className="h-6 w-6 text-blue-600" />
                   <h2 className="text-xl font-bold text-gray-900">Sales & Marketing</h2>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                   {/* Sales Organization */}
                   <div className="lg:col-span-3">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Sales Organization</h3>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Sales Organization</h3>
                   </div>
 
                   <div>
@@ -1668,7 +1668,7 @@ export default function AddCustomerPage() {
 
                   {/* Account Management */}
                   <div className="lg:col-span-3 mt-4">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Account Management</h3>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Account Management</h3>
                   </div>
 
                   <div>
@@ -1756,7 +1756,7 @@ export default function AddCustomerPage() {
 
                   {/* Blocks */}
                   <div className="lg:col-span-3 mt-4">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Blocks & Restrictions</h3>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Blocks & Restrictions</h3>
                   </div>
 
                   <div>
@@ -1836,7 +1836,7 @@ export default function AddCustomerPage() {
 
                   {/* Delivery Terms */}
                   <div className="lg:col-span-3 mt-4">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Delivery Terms</h3>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Delivery Terms</h3>
                   </div>
 
                   <div>
@@ -1945,16 +1945,16 @@ export default function AddCustomerPage() {
 
             {/* Step 6: Logistics & Shipping */}
             {currentStep === 6 && (
-              <div className="space-y-6">
-                <div className="flex items-center space-x-3 mb-4">
+              <div className="space-y-3">
+                <div className="flex items-center space-x-3 mb-2">
                   <Truck className="h-6 w-6 text-blue-600" />
                   <h2 className="text-xl font-bold text-gray-900">Logistics & Shipping</h2>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                   {/* Shipping Method */}
                   <div className="lg:col-span-3">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Shipping Configuration</h3>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Shipping Configuration</h3>
                   </div>
 
                   <div>
@@ -2007,7 +2007,7 @@ export default function AddCustomerPage() {
 
                   {/* Loading/Unloading */}
                   <div className="lg:col-span-3 mt-4">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Facility Information</h3>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Facility Information</h3>
                   </div>
 
                   <div>
@@ -2057,7 +2057,7 @@ export default function AddCustomerPage() {
 
                   {/* Warehouse & Delivery */}
                   <div className="lg:col-span-3 mt-4">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Warehouse & Delivery Details</h3>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Warehouse & Delivery Details</h3>
                   </div>
 
                   <div>
@@ -2128,12 +2128,12 @@ export default function AddCustomerPage() {
 
                   {/* Delivery Day Preferences */}
                   <div className="lg:col-span-3 mt-4">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Delivery Preferences</h3>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Delivery Preferences</h3>
                   </div>
 
                   <div className="md:col-span-3">
                     <label className="block text-sm font-medium text-gray-700 mb-2">Delivery Day Preferences</label>
-                    <div className="flex flex-wrap gap-4">
+                    <div className="flex flex-wrap gap-2">
                       {daysOfWeek.map(day => (
                         <label key={day} className="flex items-center space-x-2">
                           <input
@@ -2179,16 +2179,16 @@ export default function AddCustomerPage() {
 
             {/* Step 7: Additional Information */}
             {currentStep === 7 && (
-              <div className="space-y-6">
-                <div className="flex items-center space-x-3 mb-4">
+              <div className="space-y-3">
+                <div className="flex items-center space-x-3 mb-2">
                   <FileText className="h-6 w-6 text-blue-600" />
                   <h2 className="text-xl font-bold text-gray-900">Additional Information</h2>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                   {/* Account Status */}
                   <div className="lg:col-span-3">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Account Information</h3>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Account Information</h3>
                   </div>
 
                   <div>
@@ -2274,12 +2274,12 @@ export default function AddCustomerPage() {
 
                   {/* Certifications */}
                   <div className="lg:col-span-3 mt-4">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Certifications & Compliance</h3>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Certifications & Compliance</h3>
                   </div>
 
                   <div className="md:col-span-3">
                     <label className="block text-sm font-medium text-gray-700 mb-2">Certifications Required</label>
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
                       {certificationOptions.map(cert => (
                         <label key={cert} className="flex items-center space-x-2">
                           <input
@@ -2296,7 +2296,7 @@ export default function AddCustomerPage() {
 
                   {/* Contract Information */}
                   <div className="lg:col-span-3 mt-4">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Contract Information</h3>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Contract Information</h3>
                   </div>
 
                   <div>
@@ -2343,7 +2343,7 @@ export default function AddCustomerPage() {
 
                   {/* Notes & Instructions */}
                   <div className="lg:col-span-3 mt-4">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Notes & Instructions</h3>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Notes & Instructions</h3>
                   </div>
 
                   <div className="md:col-span-3">
@@ -2370,7 +2370,7 @@ export default function AddCustomerPage() {
 
                   {/* Tags */}
                   <div className="lg:col-span-3 mt-4">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Tags & Custom Fields</h3>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Tags & Custom Fields</h3>
                   </div>
 
                   <div className="md:col-span-3">
@@ -2440,7 +2440,7 @@ export default function AddCustomerPage() {
 
                   {/* Consent */}
                   <div className="lg:col-span-3 mt-4">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Data Privacy & Consent</h3>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Data Privacy & Consent</h3>
                   </div>
 
                   <div>
@@ -2483,7 +2483,7 @@ export default function AddCustomerPage() {
       </div>
 
       {/* Fixed Footer */}
-      <div className="border-t border-gray-200 bg-white px-4 sm:px-6 lg:px-8 py-4 flex-shrink-0">
+      <div className="border-t border-gray-200 bg-white px-3 py-4 flex-shrink-0">
         <div className="flex items-center justify-between">
           <button
             onClick={() => router.back()}

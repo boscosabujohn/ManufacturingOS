@@ -65,8 +65,8 @@ export default function PhotoDocumentationPage() {
   };
 
   return (
-    <div className="w-full py-6 space-y-6">
-      <div className="flex items-center justify-between mb-6">
+    <div className="w-full py-2 space-y-3">
+      <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-4">
           <Button variant="ghost" onClick={() => router.back()} className="p-0 hover:bg-transparent">
             <ArrowLeft className="w-6 h-6 text-gray-600" />
@@ -92,7 +92,7 @@ export default function PhotoDocumentationPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
         {/* Upload Area */}
         <Card className="md:col-span-3 border-dashed border-2 bg-gray-50/50 hover:bg-gray-50 transition-colors">
           <CardContent className="flex flex-col items-center justify-center py-12 text-center cursor-pointer" onClick={handleUploadClick}>

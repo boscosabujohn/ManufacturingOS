@@ -105,9 +105,9 @@ export default function RevenueAnalyticsPage() {
   const maxMRR = Math.max(...recurringGrowth.map(r => r.mrr));
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 ">
+    <div className="w-full h-full px-3 py-2 ">
       <div className="mb-8">
-        <div className="flex gap-2 mb-6">
+        <div className="flex gap-2 mb-3">
           {(['week', 'month', 'quarter', 'year'] as const).map((range) => (
             <button
               key={range}
@@ -124,8 +124,8 @@ export default function RevenueAnalyticsPage() {
         </div>
 
         {/* Key Metrics */}
-        <div className="grid grid-cols-1 md:grid-cols-6 gap-4 mb-8">
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
+        <div className="grid grid-cols-1 md:grid-cols-6 gap-2 mb-8">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm font-medium text-gray-600">Total Revenue</span>
               <DollarSign className="w-5 h-5 text-green-600" />
@@ -141,7 +141,7 @@ export default function RevenueAnalyticsPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm font-medium text-gray-600">Recurring Revenue</span>
               <Repeat className="w-5 h-5 text-blue-600" />
@@ -157,7 +157,7 @@ export default function RevenueAnalyticsPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm font-medium text-gray-600">New Business</span>
               <TrendingUp className="w-5 h-5 text-purple-600" />
@@ -173,7 +173,7 @@ export default function RevenueAnalyticsPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm font-medium text-gray-600">Expansion</span>
               <Target className="w-5 h-5 text-teal-600" />
@@ -189,7 +189,7 @@ export default function RevenueAnalyticsPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm font-medium text-gray-600">Churn Revenue</span>
               <TrendingDown className="w-5 h-5 text-red-600" />
@@ -205,7 +205,7 @@ export default function RevenueAnalyticsPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm font-medium text-gray-600">Avg Contract</span>
               <DollarSign className="w-5 h-5 text-orange-600" />
@@ -223,8 +223,8 @@ export default function RevenueAnalyticsPage() {
         </div>
 
         {/* Revenue Breakdown Chart */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6 mb-8">
-          <div className="flex items-center justify-between mb-6">
+        <div className="bg-white rounded-lg border border-gray-200 p-3 mb-8">
+          <div className="flex items-center justify-between mb-3">
             <h2 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
               <BarChart3 className="w-5 h-5" />
               Monthly Revenue Breakdown
@@ -282,7 +282,7 @@ export default function RevenueAnalyticsPage() {
                   </div>
                 </div>
               ))}
-              <div className="flex gap-6 justify-center pt-4 border-t border-gray-200 text-sm">
+              <div className="flex gap-3 justify-center pt-4 border-t border-gray-200 text-sm">
                 <div className="flex items-center gap-2">
                   <div className="w-4 h-4 bg-blue-500 rounded"></div>
                   <span>New Business</span>
@@ -319,16 +319,16 @@ export default function RevenueAnalyticsPage() {
         </div>
 
         {/* Revenue Sources & MRR Growth */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-8">
           {/* Revenue by Source */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-6 flex items-center gap-2">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <h2 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
               <PieChart className="w-5 h-5" />
               Revenue by Source
             </h2>
-            <div className="space-y-4">
+            <div className="space-y-2">
               {revenueSources.map((source, index) => (
-                <div key={index} className={`bg-gradient-to-br ${source.color} rounded-lg p-4 text-white`}>
+                <div key={index} className={`bg-gradient-to-br ${source.color} rounded-lg p-3 text-white`}>
                   <div className="flex justify-between items-start mb-2">
                     <div>
                       <h3 className="font-semibold">{source.source}</h3>
@@ -351,8 +351,8 @@ export default function RevenueAnalyticsPage() {
           </div>
 
           {/* MRR/ARR Growth */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-6 flex items-center gap-2">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <h2 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
               <Repeat className="w-5 h-5" />
               MRR/ARR Growth
             </h2>
@@ -379,14 +379,14 @@ export default function RevenueAnalyticsPage() {
         </div>
 
         {/* Revenue by Region & Segment */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-8">
           {/* Revenue by Region */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-6 flex items-center gap-2">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <h2 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
               <Activity className="w-5 h-5" />
               Revenue by Region
             </h2>
-            <div className="space-y-4">
+            <div className="space-y-2">
               {revenueByRegion.map((region, index) => (
                 <div key={index}>
                   <div className="flex justify-between text-sm mb-2">
@@ -409,12 +409,12 @@ export default function RevenueAnalyticsPage() {
           </div>
 
           {/* Revenue by Customer Segment */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-6 flex items-center gap-2">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <h2 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
               <Target className="w-5 h-5" />
               Revenue by Customer Segment
             </h2>
-            <div className="space-y-4">
+            <div className="space-y-2">
               {revenueBySegment.map((segment, index) => (
                 <div key={index} className="p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg border border-blue-100">
                   <div className="flex justify-between items-start mb-3">
@@ -438,12 +438,12 @@ export default function RevenueAnalyticsPage() {
         </div>
 
         {/* Revenue Forecast */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-6 flex items-center gap-2">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <h2 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
             <Calendar className="w-5 h-5" />
             Revenue Forecast (Next 5 Months)
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
             {forecast.map((item, index) => (
               <div key={index} className={`p-4 rounded-lg border-2 ${
                 item.confidence === 'high' ? 'bg-green-50 border-green-200' :

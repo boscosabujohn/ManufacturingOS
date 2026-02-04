@@ -327,41 +327,41 @@ export default function ContractRenewalsPage() {
   };
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 ">
+    <div className="w-full h-full px-3 py-2 ">
       <div className="mb-8">
         {/* Statistics */}
-        <div className="grid grid-cols-1 md:grid-cols-6 gap-4 mb-8">
-          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-6 text-white">
+        <div className="grid grid-cols-1 md:grid-cols-6 gap-2 mb-8">
+          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-3 text-white">
             <RefreshCw className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">{stats.totalRenewals}</div>
             <div className="text-blue-100 text-sm">Total Renewals</div>
           </div>
 
-          <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-lg p-3 text-white">
             <AlertCircle className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">{stats.atRisk}</div>
             <div className="text-red-100 text-sm">At Risk</div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-3 text-white">
             <CheckCircle className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">{stats.committed}</div>
             <div className="text-green-100 text-sm">Committed</div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-3 text-white">
             <DollarSign className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">${(stats.totalValue / 1000000).toFixed(1)}M</div>
             <div className="text-purple-100 text-sm">Renewal Value</div>
           </div>
 
-          <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg p-3 text-white">
             <TrendingUp className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">{stats.avgProbability}%</div>
             <div className="text-orange-100 text-sm">Avg Probability</div>
           </div>
 
-          <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-lg p-3 text-white">
             <Calendar className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">{stats.expiring30Days}</div>
             <div className="text-yellow-100 text-sm">Expiring (30d)</div>
@@ -369,8 +369,8 @@ export default function ContractRenewalsPage() {
         </div>
 
         {/* Filters */}
-        <div className="bg-white rounded-lg border border-gray-200 p-4 mb-6">
-          <div className="flex gap-4 items-center">
+        <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
+          <div className="flex gap-2 items-center">
             <div className="flex-1">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -414,20 +414,20 @@ export default function ContractRenewalsPage() {
       </div>
 
       {/* Renewals List */}
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredRenewals.map((renewal) => {
           const isUrgent = renewal.daysUntilExpiry <= 30 && renewal.daysUntilExpiry >= 0;
 
           return (
             <div
               key={renewal.id}
-              className={`bg-white rounded-lg border p-6 hover:shadow-md transition-shadow ${
+              className={`bg-white rounded-lg border p-3 hover:shadow-md transition-shadow ${
                 isUrgent && renewal.status !== 'renewed' && renewal.status !== 'lost'
                   ? 'border-orange-300 bg-orange-50'
                   : 'border-gray-200'
               }`}
             >
-              <div className="flex items-start justify-between mb-4">
+              <div className="flex items-start justify-between mb-2">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
                     <h3 className="text-xl font-semibold text-gray-900">{renewal.contractTitle}</h3>
@@ -448,7 +448,7 @@ export default function ContractRenewalsPage() {
                       </span>
                     )}
                   </div>
-                  <div className="flex items-center gap-4 text-sm text-gray-600">
+                  <div className="flex items-center gap-2 text-sm text-gray-600">
                     <span className="font-medium">{renewal.contractNumber}</span>
                     <span>•</span>
                     <span className="flex items-center gap-1">
@@ -471,9 +471,9 @@ export default function ContractRenewalsPage() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-6 gap-4 mb-4">
+              <div className="grid grid-cols-6 gap-2 mb-2">
                 {/* Days Until Expiry */}
-                <div className={`bg-gradient-to-br rounded-lg p-4 ${
+                <div className={`bg-gradient-to-br rounded-lg p-3 ${
                   renewal.daysUntilExpiry < 0
                     ? 'from-gray-50 to-gray-100'
                     : renewal.daysUntilExpiry <= 30
@@ -499,7 +499,7 @@ export default function ContractRenewalsPage() {
                 </div>
 
                 {/* Current Value */}
-                <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4">
+                <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3">
                   <div className="flex items-center gap-1 text-blue-700 mb-1">
                     <DollarSign className="w-4 h-4" />
                     <span className="text-xs font-medium">Current</span>
@@ -511,7 +511,7 @@ export default function ContractRenewalsPage() {
                 </div>
 
                 {/* Proposed Value */}
-                <div className={`bg-gradient-to-br rounded-lg p-4 ${
+                <div className={`bg-gradient-to-br rounded-lg p-3 ${
                   renewal.valueChange > 0
                     ? 'from-green-50 to-green-100'
                     : renewal.valueChange < 0
@@ -538,7 +538,7 @@ export default function ContractRenewalsPage() {
                 </div>
 
                 {/* Renewal Probability */}
-                <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4">
+                <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3">
                   <div className="flex items-center gap-1 text-purple-700 mb-1">
                     <TrendingUp className="w-4 h-4" />
                     <span className="text-xs font-medium">Probability</span>
@@ -550,7 +550,7 @@ export default function ContractRenewalsPage() {
                 </div>
 
                 {/* Contact Info */}
-                <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg p-4">
+                <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg p-3">
                   <div className="flex items-center gap-1 text-teal-700 mb-1">
                     <User className="w-4 h-4" />
                     <span className="text-xs font-medium">Contact</span>
@@ -569,7 +569,7 @@ export default function ContractRenewalsPage() {
                 </div>
 
                 {/* Assigned To */}
-                <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-4">
+                <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-3">
                   <div className="flex items-center gap-1 text-gray-700 mb-1">
                     <User className="w-4 h-4" />
                     <span className="text-xs font-medium">Assigned</span>
@@ -582,7 +582,7 @@ export default function ContractRenewalsPage() {
               </div>
 
               {/* Activity Timeline */}
-              <div className="grid grid-cols-2 gap-4 mb-4 pb-4 border-b border-gray-100">
+              <div className="grid grid-cols-2 gap-2 mb-2 pb-4 border-b border-gray-100">
                 <div>
                   <div className="text-xs text-gray-600 mb-1">Last Contact</div>
                   <div className="text-sm font-medium text-gray-900">
@@ -599,7 +599,7 @@ export default function ContractRenewalsPage() {
 
               {/* Customer Response */}
               {renewal.customerResponse && (
-                <div className="mb-4">
+                <div className="mb-2">
                   <div className="text-xs text-gray-600 mb-1">Customer Response:</div>
                   <div className={`text-sm px-3 py-2 rounded-lg ${
                     renewal.customerResponse.includes('Committed') || renewal.customerResponse.includes('Positive')
@@ -617,7 +617,7 @@ export default function ContractRenewalsPage() {
 
               {/* Notes */}
               {renewal.notes && (
-                <div className="mb-4">
+                <div className="mb-2">
                   <div className="text-xs text-gray-600 mb-1">Notes:</div>
                   <div className="bg-gray-50 rounded p-3 text-sm text-gray-700 border border-gray-200">
                     {renewal.notes}
@@ -640,7 +640,7 @@ export default function ContractRenewalsPage() {
 
       {filteredRenewals.length === 0 && (
         <div className="text-center py-12 bg-white rounded-lg border border-gray-200">
-          <FileText className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+          <FileText className="w-16 h-16 text-gray-400 mx-auto mb-2" />
           <h3 className="text-lg font-medium text-gray-900 mb-2">No renewals found</h3>
           <p className="text-gray-600">Try adjusting your search or filters</p>
         </div>

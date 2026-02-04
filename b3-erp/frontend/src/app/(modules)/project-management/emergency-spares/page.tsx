@@ -14,7 +14,7 @@ export default function EmergencySparesPage() {
   ];
 
   return (
-    <div className="w-full py-6 space-y-6">
+    <div className="w-full py-2 space-y-3">
       <div className="flex justify-between items-center">
         <h1 className="text-3xl font-bold">Emergency Spares Request</h1>
         <div className="w-[300px]">

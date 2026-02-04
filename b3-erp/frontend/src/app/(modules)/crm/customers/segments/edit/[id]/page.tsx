@@ -163,12 +163,12 @@ export default function EditSegmentPage() {
   };
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 ">
+    <div className="w-full h-full px-3 py-2 ">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <button
           onClick={handleCancel}
-          className="flex items-center text-gray-600 hover:text-gray-900 mb-4"
+          className="flex items-center text-gray-600 hover:text-gray-900 mb-2"
         >
           <ArrowLeft className="h-5 w-5 mr-2" />
           Back to Segment
@@ -198,14 +198,14 @@ export default function EditSegmentPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Main Form */}
-        <div className="lg:col-span-2 space-y-6">
+        <div className="lg:col-span-2 space-y-3">
           {/* Basic Information */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Basic Information</h2>
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <h2 className="text-lg font-semibold text-gray-900 mb-2">Basic Information</h2>
 
-            <div className="space-y-4">
+            <div className="space-y-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Segment Name *
@@ -249,8 +249,8 @@ export default function EditSegmentPage() {
           </div>
 
           {/* Criteria Builder */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <div className="flex items-center justify-between mb-4">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <div className="flex items-center justify-between mb-2">
               <h2 className="text-lg font-semibold text-gray-900">Segment Criteria</h2>
               <button
                 onClick={handleAddCriteria}
@@ -263,7 +263,7 @@ export default function EditSegmentPage() {
 
             <div className="space-y-3">
               {formData.criteria.map((rule, index) => (
-                <div key={rule.id} className="flex items-start gap-3 p-4 bg-gray-50 rounded-lg">
+                <div key={rule.id} className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg">
                   {index > 0 && (
                     <div className="flex items-center justify-center w-16 pt-2">
                       <span className="text-sm font-medium text-gray-500">AND</span>
@@ -350,8 +350,8 @@ export default function EditSegmentPage() {
           </div>
 
           {/* Criteria Summary */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Criteria Summary</h2>
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <h2 className="text-lg font-semibold text-gray-900 mb-2">Criteria Summary</h2>
             <div className="space-y-2">
               {formData.criteria.map((rule, index) => (
                 <div key={rule.id} className="flex items-center gap-2 text-sm">
@@ -376,11 +376,11 @@ export default function EditSegmentPage() {
 
         {/* Sidebar - Preview */}
         <div className="lg:col-span-1">
-          <div className="bg-white rounded-lg border border-gray-200 p-6 sticky top-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Preview</h2>
+          <div className="bg-white rounded-lg border border-gray-200 p-3 sticky top-6">
+            <h2 className="text-lg font-semibold text-gray-900 mb-2">Preview</h2>
 
             {/* Estimated Count */}
-            <div className="mb-6">
+            <div className="mb-3">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium text-gray-600">Estimated Customers</span>
                 <Target className="h-5 w-5 text-blue-600" />
@@ -395,7 +395,7 @@ export default function EditSegmentPage() {
             </div>
 
             {/* Status Preview */}
-            <div className="mb-6 p-3 rounded-lg bg-gray-50">
+            <div className="mb-3 p-3 rounded-lg bg-gray-50">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium text-gray-700">Segment Status</span>
                 <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${

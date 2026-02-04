@@ -45,8 +45,8 @@ export default function VendorTrackingPage() {
   };
 
   return (
-    <div className="w-full py-6 space-y-6">
-      <div className="flex items-center justify-between mb-6">
+    <div className="w-full py-2 space-y-3">
+      <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-4">
           <Button variant="ghost" onClick={() => router.back()} className="p-0 hover:bg-transparent">
             <ArrowLeft className="w-6 h-6 text-gray-600" />
@@ -58,7 +58,7 @@ export default function VendorTrackingPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3">
         <Card className="bg-blue-50 border-blue-100">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-blue-900">In Transit</CardTitle>
@@ -99,7 +99,7 @@ export default function VendorTrackingPage() {
         <CardContent>
           <div className="space-y-8">
             {shipments.map((shipment) => (
-              <div key={shipment.poId} className="border rounded-lg p-4 space-y-4">
+              <div key={shipment.poId} className="border rounded-lg p-4 space-y-2">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-4">
                     <div className="p-2 bg-gray-100 rounded-full">

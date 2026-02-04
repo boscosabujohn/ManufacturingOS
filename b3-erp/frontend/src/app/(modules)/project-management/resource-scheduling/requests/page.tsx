@@ -83,13 +83,13 @@ export default function ResourceRequestsPage() {
       </div>
 
       <div className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
-        <div className=" mx-auto space-y-6">
+        <div className=" mx-auto space-y-3">
           {/* Requests List */}
-          <div className="space-y-4">
+          <div className="space-y-2">
             {requests.map((request) => (
               <Card key={request.id} className="hover:shadow-md transition-shadow">
                 <CardContent className="p-6">
-                  <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+                  <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3">
                     <div className="flex items-start gap-4">
                       <div className="h-12 w-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-lg">
                         {request.requester.split(' ').map(n => n[0]).join('')}

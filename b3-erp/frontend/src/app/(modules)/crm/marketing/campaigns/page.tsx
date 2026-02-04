@@ -480,7 +480,7 @@ export default function MarketingCampaignsPage() {
   };
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6  space-y-6">
+    <div className="w-full h-full px-3 py-2  space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -497,8 +497,8 @@ export default function MarketingCampaignsPage() {
       </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-8 gap-4">
-        <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-6 text-white">
+      <div className="grid grid-cols-1 md:grid-cols-8 gap-2">
+        <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-3 text-white">
           <div className="flex items-center justify-between mb-2">
             <Target className="w-8 h-8 opacity-80" />
           </div>
@@ -506,7 +506,7 @@ export default function MarketingCampaignsPage() {
           <div className="text-blue-100 text-sm">Campaigns</div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-6 text-white">
+        <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-3 text-white">
           <div className="flex items-center justify-between mb-2">
             <Play className="w-8 h-8 opacity-80" />
           </div>
@@ -514,7 +514,7 @@ export default function MarketingCampaignsPage() {
           <div className="text-green-100 text-sm">Active</div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-6 text-white">
+        <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-3 text-white">
           <div className="flex items-center justify-between mb-2">
             <Users className="w-8 h-8 opacity-80" />
           </div>
@@ -522,7 +522,7 @@ export default function MarketingCampaignsPage() {
           <div className="text-purple-100 text-sm">Total Reach</div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg p-6 text-white">
+        <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg p-3 text-white">
           <div className="flex items-center justify-between mb-2">
             <TrendingUp className="w-8 h-8 opacity-80" />
           </div>
@@ -530,7 +530,7 @@ export default function MarketingCampaignsPage() {
           <div className="text-orange-100 text-sm">Engagement</div>
         </div>
 
-        <div className="bg-gradient-to-br from-teal-500 to-teal-600 rounded-lg p-6 text-white">
+        <div className="bg-gradient-to-br from-teal-500 to-teal-600 rounded-lg p-3 text-white">
           <div className="flex items-center justify-between mb-2">
             <CheckCircle className="w-8 h-8 opacity-80" />
           </div>
@@ -538,7 +538,7 @@ export default function MarketingCampaignsPage() {
           <div className="text-teal-100 text-sm">Conversions</div>
         </div>
 
-        <div className="bg-gradient-to-br from-pink-500 to-pink-600 rounded-lg p-6 text-white">
+        <div className="bg-gradient-to-br from-pink-500 to-pink-600 rounded-lg p-3 text-white">
           <div className="flex items-center justify-between mb-2">
             <DollarSign className="w-8 h-8 opacity-80" />
           </div>
@@ -546,7 +546,7 @@ export default function MarketingCampaignsPage() {
           <div className="text-pink-100 text-sm">Revenue</div>
         </div>
 
-        <div className="bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-lg p-6 text-white">
+        <div className="bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-lg p-3 text-white">
           <div className="flex items-center justify-between mb-2">
             <BarChart3 className="w-8 h-8 opacity-80" />
           </div>
@@ -554,7 +554,7 @@ export default function MarketingCampaignsPage() {
           <div className="text-indigo-100 text-sm">Budget</div>
         </div>
 
-        <div className="bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-lg p-6 text-white">
+        <div className="bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-lg p-3 text-white">
           <div className="flex items-center justify-between mb-2">
             <Activity className="w-8 h-8 opacity-80" />
           </div>
@@ -564,8 +564,8 @@ export default function MarketingCampaignsPage() {
       </div>
 
       {/* Filters and Search */}
-      <div className="bg-white rounded-lg border border-gray-200 p-4">
-        <div className="flex flex-wrap gap-4">
+      <div className="bg-white rounded-lg border border-gray-200 p-3">
+        <div className="flex flex-wrap gap-2">
           <div className="flex-1 min-w-[300px]">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -609,7 +609,7 @@ export default function MarketingCampaignsPage() {
       </div>
 
       {/* Campaigns List */}
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredCampaigns.map(campaign => {
           const roi = calculateROI(campaign.metrics.revenue, campaign.spent);
           const budgetUsed = (campaign.spent / campaign.budget) * 100;
@@ -621,7 +621,7 @@ export default function MarketingCampaignsPage() {
             <div key={campaign.id} className="bg-white rounded-lg border border-gray-200 hover:shadow-lg transition-shadow">
               <div className="p-6">
                 {/* Campaign Header */}
-                <div className="flex items-start justify-between mb-4">
+                <div className="flex items-start justify-between mb-2">
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-2">
                       <h3 className="text-xl font-semibold text-gray-900">{campaign.name}</h3>
@@ -633,7 +633,7 @@ export default function MarketingCampaignsPage() {
                       </span>
                     </div>
                     <p className="text-sm text-gray-600 mb-2">{campaign.description}</p>
-                    <div className="flex items-center gap-4 text-xs text-gray-500">
+                    <div className="flex items-center gap-2 text-xs text-gray-500">
                       <div className="flex items-center gap-1">
                         <Calendar className="w-3 h-3" />
                         {campaign.startDate} - {campaign.endDate}
@@ -698,7 +698,7 @@ export default function MarketingCampaignsPage() {
                 </div>
 
                 {/* Campaign Stages */}
-                <div className="mb-4 bg-gray-50 rounded-lg p-4">
+                <div className="mb-2 bg-gray-50 rounded-lg p-3">
                   <div className="flex items-center justify-between mb-3">
                     <h4 className="text-sm font-semibold text-gray-900 flex items-center gap-2">
                       <Layers className="w-4 h-4" />
@@ -726,7 +726,7 @@ export default function MarketingCampaignsPage() {
                 </div>
 
                 {/* Performance Metrics */}
-                <div className="grid grid-cols-6 gap-3 mb-4">
+                <div className="grid grid-cols-6 gap-3 mb-2">
                   <div className="bg-blue-50 rounded-lg p-3">
                     <div className="flex items-center gap-1 text-blue-600 mb-1">
                       <Users className="w-3 h-3" />
@@ -779,7 +779,7 @@ export default function MarketingCampaignsPage() {
                 </div>
 
                 {/* Goals Progress */}
-                <div className="mb-4">
+                <div className="mb-2">
                   <h4 className="text-sm font-semibold text-gray-900 mb-3">Campaign Goals</h4>
                   <div className="space-y-2">
                     {campaign.goals.map((goal, index) => {
@@ -842,7 +842,7 @@ export default function MarketingCampaignsPage() {
 
       {/* Campaign Detail Modal Placeholder */}
       {selectedCampaign && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-lg max-w-6xl w-full max-h-[90vh] overflow-hidden">
             <div className="p-6 border-b border-gray-200 flex items-center justify-between">
               <div>
@@ -857,18 +857,18 @@ export default function MarketingCampaignsPage() {
               </button>
             </div>
             <div className="p-6 overflow-y-auto max-h-[calc(90vh-120px)]">
-              <div className="space-y-6">
+              <div className="space-y-3">
                 <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
-                  <GitBranch className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+                  <GitBranch className="w-16 h-16 text-gray-400 mx-auto mb-2" />
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Visual Campaign Flow Builder</h3>
-                  <p className="text-gray-600 mb-4">Drag-and-drop interface for building campaign workflows</p>
+                  <p className="text-gray-600 mb-2">Drag-and-drop interface for building campaign workflows</p>
                   <p className="text-sm text-gray-500">This would include: trigger nodes, action nodes, condition branches, delay timers, and analytics widgets</p>
                 </div>
 
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-3">Target Audience</h3>
-                  <div className="bg-gray-50 rounded-lg p-4">
-                    <div className="grid grid-cols-2 gap-4">
+                  <div className="bg-gray-50 rounded-lg p-3">
+                    <div className="grid grid-cols-2 gap-2">
                       <div>
                         <h4 className="text-sm font-medium text-gray-700 mb-2">Segments</h4>
                         <ul className="space-y-1">

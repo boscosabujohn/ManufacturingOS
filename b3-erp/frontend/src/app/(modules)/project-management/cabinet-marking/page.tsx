@@ -211,9 +211,9 @@ export default function CabinetMarkingPage() {
 
   return (
     <div className="w-full h-screen overflow-y-auto overflow-x-hidden bg-gray-50">
-      <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+      <div className="px-3 py-2 space-y-3">
         {/* Header */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-4">
               <Link
@@ -350,7 +350,7 @@ export default function CabinetMarkingPage() {
         </div>
 
         {/* Overall Progress */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="flex items-center justify-between mb-3">
             <h3 className="text-lg font-semibold text-gray-900">Overall Marking Progress</h3>
             <span className="text-2xl font-bold text-gray-900">
@@ -483,7 +483,7 @@ export default function CabinetMarkingPage() {
                             <DialogTitle>Marking Checklist</DialogTitle>
                             <DialogDescription>Standard procedure for cabinet marking.</DialogDescription>
                           </DialogHeader>
-                          <div className="space-y-4">
+                          <div className="space-y-2">
                             {[
                               "Verify cabinet dimensions against drawings",
                               "Check for surface defects or damage",

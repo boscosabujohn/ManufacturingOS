@@ -266,9 +266,9 @@ export default function SLAManagementPage() {
   };
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 ">
+    <div className="w-full h-full px-3 py-2 ">
       <div className="mb-8">
-        <div className="flex justify-end mb-6">
+        <div className="flex justify-end mb-3">
           <button
             onClick={handleCreatePolicy}
             className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
@@ -279,32 +279,32 @@ export default function SLAManagementPage() {
         </div>
 
         {/* Overall Statistics */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-8">
-          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-6 text-white">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-2 mb-8">
+          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-3 text-white">
             <Target className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">{overallStats.totalPolicies}</div>
             <div className="text-blue-100 text-sm">Active Policies</div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-3 text-white">
             <CheckCircle className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">{overallStats.avgFirstResponseCompliance}%</div>
             <div className="text-green-100 text-sm">Response Compliance</div>
           </div>
 
-          <div className="bg-gradient-to-br from-teal-500 to-teal-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-teal-500 to-teal-600 rounded-lg p-3 text-white">
             <CheckCircle className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">{overallStats.avgResolutionCompliance}%</div>
             <div className="text-teal-100 text-sm">Resolution Compliance</div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-3 text-white">
             <Activity className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">{overallStats.totalTickets}</div>
             <div className="text-purple-100 text-sm">Total Tickets</div>
           </div>
 
-          <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-lg p-3 text-white">
             <AlertCircle className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">{overallStats.totalBreaches}</div>
             <div className="text-red-100 text-sm">Total Breaches</div>
@@ -312,8 +312,8 @@ export default function SLAManagementPage() {
         </div>
 
         {/* Filters */}
-        <div className="bg-white rounded-lg border border-gray-200 p-4 mb-6">
-          <div className="flex gap-4 items-center">
+        <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
+          <div className="flex gap-2 items-center">
             <div className="flex-1">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -354,14 +354,14 @@ export default function SLAManagementPage() {
       </div>
 
       {/* SLA Policies with Performance */}
-      <div className="space-y-6">
+      <div className="space-y-3">
         {filteredPolicies.map((policy) => {
           const perf = performance.find(p => p.policyId === policy.id);
 
           return (
-            <div key={policy.id} className="bg-white rounded-lg border border-gray-200 p-6">
+            <div key={policy.id} className="bg-white rounded-lg border border-gray-200 p-3">
               {/* Policy Header */}
-              <div className="flex items-start justify-between mb-4">
+              <div className="flex items-start justify-between mb-2">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
                     <h3 className="text-xl font-semibold text-gray-900">{policy.name}</h3>
@@ -383,7 +383,7 @@ export default function SLAManagementPage() {
                     )}
                   </div>
                   <p className="text-sm text-gray-600 mb-2">{policy.description}</p>
-                  <div className="flex items-center gap-4 text-xs text-gray-600">
+                  <div className="flex items-center gap-2 text-xs text-gray-600">
                     <span>Applies to: {policy.appliesTo.join(', ')}</span>
                     <span>•</span>
                     <span>Last updated: {new Date(policy.lastUpdated).toLocaleDateString()}</span>
@@ -399,8 +399,8 @@ export default function SLAManagementPage() {
               </div>
 
               {/* SLA Targets */}
-              <div className="grid grid-cols-2 gap-4 mb-6 pb-6 border-b border-gray-200">
-                <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4">
+              <div className="grid grid-cols-2 gap-2 mb-3 pb-6 border-b border-gray-200">
+                <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3">
                   <div className="flex items-center gap-2 text-blue-700 mb-2">
                     <Clock className="w-5 h-5" />
                     <span className="text-sm font-medium">First Response Target</span>
@@ -413,7 +413,7 @@ export default function SLAManagementPage() {
                   </div>
                 </div>
 
-                <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4">
+                <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3">
                   <div className="flex items-center gap-2 text-purple-700 mb-2">
                     <Target className="w-5 h-5" />
                     <span className="text-sm font-medium">Resolution Target</span>
@@ -430,7 +430,7 @@ export default function SLAManagementPage() {
               {/* Performance Metrics */}
               {perf && (
                 <div>
-                  <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center justify-between mb-2">
                     <h4 className="text-lg font-semibold text-gray-900">Performance - {perf.period}</h4>
                     <div className="flex items-center gap-2">
                       {getTrendIcon(perf.trend)}
@@ -438,9 +438,9 @@ export default function SLAManagementPage() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-5 gap-4">
+                  <div className="grid grid-cols-5 gap-2">
                     {/* Total Tickets */}
-                    <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-4">
+                    <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-3">
                       <div className="flex items-center gap-1 text-gray-700 mb-1">
                         <Activity className="w-4 h-4" />
                         <span className="text-xs font-medium">Total Tickets</span>
@@ -449,7 +449,7 @@ export default function SLAManagementPage() {
                     </div>
 
                     {/* First Response Compliance */}
-                    <div className={`rounded-lg p-4 ${getComplianceColor(perf.firstResponseCompliance)}`}>
+                    <div className={`rounded-lg p-3 ${getComplianceColor(perf.firstResponseCompliance)}`}>
                       <div className="flex items-center gap-1 mb-1">
                         <CheckCircle className="w-4 h-4" />
                         <span className="text-xs font-medium">Response SLA</span>
@@ -460,7 +460,7 @@ export default function SLAManagementPage() {
                     </div>
 
                     {/* Resolution Compliance */}
-                    <div className={`rounded-lg p-4 ${getComplianceColor(perf.resolutionCompliance)}`}>
+                    <div className={`rounded-lg p-3 ${getComplianceColor(perf.resolutionCompliance)}`}>
                       <div className="flex items-center gap-1 mb-1">
                         <Target className="w-4 h-4" />
                         <span className="text-xs font-medium">Resolution SLA</span>
@@ -471,7 +471,7 @@ export default function SLAManagementPage() {
                     </div>
 
                     {/* Response Breaches */}
-                    <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4">
+                    <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3">
                       <div className="flex items-center gap-1 text-orange-700 mb-1">
                         <AlertCircle className="w-4 h-4" />
                         <span className="text-xs font-medium">Response Breach</span>
@@ -483,7 +483,7 @@ export default function SLAManagementPage() {
                     </div>
 
                     {/* Resolution Breaches */}
-                    <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-4">
+                    <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-3">
                       <div className="flex items-center gap-1 text-red-700 mb-1">
                         <AlertCircle className="w-4 h-4" />
                         <span className="text-xs font-medium">Resolution Breach</span>
@@ -496,7 +496,7 @@ export default function SLAManagementPage() {
                   </div>
 
                   {/* Compliance Bars */}
-                  <div className="grid grid-cols-2 gap-4 mt-4">
+                  <div className="grid grid-cols-2 gap-2 mt-4">
                     <div>
                       <div className="flex justify-between text-xs text-gray-600 mb-1">
                         <span>First Response Compliance</span>
@@ -540,7 +540,7 @@ export default function SLAManagementPage() {
 
       {filteredPolicies.length === 0 && (
         <div className="text-center py-12 bg-white rounded-lg border border-gray-200">
-          <Target className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+          <Target className="w-16 h-16 text-gray-400 mx-auto mb-2" />
           <h3 className="text-lg font-medium text-gray-900 mb-2">No SLA policies found</h3>
           <p className="text-gray-600">Try adjusting your search or filters</p>
         </div>

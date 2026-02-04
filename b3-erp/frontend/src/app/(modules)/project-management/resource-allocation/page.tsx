@@ -253,9 +253,9 @@ export default function ResourceAllocationPage() {
 
  return (
   <div className="w-full h-screen overflow-y-auto overflow-x-hidden">
-   <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+   <div className="px-3 py-2 space-y-3">
    {/* Enhanced Header */}
-   <div className="mb-6">
+   <div className="mb-3">
     <h1 className="text-3xl font-bold text-gray-900 mb-2">Resource Allocation</h1>
     <p className="text-gray-600">Manage and allocate resources across project phases and tasks</p>
    </div>
@@ -302,8 +302,8 @@ export default function ResourceAllocationPage() {
    </div>
 
    {/* Summary Stats */}
-   <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+   <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
      <div className="flex items-center justify-between mb-2">
       <p className="text-sm text-gray-600">Total Resources</p>
       <Users className="w-5 h-5 text-blue-600" />
@@ -312,7 +312,7 @@ export default function ResourceAllocationPage() {
      <p className="text-sm text-gray-500 mt-1">{allocations.length} allocations</p>
     </div>
 
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
      <div className="flex items-center justify-between mb-2">
       <p className="text-sm text-gray-600">Fully Allocated</p>
       <AlertCircle className="w-5 h-5 text-red-600" />
@@ -323,7 +323,7 @@ export default function ResourceAllocationPage() {
      <p className="text-sm text-gray-500 mt-1">0% available</p>
     </div>
 
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
      <div className="flex items-center justify-between mb-2">
       <p className="text-sm text-gray-600">Available</p>
       <CheckCircle className="w-5 h-5 text-green-600" />
@@ -334,7 +334,7 @@ export default function ResourceAllocationPage() {
      <p className="text-sm text-gray-500 mt-1">50%+ available</p>
     </div>
 
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
      <div className="flex items-center justify-between mb-2">
       <p className="text-sm text-gray-600">Total Cost</p>
       <TrendingUp className="w-5 h-5 text-purple-600" />
@@ -560,7 +560,7 @@ export default function ResourceAllocationPage() {
        <h2 className="text-xl font-semibold text-gray-900">Allocate Resource</h2>
       </div>
 
-      <div className="p-6 space-y-4">
+      <div className="p-6 space-y-2">
        <div>
         <label className="block text-sm font-medium text-gray-700 mb-2">Select Resource</label>
         <select

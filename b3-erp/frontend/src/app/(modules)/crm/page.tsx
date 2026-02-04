@@ -247,9 +247,9 @@ export default function CRMDashboard() {
   }
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6  space-y-6">
+    <div className="w-full h-full px-3 py-2  space-y-3">
         {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
           {isLoading ? (
             <>
               <CardSkeleton />
@@ -292,7 +292,7 @@ export default function CRMDashboard() {
         </div>
 
         {/* Main Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
           {/* Recent Leads */}
           <div className="bg-white rounded-xl shadow-sm border border-gray-200">
             <div className="p-6 border-b border-gray-200">
@@ -308,7 +308,7 @@ export default function CRMDashboard() {
               </div>
             </div>
             <div className="p-6">
-              <div className="space-y-4">
+              <div className="space-y-2">
                 {recentLeads.map((lead) => (
                   <div key={lead.id} className="p-4 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
                     <div className="flex items-start justify-between mb-3">
@@ -361,7 +361,7 @@ export default function CRMDashboard() {
               </div>
             </div>
             <div className="p-6">
-              <div className="space-y-4">
+              <div className="space-y-2">
                 {topOpportunities.map((opp) => (
                   <div key={opp.id} className="p-4 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
                     <div className="flex items-start justify-between mb-3">
@@ -407,7 +407,7 @@ export default function CRMDashboard() {
         </div>
 
         {/* Additional Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           {isLoading ? (
             <>
               <CardSkeleton />

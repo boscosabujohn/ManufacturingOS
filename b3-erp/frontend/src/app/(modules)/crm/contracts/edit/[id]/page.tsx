@@ -105,13 +105,13 @@ export default function EditContractPage() {
   };
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 ">
+    <div className="w-full h-full px-3 py-2 ">
       <div className="w-full">
         {/* Header */}
         <div className="mb-8">
           <button
             onClick={() => router.back()}
-            className="flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-4"
+            className="flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-2"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Contract
@@ -120,15 +120,15 @@ export default function EditContractPage() {
           <p className="text-gray-600 mt-2">Update contract information and terms</p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <form onSubmit={handleSubmit} className="space-y-3">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
             {/* Main Form */}
-            <div className="lg:col-span-2 space-y-6">
+            <div className="lg:col-span-2 space-y-3">
               {/* Basic Information */}
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h2 className="text-lg font-semibold text-gray-900 mb-4">Basic Information</h2>
-                <div className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <h2 className="text-lg font-semibold text-gray-900 mb-2">Basic Information</h2>
+                <div className="space-y-2">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         Contract Number *
@@ -201,10 +201,10 @@ export default function EditContractPage() {
               </div>
 
               {/* Customer Information */}
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h2 className="text-lg font-semibold text-gray-900 mb-4">Customer Information</h2>
-                <div className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <h2 className="text-lg font-semibold text-gray-900 mb-2">Customer Information</h2>
+                <div className="space-y-2">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         Company Name *
@@ -238,7 +238,7 @@ export default function EditContractPage() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         Email
@@ -282,10 +282,10 @@ export default function EditContractPage() {
               </div>
 
               {/* Financial Details */}
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h2 className="text-lg font-semibold text-gray-900 mb-4">Financial Details</h2>
-                <div className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <h2 className="text-lg font-semibold text-gray-900 mb-2">Financial Details</h2>
+                <div className="space-y-2">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         Total Contract Value * ($)
@@ -320,7 +320,7 @@ export default function EditContractPage() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         Billing Cycle
@@ -357,10 +357,10 @@ export default function EditContractPage() {
               </div>
 
               {/* Contract Period */}
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h2 className="text-lg font-semibold text-gray-900 mb-4">Contract Period</h2>
-                <div className="space-y-4">
-                  <div className="grid grid-cols-3 gap-4">
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <h2 className="text-lg font-semibold text-gray-900 mb-2">Contract Period</h2>
+                <div className="space-y-2">
+                  <div className="grid grid-cols-3 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         Start Date *
@@ -404,7 +404,7 @@ export default function EditContractPage() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         Renewal Notice (days)
@@ -435,8 +435,8 @@ export default function EditContractPage() {
               </div>
 
               {/* Assignment */}
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h2 className="text-lg font-semibold text-gray-900 mb-4">Assignment</h2>
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <h2 className="text-lg font-semibold text-gray-900 mb-2">Assignment</h2>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Assigned To *
@@ -455,8 +455,8 @@ export default function EditContractPage() {
               </div>
 
               {/* Deliverables */}
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <div className="flex items-center justify-between mb-4">
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <div className="flex items-center justify-between mb-2">
                   <h2 className="text-lg font-semibold text-gray-900">Deliverables & Services</h2>
                   <button
                     type="button"
@@ -492,8 +492,8 @@ export default function EditContractPage() {
               </div>
 
               {/* Terms & Conditions */}
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h2 className="text-lg font-semibold text-gray-900 mb-4">Terms & Conditions</h2>
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <h2 className="text-lg font-semibold text-gray-900 mb-2">Terms & Conditions</h2>
                 <textarea
                   value={formData.termsAndConditions}
                   onChange={(e) => setFormData({ ...formData, termsAndConditions: e.target.value })}
@@ -504,8 +504,8 @@ export default function EditContractPage() {
               </div>
 
               {/* Internal Notes */}
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h2 className="text-lg font-semibold text-gray-900 mb-4">Internal Notes</h2>
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <h2 className="text-lg font-semibold text-gray-900 mb-2">Internal Notes</h2>
                 <textarea
                   value={formData.notes}
                   onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
@@ -516,8 +516,8 @@ export default function EditContractPage() {
               </div>
 
               {/* Tags */}
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <div className="flex items-center justify-between mb-4">
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <div className="flex items-center justify-between mb-2">
                   <h2 className="text-lg font-semibold text-gray-900">Tags</h2>
                   <button
                     type="button"
@@ -553,17 +553,17 @@ export default function EditContractPage() {
               </div>
 
               {/* Action Buttons */}
-              <div className="flex gap-4">
+              <div className="flex gap-2">
                 <button
                   type="button"
                   onClick={() => router.back()}
-                  className="flex-1 px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 font-medium"
+                  className="flex-1 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 font-medium"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium"
+                  className="flex-1 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium"
                 >
                   Save Changes
                 </button>
@@ -571,12 +571,12 @@ export default function EditContractPage() {
             </div>
 
             {/* Sidebar */}
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Current Performance */}
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Current Status</h3>
-                <div className="space-y-4">
-                  <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4">
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Current Status</h3>
+                <div className="space-y-2">
+                  <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3">
                     <div className="flex items-center gap-2 text-purple-700 mb-1">
                       <DollarSign className="w-4 h-4" />
                       <span className="text-sm font-medium">Total Invoiced</span>
@@ -586,7 +586,7 @@ export default function EditContractPage() {
                     </div>
                   </div>
 
-                  <div className={`bg-gradient-to-br rounded-lg p-4 ${
+                  <div className={`bg-gradient-to-br rounded-lg p-3 ${
                     stats.outstandingAmount > 0 ? 'from-red-50 to-red-100' : 'from-gray-50 to-gray-100'
                   }`}>
                     <div className={`flex items-center gap-2 mb-1 ${
@@ -612,9 +612,9 @@ export default function EditContractPage() {
               </div>
 
               {/* Contract Summary */}
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Contract Summary</h3>
-                <div className="space-y-4">
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Contract Summary</h3>
+                <div className="space-y-2">
                   <div>
                     <div className="text-sm text-gray-600 mb-1">Total Value</div>
                     <div className="flex items-center gap-2 text-gray-900 font-semibold">

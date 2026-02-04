@@ -28,7 +28,7 @@ export default function PhaseProgressPage() {
    </div>
 
    {/* Phase Progress Component */}
-   <div className="p-6 space-y-6">
+   <div className="p-6 space-y-3">
     {/* Horizontal View */}
     <PhaseProgressVisualization
      variant="horizontal"

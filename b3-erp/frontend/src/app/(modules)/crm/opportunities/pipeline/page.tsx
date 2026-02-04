@@ -375,10 +375,10 @@ export default function OpportunitiesPipelinePage() {
   };
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 ">
+    <div className="w-full h-full px-3 py-2 ">
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-6 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-6 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Open Opportunities</p>
@@ -388,7 +388,7 @@ export default function OpportunitiesPipelinePage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600">Pipeline Value</p>
@@ -398,7 +398,7 @@ export default function OpportunitiesPipelinePage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-purple-600">Weighted Value</p>
@@ -408,7 +408,7 @@ export default function OpportunitiesPipelinePage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-4 border border-indigo-200">
+        <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-3 border border-indigo-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-indigo-600">Avg Deal Size</p>
@@ -418,7 +418,7 @@ export default function OpportunitiesPipelinePage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-lg p-4 border border-emerald-200">
+        <div className="bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-lg p-3 border border-emerald-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-emerald-600">Won Deals</p>
@@ -428,7 +428,7 @@ export default function OpportunitiesPipelinePage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg p-4 border border-teal-200">
+        <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg p-3 border border-teal-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-teal-600">Won Value</p>
@@ -440,7 +440,7 @@ export default function OpportunitiesPipelinePage() {
       </div>
 
       {/* Search and Filters */}
-      <div className="bg-white rounded-lg border border-gray-200 p-4 mb-6">
+      <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
         <div className="flex items-center space-x-4">
           <div className="flex-1">
             <div className="relative">
@@ -482,12 +482,12 @@ export default function OpportunitiesPipelinePage() {
                     <div
                       ref={provided.innerRef}
                       {...provided.droppableProps}
-                      className={`flex-shrink-0 w-80 ${stage.bgColor} rounded-lg p-4 ${
+                      className={`flex-shrink-0 w-80 ${stage.bgColor} rounded-lg p-3 ${
                         snapshot.isDraggingOver ? 'ring-2 ring-blue-500' : ''
                       }`}
                     >
                       {/* Stage Header */}
-                      <div className="mb-4">
+                      <div className="mb-2">
                         <div className="flex items-center justify-between mb-2">
                           <h3 className={`font-bold text-lg ${stage.color}`}>{stage.name}</h3>
                           <span className={`px-2 py-1 rounded-full text-xs font-bold ${stage.color} bg-white`}>
@@ -511,7 +511,7 @@ export default function OpportunitiesPipelinePage() {
                                 ref={provided.innerRef}
                                 {...provided.draggableProps}
                                 {...provided.dragHandleProps}
-                                className={`bg-white rounded-lg border-2 border-gray-200 p-4 cursor-move hover:shadow-lg transition-all ${
+                                className={`bg-white rounded-lg border-2 border-gray-200 p-3 cursor-move hover:shadow-lg transition-all ${
                                   snapshot.isDragging ? 'shadow-2xl ring-2 ring-blue-500' : ''
                                 }`}
                                 onClick={() => setSelectedOpportunity(opportunity)}
@@ -601,33 +601,33 @@ export default function OpportunitiesPipelinePage() {
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Opportunity</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Account</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Stage</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Value</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Probability</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Close Date</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Owner</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Opportunity</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Account</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Stage</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Value</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Probability</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Close Date</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Owner</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
               {mockOpportunities.map((opp) => (
                 <tr key={opp.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="flex items-center space-x-2">
                       {getPriorityIcon(opp.priority)}
                       <span className="font-medium text-gray-900">{opp.name}</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4 text-gray-600">{opp.accountName}</td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2 text-gray-600">{opp.accountName}</td>
+                  <td className="px-3 py-2">
                     <span className="px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-700">
                       {stages.find((s) => s.id === opp.stage)?.name}
                     </span>
                   </td>
-                  <td className="px-6 py-4 font-semibold text-gray-900">${(opp.value / 1000).toFixed(0)}K</td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2 font-semibold text-gray-900">${(opp.value / 1000).toFixed(0)}K</td>
+                  <td className="px-3 py-2">
                     <div className="flex items-center space-x-2">
                       <div className="flex-1 bg-gray-200 rounded-full h-2 w-16">
                         <div
@@ -638,11 +638,11 @@ export default function OpportunitiesPipelinePage() {
                       <span className="text-sm font-semibold">{opp.probability}%</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4 text-gray-600">
+                  <td className="px-3 py-2 text-gray-600">
                     {new Date(opp.expectedCloseDate).toLocaleDateString()}
                   </td>
-                  <td className="px-6 py-4 text-gray-600">{opp.owner}</td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2 text-gray-600">{opp.owner}</td>
+                  <td className="px-3 py-2">
                     <div className="flex space-x-2">
                       <button
                         onClick={() => router.push(`/crm/opportunities/view/${opp.id}`)}

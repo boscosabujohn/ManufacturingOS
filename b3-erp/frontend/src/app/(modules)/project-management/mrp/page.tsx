@@ -396,9 +396,9 @@ export default function MRPPage() {
  };
 
  return (
-  <div className="p-6 space-y-6">
+  <div className="p-6 space-y-3">
    {/* Header */}
-   <div className="space-y-4">
+   <div className="space-y-2">
     <div className="flex justify-between items-center">
      <div>
       <h1 className="text-3xl font-bold text-gray-900">Material Requirements Planning (MRP)</h1>

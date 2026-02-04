@@ -556,7 +556,7 @@ export default function CustomerAcceptancePage() {
  return (
   <div className="h-screen flex flex-col overflow-hidden">
    <div className="flex-1 overflow-y-auto overflow-x-hidden">
-    <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+    <div className="px-3 py-2 space-y-3">
      {/* Action Bar */}
      <div className="flex justify-end items-center space-x-3">
       <button onClick={() => setShowGenerateReportModal(true)} className="flex items-center space-x-2 px-4 py-2 border border-gray-300 bg-white text-gray-700 rounded-lg hover:bg-gray-50">
@@ -681,9 +681,9 @@ export default function CustomerAcceptancePage() {
    </div>
 
    {/* Acceptances Grid */}
-   <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+   <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
     {paginatedAcceptances.map((acceptance) => (
-     <div key={acceptance.id} className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow">
+     <div key={acceptance.id} className="bg-white rounded-lg border border-gray-200 p-3 hover:shadow-lg transition-shadow">
       {/* Card Header */}
       <div className="flex justify-between items-start mb-4">
        <div>
@@ -905,7 +905,7 @@ export default function CustomerAcceptancePage() {
        </button>
       </div>
 
-      <div className="p-6 space-y-6">
+      <div className="p-6 space-y-3">
        {/* Deliverables */}
        <div>
         <h3 className="text-lg font-semibold text-gray-900 mb-3">Deliverables</h3>

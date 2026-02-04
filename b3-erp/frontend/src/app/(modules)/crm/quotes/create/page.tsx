@@ -129,9 +129,9 @@ export default function CreateQuotePage() {
   validUntil.setDate(validUntil.getDate() + validityDays);
 
   return (
-    <div className="w-full h-full px-4 sm:px-6 lg:px-8 py-6  mx-auto">
+    <div className="w-full h-full px-3 py-2  mx-auto">
       <div className="mb-8">
-        <div className="flex gap-3 mb-6 justify-end">
+        <div className="flex gap-3 mb-3 justify-end">
           <button className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
             <Eye className="w-4 h-4" />
             Preview
@@ -146,17 +146,17 @@ export default function CreateQuotePage() {
           </button>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
           {/* Main Form - Left Side */}
-          <div className="lg:col-span-2 space-y-6">
+          <div className="lg:col-span-2 space-y-3">
             {/* Quote Details */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+            <div className="bg-white rounded-lg border border-gray-200 p-3">
+              <h2 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                 <FileText className="w-5 h-5" />
                 Quote Details
               </h2>
 
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Quote Name</label>
                   <input
@@ -186,14 +186,14 @@ export default function CreateQuotePage() {
             </div>
 
             {/* Customer Selection */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+            <div className="bg-white rounded-lg border border-gray-200 p-3">
+              <h2 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                 <User className="w-5 h-5" />
                 Customer
               </h2>
 
               {selectedCustomer ? (
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                   <div className="flex justify-between items-start">
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-2">
@@ -234,7 +234,7 @@ export default function CreateQuotePage() {
                   </button>
 
                   {showCustomerSearch && (
-                    <div className="mt-4 border border-gray-200 rounded-lg p-4">
+                    <div className="mt-4 border border-gray-200 rounded-lg p-3">
                       <div className="relative mb-3">
                         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                         <input
@@ -269,16 +269,16 @@ export default function CreateQuotePage() {
             </div>
 
             {/* Line Items */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+            <div className="bg-white rounded-lg border border-gray-200 p-3">
+              <h2 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                 <Package className="w-5 h-5" />
                 Line Items
               </h2>
 
               {items.length > 0 ? (
-                <div className="space-y-4 mb-4">
+                <div className="space-y-2 mb-2">
                   {items.map((item, index) => (
-                    <div key={item.id} className="border border-gray-200 rounded-lg p-4">
+                    <div key={item.id} className="border border-gray-200 rounded-lg p-3">
                       <div className="flex justify-between items-start mb-3">
                         <div className="flex-1">
                           <div className="font-medium text-gray-900">{item.productName}</div>
@@ -347,7 +347,7 @@ export default function CreateQuotePage() {
                   ))}
                 </div>
               ) : (
-                <div className="text-center py-8 text-gray-500 mb-4">
+                <div className="text-center py-8 text-gray-500 mb-2">
                   <Package className="w-12 h-12 mx-auto mb-2 text-gray-400" />
                   <p>No items added yet</p>
                 </div>
@@ -362,7 +362,7 @@ export default function CreateQuotePage() {
               </button>
 
               {showProductSearch && (
-                <div className="mt-4 border border-gray-200 rounded-lg p-4">
+                <div className="mt-4 border border-gray-200 rounded-lg p-3">
                   <div className="relative mb-3">
                     <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                     <input
@@ -397,10 +397,10 @@ export default function CreateQuotePage() {
             </div>
 
             {/* Notes and Terms */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4">Additional Information</h2>
+            <div className="bg-white rounded-lg border border-gray-200 p-3">
+              <h2 className="text-lg font-semibold text-gray-900 mb-2">Additional Information</h2>
 
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Notes</label>
                   <textarea
@@ -428,13 +428,13 @@ export default function CreateQuotePage() {
 
           {/* Summary - Right Side */}
           <div className="lg:col-span-1">
-            <div className="bg-white rounded-lg border border-gray-200 p-6 sticky top-8">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
+            <div className="bg-white rounded-lg border border-gray-200 p-3 sticky top-8">
+              <h2 className="text-lg font-semibold text-gray-900 mb-2 flex items-center gap-2">
                 <Calculator className="w-5 h-5" />
                 Quote Summary
               </h2>
 
-              <div className="space-y-4">
+              <div className="space-y-2">
                 {/* Subtotal */}
                 <div className="flex justify-between text-gray-700">
                   <span>Subtotal</span>

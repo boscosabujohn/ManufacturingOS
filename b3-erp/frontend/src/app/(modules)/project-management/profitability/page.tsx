@@ -675,7 +675,7 @@ export default function ProfitabilityAnalysisPage() {
   return (
     <div className="p-6 mx-auto">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <div className="flex items-center justify-between mb-4">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">Profitability Analysis</h1>
@@ -732,7 +732,7 @@ export default function ProfitabilityAnalysisPage() {
         </div>
 
         {/* Overall Metrics Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-3">
           <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
@@ -800,7 +800,7 @@ export default function ProfitabilityAnalysisPage() {
         </div>
 
         {/* Best & Worst Performers */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
           <div className="bg-gradient-to-r from-green-50 to-emerald-50 p-4 rounded-lg border border-green-200">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-green-600 rounded-lg flex items-center justify-center">
@@ -828,7 +828,7 @@ export default function ProfitabilityAnalysisPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200 mb-6">
+      <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200 mb-3">
         <div className="flex flex-col md:flex-row gap-4">
           <div className="flex-1">
             <input

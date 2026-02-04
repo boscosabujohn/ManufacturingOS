@@ -145,7 +145,7 @@ export default function ViewProjectPage({ params }: { params: { id: string } }) 
  const costOverrun = project.actualCost - (project.budget * (project.progress / 100));
 
  return (
-  <div className="p-6 space-y-6">
+  <div className="p-6 space-y-3">
    {/* Header */}
    <div className="flex items-center justify-between">
     <div className="flex items-center gap-4">
@@ -182,8 +182,8 @@ export default function ViewProjectPage({ params }: { params: { id: string } }) 
    </div>
 
    {/* Key Metrics */}
-   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
      <div className="flex items-center justify-between mb-2">
       <p className="text-sm text-gray-600">Progress</p>
       <TrendingUp className="w-5 h-5 text-blue-600" />
@@ -200,7 +200,7 @@ export default function ViewProjectPage({ params }: { params: { id: string } }) 
      <p className="text-sm text-gray-500 mt-2">{project.phase} phase</p>
     </div>
 
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
      <div className="flex items-center justify-between mb-2">
       <p className="text-sm text-gray-600">Budget Utilization</p>
       <DollarSign className="w-5 h-5 text-green-600" />
@@ -212,7 +212,7 @@ export default function ViewProjectPage({ params }: { params: { id: string } }) 
      </p>
     </div>
 
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
      <div className="flex items-center justify-between mb-2">
       <p className="text-sm text-gray-600">Timeline</p>
       <Calendar className="w-5 h-5 text-purple-600" />
@@ -224,7 +224,7 @@ export default function ViewProjectPage({ params }: { params: { id: string } }) 
      </p>
     </div>
 
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
      <div className="flex items-center justify-between mb-2">
       <p className="text-sm text-gray-600">Team Size</p>
       <Users className="w-5 h-5 text-orange-600" />
@@ -260,9 +260,9 @@ export default function ViewProjectPage({ params }: { params: { id: string } }) 
     <div className="p-6">
      {/* Overview Tab */}
      {activeTab === 'overview' && (
-      <div className="space-y-6">
+      <div className="space-y-3">
        {/* Project Details */}
-       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         <div>
          <h3 className="text-lg font-semibold text-gray-900 mb-4">Project Information</h3>
          <div className="space-y-3">
@@ -374,7 +374,7 @@ export default function ViewProjectPage({ params }: { params: { id: string } }) 
 
      {/* Team Tab */}
      {activeTab === 'team' && (
-      <div className="space-y-4">
+      <div className="space-y-2">
        {teamMembers.map((member) => (
         <div key={member.id} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
          <div className="flex items-center gap-4">
@@ -429,7 +429,7 @@ export default function ViewProjectPage({ params }: { params: { id: string } }) 
      {activeTab === 'milestones' && (
       <div className="relative">
        <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gray-200"></div>
-       <div className="space-y-6">
+       <div className="space-y-3">
         {milestones.map((milestone, index) => (
          <div key={milestone.id} className="flex items-start gap-4 relative">
           <div className={`w-12 h-12 rounded-full flex items-center justify-center z-10 ${
@@ -458,8 +458,8 @@ export default function ViewProjectPage({ params }: { params: { id: string } }) 
 
      {/* Financials Tab */}
      {activeTab === 'financials' && (
-      <div className="space-y-6">
-       <div className="grid grid-cols-2 gap-6">
+      <div className="space-y-3">
+       <div className="grid grid-cols-2 gap-3">
         <div className="bg-gray-50 rounded-lg p-4">
          <p className="text-sm text-gray-600 mb-1">Contract Value</p>
          <p className="text-2xl font-bold text-gray-900">{formatCurrency(project.contractValue)}</p>
@@ -502,7 +502,7 @@ export default function ViewProjectPage({ params }: { params: { id: string } }) 
 
      {/* Activity Tab */}
      {activeTab === 'activity' && (
-      <div className="space-y-4">
+      <div className="space-y-2">
        {activities.map((activity) => (
         <div key={activity.id} className="flex items-start gap-4 p-4 bg-gray-50 rounded-lg">
          <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">

@@ -229,10 +229,10 @@ export default function LeadAssignmentPage() {
   };
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 ">
+    <div className="w-full h-full px-3 py-2 ">
       {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Total Sales Reps</p>
@@ -242,7 +242,7 @@ export default function LeadAssignmentPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600">Active Now</p>
@@ -252,7 +252,7 @@ export default function LeadAssignmentPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-purple-600">Total Assigned</p>
@@ -262,7 +262,7 @@ export default function LeadAssignmentPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-4 border border-indigo-200">
+        <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-3 border border-indigo-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-indigo-600">Avg Conversion</p>
@@ -275,8 +275,8 @@ export default function LeadAssignmentPage() {
 
       {/* Assignment Rules Section */}
       {showSettings && (
-        <div className="bg-white rounded-lg border border-gray-200 p-6 mb-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
+          <div className="flex items-center justify-between mb-2">
             <h2 className="text-lg font-bold text-gray-900">Assignment Rules</h2>
             <button className="flex items-center space-x-2 px-3 py-1.5 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700">
               <Play className="h-4 w-4" />
@@ -341,10 +341,10 @@ export default function LeadAssignmentPage() {
       )}
 
       {/* Sales Reps Grid */}
-      <div className="bg-white rounded-lg border border-gray-200 p-6">
-        <h2 className="text-lg font-bold text-gray-900 mb-4">Sales Team Overview</h2>
+      <div className="bg-white rounded-lg border border-gray-200 p-3">
+        <h2 className="text-lg font-bold text-gray-900 mb-2">Sales Team Overview</h2>
 
-        <div className="space-y-4">
+        <div className="space-y-2">
           {salesReps.map((rep) => (
             <div
               key={rep.id}
@@ -372,7 +372,7 @@ export default function LeadAssignmentPage() {
                       </span>
                     </div>
 
-                    <div className="grid grid-cols-3 gap-4 text-sm">
+                    <div className="grid grid-cols-3 gap-2 text-sm">
                       <div className="flex items-center text-gray-600">
                         <Mail className="h-4 w-4 mr-2" />
                         {rep.email}

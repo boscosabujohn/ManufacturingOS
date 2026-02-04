@@ -339,9 +339,9 @@ export default function ContractsPage() {
   };
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 ">
+    <div className="w-full h-full px-3 py-2 ">
       <div className="mb-8">
-        <div className="flex justify-end mb-6">
+        <div className="flex justify-end mb-3">
           <button
             onClick={handleCreateContract}
             className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
@@ -352,38 +352,38 @@ export default function ContractsPage() {
         </div>
 
         {/* Statistics */}
-        <div className="grid grid-cols-1 md:grid-cols-6 gap-4 mb-8">
-          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-6 text-white">
+        <div className="grid grid-cols-1 md:grid-cols-6 gap-2 mb-8">
+          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-3 text-white">
             <FileText className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">{stats.totalContracts}</div>
             <div className="text-blue-100 text-sm">Total Contracts</div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-3 text-white">
             <CheckCircle className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">{stats.activeContracts}</div>
             <div className="text-green-100 text-sm">Active</div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-3 text-white">
             <DollarSign className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">${(stats.totalValue / 1000000).toFixed(1)}M</div>
             <div className="text-purple-100 text-sm">Total Value</div>
           </div>
 
-          <div className="bg-gradient-to-br from-teal-500 to-teal-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-teal-500 to-teal-600 rounded-lg p-3 text-white">
             <TrendingUp className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">${(stats.recurringRevenue / 1000).toFixed(0)}K</div>
             <div className="text-teal-100 text-sm">MRR/ARR</div>
           </div>
 
-          <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-lg p-3 text-white">
             <RefreshCw className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">{stats.pendingRenewal}</div>
             <div className="text-yellow-100 text-sm">Pending Renewal</div>
           </div>
 
-          <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-lg p-3 text-white">
             <AlertCircle className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">${(stats.outstanding / 1000).toFixed(0)}K</div>
             <div className="text-red-100 text-sm">Outstanding</div>
@@ -391,8 +391,8 @@ export default function ContractsPage() {
         </div>
 
         {/* Filters */}
-        <div className="bg-white rounded-lg border border-gray-200 p-4 mb-6">
-          <div className="flex gap-4 items-center">
+        <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
+          <div className="flex gap-2 items-center">
             <div className="flex-1">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -438,7 +438,7 @@ export default function ContractsPage() {
       </div>
 
       {/* Contracts List */}
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredContracts.map((contract) => {
           const expiringWithin90Days = isExpiringWithin90Days(contract);
           const daysUntilEnd = getDaysUntilEnd(contract.endDate);
@@ -446,11 +446,11 @@ export default function ContractsPage() {
           return (
             <div
               key={contract.id}
-              className={`bg-white rounded-lg border p-6 hover:shadow-md transition-shadow ${
+              className={`bg-white rounded-lg border p-3 hover:shadow-md transition-shadow ${
                 expiringWithin90Days ? 'border-yellow-300 bg-yellow-50' : 'border-gray-200'
               }`}
             >
-              <div className="flex items-start justify-between mb-4">
+              <div className="flex items-start justify-between mb-2">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
                     <h3 className="text-xl font-semibold text-gray-900">{contract.title}</h3>
@@ -473,7 +473,7 @@ export default function ContractsPage() {
                       </span>
                     )}
                   </div>
-                  <div className="flex items-center gap-4 text-sm text-gray-600">
+                  <div className="flex items-center gap-2 text-sm text-gray-600">
                     <span className="font-medium">{contract.contractNumber}</span>
                     <span>•</span>
                     <span className="flex items-center gap-1">
@@ -513,9 +513,9 @@ export default function ContractsPage() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-6 gap-4 mb-4">
+              <div className="grid grid-cols-6 gap-2 mb-2">
                 {/* Contract Value */}
-                <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4">
+                <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3">
                   <div className="flex items-center gap-1 text-green-700 mb-1">
                     <DollarSign className="w-4 h-4" />
                     <span className="text-xs font-medium">Total Value</span>
@@ -531,7 +531,7 @@ export default function ContractsPage() {
                 </div>
 
                 {/* Contract Period */}
-                <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4">
+                <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3">
                   <div className="flex items-center gap-1 text-blue-700 mb-1">
                     <Calendar className="w-4 h-4" />
                     <span className="text-xs font-medium">Period</span>
@@ -545,7 +545,7 @@ export default function ContractsPage() {
                 </div>
 
                 {/* Invoiced */}
-                <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4">
+                <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3">
                   <div className="flex items-center gap-1 text-purple-700 mb-1">
                     <DollarSign className="w-4 h-4" />
                     <span className="text-xs font-medium">Invoiced</span>
@@ -559,7 +559,7 @@ export default function ContractsPage() {
                 </div>
 
                 {/* Outstanding */}
-                <div className={`bg-gradient-to-br rounded-lg p-4 ${
+                <div className={`bg-gradient-to-br rounded-lg p-3 ${
                   contract.outstandingAmount > 0
                     ? 'from-red-50 to-red-100'
                     : 'from-gray-50 to-gray-100'
@@ -583,7 +583,7 @@ export default function ContractsPage() {
                 </div>
 
                 {/* Next Invoice */}
-                <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4">
+                <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3">
                   <div className="flex items-center gap-1 text-orange-700 mb-1">
                     <Calendar className="w-4 h-4" />
                     <span className="text-xs font-medium">Next Invoice</span>
@@ -599,7 +599,7 @@ export default function ContractsPage() {
                 </div>
 
                 {/* Assigned To */}
-                <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg p-4">
+                <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg p-3">
                   <div className="flex items-center gap-1 text-teal-700 mb-1">
                     <User className="w-4 h-4" />
                     <span className="text-xs font-medium">Assigned To</span>
@@ -610,7 +610,7 @@ export default function ContractsPage() {
               </div>
 
               {/* Additional Details */}
-              <div className="grid grid-cols-3 gap-4 mb-4 pt-4 border-t border-gray-100">
+              <div className="grid grid-cols-3 gap-2 mb-2 pt-4 border-t border-gray-100">
                 <div>
                   <div className="text-xs text-gray-600 mb-1">Payment Terms</div>
                   <div className="text-sm font-medium text-gray-900">{contract.paymentTerms}</div>
@@ -673,7 +673,7 @@ export default function ContractsPage() {
 
       {filteredContracts.length === 0 && (
         <div className="text-center py-12 bg-white rounded-lg border border-gray-200">
-          <FileText className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+          <FileText className="w-16 h-16 text-gray-400 mx-auto mb-2" />
           <h3 className="text-lg font-medium text-gray-900 mb-2">No contracts found</h3>
           <p className="text-gray-600">Try adjusting your search or filters</p>
         </div>

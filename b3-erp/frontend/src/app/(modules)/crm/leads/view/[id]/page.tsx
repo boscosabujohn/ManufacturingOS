@@ -240,20 +240,20 @@ export default function ViewLeadPage() {
   ];
 
   return (
-    <div className="w-full min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
+    <div className="w-full min-h-screen bg-gray-50 px-3 py-2">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <button
           onClick={() => router.push('/crm/leads')}
-          className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-4"
+          className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-2"
         >
           <ArrowLeft className="h-5 w-5" />
           <span className="font-medium">Back to Leads</span>
         </button>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           {/* Lead Header Info */}
-          <div className="flex items-start justify-between mb-6">
+          <div className="flex items-start justify-between mb-3">
             <div className="flex items-start space-x-4">
               <div className="h-16 w-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center">
                 <User className="h-8 w-8 text-white" />
@@ -296,28 +296,28 @@ export default function ViewLeadPage() {
           </div>
 
           {/* Quick Stats */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
               <p className="text-xs font-medium text-blue-600 uppercase mb-1">Deal Value</p>
               <p className="text-2xl font-bold text-blue-900">${lead.value.toLocaleString()}</p>
             </div>
-            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
               <p className="text-xs font-medium text-purple-600 uppercase mb-1">Source</p>
               <p className="text-lg font-semibold text-purple-900">{lead.source}</p>
             </div>
-            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
               <p className="text-xs font-medium text-green-600 uppercase mb-1">Last Contact</p>
               <p className="text-lg font-semibold text-green-900">{lead.lastContact}</p>
             </div>
-            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
               <p className="text-xs font-medium text-orange-600 uppercase mb-1">Activities</p>
               <p className="text-lg font-semibold text-orange-900">{mockActivities.filter(a => a.leadId === leadId).length} Total</p>
             </div>
           </div>
 
           {/* Progress Tracker */}
-          <div className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-lg p-6 border border-gray-200">
-            <h3 className="text-sm font-bold text-gray-700 uppercase mb-4">Lead Progress</h3>
+          <div className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-lg p-3 border border-gray-200">
+            <h3 className="text-sm font-bold text-gray-700 uppercase mb-2">Lead Progress</h3>
             <div className="relative">
               <div className="flex items-center justify-between">
                 {getLeadStages(lead).map((stage, index) => {
@@ -371,7 +371,7 @@ export default function ViewLeadPage() {
       </div>
 
       {/* Tabs */}
-      <div className="mb-6">
+      <div className="mb-3">
         <div className="border-b border-gray-200 bg-white rounded-t-lg">
           <nav className="flex space-x-8 px-6">
             {tabs.map((tab) => {
@@ -396,17 +396,17 @@ export default function ViewLeadPage() {
       </div>
 
       {/* Tab Content */}
-      <div className="bg-white rounded-lg border border-gray-200 p-6">
+      <div className="bg-white rounded-lg border border-gray-200 p-3">
         {/* Overview Tab */}
         {activeTab === 'overview' && (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
             {/* Contact Information */}
             <div>
-              <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                 <Phone className="h-5 w-5 mr-2 text-blue-600" />
                 Contact Information
               </h3>
-              <div className="bg-gray-50 rounded-lg p-4 space-y-3">
+              <div className="bg-gray-50 rounded-lg p-3 space-y-3">
                 <div className="flex items-start space-x-3">
                   <Mail className="h-5 w-5 text-gray-400 mt-0.5" />
                   <div className="flex-1">
@@ -426,11 +426,11 @@ export default function ViewLeadPage() {
 
             {/* Company Information */}
             <div>
-              <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                 <Building2 className="h-5 w-5 mr-2 text-blue-600" />
                 Company Information
               </h3>
-              <div className="bg-gray-50 rounded-lg p-4 space-y-3">
+              <div className="bg-gray-50 rounded-lg p-3 space-y-3">
                 <div>
                   <p className="text-xs font-medium text-gray-500 uppercase mb-1">Company Name</p>
                   <p className="text-sm font-semibold text-gray-900">{lead.company}</p>
@@ -444,11 +444,11 @@ export default function ViewLeadPage() {
 
             {/* Lead Details */}
             <div>
-              <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                 <TrendingUp className="h-5 w-5 mr-2 text-blue-600" />
                 Lead Details
               </h3>
-              <div className="bg-gray-50 rounded-lg p-4 space-y-3">
+              <div className="bg-gray-50 rounded-lg p-3 space-y-3">
                 <div>
                   <p className="text-xs font-medium text-gray-500 uppercase mb-1">Lead Source</p>
                   <p className="text-sm font-semibold text-gray-900">{lead.source}</p>
@@ -462,11 +462,11 @@ export default function ViewLeadPage() {
 
             {/* Key Dates */}
             <div>
-              <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                 <Clock className="h-5 w-5 mr-2 text-blue-600" />
                 Key Dates
               </h3>
-              <div className="bg-gray-50 rounded-lg p-4 space-y-3">
+              <div className="bg-gray-50 rounded-lg p-3 space-y-3">
                 <div>
                   <p className="text-xs font-medium text-gray-500 uppercase mb-1">Created</p>
                   <p className="text-sm font-semibold text-gray-900">{lead.createdAt}</p>
@@ -483,7 +483,7 @@ export default function ViewLeadPage() {
         {/* Activity Timeline Tab */}
         {activeTab === 'activity' && (
           <div>
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center justify-between mb-3">
               <h3 className="text-xl font-bold text-gray-900">Activity Timeline</h3>
               <div className="flex flex-wrap gap-2">
                 <button
@@ -518,7 +518,7 @@ export default function ViewLeadPage() {
             </div>
 
             {/* Activities List */}
-            <div className="space-y-4">
+            <div className="space-y-2">
               {mockActivities
                 .filter(activity => activity.leadId === leadId)
                 .map((activity, index) => {
@@ -539,7 +539,7 @@ export default function ViewLeadPage() {
                         </div>
 
                         {/* Activity Content */}
-                        <div className="flex-1 bg-gray-50 rounded-lg p-4 border border-gray-200 hover:shadow-md transition-shadow">
+                        <div className="flex-1 bg-gray-50 rounded-lg p-3 border border-gray-200 hover:shadow-md transition-shadow">
                           <div className="flex items-start justify-between mb-2">
                             <div>
                               <h4 className="text-base font-bold text-gray-900">{activity.title}</h4>
@@ -562,7 +562,7 @@ export default function ViewLeadPage() {
 
                           {/* Activity Metadata */}
                           {activity.metadata && (
-                            <div className="flex flex-wrap gap-4 text-xs text-gray-600">
+                            <div className="flex flex-wrap gap-2 text-xs text-gray-600">
                               {activity.metadata.duration && (
                                 <div className="flex items-center space-x-1">
                                   <Clock className="h-4 w-4" />
@@ -596,12 +596,12 @@ export default function ViewLeadPage() {
 
         {/* Full Details Tab */}
         {activeTab === 'details' && (
-          <div className="space-y-6">
+          <div className="space-y-3">
             {/* All detailed sections */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <div>
-                <h3 className="text-lg font-bold text-gray-900 mb-4">Basic Information</h3>
-                <div className="bg-gray-50 rounded-lg p-4 space-y-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2">Basic Information</h3>
+                <div className="bg-gray-50 rounded-lg p-3 space-y-3">
                   <div>
                     <p className="text-xs font-medium text-gray-500 uppercase mb-1">Full Name</p>
                     <p className="text-sm font-semibold text-gray-900">{lead.name}</p>
@@ -614,8 +614,8 @@ export default function ViewLeadPage() {
               </div>
 
               <div>
-                <h3 className="text-lg font-bold text-gray-900 mb-4">Opportunity Details</h3>
-                <div className="bg-gray-50 rounded-lg p-4 space-y-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2">Opportunity Details</h3>
+                <div className="bg-gray-50 rounded-lg p-3 space-y-3">
                   <div>
                     <p className="text-xs font-medium text-gray-500 uppercase mb-1">Estimated Value</p>
                     <p className="text-lg font-bold text-blue-900">${lead.value.toLocaleString()}</p>
@@ -628,8 +628,8 @@ export default function ViewLeadPage() {
               </div>
 
               <div className="md:col-span-2">
-                <h3 className="text-lg font-bold text-gray-900 mb-4">Product Interest</h3>
-                <div className="bg-gray-50 rounded-lg p-4">
+                <h3 className="text-lg font-bold text-gray-900 mb-2">Product Interest</h3>
+                <div className="bg-gray-50 rounded-lg p-3">
                   <div className="flex flex-wrap gap-2">
                     <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">Modular Kitchen Solutions</span>
                     <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">Kitchen Countertops</span>

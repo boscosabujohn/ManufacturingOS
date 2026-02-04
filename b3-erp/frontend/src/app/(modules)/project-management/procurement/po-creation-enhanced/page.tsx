@@ -384,13 +384,13 @@ export default function POCreationEnhancedPage() {
     switch (currentStep) {
       case 0:
         return (
-          <div className="space-y-6">
+          <div className="space-y-3">
             <div className="flex items-center gap-2 mb-4">
               <Building2 className="w-5 h-5 text-blue-600" />
               <h2 className="text-xl font-semibold text-gray-900">PO Details & Vendor</h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Project <span className="text-red-500">*</span>
@@ -452,7 +452,7 @@ export default function POCreationEnhancedPage() {
 
       case 1:
         return (
-          <div className="space-y-6">
+          <div className="space-y-3">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2">
                 <Package className="w-5 h-5 text-blue-600" />
@@ -594,13 +594,13 @@ export default function POCreationEnhancedPage() {
 
       case 2:
         return (
-          <div className="space-y-6">
+          <div className="space-y-3">
             <div className="flex items-center gap-2 mb-4">
               <Truck className="w-5 h-5 text-blue-600" />
               <h2 className="text-xl font-semibold text-gray-900">Delivery Details</h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <div className="md:col-span-2">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Delivery Address <span className="text-red-500">*</span>
@@ -649,13 +649,13 @@ export default function POCreationEnhancedPage() {
 
       case 3:
         return (
-          <div className="space-y-6">
+          <div className="space-y-3">
             <div className="flex items-center gap-2 mb-4">
               <FileText className="w-5 h-5 text-blue-600" />
               <h2 className="text-xl font-semibold text-gray-900">Terms & Conditions</h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <div>
                 <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-2">
                   Payment Terms
@@ -708,13 +708,13 @@ export default function POCreationEnhancedPage() {
 
       case 4:
         return (
-          <div className="space-y-6">
+          <div className="space-y-3">
             <div className="flex items-center gap-2 mb-4">
               <CheckCircle className="w-6 h-6 text-green-600" />
               <h2 className="text-xl font-semibold text-gray-900">Review Purchase Order</h2>
             </div>
 
-            <div className="bg-gray-50 rounded-lg p-6 space-y-6">
+            <div className="bg-gray-50 rounded-lg p-3 space-y-3">
               {/* Vendor Info */}
               <div>
                 <h3 className="text-sm font-semibold text-gray-500 uppercase mb-3">Vendor Information</h3>
@@ -811,9 +811,9 @@ export default function POCreationEnhancedPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
+      <div className="w-full px-4 sm:px-6 lg:px-8 py-2">
         {/* Header */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
           <div className="flex items-center gap-4 mb-4">
             <button onClick={() => router.back()} className="p-2 hover:bg-gray-100 rounded-lg">
               <ArrowLeft className="w-5 h-5 text-gray-600" />
@@ -834,17 +834,17 @@ export default function POCreationEnhancedPage() {
         </div>
 
         {/* Step Indicator */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
           <StepIndicator steps={STEPS} currentStep={currentStep} onStepClick={setCurrentStep} variant="default" />
         </div>
 
         {/* Form Content */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
           {renderStepContent()}
         </div>
 
         {/* Navigation */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between">
             <button
               type="button"

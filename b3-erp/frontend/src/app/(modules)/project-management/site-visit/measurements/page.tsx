@@ -125,8 +125,8 @@ export default function SiteMeasurementsPage() {
   };
 
   return (
-    <div className="w-full py-6 space-y-6">
-      <div className="flex items-center justify-between mb-6">
+    <div className="w-full py-2 space-y-3">
+      <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-4">
           <Button variant="ghost" onClick={() => router.back()} className="p-0 hover:bg-transparent">
             <ArrowLeft className="w-6 h-6 text-gray-600" />
@@ -151,7 +151,7 @@ export default function SiteMeasurementsPage() {
       {loading ? (
         <p className="text-center py-12 text-gray-500">Loading measurements...</p>
       ) : (
-        <div className="space-y-6">
+        <div className="space-y-3">
           {rooms.length === 0 ? (
             <div className="text-center py-12 bg-gray-50 rounded-lg border border-dashed border-gray-300">
               <Ruler className="w-12 h-12 text-gray-400 mx-auto mb-3" />
@@ -182,7 +182,7 @@ export default function SiteMeasurementsPage() {
                 </CardHeader>
                 {expandedRooms.has(room.id) && (
                   <CardContent className="p-4">
-                    <div className="space-y-4">
+                    <div className="space-y-2">
                       {room.measurements.map((measurement) => (
                         <div key={measurement.id} className="grid grid-cols-12 gap-3 items-start p-3 rounded-lg border border-gray-100 hover:border-gray-200 hover:bg-gray-50/50 transition-all">
                           <div className="col-span-3">

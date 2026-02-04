@@ -536,7 +536,7 @@ export default function EditProjectPage({ params }: { params: { id: string } }) 
     return (
       <div className="space-y-12">
         {[0, 1, 2, 3, 4, 5].map((step) => (
-          <div key={step} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+          <div key={step} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
             {renderStepContent(step)}
           </div>
         ))}
@@ -550,13 +550,13 @@ export default function EditProjectPage({ params }: { params: { id: string } }) 
     switch (activeStep) {
       case 0:
         return (
-          <div className="space-y-6">
+          <div className="space-y-3">
             <div className="flex items-center gap-2 mb-4">
               <Building2 className="w-5 h-5 text-blue-600" />
               <h2 className="text-xl font-semibold text-gray-900">Basic Information</h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <div>
                 <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-2">
                   Project Name <span className="text-red-500">*</span>
@@ -680,13 +680,13 @@ export default function EditProjectPage({ params }: { params: { id: string } }) 
         );
       case 4:
         return (
-          <div className="space-y-6">
+          <div className="space-y-3">
             <div className="flex items-center gap-2 mb-4">
               <FileText className="w-5 h-5 text-blue-600" />
               <h2 className="text-xl font-semibold text-gray-900">Scope & Requirements</h2>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Project Scope</label>
                 <textarea
@@ -725,12 +725,12 @@ export default function EditProjectPage({ params }: { params: { id: string } }) 
 
       case 5:
         return (
-          <div className="space-y-6">
+          <div className="space-y-3">
             <div className="flex items-center gap-2 mb-4">
               <Paperclip className="w-5 h-5 text-blue-600" />
               <h2 className="text-xl font-semibold text-gray-900">Project Attachments</h2>
             </div>
-            <div className="bg-blue-50 border border-blue-100 rounded-lg p-4 mb-6">
+            <div className="bg-blue-50 border border-blue-100 rounded-lg p-4 mb-3">
               <p className="text-sm text-blue-800">
                 Upload relevant project documents such as contracts, engineering drawings, site photos, or technical specifications.
               </p>
@@ -747,13 +747,13 @@ export default function EditProjectPage({ params }: { params: { id: string } }) 
 
       case 6:
         return (
-          <div className="space-y-6">
+          <div className="space-y-3">
             <div className="flex items-center gap-2 mb-4">
               <CheckCircle className="w-5 h-5 text-green-600" />
               <h2 className="text-xl font-semibold text-gray-900">Review & Update Project</h2>
             </div>
 
-            <div className="bg-gray-50 rounded-lg p-6 space-y-6">
+            <div className="bg-gray-50 rounded-lg p-3 space-y-3">
               {/* Basic Info Summary */}
               <div>
                 <h3 className="text-sm font-semibold text-gray-500 uppercase mb-3">Basic Information</h3>
@@ -887,9 +887,9 @@ export default function EditProjectPage({ params }: { params: { id: string } }) 
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="w-full px-4 sm:px-6 lg:px-8 py-6">
+      <div className="w-full px-4 sm:px-6 lg:px-8 py-2">
         {/* Header */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
           <div className="flex items-center justify-between mb-4">
             <div>
               <h1 className="text-2xl font-bold text-gray-900">Edit Project</h1>
@@ -961,7 +961,7 @@ export default function EditProjectPage({ params }: { params: { id: string } }) 
 
         {/* Step Indicator - Only in Wizard Mode */}
         {viewMode === 'wizard' && (
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
             <StepIndicator
               steps={STEPS}
               currentStep={currentStep}
@@ -973,17 +973,17 @@ export default function EditProjectPage({ params }: { params: { id: string } }) 
 
         {/* Form Content */}
         {viewMode === 'wizard' ? (
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
             {renderStepContent()}
           </div>
         ) : (
-          <div className="mb-6">
+          <div className="mb-3">
             {renderAllSteps()}
           </div>
         )}
 
         {/* Navigation */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
           <div className="flex items-center justify-between">
             <button
               type="button"

@@ -1,15 +1,9 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Put,
-  Delete,
-  Body,
-  Param,
-  Query,
-  HttpCode,
-  HttpStatus,
+HttpStatus,
+  UseGuards,
 } from '@nestjs/common';
+import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guard';
+import { PermissionsGuard } from '../../../common/guards/permissions.guard';
+import { Permissions } from '../../../common/decorators/permissions.decorator';
 import {
   ApiTags,
   ApiOperation,
@@ -23,10 +17,12 @@ import { UpdatePermissionDto } from '../dto/update-permission.dto';
 
 @ApiTags('IT Admin - Permissions')
 @Controller('it-admin/permissions')
+@UseGuards(JwtAuthGuard, PermissionsGuard)
 export class PermissionController {
-  constructor(private readonly permissionService: PermissionService) {}
+  constructor(private readonly permissionService: PermissionService) { }
 
   @Post()
+  @Permissions('PERMISSION_CREATE')
   @ApiOperation({ summary: 'Create a new permission' })
   @ApiResponse({
     status: HttpStatus.CREATED,
@@ -37,6 +33,7 @@ export class PermissionController {
   }
 
   @Post('bulk')
+  @Permissions('PERMISSION_CREATE')
   @ApiOperation({ summary: 'Bulk create permissions' })
   @ApiResponse({
     status: HttpStatus.CREATED,
@@ -47,6 +44,7 @@ export class PermissionController {
   }
 
   @Get()
+  @Permissions('PERMISSION_VIEW')
   @ApiOperation({ summary: 'Get all permissions' })
   @ApiQuery({ name: 'module', required: false })
   @ApiQuery({ name: 'action', required: false })
@@ -119,6 +117,7 @@ export class PermissionController {
   }
 
   @Put(':id')
+  @Permissions('PERMISSION_UPDATE')
   @ApiOperation({ summary: 'Update permission' })
   @ApiParam({ name: 'id', description: 'Permission ID' })
   @ApiResponse({
@@ -133,6 +132,7 @@ export class PermissionController {
   }
 
   @Delete(':id')
+  @Permissions('PERMISSION_DELETE')
   @HttpCode(HttpStatus.NO_CONTENT)
   @ApiOperation({ summary: 'Delete permission' })
   @ApiParam({ name: 'id', description: 'Permission ID' })

@@ -142,7 +142,7 @@ export default function MobileFieldViewPage() {
   };
 
   return (
-    <div className="w-full py-6 space-y-6 max-w-2xl">
+    <div className="w-full py-2 space-y-3 max-w-2xl">
       <div className="flex items-center justify-between">
         <h1 className="text-3xl font-bold">Field View</h1>
         {!isOnline && (
@@ -202,7 +202,7 @@ export default function MobileFieldViewPage() {
             Attendance
           </CardTitle>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-2">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-muted-foreground">Status</p>

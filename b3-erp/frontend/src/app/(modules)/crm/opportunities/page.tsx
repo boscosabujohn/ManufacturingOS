@@ -532,10 +532,10 @@ export default function OpportunitiesPage() {
   // Show loading skeleton on initial load
   if (isLoading && opportunities.length === 0) {
     return (
-      <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6">
+      <div className="w-full h-full px-3 py-2">
         <div className="animate-pulse">
-          <div className="h-10 bg-gray-200 rounded w-1/4 mb-6"></div>
-          <div className="grid grid-cols-4 gap-4 mb-6">
+          <div className="h-10 bg-gray-200 rounded w-1/4 mb-3"></div>
+          <div className="grid grid-cols-4 gap-2 mb-3">
             {[1, 2, 3, 4].map((i) => (
               <div key={i} className="h-24 bg-gray-200 rounded"></div>
             ))}
@@ -547,11 +547,11 @@ export default function OpportunitiesPage() {
   }
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 ">
+    <div className="w-full h-full px-3 py-2 ">
       {/* Stats with Add Button */}
-      <div className="mb-6 flex items-start gap-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 flex-1">
-          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+      <div className="mb-3 flex items-start gap-2">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2 flex-1">
+          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-blue-600">Total Opportunities</p>
@@ -561,7 +561,7 @@ export default function OpportunitiesPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+          <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-purple-600">Open Opportunities</p>
@@ -572,7 +572,7 @@ export default function OpportunitiesPage() {
           </div>
 
           <div
-            className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200 cursor-pointer hover:shadow-md transition-shadow"
+            className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200 cursor-pointer hover:shadow-md transition-shadow"
             onClick={() => setStageFilter('closed_won')}
           >
             <div className="flex items-center justify-between">
@@ -586,7 +586,7 @@ export default function OpportunitiesPage() {
           </div>
 
           <div
-            className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-4 border border-red-200 cursor-pointer hover:shadow-md transition-shadow"
+            className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-3 border border-red-200 cursor-pointer hover:shadow-md transition-shadow"
             onClick={() => setStageFilter('closed_lost')}
           >
             <div className="flex items-center justify-between">
@@ -611,7 +611,7 @@ export default function OpportunitiesPage() {
 
       {/* Bulk Actions Bar */}
       {selectedOpportunityIds.size > 0 && (
-        <div className="mb-4 bg-blue-50 border border-blue-200 rounded-lg p-4">
+        <div className="mb-2 bg-blue-50 border border-blue-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
               <Check className="h-5 w-5 text-blue-600" />
@@ -661,8 +661,8 @@ export default function OpportunitiesPage() {
       )}
 
       {/* Filters */}
-      <div className="mb-6">
-        <div className="flex gap-4 mb-4">
+      <div className="mb-3">
+        <div className="flex gap-2 mb-2">
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
             <input
@@ -724,8 +724,8 @@ export default function OpportunitiesPage() {
 
         {/* Advanced Filters Panel */}
         {showAdvancedFilters && (
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 mb-4">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="bg-gray-50 border border-gray-200 rounded-lg p-3 mb-2">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Owner</label>
                 <select
@@ -856,15 +856,15 @@ export default function OpportunitiesPage() {
                   className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
                 />
               </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Opportunity Name</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Account/Customer</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Stage</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Amount</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Probability</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Expected Close</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Owner</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Quick Actions</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Opportunity Name</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Account/Customer</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Stage</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Amount</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Probability</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Expected Close</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Owner</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Quick Actions</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200">
@@ -882,16 +882,16 @@ export default function OpportunitiesPage() {
                     onClick={(e) => e.stopPropagation()}
                   />
                 </td>
-                <td className="px-6 py-4">
+                <td className="px-3 py-2">
                   <div className="font-medium text-gray-900">{opp.name}</div>
                 </td>
-                <td className="px-6 py-4">
+                <td className="px-3 py-2">
                   <div className="flex items-center space-x-2">
                     <Building2 className="h-4 w-4 text-gray-400" />
                     <span className="text-sm text-gray-900">{opp.account}</span>
                   </div>
                 </td>
-                <td className="px-6 py-4">
+                <td className="px-3 py-2">
                   <div className="relative">
                     <button
                       onClick={(e) => {
@@ -923,8 +923,8 @@ export default function OpportunitiesPage() {
                     )}
                   </div>
                 </td>
-                <td className="px-6 py-4 font-semibold text-gray-900">${opp.amount.toLocaleString()}</td>
-                <td className="px-6 py-4">
+                <td className="px-3 py-2 font-semibold text-gray-900">${opp.amount.toLocaleString()}</td>
+                <td className="px-3 py-2">
                   <div className="flex items-center space-x-2">
                     <div className="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden w-16">
                       <div
@@ -935,14 +935,14 @@ export default function OpportunitiesPage() {
                     <span className="text-sm font-medium text-gray-700">{opp.probability}%</span>
                   </div>
                 </td>
-                <td className="px-6 py-4 text-sm text-gray-900">{opp.expectedCloseDate}</td>
-                <td className="px-6 py-4">
+                <td className="px-3 py-2 text-sm text-gray-900">{opp.expectedCloseDate}</td>
+                <td className="px-3 py-2">
                   <div className="flex items-center space-x-2">
                     <User className="h-4 w-4 text-gray-400" />
                     <span className="text-sm text-gray-900">{opp.owner}</span>
                   </div>
                 </td>
-                <td className="px-6 py-4">
+                <td className="px-3 py-2">
                   <div className="flex items-center space-x-1">
                     <button
                       onClick={(e) => handleQuickCall(opp, e)}
@@ -974,7 +974,7 @@ export default function OpportunitiesPage() {
                     </button>
                   </div>
                 </td>
-                <td className="px-6 py-4">
+                <td className="px-3 py-2">
                   <div className="flex items-center space-x-1">
                     <button
                       onClick={(e) => {
@@ -1014,7 +1014,7 @@ export default function OpportunitiesPage() {
         </table>
 
         {/* Pagination */}
-        <div className="px-6 py-4 border-t border-gray-200 flex items-center justify-between">
+        <div className="px-3 py-2 border-t border-gray-200 flex items-center justify-between">
           <div className="text-sm text-gray-700">
             Showing {startIndex + 1} to {Math.min(startIndex + itemsPerPage, filteredOpportunities.length)} of {filteredOpportunities.length} items
           </div>
@@ -1089,15 +1089,15 @@ export default function OpportunitiesPage() {
       {/* Bulk Assign Dialog */}
       {showBulkAssignDialog && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg shadow-xl w-full max-w-md p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Assign Opportunities</h3>
-            <p className="text-sm text-gray-600 mb-4">
+          <div className="bg-white rounded-lg shadow-xl w-full max-w-md p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Assign Opportunities</h3>
+            <p className="text-sm text-gray-600 mb-2">
               Assign {selectedOpportunityIds.size} opportunit{selectedOpportunityIds.size > 1 ? 'ies' : 'y'} to:
             </p>
             <select
               value={bulkAssignUser}
               onChange={(e) => setBulkAssignUser(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mb-2"
             >
               <option value="">Select User...</option>
               {ASSIGNED_USERS.map(user => (
@@ -1129,15 +1129,15 @@ export default function OpportunitiesPage() {
       {/* Bulk Stage Change Dialog */}
       {showBulkStageDialog && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg shadow-xl w-full max-w-md p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Change Stage</h3>
-            <p className="text-sm text-gray-600 mb-4">
+          <div className="bg-white rounded-lg shadow-xl w-full max-w-md p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Change Stage</h3>
+            <p className="text-sm text-gray-600 mb-2">
               Change stage for {selectedOpportunityIds.size} opportunit{selectedOpportunityIds.size > 1 ? 'ies' : 'y'} to:
             </p>
             <select
               value={bulkStage}
               onChange={(e) => setBulkStage(e.target.value as Opportunity['stage'])}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mb-2"
             >
               {OPPORTUNITY_STAGES.map(stage => (
                 <option key={stage} value={stage}>
@@ -1166,9 +1166,9 @@ export default function OpportunitiesPage() {
       {/* Save Filter Dialog */}
       {showSaveFilterDialog && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg shadow-xl w-full max-w-md p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Save Filter</h3>
-            <p className="text-sm text-gray-600 mb-4">
+          <div className="bg-white rounded-lg shadow-xl w-full max-w-md p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Save Filter</h3>
+            <p className="text-sm text-gray-600 mb-2">
               Give your filter a name to save it for future use.
             </p>
             <input
@@ -1176,7 +1176,7 @@ export default function OpportunitiesPage() {
               value={filterName}
               onChange={(e) => setFilterName(e.target.value)}
               placeholder="Filter name..."
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mb-2"
             />
             <div className="flex items-center space-x-3">
               <button
@@ -1203,8 +1203,8 @@ export default function OpportunitiesPage() {
       {/* Import Dialog */}
       {showImportDialog && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl p-6">
-            <div className="flex items-center justify-between mb-4">
+          <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl p-3">
+            <div className="flex items-center justify-between mb-2">
               <h3 className="text-lg font-semibold text-gray-900">Import Opportunities</h3>
               <button
                 onClick={() => setShowImportDialog(false)}
@@ -1214,7 +1214,7 @@ export default function OpportunitiesPage() {
               </button>
             </div>
             <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
-              <Upload className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+              <Upload className="h-12 w-12 text-gray-400 mx-auto mb-2" />
               <p className="text-sm text-gray-600 mb-2">
                 Drag and drop your CSV or Excel file here, or click to browse
               </p>
@@ -1222,7 +1222,7 @@ export default function OpportunitiesPage() {
                 Choose File
               </button>
             </div>
-            <div className="mt-4 bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <div className="mt-4 bg-blue-50 border border-blue-200 rounded-lg p-3">
               <p className="text-sm text-blue-900 font-medium mb-2">Import Requirements:</p>
               <ul className="text-sm text-blue-700 space-y-1">
                 <li>- File must be in CSV or Excel format</li>
@@ -1238,8 +1238,8 @@ export default function OpportunitiesPage() {
       {/* Stage Transition with Reason Dialog */}
       {showStageReasonDialog && stageTransition && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg shadow-xl w-full max-w-md p-6">
-            <div className="flex items-center mb-4">
+          <div className="bg-white rounded-lg shadow-xl w-full max-w-md p-3">
+            <div className="flex items-center mb-2">
               {stageTransition.newStage === 'closed_won' ? (
                 <Trophy className="h-6 w-6 text-green-600 mr-2" />
               ) : (
@@ -1252,10 +1252,10 @@ export default function OpportunitiesPage() {
 
             {stageTransition.newStage === 'closed_won' ? (
               <>
-                <p className="text-sm text-gray-600 mb-4">
+                <p className="text-sm text-gray-600 mb-2">
                   Please provide details about why this opportunity was won:
                 </p>
-                <div className="mb-4">
+                <div className="mb-2">
                   <label className="block text-sm font-medium text-gray-700 mb-1">Win Reason *</label>
                   <textarea
                     value={winReason}
@@ -1268,10 +1268,10 @@ export default function OpportunitiesPage() {
               </>
             ) : (
               <>
-                <p className="text-sm text-gray-600 mb-4">
+                <p className="text-sm text-gray-600 mb-2">
                   Please provide details about why this opportunity was lost:
                 </p>
-                <div className="mb-4">
+                <div className="mb-2">
                   <label className="block text-sm font-medium text-gray-700 mb-1">Loss Reason *</label>
                   <textarea
                     value={lossReason}
@@ -1281,7 +1281,7 @@ export default function OpportunitiesPage() {
                     rows={4}
                   />
                 </div>
-                <div className="mb-4">
+                <div className="mb-2">
                   <label className="block text-sm font-medium text-gray-700 mb-1">Competitor (Optional)</label>
                   <input
                     type="text"

@@ -327,9 +327,9 @@ export default function SupportTicketsPage() {
   };
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 ">
+    <div className="w-full h-full px-3 py-2 ">
       <div className="mb-8">
-        <div className="flex justify-end mb-6">
+        <div className="flex justify-end mb-3">
           <button
             onClick={handleCreateTicket}
             className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
@@ -340,38 +340,38 @@ export default function SupportTicketsPage() {
         </div>
 
         {/* Statistics */}
-        <div className="grid grid-cols-1 md:grid-cols-6 gap-4 mb-8">
-          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-6 text-white">
+        <div className="grid grid-cols-1 md:grid-cols-6 gap-2 mb-8">
+          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-3 text-white">
             <MessageSquare className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">{stats.totalTickets}</div>
             <div className="text-blue-100 text-sm">Total Tickets</div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-3 text-white">
             <Clock className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">{stats.openTickets}</div>
             <div className="text-purple-100 text-sm">Open/Active</div>
           </div>
 
-          <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-lg p-3 text-white">
             <AlertCircle className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">{stats.criticalTickets}</div>
             <div className="text-red-100 text-sm">Critical</div>
           </div>
 
-          <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg p-3 text-white">
             <XCircle className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">{stats.slaBreach}</div>
             <div className="text-orange-100 text-sm">SLA Breach</div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-3 text-white">
             <TrendingUp className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">{stats.avgResponseTime}m</div>
             <div className="text-green-100 text-sm">Avg Response</div>
           </div>
 
-          <div className="bg-gradient-to-br from-teal-500 to-teal-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-teal-500 to-teal-600 rounded-lg p-3 text-white">
             <CheckCircle className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">{stats.avgResolutionTime}h</div>
             <div className="text-teal-100 text-sm">Avg Resolution</div>
@@ -379,8 +379,8 @@ export default function SupportTicketsPage() {
         </div>
 
         {/* Filters */}
-        <div className="bg-white rounded-lg border border-gray-200 p-4 mb-6">
-          <div className="flex gap-4 items-center flex-wrap">
+        <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
+          <div className="flex gap-2 items-center flex-wrap">
             <div className="flex-1 min-w-[300px]">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -439,17 +439,17 @@ export default function SupportTicketsPage() {
       </div>
 
       {/* Tickets List */}
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredTickets.map((ticket) => (
           <div
             key={ticket.id}
-            className={`bg-white rounded-lg border p-6 hover:shadow-md transition-shadow ${
+            className={`bg-white rounded-lg border p-3 hover:shadow-md transition-shadow ${
               ticket.priority === 'critical' || ticket.slaStatus === 'breached'
                 ? 'border-red-300 bg-red-50'
                 : 'border-gray-200'
             }`}
           >
-            <div className="flex items-start justify-between mb-4">
+            <div className="flex items-start justify-between mb-2">
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
                   <h3 className="text-lg font-semibold text-gray-900">{ticket.subject}</h3>
@@ -467,7 +467,7 @@ export default function SupportTicketsPage() {
                     SLA: {ticket.slaStatus}
                   </span>
                 </div>
-                <div className="flex items-center gap-4 text-sm text-gray-600 mb-2">
+                <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
                   <span className="font-medium">{ticket.ticketNumber}</span>
                   <span>•</span>
                   <span className="flex items-center gap-1">
@@ -489,10 +489,10 @@ export default function SupportTicketsPage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-6 gap-4 mb-4">
+            <div className="grid grid-cols-6 gap-2 mb-2">
               {/* Response Time */}
               {ticket.firstResponseTime !== undefined && (
-                <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4">
+                <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3">
                   <div className="flex items-center gap-1 text-blue-700 mb-1">
                     <Clock className="w-4 h-4" />
                     <span className="text-xs font-medium">First Response</span>
@@ -503,7 +503,7 @@ export default function SupportTicketsPage() {
 
               {/* Resolution Time */}
               {ticket.resolutionTime !== undefined && (
-                <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4">
+                <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3">
                   <div className="flex items-center gap-1 text-green-700 mb-1">
                     <CheckCircle className="w-4 h-4" />
                     <span className="text-xs font-medium">Resolution</span>
@@ -513,7 +513,7 @@ export default function SupportTicketsPage() {
               )}
 
               {/* Responses */}
-              <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4">
+              <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3">
                 <div className="flex items-center gap-1 text-purple-700 mb-1">
                   <MessageSquare className="w-4 h-4" />
                   <span className="text-xs font-medium">Responses</span>
@@ -522,7 +522,7 @@ export default function SupportTicketsPage() {
               </div>
 
               {/* Attachments */}
-              <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4">
+              <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3">
                 <div className="flex items-center gap-1 text-orange-700 mb-1">
                   <Paperclip className="w-4 h-4" />
                   <span className="text-xs font-medium">Attachments</span>
@@ -531,7 +531,7 @@ export default function SupportTicketsPage() {
               </div>
 
               {/* Assigned To */}
-              <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg p-4">
+              <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg p-3">
                 <div className="flex items-center gap-1 text-teal-700 mb-1">
                   <User className="w-4 h-4" />
                   <span className="text-xs font-medium">Assigned</span>
@@ -541,7 +541,7 @@ export default function SupportTicketsPage() {
 
               {/* Customer Satisfaction */}
               {ticket.customerSatisfaction && (
-                <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4">
+                <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3">
                   <div className="flex items-center gap-1 text-yellow-700 mb-1">
                     <CheckCircle className="w-4 h-4" />
                     <span className="text-xs font-medium">CSAT</span>
@@ -564,7 +564,7 @@ export default function SupportTicketsPage() {
             </div>
 
             {/* Contact & Contract Info */}
-            <div className="grid grid-cols-3 gap-4 mb-4 pb-4 border-b border-gray-100">
+            <div className="grid grid-cols-3 gap-2 mb-2 pb-4 border-b border-gray-100">
               <div>
                 <div className="text-xs text-gray-600 mb-1">Contact Email:</div>
                 <a href={`mailto:${ticket.contactEmail}`} className="text-sm text-blue-600 hover:text-blue-700 flex items-center gap-1">
@@ -588,7 +588,7 @@ export default function SupportTicketsPage() {
             </div>
 
             {/* SLA Deadline */}
-            <div className="mb-4">
+            <div className="mb-2">
               <div className="text-xs text-gray-600 mb-1">SLA Deadline:</div>
               <div className="text-sm text-gray-900">
                 {new Date(ticket.slaDeadline).toLocaleString()}
@@ -613,7 +613,7 @@ export default function SupportTicketsPage() {
 
       {filteredTickets.length === 0 && (
         <div className="text-center py-12 bg-white rounded-lg border border-gray-200">
-          <MessageSquare className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+          <MessageSquare className="w-16 h-16 text-gray-400 mx-auto mb-2" />
           <h3 className="text-lg font-medium text-gray-900 mb-2">No tickets found</h3>
           <p className="text-gray-600">Try adjusting your search or filters</p>
         </div>

@@ -47,8 +47,8 @@ export default function PaymentProcessingPage() {
   };
 
   return (
-    <div className="w-full py-6 space-y-6">
-      <div className="flex items-center justify-between mb-6">
+    <div className="w-full py-2 space-y-3">
+      <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-4">
           <Button variant="ghost" onClick={() => router.back()} className="p-0 hover:bg-transparent">
             <ArrowLeft className="w-6 h-6 text-gray-600" />
@@ -60,7 +60,7 @@ export default function PaymentProcessingPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Outstanding</CardTitle>

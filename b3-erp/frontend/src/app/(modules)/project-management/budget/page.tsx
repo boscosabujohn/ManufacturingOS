@@ -171,7 +171,7 @@ export default function BudgetManagementPage() {
  }
 
  return (
-  <div className="p-6 space-y-6">
+  <div className="p-6 space-y-3">
    {/* Header */}
    <div className="flex justify-between items-start">
     <div>
@@ -203,7 +203,7 @@ export default function BudgetManagementPage() {
 
    {/* Summary Cards */}
    <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-    <div className="bg-white p-6 rounded-lg border border-gray-200">
+    <div className="bg-white p-3 rounded-lg border border-gray-200">
      <div className="flex items-center justify-between">
       <div>
        <p className="text-sm text-gray-500">Total Budget</p>
@@ -218,7 +218,7 @@ export default function BudgetManagementPage() {
      </div>
     </div>
 
-    <div className="bg-white p-6 rounded-lg border border-gray-200">
+    <div className="bg-white p-3 rounded-lg border border-gray-200">
      <div className="flex items-center justify-between">
       <div>
        <p className="text-sm text-gray-500">Total Spent</p>
@@ -236,7 +236,7 @@ export default function BudgetManagementPage() {
     </div>
 
     <div
-     className={`bg-white p-6 rounded-lg border border-gray-200 ${totalVariance < 0 ? 'border-red-200' : 'border-green-200'
+     className={`bg-white p-3 rounded-lg border border-gray-200 ${totalVariance < 0 ? 'border-red-200' : 'border-green-200'
       }`}
     >
      <div className="flex items-center justify-between">
@@ -266,7 +266,7 @@ export default function BudgetManagementPage() {
      </div>
     </div>
 
-    <div className="bg-white p-6 rounded-lg border border-gray-200">
+    <div className="bg-white p-3 rounded-lg border border-gray-200">
      <div className="flex items-center justify-between">
       <div>
        <p className="text-sm text-gray-500">Forecast (EAC)</p>
@@ -283,9 +283,9 @@ export default function BudgetManagementPage() {
    </div>
 
    {/* Charts Row 1 */}
-   <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+   <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
     {/* Budget Allocation Pie Chart */}
-    <div className="bg-white p-6 rounded-lg border border-gray-200">
+    <div className="bg-white p-3 rounded-lg border border-gray-200">
      <h3 className="text-lg font-semibold text-gray-900 mb-4">Budget Allocation by Category</h3>
      <ResponsiveContainer width="100%" height={300}>
       <PieChart>
@@ -309,7 +309,7 @@ export default function BudgetManagementPage() {
     </div>
 
     {/* Planned vs Actual Bar Chart */}
-    <div className="bg-white p-6 rounded-lg border border-gray-200">
+    <div className="bg-white p-3 rounded-lg border border-gray-200">
      <h3 className="text-lg font-semibold text-gray-900 mb-4">Planned vs Actual by Category</h3>
      <ResponsiveContainer width="100%" height={300}>
       <BarChart data={varianceData}>
@@ -326,7 +326,7 @@ export default function BudgetManagementPage() {
    </div>
 
    {/* Spending Trend */}
-   <div className="bg-white p-6 rounded-lg border border-gray-200">
+   <div className="bg-white p-3 rounded-lg border border-gray-200">
     <h3 className="text-lg font-semibold text-gray-900 mb-4">Budget Burndown & Forecast</h3>
     <ResponsiveContainer width="100%" height={300}>
      <LineChart data={spendingTrend}>
@@ -347,7 +347,7 @@ export default function BudgetManagementPage() {
       />
      </LineChart>
     </ResponsiveContainer>
-    <div className="mt-4 flex items-center justify-center gap-6 text-sm">
+    <div className="mt-4 flex items-center justify-center gap-3 text-sm">
      <div className="flex items-center gap-2">
       <div className="w-4 h-1 bg-blue-500"></div>
       <span className="text-gray-700">Planned Spend</span>
@@ -485,7 +485,7 @@ export default function BudgetManagementPage() {
    </div>
 
    {/* Insights */}
-   <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-lg border border-blue-200">
+   <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-3 rounded-lg border border-blue-200">
     <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
      <DollarSign className="h-5 w-5 text-blue-600" />
      Budget Insights & Recommendations

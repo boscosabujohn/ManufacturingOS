@@ -216,7 +216,7 @@ export default function ScheduleGanttPage() {
 
  return (
   <div className="w-full h-screen overflow-y-auto overflow-x-hidden">
-   <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+   <div className="px-3 py-2 space-y-3">
     {/* Header Actions */}
     <div className="flex justify-between items-center mb-4">
      <div className="flex items-center gap-3">
@@ -441,7 +441,7 @@ export default function ScheduleGanttPage() {
 
     {/* Legend */}
     <div className="bg-gray-50 p-4 border-t border-gray-200">
-     <div className="flex items-center gap-6 text-sm">
+     <div className="flex items-center gap-3 text-sm">
       <div className="flex items-center gap-2">
        <div className="w-4 h-4 bg-green-500 rounded"></div>
        <span className="text-gray-700">Completed</span>

@@ -86,12 +86,12 @@ export default function InteractionsAnalysisPage() {
   const getPercentage = (count: number) => ((count / totalInteractions) * 100).toFixed(1);
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 ">
+    <div className="w-full h-full px-3 py-2 ">
       <div className="mb-8">
         {/* Key Metrics Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <div className="flex items-center justify-between mb-4">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-8">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <div className="flex items-center justify-between mb-2">
               <div className="p-3 bg-blue-100 rounded-lg">
                 <Activity className="w-6 h-6 text-blue-600" />
               </div>
@@ -104,8 +104,8 @@ export default function InteractionsAnalysisPage() {
             <div className="text-sm text-gray-600">Total Interactions</div>
           </div>
 
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <div className="flex items-center justify-between mb-4">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <div className="flex items-center justify-between mb-2">
               <div className="p-3 bg-green-100 rounded-lg">
                 <Target className="w-6 h-6 text-green-600" />
               </div>
@@ -118,8 +118,8 @@ export default function InteractionsAnalysisPage() {
             <div className="text-sm text-gray-600">Response Rate</div>
           </div>
 
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <div className="flex items-center justify-between mb-4">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <div className="flex items-center justify-between mb-2">
               <div className="p-3 bg-orange-100 rounded-lg">
                 <Clock className="w-6 h-6 text-orange-600" />
               </div>
@@ -132,8 +132,8 @@ export default function InteractionsAnalysisPage() {
             <div className="text-sm text-gray-600">Avg Response Time</div>
           </div>
 
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <div className="flex items-center justify-between mb-4">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <div className="flex items-center justify-between mb-2">
               <div className="p-3 bg-purple-100 rounded-lg">
                 <Award className="w-6 h-6 text-purple-600" />
               </div>
@@ -146,10 +146,10 @@ export default function InteractionsAnalysisPage() {
         </div>
 
         {/* Interaction Trends Chart */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-          <div className="lg:col-span-2 bg-white rounded-lg border border-gray-200 p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-6">Interaction Trends</h2>
-            <div className="space-y-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 mb-8">
+          <div className="lg:col-span-2 bg-white rounded-lg border border-gray-200 p-3">
+            <h2 className="text-xl font-bold text-gray-900 mb-3">Interaction Trends</h2>
+            <div className="space-y-2">
               {/* Simplified bar chart visualization */}
               {analyticsData.slice(-6).map((data, index) => (
                 <div key={index}>
@@ -189,7 +189,7 @@ export default function InteractionsAnalysisPage() {
               ))}
             </div>
 
-            <div className="flex justify-center gap-6 mt-6 pt-6 border-t border-gray-100">
+            <div className="flex justify-center gap-3 mt-6 pt-6 border-t border-gray-100">
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 bg-green-500 rounded"></div>
                 <span className="text-sm text-gray-600">Calls</span>
@@ -210,9 +210,9 @@ export default function InteractionsAnalysisPage() {
           </div>
 
           {/* Interaction Distribution */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-6">Distribution by Type</h2>
-            <div className="space-y-4">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <h2 className="text-xl font-bold text-gray-900 mb-3">Distribution by Type</h2>
+            <div className="space-y-2">
               <div>
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-2">
@@ -285,10 +285,10 @@ export default function InteractionsAnalysisPage() {
         </div>
 
         {/* Interaction Metrics */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-8">
           {interactionMetrics.map((metric) => (
-            <div key={metric.type} className="bg-white rounded-lg border border-gray-200 p-6">
-              <div className="flex items-center justify-between mb-4">
+            <div key={metric.type} className="bg-white rounded-lg border border-gray-200 p-3">
+              <div className="flex items-center justify-between mb-2">
                 <h3 className="text-lg font-semibold text-gray-900">{metric.type}</h3>
                 <div className={`flex items-center gap-1 text-sm font-medium ${metric.trend >= 0 ? 'text-green-600' : 'text-red-600'}`}>
                   {metric.trend >= 0 ? <TrendingUp className="w-4 h-4" /> : <TrendingDown className="w-4 h-4" />}
@@ -327,18 +327,18 @@ export default function InteractionsAnalysisPage() {
         </div>
 
         {/* Top Performers */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <h2 className="text-xl font-bold text-gray-900 mb-6">Top Performers</h2>
-          <div className="space-y-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <h2 className="text-xl font-bold text-gray-900 mb-3">Top Performers</h2>
+          <div className="space-y-2">
             {topPerformers.map((performer, index) => (
-              <div key={performer.name} className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg">
+              <div key={performer.name} className="flex items-center gap-2 p-3 bg-gray-50 rounded-lg">
                 <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 text-white font-bold text-lg">
                   #{index + 1}
                 </div>
 
                 <div className="flex-1">
                   <h3 className="font-semibold text-gray-900 mb-1">{performer.name}</h3>
-                  <div className="grid grid-cols-4 gap-4 text-sm">
+                  <div className="grid grid-cols-4 gap-2 text-sm">
                     <div>
                       <span className="text-gray-600">Interactions: </span>
                       <span className="font-bold text-gray-900">{performer.interactions}</span>

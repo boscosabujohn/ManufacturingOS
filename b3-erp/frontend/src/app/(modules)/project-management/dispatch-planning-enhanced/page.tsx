@@ -340,7 +340,7 @@ export default function DispatchPlanningEnhancedPage() {
  };
 
  return (
-  <div className="w-full py-6 space-y-6">
+  <div className="w-full py-2 space-y-3">
    {/* Header */}
    <div className="flex items-center justify-between">
     <div className="flex items-center gap-4">
@@ -399,8 +399,8 @@ export default function DispatchPlanningEnhancedPage() {
     <CardContent>
      {/* Step 1: Basic Info */}
      {currentStep === 0 && (
-      <div className="space-y-6">
-       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="space-y-3">
+       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         <div className="space-y-2">
          <Label className="flex items-center gap-2">
           Project <span className="text-red-500">*</span>
@@ -476,8 +476,8 @@ export default function DispatchPlanningEnhancedPage() {
 
      {/* Step 2: Destination */}
      {currentStep === 1 && (
-      <div className="space-y-6">
-       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="space-y-3">
+       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         <div className="space-y-2">
          <Label>Destination Type</Label>
          <Select value={formData.destinationType} onValueChange={(v) => updateFormData('destinationType', v)}>
@@ -540,7 +540,7 @@ export default function DispatchPlanningEnhancedPage() {
         {errors.address && <p className="text-sm text-red-500">{errors.address}</p>}
        </div>
 
-       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+       <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
         <div className="space-y-2">
          <Label className="flex items-center gap-2">
           City <span className="text-red-500">*</span>
@@ -591,7 +591,7 @@ export default function DispatchPlanningEnhancedPage() {
 
      {/* Step 3: Items */}
      {currentStep === 2 && (
-      <div className="space-y-6">
+      <div className="space-y-3">
        <div className="flex items-center justify-between">
         <p className="text-sm text-gray-600">
          Add items to be dispatched
@@ -618,7 +618,7 @@ export default function DispatchPlanningEnhancedPage() {
          </Button>
         </div>
        ) : (
-        <div className="space-y-4">
+        <div className="space-y-2">
          {formData.items.map((item, index) => (
           <Card key={item.id} className="p-4">
            <div className="flex items-start gap-4">
@@ -724,8 +724,8 @@ export default function DispatchPlanningEnhancedPage() {
 
      {/* Step 4: Transport */}
      {currentStep === 3 && (
-      <div className="space-y-6">
-       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="space-y-3">
+       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         <div className="space-y-2">
          <Label className="flex items-center gap-2">
           Transport Mode <span className="text-red-500">*</span>
@@ -847,8 +847,8 @@ export default function DispatchPlanningEnhancedPage() {
 
      {/* Step 5: Review */}
      {currentStep === 4 && (
-      <div className="space-y-6">
-       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="space-y-3">
+       <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
         <div className="space-y-2">
          <Label>Invoice Number</Label>
          <Input
@@ -901,7 +901,7 @@ export default function DispatchPlanningEnhancedPage() {
        </div>
 
        {/* Summary Cards */}
-       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         <Card className="bg-gray-50">
          <CardHeader className="pb-2">
           <CardTitle className="text-base flex items-center gap-2">

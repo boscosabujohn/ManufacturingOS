@@ -184,7 +184,7 @@ export default function ProjectDashboardPage() {
  };
 
  return (
-  <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+  <div className="w-full min-h-screen px-3 py-2 space-y-3">
    {/* Header Actions */}
    <div className="flex justify-between items-start gap-3 mb-4">
     <div className="flex items-center gap-3">
@@ -249,8 +249,8 @@ export default function ProjectDashboardPage() {
    </div>
 
    {/* Key Metrics */}
-   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
      <div className="flex items-center justify-between mb-4">
       <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
        <FolderKanban className="w-6 h-6 text-blue-600" />
@@ -262,7 +262,7 @@ export default function ProjectDashboardPage() {
      <p className="text-sm text-gray-500 mt-2">{stats.activeProjects} active · {stats.completedProjects} completed</p>
     </div>
 
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
      <div className="flex items-center justify-between mb-4">
       <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
        <DollarSign className="w-6 h-6 text-green-600" />
@@ -276,7 +276,7 @@ export default function ProjectDashboardPage() {
      <p className="text-sm text-gray-500 mt-2">Spent: {formatCurrency(stats.spentAmount)}</p>
     </div>
 
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
      <div className="flex items-center justify-between mb-4">
       <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
        <TrendingUp className="w-6 h-6 text-purple-600" />
@@ -288,7 +288,7 @@ export default function ProjectDashboardPage() {
      <p className="text-sm text-gray-500 mt-2">Realized: {formatCurrency(stats.actualRevenue)}</p>
     </div>
 
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
      <div className="flex items-center justify-between mb-4">
       <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
        <AlertTriangle className="w-6 h-6 text-orange-600" />
@@ -302,9 +302,9 @@ export default function ProjectDashboardPage() {
    </div>
 
    {/* Charts Row */}
-   <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+   <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
     {/* Project Health Trend */}
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
      <h3 className="text-lg font-semibold text-gray-900 mb-4">Project Health Trend</h3>
      <div className="h-64 flex items-end justify-between gap-4">
       {healthTrend.map((data, index) => (
@@ -330,7 +330,7 @@ export default function ProjectDashboardPage() {
     </div>
 
     {/* Resource Utilization */}
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
      <div className="flex items-center justify-between mb-4">
       <h3 className="text-lg font-semibold text-gray-900">Resource Utilization</h3>
       <div className="flex items-center gap-2">
@@ -338,7 +338,7 @@ export default function ProjectDashboardPage() {
        <span className="text-sm text-gray-600">Overall: {stats.resourceUtilization}%</span>
       </div>
      </div>
-     <div className="space-y-4">
+     <div className="space-y-2">
       {resourceData.map((resource, index) => (
        <div key={index}>
         <div className="flex items-center justify-between mb-1">
@@ -367,7 +367,7 @@ export default function ProjectDashboardPage() {
    </div>
 
    {/* Recent Projects & Milestones */}
-   <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+   <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
     {/* Recent Projects */}
     <div className="bg-white rounded-lg shadow-sm border border-gray-200">
      <div className="p-6 border-b border-gray-200 flex items-center justify-between">
@@ -463,7 +463,7 @@ export default function ProjectDashboardPage() {
    </div>
 
    {/* Quick Actions */}
-   <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+   <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
     <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
      <Link href="/project-management/create" className="flex flex-col items-center p-4 border border-gray-200 rounded-lg hover:border-blue-400 hover:bg-blue-50 transition-colors">

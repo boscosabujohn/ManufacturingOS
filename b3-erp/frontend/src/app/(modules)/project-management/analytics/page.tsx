@@ -231,7 +231,7 @@ export default function ProjectAnalyticsPage() {
 
  return (
   <div className="w-full h-screen overflow-y-auto overflow-x-hidden">
-   <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+   <div className="px-3 py-2 space-y-3">
     {/* Page Header with Actions */}
     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
      <div>
@@ -344,7 +344,7 @@ export default function ProjectAnalyticsPage() {
    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
     <div
      onClick={() => handleDrillDown('Total Projects', { total: metrics.totalProjects, active: metrics.activeProjects, completed: metrics.completedProjects })}
-     className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm cursor-pointer hover:shadow-md transition-shadow">
+     className="bg-white p-3 rounded-lg border border-gray-200 shadow-sm cursor-pointer hover:shadow-md transition-shadow">
      <div className="flex items-center justify-between mb-2">
       <div className="p-2 bg-blue-100 rounded-lg">
        <BarChart3 className="h-6 w-6 text-blue-600" />
@@ -361,7 +361,7 @@ export default function ProjectAnalyticsPage() {
 
     <div
      onClick={() => handleDrillDown('Total Revenue', { revenue: metrics.totalRevenue, cost: metrics.totalCost })}
-     className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm cursor-pointer hover:shadow-md transition-shadow">
+     className="bg-white p-3 rounded-lg border border-gray-200 shadow-sm cursor-pointer hover:shadow-md transition-shadow">
      <div className="flex items-center justify-between mb-2">
       <div className="p-2 bg-green-100 rounded-lg">
        <DollarSign className="h-6 w-6 text-green-600" />
@@ -378,7 +378,7 @@ export default function ProjectAnalyticsPage() {
 
     <div
      onClick={() => handleDrillDown('Profit Margin', { margin: metrics.profitMargin, profit: metrics.totalRevenue - metrics.totalCost })}
-     className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm cursor-pointer hover:shadow-md transition-shadow">
+     className="bg-white p-3 rounded-lg border border-gray-200 shadow-sm cursor-pointer hover:shadow-md transition-shadow">
      <div className="flex items-center justify-between mb-2">
       <div className="p-2 bg-purple-100 rounded-lg">
        <Target className="h-6 w-6 text-purple-600" />
@@ -395,7 +395,7 @@ export default function ProjectAnalyticsPage() {
 
     <div
      onClick={() => handleDrillDown('Avg Duration', { avgDuration: metrics.avgProjectDuration })}
-     className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm cursor-pointer hover:shadow-md transition-shadow">
+     className="bg-white p-3 rounded-lg border border-gray-200 shadow-sm cursor-pointer hover:shadow-md transition-shadow">
      <div className="flex items-center justify-between mb-2">
       <div className="p-2 bg-yellow-100 rounded-lg">
        <Clock className="h-6 w-6 text-yellow-600" />
@@ -412,7 +412,7 @@ export default function ProjectAnalyticsPage() {
 
     <div
      onClick={() => handleDrillDown('On-Time Delivery', { onTimeDelivery: metrics.onTimeDelivery, delayed: metrics.delayedProjects })}
-     className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm cursor-pointer hover:shadow-md transition-shadow">
+     className="bg-white p-3 rounded-lg border border-gray-200 shadow-sm cursor-pointer hover:shadow-md transition-shadow">
      <div className="flex items-center justify-between mb-2">
       <div className="p-2 bg-cyan-100 rounded-lg">
        <CheckCircle className="h-6 w-6 text-cyan-600" />
@@ -429,10 +429,10 @@ export default function ProjectAnalyticsPage() {
    </div>
 
    {/* Charts Section */}
-   <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+   <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
     {/* Revenue Trend Chart */}
-    <div className="lg:col-span-2 bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
-     <div className="flex justify-between items-center mb-6">
+    <div className="lg:col-span-2 bg-white p-3 rounded-lg border border-gray-200 shadow-sm">
+     <div className="flex justify-between items-center mb-3">
       <h3 className="text-lg font-semibold text-gray-900">Performance Trend</h3>
       <div className="flex space-x-2">
        <button
@@ -504,8 +504,8 @@ export default function ProjectAnalyticsPage() {
     </div>
 
     {/* Customer Satisfaction */}
-    <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
-     <h3 className="text-lg font-semibold text-gray-900 mb-6">Customer Satisfaction</h3>
+    <div className="bg-white p-3 rounded-lg border border-gray-200 shadow-sm">
+     <h3 className="text-lg font-semibold text-gray-900 mb-3">Customer Satisfaction</h3>
      <div className="flex flex-col items-center justify-center h-48">
       <div className="relative w-40 h-40">
        <svg className="w-40 h-40 transform -rotate-90">
@@ -555,11 +555,11 @@ export default function ProjectAnalyticsPage() {
    </div>
 
    {/* Project Type Distribution & Resource Utilization */}
-   <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+   <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
     {/* Project Type Metrics */}
-    <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
+    <div className="bg-white p-3 rounded-lg border border-gray-200 shadow-sm">
      <h3 className="text-lg font-semibold text-gray-900 mb-4">Project Type Analysis</h3>
-     <div className="space-y-4">
+     <div className="space-y-2">
       {projectTypeMetrics.map((type) => (
        <div key={type.type}>
         <div className="flex justify-between items-center mb-2">
@@ -595,9 +595,9 @@ export default function ProjectAnalyticsPage() {
     </div>
 
     {/* Resource Utilization */}
-    <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
+    <div className="bg-white p-3 rounded-lg border border-gray-200 shadow-sm">
      <h3 className="text-lg font-semibold text-gray-900 mb-4">Resource Utilization</h3>
-     <div className="space-y-4">
+     <div className="space-y-2">
       {resourceUtilization.map((resource) => (
        <div key={resource.department}>
         <div className="flex justify-between items-center mb-2">
@@ -641,7 +641,7 @@ export default function ProjectAnalyticsPage() {
    </div>
 
    {/* Top Projects by Revenue */}
-   <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
+   <div className="bg-white p-3 rounded-lg border border-gray-200 shadow-sm">
     <h3 className="text-lg font-semibold text-gray-900 mb-4">Top Projects by Revenue</h3>
     <div className="overflow-x-auto">
      <table className="w-full">

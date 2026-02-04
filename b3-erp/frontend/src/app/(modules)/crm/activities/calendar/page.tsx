@@ -153,10 +153,10 @@ export default function CalendarPage() {
     .slice(0, 5);
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 ">
+    <div className="w-full h-full px-3 py-2 ">
       <div className="mb-8">
         {/* View Toggle & Navigation */}
-        <div className="flex justify-between items-center mb-6">
+        <div className="flex justify-between items-center mb-3">
           <div className="flex gap-2">
             <button
               onClick={() => setView('day')}
@@ -178,7 +178,7 @@ export default function CalendarPage() {
             </button>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
             <button
               onClick={() => {
                 const newDate = new Date(currentDate);
@@ -213,13 +213,13 @@ export default function CalendarPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-3">
         {/* Calendar View */}
         <div className="lg:col-span-3">
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
             {view === 'week' && (
               <div>
-                <div className="grid grid-cols-7 gap-2 mb-4">
+                <div className="grid grid-cols-7 gap-2 mb-2">
                   {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day) => (
                     <div key={day} className="text-center font-semibold text-gray-700 py-2">
                       {day}
@@ -263,7 +263,7 @@ export default function CalendarPage() {
 
             {view === 'month' && (
               <div>
-                <div className="grid grid-cols-7 gap-2 mb-4">
+                <div className="grid grid-cols-7 gap-2 mb-2">
                   {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day) => (
                     <div key={day} className="text-center font-semibold text-gray-700 py-2">
                       {day}
@@ -303,9 +303,9 @@ export default function CalendarPage() {
 
         {/* Upcoming Events Sidebar */}
         <div className="lg:col-span-1">
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h2 className="text-lg font-bold text-gray-900 mb-4">Upcoming Events</h2>
-            <div className="space-y-4">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <h2 className="text-lg font-bold text-gray-900 mb-2">Upcoming Events</h2>
+            <div className="space-y-2">
               {upcomingEvents.map((event) => (
                 <div key={event.id} className={`border-l-4 pl-3 py-2 ${getEventColor(event.type)}`}>
                   <div className="flex items-center gap-2 mb-1">

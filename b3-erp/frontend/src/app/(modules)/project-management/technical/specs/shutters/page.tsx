@@ -32,8 +32,8 @@ export default function ShutterSpecsPage() {
   };
 
   return (
-    <div className="w-full py-6 space-y-6">
-      <div className="flex items-center justify-between mb-6">
+    <div className="w-full py-2 space-y-3">
+      <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-4">
           <Button variant="ghost" onClick={() => router.back()} className="p-0 hover:bg-transparent">
             <ArrowLeft className="w-6 h-6 text-gray-600" />
@@ -68,7 +68,7 @@ export default function ShutterSpecsPage() {
               <CardTitle>Wood & Laminate Specifications</CardTitle>
               <CardDescription>Details for wooden shutters and panels</CardDescription>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-2">
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label>Core Material</Label>
@@ -97,7 +97,7 @@ export default function ShutterSpecsPage() {
               <CardTitle>Glass Specifications</CardTitle>
               <CardDescription>Details for glass shutters and shelves</CardDescription>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-2">
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label>Glass Type</Label>
@@ -126,7 +126,7 @@ export default function ShutterSpecsPage() {
               <CardTitle>Stone & Countertop Specifications</CardTitle>
               <CardDescription>Details for granite, marble, or quartz</CardDescription>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-2">
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label>Material Name</Label>
@@ -155,7 +155,7 @@ export default function ShutterSpecsPage() {
               <CardTitle>Metal & SS Specifications</CardTitle>
               <CardDescription>Details for stainless steel tops and fascia</CardDescription>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-2">
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label>Material Grade</Label>

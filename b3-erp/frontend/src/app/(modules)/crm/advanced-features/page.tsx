@@ -127,8 +127,8 @@ export default function CRMAdvancedFeaturesPage() {
         ]}
       />
 
-      <div className="flex-1 px-4 sm:px-6 lg:px-8 py-6 overflow-auto">
-        <div className="mb-6">
+      <div className="flex-1 px-3 py-2 overflow-auto">
+        <div className="mb-3">
           <h2 className="text-2xl font-bold text-gray-900 mb-2">Advanced CRM Features</h2>
           <p className="text-gray-600">
             Comprehensive suite of enterprise-grade features combining AI-powered insights, advanced automation, and intelligent collaboration tools to supercharge your sales process.
@@ -137,8 +137,8 @@ export default function CRMAdvancedFeaturesPage() {
 
         {categories.map((category) => (
           <div key={category} className="mb-8">
-            <h3 className="text-lg font-semibold text-gray-700 mb-4">{category}</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <h3 className="text-lg font-semibold text-gray-700 mb-2">{category}</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
               {features
                 .filter(f => f.category === category)
                 .map((feature) => {
@@ -147,9 +147,9 @@ export default function CRMAdvancedFeaturesPage() {
                     <div
                       key={feature.id}
                       onClick={() => router.push(feature.href)}
-                      className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg hover:border-blue-300 transition-all cursor-pointer group"
+                      className="bg-white rounded-lg border border-gray-200 p-3 hover:shadow-lg hover:border-blue-300 transition-all cursor-pointer group"
                     >
-                      <div className="flex items-start justify-between mb-4">
+                      <div className="flex items-start justify-between mb-2">
                         <div className="flex items-center gap-3">
                           <div className="p-2 bg-blue-100 rounded-lg group-hover:bg-blue-200 transition-colors">
                             <Icon className="h-6 w-6 text-blue-600" />

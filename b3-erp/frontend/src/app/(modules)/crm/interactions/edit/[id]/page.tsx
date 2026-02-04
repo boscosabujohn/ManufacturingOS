@@ -147,9 +147,9 @@ export default function EditInteractionPage() {
   return (
     <div className="w-full h-screen flex flex-col">
       <div className="flex-1 overflow-y-auto">
-        <div className="px-4 sm:px-6 lg:px-8 py-6">
+        <div className="px-3 py-2">
           {/* Header */}
-          <div className="mb-6 flex items-center justify-between">
+          <div className="mb-3 flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <button
                 onClick={() => router.back()}
@@ -165,7 +165,7 @@ export default function EditInteractionPage() {
           </div>
 
           {/* Progress Steps */}
-          <div className="mb-6 bg-white rounded-lg border border-gray-200 p-6">
+          <div className="mb-3 bg-white rounded-lg border border-gray-200 p-3">
             <div className="flex items-center justify-between">
               {steps.map((step, index) => {
                 const Icon = step.icon;
@@ -210,11 +210,11 @@ export default function EditInteractionPage() {
           </div>
 
           {/* Form Content */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
             {/* Step 1: Interaction Type & Customer */}
             {currentStep === 1 && (
-              <div className="space-y-6">
-                <div className="flex items-center space-x-3 mb-4">
+              <div className="space-y-3">
+                <div className="flex items-center space-x-3 mb-2">
                   <User className="h-6 w-6 text-blue-600" />
                   <h2 className="text-xl font-bold text-gray-900">Interaction Type & Customer</h2>
                 </div>
@@ -244,7 +244,7 @@ export default function EditInteractionPage() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Customer <span className="text-red-500">*</span>
@@ -310,8 +310,8 @@ export default function EditInteractionPage() {
 
             {/* Step 2: Interaction Details */}
             {currentStep === 2 && (
-              <div className="space-y-6">
-                <div className="flex items-center space-x-3 mb-4">
+              <div className="space-y-3">
+                <div className="flex items-center space-x-3 mb-2">
                   <FileText className="h-6 w-6 text-blue-600" />
                   <h2 className="text-xl font-bold text-gray-900">Interaction Details</h2>
                 </div>
@@ -340,7 +340,7 @@ export default function EditInteractionPage() {
                   />
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Outcome <span className="text-red-500">*</span>
@@ -408,13 +408,13 @@ export default function EditInteractionPage() {
 
             {/* Step 3: Follow-up & Additional Info */}
             {currentStep === 3 && (
-              <div className="space-y-6">
-                <div className="flex items-center space-x-3 mb-4">
+              <div className="space-y-3">
+                <div className="flex items-center space-x-3 mb-2">
                   <Calendar className="h-6 w-6 text-blue-600" />
                   <h2 className="text-xl font-bold text-gray-900">Follow-up & Additional Info</h2>
                 </div>
 
-                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
                   <label className="flex items-center space-x-3 cursor-pointer">
                     <input
                       type="checkbox"
@@ -427,7 +427,7 @@ export default function EditInteractionPage() {
                 </div>
 
                 {formData.followUpRequired && (
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">Follow-up Date</label>
                       <div className="relative">
@@ -496,8 +496,8 @@ export default function EditInteractionPage() {
                 </div>
 
                 <div className="border-t border-gray-200 pt-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Related Records</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Related Records</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">Related Opportunity</label>
                       <select
@@ -543,7 +543,7 @@ export default function EditInteractionPage() {
       </div>
 
       {/* Fixed Footer with Save Button */}
-      <div className="border-t border-gray-200 bg-white px-4 sm:px-6 lg:px-8 py-4 flex-shrink-0">
+      <div className="border-t border-gray-200 bg-white px-3 py-4 flex-shrink-0">
         <div className="flex items-center justify-between">
           <button
             onClick={() => router.back()}

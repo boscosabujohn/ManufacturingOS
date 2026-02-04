@@ -86,8 +86,8 @@ export default function ProposalCreatePage() {
   return (
     <div className="p-8">
       {/* Header */}
-      <div className="mb-6">
-        <Link href="/crm/proposals" className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-4">
+      <div className="mb-3">
+        <Link href="/crm/proposals" className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-2">
           <ArrowLeft className="w-4 h-4" />
           <span>Back to Proposals</span>
         </Link>
@@ -98,15 +98,15 @@ export default function ProposalCreatePage() {
         </div>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-6">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <form onSubmit={handleSubmit} className="space-y-3">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
           {/* Main Form */}
-          <div className="lg:col-span-2 space-y-6">
+          <div className="lg:col-span-2 space-y-3">
             {/* Basic Information */}
-            <div className="bg-white rounded-xl border border-gray-200 p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4">Basic Information</h2>
+            <div className="bg-white rounded-xl border border-gray-200 p-3">
+              <h2 className="text-lg font-semibold text-gray-900 mb-2">Basic Information</h2>
 
-              <div className="space-y-4">
+              <div className="space-y-2">
                 {/* Proposal Title */}
                 <div>
                   <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-1">
@@ -127,7 +127,7 @@ export default function ProposalCreatePage() {
                   )}
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                   {/* Customer Company */}
                   <div>
                     <label htmlFor="customerCompany" className="block text-sm font-medium text-gray-700 mb-1">
@@ -169,7 +169,7 @@ export default function ProposalCreatePage() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                   {/* Status */}
                   <div>
                     <label htmlFor="status" className="block text-sm font-medium text-gray-700 mb-1">
@@ -227,7 +227,7 @@ export default function ProposalCreatePage() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                   {/* Total Value */}
                   <div>
                     <label htmlFor="totalValue" className="block text-sm font-medium text-gray-700 mb-1">
@@ -288,8 +288,8 @@ export default function ProposalCreatePage() {
             </div>
 
             {/* Tags */}
-            <div className="bg-white rounded-xl border border-gray-200 p-6">
-              <div className="flex items-center justify-between mb-4">
+            <div className="bg-white rounded-xl border border-gray-200 p-3">
+              <div className="flex items-center justify-between mb-2">
                 <h2 className="text-lg font-semibold text-gray-900">Tags</h2>
                 <button
                   type="button"
@@ -327,13 +327,13 @@ export default function ProposalCreatePage() {
           </div>
 
           {/* Sidebar */}
-          <div className="space-y-6">
+          <div className="space-y-3">
             {/* Quick Info */}
-            <div className="bg-white rounded-xl border border-gray-200 p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4">Quick Info</h2>
+            <div className="bg-white rounded-xl border border-gray-200 p-3">
+              <h2 className="text-lg font-semibold text-gray-900 mb-2">Quick Info</h2>
 
-              <div className="space-y-4">
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <div className="space-y-2">
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                   <p className="text-sm text-blue-900 font-medium mb-2">💡 Tip</p>
                   <p className="text-xs text-blue-700">
                     Start with a draft status and add all necessary details before sending to the customer.
@@ -361,7 +361,7 @@ export default function ProposalCreatePage() {
             </div>
 
             {/* Action Buttons */}
-            <div className="bg-white rounded-xl border border-gray-200 p-6">
+            <div className="bg-white rounded-xl border border-gray-200 p-3">
               <div className="space-y-3">
                 <button
                   type="submit"

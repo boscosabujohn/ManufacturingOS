@@ -68,7 +68,7 @@ export default function WeldingPage() {
   };
 
   return (
-    <div className="w-full py-6 space-y-8">
+    <div className="w-full py-2 space-y-8">
       <div className="flex justify-between items-center">
         <div className="space-y-1">
           <h1 className="text-3xl font-bold flex items-center gap-2">
@@ -102,7 +102,7 @@ export default function WeldingPage() {
         </CardContent>
       </Card>
 
-      <div className="grid grid-cols-1 gap-6">
+      <div className="grid grid-cols-1 gap-3">
         <Card>
           <CardHeader>
             <CardTitle>Welding Job Queue</CardTitle>

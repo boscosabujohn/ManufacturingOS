@@ -289,11 +289,11 @@ export default function CustomerPortalPage() {
   };
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 ">
+    <div className="w-full h-full px-3 py-2 ">
       <div className="mb-8">
         {/* Statistics Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-6 gap-6 mb-8">
-          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-6 text-white">
+        <div className="grid grid-cols-1 md:grid-cols-6 gap-3 mb-8">
+          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-3 text-white">
             <div className="flex items-center justify-between mb-2">
               <Users className="w-8 h-8 opacity-80" />
             </div>
@@ -301,7 +301,7 @@ export default function CustomerPortalPage() {
             <div className="text-blue-100">Total Users</div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-3 text-white">
             <div className="flex items-center justify-between mb-2">
               <CheckCircle className="w-8 h-8 opacity-80" />
             </div>
@@ -309,7 +309,7 @@ export default function CustomerPortalPage() {
             <div className="text-green-100">Active Users</div>
           </div>
 
-          <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-lg p-3 text-white">
             <div className="flex items-center justify-between mb-2">
               <Clock className="w-8 h-8 opacity-80" />
             </div>
@@ -317,7 +317,7 @@ export default function CustomerPortalPage() {
             <div className="text-yellow-100">Pending</div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-3 text-white">
             <div className="flex items-center justify-between mb-2">
               <Activity className="w-8 h-8 opacity-80" />
             </div>
@@ -325,7 +325,7 @@ export default function CustomerPortalPage() {
             <div className="text-purple-100">Total Logins</div>
           </div>
 
-          <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg p-3 text-white">
             <div className="flex items-center justify-between mb-2">
               <BarChart3 className="w-8 h-8 opacity-80" />
             </div>
@@ -333,7 +333,7 @@ export default function CustomerPortalPage() {
             <div className="text-orange-100">Avg Logins/User</div>
           </div>
 
-          <div className="bg-gradient-to-br from-teal-500 to-teal-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-teal-500 to-teal-600 rounded-lg p-3 text-white">
             <div className="flex items-center justify-between mb-2">
               <Shield className="w-8 h-8 opacity-80" />
             </div>
@@ -343,11 +343,11 @@ export default function CustomerPortalPage() {
         </div>
 
         {/* Tabs */}
-        <div className="bg-white rounded-lg border border-gray-200 mb-6">
+        <div className="bg-white rounded-lg border border-gray-200 mb-3">
           <div className="flex border-b border-gray-200">
             <button
               onClick={() => setActiveTab('users')}
-              className={`px-6 py-3 font-medium transition-colors ${
+              className={`px-3 py-2 font-medium transition-colors ${
                 activeTab === 'users'
                   ? 'text-blue-600 border-b-2 border-blue-600'
                   : 'text-gray-600 hover:text-gray-900'
@@ -360,7 +360,7 @@ export default function CustomerPortalPage() {
             </button>
             <button
               onClick={() => setActiveTab('features')}
-              className={`px-6 py-3 font-medium transition-colors ${
+              className={`px-3 py-2 font-medium transition-colors ${
                 activeTab === 'features'
                   ? 'text-blue-600 border-b-2 border-blue-600'
                   : 'text-gray-600 hover:text-gray-900'
@@ -373,7 +373,7 @@ export default function CustomerPortalPage() {
             </button>
             <button
               onClick={() => setActiveTab('activity')}
-              className={`px-6 py-3 font-medium transition-colors ${
+              className={`px-3 py-2 font-medium transition-colors ${
                 activeTab === 'activity'
                   ? 'text-blue-600 border-b-2 border-blue-600'
                   : 'text-gray-600 hover:text-gray-900'
@@ -392,8 +392,8 @@ export default function CustomerPortalPage() {
       {activeTab === 'users' && (
         <>
           {/* Filters */}
-          <div className="bg-white rounded-lg border border-gray-200 p-4 mb-6">
-            <div className="flex flex-wrap gap-4">
+          <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
+            <div className="flex flex-wrap gap-2">
               <div className="flex-1 min-w-[300px]">
                 <div className="relative">
                   <Globe className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -442,11 +442,11 @@ export default function CustomerPortalPage() {
           </div>
 
           {/* Users List */}
-          <div className="grid grid-cols-1 gap-4">
+          <div className="grid grid-cols-1 gap-2">
             {filteredUsers.map((user) => (
-              <div key={user.id} className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow">
+              <div key={user.id} className="bg-white rounded-lg border border-gray-200 p-3 hover:shadow-lg transition-shadow">
                 <div className="flex items-start justify-between">
-                  <div className="flex items-start gap-4 flex-1">
+                  <div className="flex items-start gap-2 flex-1">
                     <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-lg">
                       {user.name.split(' ').map(n => n[0]).join('')}
                     </div>
@@ -464,7 +464,7 @@ export default function CustomerPortalPage() {
                       </div>
 
                       <div className="text-sm text-gray-600 mb-3">
-                        <div className="flex items-center gap-4">
+                        <div className="flex items-center gap-2">
                           <span className="flex items-center gap-1">
                             <Globe className="w-4 h-4" />
                             {user.email}
@@ -474,7 +474,7 @@ export default function CustomerPortalPage() {
                         </div>
                       </div>
 
-                      <div className="grid grid-cols-4 gap-4 mb-4">
+                      <div className="grid grid-cols-4 gap-2 mb-2">
                         <div className="bg-blue-50 rounded-lg p-3">
                           <div className="text-xs text-blue-600 mb-1">Last Login</div>
                           <div className="text-sm font-semibold text-blue-900">
@@ -549,13 +549,13 @@ export default function CustomerPortalPage() {
 
       {/* Features Tab */}
       {activeTab === 'features' && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {features.map((feature, index) => {
             const Icon = feature.icon;
             return (
-              <div key={index} className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow">
-                <div className="flex items-start justify-between mb-4">
-                  <div className="flex items-start gap-4">
+              <div key={index} className="bg-white rounded-lg border border-gray-200 p-3 hover:shadow-lg transition-shadow">
+                <div className="flex items-start justify-between mb-2">
+                  <div className="flex items-start gap-2">
                     <div className={`p-3 rounded-lg ${feature.enabled ? 'bg-green-100' : 'bg-gray-100'}`}>
                       <Icon className={`w-6 h-6 ${feature.enabled ? 'text-green-600' : 'text-gray-400'}`} />
                     </div>
@@ -596,10 +596,10 @@ export default function CustomerPortalPage() {
 
       {/* Activity Tab */}
       {activeTab === 'activity' && (
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <div className="space-y-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <div className="space-y-2">
             {users.filter(u => u.lastLogin).slice(0, 10).map((user) => (
-              <div key={user.id} className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg">
+              <div key={user.id} className="flex items-center gap-2 p-3 bg-gray-50 rounded-lg">
                 <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold">
                   {user.name.split(' ').map(n => n[0]).join('')}
                 </div>
@@ -616,9 +616,9 @@ export default function CustomerPortalPage() {
 
       {/* View User Modal */}
       {showViewModal && selectedUser && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="flex justify-between items-start mb-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+          <div className="bg-white rounded-lg p-3 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="flex justify-between items-start mb-2">
               <div>
                 <h3 className="text-xl font-bold">{selectedUser.name}</h3>
                 <p className="text-sm text-gray-500">{selectedUser.email}</p>
@@ -631,11 +631,11 @@ export default function CustomerPortalPage() {
               </button>
             </div>
 
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* User Info */}
               <div>
                 <h4 className="text-sm font-semibold text-gray-700 mb-3">User Information</h4>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <p className="text-xs text-gray-500">Company</p>
                     <p className="text-sm font-medium">{selectedUser.company}</p>
@@ -658,7 +658,7 @@ export default function CustomerPortalPage() {
               {/* Activity Stats */}
               <div>
                 <h4 className="text-sm font-semibold text-gray-700 mb-3">Activity Statistics</h4>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <div className="bg-blue-50 p-3 rounded-lg">
                     <p className="text-xs text-blue-600">Total Logins</p>
                     <p className="text-lg font-bold text-blue-700">{selectedUser.loginCount}</p>
@@ -706,9 +706,9 @@ export default function CustomerPortalPage() {
 
       {/* Edit User Modal */}
       {showEditModal && selectedUser && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="flex justify-between items-start mb-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+          <div className="bg-white rounded-lg p-3 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="flex justify-between items-start mb-2">
               <div>
                 <h3 className="text-xl font-bold">Edit User</h3>
                 <p className="text-sm text-gray-500">{selectedUser.email}</p>
@@ -721,7 +721,7 @@ export default function CustomerPortalPage() {
               </button>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Name</label>
                 <input
@@ -749,7 +749,7 @@ export default function CustomerPortalPage() {
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Role</label>
                   <select
@@ -817,9 +817,9 @@ export default function CustomerPortalPage() {
 
       {/* Delete Confirmation Modal */}
       {showDeleteModal && selectedUser && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg p-6 max-w-md w-full">
-            <div className="flex items-center gap-3 mb-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+          <div className="bg-white rounded-lg p-3 max-w-md w-full">
+            <div className="flex items-center gap-3 mb-2">
               <div className="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center">
                 <Trash2 className="w-6 h-6 text-red-600" />
               </div>
@@ -829,7 +829,7 @@ export default function CustomerPortalPage() {
               </div>
             </div>
 
-            <p className="text-gray-700 mb-6">
+            <p className="text-gray-700 mb-3">
               Are you sure you want to delete <strong>{selectedUser.name}</strong> ({selectedUser.email})?
               This will remove their portal access and all associated data.
             </p>
@@ -854,7 +854,7 @@ export default function CustomerPortalPage() {
 
       {/* Toast Notification */}
       {showToast && (
-        <div className="fixed bottom-4 right-4 bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg flex items-center gap-2 z-50">
+        <div className="fixed bottom-4 right-4 bg-green-600 text-white px-3 py-2 rounded-lg shadow-lg flex items-center gap-2 z-50">
           <CheckCircle className="h-4 w-4" />
           {toastMessage}
         </div>

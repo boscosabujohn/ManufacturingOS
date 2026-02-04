@@ -481,10 +481,10 @@ export default function LeadsPage() {
   // Show loading skeleton on initial load
   if (isLoading && leads.length === 0) {
     return (
-      <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6">
+      <div className="w-full h-full px-3 py-2">
         <div className="animate-pulse">
-          <div className="h-10 bg-gray-200 rounded w-1/4 mb-6"></div>
-          <div className="grid grid-cols-4 gap-4 mb-6">
+          <div className="h-10 bg-gray-200 rounded w-1/4 mb-3"></div>
+          <div className="grid grid-cols-4 gap-2 mb-3">
             {[1, 2, 3, 4].map((i) => (
               <div key={i} className="h-24 bg-gray-200 rounded"></div>
             ))}
@@ -496,7 +496,7 @@ export default function LeadsPage() {
   }
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 ">
+    <div className="w-full h-full px-3 py-2 ">
       {/* Page Header with Toolbar */}
       <PageToolbar
 
@@ -541,9 +541,9 @@ export default function LeadsPage() {
       />
 
       {/* Stats Grid (moved below toolbar) */}
-      <div className="mb-6 mt-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+      <div className="mb-3 mt-6">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Total Leads</p>
@@ -553,7 +553,7 @@ export default function LeadsPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-purple-600">New Leads</p>
@@ -563,7 +563,7 @@ export default function LeadsPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600">Qualified</p>
@@ -573,7 +573,7 @@ export default function LeadsPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-4 border border-indigo-200">
+        <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-3 border border-indigo-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-indigo-600">Total Value</p>
@@ -587,7 +587,7 @@ export default function LeadsPage() {
 
       {/* Bulk Actions Bar */}
       {selectedLeadIds.size > 0 && (
-        <div className="mb-4 bg-blue-50 border border-blue-200 rounded-lg p-4">
+        <div className="mb-2 bg-blue-50 border border-blue-200 rounded-lg p-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
               <Check className="h-5 w-5 text-blue-600" />
@@ -637,8 +637,8 @@ export default function LeadsPage() {
       )}
 
       {/* Filters */}
-      <div className="mb-6">
-        <div className="flex gap-4 mb-4">
+      <div className="mb-3">
+        <div className="flex gap-2 mb-2">
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
             <input
@@ -673,8 +673,8 @@ export default function LeadsPage() {
 
         {/* Advanced Filters Panel */}
         {showAdvancedFilters && (
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 mb-4">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="bg-gray-50 border border-gray-200 rounded-lg p-3 mb-2">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Source</label>
                 <select
@@ -838,25 +838,25 @@ export default function LeadsPage() {
                     className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
                   />
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Lead
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Company
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Contact
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Status
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Value
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Quick Actions
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Actions
                 </th>
               </tr>
@@ -876,20 +876,20 @@ export default function LeadsPage() {
                       onClick={(e) => e.stopPropagation()}
                     />
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div>
                       <div className="font-medium text-gray-900">{lead.name}</div>
                       <div className="text-sm text-gray-500">{lead.source}</div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                  <td className="px-3 py-2 whitespace-nowrap text-sm text-gray-900">
                     {lead.company}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="text-sm text-gray-900">{lead.email}</div>
                     <div className="text-sm text-gray-500">{lead.phone}</div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="relative">
                       <button
                         onClick={(e) => {
@@ -921,10 +921,10 @@ export default function LeadsPage() {
                       )}
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <span className="font-semibold text-gray-900">${lead.value.toLocaleString()}</span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="flex items-center space-x-1">
                       <button
                         onClick={(e) => handleQuickCall(lead, e)}
@@ -949,7 +949,7 @@ export default function LeadsPage() {
                       </button>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap">
                     <div className="flex items-center space-x-1">
                       <button
                         onClick={(e) => {
@@ -1084,15 +1084,15 @@ export default function LeadsPage() {
       {/* Bulk Assign Dialog */}
       {showBulkAssignDialog && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg shadow-xl w-full max-w-md p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Assign Leads</h3>
-            <p className="text-sm text-gray-600 mb-4">
+          <div className="bg-white rounded-lg shadow-xl w-full max-w-md p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Assign Leads</h3>
+            <p className="text-sm text-gray-600 mb-2">
               Assign {selectedLeadIds.size} lead{selectedLeadIds.size > 1 ? 's' : ''} to:
             </p>
             <select
               value={bulkAssignUser}
               onChange={(e) => setBulkAssignUser(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mb-2"
             >
               <option value="">Select User...</option>
               {ASSIGNED_USERS.map(user => (
@@ -1124,15 +1124,15 @@ export default function LeadsPage() {
       {/* Bulk Status Change Dialog */}
       {showBulkStatusDialog && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg shadow-xl w-full max-w-md p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Change Status</h3>
-            <p className="text-sm text-gray-600 mb-4">
+          <div className="bg-white rounded-lg shadow-xl w-full max-w-md p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Change Status</h3>
+            <p className="text-sm text-gray-600 mb-2">
               Change status for {selectedLeadIds.size} lead{selectedLeadIds.size > 1 ? 's' : ''} to:
             </p>
             <select
               value={bulkStatus}
               onChange={(e) => setBulkStatus(e.target.value as Lead['status'])}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mb-2"
             >
               {LEAD_STATUSES.map(status => (
                 <option key={status} value={status}>
@@ -1161,9 +1161,9 @@ export default function LeadsPage() {
       {/* Save Filter Dialog */}
       {showSaveFilterDialog && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg shadow-xl w-full max-w-md p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Save Filter</h3>
-            <p className="text-sm text-gray-600 mb-4">
+          <div className="bg-white rounded-lg shadow-xl w-full max-w-md p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Save Filter</h3>
+            <p className="text-sm text-gray-600 mb-2">
               Give your filter a name to save it for future use.
             </p>
             <input
@@ -1171,7 +1171,7 @@ export default function LeadsPage() {
               value={filterName}
               onChange={(e) => setFilterName(e.target.value)}
               placeholder="Filter name..."
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mb-2"
             />
             <div className="flex items-center space-x-3">
               <button
@@ -1198,8 +1198,8 @@ export default function LeadsPage() {
       {/* Import Dialog */}
       {showImportDialog && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl p-6">
-            <div className="flex items-center justify-between mb-4">
+          <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl p-3">
+            <div className="flex items-center justify-between mb-2">
               <h3 className="text-lg font-semibold text-gray-900">Import Leads</h3>
               <button
                 onClick={() => setShowImportDialog(false)}
@@ -1209,7 +1209,7 @@ export default function LeadsPage() {
               </button>
             </div>
             <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
-              <Upload className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+              <Upload className="h-12 w-12 text-gray-400 mx-auto mb-2" />
               <p className="text-sm text-gray-600 mb-2">
                 Drag and drop your CSV or Excel file here, or click to browse
               </p>
@@ -1217,7 +1217,7 @@ export default function LeadsPage() {
                 Choose File
               </button>
             </div>
-            <div className="mt-4 bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <div className="mt-4 bg-blue-50 border border-blue-200 rounded-lg p-3">
               <p className="text-sm text-blue-900 font-medium mb-2">Import Requirements:</p>
               <ul className="text-sm text-blue-700 space-y-1">
                 <li>- File must be in CSV or Excel format</li>
@@ -1242,10 +1242,10 @@ export default function LeadsPage() {
 
       {/* Lead Detail Modal - Enhanced View */}
       {showDetailModal && selectedLead && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col">
             {/* Header */}
-            <div className="flex items-center justify-between p-6 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-indigo-50">
+            <div className="flex items-center justify-between p-3 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-indigo-50">
               <div className="flex items-center space-x-4">
                 <div className="h-12 w-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center">
                   <User className="h-6 w-6 text-white" />
@@ -1264,37 +1264,37 @@ export default function LeadsPage() {
             </div>
 
             {/* Content */}
-            <div className="flex-1 overflow-y-auto p-6">
+            <div className="flex-1 overflow-y-auto p-3">
               {/* Status and Value Banner */}
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-                <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+                <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
                   <p className="text-xs font-medium text-green-600 uppercase mb-1">Status</p>
                   <span className={`inline-block px-3 py-1 text-sm font-semibold rounded-full ${statusColors[selectedLead.status]}`}>
                     {selectedLead.status.charAt(0).toUpperCase() + selectedLead.status.slice(1)}
                   </span>
                 </div>
-                <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+                <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
                   <p className="text-xs font-medium text-blue-600 uppercase mb-1">Deal Value</p>
                   <p className="text-2xl font-bold text-blue-900">${selectedLead.value.toLocaleString()}</p>
                 </div>
-                <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+                <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
                   <p className="text-xs font-medium text-purple-600 uppercase mb-1">Source</p>
                   <p className="text-lg font-semibold text-purple-900">{selectedLead.source}</p>
                 </div>
-                <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+                <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
                   <p className="text-xs font-medium text-orange-600 uppercase mb-1">Assigned To</p>
                   <p className="text-lg font-semibold text-orange-900">{selectedLead.assignedTo}</p>
                 </div>
               </div>
 
               {/* Basic Information */}
-              <div className="mb-6">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="mb-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <User className="h-5 w-5 mr-2 text-blue-600" />
                   Basic Information
                 </h3>
-                <div className="bg-gray-50 rounded-lg p-4">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="bg-gray-50 rounded-lg p-3">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                     <div>
                       <p className="text-xs font-medium text-gray-500 uppercase mb-1">Full Name</p>
                       <p className="text-sm font-semibold text-gray-900">{selectedLead.name}</p>
@@ -1308,13 +1308,13 @@ export default function LeadsPage() {
               </div>
 
               {/* Company Information */}
-              <div className="mb-6">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="mb-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <Building2 className="h-5 w-5 mr-2 text-blue-600" />
                   Company Information
                 </h3>
-                <div className="bg-gray-50 rounded-lg p-4">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="bg-gray-50 rounded-lg p-3">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                     <div>
                       <p className="text-xs font-medium text-gray-500 uppercase mb-1">Company Name</p>
                       <p className="text-sm font-semibold text-gray-900">{selectedLead.company}</p>
@@ -1336,13 +1336,13 @@ export default function LeadsPage() {
               </div>
 
               {/* Contact Information */}
-              <div className="mb-6">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="mb-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <Phone className="h-5 w-5 mr-2 text-blue-600" />
                   Contact Information
                 </h3>
-                <div className="bg-gray-50 rounded-lg p-4">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="bg-gray-50 rounded-lg p-3">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                     <div className="flex items-start space-x-3">
                       <Mail className="h-5 w-5 text-gray-400 mt-0.5" />
                       <div className="flex-1">
@@ -1370,13 +1370,13 @@ export default function LeadsPage() {
               </div>
 
               {/* Address Information */}
-              <div className="mb-6">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="mb-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <Building2 className="h-5 w-5 mr-2 text-blue-600" />
                   Address
                 </h3>
-                <div className="bg-gray-50 rounded-lg p-4">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="bg-gray-50 rounded-lg p-3">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                     <div className="md:col-span-2">
                       <p className="text-xs font-medium text-gray-500 uppercase mb-1">Street Address</p>
                       <p className="text-sm text-gray-900">-</p>
@@ -1402,13 +1402,13 @@ export default function LeadsPage() {
               </div>
 
               {/* Lead Details */}
-              <div className="mb-6">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="mb-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <TrendingUp className="h-5 w-5 mr-2 text-blue-600" />
                   Lead Details
                 </h3>
-                <div className="bg-gray-50 rounded-lg p-4">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="bg-gray-50 rounded-lg p-3">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                     <div>
                       <p className="text-xs font-medium text-gray-500 uppercase mb-1">Lead Status</p>
                       <span className={`inline-block px-3 py-1 text-xs font-semibold rounded-full ${statusColors[selectedLead.status]}`}>
@@ -1440,13 +1440,13 @@ export default function LeadsPage() {
               </div>
 
               {/* Opportunity Information */}
-              <div className="mb-6">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="mb-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <TrendingUp className="h-5 w-5 mr-2 text-blue-600" />
                   Opportunity Information
                 </h3>
-                <div className="bg-gray-50 rounded-lg p-4">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="bg-gray-50 rounded-lg p-3">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                     <div>
                       <p className="text-xs font-medium text-gray-500 uppercase mb-1">Estimated Value</p>
                       <p className="text-lg font-bold text-blue-900">${selectedLead.value.toLocaleString()}</p>
@@ -1468,13 +1468,13 @@ export default function LeadsPage() {
               </div>
 
               {/* Social Media */}
-              <div className="mb-6">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="mb-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <Globe className="h-5 w-5 mr-2 text-blue-600" />
                   Social Media
                 </h3>
-                <div className="bg-gray-50 rounded-lg p-4">
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="bg-gray-50 rounded-lg p-3">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                     <div>
                       <p className="text-xs font-medium text-gray-500 uppercase mb-1">LinkedIn</p>
                       <p className="text-sm text-gray-900">-</p>
@@ -1492,12 +1492,12 @@ export default function LeadsPage() {
               </div>
 
               {/* Lead Progress Tracker */}
-              <div className="mb-6">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="mb-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <TrendingUp className="h-5 w-5 mr-2 text-blue-600" />
                   Lead Progress
                 </h3>
-                <div className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-lg p-6">
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-lg p-3">
                   {/* Progress Stages */}
                   <div className="relative">
                     <div className="flex items-center justify-between">
@@ -1551,14 +1551,14 @@ export default function LeadsPage() {
               </div>
 
               {/* Activity Timeline */}
-              <div className="mb-6">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="mb-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <Activity className="h-5 w-5 mr-2 text-blue-600" />
                   Activity Timeline
                 </h3>
-                <div className="bg-gray-50 rounded-lg p-4">
+                <div className="bg-gray-50 rounded-lg p-3">
                   {/* Add Activity Actions */}
-                  <div className="mb-4 flex flex-wrap gap-2">
+                  <div className="mb-2 flex flex-wrap gap-2">
                     <button className="flex items-center space-x-1 px-3 py-1.5 bg-blue-50 text-blue-600 hover:bg-blue-100 rounded-lg transition-colors text-sm font-medium">
                       <PhoneCall className="h-4 w-4" />
                       <span>Log Call</span>
@@ -1656,12 +1656,12 @@ export default function LeadsPage() {
 
               {/* Quick Stats */}
               <div>
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <Clock className="h-5 w-5 mr-2 text-blue-600" />
                   Key Dates
                 </h3>
-                <div className="bg-gray-50 rounded-lg p-4">
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="bg-gray-50 rounded-lg p-3">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                     <div className="flex items-start space-x-3">
                       <div className="h-8 w-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
                         <Calendar className="h-4 w-4 text-blue-600" />
@@ -1695,7 +1695,7 @@ export default function LeadsPage() {
             </div>
 
             {/* Footer Actions */}
-            <div className="flex items-center justify-between p-6 border-t border-gray-200 bg-gray-50">
+            <div className="flex items-center justify-between p-3 border-t border-gray-200 bg-gray-50">
               <button
                 onClick={() => setShowDetailModal(false)}
                 className="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-white transition-colors"

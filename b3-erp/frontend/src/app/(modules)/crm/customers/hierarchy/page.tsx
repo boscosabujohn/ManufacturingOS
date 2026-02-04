@@ -274,10 +274,10 @@ function HierarchyNode({ node, level }: HierarchyNodeProps) {
   const indentClass = `ml-${level * 8}`;
 
   return (
-    <div className="mb-4">
+    <div className="mb-2">
       <div className="bg-white rounded-lg border border-gray-200 hover:shadow-lg transition-shadow">
         <div className="p-6">
-          <div className="flex items-start gap-4">
+          <div className="flex items-start gap-2">
             {/* Expand/Collapse Button */}
             {hasChildren && (
               <button
@@ -295,7 +295,7 @@ function HierarchyNode({ node, level }: HierarchyNodeProps) {
 
             {/* Node Content */}
             <div className="flex-1">
-              <div className="flex items-start justify-between mb-4">
+              <div className="flex items-start justify-between mb-2">
                 <div className="flex items-center gap-3">
                   <div className={`p-2 rounded-lg ${getTypeColor(node.type)}`}>
                     {getTypeIcon(node.type)}
@@ -329,7 +329,7 @@ function HierarchyNode({ node, level }: HierarchyNodeProps) {
               </div>
 
               {/* Contact Information */}
-              <div className="grid grid-cols-2 gap-4 mb-4 pb-4 border-b border-gray-100">
+              <div className="grid grid-cols-2 gap-2 mb-2 pb-4 border-b border-gray-100">
                 <div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mb-2">
                     <MapPin className="w-4 h-4" />
@@ -370,7 +370,7 @@ function HierarchyNode({ node, level }: HierarchyNodeProps) {
               </div>
 
               {/* Metrics Grid */}
-              <div className="grid grid-cols-4 gap-4">
+              <div className="grid grid-cols-4 gap-2">
                 <div className="bg-blue-50 rounded-lg p-3">
                   <div className="flex items-center gap-2 text-blue-600 text-sm mb-1">
                     <Users className="w-4 h-4" />
@@ -489,11 +489,11 @@ export default function CustomerHierarchyPage() {
   const stats = calculateTotalStats();
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 ">
+    <div className="w-full h-full px-3 py-2 ">
       <div className="mb-8">
         {/* Statistics Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-6 mb-8">
-          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-6 text-white">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-3 mb-8">
+          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-3 text-white">
             <div className="flex items-center justify-between mb-2">
               <Building2 className="w-8 h-8 opacity-80" />
             </div>
@@ -501,7 +501,7 @@ export default function CustomerHierarchyPage() {
             <div className="text-purple-100">Total Entities</div>
           </div>
 
-          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-3 text-white">
             <div className="flex items-center justify-between mb-2">
               <Users className="w-8 h-8 opacity-80" />
             </div>
@@ -509,7 +509,7 @@ export default function CustomerHierarchyPage() {
             <div className="text-blue-100">Total Employees</div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-3 text-white">
             <div className="flex items-center justify-between mb-2">
               <DollarSign className="w-8 h-8 opacity-80" />
             </div>
@@ -519,7 +519,7 @@ export default function CustomerHierarchyPage() {
             <div className="text-green-100">Total Revenue</div>
           </div>
 
-          <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg p-3 text-white">
             <div className="flex items-center justify-between mb-2">
               <DollarSign className="w-8 h-8 opacity-80" />
             </div>
@@ -529,7 +529,7 @@ export default function CustomerHierarchyPage() {
             <div className="text-orange-100">Account Value</div>
           </div>
 
-          <div className="bg-gradient-to-br from-pink-500 to-pink-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-pink-500 to-pink-600 rounded-lg p-3 text-white">
             <div className="flex items-center justify-between mb-2">
               <Package className="w-8 h-8 opacity-80" />
             </div>
@@ -540,7 +540,7 @@ export default function CustomerHierarchyPage() {
       </div>
 
       {/* Hierarchy Tree */}
-      <div className="space-y-6">
+      <div className="space-y-3">
         {hierarchies.map((hierarchy) => (
           <HierarchyNode key={hierarchy.id} node={hierarchy} level={0} />
         ))}

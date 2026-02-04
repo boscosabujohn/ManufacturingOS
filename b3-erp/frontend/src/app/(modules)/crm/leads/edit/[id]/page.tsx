@@ -282,9 +282,9 @@ export default function EditLeadPage() {
   return (
     <div className="w-full h-screen flex flex-col">
       <div className="flex-1 overflow-y-auto">
-        <div className="px-4 sm:px-6 lg:px-8 py-6">
+        <div className="px-3 py-2">
           {/* Header */}
-          <div className="mb-6 flex items-center justify-between">
+          <div className="mb-3 flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <button
                 onClick={() => router.back()}
@@ -300,7 +300,7 @@ export default function EditLeadPage() {
           </div>
 
           {/* Progress Steps */}
-          <div className="mb-6 bg-white rounded-lg border border-gray-200 p-6">
+          <div className="mb-3 bg-white rounded-lg border border-gray-200 p-3">
             <div className="flex items-center justify-between">
               {steps.map((step, index) => {
                 const Icon = step.icon;
@@ -345,16 +345,16 @@ export default function EditLeadPage() {
           </div>
 
           {/* Form Content */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
             {/* Step 1: Basic Information */}
             {currentStep === 1 && (
-              <div className="space-y-6">
-                <div className="flex items-center space-x-3 mb-4">
+              <div className="space-y-3">
+                <div className="flex items-center space-x-3 mb-2">
                   <User className="h-6 w-6 text-blue-600" />
                   <h2 className="text-xl font-bold text-gray-900">Basic Information</h2>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       First Name <span className="text-red-500">*</span>
@@ -480,13 +480,13 @@ export default function EditLeadPage() {
 
             {/* Step 2: Contact Details */}
             {currentStep === 2 && (
-              <div className="space-y-6">
-                <div className="flex items-center space-x-3 mb-4">
+              <div className="space-y-3">
+                <div className="flex items-center space-x-3 mb-2">
                   <Phone className="h-6 w-6 text-blue-600" />
                   <h2 className="text-xl font-bold text-gray-900">Contact Details</h2>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Email <span className="text-red-500">*</span>
@@ -596,8 +596,8 @@ export default function EditLeadPage() {
                 </div>
 
                 <div className="border-t border-gray-200 pt-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Social Media Links</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Social Media Links</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">LinkedIn</label>
                       <input
@@ -652,13 +652,13 @@ export default function EditLeadPage() {
 
             {/* Step 3: Lead Details */}
             {currentStep === 3 && (
-              <div className="space-y-6">
-                <div className="flex items-center space-x-3 mb-4">
+              <div className="space-y-3">
+                <div className="flex items-center space-x-3 mb-2">
                   <TrendingUp className="h-6 w-6 text-blue-600" />
                   <h2 className="text-xl font-bold text-gray-900">Lead Details</h2>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Lead Status</label>
                     <select
@@ -775,7 +775,7 @@ export default function EditLeadPage() {
                 </div>
 
                 <div className="border-t border-gray-200 pt-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Compliance & Privacy</h3>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Compliance & Privacy</h3>
                   <div className="space-y-3">
                     <label className="flex items-center space-x-3">
                       <input
@@ -838,13 +838,13 @@ export default function EditLeadPage() {
 
             {/* Step 4: Opportunity Information */}
             {currentStep === 4 && (
-              <div className="space-y-6">
-                <div className="flex items-center space-x-3 mb-4">
+              <div className="space-y-3">
+                <div className="flex items-center space-x-3 mb-2">
                   <Target className="h-6 w-6 text-blue-600" />
                   <h2 className="text-xl font-bold text-gray-900">Opportunity Information</h2>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Estimated Deal Value</label>
                     <div className="relative">
@@ -896,11 +896,11 @@ export default function EditLeadPage() {
                 </div>
 
                 <div className="border-t border-gray-200 pt-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Product Interest</h3>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Product Interest</h3>
 
                   {/* Selected Products */}
                   {formData.productInterest.length > 0 && (
-                    <div className="mb-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                    <div className="mb-2 p-3 bg-blue-50 border border-blue-200 rounded-lg">
                       <p className="text-sm font-medium text-blue-900 mb-3">Selected Products ({formData.productInterest.length})</p>
                       <div className="flex flex-wrap gap-2">
                         {formData.productInterest.map(product => (
@@ -928,7 +928,7 @@ export default function EditLeadPage() {
                   )}
 
                   {/* Product Selection List */}
-                  <div className="border border-gray-300 rounded-lg p-4 max-h-80 overflow-y-auto bg-gray-50">
+                  <div className="border border-gray-300 rounded-lg p-3 max-h-80 overflow-y-auto bg-gray-50">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                       {products.map(product => (
                         <label key={product} className="flex items-center space-x-3 p-3 bg-white border border-gray-200 rounded-lg hover:bg-blue-50 hover:border-blue-300 cursor-pointer transition-colors">
@@ -986,8 +986,8 @@ export default function EditLeadPage() {
 
             {/* Step 5: Additional Information */}
             {currentStep === 5 && (
-              <div className="space-y-6">
-                <div className="flex items-center space-x-3 mb-4">
+              <div className="space-y-3">
+                <div className="flex items-center space-x-3 mb-2">
                   <FileText className="h-6 w-6 text-blue-600" />
                   <h2 className="text-xl font-bold text-gray-900">Additional Information</h2>
                 </div>
@@ -1041,7 +1041,7 @@ export default function EditLeadPage() {
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Attachments</label>
-                  <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-blue-500 transition-colors">
+                  <div className="border-2 border-dashed border-gray-300 rounded-lg p-3 text-center hover:border-blue-500 transition-colors">
                     <input
                       type="file"
                       multiple
@@ -1089,8 +1089,8 @@ export default function EditLeadPage() {
                 </div>
 
                 <div className="border-t border-gray-200 pt-6">
-                  <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-6 border border-blue-200">
-                    <div className="flex items-center justify-between mb-4">
+                  <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-3 border border-blue-200">
+                    <div className="flex items-center justify-between mb-2">
                       <h3 className="text-lg font-semibold text-gray-900">Lead Score Calculation</h3>
                       <button
                         onClick={calculateLeadScore}
@@ -1138,7 +1138,7 @@ export default function EditLeadPage() {
       </div>
 
       {/* Fixed Footer with Save Button */}
-      <div className="border-t border-gray-200 bg-white px-4 sm:px-6 lg:px-8 py-4 flex-shrink-0">
+      <div className="border-t border-gray-200 bg-white px-3 py-4 flex-shrink-0">
         <div className="flex items-center justify-between">
           <button
             onClick={() => router.back()}

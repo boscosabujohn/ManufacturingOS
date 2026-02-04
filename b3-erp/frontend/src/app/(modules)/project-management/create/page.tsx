@@ -272,9 +272,9 @@ export default function CreateProjectPage() {
 
  return (
   <div className="w-full h-screen overflow-y-auto overflow-x-hidden">
-   <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+   <div className="w-full mx-auto px-3 py-2">
     {/* Page Header with Template Actions */}
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
+    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 mb-3">
      <div className="flex items-center justify-between mb-4">
       <div>
        <h1 className="text-2xl font-bold text-gray-900">Create New Project</h1>
@@ -321,15 +321,15 @@ export default function CreateProjectPage() {
      </div>
     </div>
 
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-3">
      {/* Basic Information */}
-     <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+     <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
       <div className="flex items-center gap-2 mb-4">
        <Building2 className="w-5 h-5 text-blue-600" />
        <h2 className="text-xl font-semibold text-gray-900">Basic Information</h2>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
        <div>
         <label className="block text-sm font-medium text-gray-700 mb-2">
          Project Name <span className="text-red-500">*</span>
@@ -434,13 +434,13 @@ export default function CreateProjectPage() {
      </div>
 
      {/* Timeline & Budget */}
-     <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+     <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
       <div className="flex items-center gap-2 mb-4">
        <Calendar className="w-5 h-5 text-blue-600" />
        <h2 className="text-xl font-semibold text-gray-900">Timeline & Budget</h2>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
        <div>
         <label className="block text-sm font-medium text-gray-700 mb-2">
          Start Date <span className="text-red-500">*</span>
@@ -526,13 +526,13 @@ export default function CreateProjectPage() {
      </div>
 
      {/* Project Management */}
-     <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+     <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
       <div className="flex items-center gap-2 mb-4">
        <User className="w-5 h-5 text-blue-600" />
        <h2 className="text-xl font-semibold text-gray-900">Project Management</h2>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
        <div>
         <label className="block text-sm font-medium text-gray-700 mb-2">
          Project Manager <span className="text-red-500">*</span>
@@ -589,7 +589,7 @@ export default function CreateProjectPage() {
      </div>
 
      {/* Team Members */}
-     <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+     <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
       <div className="flex items-center justify-between mb-4">
        <div className="flex items-center gap-2">
         <Users className="w-5 h-5 text-blue-600" />
@@ -657,7 +657,7 @@ export default function CreateProjectPage() {
      </div>
 
      {/* Key Deliverables */}
-     <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+     <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
       <div className="flex items-center justify-between mb-4">
        <div className="flex items-center gap-2">
         <Package className="w-5 h-5 text-blue-600" />
@@ -727,13 +727,13 @@ export default function CreateProjectPage() {
      </div>
 
      {/* Scope & Requirements */}
-     <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+     <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
       <div className="flex items-center gap-2 mb-4">
        <FileText className="w-5 h-5 text-blue-600" />
        <h2 className="text-xl font-semibold text-gray-900">Scope & Requirements</h2>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-2">
        <div>
         <label className="block text-sm font-medium text-gray-700 mb-2">
          Project Scope
@@ -776,7 +776,7 @@ export default function CreateProjectPage() {
      </div>
 
      {/* Action Buttons */}
-     <div className="flex items-center justify-between bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+     <div className="flex items-center justify-between bg-white rounded-lg shadow-sm border border-gray-200 p-3">
       {/* Template Quick Actions */}
       <div className="flex items-center gap-3">
        <button

@@ -508,7 +508,7 @@ export default function TerritoriesPage() {
   };
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6  space-y-6">
+    <div className="w-full h-full px-3 py-2  space-y-3">
       {/* Header */}
       <div className="flex items-center justify-end">
         <button
@@ -521,11 +521,11 @@ export default function TerritoriesPage() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
         {stats.map((stat, index) => {
           const Icon = stat.icon;
           return (
-            <div key={index} className={`bg-gradient-to-br ${stat.color} rounded-xl p-6 text-white`}>
+            <div key={index} className={`bg-gradient-to-br ${stat.color} rounded-xl p-3 text-white`}>
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-white/80 text-sm">{stat.label}</p>
@@ -548,8 +548,8 @@ export default function TerritoriesPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg border border-gray-200 p-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="bg-white rounded-lg border border-gray-200 p-3">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               <Search className="w-4 h-4 inline mr-1" />
@@ -598,7 +598,7 @@ export default function TerritoriesPage() {
       </div>
 
       {/* Territories Grid */}
-      <div className="grid grid-cols-1 gap-6">
+      <div className="grid grid-cols-1 gap-3">
         {filteredTerritories.map((territory) => {
           const TypeIcon = getTypeIcon(territory.type);
           const quotaProgress = territory.performance.quotaAttainment;
@@ -608,7 +608,7 @@ export default function TerritoriesPage() {
               {/* Header */}
               <div className="p-6 border-b border-gray-200">
                 <div className="flex items-start justify-between">
-                  <div className="flex items-start gap-4 flex-1">
+                  <div className="flex items-start gap-2 flex-1">
                     <div className="p-3 bg-blue-50 rounded-xl">
                       <TypeIcon className="w-8 h-8 text-blue-600" />
                     </div>
@@ -683,7 +683,7 @@ export default function TerritoriesPage() {
 
               {/* Performance Metrics */}
               <div className="p-6 bg-gray-50/50">
-                <div className="grid grid-cols-6 gap-6 mb-6">
+                <div className="grid grid-cols-6 gap-3 mb-3">
                   <div>
                     <p className="text-xs text-gray-500 mb-1">Accounts</p>
                     <p className="text-2xl font-bold text-gray-900">{territory.performance.accounts}</p>
@@ -732,7 +732,7 @@ export default function TerritoriesPage() {
                 </div>
 
                 {/* Quota Progress */}
-                <div className="mb-4">
+                <div className="mb-2">
                   <div className="flex items-center justify-between mb-2">
                     <span className="text-sm font-medium text-gray-700">Quota Attainment</span>
                     <span className={`text-sm font-bold ${
@@ -810,8 +810,8 @@ export default function TerritoriesPage() {
               </div>
 
               {/* Footer */}
-              <div className="px-6 py-3 bg-gray-100/50 border-t border-gray-200 flex items-center justify-between">
-                <div className="flex items-center gap-4 text-xs text-gray-600">
+              <div className="px-3 py-2 bg-gray-100/50 border-t border-gray-200 flex items-center justify-between">
+                <div className="flex items-center gap-2 text-xs text-gray-600">
                   <span>Region: <strong className="text-gray-900">{territory.region}</strong></span>
                   <span>•</span>
                   <span>Created: {new Date(territory.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
@@ -827,8 +827,8 @@ export default function TerritoriesPage() {
       {/* Add Territory Modal */}
       {showAddModal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 max-w-3xl w-full mx-4 max-h-[90vh] overflow-y-auto">
-            <div className="flex items-center justify-between mb-6">
+          <div className="bg-white rounded-lg p-3 max-w-3xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+            <div className="flex items-center justify-between mb-3">
               <h2 className="text-2xl font-bold text-gray-900">Add New Territory</h2>
               <button
                 onClick={() => setShowAddModal(false)}
@@ -837,8 +837,8 @@ export default function TerritoriesPage() {
                 ✕
               </button>
             </div>
-            <div className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Territory Name</label>
                   <input
@@ -856,7 +856,7 @@ export default function TerritoriesPage() {
                   />
                 </div>
               </div>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Territory Type</label>
                   <select className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">

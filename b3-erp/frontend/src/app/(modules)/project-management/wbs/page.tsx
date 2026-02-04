@@ -748,7 +748,7 @@ export default function WBSPage() {
 
  return (
   <div className="w-full h-screen overflow-y-auto overflow-x-hidden">
-   <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+   <div className="px-3 py-2 space-y-3">
    {/* Header Actions */}
    <div className="flex justify-between items-center mb-4">
     <div className="flex items-center gap-3">

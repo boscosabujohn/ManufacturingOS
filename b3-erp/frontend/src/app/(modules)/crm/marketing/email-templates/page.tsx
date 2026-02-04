@@ -384,7 +384,7 @@ export default function EmailTemplatesPage() {
   };
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6  space-y-6">
+    <div className="w-full h-full px-3 py-2  space-y-3">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -401,8 +401,8 @@ export default function EmailTemplatesPage() {
       </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
-        <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-6 text-white">
+      <div className="grid grid-cols-1 md:grid-cols-6 gap-2">
+        <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-3 text-white">
           <div className="flex items-center justify-between mb-2">
             <Mail className="w-8 h-8 opacity-80" />
           </div>
@@ -410,7 +410,7 @@ export default function EmailTemplatesPage() {
           <div className="text-blue-100 text-sm">Total Templates</div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-6 text-white">
+        <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-3 text-white">
           <div className="flex items-center justify-between mb-2">
             <CheckCircle className="w-8 h-8 opacity-80" />
           </div>
@@ -418,7 +418,7 @@ export default function EmailTemplatesPage() {
           <div className="text-green-100 text-sm">Active</div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-6 text-white">
+        <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-3 text-white">
           <div className="flex items-center justify-between mb-2">
             <Send className="w-8 h-8 opacity-80" />
           </div>
@@ -426,7 +426,7 @@ export default function EmailTemplatesPage() {
           <div className="text-purple-100 text-sm">Emails Sent</div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg p-6 text-white">
+        <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg p-3 text-white">
           <div className="flex items-center justify-between mb-2">
             <Eye className="w-8 h-8 opacity-80" />
           </div>
@@ -434,7 +434,7 @@ export default function EmailTemplatesPage() {
           <div className="text-orange-100 text-sm">Avg Open Rate</div>
         </div>
 
-        <div className="bg-gradient-to-br from-teal-500 to-teal-600 rounded-lg p-6 text-white">
+        <div className="bg-gradient-to-br from-teal-500 to-teal-600 rounded-lg p-3 text-white">
           <div className="flex items-center justify-between mb-2">
             <MousePointer className="w-8 h-8 opacity-80" />
           </div>
@@ -442,7 +442,7 @@ export default function EmailTemplatesPage() {
           <div className="text-teal-100 text-sm">Avg Click Rate</div>
         </div>
 
-        <div className="bg-gradient-to-br from-pink-500 to-pink-600 rounded-lg p-6 text-white">
+        <div className="bg-gradient-to-br from-pink-500 to-pink-600 rounded-lg p-3 text-white">
           <div className="flex items-center justify-between mb-2">
             <Target className="w-8 h-8 opacity-80" />
           </div>
@@ -466,9 +466,9 @@ export default function EmailTemplatesPage() {
           </div>
         </div>
         <div className="p-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
             {sequences.map(sequence => (
-              <div key={sequence.id} className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+              <div key={sequence.id} className="border border-gray-200 rounded-lg p-3 hover:shadow-md transition-shadow">
                 <div className="flex items-start justify-between mb-3">
                   <div className="flex items-center gap-2">
                     {getTriggerIcon(sequence.trigger)}
@@ -514,8 +514,8 @@ export default function EmailTemplatesPage() {
       </div>
 
       {/* Filters and Search */}
-      <div className="bg-white rounded-lg border border-gray-200 p-4">
-        <div className="flex flex-wrap gap-4">
+      <div className="bg-white rounded-lg border border-gray-200 p-3">
+        <div className="flex flex-wrap gap-2">
           <div className="flex-1 min-w-[300px]">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -558,12 +558,12 @@ export default function EmailTemplatesPage() {
       </div>
 
       {/* Templates Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {filteredTemplates.map(template => (
           <div key={template.id} className="bg-white rounded-lg border border-gray-200 hover:shadow-lg transition-shadow">
             <div className="p-6">
               {/* Template Header */}
-              <div className="flex items-start justify-between mb-4">
+              <div className="flex items-start justify-between mb-2">
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-2">
                     <h3 className="text-lg font-semibold text-gray-900">{template.name}</h3>
@@ -587,7 +587,7 @@ export default function EmailTemplatesPage() {
               </div>
 
               {/* Template Stats */}
-              <div className="grid grid-cols-4 gap-3 mb-4">
+              <div className="grid grid-cols-4 gap-3 mb-2">
                 <div className="bg-blue-50 rounded-lg p-3">
                   <div className="flex items-center gap-1 text-blue-600 mb-1">
                     <Send className="w-3 h-3" />
@@ -622,8 +622,8 @@ export default function EmailTemplatesPage() {
               </div>
 
               {/* Template Meta */}
-              <div className="flex items-center justify-between text-xs text-gray-500 mb-4 pb-4 border-b border-gray-200">
-                <div className="flex items-center gap-4">
+              <div className="flex items-center justify-between text-xs text-gray-500 mb-2 pb-4 border-b border-gray-200">
+                <div className="flex items-center gap-2">
                   <span>Created by {template.createdBy}</span>
                   <span>Last used: {template.lastUsed}</span>
                 </div>
@@ -664,7 +664,7 @@ export default function EmailTemplatesPage() {
 
       {/* Template Preview Modal Placeholder */}
       {selectedTemplate && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-hidden">
             <div className="p-6 border-b border-gray-200 flex items-center justify-between">
               <h2 className="text-xl font-semibold text-gray-900">Template Preview</h2>
@@ -676,7 +676,7 @@ export default function EmailTemplatesPage() {
               </button>
             </div>
             <div className="p-6 overflow-y-auto max-h-[calc(90vh-120px)]">
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <div>
                   <label className="text-sm font-medium text-gray-700">Template Name</label>
                   <p className="text-gray-900 mt-1">{selectedTemplate.name}</p>
@@ -691,7 +691,7 @@ export default function EmailTemplatesPage() {
                 </div>
                 <div>
                   <label className="text-sm font-medium text-gray-700">Email Body</label>
-                  <div className="mt-2 border border-gray-200 rounded-lg p-4 bg-gray-50">
+                  <div className="mt-2 border border-gray-200 rounded-lg p-3 bg-gray-50">
                     <p className="text-gray-600 italic">WYSIWYG Editor Placeholder</p>
                     <p className="text-sm text-gray-500 mt-2">Rich text editor would be implemented here with merge fields support: {'{'}{'{'} customer_name {'}'}{'}'}, {'{'}{'{'} company {'}'}{'}'}, etc.</p>
                   </div>

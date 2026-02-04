@@ -296,20 +296,20 @@ export default function ViewOpportunityPage() {
   ];
 
   return (
-    <div className="w-full min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
+    <div className="w-full min-h-screen bg-gray-50 px-3 py-2">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <button
           onClick={() => router.push('/crm/opportunities')}
-          className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-4"
+          className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-2"
         >
           <ArrowLeft className="h-5 w-5" />
           <span className="font-medium">Back to Opportunities</span>
         </button>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           {/* Opportunity Header Info */}
-          <div className="flex items-start justify-between mb-6">
+          <div className="flex items-start justify-between mb-3">
             <div className="flex items-start space-x-4 flex-1">
               <div className="h-16 w-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center">
                 <Target className="h-8 w-8 text-white" />
@@ -358,28 +358,28 @@ export default function ViewOpportunityPage() {
           </div>
 
           {/* Quick Stats */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
               <p className="text-xs font-medium text-blue-600 uppercase mb-1">Amount</p>
               <p className="text-2xl font-bold text-blue-900">${opportunity.amount.toLocaleString()}</p>
             </div>
-            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
               <p className="text-xs font-medium text-purple-600 uppercase mb-1">Probability</p>
               <p className="text-2xl font-bold text-purple-900">{opportunity.probability}%</p>
             </div>
-            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
               <p className="text-xs font-medium text-green-600 uppercase mb-1">Expected Close</p>
               <p className="text-lg font-semibold text-green-900">{opportunity.expectedCloseDate}</p>
             </div>
-            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
               <p className="text-xs font-medium text-orange-600 uppercase mb-1">Stage</p>
               <p className="text-lg font-semibold text-orange-900">{stageLabels[opportunity.stage]}</p>
             </div>
           </div>
 
           {/* Sales Stage Progress Tracker */}
-          <div className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-lg p-6 border border-gray-200">
-            <h3 className="text-sm font-bold text-gray-700 uppercase mb-4">Sales Stage Progress</h3>
+          <div className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-lg p-3 border border-gray-200">
+            <h3 className="text-sm font-bold text-gray-700 uppercase mb-2">Sales Stage Progress</h3>
             <div className="relative">
               <div className="flex items-center justify-between">
                 {getOpportunityStages(opportunity).map((stage, index) => {
@@ -433,7 +433,7 @@ export default function ViewOpportunityPage() {
       </div>
 
       {/* Tabs */}
-      <div className="mb-6">
+      <div className="mb-3">
         <div className="border-b border-gray-200 bg-white rounded-t-lg">
           <nav className="flex space-x-8 px-6">
             {tabs.map((tab) => {
@@ -458,17 +458,17 @@ export default function ViewOpportunityPage() {
       </div>
 
       {/* Tab Content */}
-      <div className="bg-white rounded-lg border border-gray-200 p-6">
+      <div className="bg-white rounded-lg border border-gray-200 p-3">
         {/* Overview Tab */}
         {activeTab === 'overview' && (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
             {/* Opportunity Information */}
             <div>
-              <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                 <Target className="h-5 w-5 mr-2 text-blue-600" />
                 Opportunity Information
               </h3>
-              <div className="bg-gray-50 rounded-lg p-4 space-y-3">
+              <div className="bg-gray-50 rounded-lg p-3 space-y-3">
                 <div>
                   <p className="text-xs font-medium text-gray-500 uppercase mb-1">Opportunity Name</p>
                   <p className="text-sm font-semibold text-gray-900">{opportunity.name}</p>
@@ -490,11 +490,11 @@ export default function ViewOpportunityPage() {
 
             {/* Account Information */}
             <div>
-              <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                 <Building2 className="h-5 w-5 mr-2 text-blue-600" />
                 Account Information
               </h3>
-              <div className="bg-gray-50 rounded-lg p-4 space-y-3">
+              <div className="bg-gray-50 rounded-lg p-3 space-y-3">
                 <div>
                   <p className="text-xs font-medium text-gray-500 uppercase mb-1">Account Name</p>
                   <p className="text-sm font-semibold text-gray-900">{opportunity.account}</p>
@@ -512,33 +512,33 @@ export default function ViewOpportunityPage() {
 
             {/* Key Metrics */}
             <div className="lg:col-span-2">
-              <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                 <BarChart3 className="h-5 w-5 mr-2 text-blue-600" />
                 Key Metrics
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
+                <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
                   <div className="flex items-center space-x-2 mb-2">
                     <DollarSign className="h-5 w-5 text-blue-600" />
                     <p className="text-xs font-medium text-blue-600 uppercase">Deal Value</p>
                   </div>
                   <p className="text-2xl font-bold text-blue-900">${opportunity.amount.toLocaleString()}</p>
                 </div>
-                <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+                <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
                   <div className="flex items-center space-x-2 mb-2">
                     <TrendingUp className="h-5 w-5 text-purple-600" />
                     <p className="text-xs font-medium text-purple-600 uppercase">Win Probability</p>
                   </div>
                   <p className="text-2xl font-bold text-purple-900">{opportunity.probability}%</p>
                 </div>
-                <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+                <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
                   <div className="flex items-center space-x-2 mb-2">
                     <Calendar className="h-5 w-5 text-green-600" />
                     <p className="text-xs font-medium text-green-600 uppercase">Expected Close</p>
                   </div>
                   <p className="text-lg font-bold text-green-900">{opportunity.expectedCloseDate}</p>
                 </div>
-                <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+                <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
                   <div className="flex items-center space-x-2 mb-2">
                     <Clock className="h-5 w-5 text-orange-600" />
                     <p className="text-xs font-medium text-orange-600 uppercase">Age (Days)</p>
@@ -555,7 +555,7 @@ export default function ViewOpportunityPage() {
         {/* Activity Timeline Tab */}
         {activeTab === 'activity' && (
           <div>
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center justify-between mb-3">
               <h3 className="text-xl font-bold text-gray-900">Activity Timeline</h3>
               <div className="flex flex-wrap gap-2">
                 <button
@@ -590,7 +590,7 @@ export default function ViewOpportunityPage() {
             </div>
 
             {/* Activities List */}
-            <div className="space-y-4">
+            <div className="space-y-2">
               {mockActivities
                 .filter(activity => activity.opportunityId === opportunityId)
                 .map((activity, index) => {
@@ -611,7 +611,7 @@ export default function ViewOpportunityPage() {
                         </div>
 
                         {/* Activity Content */}
-                        <div className="flex-1 bg-gray-50 rounded-lg p-4 border border-gray-200 hover:shadow-md transition-shadow">
+                        <div className="flex-1 bg-gray-50 rounded-lg p-3 border border-gray-200 hover:shadow-md transition-shadow">
                           <div className="flex items-start justify-between mb-2">
                             <div>
                               <h4 className="text-base font-bold text-gray-900">{activity.title}</h4>
@@ -634,7 +634,7 @@ export default function ViewOpportunityPage() {
 
                           {/* Activity Metadata */}
                           {activity.metadata && (
-                            <div className="flex flex-wrap gap-4 text-xs text-gray-600">
+                            <div className="flex flex-wrap gap-2 text-xs text-gray-600">
                               {activity.metadata.duration && (
                                 <div className="flex items-center space-x-1">
                                   <Clock className="h-4 w-4" />
@@ -668,10 +668,10 @@ export default function ViewOpportunityPage() {
 
         {/* Products & Details Tab */}
         {activeTab === 'products' && (
-          <div className="space-y-6">
+          <div className="space-y-3">
             {/* Products List */}
             <div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
+              <h3 className="text-xl font-bold text-gray-900 mb-2 flex items-center">
                 <Package className="h-5 w-5 mr-2 text-blue-600" />
                 Products & Services
               </h3>
@@ -679,24 +679,24 @@ export default function ViewOpportunityPage() {
                 <table className="w-full">
                   <thead className="bg-gray-50 border-b border-gray-200">
                     <tr>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Product/Service</th>
-                      <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Quantity</th>
-                      <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Unit Price</th>
-                      <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Total</th>
+                      <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Product/Service</th>
+                      <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase">Quantity</th>
+                      <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase">Unit Price</th>
+                      <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase">Total</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-200">
                     {mockProducts.map((product, index) => (
                       <tr key={index} className="hover:bg-gray-50">
-                        <td className="px-6 py-4 text-sm font-medium text-gray-900">{product.name}</td>
-                        <td className="px-6 py-4 text-sm text-gray-900 text-right">{product.quantity}</td>
-                        <td className="px-6 py-4 text-sm text-gray-900 text-right">${product.unitPrice.toLocaleString()}</td>
-                        <td className="px-6 py-4 text-sm font-bold text-gray-900 text-right">${product.total.toLocaleString()}</td>
+                        <td className="px-3 py-2 text-sm font-medium text-gray-900">{product.name}</td>
+                        <td className="px-3 py-2 text-sm text-gray-900 text-right">{product.quantity}</td>
+                        <td className="px-3 py-2 text-sm text-gray-900 text-right">${product.unitPrice.toLocaleString()}</td>
+                        <td className="px-3 py-2 text-sm font-bold text-gray-900 text-right">${product.total.toLocaleString()}</td>
                       </tr>
                     ))}
                     <tr className="bg-blue-50">
-                      <td colSpan={3} className="px-6 py-4 text-sm font-bold text-gray-900 text-right">Grand Total</td>
-                      <td className="px-6 py-4 text-lg font-bold text-blue-900 text-right">
+                      <td colSpan={3} className="px-3 py-2 text-sm font-bold text-gray-900 text-right">Grand Total</td>
+                      <td className="px-3 py-2 text-lg font-bold text-blue-900 text-right">
                         ${mockProducts.reduce((sum, p) => sum + p.total, 0).toLocaleString()}
                       </td>
                     </tr>
@@ -706,23 +706,23 @@ export default function ViewOpportunityPage() {
             </div>
 
             {/* Competition Info */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <div>
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <Users className="h-5 w-5 mr-2 text-blue-600" />
                   Competition
                 </h3>
-                <div className="bg-gray-50 rounded-lg p-4">
+                <div className="bg-gray-50 rounded-lg p-3">
                   <p className="text-sm text-gray-700">Elite Kitchen Systems, Luxury Home Solutions</p>
                 </div>
               </div>
 
               <div>
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <FileText className="h-5 w-5 mr-2 text-blue-600" />
                   Decision Criteria
                 </h3>
-                <div className="bg-gray-50 rounded-lg p-4">
+                <div className="bg-gray-50 rounded-lg p-3">
                   <p className="text-sm text-gray-700">Quality of materials, previous portfolio, installation timeline, warranty terms, competitive pricing</p>
                 </div>
               </div>
@@ -730,11 +730,11 @@ export default function ViewOpportunityPage() {
 
             {/* Requirements & Pain Points */}
             <div>
-              <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                 <AlertCircle className="h-5 w-5 mr-2 text-blue-600" />
                 Customer Requirements
               </h3>
-              <div className="bg-gray-50 rounded-lg p-4 space-y-3">
+              <div className="bg-gray-50 rounded-lg p-3 space-y-3">
                 <div>
                   <p className="text-xs font-medium text-gray-500 uppercase mb-1">Requirements</p>
                   <p className="text-sm text-gray-700">High-end modular kitchen solutions for 15 luxury apartments. Requirements include premium finishes, granite countertops, modern appliances integration, and 2-year warranty.</p>

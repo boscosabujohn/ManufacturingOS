@@ -177,9 +177,9 @@ export default function CampaignTemplatesPage() {
   };
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 ">
+    <div className="w-full h-full px-3 py-2 ">
       <div className="mb-8">
-        <div className="flex justify-end mb-6">
+        <div className="flex justify-end mb-3">
           <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
             <Plus className="w-4 h-4" />
             Create Template
@@ -187,26 +187,26 @@ export default function CampaignTemplatesPage() {
         </div>
 
         {/* Statistics */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-6 text-white">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-8">
+          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-3 text-white">
             <Layout className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">{stats.totalTemplates}</div>
             <div className="text-blue-100">Total Templates</div>
           </div>
 
-          <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-lg p-3 text-white">
             <Star className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">{stats.favorites}</div>
             <div className="text-yellow-100">Favorites</div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-3 text-white">
             <Send className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">{stats.totalUsage}</div>
             <div className="text-purple-100">Total Uses</div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-3 text-white">
             <Mail className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">{stats.avgUsage}</div>
             <div className="text-green-100">Avg Uses</div>
@@ -214,8 +214,8 @@ export default function CampaignTemplatesPage() {
         </div>
 
         {/* Filters */}
-        <div className="bg-white rounded-lg border border-gray-200 p-4 mb-6">
-          <div className="flex gap-4 items-center">
+        <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
+          <div className="flex gap-2 items-center">
             <div className="flex-1">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -257,7 +257,7 @@ export default function CampaignTemplatesPage() {
       </div>
 
       {/* Templates Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
         {filteredTemplates.map((template) => (
           <div key={template.id} className="bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow">
             {/* Template Preview */}
@@ -283,7 +283,7 @@ export default function CampaignTemplatesPage() {
 
               <p className="text-sm text-gray-600 mb-3">{template.description}</p>
 
-              <div className="space-y-2 mb-4">
+              <div className="space-y-2 mb-2">
                 <div>
                   <div className="text-xs text-gray-500 mb-1">Subject Line:</div>
                   <div className="text-sm font-medium text-gray-900">{template.subject}</div>
@@ -299,7 +299,7 @@ export default function CampaignTemplatesPage() {
               </div>
 
               {/* Tags */}
-              <div className="flex flex-wrap gap-1 mb-4">
+              <div className="flex flex-wrap gap-1 mb-2">
                 {template.tags.map((tag, index) => (
                   <span key={index} className="px-2 py-1 bg-blue-50 text-blue-700 rounded text-xs">
                     {tag}
@@ -308,7 +308,7 @@ export default function CampaignTemplatesPage() {
               </div>
 
               {/* Stats */}
-              <div className="grid grid-cols-2 gap-4 mb-4 pt-4 border-t border-gray-100">
+              <div className="grid grid-cols-2 gap-2 mb-2 pt-4 border-t border-gray-100">
                 <div>
                   <div className="text-xs text-gray-600 mb-1">Times Used</div>
                   <div className="text-lg font-bold text-gray-900">{template.usageCount}</div>
@@ -355,7 +355,7 @@ export default function CampaignTemplatesPage() {
 
       {filteredTemplates.length === 0 && (
         <div className="text-center py-12">
-          <FileText className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+          <FileText className="w-16 h-16 text-gray-400 mx-auto mb-2" />
           <h3 className="text-lg font-medium text-gray-900 mb-2">No templates found</h3>
           <p className="text-gray-600">Try adjusting your search or filters</p>
         </div>

@@ -63,8 +63,8 @@ export default function GeneratePRPage() {
   };
 
   return (
-    <div className="w-full py-6 space-y-6">
-      <div className="flex items-center justify-between mb-6">
+    <div className="w-full py-2 space-y-3">
+      <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-4">
           <Button variant="ghost" onClick={() => router.back()} className="p-0 hover:bg-transparent">
             <ArrowLeft className="w-6 h-6 text-gray-600" />
@@ -80,8 +80,8 @@ export default function GeneratePRPage() {
         </Button>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2 space-y-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
+        <div className="lg:col-span-2 space-y-3">
           <Card>
             <CardHeader>
               <CardTitle>Requisition Items</CardTitle>
@@ -146,12 +146,12 @@ export default function GeneratePRPage() {
           </Card>
         </div>
 
-        <div className="space-y-6">
+        <div className="space-y-3">
           <Card>
             <CardHeader>
               <CardTitle>Requisition Details</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-2">
               <div className="space-y-2">
                 <Label>Project Reference</Label>
                 <Input value="Villa 45 - Kitchen" readOnly className="bg-gray-50" />

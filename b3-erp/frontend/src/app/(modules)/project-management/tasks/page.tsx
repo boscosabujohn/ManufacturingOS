@@ -378,7 +378,7 @@ export default function TasksListPage() {
   };
 
   const renderBoardView = () => (
-    <div className="flex gap-6 overflow-x-auto pb-6">
+    <div className="flex gap-3 overflow-x-auto pb-6">
       {renderKanbanColumn('To Do', 'To Do', 'text-gray-700')}
       {renderKanbanColumn('In Progress', 'In Progress', 'text-blue-700')}
       {renderKanbanColumn('Review', 'Review', 'text-purple-700')}
@@ -497,7 +497,7 @@ export default function TasksListPage() {
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 w-full px-4 sm:px-6 lg:px-8 py-6 overflow-hidden">
+      <div className="flex-1 w-full px-4 sm:px-6 lg:px-8 py-2 overflow-hidden">
         {viewMode === 'list' ? renderListView() : renderBoardView()}
       </div>
 

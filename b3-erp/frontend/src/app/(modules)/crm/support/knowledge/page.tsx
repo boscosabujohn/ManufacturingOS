@@ -293,9 +293,9 @@ export default function KnowledgeBasePage() {
   };
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 ">
+    <div className="w-full h-full px-3 py-2 ">
       <div className="mb-8">
-        <div className="flex justify-end mb-6">
+        <div className="flex justify-end mb-3">
           <button
             onClick={handleCreateArticle}
             className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
@@ -306,26 +306,26 @@ export default function KnowledgeBasePage() {
         </div>
 
         {/* Statistics */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-6 text-white">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-8">
+          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-3 text-white">
             <BookOpen className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">{stats.totalArticles}</div>
             <div className="text-blue-100">Published Articles</div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-3 text-white">
             <TrendingUp className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">{(stats.totalViews / 1000).toFixed(1)}K</div>
             <div className="text-purple-100">Total Views</div>
           </div>
 
-          <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-lg p-3 text-white">
             <Star className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">{stats.avgRating}/5</div>
             <div className="text-yellow-100">Avg Rating</div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-3 text-white">
             <ThumbsUp className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">{stats.helpfulRate}%</div>
             <div className="text-green-100">Helpful Rate</div>
@@ -333,8 +333,8 @@ export default function KnowledgeBasePage() {
         </div>
 
         {/* Filters */}
-        <div className="bg-white rounded-lg border border-gray-200 p-4 mb-6">
-          <div className="flex gap-4 items-center flex-wrap">
+        <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
+          <div className="flex gap-2 items-center flex-wrap">
             <div className="flex-1 min-w-[300px]">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -392,13 +392,13 @@ export default function KnowledgeBasePage() {
       {/* Pinned Articles */}
       {pinnedArticles.length > 0 && (
         <div className="mb-8">
-          <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-2">
+          <h2 className="text-xl font-semibold text-gray-900 mb-2 flex items-center gap-2">
             <Star className="w-5 h-5 text-yellow-500 fill-yellow-500" />
             Pinned Articles
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
             {pinnedArticles.map((article) => (
-              <div key={article.id} className="bg-white rounded-lg border-2 border-yellow-300 p-6 hover:shadow-lg transition-shadow">
+              <div key={article.id} className="bg-white rounded-lg border-2 border-yellow-300 p-3 hover:shadow-lg transition-shadow">
                 <div className="flex items-start justify-between mb-3">
                   <div className="flex items-center gap-2">
                     {getTypeIcon(article.type)}
@@ -410,9 +410,9 @@ export default function KnowledgeBasePage() {
                 </div>
 
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">{article.title}</h3>
-                <p className="text-sm text-gray-600 mb-4 line-clamp-2">{article.excerpt}</p>
+                <p className="text-sm text-gray-600 mb-2 line-clamp-2">{article.excerpt}</p>
 
-                <div className="grid grid-cols-2 gap-4 mb-4">
+                <div className="grid grid-cols-2 gap-2 mb-2">
                   <div className="bg-blue-50 rounded p-2">
                     <div className="text-xs text-blue-600 mb-1">Views</div>
                     <div className="text-lg font-bold text-blue-900">{(article.views / 1000).toFixed(1)}K</div>
@@ -423,7 +423,7 @@ export default function KnowledgeBasePage() {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-4 mb-4 text-xs text-gray-600">
+                <div className="flex items-center gap-2 mb-2 text-xs text-gray-600">
                   <div className="flex items-center gap-1">
                     <Clock className="w-3 h-3" />
                     {article.estimatedReadTime} min
@@ -457,10 +457,10 @@ export default function KnowledgeBasePage() {
 
       {/* All Articles */}
       <div>
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">All Articles</h2>
-        <div className="space-y-4">
+        <h2 className="text-xl font-semibold text-gray-900 mb-2">All Articles</h2>
+        <div className="space-y-2">
           {unpinnedArticles.map((article) => (
-            <div key={article.id} className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-shadow">
+            <div key={article.id} className="bg-white rounded-lg border border-gray-200 p-3 hover:shadow-md transition-shadow">
               <div className="flex items-start justify-between">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
@@ -476,9 +476,9 @@ export default function KnowledgeBasePage() {
                     </span>
                   </div>
 
-                  <p className="text-sm text-gray-600 mb-4">{article.excerpt}</p>
+                  <p className="text-sm text-gray-600 mb-2">{article.excerpt}</p>
 
-                  <div className="grid grid-cols-6 gap-4 mb-4">
+                  <div className="grid grid-cols-6 gap-2 mb-2">
                     <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3">
                       <div className="flex items-center gap-1 text-blue-700 mb-1">
                         <Eye className="w-3 h-3" />
@@ -573,7 +573,7 @@ export default function KnowledgeBasePage() {
 
       {filteredArticles.length === 0 && (
         <div className="text-center py-12 bg-white rounded-lg border border-gray-200">
-          <BookOpen className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+          <BookOpen className="w-16 h-16 text-gray-400 mx-auto mb-2" />
           <h3 className="text-lg font-medium text-gray-900 mb-2">No articles found</h3>
           <p className="text-gray-600">Try adjusting your search or filters</p>
         </div>

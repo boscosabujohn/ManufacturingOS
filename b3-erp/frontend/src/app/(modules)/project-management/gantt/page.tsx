@@ -140,7 +140,7 @@ export default function GanttChartPage() {
   }
 
   return (
-    <div className="p-6 space-y-4">
+    <div className="p-6 space-y-2">
       {/* Header */}
       <div className="flex justify-between items-center">
         <div>
@@ -235,7 +235,7 @@ export default function GanttChartPage() {
 
       {/* Legend */}
       <div className="bg-white p-4 rounded-lg border border-gray-200">
-        <div className="flex items-center gap-6 text-sm">
+        <div className="flex items-center gap-3 text-sm">
           <div className="flex items-center gap-2">
             <div className="w-4 h-4 bg-green-500 rounded"></div>
             <span className="text-gray-700">Completed</span>
@@ -306,7 +306,7 @@ export default function GanttChartPage() {
 
       {/* Selected Task Details */}
       {selectedTask && (
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <h3 className="text-lg font-semibold text-gray-900 mb-4">Task Details</h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div>

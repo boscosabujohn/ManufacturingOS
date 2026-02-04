@@ -118,32 +118,32 @@ export default function CreateContractAmendmentPage() {
 
   return (
     <div className="w-full h-full flex flex-col bg-gray-50">
-      <div className="flex-1 px-4 sm:px-6 lg:px-8 py-6 overflow-auto">
+      <div className="flex-1 px-3 py-2 overflow-auto">
         <button
           onClick={() => router.push('/crm/contracts/amendments')}
-          className="flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-4"
+          className="flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-2"
         >
           <ArrowLeft className="h-4 w-4" />
           Back to Amendments
         </button>
 
-        <div className="mb-6">
+        <div className="mb-3">
           <h1 className="text-2xl font-bold text-gray-900">Create Contract Amendment</h1>
           <p className="text-gray-600 mt-1">Modify an existing contract with formal amendment documentation</p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <form onSubmit={handleSubmit} className="space-y-3">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
             {/* Main Content */}
-            <div className="lg:col-span-2 space-y-6">
+            <div className="lg:col-span-2 space-y-3">
               {/* Basic Information */}
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <div className="flex items-center gap-2 mb-4">
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <div className="flex items-center gap-2 mb-2">
                   <FileText className="h-5 w-5 text-blue-600" />
                   <h2 className="text-lg font-semibold text-gray-900">Basic Information</h2>
                 </div>
 
-                <div className="space-y-4">
+                <div className="space-y-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Contract Number <span className="text-red-500">*</span>
@@ -236,13 +236,13 @@ export default function CreateContractAmendmentPage() {
 
               {/* Value/Term Changes */}
               {(amendmentType === 'value_change' || amendmentType === 'pricing_adjustment') && (
-                <div className="bg-white rounded-lg border border-gray-200 p-6">
-                  <div className="flex items-center gap-2 mb-4">
+                <div className="bg-white rounded-lg border border-gray-200 p-3">
+                  <div className="flex items-center gap-2 mb-2">
                     <DollarSign className="h-5 w-5 text-green-600" />
                     <h2 className="text-lg font-semibold text-gray-900">Value Changes</h2>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         Original Value <span className="text-red-500">*</span>
@@ -287,7 +287,7 @@ export default function CreateContractAmendmentPage() {
                   </div>
 
                   {originalValue && newValue && (
-                    <div className={`mt-4 p-4 rounded-lg ${
+                    <div className={`mt-4 p-3 rounded-lg ${
                       valueImpact > 0 ? 'bg-green-50 border border-green-200' :
                       valueImpact < 0 ? 'bg-red-50 border border-red-200' :
                       'bg-gray-50 border border-gray-200'
@@ -305,13 +305,13 @@ export default function CreateContractAmendmentPage() {
               )}
 
               {(amendmentType === 'term_extension' || amendmentType === 'term_reduction') && (
-                <div className="bg-white rounded-lg border border-gray-200 p-6">
-                  <div className="flex items-center gap-2 mb-4">
+                <div className="bg-white rounded-lg border border-gray-200 p-3">
+                  <div className="flex items-center gap-2 mb-2">
                     <Calendar className="h-5 w-5 text-purple-600" />
                     <h2 className="text-lg font-semibold text-gray-900">Term Changes</h2>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         Original End Date <span className="text-red-500">*</span>
@@ -350,8 +350,8 @@ export default function CreateContractAmendmentPage() {
               )}
 
               {/* Effective Date */}
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <div className="flex items-center gap-2 mb-4">
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <div className="flex items-center gap-2 mb-2">
                   <Calendar className="h-5 w-5 text-blue-600" />
                   <h2 className="text-lg font-semibold text-gray-900">Effective Date</h2>
                 </div>
@@ -375,8 +375,8 @@ export default function CreateContractAmendmentPage() {
               </div>
 
               {/* Impacted Clauses */}
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <div className="flex items-center justify-between mb-4">
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-2">
                     <Scale className="h-5 w-5 text-orange-600" />
                     <h2 className="text-lg font-semibold text-gray-900">Impacted Contract Clauses</h2>
@@ -416,13 +416,13 @@ export default function CreateContractAmendmentPage() {
               </div>
 
               {/* Assignment */}
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <div className="flex items-center gap-2 mb-4">
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <div className="flex items-center gap-2 mb-2">
                   <Users className="h-5 w-5 text-teal-600" />
                   <h2 className="text-lg font-semibold text-gray-900">Assignment & Ownership</h2>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Requested By <span className="text-red-500">*</span>
@@ -462,8 +462,8 @@ export default function CreateContractAmendmentPage() {
               </div>
 
               {/* Tags */}
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <div className="flex items-center justify-between mb-4">
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <div className="flex items-center justify-between mb-2">
                   <h2 className="text-lg font-semibold text-gray-900">Tags</h2>
                   <button
                     type="button"
@@ -500,8 +500,8 @@ export default function CreateContractAmendmentPage() {
               </div>
 
               {/* Notes */}
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h2 className="text-lg font-semibold text-gray-900 mb-4">Additional Notes</h2>
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <h2 className="text-lg font-semibold text-gray-900 mb-2">Additional Notes</h2>
 
                 <textarea
                   value={notes}
@@ -514,10 +514,10 @@ export default function CreateContractAmendmentPage() {
             </div>
 
             {/* Sidebar */}
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Requirements */}
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <div className="flex items-center gap-2 mb-4">
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <div className="flex items-center gap-2 mb-2">
                   <AlertCircle className="h-5 w-5 text-yellow-600" />
                   <h2 className="text-lg font-semibold text-gray-900">Requirements</h2>
                 </div>
@@ -552,7 +552,7 @@ export default function CreateContractAmendmentPage() {
               </div>
 
               {/* Amendment Guidelines */}
-              <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg border border-blue-200 p-6">
+              <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg border border-blue-200 p-3">
                 <h3 className="font-semibold text-blue-900 mb-3">Amendment Guidelines</h3>
                 <ul className="space-y-2 text-sm text-blue-800">
                   <li className="flex gap-2">
@@ -579,8 +579,8 @@ export default function CreateContractAmendmentPage() {
               </div>
 
               {/* Form Actions */}
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h3 className="font-semibold text-gray-900 mb-4">Actions</h3>
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <h3 className="font-semibold text-gray-900 mb-2">Actions</h3>
                 <div className="space-y-3">
                   <button
                     type="submit"

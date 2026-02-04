@@ -173,9 +173,9 @@ export default function TeamAnalyticsPage() {
   };
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 ">
+    <div className="w-full h-full px-3 py-2 ">
       <div className="mb-8">
-        <div className="flex gap-2 mb-6">
+        <div className="flex gap-2 mb-3">
           {(['week', 'month', 'quarter', 'year'] as const).map((range) => (
             <button
               key={range}
@@ -192,8 +192,8 @@ export default function TeamAnalyticsPage() {
         </div>
 
         {/* Team Overview Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-6 text-white">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-8">
+          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-3 text-white">
             <Users className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">{teamMembers.length}</div>
             <div className="text-green-100">Team Members</div>
@@ -202,7 +202,7 @@ export default function TeamAnalyticsPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-3 text-white">
             <Target className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">{teamStats.avgQuotaAttainment}%</div>
             <div className="text-blue-100">Avg Quota Attainment</div>
@@ -211,7 +211,7 @@ export default function TeamAnalyticsPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-3 text-white">
             <Award className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">{teamStats.avgWinRate}%</div>
             <div className="text-purple-100">Avg Win Rate</div>
@@ -220,7 +220,7 @@ export default function TeamAnalyticsPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg p-3 text-white">
             <TrendingUp className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">${(teamStats.pipelineValue / 1000000).toFixed(2)}M</div>
             <div className="text-orange-100">Active Pipeline</div>
@@ -231,12 +231,12 @@ export default function TeamAnalyticsPage() {
         </div>
 
         {/* Team Activity Metrics */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6 mb-8">
-          <h2 className="text-lg font-semibold text-gray-900 mb-6 flex items-center gap-2">
+        <div className="bg-white rounded-lg border border-gray-200 p-3 mb-8">
+          <h2 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
             <Activity className="w-5 h-5" />
             Team Activity Metrics
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
             {teamActivities.map((activity, index) => (
               <div key={index}>
                 <div className="flex justify-between text-sm mb-2">
@@ -262,8 +262,8 @@ export default function TeamAnalyticsPage() {
         </div>
 
         {/* Sort Controls */}
-        <div className="bg-white rounded-lg border border-gray-200 p-4 mb-6">
-          <div className="flex items-center gap-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
+          <div className="flex items-center gap-2">
             <span className="text-sm font-medium text-gray-700">Sort by:</span>
             <div className="flex gap-2">
               <button
@@ -296,11 +296,11 @@ export default function TeamAnalyticsPage() {
       </div>
 
       {/* Team Members Performance */}
-      <div className="space-y-6">
+      <div className="space-y-3">
         {sortedMembers.map((member, index) => (
-          <div key={member.id} className="bg-white rounded-lg border border-gray-200 p-6">
-            <div className="flex items-start justify-between mb-6">
-              <div className="flex items-center gap-4">
+          <div key={member.id} className="bg-white rounded-lg border border-gray-200 p-3">
+            <div className="flex items-start justify-between mb-3">
+              <div className="flex items-center gap-2">
                 <div className={`w-16 h-16 rounded-full flex items-center justify-center text-white font-bold text-xl ${
                   index === 0 ? 'bg-gradient-to-br from-yellow-400 to-yellow-600' :
                   index === 1 ? 'bg-gradient-to-br from-gray-400 to-gray-600' :
@@ -327,8 +327,8 @@ export default function TeamAnalyticsPage() {
             </div>
 
             {/* Key Metrics Grid */}
-            <div className="grid grid-cols-6 gap-4 mb-6">
-              <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4">
+            <div className="grid grid-cols-6 gap-2 mb-3">
+              <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3">
                 <div className="flex items-center gap-1 text-green-700 mb-1">
                   <Target className="w-3 h-3" />
                   <span className="text-xs font-medium">Quota</span>
@@ -341,7 +341,7 @@ export default function TeamAnalyticsPage() {
                 </div>
               </div>
 
-              <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4">
+              <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3">
                 <div className="flex items-center gap-1 text-blue-700 mb-1">
                   <TrendingUp className="w-3 h-3" />
                   <span className="text-xs font-medium">Pipeline</span>
@@ -354,7 +354,7 @@ export default function TeamAnalyticsPage() {
                 </div>
               </div>
 
-              <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4">
+              <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3">
                 <div className="flex items-center gap-1 text-purple-700 mb-1">
                   <BarChart3 className="w-3 h-3" />
                   <span className="text-xs font-medium">Avg Deal</span>
@@ -364,7 +364,7 @@ export default function TeamAnalyticsPage() {
                 </div>
               </div>
 
-              <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4">
+              <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3">
                 <div className="flex items-center gap-1 text-yellow-700 mb-1">
                   <Award className="w-3 h-3" />
                   <span className="text-xs font-medium">Win Rate</span>
@@ -374,7 +374,7 @@ export default function TeamAnalyticsPage() {
                 </div>
               </div>
 
-              <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4">
+              <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3">
                 <div className="flex items-center gap-1 text-orange-700 mb-1">
                   <Clock className="w-3 h-3" />
                   <span className="text-xs font-medium">Sales Cycle</span>
@@ -384,7 +384,7 @@ export default function TeamAnalyticsPage() {
                 </div>
               </div>
 
-              <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg p-4">
+              <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg p-3">
                 <div className="flex items-center gap-1 text-teal-700 mb-1">
                   <CheckCircle className="w-3 h-3" />
                   <span className="text-xs font-medium">Deals Won</span>
@@ -397,8 +397,8 @@ export default function TeamAnalyticsPage() {
 
             {/* Activity Breakdown */}
             <div className="pt-6 border-t border-gray-200">
-              <h4 className="text-sm font-semibold text-gray-900 mb-4">Activity Breakdown</h4>
-              <div className="grid grid-cols-4 gap-4">
+              <h4 className="text-sm font-semibold text-gray-900 mb-2">Activity Breakdown</h4>
+              <div className="grid grid-cols-4 gap-2">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
                     <Phone className="w-5 h-5 text-blue-600" />

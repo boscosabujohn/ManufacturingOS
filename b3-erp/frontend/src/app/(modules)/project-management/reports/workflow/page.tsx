@@ -254,7 +254,7 @@ export default function ManufacturingWorkflowReportPage() {
       </div>
 
       <div className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
-        <div className=" mx-auto space-y-6">
+        <div className=" mx-auto space-y-3">
           {/* KPI Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             <Card>
@@ -331,7 +331,7 @@ export default function ManufacturingWorkflowReportPage() {
           </div>
 
           {/* Main Charts Section */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
             {/* Stage Analysis */}
             <Card className="lg:col-span-1">
               <CardHeader>
@@ -397,7 +397,7 @@ export default function ManufacturingWorkflowReportPage() {
           </div>
 
           {/* Secondary Charts Section */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
             {/* Bottleneck Radar */}
             <Card className="lg:col-span-1">
               <CardHeader>
@@ -470,7 +470,7 @@ export default function ManufacturingWorkflowReportPage() {
                 <CardDescription>Current status and duration</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="space-y-4">
+                <div className="space-y-2">
                   {projectTimelineData.map((project, index) => (
                     <div key={index} className="space-y-1">
                       <div className="flex justify-between text-sm">
@@ -547,7 +547,7 @@ export default function ManufacturingWorkflowReportPage() {
         title={`${selectedBottleneck} Bottleneck Analysis`}
         size="md"
       >
-        <div className="space-y-6">
+        <div className="space-y-3">
           <div>
             <h4 className="text-sm font-medium text-gray-900 mb-3">Root Causes</h4>
             <div className="space-y-3">
@@ -585,7 +585,7 @@ export default function ManufacturingWorkflowReportPage() {
         title={`${selectedResource} Utilization Details`}
         size="md"
       >
-        <div className="space-y-4">
+        <div className="space-y-2">
           {selectedResource && resourceDetails[selectedResource as keyof typeof resourceDetails]?.map((item, index) => (
             <div key={index} className="flex items-center justify-between p-4 bg-white border border-gray-200 rounded-lg">
               <div>

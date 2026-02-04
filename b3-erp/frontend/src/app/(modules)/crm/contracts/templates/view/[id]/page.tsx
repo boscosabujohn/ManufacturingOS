@@ -102,19 +102,19 @@ export default function ViewTemplatePage() {
   };
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 ">
-      <div className="max-w-6xl mx-auto space-y-6">
+    <div className="w-full h-full px-3 py-2 ">
+      <div className="max-w-6xl mx-auto space-y-3">
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
             <button
               onClick={handleBack}
-              className="flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-4 transition-colors"
+              className="flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-2 transition-colors"
             >
               <ArrowLeft className="w-5 h-5" />
               Back to Templates
             </button>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
               <div className="p-4 bg-gradient-to-br from-blue-50 to-purple-50 rounded-xl">
                 <FileText className="w-10 h-10 text-blue-600" />
               </div>
@@ -139,14 +139,14 @@ export default function ViewTemplatePage() {
           <div className="flex gap-3">
             <button
               onClick={handleUseTemplate}
-              className="flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              className="flex items-center gap-2 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
             >
               <Copy className="w-5 h-5" />
               Use Template
             </button>
             <button
               onClick={handleEdit}
-              className="flex items-center gap-2 px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+              className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
             >
               <Edit className="w-5 h-5" />
               Edit
@@ -155,13 +155,13 @@ export default function ViewTemplatePage() {
         </div>
 
         {/* Description */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <p className="text-gray-700">{template.description}</p>
         </div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-6 text-white">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-3 text-white">
             <DollarSign className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">
               ${(template.defaultValue / 1000).toFixed(0)}K
@@ -169,19 +169,19 @@ export default function ViewTemplatePage() {
             <div className="text-blue-100">Default Value</div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl p-6 text-white">
+          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl p-3 text-white">
             <Calendar className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">{template.defaultDuration}</div>
             <div className="text-purple-100">Months Duration</div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-6 text-white">
+          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-3 text-white">
             <TrendingUp className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">{template.usageCount}</div>
             <div className="text-green-100">Times Used</div>
           </div>
 
-          <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl p-6 text-white">
+          <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl p-3 text-white">
             <Clock className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">{template.renewalNoticeDays}</div>
             <div className="text-orange-100">Notice Days</div>
@@ -189,13 +189,13 @@ export default function ViewTemplatePage() {
         </div>
 
         {/* Main Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
           {/* Left Column */}
-          <div className="lg:col-span-2 space-y-6">
+          <div className="lg:col-span-2 space-y-3">
             {/* Contract Terms */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <h2 className="text-xl font-bold text-gray-900 mb-4">Default Contract Terms</h2>
-              <div className="grid grid-cols-2 gap-6">
+            <div className="bg-white rounded-lg border border-gray-200 p-3">
+              <h2 className="text-xl font-bold text-gray-900 mb-2">Default Contract Terms</h2>
+              <div className="grid grid-cols-2 gap-3">
                 <div>
                   <p className="text-sm text-gray-500 mb-1">Duration</p>
                   <p className="text-lg font-semibold text-gray-900">
@@ -243,8 +243,8 @@ export default function ViewTemplatePage() {
             </div>
 
             {/* Included Clauses */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <h2 className="text-xl font-bold text-gray-900 mb-4">
+            <div className="bg-white rounded-lg border border-gray-200 p-3">
+              <h2 className="text-xl font-bold text-gray-900 mb-2">
                 Included Clauses ({template.clauses.length})
               </h2>
               <div className="grid grid-cols-2 gap-3">
@@ -258,10 +258,10 @@ export default function ViewTemplatePage() {
             </div>
 
             {/* Legal Protections */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <h2 className="text-xl font-bold text-gray-900 mb-4">Legal Protections</h2>
-              <div className="grid grid-cols-2 gap-4">
-                <div className={`flex items-center gap-3 p-4 rounded-lg ${
+            <div className="bg-white rounded-lg border border-gray-200 p-3">
+              <h2 className="text-xl font-bold text-gray-900 mb-2">Legal Protections</h2>
+              <div className="grid grid-cols-2 gap-2">
+                <div className={`flex items-center gap-3 p-3 rounded-lg ${
                   template.includesSLA ? 'bg-green-50' : 'bg-gray-50'
                 }`}>
                   <CheckCircle className={`w-6 h-6 ${
@@ -274,7 +274,7 @@ export default function ViewTemplatePage() {
                     </p>
                   </div>
                 </div>
-                <div className={`flex items-center gap-3 p-4 rounded-lg ${
+                <div className={`flex items-center gap-3 p-3 rounded-lg ${
                   template.includesTermination ? 'bg-green-50' : 'bg-gray-50'
                 }`}>
                   <CheckCircle className={`w-6 h-6 ${
@@ -287,7 +287,7 @@ export default function ViewTemplatePage() {
                     </p>
                   </div>
                 </div>
-                <div className={`flex items-center gap-3 p-4 rounded-lg ${
+                <div className={`flex items-center gap-3 p-3 rounded-lg ${
                   template.includesIPRights ? 'bg-green-50' : 'bg-gray-50'
                 }`}>
                   <CheckCircle className={`w-6 h-6 ${
@@ -300,7 +300,7 @@ export default function ViewTemplatePage() {
                     </p>
                   </div>
                 </div>
-                <div className={`flex items-center gap-3 p-4 rounded-lg ${
+                <div className={`flex items-center gap-3 p-3 rounded-lg ${
                   template.includesConfidentiality ? 'bg-green-50' : 'bg-gray-50'
                 }`}>
                   <CheckCircle className={`w-6 h-6 ${
@@ -318,11 +318,11 @@ export default function ViewTemplatePage() {
           </div>
 
           {/* Right Column */}
-          <div className="space-y-6">
+          <div className="space-y-3">
             {/* Usage Statistics */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <h2 className="text-xl font-bold text-gray-900 mb-4">Usage Statistics</h2>
-              <div className="space-y-4">
+            <div className="bg-white rounded-lg border border-gray-200 p-3">
+              <h2 className="text-xl font-bold text-gray-900 mb-2">Usage Statistics</h2>
+              <div className="space-y-2">
                 <div>
                   <p className="text-sm text-gray-500 mb-1">Times Used</p>
                   <p className="text-3xl font-bold text-gray-900">{template.usageCount}</p>
@@ -353,8 +353,8 @@ export default function ViewTemplatePage() {
             </div>
 
             {/* Tags */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <h2 className="text-xl font-bold text-gray-900 mb-4">Tags</h2>
+            <div className="bg-white rounded-lg border border-gray-200 p-3">
+              <h2 className="text-xl font-bold text-gray-900 mb-2">Tags</h2>
               <div className="flex flex-wrap gap-2">
                 {template.tags.map((tag, index) => (
                   <span

@@ -161,13 +161,13 @@ export default function CreateContractPage() {
   };
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 ">
+    <div className="w-full h-full px-3 py-2 ">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
-        <div className="mb-6">
+        <div className="mb-3">
           <button
             onClick={handleCancel}
-            className="flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-4 transition-colors"
+            className="flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-2 transition-colors"
           >
             <ArrowLeft className="w-5 h-5" />
             Back to Contracts
@@ -184,14 +184,14 @@ export default function CreateContractPage() {
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="bg-white rounded-lg border border-gray-200 shadow-sm">
-          <div className="p-6 space-y-6">
+          <div className="p-6 space-y-3">
             {/* Contract Information */}
             <div>
-              <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+              <h2 className="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2">
                 <FileText className="w-5 h-5" />
                 Contract Information
               </h2>
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Contract Title <span className="text-red-500">*</span>
@@ -246,11 +246,11 @@ export default function CreateContractPage() {
 
             {/* Customer Information */}
             <div className="pt-6 border-t border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+              <h2 className="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2">
                 <Building2 className="w-5 h-5" />
                 Customer Information
               </h2>
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Customer Name <span className="text-red-500">*</span>
@@ -276,12 +276,12 @@ export default function CreateContractPage() {
 
             {/* Contract Terms */}
             <div className="pt-6 border-t border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+              <h2 className="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2">
                 <Calendar className="w-5 h-5" />
                 Contract Terms
               </h2>
-              <div className="space-y-4">
-                <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Start Date <span className="text-red-500">*</span>
@@ -318,7 +318,7 @@ export default function CreateContractPage() {
                 </div>
 
                 {calculateDuration() > 0 && (
-                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                     <p className="text-sm text-blue-800">
                       <Clock className="w-4 h-4 inline mr-1" />
                       Contract Duration: <span className="font-semibold">{calculateDuration()} months</span>
@@ -326,7 +326,7 @@ export default function CreateContractPage() {
                   </div>
                 )}
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Contract Value <span className="text-red-500">*</span>
@@ -381,8 +381,8 @@ export default function CreateContractPage() {
 
             {/* Renewal Settings */}
             <div className="pt-6 border-t border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900 mb-4">Renewal Settings</h2>
-              <div className="space-y-4">
+              <h2 className="text-xl font-bold text-gray-900 mb-2">Renewal Settings</h2>
+              <div className="space-y-2">
                 <label className="flex items-center gap-3 cursor-pointer">
                   <input
                     type="checkbox"
@@ -415,7 +415,7 @@ export default function CreateContractPage() {
 
             {/* Notes */}
             <div className="pt-6 border-t border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900 mb-4">Additional Notes</h2>
+              <h2 className="text-xl font-bold text-gray-900 mb-2">Additional Notes</h2>
               <textarea
                 value={formData.notes}
                 onChange={(e) => handleChange('notes', e.target.value)}
@@ -427,7 +427,7 @@ export default function CreateContractPage() {
           </div>
 
           {/* Actions */}
-          <div className="px-6 py-4 bg-gray-50 border-t border-gray-200 rounded-b-lg flex items-center justify-end gap-3">
+          <div className="px-3 py-2 bg-gray-50 border-t border-gray-200 rounded-b-lg flex items-center justify-end gap-3">
             <button
               type="button"
               onClick={handleCancel}

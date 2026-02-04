@@ -85,13 +85,13 @@ export default function CreateArticlePage() {
   };
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 ">
+    <div className="w-full h-full px-3 py-2 ">
       <div className="w-full">
         {/* Header */}
         <div className="mb-8">
           <button
             onClick={() => router.back()}
-            className="flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-4"
+            className="flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-2"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Knowledge Base
@@ -100,14 +100,14 @@ export default function CreateArticlePage() {
           <p className="text-gray-600 mt-2">Write and publish a new knowledge base article</p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <form onSubmit={handleSubmit} className="space-y-3">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
             {/* Main Form */}
-            <div className="lg:col-span-2 space-y-6">
+            <div className="lg:col-span-2 space-y-3">
               {/* Basic Information */}
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h2 className="text-lg font-semibold text-gray-900 mb-4">Basic Information</h2>
-                <div className="space-y-4">
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <h2 className="text-lg font-semibold text-gray-900 mb-2">Basic Information</h2>
+                <div className="space-y-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Article Title *
@@ -141,7 +141,7 @@ export default function CreateArticlePage() {
                     <p className="text-xs text-gray-500 mt-1">Keep it under 150 characters for best results</p>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         Category *
@@ -178,7 +178,7 @@ export default function CreateArticlePage() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         Difficulty Level *
@@ -231,8 +231,8 @@ export default function CreateArticlePage() {
               </div>
 
               {/* Article Content */}
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h2 className="text-lg font-semibold text-gray-900 mb-4">Article Content</h2>
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <h2 className="text-lg font-semibold text-gray-900 mb-2">Article Content</h2>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Full Content *
@@ -254,8 +254,8 @@ export default function CreateArticlePage() {
               </div>
 
               {/* Tags */}
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <div className="flex items-center justify-between mb-4">
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <div className="flex items-center justify-between mb-2">
                   <h2 className="text-lg font-semibold text-gray-900">Tags</h2>
                   <button
                     type="button"
@@ -292,8 +292,8 @@ export default function CreateArticlePage() {
               </div>
 
               {/* Related Articles */}
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <div className="flex items-center justify-between mb-4">
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <div className="flex items-center justify-between mb-2">
                   <h2 className="text-lg font-semibold text-gray-900">Related Articles</h2>
                   <button
                     type="button"
@@ -330,8 +330,8 @@ export default function CreateArticlePage() {
               </div>
 
               {/* Publishing Options */}
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h2 className="text-lg font-semibold text-gray-900 mb-4">Publishing Options</h2>
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <h2 className="text-lg font-semibold text-gray-900 mb-2">Publishing Options</h2>
                 <div className="space-y-3">
                   <label className="flex items-center gap-3 cursor-pointer">
                     <input
@@ -362,17 +362,17 @@ export default function CreateArticlePage() {
               </div>
 
               {/* Action Buttons */}
-              <div className="flex gap-4">
+              <div className="flex gap-2">
                 <button
                   type="button"
                   onClick={() => router.back()}
-                  className="flex-1 px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 font-medium"
+                  className="flex-1 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 font-medium"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium"
+                  className="flex-1 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium"
                 >
                   {formData.isPublished ? 'Create & Publish' : 'Save as Draft'}
                 </button>
@@ -380,10 +380,10 @@ export default function CreateArticlePage() {
             </div>
 
             {/* Sidebar */}
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Writing Tips */}
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-                <div className="flex items-start gap-3 mb-4">
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
+                <div className="flex items-start gap-3 mb-2">
                   <AlertCircle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
                   <div>
                     <h3 className="font-semibold text-blue-900 mb-1">Writing Tips</h3>
@@ -399,9 +399,9 @@ export default function CreateArticlePage() {
               </div>
 
               {/* Article Summary */}
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Article Summary</h3>
-                <div className="space-y-4">
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Article Summary</h3>
+                <div className="space-y-2">
                   <div>
                     <div className="text-sm text-gray-600 mb-1">Content Type</div>
                     <div className="flex items-center gap-2 text-gray-900">
@@ -450,8 +450,8 @@ export default function CreateArticlePage() {
               </div>
 
               {/* Markdown Cheat Sheet */}
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Markdown Cheat Sheet</h3>
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Markdown Cheat Sheet</h3>
                 <div className="space-y-2 text-xs font-mono">
                   <div className="border-b border-gray-100 pb-2">
                     <div className="text-gray-600">**bold**</div>

@@ -247,7 +247,7 @@ export default function ResourceCapacityPage() {
   }
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex justify-between items-start">
         <div>
@@ -268,7 +268,7 @@ export default function ResourceCapacityPage() {
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-500">Total Resources</p>
@@ -280,7 +280,7 @@ export default function ResourceCapacityPage() {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-500">Fully Allocated (≥80%)</p>
@@ -292,7 +292,7 @@ export default function ResourceCapacityPage() {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-500">Overallocated ({'>'} 100%)</p>
@@ -310,7 +310,7 @@ export default function ResourceCapacityPage() {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-500">Avg Utilization</p>
@@ -509,7 +509,7 @@ export default function ResourceCapacityPage() {
 
       {/* Utilization Chart View */}
       {selectedView === 'utilization' && (
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <h3 className="text-lg font-semibold text-gray-900 mb-4">Resource Utilization Overview</h3>
           <ResponsiveContainer width="100%" height={400}>
             <BarChart data={utilizationChartData}>
@@ -574,7 +574,7 @@ export default function ResourceCapacityPage() {
 
       {/* Calendar View */}
       {selectedView === 'calendar' && (
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-center h-64">
             <div className="text-center">
               <Calendar className="h-16 w-16 text-gray-300 mx-auto mb-4" />

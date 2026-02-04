@@ -361,8 +361,8 @@ export default function SocialMediaIntegrationPage() {
           </div>
 
           {/* Stats Summary */}
-          <div className="grid grid-cols-5 gap-4 mt-6">
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+          <div className="grid grid-cols-5 gap-2 mt-6">
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
               <div className="text-sm text-blue-600 font-medium flex items-center gap-1">
                 <LinkIcon className="w-3 h-3" />
                 Connected Accounts
@@ -371,7 +371,7 @@ export default function SocialMediaIntegrationPage() {
                 {connectedAccounts} / {accounts.length}
               </div>
             </div>
-            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
               <div className="text-sm text-purple-600 font-medium flex items-center gap-1">
                 <Users className="w-3 h-3" />
                 Total Followers
@@ -380,7 +380,7 @@ export default function SocialMediaIntegrationPage() {
                 {(totalFollowers / 1000).toFixed(1)}K
               </div>
             </div>
-            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
               <div className="text-sm text-green-600 font-medium flex items-center gap-1">
                 <Heart className="w-3 h-3" />
                 Avg. Engagement
@@ -389,7 +389,7 @@ export default function SocialMediaIntegrationPage() {
                 {avgEngagement.toFixed(1)}%
               </div>
             </div>
-            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
               <div className="text-sm text-orange-600 font-medium flex items-center gap-1">
                 <MessageCircle className="w-3 h-3" />
                 Total Posts
@@ -398,7 +398,7 @@ export default function SocialMediaIntegrationPage() {
                 {totalPosts}
               </div>
             </div>
-            <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg p-4 border border-teal-200">
+            <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg p-3 border border-teal-200">
               <div className="text-sm text-teal-600 font-medium flex items-center gap-1">
                 <Eye className="w-3 h-3" />
                 Total Reach
@@ -411,11 +411,11 @@ export default function SocialMediaIntegrationPage() {
         </div>
       </div>
 
-      <div className="p-6 space-y-6">
+      <div className="p-6 space-y-3">
         {/* Connected Accounts */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <h2 className="text-lg font-bold text-gray-900 mb-4">Social Accounts</h2>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <h2 className="text-lg font-bold text-gray-900 mb-2">Social Accounts</h2>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
             {accounts.map((account) => {
               const color = getPlatformColor(account.platform)
               return (
@@ -426,7 +426,7 @@ export default function SocialMediaIntegrationPage() {
                       : 'border-gray-200 bg-gray-50 opacity-60'
                     }`}
                 >
-                  <div className="flex items-start justify-between mb-4">
+                  <div className="flex items-start justify-between mb-2">
                     <div className="flex items-center gap-3">
                       <div className={`p-2 bg-${color}-100 rounded-lg text-${color}-600`}>
                         {getPlatformIcon(account.platform)}
@@ -444,7 +444,7 @@ export default function SocialMediaIntegrationPage() {
                     </span>
                   </div>
 
-                  <div className="grid grid-cols-3 gap-3 mb-4">
+                  <div className="grid grid-cols-3 gap-3 mb-2">
                     <div className="text-center p-2 bg-white rounded border border-gray-200">
                       <div className="text-lg font-bold text-gray-900">
                         {(account.followers / 1000).toFixed(1)}K
@@ -465,7 +465,7 @@ export default function SocialMediaIntegrationPage() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-4 gap-2 mb-4 text-xs">
+                  <div className="grid grid-cols-4 gap-2 mb-2 text-xs">
                     <div className="text-center">
                       <Heart className="w-4 h-4 text-red-500 mx-auto mb-1" />
                       <div className="font-semibold text-gray-900">{(account.stats.likes / 1000).toFixed(1)}K</div>
@@ -523,8 +523,8 @@ export default function SocialMediaIntegrationPage() {
         </div>
 
         {/* Social Leads */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <div className="flex items-center justify-between mb-2">
             <h2 className="text-lg font-bold text-gray-900">Social Leads</h2>
             <span className="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm font-medium">
               {socialLeads.length} leads captured
@@ -534,7 +534,7 @@ export default function SocialMediaIntegrationPage() {
             {socialLeads.map((lead) => {
               const color = getPlatformColor(lead.platform)
               return (
-                <div key={lead.id} className="border border-gray-200 rounded-lg p-4 hover:border-blue-300 transition-all">
+                <div key={lead.id} className="border border-gray-200 rounded-lg p-3 hover:border-blue-300 transition-all">
                   <div className="flex items-start justify-between">
                     <div className="flex items-start gap-3 flex-1">
                       <div className={`p-2 bg-${color}-100 rounded-lg text-${color}-600`}>
@@ -557,7 +557,7 @@ export default function SocialMediaIntegrationPage() {
                         {lead.location && (
                           <p className="text-xs text-gray-500 mb-2">📍 {lead.location}</p>
                         )}
-                        <div className="flex items-center gap-4 text-xs text-gray-600">
+                        <div className="flex items-center gap-2 text-xs text-gray-600">
                           <span>Source: {lead.source}</span>
                           <span>• {lead.engagements} engagements</span>
                           <span>• Last activity: {lead.lastActivity}</span>
@@ -587,20 +587,20 @@ export default function SocialMediaIntegrationPage() {
         </div>
 
         {/* Recent Posts */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <h2 className="text-lg font-bold text-gray-900 mb-4">Recent Posts</h2>
-          <div className="space-y-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <h2 className="text-lg font-bold text-gray-900 mb-2">Recent Posts</h2>
+          <div className="space-y-2">
             {recentPosts.map((post) => {
               const color = getPlatformColor(post.platform)
               return (
-                <div key={post.id} className="border border-gray-200 rounded-lg p-4">
+                <div key={post.id} className="border border-gray-200 rounded-lg p-3">
                   <div className="flex items-start gap-3 mb-3">
                     <div className={`p-2 bg-${color}-100 rounded-lg text-${color}-600`}>
                       {getPlatformIcon(post.platform)}
                     </div>
                     <div className="flex-1">
                       <p className="text-gray-900 mb-2">{post.content}</p>
-                      <div className="flex items-center gap-4 text-xs text-gray-500">
+                      <div className="flex items-center gap-2 text-xs text-gray-500">
                         <span>{post.postedAt}</span>
                         <a href={post.url} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
                           View Post →

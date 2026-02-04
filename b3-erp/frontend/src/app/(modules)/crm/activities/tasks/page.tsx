@@ -276,11 +276,11 @@ export default function TasksPage() {
   };
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 ">
+    <div className="w-full h-full px-3 py-2 ">
       <div className="mb-8">
         {/* Statistics Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-6 gap-6 mb-8">
-          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-6 text-white">
+        <div className="grid grid-cols-1 md:grid-cols-6 gap-3 mb-8">
+          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-3 text-white">
             <div className="flex items-center justify-between mb-2">
               <CheckSquare className="w-8 h-8 opacity-80" />
             </div>
@@ -288,7 +288,7 @@ export default function TasksPage() {
             <div className="text-blue-100">Total Tasks</div>
           </div>
 
-          <div className="bg-gradient-to-br from-gray-500 to-gray-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-gray-500 to-gray-600 rounded-lg p-3 text-white">
             <div className="flex items-center justify-between mb-2">
               <Clock className="w-8 h-8 opacity-80" />
             </div>
@@ -296,7 +296,7 @@ export default function TasksPage() {
             <div className="text-gray-100">To Do</div>
           </div>
 
-          <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-lg p-3 text-white">
             <div className="flex items-center justify-between mb-2">
               <AlertCircle className="w-8 h-8 opacity-80" />
             </div>
@@ -304,7 +304,7 @@ export default function TasksPage() {
             <div className="text-yellow-100">In Progress</div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-3 text-white">
             <div className="flex items-center justify-between mb-2">
               <CheckCircle className="w-8 h-8 opacity-80" />
             </div>
@@ -312,7 +312,7 @@ export default function TasksPage() {
             <div className="text-green-100">Completed</div>
           </div>
 
-          <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-lg p-3 text-white">
             <div className="flex items-center justify-between mb-2">
               <XCircle className="w-8 h-8 opacity-80" />
             </div>
@@ -320,7 +320,7 @@ export default function TasksPage() {
             <div className="text-red-100">Overdue</div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-3 text-white">
             <div className="flex items-center justify-between mb-2">
               <CheckSquare className="w-8 h-8 opacity-80" />
             </div>
@@ -330,8 +330,8 @@ export default function TasksPage() {
         </div>
 
         {/* Filters and Search */}
-        <div className="bg-white rounded-lg border border-gray-200 p-4 mb-6">
-          <div className="flex flex-wrap gap-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
+          <div className="flex flex-wrap gap-2">
             <div className="flex-1 min-w-[300px]">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -396,15 +396,15 @@ export default function TasksPage() {
       </div>
 
       {/* Tasks List */}
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredTasks.map((task) => (
           <div
             key={task.id}
-            className={`bg-white rounded-lg border-2 p-6 hover:shadow-lg transition-shadow ${
+            className={`bg-white rounded-lg border-2 p-3 hover:shadow-lg transition-shadow ${
               isOverdue(task) ? 'border-red-300 bg-red-50' : 'border-gray-200'
             }`}
           >
-            <div className="flex items-start justify-between mb-4">
+            <div className="flex items-start justify-between mb-2">
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
                   <h3 className="text-xl font-semibold text-gray-900">{task.title}</h3>
@@ -451,7 +451,7 @@ export default function TasksPage() {
                 )}
 
                 {/* Task Details */}
-                <div className="grid grid-cols-4 gap-4 text-sm">
+                <div className="grid grid-cols-4 gap-2 text-sm">
                   <div>
                     <div className="flex items-center gap-1 text-gray-600 mb-1">
                       <User className="w-4 h-4" />
@@ -511,7 +511,7 @@ export default function TasksPage() {
 
       {filteredTasks.length === 0 && (
         <div className="text-center py-12">
-          <CheckSquare className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+          <CheckSquare className="w-16 h-16 text-gray-400 mx-auto mb-2" />
           <h3 className="text-lg font-medium text-gray-900 mb-2">No tasks found</h3>
           <p className="text-gray-600">Try adjusting your search or filters</p>
         </div>

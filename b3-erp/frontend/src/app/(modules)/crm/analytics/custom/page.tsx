@@ -323,7 +323,7 @@ export default function CustomReportsPage() {
   };
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6  space-y-6">
+    <div className="w-full h-full px-3 py-2  space-y-3">
       {/* Header */}
       <div className="flex items-center justify-end">
         <button
@@ -336,11 +336,11 @@ export default function CustomReportsPage() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
         {stats.map((stat, index) => {
           const Icon = stat.icon;
           return (
-            <div key={index} className={`bg-gradient-to-br ${stat.color} rounded-xl p-6 text-white`}>
+            <div key={index} className={`bg-gradient-to-br ${stat.color} rounded-xl p-3 text-white`}>
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-white/80 text-sm">{stat.label}</p>
@@ -358,8 +358,8 @@ export default function CustomReportsPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg border border-gray-200 p-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="bg-white rounded-lg border border-gray-200 p-3">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Search Reports</label>
             <input
@@ -416,15 +416,15 @@ export default function CustomReportsPage() {
       </div>
 
       {/* Reports Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {filteredReports.map((report) => {
           const CategoryIcon = getCategoryIcon(report.category);
           const TypeIcon = getTypeIcon(report.type);
 
           return (
-            <div key={report.id} className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow">
+            <div key={report.id} className="bg-white rounded-lg border border-gray-200 p-3 hover:shadow-lg transition-shadow">
               {/* Header */}
-              <div className="flex items-start justify-between mb-4">
+              <div className="flex items-start justify-between mb-2">
                 <div className="flex items-start gap-3 flex-1">
                   <div className="p-2 bg-blue-50 rounded-lg">
                     <TypeIcon className="w-6 h-6 text-blue-600" />
@@ -440,7 +440,7 @@ export default function CustomReportsPage() {
               </div>
 
               {/* Metrics & Dimensions */}
-              <div className="space-y-3 mb-4">
+              <div className="space-y-3 mb-2">
                 <div>
                   <p className="text-xs font-medium text-gray-500 mb-1">METRICS</p>
                   <div className="flex flex-wrap gap-1">
@@ -464,7 +464,7 @@ export default function CustomReportsPage() {
               </div>
 
               {/* Details Grid */}
-              <div className="grid grid-cols-2 gap-4 mb-4 pb-4 border-b border-gray-200">
+              <div className="grid grid-cols-2 gap-2 mb-2 pb-4 border-b border-gray-200">
                 <div>
                   <p className="text-xs text-gray-500">Category</p>
                   <div className="flex items-center gap-1 mt-1">
@@ -498,7 +498,7 @@ export default function CustomReportsPage() {
               </div>
 
               {/* Activity Stats */}
-              <div className="grid grid-cols-4 gap-3 mb-4">
+              <div className="grid grid-cols-4 gap-3 mb-2">
                 <div className="text-center">
                   <p className="text-xs text-gray-500">Runs</p>
                   <p className="text-lg font-semibold text-gray-900">{report.runCount}</p>
@@ -563,8 +563,8 @@ export default function CustomReportsPage() {
       {/* Report Builder Modal Placeholder */}
       {showBuilder && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
-            <div className="flex items-center justify-between mb-6">
+          <div className="bg-white rounded-lg p-3 max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+            <div className="flex items-center justify-between mb-3">
               <h2 className="text-2xl font-bold text-gray-900">Report Builder</h2>
               <button
                 onClick={() => setShowBuilder(false)}
@@ -573,8 +573,8 @@ export default function CustomReportsPage() {
                 ✕
               </button>
             </div>
-            <div className="space-y-6">
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <div className="space-y-3">
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                 <p className="text-blue-800 text-sm">
                   Report builder interface would include data source selection, metric configuration,
                   dimension selection, filter builder, visualization options, and scheduling settings.

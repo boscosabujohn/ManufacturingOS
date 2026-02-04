@@ -253,9 +253,9 @@ export default function CampaignAutomationPage() {
   };
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 ">
+    <div className="w-full h-full px-3 py-2 ">
       <div className="mb-8">
-        <div className="flex justify-end mb-6">
+        <div className="flex justify-end mb-3">
           <button
             onClick={handleCreateAutomation}
             className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
@@ -266,32 +266,32 @@ export default function CampaignAutomationPage() {
         </div>
 
         {/* Statistics */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-6 mb-8">
-          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-6 text-white">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-3 mb-8">
+          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-3 text-white">
             <Workflow className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">{stats.totalAutomations}</div>
             <div className="text-blue-100">Total Workflows</div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-3 text-white">
             <Play className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">{stats.active}</div>
             <div className="text-green-100">Active</div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-3 text-white">
             <Users className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">{stats.activeContacts.toLocaleString()}</div>
             <div className="text-purple-100">In Progress</div>
           </div>
 
-          <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg p-3 text-white">
             <CheckCircle className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">{(stats.completedContacts / 1000).toFixed(1)}K</div>
             <div className="text-orange-100">Completed</div>
           </div>
 
-          <div className="bg-gradient-to-br from-teal-500 to-teal-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-teal-500 to-teal-600 rounded-lg p-3 text-white">
             <Target className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">{stats.avgConversionRate.toFixed(1)}%</div>
             <div className="text-teal-100">Avg Conversion</div>
@@ -299,8 +299,8 @@ export default function CampaignAutomationPage() {
         </div>
 
         {/* Filters */}
-        <div className="bg-white rounded-lg border border-gray-200 p-4 mb-6">
-          <div className="flex gap-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
+          <div className="flex gap-2">
             <div className="flex-1">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -343,10 +343,10 @@ export default function CampaignAutomationPage() {
       </div>
 
       {/* Automations List */}
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredAutomations.map((automation) => (
-          <div key={automation.id} className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow">
-            <div className="flex justify-between items-start mb-4">
+          <div key={automation.id} className="bg-white rounded-lg border border-gray-200 p-3 hover:shadow-lg transition-shadow">
+            <div className="flex justify-between items-start mb-2">
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
                   <h3 className="text-xl font-semibold text-gray-900">{automation.name}</h3>
@@ -360,7 +360,7 @@ export default function CampaignAutomationPage() {
 
                 <p className="text-gray-600 text-sm mb-3">{automation.description}</p>
 
-                <div className="flex items-center gap-6 text-sm mb-4">
+                <div className="flex items-center gap-3 text-sm mb-2">
                   <div className="flex items-center gap-1">
                     <GitBranch className="w-4 h-4 text-gray-600" />
                     <span className="text-gray-600">Trigger: </span>
@@ -376,7 +376,7 @@ export default function CampaignAutomationPage() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-5 gap-4 mb-4">
+                <div className="grid grid-cols-5 gap-2 mb-2">
                   <div className="bg-purple-50 rounded-lg p-3">
                     <div className="text-xs text-purple-600 mb-1">In Progress</div>
                     <div className="text-lg font-bold text-purple-900">{automation.activeContacts.toLocaleString()}</div>
@@ -465,7 +465,7 @@ export default function CampaignAutomationPage() {
 
       {filteredAutomations.length === 0 && (
         <div className="text-center py-12">
-          <Workflow className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+          <Workflow className="w-16 h-16 text-gray-400 mx-auto mb-2" />
           <h3 className="text-lg font-medium text-gray-900 mb-2">No automations found</h3>
           <p className="text-gray-600">Try adjusting your search or filters</p>
         </div>

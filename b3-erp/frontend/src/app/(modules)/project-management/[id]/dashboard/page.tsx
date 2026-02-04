@@ -300,7 +300,7 @@ export default function ProjectDashboardPage({ params }: { params: { id: string 
   ]
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-6 space-y-3">
       {/* Header */}
       <div className="flex justify-between items-start">
         <div>
@@ -335,7 +335,7 @@ export default function ProjectDashboardPage({ params }: { params: { id: string 
       {/* Key Metrics Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         {/* Progress Card */}
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-sm font-medium text-gray-500">Overall Progress</h3>
             <div className="p-2 bg-blue-50 rounded-lg">
@@ -355,7 +355,7 @@ export default function ProjectDashboardPage({ params }: { params: { id: string 
         </div>
 
         {/* Budget Card */}
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-sm font-medium text-gray-500">Budget Status</h3>
             <div className="p-2 bg-green-50 rounded-lg">
@@ -376,7 +376,7 @@ export default function ProjectDashboardPage({ params }: { params: { id: string 
         </div>
 
         {/* Timeline Card */}
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-sm font-medium text-gray-500">Timeline</h3>
             <div className="p-2 bg-purple-50 rounded-lg">
@@ -393,7 +393,7 @@ export default function ProjectDashboardPage({ params }: { params: { id: string 
         </div>
 
         {/* Resources Card */}
-        <div className="bg-white p-6 rounded-lg border border-gray-200">
+        <div className="bg-white p-3 rounded-lg border border-gray-200">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-sm font-medium text-gray-500">Team Utilization</h3>
             <div className="p-2 bg-orange-50 rounded-lg">
@@ -410,9 +410,9 @@ export default function ProjectDashboardPage({ params }: { params: { id: string 
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Task Status Chart */}
-        <div className="bg-white p-6 rounded-lg border border-gray-200 lg:col-span-1">
+        <div className="bg-white p-3 rounded-lg border border-gray-200 lg:col-span-1">
           <h3 className="text-lg font-semibold text-gray-900 mb-4">Task Distribution</h3>
           <div className="h-64">
             <ResponsiveContainer width="100%" height="100%">
@@ -438,12 +438,12 @@ export default function ProjectDashboardPage({ params }: { params: { id: string 
         </div>
 
         {/* Critical Tasks List */}
-        <div className="bg-white p-6 rounded-lg border border-gray-200 lg:col-span-2">
+        <div className="bg-white p-3 rounded-lg border border-gray-200 lg:col-span-2">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-semibold text-gray-900">Critical Tasks</h3>
             <button className="text-sm text-blue-600 hover:text-blue-700 font-medium">View All</button>
           </div>
-          <div className="space-y-4">
+          <div className="space-y-2">
             {criticalTasks.map((task) => (
               <div key={task.id} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg border border-gray-100">
                 <div className="flex items-center gap-4">
@@ -456,7 +456,7 @@ export default function ProjectDashboardPage({ params }: { params: { id: string 
                     <p className="text-sm text-gray-500">Assigned to {task.assignee}</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-6">
+                <div className="flex items-center gap-3">
                   <div className="text-right">
                     <p className="text-sm font-medium text-gray-900">Due {new Date(task.dueDate).toLocaleDateString()}</p>
                     <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${task.status === 'blocked' ? 'bg-red-100 text-red-800' :
@@ -477,8 +477,8 @@ export default function ProjectDashboardPage({ params }: { params: { id: string 
       </div>
 
       {/* Milestones Timeline */}
-      <div className="bg-white p-6 rounded-lg border border-gray-200">
-        <h3 className="text-lg font-semibold text-gray-900 mb-6">Project Milestones</h3>
+      <div className="bg-white p-3 rounded-lg border border-gray-200">
+        <h3 className="text-lg font-semibold text-gray-900 mb-3">Project Milestones</h3>
         <div className="relative">
           <div className="absolute top-1/2 left-0 w-full h-0.5 bg-gray-200 -translate-y-1/2"></div>
           <div className="relative flex justify-between">

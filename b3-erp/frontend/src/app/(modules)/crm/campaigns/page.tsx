@@ -250,11 +250,11 @@ export default function CampaignsPage() {
   };
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 ">
+    <div className="w-full h-full px-3 py-2 ">
       <div className="mb-8">
         {/* Statistics Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-6 gap-6 mb-8">
-          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-6 text-white">
+        <div className="grid grid-cols-1 md:grid-cols-6 gap-3 mb-8">
+          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-3 text-white">
             <div className="flex items-center justify-between mb-2">
               <Target className="w-8 h-8 opacity-80" />
             </div>
@@ -262,7 +262,7 @@ export default function CampaignsPage() {
             <div className="text-blue-100">Total Campaigns</div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-3 text-white">
             <div className="flex items-center justify-between mb-2">
               <Play className="w-8 h-8 opacity-80" />
             </div>
@@ -270,7 +270,7 @@ export default function CampaignsPage() {
             <div className="text-green-100">Active</div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-3 text-white">
             <div className="flex items-center justify-between mb-2">
               <BarChart3 className="w-8 h-8 opacity-80" />
             </div>
@@ -278,7 +278,7 @@ export default function CampaignsPage() {
             <div className="text-purple-100">Total Budget</div>
           </div>
 
-          <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg p-3 text-white">
             <div className="flex items-center justify-between mb-2">
               <TrendingUp className="w-8 h-8 opacity-80" />
             </div>
@@ -286,7 +286,7 @@ export default function CampaignsPage() {
             <div className="text-orange-100">Total Spent</div>
           </div>
 
-          <div className="bg-gradient-to-br from-teal-500 to-teal-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-teal-500 to-teal-600 rounded-lg p-3 text-white">
             <div className="flex items-center justify-between mb-2">
               <Users className="w-8 h-8 opacity-80" />
             </div>
@@ -294,7 +294,7 @@ export default function CampaignsPage() {
             <div className="text-teal-100">Conversions</div>
           </div>
 
-          <div className="bg-gradient-to-br from-pink-500 to-pink-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-pink-500 to-pink-600 rounded-lg p-3 text-white">
             <div className="flex items-center justify-between mb-2">
               <Mail className="w-8 h-8 opacity-80" />
             </div>
@@ -304,10 +304,10 @@ export default function CampaignsPage() {
         </div>
 
         {/* Quick Links */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-8">
           <Link href="/crm/campaigns/email">
-            <div className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow cursor-pointer">
-              <div className="flex items-center justify-between mb-4">
+            <div className="bg-white rounded-lg border border-gray-200 p-3 hover:shadow-lg transition-shadow cursor-pointer">
+              <div className="flex items-center justify-between mb-2">
                 <Mail className="w-8 h-8 text-orange-600" />
                 <ArrowRight className="w-5 h-5 text-gray-400" />
               </div>
@@ -317,8 +317,8 @@ export default function CampaignsPage() {
           </Link>
 
           <Link href="/crm/campaigns/performance">
-            <div className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow cursor-pointer">
-              <div className="flex items-center justify-between mb-4">
+            <div className="bg-white rounded-lg border border-gray-200 p-3 hover:shadow-lg transition-shadow cursor-pointer">
+              <div className="flex items-center justify-between mb-2">
                 <BarChart3 className="w-8 h-8 text-blue-600" />
                 <ArrowRight className="w-5 h-5 text-gray-400" />
               </div>
@@ -328,8 +328,8 @@ export default function CampaignsPage() {
           </Link>
 
           <Link href="/crm/campaigns/templates">
-            <div className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow cursor-pointer">
-              <div className="flex items-center justify-between mb-4">
+            <div className="bg-white rounded-lg border border-gray-200 p-3 hover:shadow-lg transition-shadow cursor-pointer">
+              <div className="flex items-center justify-between mb-2">
                 <Copy className="w-8 h-8 text-purple-600" />
                 <ArrowRight className="w-5 h-5 text-gray-400" />
               </div>
@@ -339,8 +339,8 @@ export default function CampaignsPage() {
           </Link>
 
           <Link href="/crm/campaigns/automation">
-            <div className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow cursor-pointer">
-              <div className="flex items-center justify-between mb-4">
+            <div className="bg-white rounded-lg border border-gray-200 p-3 hover:shadow-lg transition-shadow cursor-pointer">
+              <div className="flex items-center justify-between mb-2">
                 <Target className="w-8 h-8 text-green-600" />
                 <ArrowRight className="w-5 h-5 text-gray-400" />
               </div>
@@ -351,8 +351,8 @@ export default function CampaignsPage() {
         </div>
 
         {/* Filters and Search */}
-        <div className="bg-white rounded-lg border border-gray-200 p-4 mb-6">
-          <div className="flex flex-wrap gap-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
+          <div className="flex flex-wrap gap-2">
             <div className="flex-1 min-w-[300px]">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -398,7 +398,7 @@ export default function CampaignsPage() {
       </div>
 
       {/* Campaigns List */}
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredCampaigns.map((campaign) => {
           const roi = calculateROI(campaign.revenue, campaign.spent);
           const openRate = campaign.sent > 0 ? (campaign.opened / campaign.sent) * 100 : 0;
@@ -406,8 +406,8 @@ export default function CampaignsPage() {
           const conversionRate = campaign.sent > 0 ? (campaign.converted / campaign.sent) * 100 : 0;
 
           return (
-            <div key={campaign.id} className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow">
-              <div className="flex items-start justify-between mb-4">
+            <div key={campaign.id} className="bg-white rounded-lg border border-gray-200 p-3 hover:shadow-lg transition-shadow">
+              <div className="flex items-start justify-between mb-2">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
                     <h3 className="text-xl font-semibold text-gray-900">{campaign.name}</h3>
@@ -419,7 +419,7 @@ export default function CampaignsPage() {
                     </span>
                   </div>
 
-                  <div className="flex items-center gap-4 text-sm text-gray-600 mb-4">
+                  <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
                     <div className="flex items-center gap-1">
                       <Calendar className="w-4 h-4" />
                       {new Date(campaign.startDate).toLocaleDateString()}
@@ -429,7 +429,7 @@ export default function CampaignsPage() {
                   </div>
 
                   {/* Metrics Grid */}
-                  <div className="grid grid-cols-6 gap-4 mb-4">
+                  <div className="grid grid-cols-6 gap-2 mb-2">
                     <div className="bg-blue-50 rounded-lg p-3">
                       <div className="text-xs text-blue-600 mb-1">Audience</div>
                       <div className="text-lg font-bold text-blue-900">{campaign.audience.toLocaleString()}</div>

@@ -344,11 +344,11 @@ export default function ContactRolesPage() {
   };
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 ">
+    <div className="w-full h-full px-3 py-2 ">
       <div className="mb-8">
         {/* Statistics Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-6 gap-6 mb-8">
-          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-6 text-white">
+        <div className="grid grid-cols-1 md:grid-cols-6 gap-3 mb-8">
+          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-3 text-white">
             <div className="flex items-center justify-between mb-2">
               <Briefcase className="w-8 h-8 opacity-80" />
             </div>
@@ -356,7 +356,7 @@ export default function ContactRolesPage() {
             <div className="text-purple-100">Active Roles</div>
           </div>
 
-          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-3 text-white">
             <div className="flex items-center justify-between mb-2">
               <Users className="w-8 h-8 opacity-80" />
             </div>
@@ -364,7 +364,7 @@ export default function ContactRolesPage() {
             <div className="text-blue-100">Total Contacts</div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-3 text-white">
             <div className="flex items-center justify-between mb-2">
               <Target className="w-8 h-8 opacity-80" />
             </div>
@@ -372,7 +372,7 @@ export default function ContactRolesPage() {
             <div className="text-green-100">Avg Deal Size</div>
           </div>
 
-          <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg p-3 text-white">
             <div className="flex items-center justify-between mb-2">
               <TrendingUp className="w-8 h-8 opacity-80" />
             </div>
@@ -380,7 +380,7 @@ export default function ContactRolesPage() {
             <div className="text-orange-100">Avg Conversion</div>
           </div>
 
-          <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-lg p-3 text-white">
             <div className="flex items-center justify-between mb-2">
               <Crown className="w-8 h-8 opacity-80" />
             </div>
@@ -388,7 +388,7 @@ export default function ContactRolesPage() {
             <div className="text-red-100">Decision Makers</div>
           </div>
 
-          <div className="bg-gradient-to-br from-pink-500 to-pink-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-pink-500 to-pink-600 rounded-lg p-3 text-white">
             <div className="flex items-center justify-between mb-2">
               <Award className="w-8 h-8 opacity-80" />
             </div>
@@ -398,8 +398,8 @@ export default function ContactRolesPage() {
         </div>
 
         {/* Filters and Search */}
-        <div className="bg-white rounded-lg border border-gray-200 p-4 mb-6">
-          <div className="flex flex-wrap gap-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
+          <div className="flex flex-wrap gap-2">
             <div className="flex-1 min-w-[300px]">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -454,11 +454,11 @@ export default function ContactRolesPage() {
       </div>
 
       {/* Roles Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
         {filteredRoles.map((role) => (
           <div key={role.id} className="bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow">
             <div className="p-6">
-              <div className="flex justify-between items-start mb-4">
+              <div className="flex justify-between items-start mb-2">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
                     <h3 className="text-xl font-semibold text-gray-900">{role.roleName}</h3>
@@ -475,7 +475,7 @@ export default function ContactRolesPage() {
               </div>
 
               {/* Authority Badges */}
-              <div className="flex flex-wrap gap-2 mb-4">
+              <div className="flex flex-wrap gap-2 mb-2">
                 {role.isDecisionMaker && (
                   <span className="flex items-center gap-1 px-2 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium">
                     <Crown className="w-3 h-3" />
@@ -497,7 +497,7 @@ export default function ContactRolesPage() {
               </div>
 
               {/* Metrics Grid */}
-              <div className="grid grid-cols-2 gap-4 mb-4 pt-4 border-t border-gray-100">
+              <div className="grid grid-cols-2 gap-2 mb-2 pt-4 border-t border-gray-100">
                 <div>
                   <div className="flex items-center gap-2 text-gray-600 text-sm mb-1">
                     <Users className="w-4 h-4" />
@@ -540,7 +540,7 @@ export default function ContactRolesPage() {
               </div>
 
               {/* Influence Score */}
-              <div className="mb-4 pt-4 border-t border-gray-100">
+              <div className="mb-2 pt-4 border-t border-gray-100">
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-sm font-medium text-gray-700">Influence Score</span>
                   <span className={`text-sm font-bold ${getInfluenceColor(role.influenceScore)}`}>
@@ -591,7 +591,7 @@ export default function ContactRolesPage() {
 
       {/* Role Details Modal (simplified inline view) */}
       {selectedRole && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-lg max-w-4xl w-full max-h-[80vh] overflow-y-auto">
             <div className="p-6 border-b border-gray-200">
               <div className="flex justify-between items-start">
@@ -609,9 +609,9 @@ export default function ContactRolesPage() {
             </div>
 
             <div className="p-6">
-              <div className="space-y-4">
+              <div className="space-y-2">
                 {contacts.filter(c => c.roleId === selectedRole.id).map((contact) => (
-                  <div key={contact.id} className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                  <div key={contact.id} className="bg-gray-50 rounded-lg p-3 border border-gray-200">
                     <div className="flex justify-between items-start">
                       <div className="flex-1">
                         <h3 className="text-lg font-semibold text-gray-900 mb-1">{contact.name}</h3>
@@ -631,7 +631,7 @@ export default function ContactRolesPage() {
                         </div>
                       </div>
                       <div className="text-right">
-                        <div className="grid grid-cols-3 gap-4">
+                        <div className="grid grid-cols-3 gap-2">
                           <div>
                             <div className="text-xs text-gray-600 mb-1">Pending</div>
                             <div className="text-lg font-bold text-orange-600">{contact.dealsPending}</div>

@@ -105,13 +105,13 @@ export default function ViewContractPage() {
   };
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 ">
+    <div className="w-full h-full px-3 py-2 ">
       <div className="w-full">
         {/* Header */}
         <div className="mb-8">
           <button
             onClick={() => router.back()}
-            className="flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-4"
+            className="flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-2"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Contracts
@@ -163,30 +163,30 @@ export default function ViewContractPage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
           {/* Main Content */}
-          <div className="lg:col-span-2 space-y-6">
+          <div className="lg:col-span-2 space-y-3">
             {/* Key Metrics */}
-            <div className="grid grid-cols-4 gap-4">
-              <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-6 text-white">
+            <div className="grid grid-cols-4 gap-2">
+              <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-3 text-white">
                 <DollarSign className="w-8 h-8 opacity-80 mb-2" />
                 <div className="text-3xl font-bold mb-1">${(contract.value / 1000).toFixed(0)}K</div>
                 <div className="text-green-100 text-sm">Total Value</div>
               </div>
 
-              <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-6 text-white">
+              <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-3 text-white">
                 <TrendingUp className="w-8 h-8 opacity-80 mb-2" />
                 <div className="text-3xl font-bold mb-1">${(contract.recurringValue / 1000).toFixed(0)}K</div>
                 <div className="text-blue-100 text-sm capitalize">{contract.billingCycle}</div>
               </div>
 
-              <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-6 text-white">
+              <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-3 text-white">
                 <CheckCircle className="w-8 h-8 opacity-80 mb-2" />
                 <div className="text-3xl font-bold mb-1">${(contract.totalInvoiced / 1000).toFixed(0)}K</div>
                 <div className="text-purple-100 text-sm">Invoiced</div>
               </div>
 
-              <div className={`bg-gradient-to-br rounded-lg p-6 text-white ${
+              <div className={`bg-gradient-to-br rounded-lg p-3 text-white ${
                 contract.outstandingAmount > 0 ? 'from-red-500 to-red-600' : 'from-gray-500 to-gray-600'
               }`}>
                 <AlertCircle className="w-8 h-8 opacity-80 mb-2" />
@@ -199,9 +199,9 @@ export default function ViewContractPage() {
 
             {/* Contract Progress */}
             {contract.status === 'active' && (
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h2 className="text-lg font-semibold text-gray-900 mb-4">Contract Progress</h2>
-                <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-4 border border-blue-200">
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <h2 className="text-lg font-semibold text-gray-900 mb-2">Contract Progress</h2>
+                <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-3 border border-blue-200">
                   <div className="flex items-center justify-between text-sm mb-2">
                     <span className="text-gray-600">Timeline Progress</span>
                     <span className="font-medium text-gray-900">{getContractProgress()}%</span>
@@ -224,8 +224,8 @@ export default function ViewContractPage() {
             )}
 
             {/* Deliverables */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4">Deliverables & Services</h2>
+            <div className="bg-white rounded-lg border border-gray-200 p-3">
+              <h2 className="text-lg font-semibold text-gray-900 mb-2">Deliverables & Services</h2>
               <ul className="space-y-3">
                 {contract.deliverables.map((deliverable, index) => (
                   <li key={index} className="flex items-start gap-3">
@@ -237,20 +237,20 @@ export default function ViewContractPage() {
             </div>
 
             {/* Terms & Conditions */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4">Terms & Conditions</h2>
+            <div className="bg-white rounded-lg border border-gray-200 p-3">
+              <h2 className="text-lg font-semibold text-gray-900 mb-2">Terms & Conditions</h2>
               <p className="text-gray-700 leading-relaxed whitespace-pre-line">{contract.termsAndConditions}</p>
             </div>
 
             {/* Notes */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4">Internal Notes</h2>
+            <div className="bg-white rounded-lg border border-gray-200 p-3">
+              <h2 className="text-lg font-semibold text-gray-900 mb-2">Internal Notes</h2>
               <p className="text-gray-700 leading-relaxed">{contract.notes}</p>
             </div>
 
             {/* Attachments */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4">Attachments</h2>
+            <div className="bg-white rounded-lg border border-gray-200 p-3">
+              <h2 className="text-lg font-semibold text-gray-900 mb-2">Attachments</h2>
               <div className="space-y-3">
                 {contract.attachments.map((file, index) => (
                   <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100">
@@ -271,11 +271,11 @@ export default function ViewContractPage() {
           </div>
 
           {/* Sidebar */}
-          <div className="space-y-6">
+          <div className="space-y-3">
             {/* Contract Details */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Contract Details</h3>
-              <div className="space-y-4">
+            <div className="bg-white rounded-lg border border-gray-200 p-3">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Contract Details</h3>
+              <div className="space-y-2">
                 <div>
                   <div className="text-sm text-gray-600 mb-1">Contract Period</div>
                   <div className="flex items-center gap-2 text-gray-900">
@@ -319,9 +319,9 @@ export default function ViewContractPage() {
             </div>
 
             {/* Customer Information */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Customer Information</h3>
-              <div className="space-y-4">
+            <div className="bg-white rounded-lg border border-gray-200 p-3">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Customer Information</h3>
+              <div className="space-y-2">
                 <div>
                   <div className="text-sm text-gray-600 mb-1">Company</div>
                   <div className="flex items-center gap-2 text-gray-900">
@@ -367,8 +367,8 @@ export default function ViewContractPage() {
             </div>
 
             {/* Assigned To */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Assigned To</h3>
+            <div className="bg-white rounded-lg border border-gray-200 p-3">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Assigned To</h3>
               <div className="space-y-3">
                 <div className="flex items-center gap-2 text-gray-900">
                   <User className="w-4 h-4" />
@@ -384,8 +384,8 @@ export default function ViewContractPage() {
             </div>
 
             {/* Tags */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Tags</h3>
+            <div className="bg-white rounded-lg border border-gray-200 p-3">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Tags</h3>
               <div className="flex flex-wrap gap-2">
                 {contract.tags.map((tag, index) => (
                   <span key={index} className="px-3 py-1 bg-blue-50 text-blue-700 rounded-full text-sm">
@@ -396,7 +396,7 @@ export default function ViewContractPage() {
             </div>
 
             {/* Metadata */}
-            <div className="bg-gray-50 rounded-lg border border-gray-200 p-6">
+            <div className="bg-gray-50 rounded-lg border border-gray-200 p-3">
               <div className="text-sm text-gray-600 mb-1">Created</div>
               <div className="text-gray-900">{new Date(contract.createdDate).toLocaleDateString()}</div>
             </div>

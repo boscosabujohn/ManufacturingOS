@@ -240,10 +240,10 @@ export default function LeadScoringPage() {
   };
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 ">
+    <div className="w-full h-full px-3 py-2 ">
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Average Score</p>
@@ -253,7 +253,7 @@ export default function LeadScoringPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600">High Score (75+)</p>
@@ -263,7 +263,7 @@ export default function LeadScoringPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
+        <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-yellow-600">Medium (50-74)</p>
@@ -273,7 +273,7 @@ export default function LeadScoringPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-4 border border-red-200">
+        <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-3 border border-red-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-red-600">Low Score (&lt;50)</p>
@@ -283,7 +283,7 @@ export default function LeadScoringPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-4 border border-indigo-200">
+        <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-3 border border-indigo-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-indigo-600">Total Value</p>
@@ -295,7 +295,7 @@ export default function LeadScoringPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg border border-gray-200 p-4 mb-6">
+      <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
         <div className="flex items-center space-x-4">
           <div className="flex-1">
             <div className="relative">
@@ -339,7 +339,7 @@ export default function LeadScoringPage() {
         {filteredLeads.map((lead) => (
           <div
             key={lead.id}
-            className="bg-white rounded-lg border border-gray-200 p-4 hover:shadow-md transition-shadow cursor-pointer"
+            className="bg-white rounded-lg border border-gray-200 p-3 hover:shadow-md transition-shadow cursor-pointer"
             onClick={() => setSelectedLead(lead)}
           >
             <div className="flex items-center justify-between">

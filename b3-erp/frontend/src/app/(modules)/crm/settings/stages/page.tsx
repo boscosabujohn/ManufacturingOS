@@ -208,9 +208,9 @@ export default function DealStagesPage() {
   };
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 ">
+    <div className="w-full h-full px-3 py-2 ">
       <div className="mb-8">
-        <div className="flex justify-end mb-6">
+        <div className="flex justify-end mb-3">
           <button
             onClick={handleAddStage}
             className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
@@ -221,26 +221,26 @@ export default function DealStagesPage() {
         </div>
 
         {/* Statistics */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-6 text-white">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-8">
+          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-3 text-white">
             <Target className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">{stats.totalStages}</div>
             <div className="text-blue-100">Active Stages</div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-3 text-white">
             <TrendingUp className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">{stats.totalDeals}</div>
             <div className="text-purple-100">Total Deals</div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-3 text-white">
             <CheckCircle className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">${(stats.totalValue / 1000000).toFixed(2)}M</div>
             <div className="text-green-100">Pipeline Value</div>
           </div>
 
-          <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg p-3 text-white">
             <TrendingUp className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">{stats.avgConversion}%</div>
             <div className="text-orange-100">Avg Conversion</div>
@@ -248,14 +248,14 @@ export default function DealStagesPage() {
         </div>
 
         {/* Pipeline Visualization */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6 mb-8">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Pipeline Flow</h2>
+        <div className="bg-white rounded-lg border border-gray-200 p-3 mb-8">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">Pipeline Flow</h2>
           <div className="flex items-center gap-2 overflow-x-auto pb-4">
             {stages
               .filter(s => s.probability > 0 && s.probability < 100)
               .map((stage, index, array) => (
                 <div key={stage.id} className="flex items-center flex-shrink-0">
-                  <div className={`px-6 py-4 rounded-lg border-2 ${getColorClasses(stage.color).border} ${getColorClasses(stage.color).bg} min-w-[200px]`}>
+                  <div className={`px-3 py-2 rounded-lg border-2 ${getColorClasses(stage.color).border} ${getColorClasses(stage.color).bg} min-w-[200px]`}>
                     <div className={`font-semibold ${getColorClasses(stage.color).text} mb-1`}>
                       {stage.name}
                     </div>
@@ -279,16 +279,16 @@ export default function DealStagesPage() {
       </div>
 
       {/* Stages List */}
-      <div className="space-y-4">
+      <div className="space-y-2">
         {stages.map((stage, index) => {
           const colorClasses = getColorClasses(stage.color);
 
           return (
             <div
               key={stage.id}
-              className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-shadow"
+              className="bg-white rounded-lg border border-gray-200 p-3 hover:shadow-md transition-shadow"
             >
-              <div className="flex items-start gap-4">
+              <div className="flex items-start gap-2">
                 {/* Drag Handle & Order Controls */}
                 <div className="flex flex-col items-center gap-1">
                   <button
@@ -310,7 +310,7 @@ export default function DealStagesPage() {
 
                 {/* Stage Content */}
                 <div className="flex-1">
-                  <div className="flex items-start justify-between mb-4">
+                  <div className="flex items-start justify-between mb-2">
                     <div className="flex-1">
                       <div className="flex items-center gap-3 mb-2">
                         <span className="text-2xl font-bold text-gray-400">#{stage.order}</span>
@@ -345,8 +345,8 @@ export default function DealStagesPage() {
                   </div>
 
                   {/* Stage Metrics */}
-                  <div className="grid grid-cols-6 gap-4 mb-4">
-                    <div className={`bg-gradient-to-br ${colorClasses.gradient} rounded-lg p-4 text-white`}>
+                  <div className="grid grid-cols-6 gap-2 mb-2">
+                    <div className={`bg-gradient-to-br ${colorClasses.gradient} rounded-lg p-3 text-white`}>
                       <div className="flex items-center gap-1 opacity-80 mb-1">
                         <Target className="w-3 h-3" />
                         <span className="text-xs font-medium">Probability</span>
@@ -354,7 +354,7 @@ export default function DealStagesPage() {
                       <div className="text-2xl font-bold">{stage.probability}%</div>
                     </div>
 
-                    <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4">
+                    <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3">
                       <div className="flex items-center gap-1 text-blue-700 mb-1">
                         <TrendingUp className="w-3 h-3" />
                         <span className="text-xs font-medium">Deals</span>
@@ -362,7 +362,7 @@ export default function DealStagesPage() {
                       <div className="text-2xl font-bold text-blue-900">{stage.dealsCount}</div>
                     </div>
 
-                    <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4">
+                    <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3">
                       <div className="flex items-center gap-1 text-green-700 mb-1">
                         <CheckCircle className="w-3 h-3" />
                         <span className="text-xs font-medium">Total Value</span>
@@ -372,7 +372,7 @@ export default function DealStagesPage() {
                       </div>
                     </div>
 
-                    <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4">
+                    <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3">
                       <div className="flex items-center gap-1 text-purple-700 mb-1">
                         <TrendingUp className="w-3 h-3" />
                         <span className="text-xs font-medium">Avg Deal Size</span>
@@ -382,7 +382,7 @@ export default function DealStagesPage() {
                       </div>
                     </div>
 
-                    <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4">
+                    <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3">
                       <div className="flex items-center gap-1 text-orange-700 mb-1">
                         <Clock className="w-3 h-3" />
                         <span className="text-xs font-medium">Avg Days</span>
@@ -390,7 +390,7 @@ export default function DealStagesPage() {
                       <div className="text-2xl font-bold text-orange-900">{stage.avgDaysInStage}</div>
                     </div>
 
-                    <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg p-4">
+                    <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg p-3">
                       <div className="flex items-center gap-1 text-teal-700 mb-1">
                         <Target className="w-3 h-3" />
                         <span className="text-xs font-medium">Conversion</span>
@@ -400,7 +400,7 @@ export default function DealStagesPage() {
                   </div>
 
                   {/* Stage Settings */}
-                  <div className="grid grid-cols-3 gap-4 pt-4 border-t border-gray-100">
+                  <div className="grid grid-cols-3 gap-2 pt-4 border-t border-gray-100">
                     <div>
                       <div className="text-xs text-gray-600 mb-1 flex items-center gap-1">
                         <AlertCircle className="w-3 h-3" />

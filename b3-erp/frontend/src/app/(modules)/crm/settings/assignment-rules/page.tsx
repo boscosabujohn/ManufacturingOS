@@ -221,24 +221,24 @@ export default function AssignmentRulesPage() {
           </div>
 
           {/* Stats Summary */}
-          <div className="grid grid-cols-4 gap-4 mt-6">
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+          <div className="grid grid-cols-4 gap-2 mt-6">
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
               <div className="text-sm text-blue-600 font-medium">Total Rules</div>
               <div className="text-2xl font-bold text-blue-900 mt-1">{rules.length}</div>
             </div>
-            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
               <div className="text-sm text-green-600 font-medium">Active Rules</div>
               <div className="text-2xl font-bold text-green-900 mt-1">
                 {rules.filter(r => r.active).length}
               </div>
             </div>
-            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
               <div className="text-sm text-purple-600 font-medium">Total Assignments</div>
               <div className="text-2xl font-bold text-purple-900 mt-1">
                 {rules.reduce((sum, r) => sum + r.totalAssignments, 0)}
               </div>
             </div>
-            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
               <div className="text-sm text-orange-600 font-medium">Avg. Load</div>
               <div className="text-2xl font-bold text-orange-900 mt-1">
                 {Math.round(
@@ -253,12 +253,12 @@ export default function AssignmentRulesPage() {
       </div>
 
       {/* Rules List */}
-      <div className="p-6 space-y-4">
+      <div className="p-6 space-y-2">
         {rules.length === 0 ? (
           <div className="bg-white rounded-lg border border-gray-200 p-12 text-center">
-            <Cog className="w-16 h-16 text-gray-300 mx-auto mb-4" />
+            <Cog className="w-16 h-16 text-gray-300 mx-auto mb-2" />
             <h3 className="text-lg font-semibold text-gray-900 mb-2">No Assignment Rules</h3>
-            <p className="text-gray-600 mb-4">Create your first rule to automate lead distribution</p>
+            <p className="text-gray-600 mb-2">Create your first rule to automate lead distribution</p>
             <button
               onClick={() => setShowCreateDialog(true)}
               className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
@@ -279,7 +279,7 @@ export default function AssignmentRulesPage() {
                 {/* Rule Header */}
                 <div className="p-4">
                   <div className="flex items-start justify-between">
-                    <div className="flex items-start gap-4 flex-1">
+                    <div className="flex items-start gap-2 flex-1">
                       <button
                         onClick={() => toggleRuleExpansion(rule.id)}
                         className="p-1 hover:bg-gray-100 rounded transition-colors mt-1"
@@ -300,7 +300,7 @@ export default function AssignmentRulesPage() {
                           </div>
                         </div>
 
-                        <div className="flex items-center gap-4 mt-3">
+                        <div className="flex items-center gap-2 mt-3">
                           <span className={`px-3 py-1 rounded-full text-xs font-medium ${
                             rule.active
                               ? 'bg-green-100 text-green-700'
@@ -371,7 +371,7 @@ export default function AssignmentRulesPage() {
 
                 {/* Expanded Details */}
                 {expandedRules.has(rule.id) && (
-                  <div className="border-t border-gray-200 p-4 bg-gray-50">
+                  <div className="border-t border-gray-200 p-3 bg-gray-50">
                     <h4 className="font-semibold text-gray-900 mb-3">Assignees & Load Distribution</h4>
                     <div className="space-y-3">
                       {rule.assignees.map((assignee) => (
@@ -426,14 +426,14 @@ export default function AssignmentRulesPage() {
 
       {/* Create/Edit Dialog Placeholder */}
       {showCreateDialog && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
             <div className="p-6 border-b border-gray-200">
               <h2 className="text-xl font-bold text-gray-900">Create Assignment Rule</h2>
             </div>
             <div className="p-6">
               <p className="text-gray-600">Rule creation form will be implemented here...</p>
-              <div className="space-y-4 mt-4">
+              <div className="space-y-2 mt-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Rule Name</label>
                   <input type="text" className="w-full px-3 py-2 border border-gray-300 rounded-lg" />

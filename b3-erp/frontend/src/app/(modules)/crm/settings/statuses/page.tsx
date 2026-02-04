@@ -504,7 +504,7 @@ export default function CustomStatusesPage() {
   };
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6  space-y-6">
+    <div className="w-full h-full px-3 py-2  space-y-3">
       {/* Header */}
       <div className="flex items-center justify-end">
         <button
@@ -517,11 +517,11 @@ export default function CustomStatusesPage() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
         {stats.map((stat, index) => {
           const Icon = stat.icon;
           return (
-            <div key={index} className={`bg-gradient-to-br ${stat.color} rounded-xl p-6 text-white`}>
+            <div key={index} className={`bg-gradient-to-br ${stat.color} rounded-xl p-3 text-white`}>
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-white/80 text-sm">{stat.label}</p>
@@ -536,7 +536,7 @@ export default function CustomStatusesPage() {
       </div>
 
       {/* Category Filter */}
-      <div className="bg-white rounded-lg border border-gray-200 p-4">
+      <div className="bg-white rounded-lg border border-gray-200 p-3">
         <div className="flex items-center gap-3">
           <span className="text-sm font-medium text-gray-700">Filter by Category:</span>
           <div className="flex gap-2">
@@ -570,7 +570,7 @@ export default function CustomStatusesPage() {
                 status.isDefault ? 'border-blue-300 bg-blue-50/30' : 'border-gray-200'
               } p-5 transition-all ${!status.isActive ? 'opacity-60' : ''}`}
             >
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2">
                 {/* Order Controls */}
                 <div className="flex flex-col gap-1">
                   <button
@@ -621,7 +621,7 @@ export default function CustomStatusesPage() {
                   <p className="text-sm text-gray-600 mb-2">{status.description}</p>
 
                   {/* Metrics Grid */}
-                  <div className="grid grid-cols-6 gap-4">
+                  <div className="grid grid-cols-6 gap-2">
                     <div>
                       <p className="text-xs text-gray-500">Usage</p>
                       <p className="text-sm font-semibold text-gray-900">{status.usageCount}</p>
@@ -732,8 +732,8 @@ export default function CustomStatusesPage() {
       {/* Add Status Modal */}
       {showAddModal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 max-w-2xl w-full mx-4">
-            <div className="flex items-center justify-between mb-6">
+          <div className="bg-white rounded-lg p-3 max-w-2xl w-full mx-4">
+            <div className="flex items-center justify-between mb-3">
               <h2 className="text-2xl font-bold text-gray-900">Add New Status</h2>
               <button
                 onClick={() => setShowAddModal(false)}
@@ -742,8 +742,8 @@ export default function CustomStatusesPage() {
                 <X className="w-5 h-5" />
               </button>
             </div>
-            <div className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Status Name</label>
                   <input
@@ -764,7 +764,7 @@ export default function CustomStatusesPage() {
                   </select>
                 </div>
               </div>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Type</label>
                   <select className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
@@ -793,7 +793,7 @@ export default function CustomStatusesPage() {
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />
               </div>
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2">
                 <label className="flex items-center gap-2">
                   <input type="checkbox" className="rounded border-gray-300 text-blue-600 focus:ring-blue-500" />
                   <span className="text-sm text-gray-700">Set as default status</span>

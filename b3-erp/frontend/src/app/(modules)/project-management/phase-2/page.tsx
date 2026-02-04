@@ -181,7 +181,7 @@ export default function Phase2Dashboard() {
       </div>
 
       {/* Steps Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
         {workflowSteps.map((step) => (
           <Card key={step.id} className="hover:shadow-md transition-shadow cursor-pointer" onClick={() => router.push(step.href)}>
             <CardHeader className="pb-3">

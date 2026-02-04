@@ -225,23 +225,23 @@ export function WorkflowQuickActions({
 
   if (variant === 'compact') {
     return (
-      <div className={`bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-4 ${className}`}>
-        <div className="flex items-center gap-2 mb-4">
-          <Sparkles className="w-5 h-5 text-yellow-500" />
-          <h3 className="font-semibold text-gray-900 dark:text-white">Quick Actions</h3>
-          <span className="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full">Enhanced Forms</span>
+      <div className={`bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-2 ${className}`}>
+        <div className="flex items-center gap-2 mb-2">
+          <Sparkles className="w-4 h-4 text-yellow-500" />
+          <h3 className="text-sm font-semibold text-gray-900 dark:text-white">Quick Actions</h3>
+          <span className="text-[10px] bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded-full">Enhanced Forms</span>
         </div>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-1.5">
           {phases.flatMap(phase =>
             phase.actions.map(action => (
               <Link
                 key={action.id}
                 href={action.href}
-                className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm transition-colors ${colorClasses[phase.color].light} ${colorClasses[phase.color].text} hover:opacity-80`}
+                className={`flex items-center gap-1.5 px-2 py-1 rounded-lg text-xs transition-colors ${colorClasses[phase.color].light} ${colorClasses[phase.color].text} hover:opacity-80`}
               >
-                <action.icon className="w-4 h-4" />
+                <action.icon className="w-3.5 h-3.5" />
                 <span>{action.label}</span>
-                {action.isEnhanced && <Sparkles className="w-3 h-3 text-yellow-500" />}
+                {action.isEnhanced && <Sparkles className="w-2.5 h-2.5 text-yellow-500" />}
               </Link>
             ))
           )}

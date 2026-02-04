@@ -618,9 +618,9 @@ export default function ResourceUtilizationPage() {
 
  return (
   <div className="w-full h-screen overflow-y-auto overflow-x-hidden">
-   <div className="px-4 sm:px-6 lg:px-8 py-6 mx-auto">
+   <div className="px-4 sm:px-6 lg:px-8 py-2 mx-auto">
     {/* Page Header */}
-    <div className="mb-6">
+    <div className="mb-3">
      <h1 className="text-3xl font-bold text-gray-900">Resource Utilization Analytics</h1>
      <p className="mt-2 text-sm text-gray-600">
       Monitor and optimize resource allocation across all departments and projects. Track utilization rates, efficiency metrics, and identify optimization opportunities.
@@ -689,7 +689,7 @@ export default function ResourceUtilizationPage() {
     </div>
 
     {/* Overall Metrics Cards */}
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-3">
      <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
       <div className="flex items-center justify-between">
        <div>
@@ -748,7 +748,7 @@ export default function ResourceUtilizationPage() {
     </div>
 
     {/* Department Metrics */}
-    <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 mb-6">
+    <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200 mb-3">
      <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
       <BarChart3 className="w-5 h-5 text-cyan-600" />
       Department-wise Utilization
@@ -800,7 +800,7 @@ export default function ResourceUtilizationPage() {
     </div>
 
     {/* Filters */}
-    <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200 mb-6">
+    <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200 mb-3">
     <div className="flex flex-col md:flex-row gap-4">
      <div className="flex-1">
       <input
@@ -977,9 +977,9 @@ export default function ResourceUtilizationPage() {
 
     {/* Resources List - Cards View */}
     {viewMode === 'cards' && (
-     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
      {filteredResources.map((resource) => (
-      <div key={resource.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
+      <div key={resource.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 hover:shadow-md transition-shadow">
        <div className="flex items-start justify-between mb-4">
         <div>
          <h3 className="text-lg font-semibold text-gray-900">{resource.resourceName}</h3>

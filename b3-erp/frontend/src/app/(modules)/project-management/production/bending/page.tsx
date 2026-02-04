@@ -47,7 +47,7 @@ export default function BendingPage() {
   };
 
   return (
-    <div className="w-full py-6 space-y-8">
+    <div className="w-full py-2 space-y-8">
       <div className="flex justify-between items-center">
         <div className="space-y-1">
           <h1 className="text-3xl font-bold flex items-center gap-2">
@@ -68,7 +68,7 @@ export default function BendingPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
         {jobs.map((job) => (
           <Card key={job.id} className="hover:shadow-md transition-shadow">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -83,7 +83,7 @@ export default function BendingPage() {
               </Badge>
             </CardHeader>
             <CardContent>
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <div>
                   <h3 className="text-lg font-bold">{job.partName}</h3>
                   <p className="text-sm text-muted-foreground">{job.material}</p>

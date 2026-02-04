@@ -20,8 +20,8 @@ export default function ScheduleSiteVisitPage() {
   };
 
   return (
-    <div className="w-full py-6 space-y-6">
-      <div className="flex items-center gap-4 mb-6">
+    <div className="w-full py-2 space-y-3">
+      <div className="flex items-center gap-4 mb-3">
         <Button variant="ghost" onClick={() => router.back()} className="p-0 hover:bg-transparent">
           <ArrowLeft className="w-6 h-6 text-gray-600" />
         </Button>
@@ -31,13 +31,13 @@ export default function ScheduleSiteVisitPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         <Card className="lg:col-span-2">
           <CardHeader>
             <CardTitle>New Appointment</CardTitle>
             <CardDescription>Enter visit details</CardDescription>
           </CardHeader>
-          <CardContent className="space-y-4">
+          <CardContent className="space-y-2">
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="date">Date</Label>
@@ -77,7 +77,7 @@ export default function ScheduleSiteVisitPage() {
             <CardTitle>Upcoming Visits</CardTitle>
             <CardDescription>Scheduled site inspections</CardDescription>
           </CardHeader>
-          <CardContent className="space-y-4">
+          <CardContent className="space-y-2">
             {[
               { date: 'Jan 24, 2025', time: '10:00 AM', loc: 'Taj Hotels', status: 'Confirmed' },
               { date: 'Jan 26, 2025', time: '02:00 PM', loc: 'BigBasket', status: 'Pending' },

@@ -99,7 +99,7 @@ export default function OpportunityDetailPage() {
       {/* Header */}
       <div className="bg-white border-b border-gray-200">
         <div className="p-6">
-          <div className="flex items-center gap-4 mb-4">
+          <div className="flex items-center gap-2 mb-2">
             <button
               onClick={() => router.back()}
               className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
@@ -129,8 +129,8 @@ export default function OpportunityDetailPage() {
           </div>
 
           {/* Stats Cards */}
-          <div className="grid grid-cols-5 gap-4">
-            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+          <div className="grid grid-cols-5 gap-2">
+            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
               <div className="text-sm text-green-600 font-medium flex items-center gap-1">
                 <DollarSign className="w-3 h-3" />
                 Amount
@@ -139,14 +139,14 @@ export default function OpportunityDetailPage() {
                 ₹{(opportunity.amount / 100000).toFixed(2)}L
               </div>
             </div>
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
               <div className="text-sm text-blue-600 font-medium flex items-center gap-1">
                 <Target className="w-3 h-3" />
                 Probability
               </div>
               <div className="text-2xl font-bold text-blue-900 mt-1">{opportunity.probability}%</div>
             </div>
-            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
               <div className="text-sm text-purple-600 font-medium flex items-center gap-1">
                 <TrendingUp className="w-3 h-3" />
                 Stage
@@ -155,14 +155,14 @@ export default function OpportunityDetailPage() {
                 {opportunity.stage.replace('_', ' ').charAt(0).toUpperCase() + opportunity.stage.slice(1)}
               </div>
             </div>
-            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
               <div className="text-sm text-orange-600 font-medium flex items-center gap-1">
                 <Calendar className="w-3 h-3" />
                 Close Date
               </div>
               <div className="text-lg font-bold text-orange-900 mt-1">{opportunity.expectedCloseDate}</div>
             </div>
-            <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg p-4 border border-teal-200">
+            <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg p-3 border border-teal-200">
               <div className="text-sm text-teal-600 font-medium flex items-center gap-1">
                 <User className="w-3 h-3" />
                 Owner
@@ -174,20 +174,20 @@ export default function OpportunityDetailPage() {
       </div>
 
       {/* Content */}
-      <div className="p-6 grid grid-cols-3 gap-6">
+      <div className="p-6 grid grid-cols-3 gap-3">
         {/* Left Column - Details */}
-        <div className="col-span-2 space-y-6">
+        <div className="col-span-2 space-y-3">
           {/* Opportunity Details */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h2 className="text-lg font-bold text-gray-900 mb-4">Opportunity Details</h2>
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <h2 className="text-lg font-bold text-gray-900 mb-2">Opportunity Details</h2>
 
-            <div className="space-y-4">
+            <div className="space-y-2">
               <div>
                 <label className="text-sm font-medium text-gray-700">Description</label>
                 <p className="mt-1 text-gray-900">{opportunity.description}</p>
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="text-sm font-medium text-gray-700 flex items-center gap-2">
                     <Building2 className="w-4 h-4" />
@@ -204,7 +204,7 @@ export default function OpportunityDetailPage() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="text-sm font-medium text-gray-700 flex items-center gap-2">
                     <Mail className="w-4 h-4" />
@@ -247,8 +247,8 @@ export default function OpportunityDetailPage() {
           </div>
 
           {/* Activity Timeline Placeholder */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h2 className="text-lg font-bold text-gray-900 mb-4">Activity Timeline</h2>
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <h2 className="text-lg font-bold text-gray-900 mb-2">Activity Timeline</h2>
             <div className="space-y-3">
               {[
                 { date: '2025-10-28', type: 'Meeting', description: 'Product demo with decision makers', user: 'Sarah Johnson' },
@@ -273,12 +273,12 @@ export default function OpportunityDetailPage() {
         </div>
 
         {/* Right Column - Connections */}
-        <div className="space-y-6">
+        <div className="space-y-3">
           {/* Inter-Module Connections */}
           <CRMToSalesConnections connection={salesConnections} />
 
           {/* Quick Actions */}
-          <div className="bg-white rounded-lg border border-gray-200 p-4">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
             <h3 className="font-bold text-gray-900 mb-3">Quick Actions</h3>
             <div className="space-y-2">
               <button
@@ -311,7 +311,7 @@ export default function OpportunityDetailPage() {
           </div>
 
           {/* Related Files Placeholder */}
-          <div className="bg-white rounded-lg border border-gray-200 p-4">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
             <h3 className="font-bold text-gray-900 mb-3">Attached Files</h3>
             <div className="space-y-2">
               {[

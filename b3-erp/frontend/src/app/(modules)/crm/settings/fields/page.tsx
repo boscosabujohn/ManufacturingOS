@@ -511,7 +511,7 @@ export default function CustomFieldsPage() {
   };
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6  space-y-6">
+    <div className="w-full h-full px-3 py-2  space-y-3">
       {/* Header */}
       <div className="flex items-center justify-end">
         <button
@@ -524,11 +524,11 @@ export default function CustomFieldsPage() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
         {stats.map((stat, index) => {
           const Icon = stat.icon;
           return (
-            <div key={index} className={`bg-gradient-to-br ${stat.color} rounded-xl p-6 text-white`}>
+            <div key={index} className={`bg-gradient-to-br ${stat.color} rounded-xl p-3 text-white`}>
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-white/80 text-sm">{stat.label}</p>
@@ -543,8 +543,8 @@ export default function CustomFieldsPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg border border-gray-200 p-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="bg-white rounded-lg border border-gray-200 p-3">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               <Search className="w-4 h-4 inline mr-1" />
@@ -627,7 +627,7 @@ export default function CustomFieldsPage() {
             >
               <div className="p-5">
                 <div className="flex items-start justify-between">
-                  <div className="flex items-start gap-4 flex-1">
+                  <div className="flex items-start gap-2 flex-1">
                     {/* Field Type Icon */}
                     <div className={`p-3 rounded-lg ${getFieldTypeColor(field.fieldType)} bg-opacity-20`}>
                       <TypeIcon className="w-6 h-6" />
@@ -651,7 +651,7 @@ export default function CustomFieldsPage() {
                       <p className="text-sm text-gray-600 mb-3">{field.description}</p>
 
                       {/* Field Properties */}
-                      <div className="flex items-center gap-4 mb-3">
+                      <div className="flex items-center gap-2 mb-3">
                         <div className="flex items-center gap-2">
                           <ModuleIcon className="w-4 h-4 text-gray-400" />
                           <span className="text-sm text-gray-600 capitalize">{field.module}</span>
@@ -726,7 +726,7 @@ export default function CustomFieldsPage() {
                       )}
 
                       {/* Usage Stats */}
-                      <div className="grid grid-cols-4 gap-4">
+                      <div className="grid grid-cols-4 gap-2">
                         <div>
                           <p className="text-xs text-gray-500">Records with Value</p>
                           <p className="text-sm font-semibold text-gray-900">
@@ -820,8 +820,8 @@ export default function CustomFieldsPage() {
       {/* Add Field Modal */}
       {showAddModal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 max-w-3xl w-full mx-4 max-h-[90vh] overflow-y-auto">
-            <div className="flex items-center justify-between mb-6">
+          <div className="bg-white rounded-lg p-3 max-w-3xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+            <div className="flex items-center justify-between mb-3">
               <h2 className="text-2xl font-bold text-gray-900">Add Custom Field</h2>
               <button
                 onClick={() => setShowAddModal(false)}
@@ -830,8 +830,8 @@ export default function CustomFieldsPage() {
                 ✕
               </button>
             </div>
-            <div className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Field Label</label>
                   <input
@@ -849,7 +849,7 @@ export default function CustomFieldsPage() {
                   />
                 </div>
               </div>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Module</label>
                   <select className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
@@ -892,7 +892,7 @@ export default function CustomFieldsPage() {
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />
               </div>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 <label className="flex items-center gap-2">
                   <input type="checkbox" className="rounded border-gray-300 text-blue-600 focus:ring-blue-500" />
                   <span className="text-sm text-gray-700">Required field</span>

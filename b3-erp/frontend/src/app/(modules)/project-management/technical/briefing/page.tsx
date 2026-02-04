@@ -54,8 +54,8 @@ export default function LayoutBriefingPage() {
   };
 
   return (
-    <div className="w-full py-6 space-y-6">
-      <div className="flex items-center gap-4 mb-6">
+    <div className="w-full py-2 space-y-3">
+      <div className="flex items-center gap-4 mb-3">
         <Button variant="ghost" onClick={() => router.back()} className="p-0 hover:bg-transparent">
           <ArrowLeft className="w-6 h-6 text-gray-600" />
         </Button>
@@ -65,14 +65,14 @@ export default function LayoutBriefingPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="md:col-span-2 space-y-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div className="md:col-span-2 space-y-3">
           <Card>
             <CardHeader>
               <CardTitle>Session Details</CardTitle>
               <CardDescription>Schedule and record the briefing session</CardDescription>
             </CardHeader>
-            <CardContent className="space-y-6">
+            <CardContent className="space-y-3">
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label>Date</Label>
@@ -139,7 +139,7 @@ export default function LayoutBriefingPage() {
           </Card>
         </div>
 
-        <div className="space-y-6">
+        <div className="space-y-3">
           <Card className="bg-purple-50 border-purple-200">
             <CardHeader>
               <CardTitle className="text-purple-900 flex items-center gap-2">
@@ -147,7 +147,7 @@ export default function LayoutBriefingPage() {
                 Session Summary
               </CardTitle>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-2">
               <div className="text-sm text-purple-800">
                 <p className="font-medium mb-1">Checklist:</p>
                 <ul className="list-disc list-inside space-y-1">

@@ -411,7 +411,7 @@ export default function IssuesRisksPage() {
  };
 
  return (
-  <div className="p-6 space-y-6">
+  <div className="p-6 space-y-3">
    {/* Header */}
    <div className="flex justify-between items-center">
     <div>
@@ -461,8 +461,8 @@ export default function IssuesRisksPage() {
    </div>
 
    {/* Statistics Cards */}
-   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
      <div className="flex items-center justify-between">
       <div>
        <p className="text-sm text-gray-600">Total Items</p>
@@ -479,7 +479,7 @@ export default function IssuesRisksPage() {
      </div>
     </div>
 
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
      <div className="flex items-center justify-between">
       <div>
        <p className="text-sm text-gray-600">Critical Items</p>
@@ -494,7 +494,7 @@ export default function IssuesRisksPage() {
      </div>
     </div>
 
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
      <div className="flex items-center justify-between">
       <div>
        <p className="text-sm text-gray-600">Active Items</p>
@@ -509,7 +509,7 @@ export default function IssuesRisksPage() {
      </div>
     </div>
 
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
      <div className="flex items-center justify-between">
       <div>
        <p className="text-sm text-gray-600">Cost Impact</p>
@@ -688,7 +688,7 @@ export default function IssuesRisksPage() {
            </div>
 
            {/* Dates */}
-           <div className="flex items-center gap-6 text-sm mb-3">
+           <div className="flex items-center gap-3 text-sm mb-3">
             <div className="flex items-center gap-2">
              <Calendar className="w-4 h-4 text-gray-400" />
              <span className="text-gray-600">Raised:</span>

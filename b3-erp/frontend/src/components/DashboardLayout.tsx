@@ -32,11 +32,11 @@ export default function DashboardLayout({ children, pageTitle }: DashboardLayout
       <Sidebar isOpen={sidebarOpen} onToggle={() => setSidebarOpen(!sidebarOpen)} />
 
       {/* Main Content Area */}
-      <div className={`flex-1 flex flex-col transition-all duration-300 ${sidebarOpen ? 'lg:ml-[315px]' : 'lg:ml-20'} overflow-hidden`}>
+      <div className={`flex-1 flex flex-col transition-all duration-300 ${sidebarOpen ? 'lg:ml-[280px]' : 'lg:ml-20'} overflow-hidden`}>
         {/* Header */}
         <header className="bg-gradient-to-r from-white via-white to-brand-blue/5 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-40 shadow-sm flex-shrink-0">
           <div className="w-full px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between items-center h-16 gap-4">
+            <div className="flex justify-between items-center h-12 gap-4">
               {/* Logo and Menu Toggle */}
               <div className="flex items-center space-x-4 flex-shrink-0">
                 <button
@@ -45,7 +45,7 @@ export default function DashboardLayout({ children, pageTitle }: DashboardLayout
                 >
                   <Menu className="h-6 w-6 text-gray-600" />
                 </button>
-                <div className="flex items-center overflow-hidden h-16 w-20">
+                <div className="flex items-center overflow-hidden h-12 w-16">
                   <div className="relative w-12 h-12 transform scale-[2] origin-left">
                     <Image
                       src="/optiforge-logo.png"

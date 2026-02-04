@@ -203,7 +203,7 @@ export default function ProposalViewPage() {
       <div className="p-8">
         <div className="text-center">
           <h2 className="text-2xl font-semibold text-gray-900 mb-2">Proposal Not Found</h2>
-          <p className="text-gray-600 mb-4">The proposal you're looking for doesn't exist.</p>
+          <p className="text-gray-600 mb-2">The proposal you're looking for doesn't exist.</p>
           <Link href="/crm/proposals" className="text-blue-600 hover:underline">
             Return to Proposals
           </Link>
@@ -277,10 +277,10 @@ export default function ProposalViewPage() {
   return (
     <div className="p-8">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <button
           onClick={() => router.back()}
-          className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-4"
+          className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-2"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Back to Proposals</span>
@@ -348,8 +348,8 @@ export default function ProposalViewPage() {
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6 border border-green-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-8">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-3 border border-green-200">
           <div className="flex items-center justify-between mb-2">
             <p className="text-sm font-medium text-green-900">Total Value</p>
             <DollarSign className="w-5 h-5 text-green-600" />
@@ -357,7 +357,7 @@ export default function ProposalViewPage() {
           <p className="text-2xl font-bold text-green-900">${(proposal.totalValue / 1000).toFixed(0)}K</p>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-6 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-3 border border-purple-200">
           <div className="flex items-center justify-between mb-2">
             <p className="text-sm font-medium text-purple-900">Win Probability</p>
             <AlertCircle className="w-5 h-5 text-purple-600" />
@@ -365,7 +365,7 @@ export default function ProposalViewPage() {
           <p className="text-2xl font-bold text-purple-900">{proposal.probability}%</p>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 border border-blue-200">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-3 border border-blue-200">
           <div className="flex items-center justify-between mb-2">
             <p className="text-sm font-medium text-blue-900">Document</p>
             <FileText className="w-5 h-5 text-blue-600" />
@@ -374,7 +374,7 @@ export default function ProposalViewPage() {
           <p className="text-sm text-blue-700">{proposal.pages} pages</p>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-6 border border-orange-200">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-3 border border-orange-200">
           <div className="flex items-center justify-between mb-2">
             <p className="text-sm font-medium text-orange-900">Valid Until</p>
             <Calendar className="w-5 h-5 text-orange-600" />
@@ -386,13 +386,13 @@ export default function ProposalViewPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Main Content */}
-        <div className="lg:col-span-2 space-y-6">
+        <div className="lg:col-span-2 space-y-3">
           {/* Proposal Overview */}
-          <div className="bg-white rounded-xl border border-gray-200 p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Proposal Overview</h2>
-            <div className="space-y-4">
+          <div className="bg-white rounded-xl border border-gray-200 p-3">
+            <h2 className="text-lg font-semibold text-gray-900 mb-2">Proposal Overview</h2>
+            <div className="space-y-2">
               <div>
                 <h3 className="text-sm font-medium text-gray-700 mb-2">Executive Summary</h3>
                 <p className="text-gray-600 leading-relaxed">
@@ -436,8 +436,8 @@ export default function ProposalViewPage() {
 
           {/* Tags */}
           {proposal.tags && proposal.tags.length > 0 && (
-            <div className="bg-white rounded-xl border border-gray-200 p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4">Tags</h2>
+            <div className="bg-white rounded-xl border border-gray-200 p-3">
+              <h2 className="text-lg font-semibold text-gray-900 mb-2">Tags</h2>
               <div className="flex flex-wrap gap-2">
                 {proposal.tags.map((tag, index) => (
                   <span
@@ -453,9 +453,9 @@ export default function ProposalViewPage() {
 
           {/* Notes */}
           {proposal.notes && (
-            <div className="bg-white rounded-xl border border-gray-200 p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4">Internal Notes</h2>
-              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+            <div className="bg-white rounded-xl border border-gray-200 p-3">
+              <h2 className="text-lg font-semibold text-gray-900 mb-2">Internal Notes</h2>
+              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
                 <p className="text-gray-700">{proposal.notes}</p>
               </div>
             </div>
@@ -463,12 +463,12 @@ export default function ProposalViewPage() {
         </div>
 
         {/* Sidebar */}
-        <div className="space-y-6">
+        <div className="space-y-3">
           {/* Proposal Details */}
-          <div className="bg-white rounded-xl border border-gray-200 p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Proposal Details</h2>
+          <div className="bg-white rounded-xl border border-gray-200 p-3">
+            <h2 className="text-lg font-semibold text-gray-900 mb-2">Proposal Details</h2>
 
-            <div className="space-y-4">
+            <div className="space-y-2">
               <div>
                 <p className="text-sm text-gray-500 mb-1">Proposal Number</p>
                 <p className="text-sm font-medium text-gray-900">{proposal.proposalNumber}</p>
@@ -526,10 +526,10 @@ export default function ProposalViewPage() {
           </div>
 
           {/* Customer Information */}
-          <div className="bg-white rounded-xl border border-gray-200 p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Customer Information</h2>
+          <div className="bg-white rounded-xl border border-gray-200 p-3">
+            <h2 className="text-lg font-semibold text-gray-900 mb-2">Customer Information</h2>
 
-            <div className="space-y-4">
+            <div className="space-y-2">
               <div className="flex items-start gap-3">
                 <Building2 className="w-5 h-5 text-gray-400 mt-0.5" />
                 <div>

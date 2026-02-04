@@ -147,7 +147,7 @@ export default function QuoteEditPage() {
       <div className="p-8">
         <div className="text-center">
           <h2 className="text-2xl font-semibold text-gray-900 mb-2">Quote Not Found</h2>
-          <p className="text-gray-600 mb-4">The quote you're trying to edit doesn't exist.</p>
+          <p className="text-gray-600 mb-2">The quote you're trying to edit doesn't exist.</p>
           <Link href="/crm/quotes" className="text-blue-600 hover:underline">
             Return to Quotes
           </Link>
@@ -253,10 +253,10 @@ export default function QuoteEditPage() {
   return (
     <div className="p-8">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <button
           onClick={() => router.back()}
-          className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-4"
+          className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-2"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Back</span>
@@ -270,15 +270,15 @@ export default function QuoteEditPage() {
         </div>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-6">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <form onSubmit={handleSubmit} className="space-y-3">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
           {/* Main Form */}
-          <div className="lg:col-span-2 space-y-6">
+          <div className="lg:col-span-2 space-y-3">
             {/* Basic Information */}
-            <div className="bg-white rounded-xl border border-gray-200 p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4">Basic Information</h2>
+            <div className="bg-white rounded-xl border border-gray-200 p-3">
+              <h2 className="text-lg font-semibold text-gray-900 mb-2">Basic Information</h2>
 
-              <div className="space-y-4">
+              <div className="space-y-2">
                 {/* Quote Title */}
                 <div>
                   <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-1">
@@ -299,7 +299,7 @@ export default function QuoteEditPage() {
                   )}
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                   {/* Customer */}
                   <div>
                     <label htmlFor="customer" className="block text-sm font-medium text-gray-700 mb-1">
@@ -341,7 +341,7 @@ export default function QuoteEditPage() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                   {/* Status */}
                   <div>
                     <label htmlFor="status" className="block text-sm font-medium text-gray-700 mb-1">
@@ -421,8 +421,8 @@ export default function QuoteEditPage() {
             </div>
 
             {/* Quote Items */}
-            <div className="bg-white rounded-xl border border-gray-200 p-6">
-              <div className="flex items-center justify-between mb-4">
+            <div className="bg-white rounded-xl border border-gray-200 p-3">
+              <div className="flex items-center justify-between mb-2">
                 <h2 className="text-lg font-semibold text-gray-900">Quote Items</h2>
                 <button
                   type="button"
@@ -435,12 +435,12 @@ export default function QuoteEditPage() {
               </div>
 
               {errors.items && (
-                <p className="text-sm text-red-600 mb-4">{errors.items}</p>
+                <p className="text-sm text-red-600 mb-2">{errors.items}</p>
               )}
 
-              <div className="space-y-4">
+              <div className="space-y-2">
                 {items.map((item, index) => (
-                  <div key={item.id} className="border border-gray-200 rounded-lg p-4">
+                  <div key={item.id} className="border border-gray-200 rounded-lg p-3">
                     <div className="flex items-start justify-between mb-3">
                       <h3 className="font-semibold text-gray-900">Item {index + 1}</h3>
                       {items.length > 1 && (
@@ -581,12 +581,12 @@ export default function QuoteEditPage() {
           </div>
 
           {/* Sidebar */}
-          <div className="space-y-6">
+          <div className="space-y-3">
             {/* Quote Summary */}
-            <div className="bg-white rounded-xl border border-gray-200 p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4">Quote Summary</h2>
+            <div className="bg-white rounded-xl border border-gray-200 p-3">
+              <h2 className="text-lg font-semibold text-gray-900 mb-2">Quote Summary</h2>
 
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <div>
                   <p className="text-sm text-gray-500 mb-1">Quote Number</p>
                   <p className="text-sm font-medium text-gray-900">{existingQuote.quoteNumber}</p>
@@ -612,7 +612,7 @@ export default function QuoteEditPage() {
             </div>
 
             {/* Action Buttons */}
-            <div className="bg-white rounded-xl border border-gray-200 p-6">
+            <div className="bg-white rounded-xl border border-gray-200 p-3">
               <div className="space-y-3">
                 <button
                   type="submit"

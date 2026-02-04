@@ -159,19 +159,19 @@ export default function ViewTerritoryPage() {
   const quotaProgress = territory.performance.quotaAttainment;
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 ">
-      <div className=" mx-auto space-y-6">
+    <div className="w-full h-full px-3 py-2 ">
+      <div className=" mx-auto space-y-3">
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
             <button
               onClick={handleBack}
-              className="flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-4 transition-colors"
+              className="flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-2 transition-colors"
             >
               <ArrowLeft className="w-5 h-5" />
               Back to Territories
             </button>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
               <div className="p-4 bg-blue-50 rounded-xl">
                 <TypeIcon className="w-10 h-10 text-blue-600" />
               </div>
@@ -194,7 +194,7 @@ export default function ViewTerritoryPage() {
           </div>
           <button
             onClick={handleEdit}
-            className="flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            className="flex items-center gap-2 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
           >
             <Edit className="w-5 h-5" />
             Edit Territory
@@ -202,8 +202,8 @@ export default function ViewTerritoryPage() {
         </div>
 
         {/* Performance Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-6 text-white">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-3 text-white">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-white/80 text-sm">Accounts</p>
@@ -217,7 +217,7 @@ export default function ViewTerritoryPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl p-6 text-white">
+          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl p-3 text-white">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-white/80 text-sm">Active Opportunities</p>
@@ -228,7 +228,7 @@ export default function ViewTerritoryPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-6 text-white">
+          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-3 text-white">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-white/80 text-sm">Revenue</p>
@@ -244,7 +244,7 @@ export default function ViewTerritoryPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl p-6 text-white">
+          <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl p-3 text-white">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-white/80 text-sm">Win Rate</p>
@@ -262,13 +262,13 @@ export default function ViewTerritoryPage() {
         </div>
 
         {/* Main Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
           {/* Left Column */}
-          <div className="lg:col-span-2 space-y-6">
+          <div className="lg:col-span-2 space-y-3">
             {/* Quota Progress */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <h2 className="text-xl font-bold text-gray-900 mb-4">Quota Attainment</h2>
-              <div className="space-y-4">
+            <div className="bg-white rounded-lg border border-gray-200 p-3">
+              <h2 className="text-xl font-bold text-gray-900 mb-2">Quota Attainment</h2>
+              <div className="space-y-2">
                 <div className="flex items-center justify-between">
                   <span className="text-sm font-medium text-gray-700">Current Progress</span>
                   <span className={`text-lg font-bold ${
@@ -307,9 +307,9 @@ export default function ViewTerritoryPage() {
             </div>
 
             {/* Performance Metrics */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <h2 className="text-xl font-bold text-gray-900 mb-4">Performance Metrics</h2>
-              <div className="grid grid-cols-3 gap-6">
+            <div className="bg-white rounded-lg border border-gray-200 p-3">
+              <h2 className="text-xl font-bold text-gray-900 mb-2">Performance Metrics</h2>
+              <div className="grid grid-cols-3 gap-3">
                 <div>
                   <p className="text-sm text-gray-500 mb-1">Avg Deal Size</p>
                   <p className="text-2xl font-bold text-gray-900">
@@ -333,9 +333,9 @@ export default function ViewTerritoryPage() {
             </div>
 
             {/* Coverage Details */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <h2 className="text-xl font-bold text-gray-900 mb-4">Territory Coverage</h2>
-              <div className="space-y-4">
+            <div className="bg-white rounded-lg border border-gray-200 p-3">
+              <h2 className="text-xl font-bold text-gray-900 mb-2">Territory Coverage</h2>
+              <div className="space-y-2">
                 {territory.coverage.countries && (
                   <div className="flex items-start gap-3">
                     <Globe className="w-5 h-5 text-gray-400 mt-0.5" />
@@ -435,12 +435,12 @@ export default function ViewTerritoryPage() {
           </div>
 
           {/* Right Column */}
-          <div className="space-y-6">
+          <div className="space-y-3">
             {/* Assigned Owner */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <h2 className="text-xl font-bold text-gray-900 mb-4">Territory Owner</h2>
-              <div className="space-y-4">
-                <div className="flex items-center gap-4">
+            <div className="bg-white rounded-lg border border-gray-200 p-3">
+              <h2 className="text-xl font-bold text-gray-900 mb-2">Territory Owner</h2>
+              <div className="space-y-2">
+                <div className="flex items-center gap-2">
                   <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white text-xl font-bold">
                     {territory.assignedTo.avatar}
                   </div>
@@ -468,8 +468,8 @@ export default function ViewTerritoryPage() {
             </div>
 
             {/* Territory Info */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <h2 className="text-xl font-bold text-gray-900 mb-4">Territory Information</h2>
+            <div className="bg-white rounded-lg border border-gray-200 p-3">
+              <h2 className="text-xl font-bold text-gray-900 mb-2">Territory Information</h2>
               <div className="space-y-3">
                 <div>
                   <p className="text-sm text-gray-500 mb-1">Region</p>

@@ -241,10 +241,10 @@ export default function WonOpportunitiesPage() {
   };
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 ">
+    <div className="w-full h-full px-3 py-2 ">
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-6 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+      <div className="grid grid-cols-1 md:grid-cols-6 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600">Total Won</p>
@@ -254,7 +254,7 @@ export default function WonOpportunitiesPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-lg p-4 border border-emerald-200 md:col-span-2">
+        <div className="bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-lg p-3 border border-emerald-200 md:col-span-2">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-emerald-600">Total Revenue</p>
@@ -266,7 +266,7 @@ export default function WonOpportunitiesPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Avg Deal Size</p>
@@ -278,7 +278,7 @@ export default function WonOpportunitiesPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-purple-600">Avg Days to Close</p>
@@ -288,7 +288,7 @@ export default function WonOpportunitiesPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-amber-50 to-amber-100 rounded-lg p-4 border border-amber-200">
+        <div className="bg-gradient-to-br from-amber-50 to-amber-100 rounded-lg p-3 border border-amber-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-amber-600">Avg Discount</p>
@@ -300,10 +300,10 @@ export default function WonOpportunitiesPage() {
       </div>
 
       {/* Top Performers & Win Reasons */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
         {/* Top Performers */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <div className="flex items-center mb-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <div className="flex items-center mb-2">
             <Star className="h-5 w-5 text-yellow-500 mr-2" />
             <h2 className="text-lg font-bold text-gray-900">Top Performers</h2>
           </div>
@@ -341,8 +341,8 @@ export default function WonOpportunitiesPage() {
         </div>
 
         {/* Top Win Reasons */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <div className="flex items-center mb-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <div className="flex items-center mb-2">
             <CheckCircle className="h-5 w-5 text-green-500 mr-2" />
             <h2 className="text-lg font-bold text-gray-900">Top Win Reasons</h2>
           </div>
@@ -370,7 +370,7 @@ export default function WonOpportunitiesPage() {
       </div>
 
       {/* Search and Filters */}
-      <div className="bg-white rounded-lg border border-gray-200 p-4 mb-6">
+      <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
         <div className="flex items-center space-x-4">
           <div className="flex-1">
             <div className="relative">
@@ -408,11 +408,11 @@ export default function WonOpportunitiesPage() {
       </div>
 
       {/* Won Opportunities List */}
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredOpportunities.map((opp) => (
           <div
             key={opp.id}
-            className="bg-white rounded-lg border-2 border-green-200 p-6 hover:shadow-lg transition-shadow"
+            className="bg-white rounded-lg border-2 border-green-200 p-3 hover:shadow-lg transition-shadow"
           >
             <div className="flex items-start justify-between">
               {/* Left Side */}
@@ -425,7 +425,7 @@ export default function WonOpportunitiesPage() {
                   </span>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4 mb-4">
+                <div className="grid grid-cols-2 gap-2 mb-2">
                   <div className="flex items-center text-gray-600">
                     <Building2 className="h-4 w-4 mr-2" />
                     <span className="font-medium">{opp.accountName}</span>
@@ -482,7 +482,7 @@ export default function WonOpportunitiesPage() {
 
               {/* Right Side - Value Info */}
               <div className="ml-6 text-right">
-                <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+                <div className="bg-green-50 rounded-lg p-3 border border-green-200">
                   <p className="text-sm font-medium text-green-600 mb-1">Deal Value</p>
                   <p className="text-3xl font-bold text-green-900 mb-2">
                     ${(opp.value / 1000).toFixed(0)}K

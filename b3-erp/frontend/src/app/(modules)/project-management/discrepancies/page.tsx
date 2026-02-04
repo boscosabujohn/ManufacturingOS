@@ -81,8 +81,8 @@ export default function DiscrepanciesPage() {
   };
 
   return (
-    <div className="w-full py-6 space-y-6">
-      <div className="flex items-center justify-between mb-6">
+    <div className="w-full py-2 space-y-3">
+      <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-4">
           <Button variant="ghost" onClick={() => router.back()} className="p-0 hover:bg-transparent">
             <ArrowLeft className="w-6 h-6 text-gray-600" />
@@ -151,7 +151,7 @@ export default function DiscrepanciesPage() {
         </Dialog>
       </div>
 
-      <div className="grid grid-cols-1 gap-6">
+      <div className="grid grid-cols-1 gap-3">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between">
             <div>
@@ -167,7 +167,7 @@ export default function DiscrepanciesPage() {
             {loading ? (
               <p className="text-center py-8 text-gray-500">Loading discrepancies...</p>
             ) : (
-              <div className="space-y-4">
+              <div className="space-y-2">
                 {discrepancies.length === 0 ? (
                   <p className="text-center py-8 text-gray-500">No discrepancies logged yet.</p>
                 ) : (

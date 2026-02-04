@@ -17,7 +17,7 @@ export class AdminUserSeederService implements OnModuleInit {
     private readonly roleRepository: Repository<Role>,
     @InjectRepository(UserRole)
     private readonly userRoleRepository: Repository<UserRole>,
-  ) {}
+  ) { }
 
   async onModuleInit(): Promise<void> {
     // Delay to ensure roles are seeded first
@@ -41,7 +41,15 @@ export class AdminUserSeederService implements OnModuleInit {
       });
 
       if (existingUser) {
-        this.logger.log('Admin user already exists, skipping creation');
+        if (!existingUser.isSystemAdmin) {
+          existingUser.isSystemAdmin = true;
+          await this.userRepository.save(existingUser);
+          this.logger.log('Updated existing admin user with isSystemAdmin: true');
+        } else {
+          this.logger.log('Admin user already exists with isSystemAdmin: true, skipping creation');
+        }
+        // Proceed to ensure role assignment
+        await this.ensureRoleAssignment(existingUser);
         return;
       }
 
@@ -92,54 +100,7 @@ export class AdminUserSeederService implements OnModuleInit {
       const savedUser = await this.userRepository.save(adminUser);
       this.logger.log(`Created admin user: ${adminEmail}`);
 
-      // Find the SUPER_ADMIN role
-      const superAdminRole = await this.roleRepository.findOne({
-        where: { code: 'SUPER_ADMIN' },
-      });
-
-      if (!superAdminRole) {
-        this.logger.warn('SUPER_ADMIN role not found, user created without role assignment');
-        return;
-      }
-
-      // Check if user-role mapping already exists
-      const existingUserRole = await this.userRoleRepository.findOne({
-        where: {
-          userId: savedUser.id,
-          roleId: superAdminRole.id,
-        },
-      });
-
-      if (!existingUserRole) {
-        // Assign SUPER_ADMIN role to the admin user
-        const userRole = this.userRoleRepository.create({
-          userId: savedUser.id,
-          roleId: superAdminRole.id,
-          status: UserRoleStatus.ACTIVE,
-          isPrimary: true,
-          assignedAt: new Date(),
-          assignedBy: 'system',
-          effectiveFrom: new Date(),
-          approvedBy: 'system',
-          approvedAt: new Date(),
-          metadata: {
-            seededAt: new Date().toISOString(),
-            source: 'system-seeder',
-            reason: 'Default system administrator',
-          },
-          createdBy: 'system',
-        } as Partial<UserRole>);
-
-        await this.userRoleRepository.save(userRole);
-        this.logger.log(`Assigned SUPER_ADMIN role to admin user`);
-
-        // Update role user count
-        await this.roleRepository.increment(
-          { id: superAdminRole.id },
-          'userCount',
-          1,
-        );
-      }
+      await this.ensureRoleAssignment(savedUser);
 
       this.logger.log('Admin user seeding completed successfully');
       this.logger.log('---------------------------------------------');
@@ -151,6 +112,57 @@ export class AdminUserSeederService implements OnModuleInit {
       this.logger.warn('Please change the default password after first login!');
     } catch (error) {
       this.logger.error(`Failed to seed admin user: ${error.message}`);
+    }
+  }
+
+  private async ensureRoleAssignment(user: User): Promise<void> {
+    // Find the SUPER_ADMIN role
+    const superAdminRole = await this.roleRepository.findOne({
+      where: { code: 'SUPER_ADMIN' },
+    });
+
+    if (!superAdminRole) {
+      this.logger.warn('SUPER_ADMIN role not found, user created without role assignment');
+      return;
+    }
+
+    // Check if user-role mapping already exists
+    const existingUserRole = await this.userRoleRepository.findOne({
+      where: {
+        userId: user.id,
+        roleId: superAdminRole.id,
+      },
+    });
+
+    if (!existingUserRole) {
+      // Assign SUPER_ADMIN role to the admin user
+      const userRole = this.userRoleRepository.create({
+        userId: user.id,
+        roleId: superAdminRole.id,
+        status: UserRoleStatus.ACTIVE,
+        isPrimary: true,
+        assignedAt: new Date(),
+        assignedBy: 'system',
+        effectiveFrom: new Date(),
+        approvedBy: 'system',
+        approvedAt: new Date(),
+        metadata: {
+          seededAt: new Date().toISOString(),
+          source: 'system-seeder',
+          reason: 'Default system administrator',
+        },
+        createdBy: 'system',
+      } as Partial<UserRole>);
+
+      await this.userRoleRepository.save(userRole);
+      this.logger.log(`Assigned SUPER_ADMIN role to admin user`);
+
+      // Update role user count
+      await this.roleRepository.increment(
+        { id: superAdminRole.id },
+        'userCount',
+        1,
+      );
     }
   }
 }

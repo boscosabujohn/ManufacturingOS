@@ -122,7 +122,7 @@ export default function CampaignViewPage() {
       <div className="p-8">
         <div className="text-center">
           <h2 className="text-2xl font-semibold text-gray-900 mb-2">Campaign Not Found</h2>
-          <p className="text-gray-600 mb-4">The campaign you're looking for doesn't exist.</p>
+          <p className="text-gray-600 mb-2">The campaign you're looking for doesn't exist.</p>
           <Link href="/crm/campaigns" className="text-blue-600 hover:underline">
             Return to Campaigns
           </Link>
@@ -223,10 +223,10 @@ export default function CampaignViewPage() {
   return (
     <div className="p-8">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <button
           onClick={() => router.back()}
-          className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-4"
+          className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-2"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Back to Campaigns</span>
@@ -292,8 +292,8 @@ export default function CampaignViewPage() {
       </div>
 
       {/* Performance Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 mb-8">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-3 border border-blue-200">
           <div className="flex items-center justify-between mb-2">
             <p className="text-sm font-medium text-blue-900">Total Revenue</p>
             <DollarSign className="w-5 h-5 text-blue-600" />
@@ -302,7 +302,7 @@ export default function CampaignViewPage() {
           <p className="text-sm text-blue-700 mt-1">ROI: {roi.toFixed(1)}%</p>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-3 border border-green-200">
           <div className="flex items-center justify-between mb-2">
             <p className="text-sm font-medium text-green-900">Conversions</p>
             <Target className="w-5 h-5 text-green-600" />
@@ -311,7 +311,7 @@ export default function CampaignViewPage() {
           <p className="text-sm text-green-700 mt-1">Rate: {conversionRate.toFixed(1)}%</p>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-6 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-3 border border-purple-200">
           <div className="flex items-center justify-between mb-2">
             <p className="text-sm font-medium text-purple-900">Audience Reached</p>
             <Users className="w-5 h-5 text-purple-600" />
@@ -320,7 +320,7 @@ export default function CampaignViewPage() {
           <p className="text-sm text-purple-700 mt-1">Delivered: {campaign.delivered.toLocaleString()}</p>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-6 border border-orange-200">
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-3 border border-orange-200">
           <div className="flex items-center justify-between mb-2">
             <p className="text-sm font-medium text-orange-900">Budget Used</p>
             <BarChart3 className="w-5 h-5 text-orange-600" />
@@ -330,14 +330,14 @@ export default function CampaignViewPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Main Content */}
-        <div className="lg:col-span-2 space-y-6">
+        <div className="lg:col-span-2 space-y-3">
           {/* Campaign Performance */}
-          <div className="bg-white rounded-xl border border-gray-200 p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Campaign Performance</h2>
+          <div className="bg-white rounded-xl border border-gray-200 p-3">
+            <h2 className="text-lg font-semibold text-gray-900 mb-2">Campaign Performance</h2>
 
-            <div className="space-y-4">
+            <div className="space-y-2">
               {/* Sent */}
               <div>
                 <div className="flex items-center justify-between mb-2">
@@ -405,8 +405,8 @@ export default function CampaignViewPage() {
 
           {/* Campaign Goals */}
           {campaign.goals && campaign.goals.length > 0 && (
-            <div className="bg-white rounded-xl border border-gray-200 p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4">Campaign Goals</h2>
+            <div className="bg-white rounded-xl border border-gray-200 p-3">
+              <h2 className="text-lg font-semibold text-gray-900 mb-2">Campaign Goals</h2>
               <ul className="space-y-3">
                 {campaign.goals.map((goal, index) => (
                   <li key={index} className="flex items-start gap-3">
@@ -420,8 +420,8 @@ export default function CampaignViewPage() {
 
           {/* Marketing Channels */}
           {campaign.channels && campaign.channels.length > 0 && (
-            <div className="bg-white rounded-xl border border-gray-200 p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4">Marketing Channels</h2>
+            <div className="bg-white rounded-xl border border-gray-200 p-3">
+              <h2 className="text-lg font-semibold text-gray-900 mb-2">Marketing Channels</h2>
               <div className="flex flex-wrap gap-2">
                 {campaign.channels.map((channel, index) => (
                   <span
@@ -438,12 +438,12 @@ export default function CampaignViewPage() {
         </div>
 
         {/* Sidebar */}
-        <div className="space-y-6">
+        <div className="space-y-3">
           {/* Campaign Details */}
-          <div className="bg-white rounded-xl border border-gray-200 p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Campaign Details</h2>
+          <div className="bg-white rounded-xl border border-gray-200 p-3">
+            <h2 className="text-lg font-semibold text-gray-900 mb-2">Campaign Details</h2>
 
-            <div className="space-y-4">
+            <div className="space-y-2">
               <div>
                 <p className="text-sm text-gray-500 mb-1">Campaign ID</p>
                 <p className="text-sm font-medium text-gray-900">{campaign.id}</p>
@@ -484,10 +484,10 @@ export default function CampaignViewPage() {
           </div>
 
           {/* Budget Information */}
-          <div className="bg-white rounded-xl border border-gray-200 p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Budget Information</h2>
+          <div className="bg-white rounded-xl border border-gray-200 p-3">
+            <h2 className="text-lg font-semibold text-gray-900 mb-2">Budget Information</h2>
 
-            <div className="space-y-4">
+            <div className="space-y-2">
               <div>
                 <p className="text-sm text-gray-500 mb-1">Total Budget</p>
                 <p className="text-xl font-bold text-gray-900">${campaign.budget.toLocaleString()}</p>

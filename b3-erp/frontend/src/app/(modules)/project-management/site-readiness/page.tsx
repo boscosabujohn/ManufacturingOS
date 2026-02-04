@@ -29,8 +29,8 @@ export default function SiteReadinessPage() {
   };
 
   return (
-    <div className="w-full py-6 space-y-6">
-      <div className="flex items-center gap-4 mb-6">
+    <div className="w-full py-2 space-y-3">
+      <div className="flex items-center gap-4 mb-3">
         <Button variant="ghost" onClick={() => router.back()} className="p-0 hover:bg-transparent">
           <ArrowLeft className="w-6 h-6 text-gray-600" />
         </Button>
@@ -40,7 +40,7 @@ export default function SiteReadinessPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         <Card className="border-l-4 border-l-green-500">
           <CardHeader>
             <div className="flex items-center gap-3">

@@ -78,8 +78,8 @@ export default function DrawingVerificationPage() {
   const isComplete = pendingCount === 0 && drawings.length > 0;
 
   return (
-    <div className="w-full py-6 space-y-6">
-      <div className="flex items-center gap-4 mb-6">
+    <div className="w-full py-2 space-y-3">
+      <div className="flex items-center gap-4 mb-3">
         <Button variant="ghost" onClick={() => router.back()} className="p-0 hover:bg-transparent">
           <ArrowLeft className="w-6 h-6 text-gray-600" />
         </Button>
@@ -89,7 +89,7 @@ export default function DrawingVerificationPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
         <Card className="md:col-span-2">
           <CardHeader>
             <CardTitle>Drawings List</CardTitle>
@@ -99,7 +99,7 @@ export default function DrawingVerificationPage() {
             {loading ? (
               <p className="text-center py-4">Loading drawings...</p>
             ) : (
-              <div className="space-y-4">
+              <div className="space-y-2">
                 {drawings.map((drawing) => (
                   <div key={drawing.id} className="flex items-center justify-between p-4 border rounded-lg bg-white shadow-sm">
                     <div className="flex items-center gap-4">
@@ -133,12 +133,12 @@ export default function DrawingVerificationPage() {
           </CardContent>
         </Card>
 
-        <div className="space-y-6">
+        <div className="space-y-3">
           <Card>
             <CardHeader>
               <CardTitle>Status Overview</CardTitle>
             </CardHeader>
-            <CardContent className="flex flex-col items-center justify-center py-6 text-center space-y-4">
+            <CardContent className="flex flex-col items-center justify-center py-2 text-center space-y-2">
               {isComplete ? (
                 <div className="p-4 bg-green-100 rounded-full">
                   <CheckCircle className="w-8 h-8 text-green-600" />
@@ -171,7 +171,7 @@ export default function DrawingVerificationPage() {
               <CardHeader>
                 <CardTitle className="text-red-700">Reject Drawing</CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4">
+              <CardContent className="space-y-2">
                 <p className="text-sm text-red-600">Please provide a reason for rejection:</p>
                 <Textarea
                   value={rejectReason}

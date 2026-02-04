@@ -251,8 +251,8 @@ export default function AcceptedHandoverPage() {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl p-6 text-white shadow-lg">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+          <div className="bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-green-100 text-sm font-medium">Accepted Handovers</p>
@@ -265,7 +265,7 @@ export default function AcceptedHandoverPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-yellow-500 to-orange-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-yellow-500 to-orange-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-yellow-100 text-sm font-medium">Average Rating</p>
@@ -278,7 +278,7 @@ export default function AcceptedHandoverPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-blue-500 to-cyan-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-blue-500 to-cyan-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-blue-100 text-sm font-medium">Installation Pending</p>
@@ -293,7 +293,7 @@ export default function AcceptedHandoverPage() {
         </div>
 
         {/* Search */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
             <input
@@ -307,9 +307,9 @@ export default function AcceptedHandoverPage() {
         </div>
 
         {/* Handovers Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
           {filteredHandovers.map((handover) => (
-            <div key={handover.id} className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
+            <div key={handover.id} className="bg-white rounded-xl shadow-sm border border-gray-200 p-3 hover:shadow-md transition-shadow">
               <div className="space-y-4">
                 {/* Header */}
                 <div className="flex items-start justify-between">

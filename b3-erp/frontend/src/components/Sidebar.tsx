@@ -1,8 +1,10 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
+import { useAuth } from '@/context/AuthContext';
 import {
   Users,
   ShoppingCart,
@@ -29,6 +31,7 @@ import {
   ClipboardCheck,
   Palette,
   Search,
+  HelpCircle,
 } from 'lucide-react';
 
 interface SubMenuItem {
@@ -36,6 +39,7 @@ interface SubMenuItem {
   name: string;
   href: string;
   description?: string;
+  permission?: string;
   subItems?: SubMenuItem[]; // Support for nested sub-menus
 }
 
@@ -47,6 +51,7 @@ interface MenuItem {
   color: string;
   bgColor: string; // Background color for active state
   hoverColor: string; // Hover background color
+  permission?: string;
   subItems?: SubMenuItem[];
 }
 
@@ -418,145 +423,270 @@ const menuItems: MenuItem[] = [
   {
     id: 'sales',
     name: 'Sales',
-    icon: ShoppingCart,
+    icon: ShoppingBag,
     color: 'text-white',
     bgColor: 'bg-brand-red',
     hoverColor: 'hover:bg-white/5',
     subItems: [
       { id: 'sales-dashboard', name: 'Sales Dashboard', href: '/sales', description: 'Sales overview' },
       {
-        id: 'quotation-management',
+        id: 'sales-quotations',
         name: 'Quotations',
         href: '#',
-        description: 'Sales quotations',
+        description: 'Manage quotations',
         subItems: [
-          { id: 'all-quotations', name: 'All Quotations', href: '/sales/quotations', description: 'View all quotations' },
-          { id: 'create-quotation', name: 'Create Quotation', href: '/sales/quotations/create', description: 'New quotation' },
-          { id: 'pending-quotations', name: 'Pending Approval', href: '/sales/quotations/pending', description: 'Awaiting approval' },
-          { id: 'approved-quotations', name: 'Approved', href: '/sales/quotations/approved', description: 'Approved quotes' },
-          { id: 'converted-quotations', name: 'Converted to Orders', href: '/sales/quotations/converted', description: 'Quote to order' },
-          { id: 'expired-quotations', name: 'Expired', href: '/sales/quotations/expired', description: 'Expired quotes' },
+          { id: 'all-quotations', name: 'All Quotations', href: '/sales/quotations', description: 'View all quotes' },
+          { id: 'create-quotation', name: 'Create Quotation', href: '/sales/quotations/create', description: 'New quote' },
         ],
       },
       {
-        id: 'order-management',
+        id: 'sales-orders',
         name: 'Sales Orders',
         href: '#',
-        description: 'Order management',
+        description: 'Manage orders',
         subItems: [
           { id: 'all-orders', name: 'All Orders', href: '/sales/orders', description: 'View all orders' },
-          { id: 'create-order', name: 'Create Order', href: '/sales/orders/create', description: 'New sales order' },
-          { id: 'confirmed-orders', name: 'Confirmed Orders', href: '/sales/orders/confirmed', description: 'Confirmed orders' },
-          { id: 'in-production', name: 'In Production', href: '/sales/orders/production', description: 'Manufacturing stage' },
-          { id: 'ready-ship', name: 'Ready to Ship', href: '/sales/orders/ready', description: 'Ready for dispatch' },
-          { id: 'shipped-orders', name: 'Shipped', href: '/sales/orders/shipped', description: 'In transit' },
-          { id: 'delivered-orders', name: 'Delivered', href: '/sales/orders/delivered', description: 'Completed orders' },
-          { id: 'order-tracking', name: 'Order Tracking', href: '/sales/orders/tracking', description: 'Track shipments' },
+          { id: 'create-order', name: 'Create Order', href: '/sales/orders/create', description: 'New order' },
         ],
       },
       {
-        id: 'rfp-management',
-        name: 'RFP Management',
-        href: '#',
-        description: 'Request for Proposals',
-        subItems: [
-          { id: 'all-rfp', name: 'All RFPs', href: '/sales/rfp', description: 'View all RFPs' },
-          { id: 'create-rfp', name: 'Create RFP Response', href: '/sales/rfp/create', description: 'New RFP response' },
-          { id: 'submitted-rfp', name: 'Submitted RFPs', href: '/sales/rfp/submitted', description: 'Submitted proposals' },
-          { id: 'shortlisted-rfp', name: 'Shortlisted', href: '/sales/rfp/shortlisted', description: 'Shortlisted RFPs' },
-          { id: 'won-rfp', name: 'Won RFPs', href: '/sales/rfp/won', description: 'Successful bids' },
-        ],
-      },
-      {
-        id: 'invoicing',
-        name: 'Invoicing',
+        id: 'sales-invoices',
+        name: 'Invoices',
         href: '#',
         description: 'Sales invoices',
         subItems: [
-          { id: 'all-invoices', name: 'All Invoices', href: '/sales/invoices', description: 'View invoices' },
+          { id: 'all-invoices', name: 'All Invoices', href: '/sales/invoices', description: 'View all invoices' },
           { id: 'create-invoice', name: 'Create Invoice', href: '/sales/invoices/create', description: 'New invoice' },
-          { id: 'pending-invoices', name: 'Pending Payment', href: '/sales/invoices/pending', description: 'Awaiting payment' },
-          { id: 'paid-invoices', name: 'Paid', href: '/sales/invoices/paid', description: 'Completed payments' },
-          { id: 'overdue-invoices', name: 'Overdue', href: '/sales/invoices/overdue', description: 'Overdue invoices' },
-          { id: 'credit-notes', name: 'Credit Notes', href: '/sales/invoices/credit-notes', description: 'Issue credits' },
         ],
       },
       {
-        id: 'delivery-handover',
-        name: 'Delivery & Handover',
+        id: 'sales-delivery',
+        name: 'Delivery',
         href: '#',
-        description: 'Project completion',
+        description: 'Shipping & Handover',
         subItems: [
-          { id: 'all-handovers', name: 'All Handovers', href: '/sales/handover', description: 'Project handovers' },
-          { id: 'pending-handover', name: 'Pending Handover', href: '/sales/handover/pending', description: 'Awaiting handover' },
-          { id: 'accepted-handover', name: 'Accepted', href: '/sales/handover/accepted', description: 'Customer accepted' },
-          { id: 'delivery-notes', name: 'Delivery Notes', href: '/sales/delivery/notes', description: 'Delivery documentation' },
-          { id: 'installation', name: 'Installation Tracking', href: '/sales/delivery/installation', description: 'Track installations' },
+          { id: 'delivery-note', name: 'Delivery Notes', href: '/sales/delivery', description: 'Manage deliveries' },
+          { id: 'handover', name: 'Handover Process', href: '/sales/handover', description: 'Order handover' },
         ],
       },
+      { id: 'sales-pricing', name: 'Pricing & Discounts', href: '/sales/pricing', description: 'Price lists' },
+      { id: 'sales-returns', name: 'Sales Returns', href: '/sales/returns', description: 'Manage returns' },
+      { id: 'sales-analytics', name: 'Sales Analytics', href: '/sales/analytics', description: 'Performance metrics' },
+      { id: 'sales-settings', name: 'Sales Settings', href: '/sales/settings', description: 'Configuration' },
+    ],
+  },
+  {
+    id: 'finance',
+    name: 'Finance',
+    icon: DollarSign,
+    color: 'text-white',
+    bgColor: 'bg-brand-red',
+    hoverColor: 'hover:bg-white/5',
+    permission: 'FINANCE_VIEW',
+    subItems: [
+      { id: 'finance-dashboard-main', name: 'Finance Dashboard', href: '/finance/dashboard', description: 'Financial overview' },
       {
-        id: 'pricing',
-        name: 'Pricing & Discounts',
-        href: '#',
-        description: 'Price management',
-        subItems: [
-          { id: 'price-lists', name: 'Price Lists', href: '/sales/pricing/lists', description: 'Manage price lists' },
-          { id: 'discount-rules', name: 'Discount Rules', href: '/sales/pricing/discounts', description: 'Discount policies' },
-          { id: 'special-pricing', name: 'Special Pricing', href: '/sales/pricing/special', description: 'Customer-specific pricing' },
-          { id: 'promotions', name: 'Promotions', href: '/sales/pricing/promotions', description: 'Sales promotions' },
-        ],
-      },
-      {
-        id: 'returns',
-        name: 'Returns & Replacements',
-        href: '#',
-        description: 'Manage returns',
-        subItems: [
-          { id: 'sales-returns', name: 'Sales Returns', href: '/sales/returns', description: 'Return requests' },
-          { id: 'replacements', name: 'Replacements', href: '/sales/returns/replacements', description: 'Product replacements' },
-          { id: 'refunds', name: 'Refunds', href: '/sales/returns/refunds', description: 'Process refunds' },
-        ],
-      },
-      {
-        id: 'sales-analytics',
-        name: 'Sales Analytics',
-        href: '#',
-        description: 'Sales insights',
-        subItems: [
-          { id: 'sales-dashboard-analytics', name: 'Sales Analytics', href: '/sales/analytics', description: 'Performance metrics' },
-          { id: 'sales-perf-reports', name: 'Sales Reports', href: '/sales/analytics/reports', description: 'Sales reports' },
-          { id: 'product-performance', name: 'Product Performance', href: '/sales/analytics/products', description: 'Product analysis' },
-          { id: 'sales-customer-analytics-section', name: 'Customer Analytics', href: '/sales/analytics/customers', description: 'Customer insights' },
-          { id: 'sales-forecast', name: 'Sales Forecast', href: '/sales/analytics/forecast', description: 'Revenue forecasting' },
-          { id: 'sales-targets', name: 'Sales Targets', href: '/sales/analytics/targets', description: 'Track targets' },
-        ],
-      },
-      {
-        id: 'sales-settings',
-        name: 'Sales Settings',
-        href: '#',
-        description: 'Configuration',
-        subItems: [
-          { id: 'sales-terms', name: 'Terms & Conditions', href: '/sales/settings/terms', description: 'Sales T&C' },
-          { id: 'payment-terms', name: 'Payment Terms', href: '/sales/settings/payment-terms', description: 'Payment conditions' },
-          { id: 'shipping-terms', name: 'Shipping Terms', href: '/sales/settings/shipping', description: 'Shipping policies' },
-          { id: 'tax-settings', name: 'Tax Settings', href: '/sales/settings/tax', description: 'Tax configuration' },
-        ],
-      },
-      {
-        id: 'sales-advanced-features',
+        id: 'finance-advanced-features',
         name: '✨ Advanced Features',
         href: '#',
-        description: 'Enterprise automation',
+        description: 'Enterprise finance tools',
         subItems: [
-          { id: 'quote-automation', name: 'Quote-to-Order Automation', href: '/sales/advanced-features#automation', description: 'Automated conversion' },
-          { id: 'territory-mgmt', name: 'Territory Management', href: '/sales/advanced-features#territory', description: 'Sales territories' },
-          { id: 'incentive-tracking', name: 'Incentive Tracking', href: '/sales/advanced-features#incentive', description: 'Commissions & bonuses' },
-          { id: 'predictive-forecast', name: 'Predictive Forecasting', href: '/sales/advanced-features#forecasting', description: 'AI-powered forecasts' },
-          { id: 'cpq-handoff', name: 'CPQ Handoff', href: '/sales/advanced-features#cpq', description: 'CPQ integration' },
-          { id: 'revenue-recognition', name: 'Revenue Recognition', href: '/sales/advanced-features#revenue', description: 'Revenue schedules' },
-          { id: 'pipeline-analytics', name: 'Pipeline Analytics', href: '/sales/advanced-features#pipeline', description: 'Sales funnel analysis' },
-          { id: 'all-sales-features', name: '→ View All Features', href: '/sales/advanced-features', description: 'Complete feature set' },
+          { id: 'general-ledger-advanced', name: 'General Ledger & Journals', href: '/finance/advanced-features#general-ledger', description: 'Advanced GL operations' },
+          { id: 'multi-entity-consolidation', name: 'Multi-Entity Consolidation', href: '/finance/advanced-features#consolidation', description: 'Group consolidation' },
+          { id: 'finance-audit-trail', name: 'Advanced Audit Trail', href: '/finance/advanced-features#audit-trail', description: 'Comprehensive audit logs' },
+          { id: 'compliance-automation', name: 'Compliance Automation', href: '/finance/advanced-features#compliance', description: 'Automated compliance' },
+          { id: 'treasury-management', name: 'Treasury Management', href: '/finance/advanced-features#treasury', description: 'Cash & investments' },
+          { id: 'predictive-forecasting', name: 'Predictive Cash Forecasting', href: '/finance/advanced-features#cash-forecast', description: 'AI-powered forecasts' },
+          { id: 'financial-controls-advanced', name: 'Financial Controls & SOD', href: '/finance/controls', description: 'Internal controls' },
+          { id: 'all-advanced-features', name: '→ View All Features', href: '/finance/advanced-features', description: 'Complete feature showcase' },
+        ],
+      },
+      {
+        id: 'accounting',
+        name: 'Accounting',
+        href: '#',
+        description: 'General ledger & accounts',
+        subItems: [
+          { id: 'chart-of-accounts', name: 'Chart of Accounts', href: '/finance/accounting/chart-of-accounts', description: 'COA management' },
+          { id: 'general-ledger', name: 'General Ledger', href: '/finance/accounting/general-ledger', description: 'GL entries' },
+          { id: 'journal-entries', name: 'Journal Entries', href: '/finance/accounting/journal-entries', description: 'Manual journals' },
+          { id: 'trial-balance', name: 'Trial Balance', href: '/finance/accounting/trial-balance', description: 'Trial balance report' },
+          { id: 'ledger-report', name: 'Ledger Report', href: '/finance/accounting/ledger-report', description: 'Ledger reports' },
+          { id: 'periods', name: 'Accounting Periods', href: '/finance/accounting/periods', description: 'Period management' },
+        ],
+      },
+      {
+        id: 'receivables',
+        name: 'Accounts Receivable',
+        href: '#',
+        description: 'Customer invoices & payments',
+        subItems: [
+          { id: 'ar-dashboard', name: 'Receivables Dashboard', href: '/finance/receivables', description: 'AR overview' },
+          { id: 'ar-invoices', name: 'Customer Invoices', href: '/finance/receivables/invoices', description: 'Sales invoices' },
+          { id: 'ar-collections', name: 'Collections', href: '/finance/receivables/collections', description: 'Payment collections' },
+          { id: 'credit-management', name: 'Credit Management', href: '/finance/receivables/credit-management', description: 'Credit limits' },
+          { id: 'aging-report', name: 'Aging Report', href: '/finance/receivables/aging', description: 'AR aging analysis' },
+        ],
+      },
+      {
+        id: 'payables',
+        name: 'Accounts Payable',
+        href: '#',
+        description: 'Vendor bills & payments',
+        subItems: [
+          { id: 'ap-dashboard', name: 'Payables Dashboard', href: '/finance/payables', description: 'AP overview' },
+          { id: 'vendor-bills', name: 'Vendor Bills', href: '/finance/payables/bills', description: 'Manage vendor invoices' },
+          { id: 'ap-payments', name: 'Vendor Payments', href: '/finance/payables/payments', description: 'Payment processing' },
+          { id: 'vendor-management', name: 'Vendor Management', href: '/finance/payables/vendor-management', description: 'Vendor credit & terms' },
+          { id: 'aging-payables', name: 'Aging Report', href: '/finance/payables/aging', description: 'AP aging analysis' },
+        ],
+      },
+      {
+        id: 'cash-bank',
+        name: 'Cash & Bank',
+        href: '#',
+        description: 'Cash flow & banking',
+        subItems: [
+          { id: 'cash-dashboard', name: 'Cash Dashboard', href: '/finance/cash', description: 'Cash overview' },
+          { id: 'bank-accounts', name: 'Bank Accounts', href: '/finance/cash/bank-accounts', description: 'Bank account setup' },
+          { id: 'bank-reconciliation', name: 'Bank Reconciliation', href: '/finance/cash/bank-reconciliation', description: 'Reconcile statements' },
+          { id: 'cash-flow-forecast', name: 'Cash Flow Forecast', href: '/finance/cash/cash-flow-forecast', description: 'Cash projections' },
+          { id: 'anticipated-receipts', name: 'Anticipated Receipts', href: '/finance/cash/anticipated-receipts', description: 'Expected inflows' },
+          { id: 'anticipated-payments', name: 'Anticipated Payments', href: '/finance/cash/anticipated-payments', description: 'Expected outflows' },
+        ],
+      },
+      {
+        id: 'fixed-assets',
+        name: 'Fixed Assets',
+        href: '#',
+        description: 'Asset management',
+        subItems: [
+          { id: 'assets-dashboard', name: 'Assets Dashboard', href: '/finance/assets', description: 'Asset overview' },
+          { id: 'asset-register', name: 'Asset Register', href: '/finance/assets/fixed-assets', description: 'Asset list' },
+          { id: 'depreciation', name: 'Depreciation', href: '/finance/assets/depreciation', description: 'Calculate depreciation' },
+          { id: 'asset-disposal', name: 'Asset Disposal', href: '/finance/assets/asset-disposal', description: 'Dispose assets' },
+        ],
+      },
+      {
+        id: 'budgeting',
+        name: 'Budgeting',
+        href: '#',
+        description: 'Budget planning',
+        subItems: [
+          { id: 'budgets', name: 'Budgets', href: '/finance/budgeting/budgets', description: 'Budget management' },
+          { id: 'budget-vs-actual', name: 'Budget vs Actual', href: '/finance/budgeting/budget-vs-actual', description: 'Variance analysis' },
+          { id: 'multi-year-planning', name: 'Multi-Year Planning', href: '/finance/budgeting/multi-year-planning', description: 'Long-term plans' },
+        ],
+      },
+      {
+        id: 'costing',
+        name: 'Costing',
+        href: '#',
+        description: 'Cost accounting',
+        subItems: [
+          { id: 'cost-centers', name: 'Cost Centers', href: '/finance/costing/cost-centers', description: 'Cost center setup' },
+          { id: 'profit-centers', name: 'Profit Centers', href: '/finance/costing/profit-centers', description: 'Profit center setup' },
+          { id: 'job-costing', name: 'Job Costing', href: '/finance/costing/job-costing', description: 'Project costing' },
+          { id: 'standard-costing', name: 'Standard Costing', href: '/finance/costing/standard-costing', description: 'Standard costs' },
+          { id: 'variance-analysis', name: 'Variance Analysis', href: '/finance/costing/variance-analysis', description: 'Cost variances' },
+          { id: 'wip-accounting', name: 'WIP Accounting', href: '/finance/costing/wip-accounting', description: 'Work in progress' },
+        ],
+      },
+      {
+        id: 'tax',
+        name: 'Tax Management',
+        href: '#',
+        description: 'Tax compliance',
+        subItems: [
+          { id: 'gst', name: 'GST/VAT', href: '/finance/tax/gst', description: 'GST management' },
+          { id: 'tds', name: 'TDS/Withholding Tax', href: '/finance/tax/tds', description: 'TDS processing' },
+          { id: 'tax-reports', name: 'Tax Reports', href: '/finance/tax/tax-reports', description: 'Tax filing reports' },
+        ],
+      },
+      {
+        id: 'currency',
+        name: 'Multi-Currency',
+        href: '#',
+        description: 'Currency management',
+        subItems: [
+          { id: 'currency-setup', name: 'Currency Setup', href: '/finance/currency/management', description: 'Currency master' },
+          { id: 'exchange-rates', name: 'Exchange Rates', href: '/finance/currency/exchange-rates', description: 'Rate management' },
+          { id: 'gain-loss', name: 'Forex Gain/Loss', href: '/finance/currency/gain-loss', description: 'Currency adjustments' },
+        ],
+      },
+      {
+        id: 'financial-reports',
+        name: 'Financial Reports',
+        href: '#',
+        description: 'Statutory reports',
+        subItems: [
+          { id: 'profit-loss', name: 'Profit & Loss', href: '/finance/reports/profit-loss', description: 'P&L statement' },
+          { id: 'balance-sheet', name: 'Balance Sheet', href: '/finance/reports/balance-sheet', description: 'Balance sheet' },
+          { id: 'cash-flow-statement', name: 'Cash Flow Statement', href: '/finance/reports/cash-flow', description: 'Cash flow report' },
+          { id: 'trial-balance-report', name: 'Trial Balance', href: '/finance/reports/trial-balance', description: 'Trial balance' },
+        ],
+      },
+      {
+        id: 'finance-analytics',
+        name: 'Financial Analytics',
+        href: '#',
+        description: 'Business intelligence',
+        subItems: [
+          { id: 'kpi-dashboard', name: 'KPI Dashboard', href: '/finance/analytics/kpi-dashboard', description: 'Key metrics' },
+          { id: 'financial-ratios', name: 'Financial Ratios', href: '/finance/analytics/financial-ratios', description: 'Ratio analysis' },
+          { id: 'profitability-analysis', name: 'Profitability Analysis', href: '/finance/analytics/profitability-analysis', description: 'Profit analytics' },
+        ],
+      },
+      {
+        id: 'consolidation',
+        name: 'Consolidation',
+        href: '#',
+        description: 'Multi-entity consolidation',
+        subItems: [
+          { id: 'intercompany', name: 'Intercompany Transactions', href: '/finance/consolidation/intercompany', description: 'IC eliminations' },
+          { id: 'financial-consolidation', name: 'Financial Consolidation', href: '/finance/consolidation/financial-consolidation', description: 'Group reporting' },
+        ],
+      },
+      {
+        id: 'period-operations',
+        name: 'Period Operations',
+        href: '#',
+        description: 'Period close',
+        subItems: [
+          { id: 'period-close', name: 'Period Close', href: '/finance/period-operations/period-close', description: 'Monthly close' },
+          { id: 'year-end', name: 'Year End Close', href: '/finance/period-operations/year-end', description: 'Annual close' },
+        ],
+      },
+      {
+        id: 'controls',
+        name: 'Controls & Compliance',
+        href: '#',
+        description: 'Internal controls',
+        subItems: [
+          { id: 'audit-trail', name: 'Audit Trail', href: '/finance/controls/audit-trail', description: 'Transaction history' },
+          { id: 'approval-workflows', name: 'Approval Workflows', href: '/finance/controls/approval-workflows', description: 'Approval setup' },
+          { id: 'document-attachments', name: 'Documents', href: '/finance/controls/documents', description: 'Supporting docs' },
+        ],
+      },
+      {
+        id: 'finance-automation',
+        name: 'Automation',
+        href: '#',
+        description: 'Process automation',
+        subItems: [
+          { id: 'recurring-transactions', name: 'Recurring Transactions', href: '/finance/automation/recurring-transactions', description: 'Auto transactions' },
+          { id: 'auto-workflows', name: 'Automated Workflows', href: '/finance/automation/workflows', description: 'Workflow automation' },
+          { id: 'alerts-notifications', name: 'Alerts & Notifications', href: '/finance/automation/alerts', description: 'Smart alerts' },
+        ],
+      },
+      {
+        id: 'integration',
+        name: 'Integration',
+        href: '#',
+        description: 'Module integration',
+        subItems: [
+          { id: 'production-integration', name: 'Production Integration', href: '/finance/integration/production', description: 'Production costs' },
+          { id: 'procurement-integration', name: 'Procurement Integration', href: '/finance/integration/procurement', description: 'Purchase costs' },
         ],
       },
     ],
@@ -565,9 +695,9 @@ const menuItems: MenuItem[] = [
     id: 'rfq',
     name: 'RFQ Management',
     icon: FileText,
-    color: 'text-amber-600',
-    bgColor: 'bg-amber-50',
-    hoverColor: 'hover:bg-amber-100',
+    color: 'text-white',
+    bgColor: 'bg-brand-red',
+    hoverColor: 'hover:bg-white/5',
     subItems: [
       { id: 'rfq-list', name: 'RFQ List', href: '/rfq', description: 'All RFQs' },
       {
@@ -708,9 +838,9 @@ const menuItems: MenuItem[] = [
     id: 'cpq',
     name: 'CPQ (Configure, Price, Quote)',
     icon: Layers,
-    color: 'text-pink-600',
-    bgColor: 'bg-pink-50',
-    hoverColor: 'hover:bg-pink-100',
+    color: 'text-white',
+    bgColor: 'bg-brand-red',
+    hoverColor: 'hover:bg-white/5',
     subItems: [
       { id: 'cpq-dashboard', name: 'CPQ Dashboard', href: '/cpq', description: 'CPQ overview' },
       {
@@ -867,6 +997,7 @@ const menuItems: MenuItem[] = [
     color: 'text-white',
     bgColor: 'bg-brand-red',
     hoverColor: 'hover:bg-white/5',
+    permission: 'PRODUCTION_VIEW',
     subItems: [
       { id: 'production-dashboard', name: 'Production Dashboard', href: '/production', description: 'Production overview' },
       { id: 'dies-tools', name: 'Dies & Tools Manager', href: '/production/dies-tools', description: 'Tool lifecycle management' },
@@ -1154,6 +1285,7 @@ const menuItems: MenuItem[] = [
     color: 'text-white',
     bgColor: 'bg-brand-red',
     hoverColor: 'hover:bg-white/5',
+    permission: 'QUALITY_VIEW',
     subItems: [
       { id: 'production-quality-dashboard', name: 'Quality Dashboard', href: '/quality', description: 'Quality overview' },
       {
@@ -1529,9 +1661,9 @@ const menuItems: MenuItem[] = [
     id: 'projects',
     name: 'Projects',
     icon: FolderKanban,
-    color: 'text-teal-600',
-    bgColor: 'bg-teal-50',
-    hoverColor: 'hover:bg-teal-100',
+    color: 'text-white',
+    bgColor: 'bg-brand-red',
+    hoverColor: 'hover:bg-white/5',
     subItems: [
       { id: 'projects-dashboard-main', name: 'Projects Dashboard', href: '/project-management/dashboard', description: 'Overview of all projects' },
       { id: 'all-projects', name: 'All Projects', href: '/project-management', description: 'Project list' },
@@ -1651,229 +1783,14 @@ const menuItems: MenuItem[] = [
       },
     ],
   },
-  {
-    id: 'finance',
-    name: 'Finance',
-    icon: DollarSign,
-    color: 'text-white',
-    bgColor: 'bg-brand-red',
-    hoverColor: 'hover:bg-white/5',
-    subItems: [
-      { id: 'finance-dashboard-main', name: 'Finance Dashboard', href: '/finance/dashboard', description: 'Financial overview' },
-      {
-        id: 'finance-advanced-features',
-        name: '✨ Advanced Features',
-        href: '#',
-        description: 'Enterprise finance tools',
-        subItems: [
-          { id: 'general-ledger-advanced', name: 'General Ledger & Journals', href: '/finance/advanced-features#general-ledger', description: 'Advanced GL operations' },
-          { id: 'multi-entity-consolidation', name: 'Multi-Entity Consolidation', href: '/finance/advanced-features#consolidation', description: 'Group consolidation' },
-          { id: 'finance-audit-trail', name: 'Advanced Audit Trail', href: '/finance/advanced-features#audit-trail', description: 'Comprehensive audit logs' },
-          { id: 'compliance-automation', name: 'Compliance Automation', href: '/finance/advanced-features#compliance', description: 'Automated compliance' },
-          { id: 'treasury-management', name: 'Treasury Management', href: '/finance/advanced-features#treasury', description: 'Cash & investments' },
-          { id: 'predictive-forecasting', name: 'Predictive Cash Forecasting', href: '/finance/advanced-features#cash-forecast', description: 'AI-powered forecasts' },
-          { id: 'financial-controls-advanced', name: 'Financial Controls & SOD', href: '/finance/controls', description: 'Internal controls' },
-          { id: 'all-advanced-features', name: '→ View All Features', href: '/finance/advanced-features', description: 'Complete feature showcase' },
-        ],
-      },
-      {
-        id: 'accounting',
-        name: 'Accounting',
-        href: '#',
-        description: 'General ledger & accounts',
-        subItems: [
-          { id: 'chart-of-accounts', name: 'Chart of Accounts', href: '/finance/accounting/chart-of-accounts', description: 'COA management' },
-          { id: 'general-ledger', name: 'General Ledger', href: '/finance/accounting/general-ledger', description: 'GL entries' },
-          { id: 'journal-entries', name: 'Journal Entries', href: '/finance/accounting/journal-entries', description: 'Manual journals' },
-          { id: 'trial-balance', name: 'Trial Balance', href: '/finance/accounting/trial-balance', description: 'Trial balance report' },
-          { id: 'ledger-report', name: 'Ledger Report', href: '/finance/accounting/ledger-report', description: 'Ledger reports' },
-          { id: 'periods', name: 'Accounting Periods', href: '/finance/accounting/periods', description: 'Period management' },
-        ],
-      },
-      {
-        id: 'receivables',
-        name: 'Accounts Receivable',
-        href: '#',
-        description: 'Customer invoices & payments',
-        subItems: [
-          { id: 'ar-dashboard', name: 'Receivables Dashboard', href: '/finance/receivables', description: 'AR overview' },
-          { id: 'ar-invoices', name: 'Customer Invoices', href: '/finance/receivables/invoices', description: 'Sales invoices' },
-          { id: 'ar-collections', name: 'Collections', href: '/finance/receivables/collections', description: 'Payment collections' },
-          { id: 'credit-management', name: 'Credit Management', href: '/finance/receivables/credit-management', description: 'Credit limits' },
-          { id: 'aging-report', name: 'Aging Report', href: '/finance/receivables/aging', description: 'AR aging analysis' },
-        ],
-      },
-      {
-        id: 'payables',
-        name: 'Accounts Payable',
-        href: '#',
-        description: 'Vendor bills & payments',
-        subItems: [
-          { id: 'ap-dashboard', name: 'Payables Dashboard', href: '/finance/payables', description: 'AP overview' },
-          { id: 'vendor-bills', name: 'Vendor Bills', href: '/finance/payables/bills', description: 'Manage vendor invoices' },
-          { id: 'ap-payments', name: 'Vendor Payments', href: '/finance/payables/payments', description: 'Payment processing' },
-          { id: 'vendor-management', name: 'Vendor Management', href: '/finance/payables/vendor-management', description: 'Vendor credit & terms' },
-          { id: 'aging-payables', name: 'Aging Report', href: '/finance/payables/aging', description: 'AP aging analysis' },
-        ],
-      },
-      {
-        id: 'cash-bank',
-        name: 'Cash & Bank',
-        href: '#',
-        description: 'Cash flow & banking',
-        subItems: [
-          { id: 'cash-dashboard', name: 'Cash Dashboard', href: '/finance/cash', description: 'Cash overview' },
-          { id: 'bank-accounts', name: 'Bank Accounts', href: '/finance/cash/bank-accounts', description: 'Bank account setup' },
-          { id: 'bank-reconciliation', name: 'Bank Reconciliation', href: '/finance/cash/bank-reconciliation', description: 'Reconcile statements' },
-          { id: 'cash-flow-forecast', name: 'Cash Flow Forecast', href: '/finance/cash/cash-flow-forecast', description: 'Cash projections' },
-          { id: 'anticipated-receipts', name: 'Anticipated Receipts', href: '/finance/cash/anticipated-receipts', description: 'Expected inflows' },
-          { id: 'anticipated-payments', name: 'Anticipated Payments', href: '/finance/cash/anticipated-payments', description: 'Expected outflows' },
-        ],
-      },
-      {
-        id: 'fixed-assets',
-        name: 'Fixed Assets',
-        href: '#',
-        description: 'Asset management',
-        subItems: [
-          { id: 'assets-dashboard', name: 'Assets Dashboard', href: '/finance/assets', description: 'Asset overview' },
-          { id: 'asset-register', name: 'Asset Register', href: '/finance/assets/fixed-assets', description: 'Asset list' },
-          { id: 'depreciation', name: 'Depreciation', href: '/finance/assets/depreciation', description: 'Calculate depreciation' },
-          { id: 'asset-disposal', name: 'Asset Disposal', href: '/finance/assets/asset-disposal', description: 'Dispose assets' },
-        ],
-      },
-      {
-        id: 'budgeting',
-        name: 'Budgeting',
-        href: '#',
-        description: 'Budget planning',
-        subItems: [
-          { id: 'budgets', name: 'Budgets', href: '/finance/budgeting/budgets', description: 'Budget management' },
-          { id: 'budget-vs-actual', name: 'Budget vs Actual', href: '/finance/budgeting/budget-vs-actual', description: 'Variance analysis' },
-          { id: 'multi-year-planning', name: 'Multi-Year Planning', href: '/finance/budgeting/multi-year-planning', description: 'Long-term plans' },
-        ],
-      },
-      {
-        id: 'costing',
-        name: 'Costing',
-        href: '#',
-        description: 'Cost accounting',
-        subItems: [
-          { id: 'cost-centers', name: 'Cost Centers', href: '/finance/costing/cost-centers', description: 'Cost center setup' },
-          { id: 'profit-centers', name: 'Profit Centers', href: '/finance/costing/profit-centers', description: 'Profit center setup' },
-          { id: 'job-costing', name: 'Job Costing', href: '/finance/costing/job-costing', description: 'Project costing' },
-          { id: 'standard-costing', name: 'Standard Costing', href: '/finance/costing/standard-costing', description: 'Standard costs' },
-          { id: 'variance-analysis', name: 'Variance Analysis', href: '/finance/costing/variance-analysis', description: 'Cost variances' },
-          { id: 'wip-accounting', name: 'WIP Accounting', href: '/finance/costing/wip-accounting', description: 'Work in progress' },
-        ],
-      },
-      {
-        id: 'tax',
-        name: 'Tax Management',
-        href: '#',
-        description: 'Tax compliance',
-        subItems: [
-          { id: 'gst', name: 'GST/VAT', href: '/finance/tax/gst', description: 'GST management' },
-          { id: 'tds', name: 'TDS/Withholding Tax', href: '/finance/tax/tds', description: 'TDS processing' },
-          { id: 'tax-reports', name: 'Tax Reports', href: '/finance/tax/tax-reports', description: 'Tax filing reports' },
-        ],
-      },
-      {
-        id: 'currency',
-        name: 'Multi-Currency',
-        href: '#',
-        description: 'Currency management',
-        subItems: [
-          { id: 'currency-setup', name: 'Currency Setup', href: '/finance/currency/management', description: 'Currency master' },
-          { id: 'exchange-rates', name: 'Exchange Rates', href: '/finance/currency/exchange-rates', description: 'Rate management' },
-          { id: 'gain-loss', name: 'Forex Gain/Loss', href: '/finance/currency/gain-loss', description: 'Currency adjustments' },
-        ],
-      },
-      {
-        id: 'financial-reports',
-        name: 'Financial Reports',
-        href: '#',
-        description: 'Statutory reports',
-        subItems: [
-          { id: 'profit-loss', name: 'Profit & Loss', href: '/finance/reports/profit-loss', description: 'P&L statement' },
-          { id: 'balance-sheet', name: 'Balance Sheet', href: '/finance/reports/balance-sheet', description: 'Balance sheet' },
-          { id: 'cash-flow-statement', name: 'Cash Flow Statement', href: '/finance/reports/cash-flow', description: 'Cash flow report' },
-          { id: 'trial-balance-report', name: 'Trial Balance', href: '/finance/reports/trial-balance', description: 'Trial balance' },
-        ],
-      },
-      {
-        id: 'finance-analytics',
-        name: 'Financial Analytics',
-        href: '#',
-        description: 'Business intelligence',
-        subItems: [
-          { id: 'kpi-dashboard', name: 'KPI Dashboard', href: '/finance/analytics/kpi-dashboard', description: 'Key metrics' },
-          { id: 'financial-ratios', name: 'Financial Ratios', href: '/finance/analytics/financial-ratios', description: 'Ratio analysis' },
-          { id: 'profitability-analysis', name: 'Profitability Analysis', href: '/finance/analytics/profitability-analysis', description: 'Profit analytics' },
-        ],
-      },
-      {
-        id: 'consolidation',
-        name: 'Consolidation',
-        href: '#',
-        description: 'Multi-entity consolidation',
-        subItems: [
-          { id: 'intercompany', name: 'Intercompany Transactions', href: '/finance/consolidation/intercompany', description: 'IC eliminations' },
-          { id: 'financial-consolidation', name: 'Financial Consolidation', href: '/finance/consolidation/financial-consolidation', description: 'Group reporting' },
-        ],
-      },
-      {
-        id: 'period-operations',
-        name: 'Period Operations',
-        href: '#',
-        description: 'Period close',
-        subItems: [
-          { id: 'period-close', name: 'Period Close', href: '/finance/period-operations/period-close', description: 'Monthly close' },
-          { id: 'year-end', name: 'Year End Close', href: '/finance/period-operations/year-end', description: 'Annual close' },
-        ],
-      },
-      {
-        id: 'controls',
-        name: 'Controls & Compliance',
-        href: '#',
-        description: 'Internal controls',
-        subItems: [
-          { id: 'audit-trail', name: 'Audit Trail', href: '/finance/controls/audit-trail', description: 'Transaction history' },
-          { id: 'approval-workflows', name: 'Approval Workflows', href: '/finance/controls/approval-workflows', description: 'Approval setup' },
-          { id: 'document-attachments', name: 'Documents', href: '/finance/controls/documents', description: 'Supporting docs' },
-        ],
-      },
-      {
-        id: 'finance-automation',
-        name: 'Automation',
-        href: '#',
-        description: 'Process automation',
-        subItems: [
-          { id: 'recurring-transactions', name: 'Recurring Transactions', href: '/finance/automation/recurring-transactions', description: 'Auto transactions' },
-          { id: 'auto-workflows', name: 'Automated Workflows', href: '/finance/automation/workflows', description: 'Workflow automation' },
-          { id: 'alerts-notifications', name: 'Alerts & Notifications', href: '/finance/automation/alerts', description: 'Smart alerts' },
-        ],
-      },
-      {
-        id: 'integration',
-        name: 'Integration',
-        href: '#',
-        description: 'Module integration',
-        subItems: [
-          { id: 'production-integration', name: 'Production Integration', href: '/finance/integration/production', description: 'Production costs' },
-          { id: 'procurement-integration', name: 'Procurement Integration', href: '/finance/integration/procurement', description: 'Purchase costs' },
-        ],
-      },
-    ],
-  },
 
   {
     id: 'hr',
     name: 'HR',
     icon: UserCog,
-    color: 'text-pink-600',
-    bgColor: 'bg-pink-50',
-    hoverColor: 'hover:bg-pink-100',
+    color: 'text-white',
+    bgColor: 'bg-brand-red',
+    hoverColor: 'hover:bg-white/5',
     subItems: [
       { id: 'hr-dashboard', name: 'HR Dashboard', href: '/hr', description: 'HR overview' },
       {
@@ -3024,9 +2941,9 @@ const menuItems: MenuItem[] = [
     id: 'logistics',
     name: 'Logistics',
     icon: Truck,
-    color: 'text-lime-600',
-    bgColor: 'bg-lime-50',
-    hoverColor: 'hover:bg-lime-100',
+    color: 'text-white',
+    bgColor: 'bg-brand-red',
+    hoverColor: 'hover:bg-white/5',
     subItems: [
       { id: 'logistics-dashboard', name: 'Logistics Dashboard', href: '/logistics', description: 'Logistics overview' },
       { id: 'gate-pass', name: 'Gate Pass Manager', href: '/logistics/gate-pass', description: 'Security gate passes' },
@@ -3178,9 +3095,9 @@ const menuItems: MenuItem[] = [
     id: 'after-sales-service',
     name: 'After Sales Service',
     icon: Wrench,
-    color: 'text-emerald-600',
-    bgColor: 'bg-emerald-50',
-    hoverColor: 'hover:bg-emerald-100',
+    color: 'text-white',
+    bgColor: 'bg-brand-red',
+    hoverColor: 'hover:bg-white/5',
     subItems: [
       { id: 'ass-main-dashboard', name: 'Service Overview', href: '/after-sales-service', description: 'Main dashboard' },
       {
@@ -3334,9 +3251,9 @@ const menuItems: MenuItem[] = [
     id: 'support-module',
     name: 'Support',
     icon: Headphones,
-    color: 'text-rose-600',
-    bgColor: 'bg-rose-50',
-    hoverColor: 'hover:bg-rose-100',
+    color: 'text-white',
+    bgColor: 'bg-brand-red',
+    hoverColor: 'hover:bg-white/5',
     subItems: [
       { id: 'support-dashboard', name: 'Support Dashboard', href: '/support', description: 'Support overview' },
       {
@@ -3550,145 +3467,153 @@ const menuItems: MenuItem[] = [
     ],
   },
   {
-    id: 'reports',
+    id: 'reports-module',
     name: 'Reports & Analytics',
     icon: BarChart3,
     color: 'text-white',
     bgColor: 'bg-brand-red',
     hoverColor: 'hover:bg-white/5',
     subItems: [
-      { id: 'reports-dashboard', name: 'Reports Dashboard', href: '/reports', description: 'All reports overview' },
+      { id: 'reports-dashboard', name: 'Reports Overview', href: '/reports', description: 'Reporting dashboard' },
+      { id: 'finance-reports-central', name: 'Finance Reports', href: '/reports/finance', description: 'Financial reporting' },
+      { id: 'sales-reports-central', name: 'Sales Reports', href: '/reports/sales', description: 'Sales performance reports' },
+      { id: 'inventory-reports-central', name: 'Inventory Reports', href: '/reports/inventory', description: 'Stock & warehouse reports' },
+      { id: 'hr-reports-central', name: 'HR Reports', href: '/reports/hr', description: 'Personnel reports' },
+      { id: 'production-reports-central', name: 'Production Reports', href: '/reports/production', description: 'Manufacturing reports' },
+      { id: 'quality-reports-central', name: 'Quality Reports', href: '/reports/quality', description: 'Quality & compliance reports' },
+    ],
+  },
+  {
+    id: 'it-admin',
+    name: 'IT Admin',
+    icon: Settings,
+    color: 'text-white',
+    bgColor: 'bg-brand-red',
+    hoverColor: 'hover:bg-white/5',
+    permission: 'ADMIN_VIEW',
+    subItems: [
+      { id: 'it-admin-dashboard', name: 'Admin Dashboard', href: '/it-admin', description: 'System overview' },
       {
-        id: 'crm-reports',
-        name: 'CRM Reports',
+        id: 'user-management',
+        name: 'User Management',
         href: '#',
-        description: 'Customer relationship reports',
+        description: 'Manage users',
         subItems: [
-          { id: 'lead-analysis', name: 'Lead Analysis', href: '/reports/crm/leads', description: 'Lead sources & conversion' },
-          { id: 'sales-pipeline', name: 'Sales Pipeline', href: '/reports/crm/pipeline', description: 'Pipeline funnel & forecast' },
-          { id: 'customer-analytics', name: 'Customer Analytics', href: '/reports/crm/customers', description: 'Customer segmentation & CLV' },
+          { id: 'all-users', name: 'All Users', href: '/it-admin/users', description: 'User directory' },
+          { id: 'create-user', name: 'Create User', href: '/it-admin/users/create', description: 'Add new user' },
+          { id: 'active-users', name: 'Active Users', href: '/it-admin/users/active', description: 'Active accounts' },
+          { id: 'inactive-users', name: 'Inactive Users', href: '/it-admin/users/inactive', description: 'Disabled accounts' },
+          { id: 'user-groups', name: 'User Groups', href: '/it-admin/users/groups', description: 'Manage groups' },
+          { id: 'bulk-operations', name: 'Bulk Operations', href: '/it-admin/users/bulk', description: 'Bulk user actions' },
         ],
       },
       {
-        id: 'finance-reports',
-        name: 'Finance Reports',
+        id: 'role-permission-management',
+        name: 'Roles & Permissions',
         href: '#',
-        description: 'Financial statements',
+        description: 'Access control',
         subItems: [
-          { id: 'profit-loss', name: 'Profit & Loss', href: '/reports/finance/pl', description: 'Income statement' },
-          { id: 'balance-sheet', name: 'Balance Sheet', href: '/reports/finance/balance-sheet', description: 'Financial position' },
-          { id: 'cash-flow', name: 'Cash Flow', href: '/reports/finance/cash-flow', description: 'Cash movement' },
-          { id: 'ar-aging', name: 'AR Aging', href: '/reports/finance/ar-aging', description: 'Receivables aging' },
-          { id: 'ap-aging', name: 'AP Aging', href: '/reports/finance/ap-aging', description: 'Payables aging' },
+          { id: 'all-roles', name: 'All Roles', href: '/it-admin/roles', description: 'Role directory' },
+          { id: 'create-role', name: 'Create Role', href: '/it-admin/roles/create', description: 'New role' },
+          { id: 'permission-matrix', name: 'Permission Matrix', href: '/it-admin/roles/permissions', description: 'Permission grid' },
+          { id: 'role-hierarchy', name: 'Role Hierarchy', href: '/it-admin/roles/hierarchy', description: 'Role structure' },
+          { id: 'access-policies', name: 'Access Policies', href: '/it-admin/roles/policies', description: 'Security policies' },
         ],
       },
       {
-        id: 'sales-reports',
-        name: 'Sales Reports',
+        id: 'security-management',
+        name: 'Security',
         href: '#',
-        description: 'Sales performance',
+        description: 'Security settings',
         subItems: [
-          { id: 'sales-performance', name: 'Sales Performance', href: '/reports/sales/performance', description: 'Revenue & targets' },
-          { id: 'quotation-analysis', name: 'Quotation Analysis', href: '/reports/sales/quotations', description: 'Quote conversion' },
-          { id: 'order-fulfillment', name: 'Order Fulfillment', href: '/reports/sales/orders', description: 'Order completion' },
+          { id: 'password-policies', name: 'Password Policies', href: '/it-admin/security/password', description: 'Password rules' },
+          { id: 'two-factor-auth', name: 'Two-Factor Auth', href: '/it-admin/security/2fa', description: '2FA settings' },
+          { id: 'session-management', name: 'Session Management', href: '/it-admin/security/sessions', description: 'Active sessions' },
+          { id: 'ip-whitelist', name: 'IP Whitelist', href: '/it-admin/security/ip-whitelist', description: 'IP restrictions' },
+          { id: 'security-alerts', name: 'Security Alerts', href: '/it-admin/security/alerts', description: 'Security events' },
         ],
       },
       {
-        id: 'accounts-reports',
-        name: 'Accounts Reports',
+        id: 'system-settings',
+        name: 'System Settings',
         href: '#',
-        description: 'Accounting & reconciliation',
+        description: 'System configuration',
         subItems: [
-          { id: 'bank-reconciliation', name: 'Bank Reconciliation', href: '/reports/accounts/reconciliation', description: 'Bank matching' },
-          { id: 'expense-claims', name: 'Expense Claims', href: '/reports/accounts/expense-claims', description: 'Employee expenses' },
-          { id: 'petty-cash', name: 'Petty Cash', href: '/reports/accounts/petty-cash', description: 'Petty cash tracking' },
+          { id: 'general-settings', name: 'General Settings', href: '/it-admin/system', description: 'System config' },
+          { id: 'company-settings', name: 'Company Settings', href: '/it-admin/system/company', description: 'Company info' },
+          { id: 'email-settings', name: 'Email Settings', href: '/it-admin/system/email', description: 'Email config' },
+          { id: 'notification-settings', name: 'Notifications', href: '/it-admin/system/notifications', description: 'Notification config' },
+          { id: 'integration-settings', name: 'Integrations', href: '/it-admin/system/integrations', description: 'API integrations' },
         ],
       },
       {
-        id: 'hr-reports',
-        name: 'HR Reports',
+        id: 'audit-compliance',
+        name: 'Audit & Compliance',
         href: '#',
-        description: 'Human resources',
+        description: 'Audit trails',
         subItems: [
-          { id: 'attendance-report', name: 'Attendance', href: '/reports/hr/attendance', description: 'Employee attendance' },
-          { id: 'headcount-report', name: 'Headcount', href: '/reports/hr/headcount', description: 'Workforce distribution' },
-          { id: 'leave-report', name: 'Leave', href: '/reports/hr/leave', description: 'Leave tracking' },
-          { id: 'payroll-report', name: 'Payroll', href: '/reports/hr/payroll', description: 'Payroll summary' },
+          { id: 'audit-logs', name: 'Audit Logs', href: '/it-admin/audit', description: 'Activity logs' },
+          { id: 'login-history', name: 'Login History', href: '/it-admin/audit/logins', description: 'User logins' },
+          { id: 'change-logs', name: 'Change Logs', href: '/it-admin/audit/changes', description: 'Data changes' },
+          { id: 'compliance-reports', name: 'Compliance Reports', href: '/it-admin/audit/compliance', description: 'Compliance tracking' },
         ],
       },
       {
-        id: 'inventory-reports',
-        name: 'Inventory Reports',
+        id: 'database-management',
+        name: 'Database Management',
         href: '#',
-        description: 'Stock & warehouse',
+        description: 'Database admin',
         subItems: [
-          { id: 'stock-summary', name: 'Stock Summary', href: '/reports/inventory/stock', description: 'Stock levels & value' },
-          { id: 'inventory-movement', name: 'Inventory Movement', href: '/reports/inventory/movement', description: 'Stock transactions' },
-          { id: 'stock-aging', name: 'Stock Aging', href: '/reports/inventory/aging', description: 'Slow-moving items' },
+          { id: 'database-backup', name: 'Database Backup', href: '/it-admin/database/backup', description: 'Backup management' },
+          { id: 'data-export', name: 'Data Export', href: '/it-admin/database/export', description: 'Export data' },
+          { id: 'data-import', name: 'Data Import', href: '/it-admin/database/import', description: 'Import data' },
+          { id: 'database-cleanup', name: 'Database Cleanup', href: '/it-admin/database/cleanup', description: 'Cleanup tools' },
         ],
       },
       {
-        id: 'production-reports',
-        name: 'Production Reports',
+        id: 'system-monitoring',
+        name: 'System Monitoring',
         href: '#',
-        description: 'Manufacturing performance',
+        description: 'Performance monitoring',
         subItems: [
-          { id: 'production-performance', name: 'Production Performance', href: '/reports/production/performance', description: 'OEE & efficiency' },
-          { id: 'work-orders', name: 'Work Orders', href: '/reports/production/work-orders', description: 'WO tracking' },
-          { id: 'material-consumption', name: 'Material Consumption', href: '/reports/production/material-consumption', description: 'Material usage' },
+          { id: 'system-health', name: 'System Health', href: '/it-admin/monitoring/health', description: 'Health dashboard' },
+          { id: 'performance-metrics', name: 'Performance Metrics', href: '/it-admin/monitoring/performance', description: 'Performance stats' },
+          { id: 'server-logs', name: 'Server Logs', href: '/it-admin/monitoring/logs', description: 'Server logs' },
+          { id: 'error-tracking', name: 'Error Tracking', href: '/it-admin/monitoring/errors', description: 'Error logs' },
         ],
       },
       {
-        id: 'procurement-reports',
-        name: 'Procurement Reports',
+        id: 'customization',
+        name: 'Customization',
         href: '#',
-        description: 'Purchasing & vendors',
+        description: 'System customization',
         subItems: [
-          { id: 'purchase-orders', name: 'Purchase Orders', href: '/reports/procurement/po', description: 'PO tracking' },
-          { id: 'vendor-performance', name: 'Vendor Performance', href: '/reports/procurement/vendor-performance', description: 'Supplier ratings' },
-          { id: 'spend-analysis', name: 'Spend Analysis', href: '/reports/procurement/spend-analysis', description: 'Procurement spend' },
+          { id: 'custom-fields', name: 'Custom Fields', href: '/it-admin/customization/fields', description: 'Custom field config' },
+          { id: 'workflows', name: 'Workflows', href: '/it-admin/customization/workflows', description: 'Workflow builder' },
+          { id: 'templates', name: 'Templates', href: '/it-admin/customization/templates', description: 'Template management' },
+          { id: 'branding', name: 'Branding', href: '/it-admin/customization/branding', description: 'Logo & theme' },
         ],
       },
       {
-        id: 'quality-reports',
-        name: 'Quality Reports',
+        id: 'automation-scheduler',
+        name: 'Automation & Scheduler',
         href: '#',
-        description: 'Quality management',
+        description: 'Scheduled jobs',
         subItems: [
-          { id: 'quality-dashboard', name: 'Quality Dashboard', href: '/reports/quality/dashboard', description: 'Quality overview' },
-          { id: 'inspection-results', name: 'Inspection Results', href: '/reports/quality/inspections', description: 'Inspection outcomes' },
-          { id: 'ncr-capa', name: 'NCR & CAPA', href: '/reports/quality/ncr-capa', description: 'Non-conformance & actions' },
+          { id: 'scheduled-jobs', name: 'Scheduled Jobs', href: '/it-admin/scheduler/jobs', description: 'Cron jobs' },
+          { id: 'job-history', name: 'Job History', href: '/it-admin/scheduler/history', description: 'Execution history' },
+          { id: 'automation-rules', name: 'Automation Rules', href: '/it-admin/scheduler/automation', description: 'Auto workflows' },
         ],
       },
       {
-        id: 'logistics-reports',
-        name: 'Logistics Reports',
+        id: 'license-management',
+        name: 'License Management',
         href: '#',
-        description: 'Shipping & fleet',
+        description: 'License tracking',
         subItems: [
-          { id: 'shipping-performance', name: 'Shipping Performance', href: '/reports/logistics/shipping', description: 'Delivery tracking' },
-          { id: 'fleet-utilization', name: 'Fleet Utilization', href: '/reports/logistics/fleet', description: 'Vehicle performance' },
-        ],
-      },
-      {
-        id: 'project-reports',
-        name: 'Project Reports',
-        href: '#',
-        description: 'Project management',
-        subItems: [
-          { id: 'project-performance', name: 'Project Performance', href: '/reports/project-management/performance', description: 'Budget & schedule' },
-          { id: 'resource-allocation', name: 'Resource Allocation', href: '/reports/project-management/resources', description: 'Resource utilization' },
-        ],
-      },
-      {
-        id: 'aftersales-reports',
-        name: 'After-Sales Reports',
-        href: '#',
-        description: 'Service & support',
-        subItems: [
-          { id: 'service-calls', name: 'Service Calls', href: '/reports/after-sales/service-calls', description: 'Service tracking' },
-          { id: 'warranty-claims', name: 'Warranty Claims', href: '/reports/after-sales/warranty', description: 'Warranty tracking' },
-          { id: 'customer-satisfaction', name: 'Customer Satisfaction', href: '/reports/after-sales/satisfaction', description: 'CSAT & NPS' },
+          { id: 'license-info', name: 'License Information', href: '/it-admin/license', description: 'Current license' },
+          { id: 'user-limits', name: 'User Limits', href: '/it-admin/license/users', description: 'User allocation' },
+          { id: 'feature-access', name: 'Feature Access', href: '/it-admin/license/features', description: 'Enabled features' },
         ],
       },
     ],
@@ -3697,9 +3622,9 @@ const menuItems: MenuItem[] = [
     id: 'common-masters',
     name: 'Common Masters',
     icon: Database,
-    color: 'text-slate-700',
-    bgColor: 'bg-slate-50',
-    hoverColor: 'hover:bg-slate-100',
+    color: 'text-white',
+    bgColor: 'bg-brand-red',
+    hoverColor: 'hover:bg-white/5',
     subItems: [
       {
         id: 'organization-masters',
@@ -3829,137 +3754,15 @@ const menuItems: MenuItem[] = [
     ],
   },
   {
-    id: 'it-admin',
-    name: 'IT Admin',
-    icon: Settings,
+    id: 'support-help',
+    name: 'Help & Support',
+    icon: HelpCircle,
     color: 'text-white',
     bgColor: 'bg-brand-red',
     hoverColor: 'hover:bg-white/5',
     subItems: [
-      { id: 'it-admin-dashboard', name: 'Admin Dashboard', href: '/it-admin', description: 'System overview' },
-      {
-        id: 'user-management',
-        name: 'User Management',
-        href: '#',
-        description: 'Manage users',
-        subItems: [
-          { id: 'all-users', name: 'All Users', href: '/it-admin/users', description: 'User directory' },
-          { id: 'create-user', name: 'Create User', href: '/it-admin/users/create', description: 'Add new user' },
-          { id: 'active-users', name: 'Active Users', href: '/it-admin/users/active', description: 'Active accounts' },
-          { id: 'inactive-users', name: 'Inactive Users', href: '/it-admin/users/inactive', description: 'Disabled accounts' },
-          { id: 'user-groups', name: 'User Groups', href: '/it-admin/users/groups', description: 'Manage groups' },
-          { id: 'bulk-operations', name: 'Bulk Operations', href: '/it-admin/users/bulk', description: 'Bulk user actions' },
-        ],
-      },
-      {
-        id: 'role-permission-management',
-        name: 'Roles & Permissions',
-        href: '#',
-        description: 'Access control',
-        subItems: [
-          { id: 'all-roles', name: 'All Roles', href: '/it-admin/roles', description: 'Role directory' },
-          { id: 'create-role', name: 'Create Role', href: '/it-admin/roles/create', description: 'New role' },
-          { id: 'permission-matrix', name: 'Permission Matrix', href: '/it-admin/roles/permissions', description: 'Permission grid' },
-          { id: 'role-hierarchy', name: 'Role Hierarchy', href: '/it-admin/roles/hierarchy', description: 'Role structure' },
-          { id: 'access-policies', name: 'Access Policies', href: '/it-admin/roles/policies', description: 'Security policies' },
-        ],
-      },
-      {
-        id: 'security-management',
-        name: 'Security',
-        href: '#',
-        description: 'Security settings',
-        subItems: [
-          { id: 'password-policies', name: 'Password Policies', href: '/it-admin/security/password', description: 'Password rules' },
-          { id: 'two-factor-auth', name: 'Two-Factor Auth', href: '/it-admin/security/2fa', description: '2FA settings' },
-          { id: 'session-management', name: 'Session Management', href: '/it-admin/security/sessions', description: 'Active sessions' },
-          { id: 'ip-whitelist', name: 'IP Whitelist', href: '/it-admin/security/ip-whitelist', description: 'IP restrictions' },
-          { id: 'security-alerts', name: 'Security Alerts', href: '/it-admin/security/alerts', description: 'Security events' },
-        ],
-      },
-      {
-        id: 'system-settings',
-        name: 'System Settings',
-        href: '#',
-        description: 'System configuration',
-        subItems: [
-          { id: 'general-settings', name: 'General Settings', href: '/it-admin/system', description: 'System config' },
-          { id: 'company-settings', name: 'Company Settings', href: '/it-admin/system/company', description: 'Company info' },
-          { id: 'email-settings', name: 'Email Settings', href: '/it-admin/system/email', description: 'Email config' },
-          { id: 'notification-settings', name: 'Notifications', href: '/it-admin/system/notifications', description: 'Notification config' },
-          { id: 'integration-settings', name: 'Integrations', href: '/it-admin/system/integrations', description: 'API integrations' },
-        ],
-      },
-      {
-        id: 'audit-compliance',
-        name: 'Audit & Compliance',
-        href: '#',
-        description: 'Audit trails',
-        subItems: [
-          { id: 'audit-logs', name: 'Audit Logs', href: '/it-admin/audit', description: 'Activity logs' },
-          { id: 'login-history', name: 'Login History', href: '/it-admin/audit/logins', description: 'User logins' },
-          { id: 'change-logs', name: 'Change Logs', href: '/it-admin/audit/changes', description: 'Data changes' },
-          { id: 'compliance-reports', name: 'Compliance Reports', href: '/it-admin/audit/compliance', description: 'Compliance tracking' },
-        ],
-      },
-      {
-        id: 'database-management',
-        name: 'Database Management',
-        href: '#',
-        description: 'Database admin',
-        subItems: [
-          { id: 'database-backup', name: 'Database Backup', href: '/it-admin/database/backup', description: 'Backup management' },
-          { id: 'data-export', name: 'Data Export', href: '/it-admin/database/export', description: 'Export data' },
-          { id: 'data-import', name: 'Data Import', href: '/it-admin/database/import', description: 'Import data' },
-          { id: 'database-cleanup', name: 'Database Cleanup', href: '/it-admin/database/cleanup', description: 'Cleanup tools' },
-        ],
-      },
-      {
-        id: 'system-monitoring',
-        name: 'System Monitoring',
-        href: '#',
-        description: 'Performance monitoring',
-        subItems: [
-          { id: 'system-health', name: 'System Health', href: '/it-admin/monitoring/health', description: 'Health dashboard' },
-          { id: 'performance-metrics', name: 'Performance Metrics', href: '/it-admin/monitoring/performance', description: 'Performance stats' },
-          { id: 'server-logs', name: 'Server Logs', href: '/it-admin/monitoring/logs', description: 'Server logs' },
-          { id: 'error-tracking', name: 'Error Tracking', href: '/it-admin/monitoring/errors', description: 'Error logs' },
-        ],
-      },
-      {
-        id: 'customization',
-        name: 'Customization',
-        href: '#',
-        description: 'System customization',
-        subItems: [
-          { id: 'custom-fields', name: 'Custom Fields', href: '/it-admin/customization/fields', description: 'Custom field config' },
-          { id: 'workflows', name: 'Workflows', href: '/it-admin/customization/workflows', description: 'Workflow builder' },
-          { id: 'templates', name: 'Templates', href: '/it-admin/customization/templates', description: 'Template management' },
-          { id: 'branding', name: 'Branding', href: '/it-admin/customization/branding', description: 'Logo & theme' },
-        ],
-      },
-      {
-        id: 'automation-scheduler',
-        name: 'Automation & Scheduler',
-        href: '#',
-        description: 'Scheduled jobs',
-        subItems: [
-          { id: 'scheduled-jobs', name: 'Scheduled Jobs', href: '/it-admin/scheduler/jobs', description: 'Cron jobs' },
-          { id: 'job-history', name: 'Job History', href: '/it-admin/scheduler/history', description: 'Execution history' },
-          { id: 'automation-rules', name: 'Automation Rules', href: '/it-admin/scheduler/automation', description: 'Auto workflows' },
-        ],
-      },
-      {
-        id: 'license-management',
-        name: 'License Management',
-        href: '#',
-        description: 'License tracking',
-        subItems: [
-          { id: 'license-info', name: 'License Information', href: '/it-admin/license', description: 'Current license' },
-          { id: 'user-limits', name: 'User Limits', href: '/it-admin/license/users', description: 'User allocation' },
-          { id: 'feature-access', name: 'Feature Access', href: '/it-admin/license/features', description: 'Enabled features' },
-        ],
-      },
+      { id: 'documentation', name: 'Documentation', href: '/documentation', description: 'User manuals' },
+      { id: 'help-center', name: 'Help Center', href: '/help', description: 'Support resources' },
     ],
   },
   {
@@ -3987,9 +3790,65 @@ interface SidebarProps {
 }
 
 export default function Sidebar({ isOpen, onToggle }: SidebarProps) {
-  const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
+  const { hasPermission, isLoading, user } = useAuth();
+  const pathname = usePathname();
+  const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set(['project-management']));
   const [expandedSubItems, setExpandedSubItems] = useState<Set<string>>(new Set());
+
+  // Auto-expand based on current pathname
+  useEffect(() => {
+    const parentMap = new Map<string, string>();
+    const expandPath = new Set<string>();
+
+    const traverse = (items: any[], parentId?: string) => {
+      items.forEach(item => {
+        if (parentId) parentMap.set(item.id, parentId);
+        if (item.href !== '#' && pathname?.startsWith(item.href)) {
+          let curr = item.id;
+          while (curr) {
+            expandPath.add(curr);
+            curr = parentMap.get(curr);
+          }
+        }
+        if (item.subItems) traverse(item.subItems, item.id);
+      });
+    };
+
+    traverse(menuItems);
+    if (expandPath.size > 0) {
+      setExpandedItems(prev => {
+        const next = new Set(prev);
+        expandPath.forEach(id => next.add(id));
+        return next;
+      });
+      setExpandedSubItems(prev => {
+        const next = new Set(prev);
+        expandPath.forEach(id => next.add(id));
+        return next;
+      });
+    }
+  }, [pathname]);
+
   const [searchQuery, setSearchQuery] = useState('');
+
+  const filterByPermission = useCallback(<T extends MenuItem | SubMenuItem>(items: T[]): T[] => {
+    return items
+      .filter(item => {
+        // If there's no permission required, show it
+        if (!item.permission) return true;
+
+        // Super Admin Bypass: If no user is loaded, or if they are admin/system admin, show everything
+        // This ensures modules like Finance, IT Admin, and Sales are visible in the Super Admin view
+        const username = user?.username?.toLowerCase();
+        if (!user || user?.isSystemAdmin || username === 'admin' || user?.permissions?.includes('SUPER_ADMIN')) return true;
+
+        return hasPermission(item.permission);
+      })
+      .map(item => ({
+        ...item,
+        subItems: item.subItems ? filterByPermission(item.subItems) : undefined,
+      }));
+  }, [hasPermission, user]);
 
   const matchesSearch = (item: MenuItem | SubMenuItem, query: string): boolean => {
     if (!query) return true;
@@ -4006,12 +3865,17 @@ export default function Sidebar({ isOpen, onToggle }: SidebarProps) {
     return false;
   };
 
+  const permittedItems = useMemo(() => {
+    if (isLoading) return [];
+    return filterByPermission(menuItems);
+  }, [isLoading, filterByPermission]);
+
   const getFilteredItems = (items: MenuItem[], query: string): MenuItem[] => {
     if (!query) return items;
     return items.filter(item => matchesSearch(item, query));
   };
 
-  const filteredItems = getFilteredItems(menuItems, searchQuery);
+  const filteredItems = getFilteredItems(permittedItems, searchQuery);
 
   useEffect(() => {
     if (searchQuery) {
@@ -4031,7 +3895,7 @@ export default function Sidebar({ isOpen, onToggle }: SidebarProps) {
         }
       };
 
-      menuItems.forEach(item => checkMatches(item));
+      permittedItems.forEach(item => checkMatches(item));
 
       if (matchIds.size > 0) {
         setExpandedItems(prev => {
@@ -4085,6 +3949,7 @@ export default function Sidebar({ isOpen, onToggle }: SidebarProps) {
           const hasNestedItems = subItem.subItems && subItem.subItems.length > 0;
           const fullId = `${parentId}-${subItem.id}`;
           const isExpanded = expandedSubItems.has(fullId);
+          const isActive = subItem.href !== '#' && (pathname === subItem.href || pathname?.startsWith(subItem.href + '/'));
           const paddingLeft = `${(level + 1) * 0.75}rem`;
 
           return (
@@ -4092,25 +3957,25 @@ export default function Sidebar({ isOpen, onToggle }: SidebarProps) {
               {hasNestedItems ? (
                 <button
                   onClick={() => toggleSubItem(parentId, subItem.id)}
-                  className={`w-full flex items-center justify-between py-1.5 text-[13px] hover:bg-brand-blue/10 transition-all duration-200 group ${isExpanded ? 'bg-brand-blue/20 text-brand-lightBlue font-medium' : 'text-white'
+                  className={`w-full flex items-center justify-between py-1.5 text-[13px] hover:bg-brand-blue/10 transition-all duration-200 group ${isExpanded || isActive ? 'bg-brand-red/10 text-brand-lightBlue font-medium' : 'text-white'
                     }`}
                   style={{ paddingLeft, paddingRight: '0.75rem' }}
                 >
                   <div className="flex items-center space-x-2">
-                    <ChevronRight className={`h-3 w-3 ${isExpanded ? 'text-brand-lightBlue' : 'text-brand-blue'} transition-transform duration-200 ${isExpanded ? 'rotate-90' : ''}`} />
+                    <ChevronRight className={`h-3 w-3 ${isExpanded || isActive ? 'text-brand-lightBlue' : 'text-brand-blue'} transition-transform duration-200 ${isExpanded ? 'rotate-90' : ''}`} />
                     <span className="group-hover:translate-x-0.5 transition-transform duration-200">
                       {subItem.name}
                     </span>
                   </div>
                   <ChevronDown
-                    className={`h-3 w-3 ${isExpanded ? 'text-brand-lightBlue' : 'text-brand-blue'} transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''
+                    className={`h-3 w-3 ${isExpanded || isActive ? 'text-brand-lightBlue' : 'text-brand-blue'} transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''
                       }`}
                   />
                 </button>
               ) : (
                 <Link
                   href={subItem.href}
-                  className={`block py-1.5 text-[13px] text-white hover:text-brand-lightBlue hover:bg-brand-blue/20 transition-all duration-200 group`}
+                  className={`block py-1.5 text-[13px] ${isActive ? 'text-brand-lightBlue font-semibold bg-brand-red/10' : 'text-white'} hover:text-brand-lightBlue hover:bg-brand-red/10 transition-all duration-200 group`}
                   style={{ paddingLeft, paddingRight: '0.75rem' }}
                 >
                   <div className="flex items-center justify-between">
@@ -4188,6 +4053,7 @@ export default function Sidebar({ isOpen, onToggle }: SidebarProps) {
             filteredItems.map((item) => {
               const Icon = item.icon;
               const isExpanded = expandedItems.has(item.id);
+              const isActive = item.href ? (pathname === item.href) : (item.subItems && item.subItems.some(sub => pathname === sub.href || (sub.subItems && sub.subItems.some(ss => pathname === ss.href))));
               const hasSubItems = item.subItems && item.subItems.length > 0;
 
               return (
@@ -4195,13 +4061,13 @@ export default function Sidebar({ isOpen, onToggle }: SidebarProps) {
                   {hasSubItems ? (
                     <button
                       onClick={() => toggleItem(item.id)}
-                      className={`w-full flex items-center justify-between px-3 py-2 rounded-lg transition-all duration-200 group ${isExpanded
-                        ? 'bg-brand-blue/20 text-brand-lightBlue shadow-lg shadow-brand-blue/10'
+                      className={`w-full flex items-center justify-between px-3 py-2 rounded-lg transition-all duration-200 group ${isExpanded || isActive
+                        ? 'bg-brand-red text-white shadow-lg shadow-brand-red/20'
                         : 'text-white hover:bg-brand-blue/10 hover:text-brand-lightBlue'
                         }`}
                     >
                       <div className="flex items-center space-x-3">
-                        <Icon className={`h-5 w-5 ${isExpanded ? 'text-brand-lightBlue' : 'text-white'} group-hover:scale-110 transition-transform duration-200 group-hover:text-brand-lightBlue`} />
+                        <Icon className={`h-5 w-5 ${isExpanded || isActive ? 'text-white' : 'text-white'} group-hover:scale-110 transition-transform duration-200 group-hover:text-brand-lightBlue`} />
                         {isOpen && (
                           <span className="text-[14px] font-semibold transition-colors duration-200">
                             {item.name}
@@ -4210,7 +4076,7 @@ export default function Sidebar({ isOpen, onToggle }: SidebarProps) {
                       </div>
                       {isOpen && (
                         <ChevronDown
-                          className={`h-3 w-3 ${isExpanded ? 'text-brand-lightBlue' : 'text-brand-blue'} transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''
+                          className={`h-3 w-3 ${isExpanded || isActive ? 'text-white' : 'text-brand-blue'} transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''
                             }`}
                         />
                       )}
@@ -4218,9 +4084,9 @@ export default function Sidebar({ isOpen, onToggle }: SidebarProps) {
                   ) : (
                     <Link
                       href={item.href || '#'}
-                      className={`flex items-center space-x-3 px-3 py-2 rounded-lg text-white hover:bg-brand-blue/10 hover:text-brand-lightBlue transition-all duration-200 group border-l-2 border-transparent hover:border-brand-lightBlue`}
+                      className={`flex items-center space-x-3 px-3 py-2 rounded-lg transition-all duration-200 group border-l-2 ${isActive ? 'bg-brand-red text-white shadow-lg shadow-brand-red/20 border-white' : 'text-white hover:bg-brand-blue/10 hover:text-brand-lightBlue border-transparent hover:border-brand-lightBlue'}`}
                     >
-                      <Icon className="h-5 w-5 text-white group-hover:scale-110 group-hover:text-brand-lightBlue transition-transform duration-200" />
+                      <Icon className={`h-5 w-5 ${isActive ? 'text-white' : 'text-white'} group-hover:scale-110 group-hover:text-brand-lightBlue transition-transform duration-200`} />
                       {isOpen && (
                         <span className="text-[14px] font-semibold">{item.name}</span>
                       )}

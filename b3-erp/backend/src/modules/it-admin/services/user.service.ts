@@ -24,7 +24,7 @@ export class UserService {
     private readonly passwordHistoryService: PasswordHistoryService,
     private readonly auditLogService: AuditLogService,
     private readonly userRoleService: UserRoleService,
-  ) {}
+  ) { }
 
   async create(createDto: CreateUserDto, createdBy?: string): Promise<User> {
     // Check if username or email already exists
@@ -119,7 +119,12 @@ export class UserService {
   async findOne(id: string): Promise<User> {
     const user = await this.repository.findOne({
       where: { id },
-      relations: ['userRoles', 'userRoles.role'],
+      relations: [
+        'userRoles',
+        'userRoles.role',
+        'userRoles.role.rolePermissions',
+        'userRoles.role.rolePermissions.permission',
+      ],
     });
 
     if (!user) {

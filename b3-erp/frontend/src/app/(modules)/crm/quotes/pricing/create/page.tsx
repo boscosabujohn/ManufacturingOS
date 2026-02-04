@@ -105,13 +105,13 @@ export default function CreatePricingRulePage() {
   };
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 ">
+    <div className="w-full h-full px-3 py-2 ">
       <div className=" mx-auto">
         {/* Header */}
         <div className="mb-8">
           <button
             onClick={() => router.back()}
-            className="flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-4"
+            className="flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-2"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Pricing Rules
@@ -120,14 +120,14 @@ export default function CreatePricingRulePage() {
           <p className="text-gray-600 mt-2">Define a new pricing rule for quotes and orders</p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <form onSubmit={handleSubmit} className="space-y-3">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
             {/* Main Form */}
-            <div className="lg:col-span-2 space-y-6">
+            <div className="lg:col-span-2 space-y-3">
               {/* Basic Information */}
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h2 className="text-lg font-semibold text-gray-900 mb-4">Basic Information</h2>
-                <div className="space-y-4">
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <h2 className="text-lg font-semibold text-gray-900 mb-2">Basic Information</h2>
+                <div className="space-y-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Rule Name *
@@ -160,7 +160,7 @@ export default function CreatePricingRulePage() {
                     {errors.description && <p className="text-red-600 text-sm mt-1">{errors.description}</p>}
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         Rule Type *
@@ -200,10 +200,10 @@ export default function CreatePricingRulePage() {
               </div>
 
               {/* Discount Configuration */}
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h2 className="text-lg font-semibold text-gray-900 mb-4">Discount Configuration</h2>
-                <div className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <h2 className="text-lg font-semibold text-gray-900 mb-2">Discount Configuration</h2>
+                <div className="space-y-2">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         Discount Type *
@@ -248,9 +248,9 @@ export default function CreatePricingRulePage() {
               </div>
 
               {/* Validity Period */}
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h2 className="text-lg font-semibold text-gray-900 mb-4">Validity Period</h2>
-                <div className="grid grid-cols-2 gap-4">
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <h2 className="text-lg font-semibold text-gray-900 mb-2">Validity Period</h2>
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Valid From *
@@ -282,8 +282,8 @@ export default function CreatePricingRulePage() {
               </div>
 
               {/* Conditions */}
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <div className="flex items-center justify-between mb-4">
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <div className="flex items-center justify-between mb-2">
                   <h2 className="text-lg font-semibold text-gray-900">Conditions *</h2>
                   <button
                     type="button"
@@ -320,8 +320,8 @@ export default function CreatePricingRulePage() {
               </div>
 
               {/* Applicable Products */}
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <div className="flex items-center justify-between mb-4">
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <div className="flex items-center justify-between mb-2">
                   <h2 className="text-lg font-semibold text-gray-900">Applicable Products *</h2>
                   <button
                     type="button"
@@ -358,8 +358,8 @@ export default function CreatePricingRulePage() {
               </div>
 
               {/* Applicable Customers */}
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <div className="flex items-center justify-between mb-4">
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <div className="flex items-center justify-between mb-2">
                   <h2 className="text-lg font-semibold text-gray-900">Applicable Customers *</h2>
                   <button
                     type="button"
@@ -396,17 +396,17 @@ export default function CreatePricingRulePage() {
               </div>
 
               {/* Action Buttons */}
-              <div className="flex gap-4">
+              <div className="flex gap-2">
                 <button
                   type="button"
                   onClick={() => router.back()}
-                  className="flex-1 px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 font-medium"
+                  className="flex-1 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 font-medium"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium"
+                  className="flex-1 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium"
                 >
                   Create Pricing Rule
                 </button>
@@ -414,10 +414,10 @@ export default function CreatePricingRulePage() {
             </div>
 
             {/* Sidebar */}
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Quick Info */}
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-                <div className="flex items-start gap-3 mb-4">
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
+                <div className="flex items-start gap-3 mb-2">
                   <AlertCircle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
                   <div>
                     <h3 className="font-semibold text-blue-900 mb-1">Pricing Rule Tips</h3>
@@ -429,9 +429,9 @@ export default function CreatePricingRulePage() {
               </div>
 
               {/* Rule Summary */}
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Rule Summary</h3>
-                <div className="space-y-4">
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Rule Summary</h3>
+                <div className="space-y-2">
                   <div>
                     <div className="text-sm text-gray-600 mb-1">Rule Type</div>
                     <div className="flex items-center gap-2 text-gray-900">

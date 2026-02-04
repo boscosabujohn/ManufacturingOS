@@ -402,9 +402,9 @@ export default function ProjectCostingPage() {
 
  return (
   <div className="w-full h-screen overflow-y-auto overflow-x-hidden">
-   <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+   <div className="px-3 py-2 space-y-3">
     {/* Header Section */}
-    <div className="mb-6">
+    <div className="mb-3">
      <h1 className="text-3xl font-bold text-gray-900">Project Costing Management</h1>
      <p className="text-gray-600 mt-2">Track and analyze project costs, budgets, and financial performance across all projects.</p>
     </div>
@@ -541,9 +541,9 @@ export default function ProjectCostingPage() {
    </div>
 
    {/* Projects Grid */}
-   <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+   <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
     {paginatedProjects.map((project) => (
-     <div key={project.id} className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow">
+     <div key={project.id} className="bg-white rounded-lg border border-gray-200 p-3 hover:shadow-lg transition-shadow">
       {/* Card Header */}
       <div className="flex justify-between items-start mb-4">
        <div className="flex-1">

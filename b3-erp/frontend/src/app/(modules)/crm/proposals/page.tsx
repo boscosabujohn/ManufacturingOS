@@ -311,9 +311,9 @@ export default function ProposalsPage() {
   };
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 ">
+    <div className="w-full h-full px-3 py-2 ">
       <div className="mb-8">
-        <div className="flex justify-end mb-6">
+        <div className="flex justify-end mb-3">
           <button
             onClick={handleCreateProposal}
             className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
@@ -324,26 +324,26 @@ export default function ProposalsPage() {
         </div>
 
         {/* Statistics */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-6 text-white">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-8">
+          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-3 text-white">
             <FileText className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">{stats.totalProposals}</div>
             <div className="text-blue-100">Total Proposals</div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-3 text-white">
             <DollarSign className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">${(stats.totalValue / 1000000).toFixed(1)}M</div>
             <div className="text-green-100">Total Value</div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-3 text-white">
             <CheckCircle className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">{stats.accepted}</div>
             <div className="text-purple-100">Accepted</div>
           </div>
 
-          <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg p-3 text-white">
             <AlertCircle className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">{stats.avgProbability}%</div>
             <div className="text-orange-100">Avg Probability</div>
@@ -351,8 +351,8 @@ export default function ProposalsPage() {
         </div>
 
         {/* Filters */}
-        <div className="bg-white rounded-lg border border-gray-200 p-4 mb-6">
-          <div className="flex gap-4 items-center">
+        <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
+          <div className="flex gap-2 items-center">
             <div className="flex-1">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -395,20 +395,20 @@ export default function ProposalsPage() {
       </div>
 
       {/* Proposals List */}
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredProposals.map((proposal) => {
           const expiringSoon = isExpiringSoon(proposal.validUntil);
 
           return (
             <div
               key={proposal.id}
-              className={`bg-white rounded-lg border p-6 hover:shadow-md transition-shadow ${
+              className={`bg-white rounded-lg border p-3 hover:shadow-md transition-shadow ${
                 expiringSoon && proposal.status !== 'accepted' && proposal.status !== 'rejected' && proposal.status !== 'expired'
                   ? 'border-orange-300 bg-orange-50'
                   : 'border-gray-200'
               }`}
             >
-              <div className="flex items-start justify-between mb-4">
+              <div className="flex items-start justify-between mb-2">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
                     <h3 className="text-xl font-semibold text-gray-900">{proposal.title}</h3>
@@ -423,7 +423,7 @@ export default function ProposalsPage() {
                       </span>
                     )}
                   </div>
-                  <div className="flex items-center gap-4 text-sm text-gray-600">
+                  <div className="flex items-center gap-2 text-sm text-gray-600">
                     <span className="font-medium">{proposal.proposalNumber}</span>
                     <span>•</span>
                     <span className="flex items-center gap-1">
@@ -483,9 +483,9 @@ export default function ProposalsPage() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-5 gap-4 mb-4">
+              <div className="grid grid-cols-5 gap-2 mb-2">
                 {/* Total Value */}
-                <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4">
+                <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3">
                   <div className="flex items-center gap-1 text-green-700 mb-1">
                     <DollarSign className="w-4 h-4" />
                     <span className="text-xs font-medium">Total Value</span>
@@ -496,7 +496,7 @@ export default function ProposalsPage() {
                 </div>
 
                 {/* Probability */}
-                <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4">
+                <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3">
                   <div className="flex items-center gap-1 text-purple-700 mb-1">
                     <AlertCircle className="w-4 h-4" />
                     <span className="text-xs font-medium">Win Probability</span>
@@ -508,7 +508,7 @@ export default function ProposalsPage() {
                 </div>
 
                 {/* Document Details */}
-                <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4">
+                <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3">
                   <div className="flex items-center gap-1 text-blue-700 mb-1">
                     <FileText className="w-4 h-4" />
                     <span className="text-xs font-medium">Document</span>
@@ -520,7 +520,7 @@ export default function ProposalsPage() {
                 </div>
 
                 {/* Valid Until */}
-                <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4">
+                <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3">
                   <div className="flex items-center gap-1 text-orange-700 mb-1">
                     <Calendar className="w-4 h-4" />
                     <span className="text-xs font-medium">Valid Until</span>
@@ -534,7 +534,7 @@ export default function ProposalsPage() {
                 </div>
 
                 {/* Assigned To */}
-                <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-4">
+                <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-3">
                   <div className="flex items-center gap-1 text-gray-700 mb-1">
                     <User className="w-4 h-4" />
                     <span className="text-xs font-medium">Assigned To</span>
@@ -546,9 +546,9 @@ export default function ProposalsPage() {
 
               {/* Timeline */}
               {(proposal.submittedDate || proposal.viewedDate || proposal.respondedDate) && (
-                <div className="mb-4 pb-4 border-b border-gray-200">
+                <div className="mb-2 pb-4 border-b border-gray-200">
                   <div className="text-xs font-medium text-gray-700 mb-2">Timeline:</div>
-                  <div className="flex items-center gap-6 text-xs">
+                  <div className="flex items-center gap-3 text-xs">
                     {proposal.submittedDate && (
                       <div className="flex items-center gap-2">
                         <Send className="w-3 h-3 text-blue-600" />
@@ -602,7 +602,7 @@ export default function ProposalsPage() {
 
       {filteredProposals.length === 0 && (
         <div className="text-center py-12 bg-white rounded-lg border border-gray-200">
-          <FileText className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+          <FileText className="w-16 h-16 text-gray-400 mx-auto mb-2" />
           <h3 className="text-lg font-medium text-gray-900 mb-2">No proposals found</h3>
           <p className="text-gray-600">Try adjusting your search or filters</p>
         </div>

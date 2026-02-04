@@ -182,9 +182,9 @@ export default function SalesForecastPage() {
   };
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 ">
+    <div className="w-full h-full px-3 py-2 ">
       {/* Period Selector */}
-      <div className="mb-6 bg-white rounded-lg border border-gray-200 p-4">
+      <div className="mb-3 bg-white rounded-lg border border-gray-200 p-3">
         <div className="flex items-center space-x-4">
           <span className="text-sm font-medium text-gray-700">Forecast Period:</span>
           <div className="flex space-x-2">
@@ -209,8 +209,8 @@ export default function SalesForecastPage() {
       </div>
 
       {/* Key Metrics */}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between mb-2">
             <p className="text-sm font-medium text-green-600">Committed</p>
             <CheckCircle className="h-5 w-5 text-green-600" />
@@ -227,7 +227,7 @@ export default function SalesForecastPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between mb-2">
             <p className="text-sm font-medium text-blue-600">Best Case</p>
             <TrendingUp className="h-5 w-5 text-blue-600" />
@@ -242,7 +242,7 @@ export default function SalesForecastPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between mb-2">
             <p className="text-sm font-medium text-purple-600">Total Pipeline</p>
             <Target className="h-5 w-5 text-purple-600" />
@@ -255,7 +255,7 @@ export default function SalesForecastPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-4 border border-indigo-200">
+        <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-3 border border-indigo-200">
           <div className="flex items-center justify-between mb-2">
             <p className="text-sm font-medium text-indigo-600">Target</p>
             <Award className="h-5 w-5 text-indigo-600" />
@@ -266,7 +266,7 @@ export default function SalesForecastPage() {
           <div className="mt-2 text-sm text-indigo-700">Q4 2025 Goal</div>
         </div>
 
-        <div className="bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-lg p-4 border border-emerald-200">
+        <div className="bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-lg p-3 border border-emerald-200">
           <div className="flex items-center justify-between mb-2">
             <p className="text-sm font-medium text-emerald-600">Closed</p>
             <DollarSign className="h-5 w-5 text-emerald-600" />
@@ -283,9 +283,9 @@ export default function SalesForecastPage() {
       </div>
 
       {/* Forecast Confidence Indicator */}
-      <div className="bg-white rounded-lg border border-gray-200 p-6 mb-6">
-        <h2 className="text-lg font-bold text-gray-900 mb-4">Forecast Accuracy</h2>
-        <div className="grid grid-cols-3 gap-6">
+      <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
+        <h2 className="text-lg font-bold text-gray-900 mb-2">Forecast Accuracy</h2>
+        <div className="grid grid-cols-3 gap-3">
           <div>
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm font-medium text-gray-700">Committed (75%+ prob)</span>
@@ -338,7 +338,7 @@ export default function SalesForecastPage() {
       </div>
 
       {/* Monthly Breakdown */}
-      <div className="bg-white rounded-lg border border-gray-200 mb-6 overflow-hidden">
+      <div className="bg-white rounded-lg border border-gray-200 mb-3 overflow-hidden">
         <div className="p-6 border-b border-gray-200">
           <h2 className="text-lg font-bold text-gray-900">Monthly Breakdown</h2>
         </div>
@@ -346,28 +346,28 @@ export default function SalesForecastPage() {
           <table className="w-full">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">
                   Month
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">
                   Target
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">
                   Closed
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">
                   Committed
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">
                   Best Case
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">
                   Pipeline
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">
                   Opportunities
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">
                   Attainment
                 </th>
               </tr>
@@ -377,34 +377,34 @@ export default function SalesForecastPage() {
                 const attainment = ((period.committed + period.closed) / period.target) * 100;
                 return (
                   <tr key={index} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 font-semibold text-gray-900">{period.month}</td>
-                    <td className="px-6 py-4 text-gray-700">${(period.target / 1000).toFixed(0)}K</td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2 font-semibold text-gray-900">{period.month}</td>
+                    <td className="px-3 py-2 text-gray-700">${(period.target / 1000).toFixed(0)}K</td>
+                    <td className="px-3 py-2">
                       <span className="font-semibold text-green-700">
                         ${(period.closed / 1000).toFixed(0)}K
                       </span>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <span className="font-semibold text-green-600">
                         ${(period.committed / 1000).toFixed(0)}K
                       </span>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <span className="font-semibold text-blue-600">
                         ${(period.bestCase / 1000).toFixed(0)}K
                       </span>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <span className="font-semibold text-purple-600">
                         ${(period.pipeline / 1000).toFixed(0)}K
                       </span>
                     </td>
-                    <td className="px-6 py-4 text-center">
+                    <td className="px-3 py-2 text-center">
                       <span className="px-2 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold">
                         {period.opportunities}
                       </span>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="flex items-center space-x-2">
                         <div className="flex-1 bg-gray-200 rounded-full h-2 w-24">
                           <div
@@ -441,28 +441,28 @@ export default function SalesForecastPage() {
           <table className="w-full">
             <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">
                   Sales Rep
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">
                   Quota
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">
                   Committed
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">
                   Best Case
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">
                   Pipeline
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">
                   Opportunities
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">
                   Win Rate
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">
                   Quota Attainment
                 </th>
               </tr>
@@ -472,7 +472,7 @@ export default function SalesForecastPage() {
                 const attainment = (member.committed / member.quota) * 100;
                 return (
                   <tr key={index} className="hover:bg-gray-50">
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="flex items-center">
                         <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white font-bold mr-3">
                           {member.name.split(' ').map((n) => n[0]).join('')}
@@ -480,31 +480,31 @@ export default function SalesForecastPage() {
                         <span className="font-semibold text-gray-900">{member.name}</span>
                       </div>
                     </td>
-                    <td className="px-6 py-4 text-gray-700">${(member.quota / 1000).toFixed(0)}K</td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2 text-gray-700">${(member.quota / 1000).toFixed(0)}K</td>
+                    <td className="px-3 py-2">
                       <span className="font-semibold text-green-600">
                         ${(member.committed / 1000).toFixed(0)}K
                       </span>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <span className="font-semibold text-blue-600">
                         ${(member.bestCase / 1000).toFixed(0)}K
                       </span>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <span className="font-semibold text-purple-600">
                         ${(member.pipeline / 1000).toFixed(0)}K
                       </span>
                     </td>
-                    <td className="px-6 py-4 text-center">
+                    <td className="px-3 py-2 text-center">
                       <span className="px-2 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold">
                         {member.opportunities}
                       </span>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <span className="font-semibold text-gray-900">{member.winRate}%</span>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="flex items-center space-x-2">
                         <div className="flex-1 bg-gray-200 rounded-full h-2 w-24">
                           <div

@@ -616,20 +616,20 @@ export default function ViewCustomerPage() {
   };
 
   return (
-    <div className="w-full min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
+    <div className="w-full min-h-screen bg-gray-50 px-3 py-2">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <button
           onClick={() => router.push('/crm/customers')}
-          className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-4"
+          className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-2"
         >
           <ArrowLeft className="h-5 w-5" />
           <span className="font-medium">Back to Customers</span>
         </button>
 
         {/* Customer Header Card */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <div className="flex items-start justify-between mb-6">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
+          <div className="flex items-start justify-between mb-3">
             <div className="flex items-start space-x-4">
               <div className="h-16 w-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
                 <Building2 className="h-8 w-8 text-white" />
@@ -688,8 +688,8 @@ export default function ViewCustomerPage() {
           </div>
 
           {/* Quick Stats */}
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
+            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
               <div className="flex items-center space-x-2 mb-2">
                 <TrendingUp className="h-5 w-5 text-green-600" />
                 <p className="text-xs font-medium text-green-600 uppercase">Lifetime Value</p>
@@ -698,7 +698,7 @@ export default function ViewCustomerPage() {
               <p className="text-xs text-green-600 mt-1">{customer.totalOrders} orders</p>
             </div>
 
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
               <div className="flex items-center space-x-2 mb-2">
                 <CreditCard className="h-5 w-5 text-blue-600" />
                 <p className="text-xs font-medium text-blue-600 uppercase">Available Credit</p>
@@ -707,7 +707,7 @@ export default function ViewCustomerPage() {
               <p className="text-xs text-blue-600 mt-1">of {formatCurrency(customer.creditLimit)}</p>
             </div>
 
-            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
               <div className="flex items-center space-x-2 mb-2">
                 <CheckCircle className="h-5 w-5 text-purple-600" />
                 <p className="text-xs font-medium text-purple-600 uppercase">Credit Status</p>
@@ -716,7 +716,7 @@ export default function ViewCustomerPage() {
               <p className="text-xs text-purple-600 mt-1">{customer.paymentTerms}</p>
             </div>
 
-            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
               <div className="flex items-center space-x-2 mb-2">
                 <User className="h-5 w-5 text-orange-600" />
                 <p className="text-xs font-medium text-orange-600 uppercase">Account Manager</p>
@@ -725,7 +725,7 @@ export default function ViewCustomerPage() {
               <p className="text-xs text-orange-600 mt-1">{customer.salesOffice}</p>
             </div>
 
-            <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-4 border border-yellow-200">
+            <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-lg p-3 border border-yellow-200">
               <div className="flex items-center space-x-2 mb-2">
                 <Calendar className="h-5 w-5 text-yellow-600" />
                 <p className="text-xs font-medium text-yellow-600 uppercase">Customer Since</p>
@@ -738,7 +738,7 @@ export default function ViewCustomerPage() {
       </div>
 
       {/* Tabs */}
-      <div className="mb-6">
+      <div className="mb-3">
         <div className="border-b border-gray-200 bg-white rounded-t-lg">
           <nav className="flex space-x-8 px-6">
             {tabs.map((tab) => {
@@ -763,15 +763,15 @@ export default function ViewCustomerPage() {
       </div>
 
       {/* Tab Content */}
-      <div className="bg-white rounded-lg border border-gray-200 p-6">
+      <div className="bg-white rounded-lg border border-gray-200 p-3">
         {/* General Information Tab */}
         {activeTab === 'general' && (
-          <div className="space-y-6">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">General Information</h2>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="space-y-3">
+            <h2 className="text-2xl font-bold text-gray-900 mb-3">General Information</h2>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
               {/* Basic Company Data */}
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <Building2 className="h-5 w-5 mr-2 text-blue-600" />
                   Company Details
                 </h3>
@@ -806,8 +806,8 @@ export default function ViewCustomerPage() {
               </div>
 
               {/* Industry & Company Size */}
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <Briefcase className="h-5 w-5 mr-2 text-blue-600" />
                   Business Profile
                 </h3>
@@ -848,8 +848,8 @@ export default function ViewCustomerPage() {
               </div>
 
               {/* Contact Information */}
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <Phone className="h-5 w-5 mr-2 text-blue-600" />
                   General Contact Information
                 </h3>
@@ -873,8 +873,8 @@ export default function ViewCustomerPage() {
               </div>
 
               {/* Account Status */}
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <Activity className="h-5 w-5 mr-2 text-blue-600" />
                   Account Status
                 </h3>
@@ -915,14 +915,14 @@ export default function ViewCustomerPage() {
 
         {/* Addresses Tab */}
         {activeTab === 'addresses' && (
-          <div className="space-y-6">
-            <div className="flex items-center justify-between mb-6">
+          <div className="space-y-3">
+            <div className="flex items-center justify-between mb-3">
               <h2 className="text-2xl font-bold text-gray-900">Customer Addresses</h2>
               <span className="text-sm text-gray-600">{customer.addresses.length} addresses on file</span>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {customer.addresses.map((address) => (
-                <div key={address.id} className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+                <div key={address.id} className="border border-gray-200 rounded-lg p-3 hover:shadow-md transition-shadow">
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex items-center space-x-2">
                       <MapPin className="h-5 w-5 text-blue-600" />
@@ -957,14 +957,14 @@ export default function ViewCustomerPage() {
 
         {/* Contacts Tab */}
         {activeTab === 'contacts' && (
-          <div className="space-y-6">
-            <div className="flex items-center justify-between mb-6">
+          <div className="space-y-3">
+            <div className="flex items-center justify-between mb-3">
               <h2 className="text-2xl font-bold text-gray-900">Contact Persons</h2>
               <span className="text-sm text-gray-600">{customer.contacts.length} contacts</span>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {customer.contacts.map((contact) => (
-                <div key={contact.id} className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+                <div key={contact.id} className="border border-gray-200 rounded-lg p-3 hover:shadow-md transition-shadow">
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex items-center space-x-3">
                       <div className="h-12 w-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
@@ -1027,12 +1027,12 @@ export default function ViewCustomerPage() {
 
         {/* Financial & Credit Tab */}
         {activeTab === 'financial' && (
-          <div className="space-y-6">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Financial & Credit Information</h2>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="space-y-3">
+            <h2 className="text-2xl font-bold text-gray-900 mb-3">Financial & Credit Information</h2>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
               {/* Credit Management */}
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <CreditCard className="h-5 w-5 mr-2 text-blue-600" />
                   Credit Management
                 </h3>
@@ -1070,8 +1070,8 @@ export default function ViewCustomerPage() {
               </div>
 
               {/* Payment Terms */}
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <DollarSign className="h-5 w-5 mr-2 text-blue-600" />
                   Payment Terms
                 </h3>
@@ -1104,8 +1104,8 @@ export default function ViewCustomerPage() {
               </div>
 
               {/* Banking Information */}
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <Building2 className="h-5 w-5 mr-2 text-blue-600" />
                   Banking Information
                 </h3>
@@ -1134,8 +1134,8 @@ export default function ViewCustomerPage() {
               </div>
 
               {/* Tax & Pricing */}
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <FileText className="h-5 w-5 mr-2 text-blue-600" />
                   Tax & Pricing
                 </h3>
@@ -1178,12 +1178,12 @@ export default function ViewCustomerPage() {
 
         {/* Sales & Marketing Tab */}
         {activeTab === 'sales' && (
-          <div className="space-y-6">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Sales & Marketing</h2>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="space-y-3">
+            <h2 className="text-2xl font-bold text-gray-900 mb-3">Sales & Marketing</h2>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
               {/* Sales Organization */}
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <Building2 className="h-5 w-5 mr-2 text-blue-600" />
                   Sales Organization
                 </h3>
@@ -1212,8 +1212,8 @@ export default function ViewCustomerPage() {
               </div>
 
               {/* Sales Team */}
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <Users className="h-5 w-5 mr-2 text-blue-600" />
                   Sales Team
                 </h3>
@@ -1238,8 +1238,8 @@ export default function ViewCustomerPage() {
               </div>
 
               {/* Market Segmentation */}
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <TrendingUp className="h-5 w-5 mr-2 text-blue-600" />
                   Market Segmentation
                 </h3>
@@ -1266,8 +1266,8 @@ export default function ViewCustomerPage() {
               </div>
 
               {/* Delivery & Incoterms */}
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <Truck className="h-5 w-5 mr-2 text-blue-600" />
                   Delivery Settings
                 </h3>
@@ -1304,12 +1304,12 @@ export default function ViewCustomerPage() {
               </div>
 
               {/* Customer Blocks */}
-              <div className="md:col-span-2 border border-gray-200 rounded-lg p-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="md:col-span-2 border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <AlertCircle className="h-5 w-5 mr-2 text-red-600" />
                   Customer Blocks
                 </h3>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                   <div className="bg-gray-50 rounded p-3">
                     <div className="flex items-center justify-between mb-2">
                       <p className="text-sm font-semibold text-gray-900">Sales Block</p>
@@ -1357,12 +1357,12 @@ export default function ViewCustomerPage() {
 
         {/* Logistics & Shipping Tab */}
         {activeTab === 'logistics' && (
-          <div className="space-y-6">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Logistics & Shipping</h2>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="space-y-3">
+            <h2 className="text-2xl font-bold text-gray-900 mb-3">Logistics & Shipping</h2>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
               {/* Shipping Details */}
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <Truck className="h-5 w-5 mr-2 text-blue-600" />
                   Shipping Details
                 </h3>
@@ -1391,8 +1391,8 @@ export default function ViewCustomerPage() {
               </div>
 
               {/* Warehouse & Picking */}
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <Package className="h-5 w-5 mr-2 text-blue-600" />
                   Warehouse & Picking
                 </h3>
@@ -1417,8 +1417,8 @@ export default function ViewCustomerPage() {
               </div>
 
               {/* Delivery Schedule */}
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <Calendar className="h-5 w-5 mr-2 text-blue-600" />
                   Delivery Schedule
                 </h3>
@@ -1449,8 +1449,8 @@ export default function ViewCustomerPage() {
               </div>
 
               {/* Packaging & Labeling */}
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <Package className="h-5 w-5 mr-2 text-blue-600" />
                   Packaging & Labeling
                 </h3>
@@ -1471,12 +1471,12 @@ export default function ViewCustomerPage() {
               </div>
 
               {/* Shipping Instructions */}
-              <div className="md:col-span-2 border border-gray-200 rounded-lg p-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="md:col-span-2 border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <FileText className="h-5 w-5 mr-2 text-blue-600" />
                   Shipping Instructions
                 </h3>
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                   <p className="text-sm text-gray-700">{customer.shippingInstructions}</p>
                 </div>
               </div>
@@ -1486,12 +1486,12 @@ export default function ViewCustomerPage() {
 
         {/* Additional Information Tab */}
         {activeTab === 'additional' && (
-          <div className="space-y-6">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Additional Information</h2>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="space-y-3">
+            <h2 className="text-2xl font-bold text-gray-900 mb-3">Additional Information</h2>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
               {/* Contract Information */}
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <FileText className="h-5 w-5 mr-2 text-blue-600" />
                   Contract Information
                 </h3>
@@ -1516,8 +1516,8 @@ export default function ViewCustomerPage() {
               </div>
 
               {/* Compliance & Certifications */}
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <CheckCircle className="h-5 w-5 mr-2 text-blue-600" />
                   Compliance & Certifications
                 </h3>
@@ -1550,30 +1550,30 @@ export default function ViewCustomerPage() {
               </div>
 
               {/* Special Instructions */}
-              <div className="md:col-span-2 border border-gray-200 rounded-lg p-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="md:col-span-2 border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <AlertCircle className="h-5 w-5 mr-2 text-yellow-600" />
                   Special Instructions
                 </h3>
-                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
                   <p className="text-sm text-gray-700">{customer.specialInstructions}</p>
                 </div>
               </div>
 
               {/* Internal Notes */}
-              <div className="md:col-span-2 border border-gray-200 rounded-lg p-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="md:col-span-2 border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <FileText className="h-5 w-5 mr-2 text-blue-600" />
                   Internal Notes
                 </h3>
-                <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
                   <p className="text-sm text-gray-700">{customer.internalNotes}</p>
                 </div>
               </div>
 
               {/* Tags */}
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <Tag className="h-5 w-5 mr-2 text-blue-600" />
                   Tags
                 </h3>
@@ -1588,8 +1588,8 @@ export default function ViewCustomerPage() {
               </div>
 
               {/* Custom Fields */}
-              <div className="border border-gray-200 rounded-lg p-4">
-                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <div className="border border-gray-200 rounded-lg p-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                   <FileText className="h-5 w-5 mr-2 text-blue-600" />
                   Custom Fields
                 </h3>
@@ -1605,8 +1605,8 @@ export default function ViewCustomerPage() {
 
               {/* Attachments */}
               {customer.attachments.length > 0 && (
-                <div className="md:col-span-2 border border-gray-200 rounded-lg p-4">
-                  <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+                <div className="md:col-span-2 border border-gray-200 rounded-lg p-3">
+                  <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                     <Upload className="h-5 w-5 mr-2 text-blue-600" />
                     Attachments
                   </h3>
@@ -1627,7 +1627,7 @@ export default function ViewCustomerPage() {
         {/* Orders & Invoices Tab */}
         {activeTab === 'orders' && (
           <div>
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center justify-between mb-3">
               <h3 className="text-xl font-bold text-gray-900">Order History</h3>
               <button
                 onClick={handleCreateOrder}
@@ -1696,7 +1696,7 @@ export default function ViewCustomerPage() {
         {/* Interactions Tab */}
         {activeTab === 'interactions' && (
           <div>
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center justify-between mb-3">
               <h3 className="text-xl font-bold text-gray-900">Communication Timeline</h3>
               <div className="flex flex-wrap gap-2">
                 <button
@@ -1723,7 +1723,7 @@ export default function ViewCustomerPage() {
               </div>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-2">
               {mockInteractions.map((interaction, index) => {
                 const InteractionIcon = interactionIcons[interaction.type];
                 const isLast = index === mockInteractions.length - 1;
@@ -1739,7 +1739,7 @@ export default function ViewCustomerPage() {
                         <InteractionIcon className="h-5 w-5" />
                       </div>
 
-                      <div className="flex-1 bg-gray-50 rounded-lg p-4 border border-gray-200 hover:shadow-md transition-shadow">
+                      <div className="flex-1 bg-gray-50 rounded-lg p-3 border border-gray-200 hover:shadow-md transition-shadow">
                         <div className="flex items-start justify-between mb-2">
                           <div>
                             <h4 className="text-base font-bold text-gray-900">{interaction.title}</h4>

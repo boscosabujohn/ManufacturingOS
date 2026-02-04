@@ -110,13 +110,13 @@ export default function EditStatusPage() {
   const SelectedIcon = statusIcons.find(i => i.value === formData.icon)?.icon || Circle;
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 ">
+    <div className="w-full h-full px-3 py-2 ">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
-        <div className="mb-6">
+        <div className="mb-3">
           <button
             onClick={handleCancel}
-            className="flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-4 transition-colors"
+            className="flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-2 transition-colors"
           >
             <ArrowLeft className="w-5 h-5" />
             Back to Statuses
@@ -127,9 +127,9 @@ export default function EditStatusPage() {
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="bg-white rounded-lg border border-gray-200 shadow-sm">
-          <div className="p-6 space-y-6">
+          <div className="p-6 space-y-3">
             {/* Status Name & Category */}
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 gap-3">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Status Name <span className="text-red-500">*</span>
@@ -187,7 +187,7 @@ export default function EditStatusPage() {
             </div>
 
             {/* Type & Icon */}
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 gap-3">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Type <span className="text-red-500">*</span>
@@ -238,7 +238,7 @@ export default function EditStatusPage() {
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Color <span className="text-red-500">*</span>
               </label>
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2">
                 <div className="grid grid-cols-9 gap-2">
                   {predefinedColors.map((colorOption) => (
                     <button
@@ -317,7 +317,7 @@ export default function EditStatusPage() {
           </div>
 
           {/* Actions */}
-          <div className="px-6 py-4 bg-gray-50 border-t border-gray-200 rounded-b-lg flex items-center justify-end gap-3">
+          <div className="px-3 py-2 bg-gray-50 border-t border-gray-200 rounded-b-lg flex items-center justify-end gap-3">
             <button
               type="button"
               onClick={handleCancel}

@@ -47,8 +47,8 @@ export default function UploadBOQPage() {
   };
 
   return (
-    <div className="w-full py-6 space-y-6">
-      <div className="flex items-center gap-4 mb-6">
+    <div className="w-full py-2 space-y-3">
+      <div className="flex items-center gap-4 mb-3">
         <Button variant="ghost" onClick={() => router.back()} className="p-0 hover:bg-transparent">
           <ArrowLeft className="w-6 h-6 text-gray-600" />
         </Button>
@@ -58,15 +58,15 @@ export default function UploadBOQPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Left Column: Upload Form */}
-        <div className="lg:col-span-1 space-y-6">
+        <div className="lg:col-span-1 space-y-3">
           <Card>
             <CardHeader>
               <CardTitle>Document Details</CardTitle>
               <CardDescription>Enter project and document information</CardDescription>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-2">
               <div className="space-y-2">
                 <Label htmlFor="project">Select Project</Label>
                 <Select value={project} onValueChange={setProject}>
@@ -112,7 +112,7 @@ export default function UploadBOQPage() {
               <CardTitle>File Upload</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:bg-gray-50 transition-colors">
+              <div className="border-2 border-dashed border-gray-300 rounded-lg p-3 text-center hover:bg-gray-50 transition-colors">
                 <input
                   type="file"
                   id="file-upload"
@@ -147,7 +147,7 @@ export default function UploadBOQPage() {
         </div>
 
         {/* Right Column: Preview & Actions */}
-        <div className="lg:col-span-2 space-y-6">
+        <div className="lg:col-span-2 space-y-3">
           {previewData.length > 0 ? (
             <Card className="h-full flex flex-col">
               <CardHeader>

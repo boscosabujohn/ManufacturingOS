@@ -367,10 +367,10 @@ export default function LeadSourcesPage() {
   }
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 ">
+    <div className="w-full h-full px-3 py-2 ">
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+        <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-blue-600">Total Leads</p>
@@ -380,7 +380,7 @@ export default function LeadSourcesPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-green-600">Qualified Leads</p>
@@ -390,7 +390,7 @@ export default function LeadSourcesPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-purple-600">Avg Conversion</p>
@@ -400,7 +400,7 @@ export default function LeadSourcesPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-4 border border-indigo-200">
+        <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-3 border border-indigo-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-indigo-600">Total Value</p>
@@ -414,8 +414,8 @@ export default function LeadSourcesPage() {
       </div>
 
       {/* Filters and Actions */}
-      <div className="bg-white rounded-lg border border-gray-200 p-4 mb-6">
-        <div className="flex items-center gap-4">
+      <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
+        <div className="flex items-center gap-2">
           <div className="flex-1">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
@@ -468,15 +468,15 @@ export default function LeadSourcesPage() {
         <table className="w-full">
           <thead className="bg-gray-50 border-b border-gray-200">
             <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Source</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Category</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Total Leads</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Qualified</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Conversion</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Avg Score</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Total Value</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Trend</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Source</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Category</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Total Leads</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Qualified</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Conversion</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Avg Score</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Total Value</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Trend</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200">
@@ -494,7 +494,7 @@ export default function LeadSourcesPage() {
               return (
                 <>
                   <tr key={parent.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="flex items-center gap-2">
                         <button
                           aria-label={isExpanded ? 'Collapse' : 'Expand'}
@@ -525,19 +525,19 @@ export default function LeadSourcesPage() {
                         </button>
                       </div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <span className="px-2 py-1 text-xs font-semibold rounded-full bg-gray-100 text-gray-700">
                         {parent.category}
                       </span>
                     </td>
-                    <td className="px-6 py-4 font-semibold text-gray-900">{agg.totalLeads}</td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2 font-semibold text-gray-900">{agg.totalLeads}</td>
+                    <td className="px-3 py-2">
                       <span className="text-green-600 font-semibold">{agg.qualifiedLeads}</span>
                       <span className="text-gray-400 text-sm ml-1">
                         ({(agg.totalLeads ? ((agg.qualifiedLeads / agg.totalLeads) * 100).toFixed(0) : '0')}%)
                       </span>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="flex items-center space-x-2">
                         <div className="flex-1 bg-gray-200 rounded-full h-2 w-20">
                           <div
@@ -554,7 +554,7 @@ export default function LeadSourcesPage() {
                         <span className="text-sm font-semibold">{agg.conversionRate.toFixed(1)}%</span>
                       </div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <span
                         className={`px-2 py-1 text-xs font-bold rounded ${
                           agg.avgScore >= 70
@@ -567,10 +567,10 @@ export default function LeadSourcesPage() {
                         {agg.avgScore}
                       </span>
                     </td>
-                    <td className="px-6 py-4 font-semibold text-gray-900">
+                    <td className="px-3 py-2 font-semibold text-gray-900">
                       ${(agg.totalValue / 1000).toFixed(0)}K
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <div className="flex items-center space-x-1">
                         {agg.trend === 'up' ? (
                           <>
@@ -591,7 +591,7 @@ export default function LeadSourcesPage() {
                         )}
                       </div>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-3 py-2">
                       <button
                         onClick={() => router.push(`/crm/leads?source=${parent.name}`)}
                         className="flex items-center space-x-1 px-3 py-1.5 text-blue-600 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors text-sm font-medium"
@@ -604,7 +604,7 @@ export default function LeadSourcesPage() {
 
                   {isExpanded && visibleKids.map((child) => (
                     <tr key={`${parent.id}-${child.id}`} className="hover:bg-gray-50">
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div className="flex items-center gap-2 ml-8">
                           <div className="w-4 h-px bg-gray-300"></div>
                           <div className={`w-3 h-3 rounded-full ${child.color}`}></div>
@@ -612,19 +612,19 @@ export default function LeadSourcesPage() {
                           <span className="ml-2 text-xs text-gray-500">(Sub)</span>
                         </div>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <span className="px-2 py-1 text-xs font-semibold rounded-full bg-gray-100 text-gray-700">
                           {child.category}
                         </span>
                       </td>
-                      <td className="px-6 py-4 font-semibold text-gray-900">{child.totalLeads}</td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2 font-semibold text-gray-900">{child.totalLeads}</td>
+                      <td className="px-3 py-2">
                         <span className="text-green-600 font-semibold">{child.qualifiedLeads}</span>
                         <span className="text-gray-400 text-sm ml-1">
                           ({(child.totalLeads ? ((child.qualifiedLeads / child.totalLeads) * 100).toFixed(0) : '0')}%)
                         </span>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div className="flex items-center space-x-2">
                           <div className="flex-1 bg-gray-200 rounded-full h-2 w-20">
                             <div
@@ -641,7 +641,7 @@ export default function LeadSourcesPage() {
                           <span className="text-sm font-semibold">{child.conversionRate.toFixed(1)}%</span>
                         </div>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <span
                           className={`px-2 py-1 text-xs font-bold rounded ${
                             child.avgScore >= 70
@@ -654,10 +654,10 @@ export default function LeadSourcesPage() {
                           {child.avgScore}
                         </span>
                       </td>
-                      <td className="px-6 py-4 font-semibold text-gray-900">
+                      <td className="px-3 py-2 font-semibold text-gray-900">
                         ${(child.totalValue / 1000).toFixed(0)}K
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <div className="flex items-center space-x-1">
                           {child.trend === 'up' ? (
                             <>
@@ -678,7 +678,7 @@ export default function LeadSourcesPage() {
                           )}
                         </div>
                       </td>
-                      <td className="px-6 py-4">
+                      <td className="px-3 py-2">
                         <button
                           onClick={() => router.push(`/crm/leads?source=${child.name}`)}
                           className="flex items-center space-x-1 px-3 py-1.5 text-blue-600 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors text-sm font-medium"
@@ -707,14 +707,14 @@ export default function LeadSourcesPage() {
       {showModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center">
           <div className="absolute inset-0 bg-black/30" onClick={() => setShowModal(false)}></div>
-          <div className="relative bg-white rounded-lg shadow-xl w-full max-w-lg p-6 z-10">
-            <div className="flex items-center justify-between mb-4">
+          <div className="relative bg-white rounded-lg shadow-xl w-full max-w-lg p-3 z-10">
+            <div className="flex items-center justify-between mb-2">
               <h3 className="text-lg font-semibold">Add Lead Source</h3>
               <button onClick={() => setShowModal(false)} aria-label="Close" className="p-1 rounded hover:bg-gray-100">
                 <X className="h-5 w-5 text-gray-500" />
               </button>
             </div>
-            <form onSubmit={submitNewSource} className="space-y-4">
+            <form onSubmit={submitNewSource} className="space-y-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Name</label>
                 <input
@@ -729,7 +729,7 @@ export default function LeadSourcesPage() {
 
               <div>
                 <span className="block text-sm font-medium text-gray-700 mb-1">Type</span>
-                <div className="flex gap-4">
+                <div className="flex gap-2">
                   <label className="inline-flex items-center gap-2">
                     <input
                       type="radio"
@@ -772,7 +772,7 @@ export default function LeadSourcesPage() {
                 </div>
               )}
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">Category</label>
                   <select

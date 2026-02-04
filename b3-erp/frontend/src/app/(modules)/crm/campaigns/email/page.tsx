@@ -206,35 +206,35 @@ export default function EmailCampaignsPage() {
   };
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 ">
+    <div className="w-full h-full px-3 py-2 ">
       <div className="mb-8">
         {/* Statistics */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-6 mb-8">
-          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-6 text-white">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-3 mb-8">
+          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-3 text-white">
             <Mail className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">{stats.totalCampaigns}</div>
             <div className="text-blue-100">Total Campaigns</div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-3 text-white">
             <Send className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">{(stats.totalSent / 1000).toFixed(1)}K</div>
             <div className="text-green-100">Emails Sent</div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-3 text-white">
             <Eye className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">{stats.avgOpenRate.toFixed(1)}%</div>
             <div className="text-purple-100">Avg Open Rate</div>
           </div>
 
-          <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg p-3 text-white">
             <Target className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">{stats.avgClickRate.toFixed(1)}%</div>
             <div className="text-orange-100">Avg Click Rate</div>
           </div>
 
-          <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-lg p-3 text-white">
             <Users className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">{stats.totalUnsubscribed}</div>
             <div className="text-red-100">Unsubscribed</div>
@@ -242,8 +242,8 @@ export default function EmailCampaignsPage() {
         </div>
 
         {/* Filters */}
-        <div className="bg-white rounded-lg border border-gray-200 p-4 mb-6">
-          <div className="flex gap-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
+          <div className="flex gap-2">
             <div className="flex-1">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -272,15 +272,15 @@ export default function EmailCampaignsPage() {
       </div>
 
       {/* Campaigns List */}
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredCampaigns.map((campaign) => {
           const openRate = campaign.sent > 0 ? (campaign.opened / campaign.sent) * 100 : 0;
           const clickRate = campaign.sent > 0 ? (campaign.clicked / campaign.sent) * 100 : 0;
           const bounceRate = campaign.sent > 0 ? (campaign.bounced / campaign.sent) * 100 : 0;
 
           return (
-            <div key={campaign.id} className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow">
-              <div className="flex justify-between items-start mb-4">
+            <div key={campaign.id} className="bg-white rounded-lg border border-gray-200 p-3 hover:shadow-lg transition-shadow">
+              <div className="flex justify-between items-start mb-2">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
                     <h3 className="text-xl font-semibold text-gray-900">{campaign.name}</h3>
@@ -290,7 +290,7 @@ export default function EmailCampaignsPage() {
                   </div>
                   <p className="text-gray-600 mb-3">Subject: <span className="font-medium">{campaign.subject}</span></p>
 
-                  <div className="grid grid-cols-6 gap-4 mb-4">
+                  <div className="grid grid-cols-6 gap-2 mb-2">
                     <div className="bg-blue-50 rounded-lg p-3">
                       <div className="text-xs text-blue-600 mb-1">Audience</div>
                       <div className="text-lg font-bold text-blue-900">{campaign.audience.toLocaleString()}</div>
@@ -317,7 +317,7 @@ export default function EmailCampaignsPage() {
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-6 text-sm text-gray-600">
+                  <div className="flex items-center gap-3 text-sm text-gray-600">
                     <span>Template: <span className="font-medium">{campaign.template}</span></span>
                     <span>From: <span className="font-medium">{campaign.from}</span></span>
                     {campaign.scheduledDate && (

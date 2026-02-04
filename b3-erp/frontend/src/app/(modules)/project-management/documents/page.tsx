@@ -611,10 +611,10 @@ export default function DocumentsPage() {
 
  return (
   <div className="w-full h-screen overflow-y-auto overflow-x-hidden">
-   <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+   <div className="px-3 py-2 space-y-3">
     {/* Professional Header */}
-    <div className="bg-white rounded-lg border border-gray-200 p-6">
-     <div className="flex justify-between items-start mb-6">
+    <div className="bg-white rounded-lg border border-gray-200 p-3">
+     <div className="flex justify-between items-start mb-3">
       <div>
        <h1 className="text-3xl font-bold text-gray-900">Document Management</h1>
        <p className="text-sm text-gray-600 mt-1">Manage and organize all project documents in one place</p>
@@ -622,7 +622,7 @@ export default function DocumentsPage() {
      </div>
 
      {/* Tabs */}
-     <div className="border-b border-gray-200 mb-6">
+     <div className="border-b border-gray-200 mb-3">
       <nav className="-mb-px flex space-x-8">
        <button
         onClick={() => setActiveTab('all')}

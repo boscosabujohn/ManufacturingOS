@@ -23,6 +23,7 @@ import { AfterSalesServiceModule } from './modules/after-sales-service/after-sal
 import { QualityModule } from './modules/quality/quality.module';
 import { ProjectManagementModule } from './modules/project-management/project-management.module';
 import { ApprovalsModule } from './modules/approvals/approvals.module';
+import { AuthModule } from './modules/auth/auth.module';
 
 
 @Module({
@@ -82,6 +83,7 @@ import { ApprovalsModule } from './modules/approvals/approvals.module';
     SupportModule, // Customer support
     ItAdminModule, // User, Role, Permission, Audit management
     ProjectManagementModule, // Project tracking, documents, handover
+    AuthModule,
   ],
 })
 export class AppModule { }

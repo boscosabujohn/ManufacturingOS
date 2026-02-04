@@ -77,7 +77,7 @@ export default function ResourceSchedulingDashboard() {
           </div>
 
           {/* Navigation Tabs */}
-          <div className="flex items-center gap-6 mt-6 border-b border-gray-100">
+          <div className="flex items-center gap-3 mt-6 border-b border-gray-100">
             <button className="pb-3 border-b-2 border-blue-600 text-blue-600 font-medium text-sm">
               Dashboard
             </button>
@@ -104,7 +104,7 @@ export default function ResourceSchedulingDashboard() {
       </div>
 
       <div className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
-        <div className=" mx-auto space-y-6">
+        <div className=" mx-auto space-y-3">
           {/* KPI Cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             <Card>
@@ -180,7 +180,7 @@ export default function ResourceSchedulingDashboard() {
             </Card>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
             {/* Utilization Chart */}
             <Card className="lg:col-span-2">
               <CardHeader>
@@ -239,7 +239,7 @@ export default function ResourceSchedulingDashboard() {
             </Card>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
             {/* Recent Conflicts */}
             <Card>
               <CardHeader className="flex flex-row items-center justify-between">
@@ -253,7 +253,7 @@ export default function ResourceSchedulingDashboard() {
                 </Button>
               </CardHeader>
               <CardContent>
-                <div className="space-y-4">
+                <div className="space-y-2">
                   {recentConflicts.map((conflict) => (
                     <div key={conflict.id} className="flex items-center justify-between p-4 bg-red-50 rounded-lg border border-red-100">
                       <div className="flex items-start gap-3">
@@ -290,7 +290,7 @@ export default function ResourceSchedulingDashboard() {
                 </Button>
               </CardHeader>
               <CardContent>
-                <div className="space-y-4">
+                <div className="space-y-2">
                   {[1, 2, 3].map((i) => (
                     <div key={i} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg border border-gray-100">
                       <div className="flex items-center gap-3">

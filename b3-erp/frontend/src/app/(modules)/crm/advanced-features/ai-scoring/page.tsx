@@ -47,19 +47,19 @@ export default function AILeadScoringPage() {
 
   return (
     <div className="w-full h-full flex flex-col bg-gray-50">
-      <div className="flex-1 px-4 sm:px-6 lg:px-8 py-6 overflow-auto">
+      <div className="flex-1 px-3 py-2 overflow-auto">
         <button
           onClick={() => router.push('/crm/advanced-features')}
-          className="flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-4"
+          className="flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-2"
         >
           <ArrowLeft className="h-4 w-4" />
           Back to Advanced Features
         </button>
 
-        <div className="space-y-6">
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
+        <div className="space-y-3">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
             <h2 className="text-xl font-bold text-gray-900 mb-2">AI-Powered Lead Scoring</h2>
-            <p className="text-gray-600 mb-4">
+            <p className="text-gray-600 mb-2">
               Machine learning algorithms analyze multiple factors to predict conversion probability and
               recommend next best actions.
             </p>
@@ -73,8 +73,8 @@ export default function AILeadScoringPage() {
             />
           </div>
 
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h3 className="text-lg font-bold text-gray-900 mb-4">Compact View</h3>
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <h3 className="text-lg font-bold text-gray-900 mb-2">Compact View</h3>
             <div className="space-y-3">
               <AILeadScoreCard
                 leadName="Emily Davis"

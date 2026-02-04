@@ -19,8 +19,8 @@ export default function AssignSupervisorPage() {
   };
 
   return (
-    <div className="w-full py-6 space-y-6">
-      <div className="flex items-center gap-4 mb-6">
+    <div className="w-full py-2 space-y-3">
+      <div className="flex items-center gap-4 mb-3">
         <Button variant="ghost" onClick={() => router.back()} className="p-0 hover:bg-transparent">
           <ArrowLeft className="w-6 h-6 text-gray-600" />
         </Button>
@@ -30,13 +30,13 @@ export default function AssignSupervisorPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         <Card className="lg:col-span-2">
           <CardHeader>
             <CardTitle>Available Supervisors</CardTitle>
             <CardDescription>Select a supervisor for this project</CardDescription>
           </CardHeader>
-          <CardContent className="space-y-4">
+          <CardContent className="space-y-2">
             <div className="relative mb-4">
               <Search className="absolute left-3 top-2.5 h-4 w-4 text-gray-500" />
               <Input placeholder="Search by name or skill..." className="pl-9" />
@@ -76,7 +76,7 @@ export default function AssignSupervisorPage() {
             <CardTitle>Current Assignment</CardTitle>
             <CardDescription>Project leadership</CardDescription>
           </CardHeader>
-          <CardContent className="flex flex-col items-center justify-center py-8 text-center space-y-4">
+          <CardContent className="flex flex-col items-center justify-center py-8 text-center space-y-2">
             <div className="p-4 bg-gray-100 rounded-full">
               <UserCheck className="w-8 h-8 text-gray-400" />
             </div>

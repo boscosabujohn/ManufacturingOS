@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from 'next'
 import { Roboto } from 'next/font/google'
 import './globals.css'
 import { ServiceWorkerRegistration } from '@/components/ServiceWorkerRegistration'
+import { AuthProvider } from '@/context/AuthContext'
+import { NotificationProvider } from '@/context/NotificationContext'
 
 const roboto = Roboto({
   subsets: ['latin'],
@@ -54,8 +56,12 @@ export default function RootLayout({
         <meta name="mobile-web-app-capable" content="yes" />
       </head>
       <body className={roboto.className}>
-        {children}
-        <ServiceWorkerRegistration />
+        <AuthProvider>
+          <NotificationProvider>
+            {children}
+            <ServiceWorkerRegistration />
+          </NotificationProvider>
+        </AuthProvider>
       </body>
     </html>
   )

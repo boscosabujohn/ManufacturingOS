@@ -20,13 +20,13 @@ function CompanyInfoStep() {
   const { formData, setFormData } = useMultiStepForm();
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-3">
       <div>
         <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Company Information</h3>
         <p className="text-sm text-gray-600 dark:text-gray-400">Enter basic company details.</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
         <div>
           <label className="flex items-center gap-2 text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
             Company Name *
@@ -94,13 +94,13 @@ function ContactStep() {
   const { formData, setFormData } = useMultiStepForm();
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-3">
       <div>
         <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Primary Contact</h3>
         <p className="text-sm text-gray-600 dark:text-gray-400">Main point of contact at this organization.</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
         <div>
           <label className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 block">First Name *</label>
           <input
@@ -152,13 +152,13 @@ function AddressStep() {
   const { formData, setFormData } = useMultiStepForm();
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-3">
       <div>
         <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Business Address</h3>
         <p className="text-sm text-gray-600 dark:text-gray-400">Primary address for shipping and correspondence.</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
         <div className="md:col-span-2">
           <label className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 block">Street Address *</label>
           <input
@@ -223,13 +223,13 @@ function BillingStep() {
   const { formData, setFormData } = useMultiStepForm();
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-3">
       <div>
         <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Billing & Payment</h3>
         <p className="text-sm text-gray-600 dark:text-gray-400">Configure billing preferences. (Optional)</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
         <div>
           <label className="flex items-center gap-2 text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
             Payment Terms
@@ -296,13 +296,13 @@ function ClassificationStep() {
   const tags = ['Strategic', 'Key Account', 'New', 'VIP', 'At Risk'];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-3">
       <div>
         <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Classification</h3>
         <p className="text-sm text-gray-600 dark:text-gray-400">Categorize for proper management.</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
         <div>
           <label className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 block">Customer Type *</label>
           <select
@@ -417,9 +417,9 @@ export default function AddCustomerEnhancedPage() {
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-      <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-6 py-4">
+      <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-3 py-2">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
             <button onClick={() => router.back()} className="flex items-center gap-2 text-gray-600 hover:text-gray-900">
               <ArrowLeft className="h-5 w-5" />
               Back
@@ -434,18 +434,18 @@ export default function AddCustomerEnhancedPage() {
         </div>
       </div>
 
-      <div className="max-w-4xl mx-auto p-6 space-y-6">
+      <div className="max-w-4xl mx-auto p-3 space-y-3">
         <DraftRecoveryBanner
           hasDraft={showDraftBanner}
           onRestore={() => { const d = restoreDraft(); if (d) setFormData(d); setShowDraftBanner(false); }}
           onDiscard={() => { clearDraft(); setShowDraftBanner(false); }}
         />
 
-        <div className="bg-white dark:bg-gray-800 rounded-lg p-4 border border-gray-200 dark:border-gray-700">
+        <div className="bg-white dark:bg-gray-800 rounded-lg p-3 border border-gray-200 dark:border-gray-700">
           <FormProgressIndicator fields={formFields} values={formData} variant="bar" showPercentage showFieldCount />
         </div>
 
-        <div className="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700">
+        <div className="bg-white dark:bg-gray-800 rounded-lg p-3 border border-gray-200 dark:border-gray-700">
           <MultiStepForm
             steps={steps}
             onComplete={(data) => {

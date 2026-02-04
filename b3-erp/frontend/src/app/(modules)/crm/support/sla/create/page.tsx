@@ -65,13 +65,13 @@ export default function CreateSLAPolicyPage() {
   };
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 ">
+    <div className="w-full h-full px-3 py-2 ">
       <div className="w-full">
         {/* Header */}
         <div className="mb-8">
           <button
             onClick={() => router.back()}
-            className="flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-4"
+            className="flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-2"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to SLA Management
@@ -80,14 +80,14 @@ export default function CreateSLAPolicyPage() {
           <p className="text-gray-600 mt-2">Define service level agreement targets and response times</p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <form onSubmit={handleSubmit} className="space-y-3">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
             {/* Main Form */}
-            <div className="lg:col-span-2 space-y-6">
+            <div className="lg:col-span-2 space-y-3">
               {/* Basic Information */}
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h2 className="text-lg font-semibold text-gray-900 mb-4">Basic Information</h2>
-                <div className="space-y-4">
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <h2 className="text-lg font-semibold text-gray-900 mb-2">Basic Information</h2>
+                <div className="space-y-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
                       Policy Name *
@@ -120,7 +120,7 @@ export default function CreateSLAPolicyPage() {
                     {errors.description && <p className="text-red-600 text-sm mt-1">{errors.description}</p>}
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         Priority Level *
@@ -157,10 +157,10 @@ export default function CreateSLAPolicyPage() {
               </div>
 
               {/* SLA Targets */}
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h2 className="text-lg font-semibold text-gray-900 mb-4">SLA Targets</h2>
-                <div className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <h2 className="text-lg font-semibold text-gray-900 mb-2">SLA Targets</h2>
+                <div className="space-y-2">
+                  <div className="grid grid-cols-2 gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         First Response Time (minutes) *
@@ -199,7 +199,7 @@ export default function CreateSLAPolicyPage() {
                     </div>
                   </div>
 
-                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                     <label className="flex items-center gap-3 cursor-pointer">
                       <input
                         type="checkbox"
@@ -217,8 +217,8 @@ export default function CreateSLAPolicyPage() {
               </div>
 
               {/* Applies To */}
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <div className="flex items-center justify-between mb-4">
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <div className="flex items-center justify-between mb-2">
                   <h2 className="text-lg font-semibold text-gray-900">Applies To *</h2>
                   <button
                     type="button"
@@ -256,8 +256,8 @@ export default function CreateSLAPolicyPage() {
               </div>
 
               {/* Status */}
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h2 className="text-lg font-semibold text-gray-900 mb-4">Policy Status</h2>
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <h2 className="text-lg font-semibold text-gray-900 mb-2">Policy Status</h2>
                 <label className="flex items-center gap-3 cursor-pointer">
                   <input
                     type="checkbox"
@@ -273,17 +273,17 @@ export default function CreateSLAPolicyPage() {
               </div>
 
               {/* Action Buttons */}
-              <div className="flex gap-4">
+              <div className="flex gap-2">
                 <button
                   type="button"
                   onClick={() => router.back()}
-                  className="flex-1 px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 font-medium"
+                  className="flex-1 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 font-medium"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium"
+                  className="flex-1 px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium"
                 >
                   Create SLA Policy
                 </button>
@@ -291,10 +291,10 @@ export default function CreateSLAPolicyPage() {
             </div>
 
             {/* Sidebar */}
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Quick Tips */}
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-                <div className="flex items-start gap-3 mb-4">
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
+                <div className="flex items-start gap-3 mb-2">
                   <AlertCircle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
                   <div>
                     <h3 className="font-semibold text-blue-900 mb-1">SLA Best Practices</h3>
@@ -310,9 +310,9 @@ export default function CreateSLAPolicyPage() {
               </div>
 
               {/* Policy Summary */}
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Policy Summary</h3>
-                <div className="space-y-4">
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Policy Summary</h3>
+                <div className="space-y-2">
                   <div>
                     <div className="text-sm text-gray-600 mb-1">Priority</div>
                     <div className="text-gray-900 capitalize font-medium">
@@ -362,8 +362,8 @@ export default function CreateSLAPolicyPage() {
               </div>
 
               {/* Response Time Guide */}
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Response Time Guide</h3>
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Response Time Guide</h3>
                 <div className="space-y-3 text-sm">
                   <div>
                     <div className="font-medium text-red-700">Critical</div>

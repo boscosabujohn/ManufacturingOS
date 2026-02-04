@@ -135,7 +135,7 @@ export default function CampaignEditPage() {
       <div className="p-8">
         <div className="text-center">
           <h2 className="text-2xl font-semibold text-gray-900 mb-2">Campaign Not Found</h2>
-          <p className="text-gray-600 mb-4">The campaign you're trying to edit doesn't exist.</p>
+          <p className="text-gray-600 mb-2">The campaign you're trying to edit doesn't exist.</p>
           <Link href="/crm/campaigns" className="text-blue-600 hover:underline">
             Return to Campaigns
           </Link>
@@ -258,10 +258,10 @@ export default function CampaignEditPage() {
   return (
     <div className="p-8">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <button
           onClick={() => router.back()}
-          className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-4"
+          className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-2"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Back</span>
@@ -275,15 +275,15 @@ export default function CampaignEditPage() {
         </div>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-6">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <form onSubmit={handleSubmit} className="space-y-3">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
           {/* Main Form */}
-          <div className="lg:col-span-2 space-y-6">
+          <div className="lg:col-span-2 space-y-3">
             {/* Basic Information */}
-            <div className="bg-white rounded-xl border border-gray-200 p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4">Basic Information</h2>
+            <div className="bg-white rounded-xl border border-gray-200 p-3">
+              <h2 className="text-lg font-semibold text-gray-900 mb-2">Basic Information</h2>
 
-              <div className="space-y-4">
+              <div className="space-y-2">
                 {/* Campaign Name */}
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
@@ -351,10 +351,10 @@ export default function CampaignEditPage() {
             </div>
 
             {/* Campaign Details */}
-            <div className="bg-white rounded-xl border border-gray-200 p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4">Campaign Details</h2>
+            <div className="bg-white rounded-xl border border-gray-200 p-3">
+              <h2 className="text-lg font-semibold text-gray-900 mb-2">Campaign Details</h2>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 {/* Status */}
                 <div>
                   <label htmlFor="status" className="block text-sm font-medium text-gray-700 mb-1">
@@ -475,8 +475,8 @@ export default function CampaignEditPage() {
             </div>
 
             {/* Campaign Goals */}
-            <div className="bg-white rounded-xl border border-gray-200 p-6">
-              <div className="flex items-center justify-between mb-4">
+            <div className="bg-white rounded-xl border border-gray-200 p-3">
+              <div className="flex items-center justify-between mb-2">
                 <h2 className="text-lg font-semibold text-gray-900">Campaign Goals</h2>
                 <button
                   type="button"
@@ -512,8 +512,8 @@ export default function CampaignEditPage() {
             </div>
 
             {/* Marketing Channels */}
-            <div className="bg-white rounded-xl border border-gray-200 p-6">
-              <div className="flex items-center justify-between mb-4">
+            <div className="bg-white rounded-xl border border-gray-200 p-3">
+              <div className="flex items-center justify-between mb-2">
                 <h2 className="text-lg font-semibold text-gray-900">Marketing Channels</h2>
                 <button
                   type="button"
@@ -550,12 +550,12 @@ export default function CampaignEditPage() {
           </div>
 
           {/* Sidebar - Current Stats (Read-only) */}
-          <div className="space-y-6">
-            <div className="bg-white rounded-xl border border-gray-200 p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4">Current Performance</h2>
-              <p className="text-sm text-gray-600 mb-4">These stats are read-only and reflect current campaign performance.</p>
+          <div className="space-y-3">
+            <div className="bg-white rounded-xl border border-gray-200 p-3">
+              <h2 className="text-lg font-semibold text-gray-900 mb-2">Current Performance</h2>
+              <p className="text-sm text-gray-600 mb-2">These stats are read-only and reflect current campaign performance.</p>
 
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <div>
                   <p className="text-sm text-gray-500 mb-1">Amount Spent</p>
                   <p className="text-xl font-bold text-blue-600">${existingCampaign.spent.toLocaleString()}</p>
@@ -594,7 +594,7 @@ export default function CampaignEditPage() {
             </div>
 
             {/* Action Buttons */}
-            <div className="bg-white rounded-xl border border-gray-200 p-6">
+            <div className="bg-white rounded-xl border border-gray-200 p-3">
               <div className="space-y-3">
                 <button
                   type="submit"

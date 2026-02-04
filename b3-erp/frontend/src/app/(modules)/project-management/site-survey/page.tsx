@@ -562,7 +562,7 @@ export default function SiteSurveyPage() {
  };
 
  return (
-  <div className="p-6 space-y-6">
+  <div className="p-6 space-y-3">
    {/* Header */}
    <div className="flex justify-between items-start">
     <div>
@@ -683,9 +683,9 @@ export default function SiteSurveyPage() {
    </div>
 
    {/* Survey Cards Grid */}
-   <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+   <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
     {paginatedSurveys.map((survey) => (
-     <div key={survey.id} className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow">
+     <div key={survey.id} className="bg-white rounded-lg border border-gray-200 p-3 hover:shadow-lg transition-shadow">
       {/* Card Header */}
       <div className="flex justify-between items-start mb-4">
        <div>

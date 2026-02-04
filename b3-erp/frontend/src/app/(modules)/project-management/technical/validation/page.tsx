@@ -49,8 +49,8 @@ export default function BOMValidationPage() {
   };
 
   return (
-    <div className="w-full py-6 space-y-6">
-      <div className="flex items-center gap-4 mb-6">
+    <div className="w-full py-2 space-y-3">
+      <div className="flex items-center gap-4 mb-3">
         <Button variant="ghost" onClick={() => router.back()} className="p-0 hover:bg-transparent">
           <ArrowLeft className="w-6 h-6 text-gray-600" />
         </Button>
@@ -60,14 +60,14 @@ export default function BOMValidationPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="md:col-span-2 space-y-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div className="md:col-span-2 space-y-3">
           <Card>
             <CardHeader>
               <CardTitle>Design Package Summary</CardTitle>
               <CardDescription>Review all components before final submission</CardDescription>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-2">
               <div className="flex items-center justify-between p-4 border rounded-lg bg-gray-50">
                 <div className="flex items-center gap-3">
                   <div className="p-2 bg-blue-100 rounded-lg">
@@ -110,7 +110,7 @@ export default function BOMValidationPage() {
           </Card>
         </div>
 
-        <div className="space-y-6">
+        <div className="space-y-3">
           <Card className="bg-yellow-50 border-yellow-200">
             <CardHeader>
               <CardTitle className="text-yellow-900 flex items-center gap-2">
@@ -118,7 +118,7 @@ export default function BOMValidationPage() {
                 Technical Lead Approval
               </CardTitle>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-2">
               <div className="space-y-3">
                 <div className="flex items-center space-x-2">
                   <Checkbox id="check1" checked={checks.drawings} onChange={() => handleCheck('drawings')} />

@@ -67,8 +67,8 @@ export default function ShareDocumentsPage() {
   };
 
   return (
-    <div className="w-full py-6 space-y-6">
-      <div className="flex items-center gap-4 mb-6">
+    <div className="w-full py-2 space-y-3">
+      <div className="flex items-center gap-4 mb-3">
         <Button variant="ghost" onClick={() => router.back()} className="p-0 hover:bg-transparent">
           <ArrowLeft className="w-6 h-6 text-gray-600" />
         </Button>
@@ -78,8 +78,8 @@ export default function ShareDocumentsPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="md:col-span-2 space-y-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div className="md:col-span-2 space-y-3">
           <Card>
             <CardHeader>
               <div className="flex items-center justify-between">
@@ -90,7 +90,7 @@ export default function ShareDocumentsPage() {
               </div>
               <CardDescription>Verify and select documents to share</CardDescription>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-2">
               {documents.map((doc) => (
                 <div key={doc.id} className="flex items-center justify-between p-4 border rounded-lg hover:bg-gray-50 transition-colors">
                   <div className="flex items-center gap-4">
@@ -120,7 +120,7 @@ export default function ShareDocumentsPage() {
           </Card>
         </div>
 
-        <div className="space-y-6">
+        <div className="space-y-3">
           <Card className="bg-blue-50 border-blue-200">
             <CardHeader>
               <CardTitle className="text-blue-900 flex items-center gap-2">
@@ -157,7 +157,7 @@ export default function ShareDocumentsPage() {
               <CardTitle>Progress</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <div className="flex items-center justify-between text-sm">
                   <span className="text-gray-600">Documents Selected</span>
                   <span className="font-medium">{selectedDocs.length}/{documents.length}</span>

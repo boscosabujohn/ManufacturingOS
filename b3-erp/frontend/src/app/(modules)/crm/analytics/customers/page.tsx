@@ -130,9 +130,9 @@ export default function CustomerAnalyticsPage() {
   const maxGrowth = Math.max(...monthlyData.map(d => d.netGrowth));
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 ">
+    <div className="w-full h-full px-3 py-2 ">
       <div className="mb-8">
-        <div className="flex gap-2 mb-6">
+        <div className="flex gap-2 mb-3">
           {(['week', 'month', 'quarter', 'year'] as const).map((range) => (
             <button
               key={range}
@@ -149,8 +149,8 @@ export default function CustomerAnalyticsPage() {
         </div>
 
         {/* Key Metrics */}
-        <div className="grid grid-cols-1 md:grid-cols-6 gap-4 mb-8">
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
+        <div className="grid grid-cols-1 md:grid-cols-6 gap-2 mb-8">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm font-medium text-gray-600">Total Customers</span>
               <Users className="w-5 h-5 text-blue-600" />
@@ -166,7 +166,7 @@ export default function CustomerAnalyticsPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm font-medium text-gray-600">New Customers</span>
               <TrendingUp className="w-5 h-5 text-green-600" />
@@ -180,7 +180,7 @@ export default function CustomerAnalyticsPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm font-medium text-gray-600">Churn Rate</span>
               <TrendingDown className="w-5 h-5 text-red-600" />
@@ -194,7 +194,7 @@ export default function CustomerAnalyticsPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm font-medium text-gray-600">Avg LTV</span>
               <DollarSign className="w-5 h-5 text-purple-600" />
@@ -210,7 +210,7 @@ export default function CustomerAnalyticsPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm font-medium text-gray-600">Retention</span>
               <Repeat className="w-5 h-5 text-teal-600" />
@@ -224,7 +224,7 @@ export default function CustomerAnalyticsPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm font-medium text-gray-600">Avg Revenue</span>
               <DollarSign className="w-5 h-5 text-orange-600" />
@@ -242,10 +242,10 @@ export default function CustomerAnalyticsPage() {
         </div>
 
         {/* Charts Row */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-8">
           {/* Customer Growth Trend */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-6 flex items-center gap-2">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <h2 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
               <TrendingUp className="w-5 h-5" />
               Customer Growth Trend
             </h2>
@@ -254,7 +254,7 @@ export default function CustomerAnalyticsPage() {
                 <div key={index}>
                   <div className="flex justify-between text-sm mb-2">
                     <span className="font-medium text-gray-900">{data.month}</span>
-                    <div className="flex gap-4 text-xs">
+                    <div className="flex gap-2 text-xs">
                       <span className="text-green-600">+{data.newCustomers} new</span>
                       <span className="text-red-600">-{data.churnedCustomers} churned</span>
                       <span className="font-semibold text-gray-900">Net: +{data.netGrowth}</span>
@@ -274,12 +274,12 @@ export default function CustomerAnalyticsPage() {
           </div>
 
           {/* Acquisition Channels */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-6 flex items-center gap-2">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <h2 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
               <Target className="w-5 h-5" />
               Acquisition Channels
             </h2>
-            <div className="space-y-4">
+            <div className="space-y-2">
               {acquisitionChannels.map((channel, index) => (
                 <div key={index}>
                   <div className="flex justify-between text-sm mb-2">
@@ -305,14 +305,14 @@ export default function CustomerAnalyticsPage() {
         </div>
 
         {/* Customer Segments */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6 mb-8">
-          <h2 className="text-lg font-semibold text-gray-900 mb-6 flex items-center gap-2">
+        <div className="bg-white rounded-lg border border-gray-200 p-3 mb-8">
+          <h2 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
             <PieChart className="w-5 h-5" />
             Customer Segments
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             {customerSegments.map((segment, index) => (
-              <div key={index} className={`bg-gradient-to-br ${segment.color} rounded-lg p-6 text-white`}>
+              <div key={index} className={`bg-gradient-to-br ${segment.color} rounded-lg p-3 text-white`}>
                 <h3 className="text-xl font-bold mb-2">{segment.segment}</h3>
                 <div className="space-y-3">
                   <div>
@@ -338,10 +338,10 @@ export default function CustomerAnalyticsPage() {
         </div>
 
         {/* Top Customers & Health Distribution */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-8">
           {/* Top Customers */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-6 flex items-center gap-2">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <h2 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
               <Award className="w-5 h-5" />
               Top Customers by Revenue
             </h2>
@@ -388,14 +388,14 @@ export default function CustomerAnalyticsPage() {
           </div>
 
           {/* Customer Health & Lifecycle */}
-          <div className="space-y-6">
+          <div className="space-y-3">
             {/* Health Distribution */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-6 flex items-center gap-2">
+            <div className="bg-white rounded-lg border border-gray-200 p-3">
+              <h2 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
                 <Activity className="w-5 h-5" />
                 Customer Health Distribution
               </h2>
-              <div className="space-y-4">
+              <div className="space-y-2">
                 {healthDistribution.map((health, index) => (
                   <div key={index}>
                     <div className="flex justify-between text-sm mb-2">
@@ -414,8 +414,8 @@ export default function CustomerAnalyticsPage() {
             </div>
 
             {/* Lifecycle Stages */}
-            <div className="bg-white rounded-lg border border-gray-200 p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-6 flex items-center gap-2">
+            <div className="bg-white rounded-lg border border-gray-200 p-3">
+              <h2 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
                 <Calendar className="w-5 h-5" />
                 Lifecycle Stages
               </h2>

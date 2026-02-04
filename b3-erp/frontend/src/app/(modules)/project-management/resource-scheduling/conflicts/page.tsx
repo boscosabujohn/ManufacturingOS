@@ -80,7 +80,7 @@ export default function ConflictResolutionPage() {
       </div>
 
       <div className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
-        <div className=" mx-auto space-y-6">
+        <div className=" mx-auto space-y-3">
           {/* Summary Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <Card className="bg-red-50 border-red-100">
@@ -125,7 +125,7 @@ export default function ConflictResolutionPage() {
               <CardDescription>Review and take action on the following issues</CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="space-y-4">
+              <div className="space-y-2">
                 {conflicts.map((conflict) => (
                   <div key={conflict.id} className="flex flex-col md:flex-row items-start md:items-center justify-between p-4 bg-white border border-gray-200 rounded-lg hover:shadow-sm transition-shadow">
                     <div className="flex items-start gap-4 mb-4 md:mb-0">
@@ -182,7 +182,7 @@ export default function ConflictResolutionPage() {
         title="Resolve Conflict"
         size="lg"
       >
-        <div className="space-y-6">
+        <div className="space-y-3">
           <div className="bg-gray-50 p-4 rounded-lg">
             <h4 className="font-medium text-gray-900 mb-2">Conflict Details</h4>
             <p className="text-sm text-gray-600">{selectedConflict?.description}</p>

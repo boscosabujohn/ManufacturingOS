@@ -135,13 +135,13 @@ export default function EditTemplatePage() {
   };
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 ">
+    <div className="w-full h-full px-3 py-2 ">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
-        <div className="mb-6">
+        <div className="mb-3">
           <button
             onClick={handleCancel}
-            className="flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-4 transition-colors"
+            className="flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-2 transition-colors"
           >
             <ArrowLeft className="w-5 h-5" />
             Back to Templates
@@ -152,14 +152,14 @@ export default function EditTemplatePage() {
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="bg-white rounded-lg border border-gray-200 shadow-sm">
-          <div className="p-6 space-y-6">
+          <div className="p-6 space-y-3">
             {/* Basic Information */}
             <div>
-              <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+              <h2 className="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2">
                 <FileText className="w-5 h-5" />
                 Template Information
               </h2>
-              <div className="space-y-4">
+              <div className="space-y-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Template Name <span className="text-red-500">*</span>
@@ -221,12 +221,12 @@ export default function EditTemplatePage() {
 
             {/* Default Terms */}
             <div className="pt-6 border-t border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+              <h2 className="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2">
                 <Calendar className="w-5 h-5" />
                 Default Contract Terms
               </h2>
-              <div className="space-y-4">
-                <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Default Duration (months) <span className="text-red-500">*</span>
@@ -267,7 +267,7 @@ export default function EditTemplatePage() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Billing Cycle <span className="text-red-500">*</span>
@@ -327,7 +327,7 @@ export default function EditTemplatePage() {
 
             {/* Contract Clauses */}
             <div className="pt-6 border-t border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900 mb-4">Contract Clauses</h2>
+              <h2 className="text-xl font-bold text-gray-900 mb-2">Contract Clauses</h2>
               <div className="space-y-3">
                 {formData.clauses.map((clause, index) => (
                   <div key={index} className="flex items-center gap-2">
@@ -374,7 +374,7 @@ export default function EditTemplatePage() {
 
             {/* Legal Protections */}
             <div className="pt-6 border-t border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900 mb-4">Legal Protections</h2>
+              <h2 className="text-xl font-bold text-gray-900 mb-2">Legal Protections</h2>
               <div className="space-y-3">
                 <label className="flex items-center gap-3 cursor-pointer">
                   <input
@@ -420,7 +420,7 @@ export default function EditTemplatePage() {
 
             {/* Tags */}
             <div className="pt-6 border-t border-gray-200">
-              <h2 className="text-xl font-bold text-gray-900 mb-4">Tags</h2>
+              <h2 className="text-xl font-bold text-gray-900 mb-2">Tags</h2>
               <div className="space-y-3">
                 <div className="flex flex-wrap gap-2">
                   {formData.tags.map((tag, index) => (
@@ -463,7 +463,7 @@ export default function EditTemplatePage() {
           </div>
 
           {/* Actions */}
-          <div className="px-6 py-4 bg-gray-50 border-t border-gray-200 rounded-b-lg flex items-center justify-end gap-3">
+          <div className="px-3 py-2 bg-gray-50 border-t border-gray-200 rounded-b-lg flex items-center justify-end gap-3">
             <button
               type="button"
               onClick={handleCancel}

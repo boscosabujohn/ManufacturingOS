@@ -467,7 +467,7 @@ export default function ProjectTypesPage() {
  return (
   <div className="p-6 mx-auto">
    {/* Header */}
-   <div className="mb-6">
+   <div className="mb-3">
     <div className="flex items-center justify-between mb-4">
      <div>
       <h1 className="text-3xl font-bold text-gray-900">Project Types & Categories</h1>
@@ -483,7 +483,7 @@ export default function ProjectTypesPage() {
     </div>
 
     {/* Quick Stats */}
-    <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-3">
      <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
       <div className="flex items-center justify-between">
        <div>
@@ -545,7 +545,7 @@ export default function ProjectTypesPage() {
    </div>
 
    {/* Tabs */}
-   <div className="flex border-b border-gray-200 mb-6">
+   <div className="flex border-b border-gray-200 mb-3">
     <button
      onClick={() => setActiveTab('types')}
      className={`px-6 py-3 font-medium ${
@@ -569,7 +569,7 @@ export default function ProjectTypesPage() {
    </div>
 
    {/* Filters */}
-   <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200 mb-6">
+   <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200 mb-3">
     <div className="flex flex-col md:flex-row gap-4">
      <div className="flex-1">
       <input
@@ -597,9 +597,9 @@ export default function ProjectTypesPage() {
 
    {/* Project Types Tab */}
    {activeTab === 'types' && (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
      {filteredTypes.map((type) => (
-      <div key={type.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
+      <div key={type.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 hover:shadow-md transition-shadow">
        <div className="flex items-start justify-between mb-4">
         <div className="flex-1">
          <div className="flex items-center gap-2 mb-2">
@@ -705,11 +705,11 @@ export default function ProjectTypesPage() {
 
    {/* Categories Tab */}
    {activeTab === 'categories' && (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
      {filteredCategories.map((category) => (
       <div
        key={category.id}
-       className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow"
+       className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 hover:shadow-md transition-shadow"
        style={{ borderTopColor: category.color, borderTopWidth: '4px' }}
       >
        <div className="flex items-start justify-between mb-4">

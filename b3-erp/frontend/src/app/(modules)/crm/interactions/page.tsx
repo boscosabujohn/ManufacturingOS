@@ -207,11 +207,11 @@ export default function InteractionsPage() {
   };
 
   return (
-    <div className="container mx-auto min-h-screen px-4 sm:px-6 lg:px-8 py-6 ">
+    <div className="w-full min-h-screen px-3 py-2 ">
       {/* Stats with Add Button */}
-      <div className="mb-6 flex items-start gap-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 flex-1">
-          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+      <div className="mb-3 flex items-start gap-2">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2 flex-1">
+          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-blue-600">Total Interactions</p>
@@ -221,7 +221,7 @@ export default function InteractionsPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+          <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-purple-600">This Week</p>
@@ -231,7 +231,7 @@ export default function InteractionsPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+          <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-green-600">Calls</p>
@@ -241,7 +241,7 @@ export default function InteractionsPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-4 border border-indigo-200">
+          <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-3 border border-indigo-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-indigo-600">Meetings</p>
@@ -262,7 +262,7 @@ export default function InteractionsPage() {
       </div>
 
       {/* Filters */}
-      <div className="flex gap-4 mb-6">
+      <div className="flex gap-2 mb-3">
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
           <input
@@ -305,15 +305,15 @@ export default function InteractionsPage() {
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200 sticky top-0">
             <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Date/Time</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Type</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Customer</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Contact Person</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Subject</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Performed By</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Duration</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Outcome</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Date/Time</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Type</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Customer</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Contact Person</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Subject</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Performed By</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Duration</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Outcome</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200">
@@ -321,42 +321,42 @@ export default function InteractionsPage() {
               const TypeIcon = typeIcons[interaction.type];
               return (
                 <tr key={interaction.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="flex items-center space-x-2">
                       <Clock className="h-4 w-4 text-gray-400" />
                       <span className="text-sm text-gray-900">{interaction.dateTime}</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className={`inline-flex items-center space-x-1 px-2 py-1 rounded-lg border ${typeColors[interaction.type]}`}>
                       <TypeIcon className="h-4 w-4" />
                       <span className="text-xs font-semibold">{formatTypeLabel(interaction.type)}</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="font-medium text-gray-900">{interaction.customer}</div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="flex items-center space-x-2">
                       <User className="h-4 w-4 text-gray-400" />
                       <span className="text-sm text-gray-900">{interaction.contactPerson}</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="text-sm text-gray-900 max-w-xs truncate">{interaction.subject}</div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="text-sm text-gray-900">{interaction.performedBy}</div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="text-sm text-gray-600">{interaction.duration}</div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <span className={`px-2 py-1 text-xs font-semibold rounded-full ${outcomeColors[interaction.outcome]}`}>
                       {formatOutcomeLabel(interaction.outcome)}
                     </span>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="flex items-center space-x-1">
                       <button
                         onClick={() => handleViewInteraction(interaction)}
@@ -392,7 +392,7 @@ export default function InteractionsPage() {
         </div>
 
         {/* Pagination */}
-        <div className="px-6 py-4 border-t border-gray-200 flex items-center justify-between">
+        <div className="px-3 py-2 border-t border-gray-200 flex items-center justify-between">
           <div className="text-sm text-gray-700">
             Showing {startIndex + 1} to {Math.min(startIndex + itemsPerPage, filteredInteractions.length)} of {filteredInteractions.length} items
           </div>

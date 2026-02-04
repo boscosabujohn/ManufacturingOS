@@ -597,9 +597,9 @@ export default function ProjectTemplatesPage() {
  return (
   <div className="h-screen flex flex-col overflow-hidden">
    <div className="flex-1 overflow-y-auto overflow-x-hidden">
-    <div className="px-4 sm:px-6 lg:px-8 py-6 mx-auto">
+    <div className="px-4 sm:px-6 lg:px-8 py-2 mx-auto">
      {/* Action Bar */}
-     <div className="mb-6">
+     <div className="mb-3">
       <div className="flex items-center justify-end gap-3 mb-4">
        <button
         onClick={() => setShowImportModal(true)}
@@ -618,7 +618,7 @@ export default function ProjectTemplatesPage() {
       </div>
 
       {/* Quick Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-3">
      <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
       <div className="flex items-center justify-between">
        <div>
@@ -682,7 +682,7 @@ export default function ProjectTemplatesPage() {
    </div>
 
    {/* Filters */}
-   <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200 mb-6">
+   <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200 mb-3">
     <div className="flex flex-col md:flex-row gap-4">
      <div className="flex-1">
       <input
@@ -717,11 +717,11 @@ export default function ProjectTemplatesPage() {
    </div>
 
    {/* Templates Grid */}
-   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
     {filteredTemplates.map((template) => (
      <div
       key={template.id}
-      className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow"
+      className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 hover:shadow-md transition-shadow"
      >
       <div className="flex items-start justify-between mb-4">
        <div className="flex-1">
@@ -892,7 +892,7 @@ export default function ProjectTemplatesPage() {
        </div>
       </div>
 
-      <div className="p-6 space-y-6">
+      <div className="p-6 space-y-3">
        {/* Overview */}
        <div>
         <h3 className="text-lg font-semibold text-gray-900 mb-3">Overview</h3>

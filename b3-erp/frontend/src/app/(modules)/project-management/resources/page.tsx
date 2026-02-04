@@ -224,7 +224,7 @@ export default function ResourcesListPage() {
  const roles = Array.from(new Set(resources.map(r => r.role)));
 
  return (
-  <div className="w-full min-h-screen px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+  <div className="w-full min-h-screen px-3 py-2 space-y-3">
    {/* Header Actions */}
    <div className="flex justify-between items-center mb-4">
     <div className="flex gap-2 items-center">
@@ -283,8 +283,8 @@ export default function ResourcesListPage() {
    </div>
 
    {/* Statistics Cards */}
-   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
      <div className="flex items-center justify-between">
       <div>
        <p className="text-sm text-gray-600">Total Resources</p>
@@ -296,7 +296,7 @@ export default function ResourcesListPage() {
      </div>
     </div>
 
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
      <div className="flex items-center justify-between">
       <div>
        <p className="text-sm text-gray-600">Available</p>
@@ -311,7 +311,7 @@ export default function ResourcesListPage() {
      </div>
     </div>
 
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
      <div className="flex items-center justify-between">
       <div>
        <p className="text-sm text-gray-600">Avg Utilization</p>
@@ -323,7 +323,7 @@ export default function ResourcesListPage() {
      </div>
     </div>
 
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
      <div className="flex items-center justify-between">
       <div>
        <p className="text-sm text-gray-600">Avg Efficiency</p>

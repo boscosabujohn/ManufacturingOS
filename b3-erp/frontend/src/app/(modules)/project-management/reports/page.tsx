@@ -566,9 +566,9 @@ export default function ProjectReportsPage() {
  return (
   <div className="h-screen flex flex-col overflow-hidden">
    <div className="flex-1 overflow-y-auto overflow-x-hidden">
-    <div className="px-4 sm:px-6 lg:px-8 py-6 mx-auto">
+    <div className="px-4 sm:px-6 lg:px-8 py-2 mx-auto">
      {/* Header Section */}
-     <div className="mb-6">
+     <div className="mb-3">
       <div className="flex items-center justify-between mb-4">
        <div>
         <h1 className="text-2xl font-bold text-gray-900">Reports & Analytics</h1>
@@ -630,7 +630,7 @@ export default function ProjectReportsPage() {
       </div>
 
       {/* Quick Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-3">
        <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
         <div className="flex items-center justify-between">
          <div>
@@ -684,7 +684,7 @@ export default function ProjectReportsPage() {
      </div>
 
      {/* Tabs */}
-     <div className="flex border-b border-gray-200 mb-6">
+     <div className="flex border-b border-gray-200 mb-3">
       <button
        onClick={() => setActiveTab('recent')}
        className={`px-6 py-3 font-medium ${activeTab === 'recent'
@@ -709,7 +709,7 @@ export default function ProjectReportsPage() {
      {activeTab === 'recent' && (
       <>
        {/* Filters */}
-       <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200 mb-6">
+       <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200 mb-3">
         <div className="flex flex-col md:flex-row gap-4">
          <div className="flex-1">
           <input
@@ -750,11 +750,11 @@ export default function ProjectReportsPage() {
        </div>
 
        {/* Reports Grid */}
-       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
         {filteredReports.map((report) => {
          const IconComponent = report.icon;
          return (
-          <div key={report.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
+          <div key={report.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 hover:shadow-md transition-shadow">
            <div className="flex items-start justify-between mb-4">
             <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
              <IconComponent className="w-6 h-6 text-gray-600" />
@@ -855,11 +855,11 @@ export default function ProjectReportsPage() {
 
      {/* Templates Tab */}
      {activeTab === 'templates' && (
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
        {reportTemplates.map((template) => {
         const IconComponent = template.icon;
         return (
-         <div key={template.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
+         <div key={template.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-3 hover:shadow-md transition-shadow">
           <div className="flex items-start gap-4 mb-4">
            <div className="w-14 h-14 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
             <IconComponent className="w-7 h-7 text-white" />

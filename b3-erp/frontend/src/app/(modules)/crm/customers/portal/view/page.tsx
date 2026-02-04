@@ -480,7 +480,7 @@ export default function CustomerPortalViewPage() {
     <div className="flex flex-col h-screen bg-gray-50">
       {/* Header */}
       <div className="bg-white border-b border-gray-200 flex-shrink-0">
-        <div className="px-4 sm:px-6 lg:px-8">
+        <div className="px-3">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold">
@@ -491,7 +491,7 @@ export default function CustomerPortalViewPage() {
                 <p className="text-sm text-gray-600">{customerInfo.name}</p>
               </div>
             </div>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
               <button className="relative p-2 text-gray-600 hover:bg-gray-100 rounded-lg">
                 <Bell className="w-5 h-5" />
                 <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
@@ -510,7 +510,7 @@ export default function CustomerPortalViewPage() {
 
       {/* Navigation Tabs */}
       <div className="bg-white border-b border-gray-200 flex-shrink-0">
-        <div className="px-4 sm:px-6 lg:px-8">
+        <div className="px-3">
           <div className="flex space-x-8 overflow-x-auto">
             <button
               onClick={() => setActiveTab('dashboard')}
@@ -609,13 +609,13 @@ export default function CustomerPortalViewPage() {
 
       {/* Content - Scrollable Area */}
       <div className="flex-1 overflow-auto">
-        <div className="px-4 sm:px-6 lg:px-8 py-8">
+        <div className="px-3 py-8">
           {/* Dashboard Tab */}
           {activeTab === 'dashboard' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               {/* Stats Cards */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div className="bg-white rounded-lg border border-gray-200 p-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+                <div className="bg-white rounded-lg border border-gray-200 p-3">
                   <div className="flex items-center justify-between mb-2">
                     <Package className="w-8 h-8 text-blue-600" />
                   </div>
@@ -623,7 +623,7 @@ export default function CustomerPortalViewPage() {
                   <div className="text-sm text-gray-600">Total Orders</div>
                 </div>
 
-                <div className="bg-white rounded-lg border border-gray-200 p-6">
+                <div className="bg-white rounded-lg border border-gray-200 p-3">
                   <div className="flex items-center justify-between mb-2">
                     <DollarSign className="w-8 h-8 text-green-600" />
                   </div>
@@ -633,7 +633,7 @@ export default function CustomerPortalViewPage() {
                   <div className="text-sm text-gray-600">Total Invoiced</div>
                 </div>
 
-                <div className="bg-white rounded-lg border border-gray-200 p-6">
+                <div className="bg-white rounded-lg border border-gray-200 p-3">
                   <div className="flex items-center justify-between mb-2">
                     <AlertCircle className={`w-8 h-8 ${customerInfo.currentBalance > 0 ? 'text-orange-600' : 'text-green-600'}`} />
                   </div>
@@ -641,7 +641,7 @@ export default function CustomerPortalViewPage() {
                   <div className="text-sm text-gray-600">Current Balance</div>
                 </div>
 
-                <div className="bg-white rounded-lg border border-gray-200 p-6">
+                <div className="bg-white rounded-lg border border-gray-200 p-3">
                   <div className="flex items-center justify-between mb-2">
                     <MessageSquare className="w-8 h-8 text-purple-600" />
                   </div>
@@ -653,9 +653,9 @@ export default function CustomerPortalViewPage() {
               </div>
 
               {/* Account Summary */}
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h2 className="text-lg font-semibold mb-4">Account Summary</h2>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="bg-white rounded-lg border border-gray-200 p-3">
+                <h2 className="text-lg font-semibold mb-2">Account Summary</h2>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                   <div>
                     <p className="text-sm text-gray-600">Account Number</p>
                     <p className="text-lg font-semibold">{customerInfo.accountNumber}</p>
@@ -715,7 +715,7 @@ export default function CustomerPortalViewPage() {
               </div>
 
               {/* Recent Activity */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <div className="bg-white rounded-lg border border-gray-200">
                   <div className="p-6 border-b border-gray-200">
                     <h2 className="text-lg font-semibold">Pending Invoices</h2>
@@ -772,10 +772,10 @@ export default function CustomerPortalViewPage() {
 
           {/* Orders Tab */}
           {activeTab === 'orders' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               <div className="bg-white rounded-lg border border-gray-200">
                 <div className="p-6 border-b border-gray-200">
-                  <div className="flex justify-between items-center mb-4">
+                  <div className="flex justify-between items-center mb-2">
                     <h2 className="text-xl font-semibold">My Orders</h2>
                     <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2">
                       <Package className="w-4 h-4" />
@@ -797,7 +797,7 @@ export default function CustomerPortalViewPage() {
                 <div className="divide-y divide-gray-200">
                   {mockOrders.map((order) => (
                     <div key={order.id} className="p-6 hover:bg-gray-50">
-                      <div className="flex items-start justify-between mb-4">
+                      <div className="flex items-start justify-between mb-2">
                         <div>
                           <div className="flex items-center gap-3 mb-2">
                             <h3 className="text-lg font-semibold">{order.orderNumber}</h3>
@@ -860,24 +860,24 @@ export default function CustomerPortalViewPage() {
 
           {/* Invoices Tab */}
           {activeTab === 'invoices' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               <div className="bg-white rounded-lg border border-gray-200">
                 <div className="p-6 border-b border-gray-200">
-                  <h2 className="text-xl font-semibold mb-4">Invoices</h2>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div className="bg-green-50 rounded-lg p-4">
+                  <h2 className="text-xl font-semibold mb-2">Invoices</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+                    <div className="bg-green-50 rounded-lg p-3">
                       <div className="text-sm text-green-600 mb-1">Paid</div>
                       <div className="text-2xl font-bold text-green-900">
                         ${mockInvoices.filter(i => i.status === 'paid').reduce((sum, i) => sum + i.amount, 0).toLocaleString()}
                       </div>
                     </div>
-                    <div className="bg-yellow-50 rounded-lg p-4">
+                    <div className="bg-yellow-50 rounded-lg p-3">
                       <div className="text-sm text-yellow-600 mb-1">Pending</div>
                       <div className="text-2xl font-bold text-yellow-900">
                         ${mockInvoices.filter(i => i.status === 'pending').reduce((sum, i) => sum + i.amount, 0).toLocaleString()}
                       </div>
                     </div>
-                    <div className="bg-red-50 rounded-lg p-4">
+                    <div className="bg-red-50 rounded-lg p-3">
                       <div className="text-sm text-red-600 mb-1">Overdue</div>
                       <div className="text-2xl font-bold text-red-900">
                         ${mockInvoices.filter(i => i.status === 'overdue').reduce((sum, i) => sum + i.amount, 0).toLocaleString()}
@@ -939,10 +939,10 @@ export default function CustomerPortalViewPage() {
 
           {/* Receipts Tab */}
           {activeTab === 'receipts' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               <div className="bg-white rounded-lg border border-gray-200">
                 <div className="p-6 border-b border-gray-200">
-                  <div className="flex justify-between items-center mb-4">
+                  <div className="flex justify-between items-center mb-2">
                     <h2 className="text-xl font-semibold">Payment Receipts</h2>
                     <button
                       onClick={() => handlePrint('All Receipts')}
@@ -952,7 +952,7 @@ export default function CustomerPortalViewPage() {
                       Print All
                     </button>
                   </div>
-                  <div className="bg-blue-50 rounded-lg p-4">
+                  <div className="bg-blue-50 rounded-lg p-3">
                     <div className="flex items-center justify-between">
                       <div>
                         <div className="text-sm text-blue-600 mb-1">Total Payments Received</div>
@@ -968,7 +968,7 @@ export default function CustomerPortalViewPage() {
                 <div className="divide-y divide-gray-200">
                   {mockReceipts.map((receipt) => (
                     <div key={receipt.id} className="p-6 hover:bg-gray-50">
-                      <div className="flex items-start justify-between mb-4">
+                      <div className="flex items-start justify-between mb-2">
                         <div className="flex-1">
                           <div className="flex items-center gap-3 mb-2">
                             <Receipt className="w-5 h-5 text-green-600" />
@@ -1021,10 +1021,10 @@ export default function CustomerPortalViewPage() {
 
           {/* Statement of Accounts Tab */}
           {activeTab === 'statement' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               <div className="bg-white rounded-lg border border-gray-200">
                 <div className="p-6 border-b border-gray-200">
-                  <div className="flex justify-between items-center mb-4">
+                  <div className="flex justify-between items-center mb-2">
                     <h2 className="text-xl font-semibold">Statement of Accounts</h2>
                     <div className="flex gap-2">
                       <button
@@ -1045,31 +1045,31 @@ export default function CustomerPortalViewPage() {
                   </div>
 
                   {/* Account Summary */}
-                  <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
-                    <div className="bg-blue-50 rounded-lg p-4">
+                  <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-2">
+                    <div className="bg-blue-50 rounded-lg p-3">
                       <div className="text-sm text-blue-600 mb-1">Opening Balance</div>
                       <div className="text-xl font-bold text-blue-900">$0</div>
                     </div>
-                    <div className="bg-red-50 rounded-lg p-4">
+                    <div className="bg-red-50 rounded-lg p-3">
                       <div className="text-sm text-red-600 mb-1">Total Debits</div>
                       <div className="text-xl font-bold text-red-900">
                         ${mockStatementTransactions.reduce((sum, t) => sum + t.debit, 0).toLocaleString()}
                       </div>
                     </div>
-                    <div className="bg-green-50 rounded-lg p-4">
+                    <div className="bg-green-50 rounded-lg p-3">
                       <div className="text-sm text-green-600 mb-1">Total Credits</div>
                       <div className="text-xl font-bold text-green-900">
                         ${mockStatementTransactions.reduce((sum, t) => sum + t.credit, 0).toLocaleString()}
                       </div>
                     </div>
-                    <div className="bg-orange-50 rounded-lg p-4">
+                    <div className="bg-orange-50 rounded-lg p-3">
                       <div className="text-sm text-orange-600 mb-1">Closing Balance</div>
                       <div className="text-xl font-bold text-orange-900">${customerInfo.currentBalance.toLocaleString()}</div>
                     </div>
                   </div>
 
                   {/* Date Range Filter */}
-                  <div className="flex gap-4">
+                  <div className="flex gap-2">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1">From Date</label>
                       <input
@@ -1097,22 +1097,22 @@ export default function CustomerPortalViewPage() {
                   <table className="min-w-full divide-y divide-gray-200">
                     <thead className="bg-gray-50">
                       <tr>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Date</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Type</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Reference</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Description</th>
-                        <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Debit</th>
-                        <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Credit</th>
-                        <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Balance</th>
+                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Date</th>
+                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Type</th>
+                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Reference</th>
+                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Description</th>
+                        <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase">Debit</th>
+                        <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase">Credit</th>
+                        <th className="px-3 py-2 text-right text-xs font-medium text-gray-500 uppercase">Balance</th>
                       </tr>
                     </thead>
                     <tbody className="bg-white divide-y divide-gray-200">
                       {mockStatementTransactions.map((transaction) => (
                         <tr key={transaction.id} className="hover:bg-gray-50">
-                          <td className="px-6 py-4 whitespace-nowrap text-sm">
+                          <td className="px-3 py-2 whitespace-nowrap text-sm">
                             {new Date(transaction.date).toLocaleDateString()}
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap">
+                          <td className="px-3 py-2 whitespace-nowrap">
                             <span className={`px-2 py-1 rounded-full text-xs font-medium ${
                               transaction.type === 'invoice' ? 'bg-blue-100 text-blue-700' :
                               transaction.type === 'payment' ? 'bg-green-100 text-green-700' :
@@ -1121,19 +1121,19 @@ export default function CustomerPortalViewPage() {
                               {transaction.type}
                             </span>
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                          <td className="px-3 py-2 whitespace-nowrap text-sm font-medium">
                             {transaction.reference}
                           </td>
-                          <td className="px-6 py-4 text-sm text-gray-600">
+                          <td className="px-3 py-2 text-sm text-gray-600">
                             {transaction.description}
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-right text-red-600 font-medium">
+                          <td className="px-3 py-2 whitespace-nowrap text-sm text-right text-red-600 font-medium">
                             {transaction.debit > 0 ? `$${transaction.debit.toLocaleString()}` : '-'}
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-right text-green-600 font-medium">
+                          <td className="px-3 py-2 whitespace-nowrap text-sm text-right text-green-600 font-medium">
                             {transaction.credit > 0 ? `$${transaction.credit.toLocaleString()}` : '-'}
                           </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-right font-semibold">
+                          <td className="px-3 py-2 whitespace-nowrap text-sm text-right font-semibold">
                             ${transaction.balance.toLocaleString()}
                           </td>
                         </tr>
@@ -1141,16 +1141,16 @@ export default function CustomerPortalViewPage() {
                     </tbody>
                     <tfoot className="bg-gray-50">
                       <tr>
-                        <td colSpan={4} className="px-6 py-4 text-sm font-semibold text-right">
+                        <td colSpan={4} className="px-3 py-2 text-sm font-semibold text-right">
                           Total:
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-right text-red-600 font-bold">
+                        <td className="px-3 py-2 whitespace-nowrap text-sm text-right text-red-600 font-bold">
                           ${mockStatementTransactions.reduce((sum, t) => sum + t.debit, 0).toLocaleString()}
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-right text-green-600 font-bold">
+                        <td className="px-3 py-2 whitespace-nowrap text-sm text-right text-green-600 font-bold">
                           ${mockStatementTransactions.reduce((sum, t) => sum + t.credit, 0).toLocaleString()}
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-right font-bold">
+                        <td className="px-3 py-2 whitespace-nowrap text-sm text-right font-bold">
                           ${customerInfo.currentBalance.toLocaleString()}
                         </td>
                       </tr>
@@ -1163,7 +1163,7 @@ export default function CustomerPortalViewPage() {
 
           {/* Support Tab */}
           {activeTab === 'support' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               <div className="bg-white rounded-lg border border-gray-200">
                 <div className="p-6 border-b border-gray-200">
                   <div className="flex justify-between items-center">
@@ -1178,7 +1178,7 @@ export default function CustomerPortalViewPage() {
                 <div className="divide-y divide-gray-200">
                   {mockTickets.map((ticket) => (
                     <div key={ticket.id} className="p-6 hover:bg-gray-50">
-                      <div className="flex items-start gap-4">
+                      <div className="flex items-start gap-2">
                         <div className={`mt-1 p-2 rounded-lg ${getTicketStatusColor(ticket.status)}`}>
                           {getTicketStatusIcon(ticket.status)}
                         </div>
@@ -1213,10 +1213,10 @@ export default function CustomerPortalViewPage() {
 
           {/* Documents Tab */}
           {activeTab === 'documents' && (
-            <div className="space-y-6">
+            <div className="space-y-3">
               <div className="bg-white rounded-lg border border-gray-200">
                 <div className="p-6 border-b border-gray-200">
-                  <h2 className="text-xl font-semibold mb-4">Document Library</h2>
+                  <h2 className="text-xl font-semibold mb-2">Document Library</h2>
                   <div className="relative">
                     <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                     <input
@@ -1233,7 +1233,7 @@ export default function CustomerPortalViewPage() {
                   {mockDocuments.map((document) => (
                     <div key={document.id} className="p-6 hover:bg-gray-50">
                       <div className="flex items-start justify-between">
-                        <div className="flex items-start gap-4 flex-1">
+                        <div className="flex items-start gap-2 flex-1">
                           <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
                             <FileText className="w-6 h-6 text-blue-600" />
                           </div>
@@ -1275,9 +1275,9 @@ export default function CustomerPortalViewPage() {
 
       {/* Order View Modal */}
       {showOrderModal && selectedOrder && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="flex justify-between items-start mb-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+          <div className="bg-white rounded-lg p-3 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="flex justify-between items-start mb-2">
               <div>
                 <h3 className="text-xl font-bold">{selectedOrder.orderNumber}</h3>
                 <p className="text-sm text-gray-500">Order Date: {new Date(selectedOrder.date).toLocaleDateString()}</p>
@@ -1290,8 +1290,8 @@ export default function CustomerPortalViewPage() {
               </button>
             </div>
 
-            <div className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <p className="text-sm text-gray-600">Status</p>
                   <span className={`inline-block mt-1 px-3 py-1 rounded-full text-xs font-medium border ${getOrderStatusColor(selectedOrder.status)}`}>
@@ -1314,7 +1314,7 @@ export default function CustomerPortalViewPage() {
                 )}
               </div>
 
-              <div className="bg-gray-50 rounded-lg p-4">
+              <div className="bg-gray-50 rounded-lg p-3">
                 <p className="text-sm text-gray-600 mb-2">Order Items</p>
                 <p className="text-sm text-gray-500 italic">Item details would be displayed here</p>
               </div>
@@ -1340,9 +1340,9 @@ export default function CustomerPortalViewPage() {
 
       {/* Invoice View Modal */}
       {showInvoiceModal && selectedInvoice && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="flex justify-between items-start mb-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+          <div className="bg-white rounded-lg p-3 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="flex justify-between items-start mb-2">
               <div>
                 <h3 className="text-xl font-bold">{selectedInvoice.invoiceNumber}</h3>
                 <p className="text-sm text-gray-500">Issue Date: {new Date(selectedInvoice.date).toLocaleDateString()}</p>
@@ -1355,8 +1355,8 @@ export default function CustomerPortalViewPage() {
               </button>
             </div>
 
-            <div className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <p className="text-sm text-gray-600">Status</p>
                   <span className={`inline-block mt-1 px-3 py-1 rounded-full text-xs font-medium ${getInvoiceStatusColor(selectedInvoice.status)}`}>
@@ -1379,7 +1379,7 @@ export default function CustomerPortalViewPage() {
                 </div>
               </div>
 
-              <div className="bg-gray-50 rounded-lg p-4">
+              <div className="bg-gray-50 rounded-lg p-3">
                 <p className="text-sm text-gray-600 mb-2">Invoice Details</p>
                 <p className="text-sm text-gray-500 italic">Line items would be displayed here</p>
               </div>
@@ -1416,9 +1416,9 @@ export default function CustomerPortalViewPage() {
 
       {/* Receipt View Modal */}
       {showReceiptModal && selectedReceipt && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="flex justify-between items-start mb-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+          <div className="bg-white rounded-lg p-3 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="flex justify-between items-start mb-2">
               <div>
                 <h3 className="text-xl font-bold">{selectedReceipt.receiptNumber}</h3>
                 <p className="text-sm text-gray-500">Payment Date: {new Date(selectedReceipt.date).toLocaleDateString()}</p>
@@ -1431,8 +1431,8 @@ export default function CustomerPortalViewPage() {
               </button>
             </div>
 
-            <div className="space-y-4">
-              <div className="bg-green-50 rounded-lg p-4 mb-4">
+            <div className="space-y-2">
+              <div className="bg-green-50 rounded-lg p-3 mb-2">
                 <div className="flex items-center gap-2 mb-2">
                   <CheckCircle className="w-5 h-5 text-green-600" />
                   <p className="text-sm font-semibold text-green-900">Payment Confirmed</p>
@@ -1440,7 +1440,7 @@ export default function CustomerPortalViewPage() {
                 <p className="text-3xl font-bold text-green-900">${selectedReceipt.amount.toLocaleString()}</p>
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <p className="text-sm text-gray-600">Invoice Number</p>
                   <p className="text-lg font-semibold">{selectedReceipt.invoiceNumber}</p>
@@ -1482,9 +1482,9 @@ export default function CustomerPortalViewPage() {
 
       {/* Document View Modal */}
       {showDocumentModal && selectedDocument && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg p-6 max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="flex justify-between items-start mb-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+          <div className="bg-white rounded-lg p-3 max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="flex justify-between items-start mb-2">
               <div>
                 <h3 className="text-xl font-bold">{selectedDocument.name}</h3>
                 <p className="text-sm text-gray-500">Uploaded: {new Date(selectedDocument.uploadDate).toLocaleDateString()}</p>
@@ -1497,8 +1497,8 @@ export default function CustomerPortalViewPage() {
               </button>
             </div>
 
-            <div className="space-y-4">
-              <div className="grid grid-cols-3 gap-4">
+            <div className="space-y-2">
+              <div className="grid grid-cols-3 gap-2">
                 <div>
                   <p className="text-sm text-gray-600">Category</p>
                   <span className="inline-block mt-1 px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">
@@ -1516,7 +1516,7 @@ export default function CustomerPortalViewPage() {
               </div>
 
               <div className="bg-gray-100 rounded-lg p-8 text-center">
-                <FileText className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+                <FileText className="w-16 h-16 text-gray-400 mx-auto mb-2" />
                 <p className="text-gray-600">Document preview would be displayed here</p>
               </div>
             </div>
@@ -1541,9 +1541,9 @@ export default function CustomerPortalViewPage() {
 
       {/* Payment Modal */}
       {showPaymentModal && selectedInvoice && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg p-6 max-w-md w-full">
-            <div className="flex justify-between items-start mb-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+          <div className="bg-white rounded-lg p-3 max-w-md w-full">
+            <div className="flex justify-between items-start mb-2">
               <div>
                 <h3 className="text-xl font-bold">Make Payment</h3>
                 <p className="text-sm text-gray-500">{selectedInvoice.invoiceNumber}</p>
@@ -1556,8 +1556,8 @@ export default function CustomerPortalViewPage() {
               </button>
             </div>
 
-            <div className="space-y-4">
-              <div className="bg-blue-50 rounded-lg p-4">
+            <div className="space-y-2">
+              <div className="bg-blue-50 rounded-lg p-3">
                 <p className="text-sm text-blue-600 mb-1">Amount to Pay</p>
                 <p className="text-3xl font-bold text-blue-900">${selectedInvoice.amount.toLocaleString()}</p>
               </div>
@@ -1582,7 +1582,7 @@ export default function CustomerPortalViewPage() {
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Expiry Date</label>
                   <input
@@ -1622,7 +1622,7 @@ export default function CustomerPortalViewPage() {
 
       {/* Toast Notification */}
       {showToast && (
-        <div className="fixed bottom-4 right-4 bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg flex items-center gap-2 z-50">
+        <div className="fixed bottom-4 right-4 bg-green-600 text-white px-3 py-2 rounded-lg shadow-lg flex items-center gap-2 z-50">
           <CheckCircle className="h-4 w-4" />
           {toastMessage}
         </div>

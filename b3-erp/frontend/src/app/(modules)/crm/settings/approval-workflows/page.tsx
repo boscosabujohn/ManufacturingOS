@@ -294,18 +294,18 @@ export default function ApprovalWorkflowsPage() {
           </div>
 
           {/* Stats Summary */}
-          <div className="grid grid-cols-5 gap-4 mt-6">
-            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+          <div className="grid grid-cols-5 gap-2 mt-6">
+            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
               <div className="text-sm text-purple-600 font-medium">Total Workflows</div>
               <div className="text-2xl font-bold text-purple-900 mt-1">{workflows.length}</div>
             </div>
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
               <div className="text-sm text-blue-600 font-medium">Active</div>
               <div className="text-2xl font-bold text-blue-900 mt-1">
                 {workflows.filter(wf => wf.active).length}
               </div>
             </div>
-            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
               <div className="text-sm text-orange-600 font-medium flex items-center gap-1">
                 <Clock className="w-3 h-3" />
                 Pending
@@ -314,7 +314,7 @@ export default function ApprovalWorkflowsPage() {
                 {workflows.reduce((sum, wf) => sum + wf.pending, 0)}
               </div>
             </div>
-            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
               <div className="text-sm text-green-600 font-medium flex items-center gap-1">
                 <CheckCircle className="w-3 h-3" />
                 Approved
@@ -323,7 +323,7 @@ export default function ApprovalWorkflowsPage() {
                 {workflows.reduce((sum, wf) => sum + wf.approved, 0)}
               </div>
             </div>
-            <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-4 border border-red-200">
+            <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-3 border border-red-200">
               <div className="text-sm text-red-600 font-medium flex items-center gap-1">
                 <XCircle className="w-3 h-3" />
                 Rejected
@@ -337,7 +337,7 @@ export default function ApprovalWorkflowsPage() {
       </div>
 
       {/* Workflows Grid */}
-      <div className="p-6 grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="p-6 grid grid-cols-1 lg:grid-cols-2 gap-3">
         {workflows.map((workflow) => (
           <div
             key={workflow.id}
@@ -348,7 +348,7 @@ export default function ApprovalWorkflowsPage() {
           >
             {/* Workflow Header */}
             <div className="p-5">
-              <div className="flex items-start justify-between mb-4">
+              <div className="flex items-start justify-between mb-2">
                 <div className="flex items-start gap-3">
                   <span className="text-3xl">{getTypeIcon(workflow.type)}</span>
                   <div>
@@ -366,13 +366,13 @@ export default function ApprovalWorkflowsPage() {
               </div>
 
               {/* Conditions */}
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-4">
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-2">
                 <div className="text-xs font-medium text-blue-700 mb-1">Trigger Conditions:</div>
                 <div className="text-sm text-blue-900 font-mono">{formatConditions(workflow.conditions)}</div>
               </div>
 
               {/* Approval Stages */}
-              <div className="space-y-3 mb-4">
+              <div className="space-y-3 mb-2">
                 <div className="text-xs font-medium text-gray-700">Approval Stages:</div>
                 {workflow.stages.map((stage, idx) => (
                   <div key={stage.id} className="flex items-start gap-3">
@@ -444,7 +444,7 @@ export default function ApprovalWorkflowsPage() {
             </div>
 
             {/* Actions */}
-            <div className="border-t border-gray-200 p-4 bg-gray-50 flex items-center justify-between">
+            <div className="border-t border-gray-200 p-3 bg-gray-50 flex items-center justify-between">
               <div className="text-xs text-gray-500">
                 Created: {workflow.createdAt}
               </div>
@@ -495,7 +495,7 @@ export default function ApprovalWorkflowsPage() {
 
       {/* Create Dialog Placeholder */}
       {showCreateDialog && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
           <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
             <div className="p-6 border-b border-gray-200">
               <h2 className="text-xl font-bold text-gray-900">Create Approval Workflow</h2>

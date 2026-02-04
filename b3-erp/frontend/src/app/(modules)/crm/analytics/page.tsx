@@ -109,9 +109,9 @@ export default function CRMAnalyticsPage() {
   const maxRevenue = Math.max(...revenueData.map(d => d.value));
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 ">
+    <div className="w-full h-full px-3 py-2 ">
       <div className="mb-8">
-        <div className="flex gap-2 mb-6">
+        <div className="flex gap-2 mb-3">
           {(['week', 'month', 'quarter', 'year'] as const).map((range) => (
             <button
               key={range}
@@ -128,8 +128,8 @@ export default function CRMAnalyticsPage() {
         </div>
 
         {/* Key Metrics */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-8">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm font-medium text-gray-600">Total Revenue</span>
               <DollarSign className="w-5 h-5 text-green-600" />
@@ -149,7 +149,7 @@ export default function CRMAnalyticsPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm font-medium text-gray-600">Total Customers</span>
               <Users className="w-5 h-5 text-blue-600" />
@@ -169,7 +169,7 @@ export default function CRMAnalyticsPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm font-medium text-gray-600">Closed Deals</span>
               <Target className="w-5 h-5 text-purple-600" />
@@ -189,7 +189,7 @@ export default function CRMAnalyticsPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm font-medium text-gray-600">Conversion Rate</span>
               <Activity className="w-5 h-5 text-orange-600" />
@@ -211,10 +211,10 @@ export default function CRMAnalyticsPage() {
         </div>
 
         {/* Charts Row */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-8">
           {/* Revenue Trend Chart */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <div className="flex items-center justify-between mb-6">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <div className="flex items-center justify-between mb-3">
               <h2 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
                 <BarChart3 className="w-5 h-5" />
                 Revenue Trend
@@ -240,12 +240,12 @@ export default function CRMAnalyticsPage() {
           </div>
 
           {/* Sales Pipeline */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-6 flex items-center gap-2">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <h2 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
               <Target className="w-5 h-5" />
               Sales Pipeline
             </h2>
-            <div className="space-y-4">
+            <div className="space-y-2">
               {pipelineStages.map((stage, index) => (
                 <div key={index}>
                   <div className="flex justify-between text-sm mb-2">
@@ -268,14 +268,14 @@ export default function CRMAnalyticsPage() {
         </div>
 
         {/* Customer Acquisition & Activity */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-8">
           {/* Customer Acquisition Sources */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-6 flex items-center gap-2">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <h2 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
               <PieChart className="w-5 h-5" />
               Customer Acquisition Sources
             </h2>
-            <div className="space-y-4">
+            <div className="space-y-2">
               {customerAcquisition.map((source, index) => (
                 <div key={index}>
                   <div className="flex justify-between text-sm mb-2">
@@ -294,12 +294,12 @@ export default function CRMAnalyticsPage() {
           </div>
 
           {/* Activity Metrics */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-6 flex items-center gap-2">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <h2 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
               <Activity className="w-5 h-5" />
               Activity Metrics
             </h2>
-            <div className="space-y-4">
+            <div className="space-y-2">
               {activityMetrics.map((metric, index) => (
                 <div key={index}>
                   <div className="flex justify-between text-sm mb-2">
@@ -325,17 +325,17 @@ export default function CRMAnalyticsPage() {
         </div>
 
         {/* Top Performers & Customer Segments */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
           {/* Top Performers */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-6 flex items-center gap-2">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <h2 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
               <TrendingUp className="w-5 h-5" />
               Top Performers
             </h2>
-            <div className="space-y-4">
+            <div className="space-y-2">
               {topPerformers.map((performer, index) => (
-                <div key={index} className="flex items-center justify-between p-4 bg-gradient-to-r from-gray-50 to-white rounded-lg border border-gray-100">
-                  <div className="flex items-center gap-4">
+                <div key={index} className="flex items-center justify-between p-3 bg-gradient-to-r from-gray-50 to-white rounded-lg border border-gray-100">
+                  <div className="flex items-center gap-2">
                     <div className={`w-10 h-10 rounded-full flex items-center justify-center text-white font-bold ${
                       index === 0 ? 'bg-yellow-500' :
                       index === 1 ? 'bg-gray-400' :
@@ -358,12 +358,12 @@ export default function CRMAnalyticsPage() {
           </div>
 
           {/* Customer Segments */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-6 flex items-center gap-2">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <h2 className="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
               <Users className="w-5 h-5" />
               Customer Segments
             </h2>
-            <div className="space-y-4">
+            <div className="space-y-2">
               {customerSegments.map((segment, index) => (
                 <div key={index} className="p-4 bg-gradient-to-r from-blue-50 to-white rounded-lg border border-blue-100">
                   <div className="flex justify-between items-start mb-3">

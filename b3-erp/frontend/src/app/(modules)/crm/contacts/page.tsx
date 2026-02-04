@@ -449,10 +449,10 @@ export default function ContactsPage() {
   // Show loading skeleton on initial load
   if (isLoading && contacts.length === 0) {
     return (
-      <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6">
+      <div className="w-full h-full px-3 py-2">
         <div className="animate-pulse">
-          <div className="h-10 bg-gray-200 rounded w-1/4 mb-6"></div>
-          <div className="grid grid-cols-4 gap-4 mb-6">
+          <div className="h-10 bg-gray-200 rounded w-1/4 mb-3"></div>
+          <div className="grid grid-cols-4 gap-2 mb-3">
             {[1, 2, 3, 4].map((i) => (
               <div key={i} className="h-24 bg-gray-200 rounded"></div>
             ))}
@@ -464,11 +464,11 @@ export default function ContactsPage() {
   }
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 ">
+    <div className="w-full h-full px-3 py-2 ">
       {/* Stats with Add Button */}
-      <div className="mb-6 flex items-start gap-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 flex-1">
-          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+      <div className="mb-3 flex items-start gap-2">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2 flex-1">
+          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-blue-600">Total Contacts</p>
@@ -478,7 +478,7 @@ export default function ContactsPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+          <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-green-600">Active Contacts</p>
@@ -488,7 +488,7 @@ export default function ContactsPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+          <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-purple-600">VIP Contacts</p>
@@ -498,7 +498,7 @@ export default function ContactsPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-4 border border-indigo-200">
+          <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-3 border border-indigo-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-indigo-600">Total Value</p>
@@ -520,7 +520,7 @@ export default function ContactsPage() {
 
       {/* Bulk Actions Bar */}
       {selectedContacts.size > 0 && (
-        <div className="mb-4 bg-blue-50 border border-blue-200 rounded-lg p-4 flex items-center justify-between">
+        <div className="mb-2 bg-blue-50 border border-blue-200 rounded-lg p-3 flex items-center justify-between">
           <div className="flex items-center space-x-4">
             <span className="text-sm font-medium text-blue-900">
               {selectedContacts.size} contact{selectedContacts.size > 1 ? 's' : ''} selected
@@ -559,8 +559,8 @@ export default function ContactsPage() {
       )}
 
       {/* Filters and Actions */}
-      <div className="mb-6 space-y-4">
-        <div className="flex gap-4">
+      <div className="mb-3 space-y-2">
+        <div className="flex gap-2">
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
             <input
@@ -608,8 +608,8 @@ export default function ContactsPage() {
 
         {/* Advanced Filters Panel */}
         {showAdvancedFilters && (
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Role</label>
                 <select
@@ -719,7 +719,7 @@ export default function ContactsPage() {
 
       {/* Keyboard Shortcuts Info */}
       {selectedContacts.size > 0 && (
-        <div className="mb-4 text-sm text-gray-600 flex items-center space-x-4">
+        <div className="mb-2 text-sm text-gray-600 flex items-center space-x-4">
           <span className="font-medium">Keyboard Shortcuts:</span>
           <span><kbd className="px-2 py-1 bg-gray-100 border border-gray-300 rounded text-xs">D</kbd> Delete</span>
           <span><kbd className="px-2 py-1 bg-gray-100 border border-gray-300 rounded text-xs">E</kbd> Export</span>
@@ -732,7 +732,7 @@ export default function ContactsPage() {
         <table className="w-full">
           <thead className="bg-gray-50 border-b border-gray-200">
             <tr>
-              <th className="px-6 py-3 text-left">
+              <th className="px-3 py-2 text-left">
                 <input
                   type="checkbox"
                   checked={selectedContacts.size === paginatedContacts.length && paginatedContacts.length > 0}
@@ -740,14 +740,14 @@ export default function ContactsPage() {
                   className="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                 />
               </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Name</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Company</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Contact Info</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Position</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Roles</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Quick Actions</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Name</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Company</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Contact Info</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Position</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Roles</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Quick Actions</th>
+              <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200">
@@ -758,7 +758,7 @@ export default function ContactsPage() {
                   selectedContacts.has(contact.id) ? 'bg-blue-50' : ''
                 }`}
               >
-                <td className="px-6 py-4">
+                <td className="px-3 py-2">
                   <input
                     type="checkbox"
                     checked={selectedContacts.has(contact.id)}
@@ -766,7 +766,7 @@ export default function ContactsPage() {
                     className="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                   />
                 </td>
-                <td className="px-6 py-4">
+                <td className="px-3 py-2">
                   <div className="flex items-center space-x-3">
                     <div className="h-10 w-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center flex-shrink-0">
                       <span className="text-white font-semibold text-sm">
@@ -784,13 +784,13 @@ export default function ContactsPage() {
                     </div>
                   </div>
                 </td>
-                <td className="px-6 py-4">
+                <td className="px-3 py-2">
                   <div className="flex items-center space-x-1 text-sm text-gray-900">
                     <Building2 className="h-4 w-4 text-gray-400" />
                     <span>{contact.company}</span>
                   </div>
                 </td>
-                <td className="px-6 py-4">
+                <td className="px-3 py-2">
                   <div className="space-y-1">
                     <div className="flex items-center space-x-1 text-sm text-gray-600">
                       <Mail className="h-3 w-3 text-gray-400" />
@@ -808,7 +808,7 @@ export default function ContactsPage() {
                     )}
                   </div>
                 </td>
-                <td className="px-6 py-4">
+                <td className="px-3 py-2">
                   <div className="space-y-1">
                     <div className="text-sm font-medium text-gray-900">{contact.position}</div>
                     {contact.department && (
@@ -819,7 +819,7 @@ export default function ContactsPage() {
                     )}
                   </div>
                 </td>
-                <td className="px-6 py-4">
+                <td className="px-3 py-2">
                   <div className="flex flex-wrap gap-1 max-w-[200px]">
                     {contact.roles.length > 0 ? (
                       contact.roles.map((roleData, idx) => (
@@ -859,7 +859,7 @@ export default function ContactsPage() {
                     </button>
                   </div>
                 </td>
-                <td className="px-6 py-4">
+                <td className="px-3 py-2">
                   <div className="space-y-1">
                     <span className={`px-2 py-1 text-xs font-semibold rounded-full ${statusColors[contact.status]}`}>
                       {contact.status.charAt(0).toUpperCase() + contact.status.slice(1)}
@@ -871,7 +871,7 @@ export default function ContactsPage() {
                     </div>
                   </div>
                 </td>
-                <td className="px-6 py-4">
+                <td className="px-3 py-2">
                   <div className="flex items-center space-x-1">
                     <button
                       onClick={() => window.location.href = `tel:${contact.phone}`}
@@ -905,7 +905,7 @@ export default function ContactsPage() {
                     </button>
                   </div>
                 </td>
-                <td className="px-6 py-4">
+                <td className="px-3 py-2">
                   <div className="flex items-center space-x-1">
                     <button
                       onClick={() => handleViewContact(contact)}
@@ -936,7 +936,7 @@ export default function ContactsPage() {
         </table>
 
         {/* Pagination */}
-        <div className="px-6 py-4 border-t border-gray-200 flex items-center justify-between">
+        <div className="px-3 py-2 border-t border-gray-200 flex items-center justify-between">
           <div className="text-sm text-gray-700">
             Showing {startIndex + 1} to {Math.min(startIndex + itemsPerPage, filteredContacts.length)} of {filteredContacts.length} items
           </div>
@@ -1009,14 +1009,14 @@ export default function ContactsPage() {
       {/* Save Filter Dialog */}
       {showSaveFilterDialog && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-md">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Save Filter</h3>
+          <div className="bg-white rounded-lg p-3 w-full max-w-md">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Save Filter</h3>
             <input
               type="text"
               placeholder="Filter name..."
               value={filterName}
               onChange={(e) => setFilterName(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mb-2"
             />
             <div className="flex items-center justify-end space-x-2">
               <button
@@ -1042,8 +1042,8 @@ export default function ContactsPage() {
       {/* Import Dialog */}
       {showImportDialog && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-lg">
-            <div className="flex items-center justify-between mb-4">
+          <div className="bg-white rounded-lg p-3 w-full max-w-lg">
+            <div className="flex items-center justify-between mb-2">
               <h3 className="text-lg font-semibold text-gray-900">Import Contacts</h3>
               <button
                 onClick={() => setShowImportDialog(false)}
@@ -1052,9 +1052,9 @@ export default function ContactsPage() {
                 <X className="h-5 w-5" />
               </button>
             </div>
-            <div className="space-y-4">
+            <div className="space-y-2">
               <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-blue-400 transition-colors cursor-pointer">
-                <Upload className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                <Upload className="h-12 w-12 text-gray-400 mx-auto mb-2" />
                 <p className="text-sm text-gray-600 mb-2">
                   Drop your CSV or Excel file here, or click to browse
                 </p>
@@ -1062,7 +1062,7 @@ export default function ContactsPage() {
                   Supports CSV, XLSX, and vCard formats
                 </p>
               </div>
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                 <h4 className="text-sm font-medium text-blue-900 mb-2">Required Fields:</h4>
                 <ul className="text-xs text-blue-700 space-y-1">
                   <li>• First Name, Last Name</li>
@@ -1099,8 +1099,8 @@ export default function ContactsPage() {
       {/* Add to List Dialog */}
       {showAddToListDialog && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-md">
-            <div className="flex items-center justify-between mb-4">
+          <div className="bg-white rounded-lg p-3 w-full max-w-md">
+            <div className="flex items-center justify-between mb-2">
               <h3 className="text-lg font-semibold text-gray-900">Add to List</h3>
               <button
                 onClick={() => setShowAddToListDialog(false)}
@@ -1109,10 +1109,10 @@ export default function ContactsPage() {
                 <X className="h-5 w-5" />
               </button>
             </div>
-            <p className="text-sm text-gray-600 mb-4">
+            <p className="text-sm text-gray-600 mb-2">
               Add {selectedContacts.size} selected contact{selectedContacts.size > 1 ? 's' : ''} to a list
             </p>
-            <div className="space-y-2 mb-4 max-h-64 overflow-y-auto">
+            <div className="space-y-2 mb-2 max-h-64 overflow-y-auto">
               {mockContactLists.map(list => (
                 <button
                   key={list.id}
@@ -1158,8 +1158,8 @@ export default function ContactsPage() {
       {/* Add Role Dialog */}
       {showAddRoleDialog && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-md">
-            <div className="flex items-center justify-between mb-4">
+          <div className="bg-white rounded-lg p-3 w-full max-w-md">
+            <div className="flex items-center justify-between mb-2">
               <h3 className="text-lg font-semibold text-gray-900">Add Role</h3>
               <button
                 onClick={() => setShowAddRoleDialog(null)}
@@ -1168,7 +1168,7 @@ export default function ContactsPage() {
                 <X className="h-5 w-5" />
               </button>
             </div>
-            <div className="space-y-4">
+            <div className="space-y-2">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Role</label>
                 <select

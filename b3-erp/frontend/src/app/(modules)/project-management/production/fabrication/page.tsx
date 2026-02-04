@@ -62,7 +62,7 @@ export default function FabricationPage() {
   };
 
   return (
-    <div className="w-full py-6 space-y-8">
+    <div className="w-full py-2 space-y-8">
       <div className="flex justify-between items-center">
         <div className="space-y-1">
           <h1 className="text-3xl font-bold flex items-center gap-2">
@@ -83,7 +83,7 @@ export default function FabricationPage() {
         </div>
       </div>
 
-      <div className="space-y-6">
+      <div className="space-y-3">
         {jobs.map((job) => (
           <Card key={job.id}>
             <CardHeader>
@@ -101,7 +101,7 @@ export default function FabricationPage() {
               </div>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                 <div className="space-y-2">
                   <h4 className="text-sm font-medium text-muted-foreground">Components</h4>
                   <ul className="list-disc list-inside text-sm">

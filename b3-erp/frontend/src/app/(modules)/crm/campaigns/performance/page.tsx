@@ -145,9 +145,9 @@ export default function CampaignPerformancePage() {
   };
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 ">
+    <div className="w-full h-full px-3 py-2 ">
       <div className="mb-8">
-        <div className="flex gap-2 mb-6">
+        <div className="flex gap-2 mb-3">
           <button
             onClick={() => setTimeRange('week')}
             className={`px-4 py-2 rounded-lg ${timeRange === 'week' ? 'bg-blue-600 text-white' : 'bg-white border border-gray-300'}`}
@@ -175,9 +175,9 @@ export default function CampaignPerformancePage() {
         </div>
 
         {/* Overall Statistics */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <div className="flex items-center justify-between mb-4">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-8">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <div className="flex items-center justify-between mb-2">
               <div className="p-3 bg-blue-100 rounded-lg">
                 <Mail className="w-6 h-6 text-blue-600" />
               </div>
@@ -188,8 +188,8 @@ export default function CampaignPerformancePage() {
             <div className="text-xs text-green-600 font-medium">+12.5% vs last period</div>
           </div>
 
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <div className="flex items-center justify-between mb-4">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <div className="flex items-center justify-between mb-2">
               <div className="p-3 bg-purple-100 rounded-lg">
                 <Eye className="w-6 h-6 text-purple-600" />
               </div>
@@ -200,8 +200,8 @@ export default function CampaignPerformancePage() {
             <div className="text-xs text-green-600 font-medium">+3.2% vs last period</div>
           </div>
 
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <div className="flex items-center justify-between mb-4">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <div className="flex items-center justify-between mb-2">
               <div className="p-3 bg-orange-100 rounded-lg">
                 <MousePointer className="w-6 h-6 text-orange-600" />
               </div>
@@ -212,8 +212,8 @@ export default function CampaignPerformancePage() {
             <div className="text-xs text-green-600 font-medium">+1.8% vs last period</div>
           </div>
 
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <div className="flex items-center justify-between mb-4">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <div className="flex items-center justify-between mb-2">
               <div className="p-3 bg-green-100 rounded-lg">
                 <DollarSign className="w-6 h-6 text-green-600" />
               </div>
@@ -226,9 +226,9 @@ export default function CampaignPerformancePage() {
         </div>
 
         {/* Conversion Funnel */}
-        <div className="bg-white rounded-lg border border-gray-200 p-6 mb-8">
-          <h2 className="text-xl font-bold text-gray-900 mb-6">Conversion Funnel</h2>
-          <div className="space-y-4">
+        <div className="bg-white rounded-lg border border-gray-200 p-3 mb-8">
+          <h2 className="text-xl font-bold text-gray-900 mb-3">Conversion Funnel</h2>
+          <div className="space-y-2">
             <div>
               <div className="flex items-center justify-between mb-2">
                 <span className="text-sm font-medium text-gray-700">Sent</span>
@@ -295,7 +295,7 @@ export default function CampaignPerformancePage() {
         </div>
 
         {/* Sort Controls */}
-        <div className="flex justify-between items-center mb-4">
+        <div className="flex justify-between items-center mb-2">
           <h2 className="text-xl font-bold text-gray-900">Campaign Comparison</h2>
           <select
             value={sortBy}
@@ -310,16 +310,16 @@ export default function CampaignPerformancePage() {
       </div>
 
       {/* Campaign Performance Table */}
-      <div className="space-y-4">
+      <div className="space-y-2">
         {sortedData.map((campaign, index) => (
-          <div key={campaign.campaignId} className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow">
-            <div className="flex items-center gap-4 mb-4">
+          <div key={campaign.campaignId} className="bg-white rounded-lg border border-gray-200 p-3 hover:shadow-lg transition-shadow">
+            <div className="flex items-center gap-2 mb-2">
               <div className="flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 text-white font-bold text-lg">
                 #{index + 1}
               </div>
               <div className="flex-1">
                 <h3 className="text-xl font-semibold text-gray-900 mb-1">{campaign.name}</h3>
-                <div className="flex items-center gap-4 text-sm text-gray-600">
+                <div className="flex items-center gap-2 text-sm text-gray-600">
                   <span className="px-2 py-1 bg-blue-100 text-blue-700 rounded text-xs font-medium">{campaign.type}</span>
                   <span className="flex items-center gap-1">
                     <Calendar className="w-4 h-4" />
@@ -329,7 +329,7 @@ export default function CampaignPerformancePage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-6 gap-4 mb-4">
+            <div className="grid grid-cols-6 gap-2 mb-2">
               <div className="bg-blue-50 rounded-lg p-3">
                 <div className="text-xs text-blue-600 mb-1">Sent</div>
                 <div className="text-lg font-bold text-blue-900">{campaign.sent.toLocaleString()}</div>
@@ -361,7 +361,7 @@ export default function CampaignPerformancePage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-3 gap-4 pt-4 border-t border-gray-100">
+            <div className="grid grid-cols-3 gap-2 pt-4 border-t border-gray-100">
               <div>
                 <div className="text-xs text-gray-600 mb-1">Conversion Rate</div>
                 <div className="text-sm font-bold text-gray-900">{campaign.conversionRate.toFixed(2)}%</div>

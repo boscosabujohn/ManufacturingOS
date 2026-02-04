@@ -10,7 +10,11 @@ import {
   HttpCode,
   HttpStatus,
   Patch,
+  UseGuards,
 } from '@nestjs/common';
+import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guard';
+import { PermissionsGuard } from '../../../common/guards/permissions.guard';
+import { Permissions } from '../../../common/decorators/permissions.decorator';
 import {
   ApiTags,
   ApiOperation,
@@ -25,10 +29,12 @@ import { ChangePasswordDto, ResetPasswordDto } from '../dto/change-password.dto'
 
 @ApiTags('IT Admin - Users')
 @Controller('it-admin/users')
+@UseGuards(JwtAuthGuard, PermissionsGuard)
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(private readonly userService: UserService) { }
 
   @Post()
+  @Permissions('USER_CREATE')
   @ApiOperation({ summary: 'Create a new user' })
   @ApiResponse({
     status: HttpStatus.CREATED,
@@ -39,6 +45,7 @@ export class UserController {
   }
 
   @Get()
+  @Permissions('USER_VIEW')
   @ApiOperation({ summary: 'Get all users' })
   @ApiQuery({ name: 'status', required: false })
   @ApiQuery({ name: 'userType', required: false })
@@ -53,6 +60,7 @@ export class UserController {
   }
 
   @Get(':id')
+  @Permissions('USER_VIEW')
   @ApiOperation({ summary: 'Get user by ID' })
   @ApiParam({ name: 'id', description: 'User ID' })
   @ApiResponse({
@@ -87,6 +95,7 @@ export class UserController {
   }
 
   @Put(':id')
+  @Permissions('USER_UPDATE')
   @ApiOperation({ summary: 'Update user' })
   @ApiParam({ name: 'id', description: 'User ID' })
   @ApiResponse({
@@ -176,6 +185,7 @@ export class UserController {
   }
 
   @Delete(':id')
+  @Permissions('USER_DELETE')
   @HttpCode(HttpStatus.NO_CONTENT)
   @ApiOperation({ summary: 'Delete user' })
   @ApiParam({ name: 'id', description: 'User ID' })

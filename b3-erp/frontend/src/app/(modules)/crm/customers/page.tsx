@@ -1114,11 +1114,11 @@ export default function CustomersPage() {
   };
 
   return (
-    <div className="container mx-auto min-h-screen px-4 sm:px-6 lg:px-8 py-6 ">
+    <div className="w-full min-h-screen px-3 py-2 ">
       {/* Stats with Add Button */}
-      <div className="mb-6 flex items-start gap-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 flex-1">
-          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+      <div className="mb-3 flex items-start gap-2">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2 flex-1">
+          <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-blue-600">Total Customers</p>
@@ -1128,7 +1128,7 @@ export default function CustomersPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+          <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-green-600">Active Customers</p>
@@ -1138,7 +1138,7 @@ export default function CustomersPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+          <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-purple-600">Lifetime Value</p>
@@ -1148,7 +1148,7 @@ export default function CustomersPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+          <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-orange-600">This Month Revenue</p>
@@ -1169,8 +1169,8 @@ export default function CustomersPage() {
       </div>
 
       {/* Filters */}
-      <div className="mb-6">
-        <div className="flex gap-4 mb-4">
+      <div className="mb-3">
+        <div className="flex gap-2 mb-2">
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
             <input
@@ -1217,7 +1217,7 @@ export default function CustomersPage() {
 
         {/* Bulk Actions Bar */}
         {selectedCustomers.length > 0 && (
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 flex items-center justify-between mb-4">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 flex items-center justify-between mb-2">
             <div className="flex items-center space-x-2">
               <Check className="h-5 w-5 text-blue-600" />
               <span className="text-sm font-medium text-blue-900">
@@ -1274,7 +1274,7 @@ export default function CustomersPage() {
         )}
 
         {showAdvancedFilters && (
-          <div className="bg-gray-50 p-4 rounded-lg border border-gray-200 grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="bg-gray-50 p-3 rounded-lg border border-gray-200 grid grid-cols-2 md:grid-cols-4 gap-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Segment</label>
               <select
@@ -1607,7 +1607,7 @@ export default function CustomersPage() {
         </div>
 
         {/* Pagination */}
-        <div className="px-6 py-4 border-t border-gray-200 flex items-center justify-between">
+        <div className="px-3 py-2 border-t border-gray-200 flex items-center justify-between">
           <div className="text-sm text-gray-700">
             Showing {startIndex + 1} to {Math.min(startIndex + itemsPerPage, filteredCustomers.length)} of {filteredCustomers.length} customers
           </div>
@@ -1682,15 +1682,15 @@ export default function CustomersPage() {
       {/* Bulk Assign Dialog */}
       {showBulkAssignDialog && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg shadow-xl w-full max-w-md p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Assign Customers</h3>
-            <p className="text-sm text-gray-600 mb-4">
+          <div className="bg-white rounded-lg shadow-xl w-full max-w-md p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Assign Customers</h3>
+            <p className="text-sm text-gray-600 mb-2">
               Assign {selectedCustomers.length} customer{selectedCustomers.length > 1 ? 's' : ''} to:
             </p>
             <select
               value={bulkAssignUser}
               onChange={(e) => setBulkAssignUser(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mb-2"
             >
               <option value="">Select Account Manager...</option>
               {ASSIGNED_USERS.map(user => (
@@ -1722,15 +1722,15 @@ export default function CustomersPage() {
       {/* Bulk Segment Dialog */}
       {showBulkSegmentDialog && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg shadow-xl w-full max-w-md p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Update Segment</h3>
-            <p className="text-sm text-gray-600 mb-4">
+          <div className="bg-white rounded-lg shadow-xl w-full max-w-md p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Update Segment</h3>
+            <p className="text-sm text-gray-600 mb-2">
               Update segment for {selectedCustomers.length} customer{selectedCustomers.length > 1 ? 's' : ''} to:
             </p>
             <select
               value={bulkSegment}
               onChange={(e) => setBulkSegment(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mb-2"
             >
               <option value="">Select Segment...</option>
               {SEGMENTS.map(segment => (
@@ -1762,8 +1762,8 @@ export default function CustomersPage() {
       {/* Import Dialog */}
       {showImportDialog && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl p-6">
-            <div className="flex items-center justify-between mb-4">
+          <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl p-3">
+            <div className="flex items-center justify-between mb-2">
               <h3 className="text-lg font-semibold text-gray-900">Import Customers</h3>
               <button
                 onClick={() => setShowImportDialog(false)}
@@ -1773,7 +1773,7 @@ export default function CustomersPage() {
               </button>
             </div>
             <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
-              <Upload className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+              <Upload className="h-12 w-12 text-gray-400 mx-auto mb-2" />
               <p className="text-sm text-gray-600 mb-2">
                 Drag and drop your CSV or Excel file here, or click to browse
               </p>
@@ -1781,7 +1781,7 @@ export default function CustomersPage() {
                 Choose File
               </button>
             </div>
-            <div className="mt-4 bg-blue-50 border border-blue-200 rounded-lg p-4">
+            <div className="mt-4 bg-blue-50 border border-blue-200 rounded-lg p-3">
               <p className="text-sm text-blue-900 font-medium mb-2">Import Requirements:</p>
               <ul className="text-sm text-blue-700 space-y-1">
                 <li>- File must be in CSV or Excel format</li>
@@ -1797,9 +1797,9 @@ export default function CustomersPage() {
       {/* Save Filter Dialog */}
       {showSaveFilterDialog && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg shadow-xl w-full max-w-md p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Save Filter</h3>
-            <p className="text-sm text-gray-600 mb-4">
+          <div className="bg-white rounded-lg shadow-xl w-full max-w-md p-3">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Save Filter</h3>
+            <p className="text-sm text-gray-600 mb-2">
               Give your filter a name to save it for future use.
             </p>
             <input
@@ -1807,7 +1807,7 @@ export default function CustomersPage() {
               value={filterName}
               onChange={(e) => setFilterName(e.target.value)}
               placeholder="Filter name..."
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mb-2"
             />
             <div className="flex items-center space-x-3">
               <button
@@ -1834,8 +1834,8 @@ export default function CustomersPage() {
       {/* Customer Merge Dialog */}
       {showMergeDialog && selectedCustomers.length === 2 && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl p-6 max-h-[90vh] overflow-y-auto">
-            <div className="flex items-center justify-between mb-4">
+          <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl p-3 max-h-[90vh] overflow-y-auto">
+            <div className="flex items-center justify-between mb-2">
               <div className="flex items-center space-x-2">
                 <GitMerge className="h-6 w-6 text-purple-600" />
                 <h3 className="text-lg font-semibold text-gray-900">Merge Customers</h3>
@@ -1851,11 +1851,11 @@ export default function CustomersPage() {
               </button>
             </div>
 
-            <p className="text-sm text-gray-600 mb-4">
+            <p className="text-sm text-gray-600 mb-2">
               Select which customer should be the primary record. Data from the secondary customer will be merged into the primary.
             </p>
 
-            <div className="grid grid-cols-2 gap-4 mb-6">
+            <div className="grid grid-cols-2 gap-2 mb-3">
               {selectedCustomers.map(customerId => {
                 const customer = customers.find(c => c.id === customerId);
                 if (!customer) return null;
@@ -1864,7 +1864,7 @@ export default function CustomersPage() {
                   <div
                     key={customer.id}
                     onClick={() => setPrimaryCustomerId(customer.id)}
-                    className={`border-2 rounded-lg p-4 cursor-pointer transition-all ${
+                    className={`border-2 rounded-lg p-3 cursor-pointer transition-all ${
                       primaryCustomerId === customer.id
                         ? 'border-purple-600 bg-purple-50'
                         : 'border-gray-300 hover:border-purple-300'
@@ -1891,7 +1891,7 @@ export default function CustomersPage() {
               })}
             </div>
 
-            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-4">
+            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 mb-2">
               <p className="text-sm text-yellow-900 font-medium mb-1">Warning:</p>
               <p className="text-sm text-yellow-800">
                 This action cannot be undone. The secondary customer record will be deleted and all associated data will be transferred to the primary customer.
@@ -1923,8 +1923,8 @@ export default function CustomersPage() {
       {/* Auto-Segmentation Rules Dialog */}
       {showSegmentationRulesDialog && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl p-6">
-            <div className="flex items-center justify-between mb-4">
+          <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl p-3">
+            <div className="flex items-center justify-between mb-2">
               <div className="flex items-center space-x-2">
                 <Zap className="h-6 w-6 text-yellow-600" />
                 <h3 className="text-lg font-semibold text-gray-900">Auto-Segmentation Rules</h3>
@@ -1937,12 +1937,12 @@ export default function CustomersPage() {
               </button>
             </div>
 
-            <p className="text-sm text-gray-600 mb-4">
+            <p className="text-sm text-gray-600 mb-2">
               Define rules to automatically segment customers based on their behavior and characteristics.
             </p>
 
-            <div className="space-y-4 mb-6">
-              <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+            <div className="space-y-2 mb-3">
+              <div className="bg-purple-50 border border-purple-200 rounded-lg p-3">
                 <div className="flex items-center justify-between mb-2">
                   <h4 className="font-semibold text-purple-900">VIP Customers</h4>
                   <span className="text-xs px-2 py-1 bg-purple-200 text-purple-800 rounded-full">Active</span>
@@ -1954,7 +1954,7 @@ export default function CustomersPage() {
                 </div>
               </div>
 
-              <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-4">
+              <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-3">
                 <div className="flex items-center justify-between mb-2">
                   <h4 className="font-semibold text-indigo-900">Enterprise Customers</h4>
                   <span className="text-xs px-2 py-1 bg-indigo-200 text-indigo-800 rounded-full">Active</span>
@@ -1966,7 +1966,7 @@ export default function CustomersPage() {
                 </div>
               </div>
 
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                 <div className="flex items-center justify-between mb-2">
                   <h4 className="font-semibold text-blue-900">SMB Customers</h4>
                   <span className="text-xs px-2 py-1 bg-blue-200 text-blue-800 rounded-full">Active</span>
@@ -1978,7 +1978,7 @@ export default function CustomersPage() {
                 </div>
               </div>
 
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+              <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
                 <div className="flex items-center justify-between mb-2">
                   <h4 className="font-semibold text-gray-900">Create New Rule</h4>
                 </div>

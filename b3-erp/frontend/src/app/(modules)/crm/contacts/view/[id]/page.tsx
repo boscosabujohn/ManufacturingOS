@@ -253,20 +253,20 @@ export default function ViewContactPage() {
   ];
 
   return (
-    <div className="w-full min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8 py-6">
+    <div className="w-full min-h-screen bg-gray-50 px-3 py-2">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <button
           onClick={() => router.push('/crm/contacts')}
-          className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-4"
+          className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-2"
         >
           <ArrowLeft className="h-5 w-5" />
           <span className="font-medium">Back to Contacts</span>
         </button>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           {/* Contact Header Info */}
-          <div className="flex items-start justify-between mb-6">
+          <div className="flex items-start justify-between mb-3">
             <div className="flex items-start space-x-4">
               <div className="h-16 w-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center">
                 <User className="h-8 w-8 text-white" />
@@ -321,24 +321,24 @@ export default function ViewContactPage() {
           </div>
 
           {/* Quick Stats */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-3">
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3 border border-blue-200">
               <p className="text-xs font-medium text-blue-600 uppercase mb-1">Email</p>
               <a href={`mailto:${contact.email}`} className="text-sm font-semibold text-blue-900 hover:underline break-all">
                 {contact.email}
               </a>
             </div>
-            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+            <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3 border border-purple-200">
               <p className="text-xs font-medium text-purple-600 uppercase mb-1">Phone</p>
               <a href={`tel:${contact.phone}`} className="text-sm font-semibold text-purple-900 hover:underline">
                 {contact.phone}
               </a>
             </div>
-            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-3 border border-green-200">
               <p className="text-xs font-medium text-green-600 uppercase mb-1">Type</p>
               <p className="text-sm font-semibold text-green-900 capitalize">{contact.contactType}</p>
             </div>
-            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
+            <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3 border border-orange-200">
               <p className="text-xs font-medium text-orange-600 uppercase mb-1">Status</p>
               <p className="text-sm font-semibold text-orange-900 capitalize">{contact.status}</p>
             </div>
@@ -347,7 +347,7 @@ export default function ViewContactPage() {
       </div>
 
       {/* Tabs */}
-      <div className="mb-6">
+      <div className="mb-3">
         <div className="border-b border-gray-200 bg-white rounded-t-lg">
           <nav className="flex space-x-8 px-6">
             {tabs.map((tab) => {
@@ -372,17 +372,17 @@ export default function ViewContactPage() {
       </div>
 
       {/* Tab Content */}
-      <div className="bg-white rounded-lg border border-gray-200 p-6">
+      <div className="bg-white rounded-lg border border-gray-200 p-3">
         {/* Overview Tab */}
         {activeTab === 'overview' && (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
             {/* Contact Information */}
             <div>
-              <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                 <Phone className="h-5 w-5 mr-2 text-blue-600" />
                 Contact Information
               </h3>
-              <div className="bg-gray-50 rounded-lg p-4 space-y-3">
+              <div className="bg-gray-50 rounded-lg p-3 space-y-3">
                 <div className="flex items-start space-x-3">
                   <Mail className="h-5 w-5 text-gray-400 mt-0.5" />
                   <div className="flex-1">
@@ -417,11 +417,11 @@ export default function ViewContactPage() {
 
             {/* Company Information */}
             <div>
-              <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                 <Building2 className="h-5 w-5 mr-2 text-blue-600" />
                 Company Information
               </h3>
-              <div className="bg-gray-50 rounded-lg p-4 space-y-3">
+              <div className="bg-gray-50 rounded-lg p-3 space-y-3">
                 <div>
                   <p className="text-xs font-medium text-gray-500 uppercase mb-1">Company Name</p>
                   <p className="text-sm font-semibold text-gray-900">{contact.company}</p>
@@ -445,11 +445,11 @@ export default function ViewContactPage() {
 
             {/* Contact Details */}
             <div>
-              <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                 <UserCheck className="h-5 w-5 mr-2 text-blue-600" />
                 Contact Details
               </h3>
-              <div className="bg-gray-50 rounded-lg p-4 space-y-3">
+              <div className="bg-gray-50 rounded-lg p-3 space-y-3">
                 <div>
                   <p className="text-xs font-medium text-gray-500 uppercase mb-1">Contact Type</p>
                   <span className={`inline-block px-3 py-1 text-sm font-semibold rounded-full ${contactTypeColors[contact.contactType]}`}>
@@ -469,11 +469,11 @@ export default function ViewContactPage() {
 
             {/* Key Dates */}
             <div>
-              <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
+              <h3 className="text-lg font-bold text-gray-900 mb-2 flex items-center">
                 <Clock className="h-5 w-5 mr-2 text-blue-600" />
                 Key Dates
               </h3>
-              <div className="bg-gray-50 rounded-lg p-4 space-y-3">
+              <div className="bg-gray-50 rounded-lg p-3 space-y-3">
                 <div>
                   <p className="text-xs font-medium text-gray-500 uppercase mb-1">Created</p>
                   <p className="text-sm font-semibold text-gray-900">{contact.createdAt}</p>
@@ -494,7 +494,7 @@ export default function ViewContactPage() {
         {/* Communication History Tab */}
         {activeTab === 'communication' && (
           <div>
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center justify-between mb-3">
               <h3 className="text-xl font-bold text-gray-900">Communication Timeline</h3>
               <div className="flex flex-wrap gap-2">
                 <button
@@ -529,7 +529,7 @@ export default function ViewContactPage() {
             </div>
 
             {/* Activities List */}
-            <div className="space-y-4">
+            <div className="space-y-2">
               {mockActivities
                 .filter(activity => activity.contactId === contactId)
                 .map((activity, index) => {
@@ -550,7 +550,7 @@ export default function ViewContactPage() {
                         </div>
 
                         {/* Activity Content */}
-                        <div className="flex-1 bg-gray-50 rounded-lg p-4 border border-gray-200 hover:shadow-md transition-shadow">
+                        <div className="flex-1 bg-gray-50 rounded-lg p-3 border border-gray-200 hover:shadow-md transition-shadow">
                           <div className="flex items-start justify-between mb-2">
                             <div>
                               <h4 className="text-base font-bold text-gray-900">{activity.title}</h4>
@@ -575,7 +575,7 @@ export default function ViewContactPage() {
 
                           {/* Activity Metadata */}
                           {activity.metadata && (
-                            <div className="flex flex-wrap gap-4 text-xs text-gray-600">
+                            <div className="flex flex-wrap gap-2 text-xs text-gray-600">
                               {activity.metadata.duration && (
                                 <div className="flex items-center space-x-1">
                                   <Clock className="h-4 w-4" />
@@ -601,12 +601,12 @@ export default function ViewContactPage() {
 
         {/* Details Tab */}
         {activeTab === 'details' && (
-          <div className="space-y-6">
+          <div className="space-y-3">
             {/* All detailed sections */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <div>
-                <h3 className="text-lg font-bold text-gray-900 mb-4">Basic Information</h3>
-                <div className="bg-gray-50 rounded-lg p-4 space-y-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2">Basic Information</h3>
+                <div className="bg-gray-50 rounded-lg p-3 space-y-3">
                   <div>
                     <p className="text-xs font-medium text-gray-500 uppercase mb-1">Full Name</p>
                     <p className="text-sm font-semibold text-gray-900">
@@ -625,8 +625,8 @@ export default function ViewContactPage() {
               </div>
 
               <div>
-                <h3 className="text-lg font-bold text-gray-900 mb-4">Assistant Information</h3>
-                <div className="bg-gray-50 rounded-lg p-4 space-y-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2">Assistant Information</h3>
+                <div className="bg-gray-50 rounded-lg p-3 space-y-3">
                   <div>
                     <p className="text-xs font-medium text-gray-500 uppercase mb-1">Assistant Name</p>
                     <p className="text-sm font-semibold text-gray-900">Emily Rodriguez</p>
@@ -639,9 +639,9 @@ export default function ViewContactPage() {
               </div>
 
               <div className="md:col-span-2">
-                <h3 className="text-lg font-bold text-gray-900 mb-4">Social Media Profiles</h3>
-                <div className="bg-gray-50 rounded-lg p-4">
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <h3 className="text-lg font-bold text-gray-900 mb-2">Social Media Profiles</h3>
+                <div className="bg-gray-50 rounded-lg p-3">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                     <a
                       href="https://linkedin.com/in/sarah-williams"
                       target="_blank"
@@ -674,8 +674,8 @@ export default function ViewContactPage() {
               </div>
 
               <div className="md:col-span-2">
-                <h3 className="text-lg font-bold text-gray-900 mb-4">Preferences</h3>
-                <div className="bg-gray-50 rounded-lg p-4 space-y-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2">Preferences</h3>
+                <div className="bg-gray-50 rounded-lg p-3 space-y-3">
                   <div>
                     <p className="text-xs font-medium text-gray-500 uppercase mb-1">Preferred Contact Method</p>
                     <p className="text-sm font-semibold text-gray-900">Email</p>
@@ -688,8 +688,8 @@ export default function ViewContactPage() {
               </div>
 
               <div className="md:col-span-2">
-                <h3 className="text-lg font-bold text-gray-900 mb-4">Tags</h3>
-                <div className="bg-gray-50 rounded-lg p-4">
+                <h3 className="text-lg font-bold text-gray-900 mb-2">Tags</h3>
+                <div className="bg-gray-50 rounded-lg p-3">
                   <div className="flex flex-wrap gap-2">
                     <span className="inline-flex items-center px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">
                       <Tag className="h-3 w-3 mr-1" />
@@ -708,8 +708,8 @@ export default function ViewContactPage() {
               </div>
 
               <div className="md:col-span-2">
-                <h3 className="text-lg font-bold text-gray-900 mb-4">Notes</h3>
-                <div className="bg-gray-50 rounded-lg p-4">
+                <h3 className="text-lg font-bold text-gray-900 mb-2">Notes</h3>
+                <div className="bg-gray-50 rounded-lg p-3">
                   <p className="text-sm text-gray-700 leading-relaxed">
                     Key decision maker for kitchen procurement. Prefers detailed product specifications and competitive pricing.
                     Has a strong focus on quality and reliability. Currently evaluating suppliers for their Q4 budget allocation.

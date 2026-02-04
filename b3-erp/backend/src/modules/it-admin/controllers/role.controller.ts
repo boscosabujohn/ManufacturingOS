@@ -10,7 +10,11 @@ import {
   HttpCode,
   HttpStatus,
   Patch,
+  UseGuards,
 } from '@nestjs/common';
+import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guard';
+import { PermissionsGuard } from '../../../common/guards/permissions.guard';
+import { Permissions } from '../../../common/decorators/permissions.decorator';
 import {
   ApiTags,
   ApiOperation,
@@ -24,10 +28,12 @@ import { UpdateRoleDto } from '../dto/update-role.dto';
 
 @ApiTags('IT Admin - Roles')
 @Controller('it-admin/roles')
+@UseGuards(JwtAuthGuard, PermissionsGuard)
 export class RoleController {
-  constructor(private readonly roleService: RoleService) {}
+  constructor(private readonly roleService: RoleService) { }
 
   @Post()
+  @Permissions('ROLE_CREATE')
   @ApiOperation({ summary: 'Create a new role' })
   @ApiResponse({
     status: HttpStatus.CREATED,
@@ -38,6 +44,7 @@ export class RoleController {
   }
 
   @Get()
+  @Permissions('ROLE_VIEW')
   @ApiOperation({ summary: 'Get all roles' })
   @ApiQuery({ name: 'status', required: false })
   @ApiQuery({ name: 'roleType', required: false })
@@ -61,6 +68,7 @@ export class RoleController {
   }
 
   @Get(':id')
+  @Permissions('ROLE_VIEW')
   @ApiOperation({ summary: 'Get role by ID' })
   @ApiParam({ name: 'id', description: 'Role ID' })
   @ApiResponse({
@@ -84,6 +92,7 @@ export class RoleController {
   }
 
   @Put(':id')
+  @Permissions('ROLE_UPDATE')
   @ApiOperation({ summary: 'Update role' })
   @ApiParam({ name: 'id', description: 'Role ID' })
   @ApiResponse({
@@ -126,6 +135,7 @@ export class RoleController {
   }
 
   @Delete(':id')
+  @Permissions('ROLE_DELETE')
   @HttpCode(HttpStatus.NO_CONTENT)
   @ApiOperation({ summary: 'Delete role' })
   @ApiParam({ name: 'id', description: 'Role ID' })

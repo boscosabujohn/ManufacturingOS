@@ -63,8 +63,8 @@ export default function StockCheckPage() {
   };
 
   return (
-    <div className="w-full py-6 space-y-6">
-      <div className="flex items-center justify-between mb-6">
+    <div className="w-full py-2 space-y-3">
+      <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-4">
           <Button variant="ghost" onClick={() => router.back()} className="p-0 hover:bg-transparent">
             <ArrowLeft className="w-6 h-6 text-gray-600" />
@@ -86,7 +86,7 @@ export default function StockCheckPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
         <Card className="md:col-span-2">
           <CardHeader>
             <CardTitle>BOM vs Inventory Analysis</CardTitle>
@@ -130,12 +130,12 @@ export default function StockCheckPage() {
           </CardContent>
         </Card>
 
-        <div className="space-y-6">
+        <div className="space-y-3">
           <Card>
             <CardHeader>
               <CardTitle>Availability Summary</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-6">
+            <CardContent className="space-y-3">
               <div className="space-y-2">
                 <div className="flex justify-between text-sm">
                   <span>Fulfillment Rate</span>

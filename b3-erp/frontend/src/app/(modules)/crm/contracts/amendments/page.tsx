@@ -348,9 +348,9 @@ export default function ContractAmendmentsPage() {
   };
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 ">
+    <div className="w-full h-full px-3 py-2 ">
       <div className="mb-8">
-        <div className="flex justify-end mb-6">
+        <div className="flex justify-end mb-3">
           <button
             onClick={handleCreateAmendment}
             className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
@@ -361,32 +361,32 @@ export default function ContractAmendmentsPage() {
         </div>
 
         {/* Statistics */}
-        <div className="grid grid-cols-1 md:grid-cols-6 gap-4 mb-8">
-          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-6 text-white">
+        <div className="grid grid-cols-1 md:grid-cols-6 gap-2 mb-8">
+          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-3 text-white">
             <FileText className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">{stats.totalAmendments}</div>
             <div className="text-blue-100 text-sm">Total Amendments</div>
           </div>
 
-          <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-lg p-3 text-white">
             <AlertCircle className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">{stats.pendingApproval}</div>
             <div className="text-yellow-100 text-sm">Pending Approval</div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-3 text-white">
             <CheckCircle className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">{stats.approved}</div>
             <div className="text-green-100 text-sm">Approved</div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-3 text-white">
             <CheckCircle className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">{stats.executed}</div>
             <div className="text-purple-100 text-sm">Executed</div>
           </div>
 
-          <div className={`bg-gradient-to-br rounded-lg p-6 text-white ${
+          <div className={`bg-gradient-to-br rounded-lg p-3 text-white ${
             stats.totalValueImpact >= 0 ? 'from-green-500 to-green-600' : 'from-red-500 to-red-600'
           }`}>
             <DollarSign className="w-8 h-8 opacity-80 mb-2" />
@@ -398,7 +398,7 @@ export default function ContractAmendmentsPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-lg p-3 text-white">
             <AlertCircle className="w-8 h-8 opacity-80 mb-2" />
             <div className="text-3xl font-bold mb-1">{stats.criticalCount}</div>
             <div className="text-red-100 text-sm">Critical Priority</div>
@@ -406,8 +406,8 @@ export default function ContractAmendmentsPage() {
         </div>
 
         {/* Filters */}
-        <div className="bg-white rounded-lg border border-gray-200 p-4 mb-6">
-          <div className="flex gap-4 items-center">
+        <div className="bg-white rounded-lg border border-gray-200 p-3 mb-3">
+          <div className="flex gap-2 items-center">
             <div className="flex-1">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -453,15 +453,15 @@ export default function ContractAmendmentsPage() {
       </div>
 
       {/* Amendments List */}
-      <div className="space-y-4">
+      <div className="space-y-2">
         {filteredAmendments.map((amendment) => (
           <div
             key={amendment.id}
-            className={`bg-white rounded-lg border p-6 hover:shadow-md transition-shadow ${
+            className={`bg-white rounded-lg border p-3 hover:shadow-md transition-shadow ${
               amendment.priority === 'critical' ? 'border-red-300 bg-red-50' : 'border-gray-200'
             }`}
           >
-            <div className="flex items-start justify-between mb-4">
+            <div className="flex items-start justify-between mb-2">
               <div className="flex-1">
                 <div className="flex items-center gap-3 mb-2">
                   <h3 className="text-lg font-semibold text-gray-900">{amendment.description}</h3>
@@ -476,7 +476,7 @@ export default function ContractAmendmentsPage() {
                     {amendment.priority}
                   </span>
                 </div>
-                <div className="flex items-center gap-4 text-sm text-gray-600">
+                <div className="flex items-center gap-2 text-sm text-gray-600">
                   <span className="font-medium">{amendment.amendmentNumber}</span>
                   <span>•</span>
                   <span>Contract: {amendment.contractNumber}</span>
@@ -500,10 +500,10 @@ export default function ContractAmendmentsPage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-5 gap-4 mb-4">
+            <div className="grid grid-cols-5 gap-2 mb-2">
               {/* Value Impact */}
               {amendment.valueImpact !== undefined && (
-                <div className={`bg-gradient-to-br rounded-lg p-4 ${
+                <div className={`bg-gradient-to-br rounded-lg p-3 ${
                   amendment.valueImpact > 0
                     ? 'from-green-50 to-green-100'
                     : amendment.valueImpact < 0
@@ -533,7 +533,7 @@ export default function ContractAmendmentsPage() {
 
               {/* Term Change */}
               {amendment.originalEndDate && amendment.newEndDate && (
-                <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4">
+                <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-3">
                   <div className="flex items-center gap-1 text-purple-700 mb-1">
                     <Calendar className="w-4 h-4" />
                     <span className="text-xs font-medium">Term Change</span>
@@ -548,7 +548,7 @@ export default function ContractAmendmentsPage() {
               )}
 
               {/* Effective Date */}
-              <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4">
+              <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-3">
                 <div className="flex items-center gap-1 text-blue-700 mb-1">
                   <Calendar className="w-4 h-4" />
                   <span className="text-xs font-medium">Effective Date</span>
@@ -559,7 +559,7 @@ export default function ContractAmendmentsPage() {
               </div>
 
               {/* Approval Status */}
-              <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-4">
+              <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-3">
                 <div className="flex items-center gap-1 text-orange-700 mb-1">
                   <CheckCircle className="w-4 h-4" />
                   <span className="text-xs font-medium">Approvals</span>
@@ -587,7 +587,7 @@ export default function ContractAmendmentsPage() {
               </div>
 
               {/* Assigned To */}
-              <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg p-4">
+              <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg p-3">
                 <div className="flex items-center gap-1 text-teal-700 mb-1">
                   <User className="w-4 h-4" />
                   <span className="text-xs font-medium">Assigned To</span>
@@ -598,13 +598,13 @@ export default function ContractAmendmentsPage() {
             </div>
 
             {/* Reason */}
-            <div className="mb-4 pb-4 border-b border-gray-100">
+            <div className="mb-2 pb-4 border-b border-gray-100">
               <div className="text-xs text-gray-600 mb-1">Reason:</div>
               <div className="text-sm text-gray-900">{amendment.reason}</div>
             </div>
 
             {/* Impacted Clauses */}
-            <div className="mb-4">
+            <div className="mb-2">
               <div className="text-xs text-gray-600 mb-2">Impacted Clauses ({amendment.impactedClauses.length}):</div>
               <div className="flex flex-wrap gap-2">
                 {amendment.impactedClauses.map((clause, index) => (
@@ -616,7 +616,7 @@ export default function ContractAmendmentsPage() {
             </div>
 
             {/* Requirements */}
-            <div className="grid grid-cols-2 gap-4 mb-4 pb-4 border-b border-gray-100">
+            <div className="grid grid-cols-2 gap-2 mb-2 pb-4 border-b border-gray-100">
               <div className="flex items-center gap-2">
                 <span className={`w-2 h-2 rounded-full ${amendment.requiresLegalReview ? 'bg-yellow-500' : 'bg-gray-300'}`}></span>
                 <span className="text-xs text-gray-700">Requires Legal Review</span>
@@ -628,7 +628,7 @@ export default function ContractAmendmentsPage() {
             </div>
 
             {/* Timeline */}
-            <div className="grid grid-cols-4 gap-4 mb-4 text-xs">
+            <div className="grid grid-cols-4 gap-2 mb-2 text-xs">
               <div>
                 <span className="text-gray-600">Requested:</span>
                 <div className="font-medium text-gray-900">{new Date(amendment.requestedDate).toLocaleDateString()}</div>
@@ -651,7 +651,7 @@ export default function ContractAmendmentsPage() {
 
             {/* Notes */}
             {amendment.notes && (
-              <div className="mb-4">
+              <div className="mb-2">
                 <div className="text-xs text-gray-600 mb-1">Notes:</div>
                 <div className="bg-gray-50 rounded p-3 text-sm text-gray-700 border border-gray-200">
                   {amendment.notes}
@@ -673,7 +673,7 @@ export default function ContractAmendmentsPage() {
 
       {filteredAmendments.length === 0 && (
         <div className="text-center py-12 bg-white rounded-lg border border-gray-200">
-          <FileText className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+          <FileText className="w-16 h-16 text-gray-400 mx-auto mb-2" />
           <h3 className="text-lg font-medium text-gray-900 mb-2">No amendments found</h3>
           <p className="text-gray-600">Try adjusting your search or filters</p>
         </div>

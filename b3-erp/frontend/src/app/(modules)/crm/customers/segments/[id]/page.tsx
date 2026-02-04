@@ -179,12 +179,12 @@ export default function SegmentDetailPage() {
   };
 
   return (
-    <div className="container mx-auto h-full px-4 sm:px-6 lg:px-8 py-6 ">
+    <div className="w-full h-full px-3 py-2 ">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-3">
         <button
           onClick={() => router.back()}
-          className="flex items-center text-gray-600 hover:text-gray-900 mb-4"
+          className="flex items-center text-gray-600 hover:text-gray-900 mb-2"
         >
           <ArrowLeft className="h-5 w-5 mr-2" />
           Back to Segments
@@ -215,8 +215,8 @@ export default function SegmentDetailPage() {
       </div>
 
       {/* Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-8">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Total Customers</p>
@@ -228,7 +228,7 @@ export default function SegmentDetailPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Total Revenue</p>
@@ -240,7 +240,7 @@ export default function SegmentDetailPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Avg Order Value</p>
@@ -252,7 +252,7 @@ export default function SegmentDetailPage() {
           </div>
         </div>
 
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
+        <div className="bg-white rounded-lg border border-gray-200 p-3">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-600">Growth Rate</p>
@@ -266,8 +266,8 @@ export default function SegmentDetailPage() {
       </div>
 
       {/* Segment Criteria */}
-      <div className="bg-white rounded-lg border border-gray-200 p-6 mb-8">
-        <h2 className="text-lg font-semibold text-gray-900 mb-4">Segment Criteria</h2>
+      <div className="bg-white rounded-lg border border-gray-200 p-3 mb-8">
+        <h2 className="text-lg font-semibold text-gray-900 mb-2">Segment Criteria</h2>
         <div className="flex flex-wrap gap-2">
           {segment.criteria.map((criterion, index) => (
             <span
@@ -283,7 +283,7 @@ export default function SegmentDetailPage() {
       {/* Customer List */}
       <div className="bg-white rounded-lg border border-gray-200">
         <div className="p-6 border-b border-gray-200">
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center justify-between mb-2">
             <h2 className="text-lg font-semibold text-gray-900">Customers in Segment</h2>
             <div className="flex gap-3">
               <button
@@ -303,7 +303,7 @@ export default function SegmentDetailPage() {
             </div>
           </div>
 
-          <div className="flex gap-4">
+          <div className="flex gap-2">
             <div className="flex-1 relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
               <input
@@ -330,20 +330,20 @@ export default function SegmentDetailPage() {
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Customer</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Company</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Contact</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Location</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Total Spent</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Last Purchase</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Customer</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Company</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Contact</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Location</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Total Spent</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Last Purchase</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
               {filteredCustomers.map((customer) => (
                 <tr key={customer.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="flex items-center">
                       <div className="h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center">
                         <span className="text-blue-600 font-medium">
@@ -355,13 +355,13 @@ export default function SegmentDetailPage() {
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="flex items-center">
                       <Building2 className="h-4 w-4 text-gray-400 mr-2" />
                       <span className="text-gray-900">{customer.company}</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="space-y-1">
                       <div className="flex items-center text-sm text-gray-600">
                         <Mail className="h-3 w-3 mr-1" />
@@ -373,21 +373,21 @@ export default function SegmentDetailPage() {
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <div className="flex items-center text-sm text-gray-600">
                       <MapPin className="h-4 w-4 mr-1" />
                       {customer.location}
                     </div>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <span className="font-semibold text-gray-900">
                       ${customer.totalSpent.toLocaleString()}
                     </span>
                   </td>
-                  <td className="px-6 py-4 text-sm text-gray-600">
+                  <td className="px-3 py-2 text-sm text-gray-600">
                     {new Date(customer.lastPurchase).toLocaleDateString()}
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
                       customer.status === 'active'
                         ? 'bg-green-100 text-green-800'
@@ -396,7 +396,7 @@ export default function SegmentDetailPage() {
                       {customer.status}
                     </span>
                   </td>
-                  <td className="px-6 py-4">
+                  <td className="px-3 py-2">
                     <button
                       onClick={() => router.push(`/crm/customers/${customer.id}`)}
                       className="flex items-center gap-1 text-blue-600 hover:text-blue-800"
@@ -413,7 +413,7 @@ export default function SegmentDetailPage() {
 
         {filteredCustomers.length === 0 && (
           <div className="text-center py-12">
-            <Users className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+            <Users className="w-16 h-16 text-gray-400 mx-auto mb-2" />
             <h3 className="text-lg font-medium text-gray-900 mb-2">No customers found</h3>
             <p className="text-gray-600">Try adjusting your search or filters</p>
           </div>

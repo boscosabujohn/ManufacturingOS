@@ -358,7 +358,7 @@ export default function InstallationTrackingEnhancedPage() {
  const qualityProgress = formData.qualityChecklist.filter(item => item.status === 'pass').length;
 
  return (
-  <div className="w-full py-6 space-y-6">
+  <div className="w-full py-2 space-y-3">
    {/* Header */}
    <div className="flex items-center justify-between">
     <div className="flex items-center gap-4">
@@ -417,8 +417,8 @@ export default function InstallationTrackingEnhancedPage() {
     <CardContent>
      {/* Step 1: Equipment */}
      {currentStep === 0 && (
-      <div className="space-y-6">
-       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="space-y-3">
+       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         <div className="space-y-2">
          <Label className="flex items-center gap-2">
           Project <span className="text-red-500">*</span>
@@ -525,8 +525,8 @@ export default function InstallationTrackingEnhancedPage() {
 
      {/* Step 2: Schedule */}
      {currentStep === 1 && (
-      <div className="space-y-6">
-       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="space-y-3">
+       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         <div className="space-y-2">
          <Label className="flex items-center gap-2">
           Planned Start Date <span className="text-red-500">*</span>
@@ -612,8 +612,8 @@ export default function InstallationTrackingEnhancedPage() {
 
      {/* Step 3: Team */}
      {currentStep === 2 && (
-      <div className="space-y-6">
-       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="space-y-3">
+       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         <div className="space-y-2">
          <Label className="flex items-center gap-2">
           Supervisor <span className="text-red-500">*</span>
@@ -638,7 +638,7 @@ export default function InstallationTrackingEnhancedPage() {
         </div>
        </div>
 
-       <div className="space-y-4">
+       <div className="space-y-2">
         <div className="flex items-center justify-between">
          <Label className="flex items-center gap-2">
           Team Members <span className="text-red-500">*</span>
@@ -742,9 +742,9 @@ export default function InstallationTrackingEnhancedPage() {
 
      {/* Step 4: Safety & Quality */}
      {currentStep === 3 && (
-      <div className="space-y-6">
+      <div className="space-y-3">
        {/* Safety Checklist */}
-       <div className="space-y-4">
+       <div className="space-y-2">
         <div className="flex items-center justify-between">
          <Label className="flex items-center gap-2 text-lg font-semibold">
           <Shield className="h-5 w-5 text-orange-600" />
@@ -785,7 +785,7 @@ export default function InstallationTrackingEnhancedPage() {
        </div>
 
        {/* Quality Checklist */}
-       <div className="space-y-4">
+       <div className="space-y-2">
         <div className="flex items-center justify-between">
          <Label className="flex items-center gap-2 text-lg font-semibold">
           <ClipboardCheck className="h-5 w-5 text-green-600" />
@@ -834,8 +834,8 @@ export default function InstallationTrackingEnhancedPage() {
 
      {/* Step 5: Review */}
      {currentStep === 4 && (
-      <div className="space-y-6">
-       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="space-y-3">
+       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         <div className="space-y-2">
          <Label className="flex items-center gap-2">
           Progress (%)

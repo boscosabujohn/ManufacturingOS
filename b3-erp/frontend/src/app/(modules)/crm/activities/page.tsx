@@ -315,7 +315,7 @@ export default function ActivitiesPage() {
   return (
     <div className="p-8">
       <div className="mb-8">
-        <div className="flex justify-between items-center mb-6">
+        <div className="flex justify-between items-center mb-3">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">Activities Overview</h1>
             <p className="text-gray-600 mt-1">Track and manage all CRM activities</p>
@@ -343,8 +343,8 @@ export default function ActivitiesPage() {
         </div>
 
         {/* Overall Statistics Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-6 mb-8">
-          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-6 text-white">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-3 mb-8">
+          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg p-3 text-white">
             <div className="flex items-center justify-between mb-2">
               <Activity className="w-8 h-8 opacity-80" />
             </div>
@@ -352,7 +352,7 @@ export default function ActivitiesPage() {
             <div className="text-blue-100">Total Activities</div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-3 text-white">
             <div className="flex items-center justify-between mb-2">
               <CheckCircle className="w-8 h-8 opacity-80" />
             </div>
@@ -360,7 +360,7 @@ export default function ActivitiesPage() {
             <div className="text-green-100">Completed</div>
           </div>
 
-          <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-lg p-3 text-white">
             <div className="flex items-center justify-between mb-2">
               <Clock className="w-8 h-8 opacity-80" />
             </div>
@@ -368,7 +368,7 @@ export default function ActivitiesPage() {
             <div className="text-yellow-100">Pending</div>
           </div>
 
-          <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-lg p-3 text-white">
             <div className="flex items-center justify-between mb-2">
               <AlertCircle className="w-8 h-8 opacity-80" />
             </div>
@@ -376,7 +376,7 @@ export default function ActivitiesPage() {
             <div className="text-red-100">Overdue</div>
           </div>
 
-          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg p-3 text-white">
             <div className="flex items-center justify-between mb-2">
               <Target className="w-8 h-8 opacity-80" />
             </div>
@@ -386,20 +386,20 @@ export default function ActivitiesPage() {
         </div>
 
         {/* Activity Type Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-8">
           {activityStats.map((stat) => {
             const Icon = stat.icon;
             return (
               <Link key={stat.type} href={stat.href}>
-                <div className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow cursor-pointer">
-                  <div className="flex items-center justify-between mb-4">
+                <div className="bg-white rounded-lg border border-gray-200 p-3 hover:shadow-lg transition-shadow cursor-pointer">
+                  <div className="flex items-center justify-between mb-2">
                     <div className={`p-3 rounded-lg ${getActivityColor(stat.type.toLowerCase())}`}>
                       <Icon className="w-6 h-6" />
                     </div>
                     <ArrowRight className="w-5 h-5 text-gray-400" />
                   </div>
 
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">{stat.type}</h3>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">{stat.type}</h3>
 
                   <div className="space-y-3">
                     <div className="flex justify-between items-center">
@@ -441,23 +441,23 @@ export default function ActivitiesPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* Recent Activities */}
         <div className="lg:col-span-2">
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <div className="flex justify-between items-center mb-6">
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <div className="flex justify-between items-center mb-3">
               <h2 className="text-xl font-bold text-gray-900">Recent Activities</h2>
               <Link href="/crm/activities/calendar" className="text-blue-600 hover:text-blue-700 text-sm font-medium">
                 View Calendar
               </Link>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-2">
               {activities.map((activity) => {
                 const Icon = getActivityIcon(activity.type);
                 return (
-                  <div key={activity.id} className="border border-gray-200 rounded-lg p-4 hover:bg-gray-50 transition-colors">
-                    <div className="flex items-start gap-4">
+                  <div key={activity.id} className="border border-gray-200 rounded-lg p-3 hover:bg-gray-50 transition-colors">
+                    <div className="flex items-start gap-2">
                       <div className={`p-2 rounded-lg ${getActivityColor(activity.type)}`}>
                         <Icon className="w-5 h-5" />
                       </div>
@@ -473,7 +473,7 @@ export default function ActivitiesPage() {
                           </span>
                         </div>
 
-                        <div className="flex items-center gap-4 text-sm text-gray-600">
+                        <div className="flex items-center gap-2 text-sm text-gray-600">
                           <span>👤 {activity.assignedTo}</span>
                           <span>•</span>
                           <span>🏢 {activity.relatedTo}</span>
@@ -483,7 +483,7 @@ export default function ActivitiesPage() {
                           </span>
                         </div>
 
-                        <div className="flex items-center gap-4 text-xs text-gray-500 mt-2">
+                        <div className="flex items-center gap-2 text-xs text-gray-500 mt-2">
                           <span className="flex items-center gap-1">
                             <Clock className="w-3 h-3" />
                             Due: {new Date(activity.dueDate).toLocaleString()}
@@ -506,12 +506,12 @@ export default function ActivitiesPage() {
 
         {/* Team Performance */}
         <div className="lg:col-span-1">
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <h2 className="text-xl font-bold text-gray-900 mb-6">Team Performance</h2>
+          <div className="bg-white rounded-lg border border-gray-200 p-3">
+            <h2 className="text-xl font-bold text-gray-900 mb-3">Team Performance</h2>
 
-            <div className="space-y-4">
+            <div className="space-y-2">
               {teamMembers.map((member) => (
-                <div key={member.id} className="border border-gray-200 rounded-lg p-4">
+                <div key={member.id} className="border border-gray-200 rounded-lg p-3">
                   <div className="flex items-start gap-3 mb-3">
                     <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold">
                       {member.avatar}

@@ -411,7 +411,7 @@ export default function DeliverablesListPage() {
 
     return (
         <div className="w-full h-screen overflow-y-auto overflow-x-hidden">
-            <div className="px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+            <div className="px-3 py-2 space-y-3">
                 {/* Header Actions */}
                 <div className="flex justify-between mb-4">
                     <div className="flex gap-2">
@@ -608,7 +608,7 @@ export default function DeliverablesListPage() {
                                             </div>
 
                                             {/* Timeline */}
-                                            <div className="flex items-center gap-6 text-sm">
+                                            <div className="flex items-center gap-3 text-sm">
                                                 <div className="flex items-center gap-2">
                                                     <Calendar className="w-4 h-4 text-gray-400" />
                                                     <span className="text-gray-600">Planned:</span>

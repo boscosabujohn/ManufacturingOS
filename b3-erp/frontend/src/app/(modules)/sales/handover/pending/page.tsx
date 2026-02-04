@@ -260,8 +260,8 @@ export default function PendingHandoverPage() {
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-gradient-to-br from-orange-500 to-amber-600 rounded-xl p-6 text-white shadow-lg">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+          <div className="bg-gradient-to-br from-orange-500 to-amber-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-orange-100 text-sm font-medium">Pending Handovers</p>
@@ -274,7 +274,7 @@ export default function PendingHandoverPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-green-100 text-sm font-medium">Ready for Handover</p>
@@ -287,7 +287,7 @@ export default function PendingHandoverPage() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-red-500 to-pink-600 rounded-xl p-6 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-red-500 to-pink-600 rounded-xl p-3 text-white shadow-lg">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-red-100 text-sm font-medium">Urgent</p>
@@ -302,7 +302,7 @@ export default function PendingHandoverPage() {
         </div>
 
         {/* Search and Filter */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -328,13 +328,13 @@ export default function PendingHandoverPage() {
         </div>
 
         {/* Handovers Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
           {filteredHandovers.map((handover) => {
             const readiness = getReadinessPercentage(handover);
             const isUrgent = handover.daysUntilHandover <= 2;
 
             return (
-              <div key={handover.id} className={`bg-white rounded-xl shadow-sm border-2 p-6 hover:shadow-md transition-shadow ${isUrgent ? 'border-red-300' : 'border-gray-200'}`}>
+              <div key={handover.id} className={`bg-white rounded-xl shadow-sm border-2 p-3 hover:shadow-md transition-shadow ${isUrgent ? 'border-red-300' : 'border-gray-200'}`}>
                 <div className="space-y-4">
                   {/* Header */}
                   <div className="flex items-start justify-between">
